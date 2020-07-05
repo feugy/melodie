@@ -1,4 +1,5 @@
 'use strict'
+
 import { tick } from 'svelte'
 import { get } from 'svelte/store'
 import faker from 'faker'

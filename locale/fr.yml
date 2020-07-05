@@ -1,4 +1,5 @@
-load: Charger...
-start loading some tracks: Commencez par charger quelques morceaux
 'artist: _': 'Artiste : {value}'
 'title: _': 'Titre : {value}'
+clear: Vider
+load: Charger...
+start loading some tracks: Commencez par charger quelques morceaux

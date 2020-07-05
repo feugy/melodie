@@ -1,16 +1,28 @@
 <script>
+  import { onMount } from 'svelte'
   import { _ } from 'svelte-intl'
   import trackList from './stores/track-list'
+  import {
+    albums,
+    list as listAlbums,
+    open as openAlbum
+  } from './stores/albums'
   import invoke from './utils/electron-remote'
   import Tags from './components/Tags.svelte'
+  import Album from './components/Album.svelte'
   const { basename } = require('path')
+
+  let current
 
   async function handleLoad() {
     const files = await invoke('fileLoader.load')
     if (files) {
       trackList.add(files)
+      await listAlbums()
     }
   }
+
+  onMount(listAlbums)
 </script>
 
 <style>
@@ -41,6 +53,18 @@
 
 <main>
   <h1>{$_('Mélodie')}</h1>
+  {#if $albums.length}
+    <ul>
+      {#each $albums as src}
+        <li>
+          <Album
+            {src}
+            on:open={({ detail }) => openAlbum(detail)}
+            on:play={({ detail }) => trackList.add([detail])} />
+        </li>
+      {/each}
+    </ul>
+  {/if}
   {#if $trackList.tracks.length}
     <ol>
       {#each $trackList.tracks as track}
@@ -64,6 +88,7 @@
   {/if}
   <p>
     <button on:click={handleLoad}>{$_('load')}</button>
+    <button on:click={() => trackList.clear()}>{$_('clear')}</button>
   </p>
   {#if $trackList.current}
     <p>

@@ -1,3 +1,5 @@
+'use strict'
+
 import { locale, translations } from 'svelte-intl'
 import App from './App.svelte'
 

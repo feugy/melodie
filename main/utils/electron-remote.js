@@ -1,4 +1,5 @@
 'use strict'
+
 const electron = require('electron')
 
 module.exports = function (services = electron) {

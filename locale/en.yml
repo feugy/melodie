@@ -1,8 +1,9 @@
 _ / _: '{current} / {total}'
+'artist: _': 'Artist: {value}'
+'title: _': 'Title: {value}'
+clear: Clear
 load: Load...
 Mélodie: Mélodie
 next: '>'
 previous: <
 start loading some tracks: Start loading some tracks
-'artist: _': 'Artist: {value}'
-'title: _': 'Title: {value}'

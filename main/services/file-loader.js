@@ -1,6 +1,12 @@
 'use strict'
+
 const { dialog } = require('electron')
+const pMap = require('p-map')
 const { read } = require('./tag-reader')
+const { add: addTracks } = require('./search-engine')
+const { add: addAlbums } = require('./list-engine')
+
+const concurrency = 10
 
 module.exports = {
   async load() {
@@ -10,8 +16,9 @@ module.exports = {
     if (!filePaths) {
       return null
     }
-    return Promise.all(
-      filePaths.map(async path => {
+    const tracks = await pMap(
+      filePaths,
+      async path => {
         let tags = {}
         try {
           tags = await read(path)
@@ -19,7 +26,11 @@ module.exports = {
           // ignore ID3 reading errors for now
         }
         return { path, tags }
-      })
+      },
+      { concurrency }
     )
+    await addTracks(tracks)
+    await addAlbums(tracks)
+    return tracks
   }
 }

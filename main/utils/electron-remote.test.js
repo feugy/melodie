@@ -1,4 +1,5 @@
 'use strict'
+
 const electron = require('electron')
 const faker = require('faker')
 const subscribeRemote = require('./electron-remote')

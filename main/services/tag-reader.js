@@ -1,4 +1,5 @@
 'use strict'
+
 const { parseFile } = require('music-metadata')
 
 module.exports = {
