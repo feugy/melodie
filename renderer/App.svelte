@@ -2,13 +2,14 @@
   import { _ } from 'svelte-intl'
   import trackList from './stores/track-list'
   import invoke from './utils/electron-remote'
+  import Tags from './components/Tags.svelte'
   const { basename } = require('path')
 
   async function handleLoad() {
-    const result = await invoke('dialog.showOpenDialog', {
-      properties: ['openFile', 'multiSelections']
-    })
-    trackList.add(result.filePaths)
+    const files = await invoke('fileLoader.load')
+    if (files) {
+      trackList.add(files)
+    }
   }
 </script>
 
@@ -43,7 +44,9 @@
   {#if $trackList.tracks.length}
     <ol>
       {#each $trackList.tracks as track}
-        <li>{basename(track).replace(/\..+$/, '')}</li>
+        <li>
+          <Tags src={track.tags} />
+        </li>
       {/each}
     </ol>
     <div>
@@ -62,9 +65,15 @@
   <p>
     <button on:click={handleLoad}>{$_('load')}</button>
   </p>
-  <p>
-    {#if $trackList.current}
-      <audio autoplay controls src={$trackList.current} />
-    {/if}
-  </p>
+  {#if $trackList.current}
+    <p>
+      <Tags src={$trackList.current.tags} />
+    </p>
+    <p>
+      <audio
+        autoplay
+        controls
+        src={$trackList.current.path.replace(/#/g, '%23')} />
+    </p>
+  {/if}
 </main>

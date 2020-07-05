@@ -1,8 +1,11 @@
 'ust strict'
 const { join } = require('path')
-const { app, BrowserWindow } = require('electron')
+const electron = require('electron')
 const subscribeRemote = require('./utils/electron-remote')
+const tagReader = require('./services/tag-reader')
+const fileLoader = require('./services/file-loader')
 
+const { app, BrowserWindow } = electron
 const publicFolder = join(__dirname, '..', 'public')
 let unsubscribe
 
@@ -18,7 +21,11 @@ function createWindow() {
       nodeIntegration: true
     }
   })
-  unsubscribe = subscribeRemote()
+  unsubscribe = subscribeRemote({
+    tagReader,
+    fileLoader,
+    ...electron
+  })
   win.loadURL(`file://${join(publicFolder, 'index.html')}`)
 }
 

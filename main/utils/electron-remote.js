@@ -1,12 +1,12 @@
 'use strict'
 const electron = require('electron')
 
-module.exports = function () {
+module.exports = function (services = electron) {
   electron.ipcMain.handle('remote', async (event, module, fn, ...args) => {
-    if (!(module in electron) || !(fn in electron[module])) {
+    if (!(module in services) || !(fn in services[module])) {
       throw new Error(`electron doesn't support ${module}.${fn}()`)
     }
-    return electron[module][fn](...args)
+    return services[module][fn](...args)
   })
 
   return function () {
