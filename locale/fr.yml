@@ -1,5 +1,8 @@
+_ items: '{total} pistes'
 'artist: _': 'Artiste : {value}'
 'title: _': 'Titre : {value}'
 clear: Vider
 load: Charger...
+open playlist: File d'attente
+playlist: File d'attente
 start loading some tracks: Commencez par charger quelques morceaux

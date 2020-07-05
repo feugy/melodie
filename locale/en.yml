@@ -1,9 +1,12 @@
-_ / _: '{current} / {total}'
+_ items: '{total} tracks'
+albums: Albums
 'artist: _': 'Artist: {value}'
 'title: _': 'Title: {value}'
 clear: Clear
 load: Load...
 Mélodie: Mélodie
 next: '>'
+open playlist: Queue
+playlist: Queue
 previous: <
 start loading some tracks: Start loading some tracks

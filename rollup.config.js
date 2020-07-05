@@ -6,6 +6,7 @@ import yaml from '@rollup/plugin-yaml'
 import svelte from 'rollup-plugin-svelte'
 import livereload from 'rollup-plugin-livereload'
 import { terser } from 'rollup-plugin-terser'
+import smelte from 'smelte/rollup-plugin-smelte'
 
 const production = !process.env.ROLLUP_WATCH
 
@@ -26,6 +27,11 @@ export default {
       css: css => {
         css.write('public/build/bundle.css')
       }
+    }),
+
+    smelte({
+      purge: false,
+      output: 'public/build/smelte.css'
     }),
 
     // If you have external dependencies installed from
