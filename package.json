@@ -1,0 +1,55 @@
+{
+  "name": "melodie",
+  "version": "0.0.0",
+  "description": "Melodie is a portable, simple-as-pie music player",
+  "author": "feugy <damien.feugas@gmail.com>",
+  "license": "MIT",
+  "main": "main/index.js",
+  "scripts": {
+    "build": "run-s build:svelte start",
+    "build:svelte": "rollup -c",
+    "dev": "rollup -c -w",
+    "start": "electron .",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.10.4",
+    "@babel/preset-env": "^7.10.4",
+    "@rollup/plugin-commonjs": "^12.0.0",
+    "@rollup/plugin-node-resolve": "^8.0.0",
+    "@rollup/plugin-yaml": "^2.1.1",
+    "electron": "^9.0.5",
+    "electron-reload": "^1.5.0",
+    "eslint": "^7.4.0",
+    "eslint-config-prettier": "^6.11.0",
+    "faker": "^4.1.0",
+    "format-message": "^6.2.3",
+    "husky": "^4.2.5",
+    "jest": "^26.1.0",
+    "jest-watch-typeahead": "^0.6.0",
+    "lint-staged": "^10.2.11",
+    "npm-run-all": "^4.1.5",
+    "rollup": "^2.3.4",
+    "rollup-plugin-livereload": "^1.0.0",
+    "rollup-plugin-svelte": "^5.0.3",
+    "rollup-plugin-terser": "^5.1.2",
+    "spectron": "^11.0.0",
+    "spectron-dialog-addon": "^1.0.1",
+    "svelte": "^3.0.0",
+    "svelte-intl": "^1.1.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js}": [
+      "eslint --cache --fix",
+      "prettier --write"
+    ],
+    "*.{svelte}": [
+      "prettier --write"
+    ]
+  }
+}

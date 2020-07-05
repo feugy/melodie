@@ -1,0 +1,12 @@
+extends:
+  - eslint:recommended
+  - prettier
+env:
+  jest: true
+  browser: true
+  node: true
+  es2020: true
+parserOptions:
+  ecmaVersion: 11
+  sourceType: module
+rules: {}
