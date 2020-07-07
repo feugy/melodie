@@ -26,11 +26,16 @@ async function importIndex(index, name) {
 
 let albumsStore = []
 let albumIds = new Set()
+
+let artistsStore = []
+let artistIds = new Set()
+
 const collator = new Intl.Collator({ numeric: true })
 
 module.exports = {
   async init() {
     albumIds = await importIndex(albumsStore, 'albums')
+    artistIds = await importIndex(artistsStore, 'artists')
   },
 
   async add(tracks) {
@@ -38,9 +43,14 @@ module.exports = {
       throw new Error('list engine not initialized')
     }
     const albums = new Set()
+    const artists = new Set()
     for (const track of tracks) {
       albums.add(track.tags.album)
+      for (const artist of track.tags.artists) {
+        artists.add(artist)
+      }
     }
+    const albumsSize = albumIds.size
     for (const title of albums) {
       const id = hash(title)
       if (!albumIds.has(id)) {
@@ -48,10 +58,24 @@ module.exports = {
         albumIds.add(id)
       }
     }
-    albumsStore.sort((a, b) => collator.compare(a.title, b.title))
+    if (albumIds.size != albumsSize) {
+      albumsStore.sort((a, b) => collator.compare(a.title, b.title))
+    }
+    const artistsSize = artistIds.size
+    for (const name of artists) {
+      const id = hash(name)
+      if (!artistIds.has(id)) {
+        artistsStore.push({ id, name })
+        artistIds.add(id)
+      }
+    }
+    if (artistIds.size != artistsSize) {
+      artistsStore.sort((a, b) => collator.compare(a.title, b.title))
+    }
 
     // TODO defer
     await exportIndex(albumsStore, 'albums')
+    await exportIndex(artistsStore, 'artists')
   },
 
   async listAlbums() {
@@ -59,5 +83,12 @@ module.exports = {
       throw new Error('list engine not initialized')
     }
     return albumsStore
+  },
+
+  async listArtists() {
+    if (!albumsStore) {
+      throw new Error('list engine not initialized')
+    }
+    return artistsStore
   }
 }
