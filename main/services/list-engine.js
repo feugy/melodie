@@ -57,13 +57,13 @@ module.exports = {
     for (const [
       ,
       {
-        tags: { title },
+        tags: { album, artists },
         cover
       }
     ] of albums) {
-      const id = hash(title)
+      const id = hash(album)
       if (!albumIds.has(id)) {
-        albumsStore.push({ id, title, cover })
+        albumsStore.push({ id, title: album, artists, cover })
         albumIds.add(id)
       }
     }

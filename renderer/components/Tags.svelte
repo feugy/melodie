@@ -1,12 +1,21 @@
 <script>
   import { _ } from 'svelte-intl'
+  import { Image } from 'smelte'
+  import { toDOMSrc } from '../utils'
+
   export let src
   export let hideArtist = false
+  export let image = null
 </script>
 
-<p class="flex flex-col m-2 items-start text-left" on:click>
-  <span class="px-2 text-lg">{src.title}</span>
-  {#if !hideArtist}
-    <span class="px-2 text-sm">{src.artist}</span>
+<div class="flex m-2 items-start text-left" on:click>
+  {#if image}
+    <Image class="rounded-full h-16 w-16 flex-none" src={toDOMSrc(image)} />
   {/if}
-</p>
+  <div class="flex flex-col">
+    <span class="px-2 text-lg">{src.title}</span>
+    {#if !hideArtist}
+      <span class="px-2 text-sm">{src.artist}</span>
+    {/if}
+  </div>
+</div>

@@ -1,9 +1,16 @@
 'use strict'
 
-import { writable } from 'svelte/store'
+import produce from 'immer'
+import { BehaviorSubject } from 'rxjs'
 import invoke from '../utils/electron-remote'
 
-export const albums = writable([])
+function observableStore(initial) {
+  let store = new BehaviorSubject(initial)
+  store.set = store.next
+  return store
+}
+
+export const albums = observableStore([])
 
 export async function list() {
   const data = await invoke('listEngine.listAlbums')
@@ -16,13 +23,13 @@ export async function open(album) {
     'tags:album',
     album.title
   )
-  albums.update(values => {
-    const idx = values.indexOf(album)
-    return [
-      ...(idx > 0 ? values.slice(0, idx) : []),
-      album,
-      ...(idx < values.length - 1 ? values.slice(idx + 1) : [])
-    ]
-  })
-  album.tracks = result
+
+  albums.set(
+    produce(albums.value, draft => {
+      const idx = draft.findIndex(({ title }) => title === album.title)
+      if (idx >= 0) {
+        draft[idx].tracks = result
+      }
+    })
+  )
 }

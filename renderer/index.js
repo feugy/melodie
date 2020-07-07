@@ -1,7 +1,10 @@
 'use strict'
 
 import { locale, translations } from 'svelte-intl'
+import { enableMapSet } from 'immer'
 import App from './App.svelte'
+
+enableMapSet()
 
 // TODO load on demand
 import en from '../locale/en.yml'

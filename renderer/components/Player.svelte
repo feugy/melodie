@@ -4,6 +4,7 @@
   import { _ } from 'svelte-intl'
   import trackList from '../stores/track-list'
   import Tags from './Tags.svelte'
+  import { toDOMSrc } from '../utils'
 
   let open = false
   const dispatch = createEventDispatcher()
@@ -31,10 +32,7 @@
 
 <div class="flex items-center">
   {#if $trackList.current}
-    <audio
-      autoplay
-      controls
-      src={$trackList.current.path.replace(/#/g, '%23')} />
+    <audio autoplay controls src={toDOMSrc($trackList.current.path)} />
     <Button
       on:click={() => trackList.previous()}
       text
@@ -50,7 +48,7 @@
       icon="skip_next"
       title={$_('next')} />
     <span class="flex-grow">
-      <Tags src={$trackList.current.tags} />
+      <Tags src={$trackList.current.tags} image={$trackList.current.cover} />
     </span>
     <Menu
       bind:open

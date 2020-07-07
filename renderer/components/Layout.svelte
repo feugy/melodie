@@ -9,14 +9,14 @@
 
   let currentList
 
-  async function handleOpenAlbum(album) {
-    if (currentList === album) {
+  async function handleOpenAlbum($album) {
+    if (currentList === $album) {
       currentList = undefined
     } else {
-      if (!album.tracks) {
-        await open(album)
+      if (!$album.tracks) {
+        open($album)
       }
-      currentList = album
+      currentList = $album
     }
   }
 </script>
@@ -28,7 +28,7 @@
     <h2 class="text-xl">{$_('albums')}</h2>
     <div class="flex flex-wrap justify-start">
       {#each $albums as src}
-        <span class="p-4 w-64 h-64">
+        <span class="p-4">
           <Album {src} on:click={() => handleOpenAlbum(src)} on:click on:play />
         </span>
       {/each}

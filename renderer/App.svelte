@@ -4,7 +4,7 @@
   import { _ } from 'svelte-intl'
   import { Button } from 'smelte'
   import trackList from './stores/track-list'
-  import { albums, list as listAlbums } from './stores/albums'
+  import { list as listAlbums } from './stores/albums'
   import invoke from './utils/electron-remote'
   import Layout from './components/Layout.svelte'
 
@@ -24,6 +24,8 @@
     color: #ff3e00;
   }
 </style>
+
+<svelte:options immutable={true} />
 
 <svelte:head>
   <title>{$_('Mélodie')}</title>
