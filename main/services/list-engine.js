@@ -1,37 +1,36 @@
 'use strict'
-const { app } = require('electron')
-const fs = require('fs')
-const { join } = require('path')
-
-const appPath = app.getAppPath('userData')
+const fs = require('fs-extra')
+const { hash, getIndexPath } = require('../utils')
 
 async function exportIndex(index, name) {
-  await fs.promises.writeFile(
-    join(appPath, `${name}.index`),
-    JSON.stringify(index)
-  )
+  const file = getIndexPath(name)
+  await fs.ensureFile(file)
+  await fs.writeFile(file, JSON.stringify(index))
 }
 
 async function importIndex(index, name) {
-  const file = join(appPath, `${name}.index`)
+  const file = getIndexPath(name)
+  const ids = new Set()
   try {
-    await fs.promises.access(file, fs.constants.R_OK)
-    index.splice(
-      0,
-      index.length,
-      ...JSON.parse(await fs.promises.readFile(file))
-    )
+    await fs.access(file, fs.constants.R_OK)
+    index.splice(0, index.length)
+    for (const data of JSON.parse(await fs.readFile(file))) {
+      index.push(data)
+      ids.add(data.id)
+    }
   } catch {
     // ignore missing file for now
   }
+  return ids
 }
 
 let albumsStore = []
+let albumIds = new Set()
 const collator = new Intl.Collator({ numeric: true })
 
 module.exports = {
   async init() {
-    await importIndex(albumsStore, 'albums')
+    albumIds = await importIndex(albumsStore, 'albums')
   },
 
   async add(tracks) {
@@ -43,7 +42,11 @@ module.exports = {
       albums.add(track.tags.album)
     }
     for (const title of albums) {
-      albumsStore.push({ title })
+      const id = hash(title)
+      if (!albumIds.has(id)) {
+        albumsStore.push({ id, title })
+        albumIds.add(id)
+      }
     }
     albumsStore.sort((a, b) => collator.compare(a.title, b.title))
 

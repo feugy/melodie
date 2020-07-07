@@ -25,7 +25,9 @@
     "faker": "^4.1.0",
     "flexsearch": "^0.6.32",
     "format-message": "^6.2.3",
+    "fs-extra": "^9.0.1",
     "husky": "^4.2.5",
+    "immer": "^7.0.5",
     "jest": "^26.1.0",
     "jest-watch-typeahead": "^0.6.0",
     "lint-staged": "^10.2.11",
@@ -38,11 +40,13 @@
     "rollup-plugin-livereload": "^1.0.0",
     "rollup-plugin-svelte": "^5.0.3",
     "rollup-plugin-terser": "^5.1.2",
+    "rxjs": "^6.6.0",
     "smelte": "^1.0.14",
     "spectron": "^11.0.0",
     "spectron-dialog-addon": "^1.0.1",
     "svelte": "^3.0.0",
-    "svelte-intl": "^1.1.1"
+    "svelte-intl": "^1.1.1",
+    "xxhashjs": "^0.2.2"
   },
   "husky": {
     "hooks": {
