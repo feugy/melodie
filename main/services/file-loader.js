@@ -4,6 +4,7 @@ const { dialog } = require('electron')
 const pMap = require('p-map')
 const { hash } = require('../utils')
 const { read } = require('./tag-reader')
+const { findFor } = require('./cover-finder')
 const { add: addTracks } = require('./search-engine')
 const { add: addAlbums } = require('./list-engine')
 
@@ -26,7 +27,7 @@ module.exports = {
         } catch {
           // ignore ID3 reading errors for now
         }
-        return { id: hash(path), path, tags }
+        return { id: hash(path), path, tags, cover: await findFor(path) }
       },
       { concurrency }
     )

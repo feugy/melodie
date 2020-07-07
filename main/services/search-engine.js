@@ -35,7 +35,7 @@ module.exports = {
           album: {},
           year: { encode: false, tokenize: 'strict' }
         },
-        store: ['id', 'tags']
+        store: ['id', 'tags', 'cover']
       }
     })
     tracksIndex.name = 'tracks'

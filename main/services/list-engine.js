@@ -42,19 +42,28 @@ module.exports = {
     if (!albumsStore) {
       throw new Error('list engine not initialized')
     }
-    const albums = new Set()
+    const albums = new Map()
     const artists = new Set()
     for (const track of tracks) {
-      albums.add(track.tags.album)
+      if (!albums.has(track.tags.album)) {
+        albums.set(track.tags.album, track)
+      }
       for (const artist of track.tags.artists) {
         artists.add(artist)
       }
     }
+
     const albumsSize = albumIds.size
-    for (const title of albums) {
+    for (const [
+      ,
+      {
+        tags: { title },
+        cover
+      }
+    ] of albums) {
       const id = hash(title)
       if (!albumIds.has(id)) {
-        albumsStore.push({ id, title })
+        albumsStore.push({ id, title, cover })
         albumIds.add(id)
       }
     }
