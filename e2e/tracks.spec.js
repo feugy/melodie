@@ -6,7 +6,7 @@ const electronPath = require('electron')
 const dialogAddon = require('spectron-dialog-addon').default
 const faker = require('faker')
 
-describe('Tracl tests', () => {
+describe.skip('Track tests', () => {
   var app = new Application({
     path: electronPath,
     args: [join(__dirname, '..')]

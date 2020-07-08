@@ -15,7 +15,7 @@ module.exports = {
     const { filePaths } = await dialog.showOpenDialog({
       properties: ['openFile', 'multiSelections']
     })
-    if (!filePaths) {
+    if (!filePaths || filePaths.length === 0) {
       return null
     }
     const tracks = await pMap(

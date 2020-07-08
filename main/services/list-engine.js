@@ -1,4 +1,5 @@
 'use strict'
+
 const fs = require('fs-extra')
 const { hash, getIndexPath } = require('../utils')
 
@@ -38,18 +39,22 @@ module.exports = {
     artistIds = await importIndex(artistsStore, 'artists')
   },
 
+  async reset() {
+    await exportIndex([], 'albums')
+    await exportIndex([], 'artists')
+    await module.exports.init()
+  },
+
   async add(tracks) {
-    if (!albumsStore) {
-      throw new Error('list engine not initialized')
-    }
-    const albums = new Map()
-    const artists = new Set()
+    const uniqueAlbums = new Map()
+    const uniqueArtists = new Set()
     for (const track of tracks) {
-      if (!albums.has(track.tags.album)) {
-        albums.set(track.tags.album, track)
+      const { album, artists } = track.tags
+      if (album && !uniqueAlbums.has(album)) {
+        uniqueAlbums.set(album, track)
       }
-      for (const artist of track.tags.artists) {
-        artists.add(artist)
+      for (const artist of artists || []) {
+        uniqueArtists.add(artist)
       }
     }
 
@@ -57,21 +62,22 @@ module.exports = {
     for (const [
       ,
       {
-        tags: { album, artists },
+        tags: { album },
         cover
       }
-    ] of albums) {
+    ] of uniqueAlbums) {
       const id = hash(album)
       if (!albumIds.has(id)) {
-        albumsStore.push({ id, title: album, artists, cover })
+        albumsStore.push({ id, title: album, cover })
         albumIds.add(id)
       }
     }
     if (albumIds.size != albumsSize) {
       albumsStore.sort((a, b) => collator.compare(a.title, b.title))
     }
+
     const artistsSize = artistIds.size
-    for (const name of artists) {
+    for (const name of uniqueArtists) {
       const id = hash(name)
       if (!artistIds.has(id)) {
         artistsStore.push({ id, name })
@@ -88,16 +94,10 @@ module.exports = {
   },
 
   async listAlbums() {
-    if (!albumsStore) {
-      throw new Error('list engine not initialized')
-    }
     return albumsStore
   },
 
   async listArtists() {
-    if (!albumsStore) {
-      throw new Error('list engine not initialized')
-    }
     return artistsStore
   }
 }
