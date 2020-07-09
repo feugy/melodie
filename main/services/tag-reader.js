@@ -4,6 +4,20 @@ const { parseFile } = require('music-metadata')
 
 module.exports = {
   async read(path) {
-    return (await parseFile(path)).common
+    let tags
+    try {
+      tags = (await parseFile(path)).common
+    } catch {
+      // ignore errors for now
+    }
+    return {
+      album: null,
+      artist: null,
+      artists: [],
+      genre: [],
+      title: null,
+      year: null,
+      ...tags
+    }
   }
 }

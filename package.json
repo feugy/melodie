@@ -10,7 +10,8 @@
     "build:svelte": "rollup -c",
     "dev": "rollup -c -w",
     "start": "electron .",
-    "test": "jest"
+    "test": "jest --coverage",
+    "test:dev": "jest --watch"
   },
   "devDependencies": {
     "@babel/core": "^7.10.4",

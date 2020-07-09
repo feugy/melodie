@@ -21,12 +21,7 @@ module.exports = {
     const tracks = await pMap(
       filePaths,
       async path => {
-        let tags = {}
-        try {
-          tags = await read(path)
-        } catch {
-          // ignore ID3 reading errors for now
-        }
+        const tags = await read(path)
         return { id: hash(path), path, tags, cover: await findFor(path) }
       },
       { concurrency }
