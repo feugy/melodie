@@ -6,7 +6,7 @@
 
 ### internals
 
-- [ ] consider albums & artists as track lists? name + image + tracks
+- [x] consider albums & artists as track lists? name + image + tracks
 - [ ] store track & artist ids in albums
 - [ ] store track & album ids in artists
 - [ ] load (and save) folders and not files

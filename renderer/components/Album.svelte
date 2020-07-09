@@ -18,10 +18,10 @@
   <div slot="title" on:click>
     <Card.Title
       class="text-left"
-      title={src.title}
+      title={src.name}
       subheader={Array.isArray(src.artists) && src.artists[0]} />
   </div>
   <div slot="media" class="media w-64 h-64" on:click>
-    <Image src={toDOMSrc(src.cover)} />
+    <Image src={toDOMSrc(src.image)} />
   </div>
 </Card.Card>

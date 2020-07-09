@@ -18,15 +18,11 @@ export async function list() {
 }
 
 export async function open(album) {
-  const result = await invoke(
-    'searchEngine.searchBy',
-    'tags:album',
-    album.title
-  )
+  const result = await invoke('searchEngine.searchBy', 'tags:album', album.name)
 
   albums.set(
     produce(albums.value, draft => {
-      const idx = draft.findIndex(({ title }) => title === album.title)
+      const idx = draft.findIndex(({ name }) => name === album.name)
       if (idx >= 0) {
         draft[idx].tracks = result
       }

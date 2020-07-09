@@ -23,7 +23,7 @@
 
 <div class="flex flex-col items-stretch">
   <Player
-    on:openPlaylist={() => (currentList = { title: $_('playlist'), tracks: $trackList.tracks })} />
+    on:openPlaylist={() => (currentList = { name: $_('playlist'), tracks: $trackList.tracks })} />
   <span>
     <h2 class="text-xl">{$_('albums')}</h2>
     <div class="flex flex-wrap justify-start">
@@ -39,7 +39,7 @@
   <aside
     class="fixed right-0 inset-y-0 shadow-lg p-4 w-1/3 bg-white flex flex-col">
     <header class="flex items-center">
-      <span class="text-xl mb-2 flex-grow">{currentList.title}</span>
+      <span class="text-xl mb-2 flex-grow">{currentList.name}</span>
       <Button
         on:click={() => (currentList = undefined)}
         text

@@ -37,51 +37,49 @@ describe('Lists Engine', () => {
   })
 
   it('stores track with album', async () => {
-    const title = faker.commerce.productName()
+    const name = faker.commerce.productName()
 
-    await engine.add([
-      { path: faker.system.fileName(), tags: { album: title } }
-    ])
+    await engine.add([{ path: faker.system.fileName(), tags: { album: name } }])
 
-    expect((await engine.listAlbums()).find(n => n.title === title)).toEqual({
-      title,
-      id: hash(title)
+    expect((await engine.listAlbums()).find(n => n.name === name)).toEqual({
+      name,
+      id: hash(name)
     })
   })
 
   it('stores track with cover', async () => {
-    const title = faker.commerce.productName()
-    const cover = faker.image.image()
+    const name = faker.commerce.productName()
+    const image = faker.image.image()
 
     await engine.add([
       {
         path: faker.system.fileName(),
-        tags: { album: title, artists: [] },
-        cover
+        tags: { album: name, artists: [] },
+        cover: image
       }
     ])
 
-    expect((await engine.listAlbums()).find(n => n.title === title)).toEqual({
-      cover,
-      title,
-      id: hash(title)
+    expect((await engine.listAlbums()).find(n => n.name === name)).toEqual({
+      image,
+      name,
+      id: hash(name)
     })
   })
 
   describe('given multiple tracks', () => {
     it('skip existing albums', async () => {
-      const title = faker.commerce.productName()
+      const name = faker.commerce.productName()
       const track1 = {
         path: faker.system.fileName(),
-        tags: { album: title }
+        tags: { album: name }
       }
       const track2 = {
         path: faker.system.fileName(),
-        tags: { album: title }
+        tags: { album: name }
       }
       const track3 = {
         path: faker.system.fileName(),
-        tags: { album: title }
+        tags: { album: name }
       }
 
       await engine.add([track1, track2, track3])
@@ -113,6 +111,8 @@ describe('Lists Engine', () => {
   })
 
   describe('given existing indices', () => {
+    const addId = obj => ({ ...obj, id: hash(obj.name) })
+
     const artists = [
       {
         name: faker.name.findName()
@@ -120,18 +120,18 @@ describe('Lists Engine', () => {
       {
         name: faker.name.findName()
       }
-    ].map(artist => ({ ...artist, id: hash(artist.name) }))
+    ].map(addId)
 
     const albums = [
       {
-        title: faker.commerce.productName(),
-        cover: faker.image.image()
+        name: faker.commerce.productName(),
+        image: faker.image.image()
       },
       {
-        title: faker.commerce.productName(),
-        cover: faker.image.image()
+        name: faker.commerce.productName(),
+        image: faker.image.image()
       }
-    ].map(album => ({ ...album, id: hash(album.title) }))
+    ].map(addId)
 
     const artistsFile = join(mockOs.tmpdir(), 'indices', 'artists.json')
     const albumsFile = join(mockOs.tmpdir(), 'indices', 'albums.json')
@@ -164,11 +164,11 @@ describe('Lists Engine', () => {
         },
         {
           path: faker.system.fileName(),
-          tags: { album: albums[0].title.toUpperCase() }
+          tags: { album: albums[0].name.toUpperCase() }
         },
         {
           path: faker.system.fileName(),
-          tags: { album: albums[1].title }
+          tags: { album: albums[1].name }
         }
       ])
 

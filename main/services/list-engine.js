@@ -33,6 +33,19 @@ let artistIds = new Set()
 
 const collator = new Intl.Collator({ numeric: true })
 
+function addToIndex(ids, index, added) {
+  const currentSize = ids.size
+  for (const [, data] of added) {
+    if (!ids.has(data.id)) {
+      index.push(data)
+      ids.add(data.id)
+    }
+  }
+  if (ids.size != currentSize) {
+    index.sort((a, b) => collator.compare(a.name, b.name))
+  }
+}
+
 module.exports = {
   async init() {
     albumIds = await importIndex(albumsStore, 'albums')
@@ -47,46 +60,25 @@ module.exports = {
 
   async add(tracks) {
     const uniqueAlbums = new Map()
-    const uniqueArtists = new Set()
+    const uniqueArtists = new Map()
     for (const track of tracks) {
       const { album, artists } = track.tags
-      if (album && !uniqueAlbums.has(album)) {
-        uniqueAlbums.set(album, track)
+      if (album) {
+        const id = hash(album)
+        if (!uniqueAlbums.has(id)) {
+          uniqueAlbums.set(id, { id, name: album, image: track.cover })
+        }
       }
       for (const artist of artists || []) {
-        uniqueArtists.add(artist)
+        const id = hash(artist)
+        if (!uniqueArtists.has(id)) {
+          uniqueArtists.set(id, { id, name: artist })
+        }
       }
     }
 
-    const albumsSize = albumIds.size
-    for (const [
-      ,
-      {
-        tags: { album },
-        cover
-      }
-    ] of uniqueAlbums) {
-      const id = hash(album)
-      if (!albumIds.has(id)) {
-        albumsStore.push({ id, title: album, cover })
-        albumIds.add(id)
-      }
-    }
-    if (albumIds.size != albumsSize) {
-      albumsStore.sort((a, b) => collator.compare(a.title, b.title))
-    }
-
-    const artistsSize = artistIds.size
-    for (const name of uniqueArtists) {
-      const id = hash(name)
-      if (!artistIds.has(id)) {
-        artistsStore.push({ id, name })
-        artistIds.add(id)
-      }
-    }
-    if (artistIds.size != artistsSize) {
-      artistsStore.sort((a, b) => collator.compare(a.title, b.title))
-    }
+    addToIndex(albumIds, albumsStore, uniqueAlbums)
+    addToIndex(artistIds, artistsStore, uniqueArtists)
 
     // TODO defer
     await exportIndex(albumsStore, 'albums')
