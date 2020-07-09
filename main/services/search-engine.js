@@ -1,10 +1,8 @@
 'use strict'
 
-const FlexSearch = require('flexsearch')
+const FlexSearch = require('flexsearch/flexsearch')
 const fs = require('fs-extra')
 const { getIndexPath } = require('../utils')
-
-let tracksIndex
 
 async function exportIndex(index) {
   const file = getIndexPath(index.name)
@@ -24,9 +22,12 @@ async function importIndex(index) {
   }
 }
 
+const tracksIndex = new FlexSearch()
+tracksIndex.name = 'tracks'
+
 module.exports = {
   async init() {
-    tracksIndex = new FlexSearch({
+    tracksIndex.init({
       doc: {
         id: 'id',
         field: {
@@ -38,18 +39,20 @@ module.exports = {
         store: ['id', 'tags', 'cover', 'path']
       }
     })
-    tracksIndex.name = 'tracks'
     await importIndex(tracksIndex)
   },
 
+  async reset() {
+    tracksIndex.clear()
+    await exportIndex(tracksIndex)
+    await module.exports.init()
+  },
+
   async add(tracks) {
-    if (!tracksIndex) {
-      throw new Error('search engine not initialized')
-    }
     for (const track of tracks) {
       tracksIndex.add({
         ...track,
-        artists: (track.tags.artists || []).join(' '),
+        artists: track.tags.artists.join(' '),
         title: track.tags.title,
         year: `${track.tags.year}`,
         album: track.tags.album
@@ -60,9 +63,6 @@ module.exports = {
   },
 
   async searchBy(field, term) {
-    if (!tracksIndex) {
-      throw new Error('search engine not initialized')
-    }
     return tracksIndex.where({
       [field]: term
     })
