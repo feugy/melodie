@@ -2,7 +2,7 @@
 
 import produce from 'immer'
 import { BehaviorSubject } from 'rxjs'
-import invoke from '../utils/electron-remote'
+import { invoke } from '../utils'
 
 function observableStore(initial) {
   let store = new BehaviorSubject(initial)

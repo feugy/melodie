@@ -2,7 +2,7 @@
 
 const electron = require('electron')
 const faker = require('faker')
-const invoke = require('./electron-remote').default
+const { invoke } = require('./invoke')
 
 jest.mock('electron', () => ({
   ipcRenderer: {
@@ -10,7 +10,7 @@ jest.mock('electron', () => ({
   }
 }))
 
-describe('electron-remote', () => {
+describe('invoke', () => {
   beforeEach(jest.clearAllMocks)
 
   it('invokes relevant module', async () => {

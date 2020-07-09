@@ -5,7 +5,7 @@
   import { Button } from 'smelte'
   import trackList from './stores/track-list'
   import { list as listAlbums } from './stores/albums'
-  import invoke from './utils/electron-remote'
+  import { invoke } from './utils'
   import Layout from './components/Layout.svelte'
 
   async function handleLoad() {
