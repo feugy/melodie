@@ -5,12 +5,12 @@
 
   export let src
   export let hideArtist = false
-  export let image = null
+  export let media = null
 </script>
 
 <div class="flex m-2 items-start text-left" on:click>
-  {#if image}
-    <Image class="rounded-full h-16 w-16 flex-none" src={toDOMSrc(image)} />
+  {#if media}
+    <Image class="rounded-full h-16 w-16 flex-none" src={toDOMSrc(media)} />
   {/if}
   <div class="flex flex-col">
     <span class="px-2 text-lg">{src.title}</span>

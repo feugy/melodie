@@ -1,60 +1,19 @@
 'use strict'
 
-const fs = require('fs-extra')
-const { hash, getIndexPath } = require('../utils')
-
-async function exportIndex(index, name) {
-  const file = getIndexPath(name)
-  await fs.ensureFile(file)
-  await fs.writeFile(file, JSON.stringify(index))
-}
-
-async function importIndex(index, name) {
-  const file = getIndexPath(name)
-  const ids = new Set()
-  try {
-    await fs.access(file, fs.constants.R_OK)
-    index.splice(0, index.length)
-    for (const data of JSON.parse(await fs.readFile(file))) {
-      index.push(data)
-      ids.add(data.id)
-    }
-  } catch {
-    // ignore missing file for now
-  }
-  return ids
-}
-
-let albumsStore = []
-let albumIds = new Set()
-
-let artistsStore = []
-let artistIds = new Set()
-
-const collator = new Intl.Collator({ numeric: true })
-
-function addToIndex(ids, index, added) {
-  const currentSize = ids.size
-  for (const [, data] of added) {
-    if (!ids.has(data.id)) {
-      index.push(data)
-      ids.add(data.id)
-    }
-  }
-  if (ids.size != currentSize) {
-    index.sort((a, b) => collator.compare(a.name, b.name))
-  }
-}
+const { hash } = require('../utils')
+const { albumsModel, tracksModel, artistsModel } = require('../models')
 
 module.exports = {
-  async init() {
-    albumIds = await importIndex(albumsStore, 'albums')
-    artistIds = await importIndex(artistsStore, 'artists')
+  async init(dbFile) {
+    await albumsModel.init(dbFile)
+    await artistsModel.init(dbFile)
+    await tracksModel.init(dbFile)
   },
 
   async reset() {
-    await exportIndex([], 'albums')
-    await exportIndex([], 'artists')
+    await tracksModel.reset()
+    await artistsModel.reset()
+    await albumsModel.reset()
     await module.exports.init()
   },
 
@@ -62,34 +21,50 @@ module.exports = {
     const uniqueAlbums = new Map()
     const uniqueArtists = new Map()
     for (const track of tracks) {
+      await tracksModel.save(track)
       const { album, artists } = track.tags
       if (album) {
         const id = hash(album)
-        if (!uniqueAlbums.has(id)) {
-          uniqueAlbums.set(id, { id, name: album, image: track.cover })
+        let albumRecord = uniqueAlbums.get(id)
+        if (!albumRecord) {
+          albumRecord = {
+            id,
+            name: album,
+            media: track.media,
+            trackIds: []
+          }
+          uniqueAlbums.set(id, albumRecord)
         }
+        albumRecord.trackIds.push(track.id)
       }
       for (const artist of artists || []) {
         const id = hash(artist)
-        if (!uniqueArtists.has(id)) {
-          uniqueArtists.set(id, { id, name: artist })
+        let artistRecord = uniqueArtists.get(id)
+        if (!artistRecord) {
+          artistRecord = { id, name: artist, trackIds: [] }
+          uniqueArtists.set(id, artistRecord)
         }
+        artistRecord.trackIds.push(track.id)
       }
     }
-
-    addToIndex(albumIds, albumsStore, uniqueAlbums)
-    addToIndex(artistIds, artistsStore, uniqueArtists)
-
-    // TODO defer
-    await exportIndex(albumsStore, 'albums')
-    await exportIndex(artistsStore, 'artists')
+    // TODO pMap or save multiples
+    for (const [, album] of uniqueAlbums) {
+      await albumsModel.save(album)
+    }
+    for (const [, artist] of uniqueArtists) {
+      await artistsModel.save(artist)
+    }
   },
 
   async listAlbums() {
-    return albumsStore
+    return albumsModel.list()
   },
 
   async listArtists() {
-    return artistsStore
+    return artistsModel.list()
+  },
+
+  async listTracksOf(list) {
+    return tracksModel.getByIds(list.trackIds)
   }
 }

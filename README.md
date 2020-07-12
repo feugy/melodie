@@ -7,12 +7,13 @@
 ### internals
 
 - [x] consider albums & artists as track lists? name + image + tracks
-- [ ] load (and save) folders and not files
+- [x] load (and save) folders and not files
 - [ ] run track analysis in the background
 - [ ] watch folder changes
 - [ ] reactive stores: send update on new albums/artists/tracks
 - [ ] artists pictures
 - [ ] research contextBridge
+- [ ] consider knex-migrate
 
 ### tools
 
@@ -36,3 +37,10 @@
 - [ ] system notification on next track
 - [ ] block power save
 - [ ] system tray integration
+
+## History
+
+- Started with a search engine (FlexSearch) to store tracks, and serialized JS lists for albums & artists.
+  Altough very performant (50s to index the whole music library), the memory footprint is heavy (700Mo) since
+  FlexSearch is loading entire indices in memory
+- Moved to sqlite3 denormalized tables

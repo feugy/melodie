@@ -5,8 +5,8 @@ const electron = require('electron')
 const subscribeRemote = require('./utils/electron-remote')
 const tagReader = require('./services/tag-reader')
 const fileLoader = require('./services/file-loader')
-const searchEngine = require('./services/search-engine')
 const listEngine = require('./services/list-engine')
+const { getStoragePath } = require('./utils')
 
 const { app, BrowserWindow } = electron
 const publicFolder = join(__dirname, '..', 'public')
@@ -26,13 +26,12 @@ async function createWindow() {
   })
 
   // TODO defer?
-  await searchEngine.init()
-  await listEngine.init()
+  await listEngine.init(getStoragePath('db.sqlite3'))
 
   unsubscribe = subscribeRemote({
     tagReader,
     fileLoader,
-    searchEngine,
+    // searchEngine,
     listEngine,
     ...electron
   })

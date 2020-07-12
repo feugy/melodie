@@ -2,10 +2,10 @@
 
 const faker = require('faker')
 const engine = require('./file-loader')
-const trackEngine = require('./search-engine')
 const listEngine = require('./list-engine')
 const electron = require('electron')
 const mockOs = require('os')
+const { hash } = require('../utils')
 
 jest.mock('electron', () => ({
   dialog: {
@@ -16,7 +16,6 @@ jest.mock('electron', () => ({
   }
 }))
 jest.mock('./list-engine')
-jest.mock('./search-engine')
 
 describe.skip('File loader', () => {
   beforeEach(() => {
@@ -29,9 +28,20 @@ describe.skip('File loader', () => {
     electron.dialog.showOpenDialog.mockResolvedValueOnce({ filePaths })
 
     const tracks = await engine.load()
-    expect(tracks).toHaveLength(filePaths.length)
-    expect(trackEngine.add).toHaveBeenCalledWith(tracks)
-    expect(trackEngine.add).toHaveBeenCalledTimes(1)
+    expect(tracks).toEqual([
+      {
+        id: hash(filePaths[0]),
+        path: filePaths[0],
+        media: null,
+        tags: {}
+      },
+      {
+        id: hash(filePaths[1]),
+        path: filePaths[1],
+        media: null,
+        tags: {}
+      }
+    ])
     expect(listEngine.add).toHaveBeenCalledWith(tracks)
     expect(listEngine.add).toHaveBeenCalledTimes(1)
     expect(electron.dialog.showOpenDialog).toHaveBeenCalledWith({
@@ -49,7 +59,6 @@ describe.skip('File loader', () => {
     tracks = await engine.load()
     expect(tracks).toBe(null)
 
-    expect(trackEngine.add).not.toHaveBeenCalled()
     expect(listEngine.add).not.toHaveBeenCalled()
   })
 })

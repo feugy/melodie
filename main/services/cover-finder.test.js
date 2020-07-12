@@ -13,8 +13,6 @@ jest.mock('electron', () => ({
     getAppPath: jest.fn()
   }
 }))
-jest.mock('./list-engine')
-jest.mock('./search-engine')
 
 describe('Cover finder', () => {
   let path

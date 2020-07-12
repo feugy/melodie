@@ -29,7 +29,7 @@
         subheader={Array.isArray(src.artists) && src.artists[0]} />
     </div>
     <div slot="media" class="media w-64 h-64" on:click>
-      <Image src={toDOMSrc(src.image)} />
+      <Image src={toDOMSrc(src.media)} />
     </div>
   </Card.Card>
 </div>

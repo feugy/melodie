@@ -6,6 +6,6 @@ const { join } = require('path')
 const appPath = app.getAppPath('userData')
 const folder = 'indices'
 
-exports.getIndexPath = function (index) {
-  return join(appPath, folder, `${index}.json`)
+exports.getStoragePath = function (file) {
+  return join(appPath, folder, `${file}`)
 }

@@ -24,7 +24,7 @@
         <li
           on:click={() => dispatch('select', track)}
           class="hover:bg-gray-transDark cursor-pointer p-2">
-          <Tags src={track.tags} image={track.cover} />
+          <Tags src={track.tags} media={track.media} />
         </li>
       {/each}
     </ol>

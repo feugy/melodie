@@ -48,7 +48,7 @@
       icon="skip_next"
       title={$_('next')} />
     <span class="flex-grow">
-      <Tags src={$trackList.current.tags} image={$trackList.current.cover} />
+      <Tags src={$trackList.current.tags} media={$trackList.current.media} />
     </span>
     <Menu
       bind:open

@@ -7,7 +7,6 @@ const { extname } = require('path')
 const { hash } = require('../utils')
 const tag = require('./tag-reader')
 const covers = require('./cover-finder')
-const search = require('./search-engine')
 const lists = require('./list-engine')
 
 const readConcurrency = 10
@@ -47,11 +46,10 @@ module.exports = {
       files,
       async path => {
         const tags = await tag.read(path)
-        return { id: hash(path), path, tags, cover: await covers.findFor(path) }
+        return { id: hash(path), path, tags, media: await covers.findFor(path) }
       },
       { concurrency: readConcurrency }
     )
-    await search.add(tracks)
     await lists.add(tracks)
     return tracks
   }

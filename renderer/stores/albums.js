@@ -18,7 +18,7 @@ export async function list() {
 }
 
 export async function open(album) {
-  const result = await invoke('searchEngine.searchBy', 'tags:album', album.name)
+  const result = await invoke('listEngine.listTracksOf', album)
 
   albums.set(
     produce(albums.value, draft => {
