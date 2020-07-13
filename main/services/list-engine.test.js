@@ -134,17 +134,20 @@ describe('Lists Engine', () => {
     expect(await engine.listAlbums()).toEqual(albums)
   })
 
-  it('returns tracks by list', async () => {
+  it('returns tracks by list, order by rank', async () => {
     const track1 = {
-      path: faker.system.fileName()
+      path: faker.system.fileName(),
+      tags: { track: { no: 3 } }
     }
     track1.id = hash(track1.path)
     const track2 = {
-      path: faker.system.fileName()
+      path: faker.system.fileName(),
+      tags: { track: { no: undefined } }
     }
     track2.id = hash(track2.path)
     const track3 = {
-      path: faker.system.fileName()
+      path: faker.system.fileName(),
+      tags: { track: { no: 1 } }
     }
     track3.id = hash(track3.path)
     const name = faker.commerce.productName()
@@ -155,7 +158,7 @@ describe('Lists Engine', () => {
     }
 
     tracksModel.getByIds.mockResolvedValueOnce([track1, track2, track3])
-    expect(await engine.listTracksOf(album)).toEqual([track1, track2, track3])
+    expect(await engine.listTracksOf(album)).toEqual([track3, track1, track2])
   })
 
   describe('given multiple tracks', () => {

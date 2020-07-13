@@ -37,6 +37,10 @@
 - [ ] system notification on next track
 - [ ] block power save
 - [ ] system tray integration
+- [ ] images from tags
+- [ ] animated transitions
+- [ ] loading indicators
+- [ ] feedback when adding to play list
 
 ## History
 

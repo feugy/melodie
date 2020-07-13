@@ -30,40 +30,49 @@
   }
 </script>
 
+<style>
+  audio {
+    outline: none;
+  }
+</style>
+
 <div class="flex items-center">
-  {#if $trackList.current}
-    <audio autoplay controls src={toDOMSrc($trackList.current.path)} />
-    <Button
-      on:click={() => trackList.previous()}
-      text
-      light
-      flat
-      icon="skip_previous"
-      title={$_('previous')} />
-    <Button
-      on:click={() => trackList.next()}
-      text
-      light
-      flat
-      icon="skip_next"
-      title={$_('next')} />
-    <span class="flex-grow">
+  <audio
+    autoplay
+    controls
+    src={$trackList.current && toDOMSrc($trackList.current.path)} />
+  <Button
+    on:click={() => trackList.previous()}
+    text
+    light
+    flat
+    icon="skip_previous"
+    title={$_('previous')} />
+  <Button
+    on:click={() => trackList.next()}
+    text
+    light
+    flat
+    icon="skip_next"
+    title={$_('next')} />
+  <span class="flex-grow">
+    {#if $trackList.current}
       <Tags src={$trackList.current.tags} media={$trackList.current.media} />
-    </span>
-    <Menu
-      bind:open
-      {items}
-      listClasses="absolute w-auto whitespace-no-wrap top-16 bg-white right-0
-      bg-white rounded elevation-3 z-20 dark:bg-dark-500"
-      on:change={handleSelectMenuItem}>
-      <div slot="activator">
-        <Button
-          text
-          light
-          flat
-          icon="more_vert"
-          on:click={() => (open = !open)} />
-      </div>
-    </Menu>
-  {/if}
+    {/if}
+  </span>
+  <Menu
+    bind:open
+    {items}
+    listClasses="absolute w-auto whitespace-no-wrap bottom-0 right-0 mb-12
+    bg-white rounded elevation-3 z-20 dark:bg-dark-500"
+    on:change={handleSelectMenuItem}>
+    <div slot="activator">
+      <Button
+        text
+        light
+        flat
+        icon="more_vert"
+        on:click={() => (open = !open)} />
+    </div>
+  </Menu>
 </div>

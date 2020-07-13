@@ -5,13 +5,21 @@ const { join, extname, dirname } = require('path')
 
 const coverFiles = [
   'cover.jpg',
+  'Cover.jpg',
   'cover.jpeg',
+  'Cover.jpeg',
   'cover.png',
+  'Cover.png',
   'cover.gif',
+  'Cover.gif',
   'folder.jpg',
+  'Folder.jpg',
   'folder.jpeg',
+  'Folder.jpeg',
   'folder.png',
-  'folder.gif'
+  'Folder.png',
+  'folder.gif',
+  'Folder.gif'
 ]
 
 module.exports = {

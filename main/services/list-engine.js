@@ -65,6 +65,10 @@ module.exports = {
   },
 
   async listTracksOf(list) {
-    return tracksModel.getByIds(list.trackIds)
+    const tracks = await tracksModel.getByIds(list.trackIds)
+    return tracks.sort(
+      (t1, t2) =>
+        (t1.tags.track.no || Infinity) - (t2.tags.track.no || Infinity)
+    )
   }
 }

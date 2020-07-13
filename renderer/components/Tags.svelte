@@ -10,7 +10,7 @@
 
 <div class="flex m-2 items-start text-left" on:click>
   {#if media}
-    <Image class="rounded-full h-16 w-16 flex-none" src={toDOMSrc(media)} />
+    <Image class="h-16 w-16 flex-none" src={toDOMSrc(media)} />
   {/if}
   <div class="flex flex-col">
     <span class="px-2 text-lg">{src.title}</span>

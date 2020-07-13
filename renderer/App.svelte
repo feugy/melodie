@@ -30,8 +30,7 @@
 <svelte:head>
   <title>{$_('Mélodie')}</title>
 </svelte:head>
-
-<main class="text-center p-1 m-x-auto m-y-0">
+<main class="p-4 m-y-0 text-center">
   <h1 class="text-3xl font-hairline uppercase">{$_('Mélodie')}</h1>
   <Layout on:select={({ detail }) => trackList.add([detail])} />
   <p>

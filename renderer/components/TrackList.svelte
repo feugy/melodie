@@ -15,12 +15,12 @@
 </style>
 
 {#if Array.isArray(items)}
-  <div class="container flex flex-col p-2">
+  <div class="container flex flex-col p-2 m-2">
     <div class="flex">
       <span class="">{$_('_ items', { total: items.length })}</span>
     </div>
     <ol class="container py-2 overflow-y-auto">
-      {#each items as track}
+      {#each items as track (track.id)}
         <li
           on:click={() => dispatch('select', track)}
           class="hover:bg-gray-transDark cursor-pointer p-2">

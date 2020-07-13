@@ -43,6 +43,12 @@ describe('Cover finder', () => {
     expect(await engine.findFor(join(path, 'file.mp3'))).toEqual(jpeg)
   })
 
+  it('finds capitalized', async () => {
+    const jpeg = join(path, 'Cover.jpeg')
+    await fs.ensureFile(jpeg)
+    expect(await engine.findFor(join(path, 'file.mp3'))).toEqual(jpeg)
+  })
+
   describe('given cover.jpg', () => {
     let jpg
     beforeEach(async () => {
