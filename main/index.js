@@ -13,7 +13,14 @@ const publicFolder = join(__dirname, '..', 'public')
 let unsubscribe
 
 if (process.env.ROLLUP_WATCH) {
+  // soft reset for renderer process changes
   require('electron-reload')(publicFolder)
+  // hard reset for main process changes
+  require('electron-reload')(__dirname, {
+    electron: join(__dirname, '..', 'node_modules', '.bin', 'electron'),
+    hardResetMethod: 'exit',
+    forceHardReset: true
+  })
 }
 
 async function createWindow() {
