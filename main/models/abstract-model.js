@@ -76,10 +76,22 @@ module.exports = class AbstractModel {
     }
   }
 
-  async list() {
-    return (await this.db.select().from(this.name)).map(
-      deserialize(this.jsonColumns)
-    )
+  async list({ from = 0, size = 10, sort = 'id' } = {}) {
+    const [, rawDir, rawSort] = sort.match(/(-|\+)?(.+)/)
+    const direction = rawDir || '+'
+    const results = (
+      await this.db
+        .select()
+        .from(this.name)
+        .limit(size)
+        .offset(from)
+        .orderBy(rawSort, direction === '+' ? 'asc' : 'desc')
+    ).map(deserialize(this.jsonColumns))
+    const total =
+      results.length <= size
+        ? (await this.db(this.name).count({ count: 'id' }))[0].count
+        : results.length
+    return { total, from, size, sort: `${direction}${rawSort}`, results }
   }
 
   async getById(id) {

@@ -32,6 +32,6 @@ describe('Tracks model', () => {
     }
 
     await tracksModel.save(track)
-    expect(await tracksModel.list()).toEqual([track])
+    expect((await tracksModel.list()).results).toEqual([track])
   })
 })

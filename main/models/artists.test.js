@@ -28,6 +28,6 @@ describe('Tracks model', () => {
     }
 
     await artistsModel.save(artist)
-    expect(await artistsModel.list()).toEqual([artist])
+    expect((await artistsModel.list()).results).toEqual([artist])
   })
 })

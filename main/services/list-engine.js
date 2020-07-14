@@ -56,12 +56,12 @@ module.exports = {
     }
   },
 
-  async listAlbums() {
-    return albumsModel.list()
+  async listAlbums(criteria) {
+    return albumsModel.list({ sort: 'name', ...criteria })
   },
 
-  async listArtists() {
-    return artistsModel.list()
+  async listArtists(criteria) {
+    return artistsModel.list({ sort: 'name', ...criteria })
   },
 
   async listTracksOf(list) {

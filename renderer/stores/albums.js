@@ -1,7 +1,8 @@
 'use strict'
 
 import produce from 'immer'
-import { BehaviorSubject } from 'rxjs'
+import { BehaviorSubject, Observable, using, iif, of } from 'rxjs'
+import { flatMap, map } from 'rxjs/operators'
 import { invoke } from '../utils'
 
 function observableStore(initial) {
@@ -13,8 +14,33 @@ function observableStore(initial) {
 export const albums = observableStore([])
 
 export async function list() {
-  const data = await invoke('listEngine.listAlbums')
-  albums.set(data)
+  albums.set([])
+  let subscriber
+
+  const makeCaller = arg =>
+    of(arg).pipe(
+      flatMap(arg => invoke('listEngine.listAlbums', arg)),
+      map(data => {
+        const { size, from, total, results } = data
+        albums.set(produce(albums.value, draft => [...draft, ...results]))
+        subscriber.next({ from: from + results.length, size, total })
+      })
+    )
+
+  const subscription = Observable.create(s => {
+    subscriber = s
+    subscriber.next({ total: 1 })
+  })
+    .pipe(
+      flatMap(arg =>
+        iif(
+          () => albums.value.length < arg.total,
+          makeCaller(arg),
+          using(() => subscription.unsubscribe())
+        )
+      )
+    )
+    .subscribe()
 }
 
 export async function open(album) {

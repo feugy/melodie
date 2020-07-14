@@ -2,7 +2,7 @@
 
 const { join } = require('path')
 const electron = require('electron')
-const subscribeRemote = require('./utils/electron-remote')
+const { subscribeRemote } = require('./utils/electron-remote')
 const tagReader = require('./services/tag-reader')
 const fileLoader = require('./services/file-loader')
 const listEngine = require('./services/list-engine')

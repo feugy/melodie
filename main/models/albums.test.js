@@ -28,6 +28,6 @@ describe('Albums model', () => {
     }
 
     await albumsModel.save(album)
-    expect(await albumsModel.list()).toEqual([album])
+    expect((await albumsModel.list()).results).toEqual([album])
   })
 })

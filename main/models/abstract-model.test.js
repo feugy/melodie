@@ -99,7 +99,7 @@ describe('Abstract model', () => {
     })
 
     it('lists models', async () => {
-      const results = await tested.list()
+      const { total, results, size, sort, from } = await tested.list()
       expect(results).toEqual(
         expect.arrayContaining(
           models.map(model => ({
@@ -109,6 +109,32 @@ describe('Abstract model', () => {
         )
       )
       expect(results).toHaveLength(models.length)
+      expect(total).toEqual(models.length)
+      expect(size).toEqual(10)
+      expect(from).toEqual(0)
+      expect(sort).toEqual('+id')
+    })
+
+    it('lists models with order and pagination', async () => {
+      const { total, from, size, sort, results } = await tested.list({
+        size: 2,
+        from: 1,
+        sort: '-name'
+      })
+      const sorted = models.sort((m1, m2) =>
+        m1.name > m2.name ? -1 : m1.name === m2.name ? 0 : 1
+      )
+      expect(results).toEqual(
+        sorted.slice(1, 3).map(model => ({
+          ...model,
+          tags: JSON.parse(model.tags)
+        }))
+      )
+      expect(results).toHaveLength(size)
+      expect(total).toEqual(models.length)
+      expect(size).toEqual(2)
+      expect(from).toEqual(1)
+      expect(sort).toEqual('-name')
     })
 
     it('get model by id', async () => {

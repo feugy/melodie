@@ -2,7 +2,7 @@
 
 const electron = require('electron')
 const faker = require('faker')
-const subscribeRemote = require('./electron-remote')
+const { subscribeRemote } = require('./electron-remote')
 
 jest.mock('electron', () => ({
   ipcMain: {

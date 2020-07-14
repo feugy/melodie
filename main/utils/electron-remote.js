@@ -2,7 +2,7 @@
 
 const electron = require('electron')
 
-module.exports = function (services = electron) {
+exports.subscribeRemote = function (services = electron) {
   electron.ipcMain.handle('remote', async (event, module, fn, ...args) => {
     if (!(module in services) || !(fn in services[module])) {
       throw new Error(`electron doesn't support ${module}.${fn}()`)
@@ -14,3 +14,5 @@ module.exports = function (services = electron) {
     electron.ipcMain.removeHandler('remote')
   }
 }
+
+exports.sendRemote = electron.ipcMain.send
