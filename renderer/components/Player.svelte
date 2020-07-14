@@ -40,6 +40,7 @@
   <audio
     autoplay
     controls
+    on:ended={() => trackList.next()}
     src={$trackList.current && toDOMSrc($trackList.current.path)} />
   <Button
     on:click={() => trackList.previous()}
