@@ -4,7 +4,7 @@
   import Album from './Album.svelte'
   import Player from './Player.svelte'
   import TrackList from './TrackList.svelte'
-  import { albums, open } from '../stores/albums'
+  import { albums, loadTracks } from '../stores/albums'
   import trackList from '../stores/track-list'
 
   let currentList
@@ -15,7 +15,7 @@
     } else {
       currentList = album
       if (!album.tracks) {
-        await open(album)
+        await loadTracks(album)
       }
       currentList = $albums.find(({ id }) => id === album.id)
     }
