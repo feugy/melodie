@@ -32,7 +32,7 @@
   class="flex flex-col items-stretch w-full mb-12"
   class:mainWithAside={!!currentList}>
   <span>
-    <h2 class="text-xl">{$_('albums')}</h2>
+    <h2 class="text-xl">{$_('_ albums', { total: $albums.length })}</h2>
     <div class="flex flex-wrap justify-between">
       {#each $albums as src (src.id)}
         <span class="p-4">

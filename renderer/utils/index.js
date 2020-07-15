@@ -2,3 +2,4 @@
 
 export * from './path'
 export * from './invoke'
+export * from './channel'

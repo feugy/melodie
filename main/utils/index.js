@@ -2,5 +2,6 @@
 
 module.exports = {
   ...require('./hash'),
-  ...require('./files')
+  ...require('./files'),
+  ...require('./electron-remote')
 }

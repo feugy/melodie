@@ -137,6 +137,35 @@ describe('Abstract model', () => {
       expect(sort).toEqual('-name')
     })
 
+    it('lists models with bigger size than resultset', async () => {
+      const { total, from, size, sort, results } = await tested.list({
+        size: 100
+      })
+      expect(results).toEqual(
+        models
+          .map(model => ({
+            ...model,
+            tags: JSON.parse(model.tags)
+          }))
+          .sort((a, b) => a.id - b.id)
+      )
+      expect(total).toEqual(models.length)
+      expect(size).toEqual(100)
+      expect(from).toEqual(0)
+      expect(sort).toEqual('+id')
+    })
+
+    it('lists models with out of range page', async () => {
+      const { total, from, size, sort, results } = await tested.list({
+        from: 10
+      })
+      expect(results).toEqual([])
+      expect(total).toEqual(models.length)
+      expect(size).toEqual(10)
+      expect(from).toEqual(10)
+      expect(sort).toEqual('+id')
+    })
+
     it('get model by id', async () => {
       const model = models[1]
       const results = await tested.getById(model.id)
@@ -180,6 +209,30 @@ describe('Abstract model', () => {
           tags: JSON.stringify(model.tags)
         }
       ])
+    })
+
+    it('saves multipe models', async () => {
+      const models = [
+        {
+          id: faker.random.number(),
+          name: faker.name.findName(),
+          tags: { new: true }
+        },
+        {
+          id: faker.random.number(),
+          name: faker.name.findName(),
+          tags: { new: true }
+        }
+      ]
+      await tested.save(models)
+      for (const model of models) {
+        expect(await db(modelName).where({ id: model.id })).toEqual([
+          {
+            ...model,
+            tags: JSON.stringify(model.tags)
+          }
+        ])
+      }
     })
 
     it('updates existing model', async () => {

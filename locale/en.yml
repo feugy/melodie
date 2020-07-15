@@ -1,5 +1,5 @@
 _ items: '{total} tracks'
-albums: Albums
+_ albums: '{total} albums'
 'artist: _': 'Artist: {value}'
 'title: _': 'Title: {value}'
 clear: Clear

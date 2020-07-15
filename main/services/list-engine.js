@@ -1,6 +1,6 @@
 'use strict'
 
-const { hash } = require('../utils')
+const { hash, broadcast } = require('../utils')
 const { albumsModel, tracksModel, artistsModel } = require('../models')
 
 module.exports = {
@@ -19,9 +19,11 @@ module.exports = {
 
   async add(tracks) {
     const uniqueAlbums = new Map()
+    const uniqueAlbumList = []
     const uniqueArtists = new Map()
+    const uniqueArtistList = []
+    await tracksModel.save(tracks)
     for (const track of tracks) {
-      await tracksModel.save(track)
       const { album, artists } = track.tags
       if (album) {
         const id = hash(album)
@@ -34,6 +36,7 @@ module.exports = {
             trackIds: []
           }
           uniqueAlbums.set(id, albumRecord)
+          uniqueAlbumList.push(albumRecord)
         }
         albumRecord.trackIds.push(track.id)
       }
@@ -43,17 +46,20 @@ module.exports = {
         if (!artistRecord) {
           artistRecord = { id, name: artist, trackIds: [] }
           uniqueArtists.set(id, artistRecord)
+          uniqueArtistList.push(artistRecord)
         }
         artistRecord.trackIds.push(track.id)
       }
     }
-    // TODO pMap or save multiples
-    for (const [, album] of uniqueAlbums) {
-      await albumsModel.save(album)
+
+    for (const album of uniqueAlbumList) {
+      broadcast('album-change', album)
     }
-    for (const [, artist] of uniqueArtists) {
-      await artistsModel.save(artist)
+    await albumsModel.save(uniqueAlbumList)
+    for (const artist of uniqueArtistList) {
+      broadcast('artist-change', artist)
     }
+    await artistsModel.save(uniqueArtistList)
   },
 
   async listAlbums(criteria) {

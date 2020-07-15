@@ -2,11 +2,10 @@
 
 const { join } = require('path')
 const electron = require('electron')
-const { subscribeRemote } = require('./utils/electron-remote')
 const tagReader = require('./services/tag-reader')
 const fileLoader = require('./services/file-loader')
 const listEngine = require('./services/list-engine')
-const { getStoragePath } = require('./utils')
+const { getStoragePath, subscribeRemote, registerRenderer } = require('./utils')
 
 const { app, BrowserWindow } = electron
 const publicFolder = join(__dirname, '..', 'public')
@@ -31,6 +30,8 @@ async function createWindow() {
       nodeIntegration: true
     }
   })
+
+  registerRenderer(win)
 
   // TODO defer?
   await listEngine.init(getStoragePath('db.sqlite3'))

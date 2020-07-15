@@ -64,16 +64,19 @@ module.exports = class AbstractModel {
   }
 
   async save(data) {
-    const { length } = await this.db
-      .select('id')
-      .from(this.name)
-      .where({ id: data.id })
-    const saved = serialize(this.jsonColumns)(data)
-    if (length === 0) {
-      await this.db(this.name).insert(saved)
-    } else {
-      await this.db(this.name).where({ id: data.id }).update(saved)
+    if (!Array.isArray(data)) {
+      data = [data]
     }
+    const saved = data.map(serialize(this.jsonColumns))
+    // console.log(`saving ${saved.length} ${this.name}...`)
+    const cols = Object.keys(saved[0])
+    await this.db.raw(
+      `? on conflict (\`id\`) do update set ${cols
+        .map(col => `\`${col}\` = excluded.\`${col}\``)
+        .join(', ')}`,
+      [this.db(this.name).insert(saved)]
+    )
+    // console.log(`done ${saved.length} ${this.name}!`)
   }
 
   async list({ from = 0, size = 10, sort = 'id' } = {}) {
@@ -87,10 +90,7 @@ module.exports = class AbstractModel {
         .offset(from)
         .orderBy(rawSort, direction === '+' ? 'asc' : 'desc')
     ).map(deserialize(this.jsonColumns))
-    const total =
-      results.length <= size
-        ? (await this.db(this.name).count({ count: 'id' }))[0].count
-        : results.length
+    const total = (await this.db(this.name).count({ count: 'id' }))[0].count
     return { total, from, size, sort: `${direction}${rawSort}`, results }
   }
 

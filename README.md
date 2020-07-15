@@ -12,8 +12,8 @@
 - [ ] watch folder changes
 - [x] reactive stores: send update on new albums/artists/tracks
 - [ ] artists pictures
-- [ ] research contextBridge
 - [ ] consider knex-migrate
+- [ ] images from tags
 
 ### tools
 
@@ -37,9 +37,8 @@
 - [ ] system notification on next track
 - [ ] block power save
 - [ ] system tray integration
-- [ ] images from tags
 - [ ] animated transitions
-- [ ] loading indicators
+- [-] loading indicators
 - [ ] feedback when adding to play list
 
 ### bugs

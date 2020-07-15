@@ -3,9 +3,25 @@
 import produce from 'immer'
 import { BehaviorSubject, Observable, using, iif, of } from 'rxjs'
 import { flatMap, map } from 'rxjs/operators'
-import { invoke } from '../utils'
+import { invoke, channelListener } from '../utils'
+
+const collator = new Intl.Collator({ numeric: true })
 
 const store = new BehaviorSubject([])
+
+channelListener('album-change', album => {
+  store.next(
+    produce(store.value, draft => {
+      const idx = draft.findIndex(({ id }) => id === album.id)
+      if (idx !== -1) {
+        draft[idx] = album
+      } else {
+        draft.push(album)
+        draft.sort((a, b) => collator.compare(a.name, b.name))
+      }
+    })
+  )
+}).subscribe()
 
 export const albums = {
   subscribe: store.subscribe.bind(store)

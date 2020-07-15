@@ -3,9 +3,13 @@
 import faker from 'faker'
 import { tick } from 'svelte'
 import { get } from 'svelte/store'
-import { albums as albumsStore, list, loadTracks, reset } from './albums'
 import { invoke } from '../utils'
-jest.mock('../utils')
+import { albums as albumsStore, list, loadTracks, reset } from './albums'
+
+jest.mock('../utils/invoke')
+jest.mock('../utils/channel', () => ({
+  channelListener: jest.fn().mockReturnValueOnce({ subscribe: jest.fn() })
+}))
 
 describe('albums store', () => {
   beforeEach(() => {

@@ -15,4 +15,23 @@ exports.subscribeRemote = function (services = electron) {
   }
 }
 
-exports.sendRemote = electron.ipcMain.send
+const renderers = []
+
+exports.registerRenderer = function (renderer) {
+  if (renderers.indexOf(renderer) === -1) {
+    renderers.push(renderer)
+  }
+}
+
+exports.unregisterRenderer = function (renderer) {
+  const idx = renderers.indexOf(renderer)
+  if (idx !== -1) {
+    renderers.splice(idx, 1)
+  }
+}
+
+exports.broadcast = function (...args) {
+  for (const renderer of renderers) {
+    renderer.webContents.send(...args)
+  }
+}

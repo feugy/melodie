@@ -8,11 +8,12 @@ const { artistsModel } = require('../models/artists')
 const { albumsModel } = require('../models/albums')
 const { tracksModel } = require('../models/tracks')
 const engine = require('./list-engine')
-const { hash } = require('../utils')
+const { hash, broadcast } = require('../utils')
 
 jest.mock('../models/artists')
 jest.mock('../models/albums')
 jest.mock('../models/tracks')
+jest.mock('../utils/electron-remote')
 jest.mock('electron', () => ({ app: { getAppPath: jest.fn() } }))
 
 albumsModel.list.mockResolvedValue([])
@@ -52,41 +53,50 @@ describe('Lists Engine', () => {
   })
 
   it('stores track with multiple artists', async () => {
-    const artists = [faker.name.findName(), faker.name.findName()]
     const path = faker.system.fileName()
+    const artistNames = [faker.name.findName(), faker.name.findName()]
+    const artists = artistNames.map(name =>
+      addId({
+        name,
+        trackIds: [hash(path)]
+      })
+    )
 
-    await engine.add([{ id: hash(path), path, tags: { artists } }])
+    await engine.add([{ id: hash(path), path, tags: { artists: artistNames } }])
 
-    for (const name of artists) {
-      expect(artistsModel.save).toHaveBeenCalledWith(
-        addId({
-          name,
-          trackIds: [hash(path)]
-        })
-      )
+    expect(artistsModel.save).toHaveBeenCalledWith(artists)
+    expect(artistsModel.save).toHaveBeenCalledTimes(1)
+    for (const artist of artists) {
+      expect(broadcast).toHaveBeenCalledWith('artist-change', artist)
     }
-    expect(artistsModel.save).toHaveBeenCalledTimes(artists.length)
+    expect(broadcast).toHaveBeenCalledTimes(artists.length)
   })
 
   it('stores track with album', async () => {
     const name = faker.commerce.productName()
     const path = faker.system.fileName()
+    const album = addId({
+      id: hash(name),
+      name,
+      trackIds: [hash(path)]
+    })
 
     await engine.add([{ id: hash(path), path, tags: { album: name } }])
-    expect(albumsModel.save).toHaveBeenCalledWith(
-      addId({
-        id: hash(name),
-        name,
-        trackIds: [hash(path)]
-      })
-    )
+    expect(albumsModel.save).toHaveBeenCalledWith([album])
     expect(albumsModel.save).toHaveBeenCalledTimes(1)
+    expect(broadcast).toHaveBeenCalledWith('album-change', album)
+    expect(broadcast).toHaveBeenCalledTimes(1)
   })
 
   it('stores track with cover', async () => {
     const name = faker.commerce.productName()
     const media = faker.image.image()
     const path = faker.system.fileName()
+    const album = addId({
+      name,
+      media,
+      trackIds: [hash(path)]
+    })
 
     await engine.add([
       {
@@ -96,14 +106,10 @@ describe('Lists Engine', () => {
         media
       }
     ])
-    expect(albumsModel.save).toHaveBeenCalledWith(
-      addId({
-        name,
-        media,
-        trackIds: [hash(path)]
-      })
-    )
+    expect(albumsModel.save).toHaveBeenCalledWith([album])
     expect(albumsModel.save).toHaveBeenCalledTimes(1)
+    expect(broadcast).toHaveBeenCalledWith('album-change', album)
+    expect(broadcast).toHaveBeenCalledTimes(1)
   })
 
   it('returns all artists', async () => {
@@ -161,77 +167,79 @@ describe('Lists Engine', () => {
     expect(await engine.listTracksOf(album)).toEqual([track3, track1, track2])
   })
 
-  describe('given multiple tracks', () => {
-    it('skip existing albums', async () => {
-      const name = faker.commerce.productName()
-      const track1 = {
-        path: faker.system.fileName(),
-        tags: { album: name }
-      }
-      track1.id = hash(track1.path)
-      const track2 = {
-        path: faker.system.fileName(),
-        tags: { album: name }
-      }
-      track2.id = hash(track2.path)
-      const track3 = {
-        path: faker.system.fileName(),
-        tags: { album: name }
-      }
-      track3.id = hash(track3.path)
+  it('skip existing albums', async () => {
+    const name = faker.commerce.productName()
+    const track1 = {
+      path: faker.system.fileName(),
+      tags: { album: name }
+    }
+    track1.id = hash(track1.path)
+    const track2 = {
+      path: faker.system.fileName(),
+      tags: { album: name }
+    }
+    track2.id = hash(track2.path)
+    const track3 = {
+      path: faker.system.fileName(),
+      tags: { album: name }
+    }
+    track3.id = hash(track3.path)
 
-      await engine.add([track1, track2, track3])
-
-      expect(albumsModel.save).toHaveBeenCalledWith(
-        addId({
-          name,
-          trackIds: [track1.id, track2.id, track3.id]
-        })
-      )
-      expect(albumsModel.save).toHaveBeenCalledTimes(1)
+    const album = addId({
+      name,
+      trackIds: [track1.id, track2.id, track3.id]
     })
 
-    it('skip existing artists', async () => {
-      const artist1 = faker.name.findName()
-      const artist2 = faker.name.findName()
-      const artist3 = faker.name.findName()
-      const track1 = {
-        path: faker.system.fileName(),
-        tags: { artists: [artist1, artist2] }
-      }
-      track1.id = hash(track1.path)
-      const track2 = {
-        path: faker.system.fileName(),
-        tags: { artists: [artist2, artist3] }
-      }
-      track2.id = hash(track2.path)
-      const track3 = {
-        path: faker.system.fileName(),
-        tags: { artists: [artist3] }
-      }
-      track3.id = hash(track3.path)
+    await engine.add([track1, track2, track3])
 
-      await engine.add([track1, track2, track3])
+    expect(albumsModel.save).toHaveBeenCalledWith([album])
+    expect(albumsModel.save).toHaveBeenCalledTimes(1)
+    expect(broadcast).toHaveBeenCalledWith('album-change', album)
+    expect(broadcast).toHaveBeenCalledTimes(1)
+  })
 
-      expect(artistsModel.save).toHaveBeenCalledWith(
-        addId({
-          name: artist1,
-          trackIds: [track1.id]
-        })
-      )
-      expect(artistsModel.save).toHaveBeenCalledWith(
-        addId({
-          name: artist2,
-          trackIds: [track1.id, track2.id]
-        })
-      )
-      expect(artistsModel.save).toHaveBeenCalledWith(
-        addId({
-          name: artist3,
-          trackIds: [track2.id, track3.id]
-        })
-      )
-      expect(artistsModel.save).toHaveBeenCalledTimes(3)
-    })
+  it('skip existing artists', async () => {
+    const artist1 = faker.name.findName()
+    const artist2 = faker.name.findName()
+    const artist3 = faker.name.findName()
+    const track1 = {
+      path: faker.system.fileName(),
+      tags: { artists: [artist1, artist2] }
+    }
+    track1.id = hash(track1.path)
+    const track2 = {
+      path: faker.system.fileName(),
+      tags: { artists: [artist2, artist3] }
+    }
+    track2.id = hash(track2.path)
+    const track3 = {
+      path: faker.system.fileName(),
+      tags: { artists: [artist3] }
+    }
+    track3.id = hash(track3.path)
+
+    const artists = [
+      addId({
+        name: artist1,
+        trackIds: [track1.id]
+      }),
+      addId({
+        name: artist2,
+        trackIds: [track1.id, track2.id]
+      }),
+      addId({
+        name: artist3,
+        trackIds: [track2.id, track3.id]
+      })
+    ]
+
+    await engine.add([track1, track2, track3])
+
+    expect(artistsModel.save).toHaveBeenCalledWith(artists)
+    expect(artistsModel.save).toHaveBeenCalledTimes(1)
+    for (const artist of artists) {
+      expect(broadcast).toHaveBeenCalledWith('artist-change', artist)
+    }
+    expect(broadcast).toHaveBeenCalledTimes(artists.length)
   })
 })

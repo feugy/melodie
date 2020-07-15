@@ -11,6 +11,7 @@ const lists = require('./list-engine')
 
 const readConcurrency = 10
 const walkConcurrency = 2
+const saveThreshold = 50 // more may cause too many SQL variables :\
 const supported = ['.mp3', '.ogg', '.flac']
 
 const walk = items =>
@@ -33,24 +34,42 @@ const walk = items =>
   }
 
 module.exports = {
-  async load() {
+  async chooseFolders() {
     const { filePaths } = await dialog.showOpenDialog({
       properties: ['openDirectory', 'multiSelections']
     })
-    if (!filePaths || filePaths.length === 0) {
+    return filePaths
+  },
+
+  async crawl(folders) {
+    if (!folders || folders.length === 0) {
       return null
     }
     const files = []
-    await pMap(filePaths, walk(files), { concurrency: walkConcurrency })
+    await pMap(folders, walk(files), { concurrency: walkConcurrency })
+    const saved = []
     const tracks = await pMap(
       files,
       async path => {
         const tags = await tag.read(path)
-        return { id: hash(path), path, tags, media: await covers.findFor(path) }
+        const track = {
+          id: hash(path),
+          path,
+          tags,
+          media: await covers.findFor(path)
+        }
+        saved.push(track)
+        if (saved.length === saveThreshold) {
+          let tmp = saved.concat()
+          saved.splice(0, saved.length)
+          await lists.add(tmp)
+          tmp = undefined
+        }
+        return track
       },
       { concurrency: readConcurrency }
     )
-    await lists.add(tracks)
+    await lists.add(saved)
     return tracks
   }
 }
