@@ -1,9 +1,16 @@
 'use strict'
 
 const { dialog } = require('electron')
-const pMap = require('p-map')
 const klaw = require('klaw')
 const { extname } = require('path')
+const { of, Observable, forkJoin, from } = require('rxjs')
+const {
+  mergeMap,
+  filter,
+  reduce,
+  pluck,
+  bufferCount
+} = require('rxjs/operators')
 const { hash } = require('../utils')
 const tag = require('./tag-reader')
 const covers = require('./cover-finder')
@@ -11,27 +18,32 @@ const lists = require('./list-engine')
 
 const readConcurrency = 10
 const walkConcurrency = 2
-const saveThreshold = 50 // more may cause too many SQL variables :\
+const saveThreshold = 50
 const supported = ['.mp3', '.ogg', '.flac']
 
-const walk = items =>
-  async function (path) {
-    return new Promise(function (resolve) {
-      klaw(path)
-        .on('readable', function () {
-          let item
-          while ((item = this.read())) {
-            if (
-              item.stats.isFile() &&
-              supported.includes(extname(item.path).toLowerCase())
-            ) {
-              items.push(item.path)
+const walk = folders =>
+  of(...folders).pipe(
+    mergeMap(path => {
+      return Observable.create(function (observer) {
+        klaw(path)
+          .on('readable', function () {
+            let item
+            while ((item = this.read())) {
+              observer.next(item)
             }
-          }
-        })
-        .on('end', resolve)
-    })
-  }
+          })
+          .on('error', observer.error.bind(observer))
+          .on('end', observer.complete.bind(observer))
+      }).pipe(
+        filter(
+          item =>
+            item.stats.isFile() &&
+            supported.includes(extname(item.path).toLowerCase())
+        ),
+        pluck('path')
+      )
+    }, walkConcurrency)
+  )
 
 module.exports = {
   async chooseFolders() {
@@ -45,31 +57,22 @@ module.exports = {
     if (!folders || folders.length === 0) {
       return null
     }
-    const files = []
-    await pMap(folders, walk(files), { concurrency: walkConcurrency })
-    const saved = []
-    const tracks = await pMap(
-      files,
-      async path => {
-        const tags = await tag.read(path)
-        const track = {
-          id: hash(path),
-          path,
-          tags,
-          media: await covers.findFor(path)
-        }
-        saved.push(track)
-        if (saved.length === saveThreshold) {
-          let tmp = saved.concat()
-          saved.splice(0, saved.length)
-          await lists.add(tmp)
-          tmp = undefined
-        }
-        return track
-      },
-      { concurrency: readConcurrency }
-    )
-    await lists.add(saved)
-    return tracks
+    return walk(folders)
+      .pipe(
+        mergeMap(
+          path =>
+            forkJoin({
+              id: of(hash(path)),
+              path: of(path),
+              tags: from(tag.read(path)),
+              media: from(covers.findFor(path))
+            }),
+          readConcurrency
+        ),
+        bufferCount(saveThreshold),
+        mergeMap(saved => from(lists.add(saved))),
+        reduce((tracks, saved) => tracks.concat(saved), [])
+      )
+      .toPromise()
   }
 }

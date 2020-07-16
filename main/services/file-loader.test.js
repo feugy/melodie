@@ -88,6 +88,7 @@ describe('File loader', () => {
       const { folder, files } = await makeFolder({ depth: 3, fileNb: 10 })
       covers.findFor.mockResolvedValue(null)
       tag.read.mockResolvedValue({})
+      lists.add.mockImplementation(async n => n)
 
       const tracks = await engine.crawl([folder])
       expect(tracks).toEqual(
@@ -114,9 +115,9 @@ describe('File loader', () => {
     it('process tracks in batches', async () => {
       const { folder, files } = await makeFolder({ depth: 3, fileNb: 270 })
       lists.add.mockImplementation(
-        () =>
+        saved =>
           new Promise(r =>
-            setTimeout(r, faker.random.number({ min: 100, max: 200 }))
+            setTimeout(r, faker.random.number({ min: 100, max: 200 }), saved)
           )
       )
       covers.findFor.mockResolvedValue(null)
