@@ -18,7 +18,8 @@ if (process.env.ROLLUP_WATCH) {
   require('electron-reload')(__dirname, {
     electron: join(__dirname, '..', 'node_modules', '.bin', 'electron'),
     hardResetMethod: 'exit',
-    forceHardReset: true
+    forceHardReset: true,
+    awaitWriteFinish: true
   })
 }
 

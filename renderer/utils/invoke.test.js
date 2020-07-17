@@ -1,8 +1,8 @@
 'use strict'
 
-const electron = require('electron')
-const faker = require('faker')
-const { invoke } = require('./invoke')
+import faker from 'faker'
+import { invoke } from './invoke'
+import electron from 'electron'
 
 jest.mock('electron', () => ({
   ipcRenderer: {

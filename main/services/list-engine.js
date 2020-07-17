@@ -3,6 +3,17 @@
 const { hash, broadcast } = require('../utils')
 const { albumsModel, tracksModel, artistsModel } = require('../models')
 
+const sorters = {
+  trackNo: (list, results) =>
+    results.sort((t1, t2) =>
+      t1.tags.disk.no !== t2.tags.disk.no
+        ? (t1.tags.disk.no || Infinity) - (t2.tags.disk.no || Infinity)
+        : (t1.tags.track.no || Infinity) - (t2.tags.track.no || Infinity)
+    ),
+  rank: (list, results) =>
+    list.trackIds.map(id => results.find(track => track.id === id))
+}
+
 module.exports = {
   async init(dbFile) {
     await albumsModel.init(dbFile)
@@ -18,6 +29,7 @@ module.exports = {
   },
 
   async add(tracks) {
+    // TODO rewrite with rx
     const uniqueAlbums = new Map()
     const uniqueAlbumList = []
     const uniqueArtists = new Map()
@@ -70,11 +82,8 @@ module.exports = {
     return artistsModel.list({ sort: 'name', ...criteria })
   },
 
-  async listTracksOf(list) {
+  async listTracksOf(list, sortBy = 'trackNo') {
     const tracks = await tracksModel.getByIds(list.trackIds)
-    return tracks.sort(
-      (t1, t2) =>
-        (t1.tags.track.no || Infinity) - (t2.tags.track.no || Infinity)
-    )
+    return sorters[sortBy](list, tracks)
   }
 }

@@ -31,7 +31,12 @@ describe('Lists Engine', () => {
     dbFile = join(await fs.mkdtemp(join(os.tmpdir(), 'melodie-')), 'db.sqlite3')
   })
 
-  beforeEach(() => jest.clearAllMocks())
+  beforeEach(() => {
+    jest.clearAllMocks()
+    tracksModel.save.mockResolvedValue()
+    artistsModel.save.mockResolvedValue()
+    albumsModel.save.mockResolvedValue()
+  })
 
   it('initializes properly', async () => {
     await engine.init(dbFile)
@@ -140,20 +145,20 @@ describe('Lists Engine', () => {
     expect(await engine.listAlbums()).toEqual(albums)
   })
 
-  it('returns tracks by list, order by rank', async () => {
+  it('returns tracks by list, order by track number, single disc', async () => {
     const track1 = {
       path: faker.system.fileName(),
-      tags: { track: { no: 3 } }
+      tags: { track: { no: 3 }, disk: {} }
     }
     track1.id = hash(track1.path)
     const track2 = {
       path: faker.system.fileName(),
-      tags: { track: { no: undefined } }
+      tags: { track: { no: undefined }, disk: {} }
     }
     track2.id = hash(track2.path)
     const track3 = {
       path: faker.system.fileName(),
-      tags: { track: { no: 1 } }
+      tags: { track: { no: 1 }, disk: {} }
     }
     track3.id = hash(track3.path)
     const name = faker.commerce.productName()
@@ -165,6 +170,75 @@ describe('Lists Engine', () => {
 
     tracksModel.getByIds.mockResolvedValueOnce([track1, track2, track3])
     expect(await engine.listTracksOf(album)).toEqual([track3, track1, track2])
+  })
+
+  it('returns tracks by list, order by track number, multiple discs', async () => {
+    const track1 = {
+      path: faker.system.fileName(),
+      tags: { track: { no: 3 }, disk: { no: 2 } }
+    }
+    track1.id = hash(track1.path)
+    const track2 = {
+      path: faker.system.fileName(),
+      tags: { track: { no: 1 }, disk: { no: 1 } }
+    }
+    track2.id = hash(track2.path)
+    const track3 = {
+      path: faker.system.fileName(),
+      tags: { track: { no: 2 }, disk: { no: undefined } }
+    }
+    track3.id = hash(track3.path)
+    const track4 = {
+      path: faker.system.fileName(),
+      tags: { track: { no: 1 }, disk: { no: 2 } }
+    }
+    track4.id = hash(track4.path)
+
+    const name = faker.commerce.productName()
+    const album = {
+      id: hash(name),
+      name,
+      trackIds: [track1.id, track2.id, track3.id, track4.id]
+    }
+
+    tracksModel.getByIds.mockResolvedValueOnce([track1, track2, track3, track4])
+    expect(await engine.listTracksOf(album)).toEqual([
+      track2,
+      track4,
+      track1,
+      track3
+    ])
+  })
+
+  it('returns tracks by list, order by list rank', async () => {
+    const track1 = {
+      path: faker.system.fileName(),
+      tags: { track: { no: 3 }, disk: { no: 2 } }
+    }
+    track1.id = hash(track1.path)
+    const track2 = {
+      path: faker.system.fileName(),
+      tags: { track: { no: 1 }, disk: { no: 1 } }
+    }
+    track2.id = hash(track2.path)
+    const track3 = {
+      path: faker.system.fileName(),
+      tags: { track: { no: 2 }, disk: { no: undefined } }
+    }
+
+    const name = faker.commerce.productName()
+    const album = {
+      id: hash(name),
+      name,
+      trackIds: [track3.id, track2.id, track1.id]
+    }
+
+    tracksModel.getByIds.mockResolvedValueOnce([track1, track2, track3])
+    expect(await engine.listTracksOf(album, 'rank')).toEqual([
+      track3,
+      track2,
+      track1
+    ])
   })
 
   it('skip existing albums', async () => {
