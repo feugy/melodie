@@ -17,25 +17,6 @@ async function connect(filename) {
   return db
 }
 
-function deserialize(columns) {
-  return function (data) {
-    for (const column of columns) {
-      data[column] = JSON.parse(data[column])
-    }
-    return data
-  }
-}
-
-function serialize(columns) {
-  return function (data) {
-    const saved = { ...data }
-    for (const column of columns) {
-      saved[column] = JSON.stringify(saved[column] || null)
-    }
-    return saved
-  }
-}
-
 module.exports = class AbstractModel {
   constructor(name, definition) {
     if (!name) {
@@ -63,22 +44,6 @@ module.exports = class AbstractModel {
     }
   }
 
-  async save(data) {
-    if (!Array.isArray(data)) {
-      data = [data]
-    }
-    const saved = data.map(serialize(this.jsonColumns))
-    // console.log(`saving ${saved.length} ${this.name}...`)
-    const cols = Object.keys(saved[0])
-    await this.db.raw(
-      `? on conflict (\`id\`) do update set ${cols
-        .map(col => `\`${col}\` = excluded.\`${col}\``)
-        .join(', ')}`,
-      [this.db(this.name).insert(saved)]
-    )
-    // console.log(`done ${saved.length} ${this.name}!`)
-  }
-
   async list({ from = 0, size = 10, sort = 'id' } = {}) {
     const [, rawDir, rawSort] = sort.match(/(-|\+)?(.+)/)
     const direction = rawDir || '+'
@@ -89,7 +54,7 @@ module.exports = class AbstractModel {
         .limit(size)
         .offset(from)
         .orderBy(rawSort, direction === '+' ? 'asc' : 'desc')
-    ).map(deserialize(this.jsonColumns))
+    ).map(this.makeDeserializer())
     const total = (await this.db(this.name).count({ count: 'id' }))[0].count
     return { total, from, size, sort: `${direction}${rawSort}`, results }
   }
@@ -99,12 +64,12 @@ module.exports = class AbstractModel {
     if (result.length === 0) {
       return null
     }
-    return deserialize(this.jsonColumns)(result[0])
+    return this.makeDeserializer()(result[0])
   }
 
   async getByIds(ids) {
     return (await this.db.whereIn('id', ids).select().from(this.name)).map(
-      deserialize(this.jsonColumns)
+      this.makeDeserializer()
     )
   }
 
@@ -113,5 +78,24 @@ module.exports = class AbstractModel {
       await this.db.schema.dropTable(this.name)
     }
     await this.init(this.db)
+  }
+
+  makeDeserializer() {
+    return data => {
+      for (const column of this.jsonColumns) {
+        data[column] = JSON.parse(data[column])
+      }
+      return data
+    }
+  }
+
+  makeSerializer() {
+    return data => {
+      const saved = { ...data }
+      for (const column of this.jsonColumns) {
+        saved[column] = JSON.stringify(saved[column] || null)
+      }
+      return saved
+    }
   }
 }

@@ -1,16 +1,14 @@
 'use strict'
 
-const Model = require('./abstract-model')
+const TrackList = require('./abstract-track-list')
 
-class ArtistsModel extends Model {
+class ArtistsModel extends TrackList {
   constructor() {
     super('artists', table => {
       table.integer('id').primary()
       table.string('name')
       table.string('media')
-      table.json('trackIds')
     })
-    this.jsonColumns = ['trackIds']
   }
 }
 
