@@ -1,5 +1,14 @@
 'use strict'
 
+const { from, forkJoin, merge, EMPTY } = require('rxjs')
+const {
+  map,
+  reduce,
+  mergeMap,
+  shareReplay,
+  expand,
+  filter
+} = require('rxjs/operators')
 const { hash, broadcast } = require('../utils')
 const { albumsModel, tracksModel, artistsModel } = require('../models')
 
@@ -12,6 +21,40 @@ const sorters = {
     ),
   rank: (list, results) =>
     list.trackIds.map(id => results.find(track => track.id === id))
+}
+
+const makeListPipeline = function (property, model) {
+  return [
+    filter(track => track.tags[property]),
+    reduce(
+      ({ recordsMap, records }, track) => {
+        const name = track.tags[property]
+        const id = hash(name)
+        let record = recordsMap.get(id)
+        if (!record) {
+          record = {
+            id,
+            name,
+            media: track.media || null,
+            trackIds: []
+          }
+          recordsMap.set(id, record)
+          records.push(record)
+        }
+        record.trackIds.push(track.id)
+        return { recordsMap, records }
+      },
+      { recordsMap: new Map(), records: [] }
+    ),
+    mergeMap(({ records }) =>
+      forkJoin([
+        from(model.save(records)),
+        from(records).pipe(
+          map(record => broadcast(`${property}-change`, record))
+        )
+      ])
+    )
+  ]
 }
 
 module.exports = {
@@ -29,49 +72,34 @@ module.exports = {
   },
 
   async add(tracks) {
-    // TODO rewrite with rx
-    const uniqueAlbums = new Map()
-    const uniqueAlbumList = []
-    const uniqueArtists = new Map()
-    const uniqueArtistList = []
     await tracksModel.save(tracks)
-    for (const track of tracks) {
-      const { album, artists } = track.tags
-      if (album) {
-        const id = hash(album)
-        let albumRecord = uniqueAlbums.get(id)
-        if (!albumRecord) {
-          albumRecord = {
-            id,
-            name: album,
-            media: track.media,
-            trackIds: []
-          }
-          uniqueAlbums.set(id, albumRecord)
-          uniqueAlbumList.push(albumRecord)
-        }
-        albumRecord.trackIds.push(track.id)
-      }
-      for (const artist of artists || []) {
-        const id = hash(artist)
-        let artistRecord = uniqueArtists.get(id)
-        if (!artistRecord) {
-          artistRecord = { id, name: artist, trackIds: [] }
-          uniqueArtists.set(id, artistRecord)
-          uniqueArtistList.push(artistRecord)
-        }
-        artistRecord.trackIds.push(track.id)
-      }
-    }
-
-    for (const album of uniqueAlbumList) {
-      broadcast('album-change', album)
-    }
-    await albumsModel.save(uniqueAlbumList)
-    for (const artist of uniqueArtistList) {
-      broadcast('artist-change', artist)
-    }
-    await artistsModel.save(uniqueArtistList)
+    const tracks$ = from(tracks).pipe(
+      expand(track =>
+        merge(
+          from(
+            track.tags.artists
+              ? track.tags.artists.map(artist => ({
+                  id: track.id,
+                  tags: { artist }
+                }))
+              : EMPTY
+          ),
+          from(
+            track.tags.genres
+              ? track.tags.genres.map(genre => ({
+                  id: track.id,
+                  tags: { genre }
+                }))
+              : EMPTY
+          )
+        )
+      ),
+      shareReplay()
+    )
+    tracks$.pipe(...makeListPipeline('album', albumsModel)).subscribe()
+    tracks$.pipe(...makeListPipeline('artist', artistsModel)).subscribe()
+    // TODO tracks$.pipe(...makeListPipeline('genre', genresModel)).subscribe()
+    await tracks$.toPromise()
   },
 
   async listAlbums(criteria) {
