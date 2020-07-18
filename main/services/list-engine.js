@@ -23,7 +23,7 @@ const sorters = {
     list.trackIds.map(id => results.find(track => track.id === id))
 }
 
-const makeListPipeline = function (property, model) {
+const makeListPipeline = function (property, model, updatedRecords) {
   return [
     filter(track => track.tags[property]),
     reduce(
@@ -32,11 +32,14 @@ const makeListPipeline = function (property, model) {
         const id = hash(name)
         let record = recordsMap.get(id)
         if (!record) {
+          const updatedAlbum = updatedRecords.get(id) || {}
+          updatedRecords.delete(id)
           record = {
             id,
             name,
             media: track.media || null,
-            trackIds: []
+            trackIds: [],
+            ...updatedAlbum
           }
           recordsMap.set(id, record)
           records.push(record)
@@ -46,7 +49,8 @@ const makeListPipeline = function (property, model) {
       },
       { recordsMap: new Map(), records: [] }
     ),
-    mergeMap(({ records }) =>
+    map(({ records }) => records.concat([...updatedRecords.values()])),
+    mergeMap(records =>
       forkJoin([
         from(model.save(records)),
         from(records).pipe(
@@ -72,7 +76,37 @@ module.exports = {
   },
 
   async add(tracks) {
-    await tracksModel.save(tracks)
+    const previousTags = await from(tracksModel.save(tracks)).toPromise()
+    const updatedAlbums = new Map()
+    const updatedArtists = new Map()
+    for (const track of tracks) {
+      const previous = previousTags.find(({ id }) => id === track.id)
+      if (previous) {
+        if (previous.tags.album) {
+          const id = hash(previous.tags.album)
+          if (!track.tags.album || id !== hash(track.tags.album)) {
+            let updatedAlbum = updatedAlbums.get(id)
+            if (!updatedAlbum) {
+              updatedAlbum = { id, removedTrackIds: [] }
+              updatedAlbums.set(id, updatedAlbum)
+            }
+            updatedAlbum.removedTrackIds.push(track.id)
+          }
+        }
+        const currentArtistIds = (track.tags.artists || []).map(hash)
+        for (const artist of previous.tags.artists || []) {
+          const id = hash(artist)
+          if (!currentArtistIds.includes(id)) {
+            let updatedArtist = updatedArtists.get(id)
+            if (!updatedArtist) {
+              updatedArtist = { id, removedTrackIds: [] }
+              updatedArtists.set(id, updatedArtist)
+            }
+            updatedArtist.removedTrackIds.push(track.id)
+          }
+        }
+      }
+    }
     const tracks$ = from(tracks).pipe(
       expand(track =>
         merge(
@@ -96,8 +130,12 @@ module.exports = {
       ),
       shareReplay()
     )
-    tracks$.pipe(...makeListPipeline('album', albumsModel)).subscribe()
-    tracks$.pipe(...makeListPipeline('artist', artistsModel)).subscribe()
+    tracks$
+      .pipe(...makeListPipeline('album', albumsModel, updatedAlbums))
+      .subscribe()
+    tracks$
+      .pipe(...makeListPipeline('artist', artistsModel, updatedArtists))
+      .subscribe()
     // TODO tracks$.pipe(...makeListPipeline('genre', genresModel)).subscribe()
     await tracks$.toPromise()
   },
