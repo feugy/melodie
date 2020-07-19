@@ -195,5 +195,43 @@ describe('Abstract model', () => {
       )
       expect(results).toHaveLength(2)
     })
+
+    it('removes models by ids', async () => {
+      const removed = await tested.removeByIds([
+        models[0].id,
+        models[3].id,
+        faker.random.number()
+      ])
+
+      expect(removed).toEqual(
+        expect.arrayContaining([
+          {
+            ...models[0],
+            tags: JSON.parse(models[0].tags)
+          }
+        ])
+      )
+      expect(removed).toEqual(
+        expect.arrayContaining([
+          {
+            ...models[3],
+            tags: JSON.parse(models[3].tags)
+          }
+        ])
+      )
+      expect(removed).toHaveLength(2)
+      const ids = (
+        await db(modelName)
+          .select('id')
+          .whereIn(
+            'id',
+            models.map(({ id }) => id)
+          )
+      ).map(({ id }) => id)
+      expect(ids).toEqual(
+        expect.not.arrayContaining([models[0].id, models[3].id])
+      )
+      expect(ids).toHaveLength(2)
+    })
   })
 })

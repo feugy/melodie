@@ -73,6 +73,14 @@ module.exports = class AbstractModel {
     )
   }
 
+  async removeByIds(ids) {
+    return this.db.transaction(async trx => {
+      const previous = await trx(this.name).select().whereIn('id', ids)
+      await trx(this.name).whereIn('id', ids).delete()
+      return previous.map(this.makeDeserializer())
+    })
+  }
+
   async reset() {
     if (await this.db.schema.hasTable(this.name)) {
       await this.db.schema.dropTable(this.name)

@@ -25,10 +25,10 @@ const sorters = {
 
 function makeListPipeline(property, model) {
   return [
-    filter(track => track[property] || track[`previous-${property}`]),
+    filter(track => track[property] || track[`prev-${property}`]),
     reduce(
       ({ recordsMap, records }, track) => {
-        const name = track[property] || track[`previous-${property}`]
+        const name = track[property] || track[`prev-${property}`]
         const isNew = property in track
         const id = hash(name)
         let record = recordsMap.get(id)
@@ -101,30 +101,29 @@ module.exports = {
         if (!track.tags) {
           return EMPTY
         }
-        const id = track.id
+        const {
+          id,
+          media,
+          tags: { album, artists }
+        } = track
         const previous = previousTags.get(id)
-        const removedArtists = difference(
-          (previous && previous.tags.artists) || [],
-          track.tags.artists || []
-        )
         const removedAlbum = difference(
           (previous && [previous.tags.album]) || [],
-          [track.tags.album]
+          [album]
+        )
+        const removedArtists = difference(
+          (previous && previous.tags.artists) || [],
+          artists || []
         )
         return merge(
-          of({ id, media: track.media, album: track.tags.album }),
+          of({ id, media, album }),
           removedAlbum.length
-            ? of({ id, 'previous-album': removedAlbum[0] })
+            ? of({ id, 'prev-album': removedAlbum[0] })
             : EMPTY,
-          track.tags.artists
-            ? of(...track.tags.artists.map(artist => ({ id, artist })))
-            : EMPTY,
+          artists ? of(...artists.map(artist => ({ id, artist }))) : EMPTY,
           removedArtists.length
             ? of(
-                ...removedArtists.map(artist => ({
-                  id,
-                  'previous-artist': artist
-                }))
+                ...removedArtists.map(artist => ({ id, 'prev-artist': artist }))
               )
             : EMPTY
         )
@@ -133,7 +132,31 @@ module.exports = {
     )
     tracks$.pipe(...makeListPipeline('album', albumsModel)).subscribe()
     tracks$.pipe(...makeListPipeline('artist', artistsModel)).subscribe()
-    // TODO tracks$.pipe(...makeListPipeline('genre', genresModel)).subscribe()
+    await tracks$.toPromise()
+  },
+
+  async remove(trackIds) {
+    const tracks$ = from(tracksModel.removeByIds(trackIds)).pipe(
+      mergeMap(tracks => from(tracks)),
+      expand(track => {
+        if (!track.tags) {
+          return EMPTY
+        }
+        const {
+          id,
+          tags: { artists, album }
+        } = track
+        return merge(
+          of({ id, 'prev-album': album }),
+          artists
+            ? of(...artists.map(artist => ({ id, 'prev-artist': artist })))
+            : EMPTY
+        )
+      }),
+      shareReplay()
+    )
+    tracks$.pipe(...makeListPipeline('album', albumsModel)).subscribe()
+    tracks$.pipe(...makeListPipeline('artist', artistsModel)).subscribe()
     await tracks$.toPromise()
   },
 
