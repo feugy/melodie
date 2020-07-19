@@ -10,10 +10,10 @@ musings on watch & diff
   1.  [ ] get followed folders from store
   1.  [x] crawl followed folders, return array of paths + hashs + last changed
   1.  [x] get array of tracks with hash + last changed from DB
-  1.  [ ] compare to find new & changed hashes
+  1.  [x] compare to find new & changed hashes
       1. [x] enrich with tags & media
       1. [x] save
-  1.  [ ] compare to isolate deleted hashes
+  1.  [x] compare to isolate deleted hashes
       1. [x] remove corresponding tracks
 - [ ] while app is running
   1.  [ ] watch new & changed paths
