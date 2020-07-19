@@ -97,7 +97,8 @@ describe('File loader', () => {
             id: hash(path),
             path: path,
             media: null,
-            tags: {}
+            tags: {},
+            mtimeMs: expect.any(Number)
           }))
         )
       )

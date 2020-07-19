@@ -4,13 +4,7 @@ const { dialog } = require('electron')
 const klaw = require('klaw')
 const { extname } = require('path')
 const { of, Observable, forkJoin, from } = require('rxjs')
-const {
-  mergeMap,
-  filter,
-  reduce,
-  pluck,
-  bufferCount
-} = require('rxjs/operators')
+const { mergeMap, filter, reduce, bufferCount } = require('rxjs/operators')
 const { hash } = require('../utils')
 const tag = require('./tag-reader')
 const covers = require('./cover-finder')
@@ -39,8 +33,7 @@ const walk = folders =>
           item =>
             item.stats.isFile() &&
             supported.includes(extname(item.path).toLowerCase())
-        ),
-        pluck('path')
+        )
       )
     }, walkConcurrency)
   )
@@ -60,12 +53,13 @@ module.exports = {
     return walk(folders)
       .pipe(
         mergeMap(
-          path =>
+          ({ path, stats: { mtimeMs } }) =>
             forkJoin({
               id: of(hash(path)),
               path: of(path),
               tags: from(tag.read(path)),
-              media: from(covers.findFor(path))
+              media: from(covers.findFor(path)),
+              mtimeMs: of(mtimeMs)
             }),
           readConcurrency
         ),

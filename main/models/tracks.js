@@ -9,6 +9,7 @@ class TracksModel extends Model {
       table.string('path')
       table.string('media')
       table.json('tags')
+      table.float('mtimeMs')
     })
     this.jsonColumns = ['tags']
   }

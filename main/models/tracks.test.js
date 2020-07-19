@@ -65,6 +65,7 @@ describe('Tracks model', () => {
       id: hash(path),
       path,
       media: faker.image.image(),
+      mtimeMs: Date.now(),
       tags: {
         album: faker.commerce.productName(),
         artists: [faker.name.findName(), faker.name.findName()]
@@ -79,6 +80,7 @@ describe('Tracks model', () => {
     const track = {
       ...models[1],
       media: faker.image.image(),
+      mtimeMs: Date.now(),
       tags: {
         album: faker.commerce.productName(),
         artists: [faker.name.findName(), faker.name.findName()]
