@@ -1,9 +1,9 @@
 'use strict'
 
 import produce from 'immer'
-import { BehaviorSubject, Observable, using, iif, of } from 'rxjs'
+import { BehaviorSubject, Observable, iif, of, using } from 'rxjs'
 import { flatMap, map } from 'rxjs/operators'
-import { invoke, channelListener } from '../utils'
+import { channelListener, invoke } from '../utils'
 
 const collator = new Intl.Collator({ numeric: true })
 
@@ -14,7 +14,11 @@ channelListener('album-change', album => {
     produce(store.value, draft => {
       const idx = draft.findIndex(({ id }) => id === album.id)
       if (idx !== -1) {
-        draft[idx] = album
+        if (album.trackIds.length) {
+          draft[idx] = album
+        } else {
+          draft.splice(idx, 1)
+        }
       } else {
         draft.push(album)
         draft.sort((a, b) => collator.compare(a.name, b.name))

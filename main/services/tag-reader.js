@@ -17,7 +17,8 @@ module.exports = {
       genre: [],
       title: null,
       year: null,
-      ...tags
+      ...tags,
+      picture: undefined // TODO for now, don't store pictures
     }
   }
 }

@@ -15,6 +15,7 @@ class Test extends TrackList {
     super(modelName, table => {
       table.integer('id').primary()
       table.string('name')
+      table.string('media')
     })
   }
 }
@@ -28,21 +29,25 @@ describe('Abstract track list', () => {
     {
       id: faker.random.number(),
       name: faker.name.findName(),
+      media: null,
       trackIds: JSON.stringify([])
     },
     {
       id: faker.random.number(),
       name: faker.name.findName(),
+      media: faker.image.image(),
       trackIds: JSON.stringify([faker.random.number()])
     },
     {
       id: faker.random.number(),
       name: faker.name.findName(),
+      media: null,
       trackIds: JSON.stringify([faker.random.number(), faker.random.number()])
     },
     {
       id: faker.random.number(),
       name: faker.name.findName(),
+      media: null,
       trackIds: JSON.stringify([])
     }
   ]
@@ -77,6 +82,7 @@ describe('Abstract track list', () => {
     expect(await db(modelName).where({ id: model.id })).toEqual([
       {
         ...model,
+        media: null,
         trackIds: JSON.stringify(model.trackIds)
       }
     ])
@@ -96,14 +102,52 @@ describe('Abstract track list', () => {
       }
     ]
     await tested.save(models)
-    for (const model of models) {
-      expect(await db(modelName).where({ id: model.id })).toEqual([
-        {
-          ...model,
-          trackIds: JSON.stringify(model.trackIds)
-        }
-      ])
-    }
+    expect(await db(modelName).where({ id: models[0].id })).toEqual([
+      {
+        ...models[0],
+        media: null,
+        trackIds: JSON.stringify(models[0].trackIds)
+      }
+    ])
+    expect(await db(modelName).where({ id: models[1].id })).toEqual([
+      {
+        ...models[1],
+        media: null,
+        trackIds: JSON.stringify(models[1].trackIds)
+      }
+    ])
+  })
+
+  it('updates multipe models with sparse data', async () => {
+    const saved = [
+      {
+        id: models[0].id,
+        name: models[0].name,
+        media: faker.image.image(),
+        trackIds: [faker.random.number()]
+      },
+      {
+        id: models[1].id,
+        name: models[1].name,
+        removedTrackIds: [faker.random.number()]
+      }
+    ]
+    await tested.save(saved)
+    expect(await db(modelName).where({ id: models[0].id })).toEqual([
+      {
+        ...models[0],
+        media: saved[0].media,
+        trackIds: JSON.stringify(
+          JSON.parse(models[0].trackIds).concat(saved[0].trackIds)
+        )
+      }
+    ])
+    expect(await db(modelName).where({ id: models[1].id })).toEqual([
+      {
+        ...models[1],
+        trackIds: JSON.stringify(JSON.parse(models[1].trackIds))
+      }
+    ])
   })
 
   it('updates existing model and appends track ids', async () => {
@@ -137,21 +181,26 @@ describe('Abstract track list', () => {
     ])
   })
 
-  it('can serialize and deserialize undefined values for json attributes', async () => {
+  it('updates existing and removes duplicates', async () => {
     const model = {
-      id: faker.random.number(),
-      name: faker.name.findName()
+      ...models[2],
+      trackIds: JSON.parse(models[2].trackIds)
     }
     await tested.save(model)
     expect(await db(modelName).where({ id: model.id })).toEqual([
       {
         ...model,
-        trackIds: 'null'
+        trackIds: JSON.stringify(model.trackIds)
       }
     ])
-    expect(await tested.getById(model.id)).toEqual({
-      ...model,
-      trackIds: null
-    })
+  })
+
+  it('deletes models which track ids are empty', async () => {
+    const model = {
+      id: models[1].id,
+      removedTrackIds: JSON.parse(models[1].trackIds)
+    }
+    await tested.save(model)
+    expect(await db(modelName).where({ id: model.id })).toEqual([])
   })
 })

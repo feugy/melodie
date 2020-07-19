@@ -1,6 +1,6 @@
 'use strict'
 
-const { difference } = require('lodash')
+const { difference, uniq } = require('lodash')
 const Model = require('./abstract-model')
 
 module.exports = class AbstractTrackList extends Model {
@@ -19,34 +19,64 @@ module.exports = class AbstractTrackList extends Model {
     const serialize = this.makeSerializer()
 
     return this.db.transaction(async trx => {
-      const old = await trx(this.name)
-        .select('id', 'trackIds')
-        .whereIn(
-          'id',
-          data.map(({ id }) => id)
-        )
-      const saved = data.map(trackList => {
-        const oldTrackList = old.find(({ id }) => id === trackList.id)
-        let trackIds = trackList.trackIds
-        if (oldTrackList) {
-          trackIds = difference(
-            JSON.parse(oldTrackList.trackIds).concat(trackList.trackIds),
-            trackList.removedTrackIds
+      const previous = (
+        await trx(this.name)
+          .select()
+          .whereIn(
+            'id',
+            data.map(({ id }) => id)
           )
-        }
-        const saved = { ...trackList, trackIds }
-        delete saved.removedTrackIds
-        return serialize(saved)
-      })
+      ).map(this.makeDeserializer())
 
-      const cols = Object.keys(saved[0])
-      await trx.raw(
-        `? on conflict (\`id\`) do update set ${cols
-          .map(col => `\`${col}\` = excluded.\`${col}\``)
-          .join(', ')}`,
-        [trx(this.name).insert(saved)]
+      const { saved, removed } = data.reduce(
+        ({ saved, removed }, trackList) => {
+          const previousList = previous.find(
+            ({ id }) => id === trackList.id
+          ) || {
+            media: null,
+            trackIds: []
+          }
+          const savedList = {
+            ...previousList,
+            trackIds: uniq(
+              difference(
+                previousList.trackIds.concat(trackList.trackIds || []),
+                trackList.removedTrackIds
+              )
+            )
+          }
+          if (savedList.trackIds.length) {
+            // one can not update with sparse data: we have to get previous columns
+            for (const col of Object.keys(trackList)) {
+              if (
+                col !== 'trackIds' &&
+                col !== 'removedTrackIds' &&
+                trackList[col] !== undefined
+              ) {
+                savedList[col] = trackList[col]
+              }
+            }
+            saved.push(serialize(savedList))
+          } else {
+            removed.push(trackList.id)
+          }
+          return { saved, removed }
+        },
+        { saved: [], removed: [] }
       )
-      return old
+
+      if (saved.length) {
+        const cols = Object.keys(saved[0])
+        await trx.raw(
+          `? on conflict (\`id\`) do update set ${cols
+            .map(col => `\`${col}\` = excluded.\`${col}\``)
+            .join(', ')}`,
+          [trx(this.name).insert(saved)]
+        )
+      }
+      if (removed.length) {
+        await trx(this.name).whereIn('id', removed).delete()
+      }
     })
   }
 }

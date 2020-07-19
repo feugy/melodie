@@ -62,7 +62,6 @@ describe('Lists Engine', () => {
     const artists = artistNames.map(name =>
       addId({
         name,
-        media: null,
         trackIds: [hash(path)]
       })
     )
@@ -83,7 +82,6 @@ describe('Lists Engine', () => {
     const album = addId({
       id: hash(name),
       name,
-      media: null,
       trackIds: [hash(path)]
     })
 
@@ -262,7 +260,6 @@ describe('Lists Engine', () => {
 
     const album = addId({
       name,
-      media: null,
       trackIds: [track1.id, track2.id, track3.id]
     })
 
@@ -297,17 +294,14 @@ describe('Lists Engine', () => {
     const artists = [
       addId({
         name: artist1,
-        media: null,
         trackIds: [track1.id]
       }),
       addId({
         name: artist2,
-        media: null,
         trackIds: [track1.id, track2.id]
       }),
       addId({
         name: artist3,
-        media: null,
         trackIds: [track2.id, track3.id]
       })
     ]
@@ -356,26 +350,25 @@ describe('Lists Engine', () => {
 
     await engine.add([track1, track2, track3, track4])
 
-    const oldAlbum = {
-      id: hash(oldName),
+    const oldAlbum = addId({
+      name: oldName,
+      trackIds: [],
       removedTrackIds: [track1.id, track2.id]
-    }
+    })
     const updatedAlbum = addId({
       name: updatedName,
-      media: null,
       removedTrackIds: [track3.id],
       trackIds: [track4.id]
     })
     const newAlbum = addId({
       name: newName,
-      media: null,
       trackIds: [track1.id, track2.id, track3.id]
     })
 
     expect(albumsModel.save).toHaveBeenCalledWith([
       newAlbum,
-      updatedAlbum,
-      oldAlbum
+      oldAlbum,
+      updatedAlbum
     ])
     expect(albumsModel.save).toHaveBeenCalledTimes(1)
     expect(broadcast).toHaveBeenCalledWith('album-change', oldAlbum)
@@ -407,19 +400,18 @@ describe('Lists Engine', () => {
 
     await engine.add([track1, track2])
 
-    const oldArtist = {
-      id: hash(oldName),
+    const oldArtist = addId({
+      name: oldName,
+      trackIds: [],
       removedTrackIds: [track1.id, track2.id]
-    }
+    })
     const updatedArtist = addId({
       name: updatedName,
-      media: null,
       removedTrackIds: [track2.id],
       trackIds: [track1.id]
     })
     const newArtist = addId({
       name: newName,
-      media: null,
       trackIds: [track1.id, track2.id]
     })
 

@@ -6,27 +6,27 @@
 
 musings on watch & diff
 
-- on app load, trigger diff
-  1.  get followed folders from store
-  1.  crawl followed folders, return array of paths + hashs + last changed
-  1.  get array of tracks with hash + last changed from DB
-  1.  compare to find new & changed hashes
-      1. enrich with tags & media
-      1. save
-  1.  compare to isolate deleted hashes
-      1. remove corresponding tracks
-- while app is running
-  1.  watch new & changed paths
-      1. compute hash, enrich with tags & media
-      1. save
-  1.  watch deleted paths
-      1. compute hash
-      1. remove corresponding tracks
-- when adding new followed folder
-  1.  save in store
-  1.  crawl new folder, return array of paths
-  1.  compute hash, enrich with tags & media
-  1.  save
+- [ ] on app load, trigger diff
+  1.  [ ] get followed folders from store
+  1.  [ ] crawl followed folders, return array of paths + hashs + last changed
+  1.  [ ] get array of tracks with hash + last changed from DB
+  1.  [ ] compare to find new & changed hashes
+      1. [x] enrich with tags & media
+      1. [x] save
+  1.  [ ] compare to isolate deleted hashes
+      1. [x] remove corresponding tracks
+- [ ] while app is running
+  1.  [ ] watch new & changed paths
+      1. [x] compute hash, enrich with tags & media
+      1. [x] save
+  1.  [ ] watch deleted paths
+      1. [x] compute hash
+      1. [x] remove corresponding tracks
+- [x] when adding new followed folder
+  1.  [x] save in store
+  1.  [x] crawl new folder, return array of paths
+  1.  [x] compute hash, enrich with tags & media
+  1.  [x] save
 
 ### internals
 
