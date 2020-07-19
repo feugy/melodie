@@ -73,6 +73,20 @@ module.exports = class AbstractModel {
     )
   }
 
+  async save(data) {
+    if (!Array.isArray(data)) {
+      data = [data]
+    }
+    const saved = data.map(this.makeSerializer())
+    const cols = Object.keys(saved[0])
+    return this.db.raw(
+      `? on conflict (\`id\`) do update set ${cols
+        .map(col => `\`${col}\` = excluded.\`${col}\``)
+        .join(', ')}`,
+      [this.db(this.name).insert(saved)]
+    )
+  }
+
   async removeByIds(ids) {
     return this.db.transaction(async trx => {
       const previous = await trx(this.name).select().whereIn('id', ids)

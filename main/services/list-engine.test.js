@@ -7,12 +7,14 @@ const os = require('os')
 const { artistsModel } = require('../models/artists')
 const { albumsModel } = require('../models/albums')
 const { tracksModel } = require('../models/tracks')
+const { settingsModel } = require('../models/settings')
 const engine = require('./list-engine')
 const { hash, broadcast } = require('../utils')
 
 jest.mock('../models/artists')
 jest.mock('../models/albums')
 jest.mock('../models/tracks')
+jest.mock('../models/settings')
 jest.mock('../utils/electron-remote')
 jest.mock('electron', () => ({ app: { getAppPath: jest.fn() } }))
 
@@ -41,6 +43,7 @@ describe('Lists Engine', () => {
     it('initializes properly', async () => {
       await engine.init(dbFile)
 
+      expect(settingsModel.init).toHaveBeenCalled()
       expect(albumsModel.init).toHaveBeenCalled()
       expect(artistsModel.init).toHaveBeenCalled()
       expect(tracksModel.init).toHaveBeenCalled()
@@ -51,9 +54,11 @@ describe('Lists Engine', () => {
     it('resets properly', async () => {
       await engine.reset()
 
+      expect(settingsModel.reset).toHaveBeenCalled()
       expect(albumsModel.reset).toHaveBeenCalled()
       expect(artistsModel.reset).toHaveBeenCalled()
       expect(tracksModel.reset).toHaveBeenCalled()
+      expect(settingsModel.init).toHaveBeenCalled()
       expect(albumsModel.init).toHaveBeenCalled()
       expect(artistsModel.init).toHaveBeenCalled()
       expect(tracksModel.init).toHaveBeenCalled()
