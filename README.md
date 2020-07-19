@@ -8,8 +8,8 @@ musings on watch & diff
 
 - [ ] on app load, trigger diff
   1.  [ ] get followed folders from store
-  1.  [ ] crawl followed folders, return array of paths + hashs + last changed
-  1.  [ ] get array of tracks with hash + last changed from DB
+  1.  [x] crawl followed folders, return array of paths + hashs + last changed
+  1.  [x] get array of tracks with hash + last changed from DB
   1.  [ ] compare to find new & changed hashes
       1. [x] enrich with tags & media
       1. [x] save

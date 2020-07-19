@@ -131,4 +131,30 @@ describe('File loader', () => {
       expect(tag.read).toHaveBeenCalledTimes(files.length)
     })
   })
+
+  describe('walk', () => {
+    it('returns list of fimes', async () => {
+      const tree1 = await makeFolder({ depth: 3, fileNb: 15 })
+      const tree2 = await makeFolder({ depth: 2, fileNb: 10 })
+
+      const files = await engine.walk([tree1.folder, tree2.folder])
+      expect(files).toEqual(
+        expect.arrayContaining(
+          tree1.files.map(path => ({
+            path,
+            stats: expect.any(Object)
+          }))
+        )
+      )
+      expect(files).toEqual(
+        expect.arrayContaining(
+          tree2.files.map(path => ({
+            path,
+            stats: expect.any(Object)
+          }))
+        )
+      )
+      expect(files).toHaveLength(tree1.files.length + tree2.files.length)
+    })
+  })
 })

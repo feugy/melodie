@@ -4,7 +4,13 @@ const { dialog } = require('electron')
 const klaw = require('klaw')
 const { extname } = require('path')
 const { of, Observable, forkJoin, from } = require('rxjs')
-const { mergeMap, filter, reduce, bufferCount } = require('rxjs/operators')
+const {
+  mergeMap,
+  filter,
+  reduce,
+  bufferCount,
+  toArray
+} = require('rxjs/operators')
 const { hash } = require('../utils')
 const tag = require('./tag-reader')
 const covers = require('./cover-finder')
@@ -16,7 +22,7 @@ const saveThreshold = 50
 const supported = ['.mp3', '.ogg', '.flac']
 
 const walk = folders =>
-  of(...folders).pipe(
+  of(...(folders || [])).pipe(
     mergeMap(path => {
       return Observable.create(function (observer) {
         klaw(path)
@@ -46,10 +52,11 @@ module.exports = {
     return filePaths
   },
 
+  async walk(folders) {
+    return walk(folders).pipe(toArray()).toPromise()
+  },
+
   async crawl(folders) {
-    if (!folders || folders.length === 0) {
-      return null
-    }
     return walk(folders)
       .pipe(
         mergeMap(
