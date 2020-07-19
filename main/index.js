@@ -6,6 +6,7 @@ const tagReader = require('./services/tag-reader')
 const fileLoader = require('./services/file-loader')
 const listEngine = require('./services/list-engine')
 const { getStoragePath, subscribeRemote, registerRenderer } = require('./utils')
+const { settingsModel } = require('./models/settings')
 
 const { app, BrowserWindow } = electron
 const publicFolder = join(__dirname, '..', 'public')
@@ -33,8 +34,6 @@ async function createWindow() {
   })
 
   registerRenderer(win)
-
-  // TODO defer?
   await listEngine.init(getStoragePath('db.sqlite3'))
 
   unsubscribe = subscribeRemote({
@@ -45,6 +44,11 @@ async function createWindow() {
     ...electron
   })
   win.loadURL(`file://${join(publicFolder, 'index.html')}`)
+
+  win.webContents.once('did-finish-load', async () => {
+    const { folders } = await settingsModel.get()
+    await fileLoader.compare(folders)
+  })
 }
 
 app.whenReady().then(createWindow)

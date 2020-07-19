@@ -6,8 +6,8 @@
 
 musings on watch & diff
 
-- [ ] on app load, trigger diff
-  1.  [ ] get followed folders from store
+- [x] on app load, trigger diff
+  1.  [x] get followed folders from store
   1.  [x] crawl followed folders, return array of paths + hashs + last changed
   1.  [x] get array of tracks with hash + last changed from DB
   1.  [x] compare to find new & changed hashes
@@ -34,6 +34,8 @@ musings on watch & diff
 - [x] load (and save) folders and not files
 - [x] run track analysis in the background
 - [ ] watch folder changes
+- [ ] send start/stop events when updating
+- [ ] embed file-loader's crawl() into chooseFolders()
 - [x] reactive stores: send update on new albums/artists/tracks
 - [ ] artists pictures
 - [ ] consider knex-migrate

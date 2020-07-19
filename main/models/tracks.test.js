@@ -95,7 +95,7 @@ describe('Tracks model', () => {
         }
       }
 
-      const oldTags = await tracksModel.save(track)
+      const oldTags = await tracksModel.save([track])
       expect(await tracksModel.getById(track.id)).toEqual(track)
       expect(oldTags).toEqual([
         { id: track.id, tags: JSON.parse(models[1].tags) }

@@ -10,6 +10,7 @@ const tag = require('./tag-reader')
 const covers = require('./cover-finder')
 const lists = require('./list-engine')
 const { tracksModel } = require('../models/tracks')
+const { settingsModel } = require('../models/settings')
 const { hash } = require('../utils')
 
 jest.mock('electron', () => ({
@@ -24,6 +25,7 @@ jest.mock('./list-engine')
 jest.mock('./cover-finder')
 jest.mock('./tag-reader')
 jest.mock('../models/tracks')
+jest.mock('../models/settings')
 
 async function makeFolder({
   folder = join(mockOs.tmpdir(), 'melodie-'),
@@ -67,10 +69,30 @@ describe('File loader', () => {
   })
 
   describe('chooseFolder', () => {
-    it('loads files selected from dialog', async () => {
+    it('saves selected folders to settings', async () => {
+      const folders = [faker.system.fileName()]
+      settingsModel.get.mockResolvedValueOnce({ folders })
       const filePaths = [faker.system.fileName(), faker.system.fileName()]
       electron.dialog.showOpenDialog.mockResolvedValueOnce({ filePaths })
+
       expect(await engine.chooseFolders()).toEqual(filePaths)
+
+      expect(settingsModel.get).toHaveBeenCalledWith()
+      expect(settingsModel.get).toHaveBeenCalledTimes(1)
+      expect(settingsModel.save).toHaveBeenCalledWith({
+        id: settingsModel.ID,
+        folders: folders.concat(filePaths)
+      })
+      expect(settingsModel.save).toHaveBeenCalledTimes(1)
+    })
+
+    it('does not saves empty selection', async () => {
+      electron.dialog.showOpenDialog.mockResolvedValueOnce({ filePaths: [] })
+
+      expect(await engine.chooseFolders()).toEqual([])
+
+      expect(settingsModel.getById).not.toHaveBeenCalled()
+      expect(settingsModel.save).not.toHaveBeenCalled()
     })
   })
 

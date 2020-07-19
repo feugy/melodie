@@ -11,11 +11,13 @@ const {
   bufferCount,
   endWith
 } = require('rxjs/operators')
+const { uniq } = require('lodash')
 const { hash } = require('../utils')
 const tag = require('./tag-reader')
 const covers = require('./cover-finder')
 const lists = require('./list-engine')
 const { tracksModel } = require('../models/tracks')
+const { settingsModel } = require('../models/settings')
 
 const readConcurrency = 10
 const walkConcurrency = 2
@@ -70,6 +72,13 @@ module.exports = {
     const { filePaths } = await dialog.showOpenDialog({
       properties: ['openDirectory', 'multiSelections']
     })
+    if (filePaths.length) {
+      const settings = await settingsModel.get()
+      await settingsModel.save({
+        ...settings,
+        folders: uniq(settings.folders.concat(filePaths))
+      })
+    }
     return filePaths
   },
 
