@@ -14,6 +14,17 @@ class TracksModel extends Model {
     this.jsonColumns = ['tags']
   }
 
+  async listWithTime() {
+    const result = new Map()
+    for (const { id, mtimeMs } of await this.db(this.name).select(
+      'id',
+      'mtimeMs'
+    )) {
+      result.set(id, mtimeMs)
+    }
+    return result
+  }
+
   async save(data) {
     if (!Array.isArray(data)) {
       data = [data]
