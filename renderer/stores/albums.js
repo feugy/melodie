@@ -14,14 +14,21 @@ channelListener('album-change', album => {
     produce(store.value, draft => {
       const idx = draft.findIndex(({ id }) => id === album.id)
       if (idx !== -1) {
-        if (album.trackIds.length) {
-          draft[idx] = album
-        } else {
-          draft.splice(idx, 1)
-        }
+        draft[idx] = album
       } else {
         draft.push(album)
         draft.sort((a, b) => collator.compare(a.name, b.name))
+      }
+    })
+  )
+}).subscribe()
+
+channelListener('album-removal', id => {
+  store.next(
+    produce(store.value, draft => {
+      const idx = draft.findIndex(album => id === album.id)
+      if (idx !== -1) {
+        draft.splice(idx, 1)
       }
     })
   )

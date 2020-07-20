@@ -60,12 +60,18 @@ function makeListPipeline(property, model) {
       { recordsMap: new Map(), records: [] }
     ),
     mergeMap(({ records }) =>
-      forkJoin([
-        from(model.save(records)),
-        from(records).pipe(
-          map(record => broadcast(`${property}-change`, record))
+      from(model.save(records)).pipe(
+        mergeMap(({ saved, removedIds }) =>
+          forkJoin([
+            from(saved).pipe(
+              map(record => broadcast(`${property}-change`, record))
+            ),
+            from(removedIds).pipe(
+              map(id => broadcast(`${property}-removal`, id))
+            )
+          ])
         )
-      ])
+      )
     )
   ]
 }

@@ -8,7 +8,7 @@ import { albums as albumsStore, list, loadTracks, reset } from './albums'
 
 jest.mock('../utils/invoke')
 jest.mock('../utils/channel', () => ({
-  channelListener: jest.fn().mockReturnValueOnce({ subscribe: jest.fn() })
+  channelListener: jest.fn().mockReturnValue({ subscribe: jest.fn() })
 }))
 
 describe('albums store', () => {

@@ -1,17 +1,21 @@
 'use strict'
 
 const { dialog } = require('electron')
-const klaw = require('klaw')
 const { extname } = require('path')
-const { of, Observable, forkJoin, from, EMPTY } = require('rxjs')
+const fs = require('fs-extra')
+const { of, Observable, forkJoin, from, merge, EMPTY } = require('rxjs')
 const {
   mergeMap,
   filter,
   reduce,
   bufferCount,
-  endWith
+  endWith,
+  map,
+  partition
 } = require('rxjs/operators')
 const { uniq } = require('lodash')
+const chokidar = require('chokidar')
+const klaw = require('klaw')
 const { hash } = require('../utils')
 const tag = require('./tag-reader')
 const covers = require('./cover-finder')
@@ -37,18 +41,19 @@ function walk(folders) {
           })
           .on('error', observer.error.bind(observer))
           .on('end', observer.complete.bind(observer))
-      }).pipe(
-        filter(
-          item =>
-            item.stats.isFile() &&
-            supported.includes(extname(item.path).toLowerCase())
-        )
-      )
+      }).pipe(filter(onlySupported))
     }, walkConcurrency)
   )
 }
 
-function makeEnrichAndSavePipeline() {
+function onlySupported({ path, stats }) {
+  return (
+    (!stats || stats.isFile()) &&
+    supported.includes(extname(path).toLowerCase())
+  )
+}
+
+function makeEnrichAndSavePipeline(bufferSize = saveThreshold) {
   return [
     mergeMap(
       ({ path, stats: { mtimeMs } }) =>
@@ -61,7 +66,7 @@ function makeEnrichAndSavePipeline() {
         }),
       readConcurrency
     ),
-    bufferCount(saveThreshold),
+    bufferCount(bufferSize),
     mergeMap(saved => from(lists.add(saved))),
     reduce((tracks, saved) => tracks.concat(saved), [])
   ]
@@ -110,5 +115,48 @@ module.exports = {
         })
       )
       .toPromise()
+  },
+
+  watch(folders) {
+    const [additions, removals] = Observable.create(function (observer) {
+      function onSave(path) {
+        observer.next({ isSave: true, path })
+      }
+      function onRemove(path) {
+        observer.next({ isSave: false, path })
+      }
+      const watcher = chokidar
+        .watch(folders, {
+          ignoreInitial: true,
+          disableGlobbing: true,
+          awaitWriteFinish: {
+            stabilityThreshold: 200,
+            pollInterval: 100
+          }
+        })
+        .on('add', onSave)
+        .on('change', onSave)
+        .on('unlink', onRemove)
+        .on('error', observer.error.bind(observer))
+      return {
+        unsubscribe() {
+          watcher.close()
+        }
+      }
+    }).pipe(partition(({ isSave }) => isSave))
+
+    return merge(
+      additions.pipe(
+        mergeMap(({ path }) =>
+          from(fs.stat(path)).pipe(map(stats => ({ path, stats })))
+        ),
+        filter(onlySupported),
+        ...makeEnrichAndSavePipeline(1)
+      ),
+      removals.pipe(
+        filter(onlySupported),
+        mergeMap(({ path }) => from(lists.remove([hash(path)])))
+      )
+    ).subscribe()
   }
 }

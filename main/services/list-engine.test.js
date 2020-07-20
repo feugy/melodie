@@ -76,6 +76,10 @@ describe('Lists Engine', () => {
         })
       )
       const tracks = [{ id: hash(path), path, tags: { artists: artistNames } }]
+      artistsModel.save.mockResolvedValueOnce({
+        saved: artists,
+        removedIds: []
+      })
 
       await engine.add(tracks)
 
@@ -97,6 +101,10 @@ describe('Lists Engine', () => {
         trackIds: [hash(path)]
       })
       const tracks = [{ id: hash(path), path, tags: { album: name } }]
+      albumsModel.save.mockResolvedValueOnce({
+        saved: [album],
+        removedIds: []
+      })
 
       await engine.add(tracks)
 
@@ -125,6 +133,10 @@ describe('Lists Engine', () => {
           media
         }
       ]
+      albumsModel.save.mockResolvedValueOnce({
+        saved: [album],
+        removedIds: []
+      })
 
       await engine.add(tracks)
 
@@ -159,6 +171,10 @@ describe('Lists Engine', () => {
         trackIds: [track1.id, track2.id, track3.id]
       })
       const tracks = [track1, track2, track3]
+      albumsModel.save.mockResolvedValueOnce({
+        saved: [album],
+        removedIds: []
+      })
 
       await engine.add(tracks)
 
@@ -205,6 +221,10 @@ describe('Lists Engine', () => {
         })
       ]
       const tracks = [track1, track2, track3]
+      artistsModel.save.mockResolvedValueOnce({
+        saved: artists,
+        removedIds: []
+      })
 
       await engine.add(tracks)
 
@@ -264,6 +284,10 @@ describe('Lists Engine', () => {
         name: newName,
         trackIds: [track1.id, track2.id, track3.id]
       })
+      albumsModel.save.mockResolvedValueOnce({
+        saved: [oldAlbum, updatedAlbum, newAlbum],
+        removedIds: []
+      })
 
       await engine.add(tracks)
 
@@ -316,6 +340,10 @@ describe('Lists Engine', () => {
         name: newName,
         trackIds: [track1.id, track2.id]
       })
+      artistsModel.save.mockResolvedValueOnce({
+        saved: [oldArtist, updatedArtist, newArtist],
+        removedIds: []
+      })
 
       await engine.add([track1, track2])
 
@@ -344,6 +372,10 @@ describe('Lists Engine', () => {
       const tracks = [{ id: hash(path), path, tags: { album: name } }]
       const trackIds = tracks.map(({ id }) => id)
       tracksModel.removeByIds.mockResolvedValueOnce(tracks)
+      albumsModel.save.mockResolvedValueOnce({
+        saved: [],
+        removedIds: [album.id]
+      })
 
       await engine.remove(trackIds)
 
@@ -351,7 +383,7 @@ describe('Lists Engine', () => {
       expect(tracksModel.removeByIds).toHaveBeenCalledTimes(1)
       expect(albumsModel.save).toHaveBeenCalledWith([album])
       expect(albumsModel.save).toHaveBeenCalledTimes(1)
-      expect(broadcast).toHaveBeenCalledWith('album-change', album)
+      expect(broadcast).toHaveBeenCalledWith('album-removal', album.id)
       expect(broadcast).toHaveBeenCalledTimes(1)
     })
 
@@ -368,6 +400,10 @@ describe('Lists Engine', () => {
       const tracks = [{ id: hash(path), path, tags: { artists: artistNames } }]
       const trackIds = tracks.map(({ id }) => id)
       tracksModel.removeByIds.mockResolvedValueOnce(tracks)
+      artistsModel.save.mockResolvedValueOnce({
+        saved: [],
+        removedIds: artists.map(({ id }) => id)
+      })
 
       await engine.remove(trackIds)
 
@@ -375,8 +411,8 @@ describe('Lists Engine', () => {
       expect(tracksModel.removeByIds).toHaveBeenCalledTimes(1)
       expect(artistsModel.save).toHaveBeenCalledWith(artists)
       expect(artistsModel.save).toHaveBeenCalledTimes(1)
-      for (const artist of artists) {
-        expect(broadcast).toHaveBeenCalledWith('artist-change', artist)
+      for (const { id } of artists) {
+        expect(broadcast).toHaveBeenCalledWith('artist-removal', id)
       }
       expect(broadcast).toHaveBeenCalledTimes(artists.length)
     })

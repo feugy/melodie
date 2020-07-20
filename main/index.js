@@ -48,6 +48,7 @@ async function createWindow() {
   win.webContents.once('did-finish-load', async () => {
     const { folders } = await settingsModel.get()
     await fileLoader.compare(folders)
+    fileLoader.watch(folders)
   })
 }
 

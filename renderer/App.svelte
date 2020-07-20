@@ -14,6 +14,7 @@
     isLoading = true
     await invoke('fileLoader.crawl', folders)
     isLoading = false
+    invoke('fileLoader.watch', folders)
   }
 
   onMount(listAlbums)

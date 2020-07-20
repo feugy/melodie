@@ -28,8 +28,8 @@ module.exports = class AbstractTrackList extends Model {
           )
       ).map(this.makeDeserializer())
 
-      const { saved, removed } = data.reduce(
-        ({ saved, removed }, trackList) => {
+      const { saved, removedIds } = data.reduce(
+        ({ saved, removedIds }, trackList) => {
           const previousList = previous.find(
             ({ id }) => id === trackList.id
           ) || {
@@ -56,13 +56,13 @@ module.exports = class AbstractTrackList extends Model {
                 savedList[col] = trackList[col]
               }
             }
-            saved.push(serialize(savedList))
+            saved.push(savedList)
           } else {
-            removed.push(trackList.id)
+            removedIds.push(trackList.id)
           }
-          return { saved, removed }
+          return { saved, removedIds }
         },
-        { saved: [], removed: [] }
+        { saved: [], removedIds: [] }
       )
 
       if (saved.length) {
@@ -71,12 +71,13 @@ module.exports = class AbstractTrackList extends Model {
           `? on conflict (\`id\`) do update set ${cols
             .map(col => `\`${col}\` = excluded.\`${col}\``)
             .join(', ')}`,
-          [trx(this.name).insert(saved)]
+          [trx(this.name).insert(saved.map(serialize))]
         )
       }
-      if (removed.length) {
-        await trx(this.name).whereIn('id', removed).delete()
+      if (removedIds.length) {
+        await trx(this.name).whereIn('id', removedIds).delete()
       }
+      return { saved, removedIds }
     })
   }
 }

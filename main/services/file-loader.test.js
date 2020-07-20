@@ -13,6 +13,8 @@ const { tracksModel } = require('../models/tracks')
 const { settingsModel } = require('../models/settings')
 const { hash } = require('../utils')
 
+const wait = n => new Promise(r => setTimeout(r, n))
+
 jest.mock('electron', () => ({
   dialog: {
     showOpenDialog: jest.fn()
@@ -328,6 +330,124 @@ describe('File loader', () => {
       }
       expect(covers.findFor).toHaveBeenCalledTimes(newAndModified.length)
       expect(tag.read).toHaveBeenCalledTimes(newAndModified.length)
+    })
+  })
+
+  describe('watch', () => {
+    let tree
+    let subscription
+
+    beforeEach(async () => {
+      tree = await makeFolder({ depth: 3, fileNb: 15 })
+    })
+
+    afterEach(() => {
+      if (subscription) {
+        subscription.unsubscribe()
+        subscription = null
+      }
+    })
+
+    it('finds new files and save them', async () => {
+      subscription = engine.watch([tree.folder])
+
+      await wait(200)
+
+      const first = join(tree.folder, 'first.mp3')
+      const second = join(tree.folder, 'second.ogg')
+      const third = join(tree.folder, 'third.flac')
+
+      fs.writeFile(first, faker.lorem.word())
+      fs.writeFile(join(tree.folder, 'ignored.png'), faker.lorem.word())
+      fs.writeFile(second, faker.lorem.word())
+      fs.writeFile(join(tree.folder, 'ignored.jpg'), faker.lorem.word())
+      fs.writeFile(third, faker.lorem.word())
+
+      await wait(500)
+
+      const tracks = [first, second, third].map(path => ({
+        id: hash(path),
+        path,
+        media: null,
+        tags: {},
+        mtimeMs: expect.any(Number)
+      }))
+
+      expect(lists.remove).toHaveBeenCalledTimes(0)
+      for (const obj of tracks) {
+        expect(lists.add).toHaveBeenCalledWith([obj])
+        expect(covers.findFor).toHaveBeenCalledWith(obj.path)
+        expect(tag.read).toHaveBeenCalledWith(obj.path)
+      }
+      expect(lists.add).toHaveBeenCalledTimes(tracks.length)
+      expect(covers.findFor).toHaveBeenCalledTimes(tracks.length)
+      expect(tag.read).toHaveBeenCalledTimes(tracks.length)
+    })
+
+    it('finds modified files and save them', async () => {
+      subscription = engine.watch([tree.folder])
+
+      await wait(200)
+
+      fs.writeFile(join(tree.folder, 'unsupported.png'), faker.lorem.word())
+
+      const modified = tree.files.slice(2, 6)
+      for (const { path } of modified) {
+        fs.writeFile(path, faker.lorem.word())
+      }
+
+      await wait(500)
+
+      const tracks = modified.map(({ path }) => ({
+        id: hash(path),
+        path,
+        media: null,
+        tags: {},
+        mtimeMs: expect.any(Number)
+      }))
+
+      expect(lists.remove).toHaveBeenCalledTimes(0)
+      for (const obj of tracks) {
+        expect(lists.add).toHaveBeenCalledWith([obj])
+        expect(covers.findFor).toHaveBeenCalledWith(obj.path)
+        expect(tag.read).toHaveBeenCalledWith(obj.path)
+      }
+      expect(lists.add).toHaveBeenCalledTimes(tracks.length)
+      expect(covers.findFor).toHaveBeenCalledTimes(tracks.length)
+      expect(tag.read).toHaveBeenCalledTimes(tracks.length)
+    })
+
+    it('finds delete files and removs them', async () => {
+      const unsupported = join(tree.folder, 'unsupported.png')
+      fs.writeFile(unsupported, faker.lorem.word())
+
+      subscription = engine.watch([tree.folder])
+
+      await wait(200)
+
+      const removed = tree.files.slice(3, 7)
+      for (const { path } of removed) {
+        fs.unlink(path)
+      }
+      fs.unlink(unsupported)
+
+      await wait(500)
+
+      const tracks = removed.map(({ path }) => ({
+        id: hash(path),
+        path,
+        media: null,
+        tags: {},
+        mtimeMs: expect.any(Number)
+      }))
+
+      for (const obj of tracks) {
+        expect(lists.remove).toHaveBeenCalledWith([obj.id])
+      }
+      expect(lists.remove).toHaveBeenCalledTimes(tracks.length)
+      expect(lists.add).toHaveBeenCalledTimes(0)
+      expect(covers.findFor).toHaveBeenCalledTimes(0)
+      expect(tag.read).toHaveBeenCalledTimes(0)
     })
   })
 })
