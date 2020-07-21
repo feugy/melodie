@@ -4,14 +4,14 @@
 
 ## TODO
 
-### internals
+### core
 
 - [x] consider albums & artists as track lists? name + image + tracks
 - [x] load (and save) folders and not files
 - [x] run track analysis in the background
-- [-] watch folder changes (TODO buffer time instead of size)
-- [ ] send start/stop events when updating
-- [ ] embed file-loader's crawl() into chooseFolders()
+- [x] watch folder changes
+- [x] send start/stop events when updating
+- [x] embed file-loader's crawl() into chooseFolders()
 - [x] reactive stores: send update on new albums/artists/tracks
 - [ ] artists pictures
 - [ ] consider knex-migrate
@@ -46,7 +46,9 @@
 
 ### bugs
 
-1. Undetected live changes: remove tracks and re-add them
+1. Undetected live changes: remove tracks and re-add them. This is a linux-only issue with chokidar
+   - https://github.com/paulmillr/chokidar/issues/917
+   - https://github.com/paulmillr/chokidar/issues/591
 1. Can not add the same track twice to play list (duplicated ids in each)
 
 ## History
@@ -67,6 +69,11 @@
   select id, tags from tracks where instr(lower(json_extract(tags, '$.artists')), 'eric serra')
   select id, tags from tracks where json_extract(tags, '$.artists') like '%eric serra%'
   ```
+- chokidar is the best of breed watch tool, but has this annoying linux-only big when moving folders outside of the watched paths
+  Watchman is a C program that'll be hard to bundle.
+  node-watch does not send file event when removing/renaming folders
+  watchr API seems overly complex
+  watch-pack is using chokidar and the next version isn't ready
 
 musings on watch & diff
 

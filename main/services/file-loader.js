@@ -11,12 +11,13 @@ const {
   bufferCount,
   endWith,
   map,
-  partition
+  partition,
+  tap
 } = require('rxjs/operators')
 const { uniq } = require('lodash')
 const chokidar = require('chokidar')
 const klaw = require('klaw')
-const { hash } = require('../utils')
+const { hash, broadcast } = require('../utils')
 const tag = require('./tag-reader')
 const covers = require('./cover-finder')
 const lists = require('./list-engine')
@@ -73,7 +74,7 @@ function makeEnrichAndSavePipeline(bufferSize = saveThreshold) {
 }
 
 module.exports = {
-  async chooseFolders() {
+  async addFolders() {
     const { filePaths } = await dialog.showOpenDialog({
       properties: ['openDirectory', 'multiSelections']
     })
@@ -83,18 +84,23 @@ module.exports = {
         ...settings,
         folders: uniq(settings.folders.concat(filePaths))
       })
+      broadcast('tracking', { inProgress: true, op: 'addFolders' })
+      this.watch(filePaths)
+      return walk(filePaths)
+        .pipe(
+          ...makeEnrichAndSavePipeline(),
+          tap(() =>
+            broadcast('tracking', { inProgress: false, op: 'addFolders' })
+          )
+        )
+        .toPromise()
     }
-    return filePaths
-  },
-
-  async crawl(folders) {
-    return walk(folders)
-      .pipe(...makeEnrichAndSavePipeline())
-      .toPromise()
+    return []
   },
 
   async compare(folders) {
     const existingIds = await tracksModel.listWithTime()
+    broadcast('tracking', { inProgress: true, op: 'compare' })
     return walk(folders)
       .pipe(
         filter(({ path, stats: { mtimeMs } }) => {
@@ -112,7 +118,8 @@ module.exports = {
           return from(
             removedIds.length ? lists.remove(removedIds) : EMPTY
           ).pipe(endWith({ saved, removedIds }))
-        })
+        }),
+        tap(() => broadcast('tracking', { inProgress: false, op: 'compare' }))
       )
       .toPromise()
   },

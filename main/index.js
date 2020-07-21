@@ -2,7 +2,6 @@
 
 const { join } = require('path')
 const electron = require('electron')
-const tagReader = require('./services/tag-reader')
 const fileLoader = require('./services/file-loader')
 const listEngine = require('./services/list-engine')
 const { getStoragePath, subscribeRemote, registerRenderer } = require('./utils')
@@ -30,16 +29,15 @@ async function createWindow() {
     height: 600,
     webPreferences: {
       nodeIntegration: true
-    }
+    },
+    icon: `${join(publicFolder, 'favicon.png')}`
   })
 
   registerRenderer(win)
   await listEngine.init(getStoragePath('db.sqlite3'))
 
   unsubscribe = subscribeRemote({
-    tagReader,
     fileLoader,
-    // searchEngine,
     listEngine,
     ...electron
   })

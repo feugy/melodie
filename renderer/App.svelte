@@ -5,19 +5,19 @@
   import { Button, ProgressLinear } from 'smelte'
   import trackList from './stores/track-list'
   import { list as listAlbums } from './stores/albums'
-  import { invoke } from './utils'
+  import { channelListener, invoke } from './utils'
   import Layout from './components/Layout.svelte'
 
   let isLoading = false
-  async function handleLoad() {
-    const folders = await invoke('fileLoader.chooseFolders')
-    isLoading = true
-    await invoke('fileLoader.crawl', folders)
-    isLoading = false
-    invoke('fileLoader.watch', folders)
-  }
 
-  onMount(listAlbums)
+  onMount(() => {
+    listAlbums()
+    channelListener('tracking', ({ inProgress, op }) => {
+      if (op === 'addFolders') {
+        isLoading = inProgress
+      }
+    }).subscribe()
+  })
 </script>
 
 <style>
@@ -37,7 +37,9 @@
     <ProgressLinear />
   {:else}
     <p>
-      <Button on:click={handleLoad}>{$_('load')}</Button>
+      <Button on:click={() => invoke('fileLoader.addFolders')}>
+        {$_('load')}
+      </Button>
     </p>
   {/if}
   <Layout on:select={({ detail }) => trackList.add([detail])} />
