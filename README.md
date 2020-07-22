@@ -55,7 +55,7 @@ npm run build
 - [ ] block power save
 - [ ] system tray integration
 - [ ] animated transitions
-- [-] loading indicators
+- [ ] loading indicators
 - [ ] feedback when adding to play list
 
 ### bugs
