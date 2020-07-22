@@ -1,5 +1,7 @@
 # Mélodie
 
+![CI](https://github.com/feugy/melodie/workflows/CI/badge.svg)
+
 **_...work in progress..._**
 
 Melodie is a portable, simple-as-pie music player.
