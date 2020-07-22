@@ -29,7 +29,7 @@ describe('logger', () => {
     })
     process.env = {}
     Object.assign(process.env, envSave)
-    process.env.LOG_LEVEL_FILE = '.levels'
+    process.env.LOG_LEVEL_FILE = '.levels-test'
     await fs.writeFile(process.env.LOG_LEVEL_FILE, '')
     loggers = {}
     setters = {}

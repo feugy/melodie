@@ -19,6 +19,13 @@ async function connect(filename) {
 }
 
 module.exports = class AbstractModel {
+  static async release() {
+    if (db) {
+      await db.context.destroy()
+      db = null
+    }
+  }
+
   constructor(name, definition) {
     if (!name) {
       throw new Error(`every model needs a name`)

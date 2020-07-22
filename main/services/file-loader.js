@@ -75,6 +75,8 @@ function makeEnrichAndSavePipeline(bufferSize = saveThreshold) {
   ]
 }
 
+const subscriptions = []
+
 module.exports = {
   async addFolders() {
     logger.debug('picking new folders')
@@ -183,18 +185,27 @@ module.exports = {
       partition(({ isSave }) => isSave)
     )
 
-    return merge(
-      additions.pipe(
-        mergeMap(({ path }) =>
-          from(fs.stat(path)).pipe(map(stats => ({ path, stats })))
+    subscriptions.push(
+      merge(
+        additions.pipe(
+          mergeMap(({ path }) =>
+            from(fs.stat(path)).pipe(map(stats => ({ path, stats })))
+          ),
+          filter(onlySupported),
+          ...makeEnrichAndSavePipeline(1)
         ),
-        filter(onlySupported),
-        ...makeEnrichAndSavePipeline(1)
-      ),
-      removals.pipe(
-        filter(onlySupported),
-        mergeMap(({ path }) => from(lists.remove([hash(path)])))
-      )
-    ).subscribe()
+        removals.pipe(
+          filter(onlySupported),
+          mergeMap(({ path }) => from(lists.remove([hash(path)])))
+        )
+      ).subscribe()
+    )
+  },
+
+  releaseSubscriptions() {
+    for (const sub of subscriptions) {
+      sub.unsubscribe()
+    }
+    subscriptions.splice(0, subscriptions.length)
   }
 }

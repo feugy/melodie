@@ -37,6 +37,11 @@ describe('Abstract model', () => {
     if (await db.schema.hasTable(modelName)) {
       await db.schema.dropTable(modelName)
     }
+    await Model.release()
+  })
+
+  afterAll(async () => {
+    await db.context.destroy()
   })
 
   describe('constructor', () => {

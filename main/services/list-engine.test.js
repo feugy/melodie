@@ -31,9 +31,9 @@ describe('Lists Engine', () => {
   beforeEach(() => {
     jest.clearAllMocks()
     albumsModel.list.mockResolvedValue([])
-    albumsModel.save.mockResolvedValue()
+    albumsModel.save.mockResolvedValue({ saved: [], removedIds: [] })
     artistsModel.list.mockResolvedValue([])
-    artistsModel.save.mockResolvedValue()
+    artistsModel.save.mockResolvedValue({ saved: [], removedIds: [] })
     tracksModel.list.mockResolvedValue([])
     tracksModel.save.mockResolvedValue([])
   })

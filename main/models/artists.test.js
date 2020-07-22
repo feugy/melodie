@@ -16,6 +16,10 @@ describe('Tracks model', () => {
     await artistsModel.init(dbFile)
   })
 
+  afterAll(async () => {
+    await artistsModel.constructor.release()
+  })
+
   it('adds new artist', async () => {
     const name = faker.commerce.productName()
     const artist = {

@@ -16,6 +16,10 @@ describe('Albums model', () => {
     await albumsModel.init(dbFile)
   })
 
+  afterAll(async () => {
+    await albumsModel.constructor.release()
+  })
+
   it('adds new album', async () => {
     const name = faker.commerce.productName()
     const album = {

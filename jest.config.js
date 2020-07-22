@@ -17,6 +17,7 @@ module.exports = {
     {
       displayName: 'main',
       rootDir: 'main/',
+      testEnvironment: 'node',
       setupFiles: ['./tests/jest-setup']
     },
     {

@@ -62,6 +62,11 @@ describe('Tracks model', () => {
     if (await db.schema.hasTable(tracksModel.name)) {
       await db.schema.dropTable(tracksModel.name)
     }
+    await tracksModel.constructor.release()
+  })
+
+  afterAll(async () => {
+    await db.context.destroy()
   })
 
   describe('save', () => {

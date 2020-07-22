@@ -72,6 +72,8 @@ describe('File loader', () => {
     settingsModel.get.mockResolvedValue({ folders: [] })
   })
 
+  afterEach(() => engine.releaseSubscriptions())
+
   describe('addFolders', () => {
     it('saves selected folders to settings', async () => {
       const tree1 = await makeFolder({ depth: 1, fileNb: 0 })
@@ -352,21 +354,13 @@ describe('File loader', () => {
 
   describe('watch', () => {
     let tree
-    let subscription
 
     beforeEach(async () => {
       tree = await makeFolder({ depth: 3, fileNb: 15 })
     })
 
-    afterEach(() => {
-      if (subscription) {
-        subscription.unsubscribe()
-        subscription = null
-      }
-    })
-
     it('finds new files and save them', async () => {
-      subscription = engine.watch([tree.folder])
+      engine.watch([tree.folder])
 
       await wait(200)
 
@@ -402,7 +396,7 @@ describe('File loader', () => {
     })
 
     it('finds modified files and save them', async () => {
-      subscription = engine.watch([tree.folder])
+      engine.watch([tree.folder])
 
       await wait(200)
 
@@ -438,7 +432,7 @@ describe('File loader', () => {
       const unsupported = join(tree.folder, 'unsupported.png')
       fs.writeFile(unsupported, faker.lorem.word())
 
-      subscription = engine.watch([tree.folder])
+      engine.watch([tree.folder])
 
       await wait(200)
 

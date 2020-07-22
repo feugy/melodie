@@ -24,6 +24,11 @@ describe('Settings model', () => {
     if (await db.schema.hasTable(settingsModel.name)) {
       await db.schema.dropTable(settingsModel.name)
     }
+    await settingsModel.constructor.release()
+  })
+
+  afterAll(async () => {
+    await db.context.destroy()
   })
 
   describe('init', () => {

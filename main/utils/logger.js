@@ -7,6 +7,7 @@ let root
 let levelSpecs
 const loggers = new Map()
 const supportedLevels = Object.keys(pino.levels.values)
+supportedLevels.push('silent')
 
 function readLevels() {
   const { LOG_LEVEL_FILE = '.levels' } = process.env

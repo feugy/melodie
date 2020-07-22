@@ -70,6 +70,11 @@ describe('Abstract track list', () => {
     if (await db.schema.hasTable(modelName)) {
       await db.schema.dropTable(modelName)
     }
+    await Test.release()
+  })
+
+  afterAll(async () => {
+    await db.context.destroy()
   })
 
   describe('save', () => {
