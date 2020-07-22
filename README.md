@@ -1,6 +1,19 @@
-# Melodie
+# Mélodie
 
-...work in progress...
+**_...work in progress..._**
+
+Melodie is a portable, simple-as-pie music player.
+
+There are thunsands of them in the wild. This mine is an excuse for learning [Electron](https://www.electronjs.org), [Svelte](https://svelte.dev) and [reactive programming](https://www.learnrxjs.io).
+
+## Run
+
+```shell
+git clone git@github.com:feugy/melodie.git
+cd melodie
+npm i
+npm run build
+```
 
 ## TODO
 
