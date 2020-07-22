@@ -8,8 +8,6 @@ const { join } = require('path')
 const { tracksModel } = require('./tracks')
 const { hash } = require('../utils')
 
-jest.mock('electron', () => ({ app: { getAppPath: jest.fn() } }))
-
 let dbFile
 let db
 

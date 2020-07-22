@@ -9,13 +9,15 @@ const {
   expand,
   filter
 } = require('rxjs/operators')
-const { hash, broadcast } = require('../utils')
+const { hash, broadcast, getLogger } = require('../utils')
 const {
   albumsModel,
   tracksModel,
   artistsModel,
   settingsModel
 } = require('../models')
+
+const logger = getLogger('services/list')
 
 const sorters = {
   trackNo: (list, results) =>
@@ -90,6 +92,7 @@ function difference(original, compared) {
 
 module.exports = {
   async init(dbFile) {
+    logger.info(`initialize list service`)
     await settingsModel.init(dbFile)
     await albumsModel.init(dbFile)
     await artistsModel.init(dbFile)
@@ -97,6 +100,7 @@ module.exports = {
   },
 
   async reset() {
+    logger.info(`reset list service`)
     await tracksModel.reset()
     await artistsModel.reset()
     await albumsModel.reset()

@@ -16,7 +16,8 @@ module.exports = {
     },
     {
       displayName: 'main',
-      rootDir: 'main/'
+      rootDir: 'main/',
+      setupFiles: ['./tests/jest-setup']
     },
     {
       displayName: 'e2e',

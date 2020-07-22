@@ -7,8 +7,6 @@ const { join } = require('path')
 const { artistsModel } = require('./artists')
 const { hash } = require('../utils')
 
-jest.mock('electron', () => ({ app: { getAppPath: jest.fn() } }))
-
 describe('Tracks model', () => {
   beforeAll(async () => {
     const dbFile = join(

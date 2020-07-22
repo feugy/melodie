@@ -7,8 +7,6 @@ const os = require('os')
 const { join } = require('path')
 const { settingsModel } = require('./settings')
 
-jest.mock('electron', () => ({ app: { getAppPath: jest.fn() } }))
-
 let dbFile
 let db
 

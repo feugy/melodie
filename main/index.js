@@ -4,14 +4,27 @@ const { join } = require('path')
 const electron = require('electron')
 const fileLoader = require('./services/file-loader')
 const listEngine = require('./services/list-engine')
-const { getStoragePath, subscribeRemote, registerRenderer } = require('./utils')
+const {
+  getStoragePath,
+  subscribeRemote,
+  registerRenderer,
+  getLogger
+} = require('./utils')
 const { settingsModel } = require('./models/settings')
 
 const { app, BrowserWindow } = electron
 const publicFolder = join(__dirname, '..', 'public')
 let unsubscribe
 
+const logger = getLogger()
+
+logger.info(
+  { levelFile: process.env.LOG_LEVEL_FILE || '.levels', pid: process.pid },
+  `starting... To change log levels, edit the level file and run \`kill -USR2 ${process.pid}\``
+)
+
 if (process.env.ROLLUP_WATCH) {
+  logger.info('enabling reloading')
   // soft reset for renderer process changes
   require('electron-reload')(publicFolder)
   // hard reset for main process changes
@@ -45,6 +58,10 @@ async function createWindow() {
 
   win.webContents.once('did-finish-load', async () => {
     const { folders } = await settingsModel.get()
+    logger.debug(
+      { folders },
+      'browser window ready, comparing and watching folders'
+    )
     await fileLoader.compare(folders)
     fileLoader.watch(folders)
   })

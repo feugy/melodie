@@ -67,7 +67,7 @@ describe('File loader', () => {
     electron.app.getAppPath.mockReturnValue(mockOs.tmpdir())
     covers.findFor.mockResolvedValue(null)
     tag.read.mockResolvedValue({})
-    lists.add.mockImplementation(async n => n)
+    lists.add.mockResolvedValue()
     lists.remove.mockImplementation(async n => n)
     settingsModel.get.mockResolvedValue({ folders: [] })
   })
@@ -146,9 +146,9 @@ describe('File loader', () => {
     it('process tracks in batches', async () => {
       const { folder, files } = await makeFolder({ depth: 3, fileNb: 270 })
       lists.add.mockImplementation(
-        saved =>
+        () =>
           new Promise(r =>
-            setTimeout(r, faker.random.number({ min: 100, max: 200 }), saved)
+            setTimeout(r, faker.random.number({ min: 100, max: 200 }))
           )
       )
       electron.dialog.showOpenDialog.mockResolvedValueOnce({

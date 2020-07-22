@@ -22,6 +22,7 @@ class TracksModel extends Model {
     )) {
       result.set(id, mtimeMs)
     }
+    this.logger.debug({ hitCount: result.size }, 'list with time')
     return result
   }
 
@@ -29,6 +30,7 @@ class TracksModel extends Model {
     if (!Array.isArray(data)) {
       data = [data]
     }
+    this.logger.debug({ data }, `saving`)
     const saved = data.map(this.makeSerializer())
     const cols = Object.keys(saved[0])
     return this.db.transaction(async trx => {

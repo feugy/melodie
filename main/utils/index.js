@@ -1,7 +1,8 @@
 'use strict'
 
 module.exports = {
-  ...require('./hash'),
+  ...require('./electron-remote'),
   ...require('./files'),
-  ...require('./electron-remote')
+  ...require('./hash'),
+  ...require('./logger')
 }

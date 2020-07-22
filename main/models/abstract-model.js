@@ -2,6 +2,7 @@
 
 const knex = require('knex')
 const fs = require('fs-extra')
+const { getLogger } = require('../utils')
 
 let db
 
@@ -30,6 +31,7 @@ module.exports = class AbstractModel {
     this.name = name
     this.definition = definition
     this.jsonColumns = []
+    this.logger = getLogger(`models/${this.name}`)
   }
 
   async init(filename) {
@@ -40,8 +42,10 @@ module.exports = class AbstractModel {
     }
     this.db = await connect(filename)
     if (!(await this.db.schema.hasTable(this.name))) {
+      this.logger.info('table created')
       await this.db.schema.createTable(this.name, this.definition)
     }
+    this.logger.debug('initialized')
   }
 
   async list({ from = 0, size = 10, sort = 'id' } = {}) {
@@ -56,11 +60,16 @@ module.exports = class AbstractModel {
         .orderBy(rawSort, direction === '+' ? 'asc' : 'desc')
     ).map(this.makeDeserializer())
     const total = (await this.db(this.name).count({ count: 'id' }))[0].count
+    this.logger.debug(
+      { total, from, size, rawSort, direction, hitCount: results.length },
+      'returned list page'
+    )
     return { total, from, size, sort: `${direction}${rawSort}`, results }
   }
 
   async getById(id) {
     const result = await this.db.where('id', id).select().from(this.name)
+    this.logger.debug({ id, found: result.length > 0 }, 'fetch by id')
     if (result.length === 0) {
       return null
     }
@@ -68,15 +77,18 @@ module.exports = class AbstractModel {
   }
 
   async getByIds(ids) {
-    return (await this.db.whereIn('id', ids).select().from(this.name)).map(
-      this.makeDeserializer()
-    )
+    const results = (
+      await this.db.whereIn('id', ids).select().from(this.name)
+    ).map(this.makeDeserializer())
+    this.logger.debug({ ids, hitCount: results.length }, `fetch by ids`)
+    return results
   }
 
   async save(data) {
     if (!Array.isArray(data)) {
       data = [data]
     }
+    this.logger.debug({ data }, `saving`)
     const saved = data.map(this.makeSerializer())
     const cols = Object.keys(saved[0])
     return this.db.raw(
@@ -89,6 +101,7 @@ module.exports = class AbstractModel {
 
   async removeByIds(ids) {
     return this.db.transaction(async trx => {
+      this.logger.debug({ ids }, `removing`)
       const previous = await trx(this.name).select().whereIn('id', ids)
       await trx(this.name).whereIn('id', ids).delete()
       return previous.map(this.makeDeserializer())
@@ -98,6 +111,7 @@ module.exports = class AbstractModel {
   async reset() {
     if (await this.db.schema.hasTable(this.name)) {
       await this.db.schema.dropTable(this.name)
+      this.logger.info('table dropped')
     }
     await this.init(this.db)
   }

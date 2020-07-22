@@ -20,7 +20,8 @@
 ### tools
 
 - [x] reload on changes occuring in `main/` folder (rollup can only watch changes to the bundle, that is, in `renderer/`)
-- [ ] logs
+- [x] logs with level hot reloading
+- [ ] logging to file
 
 ### features
 
@@ -98,3 +99,41 @@ musings on watch & diff
   1.  [x] crawl new folder, return array of paths
   1.  [x] compute hash, enrich with tags & media
   1.  [x] save
+
+## Logging
+
+Log level file is `.levels` in execution folder.
+It can be configured wth `LOG_LEVEL_FILE` env variable
+Its syntax is:
+
+```shell
+# this is a comment
+logger-name=level
+wildcard*=level
+```
+
+logger names are:
+
+- core
+- services/list
+- services/file
+- services/tag
+- models/tracks
+- models/albums
+- models/artists
+- models/settings
+
+levels are:
+
+- trace
+- debug
+- info
+- warn
+- error
+- fatal
+- silent
+
+Wildcards can be at the beginning `*tracks` or the end `models*`.
+In case a logger name is matching several directives, the first always wins.
+
+You can edit the file, and trigger logger level refresh by sending SIGUSR2 to the application: `kill -USR2 {pid}` (first log issued contains pid)

@@ -66,6 +66,7 @@ module.exports = class AbstractTrackList extends Model {
       )
 
       if (saved.length) {
+        this.logger.debug({ data: saved }, `saving`)
         const cols = Object.keys(saved[0])
         await trx.raw(
           `? on conflict (\`id\`) do update set ${cols
@@ -75,6 +76,7 @@ module.exports = class AbstractTrackList extends Model {
         )
       }
       if (removedIds.length) {
+        this.logger.debug({ ids: removedIds }, `removing`)
         await trx(this.name).whereIn('id', removedIds).delete()
       }
       return { saved, removedIds }

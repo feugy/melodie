@@ -9,15 +9,15 @@ const {
   filter,
   reduce,
   bufferCount,
-  endWith,
   map,
   partition,
-  tap
+  tap,
+  share
 } = require('rxjs/operators')
 const { uniq } = require('lodash')
 const chokidar = require('chokidar')
 const klaw = require('klaw')
-const { hash, broadcast } = require('../utils')
+const { hash, broadcast, getLogger } = require('../utils')
 const tag = require('./tag-reader')
 const covers = require('./cover-finder')
 const lists = require('./list-engine')
@@ -28,6 +28,8 @@ const readConcurrency = 10
 const walkConcurrency = 2
 const saveThreshold = 50
 const supported = ['.mp3', '.ogg', '.flac']
+
+const logger = getLogger('services/file')
 
 function walk(folders) {
   return of(...(folders || [])).pipe(
@@ -68,30 +70,37 @@ function makeEnrichAndSavePipeline(bufferSize = saveThreshold) {
       readConcurrency
     ),
     bufferCount(bufferSize),
-    mergeMap(saved => from(lists.add(saved))),
+    mergeMap(saved => from(lists.add(saved)).pipe(reduce(acc => acc, saved))),
     reduce((tracks, saved) => tracks.concat(saved), [])
   ]
 }
 
 module.exports = {
   async addFolders() {
-    const { filePaths } = await dialog.showOpenDialog({
+    logger.debug('picking new folders')
+    const { filePaths: folders } = await dialog.showOpenDialog({
       properties: ['openDirectory', 'multiSelections']
     })
-    if (filePaths.length) {
+    if (folders.length) {
+      const startMs = Date.now()
+      logger.info({ folders }, `adding new folders...`)
       const settings = await settingsModel.get()
       await settingsModel.save({
         ...settings,
-        folders: uniq(settings.folders.concat(filePaths))
+        folders: uniq(settings.folders.concat(folders))
       })
       broadcast('tracking', { inProgress: true, op: 'addFolders' })
-      this.watch(filePaths)
-      return walk(filePaths)
+      this.watch(folders)
+      return walk(folders)
         .pipe(
           ...makeEnrichAndSavePipeline(),
-          tap(() =>
+          tap(tracks => {
             broadcast('tracking', { inProgress: false, op: 'addFolders' })
-          )
+            logger.info(
+              { folders, hitCount: tracks.length },
+              `folder succesfully added in ${Date.now() - startMs}ms`
+            )
+          })
         )
         .toPromise()
     }
@@ -99,6 +108,8 @@ module.exports = {
   },
 
   async compare(folders) {
+    const startMs = Date.now()
+    logger.info({ folders }, `comparing folders...`)
     const existingIds = await tracksModel.listWithTime()
     broadcast('tracking', { inProgress: true, op: 'compare' })
     return walk(folders)
@@ -115,11 +126,24 @@ module.exports = {
         ...makeEnrichAndSavePipeline(),
         mergeMap(saved => {
           const removedIds = Array.from(existingIds.keys())
-          return from(
-            removedIds.length ? lists.remove(removedIds) : EMPTY
-          ).pipe(endWith({ saved, removedIds }))
+          return (removedIds.length
+            ? from(lists.remove(removedIds))
+            : EMPTY
+          ).pipe(reduce(r => r, { saved, removedIds }))
         }),
-        tap(() => broadcast('tracking', { inProgress: false, op: 'compare' }))
+        tap(({ saved, removedIds }) => {
+          broadcast('tracking', { inProgress: false, op: 'compare' })
+          logger.info(
+            {
+              folders,
+              hits: {
+                savedCount: saved.length,
+                removedCount: removedIds.length
+              }
+            },
+            `folder succesfully compared in ${Date.now() - startMs}ms`
+          )
+        })
       )
       .toPromise()
   },
@@ -127,11 +151,14 @@ module.exports = {
   watch(folders) {
     const [additions, removals] = Observable.create(function (observer) {
       function onSave(path) {
+        logger.debug({ path }, 'file change watched')
         observer.next({ isSave: true, path })
       }
       function onRemove(path) {
+        logger.debug({ path }, 'file deletion watched')
         observer.next({ isSave: false, path })
       }
+      logger.info({ folders }, `starting watch`)
       const watcher = chokidar
         .watch(folders, {
           ignoreInitial: true,
@@ -148,9 +175,13 @@ module.exports = {
       return {
         unsubscribe() {
           watcher.close()
+          logger.info({ folders }, `watcher stopped`)
         }
       }
-    }).pipe(partition(({ isSave }) => isSave))
+    }).pipe(
+      share(),
+      partition(({ isSave }) => isSave)
+    )
 
     return merge(
       additions.pipe(

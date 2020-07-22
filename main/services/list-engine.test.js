@@ -16,7 +16,6 @@ jest.mock('../models/albums')
 jest.mock('../models/tracks')
 jest.mock('../models/settings')
 jest.mock('../utils/electron-remote')
-jest.mock('electron', () => ({ app: { getAppPath: jest.fn() } }))
 
 function addId(obj) {
   return { ...obj, id: hash(obj.name) }

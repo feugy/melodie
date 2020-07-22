@@ -19,6 +19,7 @@ class SettingsModel extends Model {
     await super.init(...args)
     const existing = await this.getById(this.ID)
     if (!existing) {
+      this.logger.debug('creating settings singleton')
       await this.save({ id: this.ID, folders: [] })
     }
   }
