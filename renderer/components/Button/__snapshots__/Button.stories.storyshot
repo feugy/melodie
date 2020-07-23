@@ -1,0 +1,105 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Components/Button Default 1`] = `
+<section
+  class="storybook-snapshot-container"
+>
+  <button
+    class="svelte-rpyo9r"
+  >
+     
+    <span>
+      Default
+    </span>
+  </button>
+</section>
+`;
+
+exports[`Storyshots Components/Button Large Icon 1`] = `
+<section
+  class="storybook-snapshot-container"
+>
+  <button
+    class="svelte-rpyo9r iconOnly large"
+  >
+    <i
+      class="material-icons svelte-rpyo9r"
+    >
+      play_arrow
+    </i>
+     
+  </button>
+</section>
+`;
+
+exports[`Storyshots Components/Button Large Text And Icon 1`] = `
+<section
+  class="storybook-snapshot-container"
+>
+  <button
+    class="svelte-rpyo9r large"
+  >
+    <i
+      class="material-icons svelte-rpyo9r"
+    >
+      person
+    </i>
+     
+    <span>
+      Hey!
+    </span>
+  </button>
+</section>
+`;
+
+exports[`Storyshots Components/Button Primary 1`] = `
+<section
+  class="storybook-snapshot-container"
+>
+  <button
+    class="svelte-rpyo9r primary"
+  >
+     
+    <span>
+      Primary
+    </span>
+  </button>
+</section>
+`;
+
+exports[`Storyshots Components/Button Primary Icon 1`] = `
+<section
+  class="storybook-snapshot-container"
+>
+  <button
+    class="svelte-rpyo9r primary iconOnly"
+  >
+    <i
+      class="material-icons svelte-rpyo9r"
+    >
+      volume_up
+    </i>
+     
+  </button>
+</section>
+`;
+
+exports[`Storyshots Components/Button Text And Icon 1`] = `
+<section
+  class="storybook-snapshot-container"
+>
+  <button
+    class="svelte-rpyo9r"
+  >
+    <i
+      class="material-icons svelte-rpyo9r"
+    >
+      face
+    </i>
+     
+    <span>
+      Hello
+    </span>
+  </button>
+</section>
+`;

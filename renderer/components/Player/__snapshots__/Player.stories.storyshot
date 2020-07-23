@@ -1,0 +1,229 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Components/Player Empty 1`] = `
+<section
+  class="storybook-snapshot-container"
+>
+  <audio
+    autoplay=""
+    class="svelte-b2zjfb"
+  />
+   
+  <div
+    class="flex items-center svelte-b2zjfb"
+  >
+    <span
+      class="w-1/4"
+    />
+     
+    <div
+      class="flex-grow flex-column"
+    >
+      <span
+        class="controls svelte-b2zjfb"
+      >
+        <button
+          class="mx-1 svelte-rpyo9r iconOnly noBorder"
+        >
+          <i
+            class="material-icons svelte-rpyo9r"
+          >
+            skip_previous
+          </i>
+           
+        </button>
+         
+        <button
+          class="mx-1 svelte-rpyo9r iconOnly large"
+        >
+          <i
+            class="material-icons svelte-rpyo9r"
+          >
+            play_arrow
+          </i>
+           
+        </button>
+         
+        <button
+          class="mx-1 svelte-rpyo9r iconOnly noBorder"
+        >
+          <i
+            class="material-icons svelte-rpyo9r"
+          >
+            skip_next
+          </i>
+           
+        </button>
+      </span>
+       
+      <span
+        class="controls time svelte-b2zjfb"
+      >
+        <span
+          class="svelte-b2zjfb"
+        >
+          0:00
+        </span>
+         
+        <div
+          class="wrapper w-full svelte-x0qrp"
+        >
+          <input
+            class="w-full svelte-x0qrp"
+            max="0"
+            min="0"
+            type="range"
+          />
+           
+          <div
+            class="sliderTrack svelte-x0qrp"
+          >
+            <span
+              class="progress svelte-x0qrp"
+              style="right:100%"
+            />
+          </div>
+        </div>
+         
+        <span
+          class="svelte-b2zjfb"
+        >
+          0:00
+        </span>
+      </span>
+    </div>
+     
+    <span
+      class="w-1/4"
+    />
+  </div>
+</section>
+`;
+
+exports[`Storyshots Components/Player With Track List 1`] = `
+<section
+  class="storybook-snapshot-container"
+>
+  <audio
+    autoplay=""
+    class="svelte-b2zjfb"
+    src="./file.flac"
+  />
+   
+  <div
+    class="flex items-center svelte-b2zjfb"
+  >
+    <span
+      class="w-1/4"
+    >
+      <div
+        class="container svelte-136dr2t"
+      >
+        <img
+          alt="./# Films/cover.jpg"
+          class="h-16 w-16 flex-none svelte-1k7rixd"
+          loading="lazy"
+          src="./%23 Films/cover.jpg"
+        />
+         
+        <div
+          class="flex flex-col"
+        >
+          <span
+            class="px-2 text-lg"
+          >
+            file 1
+          </span>
+           
+          <span
+            class="px-2 text-sm"
+          >
+            Someone
+          </span>
+        </div>
+      </div>
+    </span>
+     
+    <div
+      class="flex-grow flex-column"
+    >
+      <span
+        class="controls svelte-b2zjfb"
+      >
+        <button
+          class="mx-1 svelte-rpyo9r iconOnly noBorder"
+        >
+          <i
+            class="material-icons svelte-rpyo9r"
+          >
+            skip_previous
+          </i>
+           
+        </button>
+         
+        <button
+          class="mx-1 svelte-rpyo9r iconOnly large"
+        >
+          <i
+            class="material-icons svelte-rpyo9r"
+          >
+            play_arrow
+          </i>
+           
+        </button>
+         
+        <button
+          class="mx-1 svelte-rpyo9r iconOnly noBorder"
+        >
+          <i
+            class="material-icons svelte-rpyo9r"
+          >
+            skip_next
+          </i>
+           
+        </button>
+      </span>
+       
+      <span
+        class="controls time svelte-b2zjfb"
+      >
+        <span
+          class="svelte-b2zjfb"
+        >
+          0:00
+        </span>
+         
+        <div
+          class="wrapper w-full svelte-x0qrp"
+        >
+          <input
+            class="w-full svelte-x0qrp"
+            max="0"
+            min="0"
+            type="range"
+          />
+           
+          <div
+            class="sliderTrack svelte-x0qrp"
+          >
+            <span
+              class="progress svelte-x0qrp"
+              style="right:100%"
+            />
+          </div>
+        </div>
+         
+        <span
+          class="svelte-b2zjfb"
+        >
+          0:00
+        </span>
+      </span>
+    </div>
+     
+    <span
+      class="w-1/4"
+    />
+  </div>
+</section>
+`;

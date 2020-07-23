@@ -5,14 +5,23 @@ module.exports = {
     {
       displayName: 'renderer',
       rootDir: 'renderer/',
+      testEnvironment: 'jsdom',
       transform: {
         '^.+\\.js$': [
           'babel-jest',
           {
             presets: [['@babel/preset-env', { targets: { node: 'current' } }]]
           }
-        ]
-      }
+        ],
+        '^.+\\.stories\\.[jt]sx?$': require.resolve(
+          '@storybook/addon-storyshots/injectFileName'
+        ),
+        '^.+\\.svelte$': ['svelte-jester', { preprocess: true }],
+        '^.+\\.ya?ml$': 'jest-yaml-transform',
+        '^.+\\.css$': 'jest-css-modules-transform'
+      },
+      moduleFileExtensions: ['js', 'svelte', 'json', 'yml'],
+      setupFilesAfterEnv: ['@testing-library/jest-dom/extend-expect']
     },
     {
       displayName: 'main',
@@ -31,7 +40,9 @@ module.exports = {
   ],
   collectCoverageFrom: [
     '**/*.js',
-    '!jest.config.js',
+    '**/*.svelte',
+    '!**/*.test.js',
+    '!**/*.stories.*',
     '!**/node_modules/**',
     '!**/public/build/**'
   ]

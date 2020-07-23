@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Components/Progress Default 1`] = `
+<section
+  class="storybook-snapshot-container"
+>
+  <div
+    class="wrapper svelte-1mwvwz7"
+  >
+    <div
+      class="inc svelte-1mwvwz7"
+    />
+     
+    <div
+      class="dec svelte-1mwvwz7"
+    />
+  </div>
+</section>
+`;

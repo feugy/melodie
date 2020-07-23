@@ -1,0 +1,64 @@
+<script>
+  import { createEventDispatcher } from 'svelte'
+  import { _ } from 'svelte-intl'
+  import Image from '../Image/Image.svelte'
+  import Button from '../Button/Button.svelte'
+  import { prevent_default } from 'svelte/internal'
+
+  export let src
+  let artist = Array.isArray(src.artists) && src.artists[0]
+  const dispatch = createEventDispatcher()
+
+  function handlePlay(evt) {
+    dispatch('play', src)
+    evt.stopImmediatePropagation()
+  }
+</script>
+
+<style type="postcss">
+  article {
+    @apply cursor-pointer inline-block w-64;
+  }
+
+  header {
+    @apply text-left;
+  }
+
+  h4 {
+    @apply text-sm;
+  }
+
+  .content {
+    @apply relative;
+  }
+
+  article:hover .controls {
+    @apply opacity-100;
+  }
+
+  .controls {
+    @apply absolute opacity-0 transition-opacity duration-500 ease-in-out;
+    left: 5%;
+    bottom: 5%;
+  }
+</style>
+
+<article on:click>
+  <div class="content">
+    <Image class="w-64 h-64" src={src.media} />
+    <p class="controls">
+      <Button
+        data-testid="play"
+        primary
+        icon="play_arrow"
+        large
+        on:click={handlePlay} />
+    </p>
+  </div>
+  <header>
+    <h3>{src.name}</h3>
+    {#if artist}
+      <h4>{$_('by _', { artist })}</h4>
+    {/if}
+  </header>
+</article>

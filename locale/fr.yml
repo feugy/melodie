@@ -1,6 +1,7 @@
 _ items: '{total} pistes'
 'artist: _': 'Artiste : {value}'
 'title: _': 'Titre : {value}'
+by _: 'par {artist}'
 clear: Vider
 load: Charger...
 open playlist: File d'attente

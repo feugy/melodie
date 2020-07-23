@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Components/Image Default 1`] = `
+<section
+  class="storybook-snapshot-container"
+>
+  <div
+    class="w-64 inline-block"
+  >
+    <img
+      alt="./cover.jpg"
+      class=" svelte-1k7rixd"
+      loading="lazy"
+      src="./cover.jpg"
+    />
+  </div>
+</section>
+`;
+
+exports[`Storyshots Components/Image With Escaped Path 1`] = `
+<section
+  class="storybook-snapshot-container"
+>
+  <div
+    class="w-64 inline-block"
+  >
+    <img
+      alt="./# Films/cover.jpg"
+      class=" svelte-1k7rixd"
+      loading="lazy"
+      src="./%23 Films/cover.jpg"
+    />
+  </div>
+</section>
+`;

@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Components/Slider Default 1`] = `
+<section
+  class="storybook-snapshot-container"
+>
+  <div
+    class="wrapper w-1/2 svelte-x0qrp"
+  >
+    <input
+      class="w-1/2 svelte-x0qrp"
+      max="100"
+      min="0"
+      type="range"
+    />
+     
+    <div
+      class="sliderTrack svelte-x0qrp"
+    >
+      <span
+        class="progress svelte-x0qrp"
+        style="right:90%"
+      />
+    </div>
+  </div>
+</section>
+`;

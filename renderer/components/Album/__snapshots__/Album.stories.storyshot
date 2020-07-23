@@ -1,0 +1,98 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Components/Album Default 1`] = `
+<section
+  class="storybook-snapshot-container"
+>
+  <article
+    class="svelte-1b3b1kn"
+  >
+    <div
+      class="content svelte-1b3b1kn"
+    >
+      <img
+        alt="./cover.jpg"
+        class="w-64 h-64 svelte-1k7rixd"
+        loading="lazy"
+        src="./cover.jpg"
+      />
+       
+      <p
+        class="controls svelte-1b3b1kn"
+      >
+        <button
+          class="svelte-rpyo9r primary iconOnly large"
+          data-testid="play"
+        >
+          <i
+            class="material-icons svelte-rpyo9r"
+          >
+            play_arrow
+          </i>
+           
+        </button>
+      </p>
+    </div>
+     
+    <header
+      class="svelte-1b3b1kn"
+    >
+      <h3>
+        Diamonds on the inside
+      </h3>
+       
+      <h4
+        class="svelte-1b3b1kn"
+      >
+        par Ben Harper
+      </h4>
+    </header>
+  </article>
+</section>
+`;
+
+exports[`Storyshots Components/Album No Artist 1`] = `
+<section
+  class="storybook-snapshot-container"
+>
+  <article
+    class="svelte-1b3b1kn"
+  >
+    <div
+      class="content svelte-1b3b1kn"
+    >
+      <img
+        alt="./cover.jpg"
+        class="w-64 h-64 svelte-1k7rixd"
+        loading="lazy"
+        src="./cover.jpg"
+      />
+       
+      <p
+        class="controls svelte-1b3b1kn"
+      >
+        <button
+          class="svelte-rpyo9r primary iconOnly large"
+          data-testid="play"
+        >
+          <i
+            class="material-icons svelte-rpyo9r"
+          >
+            play_arrow
+          </i>
+           
+        </button>
+      </p>
+    </div>
+     
+    <header
+      class="svelte-1b3b1kn"
+    >
+      <h3>
+        Diamonds on the inside
+      </h3>
+       
+    </header>
+  </article>
+</section>
+`;
