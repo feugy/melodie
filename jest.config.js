@@ -18,9 +18,11 @@ module.exports = {
         ),
         '^.+\\.svelte$': ['svelte-jester', { preprocess: true }],
         '^.+\\.ya?ml$': 'jest-yaml-transform',
-        '^.+\\.css$': 'jest-css-modules-transform'
+        '^.+\\.p?css$': 'jest-css-modules-transform'
       },
+      transformIgnorePatterns: ['node_modules/(?!(svelte-spa-router))/'],
       moduleFileExtensions: ['js', 'svelte', 'json', 'yml'],
+      setupFiles: ['./tests/jest-setup'],
       setupFilesAfterEnv: ['@testing-library/jest-dom/extend-expect']
     },
     {

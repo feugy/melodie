@@ -5,20 +5,20 @@ exports[`Storyshots Components/Slider Default 1`] = `
   class="storybook-snapshot-container"
 >
   <div
-    class="wrapper w-1/2 svelte-x0qrp"
+    class="wrapper w-1/2 svelte-1cq2dg8"
   >
     <input
-      class="w-1/2 svelte-x0qrp"
+      class="w-1/2 svelte-1cq2dg8"
       max="100"
       min="0"
       type="range"
     />
      
     <div
-      class="sliderTrack svelte-x0qrp"
+      class="sliderTrack svelte-1cq2dg8"
     >
       <span
-        class="progress svelte-x0qrp"
+        class="progress svelte-1cq2dg8"
         style="right:90%"
       />
     </div>

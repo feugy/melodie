@@ -5,7 +5,7 @@ exports[`Storyshots Components/Album Default 1`] = `
   class="storybook-snapshot-container"
 >
   <article
-    class="svelte-1b3b1kn"
+    class=" svelte-1b3b1kn"
   >
     <div
       class="content svelte-1b3b1kn"
@@ -21,11 +21,11 @@ exports[`Storyshots Components/Album Default 1`] = `
         class="controls svelte-1b3b1kn"
       >
         <button
-          class="svelte-rpyo9r primary iconOnly large"
+          class="svelte-u16ygp primary iconOnly large"
           data-testid="play"
         >
           <i
-            class="material-icons svelte-rpyo9r"
+            class="material-icons svelte-u16ygp"
           >
             play_arrow
           </i>
@@ -56,7 +56,7 @@ exports[`Storyshots Components/Album No Artist 1`] = `
   class="storybook-snapshot-container"
 >
   <article
-    class="svelte-1b3b1kn"
+    class=" svelte-1b3b1kn"
   >
     <div
       class="content svelte-1b3b1kn"
@@ -72,11 +72,11 @@ exports[`Storyshots Components/Album No Artist 1`] = `
         class="controls svelte-1b3b1kn"
       >
         <button
-          class="svelte-rpyo9r primary iconOnly large"
+          class="svelte-u16ygp primary iconOnly large"
           data-testid="play"
         >
           <i
-            class="material-icons svelte-rpyo9r"
+            class="material-icons svelte-u16ygp"
           >
             play_arrow
           </i>

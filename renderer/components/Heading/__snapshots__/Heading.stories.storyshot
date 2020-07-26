@@ -1,0 +1,159 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Components/Heading Default 1`] = `
+<section
+  class="storybook-snapshot-container"
+>
+  <section>
+    <header
+      class=" svelte-1bgcyxs"
+      style="--image: url(./valentino-funghi-MEcxLZ8ENV8-unsplash.jpg); --shade-color: rgba(0, 0, 0, 0.5);"
+    >
+      <h1
+        class="svelte-1bgcyxs"
+      >
+        70 albums
+      </h1>
+    </header>
+     
+    <div
+      class="flex flex-wrap justify-around"
+    >
+      <article
+        class="p-4 svelte-1b3b1kn"
+      >
+        <div
+          class="content svelte-1b3b1kn"
+        >
+          <img
+            alt="./cover.jpg"
+            class="w-64 h-64 svelte-1k7rixd"
+            loading="lazy"
+            src="./cover.jpg"
+          />
+           
+          <p
+            class="controls svelte-1b3b1kn"
+          >
+            <button
+              class="svelte-u16ygp primary iconOnly large"
+              data-testid="play"
+            >
+              <i
+                class="material-icons svelte-u16ygp"
+              >
+                play_arrow
+              </i>
+               
+            </button>
+          </p>
+        </div>
+         
+        <header
+          class="svelte-1b3b1kn"
+        >
+          <h3>
+            Diamonds on the inside
+          </h3>
+           
+          <h4
+            class="svelte-1b3b1kn"
+          >
+            par Ben Harper
+          </h4>
+        </header>
+      </article>
+       
+      <article
+        class="p-4 svelte-1b3b1kn"
+      >
+        <div
+          class="content svelte-1b3b1kn"
+        >
+          <img
+            alt="./cover.jpg"
+            class="w-64 h-64 svelte-1k7rixd"
+            loading="lazy"
+            src="./cover.jpg"
+          />
+           
+          <p
+            class="controls svelte-1b3b1kn"
+          >
+            <button
+              class="svelte-u16ygp primary iconOnly large"
+              data-testid="play"
+            >
+              <i
+                class="material-icons svelte-u16ygp"
+              >
+                play_arrow
+              </i>
+               
+            </button>
+          </p>
+        </div>
+         
+        <header
+          class="svelte-1b3b1kn"
+        >
+          <h3>
+            Diamonds on the inside
+          </h3>
+           
+          <h4
+            class="svelte-1b3b1kn"
+          >
+            par Ben Harper
+          </h4>
+        </header>
+      </article>
+       
+      <article
+        class="p-4 svelte-1b3b1kn"
+      >
+        <div
+          class="content svelte-1b3b1kn"
+        >
+          <img
+            alt="./cover.jpg"
+            class="w-64 h-64 svelte-1k7rixd"
+            loading="lazy"
+            src="./cover.jpg"
+          />
+           
+          <p
+            class="controls svelte-1b3b1kn"
+          >
+            <button
+              class="svelte-u16ygp primary iconOnly large"
+              data-testid="play"
+            >
+              <i
+                class="material-icons svelte-u16ygp"
+              >
+                play_arrow
+              </i>
+               
+            </button>
+          </p>
+        </div>
+         
+        <header
+          class="svelte-1b3b1kn"
+        >
+          <h3>
+            Diamonds on the inside
+          </h3>
+           
+          <h4
+            class="svelte-1b3b1kn"
+          >
+            par Ben Harper
+          </h4>
+        </header>
+      </article>
+    </div>
+  </section>
+</section>
+`;

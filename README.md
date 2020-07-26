@@ -28,7 +28,9 @@ npm run build
 - [x] send start/stop events when updating
 - [x] embed file-loader's crawl() into chooseFolders()
 - [x] reactive stores: send update on new albums/artists/tracks
+- [ ] albums' artists
 - [ ] artists pictures
+- [ ] artists' albums
 - [ ] consider knex-migrate
 - [ ] images from tags
 
@@ -46,7 +48,7 @@ npm run build
 ### features
 
 - [ ] navigation bar: play list, albums, artists, search, settings
-- [ ] routing
+- [x] routing
 - [x] list all albums
 - [ ] current play list
 - [ ] list all artists
@@ -98,6 +100,9 @@ npm run build
 
 - wiring jest, storybook, svelte and tailwind was really painfull. Too many configuration files now :(
   To make storyshots working, I had to downgrade Jest because of an annoying bug [reference](https://github.com/storybookjs/storybook/issues/10351#issuecomment-644667392)
+
+- I considered Sapper for its nice conventional router, but given all the unsued feature (service workers, SSR) I chose a simpler router.
+  It is based on hash handling, as electron urls are using file:// protocol which makes it difficult to use with history-based routers.
 
 musings on watch & diff
 

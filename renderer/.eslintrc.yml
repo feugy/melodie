@@ -1,0 +1,3 @@
+extends:
+  - plugin:testing-library/recommended
+  - plugin:jest-dom/recommended

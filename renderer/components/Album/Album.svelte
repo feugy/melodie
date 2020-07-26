@@ -13,6 +13,10 @@
     dispatch('play', src)
     evt.stopImmediatePropagation()
   }
+
+  function handleClick() {
+    dispatch('select', src)
+  }
 </script>
 
 <style type="postcss">
@@ -43,7 +47,7 @@
   }
 </style>
 
-<article on:click class={$$props.class}>
+<article on:click|stopPropagation={handleClick} class={$$props.class}>
   <div class="content">
     <Image class="w-64 h-64" src={src.media} />
     <p class="controls">

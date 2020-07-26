@@ -5,14 +5,14 @@ exports[`Storyshots Components/Progress Default 1`] = `
   class="storybook-snapshot-container"
 >
   <div
-    class="wrapper svelte-1mwvwz7"
+    class="wrapper svelte-4q5jpo"
   >
     <div
-      class="inc svelte-1mwvwz7"
+      class="inc svelte-4q5jpo"
     />
      
     <div
-      class="dec svelte-1mwvwz7"
+      class="dec svelte-4q5jpo"
     />
   </div>
 </section>

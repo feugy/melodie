@@ -1,15 +1,20 @@
 <script>
   import { _ } from 'svelte-intl'
-  import { Album, Button, Player, Heading } from '.'
+  import { push } from 'svelte-spa-router'
+  import { Album, Button, Player, Heading } from '../components'
   import { albums, loadTracks } from '../stores/albums'
   import trackList from '../stores/track-list'
 
-  async function handlePlay({ detail: album }) {
+  export const params = {}
+
+  async function handleAlbumPlay({ detail: album }) {
     trackList.clear()
-    if (!album.tracks) {
-      await loadTracks(album)
-    }
+    await loadTracks(album)
     trackList.add($albums.find(({ id }) => id === album.id).tracks)
+  }
+
+  function handleAlbumClick({ detail: album }) {
+    push(`/album/${album.id}`)
   }
 </script>
 
@@ -31,7 +36,7 @@
   <div>
     {#each $albums as src (src.id)}
       <span class="p-4">
-        <Album {src} on:play={handlePlay} />
+        <Album {src} on:play={handleAlbumPlay} on:select={handleAlbumClick} />
       </span>
     {/each}
   </div>

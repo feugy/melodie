@@ -15,7 +15,7 @@ export const albumData = {
 }
 
 export const actionsData = {
-  click: action('on album click'),
+  select: action('on album select'),
   play: action('on album play')
 }
 

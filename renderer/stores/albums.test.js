@@ -3,13 +3,8 @@
 import faker from 'faker'
 import { tick } from 'svelte'
 import { get } from 'svelte/store'
-import { invoke } from '../utils'
+import { mockInvoke, sleep } from '../tests'
 import { albums as albumsStore, list, loadTracks, reset } from './albums'
-
-jest.mock('../utils/invoke')
-jest.mock('../utils/channel', () => ({
-  channelListener: jest.fn().mockReturnValue({ subscribe: jest.fn() })
-}))
 
 describe('albums store', () => {
   beforeEach(() => {
@@ -22,7 +17,7 @@ describe('albums store', () => {
       const total = 13
       const size = 5
       const data = Array.from({ length: total }, (v, i) => i)
-      invoke
+      mockInvoke
         .mockResolvedValueOnce({
           total,
           size,
@@ -43,12 +38,13 @@ describe('albums store', () => {
         })
       expect(get(albumsStore)).toEqual([])
       await list()
-      expect(get(albumsStore)).toEqual(data.slice(0, size))
-      await new Promise(r => setTimeout(r, 100))
+      await sleep(100)
       expect(get(albumsStore)).toEqual(data)
-      expect(invoke).toHaveBeenCalledTimes(3)
-      expect(invoke).toHaveBeenCalledWith(
-        'listEngine.listAlbums',
+      expect(mockInvoke).toHaveBeenCalledTimes(3)
+      expect(mockInvoke).toHaveBeenCalledWith(
+        'remote',
+        'listEngine',
+        'listAlbums',
         expect.any(Object)
       )
     })
@@ -64,7 +60,7 @@ describe('albums store', () => {
         { length: faker.random.number({ min: 10, max: 30 }) },
         (v, i) => i
       )
-      invoke
+      mockInvoke
         .mockResolvedValueOnce({ total: 1, results: [album] })
         .mockResolvedValueOnce(data)
 
@@ -77,9 +73,11 @@ describe('albums store', () => {
           tracks: data
         }
       ])
-      expect(invoke).toHaveBeenNthCalledWith(
+      expect(mockInvoke).toHaveBeenNthCalledWith(
         2,
-        'listEngine.listTracksOf',
+        'remote',
+        'listEngine',
+        'listTracksOf',
         album
       )
     })
@@ -93,12 +91,17 @@ describe('albums store', () => {
         { length: faker.random.number({ min: 10, max: 30 }) },
         (v, i) => i
       )
-      invoke.mockResolvedValueOnce(data)
+      mockInvoke.mockResolvedValueOnce(data)
 
       await loadTracks(album)
       await tick()
       expect(get(albumsStore)).toEqual([])
-      expect(invoke).toHaveBeenCalledWith('listEngine.listTracksOf', album)
+      expect(mockInvoke).toHaveBeenCalledWith(
+        'remote',
+        'listEngine',
+        'listTracksOf',
+        album
+      )
     })
   })
 })
