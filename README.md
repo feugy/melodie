@@ -37,6 +37,11 @@ npm run build
 - [x] reload on changes occuring in `main/` folder (rollup can only watch changes to the bundle, that is, in `renderer/`)
 - [x] logs with level hot reloading
 - [ ] logging to file
+- [x] Core automated unit tests
+- [x] UI automated unit tests
+- [ ] App automated end to end tests
+- [x] Continuous integration
+- [ ] Code coverage follow-up
 
 ### features
 
@@ -90,6 +95,9 @@ npm run build
   node-watch does not send file event when removing/renaming folders
   watchr API seems overly complex
   watch-pack is using chokidar and the next version isn't ready
+
+- wiring jest, storybook, svelte and tailwind was really painfull. Too many configuration files now :(
+  To make storyshots working, I had to downgrade Jest because of an annoying bug [reference](https://github.com/storybookjs/storybook/issues/10351#issuecomment-644667392)
 
 musings on watch & diff
 

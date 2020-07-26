@@ -10,13 +10,13 @@
 <style type="postcss">
   button {
     @apply inline-flex border-none cursor-pointer px-6 uppercase text-sm
-  font-semibold text-white bg-transparent flex-row items-center;
-
-    letter-spacing: 0.25rem;
+  font-semibold bg-transparent flex-row items-center rounded;
+    color: var(--color-2);
+    letter-spacing: 0.1rem;
     line-height: 2.8rem;
     transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out,
       color 0.2s ease-in-out;
-    box-shadow: inset 0 0 0 2px var(--white);
+    box-shadow: inset 0 0 0 2px var(--outline-color);
   }
 
   button:focus {
@@ -43,20 +43,18 @@
   }
 
   .primary {
-    @apply bg-white shadow-none;
-    color: var(--dark-grey);
+    @apply shadow-none;
+    background-color: var(--primary-color);
   }
 
   button:hover,
   button:active {
-    box-shadow: inset 0 0 0 2px var(--light-blue);
-    color: var(--light-blue);
+    background-color: var(--hover-color);
   }
 
   button.primary:hover,
   button.primary:active {
-    background-color: var(--light-blue);
-    color: var(--dark-grey);
+    background-color: var(--hover-primary-color);
   }
 
   :not(.iconOnly) > i {

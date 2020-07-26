@@ -22,13 +22,13 @@
 
   .wrapper {
     @apply top-0 left-0 w-full h-1 overflow-hidden relative;
-    background: var(--white);
+    background: var(--font-color);
   }
 
   .inc,
   .dec {
     @apply h-1 absolute;
-    background: var(--light-blue);
+    background: var(--primary-color);
   }
   .inc {
     animation: increase 2s ease-in-out infinite;

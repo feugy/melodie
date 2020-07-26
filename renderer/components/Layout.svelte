@@ -1,23 +1,9 @@
 <script>
   import { _ } from 'svelte-intl'
-  import { Album, Button, Player } from '.'
-  import TrackList from './TrackList.svelte'
+  import { Album, Button, Player, Heading } from '.'
   import { albums, loadTracks } from '../stores/albums'
   import trackList from '../stores/track-list'
 
-  let currentList
-
-  /* async function handleOpenAlbum(album) {
-    if (currentList === album) {
-      currentList = undefined
-    } else {
-      currentList = album
-      if (!album.tracks) {
-        await loadTracks(album)
-      }
-      currentList = $albums.find(({ id }) => id === album.id)
-    }
-  } */
   async function handlePlay({ detail: album }) {
     trackList.clear()
     if (!album.tracks) {
@@ -28,42 +14,25 @@
 </script>
 
 <style type="postcss">
-  .mainWithAside {
-    width: 66%;
-    background: var(--dark-grey);
+  section {
+    @apply flex flex-col items-stretch w-full mb-12 overflow-hidden relative;
+    min-height: 16rem;
   }
 
-  .player-wrapper {
-    background: var(--dark-grey);
+  div {
+    @apply flex flex-wrap justify-around;
   }
 </style>
 
-<main
-  class="flex flex-col items-stretch w-full mb-12"
-  class:mainWithAside={!!currentList}>
-  <span>
-    <h2 class="text-xl">{$_('_ albums', { total: $albums.length })}</h2>
-    <div class="flex flex-wrap justify-between">
-      {#each $albums as src (src.id)}
-        <span class="p-4">
-          <Album {src} on:play={handlePlay} />
-        </span>
-      {/each}
-    </div>
-  </span>
-</main>
-<!--
-{#if currentList}
-  <aside
-    class="fixed inset-y-0 right-0 shadow-lg p-4 w-1/3 flex flex-col pb-24">
-    <header class="flex items-center">
-      <span class="text-xl mb-2 flex-grow">{currentList.name}</span>
-      <Button on:click={() => (currentList = undefined)} icon="close" />
-    </header>
-    <TrackList on:select items={currentList.tracks} />
-  </aside>
-{/if}
--->
-<div class="player-wrapper fixed bottom-0 inset-x-0 p-4 border-t">
-  <Player {trackList} />
-</div>
+<section>
+  <Heading
+    title={$_('_ albums', { total: $albums.length })}
+    image={'../images/valentino-funghi-MEcxLZ8ENV8-unsplash.jpg'} />
+  <div>
+    {#each $albums as src (src.id)}
+      <span class="p-4">
+        <Album {src} on:play={handlePlay} />
+      </span>
+    {/each}
+  </div>
+</section>

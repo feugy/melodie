@@ -15,32 +15,23 @@ module.exports = {
       hotReload: false
     }
 
-    config.module.rules.push(
-      {
-        test: /\.css$/,
-        use: [
-          {
-            loader: 'postcss-loader',
-            options: {
-              sourceMap: true,
-              config: {
-                path: resolve(__dirname, '..', 'postcss.config.js')
-              }
-            }
-          }
-        ]
-      },
-      {
-        test: /\.ya?ml$/,
-        type: 'json',
-        use: 'yaml-loader'
-      }
+    const postcssRule = config.module.rules.find(
+      ({ use }) =>
+        use &&
+        use.find(
+          plugin => plugin.loader && plugin.loader.includes('postcss-loader')
+        )
     )
+    postcssRule.test = /\.p?css$/
 
+    config.module.rules.push({
+      test: /\.ya?ml$/,
+      type: 'json',
+      use: 'yaml-loader'
+    })
     config.externals = {
       electron: 'electron'
     }
-
     return config
   }
 }

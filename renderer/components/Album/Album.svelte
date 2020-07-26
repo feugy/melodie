@@ -43,7 +43,7 @@
   }
 </style>
 
-<article on:click>
+<article on:click class={$$props.class}>
   <div class="content">
     <Image class="w-64 h-64" src={src.media} />
     <p class="controls">

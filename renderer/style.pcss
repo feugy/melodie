@@ -1,0 +1,36 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@import url('https://fonts.googleapis.com/css?family=Raleway:200,700|Source+Sans+Pro:300,600,300italic,600italic');
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,600,600italic');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+:root {
+  --bg-color: #2e3141;
+  --font-color: #ffffff;
+  --bg-primary-color: #3f4e85;
+  --outline-color: rgba(255, 255, 255, 0.125);
+  --primary-color: #4c5c96;
+  --hover-color: rgba(255, 255, 255, 0.025);
+  --hover-primary-color: #53639e;
+}
+
+body {
+  color: var(--font-color);
+  background: var(--bg-color);
+  font-family: 'Source Sans Pro', Helvetica, sans-serif;
+  font-family: 'Source Sans Pro', Helvetica, sans-serif;
+  font-size: 15pt;
+  font-weight: 300;
+  letter-spacing: 0.025em;
+  line-height: 1.65;
+}
+
+@custom-selector:--heading h1, h2, h3, h4, h5, h6;
+
+h1 {
+  @apply font-bold uppercase mb-4;
+  font-family: Raleway, Helvetica, sans-serif;
+  letter-spacing: 0.1em;
+}
