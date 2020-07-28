@@ -46,48 +46,15 @@ exports[`Storyshots Components/Heading Default 1`] = `
               </i>
                
             </button>
-          </p>
-        </div>
-         
-        <header
-          class="svelte-1b3b1kn"
-        >
-          <h3>
-            Diamonds on the inside
-          </h3>
-           
-          <h4
-            class="svelte-1b3b1kn"
-          >
-            par Ben Harper
-          </h4>
-        </header>
-      </article>
-       
-      <article
-        class="p-4 svelte-1b3b1kn"
-      >
-        <div
-          class="content svelte-1b3b1kn"
-        >
-          <img
-            alt="./cover.jpg"
-            class="w-64 h-64 svelte-1k7rixd"
-            loading="lazy"
-            src="./cover.jpg"
-          />
-           
-          <p
-            class="controls svelte-1b3b1kn"
-          >
+             
             <button
               class="svelte-u16ygp primary iconOnly large"
-              data-testid="play"
+              data-testid="enqueue"
             >
               <i
                 class="material-icons svelte-u16ygp"
               >
-                play_arrow
+                playlist_add
               </i>
                
             </button>
@@ -133,6 +100,75 @@ exports[`Storyshots Components/Heading Default 1`] = `
                 class="material-icons svelte-u16ygp"
               >
                 play_arrow
+              </i>
+               
+            </button>
+             
+            <button
+              class="svelte-u16ygp primary iconOnly large"
+              data-testid="enqueue"
+            >
+              <i
+                class="material-icons svelte-u16ygp"
+              >
+                playlist_add
+              </i>
+               
+            </button>
+          </p>
+        </div>
+         
+        <header
+          class="svelte-1b3b1kn"
+        >
+          <h3>
+            Diamonds on the inside
+          </h3>
+           
+          <h4
+            class="svelte-1b3b1kn"
+          >
+            par Ben Harper
+          </h4>
+        </header>
+      </article>
+       
+      <article
+        class="p-4 svelte-1b3b1kn"
+      >
+        <div
+          class="content svelte-1b3b1kn"
+        >
+          <img
+            alt="./cover.jpg"
+            class="w-64 h-64 svelte-1k7rixd"
+            loading="lazy"
+            src="./cover.jpg"
+          />
+           
+          <p
+            class="controls svelte-1b3b1kn"
+          >
+            <button
+              class="svelte-u16ygp primary iconOnly large"
+              data-testid="play"
+            >
+              <i
+                class="material-icons svelte-u16ygp"
+              >
+                play_arrow
+              </i>
+               
+            </button>
+             
+            <button
+              class="svelte-u16ygp primary iconOnly large"
+              data-testid="enqueue"
+            >
+              <i
+                class="material-icons svelte-u16ygp"
+              >
+                playlist_add
               </i>
                
             </button>

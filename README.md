@@ -48,12 +48,12 @@ npm run build
 
 ### features
 
-- [ ] navigation bar: play list, albums, artists, search, settings
+- [x] navigation bar: albums
 - [x] routing
 - [x] list all albums
 - [x] album details
-- [ ] enqueue & play album buttons on album details page
-- [ ] enqueue button on Album component
+- [x] enqueue & play album buttons on album details page
+- [x] enqueue button on Album component
 - [ ] current play list
 - [ ] list all artists
 - [ ] search input and results

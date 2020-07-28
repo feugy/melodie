@@ -6,8 +6,10 @@ album: Album
 artist: Artiste
 by _: 'par {artist}'
 clear: Vider
+enqueue all: Ajouter tout
 load: Charger...
 open playlist: File d'attente
+play all: Lire tout
 playlist: File d'attente
 start loading some tracks: Commencez par charger quelques morceaux
 track: Piste

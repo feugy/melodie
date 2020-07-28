@@ -8,6 +8,7 @@ import faker from 'faker'
 import albumRoute from './album.svelte'
 import { albums as mockedAlbums, loadTracks } from '../stores/albums'
 import trackList from '../stores/track-list'
+import { translate } from '../tests'
 
 jest.mock('svelte-spa-router')
 jest.mock('../stores/track-list')
@@ -42,12 +43,14 @@ describe('album route', () => {
   it('displays all albums', async () => {
     render(html`<${albumRoute} />`)
 
-    expect(screen.getByText(`${albums.length} albums`)).toBeInTheDocument()
+    expect(
+      screen.getByText(translate('_ albums', { total: albums.length }))
+    ).toBeInTheDocument()
     expect(screen.getByText(albums[0].name)).toBeInTheDocument()
     expect(screen.getByText(albums[1].name)).toBeInTheDocument()
   })
 
-  it('loads tracks and enqueues them on album play', async () => {
+  it('loads tracks and plays album', async () => {
     const tracks = [
       { id: faker.random.uuid(), path: faker.system.directoryPath() }
     ]
@@ -61,11 +64,33 @@ describe('album route', () => {
     const albumPlay = screen
       .getByText(album.name)
       .closest('article')
-      .querySelector('button')
+      .querySelector('[data-testid="play"]')
     await fireEvent.click(albumPlay)
 
     expect(loadTracks).toHaveBeenCalledWith(album)
     expect(trackList.add).toHaveBeenCalledWith(tracks, true)
+    expect(push).not.toHaveBeenCalled()
+  })
+
+  it('loads tracks and enqueues album', async () => {
+    const tracks = [
+      { id: faker.random.uuid(), path: faker.system.directoryPath() }
+    ]
+    loadTracks.mockImplementation(async () => {
+      album.tracks = tracks
+    })
+    const album = albums[0]
+
+    render(html`<${albumRoute} />`)
+    // TODO find a way to trigger `enqueue` component event instead
+    const albumEnqueue = screen
+      .getByText(album.name)
+      .closest('article')
+      .querySelector('[data-testid="enqueue"]')
+    await fireEvent.click(albumEnqueue)
+
+    expect(loadTracks).toHaveBeenCalledWith(album)
+    expect(trackList.add).toHaveBeenCalledWith(tracks, false)
     expect(push).not.toHaveBeenCalled()
   })
 

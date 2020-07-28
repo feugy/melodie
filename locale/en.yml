@@ -7,9 +7,11 @@ album: Album
 artist: Artist
 by _: 'by {artist}'
 clear: Clear
+enqueue all: Enqueue all
 load: Load...
 Mélodie: Mélodie
 open playlist: Queue
+play all: Play all
 playlist: Queue
 start loading some tracks: Start loading some tracks
 track: Track

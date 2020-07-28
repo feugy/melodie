@@ -31,6 +31,18 @@ exports[`Storyshots Components/Album Default 1`] = `
           </i>
            
         </button>
+         
+        <button
+          class="svelte-u16ygp primary iconOnly large"
+          data-testid="enqueue"
+        >
+          <i
+            class="material-icons svelte-u16ygp"
+          >
+            playlist_add
+          </i>
+           
+        </button>
       </p>
     </div>
      
@@ -79,6 +91,18 @@ exports[`Storyshots Components/Album No Artist 1`] = `
             class="material-icons svelte-u16ygp"
           >
             play_arrow
+          </i>
+           
+        </button>
+         
+        <button
+          class="svelte-u16ygp primary iconOnly large"
+          data-testid="enqueue"
+        >
+          <i
+            class="material-icons svelte-u16ygp"
+          >
+            playlist_add
           </i>
            
         </button>

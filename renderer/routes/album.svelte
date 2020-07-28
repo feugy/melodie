@@ -8,11 +8,15 @@
 
   export const params = {}
 
-  async function handleAlbumPlay({ detail: album }) {
+  async function handleAlbumPlay({ detail: album }, immediate = true) {
     if (!album.tracks) {
       await loadTracks(album)
     }
-    trackList.add($albums.find(({ id }) => id === album.id).tracks, true)
+    trackList.add($albums.find(({ id }) => id === album.id).tracks, immediate)
+  }
+
+  async function handleAlbumEnqueue(evt) {
+    return handleAlbumPlay(evt, false)
   }
 
   function handleAlbumClick({ detail: album }) {
@@ -38,7 +42,11 @@
   <div>
     {#each $albums as src (src.id)}
       <span class="p-4">
-        <Album {src} on:play={handleAlbumPlay} on:select={handleAlbumClick} />
+        <Album
+          {src}
+          on:play={handleAlbumPlay}
+          on:enqueue={handleAlbumEnqueue}
+          on:select={handleAlbumClick} />
       </span>
     {/each}
   </div>

@@ -14,6 +14,11 @@
     evt.stopImmediatePropagation()
   }
 
+  function handleEnqueue(evt) {
+    dispatch('enqueue', src)
+    evt.stopImmediatePropagation()
+  }
+
   function handleClick() {
     dispatch('select', src)
   }
@@ -57,6 +62,12 @@
         icon="play_arrow"
         large
         on:click={handlePlay} />
+      <Button
+        data-testid="enqueue"
+        primary
+        icon="playlist_add"
+        large
+        on:click={handleEnqueue} />
     </p>
   </div>
   <header>

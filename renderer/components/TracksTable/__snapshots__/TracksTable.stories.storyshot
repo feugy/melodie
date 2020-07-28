@@ -1,0 +1,893 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Components/Tracks table Default 1`] = `
+<section
+  class="storybook-snapshot-container"
+>
+  <table
+    class="svelte-fox9xc"
+  >
+    <thead
+      class="svelte-fox9xc"
+    >
+      <tr>
+        <th
+          class="svelte-fox9xc"
+        >
+          N°
+        </th>
+         
+        <th
+          class="svelte-fox9xc"
+        >
+          Piste
+        </th>
+         
+        <th
+          class="svelte-fox9xc"
+        >
+          Artiste
+        </th>
+         
+        <th
+          class="svelte-fox9xc"
+        >
+          Album
+        </th>
+      </tr>
+    </thead>
+     
+    <tbody
+      class="svelte-fox9xc"
+    >
+      <tr
+        class="svelte-fox9xc"
+      >
+        <td
+          class="svelte-fox9xc"
+        >
+          <span
+            class="rank svelte-fox9xc"
+          >
+            1
+          </span>
+           
+          <span
+            class="play svelte-fox9xc"
+          >
+            <button
+              class="svelte-u16ygp iconOnly"
+            >
+              <i
+                class="material-icons svelte-u16ygp"
+              >
+                play_arrow
+              </i>
+               
+            </button>
+          </span>
+        </td>
+         
+        <td
+          class="svelte-fox9xc"
+        >
+          American Money
+        </td>
+         
+        <td
+          class="svelte-fox9xc"
+        >
+          Yoko Kanno and the Seatbelts
+        </td>
+         
+        <td
+          class="svelte-fox9xc"
+        >
+          Cowboy Bebop - NoDisc
+        </td>
+         
+      </tr>
+      <tr
+        class="svelte-fox9xc"
+      >
+        <td
+          class="svelte-fox9xc"
+        >
+          <span
+            class="rank svelte-fox9xc"
+          >
+            2
+          </span>
+           
+          <span
+            class="play svelte-fox9xc"
+          >
+            <button
+              class="svelte-u16ygp iconOnly"
+            >
+              <i
+                class="material-icons svelte-u16ygp"
+              >
+                play_arrow
+              </i>
+               
+            </button>
+          </span>
+        </td>
+         
+        <td
+          class="svelte-fox9xc"
+        >
+          Fantaisie Sign
+        </td>
+         
+        <td
+          class="svelte-fox9xc"
+        >
+          Yoko Kanno and the Seatbelts
+        </td>
+         
+        <td
+          class="svelte-fox9xc"
+        >
+          Cowboy Bebop - NoDisc
+        </td>
+         
+      </tr>
+      <tr
+        class="svelte-fox9xc"
+      >
+        <td
+          class="svelte-fox9xc"
+        >
+          <span
+            class="rank svelte-fox9xc"
+          >
+            3
+          </span>
+           
+          <span
+            class="play svelte-fox9xc"
+          >
+            <button
+              class="svelte-u16ygp iconOnly"
+            >
+              <i
+                class="material-icons svelte-u16ygp"
+              >
+                play_arrow
+              </i>
+               
+            </button>
+          </span>
+        </td>
+         
+        <td
+          class="svelte-fox9xc"
+        >
+          Don't Bother None
+        </td>
+         
+        <td
+          class="svelte-fox9xc"
+        >
+          Yoko Kanno and the Seatbelts
+        </td>
+         
+        <td
+          class="svelte-fox9xc"
+        >
+          Cowboy Bebop - NoDisc
+        </td>
+         
+      </tr>
+      <tr
+        class="svelte-fox9xc"
+      >
+        <td
+          class="svelte-fox9xc"
+        >
+          <span
+            class="rank svelte-fox9xc"
+          >
+            4
+          </span>
+           
+          <span
+            class="play svelte-fox9xc"
+          >
+            <button
+              class="svelte-u16ygp iconOnly"
+            >
+              <i
+                class="material-icons svelte-u16ygp"
+              >
+                play_arrow
+              </i>
+               
+            </button>
+          </span>
+        </td>
+         
+        <td
+          class="svelte-fox9xc"
+        >
+          Vitamin A
+        </td>
+         
+        <td
+          class="svelte-fox9xc"
+        >
+          Yoko Kanno and the Seatbelts
+        </td>
+         
+        <td
+          class="svelte-fox9xc"
+        >
+          Cowboy Bebop - NoDisc
+        </td>
+         
+      </tr>
+      <tr
+        class="svelte-fox9xc"
+      >
+        <td
+          class="svelte-fox9xc"
+        >
+          <span
+            class="rank svelte-fox9xc"
+          >
+            5
+          </span>
+           
+          <span
+            class="play svelte-fox9xc"
+          >
+            <button
+              class="svelte-u16ygp iconOnly"
+            >
+              <i
+                class="material-icons svelte-u16ygp"
+              >
+                play_arrow
+              </i>
+               
+            </button>
+          </span>
+        </td>
+         
+        <td
+          class="svelte-fox9xc"
+        >
+          LIVE in Baghdad
+        </td>
+         
+        <td
+          class="svelte-fox9xc"
+        >
+          Yoko Kanno and the Seatbelts
+        </td>
+         
+        <td
+          class="svelte-fox9xc"
+        >
+          Cowboy Bebop - NoDisc
+        </td>
+         
+      </tr>
+      <tr
+        class="svelte-fox9xc"
+      >
+        <td
+          class="svelte-fox9xc"
+        >
+          <span
+            class="rank svelte-fox9xc"
+          >
+            6
+          </span>
+           
+          <span
+            class="play svelte-fox9xc"
+          >
+            <button
+              class="svelte-u16ygp iconOnly"
+            >
+              <i
+                class="material-icons svelte-u16ygp"
+              >
+                play_arrow
+              </i>
+               
+            </button>
+          </span>
+        </td>
+         
+        <td
+          class="svelte-fox9xc"
+        >
+          Cats on Mars
+        </td>
+         
+        <td
+          class="svelte-fox9xc"
+        >
+          Yoko Kanno and the Seatbelts
+        </td>
+         
+        <td
+          class="svelte-fox9xc"
+        >
+          Cowboy Bebop - NoDisc
+        </td>
+         
+      </tr>
+      <tr
+        class="svelte-fox9xc"
+      >
+        <td
+          class="svelte-fox9xc"
+        >
+          <span
+            class="rank svelte-fox9xc"
+          >
+            7
+          </span>
+           
+          <span
+            class="play svelte-fox9xc"
+          >
+            <button
+              class="svelte-u16ygp iconOnly"
+            >
+              <i
+                class="material-icons svelte-u16ygp"
+              >
+                play_arrow
+              </i>
+               
+            </button>
+          </span>
+        </td>
+         
+        <td
+          class="svelte-fox9xc"
+        >
+          Want it All Back
+        </td>
+         
+        <td
+          class="svelte-fox9xc"
+        >
+          Yoko Kanno and the Seatbelts
+        </td>
+         
+        <td
+          class="svelte-fox9xc"
+        >
+          Cowboy Bebop - NoDisc
+        </td>
+         
+      </tr>
+      <tr
+        class="svelte-fox9xc"
+      >
+        <td
+          class="svelte-fox9xc"
+        >
+          <span
+            class="rank svelte-fox9xc"
+          >
+            8
+          </span>
+           
+          <span
+            class="play svelte-fox9xc"
+          >
+            <button
+              class="svelte-u16ygp iconOnly"
+            >
+              <i
+                class="material-icons svelte-u16ygp"
+              >
+                play_arrow
+              </i>
+               
+            </button>
+          </span>
+        </td>
+         
+        <td
+          class="svelte-fox9xc"
+        >
+          Bindy
+        </td>
+         
+        <td
+          class="svelte-fox9xc"
+        >
+          Yoko Kanno and the Seatbelts
+        </td>
+         
+        <td
+          class="svelte-fox9xc"
+        >
+          Cowboy Bebop - NoDisc
+        </td>
+         
+      </tr>
+      <tr
+        class="svelte-fox9xc"
+      >
+        <td
+          class="svelte-fox9xc"
+        >
+          <span
+            class="rank svelte-fox9xc"
+          >
+            9
+          </span>
+           
+          <span
+            class="play svelte-fox9xc"
+          >
+            <button
+              class="svelte-u16ygp iconOnly"
+            >
+              <i
+                class="material-icons svelte-u16ygp"
+              >
+                play_arrow
+              </i>
+               
+            </button>
+          </span>
+        </td>
+         
+        <td
+          class="svelte-fox9xc"
+        >
+          You Make Me Coo
+        </td>
+         
+        <td
+          class="svelte-fox9xc"
+        >
+          Yoko Kanno and the Seatbelts
+        </td>
+         
+        <td
+          class="svelte-fox9xc"
+        >
+          Cowboy Bebop - NoDisc
+        </td>
+         
+      </tr>
+      <tr
+        class="svelte-fox9xc"
+      >
+        <td
+          class="svelte-fox9xc"
+        >
+          <span
+            class="rank svelte-fox9xc"
+          >
+            10
+          </span>
+           
+          <span
+            class="play svelte-fox9xc"
+          >
+            <button
+              class="svelte-u16ygp iconOnly"
+            >
+              <i
+                class="material-icons svelte-u16ygp"
+              >
+                play_arrow
+              </i>
+               
+            </button>
+          </span>
+        </td>
+         
+        <td
+          class="svelte-fox9xc"
+        >
+          Vitamin B
+        </td>
+         
+        <td
+          class="svelte-fox9xc"
+        >
+          Yoko Kanno and the Seatbelts
+        </td>
+         
+        <td
+          class="svelte-fox9xc"
+        >
+          Cowboy Bebop - NoDisc
+        </td>
+         
+      </tr>
+      <tr
+        class="svelte-fox9xc"
+      >
+        <td
+          class="svelte-fox9xc"
+        >
+          <span
+            class="rank svelte-fox9xc"
+          >
+            11
+          </span>
+           
+          <span
+            class="play svelte-fox9xc"
+          >
+            <button
+              class="svelte-u16ygp iconOnly"
+            >
+              <i
+                class="material-icons svelte-u16ygp"
+              >
+                play_arrow
+              </i>
+               
+            </button>
+          </span>
+        </td>
+         
+        <td
+          class="svelte-fox9xc"
+        >
+          Green Bird
+        </td>
+         
+        <td
+          class="svelte-fox9xc"
+        >
+          Yoko Kanno and the Seatbelts
+        </td>
+         
+        <td
+          class="svelte-fox9xc"
+        >
+          Cowboy Bebop - NoDisc
+        </td>
+         
+      </tr>
+      <tr
+        class="svelte-fox9xc"
+      >
+        <td
+          class="svelte-fox9xc"
+        >
+          <span
+            class="rank svelte-fox9xc"
+          >
+            12
+          </span>
+           
+          <span
+            class="play svelte-fox9xc"
+          >
+            <button
+              class="svelte-u16ygp iconOnly"
+            >
+              <i
+                class="material-icons svelte-u16ygp"
+              >
+                play_arrow
+              </i>
+               
+            </button>
+          </span>
+        </td>
+         
+        <td
+          class="svelte-fox9xc"
+        >
+          ELM
+        </td>
+         
+        <td
+          class="svelte-fox9xc"
+        >
+          Yoko Kanno and the Seatbelts
+        </td>
+         
+        <td
+          class="svelte-fox9xc"
+        >
+          Cowboy Bebop - NoDisc
+        </td>
+         
+      </tr>
+      <tr
+        class="svelte-fox9xc"
+      >
+        <td
+          class="svelte-fox9xc"
+        >
+          <span
+            class="rank svelte-fox9xc"
+          >
+            13
+          </span>
+           
+          <span
+            class="play svelte-fox9xc"
+          >
+            <button
+              class="svelte-u16ygp iconOnly"
+            >
+              <i
+                class="material-icons svelte-u16ygp"
+              >
+                play_arrow
+              </i>
+               
+            </button>
+          </span>
+        </td>
+         
+        <td
+          class="svelte-fox9xc"
+        >
+          Vitamin C
+        </td>
+         
+        <td
+          class="svelte-fox9xc"
+        >
+          Yoko Kanno and the Seatbelts
+        </td>
+         
+        <td
+          class="svelte-fox9xc"
+        >
+          Cowboy Bebop - NoDisc
+        </td>
+         
+      </tr>
+      <tr
+        class="svelte-fox9xc"
+      >
+        <td
+          class="svelte-fox9xc"
+        >
+          <span
+            class="rank svelte-fox9xc"
+          >
+            14
+          </span>
+           
+          <span
+            class="play svelte-fox9xc"
+          >
+            <button
+              class="svelte-u16ygp iconOnly"
+            >
+              <i
+                class="material-icons svelte-u16ygp"
+              >
+                play_arrow
+              </i>
+               
+            </button>
+          </span>
+        </td>
+         
+        <td
+          class="svelte-fox9xc"
+        >
+          Gateway
+        </td>
+         
+        <td
+          class="svelte-fox9xc"
+        >
+          Yoko Kanno and the Seatbelts
+        </td>
+         
+        <td
+          class="svelte-fox9xc"
+        >
+          Cowboy Bebop - NoDisc
+        </td>
+         
+      </tr>
+      <tr
+        class="svelte-fox9xc"
+      >
+        <td
+          class="svelte-fox9xc"
+        >
+          <span
+            class="rank svelte-fox9xc"
+          >
+            15
+          </span>
+           
+          <span
+            class="play svelte-fox9xc"
+          >
+            <button
+              class="svelte-u16ygp iconOnly"
+            >
+              <i
+                class="material-icons svelte-u16ygp"
+              >
+                play_arrow
+              </i>
+               
+            </button>
+          </span>
+        </td>
+         
+        <td
+          class="svelte-fox9xc"
+        >
+          The Singing Sea
+        </td>
+         
+        <td
+          class="svelte-fox9xc"
+        >
+          Yoko Kanno and the Seatbelts
+        </td>
+         
+        <td
+          class="svelte-fox9xc"
+        >
+          Cowboy Bebop - NoDisc
+        </td>
+         
+      </tr>
+      <tr
+        class="svelte-fox9xc"
+      >
+        <td
+          class="svelte-fox9xc"
+        >
+          <span
+            class="rank svelte-fox9xc"
+          >
+            16
+          </span>
+           
+          <span
+            class="play svelte-fox9xc"
+          >
+            <button
+              class="svelte-u16ygp iconOnly"
+            >
+              <i
+                class="material-icons svelte-u16ygp"
+              >
+                play_arrow
+              </i>
+               
+            </button>
+          </span>
+        </td>
+         
+        <td
+          class="svelte-fox9xc"
+        >
+          The Egg and You!
+        </td>
+         
+        <td
+          class="svelte-fox9xc"
+        >
+          Yoko Kanno and the Seatbelts
+        </td>
+         
+        <td
+          class="svelte-fox9xc"
+        >
+          Cowboy Bebop - NoDisc
+        </td>
+         
+      </tr>
+      <tr
+        class="svelte-fox9xc"
+      >
+        <td
+          class="svelte-fox9xc"
+        >
+          <span
+            class="rank svelte-fox9xc"
+          >
+            17
+          </span>
+           
+          <span
+            class="play svelte-fox9xc"
+          >
+            <button
+              class="svelte-u16ygp iconOnly"
+            >
+              <i
+                class="material-icons svelte-u16ygp"
+              >
+                play_arrow
+              </i>
+               
+            </button>
+          </span>
+        </td>
+         
+        <td
+          class="svelte-fox9xc"
+        >
+          Forever Broke
+        </td>
+         
+        <td
+          class="svelte-fox9xc"
+        >
+          Yoko Kanno and the Seatbelts
+        </td>
+         
+        <td
+          class="svelte-fox9xc"
+        >
+          Cowboy Bebop - NoDisc
+        </td>
+         
+      </tr>
+      <tr
+        class="svelte-fox9xc"
+      >
+        <td
+          class="svelte-fox9xc"
+        >
+          <span
+            class="rank svelte-fox9xc"
+          >
+            18
+          </span>
+           
+          <span
+            class="play svelte-fox9xc"
+          >
+            <button
+              class="svelte-u16ygp iconOnly"
+            >
+              <i
+                class="material-icons svelte-u16ygp"
+              >
+                play_arrow
+              </i>
+               
+            </button>
+          </span>
+        </td>
+         
+        <td
+          class="svelte-fox9xc"
+        >
+          Power of Kungfu Remix
+        </td>
+         
+        <td
+          class="svelte-fox9xc"
+        >
+          Yoko Kanno and the Seatbelts
+        </td>
+         
+        <td
+          class="svelte-fox9xc"
+        >
+          Cowboy Bebop - NoDisc
+        </td>
+         
+      </tr>
+    </tbody>
+  </table>
+  
+</section>
+`;
