@@ -67,7 +67,7 @@ npm run build
 - [ ] system notification on next track
 - [ ] block power save
 - [ ] system tray integration
-- [ ] animated transitions
+- [x] animated transitions
 - [ ] loading indicators
 - [ ] feedback on enqueue & play actions
 

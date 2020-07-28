@@ -1,5 +1,6 @@
 <script>
   import { _ } from 'svelte-intl'
+  import { fade } from 'svelte/transition'
   import { push } from 'svelte-spa-router'
   import { Album, Button, Player, Heading } from '../components'
   import { albums, loadTracks } from '../stores/albums'
@@ -35,7 +36,7 @@
   }
 </style>
 
-<section>
+<section transition:fade={{ duration: 200 }}>
   <Heading
     title={$_('_ albums', { total: $albums.length })}
     image={'../images/valentino-funghi-MEcxLZ8ENV8-unsplash.jpg'} />
