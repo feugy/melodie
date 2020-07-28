@@ -28,6 +28,7 @@ npm run build
 - [x] send start/stop events when updating
 - [x] embed file-loader's crawl() into chooseFolders()
 - [x] reactive stores: send update on new albums/artists/tracks
+- [ ] tracks' duration
 - [ ] albums' artists
 - [ ] artists pictures
 - [ ] artists' albums
@@ -50,6 +51,9 @@ npm run build
 - [ ] navigation bar: play list, albums, artists, search, settings
 - [x] routing
 - [x] list all albums
+- [x] album details
+- [ ] enqueue & play album buttons on album details page
+- [ ] enqueue button on Album component
 - [ ] current play list
 - [ ] list all artists
 - [ ] search input and results
@@ -65,7 +69,7 @@ npm run build
 - [ ] system tray integration
 - [ ] animated transitions
 - [ ] loading indicators
-- [ ] feedback when adding to play list
+- [ ] feedback on enqueue & play actions
 
 ### bugs
 

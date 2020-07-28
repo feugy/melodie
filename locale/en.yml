@@ -1,7 +1,10 @@
-_ items: '{total} tracks'
 _ albums: '{total} albums'
+_ items: '{total} tracks'
+'#': '#'
 'artist: _': 'Artist: {value}'
 'title: _': 'Title: {value}'
+album: Album
+artist: Artist
 by _: 'by {artist}'
 clear: Clear
 load: Load...
@@ -9,3 +12,4 @@ Mélodie: Mélodie
 open playlist: Queue
 playlist: Queue
 start loading some tracks: Start loading some tracks
+track: Track

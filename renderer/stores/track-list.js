@@ -13,13 +13,17 @@ function createTrackList() {
   return {
     subscribe,
 
-    add(values) {
+    add(values, play = false) {
       update(state => {
-        const tracks = [...state.tracks, ...values]
+        const tracks = [
+          ...(play ? [] : state.tracks),
+          ...(Array.isArray(values) ? values : [values])
+        ]
         return {
           ...state,
+          index: play ? 0 : state.index,
           tracks,
-          current: state.current || tracks[state.index]
+          current: play || !state.current ? tracks[state.index] : state.current
         }
       })
     },

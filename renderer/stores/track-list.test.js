@@ -15,14 +15,70 @@ describe('track-list store', () => {
     expect(current).not.toBeDefined()
   })
 
-  it('adds new tracks', async () => {
-    const files = [faker.system.fileName(), faker.system.fileName()]
-    trackList.add(files)
+  it('enqueues new tracks', async () => {
+    const files = [
+      faker.system.fileName(),
+      faker.system.fileName(),
+      faker.system.fileName()
+    ]
+    trackList.add(files.slice(0, 2))
+    trackList.next()
+    await tick()
+    trackList.add(files.slice(2))
     await tick()
     const { tracks, index, current } = get(trackList)
     expect(tracks).toEqual(files)
+    expect(index).toEqual(1)
+    expect(current).toEqual(files[1])
+  })
+
+  it('enqueues single track', async () => {
+    const files = [
+      faker.system.fileName(),
+      faker.system.fileName(),
+      faker.system.fileName()
+    ]
+    trackList.add(files.slice(0, 2))
+    trackList.next()
+    await tick()
+    trackList.add(files[2])
+    await tick()
+    const { tracks, index, current } = get(trackList)
+    expect(tracks).toEqual(files)
+    expect(index).toEqual(1)
+    expect(current).toEqual(files[1])
+  })
+
+  it('plays new tracks', async () => {
+    const files = [
+      faker.system.fileName(),
+      faker.system.fileName(),
+      faker.system.fileName()
+    ]
+    trackList.add(files.slice(0, 1))
+    await tick()
+    trackList.add(files.slice(1), true)
+    await tick()
+    const { tracks, index, current } = get(trackList)
+    expect(tracks).toEqual(files.slice(1))
     expect(index).toEqual(0)
-    expect(current).toEqual(files[0])
+    expect(current).toEqual(files[1])
+  })
+
+  it('plays single track', async () => {
+    const files = [
+      faker.system.fileName(),
+      faker.system.fileName(),
+      faker.system.fileName()
+    ]
+    trackList.add(files.slice(0, 2))
+    await tick()
+    trackList.add(files[2], true)
+    await tick()
+    const { tracks, index, current } = get(trackList)
+    expect(tracks).toEqual(files.slice(2, 3))
+    expect(index).toEqual(0)
+    expect(current).toEqual(files[2])
   })
 
   describe('next', () => {

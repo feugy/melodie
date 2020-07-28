@@ -4,13 +4,15 @@
   import { Album, Button, Player, Heading } from '../components'
   import { albums, loadTracks } from '../stores/albums'
   import trackList from '../stores/track-list'
+  import { invoke } from '../utils'
 
   export const params = {}
 
   async function handleAlbumPlay({ detail: album }) {
-    trackList.clear()
-    await loadTracks(album)
-    trackList.add($albums.find(({ id }) => id === album.id).tracks)
+    if (!album.tracks) {
+      await loadTracks(album)
+    }
+    trackList.add($albums.find(({ id }) => id === album.id).tracks, true)
   }
 
   function handleAlbumClick({ detail: album }) {
@@ -41,3 +43,4 @@
     {/each}
   </div>
 </section>
+<Button on:click={() => invoke('fileLoader.addFolders')} text={$_('load')} />

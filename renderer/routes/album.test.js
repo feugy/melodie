@@ -17,32 +17,37 @@ jest.mock('../stores/albums', () => ({
 }))
 
 describe('album route', () => {
-  const albums = [
-    {
-      id: faker.random.uuid(),
-      name: faker.commerce.productName(),
-      media: faker.image.avatar()
-    },
-    {
-      id: faker.random.uuid(),
-      name: faker.commerce.productName(),
-      media: faker.image.avatar()
-    }
-  ]
+  const albums = []
 
-  const store = new BehaviorSubject(albums)
-  mockedAlbums.subscribe = store.subscribe.bind(store)
-
-  beforeEach(() => jest.resetAllMocks())
+  beforeEach(() => {
+    albums.splice(
+      0,
+      albums.length,
+      {
+        id: faker.random.uuid(),
+        name: faker.commerce.productName(),
+        media: faker.image.avatar()
+      },
+      {
+        id: faker.random.uuid(),
+        name: faker.commerce.productName(),
+        media: faker.image.avatar()
+      }
+    )
+    const store = new BehaviorSubject(albums)
+    mockedAlbums.subscribe = store.subscribe.bind(store)
+    jest.resetAllMocks()
+  })
 
   it('displays all albums', async () => {
     render(html`<${albumRoute} />`)
 
+    expect(screen.getByText(`${albums.length} albums`)).toBeInTheDocument()
     expect(screen.getByText(albums[0].name)).toBeInTheDocument()
     expect(screen.getByText(albums[1].name)).toBeInTheDocument()
   })
 
-  it('load tracks and enqueue them on album play', async () => {
+  it('loads tracks and enqueues them on album play', async () => {
     const tracks = [
       { id: faker.random.uuid(), path: faker.system.directoryPath() }
     ]
@@ -59,13 +64,32 @@ describe('album route', () => {
       .querySelector('button')
     await fireEvent.click(albumPlay)
 
-    expect(trackList.clear).toHaveBeenCalled()
     expect(loadTracks).toHaveBeenCalledWith(album)
-    expect(trackList.add).toHaveBeenCalledWith(tracks)
+    expect(trackList.add).toHaveBeenCalledWith(tracks, true)
     expect(push).not.toHaveBeenCalled()
   })
 
-  it('navigate to album details page', async () => {
+  it('does load tracks when already there', async () => {
+    const tracks = [
+      { id: faker.random.uuid(), path: faker.system.directoryPath() }
+    ]
+    const album = albums[0]
+    album.tracks = tracks
+
+    render(html`<${albumRoute} />`)
+    // TODO find a way to trigger `play` component event instead
+    const albumPlay = screen
+      .getByText(album.name)
+      .closest('article')
+      .querySelector('button')
+    await fireEvent.click(albumPlay)
+
+    expect(loadTracks).not.toHaveBeenCalled()
+    expect(trackList.add).toHaveBeenCalledWith(tracks, true)
+    expect(push).not.toHaveBeenCalled()
+  })
+
+  it('navigates to album details page', async () => {
     const album = albums[1]
 
     render(html`<${albumRoute} />`)
@@ -74,7 +98,6 @@ describe('album route', () => {
     await fireEvent.click(album2)
 
     expect(push).toHaveBeenCalledWith(`/album/${album.id}`)
-    expect(trackList.clear).not.toHaveBeenCalled()
     expect(loadTracks).not.toHaveBeenCalled()
     expect(trackList.add).not.toHaveBeenCalled()
   })

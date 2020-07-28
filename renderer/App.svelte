@@ -2,10 +2,10 @@
   import { onMount } from 'svelte'
   import { _ } from 'svelte-intl'
   import Router from 'svelte-spa-router'
-  import { Button, Progress, Player } from './components'
+  import { Button, Progress, Player, Nav } from './components'
   import trackList from './stores/track-list'
   import { list as listAlbums } from './stores/albums'
-  import { channelListener, invoke } from './utils'
+  import { channelListener } from './utils'
   import { routes } from './routes'
 
   let isLoading = false
@@ -43,11 +43,11 @@
 </svelte:head>
 
 <main>
+  <Nav />
   {#if isLoading}
     <Progress />
   {/if}
   <Router {routes} />
-  <Button on:click={() => invoke('fileLoader.addFolders')} text={$_('load')} />
 </main>
 <footer class="player-wrapper">
   <Player {trackList} />
