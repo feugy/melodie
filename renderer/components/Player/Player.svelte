@@ -36,18 +36,6 @@
     }
   }
 
-  function handleProgress() {
-    if (player) {
-      current = player.currentTime
-    }
-  }
-
-  function handleDuration() {
-    if (player) {
-      duration = player.duration
-    }
-  }
-
   function handleNext() {
     player.pause()
     trackList.next()
@@ -78,8 +66,8 @@
   autoplay
   src={$trackList.current && toDOMSrc($trackList.current.path)}
   on:ended={handleNext}
-  on:timeupdate={handleProgress}
-  on:durationchange={handleDuration}
+  bind:currentTime={current}
+  bind:duration
   on:play={() => {
     isPlaying = true
   }}

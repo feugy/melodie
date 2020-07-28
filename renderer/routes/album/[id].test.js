@@ -29,7 +29,7 @@ describe('album details route', () => {
       tags: {
         title: faker.commerce.productName(),
         artists: [faker.name.findName()],
-        album: faker.lorem.word()
+        album: faker.lorem.words()
       }
     },
     {
@@ -37,7 +37,7 @@ describe('album details route', () => {
       tags: {
         title: faker.commerce.productName(),
         artists: [faker.name.findName()],
-        album: faker.lorem.word()
+        album: faker.lorem.words()
       }
     },
     {
@@ -45,7 +45,7 @@ describe('album details route', () => {
       tags: {
         title: faker.commerce.productName(),
         artists: [faker.name.findName()],
-        album: faker.lorem.word()
+        album: faker.lorem.words()
       }
     }
   ]
