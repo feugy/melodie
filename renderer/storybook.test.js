@@ -5,6 +5,6 @@ import initStoryshots, {
 } from '@storybook/addon-storyshots'
 
 initStoryshots({
-  storyKindRegex: /^((?!Nav).)*$/,
+  storyKindRegex: /^((?!Nav|Sheet).)*$/,
   test: multiSnapshotWithOptions()
 })

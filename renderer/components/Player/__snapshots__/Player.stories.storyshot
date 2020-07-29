@@ -6,21 +6,21 @@ exports[`Storyshots Components/Player Empty 1`] = `
 >
   <audio
     autoplay=""
-    class="svelte-b2zjfb"
+    class="svelte-5j1b4y"
   />
    
   <div
-    class="flex items-center svelte-b2zjfb"
+    class="flex items-center svelte-5j1b4y"
   >
     <span
-      class="w-1/4"
+      class="current svelte-5j1b4y"
     />
      
     <div
-      class="flex-grow flex-column"
+      class="player svelte-5j1b4y"
     >
       <span
-        class="controls svelte-b2zjfb"
+        class="controls svelte-5j1b4y"
       >
         <button
           class="mx-1 svelte-u16ygp iconOnly noBorder"
@@ -57,10 +57,10 @@ exports[`Storyshots Components/Player Empty 1`] = `
       </span>
        
       <span
-        class="controls time svelte-b2zjfb"
+        class="controls time svelte-5j1b4y"
       >
         <span
-          class="svelte-b2zjfb"
+          class="svelte-5j1b4y"
         >
           0:00
         </span>
@@ -86,7 +86,7 @@ exports[`Storyshots Components/Player Empty 1`] = `
         </div>
          
         <span
-          class="svelte-b2zjfb"
+          class="svelte-5j1b4y"
         >
           0:00
         </span>
@@ -94,8 +94,19 @@ exports[`Storyshots Components/Player Empty 1`] = `
     </div>
      
     <span
-      class="w-1/4"
-    />
+      class="playlist svelte-5j1b4y"
+    >
+      <button
+        class="mx-1 svelte-u16ygp iconOnly large"
+      >
+        <i
+          class="material-icons svelte-u16ygp"
+        >
+          queue_music
+        </i>
+         
+      </button>
+    </span>
   </div>
 </section>
 `;
@@ -106,15 +117,15 @@ exports[`Storyshots Components/Player With Track List 1`] = `
 >
   <audio
     autoplay=""
-    class="svelte-b2zjfb"
+    class="svelte-5j1b4y"
     src="./file.flac"
   />
    
   <div
-    class="flex items-center svelte-b2zjfb"
+    class="flex items-center svelte-5j1b4y"
   >
     <span
-      class="w-1/4"
+      class="current svelte-5j1b4y"
     >
       <div
         class="container svelte-136dr2t"
@@ -145,10 +156,10 @@ exports[`Storyshots Components/Player With Track List 1`] = `
     </span>
      
     <div
-      class="flex-grow flex-column"
+      class="player svelte-5j1b4y"
     >
       <span
-        class="controls svelte-b2zjfb"
+        class="controls svelte-5j1b4y"
       >
         <button
           class="mx-1 svelte-u16ygp iconOnly noBorder"
@@ -185,10 +196,10 @@ exports[`Storyshots Components/Player With Track List 1`] = `
       </span>
        
       <span
-        class="controls time svelte-b2zjfb"
+        class="controls time svelte-5j1b4y"
       >
         <span
-          class="svelte-b2zjfb"
+          class="svelte-5j1b4y"
         >
           0:00
         </span>
@@ -214,7 +225,7 @@ exports[`Storyshots Components/Player With Track List 1`] = `
         </div>
          
         <span
-          class="svelte-b2zjfb"
+          class="svelte-5j1b4y"
         >
           0:00
         </span>
@@ -222,8 +233,19 @@ exports[`Storyshots Components/Player With Track List 1`] = `
     </div>
      
     <span
-      class="w-1/4"
-    />
+      class="playlist svelte-5j1b4y"
+    >
+      <button
+        class="mx-1 svelte-u16ygp iconOnly large"
+      >
+        <i
+          class="material-icons svelte-u16ygp"
+        >
+          queue_music
+        </i>
+         
+      </button>
+    </span>
   </div>
 </section>
 `;

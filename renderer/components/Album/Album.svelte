@@ -3,7 +3,6 @@
   import { _ } from 'svelte-intl'
   import Image from '../Image/Image.svelte'
   import Button from '../Button/Button.svelte'
-  import { prevent_default } from 'svelte/internal'
 
   export let src
   let artist = Array.isArray(src.artists) && src.artists[0]

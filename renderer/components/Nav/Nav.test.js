@@ -8,7 +8,7 @@ import { sleep } from '../../tests'
 
 jest.mock('svelte-spa-router')
 
-describe('Album component', () => {
+describe('Nav component', () => {
   const observer = {
     observe: jest.fn(),
     unobserve: jest.fn()

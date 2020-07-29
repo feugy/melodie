@@ -19,8 +19,9 @@
 
 <style type="postcss">
   .wrapper {
-    @apply relative;
+    @apply inline;
   }
+
   .sentinel {
     @apply block w-full h-0 relative;
     top: 4rem;
@@ -32,8 +33,9 @@
   }
 
   nav {
-    @apply p-2 fixed w-full;
+    @apply p-2 sticky w-full top-0;
     z-index: 1;
+    margin-bottom: -60px;
   }
 
   ul {

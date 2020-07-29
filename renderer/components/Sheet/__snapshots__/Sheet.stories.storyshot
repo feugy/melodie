@@ -1,0 +1,118 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Components/Sheet Default 1`] = `
+<section
+  class="storybook-snapshot-container"
+>
+  <div
+    class="wrapper svelte-po6gjr"
+  >
+    <div
+      class="svelte-7e45m5"
+    >
+      <div
+        class="main svelte-7e45m5"
+      >
+        <section
+          class="svelte-po6gjr"
+          slot="main"
+        >
+          <button
+            class="svelte-u16ygp"
+          >
+             
+            <span>
+              open
+            </span>
+          </button>
+           
+          <p
+            class="svelte-po6gjr"
+          >
+            Blanditiis eius debitis esse repellat est modi. Qui ex explicabo optio
+        ut quis. Porro delectus ipsa quis sint assumenda tempore possimus
+        reiciendis eaque. Quaerat voluptatibus eaque expedita nihil ratione
+        veritatis iste doloremque voluptatem. Aut aut provident autem a enim.
+        Nihil quidem sunt.
+          </p>
+           
+          <p
+            class="svelte-po6gjr"
+          >
+            Pariatur est voluptatem quasi aliquam dolorum eligendi voluptatibus.
+        Explicabo sed deserunt sunt et. Tempore ipsa ut enim fuga sequi eos fuga
+        dolor. Quos sit eveniet eos omnis. Ea in quam.
+          </p>
+           
+          <p
+            class="svelte-po6gjr"
+          >
+            Nihil qui et ea laboriosam. Est mollitia laboriosam occaecati sequi ut
+        voluptatem non eius. Nobis quis nulla in corrupti dicta eius.
+          </p>
+           
+          <p
+            class="svelte-po6gjr"
+          >
+            Non facere omnis sit et debitis et nobis consectetur earum. Et voluptas
+        nihil voluptas qui qui. Aliquam repellendus non consequatur similique ex
+        velit et ut. Nisi totam quis. Et dolore pariatur voluptate odit.
+          </p>
+           
+          <p
+            class="svelte-po6gjr"
+          >
+            Nihil quas unde dolor delectus laborum soluta fugiat. Est distinctio aut
+        voluptatum temporibus. Et nam dolores error adipisci et id optio est
+        non.
+          </p>
+           
+          <p
+            class="svelte-po6gjr"
+          >
+            Sunt sed dolorum aliquid repudiandae consectetur. Maxime reiciendis
+        accusamus quia et inventore impedit voluptatem quis. Voluptatem quo
+        maiores aperiam nulla officiis suscipit fugit voluptatibus aut.
+        Recusandae rerum eos atque totam sint nihil. Sit itaque nihil dolor quae
+        earum dicta. Eligendi aut hic occaecati alias minus impedit eius.
+          </p>
+           
+          <p
+            class="svelte-po6gjr"
+          >
+            Voluptatem cum ut quo qui odit sit dolores. Adipisci beatae
+        necessitatibus eaque est ut voluptates ab. Dicta animi voluptatem eum
+        eos possimus ducimus natus. Itaque dolorum officia ea accusamus
+        exercitationem similique sapiente doloremque eveniet.
+          </p>
+           
+          <p
+            class="svelte-po6gjr"
+          >
+            Rerum cupiditate debitis suscipit. Consequuntur rem omnis odio id
+        corporis excepturi beatae. Est error quia non ducimus doloribus est
+        mollitia reiciendis. Iure non deserunt quidem aliquid quia in fugiat
+        cupiditate et.
+          </p>
+           
+          <p
+            class="svelte-po6gjr"
+          >
+            Quia voluptatem impedit qui quos autem laboriosam velit. Ut aut at eos
+        quis quis provident est ea eum. Ea eum natus. Laborum et delectus error
+        aut suscipit. Voluptatem asperiores dignissimos.
+          </p>
+           
+          <p
+            class="svelte-po6gjr"
+          >
+            Corrupti voluptatum error dicta maxime. Voluptatem architecto expedita
+        cumque. Laboriosam facere dolore occaecati. Nobis et consequatur culpa.
+          </p>
+        </section>
+      </div>
+       
+    </div>
+  </div>
+</section>
+`;

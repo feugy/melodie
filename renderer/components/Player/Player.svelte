@@ -1,11 +1,13 @@
 <script>
   import { _ } from 'svelte-intl'
+  import { createEventDispatcher } from 'svelte'
   import Button from '../Button/Button.svelte'
   import Track from '../Track/Track.svelte'
   import Slider from '../Slider/Slider.svelte'
   import { toDOMSrc } from '../../utils'
 
   export let trackList
+  const dispatch = createEventDispatcher()
   let isPlaying
   let player
   let duration = 0
@@ -45,9 +47,17 @@
     player.pause()
     trackList.previous()
   }
+
+  function handleTogglePlaylist() {
+    dispatch('togglePlaylist')
+  }
 </script>
 
 <style type="postcss">
+  .player {
+    @apply flex-grow flex-col;
+  }
+
   .controls {
     @apply flex items-center justify-center;
   }
@@ -58,6 +68,14 @@
 
   .time > span {
     @apply text-sm;
+  }
+
+  .current {
+    @apply w-1/4;
+  }
+
+  .playlist {
+    @apply w-1/4 text-right;
   }
 </style>
 
@@ -76,12 +94,12 @@
   }} />
 
 <div class="flex items-center">
-  <span class="w-1/4">
+  <span class="current">
     {#if $trackList.current}
       <Track src={$trackList.current.tags} media={$trackList.current.media} />
     {/if}
   </span>
-  <div class="flex-grow flex-column">
+  <div class="player">
     <span class="controls">
       <Button
         class="mx-1"
@@ -101,5 +119,11 @@
       <span>{formatTime(duration)}</span>
     </span>
   </div>
-  <span class="w-1/4" />
+  <span class="playlist">
+    <Button
+      class="mx-1"
+      on:click={handleTogglePlaylist}
+      icon={'queue_music'}
+      large />
+  </span>
 </div>

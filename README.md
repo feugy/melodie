@@ -1,6 +1,6 @@
 # Mélodie
 
-![CI](https://github.com/feugy/melodie/workflows/CI/badge.svg)
+[![CI](https://github.com/feugy/melodie/workflows/CI/badge.svg)](https://github.com/feugy/melodie/actions?query=workflow%3ACI)
 
 **_...work in progress..._**
 
@@ -58,7 +58,7 @@ npm run build
 - [ ] list all artists
 - [ ] search input and results
 - [ ] settings panel with watched folders
-- [ ] icons
+- [x] icons
 - [ ] system menus
 - [ ] system integration (> open with, > open track containing folder, < add to play list, < open with )
   - on windows: `start "" file`

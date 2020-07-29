@@ -2,13 +2,14 @@
   import { onMount } from 'svelte'
   import { _ } from 'svelte-intl'
   import Router from 'svelte-spa-router'
-  import { Button, Progress, Player, Nav } from './components'
+  import { Button, Progress, Player, Nav, Sheet } from './components'
   import trackList from './stores/track-list'
   import { list as listAlbums } from './stores/albums'
   import { channelListener } from './utils'
   import { routes } from './routes'
 
   let isLoading = false
+  let isPlaylistOpen = false
 
   onMount(() => {
     listAlbums()
@@ -22,15 +23,28 @@
 
 <style class="postcss">
   :global(body) {
-    @apply text-center m-0 p-0;
+    @apply p-0 m-0;
+  }
+
+  div {
+    @apply flex flex-col h-full max-h-full;
   }
 
   main {
-    @apply pb-48;
+    @apply flex-grow overflow-y-auto;
   }
 
-  .player-wrapper {
-    @apply fixed bottom-0 inset-x-0 p-4;
+  section {
+    @apply text-center w-full overflow-auto pb-10;
+  }
+
+  aside {
+    @apply p-4 h-full;
+    background: var(--bg-primary-color);
+  }
+
+  footer {
+    @apply p-4;
     background: var(--bg-primary-color);
     border-top: solid 1px rgba(212, 212, 255, 0.1);
   }
@@ -42,13 +56,24 @@
   <title>{$_('Mélodie')}</title>
 </svelte:head>
 
-<main>
-  <Nav />
-  {#if isLoading}
-    <Progress />
-  {/if}
-  <Router {routes} />
-</main>
-<footer class="player-wrapper">
-  <Player {trackList} />
-</footer>
+<div>
+  <main>
+    <Sheet bind:open={isPlaylistOpen}>
+      <section slot="main">
+        <Nav />
+        {#if isLoading}
+          <Progress />
+        {/if}
+        <Router {routes} />
+      </section>
+      <aside slot="aside">
+        <p>Here is some content for the playlist</p>
+      </aside>
+    </Sheet>
+  </main>
+  <footer>
+    <Player
+      {trackList}
+      on:togglePlaylist={() => (isPlaylistOpen = !isPlaylistOpen)} />
+  </footer>
+</div>
