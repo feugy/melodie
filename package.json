@@ -2,14 +2,21 @@
   "name": "melodie",
   "version": "0.0.0",
   "description": "Melodie is a portable, simple-as-pie music player",
-  "author": "feugy <damien.feugas@gmail.com>",
+  "author": {
+    "name": "Damien Simonin Feugas",
+    "email": "damien.feugas@gmail.com"
+  },
   "license": "MIT",
   "main": "main/index.js",
+  "repository": {
+    "url": "https://github.com/feugy/melodie"
+  },
   "scripts": {
     "build": "run-s build:svelte start",
     "build:svelte": "rollup -c",
     "build:storybook": "build-storybook",
     "dev": "rollup -c -w",
+    "dist": "electron-builder",
     "postinstall": "electron-builder install-app-deps",
     "start": "electron .",
     "storybook": "start-storybook -p 6006 -s ./fixtures",

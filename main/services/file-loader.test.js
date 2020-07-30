@@ -20,7 +20,7 @@ jest.mock('electron', () => ({
     showOpenDialog: jest.fn()
   },
   app: {
-    getAppPath: jest.fn()
+    getPath: jest.fn()
   }
 }))
 jest.mock('./list-engine')
@@ -64,7 +64,7 @@ async function makeFolder({
 describe('File loader', () => {
   beforeEach(() => {
     jest.clearAllMocks()
-    electron.app.getAppPath.mockReturnValue(mockOs.tmpdir())
+    electron.app.getPath.mockReturnValue(mockOs.tmpdir())
     covers.findFor.mockResolvedValue(null)
     tag.read.mockResolvedValue({})
     lists.add.mockResolvedValue()

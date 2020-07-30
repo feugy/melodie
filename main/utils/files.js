@@ -3,9 +3,8 @@
 const { app } = require('electron')
 const { join } = require('path')
 
-const appPath = app.getAppPath('userData')
-const folder = 'indices'
+const appPath = app.getPath('userData')
 
 exports.getStoragePath = function (file) {
-  return join(appPath, folder, `${file}`)
+  return join(appPath, `${file}`)
 }

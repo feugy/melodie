@@ -47,12 +47,13 @@ module.exports = class AbstractModel {
         `${this.name} model must be initialized with an sqlite3 file path`
       )
     }
+    this.logger.debug({ filename, model: this.name }, `initializing model...`)
     this.db = await connect(filename)
     if (!(await this.db.schema.hasTable(this.name))) {
-      this.logger.info('table created')
+      this.logger.info({ filename, model: this.name }, 'table created')
       await this.db.schema.createTable(this.name, this.definition)
     }
-    this.logger.debug('initialized')
+    this.logger.debug({ filename, model: this.name }, 'initialized')
   }
 
   async list({ from = 0, size = 10, sort = 'id' } = {}) {

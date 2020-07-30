@@ -1,3 +1,3 @@
 'use strict'
 
-jest.mock('electron', () => ({ app: { getAppPath: jest.fn() } }))
+jest.mock('electron', () => ({ app: { getPath: jest.fn() } }))

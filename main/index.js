@@ -43,7 +43,7 @@ async function createWindow() {
     webPreferences: {
       nodeIntegration: true
     },
-    icon: `${join(publicFolder, 'favicon.png')}`
+    icon: `${join(publicFolder, 'icon-256x256.png')}`
   })
 
   registerRenderer(win)
