@@ -6,14 +6,21 @@ import { BehaviorSubject } from 'rxjs'
 import faker from 'faker'
 import albumRoute from './[id].svelte'
 import { albums as mockedAlbums, loadTracks } from '../../stores/albums'
-import trackList from '../../stores/track-list'
+import { add } from '../../stores/track-queue'
 import { translate, sleep } from '../../tests'
 
 jest.mock('svelte-spa-router')
-jest.mock('../../stores/track-list')
+jest.mock('../../stores/track-queue', () => ({
+  add: jest.fn(),
+  current: {
+    subscribe: () => ({ unsubscribe: () => {} })
+  }
+}))
 jest.mock('../../stores/albums', () => ({
-  albums: {},
-  loadTracks: jest.fn()
+  loadTracks: jest.fn(),
+  albums: {
+    subscribe: () => ({ unsubscribe: () => {} })
+  }
 }))
 
 describe('album details route', () => {
@@ -94,8 +101,8 @@ describe('album details route', () => {
 
     await fireEvent.click(screen.getByText(translate('enqueue all')))
 
-    expect(trackList.add).toHaveBeenCalledWith(tracks)
-    expect(trackList.add).toHaveBeenCalledTimes(1)
+    expect(add).toHaveBeenCalledWith(tracks)
+    expect(add).toHaveBeenCalledTimes(1)
   })
 
   it('plays whole album', async () => {
@@ -104,8 +111,8 @@ describe('album details route', () => {
 
     await fireEvent.click(screen.getByText(translate('play all')))
 
-    expect(trackList.add).toHaveBeenCalledWith(tracks, true)
-    expect(trackList.add).toHaveBeenCalledTimes(1)
+    expect(add).toHaveBeenCalledWith(tracks, true)
+    expect(add).toHaveBeenCalledTimes(1)
   })
 
   it('enqueues clicked tracks', async () => {
@@ -115,8 +122,8 @@ describe('album details route', () => {
     await fireEvent.click(screen.getByText(tracks[1].tags.title))
 
     await sleep(250)
-    expect(trackList.add).toHaveBeenCalledWith(tracks[1])
-    expect(trackList.add).toHaveBeenCalledTimes(1)
+    expect(add).toHaveBeenCalledWith(tracks[1])
+    expect(add).toHaveBeenCalledTimes(1)
   })
 
   it('plays double-clicked tracks', async () => {
@@ -131,8 +138,8 @@ describe('album details route', () => {
     await fireEvent.click(row)
 
     await sleep(250)
-    expect(trackList.add).toHaveBeenCalledWith(tracks[2], true)
-    expect(trackList.add).toHaveBeenCalledTimes(2)
+    expect(add).toHaveBeenCalledWith(tracks[2], true)
+    expect(add).toHaveBeenCalledTimes(2)
   })
 
   it('plays tracks on play button', async () => {
@@ -146,7 +153,7 @@ describe('album details route', () => {
         .querySelector('button')
     )
 
-    expect(trackList.add).toHaveBeenCalledWith(tracks[0], true)
-    expect(trackList.add).toHaveBeenCalledTimes(1)
+    expect(add).toHaveBeenCalledWith(tracks[0], true)
+    expect(add).toHaveBeenCalledTimes(1)
   })
 })

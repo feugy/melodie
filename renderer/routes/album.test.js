@@ -7,11 +7,11 @@ import { BehaviorSubject } from 'rxjs'
 import faker from 'faker'
 import albumRoute from './album.svelte'
 import { albums as mockedAlbums, loadTracks } from '../stores/albums'
-import trackList from '../stores/track-list'
+import { add } from '../stores/track-queue'
 import { translate } from '../tests'
 
 jest.mock('svelte-spa-router')
-jest.mock('../stores/track-list')
+jest.mock('../stores/track-queue')
 jest.mock('../stores/albums', () => ({
   albums: {},
   loadTracks: jest.fn()
@@ -68,7 +68,7 @@ describe('album route', () => {
     await fireEvent.click(albumPlay)
 
     expect(loadTracks).toHaveBeenCalledWith(album)
-    expect(trackList.add).toHaveBeenCalledWith(tracks, true)
+    expect(add).toHaveBeenCalledWith(tracks, true)
     expect(push).not.toHaveBeenCalled()
   })
 
@@ -90,7 +90,7 @@ describe('album route', () => {
     await fireEvent.click(albumEnqueue)
 
     expect(loadTracks).toHaveBeenCalledWith(album)
-    expect(trackList.add).toHaveBeenCalledWith(tracks, false)
+    expect(add).toHaveBeenCalledWith(tracks, false)
     expect(push).not.toHaveBeenCalled()
   })
 
@@ -110,7 +110,7 @@ describe('album route', () => {
     await fireEvent.click(albumPlay)
 
     expect(loadTracks).not.toHaveBeenCalled()
-    expect(trackList.add).toHaveBeenCalledWith(tracks, true)
+    expect(add).toHaveBeenCalledWith(tracks, true)
     expect(push).not.toHaveBeenCalled()
   })
 
@@ -124,6 +124,6 @@ describe('album route', () => {
 
     expect(push).toHaveBeenCalledWith(`/album/${album.id}`)
     expect(loadTracks).not.toHaveBeenCalled()
-    expect(trackList.add).not.toHaveBeenCalled()
+    expect(add).not.toHaveBeenCalled()
   })
 })

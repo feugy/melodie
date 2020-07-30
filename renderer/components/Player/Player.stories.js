@@ -1,7 +1,7 @@
 'use strict'
 
 import Player from './Player.svelte'
-import trackList from '../../stores/track-list'
+import * as queue from '../../stores/track-queue'
 
 export default {
   title: 'Components/Player',
@@ -27,18 +27,16 @@ export const trackListData = [
 ]
 
 export const Empty = () => {
-  trackList.clear()
+  queue.clear()
   return {
-    Component: Player,
-    props: { trackList }
+    Component: Player
   }
 }
 
 export const WithTrackList = () => {
-  trackList.clear()
-  trackList.add(trackListData)
+  queue.clear()
+  queue.add(trackListData)
   return {
-    Component: Player,
-    props: { trackList }
+    Component: Player
   }
 }

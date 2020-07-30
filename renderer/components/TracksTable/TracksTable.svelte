@@ -13,7 +13,8 @@
   } from 'rxjs/operators'
   import Button from '../Button/Button.svelte'
 
-  export let tracks
+  export let tracks = undefined
+  export let current = undefined
 
   const dblClickDuration = 250
   const dispatch = createEventDispatcher()
@@ -60,7 +61,11 @@
 
   tbody tr:hover {
     @apply cursor-pointer;
-    background-color: var(--primary-color);
+    background-color: var(--hover-primary-color);
+  }
+
+  tbody tr.current {
+    background-color: var(--outline-color);
   }
 
   .play {
@@ -69,11 +74,11 @@
     left: 0.6rem;
   }
 
-  tbody tr:hover .play {
+  tbody tr:hover:not(.current) .play {
     @apply inline-block;
   }
 
-  tbody tr:hover .rank {
+  tbody tr:hover:not(.current) .rank {
     @apply hidden;
   }
 </style>
@@ -90,7 +95,9 @@
     </thead>
     <tbody>
       {#each tracks as track, i (track.id)}
-        <tr on:click={() => handleClick(track)}>
+        <tr
+          on:click={() => handleClick(track)}
+          class:current={$current === track}>
           <td>
             <span class="rank">{i + 1}</span>
             <span class="play">
@@ -99,7 +106,7 @@
                   dispatch('play', track)
                   evt.stopImmediatePropagation()
                 }}
-                icon="play_arrow" />
+                icon={'play_arrow'} />
             </span>
           </td>
           <td>{track.tags.title}</td>

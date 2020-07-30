@@ -3,7 +3,7 @@
   import { _ } from 'svelte-intl'
   import Router from 'svelte-spa-router'
   import { Button, Progress, Player, Nav, Sheet } from './components'
-  import trackList from './stores/track-list'
+  import * as queue from './stores/track-queue'
   import { list as listAlbums } from './stores/albums'
   import { channelListener } from './utils'
   import { routes } from './routes'
@@ -73,7 +73,7 @@
   </main>
   <footer>
     <Player
-      {trackList}
+      trackList={queue}
       on:togglePlaylist={() => (isPlaylistOpen = !isPlaylistOpen)} />
   </footer>
 </div>

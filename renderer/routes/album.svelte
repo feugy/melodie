@@ -4,7 +4,7 @@
   import { push } from 'svelte-spa-router'
   import { Album, Button, Player, Heading } from '../components'
   import { albums, loadTracks } from '../stores/albums'
-  import trackList from '../stores/track-list'
+  import { add } from '../stores/track-queue'
   import { invoke } from '../utils'
 
   export const params = {}
@@ -13,7 +13,7 @@
     if (!album.tracks) {
       await loadTracks(album)
     }
-    trackList.add($albums.find(({ id }) => id === album.id).tracks, immediate)
+    add($albums.find(({ id }) => id === album.id).tracks, immediate)
   }
 
   async function handleAlbumEnqueue(evt) {

@@ -5,13 +5,13 @@
   import Track from '../Track/Track.svelte'
   import Slider from '../Slider/Slider.svelte'
   import { toDOMSrc } from '../../utils'
+  import { next, previous, current, tracks } from '../../stores/track-queue'
 
-  export let trackList
   const dispatch = createEventDispatcher()
   let isPlaying
   let player
   let duration = 0
-  let current = 0
+  let currentTime = 0
   let nextSeek = null
 
   function formatTime(seconds) {
@@ -22,10 +22,9 @@
 
   function handleSeek({ detail }) {
     if (player) {
-      current = detail
       clearTimeout(nextSeek)
       nextSeek = setTimeout(function () {
-        player.currentTime = detail
+        currentTime = detail
       }, 100)
     }
   }
@@ -40,12 +39,12 @@
 
   function handleNext() {
     player.pause()
-    trackList.next()
+    next()
   }
 
   function handlePrevious() {
     player.pause()
-    trackList.previous()
+    previous()
   }
 
   function handleTogglePlaylist() {
@@ -79,12 +78,13 @@
   }
 </style>
 
+<!--  -->
 <audio
   bind:this={player}
   autoplay
-  src={$trackList.current && toDOMSrc($trackList.current.path)}
+  src={$current && toDOMSrc($current.path)}
   on:ended={handleNext}
-  bind:currentTime={current}
+  bind:currentTime
   bind:duration
   on:play={() => {
     isPlaying = true
@@ -95,8 +95,8 @@
 
 <div class="flex items-center">
   <span class="current">
-    {#if $trackList.current}
-      <Track src={$trackList.current.tags} media={$trackList.current.media} />
+    {#if $current}
+      <Track src={$current.tags} media={$current.media} />
     {/if}
   </span>
   <div class="player">
@@ -114,8 +114,12 @@
       <Button class="mx-1" on:click={handleNext} icon="skip_next" noBorder />
     </span>
     <span class="controls time">
-      <span>{formatTime(current)}</span>
-      <Slider class="w-full" {current} max={duration} on:input={handleSeek} />
+      <span>{formatTime(currentTime)}</span>
+      <Slider
+        class="w-full"
+        current={currentTime}
+        max={duration}
+        on:input={handleSeek} />
       <span>{formatTime(duration)}</span>
     </span>
   </div>

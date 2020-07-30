@@ -1,6 +1,7 @@
 'use strict'
 
 import { action } from '@storybook/addon-actions'
+import { BehaviorSubject } from 'rxjs'
 import TracksTable from './TracksTable.svelte'
 
 export default {
@@ -155,6 +156,8 @@ export const tracksData = [
   }
 ]
 
+export const current$Data = new BehaviorSubject(tracksData[3])
+
 export const actionsData = {
   enqueue: action('on track enqueue'),
   play: action('on track play')
@@ -164,6 +167,15 @@ export const Default = () => ({
   Component: TracksTable,
   props: {
     tracks: tracksData
+  },
+  on: actionsData
+})
+
+export const WithCurrent = () => ({
+  Component: TracksTable,
+  props: {
+    tracks: tracksData,
+    current: current$Data
   },
   on: actionsData
 })
