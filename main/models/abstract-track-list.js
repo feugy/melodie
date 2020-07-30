@@ -1,7 +1,7 @@
 'use strict'
 
-const { difference, uniq } = require('lodash')
 const Model = require('./abstract-model')
+const { uniq, difference } = require('../utils')
 
 module.exports = class AbstractTrackList extends Model {
   constructor(name, definition) {
@@ -41,7 +41,7 @@ module.exports = class AbstractTrackList extends Model {
             trackIds: uniq(
               difference(
                 previousList.trackIds.concat(trackList.trackIds || []),
-                trackList.removedTrackIds
+                trackList.removedTrackIds || []
               )
             )
           }

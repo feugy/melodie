@@ -5,7 +5,7 @@ const knex = require('knex')
 const os = require('os')
 const fs = require('fs-extra')
 const { join } = require('path')
-const { cloneDeep } = require('lodash')
+const merge = require('deepmerge')
 const TrackList = require('./abstract-track-list')
 
 const modelName = 'test'
@@ -187,7 +187,7 @@ describe('Abstract track list', () => {
     })
 
     it('updates existing model and appends track ids', async () => {
-      const model = cloneDeep(models[1])
+      const model = merge(models[1], {})
       model.trackIds = [faker.random.number(), faker.random.number()]
 
       const { saved, removedIds } = await tested.save(model)
@@ -208,7 +208,7 @@ describe('Abstract track list', () => {
     })
 
     it('updates existing model and removes track ids', async () => {
-      const model = cloneDeep(models[2])
+      const model = merge(models[2], {})
       model.removedTrackIds = JSON.parse(model.trackIds).slice(1, 2)
       model.trackIds = [faker.random.number()]
 

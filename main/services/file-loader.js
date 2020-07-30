@@ -14,10 +14,9 @@ const {
   tap,
   share
 } = require('rxjs/operators')
-const { uniq } = require('lodash')
 const chokidar = require('chokidar')
 const klaw = require('klaw')
-const { hash, broadcast, getLogger } = require('../utils')
+const { hash, broadcast, getLogger, uniq } = require('../utils')
 const tag = require('./tag-reader')
 const covers = require('./cover-finder')
 const lists = require('./list-engine')
