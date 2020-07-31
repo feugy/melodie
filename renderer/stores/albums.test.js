@@ -3,8 +3,8 @@
 import faker from 'faker'
 import { tick } from 'svelte'
 import { get } from 'svelte/store'
-import { mockInvoke, sleep } from '../tests'
-import { albums as albumsStore, list, loadTracks, reset } from './albums'
+import { mockInvoke, mockIpcRenderer, sleep } from '../tests'
+import { albums, list, loadTracks, reset } from './albums'
 
 describe('albums store', () => {
   beforeEach(() => {
@@ -36,10 +36,10 @@ describe('albums store', () => {
           from: size * 2,
           results: data.slice(size * 2)
         })
-      expect(get(albumsStore)).toEqual([])
+      expect(get(albums)).toEqual([])
       await list()
       await sleep(100)
-      expect(get(albumsStore)).toEqual(data)
+      expect(get(albums)).toEqual(data)
       expect(mockInvoke).toHaveBeenCalledTimes(3)
       expect(mockInvoke).toHaveBeenCalledWith(
         'remote',
@@ -47,6 +47,72 @@ describe('albums store', () => {
         'listAlbums',
         expect.any(Object)
       )
+    })
+
+    it('receives change updates', async () => {
+      const data = Array.from({ length: 8 }, (v, i) => ({
+        id: i,
+        name: faker.random.word()
+      }))
+      const updated1 = { ...data[3], name: faker.random.word(), updated: true }
+      const updated2 = { ...data[6], name: faker.random.word(), updated: true }
+      mockInvoke.mockResolvedValueOnce({
+        total: data.length,
+        size: data.length,
+        from: 0,
+        results: data
+      })
+      await list()
+      await sleep(100)
+      expect(get(albums)).toEqual(data)
+
+      mockIpcRenderer.emit('album-change', null, updated1)
+      expect(get(albums)).toEqual([
+        ...data.slice(0, 3),
+        updated1,
+        ...data.slice(4)
+      ])
+
+      mockIpcRenderer.emit('album-change', null, updated2)
+      expect(get(albums)).toEqual([
+        ...data.slice(0, 3),
+        updated1,
+        ...data.slice(4, 6),
+        updated2,
+        ...data.slice(7)
+      ])
+
+      expect(mockInvoke).toHaveBeenCalledTimes(1)
+    })
+
+    it('receives removal updates', async () => {
+      const data = Array.from({ length: 8 }, (v, i) => ({
+        id: i,
+        name: faker.random.word()
+      }))
+      const removed1 = data[3].id
+      const removed2 = data[6].id
+      mockInvoke.mockResolvedValueOnce({
+        total: data.length,
+        size: data.length,
+        from: 0,
+        results: data
+      })
+      await list()
+      await sleep(100)
+      expect(get(albums)).toEqual(data)
+
+      mockIpcRenderer.emit('album-removal', null, removed1)
+      expect(get(albums)).toEqual([...data.slice(0, 3), ...data.slice(4)])
+
+      mockIpcRenderer.emit('album-removal', null, removed2)
+      expect(get(albums)).toEqual([
+        ...data.slice(0, 3),
+        ...data.slice(4, 6),
+        ...data.slice(7)
+      ])
+
+      expect(mockInvoke).toHaveBeenCalledTimes(1)
     })
   })
 
@@ -67,7 +133,7 @@ describe('albums store', () => {
       await list()
       await loadTracks(album)
       await tick()
-      expect(get(albumsStore)).toEqual([
+      expect(get(albums)).toEqual([
         {
           ...album,
           tracks: data
@@ -82,7 +148,7 @@ describe('albums store', () => {
       )
     })
 
-    it('does not alter unknown item', async () => {
+    it('adds unknown item', async () => {
       const album = {
         id: faker.random.uuid(),
         name: faker.commerce.productName()
@@ -95,7 +161,7 @@ describe('albums store', () => {
 
       await loadTracks(album)
       await tick()
-      expect(get(albumsStore)).toEqual([])
+      expect(get(albums)).toEqual([album])
       expect(mockInvoke).toHaveBeenCalledWith(
         'remote',
         'listEngine',

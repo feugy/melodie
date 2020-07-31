@@ -1,86 +1,79 @@
 'use strict'
 
-import produce from 'immer'
-import { BehaviorSubject, Observable, iif, of, using } from 'rxjs'
-import { flatMap, map } from 'rxjs/operators'
-import { channelListener, invoke } from '../utils'
+import { BehaviorSubject, ReplaySubject } from 'rxjs'
+import { mergeMap, map, scan } from 'rxjs/operators'
+import { fromServerChannel, invoke } from '../utils'
 
 const collator = new Intl.Collator({ numeric: true })
 
-const store = new BehaviorSubject([])
+fromServerChannel('album-change').subscribe(changed =>
+  albums$.next({ changed })
+)
+fromServerChannel('album-removal').subscribe(removedId =>
+  albums$.next({ removedId })
+)
 
-channelListener('album-change', album => {
-  store.next(
-    produce(store.value, draft => {
-      const idx = draft.findIndex(({ id }) => id === album.id)
+const albums$ = new ReplaySubject().pipe(
+  scan((list, { clear, added, changed, removedId }) => {
+    if (clear) {
+      list = []
+    }
+    if (added) {
+      list.push(...added)
+    }
+    if (changed) {
+      const idx = list.findIndex(({ id }) => id === changed.id)
       if (idx !== -1) {
-        draft[idx] = album
+        list[idx] = changed
       } else {
-        draft.push(album)
-        draft.sort((a, b) => collator.compare(a.name, b.name))
+        list.push(changed)
+        list.sort((a, b) => collator.compare(a.name, b.name))
       }
-    })
-  )
-}).subscribe()
-
-channelListener('album-removal', id => {
-  store.next(
-    produce(store.value, draft => {
-      const idx = draft.findIndex(album => id === album.id)
+    }
+    if (removedId) {
+      const idx = list.findIndex(({ id }) => id === removedId)
       if (idx !== -1) {
-        draft.splice(idx, 1)
+        list.splice(idx, 1)
       }
-    })
-  )
-}).subscribe()
+    }
+    return list
+  }, [])
+)
+
+// first init
+reset()
 
 export const albums = {
-  subscribe: store.subscribe.bind(store)
+  subscribe: albums$.subscribe.bind(albums$)
 }
 
 export function reset() {
-  store.next([])
+  albums$.next({ clear: true })
 }
 
 export async function list() {
-  store.next([])
-  let subscriber
+  albums$.next({ clear: true })
 
-  const makeCaller = arg =>
-    of(arg).pipe(
-      flatMap(arg => invoke('listEngine.listAlbums', arg)),
+  const request$ = new BehaviorSubject({})
+
+  request$
+    .pipe(
+      mergeMap(arg => invoke('listEngine.listAlbums', arg)),
       map(data => {
         const { size, from, total, results } = data
-        store.next(produce(store.value, draft => [...draft, ...results]))
-        subscriber.next({ from: from + results.length, size, total })
+        albums$.next({ added: results })
+        const nextFrom = from + results.length
+        if (nextFrom < total) {
+          request$.next({ from: nextFrom, size, total })
+        } else {
+          request$.complete()
+        }
       })
-    )
-
-  const subscription = Observable.create(s => {
-    subscriber = s
-    subscriber.next({ total: 1 })
-  })
-    .pipe(
-      flatMap(arg =>
-        iif(
-          () => store.value.length < arg.total,
-          makeCaller(arg),
-          using(() => subscription.unsubscribe())
-        )
-      )
     )
     .subscribe()
 }
 
 export async function loadTracks(album) {
-  const result = await invoke('listEngine.listTracksOf', album)
-
-  store.next(
-    produce(store.value, draft => {
-      const idx = draft.findIndex(({ name }) => name === album.name)
-      if (idx >= 0) {
-        draft[idx].tracks = result
-      }
-    })
-  )
+  album.tracks = await invoke('listEngine.listTracksOf', album)
+  albums$.next({ changed: album })
 }

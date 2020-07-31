@@ -1,19 +1,16 @@
 'use strict'
 
 const { ipcRenderer } = require('electron')
+import { fromEvent } from 'rxjs'
 
-export function channelListener(channel, listener) {
-  return {
-    subscribe() {
-      function wrapper(event, ...args) {
-        listener(...args)
-      }
-      ipcRenderer.on(channel, wrapper)
-      return {
-        unsubscribe: function () {
-          ipcRenderer.removeListener(channel, wrapper)
-        }
-      }
-    }
+const observables = new Map()
+
+export function fromServerChannel(channel) {
+  if (!observables.has(channel)) {
+    observables.set(
+      channel,
+      fromEvent(ipcRenderer, channel, (event, args) => args)
+    )
   }
+  return observables.get(channel)
 }

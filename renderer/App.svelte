@@ -5,20 +5,17 @@
   import { Button, Progress, Player, Nav, Sheet } from './components'
   import * as queue from './stores/track-queue'
   import { list as listAlbums } from './stores/albums'
-  import { channelListener } from './utils'
+  import { fromServerChannel } from './utils'
   import { routes } from './routes'
+  import { filter, pluck } from 'rxjs/operators'
 
-  let isLoading = false
   let isPlaylistOpen = false
+  let isLoading = fromServerChannel('tracking').pipe(
+    filter(({ op }) => op === 'addFolders'),
+    pluck('inProgress')
+  )
 
-  onMount(() => {
-    listAlbums()
-    channelListener('tracking', ({ inProgress, op }) => {
-      if (op === 'addFolders') {
-        isLoading = inProgress
-      }
-    }).subscribe()
-  })
+  onMount(() => listAlbums())
 </script>
 
 <style class="postcss">
@@ -61,7 +58,7 @@
     <Sheet bind:open={isPlaylistOpen}>
       <section slot="main">
         <Nav />
-        {#if isLoading}
+        {#if $isLoading}
           <Progress />
         {/if}
         <Router {routes} />
