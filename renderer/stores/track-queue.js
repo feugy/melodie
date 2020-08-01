@@ -7,32 +7,36 @@ const tracks$ = new ReplaySubject().pipe(
   scan((list, added) => (added === null ? [] : [...list, ...added]), [])
 )
 
-// first init
-clear()
+const current$ = new ReplaySubject()
 
 const actions$ = new Subject()
 
-const current$ = merge(actions$, tracks$).pipe(
-  scan(({ list, current }, action) => {
-    if (Array.isArray(action)) {
-      list = action
-      if (!list.includes(current)) {
-        current = undefined
+const index$ = merge(actions$, tracks$).pipe(
+  scan(
+    ({ list, idx }, action) => {
+      if (Array.isArray(action)) {
+        list = action
+        if (idx >= list.length) {
+          idx = 0
+        }
       }
-    }
-    const idx = list.indexOf(current)
-    if (idx === -1) {
-      current = list[0]
-    } else if (action.next) {
-      current = list[(idx + 1) % list.length]
-    } else if (action.previous) {
-      current = list[idx === 0 ? list.length - 1 : idx - 1]
-    }
-    return { list, current }
-  }, {}),
-  pluck('current'),
+
+      if (action.next) {
+        idx = (idx + 1) % list.length
+      } else if (action.previous) {
+        idx = idx === 0 ? list.length - 1 : idx - 1
+      }
+      current$.next(list[idx])
+      return { list, idx }
+    },
+    { idx: 0 }
+  ),
+  pluck('idx'),
   shareReplay()
 )
+
+// first init
+clear()
 
 export const tracks = {
   subscribe: tracks$.subscribe.bind(tracks$)
@@ -40,6 +44,10 @@ export const tracks = {
 
 export const current = {
   subscribe: current$.subscribe.bind(current$)
+}
+
+export const index = {
+  subscribe: index$.subscribe.bind(index$)
 }
 
 export function add(values, play = false) {

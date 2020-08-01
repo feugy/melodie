@@ -7,7 +7,7 @@ exports[`Storyshots Components/Heading Default 1`] = `
   <section>
     <header
       class=" svelte-196fo1j"
-      style="--image: url(./valentino-funghi-MEcxLZ8ENV8-unsplash.jpg); --shade-color: rgba(0, 0, 0, 0.5);"
+      style="--image: url(./valentino-funghi-MEcxLZ8ENV8-unsplash.jpg); --shade-color: rgba(0, 0, 0, 0.7);"
     >
       <h1
         class="svelte-196fo1j"

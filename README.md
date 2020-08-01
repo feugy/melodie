@@ -76,7 +76,6 @@ npm run build
 1. Undetected live changes: remove tracks and re-add them. This is a linux-only issue with chokidar
    - https://github.com/paulmillr/chokidar/issues/917
    - https://github.com/paulmillr/chokidar/issues/591
-1. Can not add the same track twice to play list (duplicated ids in each)
 1. When loading new folders, enqueuing or going to album details will give incomplete results. Going back and forth won't load new data
 
 ## History

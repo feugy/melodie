@@ -6,7 +6,7 @@ exports[`Storyshots Components/Tracks queue Empty 1`] = `
 >
   <header
     class=" svelte-196fo1j"
-    style="--image: url(../images/jason-rosewell-ASKeuOZqhYU-unsplash.jpg); --shade-color: rgba(0, 0, 0, 0.5);"
+    style="--image: url(../images/jason-rosewell-ASKeuOZqhYU-unsplash.jpg); --shade-color: rgba(0, 0, 0, 0.7);"
   >
     <h1
       class="svelte-196fo1j"
@@ -33,7 +33,7 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
 >
   <header
     class=" svelte-196fo1j"
-    style="--image: url(../images/jason-rosewell-ASKeuOZqhYU-unsplash.jpg); --shade-color: rgba(0, 0, 0, 0.5);"
+    style="--image: url(../images/jason-rosewell-ASKeuOZqhYU-unsplash.jpg); --shade-color: rgba(0, 0, 0, 0.7);"
   >
     <h1
       class="svelte-196fo1j"

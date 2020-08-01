@@ -2,7 +2,7 @@
   import { _ } from 'svelte-intl'
   import Heading from '../Heading/Heading.svelte'
   import Track from '../Track/Track.svelte'
-  import { tracks, current } from '../../stores/track-queue'
+  import { tracks, index } from '../../stores/track-queue'
 </script>
 
 <style type="postcss">
@@ -34,8 +34,8 @@
 <h3>{$_('_ items', { total: $tracks.length })}</h3>
 
 <ol>
-  {#each $tracks as track (track.id)}
-    <li class:current={$current === track}>
+  {#each $tracks as track, i}
+    <li class:current={$index === i}>
       <Track src={track.tags} media={track.media} />
     </li>
   {/each}
