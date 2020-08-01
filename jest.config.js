@@ -43,6 +43,7 @@ module.exports = {
   collectCoverageFrom: [
     '**/*.js',
     '**/*.svelte',
+    '!**/tests/**',
     '!**/*.test.js',
     '!**/*.stories.*',
     '!**/node_modules/**',

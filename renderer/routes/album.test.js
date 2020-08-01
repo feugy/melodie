@@ -6,7 +6,7 @@ import { push } from 'svelte-spa-router'
 import { BehaviorSubject } from 'rxjs'
 import faker from 'faker'
 import albumRoute from './album.svelte'
-import { albums as mockedAlbums, loadTracks } from '../stores/albums'
+import { albums as mockedAlbums, load } from '../stores/albums'
 import { add } from '../stores/track-queue'
 import { translate } from '../tests'
 
@@ -14,7 +14,7 @@ jest.mock('svelte-spa-router')
 jest.mock('../stores/track-queue')
 jest.mock('../stores/albums', () => ({
   albums: {},
-  loadTracks: jest.fn()
+  load: jest.fn()
 }))
 
 describe('album route', () => {
@@ -54,20 +54,20 @@ describe('album route', () => {
     const tracks = [
       { id: faker.random.uuid(), path: faker.system.directoryPath() }
     ]
-    loadTracks.mockImplementation(async () => {
+    load.mockImplementation(async () => {
       album.tracks = tracks
+      return album
     })
     const album = albums[0]
 
     render(html`<${albumRoute} />`)
-    // TODO find a way to trigger `play` component event instead
     const albumPlay = screen
       .getByText(album.name)
       .closest('article')
       .querySelector('[data-testid="play"]')
     await fireEvent.click(albumPlay)
 
-    expect(loadTracks).toHaveBeenCalledWith(album)
+    expect(load).toHaveBeenCalledWith(album.id)
     expect(add).toHaveBeenCalledWith(tracks, true)
     expect(push).not.toHaveBeenCalled()
   })
@@ -76,20 +76,20 @@ describe('album route', () => {
     const tracks = [
       { id: faker.random.uuid(), path: faker.system.directoryPath() }
     ]
-    loadTracks.mockImplementation(async () => {
+    load.mockImplementation(async () => {
       album.tracks = tracks
+      return album
     })
     const album = albums[0]
 
     render(html`<${albumRoute} />`)
-    // TODO find a way to trigger `enqueue` component event instead
     const albumEnqueue = screen
       .getByText(album.name)
       .closest('article')
       .querySelector('[data-testid="enqueue"]')
     await fireEvent.click(albumEnqueue)
 
-    expect(loadTracks).toHaveBeenCalledWith(album)
+    expect(load).toHaveBeenCalledWith(album.id)
     expect(add).toHaveBeenCalledWith(tracks, false)
     expect(push).not.toHaveBeenCalled()
   })
@@ -102,14 +102,13 @@ describe('album route', () => {
     album.tracks = tracks
 
     render(html`<${albumRoute} />`)
-    // TODO find a way to trigger `play` component event instead
     const albumPlay = screen
       .getByText(album.name)
       .closest('article')
       .querySelector('button')
     await fireEvent.click(albumPlay)
 
-    expect(loadTracks).not.toHaveBeenCalled()
+    expect(load).not.toHaveBeenCalled()
     expect(add).toHaveBeenCalledWith(tracks, true)
     expect(push).not.toHaveBeenCalled()
   })
@@ -119,11 +118,10 @@ describe('album route', () => {
 
     render(html`<${albumRoute} />`)
     const album2 = screen.getByText(album.name)
-    // TODO find a way to trigger `select` component event instead
     await fireEvent.click(album2)
 
     expect(push).toHaveBeenCalledWith(`/album/${album.id}`)
-    expect(loadTracks).not.toHaveBeenCalled()
+    expect(load).not.toHaveBeenCalled()
     expect(add).not.toHaveBeenCalled()
   })
 })

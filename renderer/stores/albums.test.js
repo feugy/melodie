@@ -4,7 +4,7 @@ import faker from 'faker'
 import { tick } from 'svelte'
 import { get } from 'svelte/store'
 import { mockInvoke, mockIpcRenderer, sleep } from '../tests'
-import { albums, list, loadTracks, reset } from './albums'
+import { albums, list, load, reset } from './albums'
 
 describe('albums store', () => {
   beforeEach(() => {
@@ -52,10 +52,10 @@ describe('albums store', () => {
     it('receives change updates', async () => {
       const data = Array.from({ length: 8 }, (v, i) => ({
         id: i,
-        name: faker.random.word()
+        name: i
       }))
-      const updated1 = { ...data[3], name: faker.random.word(), updated: true }
-      const updated2 = { ...data[6], name: faker.random.word(), updated: true }
+      const updated1 = { ...data[3], updated: true }
+      const updated2 = { ...data[6], updated: true }
       mockInvoke.mockResolvedValueOnce({
         total: data.length,
         size: data.length,
@@ -82,6 +82,32 @@ describe('albums store', () => {
         ...data.slice(7)
       ])
 
+      expect(mockInvoke).toHaveBeenCalledTimes(1)
+    })
+
+    it('applies sort on changes', async () => {
+      const data = Array.from({ length: 8 }, (v, i) => ({
+        id: i,
+        name: `${i}0`
+      }))
+      const updated = { ...data[3], name: `2`, updated: true }
+      mockInvoke.mockResolvedValueOnce({
+        total: data.length,
+        size: data.length,
+        from: 0,
+        results: data
+      })
+      await list()
+      await sleep(100)
+      expect(get(albums)).toEqual(data)
+
+      mockIpcRenderer.emit('album-change', null, updated)
+      expect(get(albums)).toEqual([
+        ...data.slice(0, 1),
+        updated,
+        ...data.slice(1, 3),
+        ...data.slice(4)
+      ])
       expect(mockInvoke).toHaveBeenCalledTimes(1)
     })
 
@@ -116,58 +142,74 @@ describe('albums store', () => {
     })
   })
 
-  describe('loadTracks', () => {
-    it('list all tracks of an item', async () => {
+  describe('load', () => {
+    it('load album with all tracks', async () => {
       const album = {
         id: faker.random.uuid(),
-        name: faker.commerce.productName()
+        name: faker.commerce.productName(),
+        tracks: Array.from(
+          { length: faker.random.number({ min: 10, max: 30 }) },
+          (v, i) => i
+        )
       }
-      const data = Array.from(
-        { length: faker.random.number({ min: 10, max: 30 }) },
-        (v, i) => i
-      )
       mockInvoke
-        .mockResolvedValueOnce({ total: 1, results: [album] })
-        .mockResolvedValueOnce(data)
+        .mockResolvedValueOnce({
+          total: 1,
+          results: [{ ...album, tracks: undefined }]
+        })
+        .mockResolvedValueOnce(album)
 
       await list()
-      await loadTracks(album)
+      await load(album.id)
       await tick()
-      expect(get(albums)).toEqual([
-        {
-          ...album,
-          tracks: data
-        }
-      ])
+      expect(get(albums)).toEqual([album])
       expect(mockInvoke).toHaveBeenNthCalledWith(
         2,
         'remote',
         'listEngine',
-        'listTracksOf',
-        album
+        'fetchWithTracks',
+        'album',
+        album.id
       )
     })
 
-    it('adds unknown item', async () => {
+    it('adds new album to the list', async () => {
       const album = {
         id: faker.random.uuid(),
-        name: faker.commerce.productName()
+        name: faker.commerce.productName(),
+        tracks: Array.from(
+          { length: faker.random.number({ min: 10, max: 30 }) },
+          (v, i) => i
+        )
       }
-      const data = Array.from(
-        { length: faker.random.number({ min: 10, max: 30 }) },
-        (v, i) => i
-      )
-      mockInvoke.mockResolvedValueOnce(data)
+      mockInvoke.mockResolvedValueOnce(album)
 
-      await loadTracks(album)
+      await load(album.id)
       await tick()
       expect(get(albums)).toEqual([album])
       expect(mockInvoke).toHaveBeenCalledWith(
         'remote',
         'listEngine',
-        'listTracksOf',
-        album
+        'fetchWithTracks',
+        'album',
+        album.id
       )
     })
+  })
+
+  it('handles unknown album', async () => {
+    const id = faker.random.uuid()
+    mockInvoke.mockResolvedValueOnce(null)
+
+    await load(id)
+    await tick()
+    expect(get(albums)).toEqual([])
+    expect(mockInvoke).toHaveBeenCalledWith(
+      'remote',
+      'listEngine',
+      'fetchWithTracks',
+      'album',
+      id
+    )
   })
 })

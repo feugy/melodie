@@ -10,6 +10,7 @@ const { tracksModel } = require('../models/tracks')
 const { settingsModel } = require('../models/settings')
 const engine = require('./list-engine')
 const { hash, broadcast } = require('../utils')
+const { sleep } = require('../tests')
 
 jest.mock('../models/artists')
 jest.mock('../models/albums')
@@ -29,7 +30,7 @@ describe('Lists Engine', () => {
   })
 
   beforeEach(() => {
-    jest.clearAllMocks()
+    jest.resetAllMocks()
     albumsModel.list.mockResolvedValue([])
     albumsModel.save.mockResolvedValue({ saved: [], removedIds: [] })
     artistsModel.list.mockResolvedValue([])
@@ -377,11 +378,13 @@ describe('Lists Engine', () => {
       })
 
       await engine.remove(trackIds)
+      await sleep(200)
 
       expect(tracksModel.removeByIds).toHaveBeenCalledWith(trackIds)
       expect(tracksModel.removeByIds).toHaveBeenCalledTimes(1)
       expect(albumsModel.save).toHaveBeenCalledWith([album])
       expect(albumsModel.save).toHaveBeenCalledTimes(1)
+
       expect(broadcast).toHaveBeenCalledWith('album-removal', album.id)
       expect(broadcast).toHaveBeenCalledTimes(1)
     })
@@ -405,15 +408,70 @@ describe('Lists Engine', () => {
       })
 
       await engine.remove(trackIds)
+      await sleep(200)
 
       expect(tracksModel.removeByIds).toHaveBeenCalledWith(trackIds)
       expect(tracksModel.removeByIds).toHaveBeenCalledTimes(1)
       expect(artistsModel.save).toHaveBeenCalledWith(artists)
       expect(artistsModel.save).toHaveBeenCalledTimes(1)
+
       for (const { id } of artists) {
         expect(broadcast).toHaveBeenCalledWith('artist-removal', id)
       }
       expect(broadcast).toHaveBeenCalledTimes(artists.length)
+    })
+
+    it('sends changes before removals', async () => {
+      const path1 = faker.system.fileName()
+      const path2 = faker.system.fileName()
+      const artistNames = [faker.name.findName(), faker.name.findName()]
+      const artists = [
+        addId({
+          name: artistNames[0],
+          removedTrackIds: [hash(path1), hash(path2)],
+          trackIds: []
+        }),
+        addId({
+          name: artistNames[1],
+          removedTrackIds: [hash(path1)],
+          trackIds: []
+        })
+      ]
+      const tracks = [
+        { id: hash(path1), path: path1, tags: { artists: artistNames } },
+        {
+          id: hash(path2),
+          path: path2,
+          tags: { artists: artistNames.slice(0, 1) }
+        }
+      ]
+      const trackIds = tracks.map(({ id }) => id)
+
+      tracksModel.removeByIds.mockResolvedValueOnce(tracks)
+      artistsModel.save.mockResolvedValueOnce({
+        saved: [artists[0].id],
+        removedIds: [artists[1].id]
+      })
+
+      await engine.remove(trackIds)
+      await sleep(200)
+
+      expect(tracksModel.removeByIds).toHaveBeenCalledWith(trackIds)
+      expect(tracksModel.removeByIds).toHaveBeenCalledTimes(1)
+      expect(artistsModel.save).toHaveBeenCalledWith(artists)
+      expect(artistsModel.save).toHaveBeenCalledTimes(1)
+
+      expect(broadcast).toHaveBeenNthCalledWith(
+        1,
+        'artist-change',
+        artists[0].id
+      )
+      expect(broadcast).toHaveBeenNthCalledWith(
+        2,
+        'artist-removal',
+        artists[1].id
+      )
+      expect(broadcast).toHaveBeenCalledTimes(2)
     })
   })
 
@@ -448,8 +506,10 @@ describe('Lists Engine', () => {
   })
 })
 
-describe('getById', () => {
-  it('returns tracks by list, order by track number, single disc', async () => {
+describe('fetchWithTracks', () => {
+  beforeEach(() => jest.resetAllMocks())
+
+  it('returns album with tracks, order by track number, single disc', async () => {
     const track1 = {
       path: faker.system.fileName(),
       tags: { track: { no: 3 }, disk: {} }
@@ -472,11 +532,16 @@ describe('getById', () => {
       trackIds: [track1.id, track2.id, track3.id]
     }
 
+    albumsModel.getById.mockResolvedValueOnce(album)
     tracksModel.getByIds.mockResolvedValueOnce([track1, track2, track3])
-    expect(await engine.listTracksOf(album)).toEqual([track3, track1, track2])
+    expect(await engine.fetchWithTracks('album', album.id)).toEqual({
+      ...album,
+      tracks: [track3, track1, track2]
+    })
+    expect(artistsModel.getById).not.toHaveBeenCalled()
   })
 
-  it('returns tracks by list, order by track number, multiple discs', async () => {
+  it('returns album with tracks, order by track number, multiple discs', async () => {
     const track1 = {
       path: faker.system.fileName(),
       tags: { track: { no: 3 }, disk: { no: 2 } }
@@ -505,16 +570,16 @@ describe('getById', () => {
       trackIds: [track1.id, track2.id, track3.id, track4.id]
     }
 
+    albumsModel.getById.mockResolvedValueOnce(album)
     tracksModel.getByIds.mockResolvedValueOnce([track1, track2, track3, track4])
-    expect(await engine.listTracksOf(album)).toEqual([
-      track2,
-      track4,
-      track1,
-      track3
-    ])
+    expect(await engine.fetchWithTracks('album', album.id)).toEqual({
+      ...album,
+      tracks: [track2, track4, track1, track3]
+    })
+    expect(artistsModel.getById).not.toHaveBeenCalled()
   })
 
-  it('returns tracks by list, order by list rank', async () => {
+  it('returns album with tracks, order by list rank', async () => {
     const track1 = {
       path: faker.system.fileName(),
       tags: { track: { no: 3 }, disk: { no: 2 } }
@@ -537,11 +602,73 @@ describe('getById', () => {
       trackIds: [track3.id, track2.id, track1.id]
     }
 
+    albumsModel.getById.mockResolvedValueOnce(album)
     tracksModel.getByIds.mockResolvedValueOnce([track1, track2, track3])
-    expect(await engine.listTracksOf(album, 'rank')).toEqual([
-      track3,
-      track2,
-      track1
-    ])
+    expect(await engine.fetchWithTracks('album', album.id, 'rank')).toEqual({
+      ...album,
+      tracks: [track3, track2, track1]
+    })
+    expect(artistsModel.getById).not.toHaveBeenCalled()
+  })
+
+  it('returns artists with tracks', async () => {
+    const track1 = {
+      path: faker.system.fileName(),
+      tags: { track: { no: 3 }, disk: {} }
+    }
+    track1.id = hash(track1.path)
+    const track2 = {
+      path: faker.system.fileName(),
+      tags: { track: { no: undefined }, disk: {} }
+    }
+    track2.id = hash(track2.path)
+    const track3 = {
+      path: faker.system.fileName(),
+      tags: { track: { no: 1 }, disk: {} }
+    }
+    track3.id = hash(track3.path)
+    const name = faker.commerce.productName()
+    const artist = {
+      id: hash(name),
+      name,
+      trackIds: [track1.id, track2.id, track3.id]
+    }
+
+    artistsModel.getById.mockResolvedValueOnce(artist)
+    tracksModel.getByIds.mockResolvedValueOnce([track1, track2, track3])
+    expect(await engine.fetchWithTracks('artist', artist.id)).toEqual({
+      ...artist,
+      tracks: [track3, track1, track2]
+    })
+    expect(albumsModel.getById).not.toHaveBeenCalled()
+  })
+
+  it('handles missing list', async () => {
+    const track1 = {
+      path: faker.system.fileName(),
+      tags: { track: { no: 3 }, disk: {} }
+    }
+    track1.id = hash(track1.path)
+    const track2 = {
+      path: faker.system.fileName(),
+      tags: { track: { no: undefined }, disk: {} }
+    }
+    track2.id = hash(track2.path)
+    const track3 = {
+      path: faker.system.fileName(),
+      tags: { track: { no: 1 }, disk: {} }
+    }
+    track3.id = hash(track3.path)
+    const name = faker.commerce.productName()
+    const artist = {
+      id: hash(name),
+      name,
+      trackIds: [track1.id, track2.id, track3.id]
+    }
+
+    artistsModel.getById.mockResolvedValueOnce(null)
+    expect(await engine.fetchWithTracks('artist', artist.id)).toEqual(null)
+    expect(albumsModel.getById).not.toHaveBeenCalled()
+    expect(tracksModel.getByIds).not.toHaveBeenCalled()
   })
 })

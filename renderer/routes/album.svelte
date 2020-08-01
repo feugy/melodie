@@ -3,7 +3,7 @@
   import { fade } from 'svelte/transition'
   import { push } from 'svelte-spa-router'
   import { Album, Button, Player, Heading } from '../components'
-  import { albums, loadTracks } from '../stores/albums'
+  import { albums, load } from '../stores/albums'
   import { add } from '../stores/track-queue'
   import { invoke } from '../utils'
 
@@ -11,9 +11,9 @@
 
   async function handleAlbumPlay({ detail: album }, immediate = true) {
     if (!album.tracks) {
-      await loadTracks(album)
+      album = await load(album.id)
     }
-    add($albums.find(({ id }) => id === album.id).tracks, immediate)
+    add(album.tracks, immediate)
   }
 
   async function handleAlbumEnqueue(evt) {

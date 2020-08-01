@@ -1,22 +1,44 @@
 <script>
-  import { onDestroy } from 'svelte'
+  import { onMount, onDestroy } from 'svelte'
   import { fade } from 'svelte/transition'
   import { _ } from 'svelte-intl'
+  import { replace } from 'svelte-spa-router'
+  import { of } from 'rxjs'
+  import { map, filter, distinct, mergeMap } from 'rxjs/operators'
   import { Heading, Image, Button, TracksTable } from '../../components'
-  import { albums, loadTracks } from '../../stores/albums'
+  import { albums, load, changes, removals } from '../../stores/albums'
   import { add, current } from '../../stores/track-queue'
 
   export let params = {}
+  $: albumId = +params.id
+
   let album
 
-  const subscription = albums.subscribe(albums => {
-    album = albums.find(({ id }) => id === +params.id)
-    if (album && !album.tracks) {
-      loadTracks(album)
+  onMount(async () => {
+    album = await load(albumId)
+    if (!album) {
+      replace('/albums')
     }
   })
 
-  onDestroy(() => subscription.unsubscribe())
+  const changeSub = changes
+    .pipe(
+      filter(({ id }) => id === albumId),
+      distinct(),
+      mergeMap(album => (!album.tracks ? load(album.id) : of(album)))
+    )
+    .subscribe(async changed => {
+      album = changed
+    })
+
+  const removalSub = removals
+    .pipe(filter(id => id === albumId))
+    .subscribe(() => replace('/albums'))
+
+  onDestroy(() => {
+    changeSub.unsubscribe()
+    removalSub.unsubscribe()
+  })
 </script>
 
 <style type="postcss">

@@ -4,14 +4,15 @@ import { BehaviorSubject, ReplaySubject } from 'rxjs'
 import { mergeMap, map, scan } from 'rxjs/operators'
 import { fromServerChannel, invoke } from '../utils'
 
-const collator = new Intl.Collator({ numeric: true })
+const collator = new Intl.Collator([], { numeric: true })
 
-fromServerChannel('album-change').subscribe(changed =>
-  albums$.next({ changed })
-)
-fromServerChannel('album-removal').subscribe(removedId =>
-  albums$.next({ removedId })
-)
+export const changes = fromServerChannel('album-change')
+
+export const removals = fromServerChannel('album-removal')
+
+changes.subscribe(changed => albums$.next({ changed }))
+
+removals.subscribe(removedId => albums$.next({ removedId }))
 
 const albums$ = new ReplaySubject().pipe(
   scan((list, { clear, added, changed, removedId }) => {
@@ -27,8 +28,8 @@ const albums$ = new ReplaySubject().pipe(
         list[idx] = changed
       } else {
         list.push(changed)
-        list.sort((a, b) => collator.compare(a.name, b.name))
       }
+      list = list.sort((a, b) => collator.compare(a.name, b.name))
     }
     if (removedId) {
       const idx = list.findIndex(({ id }) => id === removedId)
@@ -73,7 +74,10 @@ export async function list() {
     .subscribe()
 }
 
-export async function loadTracks(album) {
-  album.tracks = await invoke('listEngine.listTracksOf', album)
-  albums$.next({ changed: album })
+export async function load(id) {
+  const album = await invoke('listEngine.fetchWithTracks', 'album', id)
+  if (album) {
+    albums$.next({ changed: album })
+  }
+  return album
 }

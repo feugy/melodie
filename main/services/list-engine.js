@@ -1,13 +1,14 @@
 'use strict'
 
-const { of, from, forkJoin, merge, EMPTY } = require('rxjs')
+const { of, from, concat, merge, EMPTY } = require('rxjs')
 const {
   map,
   reduce,
   mergeMap,
   shareReplay,
   expand,
-  filter
+  filter,
+  delay
 } = require('rxjs/operators')
 const { hash, broadcast, getLogger } = require('../utils')
 const {
@@ -64,14 +65,16 @@ function makeListPipeline(property, model) {
     mergeMap(({ records }) =>
       from(model.save(records)).pipe(
         mergeMap(({ saved, removedIds }) =>
-          forkJoin([
+          concat(
             from(saved).pipe(
               map(record => broadcast(`${property}-change`, record))
             ),
+            // removals must be delays to that change are transfered before
+            of(null).pipe(delay(100)),
             from(removedIds).pipe(
               map(id => broadcast(`${property}-removal`, id))
             )
-          ])
+          )
         )
       )
     )
@@ -185,8 +188,15 @@ module.exports = {
     return artistsModel.list({ sort: 'name', ...criteria })
   },
 
-  async listTracksOf(list, sortBy = 'trackNo') {
-    const tracks = await tracksModel.getByIds(list.trackIds)
-    return sorters[sortBy](list, tracks)
+  async fetchWithTracks(modelName, id, sortBy = 'trackNo') {
+    const list = await (modelName === 'artist'
+      ? artistsModel
+      : albumsModel
+    ).getById(id)
+    if (list) {
+      const tracks = await tracksModel.getByIds(list.trackIds)
+      list.tracks = sorters[sortBy](list, tracks)
+    }
+    return list
   }
 }
