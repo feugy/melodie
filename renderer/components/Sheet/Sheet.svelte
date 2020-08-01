@@ -2,6 +2,7 @@
   import { fly } from 'svelte/transition'
 
   export let open = false
+  export let width = '30%'
 </script>
 
 <style type="postcss">
@@ -15,7 +16,6 @@
 
   .aside {
     @apply block;
-    min-width: 33%;
   }
 </style>
 
@@ -26,6 +26,7 @@
   {#if open}
     <div
       class={`${$$props.class} aside`}
+      style={`min-width: ${width}`}
       transition:fly={{ duration: 250, x: 500 }}>
       <slot name="aside" />
     </div>

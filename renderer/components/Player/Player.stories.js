@@ -10,16 +10,19 @@ export default {
 
 export const trackListData = [
   {
+    id: 1,
     tags: { title: 'file 1', artists: ['Someone'] },
     media: './# Films/cover.jpg',
     path: './file.flac'
   },
   {
+    id: 2,
     tags: { title: 'file 2', artists: ['Someone else'] },
     media: './cover.jpg',
     path: './file.mp3'
   },
   {
+    id: 3,
     tags: { title: 'file 3', artists: ['Another fellow'] },
     media: './cover.jpg',
     path: './file.ogg'

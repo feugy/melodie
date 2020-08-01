@@ -10,6 +10,6 @@ enqueue all: Ajouter tout
 load: Charger...
 open playlist: File d'attente
 play all: Lire tout
-playlist: File d'attente
+playlist: Liste de lecture
 start loading some tracks: Commencez par charger quelques morceaux
 track: Piste

@@ -1,7 +1,7 @@
 <script>
   export let title
   export let image
-  export let shadeColor = 'rgba(0, 0, 0, 0.5)'
+  export let shadeColor = 'rgba(0, 0, 0, 0.7)'
 </script>
 
 <style type="postcss">

@@ -1,0 +1,149 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Components/Tracks queue Empty 1`] = `
+<section
+  class="storybook-snapshot-container"
+>
+  <header
+    class=" svelte-196fo1j"
+    style="--image: url(../images/jason-rosewell-ASKeuOZqhYU-unsplash.jpg); --shade-color: rgba(0, 0, 0, 0.5);"
+  >
+    <h1
+      class="svelte-196fo1j"
+    >
+      Liste de lecture
+    </h1>
+  </header>
+   
+  <h3
+    class="svelte-1vc04wb"
+  >
+    0 pistes
+  </h3>
+   
+  <ol
+    class="svelte-1vc04wb"
+  />
+</section>
+`;
+
+exports[`Storyshots Components/Tracks queue With Track List 1`] = `
+<section
+  class="storybook-snapshot-container"
+>
+  <header
+    class=" svelte-196fo1j"
+    style="--image: url(../images/jason-rosewell-ASKeuOZqhYU-unsplash.jpg); --shade-color: rgba(0, 0, 0, 0.5);"
+  >
+    <h1
+      class="svelte-196fo1j"
+    >
+      Liste de lecture
+    </h1>
+  </header>
+   
+  <h3
+    class="svelte-1vc04wb"
+  >
+    3 pistes
+  </h3>
+   
+  <ol
+    class="svelte-1vc04wb"
+  >
+    <li
+      class="svelte-1vc04wb current"
+    >
+      <div
+        class="container svelte-136dr2t"
+      >
+        <img
+          alt="./# Films/cover.jpg"
+          class="h-16 w-16 flex-none svelte-1k7rixd"
+          loading="lazy"
+          src="./%23 Films/cover.jpg"
+        />
+         
+        <div
+          class="flex flex-col"
+        >
+          <span
+            class="px-2 text-lg"
+          >
+            file 1
+          </span>
+           
+          <span
+            class="px-2 text-sm"
+          >
+            Someone
+          </span>
+        </div>
+      </div>
+       
+    </li>
+    <li
+      class="svelte-1vc04wb"
+    >
+      <div
+        class="container svelte-136dr2t"
+      >
+        <img
+          alt="./cover.jpg"
+          class="h-16 w-16 flex-none svelte-1k7rixd"
+          loading="lazy"
+          src="./cover.jpg"
+        />
+         
+        <div
+          class="flex flex-col"
+        >
+          <span
+            class="px-2 text-lg"
+          >
+            file 2
+          </span>
+           
+          <span
+            class="px-2 text-sm"
+          >
+            Someone else
+          </span>
+        </div>
+      </div>
+       
+    </li>
+    <li
+      class="svelte-1vc04wb"
+    >
+      <div
+        class="container svelte-136dr2t"
+      >
+        <img
+          alt="./cover.jpg"
+          class="h-16 w-16 flex-none svelte-1k7rixd"
+          loading="lazy"
+          src="./cover.jpg"
+        />
+         
+        <div
+          class="flex flex-col"
+        >
+          <span
+            class="px-2 text-lg"
+          >
+            file 3
+          </span>
+           
+          <span
+            class="px-2 text-sm"
+          >
+            Another fellow
+          </span>
+        </div>
+      </div>
+       
+    </li>
+  </ol>
+</section>
+`;

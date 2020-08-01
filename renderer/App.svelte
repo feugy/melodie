@@ -2,7 +2,14 @@
   import { onMount } from 'svelte'
   import { _ } from 'svelte-intl'
   import Router from 'svelte-spa-router'
-  import { Button, Progress, Player, Nav, Sheet } from './components'
+  import {
+    Button,
+    Progress,
+    Player,
+    Nav,
+    Sheet,
+    TracksQueue
+  } from './components'
   import * as queue from './stores/track-queue'
   import { list as listAlbums } from './stores/albums'
   import { fromServerChannel } from './utils'
@@ -36,7 +43,7 @@
   }
 
   aside {
-    @apply p-4 h-full;
+    @apply overflow-y-auto h-full;
     background: var(--bg-primary-color);
   }
 
@@ -64,7 +71,7 @@
         <Router {routes} />
       </section>
       <aside slot="aside">
-        <p>Here is some content for the playlist</p>
+        <TracksQueue />
       </aside>
     </Sheet>
   </main>

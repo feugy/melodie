@@ -7,6 +7,9 @@ const tracks$ = new ReplaySubject().pipe(
   scan((list, added) => (added === null ? [] : [...list, ...added]), [])
 )
 
+// first init
+clear()
+
 const actions$ = new Subject()
 
 const current$ = merge(actions$, tracks$).pipe(
