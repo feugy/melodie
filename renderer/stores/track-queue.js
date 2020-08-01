@@ -19,16 +19,18 @@ const index$ = merge(actions$, tracks$).pipe(
         if (idx >= list.length) {
           idx = 0
         }
-      } else if (
-        action.idx !== undefined &&
-        action.idx >= 0 &&
-        action.idx < list.length
-      ) {
-        idx = action.idx
-      } else if (action.next) {
-        idx = (idx + 1) % list.length
-      } else if (action.previous) {
-        idx = idx === 0 ? list.length - 1 : idx - 1
+      } else if (list.length) {
+        if (
+          action.idx !== undefined &&
+          action.idx >= 0 &&
+          action.idx < list.length
+        ) {
+          idx = action.idx
+        } else if (action.next) {
+          idx = (idx + 1) % list.length
+        } else if (action.previous) {
+          idx = idx === 0 ? list.length - 1 : idx - 1
+        }
       }
       current$.next(list[idx])
       return { list, idx }

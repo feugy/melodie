@@ -1,13 +1,18 @@
 <script>
   import { _ } from 'svelte-intl'
+  import Button from '../Button/Button.svelte'
   import Heading from '../Heading/Heading.svelte'
   import Track from '../Track/Track.svelte'
-  import { tracks, index, jumpTo } from '../../stores/track-queue'
+  import { tracks, index, jumpTo, clear } from '../../stores/track-queue'
 </script>
 
 <style type="postcss">
+  div {
+    @apply flex flex-row relative text-left px-8;
+  }
+
   h3 {
-    @apply relative text-left px-8;
+    @apply flex-grow;
   }
 
   ol {
@@ -31,7 +36,12 @@
 <Heading
   title={$_('playlist')}
   image={'../images/jason-rosewell-ASKeuOZqhYU-unsplash.jpg'} />
-<h3>{$_('_ items', { total: $tracks.length })}</h3>
+<div>
+  <h3>{$_('_ items', { total: $tracks.length })}</h3>
+  {#if $tracks.length}
+    <Button icon="delete" on:click={() => clear()} />
+  {/if}
+</div>
 
 <ol>
   {#each $tracks as track, i}

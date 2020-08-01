@@ -83,6 +83,15 @@ describe('track-queue store', () => {
   describe('next', () => {
     beforeEach(() => queue.clear())
 
+    it('does nothing on empty queue', async () => {
+      queue.next()
+      await tick()
+
+      expect(get(queue.tracks)).toEqual([])
+      expect(get(queue.current)).not.toBeDefined()
+      expect(get(queue.index)).toEqual(0)
+    })
+
     it('goes to next and cycle', async () => {
       const files = [
         faker.system.fileName(),
@@ -147,6 +156,15 @@ describe('track-queue store', () => {
   })
 
   describe('previous', () => {
+    it('does nothing on empty queue', async () => {
+      queue.previous()
+      await tick()
+
+      expect(get(queue.tracks)).toEqual([])
+      expect(get(queue.current)).not.toBeDefined()
+      expect(get(queue.index)).toEqual(0)
+    })
+
     it('goes to previous and cycle', async () => {
       const files = [
         faker.system.fileName(),
@@ -182,6 +200,14 @@ describe('track-queue store', () => {
 
   describe('jumpTo', () => {
     beforeEach(() => queue.clear())
+    it('does nothing on empty queue', async () => {
+      queue.jumpTo(1)
+      await tick()
+
+      expect(get(queue.tracks)).toEqual([])
+      expect(get(queue.current)).not.toBeDefined()
+      expect(get(queue.index)).toEqual(0)
+    })
 
     it('goes forward and backward', async () => {
       const files = [

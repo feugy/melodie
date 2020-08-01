@@ -1,11 +1,11 @@
 <script>
+  import { createEventDispatcher, onDestroy } from 'svelte'
   import { _ } from 'svelte-intl'
-  import { createEventDispatcher } from 'svelte'
   import Button from '../Button/Button.svelte'
   import Track from '../Track/Track.svelte'
   import Slider from '../Slider/Slider.svelte'
   import { toDOMSrc } from '../../utils'
-  import { next, previous, current, tracks } from '../../stores/track-queue'
+  import { next, previous, current } from '../../stores/track-queue'
 
   const dispatch = createEventDispatcher()
   let isPlaying
@@ -13,6 +13,19 @@
   let duration = 0
   let currentTime = 0
   let nextSeek = null
+  let src = null
+
+  const currentSub = current.subscribe(current => {
+    if (!current) {
+      src = null
+      if (player) {
+        isPlaying = false
+        player.load()
+      }
+    } else {
+      src = toDOMSrc(current.path)
+    }
+  })
 
   function formatTime(seconds) {
     const minutes = Math.floor(seconds / 60)
@@ -50,6 +63,8 @@
   function handleTogglePlaylist() {
     dispatch('togglePlaylist')
   }
+
+  onDestroy(() => currentSub.unsubscribe())
 </script>
 
 <style type="postcss">
@@ -82,7 +97,7 @@
 <audio
   bind:this={player}
   autoplay
-  src={$current && toDOMSrc($current.path)}
+  {src}
   on:ended={handleNext}
   bind:currentTime
   bind:duration

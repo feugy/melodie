@@ -6,7 +6,7 @@ import { screen, render, fireEvent } from '@testing-library/svelte'
 import html from 'svelte-htm'
 import faker from 'faker'
 import TracksQueue from './TracksQueue.svelte'
-import { add, clear, index } from '../../stores/track-queue'
+import { add, clear, index, current } from '../../stores/track-queue'
 
 describe('TracksQueue component', () => {
   beforeEach(() => clear())
@@ -76,5 +76,39 @@ describe('TracksQueue component', () => {
     await tick()
 
     expect(get(index)).toEqual(1)
+  })
+
+  it('clears tracks queue', async () => {
+    const track1 = {
+      id: 1,
+      tags: {
+        title: faker.commerce.productName(),
+        artists: [faker.name.findName()]
+      },
+      media: faker.system.fileName()
+    }
+    const track2 = {
+      id: 2,
+      tags: {
+        title: faker.commerce.productName(),
+        artists: [faker.name.findName()]
+      },
+      media: faker.system.fileName()
+    }
+    add([track1, track2])
+
+    render(html`<${TracksQueue} />`)
+    await tick()
+
+    expect(get(current)).toEqual(track1)
+    expect(screen.getByText(track1.tags.title)).toBeInTheDocument()
+    expect(screen.getByText(track2.tags.title)).toBeInTheDocument()
+
+    await fireEvent.click(screen.getByRole('button'))
+    await tick()
+
+    expect(get(current)).not.toBeDefined()
+    expect(screen.queryByText(track1.tags.title)).toBeFalsy()
+    expect(screen.queryByText(track2.tags.title)).toBeFalsy()
   })
 })

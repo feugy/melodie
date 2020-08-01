@@ -28,10 +28,6 @@ npm run build
 - [x] send start/stop events when updating
 - [x] embed file-loader's crawl() into chooseFolders()
 - [x] reactive stores: send update on new albums/artists/tracks
-- [ ] tracks' duration
-- [ ] albums' artists
-- [ ] artists pictures
-- [ ] artists' albums
 - [ ] consider knex-migrate
 - [ ] images from tags
 
@@ -55,6 +51,12 @@ npm run build
 - [x] enqueue & play album buttons on album details page
 - [x] enqueue button on Album component
 - [x] current play list
+- [ ] remove tracks from queue
+- [ ] update track queue on track changes
+- [ ] tracks' duration
+- [ ] albums' artists
+- [ ] artists pictures
+- [ ] artists' albums
 - [ ] list all artists
 - [ ] search input and results
 - [ ] settings panel with watched folders
@@ -70,6 +72,7 @@ npm run build
 - [x] animated transitions
 - [ ] loading indicators
 - [ ] feedback on enqueue & play actions
+- [ ] drag'n drop to tracks queue
 
 ### bugs
 
