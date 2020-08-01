@@ -19,9 +19,13 @@ const index$ = merge(actions$, tracks$).pipe(
         if (idx >= list.length) {
           idx = 0
         }
-      }
-
-      if (action.next) {
+      } else if (
+        action.idx !== undefined &&
+        action.idx >= 0 &&
+        action.idx < list.length
+      ) {
+        idx = action.idx
+      } else if (action.next) {
         idx = (idx + 1) % list.length
       } else if (action.previous) {
         idx = idx === 0 ? list.length - 1 : idx - 1
@@ -36,6 +40,7 @@ const index$ = merge(actions$, tracks$).pipe(
 )
 
 // first init
+index$.subscribe()
 clear()
 
 export const tracks = {
@@ -67,4 +72,8 @@ export function next() {
 
 export function previous() {
   actions$.next({ previous: true })
+}
+
+export function jumpTo(idx) {
+  actions$.next({ idx })
 }

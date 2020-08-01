@@ -2,7 +2,7 @@
   import { _ } from 'svelte-intl'
   import Heading from '../Heading/Heading.svelte'
   import Track from '../Track/Track.svelte'
-  import { tracks, index } from '../../stores/track-queue'
+  import { tracks, index, jumpTo } from '../../stores/track-queue'
 </script>
 
 <style type="postcss">
@@ -35,7 +35,7 @@
 
 <ol>
   {#each $tracks as track, i}
-    <li class:current={$index === i}>
+    <li class:current={$index === i} on:click={() => jumpTo(i)}>
       <Track src={track.tags} media={track.media} />
     </li>
   {/each}

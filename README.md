@@ -54,7 +54,7 @@ npm run build
 - [x] album details
 - [x] enqueue & play album buttons on album details page
 - [x] enqueue button on Album component
-- [-] current play list
+- [x] current play list
 - [ ] list all artists
 - [ ] search input and results
 - [ ] settings panel with watched folders

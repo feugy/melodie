@@ -179,4 +179,69 @@ describe('track-queue store', () => {
       expect(get(queue.index)).toEqual(2)
     })
   })
+
+  describe('jumpTo', () => {
+    beforeEach(() => queue.clear())
+
+    it('goes forward and backward', async () => {
+      const files = [
+        faker.system.fileName(),
+        faker.system.fileName(),
+        faker.system.fileName()
+      ]
+      queue.add(files)
+      expect(get(queue.tracks)).toEqual(files)
+      expect(get(queue.current)).toEqual(files[0])
+      expect(get(queue.index)).toEqual(0)
+
+      queue.jumpTo(2)
+      await tick()
+      expect(get(queue.current)).toEqual(files[2])
+      expect(get(queue.index)).toEqual(2)
+
+      queue.jumpTo(0)
+      await tick()
+      expect(get(queue.current)).toEqual(files[0])
+      expect(get(queue.index)).toEqual(0)
+    })
+
+    it('ignores out of bound index', async () => {
+      const files = [faker.system.fileName(), faker.system.fileName()]
+
+      queue.add(files)
+      expect(get(queue.tracks)).toEqual(files)
+      expect(get(queue.current)).toEqual(files[0])
+      expect(get(queue.index)).toEqual(0)
+
+      queue.jumpTo(10)
+      await tick()
+      expect(get(queue.current)).toEqual(files[0])
+      expect(get(queue.index)).toEqual(0)
+
+      queue.jumpTo(-1)
+      await tick()
+      expect(get(queue.current)).toEqual(files[0])
+      expect(get(queue.index)).toEqual(0)
+    })
+
+    it('supports duplicates', async () => {
+      const files = [faker.system.fileName(), faker.system.fileName()]
+      files.push(files[0], faker.system.fileName())
+
+      queue.add(files)
+      expect(get(queue.tracks)).toEqual(files)
+      expect(get(queue.current)).toEqual(files[0])
+      expect(get(queue.index)).toEqual(0)
+
+      queue.jumpTo(2)
+      await tick()
+      expect(get(queue.current)).toEqual(files[0])
+      expect(get(queue.index)).toEqual(2)
+
+      queue.jumpTo(1)
+      await tick()
+      expect(get(queue.current)).toEqual(files[1])
+      expect(get(queue.index)).toEqual(1)
+    })
+  })
 })

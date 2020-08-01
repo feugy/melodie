@@ -1,10 +1,12 @@
 'use strict'
 
-import { screen, render } from '@testing-library/svelte'
+import { tick } from 'svelte'
+import { get } from 'svelte/store'
+import { screen, render, fireEvent } from '@testing-library/svelte'
 import html from 'svelte-htm'
 import faker from 'faker'
 import TracksQueue from './TracksQueue.svelte'
-import { add, clear } from '../../stores/track-queue'
+import { add, clear, index } from '../../stores/track-queue'
 
 describe('TracksQueue component', () => {
   beforeEach(() => clear())
@@ -32,5 +34,47 @@ describe('TracksQueue component', () => {
 
     expect(screen.getAllByText(track1.tags.title)).toHaveLength(2)
     expect(screen.getAllByText(track2.tags.title)).toHaveLength(1)
+  })
+
+  it('jumps to track on click', async () => {
+    const track1 = {
+      id: 1,
+      tags: {
+        title: faker.commerce.productName(),
+        artists: [faker.name.findName()]
+      },
+      media: faker.system.fileName()
+    }
+    const track2 = {
+      id: 2,
+      tags: {
+        title: faker.commerce.productName(),
+        artists: [faker.name.findName()]
+      },
+      media: faker.system.fileName()
+    }
+    const track3 = {
+      id: 2,
+      tags: {
+        title: faker.commerce.productName(),
+        artists: [faker.name.findName()]
+      },
+      media: faker.system.fileName()
+    }
+    add([track1, track2, track3])
+
+    render(html`<${TracksQueue} />`)
+    await tick()
+    expect(get(index)).toEqual(0)
+
+    await fireEvent.click(screen.getByText(track3.tags.title))
+    await tick()
+
+    expect(get(index)).toEqual(2)
+
+    await fireEvent.click(screen.getByText(track2.tags.title))
+    await tick()
+
+    expect(get(index)).toEqual(1)
   })
 })
