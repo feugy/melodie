@@ -4,7 +4,7 @@
   import Button from '../Button/Button.svelte'
   import Track from '../Track/Track.svelte'
   import Slider from '../Slider/Slider.svelte'
-  import { toDOMSrc } from '../../utils'
+  import { toDOMSrc, formatTime } from '../../utils'
   import { next, previous, current } from '../../stores/track-queue'
 
   const dispatch = createEventDispatcher()
@@ -26,12 +26,6 @@
       src = toDOMSrc(current.path)
     }
   })
-
-  function formatTime(seconds) {
-    const minutes = Math.floor(seconds / 60)
-    const secs = Math.round(seconds % 60)
-    return `${minutes}:${secs < 10 ? '0' : ''}${secs}`
-  }
 
   function handleSeek({ detail }) {
     if (player) {

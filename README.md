@@ -53,7 +53,7 @@ npm run build
 - [x] current play list
 - [ ] remove tracks from queue
 - [ ] update track queue on track changes
-- [ ] tracks' duration
+- [-] tracks' duration
 - [ ] albums' artists
 - [ ] artists pictures
 - [ ] artists' albums

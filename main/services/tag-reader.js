@@ -9,7 +9,13 @@ module.exports = {
   async read(path) {
     let tags
     try {
-      tags = (await parseFile(path)).common
+      const { common, format } = await parseFile(path)
+      if (!format.duration) {
+        format.duration = (
+          await parseFile(path, { duration: true })
+        ).format.duration
+      }
+      tags = { ...common, duration: format.duration }
     } catch (error) {
       logger.warn({ error, path }, `failed to read tags`)
     }
@@ -20,6 +26,7 @@ module.exports = {
       genre: [],
       title: null,
       year: null,
+      duration: 0,
       ...tags,
       picture: undefined // TODO for now, don't store pictures
     }

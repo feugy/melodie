@@ -12,6 +12,7 @@
     repeat
   } from 'rxjs/operators'
   import Button from '../Button/Button.svelte'
+  import { formatTime } from '../../utils'
 
   export let tracks = undefined
   export let current = undefined
@@ -91,6 +92,7 @@
         <th>{$_('track')}</th>
         <th>{$_('artist')}</th>
         <th>{$_('album')}</th>
+        <th>{$_('duration')}</th>
       </tr>
     </thead>
     <tbody>
@@ -112,6 +114,7 @@
           <td>{track.tags.title}</td>
           <td>{track.tags.artists[0]}</td>
           <td>{track.tags.album}</td>
+          <td>{formatTime(track.tags.duration)}</td>
         </tr>
       {/each}
     </tbody>

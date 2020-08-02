@@ -3,9 +3,11 @@
 const { resolve } = require('path')
 const engine = require('./tag-reader')
 
-const mp3 = resolve(__dirname, '..', '..', 'fixtures', 'file.mp3')
-const ogg = resolve(__dirname, '..', '..', 'fixtures', 'file.ogg')
-const flac = resolve(__dirname, '..', '..', 'fixtures', 'file.flac')
+const fixtures = resolve(__dirname, '..', '..', 'fixtures')
+const mp3 = resolve(fixtures, 'file.mp3')
+const ogg = resolve(fixtures, 'file.ogg')
+const flac = resolve(fixtures, 'file.flac')
+const noDuration = resolve(fixtures, 'no-duration.mp3')
 
 describe('Tag reader', () => {
   it('reads mp3 file', async () => {
@@ -18,6 +20,7 @@ describe('Tag reader', () => {
         no: null,
         of: null
       },
+      duration: 0.809795918367347,
       genre: ['Folk'],
       title: 'Falling, Catching',
       track: {
@@ -38,6 +41,7 @@ describe('Tag reader', () => {
         no: null,
         of: null
       },
+      duration: 2.640975056689342,
       genre: ['Pop'],
       title: 'All I really want',
       track: {
@@ -58,6 +62,7 @@ describe('Tag reader', () => {
         no: null,
         of: null
       },
+      duration: 2.4249433106575964,
       genre: ['Soundtrack'],
       title: 'Main Title - Looks Like A Suicide',
       track: {
@@ -68,11 +73,46 @@ describe('Tag reader', () => {
     })
   })
 
+  it('reads duration when not returned in tags', async () => {
+    expect(await engine.read(noDuration)).toEqual({
+      album: 'By The Way',
+      artist: 'Red Hot Chili Peppers',
+      albumartist: 'Red Hot Chili Peppers',
+      artists: ['Red Hot Chili Peppers'],
+      averageLevel: 9083,
+      comment: [''],
+      composer: [''],
+      copyright: '',
+      disk: {
+        no: null,
+        of: null
+      },
+      duration: 217.9918367346939,
+      encodedby: '',
+      genre: ['Rock'],
+      label: ['Warner Bros.'],
+      originalartist: '',
+      rating: [
+        {
+          rating: 0,
+          source: 'Windows Media Player 9 Series'
+        }
+      ],
+      title: 'By The Way',
+      track: {
+        no: 1,
+        of: 16
+      },
+      year: 2002
+    })
+  })
+
   it('handles unknown file', async () => {
     expect(await engine.read(resolve(__dirname, 'unknown.file'))).toEqual({
       album: null,
       artist: null,
       artists: [],
+      duration: 0,
       genre: [],
       title: null,
       year: null
@@ -84,6 +124,7 @@ describe('Tag reader', () => {
       album: null,
       artist: null,
       artists: [],
+      duration: 0,
       genre: [],
       title: null,
       year: null

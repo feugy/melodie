@@ -6,6 +6,7 @@ album: Album
 artist: Artiste
 by _: 'par {artist}'
 clear: Vider
+duration: Durée
 enqueue all: Ajouter tout
 load: Charger...
 open playlist: File d'attente

@@ -15,7 +15,8 @@ export const tracksData = [
     tags: {
       title: 'American Money',
       artists: ['Yoko Kanno and the Seatbelts'],
-      album: 'Cowboy Bebop - NoDisc'
+      album: 'Cowboy Bebop - NoDisc',
+      duration: 332
     }
   },
   {
@@ -23,7 +24,8 @@ export const tracksData = [
     tags: {
       title: 'Fantaisie Sign',
       artists: ['Yoko Kanno and the Seatbelts'],
-      album: 'Cowboy Bebop - NoDisc'
+      album: 'Cowboy Bebop - NoDisc',
+      duration: 215
     }
   },
   {
@@ -31,7 +33,8 @@ export const tracksData = [
     tags: {
       title: "Don't Bother None",
       artists: ['Yoko Kanno and the Seatbelts'],
-      album: 'Cowboy Bebop - NoDisc'
+      album: 'Cowboy Bebop - NoDisc',
+      duration: 225
     }
   },
   {
@@ -39,7 +42,8 @@ export const tracksData = [
     tags: {
       title: 'Vitamin A',
       artists: ['Yoko Kanno and the Seatbelts'],
-      album: 'Cowboy Bebop - NoDisc'
+      album: 'Cowboy Bebop - NoDisc',
+      duration: 281
     }
   },
   {
@@ -47,7 +51,8 @@ export const tracksData = [
     tags: {
       title: 'LIVE in Baghdad',
       artists: ['Yoko Kanno and the Seatbelts'],
-      album: 'Cowboy Bebop - NoDisc'
+      album: 'Cowboy Bebop - NoDisc',
+      duration: 179
     }
   },
   {
@@ -55,7 +60,8 @@ export const tracksData = [
     tags: {
       title: 'Cats on Mars',
       artists: ['Yoko Kanno and the Seatbelts'],
-      album: 'Cowboy Bebop - NoDisc'
+      album: 'Cowboy Bebop - NoDisc',
+      duration: 7
     }
   },
   {
@@ -63,7 +69,8 @@ export const tracksData = [
     tags: {
       title: 'Want it All Back',
       artists: ['Yoko Kanno and the Seatbelts'],
-      album: 'Cowboy Bebop - NoDisc'
+      album: 'Cowboy Bebop - NoDisc',
+      duration: 231
     }
   },
   {
@@ -71,7 +78,8 @@ export const tracksData = [
     tags: {
       title: 'Bindy',
       artists: ['Yoko Kanno and the Seatbelts'],
-      album: 'Cowboy Bebop - NoDisc'
+      album: 'Cowboy Bebop - NoDisc',
+      duration: 15
     }
   },
   {
@@ -79,7 +87,8 @@ export const tracksData = [
     tags: {
       title: 'You Make Me Coo',
       artists: ['Yoko Kanno and the Seatbelts'],
-      album: 'Cowboy Bebop - NoDisc'
+      album: 'Cowboy Bebop - NoDisc',
+      duration: 194
     }
   },
   {
@@ -87,7 +96,8 @@ export const tracksData = [
     tags: {
       title: 'Vitamin B',
       artists: ['Yoko Kanno and the Seatbelts'],
-      album: 'Cowboy Bebop - NoDisc'
+      album: 'Cowboy Bebop - NoDisc',
+      duration: 246
     }
   },
   {
@@ -95,7 +105,8 @@ export const tracksData = [
     tags: {
       title: 'Green Bird',
       artists: ['Yoko Kanno and the Seatbelts'],
-      album: 'Cowboy Bebop - NoDisc'
+      album: 'Cowboy Bebop - NoDisc',
+      duration: 153
     }
   },
   {
@@ -103,7 +114,8 @@ export const tracksData = [
     tags: {
       title: 'ELM',
       artists: ['Yoko Kanno and the Seatbelts'],
-      album: 'Cowboy Bebop - NoDisc'
+      album: 'Cowboy Bebop - NoDisc',
+      duration: 415
     }
   },
   {
@@ -111,7 +123,8 @@ export const tracksData = [
     tags: {
       title: 'Vitamin C',
       artists: ['Yoko Kanno and the Seatbelts'],
-      album: 'Cowboy Bebop - NoDisc'
+      album: 'Cowboy Bebop - NoDisc',
+      duration: 324
     }
   },
   {
@@ -119,7 +132,8 @@ export const tracksData = [
     tags: {
       title: 'Gateway',
       artists: ['Yoko Kanno and the Seatbelts'],
-      album: 'Cowboy Bebop - NoDisc'
+      album: 'Cowboy Bebop - NoDisc',
+      duration: 16
     }
   },
   {
@@ -127,7 +141,8 @@ export const tracksData = [
     tags: {
       title: 'The Singing Sea',
       artists: ['Yoko Kanno and the Seatbelts'],
-      album: 'Cowboy Bebop - NoDisc'
+      album: 'Cowboy Bebop - NoDisc',
+      duration: 401
     }
   },
   {
@@ -135,7 +150,8 @@ export const tracksData = [
     tags: {
       title: 'The Egg and You!',
       artists: ['Yoko Kanno and the Seatbelts'],
-      album: 'Cowboy Bebop - NoDisc'
+      album: 'Cowboy Bebop - NoDisc',
+      duration: 287
     }
   },
   {
@@ -143,7 +159,8 @@ export const tracksData = [
     tags: {
       title: 'Forever Broke',
       artists: ['Yoko Kanno and the Seatbelts'],
-      album: 'Cowboy Bebop - NoDisc'
+      album: 'Cowboy Bebop - NoDisc',
+      duration: 96
     }
   },
   {
@@ -151,7 +168,8 @@ export const tracksData = [
     tags: {
       title: 'Power of Kungfu Remix',
       artists: ['Yoko Kanno and the Seatbelts'],
-      album: 'Cowboy Bebop - NoDisc'
+      album: 'Cowboy Bebop - NoDisc',
+      duration: 142
     }
   }
 ]

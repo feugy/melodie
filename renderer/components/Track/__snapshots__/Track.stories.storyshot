@@ -5,7 +5,7 @@ exports[`Storyshots Components/Track Default 1`] = `
   class="storybook-snapshot-container"
 >
   <div
-    class="container svelte-136dr2t"
+    class="root svelte-r59qz"
   >
     <img
       alt="./cover.jpg"
@@ -15,19 +15,59 @@ exports[`Storyshots Components/Track Default 1`] = `
     />
      
     <div
-      class="flex flex-col"
+      class="track svelte-r59qz"
     >
       <span
-        class="px-2 text-lg"
+        class="title svelte-r59qz"
       >
         Diamonds on the inside
       </span>
        
       <span
-        class="px-2 text-sm"
+        class="artist svelte-r59qz"
       >
         Ben Harper
       </span>
+    </div>
+     
+  </div>
+</section>
+`;
+
+exports[`Storyshots Components/Track With Details 1`] = `
+<section
+  class="storybook-snapshot-container"
+>
+  <div
+    class="root svelte-r59qz"
+  >
+    <img
+      alt="./cover.jpg"
+      class="h-16 w-16 flex-none svelte-1k7rixd"
+      loading="lazy"
+      src="./cover.jpg"
+    />
+     
+    <div
+      class="track svelte-r59qz"
+    >
+      <span
+        class="title svelte-r59qz"
+      >
+        Diamonds on the inside
+      </span>
+       
+      <span
+        class="artist svelte-r59qz"
+      >
+        Ben Harper
+      </span>
+    </div>
+     
+    <div
+      class="duration svelte-r59qz"
+    >
+      2:06
     </div>
   </div>
 </section>

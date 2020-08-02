@@ -34,6 +34,12 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
         >
           Album
         </th>
+         
+        <th
+          class="svelte-se0ib"
+        >
+          Durée
+        </th>
       </tr>
     </thead>
      
@@ -86,6 +92,12 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           Cowboy Bebop - NoDisc
         </td>
          
+        <td
+          class="svelte-se0ib"
+        >
+          5:32
+        </td>
+         
       </tr>
       <tr
         class="svelte-se0ib"
@@ -133,6 +145,12 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           Cowboy Bebop - NoDisc
         </td>
          
+        <td
+          class="svelte-se0ib"
+        >
+          3:35
+        </td>
+         
       </tr>
       <tr
         class="svelte-se0ib"
@@ -178,6 +196,12 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           class="svelte-se0ib"
         >
           Cowboy Bebop - NoDisc
+        </td>
+         
+        <td
+          class="svelte-se0ib"
+        >
+          3:45
         </td>
          
       </tr>
@@ -227,6 +251,12 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           Cowboy Bebop - NoDisc
         </td>
          
+        <td
+          class="svelte-se0ib"
+        >
+          4:41
+        </td>
+         
       </tr>
       <tr
         class="svelte-se0ib"
@@ -272,6 +302,12 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           class="svelte-se0ib"
         >
           Cowboy Bebop - NoDisc
+        </td>
+         
+        <td
+          class="svelte-se0ib"
+        >
+          2:59
         </td>
          
       </tr>
@@ -321,6 +357,12 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           Cowboy Bebop - NoDisc
         </td>
          
+        <td
+          class="svelte-se0ib"
+        >
+          0:07
+        </td>
+         
       </tr>
       <tr
         class="svelte-se0ib"
@@ -366,6 +408,12 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           class="svelte-se0ib"
         >
           Cowboy Bebop - NoDisc
+        </td>
+         
+        <td
+          class="svelte-se0ib"
+        >
+          3:51
         </td>
          
       </tr>
@@ -415,6 +463,12 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           Cowboy Bebop - NoDisc
         </td>
          
+        <td
+          class="svelte-se0ib"
+        >
+          0:15
+        </td>
+         
       </tr>
       <tr
         class="svelte-se0ib"
@@ -460,6 +514,12 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           class="svelte-se0ib"
         >
           Cowboy Bebop - NoDisc
+        </td>
+         
+        <td
+          class="svelte-se0ib"
+        >
+          3:14
         </td>
          
       </tr>
@@ -509,6 +569,12 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           Cowboy Bebop - NoDisc
         </td>
          
+        <td
+          class="svelte-se0ib"
+        >
+          4:06
+        </td>
+         
       </tr>
       <tr
         class="svelte-se0ib"
@@ -554,6 +620,12 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           class="svelte-se0ib"
         >
           Cowboy Bebop - NoDisc
+        </td>
+         
+        <td
+          class="svelte-se0ib"
+        >
+          2:33
         </td>
          
       </tr>
@@ -603,6 +675,12 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           Cowboy Bebop - NoDisc
         </td>
          
+        <td
+          class="svelte-se0ib"
+        >
+          6:55
+        </td>
+         
       </tr>
       <tr
         class="svelte-se0ib"
@@ -648,6 +726,12 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           class="svelte-se0ib"
         >
           Cowboy Bebop - NoDisc
+        </td>
+         
+        <td
+          class="svelte-se0ib"
+        >
+          5:24
         </td>
          
       </tr>
@@ -697,6 +781,12 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           Cowboy Bebop - NoDisc
         </td>
          
+        <td
+          class="svelte-se0ib"
+        >
+          0:16
+        </td>
+         
       </tr>
       <tr
         class="svelte-se0ib"
@@ -742,6 +832,12 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           class="svelte-se0ib"
         >
           Cowboy Bebop - NoDisc
+        </td>
+         
+        <td
+          class="svelte-se0ib"
+        >
+          6:41
         </td>
          
       </tr>
@@ -791,6 +887,12 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           Cowboy Bebop - NoDisc
         </td>
          
+        <td
+          class="svelte-se0ib"
+        >
+          4:47
+        </td>
+         
       </tr>
       <tr
         class="svelte-se0ib"
@@ -836,6 +938,12 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           class="svelte-se0ib"
         >
           Cowboy Bebop - NoDisc
+        </td>
+         
+        <td
+          class="svelte-se0ib"
+        >
+          1:36
         </td>
          
       </tr>
@@ -885,6 +993,12 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           Cowboy Bebop - NoDisc
         </td>
          
+        <td
+          class="svelte-se0ib"
+        >
+          2:22
+        </td>
+         
       </tr>
     </tbody>
   </table>
@@ -925,6 +1039,12 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           class="svelte-se0ib"
         >
           Album
+        </th>
+         
+        <th
+          class="svelte-se0ib"
+        >
+          Durée
         </th>
       </tr>
     </thead>
@@ -978,6 +1098,12 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           Cowboy Bebop - NoDisc
         </td>
          
+        <td
+          class="svelte-se0ib"
+        >
+          5:32
+        </td>
+         
       </tr>
       <tr
         class="svelte-se0ib"
@@ -1025,6 +1151,12 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           Cowboy Bebop - NoDisc
         </td>
          
+        <td
+          class="svelte-se0ib"
+        >
+          3:35
+        </td>
+         
       </tr>
       <tr
         class="svelte-se0ib"
@@ -1070,6 +1202,12 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           class="svelte-se0ib"
         >
           Cowboy Bebop - NoDisc
+        </td>
+         
+        <td
+          class="svelte-se0ib"
+        >
+          3:45
         </td>
          
       </tr>
@@ -1119,6 +1257,12 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           Cowboy Bebop - NoDisc
         </td>
          
+        <td
+          class="svelte-se0ib"
+        >
+          4:41
+        </td>
+         
       </tr>
       <tr
         class="svelte-se0ib"
@@ -1164,6 +1308,12 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           class="svelte-se0ib"
         >
           Cowboy Bebop - NoDisc
+        </td>
+         
+        <td
+          class="svelte-se0ib"
+        >
+          2:59
         </td>
          
       </tr>
@@ -1213,6 +1363,12 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           Cowboy Bebop - NoDisc
         </td>
          
+        <td
+          class="svelte-se0ib"
+        >
+          0:07
+        </td>
+         
       </tr>
       <tr
         class="svelte-se0ib"
@@ -1258,6 +1414,12 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           class="svelte-se0ib"
         >
           Cowboy Bebop - NoDisc
+        </td>
+         
+        <td
+          class="svelte-se0ib"
+        >
+          3:51
         </td>
          
       </tr>
@@ -1307,6 +1469,12 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           Cowboy Bebop - NoDisc
         </td>
          
+        <td
+          class="svelte-se0ib"
+        >
+          0:15
+        </td>
+         
       </tr>
       <tr
         class="svelte-se0ib"
@@ -1352,6 +1520,12 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           class="svelte-se0ib"
         >
           Cowboy Bebop - NoDisc
+        </td>
+         
+        <td
+          class="svelte-se0ib"
+        >
+          3:14
         </td>
          
       </tr>
@@ -1401,6 +1575,12 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           Cowboy Bebop - NoDisc
         </td>
          
+        <td
+          class="svelte-se0ib"
+        >
+          4:06
+        </td>
+         
       </tr>
       <tr
         class="svelte-se0ib"
@@ -1446,6 +1626,12 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           class="svelte-se0ib"
         >
           Cowboy Bebop - NoDisc
+        </td>
+         
+        <td
+          class="svelte-se0ib"
+        >
+          2:33
         </td>
          
       </tr>
@@ -1495,6 +1681,12 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           Cowboy Bebop - NoDisc
         </td>
          
+        <td
+          class="svelte-se0ib"
+        >
+          6:55
+        </td>
+         
       </tr>
       <tr
         class="svelte-se0ib"
@@ -1540,6 +1732,12 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           class="svelte-se0ib"
         >
           Cowboy Bebop - NoDisc
+        </td>
+         
+        <td
+          class="svelte-se0ib"
+        >
+          5:24
         </td>
          
       </tr>
@@ -1589,6 +1787,12 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           Cowboy Bebop - NoDisc
         </td>
          
+        <td
+          class="svelte-se0ib"
+        >
+          0:16
+        </td>
+         
       </tr>
       <tr
         class="svelte-se0ib"
@@ -1634,6 +1838,12 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           class="svelte-se0ib"
         >
           Cowboy Bebop - NoDisc
+        </td>
+         
+        <td
+          class="svelte-se0ib"
+        >
+          6:41
         </td>
          
       </tr>
@@ -1683,6 +1893,12 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           Cowboy Bebop - NoDisc
         </td>
          
+        <td
+          class="svelte-se0ib"
+        >
+          4:47
+        </td>
+         
       </tr>
       <tr
         class="svelte-se0ib"
@@ -1730,6 +1946,12 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           Cowboy Bebop - NoDisc
         </td>
          
+        <td
+          class="svelte-se0ib"
+        >
+          1:36
+        </td>
+         
       </tr>
       <tr
         class="svelte-se0ib"
@@ -1775,6 +1997,12 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           class="svelte-se0ib"
         >
           Cowboy Bebop - NoDisc
+        </td>
+         
+        <td
+          class="svelte-se0ib"
+        >
+          2:22
         </td>
          
       </tr>

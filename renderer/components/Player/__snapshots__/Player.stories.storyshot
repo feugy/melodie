@@ -118,6 +118,7 @@ exports[`Storyshots Components/Player With Track List 1`] = `
   <audio
     autoplay=""
     class="svelte-5j1b4y"
+    src="./no-duration.mp3"
   />
    
   <div
@@ -125,7 +126,35 @@ exports[`Storyshots Components/Player With Track List 1`] = `
   >
     <span
       class="current svelte-5j1b4y"
-    />
+    >
+      <div
+        class="root svelte-r59qz"
+      >
+        <img
+          alt="./# Films/cover.jpg"
+          class="h-16 w-16 flex-none svelte-1k7rixd"
+          loading="lazy"
+          src="./%23 Films/cover.jpg"
+        />
+         
+        <div
+          class="track svelte-r59qz"
+        >
+          <span
+            class="title svelte-r59qz"
+          >
+            file 1
+          </span>
+           
+          <span
+            class="artist svelte-r59qz"
+          >
+            Someone
+          </span>
+        </div>
+         
+      </div>
+    </span>
      
     <div
       class="player svelte-5j1b4y"

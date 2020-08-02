@@ -20,7 +20,7 @@
   }
 
   li {
-    @apply p-2;
+    @apply py-1 px-8;
   }
 
   li.current {
@@ -46,7 +46,7 @@
 <ol>
   {#each $tracks as track, i}
     <li class:current={$index === i} on:click={() => jumpTo(i)}>
-      <Track src={track.tags} media={track.media} />
+      <Track src={track.tags} media={track.media} details />
     </li>
   {/each}
 </ol>
