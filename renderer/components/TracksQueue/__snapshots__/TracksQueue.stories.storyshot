@@ -16,18 +16,16 @@ exports[`Storyshots Components/Tracks queue Empty 1`] = `
   </header>
    
   <div
-    class="svelte-2ezl0t"
+    class="svelte-16r23of"
   >
-    <h3
-      class="svelte-2ezl0t"
-    >
+    <h3>
       0 pistes
     </h3>
      
   </div>
    
   <ol
-    class="svelte-2ezl0t"
+    class="svelte-16r23of"
   />
 </section>
 `;
@@ -48,16 +46,14 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
   </header>
    
   <div
-    class="svelte-2ezl0t"
+    class="svelte-16r23of"
   >
-    <h3
-      class="svelte-2ezl0t"
-    >
+    <h3>
       4 pistes
     </h3>
      
     <button
-      class="svelte-u16ygp iconOnly"
+      class="mx-4 svelte-u16ygp iconOnly"
     >
       <i
         class="material-icons svelte-u16ygp"
@@ -66,13 +62,19 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
       </i>
        
     </button>
+     
+    <span
+      class="totalDuration svelte-16r23of"
+    >
+      3:47
+    </span>
   </div>
    
   <ol
-    class="svelte-2ezl0t"
+    class="svelte-16r23of"
   >
     <li
-      class="svelte-2ezl0t current"
+      class="svelte-16r23of current"
     >
       <div
         class="root svelte-r59qz"
@@ -109,7 +111,7 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
        
     </li>
     <li
-      class="svelte-2ezl0t"
+      class="svelte-16r23of"
     >
       <div
         class="root svelte-r59qz"
@@ -146,7 +148,7 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
        
     </li>
     <li
-      class="svelte-2ezl0t"
+      class="svelte-16r23of"
     >
       <div
         class="root svelte-r59qz"
@@ -183,7 +185,7 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
        
     </li>
     <li
-      class="svelte-2ezl0t"
+      class="svelte-16r23of"
     >
       <div
         class="root svelte-r59qz"

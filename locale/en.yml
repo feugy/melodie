@@ -15,4 +15,5 @@ open playlist: Queue
 play all: Play all
 playlist: Play list
 start loading some tracks: Start loading some tracks
+total duration _: 'Duration: {total}'
 track: Track

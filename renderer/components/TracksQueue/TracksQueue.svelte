@@ -4,6 +4,7 @@
   import Heading from '../Heading/Heading.svelte'
   import Track from '../Track/Track.svelte'
   import { tracks, index, jumpTo, clear } from '../../stores/track-queue'
+  import { formatTime, sumDurations } from '../../utils'
 </script>
 
 <style type="postcss">
@@ -11,8 +12,8 @@
     @apply flex flex-row relative text-left px-8;
   }
 
-  h3 {
-    @apply flex-grow;
+  .totalDuration {
+    @apply flex-grow text-right px-2;
   }
 
   ol {
@@ -39,7 +40,8 @@
 <div>
   <h3>{$_('_ items', { total: $tracks.length })}</h3>
   {#if $tracks.length}
-    <Button icon="delete" on:click={() => clear()} />
+    <Button icon="delete" class="mx-4" on:click={() => clear()} />
+    <span class="totalDuration">{formatTime(sumDurations($tracks))}</span>
   {/if}
 </div>
 

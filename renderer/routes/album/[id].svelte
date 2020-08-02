@@ -8,6 +8,7 @@
   import { Heading, Image, Button, TracksTable } from '../../components'
   import { albums, load, changes, removals } from '../../stores/albums'
   import { add, current } from '../../stores/track-queue'
+  import { formatTime, sumDurations } from '../../utils'
 
   export let params = {}
   $: albumId = +params.id
@@ -47,12 +48,16 @@
   }
 
   section {
-    @apply flex flex-row items-end;
+    @apply flex flex-row items-start;
     height: 300px;
   }
 
-  section > span {
-    font-size: 0;
+  section > div {
+    @apply flex flex-col items-start px-4 self-stretch;
+  }
+
+  .totalDuration {
+    @apply flex-grow;
   }
 </style>
 
@@ -64,18 +69,24 @@
     <div>
       <section>
         <Image class="w-auto h-full" src={album.media} />
-        <span>
-          <Button
-            class="ml-4"
-            on:click={track => add(album.tracks, true)}
-            icon="play_arrow"
-            text={$_('play all')} />
-          <Button
-            class="ml-4"
-            on:click={track => add(album.tracks)}
-            icon="playlist_add"
-            text={$_('enqueue all')} />
-        </span>
+        <div>
+          <span class="totalDuration">
+            {$_('total duration _', {
+              total: formatTime(sumDurations(album.tracks))
+            })}
+          </span>
+          <span class="actions">
+            <Button
+              on:click={track => add(album.tracks, true)}
+              icon="play_arrow"
+              text={$_('play all')} />
+            <Button
+              class="ml-4"
+              on:click={track => add(album.tracks)}
+              icon="playlist_add"
+              text={$_('enqueue all')} />
+          </span>
+        </div>
       </section>
       <TracksTable
         tracks={album.tracks}

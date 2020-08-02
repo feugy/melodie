@@ -45,7 +45,8 @@ describe('album details route', () => {
         tags: {
           title: faker.commerce.productName(),
           artists: [faker.name.findName()],
-          album: faker.lorem.words()
+          album: faker.lorem.words(),
+          duration: 265
         }
       },
       {
@@ -53,7 +54,8 @@ describe('album details route', () => {
         tags: {
           title: faker.commerce.productName(),
           artists: [faker.name.findName()],
-          album: faker.lorem.words()
+          album: faker.lorem.words(),
+          duration: 270
         }
       },
       {
@@ -61,18 +63,14 @@ describe('album details route', () => {
         tags: {
           title: faker.commerce.productName(),
           artists: [faker.name.findName()],
-          album: faker.lorem.words()
+          album: faker.lorem.words(),
+          duration: 281
         }
       }
     ]
   }
 
   function expectDisplayedTracks() {
-    expect(screen.getByText(album.name)).toBeInTheDocument()
-    const image = screen.getByRole('img')
-    expect(image).toBeInTheDocument()
-    // eslint-disable-next-line jest-dom/prefer-to-have-attribute
-    expect(image.getAttribute('src')).toEqual(album.media)
     for (const track of album.tracks) {
       expect(screen.getByText(track.tags.artists[0])).toBeInTheDocument()
       expect(screen.getByText(track.tags.album)).toBeInTheDocument()
@@ -94,6 +92,25 @@ describe('album details route', () => {
 
     expect(load).toHaveBeenCalledWith(album.id)
     expect(replace).toHaveBeenCalledWith('/albums')
+  })
+
+  it('displays album title, image and total duration', async () => {
+    load.mockResolvedValueOnce(album)
+
+    render(html`<${albumRoute} params=${{ id: album.id }} />`)
+    await sleep()
+
+    expect(screen.queryByText(album.name)).toBeInTheDocument()
+    const image = screen.queryByRole('img')
+    expect(image).toBeInTheDocument()
+    // eslint-disable-next-line jest-dom/prefer-to-have-attribute
+    expect(image.getAttribute('src')).toEqual(album.media)
+
+    expect(
+      screen.queryByText(translate('total duration _', { total: '13:36' }))
+    ).toBeInTheDocument()
+
+    expect(load).toHaveBeenCalledWith(album.id)
   })
 
   it('loads tracks and display them', async () => {

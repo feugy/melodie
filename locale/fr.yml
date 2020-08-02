@@ -13,4 +13,5 @@ open playlist: File d'attente
 play all: Lire tout
 playlist: Liste de lecture
 start loading some tracks: Commencez par charger quelques morceaux
+total duration _: 'Durée : {total}'
 track: Piste
