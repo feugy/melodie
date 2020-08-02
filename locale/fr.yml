@@ -6,6 +6,7 @@ album: Album
 artist: Artiste
 by _: 'par {artist}'
 clear: Vider
+disk _: 'Disque N°{num}'
 duration: Durée
 enqueue all: Ajouter tout
 load: Charger...

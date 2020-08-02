@@ -5,7 +5,7 @@
   import { replace } from 'svelte-spa-router'
   import { of } from 'rxjs'
   import { map, filter, distinct, mergeMap } from 'rxjs/operators'
-  import { Heading, Image, Button, TracksTable } from '../../components'
+  import { Heading, Image, Button, DisksList } from '../../components'
   import { albums, load, changes, removals } from '../../stores/albums'
   import { add, current } from '../../stores/track-queue'
   import { formatTime, sumDurations } from '../../utils'
@@ -88,7 +88,7 @@
           </span>
         </div>
       </section>
-      <TracksTable
+      <DisksList
         tracks={album.tracks}
         {current}
         on:play={({ detail }) => add(detail, true)}

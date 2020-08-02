@@ -16,6 +16,16 @@
 
   export let tracks = undefined
   export let current = undefined
+  export let withAlbum = true
+  $: sortedTracks =
+    tracks &&
+    tracks
+      .concat()
+      .sort(
+        (a, b) =>
+          ((a.tags.track && a.tags.track.no) || Infinity) -
+          ((b.tags.track && b.tags.track.no) || Infinity)
+      )
 
   const dblClickDuration = 250
   const dispatch = createEventDispatcher()
@@ -91,17 +101,21 @@
         <th>{$_('#')}</th>
         <th>{$_('track')}</th>
         <th>{$_('artist')}</th>
-        <th>{$_('album')}</th>
+        {#if withAlbum}
+          <th>{$_('album')}</th>
+        {/if}
         <th>{$_('duration')}</th>
       </tr>
     </thead>
     <tbody>
-      {#each tracks as track, i (track.id)}
+      {#each sortedTracks as track, i (track.id)}
         <tr
           on:click={() => handleClick(track)}
           class:current={$current === track}>
           <td>
-            <span class="rank">{i + 1}</span>
+            <span class="rank">
+              {(track.tags.track && track.tags.track.no) || '--'}
+            </span>
             <span class="play">
               <Button
                 on:click={evt => {
@@ -113,7 +127,9 @@
           </td>
           <td>{track.tags.title}</td>
           <td>{track.tags.artists[0]}</td>
-          <td>{track.tags.album}</td>
+          {#if withAlbum}
+            <td>{track.tags.album}</td>
+          {/if}
           <td>{formatTime(track.tags.duration)}</td>
         </tr>
       {/each}

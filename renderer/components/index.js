@@ -2,6 +2,7 @@
 
 export { default as Album } from './Album/Album.svelte'
 export { default as Button } from './Button/Button.svelte'
+export { default as DisksList } from './DisksList/DisksList.svelte'
 export { default as Heading } from './Heading/Heading.svelte'
 export { default as Image } from './Image/Image.svelte'
 export { default as Nav } from './Nav/Nav.svelte'

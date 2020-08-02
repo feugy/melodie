@@ -53,11 +53,12 @@ npm run build
 - [x] current play list
 - [ ] remove tracks from queue
 - [ ] update track queue on track changes
-- [-] tracks' duration
+- [x] tracks' duration
 - [ ] albums' artists
 - [ ] artists pictures
 - [ ] artists' albums
 - [ ] list all artists
+- [ ] filter albums, artists, or tracks
 - [ ] search input and results
 - [ ] settings panel with watched folders
 - [x] icons

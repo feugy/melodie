@@ -1,15 +1,14 @@
 'use strict'
 
-import { action } from '@storybook/addon-actions'
-import { BehaviorSubject } from 'rxjs'
-import TracksTable from './TracksTable.svelte'
+import DisksList from './DisksList.svelte'
+import { actionsData } from '../TracksTable/TracksTable.stories'
 
 export default {
-  title: 'Components/Tracks table',
+  title: 'Components/Disks list',
   excludeStories: /.*Data$/
 }
 
-export const tracksData = [
+export const disksData = [
   {
     id: 1,
     tags: {
@@ -37,7 +36,8 @@ export const tracksData = [
       artists: ['Yoko Kanno and the Seatbelts'],
       album: 'Cowboy Bebop - NoDisc',
       duration: 225,
-      track: { no: 5 }
+      disk: { no: 1 },
+      track: { no: 3 }
     }
   },
   {
@@ -47,7 +47,8 @@ export const tracksData = [
       artists: ['Yoko Kanno and the Seatbelts'],
       album: 'Cowboy Bebop - NoDisc',
       duration: 281,
-      track: { no: 4 }
+      disk: { no: 1 },
+      track: { no: 2 }
     }
   },
   {
@@ -57,6 +58,7 @@ export const tracksData = [
       artists: ['Yoko Kanno and the Seatbelts'],
       album: 'Cowboy Bebop - NoDisc',
       duration: 179,
+      disk: { no: 2 },
       track: { no: 3 }
     }
   },
@@ -66,7 +68,9 @@ export const tracksData = [
       title: 'Cats on Mars',
       artists: ['Yoko Kanno and the Seatbelts'],
       album: 'Cowboy Bebop - NoDisc',
-      duration: 7
+      duration: 7,
+      disk: { no: 2 },
+      track: { no: 2 }
     }
   },
   {
@@ -76,7 +80,8 @@ export const tracksData = [
       artists: ['Yoko Kanno and the Seatbelts'],
       album: 'Cowboy Bebop - NoDisc',
       duration: 231,
-      track: { no: 7 }
+      disk: { no: 1 },
+      track: { no: 4 }
     }
   },
   {
@@ -86,7 +91,8 @@ export const tracksData = [
       artists: ['Yoko Kanno and the Seatbelts'],
       album: 'Cowboy Bebop - NoDisc',
       duration: 15,
-      track: { no: 9 }
+      disk: { no: 1 },
+      track: { no: 5 }
     }
   },
   {
@@ -96,7 +102,8 @@ export const tracksData = [
       artists: ['Yoko Kanno and the Seatbelts'],
       album: 'Cowboy Bebop - NoDisc',
       duration: 194,
-      track: { no: 10 }
+      disk: { no: 1 },
+      track: { no: 6 }
     }
   },
   {
@@ -106,7 +113,8 @@ export const tracksData = [
       artists: ['Yoko Kanno and the Seatbelts'],
       album: 'Cowboy Bebop - NoDisc',
       duration: 246,
-      track: { no: 11 }
+      disk: { no: 2 },
+      track: { no: 4 }
     }
   },
   {
@@ -116,7 +124,8 @@ export const tracksData = [
       artists: ['Yoko Kanno and the Seatbelts'],
       album: 'Cowboy Bebop - NoDisc',
       duration: 153,
-      track: { no: 12 }
+      disk: { no: 2 },
+      track: { no: 5 }
     }
   },
   {
@@ -125,7 +134,9 @@ export const tracksData = [
       title: 'ELM',
       artists: ['Yoko Kanno and the Seatbelts'],
       album: 'Cowboy Bebop - NoDisc',
-      duration: 415
+      duration: 415,
+      disk: { no: 2 },
+      track: { no: 6 }
     }
   },
   {
@@ -135,7 +146,8 @@ export const tracksData = [
       artists: ['Yoko Kanno and the Seatbelts'],
       album: 'Cowboy Bebop - NoDisc',
       duration: 324,
-      track: { no: 13 }
+      disk: { no: 1 },
+      track: { no: 7 }
     }
   },
   {
@@ -145,7 +157,8 @@ export const tracksData = [
       artists: ['Yoko Kanno and the Seatbelts'],
       album: 'Cowboy Bebop - NoDisc',
       duration: 16,
-      track: { no: 14 }
+      disk: { no: 1 },
+      track: { no: 8 }
     }
   },
   {
@@ -155,7 +168,8 @@ export const tracksData = [
       artists: ['Yoko Kanno and the Seatbelts'],
       album: 'Cowboy Bebop - NoDisc',
       duration: 401,
-      track: { no: 15 }
+      disk: { no: 2 },
+      track: { no: 7 }
     }
   },
   {
@@ -165,7 +179,8 @@ export const tracksData = [
       artists: ['Yoko Kanno and the Seatbelts'],
       album: 'Cowboy Bebop - NoDisc',
       duration: 287,
-      track: { no: 17 }
+      disk: { no: 2 },
+      track: { no: 8 }
     }
   },
   {
@@ -175,7 +190,8 @@ export const tracksData = [
       artists: ['Yoko Kanno and the Seatbelts'],
       album: 'Cowboy Bebop - NoDisc',
       duration: 96,
-      track: { no: 18 }
+      disk: { no: 1 },
+      track: { no: 9 }
     }
   },
   {
@@ -185,40 +201,16 @@ export const tracksData = [
       artists: ['Yoko Kanno and the Seatbelts'],
       album: 'Cowboy Bebop - NoDisc',
       duration: 142,
-      track: { no: 19 }
+      disk: { no: 2 },
+      track: { no: 9 }
     }
   }
 ]
 
-export const current$Data = new BehaviorSubject(tracksData[3])
-
-export const actionsData = {
-  enqueue: action('on track enqueue'),
-  play: action('on track play')
-}
-
 export const Default = () => ({
-  Component: TracksTable,
+  Component: DisksList,
   props: {
-    tracks: tracksData
-  },
-  on: actionsData
-})
-
-export const WithoutAlbum = () => ({
-  Component: TracksTable,
-  props: {
-    tracks: tracksData,
-    withAlbum: false
-  },
-  on: actionsData
-})
-
-export const WithCurrent = () => ({
-  Component: TracksTable,
-  props: {
-    tracks: tracksData,
-    current: current$Data
+    tracks: disksData
   },
   on: actionsData
 })
