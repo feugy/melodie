@@ -72,7 +72,8 @@ describe('Lists Engine', () => {
       const artists = artistNames.map(name =>
         addId({
           name,
-          trackIds: [hash(path)]
+          trackIds: [hash(path)],
+          linked: []
         })
       )
       const tracks = [{ id: hash(path), path, tags: { artists: artistNames } }]
@@ -96,11 +97,13 @@ describe('Lists Engine', () => {
     it('stores track with album', async () => {
       const name = faker.commerce.productName()
       const path = faker.system.fileName()
+      const artists = [faker.name.findName(), faker.name.findName()]
       const album = addId({
         name,
-        trackIds: [hash(path)]
+        trackIds: [hash(path)],
+        linked: artists
       })
-      const tracks = [{ id: hash(path), path, tags: { album: name } }]
+      const tracks = [{ id: hash(path), path, tags: { album: name, artists } }]
       albumsModel.save.mockResolvedValueOnce({
         saved: [album],
         removedIds: []
@@ -123,7 +126,8 @@ describe('Lists Engine', () => {
       const album = addId({
         name,
         media,
-        trackIds: [hash(path)]
+        trackIds: [hash(path)],
+        linked: []
       })
       const tracks = [
         {
@@ -150,25 +154,28 @@ describe('Lists Engine', () => {
 
     it('skip existing albums', async () => {
       const name = faker.commerce.productName()
+      const artist1 = faker.name.findName()
+      const artist2 = faker.name.findName()
       const track1 = {
         path: faker.system.fileName(),
-        tags: { album: name }
+        tags: { album: name, artists: [artist1] }
       }
       track1.id = hash(track1.path)
       const track2 = {
         path: faker.system.fileName(),
-        tags: { album: name }
+        tags: { album: name, artists: [artist2] }
       }
       track2.id = hash(track2.path)
       const track3 = {
         path: faker.system.fileName(),
-        tags: { album: name }
+        tags: { album: name, artists: [artist2] }
       }
       track3.id = hash(track3.path)
 
       const album = addId({
         name,
-        trackIds: [track1.id, track2.id, track3.id]
+        trackIds: [track1.id, track2.id, track3.id],
+        linked: [artist1, artist2]
       })
       const tracks = [track1, track2, track3]
       albumsModel.save.mockResolvedValueOnce({
@@ -209,15 +216,18 @@ describe('Lists Engine', () => {
       const artists = [
         addId({
           name: artist1,
-          trackIds: [track1.id]
+          trackIds: [track1.id],
+          linked: []
         }),
         addId({
           name: artist2,
-          trackIds: [track1.id, track2.id]
+          trackIds: [track1.id, track2.id],
+          linked: []
         }),
         addId({
           name: artist3,
-          trackIds: [track2.id, track3.id]
+          trackIds: [track2.id, track3.id],
+          linked: []
         })
       ]
       const tracks = [track1, track2, track3]
@@ -242,47 +252,58 @@ describe('Lists Engine', () => {
       const oldName = faker.commerce.productName()
       const updatedName = faker.commerce.productName()
       const newName = faker.commerce.productName()
+      const artist1 = faker.name.findName()
+      const artist2 = faker.name.findName()
+      const artist3 = faker.name.findName()
 
       const track1 = {
         path: faker.system.fileName(),
-        tags: { album: newName }
+        tags: { album: newName, artists: [artist2] }
       }
       track1.id = hash(track1.path)
       const track2 = {
         path: faker.system.fileName(),
-        tags: { album: newName }
+        tags: { album: newName, artists: [artist1] }
       }
       track2.id = hash(track2.path)
       const track3 = {
         path: faker.system.fileName(),
-        tags: { album: newName }
+        tags: { album: newName, artists: [artist1, artist2] }
       }
       track3.id = hash(track3.path)
       const track4 = {
         path: faker.system.fileName(),
-        tags: { album: updatedName }
+        tags: { album: updatedName, artists: [artist3] }
       }
       track4.id = hash(track3.path)
 
       tracksModel.save.mockResolvedValueOnce([
-        { id: track1.id, tags: { album: oldName } },
-        { id: track2.id, tags: { album: oldName } },
-        { id: track3.id, tags: { album: updatedName } }
+        { id: track1.id, tags: { album: oldName, artists: [artist1] } },
+        { id: track2.id, tags: { album: oldName, artists: [artist3] } },
+        {
+          id: track3.id,
+          tags: { album: updatedName, artists: [artist1, artist2] }
+        }
       ])
       const tracks = [track1, track2, track3, track4]
       const oldAlbum = addId({
         name: oldName,
         trackIds: [],
-        removedTrackIds: [track1.id, track2.id]
+        removedTrackIds: [track1.id, track2.id],
+        linked: [],
+        removedLinked: [artist1, artist3]
       })
       const updatedAlbum = addId({
         name: updatedName,
         removedTrackIds: [track3.id],
-        trackIds: [track4.id]
+        trackIds: [track4.id],
+        linked: [artist3],
+        removedLinked: [artist1, artist2]
       })
       const newAlbum = addId({
         name: newName,
-        trackIds: [track1.id, track2.id, track3.id]
+        trackIds: [track1.id, track2.id, track3.id],
+        linked: [artist2, artist1]
       })
       albumsModel.save.mockResolvedValueOnce({
         saved: [oldAlbum, updatedAlbum, newAlbum],
@@ -329,16 +350,21 @@ describe('Lists Engine', () => {
       const oldArtist = addId({
         name: oldName,
         trackIds: [],
-        removedTrackIds: [track1.id, track2.id]
+        removedTrackIds: [track1.id, track2.id],
+        removedLinked: [],
+        linked: []
       })
       const updatedArtist = addId({
         name: updatedName,
         removedTrackIds: [track2.id],
-        trackIds: [track1.id]
+        trackIds: [track1.id],
+        removedLinked: [],
+        linked: []
       })
       const newArtist = addId({
         name: newName,
-        trackIds: [track1.id, track2.id]
+        trackIds: [track1.id, track2.id],
+        linked: []
       })
       artistsModel.save.mockResolvedValueOnce({
         saved: [oldArtist, updatedArtist, newArtist],
@@ -364,12 +390,22 @@ describe('Lists Engine', () => {
     it('updates album', async () => {
       const name = faker.commerce.productName()
       const path = faker.system.fileName()
+      const artists = [faker.name.findName(), faker.name.findName()]
+
       const album = addId({
         name,
         removedTrackIds: [hash(path)],
-        trackIds: []
+        trackIds: [],
+        linked: [],
+        removedLinked: artists
       })
-      const tracks = [{ id: hash(path), path, tags: { album: name } }]
+      const tracks = [
+        {
+          id: hash(path),
+          path,
+          tags: { album: name, artists }
+        }
+      ]
       const trackIds = tracks.map(({ id }) => id)
       tracksModel.removeByIds.mockResolvedValueOnce(tracks)
       albumsModel.save.mockResolvedValueOnce({
@@ -396,7 +432,9 @@ describe('Lists Engine', () => {
         addId({
           name,
           removedTrackIds: [hash(path)],
-          trackIds: []
+          trackIds: [],
+          linked: [],
+          removedLinked: []
         })
       )
       const tracks = [{ id: hash(path), path, tags: { artists: artistNames } }]
@@ -429,12 +467,16 @@ describe('Lists Engine', () => {
         addId({
           name: artistNames[0],
           removedTrackIds: [hash(path1), hash(path2)],
-          trackIds: []
+          trackIds: [],
+          linked: [],
+          removedLinked: []
         }),
         addId({
           name: artistNames[1],
           removedTrackIds: [hash(path1)],
-          trackIds: []
+          trackIds: [],
+          linked: [],
+          removedLinked: []
         })
       ]
       const tracks = [

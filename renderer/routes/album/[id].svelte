@@ -53,7 +53,11 @@
   }
 
   section > div {
-    @apply flex flex-col items-start px-4 self-stretch;
+    @apply flex flex-col items-start px-4 self-stretch text-left;
+  }
+
+  h3 {
+    @apply mb-2 text-2xl;
   }
 
   .totalDuration {
@@ -68,8 +72,9 @@
       image={'../images/dark-rider-JmVaNyemtN8-unsplash.jpg'} />
     <div>
       <section>
-        <Image class="w-auto h-full" src={album.media} />
+        <Image class="flex-shrink-0 w-auto h-full" src={album.media} />
         <div>
+          <h3>{$_('by _', { artist: album.linked.join(', ') })}</h3>
           <span class="totalDuration">
             {$_('total duration _', {
               total: formatTime(sumDurations(album.tracks))
@@ -91,6 +96,7 @@
       <DisksList
         tracks={album.tracks}
         {current}
+        withAlbum={false}
         on:play={({ detail }) => add(detail, true)}
         on:enqueue={({ detail }) => add(detail)} />
     </div>

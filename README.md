@@ -54,7 +54,7 @@ npm run build
 - [ ] remove tracks from queue
 - [ ] update track queue on track changes
 - [x] tracks' duration
-- [ ] albums' artists
+- [x] albums' artists
 - [ ] artists pictures
 - [ ] artists' albums
 - [ ] list all artists
@@ -81,6 +81,7 @@ npm run build
    - https://github.com/paulmillr/chokidar/issues/917
    - https://github.com/paulmillr/chokidar/issues/591
 1. When loading new folders, enqueuing or going to album details will give incomplete results. Going back and forth won't load new data
+1. In tracks table, the rank column has variable width (BraveHeart), play icon is not vertically centered (2-lines rows)
 
 ## History
 

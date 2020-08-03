@@ -10,7 +10,7 @@ const {
   filter,
   delay
 } = require('rxjs/operators')
-const { hash, broadcast, getLogger } = require('../utils')
+const { hash, broadcast, getLogger, uniq } = require('../utils')
 const {
   albumsModel,
   tracksModel,
@@ -45,7 +45,8 @@ function makeListPipeline(property, model) {
             id,
             name,
             media: track.media,
-            trackIds: []
+            trackIds: [],
+            linked: []
           }
           recordsMap.set(id, record)
           records.push(record)
@@ -53,10 +54,15 @@ function makeListPipeline(property, model) {
         if (!isNew) {
           if (!record.removedTrackIds) {
             record.removedTrackIds = []
+            record.removedLinked = []
           }
           record.removedTrackIds.push(track.id)
+          record.removedLinked = uniq(
+            record.removedLinked.concat(track.linked || [])
+          )
         } else {
           record.trackIds.push(track.id)
+          record.linked = uniq(record.linked.concat(track.linked || []))
         }
         return { recordsMap, records }
       },
@@ -136,9 +142,13 @@ module.exports = {
           artists || []
         )
         return merge(
-          of({ id, media, album }),
+          of({ id, media, album, linked: artists }),
           removedAlbum.length
-            ? of({ id, 'prev-album': removedAlbum[0] })
+            ? of({
+                id,
+                'prev-album': removedAlbum[0],
+                linked: previous.tags.artists
+              })
             : EMPTY,
           artists ? of(...artists.map(artist => ({ id, artist }))) : EMPTY,
           removedArtists.length
@@ -167,7 +177,7 @@ module.exports = {
           tags: { artists, album }
         } = track
         return merge(
-          of({ id, 'prev-album': album }),
+          of({ id, 'prev-album': album, linked: artists }),
           artists
             ? of(...artists.map(artist => ({ id, 'prev-artist': artist })))
             : EMPTY

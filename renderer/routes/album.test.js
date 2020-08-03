@@ -27,12 +27,14 @@ describe('album route', () => {
       {
         id: faker.random.uuid(),
         name: faker.commerce.productName(),
-        media: faker.image.avatar()
+        media: faker.image.avatar(),
+        linked: [faker.name.findName(), faker.name.findName()]
       },
       {
         id: faker.random.uuid(),
         name: faker.commerce.productName(),
-        media: faker.image.avatar()
+        media: faker.image.avatar(),
+        linked: [faker.name.findName()]
       }
     )
     const store = new BehaviorSubject(albums)

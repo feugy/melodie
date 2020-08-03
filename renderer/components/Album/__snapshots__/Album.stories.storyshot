@@ -5,10 +5,10 @@ exports[`Storyshots Components/Album Default 1`] = `
   class="storybook-snapshot-container"
 >
   <article
-    class=" svelte-1b3b1kn"
+    class=" svelte-1ni6vn6"
   >
     <div
-      class="content svelte-1b3b1kn"
+      class="content svelte-1ni6vn6"
     >
       <img
         alt="./cover.jpg"
@@ -18,7 +18,7 @@ exports[`Storyshots Components/Album Default 1`] = `
       />
        
       <p
-        class="controls svelte-1b3b1kn"
+        class="controls svelte-1ni6vn6"
       >
         <button
           class="svelte-u16ygp primary iconOnly large"
@@ -47,16 +47,81 @@ exports[`Storyshots Components/Album Default 1`] = `
     </div>
      
     <header
-      class="svelte-1b3b1kn"
+      class="svelte-1ni6vn6"
     >
       <h3>
         Diamonds on the inside
       </h3>
        
       <h4
-        class="svelte-1b3b1kn"
+        class="svelte-1ni6vn6"
+        title="par Ben Harper, The Innocent Criminals"
       >
-        par Ben Harper
+        par Ben Harper, The Innocent Criminals
+      </h4>
+    </header>
+  </article>
+</section>
+`;
+
+exports[`Storyshots Components/Album Many Artists 1`] = `
+<section
+  class="storybook-snapshot-container"
+>
+  <article
+    class=" svelte-1ni6vn6"
+  >
+    <div
+      class="content svelte-1ni6vn6"
+    >
+      <img
+        alt="./cover.jpg"
+        class="w-64 h-64 svelte-1k7rixd"
+        loading="lazy"
+        src="./cover.jpg"
+      />
+       
+      <p
+        class="controls svelte-1ni6vn6"
+      >
+        <button
+          class="svelte-u16ygp primary iconOnly large"
+          data-testid="play"
+        >
+          <i
+            class="material-icons svelte-u16ygp"
+          >
+            play_arrow
+          </i>
+           
+        </button>
+         
+        <button
+          class="svelte-u16ygp primary iconOnly large"
+          data-testid="enqueue"
+        >
+          <i
+            class="material-icons svelte-u16ygp"
+          >
+            playlist_add
+          </i>
+           
+        </button>
+      </p>
+    </div>
+     
+    <header
+      class="svelte-1ni6vn6"
+    >
+      <h3>
+        Diamonds on the inside
+      </h3>
+       
+      <h4
+        class="svelte-1ni6vn6"
+        title="par Muse, Perl Jam, Joe Satriani, Avenged Sevenfold"
+      >
+        par Muse, Perl Jam, Joe Satriani, Avenged Sevenfold
       </h4>
     </header>
   </article>
@@ -68,10 +133,10 @@ exports[`Storyshots Components/Album No Artist 1`] = `
   class="storybook-snapshot-container"
 >
   <article
-    class=" svelte-1b3b1kn"
+    class=" svelte-1ni6vn6"
   >
     <div
-      class="content svelte-1b3b1kn"
+      class="content svelte-1ni6vn6"
     >
       <img
         alt="./cover.jpg"
@@ -81,7 +146,7 @@ exports[`Storyshots Components/Album No Artist 1`] = `
       />
        
       <p
-        class="controls svelte-1b3b1kn"
+        class="controls svelte-1ni6vn6"
       >
         <button
           class="svelte-u16ygp primary iconOnly large"
@@ -110,7 +175,7 @@ exports[`Storyshots Components/Album No Artist 1`] = `
     </div>
      
     <header
-      class="svelte-1b3b1kn"
+      class="svelte-1ni6vn6"
     >
       <h3>
         Diamonds on the inside

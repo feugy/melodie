@@ -10,7 +10,13 @@ export default {
 
 export const albumData = {
   name: 'Diamonds on the inside',
-  artists: ['Ben Harper'],
+  linked: ['Ben Harper', 'The Innocent Criminals'],
+  media: './cover.jpg'
+}
+
+export const manyArtistsData = {
+  name: 'Diamonds on the inside',
+  linked: ['Muse', 'Perl Jam', 'Joe Satriani', 'Avenged Sevenfold'],
   media: './cover.jpg'
 }
 
@@ -27,12 +33,20 @@ export const Default = () => ({
   on: actionsData
 })
 
+export const ManyArtists = () => ({
+  Component: Album,
+  props: {
+    src: manyArtistsData
+  },
+  on: actionsData
+})
+
 export const NoArtist = () => ({
   Component: Album,
   props: {
     src: {
       ...albumData,
-      artists: []
+      linked: []
     }
   },
   on: actionsData

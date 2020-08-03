@@ -38,6 +38,7 @@ describe('album details route', () => {
   const album = {
     id: faker.random.number(),
     name: faker.commerce.productName(),
+    linked: [faker.name.findName(), faker.name.findName()],
     media: faker.image.avatar(),
     tracks: [
       {
@@ -72,9 +73,9 @@ describe('album details route', () => {
 
   function expectDisplayedTracks() {
     for (const track of album.tracks) {
-      expect(screen.getByText(track.tags.artists[0])).toBeInTheDocument()
-      expect(screen.getByText(track.tags.album)).toBeInTheDocument()
-      expect(screen.getByText(track.tags.title)).toBeInTheDocument()
+      expect(screen.queryByText(track.tags.artists[0])).toBeInTheDocument()
+      expect(screen.queryByText(track.tags.album)).not.toBeInTheDocument()
+      expect(screen.queryByText(track.tags.title)).toBeInTheDocument()
     }
   }
 
@@ -94,7 +95,7 @@ describe('album details route', () => {
     expect(replace).toHaveBeenCalledWith('/albums')
   })
 
-  it('displays album title, image and total duration', async () => {
+  it('displays album title, image, artists and total duration', async () => {
     load.mockResolvedValueOnce(album)
 
     render(html`<${albumRoute} params=${{ id: album.id }} />`)
@@ -106,6 +107,9 @@ describe('album details route', () => {
     // eslint-disable-next-line jest-dom/prefer-to-have-attribute
     expect(image.getAttribute('src')).toEqual(album.media)
 
+    expect(
+      screen.queryByText(translate('by _', { artist: album.linked.join(', ') }))
+    ).toBeInTheDocument()
     expect(
       screen.queryByText(translate('total duration _', { total: '13:36' }))
     ).toBeInTheDocument()

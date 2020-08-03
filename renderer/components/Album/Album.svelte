@@ -5,7 +5,6 @@
   import Button from '../Button/Button.svelte'
 
   export let src
-  let artist = Array.isArray(src.artists) && src.artists[0]
   const dispatch = createEventDispatcher()
 
   function handlePlay(evt) {
@@ -33,7 +32,7 @@
   }
 
   h4 {
-    @apply text-sm;
+    @apply text-sm truncate;
   }
 
   .content {
@@ -71,8 +70,10 @@
   </div>
   <header>
     <h3>{src.name}</h3>
-    {#if artist}
-      <h4>{$_('by _', { artist })}</h4>
+    {#if src.linked.length}
+      <h4 title={$_('by _', { artist: src.linked.join(', ') })}>
+        {$_('by _', { artist: src.linked.join(', ') })}
+      </h4>
     {/if}
   </header>
 </article>

@@ -20,10 +20,10 @@ exports[`Storyshots Components/Heading Default 1`] = `
       class="flex flex-wrap justify-around"
     >
       <article
-        class="p-4 svelte-1b3b1kn"
+        class="p-4 svelte-1ni6vn6"
       >
         <div
-          class="content svelte-1b3b1kn"
+          class="content svelte-1ni6vn6"
         >
           <img
             alt="./cover.jpg"
@@ -33,7 +33,7 @@ exports[`Storyshots Components/Heading Default 1`] = `
           />
            
           <p
-            class="controls svelte-1b3b1kn"
+            class="controls svelte-1ni6vn6"
           >
             <button
               class="svelte-u16ygp primary iconOnly large"
@@ -62,25 +62,26 @@ exports[`Storyshots Components/Heading Default 1`] = `
         </div>
          
         <header
-          class="svelte-1b3b1kn"
+          class="svelte-1ni6vn6"
         >
           <h3>
             Diamonds on the inside
           </h3>
            
           <h4
-            class="svelte-1b3b1kn"
+            class="svelte-1ni6vn6"
+            title="par Ben Harper, The Innocent Criminals"
           >
-            par Ben Harper
+            par Ben Harper, The Innocent Criminals
           </h4>
         </header>
       </article>
        
       <article
-        class="p-4 svelte-1b3b1kn"
+        class="p-4 svelte-1ni6vn6"
       >
         <div
-          class="content svelte-1b3b1kn"
+          class="content svelte-1ni6vn6"
         >
           <img
             alt="./cover.jpg"
@@ -90,7 +91,7 @@ exports[`Storyshots Components/Heading Default 1`] = `
           />
            
           <p
-            class="controls svelte-1b3b1kn"
+            class="controls svelte-1ni6vn6"
           >
             <button
               class="svelte-u16ygp primary iconOnly large"
@@ -119,25 +120,26 @@ exports[`Storyshots Components/Heading Default 1`] = `
         </div>
          
         <header
-          class="svelte-1b3b1kn"
+          class="svelte-1ni6vn6"
         >
           <h3>
             Diamonds on the inside
           </h3>
            
           <h4
-            class="svelte-1b3b1kn"
+            class="svelte-1ni6vn6"
+            title="par Ben Harper, The Innocent Criminals"
           >
-            par Ben Harper
+            par Ben Harper, The Innocent Criminals
           </h4>
         </header>
       </article>
        
       <article
-        class="p-4 svelte-1b3b1kn"
+        class="p-4 svelte-1ni6vn6"
       >
         <div
-          class="content svelte-1b3b1kn"
+          class="content svelte-1ni6vn6"
         >
           <img
             alt="./cover.jpg"
@@ -147,7 +149,7 @@ exports[`Storyshots Components/Heading Default 1`] = `
           />
            
           <p
-            class="controls svelte-1b3b1kn"
+            class="controls svelte-1ni6vn6"
           >
             <button
               class="svelte-u16ygp primary iconOnly large"
@@ -176,16 +178,17 @@ exports[`Storyshots Components/Heading Default 1`] = `
         </div>
          
         <header
-          class="svelte-1b3b1kn"
+          class="svelte-1ni6vn6"
         >
           <h3>
             Diamonds on the inside
           </h3>
            
           <h4
-            class="svelte-1b3b1kn"
+            class="svelte-1ni6vn6"
+            title="par Ben Harper, The Innocent Criminals"
           >
-            par Ben Harper
+            par Ben Harper, The Innocent Criminals
           </h4>
         </header>
       </article>

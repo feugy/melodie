@@ -8,8 +8,9 @@ module.exports = class AbstractTrackList extends Model {
     super(name, table => {
       definition(table)
       table.json('trackIds')
+      table.json('linked')
     })
-    this.jsonColumns.push('trackIds')
+    this.jsonColumns.push('trackIds', 'linked')
   }
 
   async save(data) {
@@ -34,7 +35,8 @@ module.exports = class AbstractTrackList extends Model {
             ({ id }) => id === trackList.id
           ) || {
             media: null,
-            trackIds: []
+            trackIds: [],
+            linked: []
           }
           const savedList = {
             ...previousList,
@@ -42,6 +44,12 @@ module.exports = class AbstractTrackList extends Model {
               difference(
                 previousList.trackIds.concat(trackList.trackIds || []),
                 trackList.removedTrackIds || []
+              )
+            ),
+            linked: uniq(
+              difference(
+                previousList.linked.concat(trackList.linked || []),
+                trackList.removedLinked || []
               )
             )
           }
@@ -51,6 +59,8 @@ module.exports = class AbstractTrackList extends Model {
               if (
                 col !== 'trackIds' &&
                 col !== 'removedTrackIds' &&
+                col !== 'linked' &&
+                col !== 'removedLinked' &&
                 trackList[col] !== undefined
               ) {
                 savedList[col] = trackList[col]

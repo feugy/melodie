@@ -26,7 +26,8 @@ describe('Tracks model', () => {
       id: hash(name),
       media: faker.image.image(),
       name,
-      trackIds: [faker.random.number(), faker.random.number()]
+      trackIds: [faker.random.number(), faker.random.number()],
+      linked: []
     }
 
     await artistsModel.save(artist)
