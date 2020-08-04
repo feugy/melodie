@@ -191,14 +191,17 @@ module.exports = {
   },
 
   async listAlbums(criteria) {
+    logger.debug({ criteria }, `list albums`)
     return albumsModel.list({ sort: 'name', ...criteria })
   },
 
   async listArtists(criteria) {
+    logger.debug({ criteria }, `list albums`)
     return artistsModel.list({ sort: 'name', ...criteria })
   },
 
   async fetchWithTracks(modelName, id, sortBy = 'trackNo') {
+    logger.debug({ modelName, id, sortBy }, `fetch ${modelName} with tracks`)
     const list = await (modelName === 'artist'
       ? artistsModel
       : albumsModel

@@ -22,7 +22,8 @@ export const manyArtistsData = {
 
 export const actionsData = {
   select: action('on album select'),
-  play: action('on album play')
+  play: action('on album play'),
+  enqueue: action('on album enqueue')
 }
 
 export const Default = () => ({

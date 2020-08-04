@@ -3,8 +3,8 @@
   import { _ } from 'svelte-intl'
   import { fade } from 'svelte/transition'
   import { push } from 'svelte-spa-router'
-  import { Album, Button, Heading } from '../components'
-  import { albums, load, list } from '../stores/albums'
+  import { Artist, Heading } from '../components'
+  import { artists, load, list } from '../stores/artists'
   import { add } from '../stores/track-queue'
   import { invoke } from '../utils'
 
@@ -12,19 +12,19 @@
 
   onMount(() => list())
 
-  async function handleAlbumPlay({ detail: album }, immediate = true) {
+  async function handlePlay({ detail: album }, immediate = true) {
     if (!album.tracks) {
       album = await load(album.id)
     }
     add(album.tracks, immediate)
   }
 
-  async function handleAlbumEnqueue(evt) {
-    return handleAlbumPlay(evt, false)
+  async function handleEnqueue(evt) {
+    return handlePlay(evt, false)
   }
 
-  function handleAlbumClick({ detail: album }) {
-    push(`/album/${album.id}`)
+  function handleSelect({ detail: { id } }) {
+    push(`/artist/${id}`)
   }
 </script>
 
@@ -41,18 +41,17 @@
 
 <section transition:fade={{ duration: 200 }}>
   <Heading
-    title={$_('_ albums', { total: $albums.length })}
-    image={'../images/valentino-funghi-MEcxLZ8ENV8-unsplash.jpg'} />
+    title={$_('_ artists', { total: $artists.length })}
+    image={'../images/larisa-birta-slbOcNlWNHA-unsplash.jpg'} />
   <div>
-    {#each $albums as src (src.id)}
+    {#each $artists as src (src.id)}
       <span class="p-4">
-        <Album
+        <Artist
           {src}
-          on:play={handleAlbumPlay}
-          on:enqueue={handleAlbumEnqueue}
-          on:select={handleAlbumClick} />
+          on:play={handlePlay}
+          on:enqueue={handleEnqueue}
+          on:select={handleSelect} />
       </span>
     {/each}
   </div>
 </section>
-<Button on:click={() => invoke('fileLoader.addFolders')} text={$_('load')} />

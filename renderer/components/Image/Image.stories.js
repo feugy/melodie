@@ -23,3 +23,9 @@ export const WithEscapedPath = () => ({
   props: { src: './# Films/cover.jpg' },
   on: actionsData
 })
+
+export const Rouded = () => ({
+  Component: Image,
+  props: { src: './avatar.jpg', rounded: true },
+  on: actionsData
+})

@@ -1,10 +1,10 @@
 'use strict'
 import { get } from 'svelte/store'
-import { albums, list } from './albums'
+import { artists, list } from './artists'
 import { mockInvoke, sleep } from '../tests'
 
-describe('albums store', () => {
-  it('lists all albums', async () => {
+describe('artists store', () => {
+  it('lists all artists', async () => {
     const total = 13
     const data = Array.from({ length: total }, (v, i) => i)
     mockInvoke.mockImplementation(
@@ -15,14 +15,14 @@ describe('albums store', () => {
         results: data.slice(from || 0, from + size)
       })
     )
-    expect(get(albums)).toEqual([])
+    expect(get(artists)).toEqual([])
     await list()
     await sleep(100)
-    expect(get(albums)).toEqual(data)
+    expect(get(artists)).toEqual(data)
     expect(mockInvoke).toHaveBeenCalledWith(
       'remote',
       'listEngine',
-      'listAlbums',
+      'listArtists',
       expect.any(Object)
     )
   })

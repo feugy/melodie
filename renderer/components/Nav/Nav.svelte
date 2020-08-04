@@ -68,6 +68,12 @@
           text={$_('albums')}
           icon="album" />
       </li>
+      <li>
+        <Button
+          on:click={() => push('/artist')}
+          text={$_('artists')}
+          icon="person" />
+      </li>
       <li />
     </ul>
   </nav>

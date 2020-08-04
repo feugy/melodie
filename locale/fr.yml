@@ -1,3 +1,4 @@
+_ artists: '{total} artistes'
 _ items: '{total} pistes'
 '#': N°
 'artist: _': 'Artiste : {value}'

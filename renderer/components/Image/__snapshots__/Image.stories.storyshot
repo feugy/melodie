@@ -9,9 +9,26 @@ exports[`Storyshots Components/Image Default 1`] = `
   >
     <img
       alt="./cover.jpg"
-      class=" svelte-1k7rixd"
+      class="svelte-1fck65k rounded-sm"
       loading="lazy"
       src="./cover.jpg"
+    />
+  </div>
+</section>
+`;
+
+exports[`Storyshots Components/Image Rouded 1`] = `
+<section
+  class="storybook-snapshot-container"
+>
+  <div
+    class="w-64 inline-block"
+  >
+    <img
+      alt="./avatar.jpg"
+      class="svelte-1fck65k rounded-full"
+      loading="lazy"
+      src="./avatar.jpg"
     />
   </div>
 </section>
@@ -26,7 +43,7 @@ exports[`Storyshots Components/Image With Escaped Path 1`] = `
   >
     <img
       alt="./# Films/cover.jpg"
-      class=" svelte-1k7rixd"
+      class="svelte-1fck65k rounded-sm"
       loading="lazy"
       src="./%23 Films/cover.jpg"
     />

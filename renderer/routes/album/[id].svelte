@@ -18,7 +18,7 @@
   onMount(async () => {
     album = await load(albumId)
     if (!album) {
-      replace('/albums')
+      replace('/album')
     }
   })
 
@@ -34,7 +34,7 @@
 
   const removalSub = removals
     .pipe(filter(id => id === albumId))
-    .subscribe(() => replace('/albums'))
+    .subscribe(() => replace('/album'))
 
   onDestroy(() => {
     changeSub.unsubscribe()
@@ -43,13 +43,18 @@
 </script>
 
 <style type="postcss">
-  div > div {
-    @apply z-0 relative m-6 mt-0;
+  section {
+    @apply flex flex-row items-start z-0 relative m-6 mt-0;
   }
 
-  section {
-    @apply flex flex-row items-start;
+  .disks {
+    @apply m-6;
+  }
+
+  .image-container {
+    @apply flex-shrink-0 w-full h-full;
     height: 300px;
+    width: 300px;
   }
 
   section > div {
@@ -70,29 +75,31 @@
     <Heading
       title={album.name}
       image={'../images/dark-rider-JmVaNyemtN8-unsplash.jpg'} />
-    <div>
-      <section>
-        <Image class="flex-shrink-0 w-auto h-full" src={album.media} />
-        <div>
-          <h3>{$_('by _', { artist: album.linked.join(', ') })}</h3>
-          <span class="totalDuration">
-            {$_('total duration _', {
-              total: formatTime(sumDurations(album.tracks))
-            })}
-          </span>
-          <span class="actions">
-            <Button
-              on:click={track => add(album.tracks, true)}
-              icon="play_arrow"
-              text={$_('play all')} />
-            <Button
-              class="ml-4"
-              on:click={track => add(album.tracks)}
-              icon="playlist_add"
-              text={$_('enqueue all')} />
-          </span>
-        </div>
-      </section>
+    <section>
+      <span class="image-container">
+        <Image class="h-full w-full" src={album.media} />
+      </span>
+      <div>
+        <h3>{$_('by _', { artist: album.linked.join(', ') })}</h3>
+        <span class="totalDuration">
+          {$_('total duration _', {
+            total: formatTime(sumDurations(album.tracks))
+          })}
+        </span>
+        <span class="actions">
+          <Button
+            on:click={track => add(album.tracks, true)}
+            icon="play_arrow"
+            text={$_('play all')} />
+          <Button
+            class="ml-4"
+            on:click={track => add(album.tracks)}
+            icon="playlist_add"
+            text={$_('enqueue all')} />
+        </span>
+      </div>
+    </section>
+    <div class="disks">
       <DisksList
         tracks={album.tracks}
         {current}

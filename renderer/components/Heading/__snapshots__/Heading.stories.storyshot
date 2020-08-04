@@ -27,7 +27,7 @@ exports[`Storyshots Components/Heading Default 1`] = `
         >
           <img
             alt="./cover.jpg"
-            class="w-64 h-64 svelte-1k7rixd"
+            class="w-64 h-64 svelte-1fck65k rounded-sm"
             loading="lazy"
             src="./cover.jpg"
           />
@@ -85,7 +85,7 @@ exports[`Storyshots Components/Heading Default 1`] = `
         >
           <img
             alt="./cover.jpg"
-            class="w-64 h-64 svelte-1k7rixd"
+            class="w-64 h-64 svelte-1fck65k rounded-sm"
             loading="lazy"
             src="./cover.jpg"
           />
@@ -143,7 +143,7 @@ exports[`Storyshots Components/Heading Default 1`] = `
         >
           <img
             alt="./cover.jpg"
-            class="w-64 h-64 svelte-1k7rixd"
+            class="w-64 h-64 svelte-1fck65k rounded-sm"
             loading="lazy"
             src="./cover.jpg"
           />

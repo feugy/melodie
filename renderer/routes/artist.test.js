@@ -5,26 +5,26 @@ import html from 'svelte-htm'
 import { push } from 'svelte-spa-router'
 import { BehaviorSubject } from 'rxjs'
 import faker from 'faker'
-import albumRoute from './album.svelte'
-import { albums as mockedAlbums, load, list } from '../stores/albums'
+import artistRoute from './artist.svelte'
+import { artists as mockedArtists, load, list } from '../stores/artists'
 import { add } from '../stores/track-queue'
 import { translate } from '../tests'
 
 jest.mock('svelte-spa-router')
 jest.mock('../stores/track-queue')
-jest.mock('../stores/albums', () => ({
-  albums: {},
+jest.mock('../stores/artists', () => ({
+  artists: {},
   load: jest.fn(),
   list: jest.fn()
 }))
 
-describe('album route', () => {
-  const albums = []
+describe('artist route', () => {
+  const artists = []
 
   beforeEach(() => {
-    albums.splice(
+    artists.splice(
       0,
-      albums.length,
+      artists.length,
       {
         id: faker.random.uuid(),
         name: faker.commerce.productName(),
@@ -38,62 +38,62 @@ describe('album route', () => {
         linked: [faker.name.findName()]
       }
     )
-    const store = new BehaviorSubject(albums)
-    mockedAlbums.subscribe = store.subscribe.bind(store)
+    const store = new BehaviorSubject(artists)
+    mockedArtists.subscribe = store.subscribe.bind(store)
     jest.resetAllMocks()
   })
 
-  it('displays all albums', async () => {
-    render(html`<${albumRoute} />`)
+  it('displays all artists', async () => {
+    render(html`<${artistRoute} />`)
 
     expect(
-      screen.getByText(translate('_ albums', { total: albums.length }))
+      screen.getByText(translate('_ artists', { total: artists.length }))
     ).toBeInTheDocument()
-    expect(screen.getByText(albums[0].name)).toBeInTheDocument()
-    expect(screen.getByText(albums[1].name)).toBeInTheDocument()
+    expect(screen.getByText(artists[0].name)).toBeInTheDocument()
+    expect(screen.getByText(artists[1].name)).toBeInTheDocument()
     expect(list).toHaveBeenCalled()
   })
 
-  it('loads and play tracks of an album', async () => {
+  it('loads and play tracks of an artist', async () => {
     const tracks = [
       { id: faker.random.uuid(), path: faker.system.directoryPath() }
     ]
     load.mockImplementation(async () => {
-      album.tracks = tracks
-      return album
+      artist.tracks = tracks
+      return artist
     })
-    const album = albums[0]
+    const artist = artists[0]
 
-    render(html`<${albumRoute} />`)
+    render(html`<${artistRoute} />`)
     const play = screen
-      .getByText(album.name)
+      .getByText(artist.name)
       .closest('article')
       .querySelector('[data-testid="play"]')
     await fireEvent.click(play)
 
-    expect(load).toHaveBeenCalledWith(album.id)
+    expect(load).toHaveBeenCalledWith(artist.id)
     expect(add).toHaveBeenCalledWith(tracks, true)
     expect(push).not.toHaveBeenCalled()
   })
 
-  it('loads and enqueus tracks of an album', async () => {
+  it('loads and enqueus tracks of an artist', async () => {
     const tracks = [
       { id: faker.random.uuid(), path: faker.system.directoryPath() }
     ]
     load.mockImplementation(async () => {
-      album.tracks = tracks
-      return album
+      artist.tracks = tracks
+      return artist
     })
-    const album = albums[0]
+    const artist = artists[0]
 
-    render(html`<${albumRoute} />`)
+    render(html`<${artistRoute} />`)
     const enqueue = screen
-      .getByText(album.name)
+      .getByText(artist.name)
       .closest('article')
       .querySelector('[data-testid="enqueue"]')
     await fireEvent.click(enqueue)
 
-    expect(load).toHaveBeenCalledWith(album.id)
+    expect(load).toHaveBeenCalledWith(artist.id)
     expect(add).toHaveBeenCalledWith(tracks, false)
     expect(push).not.toHaveBeenCalled()
   })
@@ -102,12 +102,12 @@ describe('album route', () => {
     const tracks = [
       { id: faker.random.uuid(), path: faker.system.directoryPath() }
     ]
-    const album = albums[0]
-    album.tracks = tracks
+    const artist = artists[0]
+    artist.tracks = tracks
 
-    render(html`<${albumRoute} />`)
+    render(html`<${artistRoute} />`)
     const play = screen
-      .getByText(album.name)
+      .getByText(artist.name)
       .closest('article')
       .querySelector('button')
     await fireEvent.click(play)
@@ -117,14 +117,14 @@ describe('album route', () => {
     expect(push).not.toHaveBeenCalled()
   })
 
-  it('navigates to album details page', async () => {
-    const album = albums[1]
+  it('navigates to artist details page', async () => {
+    const artist = artists[1]
 
-    render(html`<${albumRoute} />`)
-    const album2 = screen.getByText(album.name)
+    render(html`<${artistRoute} />`)
+    const album2 = screen.getByText(artist.name)
     await fireEvent.click(album2)
 
-    expect(push).toHaveBeenCalledWith(`/album/${album.id}`)
+    expect(push).toHaveBeenCalledWith(`/artist/${artist.id}`)
     expect(load).not.toHaveBeenCalled()
     expect(add).not.toHaveBeenCalled()
   })

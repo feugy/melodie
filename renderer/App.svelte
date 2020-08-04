@@ -1,5 +1,4 @@
 <script>
-  import { onMount } from 'svelte'
   import { _ } from 'svelte-intl'
   import Router from 'svelte-spa-router'
   import {
@@ -11,18 +10,12 @@
     TracksQueue
   } from './components'
   import * as queue from './stores/track-queue'
-  import { list as listAlbums } from './stores/albums'
   import { fromServerChannel } from './utils'
   import { routes } from './routes'
   import { filter, pluck } from 'rxjs/operators'
 
   let isPlaylistOpen = false
-  let isLoading = fromServerChannel('tracking').pipe(
-    filter(({ op }) => op === 'addFolders'),
-    pluck('inProgress')
-  )
-
-  onMount(() => listAlbums())
+  let isLoading = fromServerChannel('tracking').pipe(pluck('inProgress'))
 </script>
 
 <style class="postcss">

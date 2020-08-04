@@ -4,7 +4,7 @@ import { render, screen, fireEvent } from '@testing-library/svelte'
 import html from 'svelte-htm'
 import { push } from 'svelte-spa-router'
 import Nav from './Nav.svelte'
-import { sleep } from '../../tests'
+import { sleep, translate } from '../../tests'
 
 jest.mock('svelte-spa-router')
 
@@ -46,8 +46,16 @@ describe('Nav component', () => {
   it('navigates to albums', async () => {
     render(html`<${Nav} />`)
 
-    fireEvent.click(screen.getByRole('button'))
+    fireEvent.click(screen.getByText(translate('albums')))
 
     expect(push).toHaveBeenCalledWith(`/album`)
+  })
+
+  it('navigates to artists', async () => {
+    render(html`<${Nav} />`)
+
+    fireEvent.click(screen.getByText(translate('artists')))
+
+    expect(push).toHaveBeenCalledWith(`/artist`)
   })
 })

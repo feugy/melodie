@@ -1,6 +1,7 @@
 'use strict'
 
 export { default as Album } from './Album/Album.svelte'
+export { default as Artist } from './Artist/Artist.svelte'
 export { default as Button } from './Button/Button.svelte'
 export { default as DisksList } from './DisksList/DisksList.svelte'
 export { default as Heading } from './Heading/Heading.svelte'

@@ -92,168 +92,131 @@ describe('album details route', () => {
     await sleep()
 
     expect(load).toHaveBeenCalledWith(album.id)
-    expect(replace).toHaveBeenCalledWith('/albums')
+    expect(replace).toHaveBeenCalledWith('/album')
   })
 
-  it('displays album title, image, artists and total duration', async () => {
-    load.mockResolvedValueOnce(album)
+  describe('given an album', () => {
+    beforeEach(async () => {
+      load.mockResolvedValueOnce(album)
+      render(html`<${albumRoute} params=${{ id: album.id }} />`)
+      await sleep()
+    })
 
-    render(html`<${albumRoute} params=${{ id: album.id }} />`)
-    await sleep()
+    it('displays album title, image, artists and total duration', async () => {
+      expect(screen.queryByText(album.name)).toBeInTheDocument()
+      const image = screen.queryByRole('img')
+      expect(image).toBeInTheDocument()
+      // eslint-disable-next-line jest-dom/prefer-to-have-attribute
+      expect(image.getAttribute('src')).toEqual(album.media)
 
-    expect(screen.queryByText(album.name)).toBeInTheDocument()
-    const image = screen.queryByRole('img')
-    expect(image).toBeInTheDocument()
-    // eslint-disable-next-line jest-dom/prefer-to-have-attribute
-    expect(image.getAttribute('src')).toEqual(album.media)
+      expect(
+        screen.queryByText(
+          translate('by _', { artist: album.linked.join(', ') })
+        )
+      ).toBeInTheDocument()
+      expect(
+        screen.queryByText(translate('total duration _', { total: '13:36' }))
+      ).toBeInTheDocument()
 
-    expect(
-      screen.queryByText(translate('by _', { artist: album.linked.join(', ') }))
-    ).toBeInTheDocument()
-    expect(
-      screen.queryByText(translate('total duration _', { total: '13:36' }))
-    ).toBeInTheDocument()
+      expect(load).toHaveBeenCalledWith(album.id)
+    })
 
-    expect(load).toHaveBeenCalledWith(album.id)
-  })
+    it('loads tracks and display them', async () => {
+      expect(load).toHaveBeenCalledWith(album.id)
+      expectDisplayedTracks()
+      expect(replace).not.toHaveBeenCalled()
+    })
 
-  it('loads tracks and display them', async () => {
-    load.mockResolvedValueOnce(album)
+    it('enqueues whole album', async () => {
+      await fireEvent.click(screen.getByText(translate('enqueue all')))
 
-    render(html`<${albumRoute} params=${{ id: album.id }} />`)
-    await sleep()
+      expect(add).toHaveBeenCalledWith(album.tracks)
+      expect(add).toHaveBeenCalledTimes(1)
+    })
 
-    expect(load).toHaveBeenCalledWith(album.id)
-    expectDisplayedTracks()
-    expect(replace).not.toHaveBeenCalled()
-  })
+    it('plays whole album', async () => {
+      await fireEvent.click(screen.getByText(translate('play all')))
 
-  it('enqueues whole album', async () => {
-    load.mockResolvedValueOnce(album)
-    render(html`<${albumRoute} params=${{ id: album.id }} />`)
-    await sleep()
+      expect(add).toHaveBeenCalledWith(album.tracks, true)
+      expect(add).toHaveBeenCalledTimes(1)
+    })
 
-    await fireEvent.click(screen.getByText(translate('enqueue all')))
+    it('enqueues clicked tracks', async () => {
+      await fireEvent.click(screen.getByText(album.tracks[1].tags.title))
+      await sleep(250)
 
-    expect(add).toHaveBeenCalledWith(album.tracks)
-    expect(add).toHaveBeenCalledTimes(1)
-  })
+      expect(add).toHaveBeenCalledWith(album.tracks[1])
+      expect(add).toHaveBeenCalledTimes(1)
+    })
 
-  it('plays whole album', async () => {
-    load.mockResolvedValueOnce(album)
-    render(html`<${albumRoute} params=${{ id: album.id }} />`)
-    await sleep()
+    it('plays double-clicked tracks', async () => {
+      const row = screen.getByText(album.tracks[2].tags.title)
 
-    await fireEvent.click(screen.getByText(translate('play all')))
+      // TODO test glitch: without 3 event, double click isn't detected
+      await fireEvent.click(row)
+      await fireEvent.click(row)
+      await fireEvent.click(row)
+      await sleep(250)
 
-    expect(add).toHaveBeenCalledWith(album.tracks, true)
-    expect(add).toHaveBeenCalledTimes(1)
-  })
+      expect(add).toHaveBeenCalledWith(album.tracks[2], true)
+      expect(add).toHaveBeenCalledTimes(2)
+    })
 
-  it('enqueues clicked tracks', async () => {
-    load.mockResolvedValueOnce(album)
-    render(html`<${albumRoute} params=${{ id: album.id }} />`)
-    await sleep()
+    it('plays tracks on play button', async () => {
+      await fireEvent.click(
+        screen
+          .getByText(album.tracks[0].tags.title)
+          .closest('tr')
+          .querySelector('button')
+      )
 
-    await fireEvent.click(screen.getByText(album.tracks[1].tags.title))
-    await sleep(250)
+      expect(add).toHaveBeenCalledWith(album.tracks[0], true)
+      expect(add).toHaveBeenCalledTimes(1)
+    })
 
-    expect(add).toHaveBeenCalledWith(album.tracks[1])
-    expect(add).toHaveBeenCalledTimes(1)
-  })
+    it('updates on album change', async () => {
+      load.mockReset()
 
-  it('plays double-clicked tracks', async () => {
-    load.mockResolvedValueOnce(album)
-    render(html`<${albumRoute} params=${{ id: album.id }} />`)
-    await sleep()
+      const newName = faker.commerce.productName()
+      changes.next({ ...album, name: newName })
+      await sleep()
 
-    const row = screen.getByText(album.tracks[2].tags.title)
+      expect(screen.queryByText(album.name)).toBeFalsy()
+      expect(screen.getByText(newName)).toBeInTheDocument()
+      expect(load).not.toHaveBeenCalled()
+    })
 
-    // TODO test glitch: without 3 event, double click isn't detected
-    await fireEvent.click(row)
-    await fireEvent.click(row)
-    await fireEvent.click(row)
-    await sleep(250)
+    it('ignores changes on other albums', async () => {
+      load.mockReset()
 
-    expect(add).toHaveBeenCalledWith(album.tracks[2], true)
-    expect(add).toHaveBeenCalledTimes(2)
-  })
+      changes.next({ ...album, id: faker.random.number(), tracks: undefined })
+      await sleep()
 
-  it('plays tracks on play button', async () => {
-    load.mockResolvedValueOnce(album)
-    render(html`<${albumRoute} params=${{ id: album.id }} />`)
-    await sleep()
+      expectDisplayedTracks()
+      expect(load).not.toHaveBeenCalled()
+    })
 
-    await fireEvent.click(
-      screen
-        .getByText(album.tracks[0].tags.title)
-        .closest('tr')
-        .querySelector('button')
-    )
+    it('reloads tracks on album change', async () => {
+      load.mockReset().mockResolvedValueOnce(album)
 
-    expect(add).toHaveBeenCalledWith(album.tracks[0], true)
-    expect(add).toHaveBeenCalledTimes(1)
-  })
+      changes.next({ ...album, tracks: undefined })
+      await sleep()
 
-  it('updates on album change', async () => {
-    load.mockResolvedValue(album)
-    render(html`<${albumRoute} params=${{ id: album.id }} />`)
-    await sleep()
-    load.mockReset()
+      expect(load).toHaveBeenCalledWith(album.id)
+      expectDisplayedTracks()
+      expect(load).toHaveBeenCalledTimes(1)
+    })
 
-    const newName = faker.commerce.productName()
-    changes.next({ ...album, name: newName })
-    await sleep()
+    it('redirects to albums list on removal', async () => {
+      removals.next(album.id)
 
-    expect(screen.queryByText(album.name)).toBeFalsy()
-    expect(screen.getByText(newName)).toBeInTheDocument()
-    expect(load).not.toHaveBeenCalled()
-  })
+      expect(replace).toHaveBeenCalledWith('/album')
+    })
 
-  it('ignores changes on other albums', async () => {
-    load.mockResolvedValue(album)
-    render(html`<${albumRoute} params=${{ id: album.id }} />`)
-    await sleep()
-    load.mockReset()
+    it('ignores other album removals', async () => {
+      removals.next(faker.random.number())
 
-    changes.next({ ...album, id: faker.random.number(), tracks: undefined })
-    await sleep()
-
-    expectDisplayedTracks()
-    expect(load).not.toHaveBeenCalled()
-  })
-
-  it('reloads tracks on album change', async () => {
-    load.mockResolvedValue(album)
-    render(html`<${albumRoute} params=${{ id: album.id }} />`)
-    await sleep()
-    load.mockClear()
-
-    changes.next({ ...album, tracks: undefined })
-    await sleep()
-
-    expect(load).toHaveBeenCalledWith(album.id)
-    expectDisplayedTracks()
-    expect(load).toHaveBeenCalledTimes(1)
-  })
-
-  it('redirects to albums list on removal', async () => {
-    load.mockResolvedValue(album)
-    render(html`<${albumRoute} params=${{ id: album.id }} />`)
-    await sleep()
-
-    removals.next(album.id)
-
-    expect(replace).toHaveBeenCalledWith('/albums')
-  })
-
-  it('ignores other album removals', async () => {
-    load.mockResolvedValue(album)
-    render(html`<${albumRoute} params=${{ id: album.id }} />`)
-    await sleep()
-
-    removals.next(faker.random.number())
-
-    expect(replace).not.toHaveBeenCalledWith('/albums')
+      expect(replace).not.toHaveBeenCalledWith('/album')
+    })
   })
 })

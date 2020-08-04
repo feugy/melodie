@@ -32,6 +32,11 @@ module.exports = {
       setupFiles: ['./tests/jest-setup']
     },
     {
+      displayName: 'common',
+      rootDir: 'common/',
+      testEnvironment: 'jsdom'
+    },
+    {
       displayName: 'e2e',
       rootDir: 'e2e/'
     }

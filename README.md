@@ -28,6 +28,7 @@ npm run build
 - [x] send start/stop events when updating
 - [x] embed file-loader's crawl() into chooseFolders()
 - [x] reactive stores: send update on new albums/artists/tracks
+- [ ] images from last.fm/discogs
 - [ ] consider knex-migrate
 - [ ] images from tags
 
@@ -57,7 +58,10 @@ npm run build
 - [x] albums' artists
 - [ ] artists pictures
 - [ ] artists' albums
-- [ ] list all artists
+- [x] list all artists
+- [x] artist details
+- [ ] page navigation (to artists, to albums)
+- [ ] display years (artist & album details page)
 - [ ] filter albums, artists, or tracks
 - [ ] search input and results
 - [ ] settings panel with watched folders
@@ -82,6 +86,9 @@ npm run build
    - https://github.com/paulmillr/chokidar/issues/591
 1. When loading new folders, enqueuing or going to album details will give incomplete results. Going back and forth won't load new data
 1. In tracks table, the rank column has variable width (BraveHeart), play icon is not vertically centered (2-lines rows)
+1. page navigation: use:link & a.href are hard to test with JSdom
+1. Scroll handling: it'll be better to keep memory on albums/artists page, and reset it on details page
+1. Testing routes: `import regexparam from 'regexparam'` must be replaced with require or `import * as regexparam`: https://github.com/ItalyPaleAle/svelte-spa-router/issues/81
 
 ## History
 

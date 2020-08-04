@@ -1,4 +1,5 @@
 _ albums: '{total} albums'
+_ artists: '{total} artists'
 _ items: '{total} tracks'
 '#': '#'
 'artist: _': 'Artist: {value}'
