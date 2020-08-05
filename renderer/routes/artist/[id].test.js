@@ -3,7 +3,7 @@
 import { screen, render, fireEvent } from '@testing-library/svelte'
 import html from 'svelte-htm'
 import { BehaviorSubject } from 'rxjs'
-import { replace, push } from 'svelte-spa-router'
+import { replace } from 'svelte-spa-router'
 import faker from 'faker'
 import artistRoute from './[id].svelte'
 import {
@@ -107,6 +107,7 @@ describe('artist details route', () => {
 
   describe('given an artist', () => {
     beforeEach(async () => {
+      location.hash = `#/artist/${artist.id}`
       load.mockResolvedValueOnce(artist)
       render(html`<${artistRoute} params=${{ id: artist.id }} />`)
       await sleep()
@@ -182,7 +183,7 @@ describe('artist details route', () => {
       await sleep(250)
 
       expect(add).not.toHaveBeenCalled()
-      expect(push).toHaveBeenCalledWith(`/album/${hash(album2.name)}`)
+      expect(location.hash).toEqual(`#/album/${hash(album2.name)}`)
     })
 
     it('updates on artist change', async () => {

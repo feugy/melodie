@@ -4,7 +4,7 @@ const { resolve } = require('path')
 
 module.exports = {
   stories: ['../renderer/**/*.stories.js'],
-  addons: ['@storybook/addon-actions', '@storybook/addon-links'],
+  addons: ['@storybook/addon-actions'],
   webpackFinal: config => {
     const svelteRule = config.module.rules.find(
       ({ loader }) => loader && loader.includes('svelte-loader')

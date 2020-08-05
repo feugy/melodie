@@ -3,6 +3,7 @@
   import { _ } from 'svelte-intl'
   import Image from '../Image/Image.svelte'
   import Button from '../Button/Button.svelte'
+  import { wrapWithLinks } from '../../utils'
 
   export let src
   const dispatch = createEventDispatcher()
@@ -15,10 +16,6 @@
   function handleEnqueue(evt) {
     dispatch('enqueue', src)
     evt.stopImmediatePropagation()
-  }
-
-  function handleClick() {
-    dispatch('select', src)
   }
 </script>
 
@@ -50,7 +47,7 @@
   }
 </style>
 
-<article on:click|stopPropagation={handleClick} class={$$props.class}>
+<article class={$$props.class}>
   <div class="content">
     <Image class="w-64 h-64" src={src.media} />
     <p class="controls">
@@ -71,8 +68,10 @@
   <header>
     <h3>{src.name}</h3>
     {#if src.linked.length}
-      <h4 title={$_('by _', { artist: src.linked.join(', ') })}>
-        {$_('by _', { artist: src.linked.join(', ') })}
+      <h4>
+        {@html $_('by _', {
+          artist: wrapWithLinks('artist', src.linked).join(', ')
+        })}
       </h4>
     {/if}
   </header>

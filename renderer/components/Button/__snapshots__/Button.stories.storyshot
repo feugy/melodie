@@ -5,7 +5,7 @@ exports[`Storyshots Components/Button Default 1`] = `
   class="storybook-snapshot-container"
 >
   <button
-    class="svelte-u16ygp"
+    class="svelte-ztyk6h"
   >
      
     <span>
@@ -20,10 +20,10 @@ exports[`Storyshots Components/Button Large Icon 1`] = `
   class="storybook-snapshot-container"
 >
   <button
-    class="svelte-u16ygp iconOnly large"
+    class="svelte-ztyk6h iconOnly large"
   >
     <i
-      class="material-icons svelte-u16ygp"
+      class="material-icons svelte-ztyk6h"
     >
       play_arrow
     </i>
@@ -37,10 +37,10 @@ exports[`Storyshots Components/Button Large Text And Icon 1`] = `
   class="storybook-snapshot-container"
 >
   <button
-    class="svelte-u16ygp large"
+    class="svelte-ztyk6h large"
   >
     <i
-      class="material-icons svelte-u16ygp"
+      class="material-icons svelte-ztyk6h"
     >
       person
     </i>
@@ -57,7 +57,7 @@ exports[`Storyshots Components/Button Primary 1`] = `
   class="storybook-snapshot-container"
 >
   <button
-    class="svelte-u16ygp primary"
+    class="svelte-ztyk6h primary"
   >
      
     <span>
@@ -72,10 +72,10 @@ exports[`Storyshots Components/Button Primary Icon 1`] = `
   class="storybook-snapshot-container"
 >
   <button
-    class="svelte-u16ygp primary iconOnly"
+    class="svelte-ztyk6h primary iconOnly"
   >
     <i
-      class="material-icons svelte-u16ygp"
+      class="material-icons svelte-ztyk6h"
     >
       volume_up
     </i>
@@ -89,10 +89,10 @@ exports[`Storyshots Components/Button Text And Icon 1`] = `
   class="storybook-snapshot-container"
 >
   <button
-    class="svelte-u16ygp"
+    class="svelte-ztyk6h"
   >
     <i
-      class="material-icons svelte-u16ygp"
+      class="material-icons svelte-ztyk6h"
     >
       face
     </i>

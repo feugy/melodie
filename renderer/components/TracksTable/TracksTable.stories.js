@@ -3,10 +3,12 @@
 import { action } from '@storybook/addon-actions'
 import { BehaviorSubject } from 'rxjs'
 import TracksTable from './TracksTable.svelte'
+import { hrefSinkDecorator } from '../../../.storybook/decorators'
 
 export default {
   title: 'Components/Tracks table',
-  excludeStories: /.*Data$/
+  excludeStories: /.*Data$/,
+  decorators: [hrefSinkDecorator]
 }
 
 export const tracksData = [
@@ -200,7 +202,8 @@ export const actionsData = {
 export const Default = () => ({
   Component: TracksTable,
   props: {
-    tracks: tracksData
+    tracks: tracksData,
+    current: null
   },
   on: actionsData
 })
@@ -209,6 +212,7 @@ export const WithoutAlbum = () => ({
   Component: TracksTable,
   props: {
     tracks: tracksData,
+    current: null,
     withAlbum: false
   },
   on: actionsData

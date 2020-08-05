@@ -36,11 +36,11 @@ exports[`Storyshots Components/Heading Default 1`] = `
             class="controls svelte-1ni6vn6"
           >
             <button
-              class="svelte-u16ygp primary iconOnly large"
+              class="svelte-ztyk6h primary iconOnly large"
               data-testid="play"
             >
               <i
-                class="material-icons svelte-u16ygp"
+                class="material-icons svelte-ztyk6h"
               >
                 play_arrow
               </i>
@@ -48,11 +48,11 @@ exports[`Storyshots Components/Heading Default 1`] = `
             </button>
              
             <button
-              class="svelte-u16ygp primary iconOnly large"
+              class="svelte-ztyk6h primary iconOnly large"
               data-testid="enqueue"
             >
               <i
-                class="material-icons svelte-u16ygp"
+                class="material-icons svelte-ztyk6h"
               >
                 playlist_add
               </i>
@@ -70,9 +70,23 @@ exports[`Storyshots Components/Heading Default 1`] = `
            
           <h4
             class="svelte-1ni6vn6"
-            title="par Ben Harper, The Innocent Criminals"
           >
-            par Ben Harper, The Innocent Criminals
+            par 
+            <a
+              class=" underlined"
+              href="#/artist/756100103"
+              onclick="event.stopPropagation()"
+            >
+              Ben Harper
+            </a>
+            , 
+            <a
+              class=" underlined"
+              href="#/artist/3430181817"
+              onclick="event.stopPropagation()"
+            >
+              The Innocent Criminals
+            </a>
           </h4>
         </header>
       </article>
@@ -94,11 +108,11 @@ exports[`Storyshots Components/Heading Default 1`] = `
             class="controls svelte-1ni6vn6"
           >
             <button
-              class="svelte-u16ygp primary iconOnly large"
+              class="svelte-ztyk6h primary iconOnly large"
               data-testid="play"
             >
               <i
-                class="material-icons svelte-u16ygp"
+                class="material-icons svelte-ztyk6h"
               >
                 play_arrow
               </i>
@@ -106,11 +120,11 @@ exports[`Storyshots Components/Heading Default 1`] = `
             </button>
              
             <button
-              class="svelte-u16ygp primary iconOnly large"
+              class="svelte-ztyk6h primary iconOnly large"
               data-testid="enqueue"
             >
               <i
-                class="material-icons svelte-u16ygp"
+                class="material-icons svelte-ztyk6h"
               >
                 playlist_add
               </i>
@@ -128,9 +142,23 @@ exports[`Storyshots Components/Heading Default 1`] = `
            
           <h4
             class="svelte-1ni6vn6"
-            title="par Ben Harper, The Innocent Criminals"
           >
-            par Ben Harper, The Innocent Criminals
+            par 
+            <a
+              class=" underlined"
+              href="#/artist/756100103"
+              onclick="event.stopPropagation()"
+            >
+              Ben Harper
+            </a>
+            , 
+            <a
+              class=" underlined"
+              href="#/artist/3430181817"
+              onclick="event.stopPropagation()"
+            >
+              The Innocent Criminals
+            </a>
           </h4>
         </header>
       </article>
@@ -152,11 +180,11 @@ exports[`Storyshots Components/Heading Default 1`] = `
             class="controls svelte-1ni6vn6"
           >
             <button
-              class="svelte-u16ygp primary iconOnly large"
+              class="svelte-ztyk6h primary iconOnly large"
               data-testid="play"
             >
               <i
-                class="material-icons svelte-u16ygp"
+                class="material-icons svelte-ztyk6h"
               >
                 play_arrow
               </i>
@@ -164,11 +192,11 @@ exports[`Storyshots Components/Heading Default 1`] = `
             </button>
              
             <button
-              class="svelte-u16ygp primary iconOnly large"
+              class="svelte-ztyk6h primary iconOnly large"
               data-testid="enqueue"
             >
               <i
-                class="material-icons svelte-u16ygp"
+                class="material-icons svelte-ztyk6h"
               >
                 playlist_add
               </i>
@@ -186,9 +214,23 @@ exports[`Storyshots Components/Heading Default 1`] = `
            
           <h4
             class="svelte-1ni6vn6"
-            title="par Ben Harper, The Innocent Criminals"
           >
-            par Ben Harper, The Innocent Criminals
+            par 
+            <a
+              class=" underlined"
+              href="#/artist/756100103"
+              onclick="event.stopPropagation()"
+            >
+              Ben Harper
+            </a>
+            , 
+            <a
+              class=" underlined"
+              href="#/artist/3430181817"
+              onclick="event.stopPropagation()"
+            >
+              The Innocent Criminals
+            </a>
           </h4>
         </header>
       </article>

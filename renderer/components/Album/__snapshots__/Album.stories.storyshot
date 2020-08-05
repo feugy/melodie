@@ -4,63 +4,83 @@ exports[`Storyshots Components/Album Default 1`] = `
 <section
   class="storybook-snapshot-container"
 >
-  <article
-    class=" svelte-1ni6vn6"
-  >
-    <div
-      class="content svelte-1ni6vn6"
+  <div>
+    <a
+      href="#/album/whateverId"
     >
-      <img
-        alt="./cover.jpg"
-        class="w-64 h-64 svelte-1fck65k rounded-sm"
-        loading="lazy"
-        src="./cover.jpg"
-      />
-       
-      <p
-        class="controls svelte-1ni6vn6"
+      <article
+        class=" svelte-1ni6vn6"
       >
-        <button
-          class="svelte-u16ygp primary iconOnly large"
-          data-testid="play"
+        <div
+          class="content svelte-1ni6vn6"
         >
-          <i
-            class="material-icons svelte-u16ygp"
-          >
-            play_arrow
-          </i>
+          <img
+            alt="./cover.jpg"
+            class="w-64 h-64 svelte-1fck65k rounded-sm"
+            loading="lazy"
+            src="./cover.jpg"
+          />
            
-        </button>
+          <p
+            class="controls svelte-1ni6vn6"
+          >
+            <button
+              class="svelte-ztyk6h primary iconOnly large"
+              data-testid="play"
+            >
+              <i
+                class="material-icons svelte-ztyk6h"
+              >
+                play_arrow
+              </i>
+               
+            </button>
+             
+            <button
+              class="svelte-ztyk6h primary iconOnly large"
+              data-testid="enqueue"
+            >
+              <i
+                class="material-icons svelte-ztyk6h"
+              >
+                playlist_add
+              </i>
+               
+            </button>
+          </p>
+        </div>
          
-        <button
-          class="svelte-u16ygp primary iconOnly large"
-          data-testid="enqueue"
+        <header
+          class="svelte-1ni6vn6"
         >
-          <i
-            class="material-icons svelte-u16ygp"
-          >
-            playlist_add
-          </i>
+          <h3>
+            Diamonds on the inside
+          </h3>
            
-        </button>
-      </p>
-    </div>
-     
-    <header
-      class="svelte-1ni6vn6"
-    >
-      <h3>
-        Diamonds on the inside
-      </h3>
-       
-      <h4
-        class="svelte-1ni6vn6"
-        title="par Ben Harper, The Innocent Criminals"
-      >
-        par Ben Harper, The Innocent Criminals
-      </h4>
-    </header>
-  </article>
+          <h4
+            class="svelte-1ni6vn6"
+          >
+            par 
+            <a
+              class=" underlined"
+              href="#/artist/756100103"
+              onclick="event.stopPropagation()"
+            >
+              Ben Harper
+            </a>
+            , 
+            <a
+              class=" underlined"
+              href="#/artist/3430181817"
+              onclick="event.stopPropagation()"
+            >
+              The Innocent Criminals
+            </a>
+          </h4>
+        </header>
+      </article>
+    </a>
+  </div>
 </section>
 `;
 
@@ -68,63 +88,99 @@ exports[`Storyshots Components/Album Many Artists 1`] = `
 <section
   class="storybook-snapshot-container"
 >
-  <article
-    class=" svelte-1ni6vn6"
-  >
-    <div
-      class="content svelte-1ni6vn6"
+  <div>
+    <a
+      href="#/album/whateverId"
     >
-      <img
-        alt="./cover.jpg"
-        class="w-64 h-64 svelte-1fck65k rounded-sm"
-        loading="lazy"
-        src="./cover.jpg"
-      />
-       
-      <p
-        class="controls svelte-1ni6vn6"
+      <article
+        class=" svelte-1ni6vn6"
       >
-        <button
-          class="svelte-u16ygp primary iconOnly large"
-          data-testid="play"
+        <div
+          class="content svelte-1ni6vn6"
         >
-          <i
-            class="material-icons svelte-u16ygp"
-          >
-            play_arrow
-          </i>
+          <img
+            alt="./cover.jpg"
+            class="w-64 h-64 svelte-1fck65k rounded-sm"
+            loading="lazy"
+            src="./cover.jpg"
+          />
            
-        </button>
+          <p
+            class="controls svelte-1ni6vn6"
+          >
+            <button
+              class="svelte-ztyk6h primary iconOnly large"
+              data-testid="play"
+            >
+              <i
+                class="material-icons svelte-ztyk6h"
+              >
+                play_arrow
+              </i>
+               
+            </button>
+             
+            <button
+              class="svelte-ztyk6h primary iconOnly large"
+              data-testid="enqueue"
+            >
+              <i
+                class="material-icons svelte-ztyk6h"
+              >
+                playlist_add
+              </i>
+               
+            </button>
+          </p>
+        </div>
          
-        <button
-          class="svelte-u16ygp primary iconOnly large"
-          data-testid="enqueue"
+        <header
+          class="svelte-1ni6vn6"
         >
-          <i
-            class="material-icons svelte-u16ygp"
-          >
-            playlist_add
-          </i>
+          <h3>
+            Diamonds on the inside
+          </h3>
            
-        </button>
-      </p>
-    </div>
-     
-    <header
-      class="svelte-1ni6vn6"
-    >
-      <h3>
-        Diamonds on the inside
-      </h3>
-       
-      <h4
-        class="svelte-1ni6vn6"
-        title="par Muse, Perl Jam, Joe Satriani, Avenged Sevenfold"
-      >
-        par Muse, Perl Jam, Joe Satriani, Avenged Sevenfold
-      </h4>
-    </header>
-  </article>
+          <h4
+            class="svelte-1ni6vn6"
+          >
+            par 
+            <a
+              class=" underlined"
+              href="#/artist/3186028081"
+              onclick="event.stopPropagation()"
+            >
+              Muse
+            </a>
+            , 
+            <a
+              class=" underlined"
+              href="#/artist/660487688"
+              onclick="event.stopPropagation()"
+            >
+              Perl Jam
+            </a>
+            , 
+            <a
+              class=" underlined"
+              href="#/artist/3083539488"
+              onclick="event.stopPropagation()"
+            >
+              Joe Satriani
+            </a>
+            , 
+            <a
+              class=" underlined"
+              href="#/artist/1979771749"
+              onclick="event.stopPropagation()"
+            >
+              Avenged Sevenfold
+            </a>
+          </h4>
+        </header>
+      </article>
+    </a>
+  </div>
 </section>
 `;
 
@@ -132,56 +188,62 @@ exports[`Storyshots Components/Album No Artist 1`] = `
 <section
   class="storybook-snapshot-container"
 >
-  <article
-    class=" svelte-1ni6vn6"
-  >
-    <div
-      class="content svelte-1ni6vn6"
+  <div>
+    <a
+      href="#/album/whateverId"
     >
-      <img
-        alt="./cover.jpg"
-        class="w-64 h-64 svelte-1fck65k rounded-sm"
-        loading="lazy"
-        src="./cover.jpg"
-      />
-       
-      <p
-        class="controls svelte-1ni6vn6"
+      <article
+        class=" svelte-1ni6vn6"
       >
-        <button
-          class="svelte-u16ygp primary iconOnly large"
-          data-testid="play"
+        <div
+          class="content svelte-1ni6vn6"
         >
-          <i
-            class="material-icons svelte-u16ygp"
-          >
-            play_arrow
-          </i>
+          <img
+            alt="./cover.jpg"
+            class="w-64 h-64 svelte-1fck65k rounded-sm"
+            loading="lazy"
+            src="./cover.jpg"
+          />
            
-        </button>
+          <p
+            class="controls svelte-1ni6vn6"
+          >
+            <button
+              class="svelte-ztyk6h primary iconOnly large"
+              data-testid="play"
+            >
+              <i
+                class="material-icons svelte-ztyk6h"
+              >
+                play_arrow
+              </i>
+               
+            </button>
+             
+            <button
+              class="svelte-ztyk6h primary iconOnly large"
+              data-testid="enqueue"
+            >
+              <i
+                class="material-icons svelte-ztyk6h"
+              >
+                playlist_add
+              </i>
+               
+            </button>
+          </p>
+        </div>
          
-        <button
-          class="svelte-u16ygp primary iconOnly large"
-          data-testid="enqueue"
+        <header
+          class="svelte-1ni6vn6"
         >
-          <i
-            class="material-icons svelte-u16ygp"
-          >
-            playlist_add
-          </i>
+          <h3>
+            Diamonds on the inside
+          </h3>
            
-        </button>
-      </p>
-    </div>
-     
-    <header
-      class="svelte-1ni6vn6"
-    >
-      <h3>
-        Diamonds on the inside
-      </h3>
-       
-    </header>
-  </article>
+        </header>
+      </article>
+    </a>
+  </div>
 </section>
 `;

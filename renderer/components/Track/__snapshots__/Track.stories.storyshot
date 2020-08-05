@@ -4,32 +4,40 @@ exports[`Storyshots Components/Track Default 1`] = `
 <section
   class="storybook-snapshot-container"
 >
-  <div
-    class="root svelte-r59qz"
-  >
-    <img
-      alt="./cover.jpg"
-      class="h-16 w-16 flex-none svelte-1fck65k rounded-sm"
-      loading="lazy"
-      src="./cover.jpg"
-    />
-     
+  <div>
     <div
-      class="track svelte-r59qz"
+      class="root svelte-p26357"
     >
-      <span
-        class="title svelte-r59qz"
+      <a
+        class="flex-none"
+        href="#/album/3879801547"
       >
-        Diamonds on the inside
-      </span>
+        <img
+          alt="./cover.jpg"
+          class="h-16 w-16 svelte-1fck65k rounded-sm"
+          loading="lazy"
+          src="./cover.jpg"
+        />
+      </a>
        
-      <span
-        class="artist svelte-r59qz"
+      <div
+        class="track svelte-p26357"
       >
-        Ben Harper
-      </span>
+        <span
+          class="title svelte-p26357"
+        >
+          Mama got a girlfriend
+        </span>
+         
+        <a
+          class="artist underlined svelte-p26357"
+          href="#/artist/756100103"
+        >
+          Ben Harper
+        </a>
+      </div>
+       
     </div>
-     
   </div>
 </section>
 `;
@@ -38,36 +46,44 @@ exports[`Storyshots Components/Track With Details 1`] = `
 <section
   class="storybook-snapshot-container"
 >
-  <div
-    class="root svelte-r59qz"
-  >
-    <img
-      alt="./cover.jpg"
-      class="h-16 w-16 flex-none svelte-1fck65k rounded-sm"
-      loading="lazy"
-      src="./cover.jpg"
-    />
-     
+  <div>
     <div
-      class="track svelte-r59qz"
+      class="root svelte-p26357"
     >
-      <span
-        class="title svelte-r59qz"
+      <a
+        class="flex-none"
+        href="#/album/3879801547"
       >
-        Diamonds on the inside
-      </span>
+        <img
+          alt="./cover.jpg"
+          class="h-16 w-16 svelte-1fck65k rounded-sm"
+          loading="lazy"
+          src="./cover.jpg"
+        />
+      </a>
        
-      <span
-        class="artist svelte-r59qz"
+      <div
+        class="track svelte-p26357"
       >
-        Ben Harper
-      </span>
-    </div>
-     
-    <div
-      class="duration svelte-r59qz"
-    >
-      2:06
+        <span
+          class="title svelte-p26357"
+        >
+          Mama got a girlfriend
+        </span>
+         
+        <a
+          class="artist underlined svelte-p26357"
+          href="#/artist/756100103"
+        >
+          Ben Harper
+        </a>
+      </div>
+       
+      <div
+        class="duration svelte-p26357"
+      >
+        2:06
+      </div>
     </div>
   </div>
 </section>

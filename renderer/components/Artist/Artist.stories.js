@@ -1,11 +1,13 @@
 'use strict'
 
 import { action } from '@storybook/addon-actions'
-import Artist from './Artist.svelte'
+import Artist from './Artist.stories.svelte'
+import { hrefSinkDecorator } from '../../../.storybook/decorators'
 
 export default {
   title: 'Components/Artist',
-  excludeStories: /.*Data$/
+  excludeStories: /.*Data$/,
+  decorators: [hrefSinkDecorator]
 }
 
 export const artistData = {
@@ -15,7 +17,6 @@ export const artistData = {
 }
 
 export const actionsData = {
-  select: action('on artist select'),
   play: action('on artist play'),
   enqueue: action('on artist enqueue')
 }

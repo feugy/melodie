@@ -2,7 +2,6 @@
   import { onMount } from 'svelte'
   import { _ } from 'svelte-intl'
   import { fade } from 'svelte/transition'
-  import { push } from 'svelte-spa-router'
   import { Artist, Heading } from '../components'
   import { artists, load, list } from '../stores/artists'
   import { add } from '../stores/track-queue'
@@ -21,10 +20,6 @@
 
   async function handleEnqueue(evt) {
     return handlePlay(evt, false)
-  }
-
-  function handleSelect({ detail: { id } }) {
-    push(`/artist/${id}`)
   }
 </script>
 
@@ -45,13 +40,9 @@
     image={'../images/larisa-birta-slbOcNlWNHA-unsplash.jpg'} />
   <div>
     {#each $artists as src (src.id)}
-      <span class="p-4">
-        <Artist
-          {src}
-          on:play={handlePlay}
-          on:enqueue={handleEnqueue}
-          on:select={handleSelect} />
-      </span>
+      <a href={`#/artist/${src.id}`} class="p-4">
+        <Artist {src} on:play={handlePlay} on:enqueue={handleEnqueue} />
+      </a>
     {/each}
   </div>
 </section>

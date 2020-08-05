@@ -1,8 +1,9 @@
 'use strict'
 
-export { hash } from '../../common/utils'
-export * from './path'
-export * from './invoke'
 export * from './channel'
-export * from './time'
+export * from './hash'
+export * from './invoke'
+export * from './links'
 export * from './list-store-factory'
+export * from './path'
+export * from './time'

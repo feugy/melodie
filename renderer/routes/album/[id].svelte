@@ -1,5 +1,5 @@
 <script>
-  import { onMount, onDestroy } from 'svelte'
+  import { onDestroy } from 'svelte'
   import { fade } from 'svelte/transition'
   import { _ } from 'svelte-intl'
   import { replace } from 'svelte-spa-router'
@@ -8,19 +8,21 @@
   import { Heading, Image, Button, DisksList } from '../../components'
   import { albums, load, changes, removals } from '../../stores/albums'
   import { add, current } from '../../stores/track-queue'
-  import { formatTime, sumDurations } from '../../utils'
+  import { formatTime, sumDurations, wrapWithLinks } from '../../utils'
 
   export let params = {}
-  $: albumId = +params.id
-
   let album
+  $: albumId = +params.id
+  $: if (!album || album.id !== albumId) {
+    loadAlbum()
+  }
 
-  onMount(async () => {
+  async function loadAlbum() {
     album = await load(albumId)
     if (!album) {
       replace('/album')
     }
-  })
+  }
 
   const changeSub = changes
     .pipe(
@@ -66,7 +68,7 @@
   }
 
   .totalDuration {
-    @apply flex-grow;
+    @apply flex-grow mb-4;
   }
 </style>
 
@@ -80,7 +82,11 @@
         <Image class="h-full w-full" src={album.media} />
       </span>
       <div>
-        <h3>{$_('by _', { artist: album.linked.join(', ') })}</h3>
+        <h3>
+          {@html $_('by _', {
+            artist: wrapWithLinks('artist', album.linked).join(', ')
+          })}
+        </h3>
         <span class="totalDuration">
           {$_('total duration _', {
             total: formatTime(sumDurations(album.tracks))

@@ -2,7 +2,6 @@
   import { onMount } from 'svelte'
   import { _ } from 'svelte-intl'
   import { fade } from 'svelte/transition'
-  import { push } from 'svelte-spa-router'
   import { Album, Button, Heading } from '../components'
   import { albums, load, list } from '../stores/albums'
   import { add } from '../stores/track-queue'
@@ -21,10 +20,6 @@
 
   async function handleAlbumEnqueue(evt) {
     return handleAlbumPlay(evt, false)
-  }
-
-  function handleAlbumClick({ detail: album }) {
-    push(`/album/${album.id}`)
   }
 </script>
 
@@ -45,13 +40,12 @@
     image={'../images/valentino-funghi-MEcxLZ8ENV8-unsplash.jpg'} />
   <div>
     {#each $albums as src (src.id)}
-      <span class="p-4">
+      <a href={`#/album/${src.id}`} class="p-4">
         <Album
           {src}
           on:play={handleAlbumPlay}
-          on:enqueue={handleAlbumEnqueue}
-          on:select={handleAlbumClick} />
-      </span>
+          on:enqueue={handleAlbumEnqueue} />
+      </a>
     {/each}
   </div>
 </section>

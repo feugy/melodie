@@ -49,7 +49,7 @@
 
   button:hover,
   button:active {
-    background-color: var(--hover-color);
+    background-color: var(--hover-bg-color);
   }
 
   button.primary:hover,
@@ -74,7 +74,7 @@
   class:noBorder
   data-testid={$$props['data-testid']}
   class={$$props.class}
-  on:click>
+  on:click|preventDefault>
   {#if icon}
     <i class="material-icons">{icon}</i>
   {/if}

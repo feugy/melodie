@@ -13,8 +13,9 @@
   --bg-primary-color: #272933;
   --outline-color: rgba(255, 255, 255, 0.25);
   --primary-color: #4c5c96;
-  --hover-color: rgba(255, 255, 255, 0.125);
-  --hover-primary-color: #53639e;
+  --hover-color: #ccffff;
+  --hover-bg-color: rgba(255, 255, 255, 0.125);
+  --hover-primary-color: #43527f;
 }
 
 body {
@@ -34,4 +35,24 @@ h1 {
   @apply font-bold uppercase mb-4;
   font-family: Raleway, Helvetica, sans-serif;
   letter-spacing: 0.1em;
+}
+
+a.underlined {
+  @apply relative;
+}
+a.underlined:before {
+  @apply opacity-0 absolute w-0 left-0;
+  content: '';
+  bottom: -2px;
+  height: 0.5px;
+  transition: all 200ms ease-in-out;
+  background-color: var(--hover-color);
+}
+
+a.underlined:hover {
+  @apply no-underline border-none outline-none;
+  color: var(--hover-color);
+}
+a.underlined:hover:before {
+  @apply opacity-100 w-full;
 }

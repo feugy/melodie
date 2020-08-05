@@ -22,7 +22,7 @@
     @apply inline-block absolute inset-x-0 pointer-events-none;
     top: 15px;
     height: 6px;
-    background: var(--font-color);
+    background: var(--hover-primary-color);
   }
 
   .sliderTrack,
@@ -32,7 +32,7 @@
 
   .progress {
     @apply absolute inset-0;
-    background-color: var(--hover-primary-color);
+    background-color: var(--font-color);
   }
 
   .wrapper:hover .progress::after {

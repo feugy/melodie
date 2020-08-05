@@ -1,21 +1,13 @@
 <script>
   import { createEventDispatcher, onDestroy } from 'svelte'
   import { _ } from 'svelte-intl'
-  import { Observable, race } from 'rxjs'
-  import {
-    bufferCount,
-    buffer,
-    debounceTime,
-    tap,
-    share,
-    first,
-    repeat
-  } from 'rxjs/operators'
+  import { Subject, race } from 'rxjs'
+  import { bufferCount, debounceTime, first, repeat } from 'rxjs/operators'
   import Button from '../Button/Button.svelte'
-  import { formatTime } from '../../utils'
+  import { formatTime, wrapWithLink } from '../../utils'
 
-  export let tracks = undefined
-  export let current = undefined
+  export let tracks
+  export let current
   export let withAlbum = true
   $: sortedTracks =
     tracks &&
@@ -30,19 +22,21 @@
   const dblClickDuration = 250
   const dispatch = createEventDispatcher()
 
-  let clickObserver
-  const clicks$ = Observable.create(obs => (clickObserver = obs)).pipe(share())
+  const clicks$ = new Subject()
   const debounce$ = clicks$.pipe(debounceTime(dblClickDuration))
   const clickLimit$ = clicks$.pipe(bufferCount(2))
   const bufferGate$ = race(debounce$, clickLimit$).pipe(first(), repeat())
 
-  const subscription = clicks$.pipe(buffer(bufferGate$)).subscribe(tracks => {
+  const subscription = bufferGate$.subscribe(clicked => {
     // play on double click, enqueue on simple
-    dispatch(tracks.length === 2 ? 'play' : 'enqueue', tracks[0])
+    dispatch(
+      Array.isArray(clicked) ? 'play' : 'enqueue',
+      Array.isArray(clicked) ? clicked[0] : clicked
+    )
   })
 
   function handleClick(track) {
-    clickObserver.next(track)
+    clicks$.next(track)
   }
 
   onDestroy(() => subscription.unsubscribe())
@@ -67,7 +61,7 @@
   }
 
   tbody tr:nth-child(2n + 1) {
-    background-color: var(--hover-color);
+    background-color: var(--hover-bg-color);
   }
 
   tbody tr:hover {
@@ -111,7 +105,7 @@
       {#each sortedTracks as track, i (track.id)}
         <tr
           on:click={() => handleClick(track)}
-          class:current={$current === track}>
+          class:current={$current && $current.id === track.id}>
           <td>
             <span class="rank">
               {(track.tags.track && track.tags.track.no) || '--'}
@@ -126,9 +120,13 @@
             </span>
           </td>
           <td>{track.tags.title}</td>
-          <td>{track.tags.artists[0]}</td>
+          <td>
+            {@html wrapWithLink('artist', track.tags.artists[0])}
+          </td>
           {#if withAlbum}
-            <td>{track.tags.album}</td>
+            <td>
+              {@html wrapWithLink('album', track.tags.album)}
+            </td>
           {/if}
           <td>{formatTime(track.tags.duration)}</td>
         </tr>

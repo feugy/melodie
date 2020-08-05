@@ -14,6 +14,7 @@ import {
 } from '../../stores/albums'
 import { add } from '../../stores/track-queue'
 import { translate, sleep } from '../../tests'
+import { hash } from '../../utils'
 
 jest.mock('svelte-spa-router')
 jest.mock('../../stores/track-queue', () => ({
@@ -97,6 +98,7 @@ describe('album details route', () => {
 
   describe('given an album', () => {
     beforeEach(async () => {
+      location.hash = `#/album/${album.id}`
       load.mockResolvedValueOnce(album)
       render(html`<${albumRoute} params=${{ id: album.id }} />`)
       await sleep()
@@ -109,16 +111,24 @@ describe('album details route', () => {
       // eslint-disable-next-line jest-dom/prefer-to-have-attribute
       expect(image.getAttribute('src')).toEqual(album.media)
 
-      expect(
-        screen.queryByText(
-          translate('by _', { artist: album.linked.join(', ') })
-        )
-      ).toBeInTheDocument()
+      expect(screen.queryByText(album.linked[0])).toBeInTheDocument()
+      expect(screen.queryByText(album.linked[1])).toBeInTheDocument()
+
       expect(
         screen.queryByText(translate('total duration _', { total: '13:36' }))
       ).toBeInTheDocument()
 
       expect(load).toHaveBeenCalledWith(album.id)
+    })
+
+    it('has links to artists', async () => {
+      const artist = faker.random.arrayElement(album.linked)
+      // first occurence is in album header, then we have tracks
+      fireEvent.click(screen.getAllByText(artist)[0])
+      await sleep()
+
+      expect(add).not.toHaveBeenCalled()
+      expect(location.hash).toEqual(`#/artist/${hash(artist)}`)
     })
 
     it('loads tracks and display them', async () => {
@@ -136,9 +146,11 @@ describe('album details route', () => {
 
     it('plays whole album', async () => {
       await fireEvent.click(screen.getByText(translate('play all')))
+      await sleep()
 
       expect(add).toHaveBeenCalledWith(album.tracks, true)
       expect(add).toHaveBeenCalledTimes(1)
+      expect(location.hash).toEqual(`#/album/${album.id}`)
     })
 
     it('enqueues clicked tracks', async () => {
@@ -147,31 +159,21 @@ describe('album details route', () => {
 
       expect(add).toHaveBeenCalledWith(album.tracks[1])
       expect(add).toHaveBeenCalledTimes(1)
+      expect(location.hash).toEqual(`#/album/${album.id}`)
     })
 
-    it('plays double-clicked tracks', async () => {
-      const row = screen.getByText(album.tracks[2].tags.title)
-
-      // TODO test glitch: without 3 event, double click isn't detected
-      await fireEvent.click(row)
-      await fireEvent.click(row)
-      await fireEvent.click(row)
-      await sleep(250)
-
-      expect(add).toHaveBeenCalledWith(album.tracks[2], true)
-      expect(add).toHaveBeenCalledTimes(2)
-    })
-
-    it('plays tracks on play button', async () => {
+    it('plays tracks', async () => {
       await fireEvent.click(
         screen
-          .getByText(album.tracks[0].tags.title)
+          .getByText(album.tracks[2].tags.title)
           .closest('tr')
           .querySelector('button')
       )
+      await sleep()
 
-      expect(add).toHaveBeenCalledWith(album.tracks[0], true)
+      expect(add).toHaveBeenCalledWith(album.tracks[2], true)
       expect(add).toHaveBeenCalledTimes(1)
+      expect(location.hash).toEqual(`#/album/${album.id}`)
     })
 
     it('updates on album change', async () => {

@@ -1,8 +1,8 @@
 <script>
-  import { onMount, onDestroy } from 'svelte'
+  import { onDestroy } from 'svelte'
   import { fade } from 'svelte/transition'
   import { _ } from 'svelte-intl'
-  import { replace, push } from 'svelte-spa-router'
+  import { replace } from 'svelte-spa-router'
   import { of } from 'rxjs'
   import { map, filter, distinct, mergeMap } from 'rxjs/operators'
   import { Heading, Image, Button, Album } from '../../components'
@@ -12,17 +12,19 @@
 
   export let params = {}
   let albums = []
-  $: artistId = +params.id
-
   let artist
+  $: artistId = +params.id
+  $: if (!artist || artist.id !== artistId) {
+    loadArtist()
+  }
 
-  onMount(async () => {
+  async function loadArtist() {
     artist = await load(artistId)
     if (!artist) {
       return replace('/artist')
     }
     albums = groupByAlbum(artist.tracks)
-  })
+  }
 
   const changeSub = changes
     .pipe(
@@ -109,13 +111,12 @@
     </section>
     <div class="albums">
       {#each albums as src (src.id)}
-        <span class="p-4">
+        <a href={`#/album/${src.id}`} class="p-4">
           <Album
             {src}
             on:play={() => add(src.tracks, true)}
-            on:enqueue={() => add(src.tracks)}
-            on:select={() => push(`/album/${src.id}`)} />
-        </span>
+            on:enqueue={() => add(src.tracks)} />
+        </a>
       {/each}
     </div>
   {/if}

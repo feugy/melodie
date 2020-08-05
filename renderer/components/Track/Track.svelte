@@ -1,7 +1,7 @@
 <script>
   import { _ } from 'svelte-intl'
   import Image from '../Image/Image.svelte'
-  import { formatTime } from '../../utils'
+  import { formatTime, linkTo } from '../../utils'
 
   export let src
   export let media = null
@@ -15,15 +15,15 @@
   }
 
   .track {
-    @apply flex-grow flex flex-col;
+    @apply flex-grow flex flex-col items-start px-2;
   }
 
   .title {
-    @apply px-2 text-lg;
+    @apply text-lg;
   }
 
   .artist {
-    @apply px-2 text-sm;
+    @apply text-sm;
   }
 
   .duration {
@@ -33,11 +33,21 @@
 
 <div class="root" on:click>
   {#if media}
-    <Image class="h-16 w-16 flex-none" src={media} />
+    <a
+      on:click|stopPropagation
+      href={linkTo('album', src.album)}
+      class="flex-none">
+      <Image class="h-16 w-16" src={media} />
+    </a>
   {/if}
   <div class="track">
     <span class="title">{src.title}</span>
-    <span class="artist">{artist}</span>
+    <a
+      on:click|stopPropagation
+      href={linkTo('artist', artist)}
+      class="artist underlined">
+      {artist}
+    </a>
   </div>
   {#if details}
     <div class="duration">{formatTime(src.duration)}</div>

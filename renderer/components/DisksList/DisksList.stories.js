@@ -1,11 +1,13 @@
 'use strict'
 
 import DisksList from './DisksList.svelte'
-import { actionsData } from '../TracksTable/TracksTable.stories'
+import { actionsData, current$Data } from '../TracksTable/TracksTable.stories'
+import { hrefSinkDecorator } from '../../../.storybook/decorators'
 
 export default {
   title: 'Components/Disks list',
-  excludeStories: /.*Data$/
+  excludeStories: /.*Data$/,
+  decorators: [hrefSinkDecorator]
 }
 
 export const disksData = [
@@ -210,7 +212,8 @@ export const disksData = [
 export const Default = () => ({
   Component: DisksList,
   props: {
-    tracks: disksData
+    tracks: disksData,
+    current: current$Data
   },
   on: actionsData
 })

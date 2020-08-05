@@ -4,62 +4,68 @@ exports[`Storyshots Components/Artist Default 1`] = `
 <section
   class="storybook-snapshot-container"
 >
-  <article
-    class=" svelte-fggesx"
-  >
-    <div
-      class="content svelte-fggesx"
+  <div>
+    <a
+      href="#/artist/whateverId"
     >
-      <img
-        alt="./avatar.jpg"
-        class="w-64 h-64 svelte-1fck65k rounded-full"
-        loading="lazy"
-        src="./avatar.jpg"
-      />
-       
-      <p
-        class="controls svelte-fggesx"
+      <article
+        class=" svelte-fggesx"
       >
-        <button
-          class="svelte-u16ygp primary iconOnly large"
-          data-testid="play"
+        <div
+          class="content svelte-fggesx"
         >
-          <i
-            class="material-icons svelte-u16ygp"
-          >
-            play_arrow
-          </i>
+          <img
+            alt="./avatar.jpg"
+            class="w-64 h-64 svelte-1fck65k rounded-full"
+            loading="lazy"
+            src="./avatar.jpg"
+          />
            
-        </button>
+          <p
+            class="controls svelte-fggesx"
+          >
+            <button
+              class="svelte-ztyk6h primary iconOnly large"
+              data-testid="play"
+            >
+              <i
+                class="material-icons svelte-ztyk6h"
+              >
+                play_arrow
+              </i>
+               
+            </button>
+             
+            <button
+              class="svelte-ztyk6h primary iconOnly large"
+              data-testid="enqueue"
+            >
+              <i
+                class="material-icons svelte-ztyk6h"
+              >
+                playlist_add
+              </i>
+               
+            </button>
+          </p>
+        </div>
          
-        <button
-          class="svelte-u16ygp primary iconOnly large"
-          data-testid="enqueue"
+        <header
+          class="svelte-fggesx"
         >
-          <i
-            class="material-icons svelte-u16ygp"
-          >
-            playlist_add
-          </i>
+          <h3>
+            Foo Fighters
+          </h3>
            
-        </button>
-      </p>
-    </div>
-     
-    <header
-      class="svelte-fggesx"
-    >
-      <h3>
-        Foo Fighters
-      </h3>
-       
-      <h4
-        class="svelte-fggesx"
-      >
-        2 albums
-      </h4>
-    </header>
-  </article>
+          <h4
+            class="svelte-fggesx"
+          >
+            2 albums
+          </h4>
+        </header>
+      </article>
+    </a>
+  </div>
 </section>
 `;
 
@@ -67,56 +73,62 @@ exports[`Storyshots Components/Artist No Albums 1`] = `
 <section
   class="storybook-snapshot-container"
 >
-  <article
-    class=" svelte-fggesx"
-  >
-    <div
-      class="content svelte-fggesx"
+  <div>
+    <a
+      href="#/artist/whateverId"
     >
-      <img
-        alt="./avatar.jpg"
-        class="w-64 h-64 svelte-1fck65k rounded-full"
-        loading="lazy"
-        src="./avatar.jpg"
-      />
-       
-      <p
-        class="controls svelte-fggesx"
+      <article
+        class=" svelte-fggesx"
       >
-        <button
-          class="svelte-u16ygp primary iconOnly large"
-          data-testid="play"
+        <div
+          class="content svelte-fggesx"
         >
-          <i
-            class="material-icons svelte-u16ygp"
-          >
-            play_arrow
-          </i>
+          <img
+            alt="./avatar.jpg"
+            class="w-64 h-64 svelte-1fck65k rounded-full"
+            loading="lazy"
+            src="./avatar.jpg"
+          />
            
-        </button>
+          <p
+            class="controls svelte-fggesx"
+          >
+            <button
+              class="svelte-ztyk6h primary iconOnly large"
+              data-testid="play"
+            >
+              <i
+                class="material-icons svelte-ztyk6h"
+              >
+                play_arrow
+              </i>
+               
+            </button>
+             
+            <button
+              class="svelte-ztyk6h primary iconOnly large"
+              data-testid="enqueue"
+            >
+              <i
+                class="material-icons svelte-ztyk6h"
+              >
+                playlist_add
+              </i>
+               
+            </button>
+          </p>
+        </div>
          
-        <button
-          class="svelte-u16ygp primary iconOnly large"
-          data-testid="enqueue"
+        <header
+          class="svelte-fggesx"
         >
-          <i
-            class="material-icons svelte-u16ygp"
-          >
-            playlist_add
-          </i>
+          <h3>
+            Foo Fighters
+          </h3>
            
-        </button>
-      </p>
-    </div>
-     
-    <header
-      class="svelte-fggesx"
-    >
-      <h3>
-        Foo Fighters
-      </h3>
-       
-    </header>
-  </article>
+        </header>
+      </article>
+    </a>
+  </div>
 </section>
 `;

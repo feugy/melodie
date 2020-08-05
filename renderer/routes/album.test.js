@@ -2,13 +2,12 @@
 
 import { screen, render, fireEvent } from '@testing-library/svelte'
 import html from 'svelte-htm'
-import { push } from 'svelte-spa-router'
 import { BehaviorSubject } from 'rxjs'
 import faker from 'faker'
 import albumRoute from './album.svelte'
 import { albums as mockedAlbums, load, list } from '../stores/albums'
 import { add } from '../stores/track-queue'
-import { translate } from '../tests'
+import { translate, sleep } from '../tests'
 
 jest.mock('svelte-spa-router')
 jest.mock('../stores/track-queue')
@@ -22,6 +21,7 @@ describe('album route', () => {
   const albums = []
 
   beforeEach(() => {
+    location.hash = '#/album'
     albums.splice(
       0,
       albums.length,
@@ -73,7 +73,6 @@ describe('album route', () => {
 
     expect(load).toHaveBeenCalledWith(album.id)
     expect(add).toHaveBeenCalledWith(tracks, true)
-    expect(push).not.toHaveBeenCalled()
   })
 
   it('loads and enqueus tracks of an album', async () => {
@@ -95,7 +94,6 @@ describe('album route', () => {
 
     expect(load).toHaveBeenCalledWith(album.id)
     expect(add).toHaveBeenCalledWith(tracks, false)
-    expect(push).not.toHaveBeenCalled()
   })
 
   it('does not load tracks when already there', async () => {
@@ -114,7 +112,6 @@ describe('album route', () => {
 
     expect(load).not.toHaveBeenCalled()
     expect(add).toHaveBeenCalledWith(tracks, true)
-    expect(push).not.toHaveBeenCalled()
   })
 
   it('navigates to album details page', async () => {
@@ -123,8 +120,9 @@ describe('album route', () => {
     render(html`<${albumRoute} />`)
     const album2 = screen.getByText(album.name)
     await fireEvent.click(album2)
+    await sleep()
 
-    expect(push).toHaveBeenCalledWith(`/album/${album.id}`)
+    expect(location.hash).toEqual(`#/album/${album.id}`)
     expect(load).not.toHaveBeenCalled()
     expect(add).not.toHaveBeenCalled()
   })

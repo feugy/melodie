@@ -29,27 +29,6 @@ describe('Artist component', () => {
     expect(handleSelect).not.toHaveBeenCalled()
   })
 
-  it('dispatches select event', async () => {
-    const handlePlay = jest.fn()
-    const handleEnqueue = jest.fn()
-    const handleSelect = jest.fn()
-    render(html`<${Artist}
-      on:play=${handlePlay}
-      on:enqueue=${handleEnqueue}
-      on:select=${handleSelect}
-      src=${artistData}
-    />`)
-
-    fireEvent.click(screen.getByText(artistData.name))
-
-    expect(handleSelect).toHaveBeenCalledWith(
-      expect.objectContaining({ detail: artistData })
-    )
-    expect(handleSelect).toHaveBeenCalledTimes(1)
-    expect(handlePlay).not.toHaveBeenCalled()
-    expect(handleEnqueue).not.toHaveBeenCalled()
-  })
-
   it('dispatches enqueue event', async () => {
     const handlePlay = jest.fn()
     const handleEnqueue = jest.fn()
