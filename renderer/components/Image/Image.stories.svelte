@@ -2,6 +2,4 @@
   import Image from './Image.svelte'
 </script>
 
-<div class="w-64 inline-block">
-  <Image on:click {...$$props} />
-</div>
+<Image class="w-64 h-64 inline-block" on:click {...$$props} />

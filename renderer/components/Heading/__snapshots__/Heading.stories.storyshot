@@ -27,10 +27,12 @@ exports[`Storyshots Components/Heading Default 1`] = `
         >
           <img
             alt="./cover.jpg"
-            class="w-64 h-64 svelte-1fck65k rounded-sm"
+            class="w-64 h-64 text-3xl svelte-hn7eai rounded-sm"
             loading="lazy"
             src="./cover.jpg"
           />
+           
+          
            
           <p
             class="controls svelte-1ni6vn6"
@@ -99,10 +101,12 @@ exports[`Storyshots Components/Heading Default 1`] = `
         >
           <img
             alt="./cover.jpg"
-            class="w-64 h-64 svelte-1fck65k rounded-sm"
+            class="w-64 h-64 text-3xl svelte-hn7eai rounded-sm"
             loading="lazy"
             src="./cover.jpg"
           />
+           
+          
            
           <p
             class="controls svelte-1ni6vn6"
@@ -171,10 +175,12 @@ exports[`Storyshots Components/Heading Default 1`] = `
         >
           <img
             alt="./cover.jpg"
-            class="w-64 h-64 svelte-1fck65k rounded-sm"
+            class="w-64 h-64 text-3xl svelte-hn7eai rounded-sm"
             loading="lazy"
             src="./cover.jpg"
           />
+           
+          
            
           <p
             class="controls svelte-1ni6vn6"

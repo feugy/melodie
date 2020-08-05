@@ -47,7 +47,7 @@
 
 <article class={$$props.class}>
   <div class="content">
-    <Image class="w-64 h-64" rounded src={src.media} />
+    <Image class="w-64 h-64 text-3xl" rounded src={src.media} />
     <p class="controls">
       <Button
         data-testid="play"

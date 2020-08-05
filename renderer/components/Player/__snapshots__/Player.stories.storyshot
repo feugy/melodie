@@ -136,10 +136,12 @@ exports[`Storyshots Components/Player With Track List 1`] = `
         >
           <img
             alt="./# Films/cover.jpg"
-            class="h-16 w-16 svelte-1fck65k rounded-sm"
+            class="h-16 w-16 text-xs svelte-hn7eai rounded-sm"
             loading="lazy"
             src="./%23 Films/cover.jpg"
           />
+           
+          
         </a>
          
         <div

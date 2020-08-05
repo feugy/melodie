@@ -32,14 +32,12 @@
 </style>
 
 <div class="root" on:click>
-  {#if media}
-    <a
-      on:click|stopPropagation
-      href={linkTo('album', src.album)}
-      class="flex-none">
-      <Image class="h-16 w-16" src={media} />
-    </a>
-  {/if}
+  <a
+    on:click|stopPropagation
+    href={linkTo('album', src.album)}
+    class="flex-none">
+    <Image class="h-16 w-16 text-xs" src={media} />
+  </a>
   <div class="track">
     <span class="title">{src.title}</span>
     <a

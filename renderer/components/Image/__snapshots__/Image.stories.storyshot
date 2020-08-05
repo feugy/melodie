@@ -1,19 +1,54 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Storyshots Components/Image Broken 1`] = `
+<section
+  class="storybook-snapshot-container"
+>
+  <img
+    alt="./unknown.jpg"
+    class="w-64 h-64 inline-block svelte-hn7eai rounded-sm"
+    loading="lazy"
+    src="./unknown.jpg"
+  />
+   
+  
+</section>
+`;
+
+exports[`Storyshots Components/Image Broken Rounded 1`] = `
+<section
+  class="storybook-snapshot-container"
+>
+  <img
+    class="w-64 h-64 inline-block svelte-hn7eai rounded-full hidden"
+    loading="lazy"
+  />
+   
+  <span
+    class="w-64 h-64 inline-block svelte-hn7eai rounded-full"
+  >
+    <i
+      class="material-icons svelte-hn7eai"
+    >
+      person
+    </i>
+  </span>
+  
+</section>
+`;
+
 exports[`Storyshots Components/Image Default 1`] = `
 <section
   class="storybook-snapshot-container"
 >
-  <div
-    class="w-64 inline-block"
-  >
-    <img
-      alt="./cover.jpg"
-      class="svelte-1fck65k rounded-sm"
-      loading="lazy"
-      src="./cover.jpg"
-    />
-  </div>
+  <img
+    alt="./cover.jpg"
+    class="w-64 h-64 inline-block svelte-hn7eai rounded-sm"
+    loading="lazy"
+    src="./cover.jpg"
+  />
+   
+  
 </section>
 `;
 
@@ -21,16 +56,14 @@ exports[`Storyshots Components/Image Rouded 1`] = `
 <section
   class="storybook-snapshot-container"
 >
-  <div
-    class="w-64 inline-block"
-  >
-    <img
-      alt="./avatar.jpg"
-      class="svelte-1fck65k rounded-full"
-      loading="lazy"
-      src="./avatar.jpg"
-    />
-  </div>
+  <img
+    alt="./avatar.jpg"
+    class="w-64 h-64 inline-block svelte-hn7eai rounded-full"
+    loading="lazy"
+    src="./avatar.jpg"
+  />
+   
+  
 </section>
 `;
 
@@ -38,15 +71,13 @@ exports[`Storyshots Components/Image With Escaped Path 1`] = `
 <section
   class="storybook-snapshot-container"
 >
-  <div
-    class="w-64 inline-block"
-  >
-    <img
-      alt="./# Films/cover.jpg"
-      class="svelte-1fck65k rounded-sm"
-      loading="lazy"
-      src="./%23 Films/cover.jpg"
-    />
-  </div>
+  <img
+    alt="./# Films/cover.jpg"
+    class="w-64 h-64 inline-block svelte-hn7eai rounded-sm"
+    loading="lazy"
+    src="./%23 Films/cover.jpg"
+  />
+   
+  
 </section>
 `;

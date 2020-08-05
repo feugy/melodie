@@ -16,10 +16,12 @@ exports[`Storyshots Components/Artist Default 1`] = `
         >
           <img
             alt="./avatar.jpg"
-            class="w-64 h-64 svelte-1fck65k rounded-full"
+            class="w-64 h-64 text-3xl svelte-hn7eai rounded-full"
             loading="lazy"
             src="./avatar.jpg"
           />
+           
+          
            
           <p
             class="controls svelte-fggesx"
@@ -85,10 +87,12 @@ exports[`Storyshots Components/Artist No Albums 1`] = `
         >
           <img
             alt="./avatar.jpg"
-            class="w-64 h-64 svelte-1fck65k rounded-full"
+            class="w-64 h-64 text-3xl svelte-hn7eai rounded-full"
             loading="lazy"
             src="./avatar.jpg"
           />
+           
+          
            
           <p
             class="controls svelte-fggesx"

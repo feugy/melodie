@@ -29,3 +29,15 @@ export const Rouded = () => ({
   props: { src: './avatar.jpg', rounded: true },
   on: actionsData
 })
+
+export const Broken = () => ({
+  Component: Image,
+  props: { src: './unknown.jpg' },
+  on: actionsData
+})
+
+export const BrokenRounded = () => ({
+  Component: Image,
+  props: { rounded: true },
+  on: actionsData
+})

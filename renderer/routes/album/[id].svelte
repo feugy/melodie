@@ -79,7 +79,7 @@
       image={'../images/dark-rider-JmVaNyemtN8-unsplash.jpg'} />
     <section>
       <span class="image-container">
-        <Image class="h-full w-full" src={album.media} />
+        <Image class="h-full w-full text-3xl" src={album.media} />
       </span>
       <div>
         <h3>

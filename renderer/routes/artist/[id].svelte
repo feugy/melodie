@@ -48,9 +48,10 @@
         media,
         tags: { album, year }
       } = track
-      if (!map.has(album)) {
-        map.set(album, {
-          id: hash(album),
+      let id = hash(album)
+      if (!map.has(id)) {
+        map.set(id, {
+          id,
           name: album,
           media,
           linked: [],
@@ -58,7 +59,7 @@
           tracks: []
         })
       }
-      map.get(album).tracks.push(track)
+      map.get(id).tracks.push(track)
     }
     return Array.from(map.values()).sort((a, b) => a.year - b.year)
   }
@@ -79,6 +80,12 @@
     @apply flex flex-col items-start px-4 self-stretch text-left;
   }
 
+  .image-container {
+    @apply flex-shrink-0 w-full h-full;
+    height: 300px;
+    width: 300px;
+  }
+
   .albums {
     @apply flex flex-row items-start flex-wrap justify-around;
   }
@@ -94,7 +101,9 @@
       title={artist.name}
       image={'../images/harry-swales-Vfvf3H-5OHc-unsplash.jpg'} />
     <section>
-      <Image class="flex-shrink-0 w-auto h-full" rounded src={artist.media} />
+      <span class="image-container">
+        <Image class="h-full w-full text-3xl" rounded src={artist.media} />
+      </span>
       <div>
         <span class="actions">
           <Button
