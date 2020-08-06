@@ -1,0 +1,42 @@
+[
+  {
+    "scope": "https://www.theaudiodb.com:443",
+    "method": "GET",
+    "path": "/api/v1/json/1/search.php?s=lifeforms",
+    "body": "",
+    "status": 200,
+    "response": [
+      "415c2100207e6fd33c5dffd3261ddc0af6965e8435c024b24424e12c29fe7ff7e6e2022ef2eaa0dd3be59c795b1bb5b4d6a8560c60b51f0d688413c0a8a8b340bb0a1494e5514ac17f8574817df02279fc2b58adf7af8a44b407ed716f2c229125dd8ac61167944866937f7d70191c97252991806241bdf028e85f9148c4b1b40e579ee6b2d8bfef48a6a4773b82d5a28c09d1f906a97b924e24a2958f641336ac33bddbb4b0c58db3bfb2c53e7616bba97e196aed9205f2a1abfa2e19b7ee93335fe3ca4933a36ce4b1b54a2462818948f7b2b0ac884460d6720661e0028901fd49733573942d0799ef3dfeea378740ce34175dbfdd3e1189d8a0828dbaedc8e4e726f159c2af833d02f23862206ee1ad30ba2b42edf66c72a4cdba6e82c7c5bf36ce7c1d3c28709900c0c31a385d90db86f83881276373ab901e50ee5228d81b747c56d04d493651d4e599298c994675c4f90d0fe117ea935ac35a3334d736a508e01c8b63f9c33a2039eb415f1f3e559d567b7676791fefeccfe755b47ce6f6fac5d5dee6e9c5f68ba5ee679f9cee5f1edd3f09c889405498d6a56894abcc5dfc0df19e1704c13be0c1dbfd78324fc6df0209d5deaa480d11d90aa9d2edc9f9decd9814d21a1c3c44ff20ca6081cb7c6908e200e49ff590714172b06125a4a9416d02fed48181c0a110c6401699081c2086fe11ec99aaa470185ab52666888d90df633e02b3711f77fac63898a08bad8900908c34b4852dc99d19ec99df6ff857453e86c1954acbedc8593a2261424fa965ed838b219f1c051a17c9182d5d737e278585f022c2b6b2e735a8a6d611bb0765d1c7c353ce73f281591d449324980e53d0b75957a3e3bb09d67d70fc1e617d46b821132a2723bc6b0ac40ee74520e7235c7098dbb858780796f3e6d651a3d1c05931c087a658c20f5ec9d6a26bdacd5a13964c58970bd060026d1032e76cc1860b1fcf007282e6a48f707a9900d61a8a329626e81aaaebcf900695c9accb299c8505fc0cab96f7bb96cda5e8e1e0d63697b935ca9d0be5e68972ff4a7970a6bcb8566e",
+      "5f6e7f66f6f6976e569e1c6dbf67a3f2e474fb7d53369d95b29bfa0e0cdb3c969ad4867e63e4bd4ed361cb772affeb6a91882bd2585ff022c2be7792f436954dab48ffd0fe91b27b7e5554f3d44ebde6f6239bdb4a3653019e2e5de8ef71cb8acc3a73479a9df4aa9d74eae8ddf0c621433ad11fe3cb6fbc19fac13ffb5b221183acd36da97e3f96fde128ee75bb699c8e87c378d6eef547d9a0dd91bd544dbfe8c3cef166e1b42a9bb00c1a96aa199b56edec6759ab8c9eadfc7ffe6f0003"
+    ],
+    "rawHeaders": [
+      "Date",
+      "Thu, 06 Aug 2020 11:18:31 GMT",
+      "Content-Type",
+      "application/json",
+      "Transfer-Encoding",
+      "chunked",
+      "Connection",
+      "close",
+      "Set-Cookie",
+      "__cfduid=dec10b38dfedfb44ec297db24b3728f051596712711; expires=Sat, 05-Sep-20 11:18:31 GMT; path=/; domain=.theaudiodb.com; HttpOnly; SameSite=Lax; Secure",
+      "X-Powered-By",
+      "PHP/7.4.1",
+      "Access-Control-Allow-Origin",
+      "*",
+      "CF-Cache-Status",
+      "DYNAMIC",
+      "cf-request-id",
+      "0465178e540000ee89301fd200000001",
+      "Expect-CT",
+      "max-age=604800, report-uri=\"https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct\"",
+      "Server",
+      "cloudflare",
+      "CF-RAY",
+      "5be85b908fadee89-CDG",
+      "Content-Encoding",
+      "br"
+    ],
+    "responseIsBinary": false
+  }
+]

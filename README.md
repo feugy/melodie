@@ -181,3 +181,14 @@ Wildcards can be at the beginning `*tracks` or the end `models*`.
 In case a logger name is matching several directives, the first always wins.
 
 You can edit the file, and trigger logger level refresh by sending SIGUSR2 to the application: `kill -USR2 {pid}` (first log issued contains pid)
+
+## Testing
+
+### Core services network mocks (nocks)
+
+Some services are hitting external APIs, such as AudioDB.
+As we don't want to flood them with test requests, these are using network mocks.
+
+To use real services, run your tests with `REAL_NETWORK` environment variables (whatever its value).
+When using real services, update the mocks by defining `UPDATE_NOCKS` environment variables (whatever its value).
+**Nocks will stay unchanged on test failure**.

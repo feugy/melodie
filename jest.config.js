@@ -29,7 +29,8 @@ module.exports = {
       displayName: 'main',
       rootDir: 'main/',
       testEnvironment: 'node',
-      setupFiles: ['./tests/jest-setup']
+      setupFiles: ['./tests/jest-setup'],
+      watchPathIgnorePatterns: ['/node_modules/', '/__nocks__/']
     },
     {
       displayName: 'e2e',
@@ -43,6 +44,7 @@ module.exports = {
   collectCoverageFrom: [
     '**/*.js',
     '**/*.svelte',
+    '!**/__mocks__/**',
     '!**/tests/**',
     '!**/*.test.js',
     '!**/*.stories.*',
