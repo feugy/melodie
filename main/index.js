@@ -4,6 +4,8 @@ const { join } = require('path')
 const electron = require('electron')
 const fileLoader = require('./services/file-loader')
 const listEngine = require('./services/list-engine')
+const artworkFinder = require('./services/artwork-finder')
+const mediaManager = require('./services/media-manager')
 const {
   getStoragePath,
   subscribeRemote,
@@ -52,6 +54,8 @@ async function createWindow() {
   unsubscribe = subscribeRemote({
     fileLoader,
     listEngine,
+    mediaManager,
+    artworkFinder,
     ...electron
   })
   win.loadURL(`file://${join(publicFolder, 'index.html')}`)
