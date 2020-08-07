@@ -60,13 +60,13 @@ export function createListStore(type) {
       items$.next({ clear: true })
     },
 
-    async list() {
+    list() {
       if (listSubscription) {
         listSubscription.unsubscribe()
       }
       items$.next({ clear: true })
 
-      const request$ = new BehaviorSubject({ size: 20 })
+      const request$ = new BehaviorSubject({ size: 10 })
 
       listSubscription = request$
         .pipe(

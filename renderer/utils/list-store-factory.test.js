@@ -50,7 +50,7 @@ describe('abstract list factory', () => {
           results: data.slice(size * 2)
         })
       expect(get(albums)).toEqual([])
-      await list()
+      list()
       await sleep(100)
       expect(get(albums)).toEqual(data)
       expect(mockInvoke).toHaveBeenCalledTimes(3)
@@ -75,7 +75,7 @@ describe('abstract list factory', () => {
         from: 0,
         results: data
       })
-      await list()
+      list()
       await sleep(100)
       expect(get(albums)).toEqual(data)
 
@@ -110,7 +110,7 @@ describe('abstract list factory', () => {
         from: 0,
         results: data
       })
-      await list()
+      list()
       await sleep(100)
       expect(get(albums)).toEqual(data)
 
@@ -137,7 +137,7 @@ describe('abstract list factory', () => {
         from: 0,
         results: data
       })
-      await list()
+      list()
       await sleep(100)
       expect(get(albums)).toEqual(data)
 
@@ -155,7 +155,7 @@ describe('abstract list factory', () => {
     })
 
     it('cancels pending operation when called', async () => {
-      const total = 18
+      const total = 38
       const data = Array.from({ length: total }, (v, i) => i)
       mockInvoke.mockImplementation(
         async (channel, service, method, { size, from }) => ({
@@ -166,11 +166,13 @@ describe('abstract list factory', () => {
         })
       )
       expect(get(albums)).toEqual([])
-      await list()
-      await list()
+      // will fire 2 then will be cancelled
+      list()
+      // will fire 4
+      list()
       await sleep(100)
       expect(get(albums)).toEqual(data)
-      expect(mockInvoke).toHaveBeenCalledTimes(3)
+      expect(mockInvoke).toHaveBeenCalledTimes(6)
       expect(mockInvoke).toHaveBeenCalledWith(
         'remote',
         'listEngine',
@@ -197,7 +199,7 @@ describe('abstract list factory', () => {
         })
         .mockResolvedValueOnce(album)
 
-      await list()
+      list()
       await load(album.id)
       await tick()
       expect(get(albums)).toEqual([album])

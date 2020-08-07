@@ -3,13 +3,11 @@
   import { _ } from 'svelte-intl'
   import { fade } from 'svelte/transition'
   import { Album, Button, Heading } from '../components'
-  import { albums, load, list } from '../stores/albums'
+  import { albums, load } from '../stores/albums'
   import { add } from '../stores/track-queue'
   import { invoke } from '../utils'
 
   export const params = {}
-
-  onMount(() => list())
 
   async function handleAlbumPlay({ detail: album }, immediate = true) {
     if (!album.tracks) {

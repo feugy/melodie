@@ -51,7 +51,7 @@ describe('album route', () => {
     ).toBeInTheDocument()
     expect(screen.getByText(albums[0].name)).toBeInTheDocument()
     expect(screen.getByText(albums[1].name)).toBeInTheDocument()
-    expect(list).toHaveBeenCalled()
+    expect(list).not.toHaveBeenCalled()
   })
 
   it('loads and play tracks of an album', async () => {

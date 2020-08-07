@@ -7,9 +7,11 @@ const fs = require('fs-extra')
 const { constants } = require('fs')
 const { resolve } = require('path')
 const { artistsModel } = require('../models/artists')
+const { broadcast } = require('../utils')
 const manager = require('./media-manager')
 
 jest.mock('../models/artists')
+jest.mock('../utils/electron-remote')
 jest.mock('electron', () => ({ app: { getPath: jest.fn() } }))
 
 describe('Media manager', () => {
@@ -41,38 +43,35 @@ describe('Media manager', () => {
     ['local', resolve(__dirname, '..', '..', 'fixtures', 'avatar.jpg')]
   ])('given a %s media', (unused, source) => {
     it('downloads and adds media artist', async () => {
+      const savedArtist = { ...artist, media }
       artistsModel.getById.mockResolvedValueOnce(artist)
+      artistsModel.save.mockResolvedValueOnce({ saved: [savedArtist] })
 
       await manager.saveForArtist(artist.id, source)
 
-      expect(artistsModel.save).toHaveBeenCalledWith({
-        ...artist,
-        media
-      })
+      expect(artistsModel.save).toHaveBeenCalledWith(savedArtist)
       expect(artistsModel.save).toHaveBeenCalledTimes(1)
       expect(await fs.access(media, constants.R_OK))
+      expect(broadcast).toHaveBeenCalledWith('artist-change', savedArtist)
     })
 
     it('downloads and replace media artist', async () => {
-      artistsModel.getById.mockResolvedValueOnce({
-        ...artist,
-        media
-      })
+      const savedArtist = { ...artist, media }
+      artistsModel.getById.mockResolvedValueOnce(savedArtist)
+      artistsModel.save.mockResolvedValueOnce({ saved: [savedArtist] })
       const oldContent = 'old content'
       await fs.ensureFile(media)
       await fs.writeFile(media, oldContent)
 
       await manager.saveForArtist(artist.id, source)
 
-      expect(artistsModel.save).toHaveBeenCalledWith({
-        ...artist,
-        media
-      })
+      expect(artistsModel.save).toHaveBeenCalledWith(savedArtist)
       expect(artistsModel.save).toHaveBeenCalledTimes(1)
       expect(await fs.access(media, constants.R_OK))
       const content = await fs.readFile(media, 'utf8')
       expect(content).not.toEqual(oldContent)
       expect(content).toBeDefined()
+      expect(broadcast).toHaveBeenCalledWith('artist-change', savedArtist)
     })
 
     it('ignores unknown artist', async () => {
@@ -81,6 +80,7 @@ describe('Media manager', () => {
 
       expect(artistsModel.save).not.toHaveBeenCalled()
       await expect(fs.access(media, constants.R_OK)).rejects.toThrow(/ENOENT/)
+      expect(broadcast).not.toHaveBeenCalled()
     })
   })
 
@@ -95,6 +95,7 @@ describe('Media manager', () => {
     expect(artistsModel.save).not.toHaveBeenCalled()
     const content = await fs.readFile(media, 'utf8')
     expect(content).toEqual(oldContent)
+    expect(broadcast).not.toHaveBeenCalled()
   }, 10e3)
 
   it('handles unknown source file', async () => {
@@ -108,5 +109,6 @@ describe('Media manager', () => {
     expect(artistsModel.save).not.toHaveBeenCalled()
     const content = await fs.readFile(media, 'utf8')
     expect(content).toEqual(oldContent)
+    expect(broadcast).not.toHaveBeenCalled()
   }, 10e3)
 })
