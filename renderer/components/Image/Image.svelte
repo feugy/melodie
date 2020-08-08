@@ -3,8 +3,8 @@
 
   export let src
   export let rounded = false
+  export let fallback = rounded ? 'person' : 'music_note'
   $: hidden = !src
-  $: fallback = rounded ? 'person' : 'music_note'
 
   function handleError() {
     src = null

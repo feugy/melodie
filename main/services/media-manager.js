@@ -5,6 +5,7 @@ const fs = require('fs-extra')
 const stream = require('stream')
 const { promisify } = require('util')
 const { parse } = require('url')
+const { extname } = require('path')
 const { artistsModel } = require('../models/artists')
 const { getLogger, getMediaPath, broadcast } = require('../utils')
 
@@ -19,27 +20,33 @@ module.exports = {
       logger.warn({ id, url }, `unknown artist ${id}: skipping media download`)
       return
     }
-    const media = getMediaPath(id, url)
+    let media = getMediaPath(id)
     await fs.ensureFile(`${media}.tmp`)
 
     let written = false
     try {
       const { protocol } = parse(url)
-      await pipeline(
-        protocol && protocol.startsWith('http')
-          ? got.stream(url)
-          : fs.createReadStream(url),
-        fs.createWriteStream(`${media}.tmp`)
-      )
-      await fs.move(`${media}.tmp`, media, { overwrite: true })
+      const isRemote = protocol && protocol.startsWith('http')
+      const source = isRemote ? got.stream(url) : fs.createReadStream(url)
+      let ext = extname(url)
+      if (isRemote) {
+        source.once(
+          'response',
+          ({ headers }) => (ext = `.${headers['content-type'].split('/')[1]}`)
+        )
+      }
+      await pipeline(source, fs.createWriteStream(`${media}.tmp`))
+
+      await fs.move(`${media}.tmp`, `${media}${ext}`, { overwrite: true })
       written = true
+      media = `${media}${ext}`
       logger.debug(
         { id, url, media },
         `media successfully downloaded for artist ${artist.name}`
       )
     } catch (err) {
       logger.info(
-        { err, id, url, media },
+        { err, id, url },
         `failed to download media for artist ${artist.name}: ${err.message}`
       )
     }
