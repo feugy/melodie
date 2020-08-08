@@ -1,0 +1,39 @@
+[
+  {
+    "scope": "https://www.theaudiodb.com:443",
+    "method": "GET",
+    "path": "/api/v1/json/1/search.php?s=loremipsum",
+    "body": "",
+    "status": 200,
+    "response": {
+      "artists": null
+    },
+    "rawHeaders": [
+      "Date",
+      "Sun, 09 Aug 2020 07:30:44 GMT",
+      "Content-Type",
+      "application/json",
+      "Content-Length",
+      "16",
+      "Connection",
+      "close",
+      "Set-Cookie",
+      "__cfduid=d9cc6d30971b3c87edf000b8c3c6f5e401596958244; expires=Tue, 08-Sep-20 07:30:44 GMT; path=/; domain=.theaudiodb.com; HttpOnly; SameSite=Lax; Secure",
+      "X-Powered-By",
+      "PHP/7.4.1",
+      "Access-Control-Allow-Origin",
+      "*",
+      "CF-Cache-Status",
+      "DYNAMIC",
+      "cf-request-id",
+      "0473ba16f90000a8a376a2f200000001",
+      "Expect-CT",
+      "max-age=604800, report-uri=\"https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct\"",
+      "Server",
+      "cloudflare",
+      "CF-RAY",
+      "5bffc604cebca8a3-CDG"
+    ],
+    "responseIsBinary": false
+  }
+]

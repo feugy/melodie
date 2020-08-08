@@ -1,0 +1,53 @@
+[
+  {
+    "scope": "https://api.discogs.com:443",
+    "method": "GET",
+    "path": "/database/search?key=KEY&secret=SECRET&type=artist&title=%22coldplay%22&per_page=3",
+    "body": "",
+    "status": 200,
+    "response": [
+      "1f8b0800000000000003a551cb6ec23010fc159413480d4e20e111890320f525d4d2972ab5aa229398606ac7aeed1410cabf779d402b2e3db407dbeb99ddf17877ef489cd11c1b2a72276aeced9540e09f35aa501f63a2e203d5058a1ac28f54a1980df765098422ba60c6de5ff70e4de1ec0cfbdd1018b39356d8c1ca506d1c4038d60664abacbc60ec070249483d6085a2b60ed585a8d273a782a592e19dd531d4b04afa045c157c61eb56c6481d214479d64ea94e44a6db89e068f338d001e94ca6f3db647a2e662bb9e9cf737d397bd023e487de1616d21c5e454bcac0a88eb45154c634499aad682914c7a6b996246b455ca42456d902f08f02336a76cdc06ba1c3732ee5d0548dc66eeddd0f87fec0f37a61e076fc41af6d3560cbec5f12f1695b620b7e337f3f7b1f87775cf46272239f2fd654e0ab6071fdf2340946a8e7795b58ff303ffc9b7918be285442e27a7edfadc7929eb4be9ea4ae47e9946fe51712d2c7c286020000"
+    ],
+    "rawHeaders": [
+      "Date",
+      "Sun, 09 Aug 2020 07:31:14 GMT",
+      "Content-Type",
+      "application/json",
+      "Transfer-Encoding",
+      "chunked",
+      "Connection",
+      "close",
+      "Vary",
+      "Accept-Encoding",
+      "X-Discogs-Ratelimit",
+      "60",
+      "X-Discogs-Ratelimit-Remaining",
+      "60",
+      "X-Discogs-Ratelimit-Used",
+      "0",
+      "Access-Control-Allow-Headers",
+      "Content-Type, authorization, User-Agent, Private-Auth-Secret, Discogs-UID",
+      "Access-Control-Allow-Methods",
+      "HEAD,OPTIONS,GET,OPTIONS",
+      "Access-Control-Expose-Headers",
+      "Location",
+      "X-Discogs-Media-Type",
+      "discogs.v2",
+      "Access-Control-Allow-Origin",
+      "*",
+      "X-Frame-Options",
+      "SAMEORIGIN",
+      "X-XSS-Protection",
+      "1; mode=block",
+      "X-Content-Type-Options",
+      "nosniff",
+      "Cache-Control",
+      "public, must-revalidate",
+      "Content-Encoding",
+      "gzip",
+      "Strict-Transport-Security",
+      "max-age=15724800"
+    ],
+    "responseIsBinary": false
+  }
+]

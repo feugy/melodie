@@ -1,0 +1,41 @@
+[
+  {
+    "scope": "https://www.theaudiodb.com:443",
+    "method": "GET",
+    "path": "/api/v1/json/1/searchalbum.php?a=the+invisible+object",
+    "body": "",
+    "status": 200,
+    "response": [
+      "31a4150020974e9d569f665adf5cab482b8f78d9022c381049fff973b10ff881cd26986d7fb3bac0a26cbbb6fba30b9a5d25e001c83dd7321dfac8ad47c859c84fe797b85b4692a75f22f2e1fd8238ae1739614034fcd756894e9184d8816395fc0d645891240822d2a996b728bde06029b5a903bbfb08d515a86a45d3604ecdeb3c7668e17c0525bed6eac534d0940aa91e10da139e43613a9d0f58e64daabe2b34189ba36c714d1de204d10125832dac838c9ec3142aec48422cc776a697fe9a7d0f6661f2e2386247c0cab1733c81564d4ada0889fbdcc9183a209b55a02601a36f6a767decb551a7984c076076028c7780650a581d00a71bc0948e73d0310ef501b0db8cb3d00dd8edc759ca320e2d4748b5a93fa253c0c9343f11a2db5a459920904d55f5c8f56d5de71d4b2f78fdcb186d1069f8ccd52025db77828db223fa594e02fa2f323bb0fd28d47dc61dddb37ca6c711473dc43c76326056e473c2cdee4846c6e3003ce6da9ceb1c435e7ee290eb51ecdb3a322f832000277777a33bacaa8766154cf246a3b1a38d2bfe09141ed36ac1933c111dabcfddf4ef44298ee43587980673013be628452f21bbf96e05e368ac8cf6d56dfdd32896aa979838bcc24f2d2f7f53b3321179bdac5ed1ffcbbf0103"
+    ],
+    "rawHeaders": [
+      "Date",
+      "Sun, 09 Aug 2020 07:30:48 GMT",
+      "Content-Type",
+      "application/json",
+      "Transfer-Encoding",
+      "chunked",
+      "Connection",
+      "close",
+      "Set-Cookie",
+      "__cfduid=d60698efe52e5f97a7cfb03bde44e53d51596958248; expires=Tue, 08-Sep-20 07:30:48 GMT; path=/; domain=.theaudiodb.com; HttpOnly; SameSite=Lax; Secure",
+      "X-Powered-By",
+      "PHP/7.4.1",
+      "Access-Control-Allow-Origin",
+      "*",
+      "CF-Cache-Status",
+      "DYNAMIC",
+      "cf-request-id",
+      "0473ba246f0000a85b0d299200000001",
+      "Expect-CT",
+      "max-age=604800, report-uri=\"https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct\"",
+      "Server",
+      "cloudflare",
+      "CF-RAY",
+      "5bffc61a4c0ca85b-CDG",
+      "Content-Encoding",
+      "br"
+    ],
+    "responseIsBinary": false
+  }
+]

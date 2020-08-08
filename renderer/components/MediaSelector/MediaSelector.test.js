@@ -32,7 +32,7 @@ describe('MediaSelector component', () => {
 
     expect(screen.queryByText(title)).toBeVisible()
     expect(invoke).toHaveBeenCalledWith(
-      'artworkFinder.findForArtist',
+      'mediaManager.findForArtist',
       artistData.name
     )
     expect(invoke).toHaveBeenCalledTimes(1)

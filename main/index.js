@@ -1,5 +1,6 @@
 'ust strict'
 
+require('dotenv').config()
 const { join } = require('path')
 const electron = require('electron')
 const fileLoader = require('./services/file-loader')

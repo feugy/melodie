@@ -1,0 +1,53 @@
+[
+  {
+    "scope": "https://api.discogs.com:443",
+    "method": "GET",
+    "path": "/database/search?key=KEY&secret=SECRET&type=release&release_title=%22etude+methodique+du+chant+a+l%27usage+des+maternelles+et+des+classes+primaires%22&per_page=3",
+    "body": "",
+    "status": 200,
+    "response": [
+      "1f8b08000000000000035553c96edb3010fd1582975c2a6b496ac7b905960bb4488002417b49028392c616012e321717aee17fef0c253b0d7419cef6debc199df82076d28820ade10fec444f40a3fcc292e92f36b8cd14bac5900ca02fa1e81499a7f319030e7c5481deaf27deda68823be2837f73c2b4c0316307c611c22b5ff552750ecc8de7ef18d85aa7454891dfd21c152597c51b4f411f8e6aac5a77b14d74854a11d96149f9b5aaeeca6a8e254a34a052975afa7d04cf6a38086af65d0f33f6c346d7015b07b692901a84e3409d91ba02e113c746b8d676098f9869e103ce9f908a8f370e8e75262a85bee82435c95fe25f610c6435f8d6ea067cb60eb183ec19426f3b8984b23a66ab5e98903d664fbf3cea4dc9d9b3400c034aa592e45a29e13d3e7f3aa9854469f389637e9997c642358c25ec7afd52e6557e4bce2043d28b4f7c5084890fcb707864c43e18b13ab2c4883db2a79b4489f2d97f944830724d94d8955202eba36e8841a2630fa4951eef88f7210cfe21cfa5decd3a891c767e86c2e40bd12caba668e6e5bc6c16cbe2bedc2ee75d0525b46d5b15cb45757fb75d2e4a2cc44e3ef78368c1cd76724b20a8858dae85cdb8832b8a18e42794492fff5930ab753432d0619ef81fdc041ab4d75e1c68e7051df2788d9b7dc4f0984a773f7aa7f33642a7c3b95eeb3eb5e469011deaede440ff554a9f4ef9fc8edf3f56fae38775030000"
+    ],
+    "rawHeaders": [
+      "Date",
+      "Sun, 09 Aug 2020 07:31:19 GMT",
+      "Content-Type",
+      "application/json",
+      "Transfer-Encoding",
+      "chunked",
+      "Connection",
+      "close",
+      "Vary",
+      "Accept-Encoding",
+      "X-Discogs-Ratelimit",
+      "60",
+      "X-Discogs-Ratelimit-Remaining",
+      "56",
+      "X-Discogs-Ratelimit-Used",
+      "4",
+      "Access-Control-Allow-Headers",
+      "Content-Type, authorization, User-Agent, Private-Auth-Secret, Discogs-UID",
+      "Access-Control-Allow-Methods",
+      "HEAD,OPTIONS,GET,OPTIONS",
+      "Access-Control-Expose-Headers",
+      "Location",
+      "X-Discogs-Media-Type",
+      "discogs.v2",
+      "Access-Control-Allow-Origin",
+      "*",
+      "X-Frame-Options",
+      "SAMEORIGIN",
+      "X-XSS-Protection",
+      "1; mode=block",
+      "X-Content-Type-Options",
+      "nosniff",
+      "Cache-Control",
+      "public, must-revalidate",
+      "Content-Encoding",
+      "gzip",
+      "Strict-Transport-Security",
+      "max-age=15724800"
+    ],
+    "responseIsBinary": false
+  }
+]

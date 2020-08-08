@@ -8,12 +8,27 @@ const { parse } = require('url')
 const { extname } = require('path')
 const { artistsModel } = require('../models/artists')
 const { getLogger, getMediaPath, broadcast } = require('../utils')
+const providers = require('../providers')
 
 const pipeline = promisify(stream.pipeline)
 
 const logger = getLogger('services/media')
 
 module.exports = {
+  async findForArtist(name) {
+    const requests = await Promise.all(
+      providers.map(provider => provider.findArtistArtwork(name))
+    )
+    return requests.reduce((results, value) => [...results, ...value])
+  },
+
+  async findForAlbum(name) {
+    const requests = await Promise.all(
+      providers.map(provider => provider.findAlbumCover(name))
+    )
+    return requests.reduce((results, value) => [...results, ...value])
+  },
+
   async saveForArtist(id, url) {
     const artist = await artistsModel.getById(id)
     if (!artist) {

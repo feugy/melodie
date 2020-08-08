@@ -17,7 +17,7 @@ npm i
 npm run build
 ```
 
-## TODO
+## TODOs
 
 ### core
 
@@ -28,7 +28,7 @@ npm run build
 - [x] send start/stop events when updating
 - [x] embed file-loader's crawl() into chooseFolders()
 - [x] reactive stores: send update on new albums/artists/tracks
-- [-] images from AudioDB/last.fm/discogs
+- [x] images from AudioDB/discogs
 - [ ] artists' albums
 - [ ] consider knex-migrate
 - [ ] images from tags

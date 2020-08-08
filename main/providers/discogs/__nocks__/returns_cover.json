@@ -1,0 +1,53 @@
+[
+  {
+    "scope": "https://api.discogs.com:443",
+    "method": "GET",
+    "path": "/database/search?key=KEY&secret=SECRET&type=release&release_title=%22parachutes%22&per_page=3",
+    "body": "",
+    "status": 200,
+    "response": [
+      "1f8b0800000000000003d557694fe34810fd2b2d4b1b81b421be8f48d18a0961128e108e8419211475ec8e63b0ddc66e8704c47f9f2adb649885198e8d90f603d0555d557e753d35f75242fd20a622e0b1d424f7283238287f93e298c159d75160e9b8bad3400c048bf04ed1d0324f4314eea59066020ed24c88246b361a3409b6bc2073b99f6db93c6a7854d009cd582363347567ff5cb365cbdf0da77e94751607fdd191c8f3b3e33cac65cc4d99681d86d1209976c5c1ede1b7bd3b116cef1ff159905d774e17d783bd74af2696096ba52c6410b456fd1d8b4084acf597aa2634a5ee2c172c03a1f698424bab61262d5d97007bcc16ff1fc8aaf4f000985396e5a1c0925fdc4b2ecf63912eb1ecbb298d5d86592da1bea85165594679cad388629e17527b0715dbe1248ff0508aa741ec8785e720e511972ee126a41316162e039a863c99f1b8b4f829a119b6003f55551f63fa2c4e5177219d70f7ba08968925c447d57628588a133767a4b806872f6920c88027e8dc8bbda0bac1f081075e9a6c3ab666833881b9e15e19c922aaaed936710cdd5089517c27820984512dbd340d47b752c19022ccdf8d6669953534704218791aa079a3cd432f09e9b20e45a886a951a5daa860a1b94b45ccd1c1024cc400c4b26ac844c3bb621ef1ee3116a9939fd10a8b591e4d9ea20b22ff97c551f3fc78c6b9998dae466e3436bc3bef64744be3ce77bfd59806a21ec40dc59017f0032256386b66220d9271e0ba1b9bcdb2ff1b5709f3379b1114709cfa13d0dfe4340cc4724397371bd5a2d68308b6236b9cd4abf4ea8a6e9a866c9b8a55d70dcbd9c228f0cb2ff2e6732c37bafc093f3b9bce778ebabdf94eaf9b1fee76e7aadd35c7875feb137985df90e585211b1fc2ef7c143fac12cf53978d5f198faae5301fe52896b947511e43f920f37b09ba810ba6143337a373ac876ae0ba96c51f43ad631805b45657da6a89631a15f52bb7f1a6309214fc88c73217fa88045dd8569b7b0981efa577b83ddbf08732c413fa38c9b32ca0f8d1b7d3c730e6d369e006342427250dff913b86f175cc6f63b2d1dfd92c0c3f833d0cc37674f345f63054cbb23595142bdfdf21564997076d22ab8e83a598b0907ce9750e3f9f5d2ad808e2dfec52a02615ec35d08b655a8b9beed53787a5c672226ef97872a70cfb8ba3aebb5acfb5d34b955f5dd11c4b576468521d38c6fc08bdcc1267a428eeed7447677a781e78e6ddc8b8b20775df5ee1370c6b6118cefae8e52df8df4d2f4f9bce5fa217598179a8e845515fa617342949e7a3f402015edaece79c31dc2735d2c9530e8f00707a3b71bcfecee81cf680535c9e7a193910de16c67fa6c327c26770886a3bb6aa63619fbe40dadde159479615a23495a64610dd701f71f676073d7220eb058517025174ddfe7c12a970ff42228fa851b906f2e07733aa9de716d3d2e8eb80abe6e9e27cdae976a8315c2ddfdac9a3ca0bc843365553d314f923bc719cf48fe6d6d9c07746bd6b6fd2febe7fd311fd49bb2feb2be8263e4b9c353e4b5e81fe6eca78dae217294371a0d1156538ff9d3244f51f539bc266868cc14b07e2ffe69d0237d5a603775c3efc00dc6a0126700e0000"
+    ],
+    "rawHeaders": [
+      "Date",
+      "Sun, 09 Aug 2020 07:31:18 GMT",
+      "Content-Type",
+      "application/json",
+      "Transfer-Encoding",
+      "chunked",
+      "Connection",
+      "close",
+      "Vary",
+      "Accept-Encoding",
+      "X-Discogs-Ratelimit",
+      "60",
+      "X-Discogs-Ratelimit-Remaining",
+      "57",
+      "X-Discogs-Ratelimit-Used",
+      "3",
+      "Access-Control-Allow-Headers",
+      "Content-Type, authorization, User-Agent, Private-Auth-Secret, Discogs-UID",
+      "Access-Control-Allow-Methods",
+      "HEAD,OPTIONS,GET,OPTIONS",
+      "Access-Control-Expose-Headers",
+      "Location",
+      "X-Discogs-Media-Type",
+      "discogs.v2",
+      "Access-Control-Allow-Origin",
+      "*",
+      "X-Frame-Options",
+      "SAMEORIGIN",
+      "X-XSS-Protection",
+      "1; mode=block",
+      "X-Content-Type-Options",
+      "nosniff",
+      "Cache-Control",
+      "public, must-revalidate",
+      "Content-Encoding",
+      "gzip",
+      "Strict-Transport-Security",
+      "max-age=15724800"
+    ],
+    "responseIsBinary": false
+  }
+]

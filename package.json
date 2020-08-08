@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "chokidar": "^3.4.1",
+    "dotenv": "^8.2.0",
     "fs-extra": "^9.0.1",
     "got": "^11.5.1",
     "klaw": "^3.0.0",
@@ -103,6 +104,9 @@
     "*.js": [
       "eslint --fix",
       "prettier --write"
+    ],
+    "**/__nocks__/*.json": [
+      "node scripts/remove-keys"
     ]
   }
 }

@@ -15,7 +15,7 @@
 
   async function handleOpen() {
     uploaded = null
-    proposals = await invoke('artworkFinder.findForArtist', src.name)
+    proposals = await invoke('mediaManager.findForArtist', src.name)
   }
 
   async function handleSelect(url) {
