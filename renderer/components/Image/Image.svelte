@@ -37,10 +37,11 @@
   class:rounded-sm={!rounded}
   class:hidden
   loading="lazy"
-  src={toDOMSrc(src)}
+  src={`${toDOMSrc(src)}#nonce=${Math.random()}`}
   alt={src} />
 {#if hidden}
   <span
+    on:click
     class={$$props.class}
     class:rounded-full={rounded}
     class:rounded-sm={!rounded}>

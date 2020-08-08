@@ -109,7 +109,9 @@ describe('album details route', () => {
       const image = screen.queryByRole('img')
       expect(image).toBeInTheDocument()
       // eslint-disable-next-line jest-dom/prefer-to-have-attribute
-      expect(image.getAttribute('src')).toEqual(album.media)
+      expect(image.getAttribute('src')).toEqual(
+        expect.stringContaining(album.media)
+      )
 
       expect(screen.queryByText(album.linked[0])).toBeInTheDocument()
       expect(screen.queryByText(album.linked[1])).toBeInTheDocument()

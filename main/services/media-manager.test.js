@@ -52,7 +52,9 @@ describe('Media manager', () => {
       expect(artistsModel.save).toHaveBeenCalledWith(savedArtist)
       expect(artistsModel.save).toHaveBeenCalledTimes(1)
       expect(await fs.access(media, constants.R_OK))
-      expect(broadcast).toHaveBeenCalledWith('artist-change', savedArtist)
+      expect(broadcast).toHaveBeenNthCalledWith(1, 'artist-change', artist)
+      expect(broadcast).toHaveBeenNthCalledWith(2, 'artist-change', savedArtist)
+      expect(broadcast).toHaveBeenCalledTimes(2)
     })
 
     it('downloads and replace media artist', async () => {
@@ -71,7 +73,9 @@ describe('Media manager', () => {
       const content = await fs.readFile(media, 'utf8')
       expect(content).not.toEqual(oldContent)
       expect(content).toBeDefined()
-      expect(broadcast).toHaveBeenCalledWith('artist-change', savedArtist)
+      expect(broadcast).toHaveBeenNthCalledWith(1, 'artist-change', artist)
+      expect(broadcast).toHaveBeenNthCalledWith(2, 'artist-change', savedArtist)
+      expect(broadcast).toHaveBeenCalledTimes(2)
     })
 
     it('ignores unknown artist', async () => {

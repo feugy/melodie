@@ -118,13 +118,13 @@ describe('artist details route', () => {
       const images = Array.from(screen.queryAllByRole('img'))
 
       expect(
-        images.find(node => node.getAttribute('src') === artist.media)
+        images.find(node => node.getAttribute('src').includes(artist.media))
       ).toBeInTheDocument()
       expect(
-        images.find(node => node.getAttribute('src') === album1.media)
+        images.find(node => node.getAttribute('src').includes(album1.media))
       ).toBeInTheDocument()
       expect(
-        images.find(node => node.getAttribute('src') === album2.media)
+        images.find(node => node.getAttribute('src').includes(album2.media))
       ).toBeInTheDocument()
       expect(images).toHaveLength(3)
 
@@ -214,13 +214,13 @@ describe('artist details route', () => {
 
       const images = Array.from(screen.queryAllByRole('img'))
       expect(
-        images.find(node => node.getAttribute('src') === album1.media)
+        images.find(node => node.getAttribute('src').includes(album1.media))
       ).toBeInTheDocument()
       expect(
-        images.find(node => node.getAttribute('src') === album2.media)
+        images.find(node => node.getAttribute('src').includes(album2.media))
       ).toBeInTheDocument()
       expect(
-        images.find(node => node.getAttribute('src') === album3.media)
+        images.find(node => node.getAttribute('src').includes(album3.media))
       ).toBeInTheDocument()
       expect(images).toHaveLength(4)
 
@@ -246,10 +246,10 @@ describe('artist details route', () => {
 
       const images = Array.from(screen.queryAllByRole('img'))
       expect(
-        images.find(node => node.getAttribute('src') === album1.media)
+        images.find(node => node.getAttribute('src').includes(album1.media))
       ).toBeInTheDocument()
       expect(
-        images.find(node => node.getAttribute('src') === album2.media)
+        images.find(node => node.getAttribute('src').includes(album2.media))
       ).toBeInTheDocument()
       expect(images).toHaveLength(3)
 

@@ -1,0 +1,104 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Components/Dialogue Default 1`] = `
+<section
+  class="storybook-snapshot-container"
+>
+  <div
+    class="filter svelte-z4owm5 open"
+  />
+   
+  <div
+    class="backdrop svelte-z4owm5 open"
+  >
+    <button
+      class="absolute top-0 right-0 m-4 svelte-ztyk6h iconOnly"
+    >
+      <i
+        class="material-icons svelte-ztyk6h"
+      >
+        close
+      </i>
+       
+    </button>
+     
+    <article
+      class="svelte-z4owm5"
+    >
+      <header
+        class="svelte-z4owm5"
+      >
+        This is a title
+      </header>
+       
+      <div
+        class="content"
+      >
+        <div
+          slot="content"
+        >
+          Here is an important message, that you absolutely need to be aware of.
+        </div>
+      </div>
+       
+      <footer
+        class="svelte-z4owm5"
+      >
+        <span
+          slot="buttons"
+        >
+          <button
+            class="svelte-ztyk6h"
+          >
+            <i
+              class="material-icons svelte-ztyk6h"
+            >
+              close
+            </i>
+             
+            <span>
+              Close
+            </span>
+          </button>
+        </span>
+      </footer>
+    </article>
+  </div>
+   
+  <button
+    class="svelte-ztyk6h"
+  >
+     
+    <span>
+      Open
+    </span>
+  </button>
+   
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+  incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+  nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+  eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt
+  in culpa qui officia deserunt mollit anim id est laborum.
+  </p>
+   
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+  incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+  nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+  eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt
+  in culpa qui officia deserunt mollit anim id est laborum.
+  </p>
+   
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+  incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+  nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+  eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt
+  in culpa qui officia deserunt mollit anim id est laborum.
+  </p>
+</section>
+`;

@@ -46,6 +46,8 @@ module.exports = {
 
     if (written) {
       const { saved } = await artistsModel.save({ ...artist, media })
+      // broadcast 2 changes so UI would detect changes event when the media path is the same
+      broadcast('artist-change', { ...artist, media: null })
       broadcast('artist-change', saved[0])
       logger.debug(
         { id, url, media },
