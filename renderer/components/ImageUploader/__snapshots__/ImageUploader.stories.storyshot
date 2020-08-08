@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Components/Image Uploader Default 1`] = `
+<section
+  class="storybook-snapshot-container"
+>
+  <span
+    class="h-64 w-64 inline-block svelte-17yt3ww"
+  >
+    <img
+      class="w-full h-full svelte-hn7eai rounded-sm hidden"
+      loading="lazy"
+    />
+     
+    <span
+      class="w-full h-full svelte-hn7eai rounded-sm"
+    >
+      <i
+        class="material-icons svelte-hn7eai"
+      >
+        add_box
+      </i>
+    </span>
+    
+     
+    <input
+      class="svelte-17yt3ww"
+      type="file"
+    />
+  </span>
+</section>
+`;

@@ -4,14 +4,17 @@
   import Dialogue from '../Dialogue/Dialogue.svelte'
   import Button from '../Button/Button.svelte'
   import Image from '../Image/Image.svelte'
+  import ImageUploader from '../ImageUploader/ImageUploader.svelte'
   import { invoke } from '../../utils'
 
   export let open
   export let title
   export let src
+  let uploaded = null
   let proposals = []
 
   async function handleOpen() {
+    uploaded = null
     proposals = await invoke('artworkFinder.findForArtist', src.name)
   }
 
@@ -36,6 +39,10 @@
           class="w-32 h-32 m-2 cursor-pointer"
           on:click={() => handleSelect(full)} />
       {/each}
+      <ImageUploader
+        class="w-32 h-32 m-2"
+        bind:value={uploaded}
+        on:select={() => handleSelect(uploaded)} />
     </div>
   </div>
   <span slot="buttons">

@@ -58,9 +58,9 @@ npm run build
 - [x] tracks' duration
 - [x] albums' artists
 - [ ] manually set album's cover
-- [-] manually set artist's avatar
+- [x] manually set artist's avatar
 - [ ] suggest album's cover from 3rd party DBs
-- [-] suggest artist's avatar from 3rd party DBs
+- [x] suggest artist's avatar from 3rd party DBs
 - [x] list all artists
 - [x] artist details
 - [x] page navigation (to artists, to albums)

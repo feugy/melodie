@@ -115,7 +115,9 @@ describe('artist details route', () => {
 
     it('displays artist name, image and all albums', async () => {
       expect(screen.queryByText(artist.name)).toBeInTheDocument()
-      const images = Array.from(screen.queryAllByRole('img'))
+      const images = Array.from(
+        screen.queryAllByRole('img').filter(node => node.hasAttribute('src'))
+      )
 
       expect(
         images.find(node => node.getAttribute('src').includes(artist.media))
@@ -212,7 +214,9 @@ describe('artist details route', () => {
       expect(screen.queryByText(artist.name)).toBeFalsy()
       expect(screen.getByText(newName)).toBeInTheDocument()
 
-      const images = Array.from(screen.queryAllByRole('img'))
+      const images = Array.from(
+        screen.queryAllByRole('img').filter(node => node.hasAttribute('src'))
+      )
       expect(
         images.find(node => node.getAttribute('src').includes(album1.media))
       ).toBeInTheDocument()
@@ -244,7 +248,9 @@ describe('artist details route', () => {
 
       expect(load).toHaveBeenCalledWith(artist.id)
 
-      const images = Array.from(screen.queryAllByRole('img'))
+      const images = Array.from(
+        screen.queryAllByRole('img').filter(node => node.hasAttribute('src'))
+      )
       expect(
         images.find(node => node.getAttribute('src').includes(album1.media))
       ).toBeInTheDocument()
@@ -269,8 +275,10 @@ describe('artist details route', () => {
     })
 
     it('opens media selector on image click', async () => {
-      const artistImage = Array.from(screen.queryAllByRole('img')).find(node =>
-        node.getAttribute('src').includes(artist.media)
+      const artistImage = Array.from(screen.queryAllByRole('img')).find(
+        node =>
+          node.hasAttribute('src') &&
+          node.getAttribute('src').includes(artist.media)
       )
 
       await fireEvent.click(artistImage)
