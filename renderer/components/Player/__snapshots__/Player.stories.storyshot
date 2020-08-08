@@ -138,7 +138,7 @@ exports[`Storyshots Components/Player With Track List 1`] = `
             alt="./# Films/cover.jpg"
             class="h-16 w-16 text-xs svelte-hn7eai rounded-sm"
             loading="lazy"
-            src="./%23 Films/cover.jpg"
+            src="./%23 Films/cover.jpg#nonce=0.1"
           />
            
           

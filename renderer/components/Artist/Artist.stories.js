@@ -3,6 +3,7 @@
 import { action } from '@storybook/addon-actions'
 import Artist from './Artist.stories.svelte'
 import { hrefSinkDecorator } from '../../../.storybook/decorators'
+import { hash } from '../../utils'
 
 export default {
   title: 'Components/Artist',
@@ -11,6 +12,7 @@ export default {
 }
 
 export const artistData = {
+  id: hash('Foo Fighters'),
   name: 'Foo Fighters',
   linked: ['Concrete And Gold', 'Sonic Highways'],
   media: './avatar.jpg'

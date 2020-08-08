@@ -28,7 +28,7 @@ npm run build
 - [x] send start/stop events when updating
 - [x] embed file-loader's crawl() into chooseFolders()
 - [x] reactive stores: send update on new albums/artists/tracks
-- [ ] images from last.fm/discogs
+- [-] images from AudioDB/last.fm/discogs
 - [ ] artists' albums
 - [ ] consider knex-migrate
 - [ ] images from tags
@@ -57,7 +57,10 @@ npm run build
 - [ ] update track queue on track changes
 - [x] tracks' duration
 - [x] albums' artists
-- [ ] artists pictures
+- [ ] manually set album's cover
+- [-] manually set artist's avatar
+- [ ] suggest album's cover from 3rd party DBs
+- [-] suggest artist's avatar from 3rd party DBs
 - [x] list all artists
 - [x] artist details
 - [x] page navigation (to artists, to albums)
@@ -88,6 +91,7 @@ npm run build
 1. In tracks table, the rank column has variable width (BraveHeart), play icon is not vertically centered (2-lines rows)
 1. Page navigation: use:link doesn't work in tests and raise Svelte warning. a.href is fine
 1. Scroll handling: it'll be better to keep memory on albums/artists page, and reset it on details page
+1. Cover change not possible as file paths are the same
 1. Testing routes: `import regexparam from 'regexparam'` must be replaced with require or `import * as regexparam`: https://github.com/ItalyPaleAle/svelte-spa-router/issues/81
 
 ## History

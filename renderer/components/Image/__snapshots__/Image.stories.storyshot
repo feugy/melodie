@@ -8,7 +8,7 @@ exports[`Storyshots Components/Image Broken 1`] = `
     alt="./unknown.jpg"
     class="w-64 h-64 inline-block svelte-hn7eai rounded-sm"
     loading="lazy"
-    src="./unknown.jpg"
+    src="./unknown.jpg#nonce=0.1"
   />
    
   
@@ -45,7 +45,7 @@ exports[`Storyshots Components/Image Default 1`] = `
     alt="./cover.jpg"
     class="w-64 h-64 inline-block svelte-hn7eai rounded-sm"
     loading="lazy"
-    src="./cover.jpg"
+    src="./cover.jpg#nonce=0.1"
   />
    
   
@@ -60,7 +60,7 @@ exports[`Storyshots Components/Image Rouded 1`] = `
     alt="./avatar.jpg"
     class="w-64 h-64 inline-block svelte-hn7eai rounded-full"
     loading="lazy"
-    src="./avatar.jpg"
+    src="./avatar.jpg#nonce=0.1"
   />
    
   
@@ -75,7 +75,7 @@ exports[`Storyshots Components/Image With Escaped Path 1`] = `
     alt="./# Films/cover.jpg"
     class="w-64 h-64 inline-block svelte-hn7eai rounded-sm"
     loading="lazy"
-    src="./%23 Films/cover.jpg"
+    src="./%23 Films/cover.jpg#nonce=0.1"
   />
    
   

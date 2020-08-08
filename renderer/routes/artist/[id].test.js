@@ -267,5 +267,15 @@ describe('artist details route', () => {
 
       expect(replace).not.toHaveBeenCalledWith('/artist')
     })
+
+    it('opens media selector on image click', async () => {
+      const artistImage = Array.from(screen.queryAllByRole('img')).find(node =>
+        node.getAttribute('src').includes(artist.media)
+      )
+
+      await fireEvent.click(artistImage)
+
+      expect(await screen.findByText(translate('choose avatar'))).toBeVisible()
+    })
   })
 })

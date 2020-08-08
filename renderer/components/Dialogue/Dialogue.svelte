@@ -68,3 +68,7 @@
     </footer>
   </article>
 </div>
+<!-- Svelte issue: https://github.com/sveltejs/svelte/issues/4546 -->
+{#if false}
+  <slot />
+{/if}

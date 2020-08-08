@@ -18,7 +18,7 @@ exports[`Storyshots Components/Album Default 1`] = `
             alt="./cover.jpg"
             class="w-64 h-64 text-3xl svelte-hn7eai rounded-sm"
             loading="lazy"
-            src="./cover.jpg"
+            src="./cover.jpg#nonce=0.1"
           />
            
           
@@ -104,7 +104,7 @@ exports[`Storyshots Components/Album Many Artists 1`] = `
             alt="./cover.jpg"
             class="w-64 h-64 text-3xl svelte-hn7eai rounded-sm"
             loading="lazy"
-            src="./cover.jpg"
+            src="./cover.jpg#nonce=0.1"
           />
            
           
@@ -206,7 +206,7 @@ exports[`Storyshots Components/Album No Artist 1`] = `
             alt="./cover.jpg"
             class="w-64 h-64 text-3xl svelte-hn7eai rounded-sm"
             loading="lazy"
-            src="./cover.jpg"
+            src="./cover.jpg#nonce=0.1"
           />
            
           

@@ -4,8 +4,14 @@
   import { _ } from 'svelte-intl'
   import { replace } from 'svelte-spa-router'
   import { of } from 'rxjs'
-  import { map, filter, distinct, mergeMap } from 'rxjs/operators'
-  import { Heading, Image, Button, Album } from '../../components'
+  import { map, filter, distinct, mergeMap, tap } from 'rxjs/operators'
+  import {
+    Heading,
+    Image,
+    Button,
+    Album,
+    MediaSelector
+  } from '../../components'
   import { artists, load, changes, removals } from '../../stores/artists'
   import { add } from '../../stores/track-queue'
   import { hash } from '../../utils'
@@ -13,6 +19,8 @@
   export let params = {}
   let albums = []
   let artist
+  let openMediaSelector = false
+
   $: artistId = +params.id
   $: if (!artist || artist.id !== artistId) {
     loadArtist()
@@ -29,11 +37,15 @@
   const changeSub = changes
     .pipe(
       filter(({ id }) => id === artistId),
-      distinct(),
-      mergeMap(artist => (!artist.tracks ? load(artist.id) : of(artist)))
+      distinct()
     )
     .subscribe(async changed => {
+      // update now in case of media change
       artist = changed
+      if (!artist.tracks) {
+        // then load tracks if not yet available
+        artist = await load(artist.id)
+      }
       albums = groupByAlbum(artist.tracks)
     })
 
@@ -81,7 +93,7 @@
   }
 
   .image-container {
-    @apply flex-shrink-0 w-full h-full;
+    @apply flex-shrink-0 w-full h-full cursor-pointer;
     height: 300px;
     width: 300px;
   }
@@ -95,6 +107,11 @@
   }
 </style>
 
+<MediaSelector
+  title={$_('choose avatar')}
+  bind:open={openMediaSelector}
+  src={artist} />
+
 <div transition:fade={{ duration: 200 }}>
   {#if artist}
     <Heading
@@ -102,7 +119,11 @@
       image={'../images/harry-swales-Vfvf3H-5OHc-unsplash.jpg'} />
     <section>
       <span class="image-container">
-        <Image class="h-full w-full text-3xl" rounded src={artist.media} />
+        <Image
+          on:click={() => (openMediaSelector = true)}
+          class="h-full w-full text-3xl"
+          rounded
+          src={artist.media} />
       </span>
       <div>
         <span class="actions">

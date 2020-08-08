@@ -6,6 +6,8 @@ _ items: '{total} pistes'
 album: Album
 artist: Artiste
 by _: 'par {artist}'
+cancel: Annuler
+choose avatar: 'Choisisez une photo'
 clear: Vider
 disk _: 'Disque N°{num}'
 duration: Durée

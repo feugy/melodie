@@ -18,7 +18,7 @@ exports[`Storyshots Components/Artist Default 1`] = `
             alt="./avatar.jpg"
             class="w-64 h-64 text-3xl svelte-hn7eai rounded-full"
             loading="lazy"
-            src="./avatar.jpg"
+            src="./avatar.jpg#nonce=0.1"
           />
            
           
@@ -89,7 +89,7 @@ exports[`Storyshots Components/Artist No Albums 1`] = `
             alt="./avatar.jpg"
             class="w-64 h-64 text-3xl svelte-hn7eai rounded-full"
             loading="lazy"
-            src="./avatar.jpg"
+            src="./avatar.jpg#nonce=0.1"
           />
            
           

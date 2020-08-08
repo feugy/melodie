@@ -37,7 +37,7 @@
   class:rounded-sm={!rounded}
   class:hidden
   loading="lazy"
-  src={`${toDOMSrc(src)}#nonce=${Math.random()}`}
+  src={src ? `${toDOMSrc(src)}#nonce=${Math.random()}` : src}
   alt={src} />
 {#if hidden}
   <span

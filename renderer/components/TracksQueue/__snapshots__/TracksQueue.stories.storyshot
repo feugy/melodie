@@ -90,7 +90,7 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
               alt="./# Films/cover.jpg"
               class="h-16 w-16 text-xs svelte-hn7eai rounded-sm"
               loading="lazy"
-              src="./%23 Films/cover.jpg"
+              src="./%23 Films/cover.jpg#nonce=0.1"
             />
              
             
@@ -135,7 +135,7 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
               alt="./# Films/cover.jpg"
               class="h-16 w-16 text-xs svelte-hn7eai rounded-sm"
               loading="lazy"
-              src="./%23 Films/cover.jpg"
+              src="./%23 Films/cover.jpg#nonce=0.1"
             />
              
             
@@ -180,7 +180,7 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
               alt="./cover.jpg"
               class="h-16 w-16 text-xs svelte-hn7eai rounded-sm"
               loading="lazy"
-              src="./cover.jpg"
+              src="./cover.jpg#nonce=0.1"
             />
              
             
@@ -225,7 +225,7 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
               alt="./cover.jpg"
               class="h-16 w-16 text-xs svelte-hn7eai rounded-sm"
               loading="lazy"
-              src="./cover.jpg"
+              src="./cover.jpg#nonce=0.1"
             />
              
             
