@@ -6,7 +6,7 @@ const os = require('os')
 const fs = require('fs-extra')
 const { constants } = require('fs')
 const { resolve } = require('path')
-const { artistsModel } = require('../models/artists')
+const { artistsModel, albumsModel, tracksModel } = require('../models')
 const { broadcast } = require('../utils')
 const manager = require('./media-manager')
 const discogs = require('../providers/discogs')
@@ -15,6 +15,8 @@ const audiodb = require('../providers/audiodb')
 jest.mock('../providers/audiodb')
 jest.mock('../providers/discogs')
 jest.mock('../models/artists')
+jest.mock('../models/albums')
+jest.mock('../models/tracks')
 jest.mock('../utils/electron-remote')
 jest.mock('electron', () => ({ app: { getPath: jest.fn() } }))
 
@@ -79,108 +81,288 @@ describe('Media manager', () => {
     expect(await manager.findForAlbum('Parachutes')).toEqual(covers)
   })
 
-  const artist = {
-    id: faker.random.number({ min: 9999 }),
-    name: faker.name.findName(),
-    media: null,
-    linked: [],
-    trackIds: []
-  }
+  describe('saveForAlbum()', () => {
+    const name = faker.commerce.productName()
+    const track1 = {
+      id: faker.random.number({ min: 9999 }),
+      path: resolve(os.tmpdir(), name, faker.system.fileName()),
+      media: null,
+      tags: {}
+    }
+    const track2 = {
+      id: faker.random.number({ min: 9999 }),
+      path: resolve(os.tmpdir(), name, faker.system.fileName()),
+      media: null,
+      tags: {}
+    }
+    const album = {
+      id: faker.random.number({ min: 9999 }),
+      name,
+      media: null,
+      linked: [],
+      trackIds: [track1.id, track2.id]
+    }
 
-  describe.each([
-    [
-      'remote',
-      'https://www.theaudiodb.com/images/media/artist/thumb/uxrqxy1347913147.jpg',
-      resolve(os.tmpdir(), 'media', `${artist.id}.jpeg`)
-    ],
-    [
-      'local',
-      resolve(__dirname, '..', '..', 'fixtures', 'avatar.jpg'),
-      resolve(os.tmpdir(), 'media', `${artist.id}.jpg`)
-    ]
-  ])('given a %s media', (unused, source, media) => {
-    beforeEach(async () => {
-      jest.resetAllMocks()
-      electron.app.getPath.mockReturnValue(os.tmpdir())
-      try {
-        await fs.unlink(media)
-      } catch (err) {
-        // ignore missing files
-      }
+    describe.each([
+      [
+        'remote',
+        'https://www.theaudiodb.com/images/media/album/thumb/swxywp1367234202.jpg',
+        resolve(os.tmpdir(), name, `cover.jpeg`)
+      ],
+      [
+        'local',
+        resolve(__dirname, '..', '..', 'fixtures', 'cover.jpg'),
+        resolve(os.tmpdir(), name, 'cover.jpg')
+      ]
+    ])('given a %s media', (unused, source, media) => {
+      beforeEach(async () => {
+        jest.resetAllMocks()
+        electron.app.getPath.mockReturnValue(os.tmpdir())
+        try {
+          await fs.unlink(media)
+        } catch (err) {
+          // ignore missing files
+        }
+      })
+      it('downloads and save album cover', async () => {
+        const savedAlbum = { ...album, media }
+        const savedTrack1 = { ...track1, media }
+        const savedTrack2 = { ...track2, media }
+        albumsModel.getById.mockResolvedValueOnce(album)
+        tracksModel.getByIds.mockResolvedValueOnce([track1, track2])
+        albumsModel.save.mockResolvedValueOnce({ saved: [savedAlbum] })
+        tracksModel.save.mockResolvedValueOnce({
+          saved: [savedTrack1, savedTrack2]
+        })
+
+        await manager.saveForAlbum(album.id, source)
+
+        expect(albumsModel.save).toHaveBeenCalledWith(savedAlbum)
+        expect(albumsModel.save).toHaveBeenCalledTimes(1)
+        expect(tracksModel.save).toHaveBeenCalledWith([
+          savedTrack1,
+          savedTrack2
+        ])
+        expect(tracksModel.save).toHaveBeenCalledTimes(1)
+        expect(await fs.access(media, constants.R_OK))
+        expect(broadcast).toHaveBeenNthCalledWith(1, 'album-change', album)
+        expect(broadcast).toHaveBeenNthCalledWith(2, 'album-change', savedAlbum)
+        expect(broadcast).toHaveBeenNthCalledWith(3, 'track-change', track1)
+        expect(broadcast).toHaveBeenNthCalledWith(
+          4,
+          'track-change',
+          savedTrack1
+        )
+        expect(broadcast).toHaveBeenNthCalledWith(5, 'track-change', track2)
+        expect(broadcast).toHaveBeenNthCalledWith(
+          6,
+          'track-change',
+          savedTrack2
+        )
+        expect(broadcast).toHaveBeenCalledTimes(6)
+      })
+
+      it('downloads and replace album cover', async () => {
+        const savedAlbum = { ...album, media }
+        const savedTrack1 = { ...track1, media }
+        const savedTrack2 = { ...track2, media }
+        albumsModel.getById.mockResolvedValueOnce(savedAlbum)
+        tracksModel.getByIds.mockResolvedValueOnce([track1, track2])
+        albumsModel.save.mockResolvedValueOnce({ saved: [savedAlbum] })
+        tracksModel.save.mockResolvedValueOnce({
+          saved: [savedTrack1, savedTrack2]
+        })
+        const oldContent = 'old content'
+        await fs.ensureFile(media)
+        await fs.writeFile(media, oldContent)
+
+        await manager.saveForAlbum(album.id, source)
+
+        expect(albumsModel.save).toHaveBeenCalledWith(savedAlbum)
+        expect(albumsModel.save).toHaveBeenCalledTimes(1)
+        expect(await fs.access(media, constants.R_OK))
+        const content = await fs.readFile(media, 'utf8')
+        expect(content).not.toEqual(oldContent)
+        expect(content).toBeDefined()
+        expect(broadcast).toHaveBeenNthCalledWith(1, 'album-change', album)
+        expect(broadcast).toHaveBeenNthCalledWith(2, 'album-change', savedAlbum)
+        expect(broadcast).toHaveBeenNthCalledWith(3, 'track-change', track1)
+        expect(broadcast).toHaveBeenNthCalledWith(
+          4,
+          'track-change',
+          savedTrack1
+        )
+        expect(broadcast).toHaveBeenNthCalledWith(5, 'track-change', track2)
+        expect(broadcast).toHaveBeenNthCalledWith(
+          6,
+          'track-change',
+          savedTrack2
+        )
+        expect(broadcast).toHaveBeenCalledTimes(6)
+      })
+
+      it('ignores unknown album', async () => {
+        albumsModel.getById.mockResolvedValueOnce(null)
+        await manager.saveForAlbum(album.id, source)
+
+        expect(albumsModel.save).not.toHaveBeenCalled()
+        expect(tracksModel.getByIds).not.toHaveBeenCalled()
+        expect(tracksModel.save).not.toHaveBeenCalled()
+        await expect(fs.access(media, constants.R_OK)).rejects.toThrow(/ENOENT/)
+        expect(broadcast).not.toHaveBeenCalled()
+      })
     })
-    it('downloads and adds media artist', async () => {
-      const savedArtist = { ...artist, media }
-      artistsModel.getById.mockResolvedValueOnce(artist)
-      artistsModel.save.mockResolvedValueOnce({ saved: [savedArtist] })
 
-      await manager.saveForArtist(artist.id, source)
-
-      expect(artistsModel.save).toHaveBeenCalledWith(savedArtist)
-      expect(artistsModel.save).toHaveBeenCalledTimes(1)
-      expect(await fs.access(media, constants.R_OK))
-      expect(broadcast).toHaveBeenNthCalledWith(1, 'artist-change', artist)
-      expect(broadcast).toHaveBeenNthCalledWith(2, 'artist-change', savedArtist)
-      expect(broadcast).toHaveBeenCalledTimes(2)
-    })
-
-    it('downloads and replace media artist', async () => {
-      const savedArtist = { ...artist, media }
-      artistsModel.getById.mockResolvedValueOnce(savedArtist)
-      artistsModel.save.mockResolvedValueOnce({ saved: [savedArtist] })
+    it('handles download failure', async () => {
+      const media = resolve(os.tmpdir(), 'media', `${album.id}.jpg`)
+      albumsModel.getById.mockResolvedValueOnce({ ...album, media })
+      tracksModel.getByIds.mockResolvedValueOnce([track1, track2])
       const oldContent = 'old content'
       await fs.ensureFile(media)
       await fs.writeFile(media, oldContent)
 
-      await manager.saveForArtist(artist.id, source)
+      await manager.saveForAlbum(album.id, 'https://doesnotexist.ukn/image.jpg')
 
-      expect(artistsModel.save).toHaveBeenCalledWith(savedArtist)
-      expect(artistsModel.save).toHaveBeenCalledTimes(1)
-      expect(await fs.access(media, constants.R_OK))
+      expect(albumsModel.save).not.toHaveBeenCalled()
+      expect(tracksModel.save).not.toHaveBeenCalled()
       const content = await fs.readFile(media, 'utf8')
-      expect(content).not.toEqual(oldContent)
-      expect(content).toBeDefined()
-      expect(broadcast).toHaveBeenNthCalledWith(1, 'artist-change', artist)
-      expect(broadcast).toHaveBeenNthCalledWith(2, 'artist-change', savedArtist)
-      expect(broadcast).toHaveBeenCalledTimes(2)
-    })
-
-    it('ignores unknown artist', async () => {
-      artistsModel.getById.mockResolvedValueOnce(null)
-      await manager.saveForArtist(artist.id, source)
-
-      expect(artistsModel.save).not.toHaveBeenCalled()
-      await expect(fs.access(media, constants.R_OK)).rejects.toThrow(/ENOENT/)
+      expect(content).toEqual(oldContent)
       expect(broadcast).not.toHaveBeenCalled()
-    })
+    }, 10e3)
+
+    it('handles unknown source file', async () => {
+      const media = resolve(os.tmpdir(), 'media', `${album.id}.jpg`)
+      albumsModel.getById.mockResolvedValueOnce({ ...album, media })
+      tracksModel.getByIds.mockResolvedValueOnce([track1, track2])
+      const oldContent = 'old content'
+      await fs.ensureFile(media)
+      await fs.writeFile(media, oldContent)
+
+      await manager.saveForAlbum(album.id, '/user/doesnotexist/source.jpg')
+
+      expect(albumsModel.save).not.toHaveBeenCalled()
+      expect(tracksModel.save).not.toHaveBeenCalled()
+      const content = await fs.readFile(media, 'utf8')
+      expect(content).toEqual(oldContent)
+      expect(broadcast).not.toHaveBeenCalled()
+    }, 10e3)
   })
 
-  it('handles download failure', async () => {
-    const media = resolve(os.tmpdir(), 'media', `${artist.id}.jpg`)
-    artistsModel.getById.mockResolvedValueOnce({ ...artist, media })
-    const oldContent = 'old content'
-    await fs.ensureFile(media)
-    await fs.writeFile(media, oldContent)
+  describe('saveForArtist()', () => {
+    const artist = {
+      id: faker.random.number({ min: 9999 }),
+      name: faker.name.findName(),
+      media: null,
+      linked: [],
+      trackIds: []
+    }
 
-    await manager.saveForArtist(artist.id, 'https://doesnotexist.ukn/image.jpg')
+    describe.each([
+      [
+        'remote',
+        'https://www.theaudiodb.com/images/media/artist/thumb/uxrqxy1347913147.jpg',
+        resolve(os.tmpdir(), 'media', `${artist.id}.jpeg`)
+      ],
+      [
+        'local',
+        resolve(__dirname, '..', '..', 'fixtures', 'avatar.jpg'),
+        resolve(os.tmpdir(), 'media', `${artist.id}.jpg`)
+      ]
+    ])('given a %s media', (unused, source, media) => {
+      beforeEach(async () => {
+        jest.resetAllMocks()
+        electron.app.getPath.mockReturnValue(os.tmpdir())
+        try {
+          await fs.unlink(media)
+        } catch (err) {
+          // ignore missing files
+        }
+      })
+      it('downloads and adds media artist', async () => {
+        const savedArtist = { ...artist, media }
+        artistsModel.getById.mockResolvedValueOnce(artist)
+        artistsModel.save.mockResolvedValueOnce({ saved: [savedArtist] })
 
-    expect(artistsModel.save).not.toHaveBeenCalled()
-    const content = await fs.readFile(media, 'utf8')
-    expect(content).toEqual(oldContent)
-    expect(broadcast).not.toHaveBeenCalled()
-  }, 10e3)
+        await manager.saveForArtist(artist.id, source)
 
-  it('handles unknown source file', async () => {
-    const media = resolve(os.tmpdir(), 'media', `${artist.id}.jpg`)
-    artistsModel.getById.mockResolvedValueOnce({ ...artist, media })
-    const oldContent = 'old content'
-    await fs.ensureFile(media)
-    await fs.writeFile(media, oldContent)
+        expect(artistsModel.save).toHaveBeenCalledWith(savedArtist)
+        expect(artistsModel.save).toHaveBeenCalledTimes(1)
+        expect(await fs.access(media, constants.R_OK))
+        expect(broadcast).toHaveBeenNthCalledWith(1, 'artist-change', artist)
+        expect(broadcast).toHaveBeenNthCalledWith(
+          2,
+          'artist-change',
+          savedArtist
+        )
+        expect(broadcast).toHaveBeenCalledTimes(2)
+      })
 
-    await manager.saveForArtist(artist.id, '/user/doesnotexist/source.jpg')
+      it('downloads and replace media artist', async () => {
+        const savedArtist = { ...artist, media }
+        artistsModel.getById.mockResolvedValueOnce(savedArtist)
+        artistsModel.save.mockResolvedValueOnce({ saved: [savedArtist] })
+        const oldContent = 'old content'
+        await fs.ensureFile(media)
+        await fs.writeFile(media, oldContent)
 
-    expect(artistsModel.save).not.toHaveBeenCalled()
-    const content = await fs.readFile(media, 'utf8')
-    expect(content).toEqual(oldContent)
-    expect(broadcast).not.toHaveBeenCalled()
-  }, 10e3)
+        await manager.saveForArtist(artist.id, source)
+
+        expect(artistsModel.save).toHaveBeenCalledWith(savedArtist)
+        expect(artistsModel.save).toHaveBeenCalledTimes(1)
+        expect(await fs.access(media, constants.R_OK))
+        const content = await fs.readFile(media, 'utf8')
+        expect(content).not.toEqual(oldContent)
+        expect(content).toBeDefined()
+        expect(broadcast).toHaveBeenNthCalledWith(1, 'artist-change', artist)
+        expect(broadcast).toHaveBeenNthCalledWith(
+          2,
+          'artist-change',
+          savedArtist
+        )
+        expect(broadcast).toHaveBeenCalledTimes(2)
+      })
+
+      it('ignores unknown artist', async () => {
+        artistsModel.getById.mockResolvedValueOnce(null)
+        await manager.saveForArtist(artist.id, source)
+
+        expect(artistsModel.save).not.toHaveBeenCalled()
+        await expect(fs.access(media, constants.R_OK)).rejects.toThrow(/ENOENT/)
+        expect(broadcast).not.toHaveBeenCalled()
+      })
+    })
+
+    it('handles download failure', async () => {
+      const media = resolve(os.tmpdir(), 'media', `${artist.id}.jpg`)
+      artistsModel.getById.mockResolvedValueOnce({ ...artist, media })
+      const oldContent = 'old content'
+      await fs.ensureFile(media)
+      await fs.writeFile(media, oldContent)
+
+      await manager.saveForArtist(
+        artist.id,
+        'https://doesnotexist.ukn/image.jpg'
+      )
+
+      expect(artistsModel.save).not.toHaveBeenCalled()
+      const content = await fs.readFile(media, 'utf8')
+      expect(content).toEqual(oldContent)
+      expect(broadcast).not.toHaveBeenCalled()
+    }, 10e3)
+
+    it('handles unknown source file', async () => {
+      const media = resolve(os.tmpdir(), 'media', `${artist.id}.jpg`)
+      artistsModel.getById.mockResolvedValueOnce({ ...artist, media })
+      const oldContent = 'old content'
+      await fs.ensureFile(media)
+      await fs.writeFile(media, oldContent)
+
+      await manager.saveForArtist(artist.id, '/user/doesnotexist/source.jpg')
+
+      expect(artistsModel.save).not.toHaveBeenCalled()
+      const content = await fs.readFile(media, 'utf8')
+      expect(content).toEqual(oldContent)
+      expect(broadcast).not.toHaveBeenCalled()
+    }, 10e3)
+  })
 })
