@@ -11,9 +11,11 @@ const { broadcast } = require('../utils')
 const manager = require('./media-manager')
 const discogs = require('../providers/discogs')
 const audiodb = require('../providers/audiodb')
+const local = require('../providers/local')
 
 jest.mock('../providers/audiodb')
 jest.mock('../providers/discogs')
+jest.mock('../providers/local')
 jest.mock('../models/artists')
 jest.mock('../models/albums')
 jest.mock('../models/tracks')
@@ -44,6 +46,7 @@ describe('Media manager', () => {
     ]
     audiodb.findArtistArtwork.mockResolvedValueOnce(artworks.slice(0, 2))
     discogs.findArtistArtwork.mockResolvedValueOnce(artworks.slice(2))
+    local.findArtistArtwork.mockResolvedValueOnce([])
 
     expect(await manager.findForArtist('coldplay')).toEqual(artworks)
   })
@@ -77,6 +80,7 @@ describe('Media manager', () => {
     ]
     audiodb.findAlbumCover.mockResolvedValueOnce(covers.slice(0, 1))
     discogs.findAlbumCover.mockResolvedValueOnce(covers.slice(1))
+    local.findAlbumCover.mockResolvedValueOnce([])
 
     expect(await manager.findForAlbum('Parachutes')).toEqual(covers)
   })

@@ -12,6 +12,7 @@ const lists = require('./list-engine')
 const { tracksModel } = require('../models/tracks')
 const { settingsModel } = require('../models/settings')
 const { hash, broadcast } = require('../utils')
+const { makeFolder } = require('../tests')
 
 const wait = n => new Promise(r => setTimeout(r, n))
 
@@ -29,37 +30,6 @@ jest.mock('./tag-reader')
 jest.mock('../models/tracks')
 jest.mock('../models/settings')
 jest.mock('../utils/electron-remote')
-
-async function makeFolder({
-  folder = join(mockOs.tmpdir(), 'melodie-'),
-  fileNb = faker.random.number({ min: 2, max: 10 }),
-  depth = 1
-} = {}) {
-  const files = []
-  folder = await fs.mkdtemp(folder)
-  const directFilesNb =
-    depth === 1 ? fileNb : faker.random.number({ min: 1, max: fileNb - depth })
-  for (const n of Array.from({ length: directFilesNb }, (v, i) => i)) {
-    const path = join(
-      folder,
-      `${depth}-${n}.${faker.random.arrayElement(['mp3', 'ogg', 'flac'])}`
-    )
-    await fs.createFile(path)
-    files.push({ path, stats: await fs.stat(path) })
-  }
-  if (depth > 1) {
-    files.push(
-      ...(
-        await makeFolder({
-          folder: join(folder, 'folder-'),
-          fileNb: fileNb - directFilesNb,
-          depth: depth - 1
-        })
-      ).files
-    )
-  }
-  return { files, folder }
-}
 
 describe('File loader', () => {
   beforeEach(() => {

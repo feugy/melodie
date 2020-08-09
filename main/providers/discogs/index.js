@@ -33,7 +33,7 @@ class Discogs extends AbstractProvider {
       return results.reduce(
         (results, { cover_image: full, thumb: preview }) => {
           if (full && preview) {
-            results.push({ full, preview })
+            results.push({ full, preview, provider: this.name })
           }
           return results
         },
@@ -70,7 +70,7 @@ class Discogs extends AbstractProvider {
       return results.reduce(
         (results, { cover_image: full, thumb: preview }) => {
           if (full && preview) {
-            results.push({ full, preview })
+            results.push({ full, preview, provider: this.name })
           }
           return results
         },

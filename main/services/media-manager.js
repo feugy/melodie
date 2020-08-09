@@ -6,6 +6,7 @@ const stream = require('stream')
 const { promisify } = require('util')
 const { parse } = require('url')
 const { extname, dirname, resolve } = require('path')
+const mime = require('mime-types')
 const { artistsModel, albumsModel, tracksModel } = require('../models')
 const { getLogger, getMediaPath, broadcast } = require('../utils')
 const providers = require('../providers')
@@ -13,6 +14,23 @@ const providers = require('../providers')
 const pipeline = promisify(stream.pipeline)
 
 const logger = getLogger('services/media')
+
+async function downloadAndSave(media, url) {
+  const { protocol } = parse(url)
+  const isRemote = protocol && protocol.startsWith('http')
+  const source = isRemote ? got.stream(url) : fs.createReadStream(url)
+  let ext = extname(url)
+  if (isRemote) {
+    source.once(
+      'response',
+      ({ headers }) => (ext = `.${mime.extension(headers['content-type'])}`)
+    )
+  }
+  await pipeline(source, fs.createWriteStream(`${media}.tmp`))
+
+  await fs.move(`${media}.tmp`, `${media}${ext}`, { overwrite: true })
+  return `${media}${ext}`
+}
 
 module.exports = {
   async findForArtist(name) {
@@ -40,21 +58,8 @@ module.exports = {
 
     let written = false
     try {
-      const { protocol } = parse(url)
-      const isRemote = protocol && protocol.startsWith('http')
-      const source = isRemote ? got.stream(url) : fs.createReadStream(url)
-      let ext = extname(url)
-      if (isRemote) {
-        source.once(
-          'response',
-          ({ headers }) => (ext = `.${headers['content-type'].split('/')[1]}`)
-        )
-      }
-      await pipeline(source, fs.createWriteStream(`${media}.tmp`))
-
-      await fs.move(`${media}.tmp`, `${media}${ext}`, { overwrite: true })
+      media = await downloadAndSave(media, url)
       written = true
-      media = `${media}${ext}`
       logger.debug(
         { id, url, media },
         `media successfully downloaded for artist ${artist.name}`
@@ -91,21 +96,8 @@ module.exports = {
 
     let written = false
     try {
-      const { protocol } = parse(url)
-      const isRemote = protocol && protocol.startsWith('http')
-      const source = isRemote ? got.stream(url) : fs.createReadStream(url)
-      let ext = extname(url)
-      if (isRemote) {
-        source.once(
-          'response',
-          ({ headers }) => (ext = `.${headers['content-type'].split('/')[1]}`)
-        )
-      }
-      await pipeline(source, fs.createWriteStream(`${media}.tmp`))
-
-      await fs.move(`${media}.tmp`, `${media}${ext}`, { overwrite: true })
+      media = await downloadAndSave(media, url)
       written = true
-      media = `${media}${ext}`
       logger.debug(
         { id, url, media },
         `media successfully downloaded for album ${album.name}`

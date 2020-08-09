@@ -28,13 +28,15 @@ class AudioDB extends AbstractProvider {
           if (strArtistThumb) {
             results.push({
               full: strArtistThumb,
-              preview: `${strArtistThumb}/preview`
+              preview: `${strArtistThumb}/preview`,
+              provider: this.name
             })
           }
           if (strArtistFanart) {
             results.push({
               full: strArtistFanart,
-              preview: `${strArtistFanart}/preview`
+              preview: `${strArtistFanart}/preview`,
+              provider: this.name
             })
           }
           return results
@@ -65,7 +67,11 @@ class AudioDB extends AbstractProvider {
 
       return (album || []).reduce((results, { strAlbumThumb: full }) => {
         if (full) {
-          results.push({ full, preview: `${full}/preview` })
+          results.push({
+            full,
+            preview: `${full}/preview`,
+            provider: this.name
+          })
         }
         return results
       }, [])

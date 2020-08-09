@@ -15,8 +15,7 @@ const {
   share
 } = require('rxjs/operators')
 const chokidar = require('chokidar')
-const klaw = require('klaw')
-const { hash, broadcast, getLogger, uniq } = require('../utils')
+const { hash, broadcast, getLogger, uniq, walk } = require('../utils')
 const tag = require('./tag-reader')
 const covers = require('./cover-finder')
 const lists = require('./list-engine')
@@ -29,24 +28,6 @@ const saveThreshold = 50
 const supported = ['.mp3', '.ogg', '.flac']
 
 const logger = getLogger('services/file')
-
-function walk(folders) {
-  return of(...(folders || [])).pipe(
-    mergeMap(path => {
-      return Observable.create(function (observer) {
-        klaw(path)
-          .on('readable', function () {
-            let item
-            while ((item = this.read())) {
-              observer.next(item)
-            }
-          })
-          .on('error', observer.error.bind(observer))
-          .on('end', observer.complete.bind(observer))
-      }).pipe(filter(onlySupported))
-    }, walkConcurrency)
-  )
-}
 
 function onlySupported({ path, stats }) {
   return (
@@ -92,7 +73,13 @@ module.exports = {
       })
       broadcast('tracking', { inProgress: true, op: 'addFolders' })
       this.watch(folders)
-      return walk(folders)
+      return of(...(folders || []))
+        .pipe(
+          mergeMap(
+            folder => walk(folder).pipe(filter(onlySupported)),
+            walkConcurrency
+          )
+        )
         .pipe(
           ...makeEnrichAndSavePipeline(),
           tap(tracks => {
@@ -113,7 +100,13 @@ module.exports = {
     logger.info({ folders }, `comparing folders...`)
     const existingIds = await tracksModel.listWithTime()
     broadcast('tracking', { inProgress: true, op: 'compare' })
-    return walk(folders)
+    return of(...(folders || []))
+      .pipe(
+        mergeMap(
+          folder => walk(folder).pipe(filter(onlySupported)),
+          walkConcurrency
+        )
+      )
       .pipe(
         filter(({ path, stats: { mtimeMs } }) => {
           const id = hash(path)

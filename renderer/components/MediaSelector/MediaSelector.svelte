@@ -5,6 +5,7 @@
   import Button from '../Button/Button.svelte'
   import Image from '../Image/Image.svelte'
   import ImageUploader from '../ImageUploader/ImageUploader.svelte'
+  import Progress from '../Progress/Progress.svelte'
   import { invoke } from '../../utils'
 
   export let open
@@ -13,11 +14,11 @@
   $: modelName = forArtist ? 'Artist' : 'Album'
   let uploaded = null
   let proposals = []
-
+  let findPromise
   async function handleOpen() {
     uploaded = null
-    proposals =
-      (await invoke(`mediaManager.findFor${modelName}`, src.name)) || []
+    findPromise = invoke(`mediaManager.findFor${modelName}`, src.name)
+    proposals = (await findPromise) || []
   }
 
   async function handleSelect(url) {
@@ -28,7 +29,11 @@
 
 <style type="postcss">
   .image-container {
-    @apply flex flex-wrap justify-around my-4;
+    @apply flex flex-wrap justify-start my-4;
+  }
+
+  .image-container span {
+    @apply text-xs;
   }
 </style>
 
@@ -37,15 +42,21 @@
   bind:open
   on:open={handleOpen}>
   <div slot="content">
+    {#await findPromise}
+      <Progress />
+    {/await}
     <div class="image-container">
-      {#each proposals as { full, preview }}
-        <Image
-          src={preview}
-          class="w-32 h-32 m-2 cursor-pointer"
-          on:click={() => handleSelect(full)} />
+      {#each proposals as { full, preview, provider }}
+        <div class="m-2 cursor-pointer">
+          <Image
+            src={preview}
+            class="w-48 h-48"
+            on:click={() => handleSelect(full)} />
+          <span>{provider}</span>
+        </div>
       {/each}
       <ImageUploader
-        class="w-32 h-32 m-2"
+        class="w-48 h-48 m-2"
         bind:value={uploaded}
         on:select={() => handleSelect(uploaded)} />
     </div>

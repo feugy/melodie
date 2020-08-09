@@ -29,7 +29,7 @@ npm run build
 - [x] embed file-loader's crawl() into chooseFolders()
 - [x] reactive stores: send update on new albums/artists/tracks
 - [x] images from AudioDB/discogs
-- [ ] local provider for album covers
+- [x] local provider for album covers
 - [ ] artists' albums
 - [ ] consider knex-migrate
 - [ ] images from tags
