@@ -9,6 +9,7 @@ artist: Artist
 by _: 'by {artist}'
 cancel: Cancel
 choose avatar: Choose a picture
+choose cover: Choose a cover
 clear: Clear
 disk _: 'Disk #{num}'
 duration: Duration

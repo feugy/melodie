@@ -4,7 +4,6 @@ import { action } from '@storybook/addon-actions'
 import MediaSelector from './MediaSelector.stories.svelte'
 import { actionsData } from '../Dialogue/Dialogue.stories'
 import { artistData } from '../Artist/Artist.stories'
-import { translate } from '../../tests/utils'
 
 const invokeAction = action('invoke')
 
@@ -16,7 +15,7 @@ export default {
       window.electron.ipcRenderer = {
         invoke: (channel, service, method, ...args) => {
           invokeAction(service, method, ...args)
-          if (method === 'findForArtist') {
+          if (method === 'findForArtist' || method === 'findForAlbum') {
             return suggestionsData
           }
         }
@@ -50,7 +49,15 @@ export const suggestionsData = [
 export const Default = () => ({
   Component: MediaSelector,
   props: {
-    title: translate('choose avatar'),
+    src: artistData
+  },
+  on: actionsData
+})
+
+export const ForAlbum = () => ({
+  Component: MediaSelector,
+  props: {
+    forArtist: false,
     src: artistData
   },
   on: actionsData

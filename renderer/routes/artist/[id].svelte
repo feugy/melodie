@@ -107,10 +107,7 @@
   }
 </style>
 
-<MediaSelector
-  title={$_('choose avatar')}
-  bind:open={openMediaSelector}
-  src={artist} />
+<MediaSelector bind:open={openMediaSelector} src={artist} />
 
 <div transition:fade={{ duration: 200 }}>
   {#if artist}

@@ -106,12 +106,14 @@ describe('album details route', () => {
 
     it('displays album title, image, artists and total duration', async () => {
       expect(screen.queryByText(album.name)).toBeInTheDocument()
-      const image = screen.queryByRole('img')
-      expect(image).toBeInTheDocument()
-      // eslint-disable-next-line jest-dom/prefer-to-have-attribute
-      expect(image.getAttribute('src')).toEqual(
-        expect.stringContaining(album.media)
-      )
+      const image = screen.queryAllByRole('img')
+      expect(
+        image.filter(
+          node =>
+            node.hasAttribute('src') &&
+            node.getAttribute('src').includes(album.media)
+        )
+      ).toBeDefined()
 
       expect(screen.queryByText(album.linked[0])).toBeInTheDocument()
       expect(screen.queryByText(album.linked[1])).toBeInTheDocument()
@@ -221,6 +223,18 @@ describe('album details route', () => {
       removals.next(faker.random.number())
 
       expect(replace).not.toHaveBeenCalledWith('/album')
+    })
+
+    it('opens media selector on image click', async () => {
+      const albumImage = Array.from(screen.queryAllByRole('img')).find(
+        node =>
+          node.hasAttribute('src') &&
+          node.getAttribute('src').includes(album.media)
+      )
+
+      await fireEvent.click(albumImage)
+
+      expect(await screen.findByText(translate('choose cover'))).toBeVisible()
     })
   })
 })

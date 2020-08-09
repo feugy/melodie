@@ -5,13 +5,21 @@
   import { replace } from 'svelte-spa-router'
   import { of } from 'rxjs'
   import { map, filter, distinct, mergeMap } from 'rxjs/operators'
-  import { Heading, Image, Button, DisksList } from '../../components'
+  import {
+    Heading,
+    Image,
+    Button,
+    DisksList,
+    MediaSelector
+  } from '../../components'
   import { albums, load, changes, removals } from '../../stores/albums'
   import { add, current } from '../../stores/track-queue'
   import { formatTime, sumDurations, wrapWithLinks } from '../../utils'
 
   export let params = {}
   let album
+  let openMediaSelector = false
+
   $: albumId = +params.id
   $: if (!album || album.id !== albumId) {
     loadAlbum()
@@ -27,11 +35,15 @@
   const changeSub = changes
     .pipe(
       filter(({ id }) => id === albumId),
-      distinct(),
-      mergeMap(album => (!album.tracks ? load(album.id) : of(album)))
+      distinct()
     )
     .subscribe(async changed => {
+      // update now in case of media change
       album = changed
+      if (!album.tracks) {
+        // then load tracks if not yet available
+        album = await load(album.id)
+      }
     })
 
   const removalSub = removals
@@ -54,7 +66,7 @@
   }
 
   .image-container {
-    @apply flex-shrink-0 w-full h-full;
+    @apply flex-shrink-0 w-full h-full cursor-pointer;
     height: 300px;
     width: 300px;
   }
@@ -72,6 +84,8 @@
   }
 </style>
 
+<MediaSelector forArtist={false} bind:open={openMediaSelector} src={album} />
+
 <div transition:fade={{ duration: 200 }}>
   {#if album}
     <Heading
@@ -79,7 +93,10 @@
       image={'../images/dark-rider-JmVaNyemtN8-unsplash.jpg'} />
     <section>
       <span class="image-container">
-        <Image class="h-full w-full text-3xl" src={album.media} />
+        <Image
+          class="h-full w-full text-3xl"
+          src={album.media}
+          on:click={() => (openMediaSelector = true)} />
       </span>
       <div>
         <h3>

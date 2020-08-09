@@ -7,7 +7,8 @@ album: Album
 artist: Artiste
 by _: 'par {artist}'
 cancel: Annuler
-choose avatar: 'Choisisez une photo'
+choose avatar: Choisissez une photo
+choose cover: Choisissez une couverture
 clear: Vider
 disk _: 'Disque N°{num}'
 duration: Durée

@@ -9,15 +9,15 @@
   export let tracks
   export let current
   export let withAlbum = true
-  $: sortedTracks =
-    tracks &&
-    tracks
-      .concat()
-      .sort(
-        (a, b) =>
-          ((a.tags.track && a.tags.track.no) || Infinity) -
-          ((b.tags.track && b.tags.track.no) || Infinity)
-      )
+  $: sortedTracks = tracks
+    ? tracks
+        .concat()
+        .sort(
+          (a, b) =>
+            ((a.tags.track && a.tags.track.no) || Infinity) -
+            ((b.tags.track && b.tags.track.no) || Infinity)
+        )
+    : []
 
   const dblClickDuration = 250
   const dispatch = createEventDispatcher()

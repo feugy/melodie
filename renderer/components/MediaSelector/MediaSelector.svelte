@@ -8,18 +8,20 @@
   import { invoke } from '../../utils'
 
   export let open
-  export let title
   export let src
+  export let forArtist = true
+  $: modelName = forArtist ? 'Artist' : 'Album'
   let uploaded = null
   let proposals = []
 
   async function handleOpen() {
     uploaded = null
-    proposals = await invoke('mediaManager.findForArtist', src.name)
+    proposals =
+      (await invoke(`mediaManager.findFor${modelName}`, src.name)) || []
   }
 
   async function handleSelect(url) {
-    await invoke('mediaManager.saveForArtist', src.id, url)
+    await invoke(`mediaManager.saveFor${modelName}`, src.id, url)
     open = false
   }
 </script>
@@ -30,7 +32,10 @@
   }
 </style>
 
-<Dialogue {title} bind:open on:open={handleOpen}>
+<Dialogue
+  title={$_(forArtist ? 'choose avatar' : 'choose cover')}
+  bind:open
+  on:open={handleOpen}>
   <div slot="content">
     <div class="image-container">
       {#each proposals as { full, preview }}

@@ -29,6 +29,7 @@ npm run build
 - [x] embed file-loader's crawl() into chooseFolders()
 - [x] reactive stores: send update on new albums/artists/tracks
 - [x] images from AudioDB/discogs
+- [ ] local provider for album covers
 - [ ] artists' albums
 - [ ] consider knex-migrate
 - [ ] images from tags
@@ -53,21 +54,22 @@ npm run build
 - [x] enqueue & play album buttons on album details page
 - [x] enqueue button on Album component
 - [x] current play list
-- [ ] remove tracks from queue
-- [ ] update track queue on track changes
 - [x] tracks' duration
 - [x] albums' artists
-- [ ] manually set album's cover
+- [x] manually set album's cover
 - [x] manually set artist's avatar
-- [ ] suggest album's cover from 3rd party DBs
+- [x] suggest album's cover from 3rd party DBs
 - [x] suggest artist's avatar from 3rd party DBs
 - [x] list all artists
 - [x] artist details
 - [x] page navigation (to artists, to albums)
-- [ ] display years (artist & album details page)
+- [ ] remove tracks from queue
+- [ ] update track queue on track changes
 - [ ] filter albums, artists, or tracks
 - [ ] search input and results
 - [ ] settings panel with watched folders
+- [ ] display years (artist & album details page)
+- [ ] display album/artist descriptions
 - [x] icons
 - [ ] system menus
 - [ ] system integration (> open with, > open track containing folder, < add to play list, < open with )

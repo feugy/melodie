@@ -4,18 +4,18 @@ const fs = require('fs-extra')
 const { join, extname, dirname } = require('path')
 
 const coverFiles = [
-  'cover.jpg',
-  'Cover.jpg',
   'cover.jpeg',
   'Cover.jpeg',
+  'cover.jpg',
+  'Cover.jpg',
   'cover.png',
   'Cover.png',
   'cover.gif',
   'Cover.gif',
-  'folder.jpg',
-  'Folder.jpg',
   'folder.jpeg',
   'Folder.jpeg',
+  'folder.jpg',
+  'Folder.jpg',
   'folder.png',
   'Folder.png',
   'folder.gif',
