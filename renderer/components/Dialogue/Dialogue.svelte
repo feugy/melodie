@@ -43,6 +43,11 @@
   article {
     @apply flex flex-col;
     width: 50%;
+    max-height: 80%;
+  }
+
+  .content {
+    @apply overflow-y-auto;
   }
 
   header {

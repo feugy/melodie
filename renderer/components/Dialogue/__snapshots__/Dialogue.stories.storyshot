@@ -5,11 +5,11 @@ exports[`Storyshots Components/Dialogue Default 1`] = `
   class="storybook-snapshot-container"
 >
   <div
-    class="filter svelte-1037skv open"
+    class="filter svelte-1bxinb6 open"
   />
    
   <div
-    class="backdrop svelte-1037skv open"
+    class="backdrop svelte-1bxinb6 open"
   >
     <button
       class="absolute top-0 right-0 m-4 svelte-ztyk6h iconOnly"
@@ -23,16 +23,16 @@ exports[`Storyshots Components/Dialogue Default 1`] = `
     </button>
      
     <article
-      class="svelte-1037skv"
+      class="svelte-1bxinb6"
     >
       <header
-        class="svelte-1037skv"
+        class="svelte-1bxinb6"
       >
         This is a title
       </header>
        
       <div
-        class="content"
+        class="content svelte-1bxinb6"
       >
         <div
           slot="content"
@@ -42,7 +42,7 @@ exports[`Storyshots Components/Dialogue Default 1`] = `
       </div>
        
       <footer
-        class="svelte-1037skv"
+        class="svelte-1bxinb6"
       >
         <span
           slot="buttons"
