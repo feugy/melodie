@@ -6,7 +6,7 @@ exports[`Storyshots Components/Track Default 1`] = `
 >
   <div>
     <div
-      class="root svelte-p26357"
+      class="undefined root svelte-p26357"
     >
       <a
         class="flex-none"
@@ -50,7 +50,7 @@ exports[`Storyshots Components/Track With Details 1`] = `
 >
   <div>
     <div
-      class="root svelte-p26357"
+      class="undefined root svelte-p26357"
     >
       <a
         class="flex-none"

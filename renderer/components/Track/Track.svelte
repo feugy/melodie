@@ -31,7 +31,7 @@
   }
 </style>
 
-<div class="root" on:click>
+<div class={`${$$props.class} root`} on:click>
   <a
     on:click|stopPropagation
     href={linkTo('album', src.album)}

@@ -53,6 +53,32 @@ describe('Dialogue component', () => {
     expect(handleOpen).not.toHaveBeenCalled()
     expect(handleClose).not.toHaveBeenCalled()
 
+    await fireEvent.click(screen.queryByRole('button').closest('div'))
+
+    expect(screen.queryByText(title)).not.toBeVisible()
+    expect(handleClose).toHaveBeenCalled()
+    expect(get(open)).toBe(false)
+  })
+
+  it('closes on close button click and dispatches close event', async () => {
+    const open = writable(true)
+    const title = faker.lorem.words()
+    const handleOpen = jest.fn()
+    const handleClose = jest.fn()
+    render(
+      html`<${Dialogue}
+        on:open=${handleOpen}
+        on:close=${handleClose}
+        bind:open=${open}
+        title=${title}
+      />`
+    )
+    await tick()
+
+    expect(screen.queryByText(title)).toBeVisible()
+    expect(handleOpen).not.toHaveBeenCalled()
+    expect(handleClose).not.toHaveBeenCalled()
+
     await fireEvent.click(screen.queryByRole('button'))
 
     expect(screen.queryByText(title)).not.toBeVisible()

@@ -128,7 +128,7 @@ exports[`Storyshots Components/Player With Track List 1`] = `
       class="current svelte-5j1b4y"
     >
       <div
-        class="root svelte-p26357"
+        class="undefined root svelte-p26357"
       >
         <a
           class="flex-none"

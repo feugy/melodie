@@ -57,7 +57,10 @@
 
 <div class="filter" class:open />
 <div class="backdrop" class:open on:click={() => (open = false)}>
-  <Button icon={'close'} class="absolute top-0 right-0 m-4" />
+  <Button
+    icon={'close'}
+    class="absolute top-0 right-0 m-4"
+    on:click={() => (open = false)} />
   <article on:click|stopPropagation>
     <header>{title}</header>
     <div class="content">

@@ -74,7 +74,7 @@
   class:noBorder
   data-testid={$$props['data-testid']}
   class={$$props.class}
-  on:click|preventDefault>
+  on:click|preventDefault|stopPropagation>
   {#if icon}
     <i class="material-icons">{icon}</i>
   {/if}

@@ -270,4 +270,134 @@ describe('track-queue store', () => {
       expect(get(queue.index)).toEqual(1)
     })
   })
+
+  describe('remove', () => {
+    beforeEach(() => queue.clear())
+    it('does nothing on empty queue', async () => {
+      queue.remove(1)
+      await tick()
+
+      expect(get(queue.tracks)).toEqual([])
+      expect(get(queue.index)).toEqual(0)
+      expect(get(queue.current)).not.toBeDefined()
+    })
+
+    it('removes future track', async () => {
+      const files = [
+        faker.system.fileName(),
+        faker.system.fileName(),
+        faker.system.fileName()
+      ]
+      queue.add(files)
+      expect(get(queue.tracks)).toEqual(files)
+      expect(get(queue.current)).toEqual(files[0])
+      expect(get(queue.index)).toEqual(0)
+
+      queue.remove(2)
+      await tick()
+      expect(get(queue.tracks)).toEqual(files.slice(0, 2))
+      expect(get(queue.index)).toEqual(0)
+      expect(get(queue.current)).toEqual(files[0])
+    })
+
+    it('removes current track', async () => {
+      const files = [
+        faker.system.fileName(),
+        faker.system.fileName(),
+        faker.system.fileName()
+      ]
+      queue.add(files)
+      queue.next()
+      expect(get(queue.tracks)).toEqual(files)
+      expect(get(queue.current)).toEqual(files[1])
+      expect(get(queue.index)).toEqual(1)
+
+      queue.remove(1)
+      await tick()
+      expect(get(queue.tracks)).toEqual([
+        ...files.slice(0, 1),
+        ...files.slice(2)
+      ])
+      expect(get(queue.index)).toEqual(1)
+      expect(get(queue.current)).toEqual(files[2])
+    })
+
+    it('removes last current track', async () => {
+      const files = [
+        faker.system.fileName(),
+        faker.system.fileName(),
+        faker.system.fileName()
+      ]
+      queue.add(files)
+      queue.jumpTo(2)
+      expect(get(queue.tracks)).toEqual(files)
+      expect(get(queue.current)).toEqual(files[2])
+      expect(get(queue.index)).toEqual(2)
+
+      queue.remove(2)
+      await tick()
+      expect(get(queue.tracks)).toEqual([...files.slice(0, 2)])
+      expect(get(queue.index)).toEqual(0)
+      expect(get(queue.current)).toEqual(files[0])
+    })
+
+    it('removes past track', async () => {
+      const files = [
+        faker.system.fileName(),
+        faker.system.fileName(),
+        faker.system.fileName()
+      ]
+      queue.add(files)
+      queue.jumpTo(2)
+      expect(get(queue.tracks)).toEqual(files)
+      expect(get(queue.current)).toEqual(files[2])
+      expect(get(queue.index)).toEqual(2)
+
+      queue.remove(1)
+      await tick()
+      expect(get(queue.tracks)).toEqual([
+        ...files.slice(0, 1),
+        ...files.slice(2)
+      ])
+      expect(get(queue.index)).toEqual(1)
+      expect(get(queue.current)).toEqual(files[2])
+    })
+
+    it('ignores out of bound index', async () => {
+      const files = [faker.system.fileName(), faker.system.fileName()]
+
+      queue.add(files)
+      expect(get(queue.tracks)).toEqual(files)
+      expect(get(queue.current)).toEqual(files[0])
+      expect(get(queue.index)).toEqual(0)
+
+      queue.remove(10)
+      await tick()
+      expect(get(queue.index)).toEqual(0)
+      expect(get(queue.current)).toEqual(files[0])
+
+      queue.remove(-1)
+      await tick()
+      expect(get(queue.index)).toEqual(0)
+      expect(get(queue.current)).toEqual(files[0])
+    })
+
+    it('supports duplicates', async () => {
+      const files = [faker.system.fileName(), faker.system.fileName()]
+      files.push(files[0], faker.system.fileName())
+
+      queue.add(files)
+      expect(get(queue.tracks)).toEqual(files)
+      expect(get(queue.current)).toEqual(files[0])
+      expect(get(queue.index)).toEqual(0)
+
+      queue.remove(2)
+      await tick()
+      expect(get(queue.tracks)).toEqual([
+        ...files.slice(0, 2),
+        ...files.slice(3)
+      ])
+      expect(get(queue.index)).toEqual(0)
+    })
+  })
 })

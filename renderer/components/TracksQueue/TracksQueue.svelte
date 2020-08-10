@@ -3,7 +3,13 @@
   import Button from '../Button/Button.svelte'
   import Heading from '../Heading/Heading.svelte'
   import Track from '../Track/Track.svelte'
-  import { tracks, index, jumpTo, clear } from '../../stores/track-queue'
+  import {
+    tracks,
+    index,
+    jumpTo,
+    clear,
+    remove
+  } from '../../stores/track-queue'
   import { formatTime, sumDurations } from '../../utils'
 </script>
 
@@ -21,7 +27,7 @@
   }
 
   li {
-    @apply py-1 px-8;
+    @apply py-1 px-8 flex flex-row items-center;
   }
 
   li.current {
@@ -40,15 +46,16 @@
 <div>
   <h3>{$_('_ items', { total: $tracks.length })}</h3>
   {#if $tracks.length}
-    <Button icon="delete" class="mx-4" on:click={() => clear()} />
     <span class="totalDuration">{formatTime(sumDurations($tracks))}</span>
+    <Button icon="delete" class="mx-4" on:click={() => clear()} />
   {/if}
 </div>
 
 <ol>
   {#each $tracks as track, i}
     <li class:current={$index === i} on:click={() => jumpTo(i)}>
-      <Track src={track.tags} media={track.media} details />
+      <Track src={track.tags} media={track.media} details class="flex-auto" />
+      <Button icon="close" class="mx-4" on:click={() => remove(i)} />
     </li>
   {/each}
 </ol>

@@ -104,11 +104,42 @@ describe('TracksQueue component', () => {
     expect(screen.getByText(track1.tags.title)).toBeInTheDocument()
     expect(screen.getByText(track2.tags.title)).toBeInTheDocument()
 
-    await fireEvent.click(screen.getByRole('button'))
+    await fireEvent.click(screen.queryAllByRole('button')[0])
     await tick()
 
     expect(get(current)).not.toBeDefined()
-    expect(screen.queryByText(track1.tags.title)).toBeFalsy()
-    expect(screen.queryByText(track2.tags.title)).toBeFalsy()
+    expect(screen.queryByText(track1.tags.title)).not.toBeInTheDocument()
+    expect(screen.queryByText(track2.tags.title)).not.toBeInTheDocument()
+  })
+
+  it('removes track on button click', async () => {
+    const track1 = {
+      id: 1,
+      tags: {
+        title: faker.commerce.productName(),
+        artists: [faker.name.findName()]
+      },
+      media: faker.system.fileName()
+    }
+    const track2 = {
+      id: 2,
+      tags: {
+        title: faker.commerce.productName(),
+        artists: [faker.name.findName()]
+      },
+      media: faker.system.fileName()
+    }
+    add([track1, track2])
+
+    render(html`<${TracksQueue} />`)
+    await tick()
+
+    await fireEvent.click(
+      screen.getByText(track2.tags.title).closest('li').querySelector('button')
+    )
+    await tick()
+
+    expect(screen.queryByText(track1.tags.title)).toBeInTheDocument()
+    expect(screen.queryByText(track2.tags.title)).not.toBeInTheDocument()
   })
 })

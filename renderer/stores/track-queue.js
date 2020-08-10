@@ -3,22 +3,16 @@
 import { ReplaySubject, Subject, merge } from 'rxjs'
 import { scan, pluck, shareReplay } from 'rxjs/operators'
 
-const tracks$ = new ReplaySubject().pipe(
-  scan((list, added) => (added === null ? [] : [...list, ...added]), [])
-)
-
-const current$ = new ReplaySubject()
-
 const actions$ = new Subject()
 
-const index$ = merge(actions$, tracks$).pipe(
+const queue$ = merge(actions$, new ReplaySubject()).pipe(
   scan(
     ({ list, idx }, action) => {
-      if (Array.isArray(action)) {
-        list = action
-        if (idx >= list.length) {
-          idx = 0
-        }
+      if (action.add) {
+        list = [...list, ...action.add]
+      } else if (action.clear) {
+        list = []
+        idx = 0
       } else if (list.length) {
         if (
           action.idx !== undefined &&
@@ -30,19 +24,31 @@ const index$ = merge(actions$, tracks$).pipe(
           idx = (idx + 1) % list.length
         } else if (action.previous) {
           idx = idx === 0 ? list.length - 1 : idx - 1
+        } else if (action.remove >= 0 && action.remove < list.length) {
+          if (action.remove < idx) {
+            idx--
+          } else if (action.remove === idx && idx === list.length - 1) {
+            idx = 0
+          }
+          list.splice(action.remove, 1)
         }
       }
       current$.next(list[idx])
       return { list, idx }
     },
-    { idx: 0 }
+    { idx: 0, list: [] }
   ),
-  pluck('idx'),
   shareReplay()
 )
 
+const index$ = queue$.pipe(pluck('idx'))
+
+const current$ = new ReplaySubject()
+
+const tracks$ = queue$.pipe(pluck('list'))
+
 // first init
-index$.subscribe()
+queue$.subscribe()
 clear()
 
 export const tracks = {
@@ -61,11 +67,11 @@ export function add(values, play = false) {
   if (play) {
     clear()
   }
-  tracks$.next(Array.isArray(values) ? values : [values])
+  actions$.next({ add: Array.isArray(values) ? values : [values] })
 }
 
 export function clear() {
-  tracks$.next(null)
+  actions$.next({ clear: true })
 }
 
 export function next() {
@@ -78,4 +84,8 @@ export function previous() {
 
 export function jumpTo(idx) {
   actions$.next({ idx })
+}
+
+export function remove(idx) {
+  actions$.next({ remove: idx })
 }

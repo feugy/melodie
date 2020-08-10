@@ -63,7 +63,7 @@ npm run build
 - [x] list all artists
 - [x] artist details
 - [x] page navigation (to artists, to albums)
-- [ ] remove tracks from queue
+- [x] remove tracks from queue
 - [ ] update track queue on track changes
 - [ ] filter albums, artists, or tracks
 - [ ] search input and results
