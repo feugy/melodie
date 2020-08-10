@@ -91,7 +91,10 @@ describe('Lists Engine', () => {
       for (const artist of artists) {
         expect(broadcast).toHaveBeenCalledWith('artist-change', artist)
       }
-      expect(broadcast).toHaveBeenCalledTimes(artists.length)
+      for (const track of tracks) {
+        expect(broadcast).toHaveBeenCalledWith('track-change', track)
+      }
+      expect(broadcast).toHaveBeenCalledTimes(tracks.length + artists.length)
     })
 
     it('stores track with album', async () => {
@@ -116,7 +119,10 @@ describe('Lists Engine', () => {
       expect(albumsModel.save).toHaveBeenCalledWith([album])
       expect(albumsModel.save).toHaveBeenCalledTimes(1)
       expect(broadcast).toHaveBeenCalledWith('album-change', album)
-      expect(broadcast).toHaveBeenCalledTimes(1)
+      for (const track of tracks) {
+        expect(broadcast).toHaveBeenCalledWith('track-change', track)
+      }
+      expect(broadcast).toHaveBeenCalledTimes(tracks.length + 1)
     })
 
     it('stores track with cover', async () => {
@@ -149,7 +155,10 @@ describe('Lists Engine', () => {
       expect(albumsModel.save).toHaveBeenCalledWith([album])
       expect(albumsModel.save).toHaveBeenCalledTimes(1)
       expect(broadcast).toHaveBeenCalledWith('album-change', album)
-      expect(broadcast).toHaveBeenCalledTimes(1)
+      for (const track of tracks) {
+        expect(broadcast).toHaveBeenCalledWith('track-change', track)
+      }
+      expect(broadcast).toHaveBeenCalledTimes(tracks.length + 1)
     })
 
     it('skip existing albums', async () => {
@@ -190,7 +199,10 @@ describe('Lists Engine', () => {
       expect(albumsModel.save).toHaveBeenCalledWith([album])
       expect(albumsModel.save).toHaveBeenCalledTimes(1)
       expect(broadcast).toHaveBeenCalledWith('album-change', album)
-      expect(broadcast).toHaveBeenCalledTimes(1)
+      for (const track of tracks) {
+        expect(broadcast).toHaveBeenCalledWith('track-change', track)
+      }
+      expect(broadcast).toHaveBeenCalledTimes(tracks.length + 1)
     })
 
     it('skip existing artists', async () => {
@@ -245,7 +257,10 @@ describe('Lists Engine', () => {
       for (const artist of artists) {
         expect(broadcast).toHaveBeenCalledWith('artist-change', artist)
       }
-      expect(broadcast).toHaveBeenCalledTimes(artists.length)
+      for (const track of tracks) {
+        expect(broadcast).toHaveBeenCalledWith('track-change', track)
+      }
+      expect(broadcast).toHaveBeenCalledTimes(tracks.length + artists.length)
     })
 
     it('detects album changes for existing tracks', async () => {
@@ -323,7 +338,10 @@ describe('Lists Engine', () => {
       expect(broadcast).toHaveBeenCalledWith('album-change', oldAlbum)
       expect(broadcast).toHaveBeenCalledWith('album-change', updatedAlbum)
       expect(broadcast).toHaveBeenCalledWith('album-change', newAlbum)
-      expect(broadcast).toHaveBeenCalledTimes(3)
+      for (const track of tracks) {
+        expect(broadcast).toHaveBeenCalledWith('track-change', track)
+      }
+      expect(broadcast).toHaveBeenCalledTimes(tracks.length + 3)
     })
 
     it('detects artist changes for existing tracks', async () => {
@@ -382,7 +400,10 @@ describe('Lists Engine', () => {
       expect(broadcast).toHaveBeenCalledWith('artist-change', oldArtist)
       expect(broadcast).toHaveBeenCalledWith('artist-change', updatedArtist)
       expect(broadcast).toHaveBeenCalledWith('artist-change', newArtist)
-      expect(broadcast).toHaveBeenCalledTimes(3)
+      for (const track of [track1, track2]) {
+        expect(broadcast).toHaveBeenCalledWith('track-change', track)
+      }
+      expect(broadcast).toHaveBeenCalledTimes(5)
     })
   })
 
@@ -422,7 +443,10 @@ describe('Lists Engine', () => {
       expect(albumsModel.save).toHaveBeenCalledTimes(1)
 
       expect(broadcast).toHaveBeenCalledWith('album-removal', album.id)
-      expect(broadcast).toHaveBeenCalledTimes(1)
+      for (const id of trackIds) {
+        expect(broadcast).toHaveBeenCalledWith('track-removal', id)
+      }
+      expect(broadcast).toHaveBeenCalledTimes(tracks.length + 1)
     })
 
     it('updates artists', async () => {
@@ -456,7 +480,10 @@ describe('Lists Engine', () => {
       for (const { id } of artists) {
         expect(broadcast).toHaveBeenCalledWith('artist-removal', id)
       }
-      expect(broadcast).toHaveBeenCalledTimes(artists.length)
+      for (const id of trackIds) {
+        expect(broadcast).toHaveBeenCalledWith('track-removal', id)
+      }
+      expect(broadcast).toHaveBeenCalledTimes(tracks.length + artists.length)
     })
 
     it('sends changes before removals', async () => {
@@ -505,15 +532,25 @@ describe('Lists Engine', () => {
 
       expect(broadcast).toHaveBeenNthCalledWith(
         1,
+        'track-removal',
+        tracks[0].id
+      )
+      expect(broadcast).toHaveBeenNthCalledWith(
+        2,
+        'track-removal',
+        tracks[1].id
+      )
+      expect(broadcast).toHaveBeenNthCalledWith(
+        3,
         'artist-change',
         artists[0].id
       )
       expect(broadcast).toHaveBeenNthCalledWith(
-        2,
+        4,
         'artist-removal',
         artists[1].id
       )
-      expect(broadcast).toHaveBeenCalledTimes(2)
+      expect(broadcast).toHaveBeenCalledTimes(4)
     })
   })
 

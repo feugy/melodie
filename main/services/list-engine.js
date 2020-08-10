@@ -2,13 +2,13 @@
 
 const { of, from, concat, merge, EMPTY } = require('rxjs')
 const {
-  map,
   reduce,
   mergeMap,
   shareReplay,
   expand,
   filter,
-  delay
+  delay,
+  tap
 } = require('rxjs/operators')
 const { hash, broadcast, getLogger, uniq } = require('../utils')
 const {
@@ -73,12 +73,12 @@ function makeListPipeline(property, model) {
         mergeMap(({ saved, removedIds }) =>
           concat(
             from(saved).pipe(
-              map(record => broadcast(`${property}-change`, record))
+              tap(record => broadcast(`${property}-change`, record))
             ),
             // removals must be delays to that change are transfered before
             of(null).pipe(delay(100)),
             from(removedIds).pipe(
-              map(id => broadcast(`${property}-removal`, id))
+              tap(id => broadcast(`${property}-removal`, id))
             )
           )
         )
@@ -118,11 +118,13 @@ module.exports = {
   },
 
   async add(tracks) {
-    const previousTags = (
-      await from(tracksModel.save(tracks)).toPromise()
-    ).reduce((map, previous) => map.set(previous.id, previous), new Map())
+    const previousTags = (await tracksModel.save(tracks)).reduce(
+      (map, previous) => map.set(previous.id, previous),
+      new Map()
+    )
 
     const tracks$ = from(tracks).pipe(
+      tap(track => broadcast('track-change', track)),
       expand(track => {
         if (!track.tags) {
           return EMPTY
@@ -168,6 +170,7 @@ module.exports = {
   async remove(trackIds) {
     const tracks$ = from(tracksModel.removeByIds(trackIds)).pipe(
       mergeMap(tracks => from(tracks)),
+      tap(track => broadcast('track-removal', track.id)),
       expand(track => {
         if (!track.tags) {
           return EMPTY
