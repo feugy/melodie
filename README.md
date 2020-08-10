@@ -65,7 +65,7 @@ npm run build
 - [x] page navigation (to artists, to albums)
 - [x] remove tracks from queue
 - [x] update track queue on track changes
-- [ ] volume control
+- [x] volume control
 - [ ] filter albums, artists, or tracks
 - [ ] search input and results
 - [ ] settings panel with watched folders

@@ -14,6 +14,9 @@
   let currentTime = 0
   let nextSeek = null
   let src = null
+  let muted = false
+  let volume = 1
+  $: volumePct = volume * 100
 
   const currentSub = current.subscribe(current => {
     if (!current) {
@@ -82,8 +85,27 @@
     @apply w-1/4;
   }
 
+  .playlist,
+  .volume {
+    @apply flex flex-row items-center justify-end;
+  }
+
   .playlist {
-    @apply w-1/4 text-right;
+    @apply w-1/4;
+  }
+
+  .volume {
+    @apply pr-2;
+  }
+
+  .volume-slider {
+    @apply opacity-0 pr-2 inline-block;
+    transition: opacity ease-in-out 150ms;
+    width: 100px;
+  }
+
+  .playlist:hover .volume-slider {
+    @apply opacity-100;
   }
 </style>
 
@@ -95,6 +117,8 @@
   on:ended={handleNext}
   bind:currentTime
   bind:duration
+  bind:volume
+  bind:muted
   on:play={() => {
     isPlaying = true
   }}
@@ -133,10 +157,22 @@
     </span>
   </div>
   <span class="playlist">
-    <Button
-      class="mx-1"
-      on:click={handleTogglePlaylist}
-      icon={'queue_music'}
-      large />
+    <div class="volume">
+      <span class="volume-slider">
+        <Slider
+          current={volumePct}
+          max={100}
+          on:input={({ detail: v }) => {
+            if (v != null) {
+              volume = v / 100
+            }
+          }} />
+      </span>
+      <Button
+        on:click={() => (muted = !muted)}
+        icon={muted ? 'volume_off' : 'volume_up'}
+        noBorder />
+    </div>
+    <Button on:click={handleTogglePlaylist} icon={'queue_music'} large />
   </span>
 </div>

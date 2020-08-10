@@ -6,21 +6,21 @@ exports[`Storyshots Components/Player Empty 1`] = `
 >
   <audio
     autoplay=""
-    class="svelte-5j1b4y"
+    class="svelte-1odct9b"
   />
    
   <div
-    class="flex items-center svelte-5j1b4y"
+    class="flex items-center svelte-1odct9b"
   >
     <span
-      class="current svelte-5j1b4y"
+      class="current svelte-1odct9b"
     />
      
     <div
-      class="player svelte-5j1b4y"
+      class="player svelte-1odct9b"
     >
       <span
-        class="controls svelte-5j1b4y"
+        class="controls svelte-1odct9b"
       >
         <button
           class="mx-1 svelte-ztyk6h iconOnly noBorder"
@@ -57,36 +57,36 @@ exports[`Storyshots Components/Player Empty 1`] = `
       </span>
        
       <span
-        class="controls time svelte-5j1b4y"
+        class="controls time svelte-1odct9b"
       >
         <span
-          class="svelte-5j1b4y"
+          class="svelte-1odct9b"
         >
           0:00
         </span>
          
         <div
-          class="wrapper w-full svelte-md11fe"
+          class="wrapper w-full svelte-5o3d90"
         >
           <input
-            class="w-full svelte-md11fe"
+            class="w-full svelte-5o3d90"
             max="0"
             min="0"
             type="range"
           />
            
           <div
-            class="sliderTrack svelte-md11fe"
+            class="sliderTrack svelte-5o3d90"
           >
             <span
-              class="progress svelte-md11fe"
+              class="progress svelte-5o3d90"
               style="right:100%"
             />
           </div>
         </div>
          
         <span
-          class="svelte-5j1b4y"
+          class="svelte-1odct9b"
         >
           0:00
         </span>
@@ -94,10 +94,49 @@ exports[`Storyshots Components/Player Empty 1`] = `
     </div>
      
     <span
-      class="playlist svelte-5j1b4y"
+      class="playlist svelte-1odct9b"
     >
+      <div
+        class="volume svelte-1odct9b"
+      >
+        <span
+          class="volume-slider svelte-1odct9b"
+        >
+          <div
+            class="wrapper undefined svelte-5o3d90"
+          >
+            <input
+              class=" svelte-5o3d90"
+              max="100"
+              min="0"
+              type="range"
+            />
+             
+            <div
+              class="sliderTrack svelte-5o3d90"
+            >
+              <span
+                class="progress svelte-5o3d90"
+                style="right:0%"
+              />
+            </div>
+          </div>
+        </span>
+         
+        <button
+          class="svelte-ztyk6h iconOnly noBorder"
+        >
+          <i
+            class="material-icons svelte-ztyk6h"
+          >
+            volume_up
+          </i>
+           
+        </button>
+      </div>
+       
       <button
-        class="mx-1 svelte-ztyk6h iconOnly large"
+        class="svelte-ztyk6h iconOnly large"
       >
         <i
           class="material-icons svelte-ztyk6h"
@@ -117,15 +156,15 @@ exports[`Storyshots Components/Player With Track List 1`] = `
 >
   <audio
     autoplay=""
-    class="svelte-5j1b4y"
+    class="svelte-1odct9b"
     src="./no-duration.mp3"
   />
    
   <div
-    class="flex items-center svelte-5j1b4y"
+    class="flex items-center svelte-1odct9b"
   >
     <span
-      class="current svelte-5j1b4y"
+      class="current svelte-1odct9b"
     >
       <div
         class="undefined root svelte-p26357"
@@ -165,10 +204,10 @@ exports[`Storyshots Components/Player With Track List 1`] = `
     </span>
      
     <div
-      class="player svelte-5j1b4y"
+      class="player svelte-1odct9b"
     >
       <span
-        class="controls svelte-5j1b4y"
+        class="controls svelte-1odct9b"
       >
         <button
           class="mx-1 svelte-ztyk6h iconOnly noBorder"
@@ -205,36 +244,36 @@ exports[`Storyshots Components/Player With Track List 1`] = `
       </span>
        
       <span
-        class="controls time svelte-5j1b4y"
+        class="controls time svelte-1odct9b"
       >
         <span
-          class="svelte-5j1b4y"
+          class="svelte-1odct9b"
         >
           0:00
         </span>
          
         <div
-          class="wrapper w-full svelte-md11fe"
+          class="wrapper w-full svelte-5o3d90"
         >
           <input
-            class="w-full svelte-md11fe"
+            class="w-full svelte-5o3d90"
             max="0"
             min="0"
             type="range"
           />
            
           <div
-            class="sliderTrack svelte-md11fe"
+            class="sliderTrack svelte-5o3d90"
           >
             <span
-              class="progress svelte-md11fe"
+              class="progress svelte-5o3d90"
               style="right:100%"
             />
           </div>
         </div>
          
         <span
-          class="svelte-5j1b4y"
+          class="svelte-1odct9b"
         >
           0:00
         </span>
@@ -242,10 +281,49 @@ exports[`Storyshots Components/Player With Track List 1`] = `
     </div>
      
     <span
-      class="playlist svelte-5j1b4y"
+      class="playlist svelte-1odct9b"
     >
+      <div
+        class="volume svelte-1odct9b"
+      >
+        <span
+          class="volume-slider svelte-1odct9b"
+        >
+          <div
+            class="wrapper undefined svelte-5o3d90"
+          >
+            <input
+              class=" svelte-5o3d90"
+              max="100"
+              min="0"
+              type="range"
+            />
+             
+            <div
+              class="sliderTrack svelte-5o3d90"
+            >
+              <span
+                class="progress svelte-5o3d90"
+                style="right:0%"
+              />
+            </div>
+          </div>
+        </span>
+         
+        <button
+          class="svelte-ztyk6h iconOnly noBorder"
+        >
+          <i
+            class="material-icons svelte-ztyk6h"
+          >
+            volume_up
+          </i>
+           
+        </button>
+      </div>
+       
       <button
-        class="mx-1 svelte-ztyk6h iconOnly large"
+        class="svelte-ztyk6h iconOnly large"
       >
         <i
           class="material-icons svelte-ztyk6h"

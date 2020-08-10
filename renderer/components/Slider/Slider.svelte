@@ -20,8 +20,8 @@
 
   .sliderTrack {
     @apply inline-block absolute inset-x-0 pointer-events-none;
-    top: 15px;
     height: 6px;
+    top: calc(50% - 0.2rem);
     background: var(--hover-primary-color);
   }
 
@@ -53,7 +53,8 @@
   input {
     @apply cursor-pointer align-middle;
     width: 99%;
-    height: 5px;
+    height: 0.3rem;
+    margin-top: -0.3rem;
     -webkit-appearance: none;
   }
 
