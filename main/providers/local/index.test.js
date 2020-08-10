@@ -1,14 +1,14 @@
 'use strict'
 
-const { join, dirname } = require('path')
+const { join } = require('path')
+const os = require('os')
 const fs = require('fs-extra')
-const faker = require('faker')
 const provider = require('.')
-const { makeFolder } = require('../../tests')
-const { settingsModel } = require('../../models')
-const { parentName } = require('../../utils')
+const { albumsModel, tracksModel } = require('../../models')
+const { parentName, hash } = require('../../utils')
 
-jest.mock('../../models/settings')
+jest.mock('../../models/tracks')
+jest.mock('../../models/albums')
 
 describe('Local provider', () => {
   describe('findArtistArtwork()', () => {
@@ -18,54 +18,85 @@ describe('Local provider', () => {
   })
 
   describe('findAlbumCover()', () => {
-    let folder
-    let files
+    const folder = join(os.tmpdir(), 'melodie-')
+    const files = [
+      join(folder, 'track1.mp3'),
+      join(folder, 'track2.mp3'),
+      join(folder, 'track3.mp3'),
+      join(folder, 'track4.mp3')
+    ]
 
     beforeEach(async () => {
-      ;({ folder, files } = await makeFolder({ depth: 4, fileNb: 10 }))
-    })
-
-    afterEach(async () => {
-      try {
-        await fs.remove(folder)
-      } catch (err) {
-        // ignore removal error
+      jest.resetAllMocks()
+      await fs.ensureDir(folder)
+      for (const file of files) {
+        await fs.ensureFile(file)
       }
     })
 
+    afterEach(async () => {
+      await fs.remove(folder)
+    })
+
     it('returns all images inside folder', async () => {
-      const album = parentName(files[5].path)
-      const parent = dirname(files[5].path)
+      const album = parentName(files[1])
       const covers = [
         join(
-          parent,
+          folder,
           'AlbumArt_{62D46EC5-701B-40A3-B7A7-D66E1E29EECA}_Large.jpg'
         ),
-        join(parent, 'Folder.png'),
-        join(parent, 'cover.jpeg')
+        join(folder, 'Folder.png'),
+        join(folder, 'cover.jpeg')
       ]
       for (const file of covers) {
         await fs.ensureFile(file)
       }
-      settingsModel.get.mockResolvedValue({ folders: [folder] })
+      albumsModel.getById.mockResolvedValueOnce({
+        trackIds: files.map(file => hash(file))
+      })
+      tracksModel.getById.mockResolvedValueOnce({
+        id: hash(files[0]),
+        path: files[0]
+      })
 
       expect(await provider.findAlbumCover(album)).toEqual(
-        covers.map(full => ({ full, preview: full, provider: provider.name }))
+        covers.map(full => ({ full, provider: provider.name }))
       )
+      expect(albumsModel.getById).toHaveBeenCalledWith(hash(album))
+      expect(tracksModel.getById).toHaveBeenCalledWith(hash(files[0]))
     })
 
     it('returns nothing when folder does not contain images', async () => {
-      const album = parentName(files[3].path)
-      settingsModel.get.mockResolvedValue({ folders: [folder] })
+      const album = parentName(files[1])
+      albumsModel.getById.mockResolvedValueOnce({
+        trackIds: files.map(file => hash(file))
+      })
+      tracksModel.getById.mockResolvedValueOnce({
+        id: hash(files[0]),
+        path: files[0]
+      })
 
       expect(await provider.findAlbumCover(album)).toEqual([])
+      expect(albumsModel.getById).toHaveBeenCalledWith(hash(album))
+      expect(tracksModel.getById).toHaveBeenCalledWith(hash(files[0]))
     })
 
     it('returns nothing on unknown folder', async () => {
-      const album = parentName(faker.system.fileName())
-      settingsModel.get.mockResolvedValue({ folders: [folder] })
+      const album = parentName(files[1])
+      albumsModel.getById.mockResolvedValueOnce(null)
 
       expect(await provider.findAlbumCover(album)).toEqual([])
+      expect(albumsModel.getById).toHaveBeenCalledWith(hash(album))
+      expect(tracksModel.getById).not.toHaveBeenCalled()
+    })
+
+    it('returns nothing on failure', async () => {
+      const album = parentName(files[1])
+      albumsModel.getById.mockRejectedValue(new Error('DB is closed'))
+
+      expect(await provider.findAlbumCover(album)).toEqual([])
+      expect(albumsModel.getById).toHaveBeenCalledWith(hash(album))
+      expect(tracksModel.getById).not.toHaveBeenCalled()
     })
   })
 })

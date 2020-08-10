@@ -46,13 +46,19 @@
       <Progress />
     {/await}
     <div class="image-container">
-      {#each proposals as { full, preview, provider }}
+      {#each proposals as image}
         <div class="m-2 cursor-pointer">
           <Image
-            src={preview}
+            src={image.full}
             class="w-48 h-48"
-            on:click={() => handleSelect(full)} />
-          <span>{provider}</span>
+            on:click={() => handleSelect(image.full)}
+            bind:dimension={image.dimension} />
+          <span>
+            {image.dimension ? $_('provider (_ x _)', {
+                  value: image.provider,
+                  ...image.dimension
+                }) : image.provider}
+          </span>
         </div>
       {/each}
       <ImageUploader

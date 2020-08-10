@@ -1,21 +1,11 @@
 'use strict'
 
-const { extname, basename } = require('path')
-const { of } = require('rxjs')
-const {
-  mergeMap,
-  filter,
-  pluck,
-  reduce,
-  take,
-  defaultIfEmpty
-} = require('rxjs/operators')
+const { extname, dirname } = require('path')
+const { filter, pluck, reduce } = require('rxjs/operators')
 const mime = require('mime-types')
 const AbstractProvider = require('../abstract-provider')
-const { settingsModel } = require('../../models')
-const { parentName, walk } = require('../../utils')
-
-const walkConcurrency = 2
+const { tracksModel, albumsModel } = require('../../models')
+const { hash, walk } = require('../../utils')
 
 class Local extends AbstractProvider {
   constructor() {
@@ -29,51 +19,33 @@ class Local extends AbstractProvider {
   async findAlbumCover(searched) {
     this.logger.debug({ searched }, `search album cover for ${searched}`)
     try {
-      const { folders } = await settingsModel.get()
-      const searchedClean = searched.toLowerCase().trim()
-      const results = await of(...folders)
+      const album = await albumsModel.getById(hash(searched))
+      if (!album) {
+        return []
+      }
+      const { path } = await tracksModel.getById(album.trackIds[0])
+      const results = await walk(dirname(path))
         .pipe(
-          mergeMap(
-            folder =>
-              walk(folder).pipe(
-                filter(
-                  ({ path, stats }) =>
-                    stats.isDirectory() &&
-                    basename(path)
-                      .toLocaleLowerCase()
-                      .trim()
-                      .includes(searchedClean)
-                ),
-                pluck('path'),
-                take(1)
-              ),
-            walkConcurrency
-          ),
-          mergeMap(folder =>
-            walk(folder).pipe(
-              filter(({ path, stats }) => {
-                if (stats.isFile() && parentName(path)) {
-                  const type = mime.lookup(extname(path))
-                  return (
-                    type === 'image/jpeg' ||
-                    type === 'image/gif' ||
-                    type === 'image/png' ||
-                    type === 'image/bmp'
-                  )
-                }
-                return false
-              }),
-              pluck('path'),
-              reduce(
-                (results, path) => [
-                  ...results,
-                  { full: path, preview: path, provider: this.name }
-                ],
-                []
+          filter(({ path, stats }) => {
+            if (stats.isFile()) {
+              const type = mime.lookup(extname(path))
+              return (
+                type === 'image/jpeg' ||
+                type === 'image/gif' ||
+                type === 'image/png' ||
+                type === 'image/bmp'
               )
-            )
-          ),
-          defaultIfEmpty([])
+            }
+            return false
+          }),
+          pluck('path'),
+          reduce(
+            (results, path) => [
+              ...results,
+              { full: path, provider: this.name }
+            ],
+            []
+          )
         )
         .toPromise()
       this.logger.debug(

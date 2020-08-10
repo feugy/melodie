@@ -33,10 +33,11 @@ describe('MediaSelector component', () => {
     )
     expect(invoke).toHaveBeenCalledTimes(1)
     const images = screen.getAllByRole('img')
-    for (const { preview } of suggestionsData) {
+    for (const { full, provider } of suggestionsData) {
       expect(
-        images.find(node => node.getAttribute('src').includes(preview))
+        images.find(node => node.getAttribute('src').includes(full))
       ).toBeDefined()
+      expect(screen.queryAllByText(provider).length > 0).toBe(true)
     }
   })
 
@@ -51,11 +52,11 @@ describe('MediaSelector component', () => {
     expect(screen.queryByText(title)).toBeVisible()
     invoke.mockReset()
 
-    const { preview, full } = suggestionsData[1]
+    const { full } = suggestionsData[1]
     await fireEvent.click(
       screen
         .getAllByRole('img')
-        .find(node => node.getAttribute('src').includes(preview))
+        .find(node => node.getAttribute('src').includes(full))
     )
 
     expect(invoke).toHaveBeenCalledWith(
@@ -87,11 +88,11 @@ describe('MediaSelector component', () => {
       artistData.name
     )
 
-    const { preview, full } = suggestionsData[1]
+    const { full } = suggestionsData[1]
     await fireEvent.click(
       screen
         .getAllByRole('img')
-        .find(node => node.getAttribute('src').includes(preview))
+        .find(node => node.getAttribute('src').includes(full))
     )
 
     expect(invoke).toHaveBeenCalledWith(

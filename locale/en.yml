@@ -19,6 +19,7 @@ Mélodie: Mélodie
 open playlist: Queue
 play all: Play all
 playlist: Play list
+provider (_ x _): '{value} ({width} x {height})'
 start loading some tracks: Start loading some tracks
 total duration _: 'Duration: {total}'
 track: Track

@@ -12,15 +12,11 @@ describe('AudioDB provider', () => {
         {
           full:
             'https://www.theaudiodb.com/images/media/artist/thumb/uxrqxy1347913147.jpg',
-          preview:
-            'https://www.theaudiodb.com/images/media/artist/thumb/uxrqxy1347913147.jpg/preview',
           provider: provider.name
         },
         {
           full:
             'https://www.theaudiodb.com/images/media/artist/fanart/spvryu1347980801.jpg',
-          preview:
-            'https://www.theaudiodb.com/images/media/artist/fanart/spvryu1347980801.jpg/preview',
           provider: provider.name
         }
       ])
@@ -59,8 +55,6 @@ describe('AudioDB provider', () => {
         {
           full:
             'https://www.theaudiodb.com/images/media/album/thumb/swxywp1367234202.jpg',
-          preview:
-            'https://www.theaudiodb.com/images/media/album/thumb/swxywp1367234202.jpg/preview',
           provider: provider.name
         }
       ])

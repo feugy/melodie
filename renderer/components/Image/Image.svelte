@@ -4,10 +4,17 @@
   export let src
   export let rounded = false
   export let fallback = rounded ? 'person' : 'music_note'
+  // exposed dimension
+  export let dimension = null
+
   $: hidden = !src
 
   function handleError() {
     src = null
+  }
+
+  function handleLoad() {
+    dimension = { width: this.naturalWidth, height: this.naturalHeight }
   }
 </script>
 
@@ -32,6 +39,7 @@
 <img
   on:click
   on:error={handleError}
+  on:load={handleLoad}
   class={$$props.class}
   class:rounded-full={rounded}
   class:rounded-sm={!rounded}

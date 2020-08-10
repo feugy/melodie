@@ -17,7 +17,7 @@ npm i
 npm run build
 ```
 
-## TODOs
+## TODO
 
 ### core
 
@@ -64,7 +64,8 @@ npm run build
 - [x] artist details
 - [x] page navigation (to artists, to albums)
 - [x] remove tracks from queue
-- [ ] update track queue on track changes
+- [x] update track queue on track changes
+- [ ] volume control
 - [ ] filter albums, artists, or tracks
 - [ ] search input and results
 - [ ] settings panel with watched folders
@@ -72,7 +73,7 @@ npm run build
 - [ ] display album/artist descriptions
 - [x] icons
 - [ ] system menus
-- [ ] system integration (> open with, > open track containing folder, < add to play list, < open with )
+- [ ] system integration (> open with, > open track containing folder, < add to queue, < play )
   - on windows: `start "" file`
   - on mac: `open file`
   - on linux: `xdg-open file`
@@ -83,6 +84,7 @@ npm run build
 - [ ] loading indicators
 - [ ] feedback on enqueue & play actions
 - [ ] drag'n drop to tracks queue
+- [ ] shuffle
 
 ### bugs
 

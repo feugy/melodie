@@ -12,6 +12,10 @@ exports[`Storyshots Components/Image Broken 1`] = `
   />
    
   
+   
+  <div>
+    
+  </div>
 </section>
 `;
 
@@ -34,6 +38,10 @@ exports[`Storyshots Components/Image Broken Rounded 1`] = `
     </i>
   </span>
   
+   
+  <div>
+    
+  </div>
 </section>
 `;
 
@@ -49,6 +57,10 @@ exports[`Storyshots Components/Image Default 1`] = `
   />
    
   
+   
+  <div>
+    
+  </div>
 </section>
 `;
 
@@ -64,6 +76,10 @@ exports[`Storyshots Components/Image Rouded 1`] = `
   />
    
   
+   
+  <div>
+    
+  </div>
 </section>
 `;
 
@@ -79,5 +95,9 @@ exports[`Storyshots Components/Image With Escaped Path 1`] = `
   />
    
   
+   
+  <div>
+    
+  </div>
 </section>
 `;

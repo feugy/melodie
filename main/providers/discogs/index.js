@@ -1,6 +1,7 @@
 'use strict'
 
 const got = require('got')
+const { basename } = require('path')
 const AbstractProvider = require('../abstract-provider')
 
 class Discogs extends AbstractProvider {
@@ -30,15 +31,12 @@ class Discogs extends AbstractProvider {
         `got results for ${searched}`
       )
 
-      return results.reduce(
-        (results, { cover_image: full, thumb: preview }) => {
-          if (full && preview) {
-            results.push({ full, preview, provider: this.name })
-          }
-          return results
-        },
-        []
-      )
+      return results.reduce((results, { cover_image: full }) => {
+        if (full && basename(full) !== 'spacer.gif') {
+          results.push({ full, provider: this.name })
+        }
+        return results
+      }, [])
     } catch (err) {
       this.logger.error(
         { err, searched },
@@ -67,15 +65,12 @@ class Discogs extends AbstractProvider {
         `got results for ${searched}`
       )
 
-      return results.reduce(
-        (results, { cover_image: full, thumb: preview }) => {
-          if (full && preview) {
-            results.push({ full, preview, provider: this.name })
-          }
-          return results
-        },
-        []
-      )
+      return results.reduce((results, { cover_image: full }) => {
+        if (full && basename(full) !== 'spacer.gif') {
+          results.push({ full, provider: this.name })
+        }
+        return results
+      }, [])
     } catch (err) {
       this.logger.error(
         { err, searched },

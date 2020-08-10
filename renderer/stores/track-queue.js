@@ -1,7 +1,9 @@
 'use strict'
 
+import { get } from 'svelte/store'
 import { ReplaySubject, Subject, merge } from 'rxjs'
 import { scan, pluck, shareReplay } from 'rxjs/operators'
+import { fromServerChannel } from '../utils'
 
 const actions$ = new Subject()
 
@@ -31,6 +33,12 @@ const queue$ = merge(actions$, new ReplaySubject()).pipe(
             idx = 0
           }
           list.splice(action.remove, 1)
+        } else if (action.changed) {
+          for (let i = 0; i < list.length; i++) {
+            if (list[i].id === action.changed.id) {
+              list[i] = action.changed
+            }
+          }
         }
       }
       current$.next(list[idx])
@@ -46,6 +54,19 @@ const index$ = queue$.pipe(pluck('idx'))
 const current$ = new ReplaySubject()
 
 const tracks$ = queue$.pipe(pluck('list'))
+
+fromServerChannel(`track-change`).subscribe(changed =>
+  actions$.next({ changed })
+)
+
+fromServerChannel(`track-removal`).subscribe(removedId => {
+  let idx = 0
+  while (idx !== -1) {
+    const queued = get(tracks$)
+    idx = queued.findIndex(({ id }) => id === removedId)
+    remove(idx)
+  }
+})
 
 // first init
 queue$.subscribe()
