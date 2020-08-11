@@ -750,4 +750,146 @@ describe('fetchWithTracks', () => {
     expect(albumsModel.getById).not.toHaveBeenCalled()
     expect(tracksModel.getByIds).not.toHaveBeenCalled()
   })
+
+  describe('search', () => {
+    it('returns a mix of matching albums, artists and tracks', async () => {
+      const searched = faker.lorem.words()
+      const album1 = addId({
+        name: faker.commerce.productName(),
+        trackIds: [],
+        linked: []
+      })
+      const album2 = addId({
+        name: faker.commerce.productName(),
+        trackIds: [],
+        linked: []
+      })
+      const artist1 = addId({
+        name: faker.commerce.productName(),
+        trackIds: [],
+        linked: []
+      })
+      const artist2 = addId({
+        name: faker.commerce.productName(),
+        trackIds: [],
+        linked: []
+      })
+      const track1 = {
+        path: faker.system.fileName(),
+        tags: {}
+      }
+      track1.id = hash(track1.path)
+      const track2 = {
+        path: faker.system.fileName(),
+        tags: {}
+      }
+      track2.id = hash(track2.path)
+      const size = 2
+      const from = 0
+      albumsModel.list.mockResolvedValue({
+        results: [album1, album2],
+        total: 3,
+        size,
+        from
+      })
+      artistsModel.list.mockResolvedValue({
+        results: [artist1, artist2],
+        total: 2,
+        size,
+        from
+      })
+      tracksModel.list.mockResolvedValue({
+        results: [track1, track2],
+        total: 5,
+        size,
+        from
+      })
+
+      const results = await engine.search(searched)
+
+      expect(results.albums).toEqual([album1, album2])
+      expect(results.artists).toEqual([artist1, artist2])
+      expect(results.tracks).toEqual([track1, track2])
+      expect(results.size).toEqual(size)
+      expect(results.from).toEqual(from)
+      expect(results.totalSum).toEqual(10)
+      expect(results.totals).toEqual({ albums: 3, artists: 2, tracks: 5 })
+      expect(albumsModel.list).toHaveBeenCalledWith({
+        searched
+      })
+      expect(artistsModel.list).toHaveBeenCalledWith({
+        searched
+      })
+      expect(tracksModel.list).toHaveBeenCalledWith({
+        searched
+      })
+    })
+
+    it('can returns empty results', async () => {
+      const searched = faker.lorem.words()
+      const size = 10
+      const from = 0
+      albumsModel.list.mockResolvedValue({ results: [], total: 0, size, from })
+      artistsModel.list.mockResolvedValue({ results: [], total: 0, size, from })
+      tracksModel.list.mockResolvedValue({ results: [], total: 0, size, from })
+
+      const results = await engine.search(searched)
+
+      expect(results.albums).toEqual([])
+      expect(results.artists).toEqual([])
+      expect(results.tracks).toEqual([])
+      expect(results.size).toEqual(size)
+      expect(results.from).toEqual(from)
+      expect(results.totalSum).toEqual(0)
+      expect(results.totals).toEqual({ albums: 0, artists: 0, tracks: 0 })
+      expect(albumsModel.list).toHaveBeenCalledWith({
+        searched
+      })
+      expect(artistsModel.list).toHaveBeenCalledWith({
+        searched
+      })
+      expect(tracksModel.list).toHaveBeenCalledWith({
+        searched
+      })
+    })
+
+    it('cherry picks pagination critiera', async () => {
+      const searched = faker.lorem.words()
+      const size = 20
+      const from = 10
+      albumsModel.list.mockResolvedValue({ results: [], total: 0, size, from })
+      artistsModel.list.mockResolvedValue({ results: [], total: 0, size, from })
+      tracksModel.list.mockResolvedValue({ results: [], total: 0, size, from })
+
+      const results = await engine.search(searched, {
+        size,
+        from,
+        sort: '-unused',
+        searched: 'unused'
+      })
+
+      expect(results.albums).toEqual([])
+      expect(results.artists).toEqual([])
+      expect(results.tracks).toEqual([])
+      expect(results.size).toEqual(size)
+      expect(results.from).toEqual(from)
+      expect(results.totalSum).toEqual(0)
+      expect(results.totals).toEqual({ albums: 0, artists: 0, tracks: 0 })
+      expect(albumsModel.list).toHaveBeenCalledWith({
+        searched,
+        size,
+        from
+      })
+      expect(artistsModel.list).toHaveBeenCalledWith({
+        searched,
+        size,
+        from
+      })
+      expect(tracksModel.list).toHaveBeenCalledWith({
+        searched,
+        size,
+        from
+      })
+    })
+  })
 })

@@ -17,6 +17,7 @@ class Test extends Model {
       table.json('tags')
     })
     this.jsonColumns = ['tags']
+    this.searchCol = 'name'
   }
 }
 
@@ -81,10 +82,15 @@ describe('Abstract model', () => {
 
   describe('given some data', () => {
     const tested = new Test()
+    const name = faker.name.findName()
     const models = [
+      { id: faker.random.number(), name, tags: '{}' },
       { id: faker.random.number(), name: faker.name.findName(), tags: '{}' },
-      { id: faker.random.number(), name: faker.name.findName(), tags: '{}' },
-      { id: faker.random.number(), name: faker.name.findName(), tags: '{}' },
+      {
+        id: faker.random.number(),
+        name: `${name} ${faker.name.findName()}`,
+        tags: '{}'
+      },
       { id: faker.random.number(), name: faker.name.findName(), tags: '{}' }
     ]
 
@@ -273,6 +279,56 @@ describe('Abstract model', () => {
           ...model,
           tags: JSON.parse(model.tags)
         })
+      })
+
+      it('searches models with order and pagination', async () => {
+        const { total, from, size, sort, results } = await tested.list({
+          size: 2,
+          from: 1,
+          searched: name,
+          sort: '-id'
+        })
+        const sorted = models
+          .filter(model => model.name.includes(name))
+          .sort((m1, m2) =>
+            m1.name > m2.name ? 1 : m1.name === m2.name ? 0 : -1
+          )
+        expect(results).toEqual(
+          sorted.slice(1).map(model => ({
+            ...model,
+            tags: JSON.parse(model.tags)
+          }))
+        )
+        expect(results).toHaveLength(1)
+        expect(total).toEqual(sorted.length)
+        expect(size).toEqual(2)
+        expect(from).toEqual(1)
+        expect(sort).toEqual('+name')
+      })
+
+      it('returns empty search results page', async () => {
+        const { total, from, size, sort, results } = await tested.list({
+          from: 20,
+          searched: name
+        })
+        expect(results).toEqual([])
+        expect(total).toEqual(2)
+        expect(size).toEqual(10)
+        expect(from).toEqual(20)
+        expect(sort).toEqual('+name')
+      })
+
+      it('can return empty search results', async () => {
+        const { total, from, size, sort, results } = await tested.list({
+          size: 2,
+          from: 1,
+          searched: 'unknown'
+        })
+        expect(results).toEqual([])
+        expect(total).toEqual(0)
+        expect(size).toEqual(2)
+        expect(from).toEqual(1)
+        expect(sort).toEqual('+name')
       })
     })
 

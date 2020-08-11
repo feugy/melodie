@@ -12,6 +12,7 @@ class TracksModel extends Model {
       table.float('mtimeMs')
     })
     this.jsonColumns = ['tags']
+    this.searchCol = 'title.value'
   }
 
   async listWithTime() {
@@ -48,6 +49,13 @@ class TracksModel extends Model {
       )
       return old.map(this.makeDeserializer())
     })
+  }
+
+  enrichForSearch(query, searched) {
+    return query
+      .select(`${this.name}.*`)
+      .joinRaw(`, json_each(tags, '$.title') as title`)
+      .where('title.value', 'like', `%${searched.toLowerCase()}%`)
   }
 }
 

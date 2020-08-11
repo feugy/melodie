@@ -214,5 +214,35 @@ module.exports = {
       list.tracks = sorters[sortBy](list, tracks)
     }
     return list
+  },
+
+  async search(searched, { size, from } = {}) {
+    logger.debug({ searched }, `search for "${searched}"`)
+    const [albums, artists, tracks] = await Promise.all([
+      albumsModel.list({ size, from, searched }),
+      artistsModel.list({ size, from, searched }),
+      tracksModel.list({ size, from, searched })
+    ])
+    const totals = {
+      albums: albums.total,
+      artists: artists.total,
+      tracks: tracks.total
+    }
+    logger.debug(
+      {
+        totals,
+        searched
+      },
+      `search results for "${searched}"`
+    )
+    return {
+      totalSum: totals.albums + totals.artists + totals.tracks,
+      size: albums.size,
+      from: albums.from,
+      totals,
+      albums: albums.results,
+      artists: artists.results,
+      tracks: tracks.results
+    }
   }
 }

@@ -9,6 +9,7 @@ class AlbumsModel extends TrackList {
       table.string('name')
       table.string('media')
     })
+    this.searchCol = 'name'
   }
 }
 

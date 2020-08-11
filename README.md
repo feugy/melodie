@@ -66,8 +66,7 @@ npm run build
 - [x] remove tracks from queue
 - [x] update track queue on track changes
 - [x] volume control
-- [ ] filter albums, artists, or tracks
-- [ ] search input and results
+- [-] search input and results
 - [ ] settings panel with watched folders
 - [ ] display years (artist & album details page)
 - [ ] display album/artist descriptions
@@ -84,7 +83,7 @@ npm run build
 - [ ] loading indicators
 - [ ] feedback on enqueue & play actions
 - [ ] drag'n drop to tracks queue
-- [ ] shuffle
+- [ ] shuffle, loop
 
 ### bugs
 

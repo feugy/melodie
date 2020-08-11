@@ -37,6 +37,7 @@ module.exports = class AbstractModel {
     }
     this.name = name
     this.definition = definition
+    this.searchCol = ''
     this.jsonColumns = []
     this.logger = getLogger(`models/${this.name}`)
   }
@@ -56,18 +57,24 @@ module.exports = class AbstractModel {
     this.logger.debug({ filename, model: this.name }, 'initialized')
   }
 
-  async list({ from = 0, size = 10, sort = 'id' } = {}) {
-    const [, rawDir, rawSort] = sort.match(/(-|\+)?(.+)/)
+  async list({ from = 0, size = 10, sort = 'id', searched } = {}) {
+    const [, rawDir, rawSort] = searched
+      ? [null, null, this.searchCol]
+      : sort.match(/(-|\+)?(.+)/)
     const direction = rawDir || '+'
+    const dataQuery = this.db
+      .select()
+      .from(this.name)
+      .limit(size)
+      .offset(from)
+      .orderBy(rawSort, direction === '+' ? 'asc' : 'desc')
+    const countQuery = this.db(this.name).count({ count: `${this.name}.id` })
     const results = (
-      await this.db
-        .select()
-        .from(this.name)
-        .limit(size)
-        .offset(from)
-        .orderBy(rawSort, direction === '+' ? 'asc' : 'desc')
+      await (searched ? this.enrichForSearch(dataQuery, searched) : dataQuery)
     ).map(this.makeDeserializer())
-    const total = (await this.db(this.name).count({ count: 'id' }))[0].count
+    const total = (
+      await (searched ? this.enrichForSearch(countQuery, searched) : countQuery)
+    )[0].count
     this.logger.debug(
       { total, from, size, rawSort, direction, hitCount: results.length },
       'returned list page'
@@ -122,6 +129,10 @@ module.exports = class AbstractModel {
       this.logger.info('table dropped')
     }
     await this.init(this.db)
+  }
+
+  enrichForSearch(query, searched) {
+    return query.where(this.searchCol, 'like', `%${searched.toLowerCase()}%`)
   }
 
   makeDeserializer() {
