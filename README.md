@@ -94,7 +94,6 @@ npm run build
 1. In tracks table, the rank column has variable width (BraveHeart), play icon is not vertically centered (2-lines rows)
 1. Page navigation: use:link doesn't work in tests and raise Svelte warning. a.href is fine
 1. Scroll handling: it'll be better to keep memory on albums/artists page, and reset it on details page
-1. Cover change not possible as file paths are the same
 1. Testing routes: `import regexparam from 'regexparam'` must be replaced with require or `import * as regexparam`: https://github.com/ItalyPaleAle/svelte-spa-router/issues/81
 
 ## History

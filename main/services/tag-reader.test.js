@@ -27,7 +27,8 @@ describe('Tag reader', () => {
         no: 1,
         of: 12
       },
-      year: 2010
+      year: 2010,
+      movementIndex: {}
     })
   })
 
@@ -48,7 +49,8 @@ describe('Tag reader', () => {
         no: 1,
         of: null
       },
-      year: 1995
+      year: 1995,
+      movementIndex: {}
     })
   })
 
@@ -69,7 +71,8 @@ describe('Tag reader', () => {
         no: 1,
         of: null
       },
-      year: 1990
+      year: 1990,
+      movementIndex: {}
     })
   })
 
@@ -87,7 +90,7 @@ describe('Tag reader', () => {
         no: null,
         of: null
       },
-      duration: 217.9918367346939,
+      duration: 218.01795918367347,
       encodedby: '',
       genre: ['Rock'],
       label: ['Warner Bros.'],
@@ -103,7 +106,8 @@ describe('Tag reader', () => {
         no: 1,
         of: 16
       },
-      year: 2002
+      year: 2002,
+      movementIndex: {}
     })
   })
 
