@@ -1,0 +1,93 @@
+'use strict'
+
+import { get } from 'svelte/store'
+import faker from 'faker'
+import { search, albums, artists, tracks } from './search'
+import { mockInvoke, sleep } from '../tests'
+
+describe('searchstore', () => {
+  it('triggers search and enqueue results', async () => {
+    const text = faker.lorem.words()
+    const totals = {
+      albums: 3,
+      artists: 0,
+      tracks: 13
+    }
+    const totalSum = totals.artists + totals.albums + totals.tracks
+    const size = 5
+    const albumData = Array.from({ length: totals.albums }, (v, name) => ({
+      name
+    }))
+    const artistData = Array.from({ length: totals.artists }, (v, name) => ({
+      name
+    }))
+    const trackData = Array.from({ length: totals.tracks }, (v, path) => ({
+      path,
+      tags: {}
+    }))
+    mockInvoke
+      .mockResolvedValueOnce({
+        totals,
+        totalSum,
+        size,
+        from: 0,
+        albums: albumData.slice(0, size),
+        artists: artistData.slice(0, size),
+        tracks: trackData.slice(0, size)
+      })
+      .mockResolvedValueOnce({
+        totals,
+        totalSum,
+        size,
+        from: size,
+        albums: albumData.slice(size, size * 2),
+        artists: artistData.slice(size, size * 2),
+        tracks: trackData.slice(size, size * 2)
+      })
+      .mockResolvedValueOnce({
+        totals,
+        totalSum,
+        size,
+        from: size * 2,
+        albums: albumData.slice(size * 2),
+        artists: artistData.slice(size * 2),
+        tracks: trackData.slice(size * 2)
+      })
+
+    expect(get(albums)).toEqual([])
+    expect(get(artists)).toEqual([])
+    expect(get(tracks)).toEqual([])
+
+    search(text, size)
+    await sleep(100)
+
+    expect(get(albums)).toEqual(albumData)
+    expect(get(artists)).toEqual(artistData)
+    expect(get(tracks)).toEqual(trackData)
+    expect(mockInvoke).toHaveBeenCalledTimes(3)
+    expect(mockInvoke).toHaveBeenNthCalledWith(
+      1,
+      'remote',
+      'listEngine',
+      'search',
+      text,
+      { size }
+    )
+    expect(mockInvoke).toHaveBeenNthCalledWith(
+      2,
+      'remote',
+      'listEngine',
+      'search',
+      text,
+      { size, from: size }
+    )
+    expect(mockInvoke).toHaveBeenNthCalledWith(
+      3,
+      'remote',
+      'listEngine',
+      'search',
+      text,
+      { size, from: size * 2 }
+    )
+  })
+})

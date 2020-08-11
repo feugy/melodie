@@ -80,7 +80,7 @@ npm run build
 - [ ] block power save
 - [ ] system tray integration
 - [x] animated transitions
-- [ ] loading indicators
+- [ ] loading indicators (one for all operation, fixed so it doesn't push content down)
 - [ ] feedback on enqueue & play actions
 - [ ] drag'n drop to tracks queue
 - [ ] shuffle, loop
