@@ -5,17 +5,17 @@ exports[`Storyshots Components/Dialogue Default 1`] = `
   class="storybook-snapshot-container"
 >
   <div
-    class="filter svelte-1bxinb6 open"
+    class="filter svelte-7u451e open"
   />
    
   <div
-    class="backdrop svelte-1bxinb6 open"
+    class="backdrop svelte-7u451e open"
   >
     <button
-      class="absolute top-0 right-0 m-4 svelte-ztyk6h iconOnly"
+      class="absolute top-0 right-0 m-4 svelte-119yzhl iconOnly"
     >
       <i
-        class="material-icons svelte-ztyk6h"
+        class="material-icons svelte-119yzhl"
       >
         close
       </i>
@@ -23,16 +23,16 @@ exports[`Storyshots Components/Dialogue Default 1`] = `
     </button>
      
     <article
-      class="svelte-1bxinb6"
+      class="svelte-7u451e"
     >
       <header
-        class="svelte-1bxinb6"
+        class="svelte-7u451e"
       >
         This is a title
       </header>
        
       <div
-        class="content svelte-1bxinb6"
+        class="content svelte-7u451e"
       >
         <div
           slot="content"
@@ -42,16 +42,16 @@ exports[`Storyshots Components/Dialogue Default 1`] = `
       </div>
        
       <footer
-        class="svelte-1bxinb6"
+        class="svelte-7u451e"
       >
         <span
           slot="buttons"
         >
           <button
-            class="svelte-ztyk6h"
+            class="svelte-119yzhl"
           >
             <i
-              class="material-icons svelte-ztyk6h"
+              class="material-icons svelte-119yzhl"
             >
               close
             </i>
@@ -68,7 +68,7 @@ exports[`Storyshots Components/Dialogue Default 1`] = `
   
    
   <button
-    class="svelte-ztyk6h"
+    class="svelte-119yzhl"
   >
      
     <span>

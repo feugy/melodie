@@ -6,11 +6,11 @@ exports[`Storyshots Components/Tracks queue Empty 1`] = `
 >
   <div>
     <header
-      class=" svelte-196fo1j"
+      class=" svelte-1jdllkn"
       style="--image: url(../images/jason-rosewell-ASKeuOZqhYU-unsplash.jpg); --shade-color: rgba(0, 0, 0, 0.7);"
     >
       <h1
-        class="svelte-196fo1j"
+        class="svelte-1jdllkn"
       >
         Liste de lecture
       </h1>
@@ -38,11 +38,11 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
 >
   <div>
     <header
-      class=" svelte-196fo1j"
+      class=" svelte-1jdllkn"
       style="--image: url(../images/jason-rosewell-ASKeuOZqhYU-unsplash.jpg); --shade-color: rgba(0, 0, 0, 0.7);"
     >
       <h1
-        class="svelte-196fo1j"
+        class="svelte-1jdllkn"
       >
         Liste de lecture
       </h1>
@@ -62,10 +62,10 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
       </span>
        
       <button
-        class="mx-4 svelte-ztyk6h iconOnly"
+        class="mx-4 svelte-119yzhl iconOnly"
       >
         <i
-          class="material-icons svelte-ztyk6h"
+          class="material-icons svelte-119yzhl"
         >
           delete
         </i>
@@ -121,10 +121,10 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
         </div>
          
         <button
-          class="mx-4 svelte-ztyk6h iconOnly"
+          class="mx-4 svelte-119yzhl iconOnly"
         >
           <i
-            class="material-icons svelte-ztyk6h"
+            class="material-icons svelte-119yzhl"
           >
             close
           </i>
@@ -177,10 +177,10 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
         </div>
          
         <button
-          class="mx-4 svelte-ztyk6h iconOnly"
+          class="mx-4 svelte-119yzhl iconOnly"
         >
           <i
-            class="material-icons svelte-ztyk6h"
+            class="material-icons svelte-119yzhl"
           >
             close
           </i>
@@ -233,10 +233,10 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
         </div>
          
         <button
-          class="mx-4 svelte-ztyk6h iconOnly"
+          class="mx-4 svelte-119yzhl iconOnly"
         >
           <i
-            class="material-icons svelte-ztyk6h"
+            class="material-icons svelte-119yzhl"
           >
             close
           </i>
@@ -289,10 +289,10 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
         </div>
          
         <button
-          class="mx-4 svelte-ztyk6h iconOnly"
+          class="mx-4 svelte-119yzhl iconOnly"
         >
           <i
-            class="material-icons svelte-ztyk6h"
+            class="material-icons svelte-119yzhl"
           >
             close
           </i>

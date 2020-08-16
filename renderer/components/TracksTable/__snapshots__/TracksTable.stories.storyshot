@@ -6,38 +6,38 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
 >
   <div>
     <table
-      class="svelte-1hc4c0h"
+      class="svelte-9lml75"
     >
       <thead
-        class="svelte-1hc4c0h"
+        class="svelte-9lml75"
       >
         <tr>
           <th
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             N°
           </th>
            
           <th
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             Piste
           </th>
            
           <th
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             Artiste
           </th>
            
           <th
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             Album
           </th>
            
           <th
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             Durée
           </th>
@@ -45,28 +45,28 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
       </thead>
        
       <tbody
-        class="svelte-1hc4c0h"
+        class="svelte-9lml75"
       >
         <tr
-          class="svelte-1hc4c0h"
+          class="svelte-9lml75"
         >
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <span
-              class="rank svelte-1hc4c0h"
+              class="rank svelte-9lml75"
             >
               1
             </span>
              
             <span
-              class="play svelte-1hc4c0h"
+              class="play svelte-9lml75"
             >
               <button
-                class="svelte-ztyk6h iconOnly"
+                class="svelte-119yzhl iconOnly"
               >
                 <i
-                  class="material-icons svelte-ztyk6h"
+                  class="material-icons svelte-119yzhl"
                 >
                   play_arrow
                 </i>
@@ -76,13 +76,13 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             American Money
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -94,7 +94,7 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -106,32 +106,32 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             5:32
           </td>
            
         </tr>
         <tr
-          class="svelte-1hc4c0h"
+          class="svelte-9lml75"
         >
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <span
-              class="rank svelte-1hc4c0h"
+              class="rank svelte-9lml75"
             >
               2
             </span>
              
             <span
-              class="play svelte-1hc4c0h"
+              class="play svelte-9lml75"
             >
               <button
-                class="svelte-ztyk6h iconOnly"
+                class="svelte-119yzhl iconOnly"
               >
                 <i
-                  class="material-icons svelte-ztyk6h"
+                  class="material-icons svelte-119yzhl"
                 >
                   play_arrow
                 </i>
@@ -141,13 +141,13 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             Fantaisie Sign
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -159,7 +159,7 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -171,32 +171,32 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             3:35
           </td>
            
         </tr>
         <tr
-          class="svelte-1hc4c0h"
+          class="svelte-9lml75"
         >
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <span
-              class="rank svelte-1hc4c0h"
+              class="rank svelte-9lml75"
             >
               3
             </span>
              
             <span
-              class="play svelte-1hc4c0h"
+              class="play svelte-9lml75"
             >
               <button
-                class="svelte-ztyk6h iconOnly"
+                class="svelte-119yzhl iconOnly"
               >
                 <i
-                  class="material-icons svelte-ztyk6h"
+                  class="material-icons svelte-119yzhl"
                 >
                   play_arrow
                 </i>
@@ -206,13 +206,13 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             LIVE in Baghdad
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -224,7 +224,7 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -236,32 +236,32 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             2:59
           </td>
            
         </tr>
         <tr
-          class="svelte-1hc4c0h"
+          class="svelte-9lml75"
         >
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <span
-              class="rank svelte-1hc4c0h"
+              class="rank svelte-9lml75"
             >
               4
             </span>
              
             <span
-              class="play svelte-1hc4c0h"
+              class="play svelte-9lml75"
             >
               <button
-                class="svelte-ztyk6h iconOnly"
+                class="svelte-119yzhl iconOnly"
               >
                 <i
-                  class="material-icons svelte-ztyk6h"
+                  class="material-icons svelte-119yzhl"
                 >
                   play_arrow
                 </i>
@@ -271,13 +271,13 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             Vitamin A
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -289,7 +289,7 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -301,32 +301,32 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             4:41
           </td>
            
         </tr>
         <tr
-          class="svelte-1hc4c0h"
+          class="svelte-9lml75"
         >
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <span
-              class="rank svelte-1hc4c0h"
+              class="rank svelte-9lml75"
             >
               5
             </span>
              
             <span
-              class="play svelte-1hc4c0h"
+              class="play svelte-9lml75"
             >
               <button
-                class="svelte-ztyk6h iconOnly"
+                class="svelte-119yzhl iconOnly"
               >
                 <i
-                  class="material-icons svelte-ztyk6h"
+                  class="material-icons svelte-119yzhl"
                 >
                   play_arrow
                 </i>
@@ -336,13 +336,13 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             Don't Bother None
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -354,7 +354,7 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -366,32 +366,32 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             3:45
           </td>
            
         </tr>
         <tr
-          class="svelte-1hc4c0h"
+          class="svelte-9lml75"
         >
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <span
-              class="rank svelte-1hc4c0h"
+              class="rank svelte-9lml75"
             >
               7
             </span>
              
             <span
-              class="play svelte-1hc4c0h"
+              class="play svelte-9lml75"
             >
               <button
-                class="svelte-ztyk6h iconOnly"
+                class="svelte-119yzhl iconOnly"
               >
                 <i
-                  class="material-icons svelte-ztyk6h"
+                  class="material-icons svelte-119yzhl"
                 >
                   play_arrow
                 </i>
@@ -401,13 +401,13 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             Want it All Back
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -419,7 +419,7 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -431,32 +431,32 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             3:51
           </td>
            
         </tr>
         <tr
-          class="svelte-1hc4c0h"
+          class="svelte-9lml75"
         >
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <span
-              class="rank svelte-1hc4c0h"
+              class="rank svelte-9lml75"
             >
               9
             </span>
              
             <span
-              class="play svelte-1hc4c0h"
+              class="play svelte-9lml75"
             >
               <button
-                class="svelte-ztyk6h iconOnly"
+                class="svelte-119yzhl iconOnly"
               >
                 <i
-                  class="material-icons svelte-ztyk6h"
+                  class="material-icons svelte-119yzhl"
                 >
                   play_arrow
                 </i>
@@ -466,13 +466,13 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             Bindy
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -484,7 +484,7 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -496,32 +496,32 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             0:15
           </td>
            
         </tr>
         <tr
-          class="svelte-1hc4c0h"
+          class="svelte-9lml75"
         >
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <span
-              class="rank svelte-1hc4c0h"
+              class="rank svelte-9lml75"
             >
               10
             </span>
              
             <span
-              class="play svelte-1hc4c0h"
+              class="play svelte-9lml75"
             >
               <button
-                class="svelte-ztyk6h iconOnly"
+                class="svelte-119yzhl iconOnly"
               >
                 <i
-                  class="material-icons svelte-ztyk6h"
+                  class="material-icons svelte-119yzhl"
                 >
                   play_arrow
                 </i>
@@ -531,13 +531,13 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             You Make Me Coo
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -549,7 +549,7 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -561,32 +561,32 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             3:14
           </td>
            
         </tr>
         <tr
-          class="svelte-1hc4c0h"
+          class="svelte-9lml75"
         >
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <span
-              class="rank svelte-1hc4c0h"
+              class="rank svelte-9lml75"
             >
               11
             </span>
              
             <span
-              class="play svelte-1hc4c0h"
+              class="play svelte-9lml75"
             >
               <button
-                class="svelte-ztyk6h iconOnly"
+                class="svelte-119yzhl iconOnly"
               >
                 <i
-                  class="material-icons svelte-ztyk6h"
+                  class="material-icons svelte-119yzhl"
                 >
                   play_arrow
                 </i>
@@ -596,13 +596,13 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             Vitamin B
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -614,7 +614,7 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -626,32 +626,32 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             4:06
           </td>
            
         </tr>
         <tr
-          class="svelte-1hc4c0h"
+          class="svelte-9lml75"
         >
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <span
-              class="rank svelte-1hc4c0h"
+              class="rank svelte-9lml75"
             >
               12
             </span>
              
             <span
-              class="play svelte-1hc4c0h"
+              class="play svelte-9lml75"
             >
               <button
-                class="svelte-ztyk6h iconOnly"
+                class="svelte-119yzhl iconOnly"
               >
                 <i
-                  class="material-icons svelte-ztyk6h"
+                  class="material-icons svelte-119yzhl"
                 >
                   play_arrow
                 </i>
@@ -661,13 +661,13 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             Green Bird
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -679,7 +679,7 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -691,32 +691,32 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             2:33
           </td>
            
         </tr>
         <tr
-          class="svelte-1hc4c0h"
+          class="svelte-9lml75"
         >
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <span
-              class="rank svelte-1hc4c0h"
+              class="rank svelte-9lml75"
             >
               13
             </span>
              
             <span
-              class="play svelte-1hc4c0h"
+              class="play svelte-9lml75"
             >
               <button
-                class="svelte-ztyk6h iconOnly"
+                class="svelte-119yzhl iconOnly"
               >
                 <i
-                  class="material-icons svelte-ztyk6h"
+                  class="material-icons svelte-119yzhl"
                 >
                   play_arrow
                 </i>
@@ -726,13 +726,13 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             Vitamin C
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -744,7 +744,7 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -756,32 +756,32 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             5:24
           </td>
            
         </tr>
         <tr
-          class="svelte-1hc4c0h"
+          class="svelte-9lml75"
         >
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <span
-              class="rank svelte-1hc4c0h"
+              class="rank svelte-9lml75"
             >
               14
             </span>
              
             <span
-              class="play svelte-1hc4c0h"
+              class="play svelte-9lml75"
             >
               <button
-                class="svelte-ztyk6h iconOnly"
+                class="svelte-119yzhl iconOnly"
               >
                 <i
-                  class="material-icons svelte-ztyk6h"
+                  class="material-icons svelte-119yzhl"
                 >
                   play_arrow
                 </i>
@@ -791,13 +791,13 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             Gateway
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -809,7 +809,7 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -821,32 +821,32 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             0:16
           </td>
            
         </tr>
         <tr
-          class="svelte-1hc4c0h"
+          class="svelte-9lml75"
         >
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <span
-              class="rank svelte-1hc4c0h"
+              class="rank svelte-9lml75"
             >
               15
             </span>
              
             <span
-              class="play svelte-1hc4c0h"
+              class="play svelte-9lml75"
             >
               <button
-                class="svelte-ztyk6h iconOnly"
+                class="svelte-119yzhl iconOnly"
               >
                 <i
-                  class="material-icons svelte-ztyk6h"
+                  class="material-icons svelte-119yzhl"
                 >
                   play_arrow
                 </i>
@@ -856,13 +856,13 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             The Singing Sea
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -874,7 +874,7 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -886,32 +886,32 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             6:41
           </td>
            
         </tr>
         <tr
-          class="svelte-1hc4c0h"
+          class="svelte-9lml75"
         >
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <span
-              class="rank svelte-1hc4c0h"
+              class="rank svelte-9lml75"
             >
               17
             </span>
              
             <span
-              class="play svelte-1hc4c0h"
+              class="play svelte-9lml75"
             >
               <button
-                class="svelte-ztyk6h iconOnly"
+                class="svelte-119yzhl iconOnly"
               >
                 <i
-                  class="material-icons svelte-ztyk6h"
+                  class="material-icons svelte-119yzhl"
                 >
                   play_arrow
                 </i>
@@ -921,13 +921,13 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             The Egg and You!
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -939,7 +939,7 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -951,32 +951,32 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             4:47
           </td>
            
         </tr>
         <tr
-          class="svelte-1hc4c0h"
+          class="svelte-9lml75"
         >
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <span
-              class="rank svelte-1hc4c0h"
+              class="rank svelte-9lml75"
             >
               18
             </span>
              
             <span
-              class="play svelte-1hc4c0h"
+              class="play svelte-9lml75"
             >
               <button
-                class="svelte-ztyk6h iconOnly"
+                class="svelte-119yzhl iconOnly"
               >
                 <i
-                  class="material-icons svelte-ztyk6h"
+                  class="material-icons svelte-119yzhl"
                 >
                   play_arrow
                 </i>
@@ -986,13 +986,13 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             Forever Broke
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -1004,7 +1004,7 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -1016,32 +1016,32 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             1:36
           </td>
            
         </tr>
         <tr
-          class="svelte-1hc4c0h"
+          class="svelte-9lml75"
         >
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <span
-              class="rank svelte-1hc4c0h"
+              class="rank svelte-9lml75"
             >
               19
             </span>
              
             <span
-              class="play svelte-1hc4c0h"
+              class="play svelte-9lml75"
             >
               <button
-                class="svelte-ztyk6h iconOnly"
+                class="svelte-119yzhl iconOnly"
               >
                 <i
-                  class="material-icons svelte-ztyk6h"
+                  class="material-icons svelte-119yzhl"
                 >
                   play_arrow
                 </i>
@@ -1051,13 +1051,13 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             Power of Kungfu Remix
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -1069,7 +1069,7 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -1081,32 +1081,32 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             2:22
           </td>
            
         </tr>
         <tr
-          class="svelte-1hc4c0h"
+          class="svelte-9lml75"
         >
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <span
-              class="rank svelte-1hc4c0h"
+              class="rank svelte-9lml75"
             >
               --
             </span>
              
             <span
-              class="play svelte-1hc4c0h"
+              class="play svelte-9lml75"
             >
               <button
-                class="svelte-ztyk6h iconOnly"
+                class="svelte-119yzhl iconOnly"
               >
                 <i
-                  class="material-icons svelte-ztyk6h"
+                  class="material-icons svelte-119yzhl"
                 >
                   play_arrow
                 </i>
@@ -1116,13 +1116,13 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             Cats on Mars
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -1134,7 +1134,7 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -1146,32 +1146,32 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             0:07
           </td>
            
         </tr>
         <tr
-          class="svelte-1hc4c0h"
+          class="svelte-9lml75"
         >
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <span
-              class="rank svelte-1hc4c0h"
+              class="rank svelte-9lml75"
             >
               --
             </span>
              
             <span
-              class="play svelte-1hc4c0h"
+              class="play svelte-9lml75"
             >
               <button
-                class="svelte-ztyk6h iconOnly"
+                class="svelte-119yzhl iconOnly"
               >
                 <i
-                  class="material-icons svelte-ztyk6h"
+                  class="material-icons svelte-119yzhl"
                 >
                   play_arrow
                 </i>
@@ -1181,13 +1181,13 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             ELM
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -1199,7 +1199,7 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -1211,7 +1211,7 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             6:55
           </td>
@@ -1230,38 +1230,38 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
 >
   <div>
     <table
-      class="svelte-1hc4c0h"
+      class="svelte-9lml75"
     >
       <thead
-        class="svelte-1hc4c0h"
+        class="svelte-9lml75"
       >
         <tr>
           <th
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             N°
           </th>
            
           <th
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             Piste
           </th>
            
           <th
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             Artiste
           </th>
            
           <th
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             Album
           </th>
            
           <th
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             Durée
           </th>
@@ -1269,28 +1269,28 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
       </thead>
        
       <tbody
-        class="svelte-1hc4c0h"
+        class="svelte-9lml75"
       >
         <tr
-          class="svelte-1hc4c0h"
+          class="svelte-9lml75"
         >
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <span
-              class="rank svelte-1hc4c0h"
+              class="rank svelte-9lml75"
             >
               1
             </span>
              
             <span
-              class="play svelte-1hc4c0h"
+              class="play svelte-9lml75"
             >
               <button
-                class="svelte-ztyk6h iconOnly"
+                class="svelte-119yzhl iconOnly"
               >
                 <i
-                  class="material-icons svelte-ztyk6h"
+                  class="material-icons svelte-119yzhl"
                 >
                   play_arrow
                 </i>
@@ -1300,13 +1300,13 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             American Money
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -1318,7 +1318,7 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -1330,32 +1330,32 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             5:32
           </td>
            
         </tr>
         <tr
-          class="svelte-1hc4c0h"
+          class="svelte-9lml75"
         >
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <span
-              class="rank svelte-1hc4c0h"
+              class="rank svelte-9lml75"
             >
               2
             </span>
              
             <span
-              class="play svelte-1hc4c0h"
+              class="play svelte-9lml75"
             >
               <button
-                class="svelte-ztyk6h iconOnly"
+                class="svelte-119yzhl iconOnly"
               >
                 <i
-                  class="material-icons svelte-ztyk6h"
+                  class="material-icons svelte-119yzhl"
                 >
                   play_arrow
                 </i>
@@ -1365,13 +1365,13 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             Fantaisie Sign
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -1383,7 +1383,7 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -1395,32 +1395,32 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             3:35
           </td>
            
         </tr>
         <tr
-          class="svelte-1hc4c0h"
+          class="svelte-9lml75"
         >
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <span
-              class="rank svelte-1hc4c0h"
+              class="rank svelte-9lml75"
             >
               3
             </span>
              
             <span
-              class="play svelte-1hc4c0h"
+              class="play svelte-9lml75"
             >
               <button
-                class="svelte-ztyk6h iconOnly"
+                class="svelte-119yzhl iconOnly"
               >
                 <i
-                  class="material-icons svelte-ztyk6h"
+                  class="material-icons svelte-119yzhl"
                 >
                   play_arrow
                 </i>
@@ -1430,13 +1430,13 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             LIVE in Baghdad
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -1448,7 +1448,7 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -1460,32 +1460,32 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             2:59
           </td>
            
         </tr>
         <tr
-          class="svelte-1hc4c0h current"
+          class="svelte-9lml75 current"
         >
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <span
-              class="rank svelte-1hc4c0h"
+              class="rank svelte-9lml75"
             >
               4
             </span>
              
             <span
-              class="play svelte-1hc4c0h"
+              class="play svelte-9lml75"
             >
               <button
-                class="svelte-ztyk6h iconOnly"
+                class="svelte-119yzhl iconOnly"
               >
                 <i
-                  class="material-icons svelte-ztyk6h"
+                  class="material-icons svelte-119yzhl"
                 >
                   play_arrow
                 </i>
@@ -1495,13 +1495,13 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             Vitamin A
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -1513,7 +1513,7 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -1525,32 +1525,32 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             4:41
           </td>
            
         </tr>
         <tr
-          class="svelte-1hc4c0h"
+          class="svelte-9lml75"
         >
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <span
-              class="rank svelte-1hc4c0h"
+              class="rank svelte-9lml75"
             >
               5
             </span>
              
             <span
-              class="play svelte-1hc4c0h"
+              class="play svelte-9lml75"
             >
               <button
-                class="svelte-ztyk6h iconOnly"
+                class="svelte-119yzhl iconOnly"
               >
                 <i
-                  class="material-icons svelte-ztyk6h"
+                  class="material-icons svelte-119yzhl"
                 >
                   play_arrow
                 </i>
@@ -1560,13 +1560,13 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             Don't Bother None
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -1578,7 +1578,7 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -1590,32 +1590,32 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             3:45
           </td>
            
         </tr>
         <tr
-          class="svelte-1hc4c0h"
+          class="svelte-9lml75"
         >
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <span
-              class="rank svelte-1hc4c0h"
+              class="rank svelte-9lml75"
             >
               7
             </span>
              
             <span
-              class="play svelte-1hc4c0h"
+              class="play svelte-9lml75"
             >
               <button
-                class="svelte-ztyk6h iconOnly"
+                class="svelte-119yzhl iconOnly"
               >
                 <i
-                  class="material-icons svelte-ztyk6h"
+                  class="material-icons svelte-119yzhl"
                 >
                   play_arrow
                 </i>
@@ -1625,13 +1625,13 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             Want it All Back
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -1643,7 +1643,7 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -1655,32 +1655,32 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             3:51
           </td>
            
         </tr>
         <tr
-          class="svelte-1hc4c0h"
+          class="svelte-9lml75"
         >
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <span
-              class="rank svelte-1hc4c0h"
+              class="rank svelte-9lml75"
             >
               9
             </span>
              
             <span
-              class="play svelte-1hc4c0h"
+              class="play svelte-9lml75"
             >
               <button
-                class="svelte-ztyk6h iconOnly"
+                class="svelte-119yzhl iconOnly"
               >
                 <i
-                  class="material-icons svelte-ztyk6h"
+                  class="material-icons svelte-119yzhl"
                 >
                   play_arrow
                 </i>
@@ -1690,13 +1690,13 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             Bindy
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -1708,7 +1708,7 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -1720,32 +1720,32 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             0:15
           </td>
            
         </tr>
         <tr
-          class="svelte-1hc4c0h"
+          class="svelte-9lml75"
         >
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <span
-              class="rank svelte-1hc4c0h"
+              class="rank svelte-9lml75"
             >
               10
             </span>
              
             <span
-              class="play svelte-1hc4c0h"
+              class="play svelte-9lml75"
             >
               <button
-                class="svelte-ztyk6h iconOnly"
+                class="svelte-119yzhl iconOnly"
               >
                 <i
-                  class="material-icons svelte-ztyk6h"
+                  class="material-icons svelte-119yzhl"
                 >
                   play_arrow
                 </i>
@@ -1755,13 +1755,13 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             You Make Me Coo
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -1773,7 +1773,7 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -1785,32 +1785,32 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             3:14
           </td>
            
         </tr>
         <tr
-          class="svelte-1hc4c0h"
+          class="svelte-9lml75"
         >
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <span
-              class="rank svelte-1hc4c0h"
+              class="rank svelte-9lml75"
             >
               11
             </span>
              
             <span
-              class="play svelte-1hc4c0h"
+              class="play svelte-9lml75"
             >
               <button
-                class="svelte-ztyk6h iconOnly"
+                class="svelte-119yzhl iconOnly"
               >
                 <i
-                  class="material-icons svelte-ztyk6h"
+                  class="material-icons svelte-119yzhl"
                 >
                   play_arrow
                 </i>
@@ -1820,13 +1820,13 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             Vitamin B
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -1838,7 +1838,7 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -1850,32 +1850,32 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             4:06
           </td>
            
         </tr>
         <tr
-          class="svelte-1hc4c0h"
+          class="svelte-9lml75"
         >
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <span
-              class="rank svelte-1hc4c0h"
+              class="rank svelte-9lml75"
             >
               12
             </span>
              
             <span
-              class="play svelte-1hc4c0h"
+              class="play svelte-9lml75"
             >
               <button
-                class="svelte-ztyk6h iconOnly"
+                class="svelte-119yzhl iconOnly"
               >
                 <i
-                  class="material-icons svelte-ztyk6h"
+                  class="material-icons svelte-119yzhl"
                 >
                   play_arrow
                 </i>
@@ -1885,13 +1885,13 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             Green Bird
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -1903,7 +1903,7 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -1915,32 +1915,32 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             2:33
           </td>
            
         </tr>
         <tr
-          class="svelte-1hc4c0h"
+          class="svelte-9lml75"
         >
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <span
-              class="rank svelte-1hc4c0h"
+              class="rank svelte-9lml75"
             >
               13
             </span>
              
             <span
-              class="play svelte-1hc4c0h"
+              class="play svelte-9lml75"
             >
               <button
-                class="svelte-ztyk6h iconOnly"
+                class="svelte-119yzhl iconOnly"
               >
                 <i
-                  class="material-icons svelte-ztyk6h"
+                  class="material-icons svelte-119yzhl"
                 >
                   play_arrow
                 </i>
@@ -1950,13 +1950,13 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             Vitamin C
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -1968,7 +1968,7 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -1980,32 +1980,32 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             5:24
           </td>
            
         </tr>
         <tr
-          class="svelte-1hc4c0h"
+          class="svelte-9lml75"
         >
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <span
-              class="rank svelte-1hc4c0h"
+              class="rank svelte-9lml75"
             >
               14
             </span>
              
             <span
-              class="play svelte-1hc4c0h"
+              class="play svelte-9lml75"
             >
               <button
-                class="svelte-ztyk6h iconOnly"
+                class="svelte-119yzhl iconOnly"
               >
                 <i
-                  class="material-icons svelte-ztyk6h"
+                  class="material-icons svelte-119yzhl"
                 >
                   play_arrow
                 </i>
@@ -2015,13 +2015,13 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             Gateway
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -2033,7 +2033,7 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -2045,32 +2045,32 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             0:16
           </td>
            
         </tr>
         <tr
-          class="svelte-1hc4c0h"
+          class="svelte-9lml75"
         >
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <span
-              class="rank svelte-1hc4c0h"
+              class="rank svelte-9lml75"
             >
               15
             </span>
              
             <span
-              class="play svelte-1hc4c0h"
+              class="play svelte-9lml75"
             >
               <button
-                class="svelte-ztyk6h iconOnly"
+                class="svelte-119yzhl iconOnly"
               >
                 <i
-                  class="material-icons svelte-ztyk6h"
+                  class="material-icons svelte-119yzhl"
                 >
                   play_arrow
                 </i>
@@ -2080,13 +2080,13 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             The Singing Sea
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -2098,7 +2098,7 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -2110,32 +2110,32 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             6:41
           </td>
            
         </tr>
         <tr
-          class="svelte-1hc4c0h"
+          class="svelte-9lml75"
         >
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <span
-              class="rank svelte-1hc4c0h"
+              class="rank svelte-9lml75"
             >
               17
             </span>
              
             <span
-              class="play svelte-1hc4c0h"
+              class="play svelte-9lml75"
             >
               <button
-                class="svelte-ztyk6h iconOnly"
+                class="svelte-119yzhl iconOnly"
               >
                 <i
-                  class="material-icons svelte-ztyk6h"
+                  class="material-icons svelte-119yzhl"
                 >
                   play_arrow
                 </i>
@@ -2145,13 +2145,13 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             The Egg and You!
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -2163,7 +2163,7 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -2175,32 +2175,32 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             4:47
           </td>
            
         </tr>
         <tr
-          class="svelte-1hc4c0h"
+          class="svelte-9lml75"
         >
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <span
-              class="rank svelte-1hc4c0h"
+              class="rank svelte-9lml75"
             >
               18
             </span>
              
             <span
-              class="play svelte-1hc4c0h"
+              class="play svelte-9lml75"
             >
               <button
-                class="svelte-ztyk6h iconOnly"
+                class="svelte-119yzhl iconOnly"
               >
                 <i
-                  class="material-icons svelte-ztyk6h"
+                  class="material-icons svelte-119yzhl"
                 >
                   play_arrow
                 </i>
@@ -2210,13 +2210,13 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             Forever Broke
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -2228,7 +2228,7 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -2240,32 +2240,32 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             1:36
           </td>
            
         </tr>
         <tr
-          class="svelte-1hc4c0h"
+          class="svelte-9lml75"
         >
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <span
-              class="rank svelte-1hc4c0h"
+              class="rank svelte-9lml75"
             >
               19
             </span>
              
             <span
-              class="play svelte-1hc4c0h"
+              class="play svelte-9lml75"
             >
               <button
-                class="svelte-ztyk6h iconOnly"
+                class="svelte-119yzhl iconOnly"
               >
                 <i
-                  class="material-icons svelte-ztyk6h"
+                  class="material-icons svelte-119yzhl"
                 >
                   play_arrow
                 </i>
@@ -2275,13 +2275,13 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             Power of Kungfu Remix
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -2293,7 +2293,7 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -2305,32 +2305,32 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             2:22
           </td>
            
         </tr>
         <tr
-          class="svelte-1hc4c0h"
+          class="svelte-9lml75"
         >
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <span
-              class="rank svelte-1hc4c0h"
+              class="rank svelte-9lml75"
             >
               --
             </span>
              
             <span
-              class="play svelte-1hc4c0h"
+              class="play svelte-9lml75"
             >
               <button
-                class="svelte-ztyk6h iconOnly"
+                class="svelte-119yzhl iconOnly"
               >
                 <i
-                  class="material-icons svelte-ztyk6h"
+                  class="material-icons svelte-119yzhl"
                 >
                   play_arrow
                 </i>
@@ -2340,13 +2340,13 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             Cats on Mars
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -2358,7 +2358,7 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -2370,32 +2370,32 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             0:07
           </td>
            
         </tr>
         <tr
-          class="svelte-1hc4c0h"
+          class="svelte-9lml75"
         >
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <span
-              class="rank svelte-1hc4c0h"
+              class="rank svelte-9lml75"
             >
               --
             </span>
              
             <span
-              class="play svelte-1hc4c0h"
+              class="play svelte-9lml75"
             >
               <button
-                class="svelte-ztyk6h iconOnly"
+                class="svelte-119yzhl iconOnly"
               >
                 <i
-                  class="material-icons svelte-ztyk6h"
+                  class="material-icons svelte-119yzhl"
                 >
                   play_arrow
                 </i>
@@ -2405,13 +2405,13 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             ELM
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -2423,7 +2423,7 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -2435,7 +2435,7 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             6:55
           </td>
@@ -2454,33 +2454,33 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
 >
   <div>
     <table
-      class="svelte-1hc4c0h"
+      class="svelte-9lml75"
     >
       <thead
-        class="svelte-1hc4c0h"
+        class="svelte-9lml75"
       >
         <tr>
           <th
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             N°
           </th>
            
           <th
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             Piste
           </th>
            
           <th
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             Artiste
           </th>
            
            
           <th
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             Durée
           </th>
@@ -2488,28 +2488,28 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
       </thead>
        
       <tbody
-        class="svelte-1hc4c0h"
+        class="svelte-9lml75"
       >
         <tr
-          class="svelte-1hc4c0h"
+          class="svelte-9lml75"
         >
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <span
-              class="rank svelte-1hc4c0h"
+              class="rank svelte-9lml75"
             >
               1
             </span>
              
             <span
-              class="play svelte-1hc4c0h"
+              class="play svelte-9lml75"
             >
               <button
-                class="svelte-ztyk6h iconOnly"
+                class="svelte-119yzhl iconOnly"
               >
                 <i
-                  class="material-icons svelte-ztyk6h"
+                  class="material-icons svelte-119yzhl"
                 >
                   play_arrow
                 </i>
@@ -2519,13 +2519,13 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             American Money
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -2538,32 +2538,32 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
            
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             5:32
           </td>
            
         </tr>
         <tr
-          class="svelte-1hc4c0h"
+          class="svelte-9lml75"
         >
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <span
-              class="rank svelte-1hc4c0h"
+              class="rank svelte-9lml75"
             >
               2
             </span>
              
             <span
-              class="play svelte-1hc4c0h"
+              class="play svelte-9lml75"
             >
               <button
-                class="svelte-ztyk6h iconOnly"
+                class="svelte-119yzhl iconOnly"
               >
                 <i
-                  class="material-icons svelte-ztyk6h"
+                  class="material-icons svelte-119yzhl"
                 >
                   play_arrow
                 </i>
@@ -2573,13 +2573,13 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             Fantaisie Sign
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -2592,32 +2592,32 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
            
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             3:35
           </td>
            
         </tr>
         <tr
-          class="svelte-1hc4c0h"
+          class="svelte-9lml75"
         >
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <span
-              class="rank svelte-1hc4c0h"
+              class="rank svelte-9lml75"
             >
               3
             </span>
              
             <span
-              class="play svelte-1hc4c0h"
+              class="play svelte-9lml75"
             >
               <button
-                class="svelte-ztyk6h iconOnly"
+                class="svelte-119yzhl iconOnly"
               >
                 <i
-                  class="material-icons svelte-ztyk6h"
+                  class="material-icons svelte-119yzhl"
                 >
                   play_arrow
                 </i>
@@ -2627,13 +2627,13 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             LIVE in Baghdad
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -2646,32 +2646,32 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
            
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             2:59
           </td>
            
         </tr>
         <tr
-          class="svelte-1hc4c0h"
+          class="svelte-9lml75"
         >
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <span
-              class="rank svelte-1hc4c0h"
+              class="rank svelte-9lml75"
             >
               4
             </span>
              
             <span
-              class="play svelte-1hc4c0h"
+              class="play svelte-9lml75"
             >
               <button
-                class="svelte-ztyk6h iconOnly"
+                class="svelte-119yzhl iconOnly"
               >
                 <i
-                  class="material-icons svelte-ztyk6h"
+                  class="material-icons svelte-119yzhl"
                 >
                   play_arrow
                 </i>
@@ -2681,13 +2681,13 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             Vitamin A
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -2700,32 +2700,32 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
            
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             4:41
           </td>
            
         </tr>
         <tr
-          class="svelte-1hc4c0h"
+          class="svelte-9lml75"
         >
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <span
-              class="rank svelte-1hc4c0h"
+              class="rank svelte-9lml75"
             >
               5
             </span>
              
             <span
-              class="play svelte-1hc4c0h"
+              class="play svelte-9lml75"
             >
               <button
-                class="svelte-ztyk6h iconOnly"
+                class="svelte-119yzhl iconOnly"
               >
                 <i
-                  class="material-icons svelte-ztyk6h"
+                  class="material-icons svelte-119yzhl"
                 >
                   play_arrow
                 </i>
@@ -2735,13 +2735,13 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             Don't Bother None
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -2754,32 +2754,32 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
            
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             3:45
           </td>
            
         </tr>
         <tr
-          class="svelte-1hc4c0h"
+          class="svelte-9lml75"
         >
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <span
-              class="rank svelte-1hc4c0h"
+              class="rank svelte-9lml75"
             >
               7
             </span>
              
             <span
-              class="play svelte-1hc4c0h"
+              class="play svelte-9lml75"
             >
               <button
-                class="svelte-ztyk6h iconOnly"
+                class="svelte-119yzhl iconOnly"
               >
                 <i
-                  class="material-icons svelte-ztyk6h"
+                  class="material-icons svelte-119yzhl"
                 >
                   play_arrow
                 </i>
@@ -2789,13 +2789,13 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             Want it All Back
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -2808,32 +2808,32 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
            
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             3:51
           </td>
            
         </tr>
         <tr
-          class="svelte-1hc4c0h"
+          class="svelte-9lml75"
         >
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <span
-              class="rank svelte-1hc4c0h"
+              class="rank svelte-9lml75"
             >
               9
             </span>
              
             <span
-              class="play svelte-1hc4c0h"
+              class="play svelte-9lml75"
             >
               <button
-                class="svelte-ztyk6h iconOnly"
+                class="svelte-119yzhl iconOnly"
               >
                 <i
-                  class="material-icons svelte-ztyk6h"
+                  class="material-icons svelte-119yzhl"
                 >
                   play_arrow
                 </i>
@@ -2843,13 +2843,13 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             Bindy
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -2862,32 +2862,32 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
            
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             0:15
           </td>
            
         </tr>
         <tr
-          class="svelte-1hc4c0h"
+          class="svelte-9lml75"
         >
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <span
-              class="rank svelte-1hc4c0h"
+              class="rank svelte-9lml75"
             >
               10
             </span>
              
             <span
-              class="play svelte-1hc4c0h"
+              class="play svelte-9lml75"
             >
               <button
-                class="svelte-ztyk6h iconOnly"
+                class="svelte-119yzhl iconOnly"
               >
                 <i
-                  class="material-icons svelte-ztyk6h"
+                  class="material-icons svelte-119yzhl"
                 >
                   play_arrow
                 </i>
@@ -2897,13 +2897,13 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             You Make Me Coo
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -2916,32 +2916,32 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
            
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             3:14
           </td>
            
         </tr>
         <tr
-          class="svelte-1hc4c0h"
+          class="svelte-9lml75"
         >
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <span
-              class="rank svelte-1hc4c0h"
+              class="rank svelte-9lml75"
             >
               11
             </span>
              
             <span
-              class="play svelte-1hc4c0h"
+              class="play svelte-9lml75"
             >
               <button
-                class="svelte-ztyk6h iconOnly"
+                class="svelte-119yzhl iconOnly"
               >
                 <i
-                  class="material-icons svelte-ztyk6h"
+                  class="material-icons svelte-119yzhl"
                 >
                   play_arrow
                 </i>
@@ -2951,13 +2951,13 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             Vitamin B
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -2970,32 +2970,32 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
            
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             4:06
           </td>
            
         </tr>
         <tr
-          class="svelte-1hc4c0h"
+          class="svelte-9lml75"
         >
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <span
-              class="rank svelte-1hc4c0h"
+              class="rank svelte-9lml75"
             >
               12
             </span>
              
             <span
-              class="play svelte-1hc4c0h"
+              class="play svelte-9lml75"
             >
               <button
-                class="svelte-ztyk6h iconOnly"
+                class="svelte-119yzhl iconOnly"
               >
                 <i
-                  class="material-icons svelte-ztyk6h"
+                  class="material-icons svelte-119yzhl"
                 >
                   play_arrow
                 </i>
@@ -3005,13 +3005,13 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             Green Bird
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -3024,32 +3024,32 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
            
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             2:33
           </td>
            
         </tr>
         <tr
-          class="svelte-1hc4c0h"
+          class="svelte-9lml75"
         >
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <span
-              class="rank svelte-1hc4c0h"
+              class="rank svelte-9lml75"
             >
               13
             </span>
              
             <span
-              class="play svelte-1hc4c0h"
+              class="play svelte-9lml75"
             >
               <button
-                class="svelte-ztyk6h iconOnly"
+                class="svelte-119yzhl iconOnly"
               >
                 <i
-                  class="material-icons svelte-ztyk6h"
+                  class="material-icons svelte-119yzhl"
                 >
                   play_arrow
                 </i>
@@ -3059,13 +3059,13 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             Vitamin C
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -3078,32 +3078,32 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
            
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             5:24
           </td>
            
         </tr>
         <tr
-          class="svelte-1hc4c0h"
+          class="svelte-9lml75"
         >
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <span
-              class="rank svelte-1hc4c0h"
+              class="rank svelte-9lml75"
             >
               14
             </span>
              
             <span
-              class="play svelte-1hc4c0h"
+              class="play svelte-9lml75"
             >
               <button
-                class="svelte-ztyk6h iconOnly"
+                class="svelte-119yzhl iconOnly"
               >
                 <i
-                  class="material-icons svelte-ztyk6h"
+                  class="material-icons svelte-119yzhl"
                 >
                   play_arrow
                 </i>
@@ -3113,13 +3113,13 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             Gateway
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -3132,32 +3132,32 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
            
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             0:16
           </td>
            
         </tr>
         <tr
-          class="svelte-1hc4c0h"
+          class="svelte-9lml75"
         >
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <span
-              class="rank svelte-1hc4c0h"
+              class="rank svelte-9lml75"
             >
               15
             </span>
              
             <span
-              class="play svelte-1hc4c0h"
+              class="play svelte-9lml75"
             >
               <button
-                class="svelte-ztyk6h iconOnly"
+                class="svelte-119yzhl iconOnly"
               >
                 <i
-                  class="material-icons svelte-ztyk6h"
+                  class="material-icons svelte-119yzhl"
                 >
                   play_arrow
                 </i>
@@ -3167,13 +3167,13 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             The Singing Sea
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -3186,32 +3186,32 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
            
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             6:41
           </td>
            
         </tr>
         <tr
-          class="svelte-1hc4c0h"
+          class="svelte-9lml75"
         >
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <span
-              class="rank svelte-1hc4c0h"
+              class="rank svelte-9lml75"
             >
               17
             </span>
              
             <span
-              class="play svelte-1hc4c0h"
+              class="play svelte-9lml75"
             >
               <button
-                class="svelte-ztyk6h iconOnly"
+                class="svelte-119yzhl iconOnly"
               >
                 <i
-                  class="material-icons svelte-ztyk6h"
+                  class="material-icons svelte-119yzhl"
                 >
                   play_arrow
                 </i>
@@ -3221,13 +3221,13 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             The Egg and You!
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -3240,32 +3240,32 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
            
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             4:47
           </td>
            
         </tr>
         <tr
-          class="svelte-1hc4c0h"
+          class="svelte-9lml75"
         >
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <span
-              class="rank svelte-1hc4c0h"
+              class="rank svelte-9lml75"
             >
               18
             </span>
              
             <span
-              class="play svelte-1hc4c0h"
+              class="play svelte-9lml75"
             >
               <button
-                class="svelte-ztyk6h iconOnly"
+                class="svelte-119yzhl iconOnly"
               >
                 <i
-                  class="material-icons svelte-ztyk6h"
+                  class="material-icons svelte-119yzhl"
                 >
                   play_arrow
                 </i>
@@ -3275,13 +3275,13 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             Forever Broke
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -3294,32 +3294,32 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
            
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             1:36
           </td>
            
         </tr>
         <tr
-          class="svelte-1hc4c0h"
+          class="svelte-9lml75"
         >
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <span
-              class="rank svelte-1hc4c0h"
+              class="rank svelte-9lml75"
             >
               19
             </span>
              
             <span
-              class="play svelte-1hc4c0h"
+              class="play svelte-9lml75"
             >
               <button
-                class="svelte-ztyk6h iconOnly"
+                class="svelte-119yzhl iconOnly"
               >
                 <i
-                  class="material-icons svelte-ztyk6h"
+                  class="material-icons svelte-119yzhl"
                 >
                   play_arrow
                 </i>
@@ -3329,13 +3329,13 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             Power of Kungfu Remix
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -3348,32 +3348,32 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
            
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             2:22
           </td>
            
         </tr>
         <tr
-          class="svelte-1hc4c0h"
+          class="svelte-9lml75"
         >
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <span
-              class="rank svelte-1hc4c0h"
+              class="rank svelte-9lml75"
             >
               --
             </span>
              
             <span
-              class="play svelte-1hc4c0h"
+              class="play svelte-9lml75"
             >
               <button
-                class="svelte-ztyk6h iconOnly"
+                class="svelte-119yzhl iconOnly"
               >
                 <i
-                  class="material-icons svelte-ztyk6h"
+                  class="material-icons svelte-119yzhl"
                 >
                   play_arrow
                 </i>
@@ -3383,13 +3383,13 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             Cats on Mars
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -3402,32 +3402,32 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
            
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             0:07
           </td>
            
         </tr>
         <tr
-          class="svelte-1hc4c0h"
+          class="svelte-9lml75"
         >
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <span
-              class="rank svelte-1hc4c0h"
+              class="rank svelte-9lml75"
             >
               --
             </span>
              
             <span
-              class="play svelte-1hc4c0h"
+              class="play svelte-9lml75"
             >
               <button
-                class="svelte-ztyk6h iconOnly"
+                class="svelte-119yzhl iconOnly"
               >
                 <i
-                  class="material-icons svelte-ztyk6h"
+                  class="material-icons svelte-119yzhl"
                 >
                   play_arrow
                 </i>
@@ -3437,13 +3437,13 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             ELM
           </td>
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             <a
               class=" underlined"
@@ -3456,7 +3456,7 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
            
            
           <td
-            class="svelte-1hc4c0h"
+            class="svelte-9lml75"
           >
             6:55
           </td>
