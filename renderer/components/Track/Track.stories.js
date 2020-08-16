@@ -11,7 +11,7 @@ export default {
 
 export const trackData = {
   media: './cover.jpg',
-  src: {
+  tags: {
     title: 'Mama got a girlfriend',
     artists: ['Ben Harper'],
     album: 'Diamonds on the inside',
@@ -21,13 +21,13 @@ export const trackData = {
 
 export const Default = () => ({
   Component: Track,
-  props: trackData
+  props: { src: trackData }
 })
 
 export const WithDetails = () => ({
   Component: Track,
   props: {
-    ...trackData,
+    src: trackData,
     details: true
   }
 })

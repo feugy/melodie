@@ -2,7 +2,6 @@
 
 import { ReplaySubject, BehaviorSubject } from 'rxjs'
 import { scan, mergeMap, map } from 'rxjs/operators'
-import { get } from 'svelte/store'
 import { invoke } from '../utils'
 
 const collator = new Intl.Collator([], { numeric: true })
@@ -36,6 +35,7 @@ const tracks$ = new ReplaySubject().pipe(
     []
   )
 )
+const total$ = new ReplaySubject()
 
 const sum$ = new ReplaySubject().pipe(
   scan(
@@ -59,6 +59,9 @@ export const artists = {
 export const tracks = {
   subscribe: tracks$.subscribe.bind(tracks$)
 }
+export const total = {
+  subscribe: total$.subscribe.bind(total$)
+}
 
 let searchSubscription = null
 
@@ -67,6 +70,7 @@ export function clear() {
   artists$.next(null)
   tracks$.next(null)
   sum$.next(null)
+  total$.next(0)
 }
 
 export function search(text, size = 10) {
@@ -81,7 +85,11 @@ export function search(text, size = 10) {
       mergeMap(({ text, ...args }) => invoke(`listEngine.search`, text, args)),
       map(data => {
         const { size, from, totalSum, albums, artists, tracks } = data
+        total$.next(totalSum)
+        let sum
+        const sub = sum$.subscribe(v => (sum = v))
         sum$.next(data)
+        sub.unsubscribe()
         if (albums.length) {
           albums$.next(albums)
         }
@@ -91,8 +99,7 @@ export function search(text, size = 10) {
         if (tracks.length) {
           tracks$.next(tracks)
         }
-        if (get(sum$) < totalSum) {
-          // TODO bof...
+        if (sum < totalSum) {
           request$.next({ from: from + size, size, text })
         } else {
           request$.complete()

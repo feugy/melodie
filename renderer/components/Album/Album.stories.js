@@ -1,46 +1,48 @@
 'use strict'
 
-import { action } from '@storybook/addon-actions'
-import Album from './Album.stories.svelte'
-import { hrefSinkDecorator } from '../../../.storybook/decorators'
+import Album from './Album.svelte'
+import { tracksData } from '../TracksTable/TracksTable.stories'
+import {
+  hrefSinkDecorator,
+  ipcRendererMock
+} from '../../../.storybook/decorators'
+import { hash } from '../../utils'
 
 export default {
   title: 'Components/Album',
   excludeStories: /.*Data$/,
-  decorators: [hrefSinkDecorator]
+  decorators: [
+    hrefSinkDecorator,
+    ipcRendererMock(() => ({ ...albumData, tracks: tracksData }))
+  ]
 }
 
 export const albumData = {
+  id: hash('Diamonds on the inside'),
   name: 'Diamonds on the inside',
   linked: ['Ben Harper', 'The Innocent Criminals'],
   media: './cover.jpg'
 }
 
 export const manyArtistsData = {
+  id: hash('Diamonds on the inside'),
   name: 'Diamonds on the inside',
   linked: ['Muse', 'Perl Jam', 'Joe Satriani', 'Avenged Sevenfold'],
   media: './cover.jpg'
-}
-
-export const actionsData = {
-  play: action('on album play'),
-  enqueue: action('on album enqueue')
 }
 
 export const Default = () => ({
   Component: Album,
   props: {
     src: albumData
-  },
-  on: actionsData
+  }
 })
 
 export const ManyArtists = () => ({
   Component: Album,
   props: {
     src: manyArtistsData
-  },
-  on: actionsData
+  }
 })
 
 export const NoArtist = () => ({
@@ -50,6 +52,5 @@ export const NoArtist = () => ({
       ...albumData,
       linked: []
     }
-  },
-  on: actionsData
+  }
 })

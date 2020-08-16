@@ -16,7 +16,7 @@
   import { add, current } from '../../stores/track-queue'
   import { formatTime, sumDurations, wrapWithLinks } from '../../utils'
 
-  export let params = {}
+  export let params
   let album
   let openMediaSelector = false
 

@@ -1,7 +1,5 @@
 'use strict'
 
-const { resolve } = require('path')
-
 module.exports = {
   stories: ['../renderer/**/*.stories.js'],
   addons: ['@storybook/addon-actions'],

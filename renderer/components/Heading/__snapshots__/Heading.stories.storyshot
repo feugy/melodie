@@ -6,241 +6,42 @@ exports[`Storyshots Components/Heading Default 1`] = `
 >
   <section>
     <header
-      class=" svelte-1jdllkn"
-      style="--image: url(./valentino-funghi-MEcxLZ8ENV8-unsplash.jpg); --shade-color: rgba(0, 0, 0, 0.7);"
+      class=" svelte-z1o3ws"
+      style="--image: url(./valentino-funghi-MEcxLZ8ENV8-unsplash.jpg); --shade-color: rgba(0, 0, 0, 0.7); --bgPosition: center;"
     >
       <h1
-        class="svelte-1jdllkn"
+        class="svelte-z1o3ws"
       >
         70 albums
       </h1>
     </header>
      
-    <div
-      class="flex flex-wrap justify-around"
-    >
-      <article
-        class="p-4 svelte-1ni6vn6"
-      >
-        <div
-          class="content svelte-1ni6vn6"
-        >
-          <img
-            alt="./cover.jpg"
-            class="w-64 h-64 text-3xl svelte-hn7eai rounded-sm"
-            loading="lazy"
-            src="./cover.jpg#nonce=0.1"
-          />
-           
-          
-           
-          <p
-            class="controls svelte-1ni6vn6"
-          >
-            <button
-              class="svelte-119yzhl primary iconOnly large"
-              data-testid="play"
-            >
-              <i
-                class="material-icons svelte-119yzhl"
-              >
-                play_arrow
-              </i>
-               
-            </button>
-             
-            <button
-              class="svelte-119yzhl primary iconOnly large"
-              data-testid="enqueue"
-            >
-              <i
-                class="material-icons svelte-119yzhl"
-              >
-                playlist_add
-              </i>
-               
-            </button>
-          </p>
-        </div>
-         
-        <header
-          class="svelte-1ni6vn6"
-        >
-          <h3>
-            Diamonds on the inside
-          </h3>
-           
-          <h4
-            class="svelte-1ni6vn6"
-          >
-            par 
-            <a
-              class=" underlined"
-              href="#/artist/756100103"
-              onclick="event.stopPropagation()"
-            >
-              Ben Harper
-            </a>
-            , 
-            <a
-              class=" underlined"
-              href="#/artist/3430181817"
-              onclick="event.stopPropagation()"
-            >
-              The Innocent Criminals
-            </a>
-          </h4>
-        </header>
-      </article>
-       
-      <article
-        class="p-4 svelte-1ni6vn6"
-      >
-        <div
-          class="content svelte-1ni6vn6"
-        >
-          <img
-            alt="./cover.jpg"
-            class="w-64 h-64 text-3xl svelte-hn7eai rounded-sm"
-            loading="lazy"
-            src="./cover.jpg#nonce=0.1"
-          />
-           
-          
-           
-          <p
-            class="controls svelte-1ni6vn6"
-          >
-            <button
-              class="svelte-119yzhl primary iconOnly large"
-              data-testid="play"
-            >
-              <i
-                class="material-icons svelte-119yzhl"
-              >
-                play_arrow
-              </i>
-               
-            </button>
-             
-            <button
-              class="svelte-119yzhl primary iconOnly large"
-              data-testid="enqueue"
-            >
-              <i
-                class="material-icons svelte-119yzhl"
-              >
-                playlist_add
-              </i>
-               
-            </button>
-          </p>
-        </div>
-         
-        <header
-          class="svelte-1ni6vn6"
-        >
-          <h3>
-            Diamonds on the inside
-          </h3>
-           
-          <h4
-            class="svelte-1ni6vn6"
-          >
-            par 
-            <a
-              class=" underlined"
-              href="#/artist/756100103"
-              onclick="event.stopPropagation()"
-            >
-              Ben Harper
-            </a>
-            , 
-            <a
-              class=" underlined"
-              href="#/artist/3430181817"
-              onclick="event.stopPropagation()"
-            >
-              The Innocent Criminals
-            </a>
-          </h4>
-        </header>
-      </article>
-       
-      <article
-        class="p-4 svelte-1ni6vn6"
-      >
-        <div
-          class="content svelte-1ni6vn6"
-        >
-          <img
-            alt="./cover.jpg"
-            class="w-64 h-64 text-3xl svelte-hn7eai rounded-sm"
-            loading="lazy"
-            src="./cover.jpg#nonce=0.1"
-          />
-           
-          
-           
-          <p
-            class="controls svelte-1ni6vn6"
-          >
-            <button
-              class="svelte-119yzhl primary iconOnly large"
-              data-testid="play"
-            >
-              <i
-                class="material-icons svelte-119yzhl"
-              >
-                play_arrow
-              </i>
-               
-            </button>
-             
-            <button
-              class="svelte-119yzhl primary iconOnly large"
-              data-testid="enqueue"
-            >
-              <i
-                class="material-icons svelte-119yzhl"
-              >
-                playlist_add
-              </i>
-               
-            </button>
-          </p>
-        </div>
-         
-        <header
-          class="svelte-1ni6vn6"
-        >
-          <h3>
-            Diamonds on the inside
-          </h3>
-           
-          <h4
-            class="svelte-1ni6vn6"
-          >
-            par 
-            <a
-              class=" underlined"
-              href="#/artist/756100103"
-              onclick="event.stopPropagation()"
-            >
-              Ben Harper
-            </a>
-            , 
-            <a
-              class=" underlined"
-              href="#/artist/3430181817"
-              onclick="event.stopPropagation()"
-            >
-              The Innocent Criminals
-            </a>
-          </h4>
-        </header>
-      </article>
-    </div>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+    non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </p>
+     
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+    non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </p>
+     
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+    non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </p>
   </section>
 </section>
 `;

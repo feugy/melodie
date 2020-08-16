@@ -11,7 +11,6 @@
   button {
     @apply inline-flex border-none cursor-pointer px-6 uppercase text-sm
   font-semibold bg-transparent flex-row items-center rounded;
-    color: var(--color-2);
     letter-spacing: 0.1rem;
     line-height: 2.8rem;
     transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out,

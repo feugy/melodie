@@ -1,6 +1,8 @@
 _ artists: '{total} artistes'
-_ items: '{total} pistes'
+_ tracks: '{total} pistes'
 '#': N°
+an artist: '1 artiste'
+a track: '1 piste'
 'artist: _': 'Artiste : {value}'
 'title: _': 'Titre : {value}'
 album: Album
@@ -14,9 +16,13 @@ disk _: 'Disque N°{num}'
 duration: Durée
 enqueue all: Ajouter tout
 load: Charger...
+no results: Rien du tout !
 open playlist: File d'attente
 play all: Lire tout
 playlist: Liste de lecture
+results for _: Resultats pour "{searched}"
+show less: Voir moins
+show all: Voir tout
 start loading some tracks: Commencez par charger quelques morceaux
 total duration _: 'Durée : {total}'
 track: Piste

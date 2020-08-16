@@ -44,7 +44,11 @@
   title={$_('playlist')}
   image={'../images/jason-rosewell-ASKeuOZqhYU-unsplash.jpg'} />
 <div>
-  <h3>{$_('_ items', { total: $tracks.length })}</h3>
+  <h3>
+    {$_($tracks.length === 1 ? 'a track' : '_ tracks', {
+      total: $tracks.length
+    })}
+  </h3>
   {#if $tracks.length}
     <span class="totalDuration">{formatTime(sumDurations($tracks))}</span>
     <Button icon="delete" class="mx-4" on:click={() => clear()} />
@@ -54,7 +58,7 @@
 <ol>
   {#each $tracks as track, i}
     <li class:current={$index === i} on:click={() => jumpTo(i)}>
-      <Track src={track.tags} media={track.media} details class="flex-auto" />
+      <Track src={track} details class="flex-auto" />
       <Button icon="close" class="mx-4" on:click={() => remove(i)} />
     </li>
   {/each}

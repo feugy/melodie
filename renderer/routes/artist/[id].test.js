@@ -147,39 +147,6 @@ describe('artist details route', () => {
       expect(add).toHaveBeenCalledTimes(1)
     })
 
-    it('plays tracks of a single album', async () => {
-      await fireEvent.click(
-        screen
-          .getByText(album1.name)
-          .closest('article')
-          .querySelector('[data-testid="play"]')
-      )
-      await sleep(250)
-
-      expect(add).toHaveBeenCalledWith(
-        artist.tracks.filter(({ tags: { album } }) => album === album1.name),
-        true
-      )
-      expect(add).toHaveBeenCalledTimes(1)
-      expect(replace).not.toHaveBeenCalled()
-    })
-
-    it('enqueues tracks of a single album', async () => {
-      await fireEvent.click(
-        screen
-          .getByText(album2.name)
-          .closest('article')
-          .querySelector('[data-testid="enqueue"]')
-      )
-      await sleep(250)
-
-      expect(add).toHaveBeenCalledWith(
-        artist.tracks.filter(({ tags: { album } }) => album === album2.name)
-      )
-      expect(add).toHaveBeenCalledTimes(1)
-      expect(replace).not.toHaveBeenCalled()
-    })
-
     it('navigates to album details page', async () => {
       await fireEvent.click(screen.getByText(album2.name))
       await sleep(250)

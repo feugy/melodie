@@ -2,6 +2,7 @@
   export let title
   export let image
   export let shadeColor = 'rgba(0, 0, 0, 0.7)'
+  export let imagePosition = 'center'
 </script>
 
 <style type="postcss">
@@ -15,7 +16,7 @@
       ),
       var(--image);
     background-size: cover, 100% auto;
-    background-position: center, center;
+    background-position: center, var(--bgPosition);
     clip-path: polygon(0% 0%, 100% 0%, 100% 45%, 0 100%);
   }
 
@@ -27,6 +28,6 @@
 
 <header
   class={$$props.class}
-  style="--image:url({image}); --shade-color:{shadeColor};">
+  style="--image:url({image}); --shade-color:{shadeColor}; --bgPosition:{imagePosition}">
   <h1>{title}</h1>
 </header>

@@ -6,66 +6,63 @@ exports[`Storyshots Components/Artist Default 1`] = `
 >
   <div>
     <a
-      href="#/artist/whateverId"
+      class=" svelte-fh6j1p"
+      href="#/artist/1213718636"
     >
-      <article
-        class=" svelte-fggesx"
+      <div
+        class="content svelte-fh6j1p"
       >
-        <div
-          class="content svelte-fggesx"
-        >
-          <img
-            alt="./avatar.jpg"
-            class="w-64 h-64 text-3xl svelte-hn7eai rounded-full"
-            loading="lazy"
-            src="./avatar.jpg#nonce=0.1"
-          />
-           
-          
-           
-          <p
-            class="controls svelte-fggesx"
-          >
-            <button
-              class="svelte-119yzhl primary iconOnly large"
-              data-testid="play"
-            >
-              <i
-                class="material-icons svelte-119yzhl"
-              >
-                play_arrow
-              </i>
-               
-            </button>
-             
-            <button
-              class="svelte-119yzhl primary iconOnly large"
-              data-testid="enqueue"
-            >
-              <i
-                class="material-icons svelte-119yzhl"
-              >
-                playlist_add
-              </i>
-               
-            </button>
-          </p>
-        </div>
+        <img
+          alt="./avatar.jpg"
+          class="w-64 h-64 text-3xl svelte-hn7eai rounded-full"
+          loading="lazy"
+          src="./avatar.jpg#nonce=0.1"
+        />
          
-        <header
-          class="svelte-fggesx"
+        
+         
+        <p
+          class="controls svelte-fh6j1p"
         >
-          <h3>
-            Foo Fighters
-          </h3>
-           
-          <h4
-            class="svelte-fggesx"
+          <button
+            class="svelte-j6xhgj primary iconOnly large"
+            data-testid="play"
           >
-            2 albums
-          </h4>
-        </header>
-      </article>
+            <i
+              class="material-icons svelte-j6xhgj"
+            >
+              play_arrow
+            </i>
+             
+          </button>
+           
+          <button
+            class="svelte-j6xhgj primary iconOnly large"
+            data-testid="enqueue"
+          >
+            <i
+              class="material-icons svelte-j6xhgj"
+            >
+              playlist_add
+            </i>
+             
+          </button>
+        </p>
+      </div>
+       
+      <header
+        class="svelte-fh6j1p"
+      >
+        <h3>
+          Foo Fighters
+        </h3>
+         
+        <h4
+          class="svelte-fh6j1p"
+        >
+          2 albums
+        </h4>
+      </header>
     </a>
   </div>
 </section>
@@ -77,61 +74,58 @@ exports[`Storyshots Components/Artist No Albums 1`] = `
 >
   <div>
     <a
-      href="#/artist/whateverId"
+      class=" svelte-fh6j1p"
+      href="#/artist/1213718636"
     >
-      <article
-        class=" svelte-fggesx"
+      <div
+        class="content svelte-fh6j1p"
       >
-        <div
-          class="content svelte-fggesx"
-        >
-          <img
-            alt="./avatar.jpg"
-            class="w-64 h-64 text-3xl svelte-hn7eai rounded-full"
-            loading="lazy"
-            src="./avatar.jpg#nonce=0.1"
-          />
-           
-          
-           
-          <p
-            class="controls svelte-fggesx"
-          >
-            <button
-              class="svelte-119yzhl primary iconOnly large"
-              data-testid="play"
-            >
-              <i
-                class="material-icons svelte-119yzhl"
-              >
-                play_arrow
-              </i>
-               
-            </button>
-             
-            <button
-              class="svelte-119yzhl primary iconOnly large"
-              data-testid="enqueue"
-            >
-              <i
-                class="material-icons svelte-119yzhl"
-              >
-                playlist_add
-              </i>
-               
-            </button>
-          </p>
-        </div>
+        <img
+          alt="./avatar.jpg"
+          class="w-64 h-64 text-3xl svelte-hn7eai rounded-full"
+          loading="lazy"
+          src="./avatar.jpg#nonce=0.1"
+        />
          
-        <header
-          class="svelte-fggesx"
+        
+         
+        <p
+          class="controls svelte-fh6j1p"
         >
-          <h3>
-            Foo Fighters
-          </h3>
+          <button
+            class="svelte-j6xhgj primary iconOnly large"
+            data-testid="play"
+          >
+            <i
+              class="material-icons svelte-j6xhgj"
+            >
+              play_arrow
+            </i>
+             
+          </button>
            
-        </header>
-      </article>
+          <button
+            class="svelte-j6xhgj primary iconOnly large"
+            data-testid="enqueue"
+          >
+            <i
+              class="material-icons svelte-j6xhgj"
+            >
+              playlist_add
+            </i>
+             
+          </button>
+        </p>
+      </div>
+       
+      <header
+        class="svelte-fh6j1p"
+      >
+        <h3>
+          Foo Fighters
+        </h3>
+         
+      </header>
     </a>
   </div>
 </section>

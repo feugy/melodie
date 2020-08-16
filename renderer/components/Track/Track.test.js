@@ -13,8 +13,8 @@ describe('Track component', () => {
   })
 
   it('has link to artist', async () => {
-    const artist = trackData.src.artists[0]
-    render(html`<${Track} src=${trackData.src} media=${trackData.media} />`)
+    const artist = trackData.tags.artists[0]
+    render(html`<${Track} src=${trackData} />`)
 
     fireEvent.click(screen.getByText(artist))
     await sleep()
@@ -23,8 +23,8 @@ describe('Track component', () => {
   })
 
   it('has link to album', async () => {
-    const { album } = trackData.src
-    render(html`<${Track} src=${trackData.src} media=${trackData.media} />`)
+    const { album } = trackData.tags
+    render(html`<${Track} src=${trackData} />`)
 
     fireEvent.click(screen.getByRole('img'))
     await sleep()

@@ -66,7 +66,7 @@ npm run build
 - [x] remove tracks from queue
 - [x] update track queue on track changes
 - [x] volume control
-- [-] search input and results
+- [x] search input and results
 - [ ] settings panel with watched folders
 - [ ] display years (artist & album details page)
 - [ ] display album/artist descriptions
@@ -95,6 +95,7 @@ npm run build
 1. Page navigation: use:link doesn't work in tests and raise Svelte warning. a.href is fine
 1. Scroll handling: it'll be better to keep memory on albums/artists page, and reset it on details page
 1. Testing routes: `import regexparam from 'regexparam'` must be replaced with require or `import * as regexparam`: https://github.com/ItalyPaleAle/svelte-spa-router/issues/81
+1. Albums named "Greatest Hits": mix of Queen & RHCP
 
 ## History
 

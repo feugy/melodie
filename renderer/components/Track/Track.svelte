@@ -4,18 +4,19 @@
   import { formatTime, linkTo } from '../../utils'
 
   export let src
-  export let media = null
   export let details = false
-  $: artist = src.artists && src.artists[0]
+  $: tags = (src && src.tags) || {}
+  $: artist = tags.artists && tags.artists[0]
 </script>
 
 <style type="postcss">
   .root {
     @apply flex m-2 items-center text-left;
+    min-width: 200px;
   }
 
   .track {
-    @apply flex-grow flex flex-col items-start px-2;
+    @apply flex-grow flex flex-col items-start px-2 justify-start;
   }
 
   .title {
@@ -34,20 +35,22 @@
 <div class={`${$$props.class} root`} on:click>
   <a
     on:click|stopPropagation
-    href={linkTo('album', src.album)}
+    href={linkTo('album', tags.album)}
     class="flex-none">
-    <Image class="h-16 w-16 text-xs" src={media} />
+    <Image class="h-16 w-16 text-xs" src={src && src.media} />
   </a>
   <div class="track">
-    <span class="title">{src.title}</span>
-    <a
-      on:click|stopPropagation
-      href={linkTo('artist', artist)}
-      class="artist underlined">
-      {artist}
-    </a>
+    <span class="title">{tags.title}</span>
+    {#if artist}
+      <a
+        on:click|stopPropagation
+        href={linkTo('artist', artist)}
+        class="artist underlined">
+        {artist}
+      </a>
+    {/if}
   </div>
   {#if details}
-    <div class="duration">{formatTime(src.duration)}</div>
+    <div class="duration">{formatTime(tags.duration)}</div>
   {/if}
 </div>

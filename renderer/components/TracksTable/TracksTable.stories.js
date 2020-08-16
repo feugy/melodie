@@ -1,6 +1,5 @@
 'use strict'
 
-import { action } from '@storybook/addon-actions'
 import { BehaviorSubject } from 'rxjs'
 import TracksTable from './TracksTable.svelte'
 import { hrefSinkDecorator } from '../../../.storybook/decorators'
@@ -194,18 +193,12 @@ export const tracksData = [
 
 export const current$Data = new BehaviorSubject(tracksData[3])
 
-export const actionsData = {
-  enqueue: action('on track enqueue'),
-  play: action('on track play')
-}
-
 export const Default = () => ({
   Component: TracksTable,
   props: {
     tracks: tracksData,
     current: null
-  },
-  on: actionsData
+  }
 })
 
 export const WithoutAlbum = () => ({
@@ -214,8 +207,7 @@ export const WithoutAlbum = () => ({
     tracks: tracksData,
     current: null,
     withAlbum: false
-  },
-  on: actionsData
+  }
 })
 
 export const WithCurrent = () => ({
@@ -223,6 +215,5 @@ export const WithCurrent = () => ({
   props: {
     tracks: tracksData,
     current: current$Data
-  },
-  on: actionsData
+  }
 })

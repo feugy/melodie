@@ -3,22 +3,10 @@
   import { _ } from 'svelte-intl'
   import { fade } from 'svelte/transition'
   import { Album, Button, Heading } from '../components'
-  import { albums, load } from '../stores/albums'
-  import { add } from '../stores/track-queue'
+  import { albums } from '../stores/albums'
   import { invoke } from '../utils'
 
   export const params = {}
-
-  async function handleAlbumPlay({ detail: album }, immediate = true) {
-    if (!album.tracks) {
-      album = await load(album.id)
-    }
-    add(album.tracks, immediate)
-  }
-
-  async function handleAlbumEnqueue(evt) {
-    return handleAlbumPlay(evt, false)
-  }
 </script>
 
 <style type="postcss">
@@ -34,16 +22,16 @@
 
 <section transition:fade={{ duration: 200 }}>
   <Heading
-    title={$_('_ albums', { total: $albums.length })}
-    image={'../images/valentino-funghi-MEcxLZ8ENV8-unsplash.jpg'} />
+    title={$_($albums.length === 1 ? 'an album' : '_ albums', {
+      total: $albums.length
+    })}
+    image={'../images/valentino-funghi-MEcxLZ8ENV8-unsplash.jpg'}
+    imagePosition="center 25%" />
   <div>
     {#each $albums as src (src.id)}
-      <a href={`#/album/${src.id}`} class="p-4">
-        <Album
-          {src}
-          on:play={handleAlbumPlay}
-          on:enqueue={handleAlbumEnqueue} />
-      </a>
+      <span class="p-4">
+        <Album {src} />
+      </span>
     {/each}
   </div>
 </section>

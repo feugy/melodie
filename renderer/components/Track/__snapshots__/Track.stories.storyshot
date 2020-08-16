@@ -6,7 +6,7 @@ exports[`Storyshots Components/Track Default 1`] = `
 >
   <div>
     <div
-      class="undefined root svelte-p26357"
+      class="undefined root svelte-11ci2py"
     >
       <a
         class="flex-none"
@@ -23,16 +23,16 @@ exports[`Storyshots Components/Track Default 1`] = `
       </a>
        
       <div
-        class="track svelte-p26357"
+        class="track svelte-11ci2py"
       >
         <span
-          class="title svelte-p26357"
+          class="title svelte-11ci2py"
         >
           Mama got a girlfriend
         </span>
          
         <a
-          class="artist underlined svelte-p26357"
+          class="artist underlined svelte-11ci2py"
           href="#/artist/756100103"
         >
           Ben Harper
@@ -50,7 +50,7 @@ exports[`Storyshots Components/Track With Details 1`] = `
 >
   <div>
     <div
-      class="undefined root svelte-p26357"
+      class="undefined root svelte-11ci2py"
     >
       <a
         class="flex-none"
@@ -67,16 +67,16 @@ exports[`Storyshots Components/Track With Details 1`] = `
       </a>
        
       <div
-        class="track svelte-p26357"
+        class="track svelte-11ci2py"
       >
         <span
-          class="title svelte-p26357"
+          class="title svelte-11ci2py"
         >
           Mama got a girlfriend
         </span>
          
         <a
-          class="artist underlined svelte-p26357"
+          class="artist underlined svelte-11ci2py"
           href="#/artist/756100103"
         >
           Ben Harper
@@ -84,7 +84,7 @@ exports[`Storyshots Components/Track With Details 1`] = `
       </div>
        
       <div
-        class="duration svelte-p26357"
+        class="duration svelte-11ci2py"
       >
         2:06
       </div>

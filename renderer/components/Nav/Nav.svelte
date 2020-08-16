@@ -2,19 +2,47 @@
   import { onMount } from 'svelte'
   import { _ } from 'svelte-intl'
   import { push } from 'svelte-spa-router'
+  import { Subject } from 'rxjs'
+  import { debounceTime, filter } from 'rxjs/operators'
   import Button from '../Button/Button.svelte'
+  import TextInput from '../TextInput/TextInput.svelte'
 
   let sentinel
   let floating = false
+  let searched = ''
+  let search$ = new Subject().pipe(
+    filter(n => n.trim().length >= 2),
+    debounceTime(250)
+  )
 
   onMount(() => {
     const observer = new IntersectionObserver(entries => {
       floating = !entries[0].isIntersecting
     })
 
+    const sub = search$.subscribe(text => {
+      searched = text
+      push(`/search/${searched}`)
+    })
+
     observer.observe(sentinel)
-    return () => observer.unobserve(sentinel)
+    return () => {
+      observer.unobserve(sentinel)
+      sub.unsubscribe()
+    }
   })
+
+  function handleSearchKeyup({ key }) {
+    if (key === 'Enter') {
+      search$.next(searched)
+    }
+  }
+
+  function handleSearchClick() {
+    if (searched) {
+      searched = ''
+    }
+  }
 </script>
 
 <style type="postcss">
@@ -46,6 +74,10 @@
     @apply mx-2;
   }
 
+  .expand {
+    @apply flex-grow text-right;
+  }
+
   .material-icons {
     @apply align-text-bottom;
   }
@@ -73,6 +105,16 @@
           on:click={() => push('/artist')}
           text={$_('artists')}
           icon="person" />
+      </li>
+      <li class="expand">
+        <TextInput
+          class="w-48 inline-block"
+          type="search"
+          icon={searched ? 'close' : 'search'}
+          value={searched}
+          on:input={({ target: { value } }) => search$.next(value)}
+          on:keyup={handleSearchKeyup}
+          on:iconClick={handleSearchClick} />
       </li>
       <li />
     </ul>

@@ -1,27 +1,19 @@
 'use strict'
 
-import { action } from '@storybook/addon-actions'
 import MediaSelector from './MediaSelector.stories.svelte'
 import { actionsData } from '../Dialogue/Dialogue.stories'
 import { artistData } from '../Artist/Artist.stories'
-
-const invokeAction = action('invoke')
+import { ipcRendererMock } from '../../../.storybook/decorators'
 
 export default {
   title: 'Components/Media Selector',
   excludeStories: /.*Data$/,
   decorators: [
-    storyFn => {
-      window.electron.ipcRenderer = {
-        invoke: (channel, service, method, ...args) => {
-          invokeAction(service, method, ...args)
-          if (method === 'findForArtist' || method === 'findForAlbum') {
-            return suggestionsData
-          }
-        }
+    ipcRendererMock(method => {
+      if (method === 'findForArtist' || method === 'findForAlbum') {
+        return suggestionsData
       }
-      return storyFn()
-    }
+    })
   ]
 }
 

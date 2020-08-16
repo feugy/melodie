@@ -1,0 +1,1009 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Components/Expandable list Albums 1`] = `
+<section
+  class="storybook-snapshot-container"
+>
+  <div>
+    <span
+      class=" svelte-10p9wgs"
+    >
+      <h3
+        class="svelte-10p9wgs"
+      >
+        5 albums
+      </h3>
+       
+      <ul
+        class="svelte-10p9wgs"
+      >
+        <li
+          class="svelte-10p9wgs"
+        >
+          <a
+            class=" svelte-my2key"
+            href="#/album/0"
+          >
+            <div
+              class="content svelte-my2key"
+            >
+              <img
+                alt="./cover.jpg"
+                class="w-64 h-64 text-3xl svelte-hn7eai rounded-sm"
+                loading="lazy"
+                src="./cover.jpg#nonce=0.1"
+              />
+               
+              
+               
+              <p
+                class="controls svelte-my2key"
+              >
+                <button
+                  class="svelte-j6xhgj primary iconOnly large"
+                  data-testid="play"
+                >
+                  <i
+                    class="material-icons svelte-j6xhgj"
+                  >
+                    play_arrow
+                  </i>
+                   
+                </button>
+                 
+                <button
+                  class="svelte-j6xhgj primary iconOnly large"
+                  data-testid="enqueue"
+                >
+                  <i
+                    class="material-icons svelte-j6xhgj"
+                  >
+                    playlist_add
+                  </i>
+                   
+                </button>
+              </p>
+            </div>
+             
+            <header
+              class="svelte-my2key"
+            >
+              <h3>
+                Diamonds on the inside
+              </h3>
+               
+              <h4
+                class="svelte-my2key"
+              >
+                par 
+                <a
+                  class=" underlined"
+                  href="#/artist/756100103"
+                  onclick="event.stopPropagation()"
+                >
+                  Ben Harper
+                </a>
+                , 
+                <a
+                  class=" underlined"
+                  href="#/artist/3430181817"
+                  onclick="event.stopPropagation()"
+                >
+                  The Innocent Criminals
+                </a>
+              </h4>
+            </header>
+          </a>
+           
+        </li>
+        <li
+          class="svelte-10p9wgs"
+        >
+          <a
+            class=" svelte-my2key"
+            href="#/album/1"
+          >
+            <div
+              class="content svelte-my2key"
+            >
+              <img
+                alt="./cover.jpg"
+                class="w-64 h-64 text-3xl svelte-hn7eai rounded-sm"
+                loading="lazy"
+                src="./cover.jpg#nonce=0.1"
+              />
+               
+              
+               
+              <p
+                class="controls svelte-my2key"
+              >
+                <button
+                  class="svelte-j6xhgj primary iconOnly large"
+                  data-testid="play"
+                >
+                  <i
+                    class="material-icons svelte-j6xhgj"
+                  >
+                    play_arrow
+                  </i>
+                   
+                </button>
+                 
+                <button
+                  class="svelte-j6xhgj primary iconOnly large"
+                  data-testid="enqueue"
+                >
+                  <i
+                    class="material-icons svelte-j6xhgj"
+                  >
+                    playlist_add
+                  </i>
+                   
+                </button>
+              </p>
+            </div>
+             
+            <header
+              class="svelte-my2key"
+            >
+              <h3>
+                Diamonds on the inside
+              </h3>
+               
+              <h4
+                class="svelte-my2key"
+              >
+                par 
+                <a
+                  class=" underlined"
+                  href="#/artist/756100103"
+                  onclick="event.stopPropagation()"
+                >
+                  Ben Harper
+                </a>
+                , 
+                <a
+                  class=" underlined"
+                  href="#/artist/3430181817"
+                  onclick="event.stopPropagation()"
+                >
+                  The Innocent Criminals
+                </a>
+              </h4>
+            </header>
+          </a>
+           
+        </li>
+        <li
+          class="svelte-10p9wgs"
+        >
+          <a
+            class=" svelte-my2key"
+            href="#/album/2"
+          >
+            <div
+              class="content svelte-my2key"
+            >
+              <img
+                alt="./cover.jpg"
+                class="w-64 h-64 text-3xl svelte-hn7eai rounded-sm"
+                loading="lazy"
+                src="./cover.jpg#nonce=0.1"
+              />
+               
+              
+               
+              <p
+                class="controls svelte-my2key"
+              >
+                <button
+                  class="svelte-j6xhgj primary iconOnly large"
+                  data-testid="play"
+                >
+                  <i
+                    class="material-icons svelte-j6xhgj"
+                  >
+                    play_arrow
+                  </i>
+                   
+                </button>
+                 
+                <button
+                  class="svelte-j6xhgj primary iconOnly large"
+                  data-testid="enqueue"
+                >
+                  <i
+                    class="material-icons svelte-j6xhgj"
+                  >
+                    playlist_add
+                  </i>
+                   
+                </button>
+              </p>
+            </div>
+             
+            <header
+              class="svelte-my2key"
+            >
+              <h3>
+                Diamonds on the inside
+              </h3>
+               
+              <h4
+                class="svelte-my2key"
+              >
+                par 
+                <a
+                  class=" underlined"
+                  href="#/artist/756100103"
+                  onclick="event.stopPropagation()"
+                >
+                  Ben Harper
+                </a>
+                , 
+                <a
+                  class=" underlined"
+                  href="#/artist/3430181817"
+                  onclick="event.stopPropagation()"
+                >
+                  The Innocent Criminals
+                </a>
+              </h4>
+            </header>
+          </a>
+           
+        </li>
+        <li
+          class="svelte-10p9wgs"
+        >
+          <a
+            class=" svelte-my2key"
+            href="#/album/3"
+          >
+            <div
+              class="content svelte-my2key"
+            >
+              <img
+                alt="./cover.jpg"
+                class="w-64 h-64 text-3xl svelte-hn7eai rounded-sm"
+                loading="lazy"
+                src="./cover.jpg#nonce=0.1"
+              />
+               
+              
+               
+              <p
+                class="controls svelte-my2key"
+              >
+                <button
+                  class="svelte-j6xhgj primary iconOnly large"
+                  data-testid="play"
+                >
+                  <i
+                    class="material-icons svelte-j6xhgj"
+                  >
+                    play_arrow
+                  </i>
+                   
+                </button>
+                 
+                <button
+                  class="svelte-j6xhgj primary iconOnly large"
+                  data-testid="enqueue"
+                >
+                  <i
+                    class="material-icons svelte-j6xhgj"
+                  >
+                    playlist_add
+                  </i>
+                   
+                </button>
+              </p>
+            </div>
+             
+            <header
+              class="svelte-my2key"
+            >
+              <h3>
+                Diamonds on the inside
+              </h3>
+               
+              <h4
+                class="svelte-my2key"
+              >
+                par 
+                <a
+                  class=" underlined"
+                  href="#/artist/756100103"
+                  onclick="event.stopPropagation()"
+                >
+                  Ben Harper
+                </a>
+                , 
+                <a
+                  class=" underlined"
+                  href="#/artist/3430181817"
+                  onclick="event.stopPropagation()"
+                >
+                  The Innocent Criminals
+                </a>
+              </h4>
+            </header>
+          </a>
+           
+        </li>
+        <li
+          class="svelte-10p9wgs"
+        >
+          <a
+            class=" svelte-my2key"
+            href="#/album/4"
+          >
+            <div
+              class="content svelte-my2key"
+            >
+              <img
+                alt="./cover.jpg"
+                class="w-64 h-64 text-3xl svelte-hn7eai rounded-sm"
+                loading="lazy"
+                src="./cover.jpg#nonce=0.1"
+              />
+               
+              
+               
+              <p
+                class="controls svelte-my2key"
+              >
+                <button
+                  class="svelte-j6xhgj primary iconOnly large"
+                  data-testid="play"
+                >
+                  <i
+                    class="material-icons svelte-j6xhgj"
+                  >
+                    play_arrow
+                  </i>
+                   
+                </button>
+                 
+                <button
+                  class="svelte-j6xhgj primary iconOnly large"
+                  data-testid="enqueue"
+                >
+                  <i
+                    class="material-icons svelte-j6xhgj"
+                  >
+                    playlist_add
+                  </i>
+                   
+                </button>
+              </p>
+            </div>
+             
+            <header
+              class="svelte-my2key"
+            >
+              <h3>
+                Diamonds on the inside
+              </h3>
+               
+              <h4
+                class="svelte-my2key"
+              >
+                par 
+                <a
+                  class=" underlined"
+                  href="#/artist/756100103"
+                  onclick="event.stopPropagation()"
+                >
+                  Ben Harper
+                </a>
+                , 
+                <a
+                  class=" underlined"
+                  href="#/artist/3430181817"
+                  onclick="event.stopPropagation()"
+                >
+                  The Innocent Criminals
+                </a>
+              </h4>
+            </header>
+          </a>
+           
+        </li>
+      </ul>
+       
+      <iframe
+        aria-hidden="true"
+        src="about:blank"
+        style="display: block; position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; border: 0; opacity: 0; pointer-events: none; z-index: -1;"
+        tabindex="-1"
+      />
+    </span>
+    
+  </div>
+</section>
+`;
+
+exports[`Storyshots Components/Expandable list Artists 1`] = `
+<section
+  class="storybook-snapshot-container"
+>
+  <div>
+    <span
+      class=" svelte-10p9wgs"
+    >
+      <h3
+        class="svelte-10p9wgs"
+      >
+        5 artistes
+      </h3>
+       
+      <ul
+        class="svelte-10p9wgs"
+      >
+        <li
+          class="svelte-10p9wgs"
+        >
+          <a
+            class=" svelte-fh6j1p"
+            href="#/artist/0"
+          >
+            <div
+              class="content svelte-fh6j1p"
+            >
+              <img
+                alt="./avatar.jpg"
+                class="w-64 h-64 text-3xl svelte-hn7eai rounded-full"
+                loading="lazy"
+                src="./avatar.jpg#nonce=0.1"
+              />
+               
+              
+               
+              <p
+                class="controls svelte-fh6j1p"
+              >
+                <button
+                  class="svelte-j6xhgj primary iconOnly large"
+                  data-testid="play"
+                >
+                  <i
+                    class="material-icons svelte-j6xhgj"
+                  >
+                    play_arrow
+                  </i>
+                   
+                </button>
+                 
+                <button
+                  class="svelte-j6xhgj primary iconOnly large"
+                  data-testid="enqueue"
+                >
+                  <i
+                    class="material-icons svelte-j6xhgj"
+                  >
+                    playlist_add
+                  </i>
+                   
+                </button>
+              </p>
+            </div>
+             
+            <header
+              class="svelte-fh6j1p"
+            >
+              <h3>
+                Foo Fighters
+              </h3>
+               
+              <h4
+                class="svelte-fh6j1p"
+              >
+                2 albums
+              </h4>
+            </header>
+          </a>
+           
+        </li>
+        <li
+          class="svelte-10p9wgs"
+        >
+          <a
+            class=" svelte-fh6j1p"
+            href="#/artist/1"
+          >
+            <div
+              class="content svelte-fh6j1p"
+            >
+              <img
+                alt="./avatar.jpg"
+                class="w-64 h-64 text-3xl svelte-hn7eai rounded-full"
+                loading="lazy"
+                src="./avatar.jpg#nonce=0.1"
+              />
+               
+              
+               
+              <p
+                class="controls svelte-fh6j1p"
+              >
+                <button
+                  class="svelte-j6xhgj primary iconOnly large"
+                  data-testid="play"
+                >
+                  <i
+                    class="material-icons svelte-j6xhgj"
+                  >
+                    play_arrow
+                  </i>
+                   
+                </button>
+                 
+                <button
+                  class="svelte-j6xhgj primary iconOnly large"
+                  data-testid="enqueue"
+                >
+                  <i
+                    class="material-icons svelte-j6xhgj"
+                  >
+                    playlist_add
+                  </i>
+                   
+                </button>
+              </p>
+            </div>
+             
+            <header
+              class="svelte-fh6j1p"
+            >
+              <h3>
+                Foo Fighters
+              </h3>
+               
+              <h4
+                class="svelte-fh6j1p"
+              >
+                2 albums
+              </h4>
+            </header>
+          </a>
+           
+        </li>
+        <li
+          class="svelte-10p9wgs"
+        >
+          <a
+            class=" svelte-fh6j1p"
+            href="#/artist/2"
+          >
+            <div
+              class="content svelte-fh6j1p"
+            >
+              <img
+                alt="./avatar.jpg"
+                class="w-64 h-64 text-3xl svelte-hn7eai rounded-full"
+                loading="lazy"
+                src="./avatar.jpg#nonce=0.1"
+              />
+               
+              
+               
+              <p
+                class="controls svelte-fh6j1p"
+              >
+                <button
+                  class="svelte-j6xhgj primary iconOnly large"
+                  data-testid="play"
+                >
+                  <i
+                    class="material-icons svelte-j6xhgj"
+                  >
+                    play_arrow
+                  </i>
+                   
+                </button>
+                 
+                <button
+                  class="svelte-j6xhgj primary iconOnly large"
+                  data-testid="enqueue"
+                >
+                  <i
+                    class="material-icons svelte-j6xhgj"
+                  >
+                    playlist_add
+                  </i>
+                   
+                </button>
+              </p>
+            </div>
+             
+            <header
+              class="svelte-fh6j1p"
+            >
+              <h3>
+                Foo Fighters
+              </h3>
+               
+              <h4
+                class="svelte-fh6j1p"
+              >
+                2 albums
+              </h4>
+            </header>
+          </a>
+           
+        </li>
+        <li
+          class="svelte-10p9wgs"
+        >
+          <a
+            class=" svelte-fh6j1p"
+            href="#/artist/3"
+          >
+            <div
+              class="content svelte-fh6j1p"
+            >
+              <img
+                alt="./avatar.jpg"
+                class="w-64 h-64 text-3xl svelte-hn7eai rounded-full"
+                loading="lazy"
+                src="./avatar.jpg#nonce=0.1"
+              />
+               
+              
+               
+              <p
+                class="controls svelte-fh6j1p"
+              >
+                <button
+                  class="svelte-j6xhgj primary iconOnly large"
+                  data-testid="play"
+                >
+                  <i
+                    class="material-icons svelte-j6xhgj"
+                  >
+                    play_arrow
+                  </i>
+                   
+                </button>
+                 
+                <button
+                  class="svelte-j6xhgj primary iconOnly large"
+                  data-testid="enqueue"
+                >
+                  <i
+                    class="material-icons svelte-j6xhgj"
+                  >
+                    playlist_add
+                  </i>
+                   
+                </button>
+              </p>
+            </div>
+             
+            <header
+              class="svelte-fh6j1p"
+            >
+              <h3>
+                Foo Fighters
+              </h3>
+               
+              <h4
+                class="svelte-fh6j1p"
+              >
+                2 albums
+              </h4>
+            </header>
+          </a>
+           
+        </li>
+        <li
+          class="svelte-10p9wgs"
+        >
+          <a
+            class=" svelte-fh6j1p"
+            href="#/artist/4"
+          >
+            <div
+              class="content svelte-fh6j1p"
+            >
+              <img
+                alt="./avatar.jpg"
+                class="w-64 h-64 text-3xl svelte-hn7eai rounded-full"
+                loading="lazy"
+                src="./avatar.jpg#nonce=0.1"
+              />
+               
+              
+               
+              <p
+                class="controls svelte-fh6j1p"
+              >
+                <button
+                  class="svelte-j6xhgj primary iconOnly large"
+                  data-testid="play"
+                >
+                  <i
+                    class="material-icons svelte-j6xhgj"
+                  >
+                    play_arrow
+                  </i>
+                   
+                </button>
+                 
+                <button
+                  class="svelte-j6xhgj primary iconOnly large"
+                  data-testid="enqueue"
+                >
+                  <i
+                    class="material-icons svelte-j6xhgj"
+                  >
+                    playlist_add
+                  </i>
+                   
+                </button>
+              </p>
+            </div>
+             
+            <header
+              class="svelte-fh6j1p"
+            >
+              <h3>
+                Foo Fighters
+              </h3>
+               
+              <h4
+                class="svelte-fh6j1p"
+              >
+                2 albums
+              </h4>
+            </header>
+          </a>
+           
+        </li>
+      </ul>
+       
+      <iframe
+        aria-hidden="true"
+        src="about:blank"
+        style="display: block; position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; border: 0; opacity: 0; pointer-events: none; z-index: -1;"
+        tabindex="-1"
+      />
+    </span>
+    
+  </div>
+</section>
+`;
+
+exports[`Storyshots Components/Expandable list Tracks 1`] = `
+<section
+  class="storybook-snapshot-container"
+>
+  <div>
+    <span
+      class=" svelte-10p9wgs"
+    >
+      <h3
+        class="svelte-10p9wgs"
+      >
+        5 pistes
+      </h3>
+       
+      <ul
+        class="svelte-10p9wgs"
+      >
+        <li
+          class="svelte-10p9wgs"
+        >
+          <div
+            class="undefined root svelte-11ci2py"
+          >
+            <a
+              class="flex-none"
+              href="#/album/3879801547"
+            >
+              <img
+                alt="./cover.jpg"
+                class="h-16 w-16 text-xs svelte-hn7eai rounded-sm"
+                loading="lazy"
+                src="./cover.jpg#nonce=0.1"
+              />
+               
+              
+            </a>
+             
+            <div
+              class="track svelte-11ci2py"
+            >
+              <span
+                class="title svelte-11ci2py"
+              >
+                Mama got a girlfriend
+              </span>
+               
+              <a
+                class="artist underlined svelte-11ci2py"
+                href="#/artist/756100103"
+              >
+                Ben Harper
+              </a>
+            </div>
+             
+          </div>
+           
+        </li>
+        <li
+          class="svelte-10p9wgs"
+        >
+          <div
+            class="undefined root svelte-11ci2py"
+          >
+            <a
+              class="flex-none"
+              href="#/album/3879801547"
+            >
+              <img
+                alt="./cover.jpg"
+                class="h-16 w-16 text-xs svelte-hn7eai rounded-sm"
+                loading="lazy"
+                src="./cover.jpg#nonce=0.1"
+              />
+               
+              
+            </a>
+             
+            <div
+              class="track svelte-11ci2py"
+            >
+              <span
+                class="title svelte-11ci2py"
+              >
+                Mama got a girlfriend
+              </span>
+               
+              <a
+                class="artist underlined svelte-11ci2py"
+                href="#/artist/756100103"
+              >
+                Ben Harper
+              </a>
+            </div>
+             
+          </div>
+           
+        </li>
+        <li
+          class="svelte-10p9wgs"
+        >
+          <div
+            class="undefined root svelte-11ci2py"
+          >
+            <a
+              class="flex-none"
+              href="#/album/3879801547"
+            >
+              <img
+                alt="./cover.jpg"
+                class="h-16 w-16 text-xs svelte-hn7eai rounded-sm"
+                loading="lazy"
+                src="./cover.jpg#nonce=0.1"
+              />
+               
+              
+            </a>
+             
+            <div
+              class="track svelte-11ci2py"
+            >
+              <span
+                class="title svelte-11ci2py"
+              >
+                Mama got a girlfriend
+              </span>
+               
+              <a
+                class="artist underlined svelte-11ci2py"
+                href="#/artist/756100103"
+              >
+                Ben Harper
+              </a>
+            </div>
+             
+          </div>
+           
+        </li>
+        <li
+          class="svelte-10p9wgs"
+        >
+          <div
+            class="undefined root svelte-11ci2py"
+          >
+            <a
+              class="flex-none"
+              href="#/album/3879801547"
+            >
+              <img
+                alt="./cover.jpg"
+                class="h-16 w-16 text-xs svelte-hn7eai rounded-sm"
+                loading="lazy"
+                src="./cover.jpg#nonce=0.1"
+              />
+               
+              
+            </a>
+             
+            <div
+              class="track svelte-11ci2py"
+            >
+              <span
+                class="title svelte-11ci2py"
+              >
+                Mama got a girlfriend
+              </span>
+               
+              <a
+                class="artist underlined svelte-11ci2py"
+                href="#/artist/756100103"
+              >
+                Ben Harper
+              </a>
+            </div>
+             
+          </div>
+           
+        </li>
+        <li
+          class="svelte-10p9wgs"
+        >
+          <div
+            class="undefined root svelte-11ci2py"
+          >
+            <a
+              class="flex-none"
+              href="#/album/3879801547"
+            >
+              <img
+                alt="./cover.jpg"
+                class="h-16 w-16 text-xs svelte-hn7eai rounded-sm"
+                loading="lazy"
+                src="./cover.jpg#nonce=0.1"
+              />
+               
+              
+            </a>
+             
+            <div
+              class="track svelte-11ci2py"
+            >
+              <span
+                class="title svelte-11ci2py"
+              >
+                Mama got a girlfriend
+              </span>
+               
+              <a
+                class="artist underlined svelte-11ci2py"
+                href="#/artist/756100103"
+              >
+                Ben Harper
+              </a>
+            </div>
+             
+          </div>
+           
+        </li>
+      </ul>
+       
+      <iframe
+        aria-hidden="true"
+        src="about:blank"
+        style="display: block; position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; border: 0; opacity: 0; pointer-events: none; z-index: -1;"
+        tabindex="-1"
+      />
+    </span>
+    
+  </div>
+</section>
+`;

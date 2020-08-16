@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Components/TextInput Default 1`] = `
+<section
+  class="storybook-snapshot-container"
+>
+  <span
+    class="inline-block w-64"
+  >
+    <span
+      class="svelte-1dd4esh"
+    >
+       
+      <input
+        class="svelte-1dd4esh"
+        type="text"
+      />
+    </span>
+  </span>
+</section>
+`;
+
+exports[`Storyshots Components/TextInput With Icon 1`] = `
+<section
+  class="storybook-snapshot-container"
+>
+  <span
+    class="inline-block w-64"
+  >
+    <span
+      class="svelte-1dd4esh icon"
+    >
+      <i
+        class="material-icons svelte-1dd4esh"
+      >
+        search
+      </i>
+       
+      <input
+        class="svelte-1dd4esh"
+        type="search"
+      />
+    </span>
+  </span>
+</section>
+`;
+
+exports[`Storyshots Components/TextInput With Value 1`] = `
+<section
+  class="storybook-snapshot-container"
+>
+  <span
+    class="inline-block w-64"
+  >
+    <span
+      class="svelte-1dd4esh icon"
+    >
+      <i
+        class="material-icons svelte-1dd4esh"
+      >
+        person
+      </i>
+       
+      <input
+        class="svelte-1dd4esh"
+        type="text"
+      />
+    </span>
+  </span>
+</section>
+`;

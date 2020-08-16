@@ -1,10 +1,9 @@
 <script>
-  import { createEventDispatcher, onDestroy } from 'svelte'
+  import { onMount } from 'svelte'
   import { _ } from 'svelte-intl'
-  import { Subject, race } from 'rxjs'
-  import { bufferCount, debounceTime, first, repeat } from 'rxjs/operators'
   import Button from '../Button/Button.svelte'
-  import { formatTime, wrapWithLink } from '../../utils'
+  import { formatTime, wrapWithLink, createClickObservable } from '../../utils'
+  import { add } from '../../stores/track-queue'
 
   export let tracks
   export let current
@@ -19,27 +18,13 @@
         )
     : []
 
-  const dblClickDuration = 250
-  const dispatch = createEventDispatcher()
+  // play on double click, enqueue on simple
+  const clicks$ = createClickObservable(
+    track => add(track),
+    track => add(track, true)
+  )
 
-  const clicks$ = new Subject()
-  const debounce$ = clicks$.pipe(debounceTime(dblClickDuration))
-  const clickLimit$ = clicks$.pipe(bufferCount(2))
-  const bufferGate$ = race(debounce$, clickLimit$).pipe(first(), repeat())
-
-  const subscription = bufferGate$.subscribe(clicked => {
-    // play on double click, enqueue on simple
-    dispatch(
-      Array.isArray(clicked) ? 'play' : 'enqueue',
-      Array.isArray(clicked) ? clicked[0] : clicked
-    )
-  })
-
-  function handleClick(track) {
-    clicks$.next(track)
-  }
-
-  onDestroy(() => subscription.unsubscribe())
+  onMount(() => clicks$.subscribe())
 </script>
 
 <style type="postcss">
@@ -104,19 +89,14 @@
     <tbody>
       {#each sortedTracks as track, i (track.id)}
         <tr
-          on:click={() => handleClick(track)}
+          on:click={() => clicks$.next(track)}
           class:current={$current && $current.id === track.id}>
           <td>
             <span class="rank">
               {(track.tags.track && track.tags.track.no) || '--'}
             </span>
             <span class="play">
-              <Button
-                on:click={evt => {
-                  dispatch('play', track)
-                  evt.stopImmediatePropagation()
-                }}
-                icon={'play_arrow'} />
+              <Button on:click={() => add(track, true)} icon={'play_arrow'} />
             </span>
           </td>
           <td>{track.tags.title}</td>

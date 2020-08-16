@@ -1,13 +1,12 @@
 'use strict'
 
-import { screen, render, fireEvent } from '@testing-library/svelte'
+import { screen, render } from '@testing-library/svelte'
 import html from 'svelte-htm'
 import { BehaviorSubject } from 'rxjs'
 import faker from 'faker'
 import artistRoute from './artist.svelte'
-import { artists as mockedArtists, load, list } from '../stores/artists'
-import { add } from '../stores/track-queue'
-import { translate, sleep } from '../tests'
+import { artists as mockedArtists, list } from '../stores/artists'
+import { translate } from '../tests'
 
 jest.mock('svelte-spa-router')
 jest.mock('../stores/track-queue')
@@ -52,78 +51,5 @@ describe('artist route', () => {
     expect(screen.getByText(artists[0].name)).toBeInTheDocument()
     expect(screen.getByText(artists[1].name)).toBeInTheDocument()
     expect(list).not.toHaveBeenCalled()
-  })
-
-  it('loads and play tracks of an artist', async () => {
-    const tracks = [
-      { id: faker.random.uuid(), path: faker.system.directoryPath() }
-    ]
-    load.mockImplementation(async () => {
-      artist.tracks = tracks
-      return artist
-    })
-    const artist = artists[0]
-
-    render(html`<${artistRoute} />`)
-    const play = screen
-      .getByText(artist.name)
-      .closest('article')
-      .querySelector('[data-testid="play"]')
-    await fireEvent.click(play)
-
-    expect(load).toHaveBeenCalledWith(artist.id)
-    expect(add).toHaveBeenCalledWith(tracks, true)
-  })
-
-  it('loads and enqueus tracks of an artist', async () => {
-    const tracks = [
-      { id: faker.random.uuid(), path: faker.system.directoryPath() }
-    ]
-    load.mockImplementation(async () => {
-      artist.tracks = tracks
-      return artist
-    })
-    const artist = artists[0]
-
-    render(html`<${artistRoute} />`)
-    const enqueue = screen
-      .getByText(artist.name)
-      .closest('article')
-      .querySelector('[data-testid="enqueue"]')
-    await fireEvent.click(enqueue)
-
-    expect(load).toHaveBeenCalledWith(artist.id)
-    expect(add).toHaveBeenCalledWith(tracks, false)
-  })
-
-  it('does not load tracks when already there', async () => {
-    const tracks = [
-      { id: faker.random.uuid(), path: faker.system.directoryPath() }
-    ]
-    const artist = artists[0]
-    artist.tracks = tracks
-
-    render(html`<${artistRoute} />`)
-    const play = screen
-      .getByText(artist.name)
-      .closest('article')
-      .querySelector('button')
-    await fireEvent.click(play)
-
-    expect(load).not.toHaveBeenCalled()
-    expect(add).toHaveBeenCalledWith(tracks, true)
-  })
-
-  it('navigates to artist details page', async () => {
-    const artist = artists[1]
-
-    render(html`<${artistRoute} />`)
-    const album2 = screen.getByText(artist.name)
-    await fireEvent.click(album2)
-    await sleep()
-
-    expect(location.hash).toEqual(`#/artist/${artist.id}`)
-    expect(load).not.toHaveBeenCalled()
-    expect(add).not.toHaveBeenCalled()
   })
 })

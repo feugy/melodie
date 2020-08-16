@@ -1,5 +1,5 @@
 <script>
-  import { createEventDispatcher, onDestroy } from 'svelte'
+  import { createEventDispatcher, onMount } from 'svelte'
   import { _ } from 'svelte-intl'
   import Button from '../Button/Button.svelte'
   import Track from '../Track/Track.svelte'
@@ -18,17 +18,19 @@
   let volume = 1
   $: volumePct = volume * 100
 
-  const currentSub = current.subscribe(current => {
-    if (!current) {
-      src = null
-      if (player) {
-        isPlaying = false
-        player.load()
+  onMount(() =>
+    current.subscribe(current => {
+      if (!current) {
+        src = null
+        if (player) {
+          isPlaying = false
+          player.load()
+        }
+      } else {
+        src = toDOMSrc(current.path)
       }
-    } else {
-      src = toDOMSrc(current.path)
-    }
-  })
+    })
+  )
 
   function handleSeek({ detail }) {
     if (player) {
@@ -60,8 +62,6 @@
   function handleTogglePlaylist() {
     dispatch('togglePlaylist')
   }
-
-  onDestroy(() => currentSub.unsubscribe())
 </script>
 
 <style type="postcss">
@@ -129,7 +129,7 @@
 <div class="flex items-center">
   <span class="current">
     {#if $current}
-      <Track src={$current.tags} media={$current.media} />
+      <Track src={$current} />
     {/if}
   </span>
   <div class="player">

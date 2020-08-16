@@ -5,12 +5,14 @@ import Albums from './routes/album.svelte'
 import AlbumDetails from './routes/album/[id].svelte'
 import Artists from './routes/artist.svelte'
 import ArtistDetails from './routes/artist/[id].svelte'
+import SearchResults from './routes/search/[searched].svelte'
 
 export const routes = {
   '/album': Albums,
   '/album/:id': AlbumDetails,
   '/artist': Artists,
   '/artist/:id': ArtistDetails,
+  '/search/:searched': SearchResults,
   '*': wrap(Albums, null, () => {
     replace('/album')
     return true

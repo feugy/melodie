@@ -1,14 +1,20 @@
 'use strict'
 
-import { action } from '@storybook/addon-actions'
-import Artist from './Artist.stories.svelte'
-import { hrefSinkDecorator } from '../../../.storybook/decorators'
+import Artist from './Artist.svelte'
+import { tracksData } from '../TracksTable/TracksTable.stories'
+import {
+  hrefSinkDecorator,
+  ipcRendererMock
+} from '../../../.storybook/decorators'
 import { hash } from '../../utils'
 
 export default {
   title: 'Components/Artist',
   excludeStories: /.*Data$/,
-  decorators: [hrefSinkDecorator]
+  decorators: [
+    hrefSinkDecorator,
+    ipcRendererMock(() => ({ ...artistData, tracks: tracksData }))
+  ]
 }
 
 export const artistData = {
@@ -18,17 +24,11 @@ export const artistData = {
   media: './avatar.jpg'
 }
 
-export const actionsData = {
-  play: action('on artist play'),
-  enqueue: action('on artist enqueue')
-}
-
 export const Default = () => ({
   Component: Artist,
   props: {
     src: artistData
-  },
-  on: actionsData
+  }
 })
 
 export const NoAlbums = () => ({
@@ -38,6 +38,5 @@ export const NoAlbums = () => ({
       ...artistData,
       linked: []
     }
-  },
-  on: actionsData
+  }
 })

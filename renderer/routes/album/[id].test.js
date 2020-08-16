@@ -157,29 +157,6 @@ describe('album details route', () => {
       expect(location.hash).toEqual(`#/album/${album.id}`)
     })
 
-    it('enqueues clicked tracks', async () => {
-      await fireEvent.click(screen.getByText(album.tracks[1].tags.title))
-      await sleep(250)
-
-      expect(add).toHaveBeenCalledWith(album.tracks[1])
-      expect(add).toHaveBeenCalledTimes(1)
-      expect(location.hash).toEqual(`#/album/${album.id}`)
-    })
-
-    it('plays tracks', async () => {
-      await fireEvent.click(
-        screen
-          .getByText(album.tracks[2].tags.title)
-          .closest('tr')
-          .querySelector('button')
-      )
-      await sleep()
-
-      expect(add).toHaveBeenCalledWith(album.tracks[2], true)
-      expect(add).toHaveBeenCalledTimes(1)
-      expect(location.hash).toEqual(`#/album/${album.id}`)
-    })
-
     it('updates on album change', async () => {
       load.mockReset()
 

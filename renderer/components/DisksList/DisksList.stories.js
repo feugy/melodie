@@ -1,13 +1,16 @@
 'use strict'
 
 import DisksList from './DisksList.svelte'
-import { actionsData, current$Data } from '../TracksTable/TracksTable.stories'
-import { hrefSinkDecorator } from '../../../.storybook/decorators'
+import { current$Data } from '../TracksTable/TracksTable.stories'
+import {
+  hrefSinkDecorator,
+  ipcRendererMock
+} from '../../../.storybook/decorators'
 
 export default {
   title: 'Components/Disks list',
   excludeStories: /.*Data$/,
-  decorators: [hrefSinkDecorator]
+  decorators: [hrefSinkDecorator, ipcRendererMock()]
 }
 
 export const disksData = [
@@ -214,6 +217,5 @@ export const Default = () => ({
   props: {
     tracks: disksData,
     current: current$Data
-  },
-  on: actionsData
+  }
 })

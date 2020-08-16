@@ -16,7 +16,7 @@
   import { add } from '../../stores/track-queue'
   import { hash } from '../../utils'
 
-  export let params = {}
+  export let params
   let albums = []
   let artist
   let openMediaSelector = false
@@ -139,10 +139,7 @@
     <div class="albums">
       {#each albums as src (src.id)}
         <a href={`#/album/${src.id}`} class="p-4">
-          <Album
-            {src}
-            on:play={() => add(src.tracks, true)}
-            on:enqueue={() => add(src.tracks)} />
+          <Album {src} />
         </a>
       {/each}
     </div>

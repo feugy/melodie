@@ -2,51 +2,83 @@
 
 import { screen, render, fireEvent } from '@testing-library/svelte'
 import html from 'svelte-htm'
+import faker from 'faker'
 import Artist from './Artist.svelte'
 import { artistData } from './Artist.stories'
+import { load } from '../../stores/artists'
+import { add } from '../../stores/track-queue'
+import { sleep } from '../../tests'
+
+jest.mock('../../stores/track-queue')
+jest.mock('../../stores/artists')
 
 describe('Artist component', () => {
-  it('dispatches play events', async () => {
-    const handlePlay = jest.fn()
-    const handleEnqueue = jest.fn()
-    const handleSelect = jest.fn()
-    render(
-      html`<${Artist}
-        on:play=${handlePlay}
-        on:enqueue=${handleEnqueue}
-        on:select=${handleSelect}
-        src=${artistData}
-      />`
-    )
-
-    fireEvent.click(screen.getByTestId('play'))
-
-    expect(handlePlay).toHaveBeenCalledWith(
-      expect.objectContaining({ detail: artistData })
-    )
-    expect(handlePlay).toHaveBeenCalledTimes(1)
-    expect(handleEnqueue).not.toHaveBeenCalled()
-    expect(handleSelect).not.toHaveBeenCalled()
+  beforeEach(() => {
+    location.hash = '#/'
+    jest.clearAllMocks()
   })
 
-  it('dispatches enqueue event', async () => {
-    const handlePlay = jest.fn()
-    const handleEnqueue = jest.fn()
-    const handleSelect = jest.fn()
-    render(html`<${Artist}
-      on:play=${handlePlay}
-      on:enqueue=${handleEnqueue}
-      on:select=${handleSelect}
-      src=${artistData}
-    />`)
+  it('navigates to artist details page', async () => {
+    render(html`<${Artist} src=${artistData} />`)
 
-    fireEvent.click(screen.getByTestId('enqueue'))
+    fireEvent.click(screen.getByRole('img'))
+    await sleep()
 
-    expect(handleEnqueue).toHaveBeenCalledWith(
-      expect.objectContaining({ detail: artistData })
-    )
-    expect(handleEnqueue).toHaveBeenCalledTimes(1)
-    expect(handlePlay).not.toHaveBeenCalled()
-    expect(handleSelect).not.toHaveBeenCalled()
+    expect(location.hash).toEqual(`#/artist/${artistData.id}`)
+    expect(load).not.toHaveBeenCalled()
+    expect(add).not.toHaveBeenCalled()
+  })
+
+  it('loads and play all tracks', async () => {
+    const artist = { ...artistData, tracks: undefined }
+    const tracks = [
+      { id: faker.random.uuid(), path: faker.system.directoryPath() }
+    ]
+    load.mockImplementation(async () => {
+      artist.tracks = tracks
+      return artist
+    })
+
+    render(html`<${Artist} src=${artist} />`)
+    await fireEvent.click(screen.getByTestId('play'))
+    await sleep()
+
+    expect(load).toHaveBeenCalledWith(artist.id)
+    expect(add).toHaveBeenCalledWith(tracks, true)
+    expect(location.hash).toEqual(`#/`)
+  })
+
+  it('loads and enqueus all tracks', async () => {
+    const artist = { ...artistData, tracks: undefined }
+    const tracks = [
+      { id: faker.random.uuid(), path: faker.system.directoryPath() }
+    ]
+    load.mockImplementation(async () => {
+      artist.tracks = tracks
+      return artist
+    })
+
+    render(html`<${Artist} src=${artist} />`)
+    await fireEvent.click(screen.getByTestId('enqueue'))
+    await sleep()
+
+    expect(load).toHaveBeenCalledWith(artist.id)
+    expect(add).toHaveBeenCalledWith(tracks, false)
+    expect(location.hash).toEqual(`#/`)
+  })
+
+  it('does not load tracks when already there', async () => {
+    const tracks = [
+      { id: faker.random.uuid(), path: faker.system.directoryPath() }
+    ]
+    const artist = { ...artistData, tracks }
+
+    render(html`<${Artist} src=${artist} />`)
+    await fireEvent.click(screen.getByTestId('play'))
+    await sleep()
+
+    expect(load).not.toHaveBeenCalled()
+    expect(add).toHaveBeenCalledWith(tracks, true)
+    expect(location.hash).toEqual(`#/`)
   })
 })

@@ -7,6 +7,9 @@ import TracksTable from './TracksTable.svelte'
 import { tracksData, current$Data } from './TracksTable.stories'
 import { hash } from '../../utils'
 import { sleep } from '../../tests'
+import { add } from '../../stores/track-queue'
+
+jest.mock('../../stores/track-queue')
 
 describe('TracksTable component', () => {
   beforeEach(() => {
@@ -42,14 +45,10 @@ describe('TracksTable component', () => {
     expect(location.hash).toEqual(`#/album/${hash(album)}`)
   })
 
-  it('dispatches enqueue on single click', async () => {
+  it('enqueues track on single click', async () => {
     const track = faker.random.arrayElement(tracksData)
-    const handlePlay = jest.fn()
-    const handleEnqueue = jest.fn()
     render(
       html`<${TracksTable}
-        on:play=${handlePlay}
-        on:enqueue=${handleEnqueue}
         tracks=${tracksData}
         current=${current$Data}
         withAlbum
@@ -59,21 +58,14 @@ describe('TracksTable component', () => {
     await fireEvent.click(screen.getByText(track.tags.title))
     await sleep(300)
 
-    expect(handleEnqueue).toHaveBeenCalledWith(
-      new CustomEvent('enqueue', track)
-    )
-    expect(handlePlay).not.toHaveBeenCalled()
+    expect(add).toHaveBeenCalledWith(track)
     expect(location.hash).toEqual(`#/`)
   })
 
-  it('dispatches play on double-click', async () => {
+  it('plays track on double-click', async () => {
     const track = faker.random.arrayElement(tracksData)
-    const handlePlay = jest.fn()
-    const handleEnqueue = jest.fn()
     render(
       html`<${TracksTable}
-        on:play=${handlePlay}
-        on:enqueue=${handleEnqueue}
         tracks=${tracksData}
         current=${current$Data}
         withAlbum
@@ -85,19 +77,14 @@ describe('TracksTable component', () => {
     fireEvent.click(row)
     await sleep(300)
 
-    expect(handlePlay).toHaveBeenCalledWith(new CustomEvent('play', track))
-    expect(handleEnqueue).not.toHaveBeenCalled()
+    expect(add).toHaveBeenCalledWith(track, true)
     expect(location.hash).toEqual(`#/`)
   })
 
-  it('dispatches play on button', async () => {
+  it('plays track with button', async () => {
     const track = faker.random.arrayElement(tracksData)
-    const handlePlay = jest.fn()
-    const handleEnqueue = jest.fn()
     render(
       html`<${TracksTable}
-        on:play=${handlePlay}
-        on:enqueue=${handleEnqueue}
         tracks=${tracksData}
         current=${current$Data}
         withAlbum
@@ -109,8 +96,7 @@ describe('TracksTable component', () => {
     )
     await sleep()
 
-    expect(handleEnqueue).not.toHaveBeenCalled()
-    expect(handlePlay).toHaveBeenCalledWith(new CustomEvent('play', track))
+    expect(add).toHaveBeenCalledWith(track, true)
     expect(location.hash).toEqual(`#/`)
   })
 })

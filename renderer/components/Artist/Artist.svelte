@@ -1,25 +1,27 @@
 <script>
   import { createEventDispatcher } from 'svelte'
   import { _ } from 'svelte-intl'
+  import { add } from '../../stores/track-queue'
+  import { load } from '../../stores/artists'
   import Image from '../Image/Image.svelte'
   import Button from '../Button/Button.svelte'
 
   export let src
-  const dispatch = createEventDispatcher()
 
-  function handlePlay(evt) {
-    dispatch('play', src)
-    evt.stopImmediatePropagation()
+  async function handlePlay(evt, immediate = true) {
+    if (!src.tracks) {
+      src = await load(src.id)
+    }
+    add(src.tracks, immediate)
   }
 
-  function handleEnqueue(evt) {
-    dispatch('enqueue', src)
-    evt.stopImmediatePropagation()
+  async function handleEnqueue(evt) {
+    return handlePlay(evt, false)
   }
 </script>
 
 <style type="postcss">
-  article {
+  a {
     @apply cursor-pointer inline-block w-64;
   }
 
@@ -35,7 +37,7 @@
     @apply relative;
   }
 
-  article:hover .controls {
+  a:hover .controls {
     @apply opacity-100;
   }
 
@@ -45,7 +47,7 @@
   }
 </style>
 
-<article class={$$props.class}>
+<a href={`#/artist/${src.id}`} class={$$props.class}>
   <div class="content">
     <Image class="w-64 h-64 text-3xl" rounded src={src.media} />
     <p class="controls">
@@ -66,7 +68,11 @@
   <header>
     <h3>{src.name}</h3>
     {#if src.linked.length}
-      <h4>{$_('_ albums', { total: src.linked.length })}</h4>
+      <h4>
+        {$_(src.linked.length === 1 ? 'an album' : '_ albums', {
+          total: src.linked.length
+        })}
+      </h4>
     {/if}
   </header>
-</article>
+</a>

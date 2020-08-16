@@ -28,5 +28,5 @@
   {#if num !== Infinity}
     <h3>{$_('disk _', { num })}</h3>
   {/if}
-  <TracksTable {...{ ...$$props, tracks }} on:play on:enqueue />
+  <TracksTable {...{ ...$$props, tracks }} />
 {/each}
