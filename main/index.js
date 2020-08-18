@@ -3,6 +3,7 @@
 require('dotenv').config()
 const { join } = require('path')
 const electron = require('electron')
+const shortcut = require('electron-localshortcut')
 const fileLoader = require('./services/file-loader')
 const listEngine = require('./services/list-engine')
 const mediaManager = require('./services/media-manager')
@@ -14,7 +15,8 @@ const {
 } = require('./utils')
 const { settingsModel } = require('./models/settings')
 
-const { app, BrowserWindow } = electron
+const isDev = process.env.ROLLUP_WATCH
+const { app, BrowserWindow, Menu } = electron
 const publicFolder = join(__dirname, '..', 'public')
 let unsubscribe
 
@@ -25,7 +27,7 @@ logger.info(
   `starting... To change log levels, edit the level file and run \`kill -USR2 ${process.pid}\``
 )
 
-if (process.env.ROLLUP_WATCH) {
+if (isDev) {
   logger.info('enabling reloading')
   // soft reset for renderer process changes
   require('electron-reload')(publicFolder)
@@ -39,6 +41,8 @@ if (process.env.ROLLUP_WATCH) {
 }
 
 async function createWindow() {
+  Menu.setApplicationMenu(null)
+
   const win = new BrowserWindow({
     width: 800,
     height: 600,
@@ -47,6 +51,20 @@ async function createWindow() {
     },
     icon: `${join(publicFolder, 'icon-256x256.png')}`
   })
+
+  if (isDev) {
+    shortcut.register(win, ['F12', 'CmdOrCtrl+Shift+I'], () => {
+      const { webContents } = win
+      if (!webContents.isDevToolsOpened()) {
+        webContents.openDevTools()
+      } else {
+        webContents.closeDevTools()
+      }
+    })
+    shortcut.register(win, ['Ctrl+R', 'F5'], () => {
+      win.webContents.reloadIgnoringCache()
+    })
+  }
 
   registerRenderer(win)
   await listEngine.init(getStoragePath('db.sqlite3'))

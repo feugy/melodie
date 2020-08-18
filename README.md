@@ -71,11 +71,8 @@ npm run build
 - [ ] display years (artist & album details page)
 - [ ] display album/artist descriptions
 - [x] icons
-- [ ] system menus
-- [ ] system integration (> open with, > open track containing folder, < add to queue, < play )
-  - on windows: `start "" file`
-  - on mac: `open file`
-  - on linux: `xdg-open file`
+- [ ] navigation buttons
+- [ ] [open containing folder](https://www.electronjs.org/docs/api/shell#shellshowiteminfolderfullpath) for tracks
 - [ ] system notification on next track
 - [ ] block power save
 - [ ] system tray integration
