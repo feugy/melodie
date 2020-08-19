@@ -1,7 +1,7 @@
 <script>
-  import { onMount } from 'svelte'
+  import { onMount, tick } from 'svelte'
   import { _ } from 'svelte-intl'
-  import { push } from 'svelte-spa-router'
+  import * as router from 'svelte-spa-router'
   import { Subject } from 'rxjs'
   import { debounceTime, filter } from 'rxjs/operators'
   import Button from '../Button/Button.svelte'
@@ -22,7 +22,7 @@
 
     const sub = search$.subscribe(text => {
       searched = text
-      push(`/search/${searched}`)
+      router.push(`/search/${searched}`)
     })
 
     observer.observe(sentinel)
@@ -42,6 +42,16 @@
     if (searched) {
       searched = ''
     }
+  }
+
+  async function handleBack() {
+    await tick()
+    window.history.back()
+  }
+
+  async function handleForward() {
+    await tick()
+    window.history.forward()
   }
 </script>
 
@@ -95,14 +105,18 @@
         <h1>{$_('Mélodie')}</h1>
       </li>
       <li>
+        <Button on:click={handleBack} icon="navigate_before" noBorder />
+        <Button on:click={handleForward} icon="navigate_next" noBorder />
+      </li>
+      <li>
         <Button
-          on:click={() => push('/album')}
+          on:click={() => router.push('/album')}
           text={$_('albums')}
           icon="album" />
       </li>
       <li>
         <Button
-          on:click={() => push('/artist')}
+          on:click={() => router.push('/artist')}
           text={$_('artists')}
           icon="person" />
       </li>

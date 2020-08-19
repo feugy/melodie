@@ -2,21 +2,19 @@
 
 import { render, screen, fireEvent } from '@testing-library/svelte'
 import html from 'svelte-htm'
-import { push } from 'svelte-spa-router'
+import * as router from 'svelte-spa-router'
 import faker from 'faker'
 import Nav from './Nav.svelte'
 import { sleep, translate } from '../../tests'
 
-jest.mock('svelte-spa-router')
-
 describe('Nav component', () => {
-  const observer = {
-    observe: jest.fn(),
-    unobserve: jest.fn()
-  }
+  const observer = {}
 
   beforeEach(() => {
-    jest.resetAllMocks()
+    location.hash = '#/'
+    jest.clearAllMocks()
+    observer.observe = jest.fn()
+    observer.unobserve = jest.fn()
     window.IntersectionObserver = jest.fn().mockReturnValue(observer)
   })
 
@@ -48,19 +46,22 @@ describe('Nav component', () => {
     render(html`<${Nav} />`)
 
     fireEvent.click(screen.getByText(translate('albums')))
+    await sleep()
 
-    expect(push).toHaveBeenCalledWith(`/album`)
+    expect(location.hash).toEqual(`#/album`)
   })
 
   it('navigates to artists', async () => {
     render(html`<${Nav} />`)
 
     fireEvent.click(screen.getByText(translate('artists')))
+    await sleep()
 
-    expect(push).toHaveBeenCalledWith(`/artist`)
+    expect(location.hash).toEqual(`#/artist`)
   })
 
   it('navigates to search page on entered text', async () => {
+    const push = jest.spyOn(router, 'push')
     const text = faker.random.word()
     render(html`<${Nav} />`)
     const searchbox = screen.getByRole('searchbox')
@@ -69,11 +70,12 @@ describe('Nav component', () => {
     await sleep(300)
 
     expect(searchbox.value).toEqual(text)
-    expect(push).toHaveBeenCalledWith(`/search/${text}`)
+    expect(location.hash).toEqual(`#/search/${encodeURIComponent(text)}`)
     expect(push).toHaveBeenCalledTimes(1)
   })
 
   it('considers last entered input as searched text', async () => {
+    const push = jest.spyOn(router, 'push')
     const text1 = faker.random.word()
     const text2 = faker.random.word()
     render(html`<${Nav} />`)
@@ -86,9 +88,11 @@ describe('Nav component', () => {
     expect(searchbox.value).toEqual(text2)
     expect(push).toHaveBeenCalledWith(`/search/${text2}`)
     expect(push).not.toHaveBeenCalledWith(`/search/${text1}`)
+    expect(location.hash).toEqual(`#/search/${encodeURIComponent(text2)}`)
   })
 
   it('navigates again to searched text on enter', async () => {
+    const push = jest.spyOn(router, 'push')
     const text = faker.random.word()
     render(html`<${Nav} />`)
     const searchbox = screen.getByRole('searchbox')
@@ -104,9 +108,11 @@ describe('Nav component', () => {
     expect(push).toHaveBeenNthCalledWith(1, `/search/${text}`)
     expect(push).toHaveBeenNthCalledWith(2, `/search/${text}`)
     expect(push).toHaveBeenCalledTimes(2)
+    expect(location.hash).toEqual(`#/search/${encodeURIComponent(text)}`)
   })
 
   it('clears search terms', async () => {
+    const push = jest.spyOn(router, 'push')
     const text = faker.random.word()
     render(html`<${Nav} />`)
     const searchbox = screen.getByRole('searchbox')
@@ -116,9 +122,29 @@ describe('Nav component', () => {
     await sleep(300)
 
     await fireEvent.click(searchbox.previousElementSibling)
+    await sleep()
 
-    expect(push).toHaveBeenCalledWith(`/search/${text}`)
     expect(push).toHaveBeenCalledTimes(1)
     expect(searchbox.value).toEqual('')
+    expect(location.hash).toEqual(`#/search/${encodeURIComponent(text)}`)
+  })
+
+  it('navigates back and forward in history', async () => {
+    render(html`<${Nav} />`)
+    await sleep()
+    expect(location.hash).toEqual(`#/`)
+
+    fireEvent.click(screen.getByText(translate('artists')))
+    await sleep()
+
+    expect(location.hash).toEqual(`#/artist`)
+    fireEvent.click(screen.getAllByRole('button')[0])
+    await sleep(10)
+
+    expect(location.hash).toEqual(`#/`)
+    fireEvent.click(screen.getAllByRole('button')[1])
+    await sleep(10)
+
+    expect(location.hash).toEqual(`#/artist`)
   })
 })

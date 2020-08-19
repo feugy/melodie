@@ -71,7 +71,7 @@ npm run build
 - [ ] display years (artist & album details page)
 - [ ] display album/artist descriptions
 - [x] icons
-- [ ] navigation buttons
+- [x] navigation buttons
 - [ ] [open containing folder](https://www.electronjs.org/docs/api/shell#shellshowiteminfolderfullpath) for tracks
 - [ ] system notification on next track
 - [ ] block power save
@@ -81,6 +81,7 @@ npm run build
 - [ ] feedback on enqueue & play actions
 - [ ] drag'n drop to tracks queue
 - [ ] shuffle, loop
+- [ ] number of disk on album details page
 
 ### bugs
 
@@ -93,6 +94,7 @@ npm run build
 1. Scroll handling: it'll be better to keep memory on albums/artists page, and reset it on details page
 1. Testing routes: `import regexparam from 'regexparam'` must be replaced with require or `import * as regexparam`: https://github.com/ItalyPaleAle/svelte-spa-router/issues/81
 1. How to change track paths and not change ids? Does we get rename changes from chokidar?
+1. If we knew current position in browser history, then we could disabled navigation button accordingly
 
 ## History
 
@@ -123,6 +125,10 @@ npm run build
 
 - I considered Sapper for its nice conventional router, but given all the unsued feature (service workers, SSR) I chose a simpler router.
   It is based on hash handling, as electron urls are using file:// protocol which makes it difficult to use with history-based routers.
+
+- Initially, albums & artists id where hash of their names. It was very convenient to keep a list of artist's albums just by storing album names in artist's `linked` array. UI would infer ids by applying the same hash.
+  However, it is common to see albums with same name from different artists (like "Greatest hits").
+  To mitigate this issue, I had to make album's id out of album name and album artist (when defined). This ruined the hash convention, and I had to replace all "links" by proper references (id + name). Now UI does not infer ids anymore.
 
 musings on watch & diff
 
