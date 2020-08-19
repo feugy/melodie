@@ -10,7 +10,7 @@ const {
   delay,
   tap
 } = require('rxjs/operators')
-const { hash, broadcast, getLogger, uniq } = require('../utils')
+const { broadcast, getLogger, uniqRef, differenceRef } = require('../utils')
 const {
   albumsModel,
   tracksModel,
@@ -33,20 +33,19 @@ const sorters = {
 
 function makeListPipeline(property, model) {
   return [
-    filter(track => track[property] || track[`prev-${property}`]),
+    filter(data => data[`${property}Ref`] || data[`prev-${property}Ref`]),
     reduce(
-      ({ recordsMap, records }, track) => {
-        const name = track[property] || track[`prev-${property}`]
-        const isNew = property in track
-        const id = hash(name)
+      ({ recordsMap, records }, data) => {
+        const [id, name] = data[`${property}Ref`] || data[`prev-${property}Ref`]
+        const isNew = `${property}Ref` in data
         let record = recordsMap.get(id)
         if (!record) {
           record = {
             id,
             name,
-            media: track.media,
+            media: data.media,
             trackIds: [],
-            linked: []
+            refs: []
           }
           recordsMap.set(id, record)
           records.push(record)
@@ -54,15 +53,15 @@ function makeListPipeline(property, model) {
         if (!isNew) {
           if (!record.removedTrackIds) {
             record.removedTrackIds = []
-            record.removedLinked = []
+            record.removedRefs = []
           }
-          record.removedTrackIds.push(track.id)
-          record.removedLinked = uniq(
-            record.removedLinked.concat(track.linked || [])
+          record.removedTrackIds.push(data.id)
+          record.removedRefs = uniqRef(
+            record.removedRefs.concat(data.refs || [])
           )
         } else {
-          record.trackIds.push(track.id)
-          record.linked = uniq(record.linked.concat(track.linked || []))
+          record.trackIds.push(data.id)
+          record.refs = uniqRef(record.refs.concat(data.refs || []))
         }
         return { recordsMap, records }
       },
@@ -87,18 +86,6 @@ function makeListPipeline(property, model) {
   ]
 }
 
-function difference(original, compared) {
-  const originalIds = original.map(hash)
-  const comparedIds = compared.map(hash)
-  const result = []
-  for (let i = 0; i < originalIds.length; i++) {
-    if (!comparedIds.includes(originalIds[i])) {
-      result.push(original[i])
-    }
-  }
-  return result
-}
-
 module.exports = {
   async init(dbFile) {
     logger.info(`initialize list service`)
@@ -118,45 +105,34 @@ module.exports = {
   },
 
   async add(tracks) {
-    const previousTags = (await tracksModel.save(tracks)).reduce(
-      (map, previous) => map.set(previous.id, previous),
-      new Map()
-    )
-
-    const tracks$ = from(tracks).pipe(
-      tap(track => broadcast('track-change', track)),
-      expand(track => {
-        if (!track.tags) {
+    const tracks$ = from(tracksModel.save(tracks)).pipe(
+      mergeMap(from),
+      tap(({ current }) => broadcast('track-change', current)),
+      expand(({ current, previous }) => {
+        if (!current) {
           return EMPTY
         }
-        const {
-          id,
-          media,
-          tags: { album, artists }
-        } = track
-        const previous = previousTags.get(id)
-        const removedAlbum = difference(
-          (previous && [previous.tags.album]) || [],
-          [album]
+        const { id, media, albumRef, artistRefs } = current
+        const removedAlbum = differenceRef(
+          [previous && previous.albumRef],
+          [albumRef]
         )
-        const removedArtists = difference(
-          (previous && previous.tags.artists) || [],
-          artists || []
+        const removedArtists = differenceRef(
+          (previous && previous.artistRefs) || [],
+          artistRefs
         )
         return merge(
-          of({ id, media, album, linked: artists }),
+          of({ id, media, albumRef, refs: artistRefs }),
           removedAlbum.length
             ? of({
                 id,
-                'prev-album': removedAlbum[0],
-                linked: previous.tags.artists
+                'prev-albumRef': removedAlbum[0],
+                refs: previous.artistRefs
               })
             : EMPTY,
-          artists ? of(...artists.map(artist => ({ id, artist }))) : EMPTY,
+          of(...artistRefs.map(artistRef => ({ id, artistRef }))),
           removedArtists.length
-            ? of(
-                ...removedArtists.map(artist => ({ id, 'prev-artist': artist }))
-              )
+            ? of(...removedArtists.map(ref => ({ id, 'prev-artistRef': ref })))
             : EMPTY
         )
       }),
@@ -169,23 +145,18 @@ module.exports = {
 
   async remove(trackIds) {
     const tracks$ = from(tracksModel.removeByIds(trackIds)).pipe(
-      mergeMap(tracks => from(tracks)),
+      mergeMap(from),
       tap(track => broadcast('track-removal', track.id)),
-      expand(track => {
-        if (!track.tags) {
+      expand(({ id, albumRef, artistRefs }) => {
+        if (!artistRefs) {
           return EMPTY
         }
-        const {
-          id,
-          tags: { artists, album }
-        } = track
         return merge(
-          of({ id, 'prev-album': album, linked: artists }),
-          artists
-            ? of(...artists.map(artist => ({ id, 'prev-artist': artist })))
-            : EMPTY
+          of({ id, 'prev-albumRef': albumRef, refs: artistRefs }),
+          of(...artistRefs.map(ref => ({ id, 'prev-artistRef': ref })))
         )
       }),
+      filter(data => !data.tags),
       shareReplay()
     )
     tracks$.pipe(...makeListPipeline('album', albumsModel)).subscribe()

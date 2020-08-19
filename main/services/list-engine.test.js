@@ -22,6 +22,18 @@ function addId(obj) {
   return { ...obj, id: hash(obj.name) }
 }
 
+function makeRef(value) {
+  return [hash(value), value]
+}
+
+function addRefs(track) {
+  return {
+    ...track,
+    albumRef: track.tags.album ? makeRef(track.tags.album) : null,
+    artistRefs: track.tags.artists.map(makeRef)
+  }
+}
+
 let dbFile
 
 describe('Lists Engine', () => {
@@ -73,10 +85,14 @@ describe('Lists Engine', () => {
         addId({
           name,
           trackIds: [hash(path)],
-          linked: []
+          refs: []
         })
       )
       const tracks = [{ id: hash(path), path, tags: { artists: artistNames } }]
+      const savedTracks = tracks.map(addRefs)
+      tracksModel.save.mockResolvedValue(
+        savedTracks.map(current => ({ current }))
+      )
       artistsModel.save.mockResolvedValueOnce({
         saved: artists,
         removedIds: []
@@ -91,7 +107,7 @@ describe('Lists Engine', () => {
       for (const artist of artists) {
         expect(broadcast).toHaveBeenCalledWith('artist-change', artist)
       }
-      for (const track of tracks) {
+      for (const track of savedTracks) {
         expect(broadcast).toHaveBeenCalledWith('track-change', track)
       }
       expect(broadcast).toHaveBeenCalledTimes(tracks.length + artists.length)
@@ -101,12 +117,16 @@ describe('Lists Engine', () => {
       const name = faker.commerce.productName()
       const path = faker.system.fileName()
       const artists = [faker.name.findName(), faker.name.findName()]
+      const tracks = [{ id: hash(path), path, tags: { album: name, artists } }]
+      const savedTracks = tracks.map(addRefs)
+      tracksModel.save.mockResolvedValue(
+        savedTracks.map(current => ({ current }))
+      )
       const album = addId({
         name,
         trackIds: [hash(path)],
-        linked: artists
+        refs: savedTracks[0].artistRefs
       })
-      const tracks = [{ id: hash(path), path, tags: { album: name, artists } }]
       albumsModel.save.mockResolvedValueOnce({
         saved: [album],
         removedIds: []
@@ -119,7 +139,7 @@ describe('Lists Engine', () => {
       expect(albumsModel.save).toHaveBeenCalledWith([album])
       expect(albumsModel.save).toHaveBeenCalledTimes(1)
       expect(broadcast).toHaveBeenCalledWith('album-change', album)
-      for (const track of tracks) {
+      for (const track of savedTracks) {
         expect(broadcast).toHaveBeenCalledWith('track-change', track)
       }
       expect(broadcast).toHaveBeenCalledTimes(tracks.length + 1)
@@ -133,7 +153,7 @@ describe('Lists Engine', () => {
         name,
         media,
         trackIds: [hash(path)],
-        linked: []
+        refs: []
       })
       const tracks = [
         {
@@ -143,6 +163,10 @@ describe('Lists Engine', () => {
           media
         }
       ]
+      const savedTracks = tracks.map(addRefs)
+      tracksModel.save.mockResolvedValue(
+        savedTracks.map(current => ({ current }))
+      )
       albumsModel.save.mockResolvedValueOnce({
         saved: [album],
         removedIds: []
@@ -155,7 +179,7 @@ describe('Lists Engine', () => {
       expect(albumsModel.save).toHaveBeenCalledWith([album])
       expect(albumsModel.save).toHaveBeenCalledTimes(1)
       expect(broadcast).toHaveBeenCalledWith('album-change', album)
-      for (const track of tracks) {
+      for (const track of savedTracks) {
         expect(broadcast).toHaveBeenCalledWith('track-change', track)
       }
       expect(broadcast).toHaveBeenCalledTimes(tracks.length + 1)
@@ -184,9 +208,13 @@ describe('Lists Engine', () => {
       const album = addId({
         name,
         trackIds: [track1.id, track2.id, track3.id],
-        linked: [artist1, artist2]
+        refs: [makeRef(artist1), makeRef(artist2)]
       })
       const tracks = [track1, track2, track3]
+      const savedTracks = tracks.map(addRefs)
+      tracksModel.save.mockResolvedValue(
+        savedTracks.map(current => ({ current }))
+      )
       albumsModel.save.mockResolvedValueOnce({
         saved: [album],
         removedIds: []
@@ -199,7 +227,7 @@ describe('Lists Engine', () => {
       expect(albumsModel.save).toHaveBeenCalledWith([album])
       expect(albumsModel.save).toHaveBeenCalledTimes(1)
       expect(broadcast).toHaveBeenCalledWith('album-change', album)
-      for (const track of tracks) {
+      for (const track of savedTracks) {
         expect(broadcast).toHaveBeenCalledWith('track-change', track)
       }
       expect(broadcast).toHaveBeenCalledTimes(tracks.length + 1)
@@ -229,20 +257,24 @@ describe('Lists Engine', () => {
         addId({
           name: artist1,
           trackIds: [track1.id],
-          linked: []
+          refs: []
         }),
         addId({
           name: artist2,
           trackIds: [track1.id, track2.id],
-          linked: []
+          refs: []
         }),
         addId({
           name: artist3,
           trackIds: [track2.id, track3.id],
-          linked: []
+          refs: []
         })
       ]
       const tracks = [track1, track2, track3]
+      const savedTracks = tracks.map(addRefs)
+      tracksModel.save.mockResolvedValue(
+        savedTracks.map(current => ({ current }))
+      )
       artistsModel.save.mockResolvedValueOnce({
         saved: artists,
         removedIds: []
@@ -257,7 +289,7 @@ describe('Lists Engine', () => {
       for (const artist of artists) {
         expect(broadcast).toHaveBeenCalledWith('artist-change', artist)
       }
-      for (const track of tracks) {
+      for (const track of savedTracks) {
         expect(broadcast).toHaveBeenCalledWith('track-change', track)
       }
       expect(broadcast).toHaveBeenCalledTimes(tracks.length + artists.length)
@@ -290,36 +322,57 @@ describe('Lists Engine', () => {
         path: faker.system.fileName(),
         tags: { album: updatedName, artists: [artist3] }
       }
-      track4.id = hash(track3.path)
+      track4.id = hash(track4.path)
 
-      tracksModel.save.mockResolvedValueOnce([
-        { id: track1.id, tags: { album: oldName, artists: [artist1] } },
-        { id: track2.id, tags: { album: oldName, artists: [artist3] } },
-        {
-          id: track3.id,
-          tags: { album: updatedName, artists: [artist1, artist2] }
-        }
-      ])
       const tracks = [track1, track2, track3, track4]
+      const savedTracks = tracks.map(addRefs)
+      tracksModel.save.mockResolvedValue([
+        {
+          current: savedTracks[0],
+          previous: addRefs({
+            id: track1.id,
+            tags: { album: oldName, artists: [artist1] }
+          })
+        },
+        {
+          current: savedTracks[1],
+          previous: addRefs({
+            id: track2.id,
+            tags: { album: oldName, artists: [artist3] }
+          })
+        },
+        {
+          current: savedTracks[2],
+          previous: addRefs({
+            id: track3.id,
+            tags: { album: updatedName, artists: [artist1, artist2] }
+          })
+        },
+        { current: savedTracks[3] }
+      ])
+
       const oldAlbum = addId({
         name: oldName,
         trackIds: [],
         removedTrackIds: [track1.id, track2.id],
-        linked: [],
-        removedLinked: [artist1, artist3]
+        refs: [],
+        removedRefs: [makeRef(artist1), makeRef(artist3)]
       })
+
       const updatedAlbum = addId({
         name: updatedName,
         removedTrackIds: [track3.id],
         trackIds: [track4.id],
-        linked: [artist3],
-        removedLinked: [artist1, artist2]
+        refs: [makeRef(artist3)],
+        removedRefs: [makeRef(artist1), makeRef(artist2)]
       })
+
       const newAlbum = addId({
         name: newName,
         trackIds: [track1.id, track2.id, track3.id],
-        linked: [artist2, artist1]
+        refs: [makeRef(artist2), makeRef(artist1)]
       })
+
       albumsModel.save.mockResolvedValueOnce({
         saved: [oldAlbum, updatedAlbum, newAlbum],
         removedIds: []
@@ -338,7 +391,7 @@ describe('Lists Engine', () => {
       expect(broadcast).toHaveBeenCalledWith('album-change', oldAlbum)
       expect(broadcast).toHaveBeenCalledWith('album-change', updatedAlbum)
       expect(broadcast).toHaveBeenCalledWith('album-change', newAlbum)
-      for (const track of tracks) {
+      for (const track of savedTracks) {
         expect(broadcast).toHaveBeenCalledWith('track-change', track)
       }
       expect(broadcast).toHaveBeenCalledTimes(tracks.length + 3)
@@ -360,36 +413,47 @@ describe('Lists Engine', () => {
       }
       track2.id = hash(track2.path)
 
-      tracksModel.save.mockResolvedValueOnce([
-        { id: track1.id, tags: { artists: [oldName] } },
-        { id: track2.id, tags: { artists: [oldName, updatedName] } }
+      const tracks = [track1, track2]
+      const savedTracks = tracks.map(addRefs)
+      tracksModel.save.mockResolvedValue([
+        {
+          current: savedTracks[0],
+          previous: addRefs({ id: track1.id, tags: { artists: [oldName] } })
+        },
+        {
+          current: savedTracks[1],
+          previous: addRefs({
+            id: track2.id,
+            tags: { artists: [oldName, updatedName] }
+          })
+        }
       ])
 
       const oldArtist = addId({
         name: oldName,
         trackIds: [],
         removedTrackIds: [track1.id, track2.id],
-        removedLinked: [],
-        linked: []
+        removedRefs: [],
+        refs: []
       })
       const updatedArtist = addId({
         name: updatedName,
         removedTrackIds: [track2.id],
         trackIds: [track1.id],
-        removedLinked: [],
-        linked: []
+        removedRefs: [],
+        refs: []
       })
       const newArtist = addId({
         name: newName,
         trackIds: [track1.id, track2.id],
-        linked: []
+        refs: []
       })
       artistsModel.save.mockResolvedValueOnce({
         saved: [oldArtist, updatedArtist, newArtist],
         removedIds: []
       })
 
-      await engine.add([track1, track2])
+      await engine.add(tracks)
 
       expect(artistsModel.save).toHaveBeenCalledWith([
         newArtist,
@@ -400,7 +464,7 @@ describe('Lists Engine', () => {
       expect(broadcast).toHaveBeenCalledWith('artist-change', oldArtist)
       expect(broadcast).toHaveBeenCalledWith('artist-change', updatedArtist)
       expect(broadcast).toHaveBeenCalledWith('artist-change', newArtist)
-      for (const track of [track1, track2]) {
+      for (const track of savedTracks) {
         expect(broadcast).toHaveBeenCalledWith('track-change', track)
       }
       expect(broadcast).toHaveBeenCalledTimes(5)
@@ -417,18 +481,19 @@ describe('Lists Engine', () => {
         name,
         removedTrackIds: [hash(path)],
         trackIds: [],
-        linked: [],
-        removedLinked: artists
+        refs: [],
+        removedRefs: artists.map(makeRef)
       })
       const tracks = [
-        {
+        addRefs({
           id: hash(path),
           path,
           tags: { album: name, artists }
-        }
+        })
       ]
       const trackIds = tracks.map(({ id }) => id)
       tracksModel.removeByIds.mockResolvedValueOnce(tracks)
+
       albumsModel.save.mockResolvedValueOnce({
         saved: [],
         removedIds: [album.id]
@@ -457,11 +522,13 @@ describe('Lists Engine', () => {
           name,
           removedTrackIds: [hash(path)],
           trackIds: [],
-          linked: [],
-          removedLinked: []
+          refs: [],
+          removedRefs: []
         })
       )
-      const tracks = [{ id: hash(path), path, tags: { artists: artistNames } }]
+      const tracks = [
+        addRefs({ id: hash(path), path, tags: { artists: artistNames } })
+      ]
       const trackIds = tracks.map(({ id }) => id)
       tracksModel.removeByIds.mockResolvedValueOnce(tracks)
       artistsModel.save.mockResolvedValueOnce({
@@ -495,24 +562,28 @@ describe('Lists Engine', () => {
           name: artistNames[0],
           removedTrackIds: [hash(path1), hash(path2)],
           trackIds: [],
-          linked: [],
-          removedLinked: []
+          refs: [],
+          removedRefs: []
         }),
         addId({
           name: artistNames[1],
           removedTrackIds: [hash(path1)],
           trackIds: [],
-          linked: [],
-          removedLinked: []
+          refs: [],
+          removedRefs: []
         })
       ]
       const tracks = [
-        { id: hash(path1), path: path1, tags: { artists: artistNames } },
-        {
+        addRefs({
+          id: hash(path1),
+          path: path1,
+          tags: { artists: artistNames }
+        }),
+        addRefs({
           id: hash(path2),
           path: path2,
           tags: { artists: artistNames.slice(0, 1) }
-        }
+        })
       ]
       const trackIds = tracks.map(({ id }) => id)
 
@@ -757,22 +828,22 @@ describe('fetchWithTracks', () => {
       const album1 = addId({
         name: faker.commerce.productName(),
         trackIds: [],
-        linked: []
+        refs: []
       })
       const album2 = addId({
         name: faker.commerce.productName(),
         trackIds: [],
-        linked: []
+        refs: []
       })
       const artist1 = addId({
         name: faker.commerce.productName(),
         trackIds: [],
-        linked: []
+        refs: []
       })
       const artist2 = addId({
         name: faker.commerce.productName(),
         trackIds: [],
-        linked: []
+        refs: []
       })
       const track1 = {
         path: faker.system.fileName(),

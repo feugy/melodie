@@ -93,6 +93,7 @@ npm run build
 1. Scroll handling: it'll be better to keep memory on albums/artists page, and reset it on details page
 1. Testing routes: `import regexparam from 'regexparam'` must be replaced with require or `import * as regexparam`: https://github.com/ItalyPaleAle/svelte-spa-router/issues/81
 1. Albums named "Greatest Hits": mix of Queen & RHCP
+1. How to change track paths and not change ids? Does we get rename changes from chokidar?
 
 ## History
 

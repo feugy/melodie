@@ -1,16 +1,16 @@
 'use strict'
 
 const Model = require('./abstract-model')
-const { uniq, difference } = require('../utils')
+const { uniq, difference, uniqRef, differenceRef } = require('../utils')
 
 module.exports = class AbstractTrackList extends Model {
   constructor(name, definition) {
     super(name, table => {
       definition(table)
       table.json('trackIds')
-      table.json('linked')
+      table.json('refs')
     })
-    this.jsonColumns.push('trackIds', 'linked')
+    this.jsonColumns.push('trackIds', 'refs')
   }
 
   async save(data) {
@@ -36,7 +36,7 @@ module.exports = class AbstractTrackList extends Model {
           ) || {
             media: null,
             trackIds: [],
-            linked: []
+            refs: []
           }
           const savedList = {
             ...previousList,
@@ -46,10 +46,10 @@ module.exports = class AbstractTrackList extends Model {
                 trackList.removedTrackIds || []
               )
             ),
-            linked: uniq(
-              difference(
-                previousList.linked.concat(trackList.linked || []),
-                trackList.removedLinked || []
+            refs: uniqRef(
+              differenceRef(
+                previousList.refs.concat(trackList.refs || []),
+                trackList.removedRefs || []
               )
             )
           }
@@ -59,8 +59,8 @@ module.exports = class AbstractTrackList extends Model {
               if (
                 col !== 'trackIds' &&
                 col !== 'removedTrackIds' &&
-                col !== 'linked' &&
-                col !== 'removedLinked' &&
+                col !== 'refs' &&
+                col !== 'removedRefs' &&
                 trackList[col] !== undefined
               ) {
                 savedList[col] = trackList[col]

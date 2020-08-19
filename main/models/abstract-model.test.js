@@ -353,6 +353,14 @@ describe('Abstract model', () => {
         )
         expect(results).toHaveLength(2)
       })
+
+      it('throws meaningful error on deserialization error', async () => {
+        const id = faker.random.number()
+        await db(modelName).insert({ id, name, tags: '{' })
+        expect(tested.getByIds([id])).rejects.toThrow(
+          /failed to deserialize value "{" for col tags: Unexpected end of JSON input/
+        )
+      })
     })
 
     describe('removeByIds', () => {

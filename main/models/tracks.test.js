@@ -48,7 +48,13 @@ describe('Tracks model', () => {
     }
   ].map(track => ({
     ...track,
-    id: hash(track.path)
+    id: hash(track.path),
+    albumRef: track.tags.album
+      ? [hash(track.tags.album), track.tags.album]
+      : null,
+    artistRefs: track.tags.artists
+      ? track.tags.artists.map(artist => [hash(artist), artist])
+      : null
   }))
 
   beforeAll(async () => {
@@ -77,39 +83,71 @@ describe('Tracks model', () => {
   })
 
   describe('save', () => {
-    it('adds new track', async () => {
+    it('adds new track with refs', async () => {
+      const path = faker.system.fileName()
+      const album = faker.commerce.productName()
+      const artists = [faker.name.findName(), faker.name.findName()]
+      const track = {
+        id: hash(path),
+        path,
+        media: faker.image.image(),
+        mtimeMs: Date.now(),
+        tags: { album, artists }
+      }
+
+      const [{ current, previous }] = await tracksModel.save(track)
+      expect(current).toEqual({
+        ...track,
+        albumRef: [hash(album), album],
+        artistRefs: artists.map(artist => [hash(artist), artist])
+      })
+      expect(await tracksModel.getById(track.id)).toEqual(current)
+      expect(previous).toBeNull()
+    })
+
+    it('handles missing album or artists', async () => {
       const path = faker.system.fileName()
       const track = {
         id: hash(path),
         path,
         media: faker.image.image(),
         mtimeMs: Date.now(),
-        tags: {
-          album: faker.commerce.productName(),
-          artists: [faker.name.findName(), faker.name.findName()]
-        }
+        tags: {}
       }
 
-      await tracksModel.save(track)
-      expect(await tracksModel.getById(track.id)).toEqual(track)
+      const [{ current, previous }] = await tracksModel.save(track)
+      expect(current).toEqual({
+        ...track,
+        albumRef: null,
+        artistRefs: []
+      })
+      expect(await tracksModel.getById(track.id)).toEqual(current)
+      expect(previous).toBeNull()
     })
 
-    it('returns old tags when saving existing track', async () => {
+    it('returns old refs when saving existing track', async () => {
+      const album = faker.commerce.productName()
+      const artists = [faker.name.findName(), faker.name.findName()]
       const track = {
         ...models[1],
         media: faker.image.image(),
         mtimeMs: Date.now(),
-        tags: {
-          album: faker.commerce.productName(),
-          artists: [faker.name.findName(), faker.name.findName()]
-        }
+        tags: { album, artists }
       }
 
-      const oldTags = await tracksModel.save([track])
-      expect(await tracksModel.getById(track.id)).toEqual(track)
-      expect(oldTags).toEqual([
-        { id: track.id, tags: JSON.parse(models[1].tags) }
-      ])
+      const [{ previous, current }] = await tracksModel.save([track])
+      expect(current).toEqual({
+        ...track,
+        albumRef: [hash(album), album],
+        artistRefs: artists.map(artist => [hash(artist), artist])
+      })
+      expect(await tracksModel.getById(track.id)).toEqual(current)
+      expect(previous).toEqual({
+        id: track.id,
+        tags: JSON.parse(models[1].tags),
+        artistRefs: JSON.parse(models[1].artistRefs),
+        albumRef: JSON.parse(models[1].albumRef)
+      })
     })
   })
 

@@ -1,6 +1,7 @@
 'use strict'
 
 const Model = require('./abstract-model')
+const { hash } = require('../utils')
 
 class TracksModel extends Model {
   constructor() {
@@ -9,9 +10,11 @@ class TracksModel extends Model {
       table.string('path')
       table.string('media')
       table.json('tags')
+      table.json('artistRefs')
+      table.json('albumRef')
       table.float('mtimeMs')
     })
-    this.jsonColumns = ['tags']
+    this.jsonColumns = ['tags', 'artistRefs', 'albumRef']
     this.searchCol = 'title.value'
   }
 
@@ -32,11 +35,23 @@ class TracksModel extends Model {
       data = [data]
     }
     this.logger.debug({ data }, `saving`)
-    const saved = data.map(this.makeSerializer())
+    const serialize = this.makeSerializer()
+    const deserialize = this.makeDeserializer()
+    const saved = data.map(track =>
+      serialize({
+        ...track,
+        albumRef: track.tags.album
+          ? [hash(track.tags.album), track.tags.album]
+          : null,
+        artistRefs: track.tags.artists
+          ? track.tags.artists.map(artist => [hash(artist), artist])
+          : []
+      })
+    )
     const cols = Object.keys(saved[0])
     return this.db.transaction(async trx => {
       const old = await trx(this.name)
-        .select('id', 'tags')
+        .select('id', 'artistRefs', 'albumRef', 'tags')
         .whereIn(
           'id',
           saved.map(({ id }) => id)
@@ -47,7 +62,13 @@ class TracksModel extends Model {
           .join(', ')}`,
         [trx(this.name).insert(saved)]
       )
-      return old.map(this.makeDeserializer())
+      return saved.map(data => {
+        const previous = old.find(({ id }) => id === data.id)
+        return {
+          current: deserialize(data),
+          previous: previous ? deserialize(previous) : null
+        }
+      })
     })
   }
 

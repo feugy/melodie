@@ -90,20 +90,17 @@ describe('Media manager', () => {
     const track1 = {
       id: faker.random.number({ min: 9999 }),
       path: resolve(os.tmpdir(), name, faker.system.fileName()),
-      media: null,
-      tags: {}
+      media: null
     }
     const track2 = {
       id: faker.random.number({ min: 9999 }),
       path: resolve(os.tmpdir(), name, faker.system.fileName()),
-      media: null,
-      tags: {}
+      media: null
     }
     const album = {
       id: faker.random.number({ min: 9999 }),
       name,
       media: null,
-      linked: [],
       trackIds: [track1.id, track2.id]
     }
 
@@ -257,7 +254,6 @@ describe('Media manager', () => {
       id: faker.random.number({ min: 9999 }),
       name: faker.name.findName(),
       media: null,
-      linked: [],
       trackIds: []
     }
 

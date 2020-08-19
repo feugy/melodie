@@ -31,28 +31,34 @@ describe('Abstract track list', () => {
       name: faker.name.findName(),
       media: null,
       trackIds: JSON.stringify([]),
-      linked: JSON.stringify([faker.name.findName()])
+      refs: JSON.stringify([[faker.random.number(), faker.name.findName()]])
     },
     {
       id: faker.random.number(),
       name: faker.name.findName(),
       media: faker.image.image(),
       trackIds: JSON.stringify([faker.random.number()]),
-      linked: JSON.stringify([faker.name.findName(), faker.name.findName()])
+      refs: JSON.stringify([
+        [faker.random.number(), faker.name.findName()],
+        [faker.random.number(), faker.name.findName()]
+      ])
     },
     {
       id: faker.random.number(),
       name: faker.name.findName(),
       media: null,
       trackIds: JSON.stringify([faker.random.number(), faker.random.number()]),
-      linked: JSON.stringify([faker.name.findName(), faker.name.findName()])
+      refs: JSON.stringify([
+        [faker.random.number(), faker.name.findName()],
+        [faker.random.number(), faker.name.findName()]
+      ])
     },
     {
       id: faker.random.number(),
       name: faker.name.findName(),
       media: null,
       trackIds: JSON.stringify([]),
-      linked: JSON.stringify([])
+      refs: JSON.stringify([])
     }
   ]
 
@@ -87,7 +93,7 @@ describe('Abstract track list', () => {
         id: faker.random.number(),
         name: faker.name.findName(),
         trackIds: [faker.random.number()],
-        linked: [faker.name.findName()]
+        refs: [[faker.random.number(), faker.name.findName()]]
       }
 
       const { saved, removedIds } = await tested.save(model)
@@ -100,7 +106,7 @@ describe('Abstract track list', () => {
         {
           ...savedModel,
           trackIds: JSON.stringify(savedModel.trackIds),
-          linked: JSON.stringify(savedModel.linked)
+          refs: JSON.stringify(savedModel.refs)
         }
       ])
     })
@@ -111,13 +117,13 @@ describe('Abstract track list', () => {
           id: faker.random.number(),
           name: faker.name.findName(),
           trackIds: [faker.random.number()],
-          linked: [faker.name.findName()]
+          refs: [[faker.random.number(), faker.name.findName()]]
         },
         {
           id: faker.random.number(),
           name: faker.name.findName(),
           trackIds: [faker.random.number()],
-          linked: [faker.name.findName()]
+          refs: [[faker.random.number(), faker.name.findName()]]
         }
       ]
 
@@ -140,14 +146,14 @@ describe('Abstract track list', () => {
         {
           ...savedModels[0],
           trackIds: JSON.stringify(savedModels[0].trackIds),
-          linked: JSON.stringify(savedModels[0].linked)
+          refs: JSON.stringify(savedModels[0].refs)
         }
       ])
       expect(await db(modelName).where({ id: models[1].id })).toEqual([
         {
           ...savedModels[1],
           trackIds: JSON.stringify(savedModels[1].trackIds),
-          linked: JSON.stringify(savedModels[1].linked)
+          refs: JSON.stringify(savedModels[1].refs)
         }
       ])
     })
@@ -159,13 +165,14 @@ describe('Abstract track list', () => {
           name: models[0].name,
           media: faker.image.image(),
           trackIds: [faker.random.number()],
-          linked: [faker.name.findName()]
+          refs: [[faker.random.number(), faker.name.findName()]]
         },
         {
           id: models[1].id,
           name: models[1].name,
           removedTrackIds: [faker.random.number()],
-          removedLinked: [faker.name.findName()]
+          // TODO ids only?
+          removedRefs: [[faker.random.number(), faker.name.findName()]]
         }
       ]
 
@@ -177,12 +184,12 @@ describe('Abstract track list', () => {
           trackIds: JSON.parse(models[0].trackIds).concat(
             originals[0].trackIds
           ),
-          linked: JSON.parse(models[0].linked).concat(originals[0].linked)
+          refs: JSON.parse(models[0].refs).concat(originals[0].refs)
         },
         {
           ...models[1],
           trackIds: JSON.parse(models[1].trackIds),
-          linked: JSON.parse(models[1].linked)
+          refs: JSON.parse(models[1].refs)
         }
       ]
 
@@ -192,29 +199,32 @@ describe('Abstract track list', () => {
         {
           ...savedModels[0],
           trackIds: JSON.stringify(savedModels[0].trackIds),
-          linked: JSON.stringify(savedModels[0].linked)
+          refs: JSON.stringify(savedModels[0].refs)
         }
       ])
       expect(await db(modelName).where({ id: models[1].id })).toEqual([
         {
           ...savedModels[1],
           trackIds: JSON.stringify(savedModels[1].trackIds),
-          linked: JSON.stringify(savedModels[1].linked)
+          refs: JSON.stringify(savedModels[1].refs)
         }
       ])
     })
 
-    it('updates existing model and appends track ids and linked', async () => {
+    it('updates existing model and appends track ids and refs', async () => {
       const model = merge(models[1], {})
       model.trackIds = [faker.random.number(), faker.random.number()]
-      model.linked = [faker.name.findName(), faker.name.findName()]
+      model.refs = [
+        [faker.random.number(), faker.name.findName()],
+        [faker.random.number(), faker.name.findName()]
+      ]
 
       const { saved, removedIds } = await tested.save(model)
 
       const savedModel = {
         ...model,
         trackIds: JSON.parse(models[1].trackIds).concat(model.trackIds),
-        linked: JSON.parse(models[1].linked).concat(model.linked)
+        refs: JSON.parse(models[1].refs).concat(model.refs)
       }
 
       expect(saved).toEqual([savedModel])
@@ -223,26 +233,27 @@ describe('Abstract track list', () => {
         {
           ...savedModel,
           trackIds: JSON.stringify(savedModel.trackIds),
-          linked: JSON.stringify(savedModel.linked)
+          refs: JSON.stringify(savedModel.refs)
         }
       ])
     })
 
-    it('updates existing model and removes track ids and linked', async () => {
+    it('updates existing model and removes track ids and refs', async () => {
       const model = merge(models[2], {})
       model.removedTrackIds = JSON.parse(model.trackIds).slice(1, 2)
       model.trackIds = [faker.random.number()]
-      model.removedLinked = JSON.parse(model.linked).slice(1, 2)
-      model.linked = [faker.name.findName()]
+      // TODO ids only?
+      model.removedRefs = JSON.parse(model.refs).slice(1, 2)
+      model.refs = [[faker.random.number(), faker.name.findName()]]
 
       const { saved, removedIds } = await tested.save(model)
 
       const savedModel = {
         ...model,
         removedTrackIds: undefined,
-        removedLinked: undefined,
+        removedRefs: undefined,
         trackIds: [JSON.parse(models[2].trackIds)[0], model.trackIds[0]],
-        linked: [JSON.parse(models[2].linked)[0], model.linked[0]]
+        refs: [JSON.parse(models[2].refs)[0], model.refs[0]]
       }
 
       expect(saved).toEqual([savedModel])
@@ -251,7 +262,7 @@ describe('Abstract track list', () => {
         {
           ...savedModel,
           trackIds: JSON.stringify(savedModel.trackIds),
-          linked: JSON.stringify(savedModel.linked)
+          refs: JSON.stringify(savedModel.refs)
         }
       ])
     })
@@ -260,7 +271,7 @@ describe('Abstract track list', () => {
       const model = {
         ...models[2],
         trackIds: JSON.parse(models[2].trackIds),
-        linked: JSON.parse(models[2].linked)
+        refs: JSON.parse(models[2].refs)
       }
 
       const { saved, removedIds } = await tested.save(model)
@@ -271,7 +282,7 @@ describe('Abstract track list', () => {
         {
           ...model,
           trackIds: JSON.stringify(model.trackIds),
-          linked: JSON.stringify(model.linked)
+          refs: JSON.stringify(model.refs)
         }
       ])
     })

@@ -138,7 +138,13 @@ module.exports = class AbstractModel {
   makeDeserializer() {
     return data => {
       for (const column of this.jsonColumns) {
-        data[column] = JSON.parse(data[column])
+        try {
+          data[column] = JSON.parse(data[column])
+        } catch (err) {
+          throw new Error(
+            `failed to deserialize value "${data[column]}" for col ${column}: ${err.message}`
+          )
+        }
       }
       return data
     }
