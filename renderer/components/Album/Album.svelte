@@ -68,10 +68,10 @@
   </div>
   <header>
     <h3>{src.name}</h3>
-    {#if src.linked.length}
+    {#if src.refs.length}
       <h4>
         {@html $_('by _', {
-          artist: wrapWithLinks('artist', src.linked).join(', ')
+          artist: wrapWithLinks('artist', src.refs).join(', ')
         })}
       </h4>
     {/if}

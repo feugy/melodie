@@ -6,7 +6,6 @@ import {
   hrefSinkDecorator,
   ipcRendererMock
 } from '../../../.storybook/decorators'
-import { hash } from '../../utils'
 
 export default {
   title: 'Components/Artist',
@@ -18,9 +17,12 @@ export default {
 }
 
 export const artistData = {
-  id: hash('Foo Fighters'),
+  id: 1,
   name: 'Foo Fighters',
-  linked: ['Concrete And Gold', 'Sonic Highways'],
+  refs: [
+    [1, 'Concrete And Gold'],
+    [2, 'Sonic Highways']
+  ],
   media: './avatar.jpg'
 }
 
@@ -36,7 +38,7 @@ export const NoAlbums = () => ({
   props: {
     src: {
       ...artistData,
-      linked: []
+      refs: []
     }
   }
 })

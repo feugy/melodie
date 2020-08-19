@@ -1,12 +1,12 @@
 <script>
   import { _ } from 'svelte-intl'
   import Image from '../Image/Image.svelte'
-  import { formatTime, linkTo } from '../../utils'
+  import { formatTime, linkTo, wrapWithLink } from '../../utils'
 
   export let src
   export let details = false
   $: tags = (src && src.tags) || {}
-  $: artist = tags.artists && tags.artists[0]
+  $: artistRef = src && src.artistRefs[0]
 </script>
 
 <style type="postcss">
@@ -23,10 +23,6 @@
     @apply text-lg;
   }
 
-  .artist {
-    @apply text-sm;
-  }
-
   .duration {
     @apply text-lg;
   }
@@ -35,20 +31,13 @@
 <div class={`${$$props.class} root`} on:click>
   <a
     on:click|stopPropagation
-    href={linkTo('album', tags.album)}
+    href={linkTo('album', src.albumRef)}
     class="flex-none">
     <Image class="h-16 w-16 text-xs" src={src && src.media} />
   </a>
   <div class="track">
     <span class="title">{tags.title}</span>
-    {#if artist}
-      <a
-        on:click|stopPropagation
-        href={linkTo('artist', artist)}
-        class="artist underlined">
-        {artist}
-      </a>
-    {/if}
+    {@html wrapWithLink('artist', artistRef, 'text-sm')}
   </div>
   {#if details}
     <div class="duration">{formatTime(tags.duration)}</div>

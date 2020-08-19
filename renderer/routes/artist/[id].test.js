@@ -13,7 +13,6 @@ import {
   load
 } from '../../stores/artists'
 import { add } from '../../stores/track-queue'
-import { hash } from '../../utils'
 import { translate, sleep } from '../../tests'
 
 jest.mock('svelte-spa-router')
@@ -37,23 +36,31 @@ jest.mock('../../stores/artists', () => {
 
 describe('artist details route', () => {
   const album1 = {
+    id: faker.random.number(),
     name: faker.commerce.productName(),
     media: faker.image.avatar()
   }
   const album2 = {
+    id: faker.random.number(),
     name: faker.commerce.productName(),
     media: faker.image.avatar()
   }
   const album3 = {
+    id: faker.random.number(),
     name: faker.commerce.productName(),
     media: faker.image.avatar()
   }
   const artistName = faker.name.findName()
+  const id = faker.random.number()
+  const artistRefs = [[id, artistName]]
 
   const artist = {
-    id: faker.random.number(),
+    id,
     name: artistName,
-    linked: [album1.name, album2.name],
+    refs: [
+      [album1.id, album1.name],
+      [album2.id, album2.name]
+    ],
     media: faker.image.avatar(),
     tracks: [
       {
@@ -64,7 +71,9 @@ describe('artist details route', () => {
           artists: [artistName],
           album: album1.name,
           duration: 265
-        }
+        },
+        albumRef: [album1.id, album1.name],
+        artistRefs
       },
       {
         id: faker.random.uuid(),
@@ -74,7 +83,9 @@ describe('artist details route', () => {
           artists: [artistName],
           album: album1.name,
           duration: 270
-        }
+        },
+        albumRef: [album1.id, album1.name],
+        artistRefs
       },
       {
         id: faker.random.uuid(),
@@ -84,7 +95,9 @@ describe('artist details route', () => {
           artists: [artistName],
           album: album2.name,
           duration: 281
-        }
+        },
+        albumRef: [album2.id, album2.name],
+        artistRefs
       }
     ]
   }
@@ -133,6 +146,8 @@ describe('artist details route', () => {
       expect(load).toHaveBeenCalledWith(artist.id)
     })
 
+    it.todo('handles tracks without albums')
+
     it('enqueues all tracks', async () => {
       await fireEvent.click(screen.getByText(translate('enqueue all')))
 
@@ -152,7 +167,7 @@ describe('artist details route', () => {
       await sleep(250)
 
       expect(add).not.toHaveBeenCalled()
-      expect(location.hash).toEqual(`#/album/${hash(album2.name)}`)
+      expect(location.hash).toEqual(`#/album/${album2.id}`)
     })
 
     it('updates on artist change', async () => {
@@ -172,7 +187,9 @@ describe('artist details route', () => {
               artists: [artistName],
               album: album3.name,
               duration: 354
-            }
+            },
+            albumRef: [album3.id, album3.name],
+            artistRefs
           }
         ]
       })

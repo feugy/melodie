@@ -2,7 +2,6 @@
 
 export * from './channel'
 export * from './clicks'
-export * from './hash'
 export * from './invoke'
 export * from './links'
 export * from './list-store-factory'

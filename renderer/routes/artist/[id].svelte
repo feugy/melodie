@@ -14,7 +14,6 @@
   } from '../../components'
   import { artists, load, changes, removals } from '../../stores/artists'
   import { add } from '../../stores/track-queue'
-  import { hash } from '../../utils'
 
   export let params
   let albums = []
@@ -58,20 +57,25 @@
     for (const track of artist.tracks) {
       const {
         media,
-        tags: { album, year }
+        tags: { year },
+        albumRef
       } = track
-      let id = hash(album)
-      if (!map.has(id)) {
-        map.set(id, {
-          id,
-          name: album,
-          media,
-          linked: [],
-          year: year || -Infinity,
-          tracks: []
-        })
+
+      if (albumRef) {
+        const [id, album] = albumRef
+        if (!map.has(id)) {
+          map.set(id, {
+            id,
+            name: album,
+            media,
+            refs: [],
+            year: year || -Infinity,
+            tracks: []
+          })
+        }
+        map.get(id).tracks.push(track)
       }
-      map.get(id).tracks.push(track)
+      // TODO tracks without albums
     }
     return Array.from(map.values()).sort((a, b) => a.year - b.year)
   }

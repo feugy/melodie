@@ -6,7 +6,7 @@ import { BehaviorSubject } from 'rxjs'
 import faker from 'faker'
 import albumRoute from './album.svelte'
 import { albums as mockedAlbums, list } from '../stores/albums'
-import { translate } from '../tests'
+import { translate, makeRef } from '../tests'
 
 jest.mock('svelte-spa-router')
 jest.mock('../stores/track-queue')
@@ -28,13 +28,13 @@ describe('album route', () => {
         id: faker.random.uuid(),
         name: faker.commerce.productName(),
         media: faker.image.avatar(),
-        linked: [faker.name.findName(), faker.name.findName()]
+        refs: [faker.name.findName(), faker.name.findName()].map(makeRef)
       },
       {
         id: faker.random.uuid(),
         name: faker.commerce.productName(),
         media: faker.image.avatar(),
-        linked: [faker.name.findName()]
+        refs: [makeRef(faker.name.findName())]
       }
     )
     const store = new BehaviorSubject(albums)

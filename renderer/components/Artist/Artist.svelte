@@ -67,10 +67,10 @@
   </div>
   <header>
     <h3>{src.name}</h3>
-    {#if src.linked.length}
+    {#if src.refs.length}
       <h4>
-        {$_(src.linked.length === 1 ? 'an album' : '_ albums', {
-          total: src.linked.length
+        {$_(src.refs.length === 1 ? 'an album' : '_ albums', {
+          total: src.refs.length
         })}
       </h4>
     {/if}

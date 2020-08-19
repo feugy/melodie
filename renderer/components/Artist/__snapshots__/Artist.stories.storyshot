@@ -7,7 +7,7 @@ exports[`Storyshots Components/Artist Default 1`] = `
   <div>
     <a
       class=" svelte-fh6j1p"
-      href="#/artist/1213718636"
+      href="#/artist/1"
     >
       <div
         class="content svelte-fh6j1p"
@@ -75,7 +75,7 @@ exports[`Storyshots Components/Artist No Albums 1`] = `
   <div>
     <a
       class=" svelte-fh6j1p"
-      href="#/artist/1213718636"
+      href="#/artist/1"
     >
       <div
         class="content svelte-fh6j1p"

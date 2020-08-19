@@ -6,7 +6,6 @@ import {
   hrefSinkDecorator,
   ipcRendererMock
 } from '../../../.storybook/decorators'
-import { hash } from '../../utils'
 
 export default {
   title: 'Components/Album',
@@ -18,16 +17,24 @@ export default {
 }
 
 export const albumData = {
-  id: hash('Diamonds on the inside'),
+  id: 1,
   name: 'Diamonds on the inside',
-  linked: ['Ben Harper', 'The Innocent Criminals'],
+  refs: [
+    [1, 'Ben Harper'],
+    [2, 'The Innocent Criminals']
+  ],
   media: './cover.jpg'
 }
 
 export const manyArtistsData = {
-  id: hash('Diamonds on the inside'),
+  id: 2,
   name: 'Diamonds on the inside',
-  linked: ['Muse', 'Perl Jam', 'Joe Satriani', 'Avenged Sevenfold'],
+  refs: [
+    [3, 'Muse'],
+    [4, 'Perl Jam'],
+    [4, 'Joe Satriani'],
+    [6, 'Avenged Sevenfold']
+  ],
   media: './cover.jpg'
 }
 
@@ -50,7 +57,7 @@ export const NoArtist = () => ({
   props: {
     src: {
       ...albumData,
-      linked: []
+      refs: []
     }
   }
 })

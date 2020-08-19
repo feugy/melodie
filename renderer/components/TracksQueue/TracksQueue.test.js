@@ -7,27 +7,28 @@ import html from 'svelte-htm'
 import faker from 'faker'
 import TracksQueue from './TracksQueue.svelte'
 import { add, clear, index, current } from '../../stores/track-queue'
+import { addRefs } from '../../tests'
 
 describe('TracksQueue component', () => {
   beforeEach(() => clear())
 
   it('allows duplicated tracks', async () => {
-    const track1 = {
+    const track1 = addRefs({
       id: 1,
       tags: {
         title: faker.commerce.productName(),
         artists: [faker.name.findName()]
       },
       media: faker.system.fileName()
-    }
-    const track2 = {
+    })
+    const track2 = addRefs({
       id: 2,
       tags: {
         title: faker.commerce.productName(),
         artists: [faker.name.findName()]
       },
       media: faker.system.fileName()
-    }
+    })
     add([track1, track2, track1])
 
     render(html`<${TracksQueue} />`)
@@ -37,30 +38,30 @@ describe('TracksQueue component', () => {
   })
 
   it('jumps to track on click', async () => {
-    const track1 = {
+    const track1 = addRefs({
       id: 1,
       tags: {
         title: faker.commerce.productName(),
         artists: [faker.name.findName()]
       },
       media: faker.system.fileName()
-    }
-    const track2 = {
+    })
+    const track2 = addRefs({
       id: 2,
       tags: {
         title: faker.commerce.productName(),
         artists: [faker.name.findName()]
       },
       media: faker.system.fileName()
-    }
-    const track3 = {
-      id: 2,
+    })
+    const track3 = addRefs({
+      id: 3,
       tags: {
         title: faker.commerce.productName(),
         artists: [faker.name.findName()]
       },
       media: faker.system.fileName()
-    }
+    })
     add([track1, track2, track3])
 
     render(html`<${TracksQueue} />`)
@@ -79,22 +80,22 @@ describe('TracksQueue component', () => {
   })
 
   it('clears tracks queue', async () => {
-    const track1 = {
+    const track1 = addRefs({
       id: 1,
       tags: {
         title: faker.commerce.productName(),
         artists: [faker.name.findName()]
       },
       media: faker.system.fileName()
-    }
-    const track2 = {
+    })
+    const track2 = addRefs({
       id: 2,
       tags: {
         title: faker.commerce.productName(),
         artists: [faker.name.findName()]
       },
       media: faker.system.fileName()
-    }
+    })
     add([track1, track2])
 
     render(html`<${TracksQueue} />`)
@@ -113,22 +114,22 @@ describe('TracksQueue component', () => {
   })
 
   it('removes track on button click', async () => {
-    const track1 = {
+    const track1 = addRefs({
       id: 1,
       tags: {
         title: faker.commerce.productName(),
         artists: [faker.name.findName()]
       },
       media: faker.system.fileName()
-    }
-    const track2 = {
+    })
+    const track2 = addRefs({
       id: 2,
       tags: {
         title: faker.commerce.productName(),
         artists: [faker.name.findName()]
       },
       media: faker.system.fileName()
-    }
+    })
     add([track1, track2])
 
     render(html`<${TracksQueue} />`)

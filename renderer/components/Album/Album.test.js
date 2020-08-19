@@ -5,7 +5,6 @@ import html from 'svelte-htm'
 import faker from 'faker'
 import Album from './Album.svelte'
 import { albumData } from './Album.stories'
-import { hash } from '../../utils'
 import { sleep } from '../../tests'
 import { load } from '../../stores/albums'
 import { add } from '../../stores/track-queue'
@@ -84,12 +83,12 @@ describe('Album component', () => {
   })
 
   it('has links to artists', async () => {
-    const artist = albumData.linked[0]
+    const [id, name] = albumData.refs[0]
     render(html`<${Album} src=${albumData} />`)
 
-    fireEvent.click(screen.getByText(artist))
+    fireEvent.click(screen.getByText(name))
     await sleep()
 
-    expect(location.hash).toEqual(`#/artist/${hash(artist)}`)
+    expect(location.hash).toEqual(`#/artist/${id}`)
   })
 })

@@ -13,8 +13,7 @@ import {
   load
 } from '../../stores/albums'
 import { add } from '../../stores/track-queue'
-import { translate, sleep } from '../../tests'
-import { hash } from '../../utils'
+import { translate, sleep, addRefs } from '../../tests'
 
 jest.mock('svelte-spa-router')
 jest.mock('../../stores/track-queue', () => ({
@@ -39,7 +38,10 @@ describe('album details route', () => {
   const album = {
     id: faker.random.number(),
     name: faker.commerce.productName(),
-    linked: [faker.name.findName(), faker.name.findName()],
+    refs: [
+      [faker.random.number(), faker.name.findName()],
+      [faker.random.number(), faker.name.findName()]
+    ],
     media: faker.image.avatar(),
     tracks: [
       {
@@ -69,7 +71,7 @@ describe('album details route', () => {
           duration: 281
         }
       }
-    ]
+    ].map(addRefs)
   }
 
   function expectDisplayedTracks() {
@@ -115,8 +117,8 @@ describe('album details route', () => {
         )
       ).toBeDefined()
 
-      expect(screen.queryByText(album.linked[0])).toBeInTheDocument()
-      expect(screen.queryByText(album.linked[1])).toBeInTheDocument()
+      expect(screen.queryByText(album.refs[0][1])).toBeInTheDocument()
+      expect(screen.queryByText(album.refs[1][1])).toBeInTheDocument()
 
       expect(
         screen.queryByText(translate('total duration _', { total: '13:36' }))
@@ -126,13 +128,13 @@ describe('album details route', () => {
     })
 
     it('has links to artists', async () => {
-      const artist = faker.random.arrayElement(album.linked)
+      const [id, artist] = faker.random.arrayElement(album.refs)
       // first occurence is in album header, then we have tracks
       fireEvent.click(screen.getAllByText(artist)[0])
       await sleep()
 
       expect(add).not.toHaveBeenCalled()
-      expect(location.hash).toEqual(`#/artist/${hash(artist)}`)
+      expect(location.hash).toEqual(`#/artist/${id}`)
     })
 
     it('loads tracks and display them', async () => {

@@ -101,7 +101,7 @@
       <div>
         <h3>
           {@html $_('by _', {
-            artist: wrapWithLinks('artist', album.linked).join(', ')
+            artist: wrapWithLinks('artist', album.refs).join(', ')
           })}
         </h3>
         <span class="totalDuration">

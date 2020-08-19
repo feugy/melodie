@@ -6,11 +6,11 @@ exports[`Storyshots Components/Track Default 1`] = `
 >
   <div>
     <div
-      class="undefined root svelte-11ci2py"
+      class="undefined root svelte-whrgz7"
     >
       <a
         class="flex-none"
-        href="#/album/3879801547"
+        href="#/album/1"
       >
         <img
           alt="./cover.jpg"
@@ -23,17 +23,18 @@ exports[`Storyshots Components/Track Default 1`] = `
       </a>
        
       <div
-        class="track svelte-11ci2py"
+        class="track svelte-whrgz7"
       >
         <span
-          class="title svelte-11ci2py"
+          class="title svelte-whrgz7"
         >
           Mama got a girlfriend
         </span>
          
         <a
-          class="artist underlined svelte-11ci2py"
-          href="#/artist/756100103"
+          class="text-sm underlined"
+          href="#/artist/0"
+          onclick="event.stopPropagation()"
         >
           Ben Harper
         </a>
@@ -50,11 +51,11 @@ exports[`Storyshots Components/Track With Details 1`] = `
 >
   <div>
     <div
-      class="undefined root svelte-11ci2py"
+      class="undefined root svelte-whrgz7"
     >
       <a
         class="flex-none"
-        href="#/album/3879801547"
+        href="#/album/1"
       >
         <img
           alt="./cover.jpg"
@@ -67,24 +68,25 @@ exports[`Storyshots Components/Track With Details 1`] = `
       </a>
        
       <div
-        class="track svelte-11ci2py"
+        class="track svelte-whrgz7"
       >
         <span
-          class="title svelte-11ci2py"
+          class="title svelte-whrgz7"
         >
           Mama got a girlfriend
         </span>
          
         <a
-          class="artist underlined svelte-11ci2py"
-          href="#/artist/756100103"
+          class="text-sm underlined"
+          href="#/artist/0"
+          onclick="event.stopPropagation()"
         >
           Ben Harper
         </a>
       </div>
        
       <div
-        class="duration svelte-11ci2py"
+        class="duration svelte-whrgz7"
       >
         2:06
       </div>

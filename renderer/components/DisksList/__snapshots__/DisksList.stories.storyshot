@@ -88,7 +88,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           >
             <a
               class=" underlined"
-              href="#/artist/1133576006"
+              href="#/artist/0"
               onclick="event.stopPropagation()"
             >
               Yoko Kanno and the Seatbelts
@@ -100,7 +100,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           >
             <a
               class=" underlined"
-              href="#/album/2219708843"
+              href="#/album/1"
               onclick="event.stopPropagation()"
             >
               Cowboy Bebop - NoDisc
@@ -153,7 +153,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           >
             <a
               class=" underlined"
-              href="#/artist/1133576006"
+              href="#/artist/0"
               onclick="event.stopPropagation()"
             >
               Yoko Kanno and the Seatbelts
@@ -165,7 +165,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           >
             <a
               class=" underlined"
-              href="#/album/2219708843"
+              href="#/album/1"
               onclick="event.stopPropagation()"
             >
               Cowboy Bebop - NoDisc
@@ -270,7 +270,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           >
             <a
               class=" underlined"
-              href="#/artist/1133576006"
+              href="#/artist/0"
               onclick="event.stopPropagation()"
             >
               Yoko Kanno and the Seatbelts
@@ -282,7 +282,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           >
             <a
               class=" underlined"
-              href="#/album/2219708843"
+              href="#/album/1"
               onclick="event.stopPropagation()"
             >
               Cowboy Bebop - NoDisc
@@ -335,7 +335,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           >
             <a
               class=" underlined"
-              href="#/artist/1133576006"
+              href="#/artist/0"
               onclick="event.stopPropagation()"
             >
               Yoko Kanno and the Seatbelts
@@ -347,7 +347,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           >
             <a
               class=" underlined"
-              href="#/album/2219708843"
+              href="#/album/1"
               onclick="event.stopPropagation()"
             >
               Cowboy Bebop - NoDisc
@@ -400,7 +400,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           >
             <a
               class=" underlined"
-              href="#/artist/1133576006"
+              href="#/artist/0"
               onclick="event.stopPropagation()"
             >
               Yoko Kanno and the Seatbelts
@@ -412,7 +412,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           >
             <a
               class=" underlined"
-              href="#/album/2219708843"
+              href="#/album/1"
               onclick="event.stopPropagation()"
             >
               Cowboy Bebop - NoDisc
@@ -465,7 +465,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           >
             <a
               class=" underlined"
-              href="#/artist/1133576006"
+              href="#/artist/0"
               onclick="event.stopPropagation()"
             >
               Yoko Kanno and the Seatbelts
@@ -477,7 +477,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           >
             <a
               class=" underlined"
-              href="#/album/2219708843"
+              href="#/album/1"
               onclick="event.stopPropagation()"
             >
               Cowboy Bebop - NoDisc
@@ -530,7 +530,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           >
             <a
               class=" underlined"
-              href="#/artist/1133576006"
+              href="#/artist/0"
               onclick="event.stopPropagation()"
             >
               Yoko Kanno and the Seatbelts
@@ -542,7 +542,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           >
             <a
               class=" underlined"
-              href="#/album/2219708843"
+              href="#/album/1"
               onclick="event.stopPropagation()"
             >
               Cowboy Bebop - NoDisc
@@ -595,7 +595,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           >
             <a
               class=" underlined"
-              href="#/artist/1133576006"
+              href="#/artist/0"
               onclick="event.stopPropagation()"
             >
               Yoko Kanno and the Seatbelts
@@ -607,7 +607,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           >
             <a
               class=" underlined"
-              href="#/album/2219708843"
+              href="#/album/1"
               onclick="event.stopPropagation()"
             >
               Cowboy Bebop - NoDisc
@@ -660,7 +660,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           >
             <a
               class=" underlined"
-              href="#/artist/1133576006"
+              href="#/artist/0"
               onclick="event.stopPropagation()"
             >
               Yoko Kanno and the Seatbelts
@@ -672,7 +672,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           >
             <a
               class=" underlined"
-              href="#/album/2219708843"
+              href="#/album/1"
               onclick="event.stopPropagation()"
             >
               Cowboy Bebop - NoDisc
@@ -725,7 +725,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           >
             <a
               class=" underlined"
-              href="#/artist/1133576006"
+              href="#/artist/0"
               onclick="event.stopPropagation()"
             >
               Yoko Kanno and the Seatbelts
@@ -737,7 +737,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           >
             <a
               class=" underlined"
-              href="#/album/2219708843"
+              href="#/album/1"
               onclick="event.stopPropagation()"
             >
               Cowboy Bebop - NoDisc
@@ -842,7 +842,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           >
             <a
               class=" underlined"
-              href="#/artist/1133576006"
+              href="#/artist/0"
               onclick="event.stopPropagation()"
             >
               Yoko Kanno and the Seatbelts
@@ -854,7 +854,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           >
             <a
               class=" underlined"
-              href="#/album/2219708843"
+              href="#/album/1"
               onclick="event.stopPropagation()"
             >
               Cowboy Bebop - NoDisc
@@ -907,7 +907,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           >
             <a
               class=" underlined"
-              href="#/artist/1133576006"
+              href="#/artist/0"
               onclick="event.stopPropagation()"
             >
               Yoko Kanno and the Seatbelts
@@ -919,7 +919,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           >
             <a
               class=" underlined"
-              href="#/album/2219708843"
+              href="#/album/1"
               onclick="event.stopPropagation()"
             >
               Cowboy Bebop - NoDisc
@@ -972,7 +972,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           >
             <a
               class=" underlined"
-              href="#/artist/1133576006"
+              href="#/artist/0"
               onclick="event.stopPropagation()"
             >
               Yoko Kanno and the Seatbelts
@@ -984,7 +984,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           >
             <a
               class=" underlined"
-              href="#/album/2219708843"
+              href="#/album/1"
               onclick="event.stopPropagation()"
             >
               Cowboy Bebop - NoDisc
@@ -1037,7 +1037,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           >
             <a
               class=" underlined"
-              href="#/artist/1133576006"
+              href="#/artist/0"
               onclick="event.stopPropagation()"
             >
               Yoko Kanno and the Seatbelts
@@ -1049,7 +1049,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           >
             <a
               class=" underlined"
-              href="#/album/2219708843"
+              href="#/album/1"
               onclick="event.stopPropagation()"
             >
               Cowboy Bebop - NoDisc
@@ -1102,7 +1102,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           >
             <a
               class=" underlined"
-              href="#/artist/1133576006"
+              href="#/artist/0"
               onclick="event.stopPropagation()"
             >
               Yoko Kanno and the Seatbelts
@@ -1114,7 +1114,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           >
             <a
               class=" underlined"
-              href="#/album/2219708843"
+              href="#/album/1"
               onclick="event.stopPropagation()"
             >
               Cowboy Bebop - NoDisc
@@ -1167,7 +1167,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           >
             <a
               class=" underlined"
-              href="#/artist/1133576006"
+              href="#/artist/0"
               onclick="event.stopPropagation()"
             >
               Yoko Kanno and the Seatbelts
@@ -1179,7 +1179,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           >
             <a
               class=" underlined"
-              href="#/album/2219708843"
+              href="#/album/1"
               onclick="event.stopPropagation()"
             >
               Cowboy Bebop - NoDisc
@@ -1232,7 +1232,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           >
             <a
               class=" underlined"
-              href="#/artist/1133576006"
+              href="#/artist/0"
               onclick="event.stopPropagation()"
             >
               Yoko Kanno and the Seatbelts
@@ -1244,7 +1244,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           >
             <a
               class=" underlined"
-              href="#/album/2219708843"
+              href="#/album/1"
               onclick="event.stopPropagation()"
             >
               Cowboy Bebop - NoDisc
@@ -1297,7 +1297,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           >
             <a
               class=" underlined"
-              href="#/artist/1133576006"
+              href="#/artist/0"
               onclick="event.stopPropagation()"
             >
               Yoko Kanno and the Seatbelts
@@ -1309,7 +1309,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           >
             <a
               class=" underlined"
-              href="#/album/2219708843"
+              href="#/album/1"
               onclick="event.stopPropagation()"
             >
               Cowboy Bebop - NoDisc

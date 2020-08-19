@@ -101,11 +101,11 @@
           </td>
           <td>{track.tags.title}</td>
           <td>
-            {@html wrapWithLink('artist', track.tags.artists[0])}
+            {@html wrapWithLink('artist', track.artistRefs[0])}
           </td>
           {#if withAlbum}
             <td>
-              {@html wrapWithLink('album', track.tags.album)}
+              {@html wrapWithLink('album', track.albumRef)}
             </td>
           {/if}
           <td>{formatTime(track.tags.duration)}</td>

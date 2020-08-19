@@ -80,11 +80,11 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
         class="svelte-1sp1d0t current"
       >
         <div
-          class="flex-auto root svelte-11ci2py"
+          class="flex-auto root svelte-whrgz7"
         >
           <a
             class="flex-none"
-            href="#/album/0"
+            href="#/album/1"
           >
             <img
               alt="./# Films/cover.jpg"
@@ -97,24 +97,25 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
           </a>
            
           <div
-            class="track svelte-11ci2py"
+            class="track svelte-whrgz7"
           >
             <span
-              class="title svelte-11ci2py"
+              class="title svelte-whrgz7"
             >
               file 1
             </span>
              
             <a
-              class="artist underlined svelte-11ci2py"
-              href="#/artist/4090049524"
+              class="text-sm underlined"
+              href="#/artist/0"
+              onclick="event.stopPropagation()"
             >
               Someone
             </a>
           </div>
            
           <div
-            class="duration svelte-11ci2py"
+            class="duration svelte-whrgz7"
           >
             3:38
           </div>
@@ -136,11 +137,11 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
         class="svelte-1sp1d0t"
       >
         <div
-          class="flex-auto root svelte-11ci2py"
+          class="flex-auto root svelte-whrgz7"
         >
           <a
             class="flex-none"
-            href="#/album/0"
+            href="#/album/1"
           >
             <img
               alt="./# Films/cover.jpg"
@@ -153,24 +154,25 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
           </a>
            
           <div
-            class="track svelte-11ci2py"
+            class="track svelte-whrgz7"
           >
             <span
-              class="title svelte-11ci2py"
+              class="title svelte-whrgz7"
             >
               file 2
             </span>
              
             <a
-              class="artist underlined svelte-11ci2py"
-              href="#/artist/4090049524"
+              class="text-sm underlined"
+              href="#/artist/0"
+              onclick="event.stopPropagation()"
             >
               Someone
             </a>
           </div>
            
           <div
-            class="duration svelte-11ci2py"
+            class="duration svelte-whrgz7"
           >
             0:04
           </div>
@@ -192,11 +194,11 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
         class="svelte-1sp1d0t"
       >
         <div
-          class="flex-auto root svelte-11ci2py"
+          class="flex-auto root svelte-whrgz7"
         >
           <a
             class="flex-none"
-            href="#/album/0"
+            href="#/album/1"
           >
             <img
               alt="./cover.jpg"
@@ -209,24 +211,25 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
           </a>
            
           <div
-            class="track svelte-11ci2py"
+            class="track svelte-whrgz7"
           >
             <span
-              class="title svelte-11ci2py"
+              class="title svelte-whrgz7"
             >
               file 3
             </span>
              
             <a
-              class="artist underlined svelte-11ci2py"
-              href="#/artist/3523543460"
+              class="text-sm underlined"
+              href="#/artist/1"
+              onclick="event.stopPropagation()"
             >
               Someone else
             </a>
           </div>
            
           <div
-            class="duration svelte-11ci2py"
+            class="duration svelte-whrgz7"
           >
             0:02
           </div>
@@ -248,11 +251,11 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
         class="svelte-1sp1d0t"
       >
         <div
-          class="flex-auto root svelte-11ci2py"
+          class="flex-auto root svelte-whrgz7"
         >
           <a
             class="flex-none"
-            href="#/album/0"
+            href="#/album/1"
           >
             <img
               alt="./cover.jpg"
@@ -265,24 +268,25 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
           </a>
            
           <div
-            class="track svelte-11ci2py"
+            class="track svelte-whrgz7"
           >
             <span
-              class="title svelte-11ci2py"
+              class="title svelte-whrgz7"
             >
               file 4
             </span>
              
             <a
-              class="artist underlined svelte-11ci2py"
-              href="#/artist/2780707440"
+              class="text-sm underlined"
+              href="#/artist/2"
+              onclick="event.stopPropagation()"
             >
               Another fellow
             </a>
           </div>
            
           <div
-            class="duration svelte-11ci2py"
+            class="duration svelte-whrgz7"
           >
             0:03
           </div>

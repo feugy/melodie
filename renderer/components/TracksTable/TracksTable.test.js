@@ -5,7 +5,6 @@ import html from 'svelte-htm'
 import faker from 'faker'
 import TracksTable from './TracksTable.svelte'
 import { tracksData, current$Data } from './TracksTable.stories'
-import { hash } from '../../utils'
 import { sleep } from '../../tests'
 import { add } from '../../stores/track-queue'
 
@@ -18,7 +17,7 @@ describe('TracksTable component', () => {
   })
 
   it('has links to artists', async () => {
-    const artist = faker.random.arrayElement(tracksData).tags.artists[0]
+    const [id, artist] = faker.random.arrayElement(tracksData).artistRefs[0]
     render(
       html`<${TracksTable} tracks=${tracksData} current=${current$Data} />`
     )
@@ -26,11 +25,11 @@ describe('TracksTable component', () => {
     fireEvent.click(faker.random.arrayElement(screen.getAllByText(artist)))
     await sleep()
 
-    expect(location.hash).toEqual(`#/artist/${hash(artist)}`)
+    expect(location.hash).toEqual(`#/artist/${id}`)
   })
 
   it('has links to album', async () => {
-    const album = faker.random.arrayElement(tracksData).tags.album
+    const [id, album] = faker.random.arrayElement(tracksData).albumRef
     render(
       html`<${TracksTable}
         tracks=${tracksData}
@@ -42,7 +41,7 @@ describe('TracksTable component', () => {
     fireEvent.click(faker.random.arrayElement(screen.getAllByText(album)))
     await sleep()
 
-    expect(location.hash).toEqual(`#/album/${hash(album)}`)
+    expect(location.hash).toEqual(`#/album/${id}`)
   })
 
   it('enqueues track on single click', async () => {

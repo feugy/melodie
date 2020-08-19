@@ -7,7 +7,7 @@ exports[`Storyshots Components/Album Default 1`] = `
   <div>
     <a
       class=" svelte-my2key"
-      href="#/album/3879801547"
+      href="#/album/1"
     >
       <div
         class="content svelte-my2key"
@@ -63,7 +63,7 @@ exports[`Storyshots Components/Album Default 1`] = `
           par 
           <a
             class=" underlined"
-            href="#/artist/756100103"
+            href="#/artist/1"
             onclick="event.stopPropagation()"
           >
             Ben Harper
@@ -71,7 +71,7 @@ exports[`Storyshots Components/Album Default 1`] = `
           , 
           <a
             class=" underlined"
-            href="#/artist/3430181817"
+            href="#/artist/2"
             onclick="event.stopPropagation()"
           >
             The Innocent Criminals
@@ -90,7 +90,7 @@ exports[`Storyshots Components/Album Many Artists 1`] = `
   <div>
     <a
       class=" svelte-my2key"
-      href="#/album/3879801547"
+      href="#/album/2"
     >
       <div
         class="content svelte-my2key"
@@ -146,7 +146,7 @@ exports[`Storyshots Components/Album Many Artists 1`] = `
           par 
           <a
             class=" underlined"
-            href="#/artist/3186028081"
+            href="#/artist/3"
             onclick="event.stopPropagation()"
           >
             Muse
@@ -154,7 +154,7 @@ exports[`Storyshots Components/Album Many Artists 1`] = `
           , 
           <a
             class=" underlined"
-            href="#/artist/660487688"
+            href="#/artist/4"
             onclick="event.stopPropagation()"
           >
             Perl Jam
@@ -162,7 +162,7 @@ exports[`Storyshots Components/Album Many Artists 1`] = `
           , 
           <a
             class=" underlined"
-            href="#/artist/3083539488"
+            href="#/artist/4"
             onclick="event.stopPropagation()"
           >
             Joe Satriani
@@ -170,7 +170,7 @@ exports[`Storyshots Components/Album Many Artists 1`] = `
           , 
           <a
             class=" underlined"
-            href="#/artist/1979771749"
+            href="#/artist/6"
             onclick="event.stopPropagation()"
           >
             Avenged Sevenfold
@@ -189,7 +189,7 @@ exports[`Storyshots Components/Album No Artist 1`] = `
   <div>
     <a
       class=" svelte-my2key"
-      href="#/album/3879801547"
+      href="#/album/1"
     >
       <div
         class="content svelte-my2key"
