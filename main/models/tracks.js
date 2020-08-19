@@ -37,17 +37,16 @@ class TracksModel extends Model {
     this.logger.debug({ data }, `saving`)
     const serialize = this.makeSerializer()
     const deserialize = this.makeDeserializer()
-    const saved = data.map(track =>
-      serialize({
+    const saved = data.map(track => {
+      const { album, albumartist, artists } = track.tags
+      return serialize({
         ...track,
-        albumRef: track.tags.album
-          ? [hash(track.tags.album), track.tags.album]
+        albumRef: album
+          ? [hash(albumartist ? `${album} --- ${albumartist}` : album), album]
           : null,
-        artistRefs: track.tags.artists
-          ? track.tags.artists.map(artist => [hash(artist), artist])
-          : []
+        artistRefs: artists ? artists.map(artist => [hash(artist), artist]) : []
       })
-    )
+    })
     const cols = Object.keys(saved[0])
     return this.db.transaction(async trx => {
       const old = await trx(this.name)

@@ -13,6 +13,7 @@ describe('Tag reader', () => {
   it('reads mp3 file', async () => {
     expect(await engine.read(mp3)).toEqual({
       album: 'Philharmonics',
+      albumartist: null,
       artist: 'Agnes Obel',
       artists: ['Agnes Obel'],
       date: '2010',
@@ -35,6 +36,7 @@ describe('Tag reader', () => {
   it('reads flac file', async () => {
     expect(await engine.read(flac)).toEqual({
       album: 'Jagged Little Pill',
+      albumartist: null,
       artist: 'Alanis Morissette',
       artists: ['Alanis Morissette'],
       date: '1995',
@@ -57,6 +59,7 @@ describe('Tag reader', () => {
   it('reads ogg file', async () => {
     expect(await engine.read(ogg)).toEqual({
       album: 'Dances With Wolves',
+      albumartist: null,
       artist: 'John Barry',
       artists: ['John Barry'],
       date: '1990',
@@ -79,8 +82,8 @@ describe('Tag reader', () => {
   it('reads duration when not returned in tags', async () => {
     expect(await engine.read(noDuration)).toEqual({
       album: 'By The Way',
-      artist: 'Red Hot Chili Peppers',
       albumartist: 'Red Hot Chili Peppers',
+      artist: 'Red Hot Chili Peppers',
       artists: ['Red Hot Chili Peppers'],
       averageLevel: 9083,
       comment: [''],
@@ -114,6 +117,7 @@ describe('Tag reader', () => {
   it('handles unknown file', async () => {
     expect(await engine.read(resolve(__dirname, 'unknown.file'))).toEqual({
       album: null,
+      albumartist: null,
       artist: null,
       artists: [],
       duration: 0,
@@ -126,6 +130,7 @@ describe('Tag reader', () => {
   it('handles unsupported file', async () => {
     expect(await engine.read(__filename)).toEqual({
       album: null,
+      albumartist: null,
       artist: null,
       artists: [],
       duration: 0,

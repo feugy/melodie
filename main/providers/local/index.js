@@ -19,6 +19,7 @@ class Local extends AbstractProvider {
   async findAlbumCover(searched) {
     this.logger.debug({ searched }, `search album cover for ${searched}`)
     try {
+      // TODO search by name, not by id
       const album = await albumsModel.getById(hash(searched))
       if (!album) {
         return []

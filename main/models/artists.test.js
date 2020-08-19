@@ -5,7 +5,6 @@ const fs = require('fs-extra')
 const os = require('os')
 const { join } = require('path')
 const { artistsModel } = require('./artists')
-const { hash } = require('../utils')
 
 describe('Tracks model', () => {
   beforeAll(async () => {
@@ -21,11 +20,10 @@ describe('Tracks model', () => {
   })
 
   it('adds new artist', async () => {
-    const name = faker.commerce.productName()
     const artist = {
-      id: hash(name),
+      id: faker.random.number(),
       media: faker.image.image(),
-      name,
+      name: faker.commerce.productName(),
       trackIds: [faker.random.number(), faker.random.number()],
       refs: []
     }

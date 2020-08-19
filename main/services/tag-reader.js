@@ -21,6 +21,7 @@ module.exports = {
     }
     return {
       album: null,
+      albumartist: null,
       artist: null,
       artists: [],
       genre: [],

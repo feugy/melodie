@@ -125,6 +125,42 @@ describe('Tracks model', () => {
       expect(previous).toBeNull()
     })
 
+    it('distinguished tracks with same album name but different album artist', async () => {
+      const path1 = faker.system.fileName()
+      const path2 = faker.system.fileName()
+      const album = faker.commerce.productName()
+      const artists = [faker.name.findName(), faker.name.findName()]
+      const track1 = {
+        id: hash(path1),
+        path: path1,
+        media: faker.image.image(),
+        mtimeMs: Date.now(),
+        tags: { album, artists: artists.slice(0, 1), albumartist: artists[0] }
+      }
+      const track2 = {
+        id: hash(path2),
+        path: path2,
+        media: faker.image.image(),
+        mtimeMs: Date.now(),
+        tags: { album, artists: artists.slice(1), albumartist: artists[1] }
+      }
+
+      const results = await tracksModel.save([track1, track2])
+      expect(results[0].current.albumRef[0]).not.toEqual(
+        results[1].current.albumRef[0]
+      )
+      expect(results[0].current).toEqual({
+        ...track1,
+        albumRef: [hash(`${album} --- ${artists[0]}`), album],
+        artistRefs: [[hash(artists[0]), artists[0]]]
+      })
+      expect(results[1].current).toEqual({
+        ...track2,
+        albumRef: [hash(`${album} --- ${artists[1]}`), album],
+        artistRefs: [[hash(artists[1]), artists[1]]]
+      })
+    })
+
     it('returns old refs when saving existing track', async () => {
       const album = faker.commerce.productName()
       const artists = [faker.name.findName(), faker.name.findName()]
