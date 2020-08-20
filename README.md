@@ -48,6 +48,7 @@ npm run build
 ### features
 
 - [x] navigation bar: albums
+- [x] icons
 - [x] routing
 - [x] list all albums
 - [x] album details
@@ -56,6 +57,7 @@ npm run build
 - [x] current play list
 - [x] tracks' duration
 - [x] albums' artists
+- [x] animated transitions
 - [x] manually set album's cover
 - [x] manually set artist's avatar
 - [x] suggest album's cover from 3rd party DBs
@@ -67,19 +69,18 @@ npm run build
 - [x] update track queue on track changes
 - [x] volume control
 - [x] search input and results
+- [x] navigation buttons
+- [x] system notification on next track
+- [ ] drag'n drop to tracks queue
 - [ ] settings panel with watched folders
+- [ ] track lists
 - [ ] display years (artist & album details page)
 - [ ] display album/artist descriptions
-- [x] icons
-- [x] navigation buttons
 - [ ] [open containing folder](https://www.electronjs.org/docs/api/shell#shellshowiteminfolderfullpath) for tracks
-- [x] system notification on next track
 - [ ] block power save
 - [ ] system tray integration
-- [x] animated transitions
 - [ ] loading indicators (one for all operation, fixed so it doesn't push content down)
 - [ ] feedback on enqueue & play actions
-- [ ] drag'n drop to tracks queue
 - [ ] shuffle, loop
 - [ ] number of disk on album details page
 
@@ -131,6 +132,14 @@ npm run build
   To mitigate this issue, I had to make album's id out of album name and album artist (when defined). This ruined the hash convention, and I had to replace all "links" by proper references (id + name). Now UI does not infer ids anymore.
 
 - For system notifications, document.hidden and visibilityChange are too weak because they only notice when the app is minimized/restored
+
+- System notification was tricky: HTML5 Notification API doesn't support actions, except from service workers.
+  Using service workers was overkill, and didn't work in the end.
+  Electron's native notificaiton does not support actions either.
+  Using node-notifier was a viable possibility, but doesn't support actions in a portable fashion (notify-send on linux doesn't support it).
+  Finally back to HTML5 notification API, without actions :(
+
+- The discovery of mediaSession's metadata and handler was completely random. It's only supported by Chrome (hopefully for me!), and can be seen on Deezer, Spotify or Youtube Music. However, it does not display artworks.
 
 musings on watch & diff
 

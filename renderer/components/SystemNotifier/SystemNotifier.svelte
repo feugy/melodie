@@ -4,7 +4,6 @@
 </script>
 
 <script>
-  const notifier = require('node-notifier')
   import { onMount } from 'svelte'
   import { filter } from 'rxjs/operators'
   import { toDOMSrc } from '../../utils'
@@ -29,9 +28,8 @@
       trackId = id
 
       if (!isFocused) {
-        notifier.notify({
-          title,
-          message: `${artist} - ${album}`,
+        new Notification(title, {
+          body: `${artist} - ${album}`,
           icon: media
         })
       }

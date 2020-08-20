@@ -28,8 +28,7 @@ module.exports = {
       use: 'yaml-loader'
     })
     config.externals = {
-      electron: 'electron',
-      'node-notifier': 'notifier'
+      electron: 'electron'
     }
     return config
   }
