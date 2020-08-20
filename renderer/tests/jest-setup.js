@@ -12,6 +12,13 @@ window.HTMLMediaElement.prototype.load = jest.fn()
 window.HTMLMediaElement.prototype.play = jest.fn()
 window.HTMLMediaElement.prototype.pause = jest.fn()
 
+// jsdom does not support mediaSession yet
+navigator.mediaSession = {
+  setActionHandler: jest.fn(),
+  metadata: null
+}
+window.fetch = jest.fn()
+
 jest.mock('electron', () => ({
   ipcRenderer: mockIpcRenderer
 }))

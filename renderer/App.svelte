@@ -8,6 +8,7 @@
     Player,
     Nav,
     Sheet,
+    SystemNotifier,
     TracksQueue
   } from './components'
   import * as queue from './stores/track-queue'
@@ -60,6 +61,8 @@
 <svelte:head>
   <title>{$_('Mélodie')}</title>
 </svelte:head>
+
+<SystemNotifier />
 
 <div>
   <main>

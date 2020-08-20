@@ -73,7 +73,7 @@ npm run build
 - [x] icons
 - [x] navigation buttons
 - [ ] [open containing folder](https://www.electronjs.org/docs/api/shell#shellshowiteminfolderfullpath) for tracks
-- [ ] system notification on next track
+- [x] system notification on next track
 - [ ] block power save
 - [ ] system tray integration
 - [x] animated transitions
@@ -129,6 +129,8 @@ npm run build
 - Initially, albums & artists id where hash of their names. It was very convenient to keep a list of artist's albums just by storing album names in artist's `linked` array. UI would infer ids by applying the same hash.
   However, it is common to see albums with same name from different artists (like "Greatest hits").
   To mitigate this issue, I had to make album's id out of album name and album artist (when defined). This ruined the hash convention, and I had to replace all "links" by proper references (id + name). Now UI does not infer ids anymore.
+
+- For system notifications, document.hidden and visibilityChange are too weak because they only notice when the app is minimized/restored
 
 musings on watch & diff
 

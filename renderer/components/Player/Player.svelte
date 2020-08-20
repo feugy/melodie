@@ -5,7 +5,7 @@
   import Track from '../Track/Track.svelte'
   import Slider from '../Slider/Slider.svelte'
   import { toDOMSrc, formatTime } from '../../utils'
-  import { next, previous, current } from '../../stores/track-queue'
+  import { playNext, playPrevious, current } from '../../stores/track-queue'
 
   const dispatch = createEventDispatcher()
   let isPlaying
@@ -51,12 +51,12 @@
 
   function handleNext() {
     player.pause()
-    next()
+    playNext()
   }
 
   function handlePrevious() {
     player.pause()
-    previous()
+    playPrevious()
   }
 
   function handleTogglePlaylist() {
@@ -109,7 +109,7 @@
   }
 </style>
 
-<!--  -->
+<!-- svelte-ignore a11y-media-has-caption -->
 <audio
   bind:this={player}
   autoplay

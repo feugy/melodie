@@ -22,7 +22,7 @@ describe('track-queue store', () => {
       { id: 3, path: faker.system.fileName() }
     ]
     queue.add(files.slice(0, 2))
-    queue.next()
+    queue.playNext()
     await tick()
     queue.add(files.slice(2))
     await tick()
@@ -39,7 +39,7 @@ describe('track-queue store', () => {
       { id: 3, path: faker.system.fileName() }
     ]
     queue.add(files.slice(0, 2))
-    queue.next()
+    queue.playNext()
     await tick()
     queue.add(files[2])
     await tick()
@@ -85,7 +85,7 @@ describe('track-queue store', () => {
     beforeEach(() => queue.clear())
 
     it('does nothing on empty queue', async () => {
-      queue.next()
+      queue.playNext()
       await tick()
 
       expect(get(queue.tracks)).toEqual([])
@@ -104,22 +104,22 @@ describe('track-queue store', () => {
       expect(get(queue.current)).toEqual(files[0])
       expect(get(queue.index)).toEqual(0)
 
-      queue.next()
+      queue.playNext()
       await tick()
       expect(get(queue.current)).toEqual(files[1])
       expect(get(queue.index)).toEqual(1)
 
-      queue.next()
+      queue.playNext()
       await tick()
       expect(get(queue.current)).toEqual(files[2])
       expect(get(queue.index)).toEqual(2)
 
-      queue.next()
+      queue.playNext()
       await tick()
       expect(get(queue.current)).toEqual(files[0])
       expect(get(queue.index)).toEqual(0)
 
-      queue.next()
+      queue.playNext()
       await tick()
       expect(get(queue.current)).toEqual(files[1])
       expect(get(queue.index)).toEqual(1)
@@ -137,22 +137,22 @@ describe('track-queue store', () => {
       expect(get(queue.current)).toEqual(files[0])
       expect(get(queue.index)).toEqual(0)
 
-      queue.next()
+      queue.playNext()
       await tick()
       expect(get(queue.current)).toEqual(files[1])
       expect(get(queue.index)).toEqual(1)
 
-      queue.next()
+      queue.playNext()
       await tick()
       expect(get(queue.current)).toEqual(files[0])
       expect(get(queue.index)).toEqual(2)
 
-      queue.next()
+      queue.playNext()
       await tick()
       expect(get(queue.current)).toEqual(files[3])
       expect(get(queue.index)).toEqual(3)
 
-      queue.next()
+      queue.playNext()
       await tick()
       expect(get(queue.current)).toEqual(files[0])
       expect(get(queue.index)).toEqual(0)
@@ -161,7 +161,7 @@ describe('track-queue store', () => {
 
   describe('previous', () => {
     it('does nothing on empty queue', async () => {
-      queue.previous()
+      queue.playPrevious()
       await tick()
 
       expect(get(queue.tracks)).toEqual([])
@@ -180,22 +180,22 @@ describe('track-queue store', () => {
       expect(get(queue.current)).toEqual(files[0])
       expect(get(queue.index)).toEqual(0)
 
-      queue.previous()
+      queue.playPrevious()
       await tick()
       expect(get(queue.current)).toEqual(files[2])
       expect(get(queue.index)).toEqual(2)
 
-      queue.previous()
+      queue.playPrevious()
       await tick()
       expect(get(queue.current)).toEqual(files[1])
       expect(get(queue.index)).toEqual(1)
 
-      queue.previous()
+      queue.playPrevious()
       await tick()
       expect(get(queue.current)).toEqual(files[0])
       expect(get(queue.index)).toEqual(0)
 
-      queue.previous()
+      queue.playPrevious()
       await tick()
       expect(get(queue.current)).toEqual(files[2])
       expect(get(queue.index)).toEqual(2)
@@ -317,7 +317,7 @@ describe('track-queue store', () => {
         { id: 3, path: faker.system.fileName() }
       ]
       queue.add(files)
-      queue.next()
+      queue.playNext()
       expect(get(queue.tracks)).toEqual(files)
       expect(get(queue.current)).toEqual(files[1])
       expect(get(queue.index)).toEqual(1)
@@ -502,7 +502,7 @@ describe('track-queue store', () => {
         { id: 3, path: faker.system.fileName() }
       ]
       queue.add(files)
-      queue.next()
+      queue.playNext()
       await tick()
 
       expect(get(queue.tracks)).toEqual(files)
@@ -524,7 +524,7 @@ describe('track-queue store', () => {
       ]
       files.push(files[1], { id: 3, path: faker.system.fileName() })
       queue.add(files)
-      queue.next()
+      queue.playNext()
       await tick()
 
       expect(get(queue.tracks)).toEqual(files)

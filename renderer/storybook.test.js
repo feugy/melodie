@@ -16,6 +16,6 @@ afterAll(() => {
 })
 
 initStoryshots({
-  storyKindRegex: /^((?!Nav|Sheet|Media|Expandable).)*$/,
+  storyKindRegex: /^((?!Nav|Sheet|Media|Expandable|System).)*$/,
   test: multiSnapshotWithOptions()
 })

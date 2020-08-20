@@ -1,7 +1,7 @@
 'use strict'
 
 import { get } from 'svelte/store'
-import { ReplaySubject, Subject, merge } from 'rxjs'
+import { ReplaySubject, Subject, merge, BehaviorSubject } from 'rxjs'
 import { scan, pluck, shareReplay } from 'rxjs/operators'
 import { fromServerChannel } from '../utils'
 
@@ -51,7 +51,7 @@ const queue$ = merge(actions$, new ReplaySubject()).pipe(
 
 const index$ = queue$.pipe(pluck('idx'))
 
-const current$ = new ReplaySubject()
+const current$ = new BehaviorSubject()
 
 const tracks$ = queue$.pipe(pluck('list'))
 
@@ -95,11 +95,11 @@ export function clear() {
   actions$.next({ clear: true })
 }
 
-export function next() {
+export function playNext() {
   actions$.next({ next: true })
 }
 
-export function previous() {
+export function playPrevious() {
   actions$.next({ previous: true })
 }
 
