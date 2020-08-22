@@ -113,7 +113,7 @@
 
 <MediaSelector bind:open={openMediaSelector} src={artist} />
 
-<div transition:fade={{ duration: 200 }}>
+<div in:fade={{ duration: 200 }}>
   {#if artist}
     <Heading
       title={artist.name}

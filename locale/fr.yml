@@ -5,24 +5,27 @@ an artist: '1 artiste'
 a track: '1 piste'
 'artist: _': 'Artiste : {value}'
 'title: _': 'Titre : {value}'
-album: Album
+add folders: Ajouter des dossiers
 artist: Artiste
+artists: Artistes
 by _: 'par {artist}'
 cancel: Annuler
+check parameters: Vous devrier vérifier les répertoires de musiques dans les <a class="underlined" href="#/settings">paramètres</a>.
 choose avatar: Choisissez une photo
 choose cover: Choisissez une couverture
 clear: Vider
 disk _: 'Disque N°{num}'
 duration: Durée
 enqueue all: Ajouter tout
-load: Charger...
 no results: Rien du tout !
 open playlist: File d'attente
 play all: Lire tout
 playlist: Liste de lecture
 results for _: Resultats pour "{searched}"
+settings: Paramètres
 show less: Voir moins
 show all: Voir tout
 start loading some tracks: Commencez par charger quelques morceaux
 total duration _: 'Durée : {total}'
 track: Piste
+watched folders: Répertoires de musique

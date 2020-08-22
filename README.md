@@ -72,7 +72,8 @@ npm run build
 - [x] navigation buttons
 - [x] system notification on next track
 - [x] reorder tracks queue with drag'n drop
-- [ ] settings panel with watched folders
+- [x] settings panel with watched folders
+- [ ] memorize window position and state
 - [ ] track lists
 - [ ] display years (artist & album details page)
 - [ ] display album/artist descriptions
@@ -83,7 +84,9 @@ npm run build
 - [ ] feedback on enqueue & play actions
 - [ ] shuffle, loop
 - [ ] number of disk on album details page
-- [ ] enque tracks/albums by dragging to tracks queue
+- [ ] enqueue tracks/albums by dragging to tracks queue
+- [ ] display tracks/albums/artists count in settings
+- [ ] allow reseting database from settings
 
 ### Bugs and unresolved issues
 

@@ -30,3 +30,13 @@ exports.walk = function (path) {
       .on('end', observer.complete.bind(observer))
   })
 }
+
+exports.mergeFolders = function (added, existing) {
+  const distinctAdded = added.filter(
+    folder => !existing.some(parent => folder.startsWith(parent))
+  )
+  const distinctExisting = existing.filter(
+    folder => !distinctAdded.some(parent => folder.startsWith(parent))
+  )
+  return distinctExisting.concat(distinctAdded)
+}

@@ -3,95 +3,38 @@
 const faker = require('faker')
 const { join } = require('path')
 const fs = require('fs-extra')
-const mockOs = require('os')
-const electron = require('electron')
 const engine = require('./file-loader')
 const tag = require('./tag-reader')
 const covers = require('./cover-finder')
 const lists = require('./list-engine')
 const { tracksModel } = require('../models/tracks')
-const { settingsModel } = require('../models/settings')
 const { hash, broadcast } = require('../utils')
 const { makeFolder } = require('../tests')
 
 const wait = n => new Promise(r => setTimeout(r, n))
 
-jest.mock('electron', () => ({
-  dialog: {
-    showOpenDialog: jest.fn()
-  },
-  app: {
-    getPath: jest.fn()
-  }
-}))
 jest.mock('./list-engine')
 jest.mock('./cover-finder')
 jest.mock('./tag-reader')
 jest.mock('../models/tracks')
-jest.mock('../models/settings')
 jest.mock('../utils/electron-remote')
 
 describe('File loader', () => {
   beforeEach(() => {
     jest.clearAllMocks()
-    electron.app.getPath.mockReturnValue(mockOs.tmpdir())
     covers.findFor.mockResolvedValue(null)
     tag.read.mockResolvedValue({})
     lists.add.mockResolvedValue()
     lists.remove.mockImplementation(async n => n)
-    settingsModel.get.mockResolvedValue({ folders: [] })
   })
 
   afterEach(() => engine.releaseSubscriptions())
 
-  describe('addFolders', () => {
-    it('saves selected folders to settings', async () => {
-      const tree1 = await makeFolder({ depth: 1, fileNb: 0 })
-      const tree2 = await makeFolder({ depth: 1, fileNb: 0 })
-      const folders = [faker.system.fileName()]
-      settingsModel.get.mockResolvedValueOnce({ folders })
-      const filePaths = [tree1.folder, tree2.folder]
-      electron.dialog.showOpenDialog.mockResolvedValueOnce({ filePaths })
-
-      expect(await engine.addFolders())
-
-      expect(settingsModel.get).toHaveBeenCalledWith()
-      expect(settingsModel.get).toHaveBeenCalledTimes(1)
-      expect(settingsModel.save).toHaveBeenCalledWith({
-        id: settingsModel.ID,
-        folders: folders.concat(filePaths)
-      })
-      expect(settingsModel.save).toHaveBeenCalledTimes(1)
-      expect(broadcast).toHaveBeenNthCalledWith(1, 'tracking', {
-        inProgress: true,
-        op: 'addFolders'
-      })
-      expect(broadcast).toHaveBeenNthCalledWith(2, 'tracking', {
-        inProgress: false,
-        op: 'addFolders'
-      })
-    })
-
-    it('does not saves empty selection', async () => {
-      electron.dialog.showOpenDialog.mockResolvedValueOnce({ filePaths: [] })
-
-      expect(await engine.addFolders())
-
-      expect(settingsModel.getById).not.toHaveBeenCalled()
-      expect(settingsModel.save).not.toHaveBeenCalled()
-      expect(lists.add).not.toHaveBeenCalled()
-      expect(covers.findFor).not.toHaveBeenCalled()
-      expect(tag.read).not.toHaveBeenCalled()
-      expect(broadcast).not.toHaveBeenCalled()
-    })
-
+  describe('walkAndWatch', () => {
     it('enrich tracks with tags and cover', async () => {
       const { folder, files } = await makeFolder({ depth: 3, fileNb: 10 })
-      electron.dialog.showOpenDialog.mockResolvedValueOnce({
-        filePaths: [folder]
-      })
 
-      const tracks = await engine.addFolders()
+      const tracks = await engine.walkAndWatch([folder])
       expect(tracks).toEqual(
         expect.arrayContaining(
           files.map(({ path, stats }) => ({
@@ -123,11 +66,8 @@ describe('File loader', () => {
             setTimeout(r, faker.random.number({ min: 100, max: 200 }))
           )
       )
-      electron.dialog.showOpenDialog.mockResolvedValueOnce({
-        filePaths: [folder]
-      })
 
-      const tracks = await engine.addFolders()
+      const tracks = await engine.walkAndWatch([folder])
       expect(tracks).toHaveLength(files.length)
       expect(lists.add).toHaveBeenCalledTimes(6)
       expect(lists.remove).toHaveBeenCalledTimes(0)
@@ -138,11 +78,8 @@ describe('File loader', () => {
     it('handles multiple folders', async () => {
       const tree1 = await makeFolder({ depth: 3, fileNb: 15 })
       const tree2 = await makeFolder({ depth: 2, fileNb: 10 })
-      electron.dialog.showOpenDialog.mockResolvedValueOnce({
-        filePaths: [tree1.folder, tree2.folder]
-      })
 
-      const tracks = await engine.addFolders()
+      const tracks = await engine.walkAndWatch([tree1.folder, tree2.folder])
       expect(tracks).toEqual(
         expect.arrayContaining(
           tree1.files.map(({ path }) => expect.objectContaining({ path }))
@@ -429,6 +366,52 @@ describe('File loader', () => {
       expect(lists.add).toHaveBeenCalledTimes(0)
       expect(covers.findFor).toHaveBeenCalledTimes(0)
       expect(tag.read).toHaveBeenCalledTimes(0)
+    })
+  })
+
+  describe('unwatch', () => {
+    let trees
+
+    beforeEach(async () => {
+      trees = [
+        await makeFolder({ depth: 3, fileNb: 15 }),
+        await makeFolder({ depth: 2, fileNb: 5 })
+      ]
+      engine.watch(trees.map(tree => tree.folder))
+    })
+
+    it('stops watching tracked folder', async () => {
+      engine.unwatch(trees[0].folder)
+      await wait(200)
+
+      fs.writeFile(join(trees[0].folder, 'first.mp3'), faker.lorem.word())
+
+      await wait(500)
+      expect(lists.remove).not.toHaveBeenCalled()
+      expect(lists.add).not.toHaveBeenCalled()
+    })
+
+    it('stops watching multiple folders', async () => {
+      engine.unwatch(trees.map(tree => tree.folder))
+      await wait(200)
+
+      fs.writeFile(join(trees[0].folder, 'first.mp3'), faker.lorem.word())
+      fs.writeFile(join(trees[1].folder, 'second.mp3'), faker.lorem.word())
+
+      await wait(500)
+      expect(lists.remove).not.toHaveBeenCalled()
+      expect(lists.add).not.toHaveBeenCalled()
+    })
+
+    it('ignores untracked folders', async () => {
+      engine.unwatch(faker.system.fileName())
+
+      await wait(200)
+
+      fs.writeFile(join(trees[0].folder, 'first.mp3'), faker.lorem.word())
+
+      await wait(500)
+      expect(lists.add).toHaveBeenCalledTimes(1)
     })
   })
 })

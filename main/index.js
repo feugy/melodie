@@ -4,16 +4,15 @@ require('dotenv').config()
 const { join } = require('path')
 const electron = require('electron')
 const shortcut = require('electron-localshortcut')
-const fileLoader = require('./services/file-loader')
 const listEngine = require('./services/list-engine')
 const mediaManager = require('./services/media-manager')
+const settingsManager = require('./services/settings-manager')
 const {
   getStoragePath,
   subscribeRemote,
   registerRenderer,
   getLogger
 } = require('./utils')
-const { settingsModel } = require('./models/settings')
 
 const isDev = process.env.ROLLUP_WATCH
 const { app, BrowserWindow, Menu } = electron
@@ -44,8 +43,10 @@ async function createWindow() {
   Menu.setApplicationMenu(null)
 
   const win = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 1200,
+    minWidth: 850,
+    height: 800,
+    minHeight: 300,
     webPreferences: {
       nodeIntegration: true
     },
@@ -70,22 +71,12 @@ async function createWindow() {
   await listEngine.init(getStoragePath('db.sqlite3'))
 
   unsubscribe = subscribeRemote({
-    fileLoader,
+    settingsManager,
     listEngine,
     mediaManager,
     ...electron
   })
   win.loadURL(`file://${join(publicFolder, 'index.html')}`)
-
-  win.webContents.once('did-finish-load', async () => {
-    const { folders } = await settingsModel.get()
-    logger.debug(
-      { folders },
-      'browser window ready, comparing and watching folders'
-    )
-    await fileLoader.compare(folders)
-    fileLoader.watch(folders)
-  })
 }
 
 app.whenReady().then(createWindow)

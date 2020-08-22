@@ -130,6 +130,12 @@
           on:keyup={handleSearchKeyup}
           on:iconClick={handleSearchClick} />
       </li>
+      <li>
+        <Button
+          on:click={() => router.push('/settings')}
+          icon="settings"
+          noBorder />
+      </li>
       <li />
     </ul>
   </nav>

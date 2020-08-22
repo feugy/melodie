@@ -1,0 +1,66 @@
+<script>
+  import { onMount } from 'svelte'
+  import { fade } from 'svelte/transition'
+  import { push } from 'svelte-spa-router'
+  import { _ } from 'svelte-intl'
+  import { Heading, Button, SubHeading } from '../components'
+  import { invoke } from '../utils'
+
+  export const params = {}
+
+  let foldersPromise
+  listFolders()
+
+  function listFolders() {
+    foldersPromise = invoke('settingsManager.getFolders')
+  }
+
+  async function handleAdd() {
+    await invoke('settingsManager.addFolders')
+    push('/albums')
+  }
+
+  async function handleRemove(folder) {
+    await invoke('settingsManager.removeFolder', folder)
+    listFolders()
+  }
+</script>
+
+<style type="postcss">
+  article {
+    @apply relative text-left mx-8 mb-8;
+  }
+
+  li {
+    @apply p-2 rounded-full mb-4 mr-4 inline-flex;
+    background-color: var(--bg-primary-color);
+  }
+
+  li > span {
+    @apply px-4;
+  }
+</style>
+
+<section in:fade={{ duration: 200 }}>
+  <Heading
+    title={$_('settings')}
+    image={'../images/rima-kruciene-gpKe3hmIawg-unsplash.jpg'}
+    imagePosition="center 65%" />
+  <article>
+    <SubHeading>{$_('watched folders')}</SubHeading>
+    {#await foldersPromise then folders}
+      <ul>
+        {#each folders as folder (folder)}
+          <li>
+            <span>{folder}</span>
+            <Button
+              on:click={() => handleRemove(folder)}
+              noBorder
+              icon="close" />
+          </li>
+        {/each}
+      </ul>
+      <Button icon="folder" on:click={handleAdd} text={$_('add folders')} />
+    {/await}
+  </article>
+</section>

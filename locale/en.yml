@@ -2,22 +2,25 @@ _ albums: '{total} albums'
 _ artists: '{total} artists'
 _ tracks: '{total} tracks'
 '#': '#'
+add folders: Add folders
 an album: '1 album'
 an artist: '1 artist'
 a track: '1 track'
 'artist: _': 'Artist: {value}'
 'title: _': 'Title: {value}'
 album: Album
+albums: Albums
 artist: Artist
+artists: Artists
 by _: 'by {artist}'
 cancel: Cancel
+check parameters: You should check your music folders in <a class="underlined" href="#/settings">settings</a>.
 choose avatar: Choose a picture
 choose cover: Choose a cover
 clear: Clear
 disk _: 'Disk #{num}'
 duration: Duration
 enqueue all: Enqueue all
-load: Load...
 Mélodie: Mélodie
 no results: Nothing at all !
 open playlist: Queue
@@ -25,8 +28,10 @@ play all: Play all
 playlist: Play list
 provider (_ x _): '{value} ({width} x {height})'
 results for _: Results for "{searched}"
+settings: Settings
 show less: Show less
 show all: Show all
 start loading some tracks: Start loading some tracks
 total duration _: 'Duration: {total}'
 track: Track
+watched folders: Music folders

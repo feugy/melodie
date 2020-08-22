@@ -1,5 +1,4 @@
 <script>
-  import { onMount } from 'svelte'
   import { _ } from 'svelte-intl'
   import { fade } from 'svelte/transition'
   import { Artist, Heading } from '../components'
@@ -17,9 +16,13 @@
   div {
     @apply flex flex-wrap justify-around;
   }
+
+  p {
+    @apply my-20 relative;
+  }
 </style>
 
-<section transition:fade={{ duration: 200 }}>
+<section in:fade={{ duration: 200 }}>
   <Heading
     title={$_($artists.length === 1 ? 'an artist' : '_ artists', {
       total: $artists.length
@@ -30,6 +33,10 @@
       <span class="p-4">
         <Artist {src} />
       </span>
+    {:else}
+      <p>
+        {@html $_('check parameters')}
+      </p>
     {/each}
   </div>
 </section>

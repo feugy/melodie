@@ -86,7 +86,7 @@
 
 <MediaSelector forArtist={false} bind:open={openMediaSelector} src={album} />
 
-<div transition:fade={{ duration: 200 }}>
+<div in:fade={{ duration: 200 }}>
   {#if album}
     <Heading
       title={album.name}

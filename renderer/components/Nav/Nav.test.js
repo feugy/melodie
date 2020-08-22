@@ -60,6 +60,15 @@ describe('Nav component', () => {
     expect(location.hash).toEqual(`#/artist`)
   })
 
+  it('navigates to settings', async () => {
+    render(html`<${Nav} />`)
+
+    fireEvent.click(screen.getByText('settings'))
+    await sleep()
+
+    expect(location.hash).toEqual(`#/settings`)
+  })
+
   it('navigates to search page on entered text', async () => {
     const push = jest.spyOn(router, 'push')
     const text = faker.random.word()

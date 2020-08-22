@@ -25,7 +25,7 @@
   }
 </style>
 
-<div transition:fade={{ duration: 200 }}>
+<div in:fade={{ duration: 200 }}>
   <Heading
     title={$_('results for _', { searched: params.searched })}
     image={'../images/anthony-martino-6AtQNsjMoJo-unsplash.jpg'}

@@ -1,5 +1,4 @@
 <script>
-  import { onMount } from 'svelte'
   import { _ } from 'svelte-intl'
   import { fade } from 'svelte/transition'
   import { Album, Button, Heading } from '../components'
@@ -18,9 +17,13 @@
   div {
     @apply flex flex-wrap justify-around;
   }
+
+  p {
+    @apply my-20 relative;
+  }
 </style>
 
-<section transition:fade={{ duration: 200 }}>
+<section in:fade={{ duration: 200 }}>
   <Heading
     title={$_($albums.length === 1 ? 'an album' : '_ albums', {
       total: $albums.length
@@ -32,7 +35,10 @@
       <span class="p-4">
         <Album {src} />
       </span>
+    {:else}
+      <p>
+        {@html $_('check parameters')}
+      </p>
     {/each}
   </div>
 </section>
-<Button on:click={() => invoke('fileLoader.addFolders')} text={$_('load')} />
