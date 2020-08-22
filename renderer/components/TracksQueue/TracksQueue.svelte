@@ -1,4 +1,5 @@
 <script>
+  import { flip } from 'svelte/animate'
   import { _ } from 'svelte-intl'
   import Button from '../Button/Button.svelte'
   import Heading from '../Heading/Heading.svelte'
@@ -8,9 +9,33 @@
     index,
     jumpTo,
     clear,
-    remove
+    remove,
+    move
   } from '../../stores/track-queue'
   import { formatTime, sumDurations } from '../../utils'
+
+  let dropIdx = null
+  let dragIdx = null
+  let tracksWithKeys = []
+
+  $: {
+    // ensure tracks have unique keys: same track could appear multiple times in the list
+    const unique = new Map()
+    tracksWithKeys = []
+    for (const track of $tracks) {
+      let num = unique.get(track.id) || 0
+      unique.set(track.id, ++num)
+      tracksWithKeys.push({ ...track, key: `${track.id}-${num}` })
+    }
+  }
+
+  function handleDrop(evt) {
+    if (dragIdx !== null && dropIdx !== null) {
+      move(dragIdx, dropIdx)
+    }
+    dragIdx = null
+    dropIdx = null
+  }
 </script>
 
 <style type="postcss">
@@ -26,18 +51,38 @@
     @apply py-2 relative;
   }
 
-  li {
-    @apply py-1 px-8 flex flex-row items-center;
+  .row {
+    @apply py-1 px-8 flex flex-row items-center cursor-pointer;
   }
 
-  li.current {
+  .row.current {
     background-color: var(--outline-color);
   }
 
-  li:hover {
-    @apply cursor-pointer;
+  /*
+    This is very confusing, as the :hover state is disabled during drag'n drop, and 
+    keeps hovering the wrong element.
+
+  .row:hover {
     background-color: var(--hover-primary-color);
   }
+  */
+
+  li.dropTarget {
+    @apply border-dotted border-2;
+    border-color: var(--outline-color);
+  }
+
+  /*
+    While this perfectly works on Firefox, adding content to the drop zone is buggy on Chrome.
+    pointer-events: none; doesn't help.
+
+  li.dropTarget::before {
+    @apply block w-full h-12 border-dotted border-2;
+    content: '';
+    border-color: var(--outline-color);
+  }
+  */
 </style>
 
 <Heading
@@ -56,10 +101,20 @@
 </div>
 
 <ol>
-  {#each $tracks as track, i}
-    <li class:current={$index === i} on:click={() => jumpTo(i)}>
-      <Track src={track} details class="flex-auto" />
-      <Button icon="close" class="mx-4" on:click={() => remove(i)} />
+  {#each tracksWithKeys as track, i (track.key)}
+    <li
+      class:dropTarget={dropIdx === i}
+      on:click={() => jumpTo(i)}
+      draggable="true"
+      on:dragstart={() => (dragIdx = i)}
+      on:drop|preventDefault={handleDrop}
+      on:dragleave={() => (dropIdx = null)}
+      on:dragover|preventDefault={() => (dropIdx = i)}
+      animate:flip={{ duration: dragIdx !== null ? 0 : 250 }}>
+      <span class="row" class:current={$index === i}>
+        <Track src={track} details class="flex-auto" />
+        <Button icon="close" class="mx-4" on:click={() => remove(i)} />
+      </span>
     </li>
   {/each}
 </ol>

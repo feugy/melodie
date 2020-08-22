@@ -39,6 +39,19 @@ const queue$ = merge(actions$, new ReplaySubject()).pipe(
               list[i] = action.changed
             }
           }
+        } else if (action.move) {
+          const { from, to } = action.move
+          if (from >= 0 && from < list.length && to >= 0 && to < list.length) {
+            const [moved] = list.splice(from, 1)
+            list.splice(to, 0, moved)
+            if (idx === from) {
+              idx = to
+            } else if (to < idx && from > idx) {
+              idx++
+            } else if (to > idx && from < idx) {
+              idx--
+            }
+          }
         }
       }
       current$.next(list[idx])
@@ -109,4 +122,8 @@ export function jumpTo(idx) {
 
 export function remove(idx) {
   actions$.next({ remove: idx })
+}
+
+export function move(from, to) {
+  actions$.next({ move: { from, to } })
 }

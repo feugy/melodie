@@ -7,7 +7,7 @@ import html from 'svelte-htm'
 import faker from 'faker'
 import TracksQueue from './TracksQueue.svelte'
 import { add, clear, index, current } from '../../stores/track-queue'
-import { addRefs } from '../../tests'
+import { addRefs, translate } from '../../tests'
 
 describe('TracksQueue component', () => {
   beforeEach(() => clear())
@@ -37,110 +37,135 @@ describe('TracksQueue component', () => {
     expect(screen.getAllByText(track2.tags.title)).toHaveLength(1)
   })
 
-  it('jumps to track on click', async () => {
-    const track1 = addRefs({
-      id: 1,
-      tags: {
-        title: faker.commerce.productName(),
-        artists: [faker.name.findName()]
+  describe('given a list of track', () => {
+    const tracks = [
+      {
+        id: 1,
+        tags: {
+          title: faker.commerce.productName(),
+          artists: [faker.name.findName()]
+        },
+        media: faker.system.fileName()
       },
-      media: faker.system.fileName()
-    })
-    const track2 = addRefs({
-      id: 2,
-      tags: {
-        title: faker.commerce.productName(),
-        artists: [faker.name.findName()]
+      {
+        id: 2,
+        tags: {
+          title: faker.commerce.productName(),
+          artists: [faker.name.findName()]
+        },
+        media: faker.system.fileName()
       },
-      media: faker.system.fileName()
-    })
-    const track3 = addRefs({
-      id: 3,
-      tags: {
-        title: faker.commerce.productName(),
-        artists: [faker.name.findName()]
+      {
+        id: 3,
+        tags: {
+          title: faker.commerce.productName(),
+          artists: [faker.name.findName()]
+        },
+        media: faker.system.fileName()
       },
-      media: faker.system.fileName()
+      {
+        id: 4,
+        tags: {
+          title: faker.commerce.productName(),
+          artists: [faker.name.findName()]
+        },
+        media: faker.system.fileName()
+      }
+    ].map(addRefs)
+
+    function expectListItems(tracks) {
+      expect(
+        screen.queryAllByRole('listitem').map(node => node.textContent)
+      ).toEqual(
+        tracks.map(({ tags: { title } }) => expect.stringContaining(title))
+      )
+    }
+
+    beforeEach(async () => {
+      add(tracks)
+      render(html`<${TracksQueue} />`)
+      await tick()
     })
-    add([track1, track2, track3])
 
-    render(html`<${TracksQueue} />`)
-    await tick()
-    expect(get(index)).toEqual(0)
+    it('jumps to track on click', async () => {
+      expect(get(index)).toEqual(0)
 
-    await fireEvent.click(screen.getByText(track3.tags.title))
-    await tick()
+      await fireEvent.click(screen.getByText(tracks[2].tags.title))
+      await tick()
 
-    expect(get(index)).toEqual(2)
+      expect(get(index)).toEqual(2)
 
-    await fireEvent.click(screen.getByText(track2.tags.title))
-    await tick()
+      await fireEvent.click(screen.getByText(tracks[1].tags.title))
+      await tick()
 
-    expect(get(index)).toEqual(1)
-  })
-
-  it('clears tracks queue', async () => {
-    const track1 = addRefs({
-      id: 1,
-      tags: {
-        title: faker.commerce.productName(),
-        artists: [faker.name.findName()]
-      },
-      media: faker.system.fileName()
+      expect(get(index)).toEqual(1)
     })
-    const track2 = addRefs({
-      id: 2,
-      tags: {
-        title: faker.commerce.productName(),
-        artists: [faker.name.findName()]
-      },
-      media: faker.system.fileName()
+
+    it('clears tracks queue', async () => {
+      expectListItems(tracks)
+      expect(get(current)).toEqual(tracks[0])
+
+      await fireEvent.click(screen.queryAllByRole('button')[0])
+      await tick()
+
+      expect(get(current)).not.toBeDefined()
+      expect(screen.queryAllByRole('listitem')).toHaveLength(0)
     })
-    add([track1, track2])
 
-    render(html`<${TracksQueue} />`)
-    await tick()
+    it('removes track on button click', async () => {
+      expectListItems(tracks)
 
-    expect(get(current)).toEqual(track1)
-    expect(screen.getByText(track1.tags.title)).toBeInTheDocument()
-    expect(screen.getByText(track2.tags.title)).toBeInTheDocument()
+      const removed = tracks[1].tags.title
+      await fireEvent.click(
+        screen.getByText(removed).closest('li').querySelector('button')
+      )
+      await tick()
 
-    await fireEvent.click(screen.queryAllByRole('button')[0])
-    await tick()
-
-    expect(get(current)).not.toBeDefined()
-    expect(screen.queryByText(track1.tags.title)).not.toBeInTheDocument()
-    expect(screen.queryByText(track2.tags.title)).not.toBeInTheDocument()
-  })
-
-  it('removes track on button click', async () => {
-    const track1 = addRefs({
-      id: 1,
-      tags: {
-        title: faker.commerce.productName(),
-        artists: [faker.name.findName()]
-      },
-      media: faker.system.fileName()
+      expectListItems([tracks[0], ...tracks.slice(2)])
+      expect(screen.queryByText(removed)).not.toBeInTheDocument()
     })
-    const track2 = addRefs({
-      id: 2,
-      tags: {
-        title: faker.commerce.productName(),
-        artists: [faker.name.findName()]
-      },
-      media: faker.system.fileName()
+
+    it('drags track forward in the list', async () => {
+      expectListItems(tracks)
+      console.log(tracks.map(t => t.tags.title))
+
+      const hovered = screen.queryByText(tracks[2].tags.title)
+      const dropped = screen.queryByText(tracks[3].tags.title)
+
+      await fireEvent.dragStart(screen.queryByText(tracks[0].tags.title))
+      await fireEvent.dragOver(hovered)
+      await fireEvent.dragLeave(hovered)
+      await fireEvent.dragOver(dropped)
+      await fireEvent.drop(dropped)
+      await tick()
+
+      expectListItems([tracks[1], tracks[2], tracks[3], tracks[0]])
     })
-    add([track1, track2])
 
-    render(html`<${TracksQueue} />`)
-    await tick()
+    it('drags track backward in the list', async () => {
+      expectListItems(tracks)
 
-    await fireEvent.click(
-      screen.getByText(track2.tags.title).closest('li').querySelector('button')
-    )
-    await tick()
+      const dropped = screen.queryByText(tracks[0].tags.title)
 
-    expect(screen.queryByText(track1.tags.title)).toBeInTheDocument()
-    expect(screen.queryByText(track2.tags.title)).not.toBeInTheDocument()
+      await fireEvent.dragStart(screen.queryByText(tracks[2].tags.title))
+      await fireEvent.dragOver(dropped)
+      await fireEvent.drop(dropped)
+      await tick()
+
+      expectListItems([tracks[2], tracks[0], tracks[1], tracks[3]])
+    })
+
+    it(`does not move track on cancelled drag'n drop`, async () => {
+      expectListItems(tracks)
+
+      const dropped = screen.queryByText(translate('playlist'))
+
+      await fireEvent.dragStart(screen.queryByText(tracks[2].tags.title))
+      await fireEvent.dragOver(dropped)
+      await fireEvent.drop(dropped)
+      await tick()
+
+      expectListItems(tracks)
+    })
   })
 })

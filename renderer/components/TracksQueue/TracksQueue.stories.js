@@ -21,6 +21,7 @@ export const Empty = () => {
 export const WithTrackList = () => {
   queue.clear()
   queue.add(trackListData)
+  queue.add(trackListData)
   return {
     Component: TracksQueue
   }

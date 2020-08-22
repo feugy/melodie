@@ -281,6 +281,172 @@ describe('track-queue store', () => {
     })
   })
 
+  describe('move', () => {
+    const files = [
+      { id: 1, path: faker.system.fileName() },
+      { id: 2, path: faker.system.fileName() },
+      { id: 3, path: faker.system.fileName() },
+      { id: 4, path: faker.system.fileName() }
+    ]
+
+    beforeEach(async () => {
+      queue.clear()
+      queue.add(files.concat())
+      await tick()
+    })
+
+    it('does nothing on empty queue', async () => {
+      queue.clear()
+      queue.move(1, 2)
+      await tick()
+
+      expect(get(queue.tracks)).toEqual([])
+      expect(get(queue.current)).not.toBeDefined()
+      expect(get(queue.index)).toEqual(0)
+    })
+
+    it('moves track before current one', async () => {
+      queue.jumpTo(2)
+      await tick()
+      expect(get(queue.current)).toEqual(files[2])
+      expect(get(queue.index)).toEqual(2)
+
+      queue.move(3, 0)
+      await tick()
+
+      expect(get(queue.tracks)).toEqual([
+        files[3],
+        files[0],
+        files[1],
+        files[2]
+      ])
+      expect(get(queue.current)).toEqual(files[2])
+      expect(get(queue.index)).toEqual(3)
+    })
+
+    it('moves track backward, after current', async () => {
+      expect(get(queue.current)).toEqual(files[0])
+      expect(get(queue.index)).toEqual(0)
+
+      queue.move(2, 1)
+      await tick()
+
+      expect(get(queue.tracks)).toEqual([
+        files[0],
+        files[2],
+        files[1],
+        files[3]
+      ])
+      expect(get(queue.current)).toEqual(files[0])
+      expect(get(queue.index)).toEqual(0)
+    })
+
+    it('moves track forward, after current', async () => {
+      expect(get(queue.current)).toEqual(files[0])
+      expect(get(queue.index)).toEqual(0)
+
+      queue.move(1, 3)
+      await tick()
+
+      expect(get(queue.tracks)).toEqual([
+        files[0],
+        files[2],
+        files[3],
+        files[1]
+      ])
+      expect(get(queue.current)).toEqual(files[0])
+      expect(get(queue.index)).toEqual(0)
+    })
+
+    it('moves track backward, before current', async () => {
+      queue.jumpTo(2)
+      await tick()
+      expect(get(queue.current)).toEqual(files[2])
+      expect(get(queue.index)).toEqual(2)
+
+      queue.move(1, 0)
+      await tick()
+
+      expect(get(queue.tracks)).toEqual([
+        files[1],
+        files[0],
+        files[2],
+        files[3]
+      ])
+      expect(get(queue.current)).toEqual(files[2])
+      expect(get(queue.index)).toEqual(2)
+    })
+
+    it('moves track forward, after current', async () => {
+      queue.jumpTo(2)
+      await tick()
+      expect(get(queue.current)).toEqual(files[2])
+      expect(get(queue.index)).toEqual(2)
+
+      queue.move(0, 1)
+      await tick()
+
+      expect(get(queue.tracks)).toEqual([
+        files[1],
+        files[0],
+        files[2],
+        files[3]
+      ])
+      expect(get(queue.current)).toEqual(files[2])
+      expect(get(queue.index)).toEqual(2)
+    })
+
+    it('moves track after current one', async () => {
+      queue.jumpTo(2)
+      await tick()
+
+      expect(get(queue.current)).toEqual(files[2])
+      expect(get(queue.index)).toEqual(2)
+
+      queue.move(0, 3)
+      await tick()
+
+      expect(get(queue.tracks)).toEqual([
+        files[1],
+        files[2],
+        files[3],
+        files[0]
+      ])
+      expect(get(queue.current)).toEqual(files[2])
+      expect(get(queue.index)).toEqual(1)
+    })
+
+    it('ignores invalid boundaries', async () => {
+      queue.move(-1, 2)
+      await tick()
+
+      expect(get(queue.current)).toEqual(files[0])
+      expect(get(queue.index)).toEqual(0)
+      expect(get(queue.tracks)).toEqual(files)
+
+      queue.move(10, 2)
+      await tick()
+
+      expect(get(queue.current)).toEqual(files[0])
+      expect(get(queue.index)).toEqual(0)
+      expect(get(queue.tracks)).toEqual(files)
+
+      queue.move(2, -1)
+      await tick()
+
+      expect(get(queue.current)).toEqual(files[0])
+      expect(get(queue.index)).toEqual(0)
+      expect(get(queue.tracks)).toEqual(files)
+
+      queue.move(2, 10)
+      await tick()
+
+      expect(get(queue.current)).toEqual(files[0])
+      expect(get(queue.index)).toEqual(0)
+      expect(get(queue.tracks)).toEqual(files)
+    })
+  })
+
   describe('remove', () => {
     beforeEach(() => queue.clear())
     it('does nothing on empty queue', async () => {

@@ -71,7 +71,7 @@ npm run build
 - [x] search input and results
 - [x] navigation buttons
 - [x] system notification on next track
-- [ ] drag'n drop to tracks queue
+- [x] reorder tracks queue with drag'n drop
 - [ ] settings panel with watched folders
 - [ ] track lists
 - [ ] display years (artist & album details page)
@@ -83,6 +83,7 @@ npm run build
 - [ ] feedback on enqueue & play actions
 - [ ] shuffle, loop
 - [ ] number of disk on album details page
+- [ ] enque tracks/albums by dragging to tracks queue
 
 ### bugs
 
