@@ -11,6 +11,17 @@ class AlbumsModel extends TrackList {
     })
     this.searchCol = 'name'
   }
+
+  async getByName(name) {
+    const results = (
+      await this.db
+        .whereRaw('name = ? collate nocase', name)
+        .select()
+        .from(this.name)
+    ).map(this.makeDeserializer())
+    this.logger.debug({ name, hitCount: results.length }, 'fetch by name')
+    return results
+  }
 }
 
 exports.albumsModel = new AlbumsModel()

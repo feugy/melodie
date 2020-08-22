@@ -171,7 +171,6 @@ describe('Abstract track list', () => {
           id: models[1].id,
           name: models[1].name,
           removedTrackIds: [faker.random.number()],
-          // TODO ids only?
           removedRefs: [[faker.random.number(), faker.name.findName()]]
         }
       ]
@@ -242,7 +241,6 @@ describe('Abstract track list', () => {
       const model = merge(models[2], {})
       model.removedTrackIds = JSON.parse(model.trackIds).slice(1, 2)
       model.trackIds = [faker.random.number()]
-      // TODO ids only?
       model.removedRefs = JSON.parse(model.refs).slice(1, 2)
       model.refs = [[faker.random.number(), faker.name.findName()]]
 

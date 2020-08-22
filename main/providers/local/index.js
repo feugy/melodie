@@ -5,7 +5,31 @@ const { filter, pluck, reduce } = require('rxjs/operators')
 const mime = require('mime-types')
 const AbstractProvider = require('../abstract-provider')
 const { tracksModel, albumsModel } = require('../../models')
-const { hash, walk } = require('../../utils')
+const { walk } = require('../../utils')
+
+function findCovers(provider) {
+  return async function (album) {
+    const { path } = await tracksModel.getById(album.trackIds[0])
+    return walk(dirname(path))
+      .pipe(
+        filter(({ path, stats }) => {
+          if (stats.isFile()) {
+            const type = mime.lookup(extname(path))
+            return (
+              type === 'image/jpeg' ||
+              type === 'image/gif' ||
+              type === 'image/png' ||
+              type === 'image/bmp'
+            )
+          }
+          return false
+        }),
+        pluck('path'),
+        reduce((results, path) => [...results, { full: path, provider }], [])
+      )
+      .toPromise()
+  }
+}
 
 class Local extends AbstractProvider {
   constructor() {
@@ -19,36 +43,13 @@ class Local extends AbstractProvider {
   async findAlbumCover(searched) {
     this.logger.debug({ searched }, `search album cover for ${searched}`)
     try {
-      // TODO search by name, not by id
-      const album = await albumsModel.getById(hash(searched))
-      if (!album) {
+      const albums = await albumsModel.getByName(searched)
+      if (!albums.length) {
         return []
       }
-      const { path } = await tracksModel.getById(album.trackIds[0])
-      const results = await walk(dirname(path))
-        .pipe(
-          filter(({ path, stats }) => {
-            if (stats.isFile()) {
-              const type = mime.lookup(extname(path))
-              return (
-                type === 'image/jpeg' ||
-                type === 'image/gif' ||
-                type === 'image/png' ||
-                type === 'image/bmp'
-              )
-            }
-            return false
-          }),
-          pluck('path'),
-          reduce(
-            (results, path) => [
-              ...results,
-              { full: path, provider: this.name }
-            ],
-            []
-          )
-        )
-        .toPromise()
+      const results = (
+        await Promise.all(albums.map(findCovers(this.name)))
+      ).reduce((all, items) => all.concat(items))
       this.logger.debug(
         { length: results.length, searched },
         `got results for ${searched}`

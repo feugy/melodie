@@ -85,11 +85,13 @@ npm run build
 - [ ] number of disk on album details page
 - [ ] enque tracks/albums by dragging to tracks queue
 
-### bugs
+### Bugs and unresolved issues
 
 1. Undetected live changes: remove tracks and re-add them. This is a linux-only issue with chokidar
    - https://github.com/paulmillr/chokidar/issues/917
    - https://github.com/paulmillr/chokidar/issues/591
+1. Files renamed or moved to other watched folders are removed and re-added. This is a limitation with chokidar
+   - https://github.com/paulmillr/chokidar/issues/303
 1. When loading new folders, enqueuing or going to album details will give incomplete results. Going back and forth won't load new data
 1. In tracks table, the rank column has variable width (BraveHeart), play icon is not vertically centered (2-lines rows)
 1. Page navigation: use:link doesn't work in tests and raise Svelte warning. a.href is fine
