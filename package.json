@@ -87,6 +87,7 @@
     "rollup-plugin-terser": "^7.0.0",
     "spectron": "^11.0.0",
     "spectron-dialog-addon": "^1.0.1",
+    "string-replace-loader": "^2.3.0",
     "svelte": "^3.24.1",
     "svelte-htm": "^1.1.1",
     "svelte-intl": "^1.1.1",

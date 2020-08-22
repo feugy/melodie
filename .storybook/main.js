@@ -21,12 +21,20 @@ module.exports = {
         )
     )
     postcssRule.test = /\.p?css$/
+    postcssRule.use.push({
+      loader: require.resolve('string-replace-loader'),
+      options: {
+        search: /url\(\.\/fonts/g,
+        replace: 'url(../public/fonts'
+      }
+    })
 
     config.module.rules.push({
       test: /\.ya?ml$/,
       type: 'json',
       use: 'yaml-loader'
     })
+
     config.externals = {
       electron: 'electron'
     }
