@@ -18,6 +18,7 @@
   --hover-primary-color: #43527f;
   --backdrop-color: rgba(39, 41, 51, 0.9);
   --input-bg-color: rgba(255, 255, 255, 0.05);
+  --scroll-width: 10px;
 }
 
 body {
@@ -61,4 +62,19 @@ a.underlined:hover {
 }
 a.underlined:hover:before {
   @apply opacity-100 w-full;
+}
+
+*::-webkit-scrollbar {
+  width: var(--scroll-width);
+}
+*::-webkit-scrollbar-track {
+  background: var(--bg-primary-color);
+}
+*::-webkit-scrollbar-thumb {
+  background-color: var(--outline-color);
+  border-radius: calc(var(--scroll-width) / 2);
+  border: 2px solid var(--bg-primary-color);
+}
+*::-webkit-scrollbar-thumb:hover {
+  background-color: var(--font-color);
 }
