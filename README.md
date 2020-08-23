@@ -83,12 +83,14 @@ npm run build
 - [x] system notification on next track
 - [x] reorder tracks queue with drag'n drop
 - [x] settings panel with watched folders
-- [ ] memorize window position and state
+- [x] memorize window position and state
 - [ ] tracks without artists/album
 - [ ] shuffle, loop
 - [ ] track lists
 - [ ] language change
+- [ ] help and tips
       ---> release?
+- [ ] replay gain
 - [ ] settings for simple/double click behaviour
 - [ ] [open containing folder](https://www.electronjs.org/docs/api/shell#shellshowiteminfolderfullpath) for tracks
 - [ ] display years (artist & album details page)

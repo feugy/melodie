@@ -11,7 +11,8 @@ const {
   getStoragePath,
   subscribeRemote,
   registerRenderer,
-  getLogger
+  getLogger,
+  manageState
 } = require('./utils')
 
 const isDev = process.env.ROLLUP_WATCH
@@ -52,6 +53,7 @@ async function createWindow() {
     },
     icon: `${join(publicFolder, 'icon-256x256.png')}`
   })
+  manageState(win)
 
   if (isDev) {
     shortcut.register(win, ['F12', 'CmdOrCtrl+Shift+I'], () => {
