@@ -6,7 +6,7 @@ import html from 'svelte-htm'
 import { BehaviorSubject } from 'rxjs'
 import faker from 'faker'
 import searchRoute from './[searched].svelte'
-import { artists, albums, tracks, search } from '../../stores/search'
+import { artists, albums, tracks, search, current } from '../../stores/search'
 import { artistData } from '../../components/Artist/Artist.stories'
 import { albumData } from '../../components/Album/Album.stories'
 import { tracksData } from '../../components/TracksTable/TracksTable.stories'
@@ -19,7 +19,8 @@ jest.mock('../../stores/search', () => {
     search: jest.fn(),
     albums: new Subject(),
     artists: new Subject(),
-    tracks: new Subject()
+    tracks: new Subject(),
+    current: new Subject()
   }
 })
 
@@ -37,6 +38,8 @@ describe('search results route', () => {
     id
   }))
 
+  beforeEach(() => jest.resetAllMocks())
+
   it('handles no results', async () => {
     const artists$ = new BehaviorSubject([])
     artists.subscribe = artists$.subscribe.bind(artists$)
@@ -44,6 +47,8 @@ describe('search results route', () => {
     albums.subscribe = albums$.subscribe.bind(albums$)
     const tracks$ = new BehaviorSubject([])
     tracks.subscribe = tracks$.subscribe.bind(tracks$)
+    const current$ = new BehaviorSubject()
+    current.subscribe = current$.subscribe.bind(current$)
 
     render(html`<${searchRoute} params=${{ searched }} />`)
     await tick()
@@ -63,6 +68,8 @@ describe('search results route', () => {
     albums.subscribe = albums$.subscribe.bind(albums$)
     const tracks$ = new BehaviorSubject([])
     tracks.subscribe = tracks$.subscribe.bind(tracks$)
+    const current$ = new BehaviorSubject()
+    current.subscribe = current$.subscribe.bind(current$)
 
     render(
       html`<${searchRoute}
@@ -77,6 +84,25 @@ describe('search results route', () => {
     ).toBeInTheDocument()
   })
 
+  it('does not trigger search when matching current', async () => {
+    const artists$ = new BehaviorSubject([])
+    artists.subscribe = artists$.subscribe.bind(artists$)
+    const albums$ = new BehaviorSubject([])
+    albums.subscribe = albums$.subscribe.bind(albums$)
+    const tracks$ = new BehaviorSubject([])
+    tracks.subscribe = tracks$.subscribe.bind(tracks$)
+    const current$ = new BehaviorSubject(searched)
+    current.subscribe = current$.subscribe.bind(current$)
+
+    render(html`<${searchRoute} params=${{ searched }} />`)
+    await tick()
+
+    expect(search).not.toHaveBeenCalled()
+    expect(
+      screen.queryByText(translate('results for _', { searched }))
+    ).toBeInTheDocument()
+  })
+
   describe('given results', () => {
     beforeEach(async () => {
       const artists$ = new BehaviorSubject(artistsData)
@@ -85,7 +111,8 @@ describe('search results route', () => {
       albums.subscribe = albums$.subscribe.bind(albums$)
       const tracks$ = new BehaviorSubject(tracksData)
       tracks.subscribe = tracks$.subscribe.bind(tracks$)
-      jest.resetAllMocks()
+      const current$ = new BehaviorSubject()
+      current.subscribe = current$.subscribe.bind(current$)
 
       render(html`<${searchRoute} params=${{ searched }} />`)
       await tick()

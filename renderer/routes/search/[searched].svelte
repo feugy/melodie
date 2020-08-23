@@ -6,14 +6,23 @@
     ExpandableList,
     ExpandableListConstants
   } from '../../components'
-  import { artists, albums, tracks, search, total } from '../../stores/search'
+  import {
+    artists,
+    albums,
+    tracks,
+    search,
+    total,
+    current
+  } from '../../stores/search'
 
   export let params
   let searched
 
-  $: {
+  $: if (params.searched) {
     searched = decodeURIComponent(params.searched)
-    search(searched)
+    if ($current !== searched) {
+      search(searched)
+    }
   }
 </script>
 

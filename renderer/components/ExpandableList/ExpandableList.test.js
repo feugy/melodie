@@ -90,6 +90,7 @@ describe('ExpandableList component', () => {
 
   describe('given a long list of tracks', () => {
     const tracks = tracksData.slice(0, 5)
+    const items = new BehaviorSubject()
 
     beforeEach(() => {
       Element.prototype.getBoundingClientRect = function () {
@@ -97,11 +98,9 @@ describe('ExpandableList component', () => {
           right: Array.from(this.parentNode.children).indexOf(this) * 100
         }
       }
+      items.next(tracks)
       // hack: do not use svelte-htm as it wrapps the returned component.
-      const { component } = render(ExpandableList, {
-        kind: TRACKS,
-        items: new BehaviorSubject(tracks)
-      })
+      const { component } = render(ExpandableList, { kind: TRACKS, items })
       component.$set({ _width: 280 })
     })
 
@@ -158,6 +157,17 @@ describe('ExpandableList component', () => {
       }
       expect(screen.getByText(translate('show all'))).toBeVisible()
       expect(location.hash).toEqual(`#/`)
+    })
+
+    it('resets state when receiving new list', async () => {
+      await fireEvent.click(screen.getByText(translate('show all')))
+
+      expect(screen.getByText(translate('show less'))).toBeVisible()
+
+      items.next(tracksData.slice(5, 10))
+      await sleep()
+
+      expect(screen.getByText(translate('show all'))).toBeVisible()
     })
 
     it('plays tracks on double clicks', async () => {

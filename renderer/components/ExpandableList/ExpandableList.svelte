@@ -47,20 +47,21 @@
       : isOne
       ? 'a track'
       : '_ tracks'
-  $: {
-    if (list) {
-      hasWrapped = false
-      for (const item of list.children) {
-        item.classList.remove('wrapped')
-        if (!hasWrapped) {
-          const { right } = item.getBoundingClientRect()
-          if (right > _width) {
-            hasWrapped = true
-            item.classList.add('wrapped')
-          }
-        } else {
+  $: if ($items) {
+    expanded = false
+  }
+  $: if (list) {
+    hasWrapped = false
+    for (const item of list.children) {
+      item.classList.remove('wrapped')
+      if (!hasWrapped) {
+        const { right } = item.getBoundingClientRect()
+        if (right > _width) {
+          hasWrapped = true
           item.classList.add('wrapped')
         }
+      } else {
+        item.classList.add('wrapped')
       }
     }
   }

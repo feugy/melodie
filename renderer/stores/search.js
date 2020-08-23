@@ -50,6 +50,8 @@ const sum$ = new ReplaySubject().pipe(
   )
 )
 
+const current$ = new ReplaySubject()
+
 export const albums = {
   subscribe: albums$.subscribe.bind(albums$)
 }
@@ -62,6 +64,9 @@ export const tracks = {
 export const total = {
   subscribe: total$.subscribe.bind(total$)
 }
+export const current = {
+  subscribe: current$.subscribe.bind(current$)
+}
 
 let searchSubscription = null
 
@@ -71,6 +76,7 @@ export function clear() {
   tracks$.next(null)
   sum$.next(null)
   total$.next(0)
+  current$.next(null)
 }
 
 export function search(text, size = 10) {
@@ -78,6 +84,7 @@ export function search(text, size = 10) {
     searchSubscription.unsubscribe()
   }
   clear()
+  current$.next(text)
   const request$ = new BehaviorSubject({ text, size })
 
   searchSubscription = request$

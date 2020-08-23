@@ -2,7 +2,7 @@
 
 import { get } from 'svelte/store'
 import faker from 'faker'
-import { search, albums, artists, tracks, total } from './search'
+import { search, albums, artists, tracks, total, current } from './search'
 import { mockInvoke, sleep } from '../tests'
 
 describe('searchstore', () => {
@@ -58,6 +58,7 @@ describe('searchstore', () => {
     expect(get(artists)).toEqual([])
     expect(get(tracks)).toEqual([])
     expect(get(total)).toEqual(0)
+    expect(get(current)).toBeNull()
 
     search(text, size)
     await sleep(100)
@@ -91,5 +92,6 @@ describe('searchstore', () => {
       { size, from: size * 2 }
     )
     expect(get(total)).toEqual(totalSum)
+    expect(get(current)).toEqual(text)
   })
 })

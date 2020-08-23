@@ -105,7 +105,6 @@ npm run build
 ### Bugs and unresolved issues
 
 1. Some artwork isn't displayed in notification (Smash Hits for Ballet)
-1. When expanding search results, and running new search, expansion state is not reset
 1. Local provider returning too many results, some unusable, for "Rock & Pop for Ballet 2"
 1. Undetected live changes: remove tracks and re-add them. This is a linux-only issue with chokidar
    - https://github.com/paulmillr/chokidar/issues/917
