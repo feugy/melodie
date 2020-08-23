@@ -45,6 +45,16 @@ npm run build
 - [x] Continuous integration
 - [ ] Code coverage follow-up
 
+### release
+
+- [ ] usage statistics
+- [ ] auto updater
+- [ ] logo
+- [ ] github page
+- [ ] reference in Electron's [app list](https://www.electronjs.org/apps)
+- [ ] reference in Svelte's [showcase](https://svelte-community.netlify.app/showcase)
+- [ ] reference in [Snap store](https://snapcraft.io/)
+
 ### features
 
 - [x] navigation bar: albums
@@ -74,15 +84,19 @@ npm run build
 - [x] reorder tracks queue with drag'n drop
 - [x] settings panel with watched folders
 - [ ] memorize window position and state
+- [ ] tracks without artists/album
+- [ ] shuffle, loop
 - [ ] track lists
+- [ ] language change
+      ---> release?
+- [ ] settings for simple/double click behaviour
+- [ ] [open containing folder](https://www.electronjs.org/docs/api/shell#shellshowiteminfolderfullpath) for tracks
 - [ ] display years (artist & album details page)
 - [ ] display album/artist descriptions
-- [ ] [open containing folder](https://www.electronjs.org/docs/api/shell#shellshowiteminfolderfullpath) for tracks
 - [ ] block power save
 - [ ] system tray integration
 - [ ] loading indicators (one for all operation, fixed so it doesn't push content down)
 - [ ] feedback on enqueue & play actions
-- [ ] shuffle, loop
 - [ ] number of disk on album details page
 - [ ] enqueue tracks/albums by dragging to tracks queue
 - [ ] display tracks/albums/artists count in settings
@@ -90,6 +104,9 @@ npm run build
 
 ### Bugs and unresolved issues
 
+1. Some artwork isn't displayed in notification (Smash Hits for Ballet)
+1. When expanding search results, and running new search, expansion state is not reset
+1. Local provider returning too many results, some unusable, for "Rock & Pop for Ballet 2"
 1. Undetected live changes: remove tracks and re-add them. This is a linux-only issue with chokidar
    - https://github.com/paulmillr/chokidar/issues/917
    - https://github.com/paulmillr/chokidar/issues/591

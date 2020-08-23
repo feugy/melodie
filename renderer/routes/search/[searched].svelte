@@ -9,9 +9,11 @@
   import { artists, albums, tracks, search, total } from '../../stores/search'
 
   export let params
+  let searched
 
   $: {
-    search(params.searched)
+    searched = decodeURIComponent(params.searched)
+    search(searched)
   }
 </script>
 
@@ -27,7 +29,7 @@
 
 <div in:fade={{ duration: 200 }}>
   <Heading
-    title={$_('results for _', { searched: params.searched })}
+    title={$_('results for _', { searched })}
     image={'../images/anthony-martino-6AtQNsjMoJo-unsplash.jpg'}
     imagePosition="bottom center" />
   {#if $total === 0}

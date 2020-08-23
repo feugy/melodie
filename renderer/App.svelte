@@ -24,7 +24,7 @@
     listAlbums()
     listArtists()
     invoke('settingsManager.compareAndWatch')
-    await new Promise(r => setTimeout(r, 100))
+    await new Promise(r => setTimeout(r, 200))
     if ($albums.length === 0 && $artists.length === 0) {
       replace('/settings')
     }

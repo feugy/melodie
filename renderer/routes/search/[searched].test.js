@@ -24,7 +24,7 @@ jest.mock('../../stores/search', () => {
 })
 
 describe('search results route', () => {
-  const searched = faker.random.word()
+  const searched = faker.lorem.word()
 
   const albumsData = Array.from({ length: 5 }, (_, id) => ({
     ...albumData,
@@ -55,6 +55,28 @@ describe('search results route', () => {
     expect(screen.queryByText(translate('no results'))).toBeDefined()
   })
 
+  it('triggers search with escapted characters', async () => {
+    const searched = 'é < à'
+    const artists$ = new BehaviorSubject([])
+    artists.subscribe = artists$.subscribe.bind(artists$)
+    const albums$ = new BehaviorSubject([])
+    albums.subscribe = albums$.subscribe.bind(albums$)
+    const tracks$ = new BehaviorSubject([])
+    tracks.subscribe = tracks$.subscribe.bind(tracks$)
+
+    render(
+      html`<${searchRoute}
+        params=${{ searched: encodeURIComponent(searched) }}
+      />`
+    )
+    await tick()
+
+    expect(search).toHaveBeenCalledWith(searched)
+    expect(
+      screen.queryByText(translate('results for _', { searched }))
+    ).toBeInTheDocument()
+  })
+
   describe('given results', () => {
     beforeEach(async () => {
       const artists$ = new BehaviorSubject(artistsData)
@@ -73,6 +95,9 @@ describe('search results route', () => {
 
     it('triggers search on load', async () => {
       expect(search).toHaveBeenCalledWith(searched)
+      expect(
+        screen.queryByText(translate('results for _', { searched }))
+      ).toBeInTheDocument()
     })
 
     it('displays found tracks, albums and artists', async () => {
