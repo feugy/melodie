@@ -11,6 +11,7 @@ exports[`Storyshots Components/Button Default 1`] = `
     <span>
       Default
     </span>
+     
   </button>
 </section>
 `;
@@ -27,6 +28,7 @@ exports[`Storyshots Components/Button Large Icon 1`] = `
     >
       play_arrow
     </i>
+     
      
   </button>
 </section>
@@ -48,6 +50,7 @@ exports[`Storyshots Components/Button Large Text And Icon 1`] = `
     <span>
       Hey!
     </span>
+     
   </button>
 </section>
 `;
@@ -63,6 +66,7 @@ exports[`Storyshots Components/Button Primary 1`] = `
     <span>
       Primary
     </span>
+     
   </button>
 </section>
 `;
@@ -79,6 +83,7 @@ exports[`Storyshots Components/Button Primary Icon 1`] = `
     >
       volume_up
     </i>
+     
      
   </button>
 </section>
@@ -100,6 +105,7 @@ exports[`Storyshots Components/Button Text And Icon 1`] = `
     <span>
       Hello
     </span>
+     
   </button>
 </section>
 `;

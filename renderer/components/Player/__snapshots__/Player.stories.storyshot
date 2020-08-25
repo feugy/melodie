@@ -31,6 +31,7 @@ exports[`Storyshots Components/Player Empty 1`] = `
             skip_previous
           </i>
            
+           
         </button>
          
         <button
@@ -42,6 +43,7 @@ exports[`Storyshots Components/Player Empty 1`] = `
             play_arrow
           </i>
            
+           
         </button>
          
         <button
@@ -52,6 +54,7 @@ exports[`Storyshots Components/Player Empty 1`] = `
           >
             skip_next
           </i>
+           
            
         </button>
       </span>
@@ -132,6 +135,7 @@ exports[`Storyshots Components/Player Empty 1`] = `
             volume_up
           </i>
            
+           
         </button>
       </div>
        
@@ -143,6 +147,7 @@ exports[`Storyshots Components/Player Empty 1`] = `
         >
           queue_music
         </i>
+         
          
       </button>
     </span>
@@ -219,6 +224,7 @@ exports[`Storyshots Components/Player With Track List 1`] = `
             skip_previous
           </i>
            
+           
         </button>
          
         <button
@@ -230,6 +236,7 @@ exports[`Storyshots Components/Player With Track List 1`] = `
             play_arrow
           </i>
            
+           
         </button>
          
         <button
@@ -240,6 +247,7 @@ exports[`Storyshots Components/Player With Track List 1`] = `
           >
             skip_next
           </i>
+           
            
         </button>
       </span>
@@ -320,6 +328,7 @@ exports[`Storyshots Components/Player With Track List 1`] = `
             volume_up
           </i>
            
+           
         </button>
       </div>
        
@@ -331,6 +340,7 @@ exports[`Storyshots Components/Player With Track List 1`] = `
         >
           queue_music
         </i>
+         
          
       </button>
     </span>

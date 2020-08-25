@@ -34,6 +34,7 @@ exports[`Storyshots Components/Album Default 1`] = `
               play_arrow
             </i>
              
+             
           </button>
            
           <button
@@ -45,6 +46,7 @@ exports[`Storyshots Components/Album Default 1`] = `
             >
               playlist_add
             </i>
+             
              
           </button>
         </p>
@@ -117,6 +119,7 @@ exports[`Storyshots Components/Album Many Artists 1`] = `
               play_arrow
             </i>
              
+             
           </button>
            
           <button
@@ -128,6 +131,7 @@ exports[`Storyshots Components/Album Many Artists 1`] = `
             >
               playlist_add
             </i>
+             
              
           </button>
         </p>
@@ -216,6 +220,7 @@ exports[`Storyshots Components/Album No Artist 1`] = `
               play_arrow
             </i>
              
+             
           </button>
            
           <button
@@ -227,6 +232,7 @@ exports[`Storyshots Components/Album No Artist 1`] = `
             >
               playlist_add
             </i>
+             
              
           </button>
         </p>

@@ -80,4 +80,5 @@
   {#if text}
     <span>{text}</span>
   {/if}
+  <slot />
 </button>

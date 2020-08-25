@@ -1,0 +1,213 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Components/Dropdown Custom Button Options 1`] = `
+<section
+  class="storybook-snapshot-container"
+>
+  <div>
+    current value is: 
+    one
+  </div>
+   
+  <span
+    class="wrapper svelte-enx81z"
+  >
+    <button
+      class="svelte-j6xhgj primary"
+    >
+      <i
+        class="material-icons svelte-j6xhgj"
+      >
+        person
+      </i>
+       
+      <span>
+        Primary
+      </span>
+       
+      <i
+        class="material-icons arrow svelte-enx81z"
+      >
+        arrow_drop_down
+      </i>
+      
+    </button>
+     
+  </span>
+   
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+  incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+  nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+  eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt
+  in culpa qui officia deserunt mollit anim id est laborum.
+  </p>
+</section>
+`;
+
+exports[`Storyshots Components/Dropdown Default 1`] = `
+<section
+  class="storybook-snapshot-container"
+>
+  <div>
+    current value is: 
+    one
+  </div>
+   
+  <span
+    class="wrapper svelte-enx81z"
+  >
+    <button
+      class="svelte-j6xhgj"
+    >
+       
+      <span>
+        one
+      </span>
+       
+      <i
+        class="material-icons arrow svelte-enx81z"
+      >
+        arrow_drop_down
+      </i>
+      
+    </button>
+     
+  </span>
+   
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+  incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+  nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+  eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt
+  in culpa qui officia deserunt mollit anim id est laborum.
+  </p>
+</section>
+`;
+
+exports[`Storyshots Components/Dropdown Icon Only 1`] = `
+<section
+  class="storybook-snapshot-container"
+>
+  <div>
+    current value is: 
+    one
+  </div>
+   
+  <span
+    class="wrapper svelte-enx81z"
+  >
+    <button
+      class="svelte-j6xhgj iconOnly"
+    >
+      <i
+        class="material-icons svelte-j6xhgj"
+      >
+        more_vert
+      </i>
+       
+       
+      
+    </button>
+     
+  </span>
+   
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+  incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+  nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+  eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt
+  in culpa qui officia deserunt mollit anim id est laborum.
+  </p>
+</section>
+`;
+
+exports[`Storyshots Components/Dropdown Independent Text And Icon 1`] = `
+<section
+  class="storybook-snapshot-container"
+>
+  <div>
+    current value is: 
+    one
+  </div>
+   
+  <span
+    class="wrapper svelte-enx81z"
+  >
+    <button
+      class="svelte-j6xhgj"
+    >
+      <i
+        class="material-icons svelte-j6xhgj"
+      >
+        settings
+      </i>
+       
+      <span>
+        options
+      </span>
+       
+      <i
+        class="material-icons arrow svelte-enx81z"
+      >
+        arrow_drop_down
+      </i>
+      
+    </button>
+     
+  </span>
+   
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+  incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+  nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+  eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt
+  in culpa qui officia deserunt mollit anim id est laborum.
+  </p>
+</section>
+`;
+
+exports[`Storyshots Components/Dropdown Simple Array 1`] = `
+<section
+  class="storybook-snapshot-container"
+>
+  <div>
+    current value is: 
+    one
+  </div>
+   
+  <span
+    class="wrapper svelte-enx81z"
+  >
+    <button
+      class="svelte-j6xhgj"
+    >
+       
+      <span>
+        one
+      </span>
+       
+      <i
+        class="material-icons arrow svelte-enx81z"
+      >
+        arrow_drop_down
+      </i>
+      
+    </button>
+     
+  </span>
+   
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+  incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+  nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+  eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt
+  in culpa qui officia deserunt mollit anim id est laborum.
+  </p>
+</section>
+`;

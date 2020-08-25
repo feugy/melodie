@@ -20,6 +20,7 @@ exports[`Storyshots Components/Dialogue Default 1`] = `
         close
       </i>
        
+       
     </button>
      
     <article
@@ -59,6 +60,7 @@ exports[`Storyshots Components/Dialogue Default 1`] = `
             <span>
               Close
             </span>
+             
           </button>
         </span>
       </footer>
@@ -74,6 +76,7 @@ exports[`Storyshots Components/Dialogue Default 1`] = `
     <span>
       Open
     </span>
+     
   </button>
    
   <p>
