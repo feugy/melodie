@@ -106,7 +106,6 @@ npm run build
 
 ### Bugs and unresolved issues
 
-1. Album/artist refs are never removed (album still reference artist when none of its track relate to that artist any more)
 1. Some artwork isn't displayed in notification (Smash Hits for Ballet)
 1. Local provider returning too many results, some unusable, for "Rock & Pop for Ballet 2"
 1. Undetected live changes: remove tracks and re-add them. This is a linux-only issue with chokidar

@@ -1,6 +1,8 @@
 'use strict'
 
 const TrackList = require('./abstract-track-list')
+const { tracksModel } = require('./tracks')
+const { uniqRef, parseRawRefArray } = require('../utils')
 
 class AlbumsModel extends TrackList {
   constructor() {
@@ -21,6 +23,18 @@ class AlbumsModel extends TrackList {
     ).map(this.makeDeserializer())
     this.logger.debug({ name, hitCount: results.length }, 'fetch by name')
     return results
+  }
+
+  async computeRefs(trx, trackIds) {
+    const refs = await trx(tracksModel.name)
+      .whereIn('id', trackIds)
+      .select('artistRefs')
+    return uniqRef(
+      refs.reduce(
+        (all, { artistRefs }) => all.concat(parseRawRefArray(artistRefs)),
+        []
+      )
+    )
   }
 }
 

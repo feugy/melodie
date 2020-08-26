@@ -10,31 +10,13 @@ const { tracksModel } = require('../models/tracks')
 const { settingsModel } = require('../models/settings')
 const engine = require('./list-engine')
 const { hash, broadcast } = require('../utils')
-const { sleep } = require('../tests')
+const { sleep, addRefs, addId } = require('../tests')
 
 jest.mock('../models/artists')
 jest.mock('../models/albums')
 jest.mock('../models/tracks')
 jest.mock('../models/settings')
 jest.mock('../utils/electron-remote')
-
-function addId(obj) {
-  return { ...obj, id: hash(obj.name) }
-}
-
-function makeRef(value) {
-  return [hash(value), value]
-}
-
-function addRefs(track) {
-  return {
-    ...track,
-    albumRef: track.tags.album ? makeRef(track.tags.album) : [1, null],
-    artistRefs: track.tags.artists.length
-      ? track.tags.artists.map(makeRef)
-      : [[1, null]]
-  }
-}
 
 let dbFile
 
@@ -86,8 +68,7 @@ describe('Lists Engine', () => {
       const artists = artistNames.map(name =>
         addId({
           name,
-          trackIds: [hash(path)],
-          refs: [[1, null]]
+          trackIds: [hash(path)]
         })
       )
       const tracks = [{ id: hash(path), path, tags: { artists: artistNames } }]
@@ -95,8 +76,7 @@ describe('Lists Engine', () => {
         id: 1,
         name: null,
         media: null,
-        trackIds: tracks.map(({ id }) => id),
-        refs: artists.map(({ name }) => makeRef(name))
+        trackIds: tracks.map(({ id }) => id)
       }
       const savedTracks = tracks.map(addRefs)
       tracksModel.save.mockResolvedValue(
@@ -145,13 +125,11 @@ describe('Lists Engine', () => {
         id: 1,
         name: null,
         media: null,
-        trackIds: tracks.map(({ id }) => id),
-        refs: [makeRef(name)]
+        trackIds: tracks.map(({ id }) => id)
       }
       const album = addId({
         name,
-        trackIds: [hash(path)],
-        refs: savedTracks[0].artistRefs
+        trackIds: [hash(path)]
       })
       albumsModel.save.mockResolvedValueOnce({
         saved: [album],
@@ -185,8 +163,7 @@ describe('Lists Engine', () => {
       const album = addId({
         name,
         media,
-        trackIds: [hash(path)],
-        refs: [[1, null]]
+        trackIds: [hash(path)]
       })
       const tracks = [
         {
@@ -200,8 +177,7 @@ describe('Lists Engine', () => {
         id: 1,
         name: null,
         media: null,
-        trackIds: tracks.map(({ id }) => id),
-        refs: [makeRef(name)]
+        trackIds: tracks.map(({ id }) => id)
       }
       const savedTracks = tracks.map(addRefs)
       tracksModel.save.mockResolvedValue(
@@ -253,19 +229,16 @@ describe('Lists Engine', () => {
       const tracks = [track1, track2, track3]
       const album = addId({
         name,
-        trackIds: tracks.map(({ id }) => id),
-        refs: [makeRef(artist1), makeRef(artist2)]
+        trackIds: tracks.map(({ id }) => id)
       })
       const artists = [
         {
           name: artist1,
-          trackIds: [track1.id],
-          refs: [makeRef(name)]
+          trackIds: [track1.id]
         },
         {
           name: artist2,
-          trackIds: [track2.id, track3.id],
-          refs: [makeRef(name)]
+          trackIds: [track2.id, track3.id]
         }
       ].map(addId)
       const savedTracks = tracks.map(addRefs)
@@ -324,18 +297,15 @@ describe('Lists Engine', () => {
       const artists = [
         addId({
           name: artist1,
-          trackIds: [track1.id],
-          refs: [[1, null]]
+          trackIds: [track1.id]
         }),
         addId({
           name: artist2,
-          trackIds: [track1.id, track2.id],
-          refs: [[1, null]]
+          trackIds: [track1.id, track2.id]
         }),
         addId({
           name: artist3,
-          trackIds: [track2.id, track3.id],
-          refs: [[1, null]]
+          trackIds: [track2.id, track3.id]
         })
       ]
       const tracks = [track1, track2, track3]
@@ -344,8 +314,7 @@ describe('Lists Engine', () => {
         id: 1,
         name: null,
         media: null,
-        trackIds: tracks.map(({ id }) => id),
-        refs: artists.map(({ name }) => makeRef(name))
+        trackIds: tracks.map(({ id }) => id)
       }
       tracksModel.save.mockResolvedValue(
         savedTracks.map(current => ({ current }))
@@ -438,23 +407,18 @@ describe('Lists Engine', () => {
       const oldAlbum = addId({
         name: oldName,
         trackIds: [],
-        removedTrackIds: [track1.id, track2.id],
-        refs: [],
-        removedRefs: [makeRef(artist1), makeRef(artist3)]
+        removedTrackIds: [track1.id, track2.id]
       })
 
       const updatedAlbum = addId({
         name: updatedName,
         removedTrackIds: [track3.id],
-        trackIds: [track4.id],
-        refs: [makeRef(artist3)],
-        removedRefs: [makeRef(artist1), makeRef(artist2)]
+        trackIds: [track4.id]
       })
 
       const newAlbum = addId({
         name: newName,
-        trackIds: [track1.id, track2.id, track3.id],
-        refs: [makeRef(artist2), makeRef(artist1)]
+        trackIds: [track1.id, track2.id, track3.id]
       })
 
       albumsModel.save.mockResolvedValueOnce({
@@ -516,21 +480,16 @@ describe('Lists Engine', () => {
       const oldArtist = addId({
         name: oldName,
         trackIds: [],
-        removedTrackIds: [track1.id, track2.id],
-        removedRefs: [[1, null]],
-        refs: []
+        removedTrackIds: [track1.id, track2.id]
       })
       const updatedArtist = addId({
         name: updatedName,
         removedTrackIds: [track2.id],
-        trackIds: [track1.id],
-        removedRefs: [[1, null]],
-        refs: [[1, null]]
+        trackIds: [track1.id]
       })
       const newArtist = addId({
         name: newName,
-        trackIds: [track1.id, track2.id],
-        refs: [[1, null]]
+        trackIds: [track1.id, track2.id]
       })
       artistsModel.save.mockResolvedValueOnce({
         saved: [oldArtist, updatedArtist, newArtist],
@@ -540,11 +499,7 @@ describe('Lists Engine', () => {
         id: 1,
         name: null,
         media: null,
-        trackIds: tracks.map(({ id }) => id),
-        refs: [
-          [newArtist.id, newName],
-          [updatedArtist.id, updatedName]
-        ]
+        trackIds: tracks.map(({ id }) => id)
       }
       albumsModel.save.mockResolvedValueOnce({
         saved: [unknownAlbum],
@@ -581,9 +536,7 @@ describe('Lists Engine', () => {
       const album = addId({
         name,
         removedTrackIds: [hash(path)],
-        trackIds: [],
-        refs: [],
-        removedRefs: artistNames.map(makeRef)
+        trackIds: []
       })
       const tracks = [
         addRefs({
@@ -598,9 +551,7 @@ describe('Lists Engine', () => {
         addId({
           name,
           trackIds: [],
-          removedTrackIds: trackIds,
-          refs: [],
-          removedRefs: []
+          removedTrackIds: trackIds
         })
       )
       tracksModel.removeByIds.mockResolvedValueOnce(tracks)
@@ -642,9 +593,7 @@ describe('Lists Engine', () => {
         addId({
           name,
           removedTrackIds: [hash(path)],
-          trackIds: [],
-          refs: [],
-          removedRefs: []
+          trackIds: []
         })
       )
       const tracks = [
@@ -657,9 +606,7 @@ describe('Lists Engine', () => {
         name: null,
         media: null,
         removedTrackIds: [hash(path)],
-        trackIds: [],
-        refs: [],
-        removedRefs: artistNames.map(makeRef)
+        trackIds: []
       }
       artistsModel.save.mockResolvedValueOnce({
         saved: [],
@@ -698,16 +645,12 @@ describe('Lists Engine', () => {
         addId({
           name: artistNames[0],
           removedTrackIds: [hash(path1), hash(path2)],
-          trackIds: [],
-          refs: [],
-          removedRefs: []
+          trackIds: []
         }),
         addId({
           name: artistNames[1],
           removedTrackIds: [hash(path1)],
-          trackIds: [],
-          refs: [],
-          removedRefs: []
+          trackIds: []
         })
       ]
       const tracks = [
@@ -730,9 +673,7 @@ describe('Lists Engine', () => {
         name: null,
         media: null,
         removedTrackIds: trackIds,
-        trackIds: [],
-        refs: [],
-        removedRefs: artistNames.map(makeRef)
+        trackIds: []
       }
       artistsModel.save.mockResolvedValueOnce({
         saved: [artists[0]],

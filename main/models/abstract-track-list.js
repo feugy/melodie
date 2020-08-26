@@ -1,7 +1,7 @@
 'use strict'
 
 const Model = require('./abstract-model')
-const { uniq, difference, uniqRef, differenceRef } = require('../utils')
+const { uniq, difference } = require('../utils')
 
 module.exports = class AbstractTrackList extends Model {
   constructor(name, definition) {
@@ -45,12 +45,6 @@ module.exports = class AbstractTrackList extends Model {
                 previousList.trackIds.concat(trackList.trackIds || []),
                 trackList.removedTrackIds || []
               )
-            ),
-            refs: uniqRef(
-              differenceRef(
-                previousList.refs.concat(trackList.refs || []),
-                trackList.removedRefs || []
-              )
             )
           }
           if (savedList.trackIds.length) {
@@ -60,7 +54,6 @@ module.exports = class AbstractTrackList extends Model {
                 col !== 'trackIds' &&
                 col !== 'removedTrackIds' &&
                 col !== 'refs' &&
-                col !== 'removedRefs' &&
                 trackList[col] !== undefined
               ) {
                 savedList[col] = trackList[col]
@@ -76,6 +69,9 @@ module.exports = class AbstractTrackList extends Model {
       )
 
       if (saved.length) {
+        for (const data of saved) {
+          data.refs = await this.computeRefs(trx, data.trackIds)
+        }
         this.logger.debug({ data: saved }, `saving`)
         const cols = Object.keys(saved[0])
         await trx.raw(

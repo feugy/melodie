@@ -1,6 +1,13 @@
 'use strict'
 
-const { difference, uniq, differenceRef, uniqRef } = require('./collections')
+const {
+  difference,
+  uniq,
+  differenceRef,
+  uniqRef,
+  parseRawRef,
+  parseRawRefArray
+} = require('./collections')
 
 describe('collection utilities', () => {
   describe('difference()', () => {
@@ -107,6 +114,58 @@ describe('collection utilities', () => {
         [4, 'd'],
         [5, 'e']
       ])
+    })
+  })
+
+  describe('parseRawRef', () => {
+    it('can parse regular ref', () => {
+      const ref = [123, 'foo']
+      expect(parseRawRef(JSON.stringify(ref))).toEqual(ref)
+    })
+
+    it('can parse null ref', () => {
+      const ref = [123, null]
+      expect(parseRawRef(JSON.stringify(ref))).toEqual(ref)
+    })
+
+    it('can handle null', () => {
+      const ref = null
+      expect(parseRawRef(JSON.stringify(ref))).toEqual(ref)
+    })
+  })
+
+  describe('parseRawRefs', () => {
+    it('can parse regular refs array', () => {
+      const refs = [
+        [123, 'foo'],
+        [432, 'bar'],
+        [678, 'baz']
+      ]
+      expect(parseRawRefArray(JSON.stringify(refs))).toEqual(refs)
+    })
+
+    it('can parse array with single ref', () => {
+      const refs = [[123, 'foo']]
+      expect(parseRawRefArray(JSON.stringify(refs))).toEqual(refs)
+    })
+
+    it('can parse array with null ref', () => {
+      const refs = [
+        [123, null],
+        [456, 'foo'],
+        [879, null]
+      ]
+      expect(parseRawRefArray(JSON.stringify(refs))).toEqual(refs)
+    })
+
+    it('can parse empty array', () => {
+      const refs = []
+      expect(parseRawRefArray(JSON.stringify(refs))).toEqual(refs)
+    })
+
+    it('can handle null', () => {
+      const refs = null
+      expect(parseRawRefArray(JSON.stringify(refs))).toEqual(refs)
     })
   })
 })

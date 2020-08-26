@@ -10,7 +10,7 @@ const {
   delay,
   tap
 } = require('rxjs/operators')
-const { broadcast, getLogger, uniqRef, differenceRef } = require('../utils')
+const { broadcast, getLogger, differenceRef } = require('../utils')
 const {
   albumsModel,
   tracksModel,
@@ -44,8 +44,7 @@ function makeListPipeline(property, model) {
             id,
             name,
             media: name ? data.media : null,
-            trackIds: [],
-            refs: []
+            trackIds: []
           }
           recordsMap.set(id, record)
           records.push(record)
@@ -53,15 +52,10 @@ function makeListPipeline(property, model) {
         if (!isNew) {
           if (!record.removedTrackIds) {
             record.removedTrackIds = []
-            record.removedRefs = []
           }
           record.removedTrackIds.push(data.id)
-          record.removedRefs = uniqRef(
-            record.removedRefs.concat(data.refs || [])
-          )
         } else {
           record.trackIds.push(data.id)
-          record.refs = uniqRef(record.refs.concat(data.refs || []))
         }
         return { recordsMap, records }
       },
@@ -123,21 +117,19 @@ module.exports = {
         )
         return merge(
           // adds track to new album
-          of({ id, media, albumRef, refs: artistRefs }),
+          of({ id, media, albumRef }),
           // removes track from old album, if any
           removedAlbum.length
             ? of({
                 id,
-                'prev-albumRef': removedAlbum[0],
-                refs: previous && previous.artistRefs
+                'prev-albumRef': removedAlbum[0]
               })
             : EMPTY,
           // adds track to new artists
           of(
             ...artistRefs.map(artistRef => ({
               id,
-              artistRef,
-              refs: [albumRef]
+              artistRef
             }))
           ),
           // removes track from old artists, if any
@@ -145,8 +137,7 @@ module.exports = {
             ? of(
                 ...removedArtists.map(ref => ({
                   id,
-                  'prev-artistRef': ref,
-                  refs: [previous && previous.albumRef]
+                  'prev-artistRef': ref
                 }))
               )
             : EMPTY
@@ -168,7 +159,7 @@ module.exports = {
           return EMPTY
         }
         return merge(
-          of({ id, 'prev-albumRef': albumRef, refs: artistRefs }),
+          of({ id, 'prev-albumRef': albumRef }),
           of(...artistRefs.map(ref => ({ id, 'prev-artistRef': ref })))
         )
       }),

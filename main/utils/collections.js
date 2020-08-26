@@ -50,3 +50,18 @@ exports.differenceRef = (array, filtered) => {
   result.splice(j)
   return result
 }
+
+function parseRawRef(string) {
+  const [id, name] = string.split(',')
+  return [+id, name === 'null' ? null : name.slice(1, -1)]
+}
+
+exports.parseRawRef = string =>
+  string !== 'null' ? parseRawRef(string.slice(1, -1)) : null
+
+exports.parseRawRefArray = string =>
+  string !== 'null'
+    ? string.length > 2
+      ? string.slice(2, -2).split('],[').map(parseRawRef)
+      : []
+    : null

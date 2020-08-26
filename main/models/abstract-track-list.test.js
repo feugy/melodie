@@ -10,6 +10,8 @@ const TrackList = require('./abstract-track-list')
 
 const modelName = 'test'
 
+const computeRefs = jest.fn()
+
 class Test extends TrackList {
   constructor() {
     super(modelName, table => {
@@ -17,6 +19,10 @@ class Test extends TrackList {
       table.string('name')
       table.string('media')
     })
+  }
+
+  async computeRefs(trx, trackIds) {
+    return computeRefs(trackIds)
   }
 }
 
@@ -72,6 +78,7 @@ describe('Abstract track list', () => {
   })
 
   beforeEach(async () => {
+    jest.resetAllMocks()
     await tested.init(dbFile)
     await db(modelName).insert(models)
   })
@@ -89,16 +96,17 @@ describe('Abstract track list', () => {
 
   describe('save', () => {
     it('adds new model', async () => {
+      const refs = [[faker.random.number(), faker.name.findName()]]
+      computeRefs.mockResolvedValueOnce(refs)
       const model = {
         id: faker.random.number(),
         name: faker.name.findName(),
-        trackIds: [faker.random.number()],
-        refs: [[faker.random.number(), faker.name.findName()]]
+        trackIds: [faker.random.number()]
       }
 
       const { saved, removedIds } = await tested.save(model)
 
-      const savedModel = { ...model, media: null }
+      const savedModel = { ...model, media: null, refs }
 
       expect(saved).toEqual([savedModel])
       expect(removedIds).toEqual([])
@@ -109,21 +117,24 @@ describe('Abstract track list', () => {
           refs: JSON.stringify(savedModel.refs)
         }
       ])
+      expect(computeRefs).toHaveBeenCalledWith(model.trackIds)
+      expect(computeRefs).toHaveBeenCalledTimes(1)
     })
 
     it('saves multipe models', async () => {
+      const refs1 = [[faker.random.number(), faker.name.findName()]]
+      const refs2 = [[faker.random.number(), faker.name.findName()]]
+      computeRefs.mockResolvedValueOnce(refs1).mockResolvedValueOnce(refs2)
       const models = [
         {
           id: faker.random.number(),
           name: faker.name.findName(),
-          trackIds: [faker.random.number()],
-          refs: [[faker.random.number(), faker.name.findName()]]
+          trackIds: [faker.random.number()]
         },
         {
           id: faker.random.number(),
           name: faker.name.findName(),
-          trackIds: [faker.random.number()],
-          refs: [[faker.random.number(), faker.name.findName()]]
+          trackIds: [faker.random.number()]
         }
       ]
 
@@ -132,11 +143,13 @@ describe('Abstract track list', () => {
       const savedModels = [
         {
           ...models[0],
-          media: null
+          media: null,
+          refs: refs1
         },
         {
           ...models[1],
-          media: null
+          media: null,
+          refs: refs2
         }
       ]
 
@@ -156,22 +169,25 @@ describe('Abstract track list', () => {
           refs: JSON.stringify(savedModels[1].refs)
         }
       ])
+      expect(computeRefs).toHaveBeenCalledWith(models[0].trackIds)
+      expect(computeRefs).toHaveBeenCalledWith(models[1].trackIds)
+      expect(computeRefs).toHaveBeenCalledTimes(2)
     })
 
     it('updates multipe models with sparse data', async () => {
+      const refs = [[faker.random.number(), faker.name.findName()]]
+      computeRefs.mockResolvedValue(refs)
       const originals = [
         {
           id: models[0].id,
           name: models[0].name,
           media: faker.image.image(),
-          trackIds: [faker.random.number()],
-          refs: [[faker.random.number(), faker.name.findName()]]
+          trackIds: [faker.random.number()]
         },
         {
           id: models[1].id,
           name: models[1].name,
-          removedTrackIds: [faker.random.number()],
-          removedRefs: [[faker.random.number(), faker.name.findName()]]
+          removedTrackIds: [faker.random.number()]
         }
       ]
 
@@ -183,12 +199,12 @@ describe('Abstract track list', () => {
           trackIds: JSON.parse(models[0].trackIds).concat(
             originals[0].trackIds
           ),
-          refs: JSON.parse(models[0].refs).concat(originals[0].refs)
+          refs
         },
         {
           ...models[1],
           trackIds: JSON.parse(models[1].trackIds),
-          refs: JSON.parse(models[1].refs)
+          refs
         }
       ]
 
@@ -208,22 +224,27 @@ describe('Abstract track list', () => {
           refs: JSON.stringify(savedModels[1].refs)
         }
       ])
+      expect(computeRefs).toHaveBeenCalledWith(savedModels[0].trackIds)
+      expect(computeRefs).toHaveBeenCalledWith(savedModels[1].trackIds)
+      expect(computeRefs).toHaveBeenCalledTimes(2)
     })
 
     it('updates existing model and appends track ids and refs', async () => {
       const model = merge(models[1], {})
       model.trackIds = [faker.random.number(), faker.random.number()]
-      model.refs = [
+      delete model.refs
+      const refs = [
         [faker.random.number(), faker.name.findName()],
         [faker.random.number(), faker.name.findName()]
       ]
+      computeRefs.mockResolvedValueOnce(refs)
 
       const { saved, removedIds } = await tested.save(model)
 
       const savedModel = {
         ...model,
         trackIds: JSON.parse(models[1].trackIds).concat(model.trackIds),
-        refs: JSON.parse(models[1].refs).concat(model.refs)
+        refs
       }
 
       expect(saved).toEqual([savedModel])
@@ -235,23 +256,25 @@ describe('Abstract track list', () => {
           refs: JSON.stringify(savedModel.refs)
         }
       ])
+      expect(computeRefs).toHaveBeenCalledWith(savedModel.trackIds)
+      expect(computeRefs).toHaveBeenCalledTimes(1)
     })
 
     it('updates existing model and removes track ids and refs', async () => {
       const model = merge(models[2], {})
+      delete model.refs
       model.removedTrackIds = JSON.parse(model.trackIds).slice(1, 2)
       model.trackIds = [faker.random.number()]
-      model.removedRefs = JSON.parse(model.refs).slice(1, 2)
-      model.refs = [[faker.random.number(), faker.name.findName()]]
+      const refs = [[faker.random.number(), faker.name.findName()]]
+      computeRefs.mockResolvedValueOnce(refs)
 
       const { saved, removedIds } = await tested.save(model)
 
       const savedModel = {
         ...model,
         removedTrackIds: undefined,
-        removedRefs: undefined,
         trackIds: [JSON.parse(models[2].trackIds)[0], model.trackIds[0]],
-        refs: [JSON.parse(models[2].refs)[0], model.refs[0]]
+        refs
       }
 
       expect(saved).toEqual([savedModel])
@@ -263,26 +286,36 @@ describe('Abstract track list', () => {
           refs: JSON.stringify(savedModel.refs)
         }
       ])
+      expect(computeRefs).toHaveBeenCalledWith(savedModel.trackIds)
+      expect(computeRefs).toHaveBeenCalledTimes(1)
     })
 
     it('updates existing and removes duplicates', async () => {
       const model = {
         ...models[2],
-        trackIds: JSON.parse(models[2].trackIds),
-        refs: JSON.parse(models[2].refs)
+        trackIds: JSON.parse(models[2].trackIds)
       }
+      const refs = null
+      computeRefs.mockResolvedValueOnce(refs)
 
       const { saved, removedIds } = await tested.save(model)
 
-      expect(saved).toEqual([model])
+      expect(saved).toEqual([
+        {
+          ...model,
+          refs
+        }
+      ])
       expect(removedIds).toEqual([])
       expect(await db(modelName).where({ id: model.id })).toEqual([
         {
           ...model,
           trackIds: JSON.stringify(model.trackIds),
-          refs: JSON.stringify(model.refs)
+          refs: JSON.stringify(refs)
         }
       ])
+      expect(computeRefs).toHaveBeenCalledWith(model.trackIds)
+      expect(computeRefs).toHaveBeenCalledTimes(1)
     })
 
     it('deletes models which track ids are empty', async () => {
