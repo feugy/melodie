@@ -517,15 +517,14 @@ describe('Lists Engine', () => {
         name: oldName,
         trackIds: [],
         removedTrackIds: [track1.id, track2.id],
-        removedRefs: [],
-        // TODO removedRefs: [[1, null]]
+        removedRefs: [[1, null]],
         refs: []
       })
       const updatedArtist = addId({
         name: updatedName,
         removedTrackIds: [track2.id],
         trackIds: [track1.id],
-        removedRefs: [],
+        removedRefs: [[1, null]],
         refs: [[1, null]]
       })
       const newArtist = addId({
@@ -546,7 +545,6 @@ describe('Lists Engine', () => {
           [newArtist.id, newName],
           [updatedArtist.id, updatedName]
         ]
-        // TODO removedRefs: [[oldArtist.id, oldName]]
       }
       albumsModel.save.mockResolvedValueOnce({
         saved: [unknownAlbum],
@@ -561,6 +559,8 @@ describe('Lists Engine', () => {
         oldArtist
       ])
       expect(artistsModel.save).toHaveBeenCalledTimes(1)
+      expect(albumsModel.save).toHaveBeenCalledWith([unknownAlbum])
+      expect(albumsModel.save).toHaveBeenCalledTimes(1)
       expect(broadcast).toHaveBeenCalledWith('artist-change', oldArtist)
       expect(broadcast).toHaveBeenCalledWith('artist-change', updatedArtist)
       expect(broadcast).toHaveBeenCalledWith('artist-change', newArtist)

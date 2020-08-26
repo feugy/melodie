@@ -122,14 +122,17 @@ module.exports = {
           artistRefs
         )
         return merge(
+          // adds track to new album
           of({ id, media, albumRef, refs: artistRefs }),
+          // removes track from old album, if any
           removedAlbum.length
             ? of({
                 id,
                 'prev-albumRef': removedAlbum[0],
-                refs: previous.artistRefs
+                refs: previous && previous.artistRefs
               })
             : EMPTY,
+          // adds track to new artists
           of(
             ...artistRefs.map(artistRef => ({
               id,
@@ -137,8 +140,15 @@ module.exports = {
               refs: [albumRef]
             }))
           ),
+          // removes track from old artists, if any
           removedArtists.length
-            ? of(...removedArtists.map(ref => ({ id, 'prev-artistRef': ref })))
+            ? of(
+                ...removedArtists.map(ref => ({
+                  id,
+                  'prev-artistRef': ref,
+                  refs: [previous && previous.albumRef]
+                }))
+              )
             : EMPTY
         )
       }),
