@@ -1,10 +1,9 @@
 'use strict'
 
-import { locale, translations } from 'svelte-intl'
+import { translations } from 'svelte-intl'
 import en from '../locale/en.yml'
 import fr from '../locale/fr.yml'
 import './style.pcss'
 
-// TODO deep default
+// use en as default locale, and fallback for missing keys
 translations.update({ en, fr: { ...en, ...fr } })
-locale.set('fr')

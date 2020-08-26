@@ -3,13 +3,17 @@
 const { dialog } = require('electron')
 const { settingsModel } = require('../models')
 const fileLoader = require('./file-loader')
-const { getLogger, mergeFolders } = require('../utils')
+const { getLogger, mergeFolders, getSystemLocale } = require('../utils')
 
 const logger = getLogger('services/settings')
 
 module.exports = {
   async getFolders() {
     return (await settingsModel.get()).folders
+  },
+
+  async getLocale() {
+    return (await settingsModel.get()).locale || (await getSystemLocale())
   },
 
   async addFolders() {
@@ -47,5 +51,14 @@ module.exports = {
     logger.debug({ folders }, 'comparing and watching folders')
     await fileLoader.compare(folders)
     fileLoader.watch(folders)
+  },
+
+  async setLocale(value) {
+    const settings = await settingsModel.get()
+    logger.debug({ value }, 'saving new locale value')
+    await settingsModel.save({
+      ...settings,
+      locale: value
+    })
   }
 }

@@ -8,11 +8,11 @@ const listEngine = require('./services/list-engine')
 const mediaManager = require('./services/media-manager')
 const settingsManager = require('./services/settings-manager')
 const {
-  getStoragePath,
-  subscribeRemote,
-  registerRenderer,
   getLogger,
-  manageState
+  getStoragePath,
+  manageState,
+  registerRenderer,
+  subscribeRemote
 } = require('./utils')
 
 const isDev = process.env.ROLLUP_WATCH

@@ -12,7 +12,7 @@ exports[`Storyshots Components/Tracks queue Empty 1`] = `
       <h1
         class="svelte-z1o3ws"
       >
-        Liste de lecture
+        Play list
       </h1>
     </header>
      
@@ -20,7 +20,7 @@ exports[`Storyshots Components/Tracks queue Empty 1`] = `
       class="svelte-1eaxgfv"
     >
       <h3>
-        0 pistes
+        0 tracks
       </h3>
        
     </div>
@@ -44,7 +44,7 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
       <h1
         class="svelte-z1o3ws"
       >
-        Liste de lecture
+        Play list
       </h1>
     </header>
      
@@ -52,7 +52,7 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
       class="svelte-1eaxgfv"
     >
       <h3>
-        8 pistes
+        8 tracks
       </h3>
        
       <span

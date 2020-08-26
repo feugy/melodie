@@ -7,10 +7,7 @@ exports.subscribeRemote = function (services = electron) {
     if (!(module in services) || !(fn in services[module])) {
       throw new Error(`electron doesn't support ${module}.${fn}()`)
     }
-    // const s = Date.now()
-    const result = await services[module][fn](...args)
-    // console.log(`${module}.${fn}(${args.join(', ')}): ${Date.now() - s}`)
-    return result
+    return services[module][fn](...args)
   })
 
   return function () {

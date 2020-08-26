@@ -14,9 +14,11 @@ check parameters: Vous devrier vérifier les répertoires de musiques dans les <
 choose avatar: Choisissez une photo
 choose cover: Choisissez une couverture
 clear: Vider
+current locale: 'Langue actuelle :'
 disk _: 'Disque N°{num}'
 duration: Durée
 enqueue all: Ajouter tout
+locales: Langue de l'interface
 no results: Rien du tout !
 open playlist: File d'attente
 play all: Lire tout

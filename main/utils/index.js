@@ -5,6 +5,7 @@ module.exports = {
   ...require('./electron-remote'),
   ...require('./files'),
   ...require('./hash'),
+  ...require('./locale'),
   ...require('./logger'),
   ...require('./window-state')
 }

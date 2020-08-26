@@ -2,11 +2,18 @@
   import { onMount } from 'svelte'
   import { fade } from 'svelte/transition'
   import { push } from 'svelte-spa-router'
-  import { _ } from 'svelte-intl'
-  import { Heading, Button, SubHeading } from '../components'
+  import { _, locales, locale } from 'svelte-intl'
+  import { Heading, Button, SubHeading, Dropdown } from '../components'
   import { invoke } from '../utils'
 
   export const params = {}
+  let currentLocale = $locale ? { value: $locale, label: $_($locale) } : null
+
+  $: localeOptions = $locales.map(value => ({ value, label: $_(value) }))
+  $: if (currentLocale && currentLocale.value !== $locale) {
+    locale.set(currentLocale.value)
+    invoke('settingsManager.setLocale', currentLocale.value)
+  }
 
   let foldersPromise
   listFolders()
@@ -62,5 +69,13 @@
       </ul>
       <Button icon="folder" on:click={handleAdd} text={$_('add folders')} />
     {/await}
+  </article>
+  <article>
+    <SubHeading>{$_('locales')}</SubHeading>
+    <label for="locale">{$_('current locale')}</label>
+    <Dropdown
+      valueAsText="true"
+      bind:value={currentLocale}
+      options={localeOptions} />
   </article>
 </section>

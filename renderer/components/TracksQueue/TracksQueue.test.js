@@ -127,7 +127,6 @@ describe('TracksQueue component', () => {
 
     it('drags track forward in the list', async () => {
       expectListItems(tracks)
-      console.log(tracks.map(t => t.tags.title))
 
       const hovered = screen.queryByText(tracks[2].tags.title)
       const dropped = screen.queryByText(tracks[3].tags.title)

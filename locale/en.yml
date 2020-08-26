@@ -18,9 +18,13 @@ check parameters: You should check your music folders in <a class="underlined" h
 choose avatar: Choose a picture
 choose cover: Choose a cover
 clear: Clear
+current locale: 'Current language:'
 disk _: 'Disk #{num}'
 duration: Duration
+en: English
 enqueue all: Enqueue all
+fr: Français
+locales: Interface language
 Mélodie: Mélodie
 no results: Nothing at all !
 open playlist: Queue

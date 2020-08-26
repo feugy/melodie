@@ -84,10 +84,10 @@ npm run build
 - [x] reorder tracks queue with drag'n drop
 - [x] settings panel with watched folders
 - [x] memorize window position and state
+- [x] language change
 - [ ] tracks without artists/album
 - [ ] shuffle, loop
 - [ ] track lists
-- [ ] language change
 - [ ] help and tips
       ---> release?
 - [ ] replay gain

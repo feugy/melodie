@@ -1,6 +1,7 @@
 'use strict'
 
 import { screen, render, fireEvent } from '@testing-library/svelte'
+import { locale } from 'svelte-intl'
 import html from 'svelte-htm'
 import faker from 'faker'
 import settingsRoute from './settings.svelte'
@@ -10,9 +11,10 @@ describe('settings route', () => {
   beforeEach(() => {
     location.hash = '#/'
     jest.resetAllMocks()
+    locale.set('fr')
   })
 
-  it('displays tracked folders', async () => {
+  it('displays tracked folders and current language', async () => {
     const folders = [faker.system.fileName(), faker.system.fileName()]
     mockInvoke.mockResolvedValueOnce(folders)
 
@@ -29,6 +31,29 @@ describe('settings route', () => {
       'getFolders'
     )
     expect(mockInvoke).toHaveBeenCalledTimes(1)
+
+    expect(screen.getByText(translate('fr'))).toBeInTheDocument()
+  })
+
+  it('changes current language and updates labels', async () => {
+    mockInvoke.mockResolvedValueOnce([])
+
+    render(html`<${settingsRoute} />`)
+    expect(screen.getByText('Langue actuelle :')).toBeInTheDocument()
+
+    await fireEvent.click(screen.getByText(translate('fr')))
+    await fireEvent.click(screen.getByText(translate('en')))
+    await sleep(200)
+
+    expect(screen.getByText(translate('en'))).toBeInTheDocument()
+    expect(screen.queryByText(translate('fr'))).toBeNull()
+    expect(screen.getByText('Current language:')).toBeInTheDocument()
+    expect(mockInvoke).toHaveBeenCalledWith(
+      'remote',
+      'settingsManager',
+      'setLocale',
+      'en'
+    )
   })
 
   it('adds new folders and redirect to folders', async () => {

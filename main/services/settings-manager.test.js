@@ -3,10 +3,12 @@
 const { join } = require('path')
 const faker = require('faker')
 const electron = require('electron')
+const osLocale = require('os-locale')
 const engine = require('./settings-manager')
 const fileLoader = require('./file-loader')
 const { settingsModel } = require('../models/settings')
 
+jest.mock('os-locale')
 jest.mock('electron', () => ({
   dialog: {
     showOpenDialog: jest.fn()
@@ -26,6 +28,32 @@ describe('Settings manager', () => {
     settingsModel.get.mockResolvedValueOnce({ folders })
 
     expect(await engine.getFolders()).toEqual(folders)
+  })
+
+  it('returns system locale when locale not set', async () => {
+    settingsModel.get.mockResolvedValueOnce({})
+    osLocale.mockResolvedValueOnce('fr-FR')
+
+    expect(await engine.getLocale()).toEqual('fr')
+  })
+
+  it('returns previously set locale', async () => {
+    const locale = faker.random.word()
+    settingsModel.get.mockResolvedValueOnce({ locale })
+    osLocale.mockResolvedValueOnce('fr-FR')
+
+    expect(await engine.getLocale()).toEqual(locale)
+    expect(osLocale).not.toHaveBeenCalled()
+  })
+
+  it('can set locale', async () => {
+    const locale = faker.random.word()
+    const folders = [faker.system.fileName(), faker.system.fileName()]
+    settingsModel.get.mockResolvedValueOnce({ folders })
+
+    await engine.setLocale(locale)
+
+    expect(settingsModel.save).toHaveBeenCalledWith({ folders, locale })
   })
 
   describe('addFolders', () => {

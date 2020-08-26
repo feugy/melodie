@@ -24,6 +24,7 @@ module.exports = {
     postcssRule.use.push({
       loader: require.resolve('string-replace-loader'),
       options: {
+        // only viable way to have local data imported in css in storybook AND electron
         search: /url\(\.\/fonts/g,
         replace: 'url(../public/fonts'
       }

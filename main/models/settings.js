@@ -7,6 +7,7 @@ class SettingsModel extends Model {
     super('settings', table => {
       table.integer('id').primary()
       table.json('folders')
+      table.string('locale')
     })
     this.jsonColumns = ['folders']
   }

@@ -1,6 +1,6 @@
 <script>
   import { onMount } from 'svelte'
-  import { _ } from 'svelte-intl'
+  import { _, locale } from 'svelte-intl'
   import Router, { replace } from 'svelte-spa-router'
   import {
     Progress,
@@ -21,6 +21,7 @@
   let isLoading = fromServerChannel('tracking').pipe(pluck('inProgress'))
 
   onMount(async () => {
+    locale.set(await invoke('settingsManager.getLocale'))
     listAlbums()
     listArtists()
     invoke('settingsManager.compareAndWatch')

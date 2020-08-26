@@ -15,19 +15,19 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           <th
             class="svelte-9lml75"
           >
-            N°
+            #
           </th>
            
           <th
             class="svelte-9lml75"
           >
-            Piste
+            Track
           </th>
            
           <th
             class="svelte-9lml75"
           >
-            Artiste
+            Artist
           </th>
            
           <th
@@ -39,7 +39,7 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           <th
             class="svelte-9lml75"
           >
-            Durée
+            Duration
           </th>
         </tr>
       </thead>
@@ -1257,19 +1257,19 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           <th
             class="svelte-9lml75"
           >
-            N°
+            #
           </th>
            
           <th
             class="svelte-9lml75"
           >
-            Piste
+            Track
           </th>
            
           <th
             class="svelte-9lml75"
           >
-            Artiste
+            Artist
           </th>
            
           <th
@@ -1281,7 +1281,7 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           <th
             class="svelte-9lml75"
           >
-            Durée
+            Duration
           </th>
         </tr>
       </thead>
@@ -2499,26 +2499,26 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
           <th
             class="svelte-9lml75"
           >
-            N°
+            #
           </th>
            
           <th
             class="svelte-9lml75"
           >
-            Piste
+            Track
           </th>
            
           <th
             class="svelte-9lml75"
           >
-            Artiste
+            Artist
           </th>
            
            
           <th
             class="svelte-9lml75"
           >
-            Durée
+            Duration
           </th>
         </tr>
       </thead>

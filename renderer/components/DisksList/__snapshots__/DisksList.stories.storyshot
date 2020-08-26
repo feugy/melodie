@@ -17,19 +17,19 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           <th
             class="svelte-9lml75"
           >
-            N°
+            #
           </th>
            
           <th
             class="svelte-9lml75"
           >
-            Piste
+            Track
           </th>
            
           <th
             class="svelte-9lml75"
           >
-            Artiste
+            Artist
           </th>
            
           <th
@@ -41,7 +41,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           <th
             class="svelte-9lml75"
           >
-            Durée
+            Duration
           </th>
         </tr>
       </thead>
@@ -188,7 +188,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
     <h3
       class="svelte-oqne2l"
     >
-      Disque N°1
+      Disk #1
     </h3>
      
     <table
@@ -201,19 +201,19 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           <th
             class="svelte-9lml75"
           >
-            N°
+            #
           </th>
            
           <th
             class="svelte-9lml75"
           >
-            Piste
+            Track
           </th>
            
           <th
             class="svelte-9lml75"
           >
-            Artiste
+            Artist
           </th>
            
           <th
@@ -225,7 +225,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           <th
             class="svelte-9lml75"
           >
-            Durée
+            Duration
           </th>
         </tr>
       </thead>
@@ -768,7 +768,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
     <h3
       class="svelte-oqne2l"
     >
-      Disque N°2
+      Disk #2
     </h3>
      
     <table
@@ -781,19 +781,19 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           <th
             class="svelte-9lml75"
           >
-            N°
+            #
           </th>
            
           <th
             class="svelte-9lml75"
           >
-            Piste
+            Track
           </th>
            
           <th
             class="svelte-9lml75"
           >
-            Artiste
+            Artist
           </th>
            
           <th
@@ -805,7 +805,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           <th
             class="svelte-9lml75"
           >
-            Durée
+            Duration
           </th>
         </tr>
       </thead>

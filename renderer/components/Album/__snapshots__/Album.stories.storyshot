@@ -62,7 +62,7 @@ exports[`Storyshots Components/Album Default 1`] = `
         <h4
           class="svelte-my2key"
         >
-          par 
+          by 
           <a
             class=" underlined"
             href="#/artist/1"
@@ -147,7 +147,7 @@ exports[`Storyshots Components/Album Many Artists 1`] = `
         <h4
           class="svelte-my2key"
         >
-          par 
+          by 
           <a
             class=" underlined"
             href="#/artist/3"
