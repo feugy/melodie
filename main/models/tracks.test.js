@@ -118,8 +118,8 @@ describe('Tracks model', () => {
       const [{ current, previous }] = await tracksModel.save(track)
       expect(current).toEqual({
         ...track,
-        albumRef: null,
-        artistRefs: []
+        albumRef: [1, null],
+        artistRefs: [[1, null]]
       })
       expect(await tracksModel.getById(track.id)).toEqual(current)
       expect(previous).toBeNull()

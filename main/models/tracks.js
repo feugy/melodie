@@ -43,8 +43,11 @@ class TracksModel extends Model {
         ...track,
         albumRef: album
           ? [hash(albumartist ? `${album} --- ${albumartist}` : album), album]
-          : null,
-        artistRefs: artists ? artists.map(artist => [hash(artist), artist]) : []
+          : [1, null],
+        artistRefs:
+          artists && artists.length
+            ? artists.map(artist => [hash(artist), artist])
+            : [[1, null]]
       })
     })
     const cols = Object.keys(saved[0])

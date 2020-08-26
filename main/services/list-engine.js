@@ -43,7 +43,7 @@ function makeListPipeline(property, model) {
           record = {
             id,
             name,
-            media: data.media,
+            media: name ? data.media : null,
             trackIds: [],
             refs: []
           }
@@ -130,7 +130,13 @@ module.exports = {
                 refs: previous.artistRefs
               })
             : EMPTY,
-          of(...artistRefs.map(artistRef => ({ id, artistRef }))),
+          of(
+            ...artistRefs.map(artistRef => ({
+              id,
+              artistRef,
+              refs: [albumRef]
+            }))
+          ),
           removedArtists.length
             ? of(...removedArtists.map(ref => ({ id, 'prev-artistRef': ref })))
             : EMPTY
