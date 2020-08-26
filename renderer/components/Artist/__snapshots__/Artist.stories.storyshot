@@ -134,3 +134,73 @@ exports[`Storyshots Components/Artist No Albums 1`] = `
   </div>
 </section>
 `;
+
+exports[`Storyshots Components/Artist Unknown 1`] = `
+<section
+  class="storybook-snapshot-container"
+>
+  <div>
+    <a
+      class=" svelte-fh6j1p"
+      href="#/artist/1"
+    >
+      <div
+        class="content svelte-fh6j1p"
+      >
+        <img
+          alt="./avatar.jpg"
+          class="w-64 h-64 text-3xl svelte-hn7eai rounded-full"
+          loading="lazy"
+          src="./avatar.jpg#nonce=0.1"
+        />
+         
+        
+         
+        <p
+          class="controls svelte-fh6j1p"
+        >
+          <button
+            class="svelte-j6xhgj primary iconOnly large"
+            data-testid="play"
+          >
+            <i
+              class="material-icons svelte-j6xhgj"
+            >
+              play_arrow
+            </i>
+             
+             
+          </button>
+           
+          <button
+            class="svelte-j6xhgj primary iconOnly large"
+            data-testid="enqueue"
+          >
+            <i
+              class="material-icons svelte-j6xhgj"
+            >
+              playlist_add
+            </i>
+             
+             
+          </button>
+        </p>
+      </div>
+       
+      <header
+        class="svelte-fh6j1p"
+      >
+        <h3>
+          Unknown
+        </h3>
+         
+        <h4
+          class="svelte-fh6j1p"
+        >
+          2 albums
+        </h4>
+      </header>
+    </a>
+  </div>
+</section>
+`;

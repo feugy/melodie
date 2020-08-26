@@ -64,7 +64,7 @@ exports[`Storyshots Components/Album Default 1`] = `
         >
           by 
           <a
-            class=" underlined"
+            class="underlined"
             href="#/artist/1"
             onclick="event.stopPropagation()"
           >
@@ -72,7 +72,7 @@ exports[`Storyshots Components/Album Default 1`] = `
           </a>
           , 
           <a
-            class=" underlined"
+            class="underlined"
             href="#/artist/2"
             onclick="event.stopPropagation()"
           >
@@ -149,7 +149,7 @@ exports[`Storyshots Components/Album Many Artists 1`] = `
         >
           by 
           <a
-            class=" underlined"
+            class="underlined"
             href="#/artist/3"
             onclick="event.stopPropagation()"
           >
@@ -157,7 +157,7 @@ exports[`Storyshots Components/Album Many Artists 1`] = `
           </a>
           , 
           <a
-            class=" underlined"
+            class="underlined"
             href="#/artist/4"
             onclick="event.stopPropagation()"
           >
@@ -165,7 +165,7 @@ exports[`Storyshots Components/Album Many Artists 1`] = `
           </a>
           , 
           <a
-            class=" underlined"
+            class="underlined"
             href="#/artist/4"
             onclick="event.stopPropagation()"
           >
@@ -173,7 +173,7 @@ exports[`Storyshots Components/Album Many Artists 1`] = `
           </a>
           , 
           <a
-            class=" underlined"
+            class="underlined"
             href="#/artist/6"
             onclick="event.stopPropagation()"
           >
@@ -245,6 +245,91 @@ exports[`Storyshots Components/Album No Artist 1`] = `
           Diamonds on the inside
         </h3>
          
+      </header>
+    </a>
+  </div>
+</section>
+`;
+
+exports[`Storyshots Components/Album Unknown 1`] = `
+<section
+  class="storybook-snapshot-container"
+>
+  <div>
+    <a
+      class=" svelte-my2key"
+      href="#/album/1"
+    >
+      <div
+        class="content svelte-my2key"
+      >
+        <img
+          alt="./cover.jpg"
+          class="w-64 h-64 text-3xl svelte-hn7eai rounded-sm"
+          loading="lazy"
+          src="./cover.jpg#nonce=0.1"
+        />
+         
+        
+         
+        <p
+          class="controls svelte-my2key"
+        >
+          <button
+            class="svelte-j6xhgj primary iconOnly large"
+            data-testid="play"
+          >
+            <i
+              class="material-icons svelte-j6xhgj"
+            >
+              play_arrow
+            </i>
+             
+             
+          </button>
+           
+          <button
+            class="svelte-j6xhgj primary iconOnly large"
+            data-testid="enqueue"
+          >
+            <i
+              class="material-icons svelte-j6xhgj"
+            >
+              playlist_add
+            </i>
+             
+             
+          </button>
+        </p>
+      </div>
+       
+      <header
+        class="svelte-my2key"
+      >
+        <h3>
+          Unknown
+        </h3>
+         
+        <h4
+          class="svelte-my2key"
+        >
+          by 
+          <a
+            class="underlined"
+            href="#/artist/1"
+            onclick="event.stopPropagation()"
+          >
+            Ben Harper
+          </a>
+          , 
+          <a
+            class="underlined"
+            href="#/artist/2"
+            onclick="event.stopPropagation()"
+          >
+            The Innocent Criminals
+          </a>
+        </h4>
       </header>
     </a>
   </div>

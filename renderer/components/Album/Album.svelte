@@ -67,7 +67,7 @@
     </p>
   </div>
   <header>
-    <h3>{src.name}</h3>
+    <h3>{src.name || $_('unknown')}</h3>
     {#if src.refs.length}
       <h4>
         {@html $_('by _', {

@@ -61,21 +61,18 @@
         albumRef
       } = track
 
-      if (albumRef) {
-        const [id, album] = albumRef
-        if (!map.has(id)) {
-          map.set(id, {
-            id,
-            name: album,
-            media,
-            refs: [],
-            year: year || -Infinity,
-            tracks: []
-          })
-        }
-        map.get(id).tracks.push(track)
+      const [id, album] = albumRef
+      if (!map.has(id)) {
+        map.set(id, {
+          id,
+          name: album,
+          media,
+          refs: [],
+          year: year || -Infinity,
+          tracks: []
+        })
       }
-      // TODO tracks without albums
+      map.get(id).tracks.push(track)
     }
     return Array.from(map.values()).sort((a, b) => a.year - b.year)
   }

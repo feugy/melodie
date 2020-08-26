@@ -61,3 +61,13 @@ export const NoArtist = () => ({
     }
   }
 })
+
+export const Unknown = () => ({
+  Component: Album,
+  props: {
+    src: {
+      ...albumData,
+      name: null
+    }
+  }
+})

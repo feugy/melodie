@@ -88,7 +88,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
             class="svelte-9lml75"
           >
             <a
-              class=" underlined"
+              class="underlined"
               href="#/artist/0"
               onclick="event.stopPropagation()"
             >
@@ -100,7 +100,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
             class="svelte-9lml75"
           >
             <a
-              class=" underlined"
+              class="underlined"
               href="#/album/1"
               onclick="event.stopPropagation()"
             >
@@ -154,7 +154,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
             class="svelte-9lml75"
           >
             <a
-              class=" underlined"
+              class="underlined"
               href="#/artist/0"
               onclick="event.stopPropagation()"
             >
@@ -166,7 +166,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
             class="svelte-9lml75"
           >
             <a
-              class=" underlined"
+              class="underlined"
               href="#/album/1"
               onclick="event.stopPropagation()"
             >
@@ -272,7 +272,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
             class="svelte-9lml75"
           >
             <a
-              class=" underlined"
+              class="underlined"
               href="#/artist/0"
               onclick="event.stopPropagation()"
             >
@@ -284,7 +284,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
             class="svelte-9lml75"
           >
             <a
-              class=" underlined"
+              class="underlined"
               href="#/album/1"
               onclick="event.stopPropagation()"
             >
@@ -338,7 +338,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
             class="svelte-9lml75"
           >
             <a
-              class=" underlined"
+              class="underlined"
               href="#/artist/0"
               onclick="event.stopPropagation()"
             >
@@ -350,7 +350,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
             class="svelte-9lml75"
           >
             <a
-              class=" underlined"
+              class="underlined"
               href="#/album/1"
               onclick="event.stopPropagation()"
             >
@@ -404,7 +404,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
             class="svelte-9lml75"
           >
             <a
-              class=" underlined"
+              class="underlined"
               href="#/artist/0"
               onclick="event.stopPropagation()"
             >
@@ -416,7 +416,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
             class="svelte-9lml75"
           >
             <a
-              class=" underlined"
+              class="underlined"
               href="#/album/1"
               onclick="event.stopPropagation()"
             >
@@ -470,7 +470,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
             class="svelte-9lml75"
           >
             <a
-              class=" underlined"
+              class="underlined"
               href="#/artist/0"
               onclick="event.stopPropagation()"
             >
@@ -482,7 +482,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
             class="svelte-9lml75"
           >
             <a
-              class=" underlined"
+              class="underlined"
               href="#/album/1"
               onclick="event.stopPropagation()"
             >
@@ -536,7 +536,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
             class="svelte-9lml75"
           >
             <a
-              class=" underlined"
+              class="underlined"
               href="#/artist/0"
               onclick="event.stopPropagation()"
             >
@@ -548,7 +548,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
             class="svelte-9lml75"
           >
             <a
-              class=" underlined"
+              class="underlined"
               href="#/album/1"
               onclick="event.stopPropagation()"
             >
@@ -602,7 +602,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
             class="svelte-9lml75"
           >
             <a
-              class=" underlined"
+              class="underlined"
               href="#/artist/0"
               onclick="event.stopPropagation()"
             >
@@ -614,7 +614,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
             class="svelte-9lml75"
           >
             <a
-              class=" underlined"
+              class="underlined"
               href="#/album/1"
               onclick="event.stopPropagation()"
             >
@@ -668,7 +668,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
             class="svelte-9lml75"
           >
             <a
-              class=" underlined"
+              class="underlined"
               href="#/artist/0"
               onclick="event.stopPropagation()"
             >
@@ -680,7 +680,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
             class="svelte-9lml75"
           >
             <a
-              class=" underlined"
+              class="underlined"
               href="#/album/1"
               onclick="event.stopPropagation()"
             >
@@ -734,7 +734,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
             class="svelte-9lml75"
           >
             <a
-              class=" underlined"
+              class="underlined"
               href="#/artist/0"
               onclick="event.stopPropagation()"
             >
@@ -746,7 +746,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
             class="svelte-9lml75"
           >
             <a
-              class=" underlined"
+              class="underlined"
               href="#/album/1"
               onclick="event.stopPropagation()"
             >
@@ -852,7 +852,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
             class="svelte-9lml75"
           >
             <a
-              class=" underlined"
+              class="underlined"
               href="#/artist/0"
               onclick="event.stopPropagation()"
             >
@@ -864,7 +864,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
             class="svelte-9lml75"
           >
             <a
-              class=" underlined"
+              class="underlined"
               href="#/album/1"
               onclick="event.stopPropagation()"
             >
@@ -918,7 +918,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
             class="svelte-9lml75"
           >
             <a
-              class=" underlined"
+              class="underlined"
               href="#/artist/0"
               onclick="event.stopPropagation()"
             >
@@ -930,7 +930,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
             class="svelte-9lml75"
           >
             <a
-              class=" underlined"
+              class="underlined"
               href="#/album/1"
               onclick="event.stopPropagation()"
             >
@@ -984,7 +984,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
             class="svelte-9lml75"
           >
             <a
-              class=" underlined"
+              class="underlined"
               href="#/artist/0"
               onclick="event.stopPropagation()"
             >
@@ -996,7 +996,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
             class="svelte-9lml75"
           >
             <a
-              class=" underlined"
+              class="underlined"
               href="#/album/1"
               onclick="event.stopPropagation()"
             >
@@ -1050,7 +1050,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
             class="svelte-9lml75"
           >
             <a
-              class=" underlined"
+              class="underlined"
               href="#/artist/0"
               onclick="event.stopPropagation()"
             >
@@ -1062,7 +1062,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
             class="svelte-9lml75"
           >
             <a
-              class=" underlined"
+              class="underlined"
               href="#/album/1"
               onclick="event.stopPropagation()"
             >
@@ -1116,7 +1116,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
             class="svelte-9lml75"
           >
             <a
-              class=" underlined"
+              class="underlined"
               href="#/artist/0"
               onclick="event.stopPropagation()"
             >
@@ -1128,7 +1128,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
             class="svelte-9lml75"
           >
             <a
-              class=" underlined"
+              class="underlined"
               href="#/album/1"
               onclick="event.stopPropagation()"
             >
@@ -1182,7 +1182,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
             class="svelte-9lml75"
           >
             <a
-              class=" underlined"
+              class="underlined"
               href="#/artist/0"
               onclick="event.stopPropagation()"
             >
@@ -1194,7 +1194,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
             class="svelte-9lml75"
           >
             <a
-              class=" underlined"
+              class="underlined"
               href="#/album/1"
               onclick="event.stopPropagation()"
             >
@@ -1248,7 +1248,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
             class="svelte-9lml75"
           >
             <a
-              class=" underlined"
+              class="underlined"
               href="#/artist/0"
               onclick="event.stopPropagation()"
             >
@@ -1260,7 +1260,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
             class="svelte-9lml75"
           >
             <a
-              class=" underlined"
+              class="underlined"
               href="#/album/1"
               onclick="event.stopPropagation()"
             >
@@ -1314,7 +1314,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
             class="svelte-9lml75"
           >
             <a
-              class=" underlined"
+              class="underlined"
               href="#/artist/0"
               onclick="event.stopPropagation()"
             >
@@ -1326,7 +1326,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
             class="svelte-9lml75"
           >
             <a
-              class=" underlined"
+              class="underlined"
               href="#/album/1"
               onclick="event.stopPropagation()"
             >

@@ -146,8 +146,6 @@ describe('artist details route', () => {
       expect(load).toHaveBeenCalledWith(artist.id)
     })
 
-    it.todo('handles tracks without albums')
-
     it('enqueues all tracks', async () => {
       await fireEvent.click(screen.getByText(translate('enqueue all')))
 

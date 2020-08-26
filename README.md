@@ -85,12 +85,12 @@ npm run build
 - [x] settings panel with watched folders
 - [x] memorize window position and state
 - [x] language change
-- [ ] tracks without artists/album
+- [x] tracks without artists/album
 - [ ] shuffle, loop
 - [ ] track lists
 - [ ] help and tips
       ---> release?
-- [ ] replay gain
+- [ ] configure replay gain from settings
 - [ ] settings for simple/double click behaviour
 - [ ] [open containing folder](https://www.electronjs.org/docs/api/shell#shellshowiteminfolderfullpath) for tracks
 - [ ] display years (artist & album details page)
@@ -106,6 +106,7 @@ npm run build
 
 ### Bugs and unresolved issues
 
+1. Album/artist refs are never removed (album still reference artist when none of its track relate to that artist any more)
 1. Some artwork isn't displayed in notification (Smash Hits for Ballet)
 1. Local provider returning too many results, some unusable, for "Rock & Pop for Ballet 2"
 1. Undetected live changes: remove tracks and re-add them. This is a linux-only issue with chokidar

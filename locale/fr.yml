@@ -30,4 +30,5 @@ show all: Voir tout
 start loading some tracks: Commencez par charger quelques morceaux
 total duration _: 'Durée : {total}'
 track: Piste
+unknown: Inconnu
 watched folders: Répertoires de musique
