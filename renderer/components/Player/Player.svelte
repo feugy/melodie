@@ -18,8 +18,14 @@
   let volume = 1
   $: volumePct = volume * 100
 
-  onMount(() =>
-    current.subscribe(current => {
+  onMount(() => {
+    const context = new AudioContext()
+    const sourceNode = context.createMediaElementSource(player)
+    const gainNode = context.createGain()
+    sourceNode.connect(gainNode)
+    gainNode.connect(context.destination)
+
+    return current.subscribe(current => {
       if (!current) {
         src = null
         if (player) {
@@ -28,9 +34,15 @@
         }
       } else {
         src = toDOMSrc(current.path)
+        const {
+          replaygain_track_gain: trackGain,
+          replaygain_album_gain: albumGain
+        } = current.tags
+        // apply replay gain when set
+        gainNode.gain.value = (trackGain || albumGain || { ratio: 1 }).ratio
       }
     })
-  )
+  })
 
   function handleSeek({ detail }) {
     if (player) {
