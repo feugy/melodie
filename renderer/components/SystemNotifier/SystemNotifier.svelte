@@ -30,7 +30,7 @@
       if (!isFocused) {
         new Notification(title, {
           body: `${artist} - ${album}`,
-          icon: media
+          icon: toDOMSrc(media)
         })
       }
 
@@ -38,11 +38,11 @@
         const artwork = []
         if (media) {
           try {
-            const data = await fetch(toDOMSrc(track.media))
+            const data = await fetch(toDOMSrc(media))
             artwork.push({ src: URL.createObjectURL(await data.blob()) })
           } catch (err) {
             console.error(
-              `failed to load media ${track.media} for mediaSession: ${err.message}`
+              `failed to load media ${media} for mediaSession: ${err.message}`
             )
           }
         }

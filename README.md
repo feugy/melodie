@@ -106,7 +106,6 @@ npm run build
 
 ### Bugs and unresolved issues
 
-1. Some artwork isn't displayed in notification (Smash Hits for Ballet)
 1. Local provider returning too many results, some unusable, for "Rock & Pop for Ballet 2"
 1. Undetected live changes: remove tracks and re-add them. This is a linux-only issue with chokidar
    - https://github.com/paulmillr/chokidar/issues/917
@@ -118,7 +117,6 @@ npm run build
 1. Page navigation: use:link doesn't work in tests and raise Svelte warning. a.href is fine
 1. Scroll handling: it'll be better to keep memory on albums/artists page, and reset it on details page
 1. Testing routes: `import regexparam from 'regexparam'` must be replaced with require or `import * as regexparam`: https://github.com/ItalyPaleAle/svelte-spa-router/issues/81
-1. How to change track paths and not change ids? Does we get rename changes from chokidar?
 1. If we knew current position in browser history, then we could disabled navigation button accordingly
 
 ## History

@@ -4,6 +4,7 @@ import { EventEmitter } from 'events'
 import { render } from '@testing-library/svelte'
 import html from 'svelte-htm'
 import SystemNotifier from './SystemNotifier.svelte'
+import { toDOMSrc } from '../../utils'
 import { sleep } from '../../tests'
 import { clear, add, playNext } from '../../stores/track-queue'
 import { trackListData } from '../Player/Player.stories'
@@ -20,7 +21,7 @@ function expectMetadata(track, artwork = [{}]) {
 function expectNotification(track) {
   expect(Notification).toHaveBeenCalledWith(track.tags.title, {
     body: `${track.artistRefs[0][1]} - ${track.albumRef[1]}`,
-    icon: track.media
+    icon: toDOMSrc(track.media)
   })
 }
 
