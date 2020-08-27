@@ -7,6 +7,7 @@ exports[`Storyshots Components/Player Empty 1`] = `
   <audio
     autoplay=""
     class="svelte-1c9ybkv"
+    data-testid="audio"
   />
    
   <div
@@ -162,6 +163,7 @@ exports[`Storyshots Components/Player With Track List 1`] = `
   <audio
     autoplay=""
     class="svelte-1c9ybkv"
+    data-testid="audio"
     src="./no-duration.mp3"
   />
    

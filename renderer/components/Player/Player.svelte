@@ -128,6 +128,7 @@
 
 <!-- svelte-ignore a11y-media-has-caption -->
 <audio
+  data-testid="audio"
   bind:this={player}
   autoplay
   {src}

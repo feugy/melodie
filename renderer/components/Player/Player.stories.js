@@ -33,7 +33,9 @@ export const trackListData = [
       title: 'file 2',
       album,
       artists: artists.slice(0, 1),
-      duration: 3.742
+      duration: 3.742,
+      replaygain_track_gain: { ratio: 0.5 },
+      replaygain_album_gain: { ratio: 0.7 }
     },
     media: './# Films/cover.jpg',
     path: './file.flac',
@@ -46,7 +48,8 @@ export const trackListData = [
       title: 'file 3',
       album,
       artists: artists.slice(1, 2),
-      duration: 1.74
+      duration: 1.74,
+      replaygain_album_gain: { ratio: 0.7 }
     },
     media: './cover.jpg',
     path: './file.mp3',
@@ -59,7 +62,8 @@ export const trackListData = [
       title: 'file 4',
       album,
       artists: artists.slice(2),
-      duration: 2.95
+      duration: 2.95,
+      replaygain_track_gain: { ratio: 0.5 }
     },
     media: './cover.jpg',
     path: './file.ogg',
