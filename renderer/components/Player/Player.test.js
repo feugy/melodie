@@ -13,6 +13,18 @@ const { play, pause } = HTMLMediaElement.prototype
 describe('Player component', () => {
   let mediaElementSource
   let gainNode
+  let observer
+
+  function mockAutoPlay(audio) {
+    observer = new MutationObserver(mutations => {
+      for (const { attributeName } of mutations) {
+        if (attributeName === 'src') {
+          audio.play()
+        }
+      }
+    })
+    observer.observe(audio, { attributes: true })
+  }
 
   beforeEach(() => {
     location.hash = '#/'
@@ -25,15 +37,25 @@ describe('Player component', () => {
     }
     mediaElementSource = { connect: jest.fn() }
     gainNode = { connect: jest.fn(), gain: { value: 1 } }
+
+    play.mockImplementation(function () {
+      this.dispatchEvent(new Event('play'))
+    })
+    pause.mockImplementation(function () {
+      this.dispatchEvent(new Event('pause'))
+    })
     clear()
+  })
+
+  afterEach(() => {
+    if (observer) {
+      observer.disconnect()
+    }
   })
 
   it('plays and pause track', async () => {
     add(trackListData)
     expect(play).not.toHaveBeenCalled()
-    play.mockImplementation(function () {
-      this.dispatchEvent(new Event('play'))
-    })
 
     render(html`<${Player} />`)
 
@@ -44,10 +66,6 @@ describe('Player component', () => {
 
     expect(get(current)).toEqual(trackListData[0])
     expect(play).toHaveBeenCalled()
-
-    pause.mockImplementation(function () {
-      this.dispatchEvent(new Event('pause'))
-    })
 
     await fireEvent.click(screen.getByText('pause'))
 
@@ -162,5 +180,82 @@ describe('Player component', () => {
 
     jumpTo(0)
     expect(gainNode.gain.value).toEqual(1)
+  })
+
+  it('goes to next track on track end', async () => {
+    add(trackListData)
+    render(html`<${Player} />`)
+    const audio = screen.getByTestId('audio')
+    mockAutoPlay(audio)
+    expect(get(current)).toEqual(trackListData[0])
+
+    audio.dispatchEvent(new Event('ended'))
+    expect(get(current)).toEqual(trackListData[1])
+    await sleep()
+
+    expect(screen.queryByText('pause')).toBeInTheDocument()
+    expect(screen.queryByText('play_arrow')).toBeNull()
+  })
+
+  it('stops when last track has ended', async () => {
+    add(trackListData)
+    jumpTo(3)
+
+    render(html`<${Player} />`)
+    const audio = screen.getByTestId('audio')
+    mockAutoPlay(audio)
+    expect(get(current)).toEqual(trackListData[3])
+
+    audio.dispatchEvent(new Event('ended'))
+    expect(get(current)).toEqual(trackListData[3])
+    await sleep()
+
+    expect(screen.queryByText('pause')).toBeNull()
+    expect(screen.queryByText('play_arrow')).toBeInTheDocument()
+  })
+
+  it('restarts to first track when repeat is on and last track has ended', async () => {
+    add(trackListData)
+    jumpTo(3)
+
+    render(html`<${Player} />`)
+    const audio = screen.getByTestId('audio')
+    mockAutoPlay(audio)
+
+    await fireEvent.click(screen.getByText('repeat'))
+    expect(get(current)).toEqual(trackListData[3])
+
+    audio.dispatchEvent(new Event('ended'))
+    expect(get(current)).toEqual(trackListData[0])
+    await sleep()
+
+    expect(screen.queryByText('pause')).toBeInTheDocument()
+    expect(screen.queryByText('play_arrow')).toBeNull()
+  })
+
+  it('repeat current track when repeat one is on', async () => {
+    add(trackListData)
+    jumpTo(3)
+
+    render(html`<${Player} />`)
+    const audio = screen.getByTestId('audio')
+    mockAutoPlay(audio)
+
+    await fireEvent.click(screen.getByText('repeat'))
+    await fireEvent.click(screen.getByText('repeat'))
+
+    expect(get(current)).toEqual(trackListData[3])
+    await sleep()
+
+    audio.dispatchEvent(new Event('ended'))
+    expect(get(current)).toEqual(trackListData[3])
+    await sleep()
+
+    audio.dispatchEvent(new Event('ended'))
+    expect(get(current)).toEqual(trackListData[3])
+    await sleep()
+
+    expect(screen.queryByText('pause')).toBeInTheDocument()
+    expect(screen.queryByText('play_arrow')).toBeNull()
   })
 })

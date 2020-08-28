@@ -5,7 +5,12 @@
   import Track from '../Track/Track.svelte'
   import Slider from '../Slider/Slider.svelte'
   import { toDOMSrc, formatTime } from '../../utils'
-  import { playNext, playPrevious, current } from '../../stores/track-queue'
+  import {
+    playNext,
+    playPrevious,
+    current,
+    tracks
+  } from '../../stores/track-queue'
 
   const dispatch = createEventDispatcher()
   let isPlaying
@@ -15,6 +20,8 @@
   let nextSeek = null
   let src = null
   let muted = false
+  let repeatOne = false
+  let repeatAll = false
   let volume = 1
   $: volumePct = volume * 100
 
@@ -79,6 +86,27 @@
   function handleTogglePlaylist() {
     dispatch('togglePlaylist')
   }
+
+  function handleRepeat() {
+    if (repeatAll) {
+      repeatAll = false
+      repeatOne = true
+    } else if (repeatOne) {
+      repeatAll = false
+      repeatOne = false
+    } else {
+      repeatAll = true
+    }
+  }
+
+  function handleEnded() {
+    isPlaying = false
+    if (repeatOne) {
+      handlePlay()
+    } else if (repeatAll || $tracks[$tracks.length - 1] !== $current) {
+      handleNext()
+    }
+  }
 </script>
 
 <style type="postcss">
@@ -124,6 +152,10 @@
   .playlist:hover .volume-slider {
     @apply opacity-100;
   }
+
+  .isActive {
+    color: var(--hover-color);
+  }
 </style>
 
 <!-- svelte-ignore a11y-media-has-caption -->
@@ -132,7 +164,7 @@
   bind:this={player}
   autoplay
   {src}
-  on:ended={handleNext}
+  on:ended={handleEnded}
   bind:currentTime
   bind:duration
   bind:volume
@@ -190,6 +222,12 @@
         on:click={() => (muted = !muted)}
         icon={muted ? 'volume_off' : 'volume_up'}
         noBorder />
+      <span class:isActive={repeatOne || repeatAll}>
+        <Button
+          on:click={handleRepeat}
+          icon={repeatOne ? 'repeat_one' : 'repeat'}
+          noBorder />
+      </span>
     </div>
     <Button on:click={handleTogglePlaylist} icon={'queue_music'} large />
   </span>

@@ -6,22 +6,22 @@ exports[`Storyshots Components/Player Empty 1`] = `
 >
   <audio
     autoplay=""
-    class="svelte-1c9ybkv"
+    class="svelte-101j5b"
     data-testid="audio"
   />
    
   <div
-    class="flex items-center svelte-1c9ybkv"
+    class="flex items-center svelte-101j5b"
   >
     <span
-      class="current svelte-1c9ybkv"
+      class="current svelte-101j5b"
     />
      
     <div
-      class="player svelte-1c9ybkv"
+      class="player svelte-101j5b"
     >
       <span
-        class="controls svelte-1c9ybkv"
+        class="controls svelte-101j5b"
       >
         <button
           class="mx-1 svelte-j6xhgj iconOnly noBorder"
@@ -61,10 +61,10 @@ exports[`Storyshots Components/Player Empty 1`] = `
       </span>
        
       <span
-        class="controls time svelte-1c9ybkv"
+        class="controls time svelte-101j5b"
       >
         <span
-          class="svelte-1c9ybkv"
+          class="svelte-101j5b"
         >
           0:00
         </span>
@@ -90,7 +90,7 @@ exports[`Storyshots Components/Player Empty 1`] = `
         </div>
          
         <span
-          class="svelte-1c9ybkv"
+          class="svelte-101j5b"
         >
           0:00
         </span>
@@ -98,13 +98,13 @@ exports[`Storyshots Components/Player Empty 1`] = `
     </div>
      
     <span
-      class="playlist svelte-1c9ybkv"
+      class="playlist svelte-101j5b"
     >
       <div
-        class="volume svelte-1c9ybkv"
+        class="volume svelte-101j5b"
       >
         <span
-          class="volume-slider svelte-1c9ybkv"
+          class="volume-slider svelte-101j5b"
         >
           <div
             class="wrapper undefined svelte-3pkjx0"
@@ -138,6 +138,22 @@ exports[`Storyshots Components/Player Empty 1`] = `
            
            
         </button>
+         
+        <span
+          class="svelte-101j5b"
+        >
+          <button
+            class="svelte-j6xhgj iconOnly noBorder"
+          >
+            <i
+              class="material-icons svelte-j6xhgj"
+            >
+              repeat
+            </i>
+             
+             
+          </button>
+        </span>
       </div>
        
       <button
@@ -162,16 +178,16 @@ exports[`Storyshots Components/Player With Track List 1`] = `
 >
   <audio
     autoplay=""
-    class="svelte-1c9ybkv"
+    class="svelte-101j5b"
     data-testid="audio"
     src="./no-duration.mp3"
   />
    
   <div
-    class="flex items-center svelte-1c9ybkv"
+    class="flex items-center svelte-101j5b"
   >
     <span
-      class="current svelte-1c9ybkv"
+      class="current svelte-101j5b"
     >
       <div
         class="undefined root svelte-whrgz7"
@@ -212,10 +228,10 @@ exports[`Storyshots Components/Player With Track List 1`] = `
     </span>
      
     <div
-      class="player svelte-1c9ybkv"
+      class="player svelte-101j5b"
     >
       <span
-        class="controls svelte-1c9ybkv"
+        class="controls svelte-101j5b"
       >
         <button
           class="mx-1 svelte-j6xhgj iconOnly noBorder"
@@ -255,10 +271,10 @@ exports[`Storyshots Components/Player With Track List 1`] = `
       </span>
        
       <span
-        class="controls time svelte-1c9ybkv"
+        class="controls time svelte-101j5b"
       >
         <span
-          class="svelte-1c9ybkv"
+          class="svelte-101j5b"
         >
           0:00
         </span>
@@ -284,7 +300,7 @@ exports[`Storyshots Components/Player With Track List 1`] = `
         </div>
          
         <span
-          class="svelte-1c9ybkv"
+          class="svelte-101j5b"
         >
           0:00
         </span>
@@ -292,13 +308,13 @@ exports[`Storyshots Components/Player With Track List 1`] = `
     </div>
      
     <span
-      class="playlist svelte-1c9ybkv"
+      class="playlist svelte-101j5b"
     >
       <div
-        class="volume svelte-1c9ybkv"
+        class="volume svelte-101j5b"
       >
         <span
-          class="volume-slider svelte-1c9ybkv"
+          class="volume-slider svelte-101j5b"
         >
           <div
             class="wrapper undefined svelte-3pkjx0"
@@ -332,6 +348,22 @@ exports[`Storyshots Components/Player With Track List 1`] = `
            
            
         </button>
+         
+        <span
+          class="svelte-101j5b"
+        >
+          <button
+            class="svelte-j6xhgj iconOnly noBorder"
+          >
+            <i
+              class="material-icons svelte-j6xhgj"
+            >
+              repeat
+            </i>
+             
+             
+          </button>
+        </span>
       </div>
        
       <button
