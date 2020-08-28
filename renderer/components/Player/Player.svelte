@@ -9,7 +9,10 @@
     playNext,
     playPrevious,
     current,
-    tracks
+    tracks,
+    isShuffling,
+    unshuffle,
+    shuffle
   } from '../../stores/track-queue'
 
   const dispatch = createEventDispatcher()
@@ -105,6 +108,14 @@
       handlePlay()
     } else if (repeatAll || $tracks[$tracks.length - 1] !== $current) {
       handleNext()
+    }
+  }
+
+  function handleShuffle() {
+    if ($isShuffling) {
+      unshuffle()
+    } else {
+      shuffle()
     }
   }
 </script>
@@ -227,6 +238,9 @@
           on:click={handleRepeat}
           icon={repeatOne ? 'repeat_one' : 'repeat'}
           noBorder />
+      </span>
+      <span class:isActive={$isShuffling}>
+        <Button on:click={handleShuffle} icon={'shuffle'} noBorder />
       </span>
     </div>
     <Button on:click={handleTogglePlaylist} icon={'queue_music'} large />

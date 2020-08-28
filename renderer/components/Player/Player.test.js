@@ -5,7 +5,13 @@ import { screen, render, fireEvent } from '@testing-library/svelte'
 import html from 'svelte-htm'
 import Player from './Player.svelte'
 import { trackListData } from './Player.stories'
-import { add, clear, current, jumpTo } from '../../stores/track-queue'
+import {
+  add,
+  clear,
+  current,
+  jumpTo,
+  isShuffling
+} from '../../stores/track-queue'
 import { sleep } from '../../tests'
 
 const { play, pause } = HTMLMediaElement.prototype
@@ -257,5 +263,15 @@ describe('Player component', () => {
 
     expect(screen.queryByText('pause')).toBeInTheDocument()
     expect(screen.queryByText('play_arrow')).toBeNull()
+  })
+
+  it('shuffles and unshuffles current track when repeat one is on', async () => {
+    render(html`<${Player} />`)
+
+    await fireEvent.click(screen.getByText('shuffle'))
+    expect(get(isShuffling)).toEqual(true)
+
+    await fireEvent.click(screen.getByText('shuffle'))
+    expect(get(isShuffling)).toEqual(false)
   })
 })

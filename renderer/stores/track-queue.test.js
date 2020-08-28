@@ -6,118 +6,128 @@ import faker from 'faker'
 import * as queue from './track-queue'
 import { mockIpcRenderer } from '../tests'
 
+function difference(...arrays) {
+  return arrays.reduce((a, b) => a.filter(c => !b.includes(c)))
+}
+
 describe('track-queue store', () => {
   beforeEach(queue.clear)
 
   it('has initial state', () => {
-    expect(get(queue.tracks)).toEqual([])
-    expect(get(queue.current)).not.toBeDefined()
-    expect(get(queue.index)).toEqual(0)
+    const { current, index, tracks, isShuffling } = queue
+    expect(get(tracks)).toEqual([])
+    expect(get(current)).not.toBeDefined()
+    expect(get(index)).toEqual(0)
+    expect(get(isShuffling)).toEqual(false)
   })
 
   it('enqueues new tracks', async () => {
+    const { current, index, tracks, add, playNext } = queue
     const files = [
       { id: 1, path: faker.system.fileName() },
       { id: 2, path: faker.system.fileName() },
       { id: 3, path: faker.system.fileName() }
     ]
-    queue.add(files.slice(0, 2))
-    queue.playNext()
+    add(files.slice(0, 2))
+    playNext()
     await tick()
-    queue.add(files.slice(2))
+    add(files.slice(2))
     await tick()
-    const { tracks, current, index } = queue
+
     expect(get(tracks)).toEqual(files)
     expect(get(index)).toEqual(1)
     expect(get(current)).toEqual(files[1])
   })
 
   it('enqueues single track', async () => {
+    const { current, index, tracks, add, playNext } = queue
     const files = [
       { id: 1, path: faker.system.fileName() },
       { id: 2, path: faker.system.fileName() },
       { id: 3, path: faker.system.fileName() }
     ]
-    queue.add(files.slice(0, 2))
-    queue.playNext()
+    add(files.slice(0, 2))
+    playNext()
     await tick()
-    queue.add(files[2])
+    add(files[2])
     await tick()
-    const { tracks, current, index } = queue
+
     expect(get(tracks)).toEqual(files)
     expect(get(current)).toEqual(files[1])
     expect(get(index)).toEqual(1)
   })
 
   it('plays new tracks', async () => {
+    const { current, index, tracks, add } = queue
     const files = [
       { id: 1, path: faker.system.fileName() },
       { id: 2, path: faker.system.fileName() },
       { id: 3, path: faker.system.fileName() }
     ]
-    queue.add(files.slice(0, 1))
+    add(files.slice(0, 1))
     await tick()
-    queue.add(files.slice(1), true)
+    add(files.slice(1), true)
     await tick()
-    const { tracks, current, index } = queue
+
     expect(get(tracks)).toEqual(files.slice(1))
     expect(get(current)).toEqual(files[1])
     expect(get(index)).toEqual(0)
   })
 
   it('plays single track', async () => {
+    const { current, index, tracks, add } = queue
     const files = [
       { id: 1, path: faker.system.fileName() },
       { id: 2, path: faker.system.fileName() },
       { id: 3, path: faker.system.fileName() }
     ]
-    queue.add(files.slice(0, 2))
+    add(files.slice(0, 2))
     await tick()
-    queue.add(files[2], true)
+    add(files[2], true)
     await tick()
-    const { tracks, current, index } = queue
+
     expect(get(tracks)).toEqual(files.slice(2, 3))
     expect(get(current)).toEqual(files[2])
     expect(get(index)).toEqual(0)
   })
 
   describe('next', () => {
-    beforeEach(() => queue.clear())
-
     it('does nothing on empty queue', async () => {
-      queue.playNext()
+      const { current, index, tracks, playNext } = queue
+      playNext()
       await tick()
 
-      expect(get(queue.tracks)).toEqual([])
-      expect(get(queue.current)).not.toBeDefined()
-      expect(get(queue.index)).toEqual(0)
+      expect(get(tracks)).toEqual([])
+      expect(get(current)).not.toBeDefined()
+      expect(get(index)).toEqual(0)
     })
 
     it('goes to next and cycle', async () => {
+      const { current, index, tracks, add, playNext } = queue
       const files = [
         { id: 1, path: faker.system.fileName() },
         { id: 2, path: faker.system.fileName() },
         { id: 3, path: faker.system.fileName() }
       ]
-      queue.add(files)
-      expect(get(queue.tracks)).toEqual(files)
-      expect(get(queue.current)).toEqual(files[0])
-      expect(get(queue.index)).toEqual(0)
+      add(files)
+      expect(get(tracks)).toEqual(files)
+      expect(get(current)).toEqual(files[0])
+      expect(get(index)).toEqual(0)
 
-      queue.playNext()
+      playNext()
       await tick()
-      expect(get(queue.current)).toEqual(files[1])
-      expect(get(queue.index)).toEqual(1)
+      expect(get(current)).toEqual(files[1])
+      expect(get(index)).toEqual(1)
 
-      queue.playNext()
+      playNext()
       await tick()
-      expect(get(queue.current)).toEqual(files[2])
-      expect(get(queue.index)).toEqual(2)
+      expect(get(current)).toEqual(files[2])
+      expect(get(index)).toEqual(2)
 
-      queue.playNext()
+      playNext()
       await tick()
-      expect(get(queue.current)).toEqual(files[0])
-      expect(get(queue.index)).toEqual(0)
+      expect(get(current)).toEqual(files[0])
+      expect(get(index)).toEqual(0)
 
       queue.playNext()
       await tick()
@@ -126,158 +136,164 @@ describe('track-queue store', () => {
     })
 
     it('supports duplicates', async () => {
+      const { current, index, tracks, add, playNext } = queue
       const files = [
         { id: 1, path: faker.system.fileName() },
         { id: 2, path: faker.system.fileName() }
       ]
       files.push(files[0], { id: 3, path: faker.system.fileName() })
 
-      queue.add(files)
-      expect(get(queue.tracks)).toEqual(files)
-      expect(get(queue.current)).toEqual(files[0])
-      expect(get(queue.index)).toEqual(0)
+      add(files)
+      expect(get(tracks)).toEqual(files)
+      expect(get(current)).toEqual(files[0])
+      expect(get(index)).toEqual(0)
 
-      queue.playNext()
+      playNext()
       await tick()
-      expect(get(queue.current)).toEqual(files[1])
-      expect(get(queue.index)).toEqual(1)
+      expect(get(current)).toEqual(files[1])
+      expect(get(index)).toEqual(1)
 
-      queue.playNext()
+      playNext()
       await tick()
-      expect(get(queue.current)).toEqual(files[0])
-      expect(get(queue.index)).toEqual(2)
+      expect(get(current)).toEqual(files[0])
+      expect(get(index)).toEqual(2)
 
-      queue.playNext()
+      playNext()
       await tick()
-      expect(get(queue.current)).toEqual(files[3])
-      expect(get(queue.index)).toEqual(3)
+      expect(get(current)).toEqual(files[3])
+      expect(get(index)).toEqual(3)
 
-      queue.playNext()
+      playNext()
       await tick()
-      expect(get(queue.current)).toEqual(files[0])
-      expect(get(queue.index)).toEqual(0)
+      expect(get(current)).toEqual(files[0])
+      expect(get(index)).toEqual(0)
     })
   })
 
   describe('previous', () => {
     it('does nothing on empty queue', async () => {
-      queue.playPrevious()
+      const { current, index, tracks, playPrevious } = queue
+      playPrevious()
       await tick()
 
-      expect(get(queue.tracks)).toEqual([])
-      expect(get(queue.current)).not.toBeDefined()
-      expect(get(queue.index)).toEqual(0)
+      expect(get(tracks)).toEqual([])
+      expect(get(current)).not.toBeDefined()
+      expect(get(index)).toEqual(0)
     })
 
     it('goes to previous and cycle', async () => {
+      const { current, index, tracks, add, playPrevious } = queue
       const files = [
         { id: 1, path: faker.system.fileName() },
         { id: 2, path: faker.system.fileName() },
         { id: 3, path: faker.system.fileName() }
       ]
-      queue.add(files)
-      expect(get(queue.tracks)).toEqual(files)
-      expect(get(queue.current)).toEqual(files[0])
-      expect(get(queue.index)).toEqual(0)
+      add(files)
+      expect(get(tracks)).toEqual(files)
+      expect(get(current)).toEqual(files[0])
+      expect(get(index)).toEqual(0)
 
-      queue.playPrevious()
+      playPrevious()
       await tick()
-      expect(get(queue.current)).toEqual(files[2])
-      expect(get(queue.index)).toEqual(2)
+      expect(get(current)).toEqual(files[2])
+      expect(get(index)).toEqual(2)
 
-      queue.playPrevious()
+      playPrevious()
       await tick()
-      expect(get(queue.current)).toEqual(files[1])
-      expect(get(queue.index)).toEqual(1)
+      expect(get(current)).toEqual(files[1])
+      expect(get(index)).toEqual(1)
 
-      queue.playPrevious()
+      playPrevious()
       await tick()
-      expect(get(queue.current)).toEqual(files[0])
-      expect(get(queue.index)).toEqual(0)
+      expect(get(current)).toEqual(files[0])
+      expect(get(index)).toEqual(0)
 
-      queue.playPrevious()
+      playPrevious()
       await tick()
-      expect(get(queue.current)).toEqual(files[2])
-      expect(get(queue.index)).toEqual(2)
+      expect(get(current)).toEqual(files[2])
+      expect(get(index)).toEqual(2)
     })
   })
 
   describe('jumpTo', () => {
-    beforeEach(() => queue.clear())
     it('does nothing on empty queue', async () => {
-      queue.jumpTo(1)
+      const { current, index, tracks, jumpTo } = queue
+      jumpTo(1)
       await tick()
 
-      expect(get(queue.tracks)).toEqual([])
-      expect(get(queue.current)).not.toBeDefined()
-      expect(get(queue.index)).toEqual(0)
+      expect(get(tracks)).toEqual([])
+      expect(get(current)).not.toBeDefined()
+      expect(get(index)).toEqual(0)
     })
 
     it('goes forward and backward', async () => {
+      const { current, index, tracks, add, jumpTo } = queue
       const files = [
         { id: 1, path: faker.system.fileName() },
         { id: 2, path: faker.system.fileName() },
         { id: 3, path: faker.system.fileName() }
       ]
-      queue.add(files)
-      expect(get(queue.tracks)).toEqual(files)
-      expect(get(queue.current)).toEqual(files[0])
-      expect(get(queue.index)).toEqual(0)
+      add(files)
+      expect(get(tracks)).toEqual(files)
+      expect(get(current)).toEqual(files[0])
+      expect(get(index)).toEqual(0)
 
-      queue.jumpTo(2)
+      jumpTo(2)
       await tick()
-      expect(get(queue.current)).toEqual(files[2])
-      expect(get(queue.index)).toEqual(2)
+      expect(get(current)).toEqual(files[2])
+      expect(get(index)).toEqual(2)
 
-      queue.jumpTo(0)
+      jumpTo(0)
       await tick()
-      expect(get(queue.current)).toEqual(files[0])
-      expect(get(queue.index)).toEqual(0)
+      expect(get(current)).toEqual(files[0])
+      expect(get(index)).toEqual(0)
     })
 
     it('ignores out of bound index', async () => {
+      const { current, index, tracks, add, jumpTo } = queue
       const files = [
         { id: 1, path: faker.system.fileName() },
         { id: 2, path: faker.system.fileName() }
       ]
 
-      queue.add(files)
-      expect(get(queue.tracks)).toEqual(files)
-      expect(get(queue.current)).toEqual(files[0])
-      expect(get(queue.index)).toEqual(0)
+      add(files)
+      expect(get(tracks)).toEqual(files)
+      expect(get(current)).toEqual(files[0])
+      expect(get(index)).toEqual(0)
 
-      queue.jumpTo(10)
+      jumpTo(10)
       await tick()
-      expect(get(queue.current)).toEqual(files[0])
-      expect(get(queue.index)).toEqual(0)
+      expect(get(current)).toEqual(files[0])
+      expect(get(index)).toEqual(0)
 
-      queue.jumpTo(-1)
+      jumpTo(-1)
       await tick()
-      expect(get(queue.current)).toEqual(files[0])
-      expect(get(queue.index)).toEqual(0)
+      expect(get(current)).toEqual(files[0])
+      expect(get(index)).toEqual(0)
     })
 
     it('supports duplicates', async () => {
+      const { current, index, tracks, add, jumpTo } = queue
       const files = [
         { id: 1, path: faker.system.fileName() },
         { id: 2, path: faker.system.fileName() }
       ]
       files.push(files[0], faker.system.fileName())
 
-      queue.add(files)
-      expect(get(queue.tracks)).toEqual(files)
-      expect(get(queue.current)).toEqual(files[0])
-      expect(get(queue.index)).toEqual(0)
+      add(files)
+      expect(get(tracks)).toEqual(files)
+      expect(get(current)).toEqual(files[0])
+      expect(get(index)).toEqual(0)
 
-      queue.jumpTo(2)
+      jumpTo(2)
       await tick()
-      expect(get(queue.current)).toEqual(files[0])
-      expect(get(queue.index)).toEqual(2)
+      expect(get(current)).toEqual(files[0])
+      expect(get(index)).toEqual(2)
 
-      queue.jumpTo(1)
+      jumpTo(1)
       await tick()
-      expect(get(queue.current)).toEqual(files[1])
-      expect(get(queue.index)).toEqual(1)
+      expect(get(current)).toEqual(files[1])
+      expect(get(index)).toEqual(1)
     })
   })
 
@@ -290,318 +306,294 @@ describe('track-queue store', () => {
     ]
 
     beforeEach(async () => {
-      queue.clear()
       queue.add(files.concat())
       await tick()
     })
 
     it('does nothing on empty queue', async () => {
-      queue.clear()
-      queue.move(1, 2)
+      const { current, index, tracks, move, clear } = queue
+      clear()
+      move(1, 2)
       await tick()
 
-      expect(get(queue.tracks)).toEqual([])
-      expect(get(queue.current)).not.toBeDefined()
-      expect(get(queue.index)).toEqual(0)
+      expect(get(tracks)).toEqual([])
+      expect(get(current)).not.toBeDefined()
+      expect(get(index)).toEqual(0)
     })
 
     it('moves track before current one', async () => {
-      queue.jumpTo(2)
+      const { current, index, tracks, move, jumpTo } = queue
+      jumpTo(2)
       await tick()
-      expect(get(queue.current)).toEqual(files[2])
-      expect(get(queue.index)).toEqual(2)
+      expect(get(current)).toEqual(files[2])
+      expect(get(index)).toEqual(2)
 
-      queue.move(3, 0)
+      move(3, 0)
       await tick()
 
-      expect(get(queue.tracks)).toEqual([
-        files[3],
-        files[0],
-        files[1],
-        files[2]
-      ])
-      expect(get(queue.current)).toEqual(files[2])
-      expect(get(queue.index)).toEqual(3)
+      expect(get(tracks)).toEqual([files[3], files[0], files[1], files[2]])
+      expect(get(current)).toEqual(files[2])
+      expect(get(index)).toEqual(3)
     })
 
     it('moves track backward, after current', async () => {
-      expect(get(queue.current)).toEqual(files[0])
-      expect(get(queue.index)).toEqual(0)
+      const { current, index, tracks, move } = queue
+      expect(get(current)).toEqual(files[0])
+      expect(get(index)).toEqual(0)
 
-      queue.move(2, 1)
+      move(2, 1)
       await tick()
 
-      expect(get(queue.tracks)).toEqual([
-        files[0],
-        files[2],
-        files[1],
-        files[3]
-      ])
-      expect(get(queue.current)).toEqual(files[0])
-      expect(get(queue.index)).toEqual(0)
+      expect(get(tracks)).toEqual([files[0], files[2], files[1], files[3]])
+      expect(get(current)).toEqual(files[0])
+      expect(get(index)).toEqual(0)
     })
 
     it('moves track forward, after current', async () => {
-      expect(get(queue.current)).toEqual(files[0])
-      expect(get(queue.index)).toEqual(0)
+      const { current, index, tracks, move } = queue
+      expect(get(current)).toEqual(files[0])
+      expect(get(index)).toEqual(0)
 
-      queue.move(1, 3)
+      move(1, 3)
       await tick()
 
-      expect(get(queue.tracks)).toEqual([
-        files[0],
-        files[2],
-        files[3],
-        files[1]
-      ])
-      expect(get(queue.current)).toEqual(files[0])
-      expect(get(queue.index)).toEqual(0)
+      expect(get(tracks)).toEqual([files[0], files[2], files[3], files[1]])
+      expect(get(current)).toEqual(files[0])
+      expect(get(index)).toEqual(0)
     })
 
     it('moves track backward, before current', async () => {
-      queue.jumpTo(2)
+      const { current, index, tracks, move, jumpTo } = queue
+      jumpTo(2)
       await tick()
-      expect(get(queue.current)).toEqual(files[2])
-      expect(get(queue.index)).toEqual(2)
+      expect(get(current)).toEqual(files[2])
+      expect(get(index)).toEqual(2)
 
-      queue.move(1, 0)
+      move(1, 0)
       await tick()
 
-      expect(get(queue.tracks)).toEqual([
-        files[1],
-        files[0],
-        files[2],
-        files[3]
-      ])
-      expect(get(queue.current)).toEqual(files[2])
-      expect(get(queue.index)).toEqual(2)
+      expect(get(tracks)).toEqual([files[1], files[0], files[2], files[3]])
+      expect(get(current)).toEqual(files[2])
+      expect(get(index)).toEqual(2)
     })
 
     it('moves track forward, after current', async () => {
-      queue.jumpTo(2)
+      const { current, index, tracks, move, jumpTo } = queue
+      jumpTo(2)
       await tick()
-      expect(get(queue.current)).toEqual(files[2])
-      expect(get(queue.index)).toEqual(2)
+      expect(get(current)).toEqual(files[2])
+      expect(get(index)).toEqual(2)
 
-      queue.move(0, 1)
+      move(0, 1)
       await tick()
 
-      expect(get(queue.tracks)).toEqual([
-        files[1],
-        files[0],
-        files[2],
-        files[3]
-      ])
-      expect(get(queue.current)).toEqual(files[2])
-      expect(get(queue.index)).toEqual(2)
+      expect(get(tracks)).toEqual([files[1], files[0], files[2], files[3]])
+      expect(get(current)).toEqual(files[2])
+      expect(get(index)).toEqual(2)
     })
 
     it('moves track after current one', async () => {
-      queue.jumpTo(2)
+      const { current, index, tracks, move, jumpTo } = queue
+      jumpTo(2)
       await tick()
 
-      expect(get(queue.current)).toEqual(files[2])
-      expect(get(queue.index)).toEqual(2)
+      expect(get(current)).toEqual(files[2])
+      expect(get(index)).toEqual(2)
 
-      queue.move(0, 3)
+      move(0, 3)
       await tick()
 
-      expect(get(queue.tracks)).toEqual([
-        files[1],
-        files[2],
-        files[3],
-        files[0]
-      ])
-      expect(get(queue.current)).toEqual(files[2])
-      expect(get(queue.index)).toEqual(1)
+      expect(get(tracks)).toEqual([files[1], files[2], files[3], files[0]])
+      expect(get(current)).toEqual(files[2])
+      expect(get(index)).toEqual(1)
     })
 
     it('ignores invalid boundaries', async () => {
-      queue.move(-1, 2)
+      const { current, index, tracks, move } = queue
+      move(-1, 2)
       await tick()
 
-      expect(get(queue.current)).toEqual(files[0])
-      expect(get(queue.index)).toEqual(0)
-      expect(get(queue.tracks)).toEqual(files)
+      expect(get(current)).toEqual(files[0])
+      expect(get(index)).toEqual(0)
+      expect(get(tracks)).toEqual(files)
 
-      queue.move(10, 2)
+      move(10, 2)
       await tick()
 
-      expect(get(queue.current)).toEqual(files[0])
-      expect(get(queue.index)).toEqual(0)
-      expect(get(queue.tracks)).toEqual(files)
+      expect(get(current)).toEqual(files[0])
+      expect(get(index)).toEqual(0)
+      expect(get(tracks)).toEqual(files)
 
-      queue.move(2, -1)
+      move(2, -1)
       await tick()
 
-      expect(get(queue.current)).toEqual(files[0])
-      expect(get(queue.index)).toEqual(0)
-      expect(get(queue.tracks)).toEqual(files)
+      expect(get(current)).toEqual(files[0])
+      expect(get(index)).toEqual(0)
+      expect(get(tracks)).toEqual(files)
 
-      queue.move(2, 10)
+      move(2, 10)
       await tick()
 
-      expect(get(queue.current)).toEqual(files[0])
-      expect(get(queue.index)).toEqual(0)
-      expect(get(queue.tracks)).toEqual(files)
+      expect(get(current)).toEqual(files[0])
+      expect(get(index)).toEqual(0)
+      expect(get(tracks)).toEqual(files)
     })
   })
 
   describe('remove', () => {
-    beforeEach(() => queue.clear())
     it('does nothing on empty queue', async () => {
-      queue.remove(1)
+      const { current, index, tracks, remove } = queue
+      remove(1)
       await tick()
 
-      expect(get(queue.tracks)).toEqual([])
-      expect(get(queue.index)).toEqual(0)
-      expect(get(queue.current)).not.toBeDefined()
+      expect(get(tracks)).toEqual([])
+      expect(get(index)).toEqual(0)
+      expect(get(current)).not.toBeDefined()
     })
 
     it('removes future track', async () => {
+      const { current, index, tracks, add, remove } = queue
       const files = [
         { id: 1, path: faker.system.fileName() },
         { id: 2, path: faker.system.fileName() },
         { id: 3, path: faker.system.fileName() }
       ]
-      queue.add(files)
-      expect(get(queue.tracks)).toEqual(files)
-      expect(get(queue.current)).toEqual(files[0])
-      expect(get(queue.index)).toEqual(0)
+      add(files)
+      expect(get(tracks)).toEqual(files)
+      expect(get(current)).toEqual(files[0])
+      expect(get(index)).toEqual(0)
 
-      queue.remove(2)
+      remove(2)
       await tick()
-      expect(get(queue.tracks)).toEqual(files.slice(0, 2))
-      expect(get(queue.index)).toEqual(0)
-      expect(get(queue.current)).toEqual(files[0])
+      expect(get(tracks)).toEqual(files.slice(0, 2))
+      expect(get(index)).toEqual(0)
+      expect(get(current)).toEqual(files[0])
     })
 
     it('removes current track', async () => {
+      const { current, index, tracks, add, playNext, remove } = queue
       const files = [
         { id: 1, path: faker.system.fileName() },
         { id: 2, path: faker.system.fileName() },
         { id: 3, path: faker.system.fileName() }
       ]
-      queue.add(files)
-      queue.playNext()
-      expect(get(queue.tracks)).toEqual(files)
-      expect(get(queue.current)).toEqual(files[1])
-      expect(get(queue.index)).toEqual(1)
+      add(files)
+      playNext()
+      expect(get(tracks)).toEqual(files)
+      expect(get(current)).toEqual(files[1])
+      expect(get(index)).toEqual(1)
 
-      queue.remove(1)
+      remove(1)
       await tick()
-      expect(get(queue.tracks)).toEqual([
-        ...files.slice(0, 1),
-        ...files.slice(2)
-      ])
-      expect(get(queue.index)).toEqual(1)
-      expect(get(queue.current)).toEqual(files[2])
+      expect(get(tracks)).toEqual([...files.slice(0, 1), ...files.slice(2)])
+      expect(get(index)).toEqual(1)
+      expect(get(current)).toEqual(files[2])
     })
 
     it('removes last current track', async () => {
+      const { current, index, tracks, add, jumpTo, remove } = queue
       const files = [
         { id: 1, path: faker.system.fileName() },
         { id: 2, path: faker.system.fileName() },
         { id: 3, path: faker.system.fileName() }
       ]
-      queue.add(files)
-      queue.jumpTo(2)
-      expect(get(queue.tracks)).toEqual(files)
-      expect(get(queue.current)).toEqual(files[2])
-      expect(get(queue.index)).toEqual(2)
+      add(files)
+      jumpTo(2)
+      expect(get(tracks)).toEqual(files)
+      expect(get(current)).toEqual(files[2])
+      expect(get(index)).toEqual(2)
 
-      queue.remove(2)
+      remove(2)
       await tick()
-      expect(get(queue.tracks)).toEqual([...files.slice(0, 2)])
-      expect(get(queue.index)).toEqual(0)
-      expect(get(queue.current)).toEqual(files[0])
+      expect(get(tracks)).toEqual([...files.slice(0, 2)])
+      expect(get(index)).toEqual(0)
+      expect(get(current)).toEqual(files[0])
     })
 
     it('removes past track', async () => {
+      const { current, index, tracks, add, jumpTo, remove } = queue
       const files = [
         { id: 1, path: faker.system.fileName() },
         { id: 2, path: faker.system.fileName() },
         { id: 3, path: faker.system.fileName() }
       ]
-      queue.add(files)
-      queue.jumpTo(2)
-      expect(get(queue.tracks)).toEqual(files)
-      expect(get(queue.current)).toEqual(files[2])
-      expect(get(queue.index)).toEqual(2)
+      add(files)
+      jumpTo(2)
+      expect(get(tracks)).toEqual(files)
+      expect(get(current)).toEqual(files[2])
+      expect(get(index)).toEqual(2)
 
-      queue.remove(1)
+      remove(1)
       await tick()
-      expect(get(queue.tracks)).toEqual([
-        ...files.slice(0, 1),
-        ...files.slice(2)
-      ])
-      expect(get(queue.index)).toEqual(1)
-      expect(get(queue.current)).toEqual(files[2])
+      expect(get(tracks)).toEqual([...files.slice(0, 1), ...files.slice(2)])
+      expect(get(index)).toEqual(1)
+      expect(get(current)).toEqual(files[2])
     })
 
     it('ignores out of bound index', async () => {
+      const { current, index, tracks, add, remove } = queue
       const files = [
         { id: 1, path: faker.system.fileName() },
         { id: 2, path: faker.system.fileName() }
       ]
 
-      queue.add(files)
-      expect(get(queue.tracks)).toEqual(files)
-      expect(get(queue.current)).toEqual(files[0])
-      expect(get(queue.index)).toEqual(0)
+      add(files)
+      expect(get(tracks)).toEqual(files)
+      expect(get(current)).toEqual(files[0])
+      expect(get(index)).toEqual(0)
 
-      queue.remove(10)
+      remove(10)
       await tick()
-      expect(get(queue.index)).toEqual(0)
-      expect(get(queue.current)).toEqual(files[0])
+      expect(get(index)).toEqual(0)
+      expect(get(current)).toEqual(files[0])
 
-      queue.remove(-1)
+      remove(-1)
       await tick()
-      expect(get(queue.index)).toEqual(0)
-      expect(get(queue.current)).toEqual(files[0])
+      expect(get(index)).toEqual(0)
+      expect(get(current)).toEqual(files[0])
     })
 
     it('supports duplicates', async () => {
+      const { current, index, tracks, add, remove } = queue
       const files = [
         { id: 1, path: faker.system.fileName() },
         { id: 2, path: faker.system.fileName() }
       ]
       files.push(files[0], { id: 3, path: faker.system.fileName() })
 
-      queue.add(files)
-      expect(get(queue.tracks)).toEqual(files)
-      expect(get(queue.current)).toEqual(files[0])
-      expect(get(queue.index)).toEqual(0)
+      add(files)
+      expect(get(tracks)).toEqual(files)
+      expect(get(current)).toEqual(files[0])
+      expect(get(index)).toEqual(0)
 
-      queue.remove(2)
+      remove(2)
       await tick()
-      expect(get(queue.tracks)).toEqual([
-        ...files.slice(0, 2),
-        ...files.slice(3)
-      ])
-      expect(get(queue.index)).toEqual(0)
+      expect(get(tracks)).toEqual([...files.slice(0, 2), ...files.slice(3)])
+      expect(get(index)).toEqual(0)
     })
   })
 
   describe('given incoming changes', () => {
     it('does not change empty queue', async () => {
+      const { current, index, tracks } = queue
       mockIpcRenderer.emit('track-change', null, {
         id: 1,
         path: faker.system.fileName()
       })
       await tick()
 
-      expect(get(queue.tracks)).toEqual([])
-      expect(get(queue.index)).toEqual(0)
-      expect(get(queue.current)).not.toBeDefined()
+      expect(get(tracks)).toEqual([])
+      expect(get(index)).toEqual(0)
+      expect(get(current)).not.toBeDefined()
     })
 
     it('does not change queue on un-queued track', async () => {
+      const { current, index, tracks, add } = queue
       const files = [
         { id: 1, path: faker.system.fileName() },
         { id: 2, path: faker.system.fileName() }
       ]
-      queue.add(files)
+      add(files)
 
       mockIpcRenderer.emit('track-change', null, {
         id: 3,
@@ -609,100 +601,569 @@ describe('track-queue store', () => {
       })
       await tick()
 
-      expect(get(queue.tracks)).toEqual(files)
-      expect(get(queue.index)).toEqual(0)
-      expect(get(queue.current)).toEqual(files[0])
+      expect(get(tracks)).toEqual(files)
+      expect(get(index)).toEqual(0)
+      expect(get(current)).toEqual(files[0])
     })
 
     it('updates all occurences of changed track', async () => {
+      const { current, index, tracks, add } = queue
       const files = [
         { id: 1, path: faker.system.fileName() },
         { id: 2, path: faker.system.fileName() }
       ]
       files.push(files[0], { id: 3, path: faker.system.fileName() })
-      queue.add(files)
+      add(files)
       await tick()
-      expect(get(queue.tracks)).toEqual(files)
-      expect(get(queue.index)).toEqual(0)
-      expect(get(queue.current)).toEqual(files[0])
+      expect(get(tracks)).toEqual(files)
+      expect(get(index)).toEqual(0)
+      expect(get(current)).toEqual(files[0])
 
       const changed = { id: 1, path: faker.system.fileName() }
       mockIpcRenderer.emit('track-change', null, changed)
       await tick()
 
-      expect(get(queue.tracks)).toEqual([changed, files[1], changed, files[3]])
-      expect(get(queue.index)).toEqual(0)
-      expect(get(queue.current)).toEqual(changed)
+      expect(get(tracks)).toEqual([changed, files[1], changed, files[3]])
+      expect(get(index)).toEqual(0)
+      expect(get(current)).toEqual(changed)
+    })
+
+    it('updates all occurences of changed track in shuffled list', async () => {
+      const { current, index, tracks, add, shuffle, unshuffle } = queue
+      const files = [
+        { id: 1, path: faker.system.fileName() },
+        { id: 2, path: faker.system.fileName() }
+      ]
+      files.push(files[0], { id: 3, path: faker.system.fileName() })
+      add(files)
+      shuffle()
+      await tick()
+      expect(get(index)).toEqual(0)
+      expect(get(current)).toEqual(files[0])
+
+      const changed = { id: 1, path: faker.system.fileName() }
+      mockIpcRenderer.emit('track-change', null, changed)
+      await tick()
+
+      expect(get(tracks)).toEqual(
+        expect.arrayContaining([changed, files[1], files[3]])
+      )
+      expect(get(tracks)).not.toEqual(expect.arrayContaining([files[0]]))
+      expect(get(index)).toEqual(0)
+      expect(get(current)).toEqual(changed)
+
+      unshuffle()
+      await tick()
+
+      expect(get(tracks)).toEqual([changed, files[1], changed, files[3]])
+      expect(get(index)).toEqual(0)
+      expect(get(current)).toEqual(changed)
     })
   })
 
   describe('given incoming removal', () => {
     it('does not change empty queue', async () => {
       mockIpcRenderer.emit('track-removal', null, 1)
+      const { current, index, tracks } = queue
       await tick()
 
-      expect(get(queue.tracks)).toEqual([])
-      expect(get(queue.index)).toEqual(0)
-      expect(get(queue.current)).not.toBeDefined()
+      expect(get(tracks)).toEqual([])
+      expect(get(index)).toEqual(0)
+      expect(get(current)).not.toBeDefined()
     })
 
     it('does not change queue on un-queued track', async () => {
+      const { current, index, tracks, add } = queue
       const files = [
         { id: 1, path: faker.system.fileName() },
         { id: 2, path: faker.system.fileName() }
       ]
-      queue.add(files)
+      add(files)
 
       mockIpcRenderer.emit('track-removal', null, 3)
       await tick()
 
-      expect(get(queue.tracks)).toEqual(files)
-      expect(get(queue.index)).toEqual(0)
-      expect(get(queue.current)).toEqual(files[0])
+      expect(get(tracks)).toEqual(files)
+      expect(get(index)).toEqual(0)
+      expect(get(current)).toEqual(files[0])
     })
 
     it('removes single occurences of removed track', async () => {
+      const { current, index, tracks, add, playNext } = queue
       const files = [
         { id: 1, path: faker.system.fileName() },
         { id: 2, path: faker.system.fileName() },
         { id: 3, path: faker.system.fileName() }
       ]
-      queue.add(files)
-      queue.playNext()
+      add(files)
+      playNext()
       await tick()
 
-      expect(get(queue.tracks)).toEqual(files)
-      expect(get(queue.index)).toEqual(1)
-      expect(get(queue.current)).toEqual(files[1])
+      expect(get(tracks)).toEqual(files)
+      expect(get(index)).toEqual(1)
+      expect(get(current)).toEqual(files[1])
 
       mockIpcRenderer.emit('track-removal', null, files[1].id)
       await tick()
 
-      expect(get(queue.tracks)).toEqual([files[0], files[2]])
-      expect(get(queue.index)).toEqual(1)
-      expect(get(queue.current)).toEqual(files[2])
+      expect(get(tracks)).toEqual([files[0], files[2]])
+      expect(get(index)).toEqual(1)
+      expect(get(current)).toEqual(files[2])
     })
 
     it('removes all occurences of removed track', async () => {
+      const { current, index, tracks, add, playNext } = queue
       const files = [
         { id: 1, path: faker.system.fileName() },
         { id: 2, path: faker.system.fileName() }
       ]
       files.push(files[1], { id: 3, path: faker.system.fileName() })
-      queue.add(files)
-      queue.playNext()
+      add(files)
+      playNext()
       await tick()
 
-      expect(get(queue.tracks)).toEqual(files)
-      expect(get(queue.index)).toEqual(1)
-      expect(get(queue.current)).toEqual(files[1])
+      expect(get(tracks)).toEqual(files)
+      expect(get(index)).toEqual(1)
+      expect(get(current)).toEqual(files[1])
 
       mockIpcRenderer.emit('track-removal', null, files[1].id)
       await tick()
 
-      expect(get(queue.tracks)).toEqual([files[0], files[3]])
-      expect(get(queue.index)).toEqual(1)
-      expect(get(queue.current)).toEqual(files[3])
+      expect(get(tracks)).toEqual([files[0], files[3]])
+      expect(get(index)).toEqual(1)
+      expect(get(current)).toEqual(files[3])
+    })
+
+    it('removes all occurences of removed track in shuffled list', async () => {
+      const { current, index, tracks, add, jumpTo, shuffle, unshuffle } = queue
+      const files = [
+        { id: 1, path: faker.system.fileName() },
+        { id: 2, path: faker.system.fileName() }
+      ]
+      files.push(files[1], { id: 3, path: faker.system.fileName() })
+      add(files)
+      jumpTo(1)
+      shuffle()
+      await tick()
+
+      expect(get(index)).toEqual(0)
+      expect(get(current)).toEqual(files[1])
+
+      mockIpcRenderer.emit('track-removal', null, files[1].id)
+      await tick()
+
+      expect(get(tracks)).toEqual(expect.arrayContaining([files[0], files[3]]))
+      expect(get(tracks)).not.toEqual(expect.arrayContaining([files[1]]))
+      expect(get(index)).toEqual(0)
+
+      unshuffle()
+      await tick()
+
+      expect(get(tracks)).toEqual([files[0], files[3]])
+    })
+  })
+
+  describe('shuffle', () => {
+    const files = [
+      { id: 1, path: faker.system.fileName() },
+      { id: 2, path: faker.system.fileName() },
+      { id: 3, path: faker.system.fileName() },
+      { id: 4, path: faker.system.fileName() },
+      { id: 5, path: faker.system.fileName() },
+      { id: 6, path: faker.system.fileName() },
+      { id: 7, path: faker.system.fileName() },
+      { id: 8, path: faker.system.fileName() }
+    ]
+
+    const order = [1, 2, 3, 4, 5, 6, 7, 8]
+
+    beforeEach(async () => {
+      queue.add(files)
+      await tick()
+    })
+
+    afterEach(queue.unshuffle)
+
+    it('randomize the order of all tracks when turned on', async () => {
+      const { current, index, isShuffling, playNext, tracks, shuffle } = queue
+
+      playNext()
+      await tick()
+
+      expect(get(tracks)).toEqual(files)
+      expect(get(tracks).map(({ id }) => id)).toEqual(order)
+      expect(get(index)).toEqual(1)
+      expect(get(current)).toEqual(files[1])
+
+      shuffle()
+      await tick()
+
+      expect(get(tracks)).toEqual(expect.arrayContaining(files))
+      expect(get(current)).toEqual(files[1])
+      expect(get(index)).toEqual(0)
+      expect(get(isShuffling)).toEqual(true)
+      expect(get(tracks).map(({ id }) => id)).not.toEqual(order)
+    })
+
+    it('revert to original order when turned off, and keep current track', async () => {
+      const {
+        current,
+        index,
+        isShuffling,
+        playNext,
+        tracks,
+        shuffle,
+        unshuffle
+      } = queue
+
+      playNext()
+      await tick()
+      expect(get(tracks).map(({ id }) => id)).toEqual(order)
+      expect(get(index)).toEqual(1)
+      expect(get(current)).toEqual(files[1])
+
+      shuffle()
+      playNext()
+      playNext()
+      await tick()
+
+      const currentShuffled = get(current)
+      expect(get(index)).toEqual(2)
+      expect(get(isShuffling)).toEqual(true)
+
+      unshuffle()
+      await tick()
+
+      expect(get(tracks)).toEqual(files)
+      expect(get(current)).toEqual(currentShuffled)
+      expect(get(index)).toEqual(files.indexOf(currentShuffled))
+      expect(get(isShuffling)).toEqual(false)
+    })
+
+    it('does not retain removed tracks when turned off', async () => {
+      const {
+        current,
+        index,
+        isShuffling,
+        jumpTo,
+        tracks,
+        shuffle,
+        remove,
+        unshuffle
+      } = queue
+      expect(get(tracks).map(({ id }) => id)).toEqual(order)
+
+      jumpTo(4)
+      expect(get(index)).toEqual(4)
+      expect(get(current)).toEqual(files[4])
+
+      shuffle()
+      jumpTo(2)
+      const currentShuffled = get(current)
+
+      remove(6)
+      await tick()
+
+      expect(get(index)).toEqual(2)
+      expect(get(current)).toEqual(currentShuffled)
+
+      remove(1)
+      await tick()
+
+      expect(get(index)).toEqual(1)
+      expect(get(current)).toEqual(currentShuffled)
+      const removed = difference(files, get(tracks)).map(({ id }) => id)
+      expect(removed).toHaveLength(2)
+      const remainingFiles = files.filter(({ id }) => !removed.includes(id))
+
+      unshuffle()
+      await tick()
+
+      expect(get(tracks)).toHaveLength(files.length - removed.length)
+      expect(get(tracks)).toEqual(remainingFiles)
+      expect(get(current)).toEqual(currentShuffled)
+      expect(get(index)).toEqual(remainingFiles.indexOf(currentShuffled))
+      expect(get(isShuffling)).toEqual(false)
+    })
+
+    it('ignores subsequent shuffles', async () => {
+      const { current, index, isShuffling, tracks, shuffle } = queue
+
+      shuffle()
+      await tick()
+
+      const currentShuffled = get(current)
+      const shuffled = get(tracks)
+      expect(get(index)).toEqual(0)
+      expect(get(isShuffling)).toEqual(true)
+
+      shuffle()
+      await tick()
+
+      expect(get(current)).toEqual(currentShuffled)
+      expect(get(index)).toEqual(0)
+      expect(get(tracks)).toEqual(shuffled)
+      expect(get(isShuffling)).toEqual(true)
+
+      shuffle()
+      await tick()
+
+      expect(get(current)).toEqual(currentShuffled)
+      expect(get(index)).toEqual(0)
+      expect(get(tracks)).toEqual(shuffled)
+      expect(get(isShuffling)).toEqual(true)
+    })
+
+    it('can shuffle and unshuffle empty list', async () => {
+      const {
+        clear,
+        current,
+        index,
+        isShuffling,
+        tracks,
+        shuffle,
+        unshuffle
+      } = queue
+
+      clear()
+      await tick()
+
+      expect(get(current)).toBeUndefined()
+      expect(get(index)).toEqual(0)
+      expect(get(tracks)).toEqual([])
+      expect(get(isShuffling)).toEqual(false)
+
+      shuffle()
+      await tick()
+
+      expect(get(current)).toBeUndefined()
+      expect(get(index)).toEqual(0)
+      expect(get(tracks)).toEqual([])
+      expect(get(isShuffling)).toEqual(true)
+
+      unshuffle()
+      await tick()
+
+      expect(get(current)).toBeUndefined()
+      expect(get(index)).toEqual(0)
+      expect(get(tracks)).toEqual([])
+      expect(get(isShuffling)).toEqual(false)
+    })
+
+    it('ignores unshuffle on non-shuffled list', async () => {
+      const { current, index, isShuffling, tracks, unshuffle } = queue
+
+      expect(get(current)).toEqual(files[0])
+      expect(get(index)).toEqual(0)
+      expect(get(tracks)).toEqual(files)
+      expect(get(isShuffling)).toEqual(false)
+
+      unshuffle()
+      await tick()
+
+      expect(get(current)).toEqual(files[0])
+      expect(get(index)).toEqual(0)
+      expect(get(tracks)).toEqual(files)
+      expect(get(isShuffling)).toEqual(false)
+    })
+
+    it('ignores subsequent unshuffles', async () => {
+      const { current, index, isShuffling, tracks, shuffle, unshuffle } = queue
+
+      shuffle()
+      await tick()
+
+      expect(get(index)).toEqual(0)
+      expect(get(isShuffling)).toEqual(true)
+
+      unshuffle()
+      await tick()
+
+      expect(get(current)).toEqual(files[0])
+      expect(get(index)).toEqual(0)
+      expect(get(tracks)).toEqual(files)
+      expect(get(isShuffling)).toEqual(false)
+
+      unshuffle()
+      await tick()
+
+      expect(get(current)).toEqual(files[0])
+      expect(get(index)).toEqual(0)
+      expect(get(tracks)).toEqual(files)
+      expect(get(isShuffling)).toEqual(false)
+    })
+
+    it('clears shuffled and unshuffled list', async () => {
+      const { current, index, isShuffling, tracks, shuffle, clear } = queue
+
+      shuffle()
+
+      expect(get(current)).toEqual(files[0])
+      expect(get(index)).toEqual(0)
+      expect(get(tracks)).toEqual(expect.arrayContaining(files))
+      expect(get(isShuffling)).toEqual(true)
+
+      clear()
+      await tick()
+
+      expect(get(current)).toBeUndefined()
+      expect(get(index)).toEqual(0)
+      expect(get(tracks)).toEqual([])
+      expect(get(isShuffling)).toEqual(true)
+    })
+
+    it('adds new tracks at random position when turned on', async () => {
+      const added = [
+        { id: 9, path: faker.system.fileName() },
+        { id: 10, path: faker.system.fileName() },
+        { id: 11, path: faker.system.fileName() },
+        { id: 12, path: faker.system.fileName() }
+      ]
+      const {
+        current,
+        index,
+        isShuffling,
+        tracks,
+        shuffle,
+        add,
+        jumpTo
+      } = queue
+
+      shuffle()
+      jumpTo(3)
+
+      const currentShuffled = get(current)
+      expect(get(index)).toEqual(3)
+      expect(get(tracks)).toEqual(expect.arrayContaining(files))
+      expect(get(isShuffling)).toEqual(true)
+
+      add(added)
+      await tick()
+
+      expect(get(index)).toEqual(3)
+      expect(get(current)).toEqual(currentShuffled)
+      const content = get(tracks)
+      expect(content).toHaveLength(files.length + added.length)
+      expect(content).toEqual(expect.arrayContaining(files))
+      expect(content).toEqual(expect.arrayContaining(added))
+      for (const track of added) {
+        expect(content.indexOf(track) > 3).toBe(true)
+      }
+      expect(get(isShuffling)).toEqual(true)
+    })
+
+    it('keeps added tracks at the end when turned off', async () => {
+      const added = [
+        { id: 9, path: faker.system.fileName() },
+        { id: 10, path: faker.system.fileName() },
+        { id: 11, path: faker.system.fileName() },
+        { id: 12, path: faker.system.fileName() }
+      ]
+      const {
+        current,
+        index,
+        isShuffling,
+        tracks,
+        shuffle,
+        add,
+        unshuffle
+      } = queue
+
+      shuffle()
+      add(added)
+
+      unshuffle()
+      await tick()
+
+      expect(get(index)).toEqual(0)
+      expect(get(current)).toEqual(files[0])
+      const content = get(tracks)
+      expect(content).toHaveLength(files.length + added.length)
+      expect(content).toEqual([...files, ...added])
+      expect(get(isShuffling)).toEqual(false)
+    })
+
+    it('add randomized tracks to empty shuffled list', async () => {
+      const {
+        current,
+        index,
+        isShuffling,
+        tracks,
+        shuffle,
+        add,
+        unshuffle,
+        clear
+      } = queue
+
+      shuffle()
+      clear()
+      await tick()
+
+      expect(get(index)).toEqual(0)
+      expect(get(current)).toBeUndefined()
+      expect(get(tracks)).toEqual([])
+      expect(get(isShuffling)).toEqual(true)
+
+      const added = [
+        { id: 9, path: faker.system.fileName() },
+        { id: 10, path: faker.system.fileName() },
+        { id: 11, path: faker.system.fileName() },
+        { id: 12, path: faker.system.fileName() }
+      ]
+      add(added)
+      await tick()
+
+      expect(get(index)).toEqual(0)
+      expect(get(tracks)).toHaveLength(added.length)
+      expect(get(tracks)).toEqual(expect.arrayContaining(added))
+
+      unshuffle()
+      await tick()
+      expect(get(tracks)).toEqual(added)
+      expect(get(isShuffling)).toEqual(false)
+    })
+
+    it('restores moved track to their original place when turned off', async () => {
+      const {
+        current,
+        index,
+        isShuffling,
+        tracks,
+        shuffle,
+        move,
+        unshuffle,
+        jumpTo
+      } = queue
+
+      shuffle()
+      jumpTo(3)
+      await tick()
+
+      const content = [...get(tracks)]
+      const currentShuffled = get(current)
+      expect(get(index)).toEqual(3)
+      expect(get(isShuffling)).toEqual(true)
+
+      move(1, 6)
+      await tick()
+
+      expect(get(current)).toEqual(currentShuffled)
+      expect(get(index)).toEqual(2)
+      expect(get(tracks)).toEqual([
+        content[0],
+        content[2],
+        currentShuffled,
+        ...content.slice(4, 7),
+        content[1],
+        content[7]
+      ])
+
+      unshuffle()
+      await tick()
+
+      expect(get(current)).toEqual(currentShuffled)
+      expect(get(queue.tracks)).toEqual(files)
+      expect(get(isShuffling)).toEqual(false)
     })
   })
 })

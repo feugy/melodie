@@ -154,6 +154,22 @@ exports[`Storyshots Components/Player Empty 1`] = `
              
           </button>
         </span>
+         
+        <span
+          class="svelte-101j5b"
+        >
+          <button
+            class="svelte-j6xhgj iconOnly noBorder"
+          >
+            <i
+              class="material-icons svelte-j6xhgj"
+            >
+              shuffle
+            </i>
+             
+             
+          </button>
+        </span>
       </div>
        
       <button
@@ -359,6 +375,22 @@ exports[`Storyshots Components/Player With Track List 1`] = `
               class="material-icons svelte-j6xhgj"
             >
               repeat
+            </i>
+             
+             
+          </button>
+        </span>
+         
+        <span
+          class="svelte-101j5b"
+        >
+          <button
+            class="svelte-j6xhgj iconOnly noBorder"
+          >
+            <i
+              class="material-icons svelte-j6xhgj"
+            >
+              shuffle
             </i>
              
              

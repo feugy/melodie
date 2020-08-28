@@ -86,7 +86,7 @@ npm run build
 - [x] memorize window position and state
 - [x] language change
 - [x] tracks without artists/album
-- [ ] shuffle, loop
+- [x] shuffle, loop
 - [ ] track lists
 - [ ] help and tips
       ---> release?
