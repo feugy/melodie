@@ -1,11 +1,11 @@
 _ artists: '{total} artistes'
 _ tracks: '{total} pistes'
 '#': N°
-an artist: '1 artiste'
-a track: '1 piste'
 'artist: _': 'Artiste : {value}'
 'title: _': 'Titre : {value}'
+a track: '1 piste'
 add folders: Ajouter des dossiers
+an artist: '1 artiste'
 artist: Artiste
 artists: Artistes
 by _: 'par {artist}'
@@ -17,8 +17,8 @@ clear: Vider
 current locale: 'Langue actuelle :'
 disk _: 'Disque N°{num}'
 duration: Durée
-enqueue: Ajouter à la liste
 enqueue all: Ajouter tout
+enqueue: Ajouter à la liste
 locales: Langue de l'interface
 no results: Rien du tout !
 open folder: Ouvrir le dossier parent
@@ -28,10 +28,36 @@ play now: Lire maintenant
 playlist: Liste de lecture
 results for _: Resultats pour "{searched}"
 settings: Paramètres
-show less: Voir moins
 show all: Voir tout
+show details: Afficher les détails
+show less: Voir moins
 start loading some tracks: Commencez par charger quelques morceaux
 total duration _: 'Durée : {total}'
+track details: Détails du morceau
 track: Piste
 unknown: Inconnu
 watched folders: Répertoires de musique
+tags:
+  albumartist: Artiste de l'album
+  arranger: Arranger
+  artists: Artiste
+  bpm: Battement Par Minute
+  catalognumber: Référence catalogue
+  comment: Commentaire
+  composer: Compositeur
+  conductor: Chef d'Orchestre
+  disk: Disque
+  djmixer: DJ
+  duration: Durée
+  encodedby: Encodé par
+  engineer: Ingénieur
+  license: Licence
+  mixer: Mixé par
+  producer: Producteur
+  remixer: Remixeur
+  subtitle: Sous titre
+  title: Titre
+  track: Piste
+  website: Site web
+  writer: Auteur
+  year: Année

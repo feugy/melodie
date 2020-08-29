@@ -88,6 +88,7 @@ npm run build
 - [x] tracks without artists/album
 - [x] shuffle, loop
 - [x] [open containing folder](https://www.electronjs.org/docs/api/shell#shellshowiteminfolderfullpath) for tracks
+- [x] display track's tags and details
 - [ ] track lists
 - [ ] help and tips
       ---> release?

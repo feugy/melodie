@@ -2,14 +2,14 @@ _ albums: '{total} albums'
 _ artists: '{total} artists'
 _ tracks: '{total} tracks'
 '#': '#'
-add folders: Add folders
-an album: '1 album'
-an artist: '1 artist'
-a track: '1 track'
 'artist: _': 'Artist: {value}'
 'title: _': 'Title: {value}'
+a track: '1 track'
+add folders: Add folders
 album: Album
 albums: Albums
+an album: '1 album'
+an artist: '1 artist'
 artist: Artist
 artists: Artists
 by _: 'by {artist}'
@@ -22,24 +22,61 @@ current locale: 'Current language:'
 disk _: 'Disk #{num}'
 duration: Duration
 en: English
-enqueue: Add to the queue
 enqueue all: Enqueue all
+enqueue: Add to the queue
 fr: Français
+id: Id
 locales: Interface language
 Mélodie: Mélodie
 no results: Nothing at all !
-open playlist: Queue
 open folder: Open containing folder
+open playlist: Queue
 play all: Play all
 play now: Play now
 playlist: Play list
 provider (_ x _): '{value} ({width} x {height})'
 results for _: Results for "{searched}"
 settings: Settings
-show less: Show less
 show all: Show all
+show details: Show track details
+show less: Show less
 start loading some tracks: Start loading some tracks
 total duration _: 'Duration: {total}'
+track details: Track details
 track: Track
 unknown: Unknown
 watched folders: Music folders
+tags:
+  album: Album
+  albumartist: Album artist
+  arranger: Arranger
+  artists: Artists
+  asin: ASIN
+  bpm: Beats Per Minute
+  catalognumber: Catalog Number
+  comment: Comment
+  composer: Composer
+  conductor: Conductor
+  copyright: Copyright
+  date: Date
+  description: Description
+  disk: Disk
+  djmixer: Mix-DJ
+  duration: Duration
+  encodedby: Encoded by
+  engineer: Engineer
+  genre: Genre
+  isrc: ISRC
+  label: Label
+  license: License
+  lyricist: Lyricist
+  mixer: Mixed by
+  notes: Notes
+  producer: Producer
+  remixer: Remixer
+  subtitle: Subtitle
+  title: Title
+  track: Track
+  website: Website
+  writer: Writer
+  year: Year

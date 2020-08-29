@@ -7,6 +7,54 @@ exports[`Storyshots Components/Disks list Default 1`] = `
   <div>
     
      
+    <div
+      class="filter svelte-7u451e"
+    />
+     
+    <div
+      class="backdrop svelte-7u451e"
+    >
+      <button
+        class="absolute top-0 right-0 m-4 svelte-j6xhgj iconOnly"
+      >
+        <i
+          class="material-icons svelte-j6xhgj"
+        >
+          close
+        </i>
+         
+         
+      </button>
+       
+      <article
+        class="svelte-7u451e"
+      >
+        <header
+          class="svelte-7u451e"
+        >
+          Track details
+        </header>
+         
+        <div
+          class="content svelte-7u451e"
+        >
+          <div
+            slot="content"
+          >
+            <table
+              class="svelte-sq4n81"
+            />
+          </div>
+        </div>
+         
+        <footer
+          class="svelte-7u451e"
+        />
+      </article>
+    </div>
+     
+    
+     
     <table
       class="svelte-gq4ifk"
     >
@@ -200,6 +248,54 @@ exports[`Storyshots Components/Disks list Default 1`] = `
     >
       Disk #1
     </h3>
+     
+    <div
+      class="filter svelte-7u451e"
+    />
+     
+    <div
+      class="backdrop svelte-7u451e"
+    >
+      <button
+        class="absolute top-0 right-0 m-4 svelte-j6xhgj iconOnly"
+      >
+        <i
+          class="material-icons svelte-j6xhgj"
+        >
+          close
+        </i>
+         
+         
+      </button>
+       
+      <article
+        class="svelte-7u451e"
+      >
+        <header
+          class="svelte-7u451e"
+        >
+          Track details
+        </header>
+         
+        <div
+          class="content svelte-7u451e"
+        >
+          <div
+            slot="content"
+          >
+            <table
+              class="svelte-sq4n81"
+            />
+          </div>
+        </div>
+         
+        <footer
+          class="svelte-7u451e"
+        />
+      </article>
+    </div>
+     
+    
      
     <table
       class="svelte-gq4ifk"
@@ -802,6 +898,54 @@ exports[`Storyshots Components/Disks list Default 1`] = `
     >
       Disk #2
     </h3>
+     
+    <div
+      class="filter svelte-7u451e"
+    />
+     
+    <div
+      class="backdrop svelte-7u451e"
+    >
+      <button
+        class="absolute top-0 right-0 m-4 svelte-j6xhgj iconOnly"
+      >
+        <i
+          class="material-icons svelte-j6xhgj"
+        >
+          close
+        </i>
+         
+         
+      </button>
+       
+      <article
+        class="svelte-7u451e"
+      >
+        <header
+          class="svelte-7u451e"
+        >
+          Track details
+        </header>
+         
+        <div
+          class="content svelte-7u451e"
+        >
+          <div
+            slot="content"
+          >
+            <table
+              class="svelte-sq4n81"
+            />
+          </div>
+        </div>
+         
+        <footer
+          class="svelte-7u451e"
+        />
+      </article>
+    </div>
+     
+    
      
     <table
       class="svelte-gq4ifk"

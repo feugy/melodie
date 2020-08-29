@@ -5,5 +5,18 @@ import en from '../locale/en.yml'
 import fr from '../locale/fr.yml'
 import './style.pcss'
 
+function defaultDeep(source, defaults) {
+  const keys = Object.keys(defaults)
+  for (const key of keys) {
+    const defaultValue = defaults[key]
+    if (!(key in source)) {
+      source[key] = defaultValue
+    } else if (typeof defaultValue === 'object') {
+      source[key] = defaultDeep(source[key], defaultValue)
+    }
+  }
+  return source
+}
+
 // use en as default locale, and fallback for missing keys
-translations.update({ en, fr: { ...en, ...fr } })
+translations.update({ en, fr: defaultDeep(fr, en) })

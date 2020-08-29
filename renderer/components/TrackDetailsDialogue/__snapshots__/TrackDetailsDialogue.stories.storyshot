@@ -1,0 +1,981 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Components/Track details dialogue Default 1`] = `
+<section
+  class="storybook-snapshot-container"
+>
+  <div
+    class="filter svelte-7u451e open"
+  />
+   
+  <div
+    class="backdrop svelte-7u451e open"
+  >
+    <button
+      class="absolute top-0 right-0 m-4 svelte-j6xhgj iconOnly"
+    >
+      <i
+        class="material-icons svelte-j6xhgj"
+      >
+        close
+      </i>
+       
+       
+    </button>
+     
+    <article
+      class="svelte-7u451e"
+    >
+      <header
+        class="svelte-7u451e"
+      >
+        Track details
+      </header>
+       
+      <div
+        class="content svelte-7u451e"
+      >
+        <div
+          slot="content"
+        >
+          <table
+            class="svelte-sq4n81"
+          >
+            <tr
+              class="svelte-sq4n81"
+            >
+              <td
+                class="label svelte-sq4n81"
+              >
+                Album
+              </td>
+               
+              <td
+                class="value svelte-sq4n81"
+              >
+                Distant Worlds II - More music from Final Fantasy
+              </td>
+               
+            </tr>
+            <tr
+              class="svelte-sq4n81"
+            >
+              <td
+                class="label svelte-sq4n81"
+              >
+                Album artist
+              </td>
+               
+              <td
+                class="value svelte-sq4n81"
+              >
+                Nobuo Uematsu
+              </td>
+               
+            </tr>
+            <tr
+              class="svelte-sq4n81"
+            >
+              <td
+                class="label svelte-sq4n81"
+              >
+                Artists
+              </td>
+               
+              <td
+                class="value svelte-sq4n81"
+              >
+                Nobuo Uematsu
+              </td>
+               
+            </tr>
+            <tr
+              class="svelte-sq4n81"
+            >
+              <td
+                class="label svelte-sq4n81"
+              >
+                Disk
+              </td>
+               
+              <td
+                class="value svelte-sq4n81"
+              >
+                1/1
+              </td>
+               
+            </tr>
+            <tr
+              class="svelte-sq4n81"
+            >
+              <td
+                class="label svelte-sq4n81"
+              >
+                Duration
+              </td>
+               
+              <td
+                class="value svelte-sq4n81"
+              >
+                0:09
+              </td>
+               
+            </tr>
+            <tr
+              class="svelte-sq4n81"
+            >
+              <td
+                class="label svelte-sq4n81"
+              >
+                Genre
+              </td>
+               
+              <td
+                class="value svelte-sq4n81"
+              >
+                Classical,Soundtrack
+              </td>
+               
+            </tr>
+            <tr
+              class="svelte-sq4n81"
+            >
+              <td
+                class="label svelte-sq4n81"
+              >
+                Id
+              </td>
+               
+              <td
+                class="value svelte-sq4n81"
+              >
+                17569353
+              </td>
+               
+            </tr>
+            <tr
+              class="svelte-sq4n81"
+            >
+              <td
+                class="label svelte-sq4n81"
+              >
+                ISRC
+              </td>
+               
+              <td
+                class="value svelte-sq4n81"
+              >
+                USBVN1010207
+              </td>
+               
+            </tr>
+            <tr
+              class="svelte-sq4n81"
+            >
+              <td
+                class="label svelte-sq4n81"
+              >
+                Title
+              </td>
+               
+              <td
+                class="value svelte-sq4n81"
+              >
+                Victory Theme (Final Fantasy Series)
+              </td>
+               
+            </tr>
+            <tr
+              class="svelte-sq4n81"
+            >
+              <td
+                class="label svelte-sq4n81"
+              >
+                Track
+              </td>
+               
+              <td
+                class="value svelte-sq4n81"
+              >
+                7/13
+              </td>
+               
+            </tr>
+            <tr
+              class="svelte-sq4n81"
+            >
+              <td
+                class="label svelte-sq4n81"
+              >
+                Year
+              </td>
+               
+              <td
+                class="value svelte-sq4n81"
+              >
+                2010
+              </td>
+               
+            </tr>
+          </table>
+        </div>
+      </div>
+       
+      <footer
+        class="svelte-7u451e"
+      />
+    </article>
+  </div>
+   
+  
+   
+  <button
+    class="svelte-j6xhgj"
+  >
+     
+    <span>
+      Open
+    </span>
+     
+  </button>
+</section>
+`;
+
+exports[`Storyshots Components/Track details dialogue With Music Brainz 1`] = `
+<section
+  class="storybook-snapshot-container"
+>
+  <div
+    class="filter svelte-7u451e open"
+  />
+   
+  <div
+    class="backdrop svelte-7u451e open"
+  >
+    <button
+      class="absolute top-0 right-0 m-4 svelte-j6xhgj iconOnly"
+    >
+      <i
+        class="material-icons svelte-j6xhgj"
+      >
+        close
+      </i>
+       
+       
+    </button>
+     
+    <article
+      class="svelte-7u451e"
+    >
+      <header
+        class="svelte-7u451e"
+      >
+        Track details
+      </header>
+       
+      <div
+        class="content svelte-7u451e"
+      >
+        <div
+          slot="content"
+        >
+          <table
+            class="svelte-sq4n81"
+          >
+            <tr
+              class="svelte-sq4n81"
+            >
+              <td
+                class="label svelte-sq4n81"
+              >
+                Album
+              </td>
+               
+              <td
+                class="value svelte-sq4n81"
+              >
+                Misery Is a Butterfly
+              </td>
+               
+            </tr>
+            <tr
+              class="svelte-sq4n81"
+            >
+              <td
+                class="label svelte-sq4n81"
+              >
+                Album artist
+              </td>
+               
+              <td
+                class="value svelte-sq4n81"
+              >
+                Blonde Redhead
+              </td>
+               
+            </tr>
+            <tr
+              class="svelte-sq4n81"
+            >
+              <td
+                class="label svelte-sq4n81"
+              >
+                Artists
+              </td>
+               
+              <td
+                class="value svelte-sq4n81"
+              >
+                Blonde Redhead
+              </td>
+               
+            </tr>
+            <tr
+              class="svelte-sq4n81"
+            >
+              <td
+                class="label svelte-sq4n81"
+              >
+                Comment
+              </td>
+               
+              <td
+                class="value svelte-sq4n81"
+              >
+                RØLy!
+              </td>
+               
+            </tr>
+            <tr
+              class="svelte-sq4n81"
+            >
+              <td
+                class="label svelte-sq4n81"
+              >
+                Composer
+              </td>
+               
+              <td
+                class="value svelte-sq4n81"
+              >
+                Blonde Redhead
+              </td>
+               
+            </tr>
+            <tr
+              class="svelte-sq4n81"
+            >
+              <td
+                class="label svelte-sq4n81"
+              >
+                Duration
+              </td>
+               
+              <td
+                class="value svelte-sq4n81"
+              >
+                3:08
+              </td>
+               
+            </tr>
+            <tr
+              class="svelte-sq4n81"
+            >
+              <td
+                class="label svelte-sq4n81"
+              >
+                Encoded by
+              </td>
+               
+              <td
+                class="value svelte-sq4n81"
+              >
+                Exact Audio Copy   (Secure mode)
+              </td>
+               
+            </tr>
+            <tr
+              class="svelte-sq4n81"
+            >
+              <td
+                class="label svelte-sq4n81"
+              >
+                Genre
+              </td>
+               
+              <td
+                class="value svelte-sq4n81"
+              >
+                Rock
+              </td>
+               
+            </tr>
+            <tr
+              class="svelte-sq4n81"
+            >
+              <td
+                class="label svelte-sq4n81"
+              >
+                Id
+              </td>
+               
+              <td
+                class="value svelte-sq4n81"
+              >
+                53564179
+              </td>
+               
+            </tr>
+            <tr
+              class="svelte-sq4n81"
+            >
+              <td
+                class="label svelte-sq4n81"
+              >
+                Label
+              </td>
+               
+              <td
+                class="value svelte-sq4n81"
+              >
+                Phantom Records (England)
+              </td>
+               
+            </tr>
+            <tr
+              class="svelte-sq4n81"
+            >
+              <td
+                class="label svelte-sq4n81"
+              >
+                Title
+              </td>
+               
+              <td
+                class="value svelte-sq4n81"
+              >
+                Doll Is Mine
+              </td>
+               
+            </tr>
+            <tr
+              class="svelte-sq4n81"
+            >
+              <td
+                class="label svelte-sq4n81"
+              >
+                Track
+              </td>
+               
+              <td
+                class="value svelte-sq4n81"
+              >
+                4/11
+              </td>
+               
+            </tr>
+            <tr
+              class="svelte-sq4n81"
+            >
+              <td
+                class="label svelte-sq4n81"
+              >
+                Year
+              </td>
+               
+              <td
+                class="value svelte-sq4n81"
+              >
+                2004
+              </td>
+               
+            </tr>
+          </table>
+        </div>
+      </div>
+       
+      <footer
+        class="svelte-7u451e"
+      />
+    </article>
+  </div>
+   
+  
+   
+  <button
+    class="svelte-j6xhgj"
+  >
+     
+    <span>
+      Open
+    </span>
+     
+  </button>
+</section>
+`;
+
+exports[`Storyshots Components/Track details dialogue With Partial 1`] = `
+<section
+  class="storybook-snapshot-container"
+>
+  <div
+    class="filter svelte-7u451e open"
+  />
+   
+  <div
+    class="backdrop svelte-7u451e open"
+  >
+    <button
+      class="absolute top-0 right-0 m-4 svelte-j6xhgj iconOnly"
+    >
+      <i
+        class="material-icons svelte-j6xhgj"
+      >
+        close
+      </i>
+       
+       
+    </button>
+     
+    <article
+      class="svelte-7u451e"
+    >
+      <header
+        class="svelte-7u451e"
+      >
+        Track details
+      </header>
+       
+      <div
+        class="content svelte-7u451e"
+      >
+        <div
+          slot="content"
+        >
+          <table
+            class="svelte-sq4n81"
+          >
+            <tr
+              class="svelte-sq4n81"
+            >
+              <td
+                class="label svelte-sq4n81"
+              >
+                Album
+              </td>
+               
+              <td
+                class="value svelte-sq4n81"
+              >
+                Shtirip' Tour
+              </td>
+               
+            </tr>
+            <tr
+              class="svelte-sq4n81"
+            >
+              <td
+                class="label svelte-sq4n81"
+              >
+                Artists
+              </td>
+               
+              <td
+                class="value svelte-sq4n81"
+              >
+                Tram des Balkans
+              </td>
+               
+            </tr>
+            <tr
+              class="svelte-sq4n81"
+            >
+              <td
+                class="label svelte-sq4n81"
+              >
+                Date
+              </td>
+               
+              <td
+                class="value svelte-sq4n81"
+              >
+                2007
+              </td>
+               
+            </tr>
+            <tr
+              class="svelte-sq4n81"
+            >
+              <td
+                class="label svelte-sq4n81"
+              >
+                Duration
+              </td>
+               
+              <td
+                class="value svelte-sq4n81"
+              >
+                2:49
+              </td>
+               
+            </tr>
+            <tr
+              class="svelte-sq4n81"
+            >
+              <td
+                class="label svelte-sq4n81"
+              >
+                Genre
+              </td>
+               
+              <td
+                class="value svelte-sq4n81"
+              >
+                Ethnic
+              </td>
+               
+            </tr>
+            <tr
+              class="svelte-sq4n81"
+            >
+              <td
+                class="label svelte-sq4n81"
+              >
+                Id
+              </td>
+               
+              <td
+                class="value svelte-sq4n81"
+              >
+                4977489
+              </td>
+               
+            </tr>
+            <tr
+              class="svelte-sq4n81"
+            >
+              <td
+                class="label svelte-sq4n81"
+              >
+                Title
+              </td>
+               
+              <td
+                class="value svelte-sq4n81"
+              >
+                Grande Mère
+              </td>
+               
+            </tr>
+            <tr
+              class="svelte-sq4n81"
+            >
+              <td
+                class="label svelte-sq4n81"
+              >
+                Track
+              </td>
+               
+              <td
+                class="value svelte-sq4n81"
+              >
+                10
+              </td>
+               
+            </tr>
+            <tr
+              class="svelte-sq4n81"
+            >
+              <td
+                class="label svelte-sq4n81"
+              >
+                Year
+              </td>
+               
+              <td
+                class="value svelte-sq4n81"
+              >
+                2007
+              </td>
+               
+            </tr>
+          </table>
+        </div>
+      </div>
+       
+      <footer
+        class="svelte-7u451e"
+      />
+    </article>
+  </div>
+   
+  
+   
+  <button
+    class="svelte-j6xhgj"
+  >
+     
+    <span>
+      Open
+    </span>
+     
+  </button>
+</section>
+`;
+
+exports[`Storyshots Components/Track details dialogue With Replay Gain 1`] = `
+<section
+  class="storybook-snapshot-container"
+>
+  <div
+    class="filter svelte-7u451e open"
+  />
+   
+  <div
+    class="backdrop svelte-7u451e open"
+  >
+    <button
+      class="absolute top-0 right-0 m-4 svelte-j6xhgj iconOnly"
+    >
+      <i
+        class="material-icons svelte-j6xhgj"
+      >
+        close
+      </i>
+       
+       
+    </button>
+     
+    <article
+      class="svelte-7u451e"
+    >
+      <header
+        class="svelte-7u451e"
+      >
+        Track details
+      </header>
+       
+      <div
+        class="content svelte-7u451e"
+      >
+        <div
+          slot="content"
+        >
+          <table
+            class="svelte-sq4n81"
+          >
+            <tr
+              class="svelte-sq4n81"
+            >
+              <td
+                class="label svelte-sq4n81"
+              >
+                Album
+              </td>
+               
+              <td
+                class="value svelte-sq4n81"
+              >
+                Greatest Hits II
+              </td>
+               
+            </tr>
+            <tr
+              class="svelte-sq4n81"
+            >
+              <td
+                class="label svelte-sq4n81"
+              >
+                Album artist
+              </td>
+               
+              <td
+                class="value svelte-sq4n81"
+              >
+                Queen
+              </td>
+               
+            </tr>
+            <tr
+              class="svelte-sq4n81"
+            >
+              <td
+                class="label svelte-sq4n81"
+              >
+                Artists
+              </td>
+               
+              <td
+                class="value svelte-sq4n81"
+              >
+                Queen
+              </td>
+               
+            </tr>
+            <tr
+              class="svelte-sq4n81"
+            >
+              <td
+                class="label svelte-sq4n81"
+              >
+                Comment
+              </td>
+               
+              <td
+                class="value svelte-sq4n81"
+              >
+                
+              </td>
+               
+            </tr>
+            <tr
+              class="svelte-sq4n81"
+            >
+              <td
+                class="label svelte-sq4n81"
+              >
+                Composer
+              </td>
+               
+              <td
+                class="value svelte-sq4n81"
+              >
+                Queen
+              </td>
+               
+            </tr>
+            <tr
+              class="svelte-sq4n81"
+            >
+              <td
+                class="label svelte-sq4n81"
+              >
+                Duration
+              </td>
+               
+              <td
+                class="value svelte-sq4n81"
+              >
+                4:24
+              </td>
+               
+            </tr>
+            <tr
+              class="svelte-sq4n81"
+            >
+              <td
+                class="label svelte-sq4n81"
+              >
+                Genre
+              </td>
+               
+              <td
+                class="value svelte-sq4n81"
+              >
+                rock
+              </td>
+               
+            </tr>
+            <tr
+              class="svelte-sq4n81"
+            >
+              <td
+                class="label svelte-sq4n81"
+              >
+                Id
+              </td>
+               
+              <td
+                class="value svelte-sq4n81"
+              >
+                2871780
+              </td>
+               
+            </tr>
+            <tr
+              class="svelte-sq4n81"
+            >
+              <td
+                class="label svelte-sq4n81"
+              >
+                Label
+              </td>
+               
+              <td
+                class="value svelte-sq4n81"
+              >
+                MSI Music Distribution
+              </td>
+               
+            </tr>
+            <tr
+              class="svelte-sq4n81"
+            >
+              <td
+                class="label svelte-sq4n81"
+              >
+                Title
+              </td>
+               
+              <td
+                class="value svelte-sq4n81"
+              >
+                Show Must Go On
+              </td>
+               
+            </tr>
+            <tr
+              class="svelte-sq4n81"
+            >
+              <td
+                class="label svelte-sq4n81"
+              >
+                Track
+              </td>
+               
+              <td
+                class="value svelte-sq4n81"
+              >
+                16/17
+              </td>
+               
+            </tr>
+            <tr
+              class="svelte-sq4n81"
+            >
+              <td
+                class="label svelte-sq4n81"
+              >
+                Year
+              </td>
+               
+              <td
+                class="value svelte-sq4n81"
+              >
+                1991
+              </td>
+               
+            </tr>
+          </table>
+        </div>
+      </div>
+       
+      <footer
+        class="svelte-7u451e"
+      />
+    </article>
+  </div>
+   
+  
+   
+  <button
+    class="svelte-j6xhgj"
+  >
+     
+    <span>
+      Open
+    </span>
+     
+  </button>
+</section>
+`;

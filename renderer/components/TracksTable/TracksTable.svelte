@@ -2,6 +2,7 @@
   import { onMount } from 'svelte'
   import { _ } from 'svelte-intl'
   import Dropdown from '../Dropdown/Dropdown.svelte'
+  import TrackDetailsDialogue from '../TrackDetailsDialogue/TrackDetailsDialogue.svelte'
   import {
     formatTime,
     wrapWithLink,
@@ -13,6 +14,8 @@
   export let tracks
   export let current
   export let withAlbum = true
+  let currentTrack = null
+
   $: sortedTracks = tracks
     ? tracks
         .concat()
@@ -70,6 +73,11 @@
   }
 </style>
 
+<TrackDetailsDialogue
+  src={currentTrack}
+  open={currentTrack !== null}
+  on:close={() => (current = null)} />
+
 {#if tracks}
   <table>
     <thead>
@@ -107,7 +115,7 @@
               noBorder={true}
               withArrow={false}
               valueAsText={false}
-              options={[{ label: $_('play now'), icon: 'play_arrow', act: () => add(track, true) }, { label: $_('enqueue'), icon: 'playlist_add', act: () => add(track) }, { label: $_('open folder'), icon: 'launch', act: () => openContainingFolder(track) }]} />
+              options={[{ label: $_('play now'), icon: 'play_arrow', act: () => add(track, true) }, { label: $_('enqueue'), icon: 'playlist_add', act: () => add(track) }, { label: $_('show details'), icon: 'local_offer', act: () => (currentTrack = track) }, { label: $_('open folder'), icon: 'launch', act: () => openContainingFolder(track) }]} />
           </td>
         </tr>
       {/each}

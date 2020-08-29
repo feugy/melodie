@@ -6,7 +6,7 @@ import faker from 'faker'
 import electron from 'electron'
 import TracksTable from './TracksTable.svelte'
 import { tracksData, current$Data } from './TracksTable.stories'
-import { sleep } from '../../tests'
+import { sleep, translate } from '../../tests'
 import { add } from '../../stores/track-queue'
 
 jest.mock('../../stores/track-queue')
@@ -146,5 +146,27 @@ describe('TracksTable component', () => {
     expect(add).not.toHaveBeenCalled()
     expect(location.hash).toEqual(`#/`)
     expect(electron.shell.showItemInFolder).toHaveBeenCalledWith(track.path)
+  })
+
+  it('opens track details dialogue', async () => {
+    const track = faker.random.arrayElement(tracksData)
+    render(
+      html`<${TracksTable}
+        tracks=${tracksData}
+        current=${current$Data}
+        withAlbum
+      />`
+    )
+
+    await fireEvent.click(
+      screen.getByText(track.tags.title).closest('tr').querySelector('button')
+    )
+    await fireEvent.click(screen.getByText('local_offer'))
+    await sleep()
+
+    expect(screen.getByText(translate('track details'))).toBeInTheDocument()
+
+    expect(add).not.toHaveBeenCalled()
+    expect(location.hash).toEqual(`#/`)
   })
 })
