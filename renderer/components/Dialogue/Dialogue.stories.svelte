@@ -1,11 +1,9 @@
 <script>
-  import { createEventDispatcher } from 'svelte'
   import Dialogue from './Dialogue.svelte'
   import Button from '../Button/Button.svelte'
 
   export let open
   export let title
-  const dispatch = createEventDispatcher()
 </script>
 
 <Dialogue {title} bind:open on:close on:open>

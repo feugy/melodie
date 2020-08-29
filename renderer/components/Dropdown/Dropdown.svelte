@@ -1,4 +1,5 @@
 <script>
+  import { onMount, createEventDispatcher } from 'svelte'
   import { slide } from 'svelte/transition'
   import Button from '../Button/Button.svelte'
 
@@ -7,6 +8,8 @@
   export let valueAsText = true
   export let withArrow = true
   export let text = null
+  const dispatch = createEventDispatcher()
+  let open = false
 
   $: iconOnly = !valueAsText && !text
   $: if (!value && options.length) {
@@ -16,10 +19,13 @@
     text = value ? value.label || value : text
   }
 
-  let open = false
-
   function handleSelect(selected) {
     value = selected
+    open = false
+    dispatch('select', value)
+  }
+
+  function handleInteraction() {
     open = false
   }
 </script>
@@ -38,7 +44,7 @@
   }
 
   ul {
-    @apply absolute min-w-full mt-4 rounded;
+    @apply absolute min-w-full my-4 rounded z-10;
     top: 100%;
     background-color: var(--bg-primary-color);
     border: 1px solid var(--outline-color);
@@ -58,7 +64,9 @@
   }
 </style>
 
-<svelte:window on:click={() => (open = false)} />
+<svelte:window
+  on:click|capture={handleInteraction}
+  on:scroll|capture={handleInteraction} />
 
 <span class="wrapper">
   <Button {...$$props} {text} on:click={() => (open = !open)}>

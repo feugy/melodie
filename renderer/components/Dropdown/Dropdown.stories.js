@@ -1,5 +1,6 @@
 'use strict'
 
+import { action } from '@storybook/addon-actions'
 import { actionsData as buttonActionsData } from '../Button/Button.stories'
 import Dropdown from './Dropdown.stories.svelte'
 
@@ -19,7 +20,8 @@ export const dropdownData = {
 }
 
 export const actionsData = {
-  ...buttonActionsData
+  ...buttonActionsData,
+  select: action('on dropdown option select')
 }
 
 export const Default = () => ({

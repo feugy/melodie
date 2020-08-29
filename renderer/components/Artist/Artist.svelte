@@ -1,5 +1,4 @@
 <script>
-  import { createEventDispatcher } from 'svelte'
   import { _ } from 'svelte-intl'
   import { add } from '../../stores/track-queue'
   import { load } from '../../stores/artists'
