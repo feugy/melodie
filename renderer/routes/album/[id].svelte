@@ -3,8 +3,7 @@
   import { fade } from 'svelte/transition'
   import { _ } from 'svelte-intl'
   import { replace } from 'svelte-spa-router'
-  import { of } from 'rxjs'
-  import { map, filter, distinct, mergeMap } from 'rxjs/operators'
+  import { filter, distinct } from 'rxjs/operators'
   import {
     Heading,
     Image,
@@ -12,7 +11,7 @@
     DisksList,
     MediaSelector
   } from '../../components'
-  import { albums, load, changes, removals } from '../../stores/albums'
+  import { load, changes, removals } from '../../stores/albums'
   import { add, current } from '../../stores/track-queue'
   import { formatTime, sumDurations, wrapWithLinks } from '../../utils'
 

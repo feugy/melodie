@@ -1,8 +1,13 @@
 <script>
   import { onMount } from 'svelte'
   import { _ } from 'svelte-intl'
-  import Button from '../Button/Button.svelte'
-  import { formatTime, wrapWithLink, createClickObservable } from '../../utils'
+  import Dropdown from '../Dropdown/Dropdown.svelte'
+  import {
+    formatTime,
+    wrapWithLink,
+    createClickObservable,
+    openContainingFolder
+  } from '../../utils'
   import { add } from '../../stores/track-queue'
 
   export let tracks
@@ -38,11 +43,17 @@
 
   th,
   td {
-    @apply p-3 text-left relative;
+    @apply p-3 text-left;
   }
 
   th {
     @apply font-semibold pt-0 pr-0 text-sm;
+  }
+
+  tr > *:first-child,
+  tr > *:last-child {
+    @apply text-center;
+    width: 60px;
   }
 
   tbody tr:nth-child(2n + 1) {
@@ -57,20 +68,6 @@
   tbody tr.current {
     background-color: var(--outline-color);
   }
-
-  .play {
-    @apply hidden absolute;
-    top: 0.6rem;
-    left: 0.6rem;
-  }
-
-  tbody tr:hover:not(.current) .play {
-    @apply inline-block;
-  }
-
-  tbody tr:hover:not(.current) .rank {
-    @apply hidden;
-  }
 </style>
 
 {#if tracks}
@@ -84,6 +81,7 @@
           <th>{$_('album')}</th>
         {/if}
         <th>{$_('duration')}</th>
+        <th />
       </tr>
     </thead>
     <tbody>
@@ -91,14 +89,7 @@
         <tr
           on:click={() => clicks$.next(track)}
           class:current={$current && $current.id === track.id}>
-          <td>
-            <span class="rank">
-              {(track.tags.track && track.tags.track.no) || '--'}
-            </span>
-            <span class="play">
-              <Button on:click={() => add(track, true)} icon={'play_arrow'} />
-            </span>
-          </td>
+          <td>{(track.tags.track && track.tags.track.no) || '--'}</td>
           <td>{track.tags.title}</td>
           <td>
             {@html wrapWithLink('artist', track.artistRefs[0])}
@@ -109,6 +100,15 @@
             </td>
           {/if}
           <td>{formatTime(track.tags.duration)}</td>
+          <td on:click|stopPropagation>
+            <Dropdown
+              on:select={({ detail }) => detail.act()}
+              icon="more_vert"
+              noBorder={true}
+              withArrow={false}
+              valueAsText={false}
+              options={[{ label: $_('play now'), icon: 'play_arrow', act: () => add(track, true) }, { label: $_('enqueue'), icon: 'playlist_add', act: () => add(track) }, { label: $_('open folder'), icon: 'launch', act: () => openContainingFolder(track) }]} />
+          </td>
         </tr>
       {/each}
     </tbody>

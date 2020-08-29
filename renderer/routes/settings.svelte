@@ -1,5 +1,4 @@
 <script>
-  import { onMount } from 'svelte'
   import { fade } from 'svelte/transition'
   import { push } from 'svelte-spa-router'
   import { _, locales, locale } from 'svelte-intl'

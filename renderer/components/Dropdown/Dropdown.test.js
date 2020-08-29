@@ -30,14 +30,17 @@ describe('Dropdown component', () => {
 
   it('discards selection when clicking outside of the dropdown menu', async () => {
     const currentValue = writable()
-    render(html`<${Dropdown} options=${options} bind:value=${currentValue} />`)
+    render(
+      html`<p data-testid="paragraph">lorem ipsum</p>
+        <${Dropdown} options=${options} bind:value=${currentValue} />`
+    )
     expect(get(currentValue)).toEqual(options[0])
     expect(screen.queryByText(options[1].label)).toBeNull()
 
     await fireEvent.click(screen.getByText(options[0].label))
     expect(screen.queryByText(options[1].label)).toBeInTheDocument()
 
-    await fireEvent.click(screen.getByRole('button'))
+    await fireEvent.click(screen.getByTestId('paragraph'))
     await sleep(200)
 
     expect(get(currentValue)).toEqual(options[0])

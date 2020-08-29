@@ -3,8 +3,7 @@
   import { fade } from 'svelte/transition'
   import { _ } from 'svelte-intl'
   import { replace } from 'svelte-spa-router'
-  import { of } from 'rxjs'
-  import { map, filter, distinct, mergeMap, tap } from 'rxjs/operators'
+  import { filter, distinct } from 'rxjs/operators'
   import {
     Heading,
     Image,
@@ -12,7 +11,7 @@
     Album,
     MediaSelector
   } from '../../components'
-  import { artists, load, changes, removals } from '../../stores/artists'
+  import { load, changes, removals } from '../../stores/artists'
   import { add } from '../../stores/track-queue'
 
   export let params

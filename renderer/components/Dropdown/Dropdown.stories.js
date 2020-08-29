@@ -42,7 +42,8 @@ export const IndependentTextAndIcon = () => ({
     valueAsText: false,
     text: 'options',
     icon: 'settings',
-    ...dropdownData
+    ...dropdownData,
+    align: 'text-left'
   },
   on: actionsData
 })
@@ -65,7 +66,8 @@ export const CustomButtonOptions = () => ({
     primary: true,
     valueAsText: false,
     icon: 'person',
-    options: [...dropdownData.options]
+    options: [...dropdownData.options],
+    align: 'text-right'
   },
   on: actionsData
 })

@@ -113,7 +113,7 @@
       animate:flip={{ duration: dragIdx !== null ? 0 : 250 }}>
       <span class="row" class:current={$index === i}>
         <Track src={track} details class="flex-auto" />
-        <Button icon="close" class="mx-4" on:click={() => remove(i)} />
+        <Button icon="close" noBorder class="mx-4" on:click={() => remove(i)} />
       </span>
     </li>
   {/each}

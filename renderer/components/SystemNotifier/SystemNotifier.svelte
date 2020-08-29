@@ -5,10 +5,8 @@
 
 <script>
   import { onMount } from 'svelte'
-  import { filter } from 'rxjs/operators'
   import { toDOMSrc } from '../../utils'
   import { current, playPrevious, playNext } from '../../stores/track-queue'
-  import MediaSelector from '../MediaSelector/MediaSelector.svelte'
 
   let trackId = null
   let isFocused = false

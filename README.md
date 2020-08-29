@@ -87,12 +87,12 @@ npm run build
 - [x] language change
 - [x] tracks without artists/album
 - [x] shuffle, loop
+- [x] [open containing folder](https://www.electronjs.org/docs/api/shell#shellshowiteminfolderfullpath) for tracks
 - [ ] track lists
 - [ ] help and tips
       ---> release?
 - [ ] configure replay gain from settings
 - [ ] settings for simple/double click behaviour
-- [ ] [open containing folder](https://www.electronjs.org/docs/api/shell#shellshowiteminfolderfullpath) for tracks
 - [ ] display years (artist & album details page)
 - [ ] display album/artist descriptions
 - [ ] block power save
@@ -113,7 +113,6 @@ npm run build
 1. Files renamed or moved to other watched folders are removed and re-added. This is a limitation with chokidar
    - https://github.com/paulmillr/chokidar/issues/303
 1. When loading new folders, enqueuing or going to album details will give incomplete results. Going back and forth won't load new data
-1. In tracks table, the rank column has variable width (BraveHeart), play icon is not vertically centered (2-lines rows)
 1. Page navigation: use:link doesn't work in tests and raise Svelte warning. a.href is fine
 1. Scroll handling: it'll be better to keep memory on albums/artists page, and reset it on details page
 1. Testing routes: `import regexparam from 'regexparam'` must be replaced with require or `import * as regexparam`: https://github.com/ItalyPaleAle/svelte-spa-router/issues/81
@@ -162,6 +161,9 @@ npm run build
   Finally back to HTML5 notification API, without actions :(
 
 - The discovery of mediaSession's metadata and handler was completely random. It's only supported by Chrome (hopefully for me!), and can be seen on Deezer, Spotify or Youtube Music. However, it does not display artworks.
+
+- IntersectionObserver does not call the intersection entry when the position inside viewport is changing but the intersection doesn't.
+  As a result, dropdown in the sheet will enter viewport during sheet animation, causing troubles positioning the menu
 
 musings on watch & diff
 
