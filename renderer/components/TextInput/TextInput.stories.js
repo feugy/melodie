@@ -18,9 +18,9 @@ export const Default = () => ({
   on: actionsData
 })
 
-export const WithIcon = () => ({
+export const WithIconAndPlaceholder = () => ({
   Component: TextInput,
-  props: { icon: 'search', type: 'search' },
+  props: { icon: 'search', type: 'search', placeholder: 'search...' },
   on: actionsData
 })
 

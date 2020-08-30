@@ -4,6 +4,7 @@
   export let type = 'text'
   export let value = ''
   export let icon = undefined
+  export let placeholder = ''
   let dispatch = createEventDispatcher()
 </script>
 
@@ -13,7 +14,7 @@
   }
 
   input {
-    @apply px-4 py-1 outline-none rounded w-full;
+    @apply px-2 py-1 outline-none rounded w-full;
     border: solid 2px var(--hover-bg-color);
     background: var(--input-bg-color);
     transition: border-color 0.2s ease-in-out;
@@ -42,5 +43,5 @@
       {icon}
     </i>
   {/if}
-  <input {type} on:input on:keyup on:keydown {value} />
+  <input {type} on:input on:keyup on:keydown on:change {placeholder} {value} />
 </span>

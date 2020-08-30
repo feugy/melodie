@@ -8,11 +8,12 @@ exports[`Storyshots Components/TextInput Default 1`] = `
     class="inline-block w-64"
   >
     <span
-      class="svelte-1dd4esh"
+      class="svelte-kqycap"
     >
        
       <input
-        class="svelte-1dd4esh"
+        class="svelte-kqycap"
+        placeholder=""
         type="text"
       />
     </span>
@@ -20,7 +21,7 @@ exports[`Storyshots Components/TextInput Default 1`] = `
 </section>
 `;
 
-exports[`Storyshots Components/TextInput With Icon 1`] = `
+exports[`Storyshots Components/TextInput With Icon And Placeholder 1`] = `
 <section
   class="storybook-snapshot-container"
 >
@@ -28,16 +29,17 @@ exports[`Storyshots Components/TextInput With Icon 1`] = `
     class="inline-block w-64"
   >
     <span
-      class="svelte-1dd4esh icon"
+      class="svelte-kqycap icon"
     >
       <i
-        class="material-icons svelte-1dd4esh"
+        class="material-icons svelte-kqycap"
       >
         search
       </i>
        
       <input
-        class="svelte-1dd4esh"
+        class="svelte-kqycap"
+        placeholder="search..."
         type="search"
       />
     </span>
@@ -53,16 +55,17 @@ exports[`Storyshots Components/TextInput With Value 1`] = `
     class="inline-block w-64"
   >
     <span
-      class="svelte-1dd4esh icon"
+      class="svelte-kqycap icon"
     >
       <i
-        class="material-icons svelte-1dd4esh"
+        class="material-icons svelte-kqycap"
       >
         person
       </i>
        
       <input
-        class="svelte-1dd4esh"
+        class="svelte-kqycap"
+        placeholder=""
         type="text"
       />
     </span>
