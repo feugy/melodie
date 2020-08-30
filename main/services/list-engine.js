@@ -15,7 +15,8 @@ const {
   albumsModel,
   tracksModel,
   artistsModel,
-  settingsModel
+  settingsModel,
+  playlistsModel
 } = require('../models')
 
 const logger = getLogger('services/list')
@@ -87,6 +88,7 @@ module.exports = {
     await albumsModel.init(dbFile)
     await artistsModel.init(dbFile)
     await tracksModel.init(dbFile)
+    await playlistsModel.init(dbFile)
   },
 
   async reset() {
@@ -95,6 +97,7 @@ module.exports = {
     await artistsModel.reset()
     await albumsModel.reset()
     await settingsModel.reset()
+    await playlistsModel.reset()
     await module.exports.init()
   },
 
@@ -181,11 +184,18 @@ module.exports = {
     return artistsModel.list({ sort: 'name', ...criteria })
   },
 
+  async listPlaylists(criteria) {
+    logger.debug({ criteria }, `list playlist`)
+    return playlistsModel.list({ sort: 'name', ...criteria })
+  },
+
   async fetchWithTracks(modelName, id, sortBy = 'trackNo') {
     logger.debug({ modelName, id, sortBy }, `fetch ${modelName} with tracks`)
     const list = await (modelName === 'artist'
       ? artistsModel
-      : albumsModel
+      : modelName === 'album'
+      ? albumsModel
+      : playlistsModel
     ).getById(id)
     if (list) {
       const tracks = await tracksModel.getByIds(list.trackIds)

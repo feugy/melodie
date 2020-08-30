@@ -8,6 +8,7 @@ const { artistsModel } = require('../models/artists')
 const { albumsModel } = require('../models/albums')
 const { tracksModel } = require('../models/tracks')
 const { settingsModel } = require('../models/settings')
+const { playlistsModel } = require('../models/playlists')
 const engine = require('./list-engine')
 const { hash, broadcast } = require('../utils')
 const { sleep, addRefs, addId } = require('../tests')
@@ -16,6 +17,7 @@ jest.mock('../models/artists')
 jest.mock('../models/albums')
 jest.mock('../models/tracks')
 jest.mock('../models/settings')
+jest.mock('../models/playlists')
 jest.mock('../utils/electron-remote')
 
 let dbFile
@@ -33,6 +35,7 @@ describe('Lists Engine', () => {
     artistsModel.save.mockResolvedValue({ saved: [], removedIds: [] })
     tracksModel.list.mockResolvedValue([])
     tracksModel.save.mockResolvedValue([])
+    playlistsModel.list.mockResolvedValue([])
   })
 
   describe('init', () => {
@@ -43,6 +46,7 @@ describe('Lists Engine', () => {
       expect(albumsModel.init).toHaveBeenCalled()
       expect(artistsModel.init).toHaveBeenCalled()
       expect(tracksModel.init).toHaveBeenCalled()
+      expect(playlistsModel.init).toHaveBeenCalled()
     })
   })
 
@@ -54,10 +58,12 @@ describe('Lists Engine', () => {
       expect(albumsModel.reset).toHaveBeenCalled()
       expect(artistsModel.reset).toHaveBeenCalled()
       expect(tracksModel.reset).toHaveBeenCalled()
+      expect(playlistsModel.reset).toHaveBeenCalled()
       expect(settingsModel.init).toHaveBeenCalled()
       expect(albumsModel.init).toHaveBeenCalled()
       expect(artistsModel.init).toHaveBeenCalled()
       expect(tracksModel.init).toHaveBeenCalled()
+      expect(playlistsModel.init).toHaveBeenCalled()
     })
   })
 
@@ -744,6 +750,21 @@ describe('Lists Engine', () => {
     albumsModel.list.mockResolvedValueOnce(albums)
     expect(await engine.listAlbums()).toEqual(albums)
   })
+
+  it('returns all playlists', async () => {
+    const playlists = [
+      {
+        name: faker.commerce.productName(),
+        media: faker.image.image()
+      },
+      {
+        name: faker.commerce.productName(),
+        media: faker.image.image()
+      }
+    ].map(addId)
+    playlistsModel.list.mockResolvedValueOnce(playlists)
+    expect(await engine.listPlaylists()).toEqual(playlists)
+  })
 })
 
 describe('fetchWithTracks', () => {
@@ -878,6 +899,38 @@ describe('fetchWithTracks', () => {
     tracksModel.getByIds.mockResolvedValueOnce([track1, track2, track3])
     expect(await engine.fetchWithTracks('artist', artist.id)).toEqual({
       ...artist,
+      tracks: [track3, track1, track2]
+    })
+    expect(albumsModel.getById).not.toHaveBeenCalled()
+  })
+
+  it('returns playlist with tracks', async () => {
+    const track1 = {
+      path: faker.system.fileName(),
+      tags: { track: { no: 3 }, disk: {} }
+    }
+    track1.id = hash(track1.path)
+    const track2 = {
+      path: faker.system.fileName(),
+      tags: { track: { no: undefined }, disk: {} }
+    }
+    track2.id = hash(track2.path)
+    const track3 = {
+      path: faker.system.fileName(),
+      tags: { track: { no: 1 }, disk: {} }
+    }
+    track3.id = hash(track3.path)
+    const name = faker.commerce.productName()
+    const playlist = {
+      id: hash(name),
+      name,
+      trackIds: [track1.id, track2.id, track3.id]
+    }
+
+    playlistsModel.getById.mockResolvedValueOnce(playlist)
+    tracksModel.getByIds.mockResolvedValueOnce([track1, track2, track3])
+    expect(await engine.fetchWithTracks('playlist', playlist.id)).toEqual({
+      ...playlist,
       tracks: [track3, track1, track2]
     })
     expect(albumsModel.getById).not.toHaveBeenCalled()

@@ -7,6 +7,7 @@ const shortcut = require('electron-localshortcut')
 const listEngine = require('./services/list-engine')
 const mediaManager = require('./services/media-manager')
 const settingsManager = require('./services/settings-manager')
+const playlistsManager = require('./services/playlist-manager')
 const {
   getLogger,
   getStoragePath,
@@ -73,8 +74,9 @@ async function createWindow() {
   await listEngine.init(getStoragePath('db.sqlite3'))
 
   unsubscribe = subscribeRemote({
-    settingsManager,
     listEngine,
+    settingsManager,
+    playlistsManager,
     mediaManager,
     ...electron
   })
