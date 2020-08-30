@@ -17,6 +17,10 @@
     @apply flex flex-wrap justify-around;
   }
 
+  span {
+    @apply p-4;
+  }
+
   p {
     @apply my-20 relative;
   }
@@ -30,7 +34,7 @@
     image={'../images/larisa-birta-slbOcNlWNHA-unsplash.jpg'} />
   <div>
     {#each $artists as src (src.id)}
-      <span class="p-4">
+      <span>
         <Artist {src} />
       </span>
     {:else}

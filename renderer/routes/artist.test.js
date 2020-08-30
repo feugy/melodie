@@ -9,7 +9,6 @@ import { artists as mockedArtists } from '../stores/artists'
 import { translate, makeRef } from '../tests'
 
 jest.mock('svelte-spa-router')
-jest.mock('../stores/track-queue')
 jest.mock('../stores/artists')
 
 describe('artist route', () => {

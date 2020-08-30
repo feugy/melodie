@@ -9,7 +9,6 @@ import { albums as mockedAlbums } from '../stores/albums'
 import { translate, makeRef } from '../tests'
 
 jest.mock('svelte-spa-router')
-jest.mock('../stores/track-queue')
 jest.mock('../stores/albums')
 
 describe('album route', () => {

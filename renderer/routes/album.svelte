@@ -17,6 +17,10 @@
     @apply flex flex-wrap justify-around;
   }
 
+  span {
+    @apply p-4;
+  }
+
   p {
     @apply my-20 relative;
   }
@@ -31,7 +35,7 @@
     imagePosition="center 25%" />
   <div>
     {#each $albums as src (src.id)}
-      <span class="p-4">
+      <span>
         <Album {src} />
       </span>
     {:else}
