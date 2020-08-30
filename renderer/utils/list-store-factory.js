@@ -7,7 +7,7 @@ import { invoke } from './invoke'
 
 const collator = new Intl.Collator([], { numeric: true })
 
-export function createListStore(type) {
+export function createListStore(type, sortBy = 'rank') {
   const capitalType = type[0].toUpperCase() + type.slice(1)
 
   const changes = fromServerChannel(`${type}-change`)
@@ -87,7 +87,7 @@ export function createListStore(type) {
     },
 
     async load(id) {
-      const item = await invoke('listEngine.fetchWithTracks', type, id)
+      const item = await invoke('listEngine.fetchWithTracks', type, id, sortBy)
       if (item) {
         items$.next({ changed: item })
       }

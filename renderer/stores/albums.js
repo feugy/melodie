@@ -2,7 +2,7 @@
 
 import { createListStore } from '../utils'
 
-const store = createListStore('album')
+const store = createListStore('album', 'trackNo')
 
 export const albums = store.albums
 export const reset = store.reset

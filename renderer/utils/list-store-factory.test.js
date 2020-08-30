@@ -13,10 +13,12 @@ describe('abstract list factory', () => {
   let reset
   let changes
   let removals
+  let sortBy = 'trackNo'
 
   beforeAll(() => {
     ;({ albums, list, load, reset, changes, removals } = createListStore(
-      'album'
+      'album',
+      sortBy
     ))
   })
 
@@ -209,7 +211,8 @@ describe('abstract list factory', () => {
         'listEngine',
         'fetchWithTracks',
         'album',
-        album.id
+        album.id,
+        sortBy
       )
     })
 
@@ -232,7 +235,8 @@ describe('abstract list factory', () => {
         'listEngine',
         'fetchWithTracks',
         'album',
-        album.id
+        album.id,
+        sortBy
       )
     })
   })
@@ -249,7 +253,8 @@ describe('abstract list factory', () => {
       'listEngine',
       'fetchWithTracks',
       'album',
-      id
+      id,
+      sortBy
     )
   })
 
