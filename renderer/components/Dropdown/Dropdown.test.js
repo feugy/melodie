@@ -3,8 +3,13 @@
 import { writable, get } from 'svelte/store'
 import { screen, render, fireEvent } from '@testing-library/svelte'
 import html from 'svelte-htm'
+import faker from 'faker'
 import Dropdown from './Dropdown.svelte'
-import { dropdownData } from './Dropdown.stories'
+import {
+  dropdownData,
+  dropdownCustomData,
+  dropdownSimpleData
+} from './Dropdown.stories'
 import { sleep } from '../../tests'
 
 describe('Dropdown component', () => {
@@ -57,7 +62,7 @@ describe('Dropdown component', () => {
   })
 
   it('allows simple array', async () => {
-    const options = ['one', 'two', 'three']
+    const { options } = dropdownSimpleData
     const currentValue = writable()
     render(html`<${Dropdown} options=${options} bind:value=${currentValue} />`)
     expect(get(currentValue)).toEqual(options[0])
@@ -71,6 +76,31 @@ describe('Dropdown component', () => {
     expect(get(currentValue)).toEqual(options[2])
     expect(screen.queryByText(options[2])).toBeInTheDocument()
     expect(screen.queryByText(options[0])).toBeNull()
+  })
+
+  it('closes on custom option closure', async () => {
+    const { options } = dropdownCustomData
+    options[2].props.onValueSet = jest.fn()
+    const currentValue = writable()
+    render(html`<${Dropdown} options=${options} bind:value=${currentValue} />`)
+    expect(get(currentValue)).toEqual(options[0])
+    expect(screen.queryByText(options[0].label)).toBeInTheDocument()
+    expect(screen.queryByText(options[2].props.text)).toBeNull()
+
+    await fireEvent.click(screen.getByRole('button'))
+    expect(screen.queryByText(options[2].props.text)).toBeInTheDocument()
+
+    const input = faker.random.word()
+    await fireEvent.change(screen.getByRole('textbox'), {
+      target: { value: input }
+    })
+    await sleep(250)
+
+    expect(get(currentValue)).toEqual(options[0])
+    expect(screen.queryByText(options[2].props.text)).toBeNull()
+    expect(screen.queryByText(options[0].label)).toBeInTheDocument()
+    expect(options[2].props.onValueSet).toHaveBeenCalledWith(input)
+    expect(options[2].props.onValueSet).toHaveBeenCalledTimes(1)
   })
 
   it('supports no options', async () => {

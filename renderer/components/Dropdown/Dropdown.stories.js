@@ -3,6 +3,7 @@
 import { action } from '@storybook/addon-actions'
 import { actionsData as buttonActionsData } from '../Button/Button.stories'
 import Dropdown from './Dropdown.stories.svelte'
+import CustomOption from './CustomOption.stories.svelte'
 
 export default {
   title: 'Components/Dropdown',
@@ -19,6 +20,24 @@ export const dropdownData = {
   ]
 }
 
+export const dropdownSimpleData = {
+  options: ['one', 'two', 'three']
+}
+
+export const dropdownCustomData = {
+  options: [
+    { label: 'simple' },
+    { label: 'simple with icon', icon: 'add' },
+    {
+      Component: CustomOption,
+      props: {
+        text: 'enter name:',
+        onValueSet: action('on custom option action!')
+      }
+    }
+  ]
+}
+
 export const actionsData = {
   ...buttonActionsData,
   select: action('on dropdown option select')
@@ -32,7 +51,13 @@ export const Default = () => ({
 
 export const SimpleArray = () => ({
   Component: Dropdown,
-  props: { options: ['one', 'two', 'three'] },
+  props: dropdownSimpleData,
+  on: actionsData
+})
+
+export const CustomOptions = () => ({
+  Component: Dropdown,
+  props: dropdownCustomData,
   on: actionsData
 })
 
@@ -48,9 +73,10 @@ export const IndependentTextAndIcon = () => ({
   on: actionsData
 })
 
-export const IconOnly = () => ({
+export const IconOnlyWithRelativeParent = () => ({
   Component: Dropdown,
   props: {
+    parentPosition: 'relative',
     icon: 'more_vert',
     withArrow: false,
     valueAsText: false,

@@ -11,6 +11,7 @@ exports[`Storyshots Components/Dropdown Custom Button Options 1`] = `
    
   <div
     class="text-right"
+    style="position: inherited"
   >
     <span
       class="wrapper svelte-14ek7z"
@@ -59,6 +60,61 @@ exports[`Storyshots Components/Dropdown Custom Button Options 1`] = `
 </section>
 `;
 
+exports[`Storyshots Components/Dropdown Custom Options 1`] = `
+<section
+  class="storybook-snapshot-container"
+>
+  <div>
+    current value is: 
+    simple
+  </div>
+   
+  <div
+    class="text-center"
+    style="position: inherited"
+  >
+    <span
+      class="wrapper svelte-14ek7z"
+    >
+      <button
+        class="svelte-j6xhgj"
+      >
+         
+        <span>
+          simple
+        </span>
+         
+        <i
+          class="material-icons arrow svelte-14ek7z"
+        >
+          arrow_drop_down
+        </i>
+        
+      </button>
+       
+    </span>
+  </div>
+   
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+  incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+  nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+  eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt
+  in culpa qui officia deserunt mollit anim id est laborum.
+  </p>
+   
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+  incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+  nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+  eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt
+  in culpa qui officia deserunt mollit anim id est laborum.
+  </p>
+</section>
+`;
+
 exports[`Storyshots Components/Dropdown Default 1`] = `
 <section
   class="storybook-snapshot-container"
@@ -70,6 +126,7 @@ exports[`Storyshots Components/Dropdown Default 1`] = `
    
   <div
     class="text-center"
+    style="position: inherited"
   >
     <span
       class="wrapper svelte-14ek7z"
@@ -113,7 +170,7 @@ exports[`Storyshots Components/Dropdown Default 1`] = `
 </section>
 `;
 
-exports[`Storyshots Components/Dropdown Icon Only 1`] = `
+exports[`Storyshots Components/Dropdown Icon Only With Relative Parent 1`] = `
 <section
   class="storybook-snapshot-container"
 >
@@ -124,6 +181,7 @@ exports[`Storyshots Components/Dropdown Icon Only 1`] = `
    
   <div
     class="text-center"
+    style="position: relative"
   >
     <span
       class="wrapper svelte-14ek7z"
@@ -175,6 +233,7 @@ exports[`Storyshots Components/Dropdown Independent Text And Icon 1`] = `
    
   <div
     class="text-left"
+    style="position: inherited"
   >
     <span
       class="wrapper svelte-14ek7z"
@@ -234,6 +293,7 @@ exports[`Storyshots Components/Dropdown Simple Array 1`] = `
    
   <div
     class="text-center"
+    style="position: inherited"
   >
     <span
       class="wrapper svelte-14ek7z"
