@@ -1,9 +1,11 @@
 _ albums: '{total} albums'
 _ artists: '{total} artists'
+_ playlists: '{total} playlists'
 _ tracks: '{total} tracks'
 '#': '#'
 'artist: _': 'Artist: {value}'
 'title: _': 'Title: {value}'
+a playlists: '1 playlist'
 a track: '1 track'
 add folders: Add folders
 album: Album
@@ -25,16 +27,18 @@ en: English
 enqueue all: Enqueue all
 enqueue: Add to the queue
 fr: Français
+how to create playlist: To create new playlist, enqueue some tracks, open the queue, and clic on <i class="material-icons">playlist_add</i>.
 id: Id
 locales: Interface language
 Mélodie: Mélodie
+new playlist: new playlist...
 no results: Nothing at all !
 open folder: Open containing folder
-open playlist: Queue
 play all: Play all
 play now: Play now
-playlist: Play list
+playlists: Playlists
 provider (_ x _): '{value} ({width} x {height})'
+queue: Queue
 results for _: Results for "{searched}"
 settings: Settings
 show all: Show all

@@ -60,6 +60,15 @@ describe('Nav component', () => {
     expect(location.hash).toEqual(`#/artist`)
   })
 
+  it('navigates to playlists', async () => {
+    render(html`<${Nav} />`)
+
+    fireEvent.click(screen.getByText(translate('playlists')))
+    await sleep()
+
+    expect(location.hash).toEqual(`#/playlist`)
+  })
+
   it('navigates to settings', async () => {
     render(html`<${Nav} />`)
 

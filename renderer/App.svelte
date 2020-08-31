@@ -13,6 +13,7 @@
   import * as queue from './stores/track-queue'
   import { list as listArtists, artists } from './stores/artists'
   import { list as listAlbums, albums } from './stores/albums'
+  import { list as listPlaylists } from './stores/playlists'
   import { fromServerChannel, invoke } from './utils'
   import { routes } from './routes'
   import { pluck } from 'rxjs/operators'
@@ -24,6 +25,7 @@
     locale.set(await invoke('settingsManager.getLocale'))
     listAlbums()
     listArtists()
+    listPlaylists()
     invoke('settingsManager.compareAndWatch')
     await new Promise(r => setTimeout(r, 200))
     if ($albums.length === 0 && $artists.length === 0) {

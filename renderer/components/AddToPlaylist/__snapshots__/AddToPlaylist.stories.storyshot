@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Components/AddToPlaylist Default 1`] = `
+<section
+  class="storybook-snapshot-container"
+>
+  <span
+    class="wrapper svelte-14ek7z"
+  >
+    <button
+      class="svelte-j6xhgj iconOnly"
+    >
+      <i
+        class="material-icons svelte-j6xhgj"
+      >
+        playlist_add
+      </i>
+       
+       
+      
+    </button>
+     
+  </span>
+</section>
+`;

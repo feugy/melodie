@@ -12,7 +12,7 @@ exports[`Storyshots Components/Tracks queue Empty 1`] = `
       <h1
         class="svelte-z1o3ws"
       >
-        Play list
+        Queue
       </h1>
     </header>
      
@@ -44,7 +44,7 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
       <h1
         class="svelte-z1o3ws"
       >
-        Play list
+        Queue
       </h1>
     </header>
      
@@ -54,6 +54,24 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
       <h3>
         8 tracks
       </h3>
+       
+      <span
+        class="wrapper svelte-14ek7z"
+      >
+        <button
+          class="mx-4 svelte-j6xhgj iconOnly"
+        >
+          <i
+            class="material-icons svelte-j6xhgj"
+          >
+            playlist_add
+          </i>
+           
+           
+          
+        </button>
+         
+      </span>
        
       <span
         class="totalDuration svelte-1eaxgfv"

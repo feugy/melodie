@@ -120,6 +120,12 @@
           text={$_('artists')}
           icon="person" />
       </li>
+      <li>
+        <Button
+          on:click={() => router.push('/playlist')}
+          text={$_('playlists')}
+          icon="playlist_play" />
+      </li>
       <li class="expand">
         <TextInput
           class="w-48 inline-block"

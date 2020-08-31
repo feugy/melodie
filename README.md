@@ -89,7 +89,7 @@ npm run build
 - [x] shuffle, loop
 - [x] [open containing folder](https://www.electronjs.org/docs/api/shell#shellshowiteminfolderfullpath) for tracks
 - [x] display track's tags and details
-- [ ] track lists
+- [-] playlists
 - [ ] help and tips
       ---> release?
 - [ ] configure replay gain from settings
@@ -107,6 +107,7 @@ npm run build
 
 ### Bugs and unresolved issues
 
+1. Startup isn't quick: load artist/album/playlist on demand
 1. Local provider returning too many results, some unusable, for "Rock & Pop for Ballet 2"
 1. Undetected live changes: remove tracks and re-add them. This is a linux-only issue with chokidar
    - https://github.com/paulmillr/chokidar/issues/917
@@ -118,6 +119,8 @@ npm run build
 1. Scroll handling: it'll be better to keep memory on albums/artists page, and reset it on details page
 1. Testing routes: `import regexparam from 'regexparam'` must be replaced with require or `import * as regexparam`: https://github.com/ItalyPaleAle/svelte-spa-router/issues/81
 1. If we knew current position in browser history, then we could disabled navigation button accordingly
+1. Security: clean html in artist/album names (wrapWithRefs returns injectable markup)
+1. Testing input: fireEvent.change, input or keyUp does not trigger svelte's bind:value on input
 
 ## History
 

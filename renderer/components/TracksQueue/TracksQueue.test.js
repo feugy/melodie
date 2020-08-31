@@ -7,7 +7,8 @@ import html from 'svelte-htm'
 import faker from 'faker'
 import TracksQueue from './TracksQueue.svelte'
 import { add, clear, index, current } from '../../stores/track-queue'
-import { addRefs, translate } from '../../tests'
+import * as playlistStore from '../../stores/playlists'
+import { addRefs, translate, mockInvoke, sleep } from '../../tests'
 
 describe('TracksQueue component', () => {
   beforeEach(() => clear())
@@ -105,7 +106,7 @@ describe('TracksQueue component', () => {
       expectListItems(tracks)
       expect(get(current)).toEqual(tracks[0])
 
-      await fireEvent.click(screen.queryAllByRole('button')[0])
+      await fireEvent.click(screen.queryByText('delete'))
       await tick()
 
       expect(get(current)).not.toBeDefined()
@@ -157,7 +158,7 @@ describe('TracksQueue component', () => {
     it(`does not move track on cancelled drag'n drop`, async () => {
       expectListItems(tracks)
 
-      const dropped = screen.queryByText(translate('playlist'))
+      const dropped = screen.queryByText(translate('queue'))
 
       await fireEvent.dragStart(screen.queryByText(tracks[2].tags.title))
       await fireEvent.dragOver(dropped)
@@ -165,6 +166,57 @@ describe('TracksQueue component', () => {
       await tick()
 
       expectListItems(tracks)
+    })
+
+    describe('given some playlist', () => {
+      const playlists = [
+        {
+          id: faker.random.number(),
+          name: faker.commerce.productName(),
+          trackIds: [faker.random.number(), faker.random.number()]
+        },
+        {
+          id: faker.random.number(),
+          name: faker.commerce.productName(),
+          trackIds: [faker.random.number(), faker.random.number()]
+        },
+        {
+          id: faker.random.number(),
+          name: faker.commerce.productName(),
+          trackIds: [faker.random.number(), faker.random.number()]
+        }
+      ]
+
+      beforeAll(async () => {
+        await playlistStore.reset()
+        mockInvoke.mockResolvedValueOnce({
+          total: playlists.length,
+          size: playlists.length,
+          from: 0,
+          results: playlists
+        })
+        await playlistStore.list()
+
+        jest.resetAllMocks()
+      })
+
+      it('adds entire queue to existing playlist', async () => {
+        const playlist = faker.random.arrayElement(playlists)
+
+        await fireEvent.click(screen.queryByText('playlist_add'))
+        await fireEvent.click(screen.queryByText(playlist.name))
+        await sleep(250)
+
+        expectListItems(tracks)
+        expect(mockInvoke).toHaveBeenCalledWith(
+          'remote',
+          'playlistsManager',
+          'append',
+          playlist.id,
+          tracks.map(({ id }) => id)
+        )
+        expect(mockInvoke).toHaveBeenCalledTimes(1)
+      })
     })
   })
 })

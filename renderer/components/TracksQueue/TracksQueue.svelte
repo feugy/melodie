@@ -4,6 +4,7 @@
   import Button from '../Button/Button.svelte'
   import Heading from '../Heading/Heading.svelte'
   import Track from '../Track/Track.svelte'
+  import AddToPlaylist from '../AddToPlaylist/AddToPlaylist.svelte'
   import {
     tracks,
     index,
@@ -86,7 +87,7 @@
 </style>
 
 <Heading
-  title={$_('playlist')}
+  title={$_('queue')}
   image={'../images/jason-rosewell-ASKeuOZqhYU-unsplash.jpg'} />
 <div>
   <h3>
@@ -95,6 +96,7 @@
     })}
   </h3>
   {#if $tracks.length}
+    <AddToPlaylist class="mx-4" tracks={$tracks} />
     <span class="totalDuration">{formatTime(sumDurations($tracks))}</span>
     <Button icon="delete" class="mx-4" on:click={() => clear()} />
   {/if}
