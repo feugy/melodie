@@ -4,12 +4,13 @@ const Model = require('./abstract-model')
 const { uniq, difference } = require('../utils')
 
 module.exports = class AbstractTrackList extends Model {
-  constructor(name, definition) {
+  constructor(name, definition, mergeTrackIds = true) {
     super(name, table => {
       definition(table)
       table.json('trackIds')
       table.json('refs')
     })
+    this.mergeTrackIds = mergeTrackIds
     this.jsonColumns.push('trackIds', 'refs')
   }
 
@@ -41,10 +42,12 @@ module.exports = class AbstractTrackList extends Model {
           const savedList = {
             ...previousList,
             trackIds: uniq(
-              difference(
-                previousList.trackIds.concat(trackList.trackIds || []),
-                trackList.removedTrackIds || []
-              )
+              this.mergeTrackIds
+                ? difference(
+                    previousList.trackIds.concat(trackList.trackIds || []),
+                    trackList.removedTrackIds || []
+                  )
+                : trackList.trackIds || []
             )
           }
           if (savedList.trackIds.length) {

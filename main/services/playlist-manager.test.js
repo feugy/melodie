@@ -21,7 +21,7 @@ describe('Playlists Manager', () => {
         removedIds: []
       }))
 
-      await engine.save({ name, desc, trackIds })
+      await engine.save({ name, desc, trackIds, trimmedOut: [] })
 
       const playlist = { id: expect.any(Number), name, desc, trackIds }
       expect(playlistsModel.save).toHaveBeenCalledWith(playlist)
@@ -44,7 +44,7 @@ describe('Playlists Manager', () => {
         removedIds: []
       })
 
-      await engine.save(playlist)
+      await engine.save({ ...playlist, ignored: true })
 
       expect(playlistsModel.save).toHaveBeenCalledWith(playlist)
       expect(playlistsModel.save).toHaveBeenCalledTimes(1)
@@ -72,7 +72,7 @@ describe('Playlists Manager', () => {
   })
 
   describe('append', () => {
-    it('appendq tracks to an existing playlist', async () => {
+    it('appends tracks to an existing playlist', async () => {
       const id = faker.random.number()
       const name = faker.commerce.productName()
       const desc = faker.lorem.paragraph()
@@ -100,7 +100,7 @@ describe('Playlists Manager', () => {
       )
     })
 
-    it('appendq single track to an existing playlist', async () => {
+    it('appends single track to an existing playlist', async () => {
       const id = faker.random.number()
       const name = faker.commerce.productName()
       const desc = faker.lorem.paragraph()

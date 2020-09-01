@@ -5,6 +5,11 @@ const { getLogger, broadcast, hash } = require('../utils')
 
 const logger = getLogger('services/playlist')
 
+function pickData({ id, name, media, desc, trackIds }) {
+  // whitelist saved data
+  return { id, name, media, desc, trackIds }
+}
+
 module.exports = {
   async save(playlist) {
     logger.debug({ playlist }, `save playlist`)
@@ -14,7 +19,7 @@ module.exports = {
     const {
       saved: [saved],
       removedIds
-    } = await playlistsModel.save(playlist)
+    } = await playlistsModel.save(pickData(playlist))
     if (removedIds.length) {
       broadcast(`playlist-removal`, removedIds[0])
     } else {

@@ -66,7 +66,7 @@ describe('Playlists model', () => {
     ])
   })
 
-  it('updates existing playlist with refs', async () => {
+  it('updates existing playlist with refs and overrides trackIds', async () => {
     const playlist = {
       id: faker.random.number(),
       media: faker.image.image(),
@@ -82,14 +82,12 @@ describe('Playlists model', () => {
       }
     ])
 
-    playlist.removedTrackIds = playlist.trackIds.concat()
     playlist.trackIds = [tracks[1].id, tracks[2].id]
 
     const { saved } = await playlistsModel.save(playlist)
     expect(saved).toEqual([
       {
         ...playlist,
-        removedTrackIds: undefined,
         refs: [
           makeRef(artist1),
           makeRef(artist2),

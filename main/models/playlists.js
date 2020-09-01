@@ -6,12 +6,16 @@ const { uniqRef, parseRawRef, parseRawRefArray } = require('../utils')
 
 class PlaylistModel extends TrackList {
   constructor() {
-    super('playlists', table => {
-      table.integer('id').primary()
-      table.string('name')
-      table.text('desc')
-      table.string('media')
-    })
+    super(
+      'playlists',
+      table => {
+        table.integer('id').primary()
+        table.string('name')
+        table.text('desc')
+        table.string('media')
+      },
+      false
+    )
     // TODO search on name & desc as well
     this.searchCol = 'refs'
   }
