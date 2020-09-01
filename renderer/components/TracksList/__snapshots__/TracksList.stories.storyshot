@@ -1,30 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Storyshots Components/Tracks queue Empty 1`] = `
+exports[`Storyshots Components/Tracks list Empty 1`] = `
 <section
   class="storybook-snapshot-container"
 >
   <div>
-    <header
-      class=" svelte-z1o3ws"
-      style="--image: url(../images/jason-rosewell-ASKeuOZqhYU-unsplash.jpg); --shade-color: rgba(0, 0, 0, 0.7); --bgPosition: center;"
-    >
-      <h1
-        class="svelte-z1o3ws"
-      >
-        Queue
-      </h1>
-    </header>
-     
-    <div
-      class="svelte-1x79kgg"
-    >
-      <h3>
-        0 tracks
-      </h3>
-       
-    </div>
-     
     <ol
       class="svelte-1fiunj2"
     />
@@ -32,66 +12,11 @@ exports[`Storyshots Components/Tracks queue Empty 1`] = `
 </section>
 `;
 
-exports[`Storyshots Components/Tracks queue With Track List 1`] = `
+exports[`Storyshots Components/Tracks list With Track List 1`] = `
 <section
   class="storybook-snapshot-container"
 >
   <div>
-    <header
-      class=" svelte-z1o3ws"
-      style="--image: url(../images/jason-rosewell-ASKeuOZqhYU-unsplash.jpg); --shade-color: rgba(0, 0, 0, 0.7); --bgPosition: center;"
-    >
-      <h1
-        class="svelte-z1o3ws"
-      >
-        Queue
-      </h1>
-    </header>
-     
-    <div
-      class="svelte-1x79kgg"
-    >
-      <h3>
-        8 tracks
-      </h3>
-       
-      <span
-        class="wrapper svelte-14ek7z"
-      >
-        <button
-          class="mx-4 svelte-j6xhgj iconOnly"
-        >
-          <i
-            class="material-icons svelte-j6xhgj"
-          >
-            playlist_add
-          </i>
-           
-           
-          
-        </button>
-         
-      </span>
-       
-      <span
-        class="totalDuration svelte-1x79kgg"
-      >
-        7:34
-      </span>
-       
-      <button
-        class="mx-4 svelte-j6xhgj iconOnly"
-      >
-        <i
-          class="material-icons svelte-j6xhgj"
-        >
-          delete
-        </i>
-         
-         
-      </button>
-    </div>
-     
     <ol
       class="svelte-1fiunj2"
     >
@@ -100,7 +25,7 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
         draggable="true"
       >
         <span
-          class="row svelte-1fiunj2 current"
+          class="row svelte-1fiunj2"
         >
           <div
             class="flex-auto root svelte-whrgz7"

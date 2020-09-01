@@ -23,5 +23,6 @@ export { default as SystemNotifier } from './SystemNotifier/SystemNotifier.svelt
 export { default as TextInput } from './TextInput/TextInput.svelte'
 export { default as Track } from './Track/Track.svelte'
 export { default as TrackDetailsDialogue } from './TrackDetailsDialogue/TrackDetailsDialogue.svelte'
+export { default as TracksList } from './TracksList/TracksList.svelte'
 export { default as TracksQueue } from './TracksQueue/TracksQueue.svelte'
 export { default as TracksTable } from './TracksTable/TracksTable.svelte'

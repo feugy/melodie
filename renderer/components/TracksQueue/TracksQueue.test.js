@@ -13,31 +13,6 @@ import { addRefs, translate, mockInvoke, sleep } from '../../tests'
 describe('TracksQueue component', () => {
   beforeEach(() => clear())
 
-  it('allows duplicated tracks', async () => {
-    const track1 = addRefs({
-      id: 1,
-      tags: {
-        title: faker.commerce.productName(),
-        artists: [faker.name.findName()]
-      },
-      media: faker.system.fileName()
-    })
-    const track2 = addRefs({
-      id: 2,
-      tags: {
-        title: faker.commerce.productName(),
-        artists: [faker.name.findName()]
-      },
-      media: faker.system.fileName()
-    })
-    add([track1, track2, track1])
-
-    render(html`<${TracksQueue} />`)
-
-    expect(screen.getAllByText(track1.tags.title)).toHaveLength(2)
-    expect(screen.getAllByText(track2.tags.title)).toHaveLength(1)
-  })
-
   describe('given a list of track', () => {
     const tracks = [
       {
