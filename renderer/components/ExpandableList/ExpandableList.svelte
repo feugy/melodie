@@ -71,7 +71,7 @@
 
 <style type="postcss">
   span {
-    @apply inline-flex flex-col items-start text-left w-full;
+    @apply inline-flex flex-col items-start text-left w-full overflow-x-hidden;
   }
 
   h3 {
