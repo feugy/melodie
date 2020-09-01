@@ -44,7 +44,7 @@ describe('AddToPlaylist component', () => {
     expect(screen.queryAllByRole('listitem')).toHaveLength(1)
 
     await fireEvent.click(screen.getByTestId('paragraph'))
-    await sleep(300)
+    await sleep(350)
 
     expect(screen.queryAllByRole('listitem')).toHaveLength(0)
   })
@@ -88,7 +88,7 @@ describe('AddToPlaylist component', () => {
 
       await fireEvent.click(screen.getByRole('button'))
       await fireEvent.click(screen.getByText(playlist.name))
-      await sleep(300)
+      await sleep(350)
 
       expect(appendTracks).toHaveBeenCalledWith({ id: playlist.id, tracks })
       expect(appendTracks).toHaveBeenCalledTimes(1)
@@ -103,7 +103,7 @@ describe('AddToPlaylist component', () => {
       await fireEvent.click(screen.getByRole('button'))
       await userEvent.type(screen.getByRole('textbox'), name)
       await fireEvent.click(screen.getByText('add_box'))
-      await sleep(300)
+      await sleep(350)
 
       expect(appendTracks).toHaveBeenCalledWith({ name, tracks: tracks })
       expect(appendTracks).toHaveBeenCalledTimes(1)
@@ -117,7 +117,7 @@ describe('AddToPlaylist component', () => {
 
       await fireEvent.click(screen.getByRole('button'))
       await userEvent.type(screen.getByRole('textbox'), name + '{enter}')
-      await sleep(300)
+      await sleep(350)
 
       expect(appendTracks).toHaveBeenCalledWith({ name, tracks: tracks })
       expect(appendTracks).toHaveBeenCalledTimes(1)

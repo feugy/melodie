@@ -26,7 +26,7 @@ describe('Dropdown component', () => {
 
     await fireEvent.click(screen.getByText(options[0].label))
     await fireEvent.click(screen.getByText(options[2].label))
-    await sleep(200)
+    await sleep(350)
 
     expect(get(currentValue)).toEqual(options[2])
     expect(screen.queryByText(options[2].label)).toBeInTheDocument()
@@ -46,7 +46,7 @@ describe('Dropdown component', () => {
     expect(screen.queryByText(options[1].label)).toBeInTheDocument()
 
     await fireEvent.click(screen.getByTestId('paragraph'))
-    await sleep(200)
+    await sleep(350)
 
     expect(get(currentValue)).toEqual(options[0])
     expect(screen.queryByText(options[1].label)).toBeNull()
@@ -71,7 +71,7 @@ describe('Dropdown component', () => {
 
     await fireEvent.click(screen.getByText(options[0]))
     await fireEvent.click(screen.getByText(options[2]))
-    await sleep(200)
+    await sleep(350)
 
     expect(get(currentValue)).toEqual(options[2])
     expect(screen.queryByText(options[2])).toBeInTheDocument()
@@ -94,7 +94,7 @@ describe('Dropdown component', () => {
     await fireEvent.change(screen.getByRole('textbox'), {
       target: { value: input }
     })
-    await sleep(250)
+    await sleep(350)
 
     expect(get(currentValue)).toEqual(options[0])
     expect(screen.queryByText(options[2].props.text)).toBeNull()
