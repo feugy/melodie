@@ -28,7 +28,7 @@
 
 <style type="postcss">
   section {
-    @apply z-0 relative mx-8 mb-8;
+    @apply z-0 mx-8 mb-8;
   }
 
   .noResults {

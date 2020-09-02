@@ -1,0 +1,1959 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Components/Playlist tracks table Default 1`] = `
+<section
+  class="storybook-snapshot-container"
+>
+  <div>
+    <div
+      class="filter svelte-7u451e"
+    />
+     
+    <div
+      class="backdrop svelte-7u451e"
+    >
+      <button
+        class="absolute top-0 right-0 m-4 svelte-j6xhgj iconOnly"
+      >
+        <i
+          class="material-icons svelte-j6xhgj"
+        >
+          close
+        </i>
+         
+         
+      </button>
+       
+      <article
+        class="svelte-7u451e"
+      >
+        <header
+          class="svelte-7u451e"
+        >
+          Track details
+        </header>
+         
+        <div
+          class="content svelte-7u451e"
+        >
+          <div
+            slot="content"
+          >
+            <table
+              class="svelte-sq4n81"
+            />
+          </div>
+        </div>
+         
+        <footer
+          class="svelte-7u451e"
+        />
+      </article>
+    </div>
+     
+    
+     
+    <table
+      class="svelte-133b2lx"
+    >
+      <thead
+        class="svelte-133b2lx"
+      >
+        <tr
+          class="svelte-133b2lx"
+        >
+          <th
+            class="svelte-133b2lx"
+          >
+            #
+          </th>
+           
+          <th
+            class="col-span-5 svelte-133b2lx"
+          >
+            Track
+          </th>
+           
+          <th
+            class="col-span-1 svelte-133b2lx"
+          >
+            Duration
+          </th>
+           
+          <th
+            class="col-span-4 svelte-133b2lx"
+          >
+            Album
+          </th>
+           
+          <th
+            class="svelte-133b2lx"
+          />
+        </tr>
+      </thead>
+       
+      <tbody
+        class="svelte-133b2lx"
+      >
+        <ol>
+          <li
+            class="svelte-4th0s9"
+            draggable="true"
+          >
+            <tr
+              class="svelte-133b2lx"
+              slot="item"
+            >
+              <td
+                class="svelte-133b2lx"
+              >
+                1
+              </td>
+               
+              <td
+                class="col-span-6 svelte-133b2lx"
+              >
+                <div
+                  class="undefined root svelte-whrgz7"
+                >
+                  <a
+                    class="flex-none"
+                    href="#/album/1"
+                  >
+                    <img
+                      class="h-16 w-16 text-xs svelte-hn7eai rounded-sm hidden"
+                      loading="lazy"
+                    />
+                     
+                    <span
+                      class="h-16 w-16 text-xs svelte-hn7eai rounded-sm"
+                    >
+                      <i
+                        class="material-icons svelte-hn7eai"
+                      >
+                        music_note
+                      </i>
+                    </span>
+                    
+                  </a>
+                   
+                  <div
+                    class="track svelte-whrgz7"
+                  >
+                    <span
+                      class="title svelte-whrgz7"
+                    >
+                      American Money
+                    </span>
+                     
+                    <a
+                      class="text-sm underlined"
+                      href="#/artist/0"
+                      onclick="event.stopPropagation()"
+                    >
+                      Yoko Kanno and the Seatbelts
+                    </a>
+                  </div>
+                   
+                  <div
+                    class="duration svelte-whrgz7"
+                  >
+                    5:32
+                  </div>
+                </div>
+              </td>
+               
+              <td
+                class="col-span-4 svelte-133b2lx"
+              >
+                <a
+                  class="underlined"
+                  href="#/album/1"
+                  onclick="event.stopPropagation()"
+                >
+                  Cowboy Bebop - NoDisc
+                </a>
+              </td>
+               
+              <td
+                class="svelte-133b2lx"
+              >
+                <span
+                  class="wrapper svelte-14ek7z"
+                >
+                  <button
+                    class="svelte-j6xhgj iconOnly noBorder"
+                  >
+                    <i
+                      class="material-icons svelte-j6xhgj"
+                    >
+                      more_vert
+                    </i>
+                     
+                     
+                    
+                  </button>
+                   
+                </span>
+              </td>
+            </tr>
+             
+          </li>
+          <li
+            class="svelte-4th0s9"
+            draggable="true"
+          >
+            <tr
+              class="svelte-133b2lx"
+              slot="item"
+            >
+              <td
+                class="svelte-133b2lx"
+              >
+                2
+              </td>
+               
+              <td
+                class="col-span-6 svelte-133b2lx"
+              >
+                <div
+                  class="undefined root svelte-whrgz7"
+                >
+                  <a
+                    class="flex-none"
+                    href="#/album/1"
+                  >
+                    <img
+                      class="h-16 w-16 text-xs svelte-hn7eai rounded-sm hidden"
+                      loading="lazy"
+                    />
+                     
+                    <span
+                      class="h-16 w-16 text-xs svelte-hn7eai rounded-sm"
+                    >
+                      <i
+                        class="material-icons svelte-hn7eai"
+                      >
+                        music_note
+                      </i>
+                    </span>
+                    
+                  </a>
+                   
+                  <div
+                    class="track svelte-whrgz7"
+                  >
+                    <span
+                      class="title svelte-whrgz7"
+                    >
+                      Fantaisie Sign
+                    </span>
+                     
+                    <a
+                      class="text-sm underlined"
+                      href="#/artist/0"
+                      onclick="event.stopPropagation()"
+                    >
+                      Yoko Kanno and the Seatbelts
+                    </a>
+                  </div>
+                   
+                  <div
+                    class="duration svelte-whrgz7"
+                  >
+                    3:35
+                  </div>
+                </div>
+              </td>
+               
+              <td
+                class="col-span-4 svelte-133b2lx"
+              >
+                <a
+                  class="underlined"
+                  href="#/album/1"
+                  onclick="event.stopPropagation()"
+                >
+                  Cowboy Bebop - NoDisc
+                </a>
+              </td>
+               
+              <td
+                class="svelte-133b2lx"
+              >
+                <span
+                  class="wrapper svelte-14ek7z"
+                >
+                  <button
+                    class="svelte-j6xhgj iconOnly noBorder"
+                  >
+                    <i
+                      class="material-icons svelte-j6xhgj"
+                    >
+                      more_vert
+                    </i>
+                     
+                     
+                    
+                  </button>
+                   
+                </span>
+              </td>
+            </tr>
+             
+          </li>
+          <li
+            class="svelte-4th0s9"
+            draggable="true"
+          >
+            <tr
+              class="svelte-133b2lx"
+              slot="item"
+            >
+              <td
+                class="svelte-133b2lx"
+              >
+                3
+              </td>
+               
+              <td
+                class="col-span-6 svelte-133b2lx"
+              >
+                <div
+                  class="undefined root svelte-whrgz7"
+                >
+                  <a
+                    class="flex-none"
+                    href="#/album/1"
+                  >
+                    <img
+                      class="h-16 w-16 text-xs svelte-hn7eai rounded-sm hidden"
+                      loading="lazy"
+                    />
+                     
+                    <span
+                      class="h-16 w-16 text-xs svelte-hn7eai rounded-sm"
+                    >
+                      <i
+                        class="material-icons svelte-hn7eai"
+                      >
+                        music_note
+                      </i>
+                    </span>
+                    
+                  </a>
+                   
+                  <div
+                    class="track svelte-whrgz7"
+                  >
+                    <span
+                      class="title svelte-whrgz7"
+                    >
+                      Don't Bother None
+                    </span>
+                     
+                    <a
+                      class="text-sm underlined"
+                      href="#/artist/0"
+                      onclick="event.stopPropagation()"
+                    >
+                      Yoko Kanno and the Seatbelts
+                    </a>
+                  </div>
+                   
+                  <div
+                    class="duration svelte-whrgz7"
+                  >
+                    3:45
+                  </div>
+                </div>
+              </td>
+               
+              <td
+                class="col-span-4 svelte-133b2lx"
+              >
+                <a
+                  class="underlined"
+                  href="#/album/1"
+                  onclick="event.stopPropagation()"
+                >
+                  Cowboy Bebop - NoDisc
+                </a>
+              </td>
+               
+              <td
+                class="svelte-133b2lx"
+              >
+                <span
+                  class="wrapper svelte-14ek7z"
+                >
+                  <button
+                    class="svelte-j6xhgj iconOnly noBorder"
+                  >
+                    <i
+                      class="material-icons svelte-j6xhgj"
+                    >
+                      more_vert
+                    </i>
+                     
+                     
+                    
+                  </button>
+                   
+                </span>
+              </td>
+            </tr>
+             
+          </li>
+          <li
+            class="svelte-4th0s9"
+            draggable="true"
+          >
+            <tr
+              class="svelte-133b2lx"
+              slot="item"
+            >
+              <td
+                class="svelte-133b2lx"
+              >
+                4
+              </td>
+               
+              <td
+                class="col-span-6 svelte-133b2lx"
+              >
+                <div
+                  class="undefined root svelte-whrgz7"
+                >
+                  <a
+                    class="flex-none"
+                    href="#/album/1"
+                  >
+                    <img
+                      class="h-16 w-16 text-xs svelte-hn7eai rounded-sm hidden"
+                      loading="lazy"
+                    />
+                     
+                    <span
+                      class="h-16 w-16 text-xs svelte-hn7eai rounded-sm"
+                    >
+                      <i
+                        class="material-icons svelte-hn7eai"
+                      >
+                        music_note
+                      </i>
+                    </span>
+                    
+                  </a>
+                   
+                  <div
+                    class="track svelte-whrgz7"
+                  >
+                    <span
+                      class="title svelte-whrgz7"
+                    >
+                      Vitamin A
+                    </span>
+                     
+                    <a
+                      class="text-sm underlined"
+                      href="#/artist/0"
+                      onclick="event.stopPropagation()"
+                    >
+                      Yoko Kanno and the Seatbelts
+                    </a>
+                  </div>
+                   
+                  <div
+                    class="duration svelte-whrgz7"
+                  >
+                    4:41
+                  </div>
+                </div>
+              </td>
+               
+              <td
+                class="col-span-4 svelte-133b2lx"
+              >
+                <a
+                  class="underlined"
+                  href="#/album/1"
+                  onclick="event.stopPropagation()"
+                >
+                  Cowboy Bebop - NoDisc
+                </a>
+              </td>
+               
+              <td
+                class="svelte-133b2lx"
+              >
+                <span
+                  class="wrapper svelte-14ek7z"
+                >
+                  <button
+                    class="svelte-j6xhgj iconOnly noBorder"
+                  >
+                    <i
+                      class="material-icons svelte-j6xhgj"
+                    >
+                      more_vert
+                    </i>
+                     
+                     
+                    
+                  </button>
+                   
+                </span>
+              </td>
+            </tr>
+             
+          </li>
+          <li
+            class="svelte-4th0s9"
+            draggable="true"
+          >
+            <tr
+              class="svelte-133b2lx"
+              slot="item"
+            >
+              <td
+                class="svelte-133b2lx"
+              >
+                5
+              </td>
+               
+              <td
+                class="col-span-6 svelte-133b2lx"
+              >
+                <div
+                  class="undefined root svelte-whrgz7"
+                >
+                  <a
+                    class="flex-none"
+                    href="#/album/1"
+                  >
+                    <img
+                      class="h-16 w-16 text-xs svelte-hn7eai rounded-sm hidden"
+                      loading="lazy"
+                    />
+                     
+                    <span
+                      class="h-16 w-16 text-xs svelte-hn7eai rounded-sm"
+                    >
+                      <i
+                        class="material-icons svelte-hn7eai"
+                      >
+                        music_note
+                      </i>
+                    </span>
+                    
+                  </a>
+                   
+                  <div
+                    class="track svelte-whrgz7"
+                  >
+                    <span
+                      class="title svelte-whrgz7"
+                    >
+                      LIVE in Baghdad
+                    </span>
+                     
+                    <a
+                      class="text-sm underlined"
+                      href="#/artist/0"
+                      onclick="event.stopPropagation()"
+                    >
+                      Yoko Kanno and the Seatbelts
+                    </a>
+                  </div>
+                   
+                  <div
+                    class="duration svelte-whrgz7"
+                  >
+                    2:59
+                  </div>
+                </div>
+              </td>
+               
+              <td
+                class="col-span-4 svelte-133b2lx"
+              >
+                <a
+                  class="underlined"
+                  href="#/album/1"
+                  onclick="event.stopPropagation()"
+                >
+                  Cowboy Bebop - NoDisc
+                </a>
+              </td>
+               
+              <td
+                class="svelte-133b2lx"
+              >
+                <span
+                  class="wrapper svelte-14ek7z"
+                >
+                  <button
+                    class="svelte-j6xhgj iconOnly noBorder"
+                  >
+                    <i
+                      class="material-icons svelte-j6xhgj"
+                    >
+                      more_vert
+                    </i>
+                     
+                     
+                    
+                  </button>
+                   
+                </span>
+              </td>
+            </tr>
+             
+          </li>
+          <li
+            class="svelte-4th0s9"
+            draggable="true"
+          >
+            <tr
+              class="svelte-133b2lx"
+              slot="item"
+            >
+              <td
+                class="svelte-133b2lx"
+              >
+                6
+              </td>
+               
+              <td
+                class="col-span-6 svelte-133b2lx"
+              >
+                <div
+                  class="undefined root svelte-whrgz7"
+                >
+                  <a
+                    class="flex-none"
+                    href="#/album/1"
+                  >
+                    <img
+                      class="h-16 w-16 text-xs svelte-hn7eai rounded-sm hidden"
+                      loading="lazy"
+                    />
+                     
+                    <span
+                      class="h-16 w-16 text-xs svelte-hn7eai rounded-sm"
+                    >
+                      <i
+                        class="material-icons svelte-hn7eai"
+                      >
+                        music_note
+                      </i>
+                    </span>
+                    
+                  </a>
+                   
+                  <div
+                    class="track svelte-whrgz7"
+                  >
+                    <span
+                      class="title svelte-whrgz7"
+                    >
+                      Cats on Mars
+                    </span>
+                     
+                    <a
+                      class="text-sm underlined"
+                      href="#/artist/0"
+                      onclick="event.stopPropagation()"
+                    >
+                      Yoko Kanno and the Seatbelts
+                    </a>
+                  </div>
+                   
+                  <div
+                    class="duration svelte-whrgz7"
+                  >
+                    0:07
+                  </div>
+                </div>
+              </td>
+               
+              <td
+                class="col-span-4 svelte-133b2lx"
+              >
+                <a
+                  class="underlined"
+                  href="#/album/1"
+                  onclick="event.stopPropagation()"
+                >
+                  Cowboy Bebop - NoDisc
+                </a>
+              </td>
+               
+              <td
+                class="svelte-133b2lx"
+              >
+                <span
+                  class="wrapper svelte-14ek7z"
+                >
+                  <button
+                    class="svelte-j6xhgj iconOnly noBorder"
+                  >
+                    <i
+                      class="material-icons svelte-j6xhgj"
+                    >
+                      more_vert
+                    </i>
+                     
+                     
+                    
+                  </button>
+                   
+                </span>
+              </td>
+            </tr>
+             
+          </li>
+          <li
+            class="svelte-4th0s9"
+            draggable="true"
+          >
+            <tr
+              class="svelte-133b2lx"
+              slot="item"
+            >
+              <td
+                class="svelte-133b2lx"
+              >
+                7
+              </td>
+               
+              <td
+                class="col-span-6 svelte-133b2lx"
+              >
+                <div
+                  class="undefined root svelte-whrgz7"
+                >
+                  <a
+                    class="flex-none"
+                    href="#/album/1"
+                  >
+                    <img
+                      class="h-16 w-16 text-xs svelte-hn7eai rounded-sm hidden"
+                      loading="lazy"
+                    />
+                     
+                    <span
+                      class="h-16 w-16 text-xs svelte-hn7eai rounded-sm"
+                    >
+                      <i
+                        class="material-icons svelte-hn7eai"
+                      >
+                        music_note
+                      </i>
+                    </span>
+                    
+                  </a>
+                   
+                  <div
+                    class="track svelte-whrgz7"
+                  >
+                    <span
+                      class="title svelte-whrgz7"
+                    >
+                      Want it All Back
+                    </span>
+                     
+                    <a
+                      class="text-sm underlined"
+                      href="#/artist/0"
+                      onclick="event.stopPropagation()"
+                    >
+                      Yoko Kanno and the Seatbelts
+                    </a>
+                  </div>
+                   
+                  <div
+                    class="duration svelte-whrgz7"
+                  >
+                    3:51
+                  </div>
+                </div>
+              </td>
+               
+              <td
+                class="col-span-4 svelte-133b2lx"
+              >
+                <a
+                  class="underlined"
+                  href="#/album/1"
+                  onclick="event.stopPropagation()"
+                >
+                  Cowboy Bebop - NoDisc
+                </a>
+              </td>
+               
+              <td
+                class="svelte-133b2lx"
+              >
+                <span
+                  class="wrapper svelte-14ek7z"
+                >
+                  <button
+                    class="svelte-j6xhgj iconOnly noBorder"
+                  >
+                    <i
+                      class="material-icons svelte-j6xhgj"
+                    >
+                      more_vert
+                    </i>
+                     
+                     
+                    
+                  </button>
+                   
+                </span>
+              </td>
+            </tr>
+             
+          </li>
+          <li
+            class="svelte-4th0s9"
+            draggable="true"
+          >
+            <tr
+              class="svelte-133b2lx"
+              slot="item"
+            >
+              <td
+                class="svelte-133b2lx"
+              >
+                8
+              </td>
+               
+              <td
+                class="col-span-6 svelte-133b2lx"
+              >
+                <div
+                  class="undefined root svelte-whrgz7"
+                >
+                  <a
+                    class="flex-none"
+                    href="#/album/1"
+                  >
+                    <img
+                      class="h-16 w-16 text-xs svelte-hn7eai rounded-sm hidden"
+                      loading="lazy"
+                    />
+                     
+                    <span
+                      class="h-16 w-16 text-xs svelte-hn7eai rounded-sm"
+                    >
+                      <i
+                        class="material-icons svelte-hn7eai"
+                      >
+                        music_note
+                      </i>
+                    </span>
+                    
+                  </a>
+                   
+                  <div
+                    class="track svelte-whrgz7"
+                  >
+                    <span
+                      class="title svelte-whrgz7"
+                    >
+                      Bindy
+                    </span>
+                     
+                    <a
+                      class="text-sm underlined"
+                      href="#/artist/0"
+                      onclick="event.stopPropagation()"
+                    >
+                      Yoko Kanno and the Seatbelts
+                    </a>
+                  </div>
+                   
+                  <div
+                    class="duration svelte-whrgz7"
+                  >
+                    0:15
+                  </div>
+                </div>
+              </td>
+               
+              <td
+                class="col-span-4 svelte-133b2lx"
+              >
+                <a
+                  class="underlined"
+                  href="#/album/1"
+                  onclick="event.stopPropagation()"
+                >
+                  Cowboy Bebop - NoDisc
+                </a>
+              </td>
+               
+              <td
+                class="svelte-133b2lx"
+              >
+                <span
+                  class="wrapper svelte-14ek7z"
+                >
+                  <button
+                    class="svelte-j6xhgj iconOnly noBorder"
+                  >
+                    <i
+                      class="material-icons svelte-j6xhgj"
+                    >
+                      more_vert
+                    </i>
+                     
+                     
+                    
+                  </button>
+                   
+                </span>
+              </td>
+            </tr>
+             
+          </li>
+          <li
+            class="svelte-4th0s9"
+            draggable="true"
+          >
+            <tr
+              class="svelte-133b2lx"
+              slot="item"
+            >
+              <td
+                class="svelte-133b2lx"
+              >
+                9
+              </td>
+               
+              <td
+                class="col-span-6 svelte-133b2lx"
+              >
+                <div
+                  class="undefined root svelte-whrgz7"
+                >
+                  <a
+                    class="flex-none"
+                    href="#/album/1"
+                  >
+                    <img
+                      class="h-16 w-16 text-xs svelte-hn7eai rounded-sm hidden"
+                      loading="lazy"
+                    />
+                     
+                    <span
+                      class="h-16 w-16 text-xs svelte-hn7eai rounded-sm"
+                    >
+                      <i
+                        class="material-icons svelte-hn7eai"
+                      >
+                        music_note
+                      </i>
+                    </span>
+                    
+                  </a>
+                   
+                  <div
+                    class="track svelte-whrgz7"
+                  >
+                    <span
+                      class="title svelte-whrgz7"
+                    >
+                      You Make Me Coo
+                    </span>
+                     
+                    <a
+                      class="text-sm underlined"
+                      href="#/artist/0"
+                      onclick="event.stopPropagation()"
+                    >
+                      Yoko Kanno and the Seatbelts
+                    </a>
+                  </div>
+                   
+                  <div
+                    class="duration svelte-whrgz7"
+                  >
+                    3:14
+                  </div>
+                </div>
+              </td>
+               
+              <td
+                class="col-span-4 svelte-133b2lx"
+              >
+                <a
+                  class="underlined"
+                  href="#/album/1"
+                  onclick="event.stopPropagation()"
+                >
+                  Cowboy Bebop - NoDisc
+                </a>
+              </td>
+               
+              <td
+                class="svelte-133b2lx"
+              >
+                <span
+                  class="wrapper svelte-14ek7z"
+                >
+                  <button
+                    class="svelte-j6xhgj iconOnly noBorder"
+                  >
+                    <i
+                      class="material-icons svelte-j6xhgj"
+                    >
+                      more_vert
+                    </i>
+                     
+                     
+                    
+                  </button>
+                   
+                </span>
+              </td>
+            </tr>
+             
+          </li>
+          <li
+            class="svelte-4th0s9"
+            draggable="true"
+          >
+            <tr
+              class="svelte-133b2lx"
+              slot="item"
+            >
+              <td
+                class="svelte-133b2lx"
+              >
+                10
+              </td>
+               
+              <td
+                class="col-span-6 svelte-133b2lx"
+              >
+                <div
+                  class="undefined root svelte-whrgz7"
+                >
+                  <a
+                    class="flex-none"
+                    href="#/album/1"
+                  >
+                    <img
+                      class="h-16 w-16 text-xs svelte-hn7eai rounded-sm hidden"
+                      loading="lazy"
+                    />
+                     
+                    <span
+                      class="h-16 w-16 text-xs svelte-hn7eai rounded-sm"
+                    >
+                      <i
+                        class="material-icons svelte-hn7eai"
+                      >
+                        music_note
+                      </i>
+                    </span>
+                    
+                  </a>
+                   
+                  <div
+                    class="track svelte-whrgz7"
+                  >
+                    <span
+                      class="title svelte-whrgz7"
+                    >
+                      Vitamin B
+                    </span>
+                     
+                    <a
+                      class="text-sm underlined"
+                      href="#/artist/0"
+                      onclick="event.stopPropagation()"
+                    >
+                      Yoko Kanno and the Seatbelts
+                    </a>
+                  </div>
+                   
+                  <div
+                    class="duration svelte-whrgz7"
+                  >
+                    4:06
+                  </div>
+                </div>
+              </td>
+               
+              <td
+                class="col-span-4 svelte-133b2lx"
+              >
+                <a
+                  class="underlined"
+                  href="#/album/1"
+                  onclick="event.stopPropagation()"
+                >
+                  Cowboy Bebop - NoDisc
+                </a>
+              </td>
+               
+              <td
+                class="svelte-133b2lx"
+              >
+                <span
+                  class="wrapper svelte-14ek7z"
+                >
+                  <button
+                    class="svelte-j6xhgj iconOnly noBorder"
+                  >
+                    <i
+                      class="material-icons svelte-j6xhgj"
+                    >
+                      more_vert
+                    </i>
+                     
+                     
+                    
+                  </button>
+                   
+                </span>
+              </td>
+            </tr>
+             
+          </li>
+          <li
+            class="svelte-4th0s9"
+            draggable="true"
+          >
+            <tr
+              class="svelte-133b2lx"
+              slot="item"
+            >
+              <td
+                class="svelte-133b2lx"
+              >
+                11
+              </td>
+               
+              <td
+                class="col-span-6 svelte-133b2lx"
+              >
+                <div
+                  class="undefined root svelte-whrgz7"
+                >
+                  <a
+                    class="flex-none"
+                    href="#/album/1"
+                  >
+                    <img
+                      class="h-16 w-16 text-xs svelte-hn7eai rounded-sm hidden"
+                      loading="lazy"
+                    />
+                     
+                    <span
+                      class="h-16 w-16 text-xs svelte-hn7eai rounded-sm"
+                    >
+                      <i
+                        class="material-icons svelte-hn7eai"
+                      >
+                        music_note
+                      </i>
+                    </span>
+                    
+                  </a>
+                   
+                  <div
+                    class="track svelte-whrgz7"
+                  >
+                    <span
+                      class="title svelte-whrgz7"
+                    >
+                      Green Bird
+                    </span>
+                     
+                    <a
+                      class="text-sm underlined"
+                      href="#/artist/0"
+                      onclick="event.stopPropagation()"
+                    >
+                      Yoko Kanno and the Seatbelts
+                    </a>
+                  </div>
+                   
+                  <div
+                    class="duration svelte-whrgz7"
+                  >
+                    2:33
+                  </div>
+                </div>
+              </td>
+               
+              <td
+                class="col-span-4 svelte-133b2lx"
+              >
+                <a
+                  class="underlined"
+                  href="#/album/1"
+                  onclick="event.stopPropagation()"
+                >
+                  Cowboy Bebop - NoDisc
+                </a>
+              </td>
+               
+              <td
+                class="svelte-133b2lx"
+              >
+                <span
+                  class="wrapper svelte-14ek7z"
+                >
+                  <button
+                    class="svelte-j6xhgj iconOnly noBorder"
+                  >
+                    <i
+                      class="material-icons svelte-j6xhgj"
+                    >
+                      more_vert
+                    </i>
+                     
+                     
+                    
+                  </button>
+                   
+                </span>
+              </td>
+            </tr>
+             
+          </li>
+          <li
+            class="svelte-4th0s9"
+            draggable="true"
+          >
+            <tr
+              class="svelte-133b2lx"
+              slot="item"
+            >
+              <td
+                class="svelte-133b2lx"
+              >
+                12
+              </td>
+               
+              <td
+                class="col-span-6 svelte-133b2lx"
+              >
+                <div
+                  class="undefined root svelte-whrgz7"
+                >
+                  <a
+                    class="flex-none"
+                    href="#/album/1"
+                  >
+                    <img
+                      class="h-16 w-16 text-xs svelte-hn7eai rounded-sm hidden"
+                      loading="lazy"
+                    />
+                     
+                    <span
+                      class="h-16 w-16 text-xs svelte-hn7eai rounded-sm"
+                    >
+                      <i
+                        class="material-icons svelte-hn7eai"
+                      >
+                        music_note
+                      </i>
+                    </span>
+                    
+                  </a>
+                   
+                  <div
+                    class="track svelte-whrgz7"
+                  >
+                    <span
+                      class="title svelte-whrgz7"
+                    >
+                      ELM
+                    </span>
+                     
+                    <a
+                      class="text-sm underlined"
+                      href="#/artist/0"
+                      onclick="event.stopPropagation()"
+                    >
+                      Yoko Kanno and the Seatbelts
+                    </a>
+                  </div>
+                   
+                  <div
+                    class="duration svelte-whrgz7"
+                  >
+                    6:55
+                  </div>
+                </div>
+              </td>
+               
+              <td
+                class="col-span-4 svelte-133b2lx"
+              >
+                <a
+                  class="underlined"
+                  href="#/album/1"
+                  onclick="event.stopPropagation()"
+                >
+                  Cowboy Bebop - NoDisc
+                </a>
+              </td>
+               
+              <td
+                class="svelte-133b2lx"
+              >
+                <span
+                  class="wrapper svelte-14ek7z"
+                >
+                  <button
+                    class="svelte-j6xhgj iconOnly noBorder"
+                  >
+                    <i
+                      class="material-icons svelte-j6xhgj"
+                    >
+                      more_vert
+                    </i>
+                     
+                     
+                    
+                  </button>
+                   
+                </span>
+              </td>
+            </tr>
+             
+          </li>
+          <li
+            class="svelte-4th0s9"
+            draggable="true"
+          >
+            <tr
+              class="svelte-133b2lx"
+              slot="item"
+            >
+              <td
+                class="svelte-133b2lx"
+              >
+                13
+              </td>
+               
+              <td
+                class="col-span-6 svelte-133b2lx"
+              >
+                <div
+                  class="undefined root svelte-whrgz7"
+                >
+                  <a
+                    class="flex-none"
+                    href="#/album/1"
+                  >
+                    <img
+                      class="h-16 w-16 text-xs svelte-hn7eai rounded-sm hidden"
+                      loading="lazy"
+                    />
+                     
+                    <span
+                      class="h-16 w-16 text-xs svelte-hn7eai rounded-sm"
+                    >
+                      <i
+                        class="material-icons svelte-hn7eai"
+                      >
+                        music_note
+                      </i>
+                    </span>
+                    
+                  </a>
+                   
+                  <div
+                    class="track svelte-whrgz7"
+                  >
+                    <span
+                      class="title svelte-whrgz7"
+                    >
+                      Vitamin C
+                    </span>
+                     
+                    <a
+                      class="text-sm underlined"
+                      href="#/artist/0"
+                      onclick="event.stopPropagation()"
+                    >
+                      Yoko Kanno and the Seatbelts
+                    </a>
+                  </div>
+                   
+                  <div
+                    class="duration svelte-whrgz7"
+                  >
+                    5:24
+                  </div>
+                </div>
+              </td>
+               
+              <td
+                class="col-span-4 svelte-133b2lx"
+              >
+                <a
+                  class="underlined"
+                  href="#/album/1"
+                  onclick="event.stopPropagation()"
+                >
+                  Cowboy Bebop - NoDisc
+                </a>
+              </td>
+               
+              <td
+                class="svelte-133b2lx"
+              >
+                <span
+                  class="wrapper svelte-14ek7z"
+                >
+                  <button
+                    class="svelte-j6xhgj iconOnly noBorder"
+                  >
+                    <i
+                      class="material-icons svelte-j6xhgj"
+                    >
+                      more_vert
+                    </i>
+                     
+                     
+                    
+                  </button>
+                   
+                </span>
+              </td>
+            </tr>
+             
+          </li>
+          <li
+            class="svelte-4th0s9"
+            draggable="true"
+          >
+            <tr
+              class="svelte-133b2lx"
+              slot="item"
+            >
+              <td
+                class="svelte-133b2lx"
+              >
+                14
+              </td>
+               
+              <td
+                class="col-span-6 svelte-133b2lx"
+              >
+                <div
+                  class="undefined root svelte-whrgz7"
+                >
+                  <a
+                    class="flex-none"
+                    href="#/album/1"
+                  >
+                    <img
+                      class="h-16 w-16 text-xs svelte-hn7eai rounded-sm hidden"
+                      loading="lazy"
+                    />
+                     
+                    <span
+                      class="h-16 w-16 text-xs svelte-hn7eai rounded-sm"
+                    >
+                      <i
+                        class="material-icons svelte-hn7eai"
+                      >
+                        music_note
+                      </i>
+                    </span>
+                    
+                  </a>
+                   
+                  <div
+                    class="track svelte-whrgz7"
+                  >
+                    <span
+                      class="title svelte-whrgz7"
+                    >
+                      Gateway
+                    </span>
+                     
+                    <a
+                      class="text-sm underlined"
+                      href="#/artist/0"
+                      onclick="event.stopPropagation()"
+                    >
+                      Yoko Kanno and the Seatbelts
+                    </a>
+                  </div>
+                   
+                  <div
+                    class="duration svelte-whrgz7"
+                  >
+                    0:16
+                  </div>
+                </div>
+              </td>
+               
+              <td
+                class="col-span-4 svelte-133b2lx"
+              >
+                <a
+                  class="underlined"
+                  href="#/album/1"
+                  onclick="event.stopPropagation()"
+                >
+                  Cowboy Bebop - NoDisc
+                </a>
+              </td>
+               
+              <td
+                class="svelte-133b2lx"
+              >
+                <span
+                  class="wrapper svelte-14ek7z"
+                >
+                  <button
+                    class="svelte-j6xhgj iconOnly noBorder"
+                  >
+                    <i
+                      class="material-icons svelte-j6xhgj"
+                    >
+                      more_vert
+                    </i>
+                     
+                     
+                    
+                  </button>
+                   
+                </span>
+              </td>
+            </tr>
+             
+          </li>
+          <li
+            class="svelte-4th0s9"
+            draggable="true"
+          >
+            <tr
+              class="svelte-133b2lx"
+              slot="item"
+            >
+              <td
+                class="svelte-133b2lx"
+              >
+                15
+              </td>
+               
+              <td
+                class="col-span-6 svelte-133b2lx"
+              >
+                <div
+                  class="undefined root svelte-whrgz7"
+                >
+                  <a
+                    class="flex-none"
+                    href="#/album/1"
+                  >
+                    <img
+                      class="h-16 w-16 text-xs svelte-hn7eai rounded-sm hidden"
+                      loading="lazy"
+                    />
+                     
+                    <span
+                      class="h-16 w-16 text-xs svelte-hn7eai rounded-sm"
+                    >
+                      <i
+                        class="material-icons svelte-hn7eai"
+                      >
+                        music_note
+                      </i>
+                    </span>
+                    
+                  </a>
+                   
+                  <div
+                    class="track svelte-whrgz7"
+                  >
+                    <span
+                      class="title svelte-whrgz7"
+                    >
+                      The Singing Sea
+                    </span>
+                     
+                    <a
+                      class="text-sm underlined"
+                      href="#/artist/0"
+                      onclick="event.stopPropagation()"
+                    >
+                      Yoko Kanno and the Seatbelts
+                    </a>
+                  </div>
+                   
+                  <div
+                    class="duration svelte-whrgz7"
+                  >
+                    6:41
+                  </div>
+                </div>
+              </td>
+               
+              <td
+                class="col-span-4 svelte-133b2lx"
+              >
+                <a
+                  class="underlined"
+                  href="#/album/1"
+                  onclick="event.stopPropagation()"
+                >
+                  Cowboy Bebop - NoDisc
+                </a>
+              </td>
+               
+              <td
+                class="svelte-133b2lx"
+              >
+                <span
+                  class="wrapper svelte-14ek7z"
+                >
+                  <button
+                    class="svelte-j6xhgj iconOnly noBorder"
+                  >
+                    <i
+                      class="material-icons svelte-j6xhgj"
+                    >
+                      more_vert
+                    </i>
+                     
+                     
+                    
+                  </button>
+                   
+                </span>
+              </td>
+            </tr>
+             
+          </li>
+          <li
+            class="svelte-4th0s9"
+            draggable="true"
+          >
+            <tr
+              class="svelte-133b2lx"
+              slot="item"
+            >
+              <td
+                class="svelte-133b2lx"
+              >
+                16
+              </td>
+               
+              <td
+                class="col-span-6 svelte-133b2lx"
+              >
+                <div
+                  class="undefined root svelte-whrgz7"
+                >
+                  <a
+                    class="flex-none"
+                    href="#/album/1"
+                  >
+                    <img
+                      class="h-16 w-16 text-xs svelte-hn7eai rounded-sm hidden"
+                      loading="lazy"
+                    />
+                     
+                    <span
+                      class="h-16 w-16 text-xs svelte-hn7eai rounded-sm"
+                    >
+                      <i
+                        class="material-icons svelte-hn7eai"
+                      >
+                        music_note
+                      </i>
+                    </span>
+                    
+                  </a>
+                   
+                  <div
+                    class="track svelte-whrgz7"
+                  >
+                    <span
+                      class="title svelte-whrgz7"
+                    >
+                      The Egg and You!
+                    </span>
+                     
+                    <a
+                      class="text-sm underlined"
+                      href="#/artist/0"
+                      onclick="event.stopPropagation()"
+                    >
+                      Yoko Kanno and the Seatbelts
+                    </a>
+                  </div>
+                   
+                  <div
+                    class="duration svelte-whrgz7"
+                  >
+                    4:47
+                  </div>
+                </div>
+              </td>
+               
+              <td
+                class="col-span-4 svelte-133b2lx"
+              >
+                <a
+                  class="underlined"
+                  href="#/album/1"
+                  onclick="event.stopPropagation()"
+                >
+                  Cowboy Bebop - NoDisc
+                </a>
+              </td>
+               
+              <td
+                class="svelte-133b2lx"
+              >
+                <span
+                  class="wrapper svelte-14ek7z"
+                >
+                  <button
+                    class="svelte-j6xhgj iconOnly noBorder"
+                  >
+                    <i
+                      class="material-icons svelte-j6xhgj"
+                    >
+                      more_vert
+                    </i>
+                     
+                     
+                    
+                  </button>
+                   
+                </span>
+              </td>
+            </tr>
+             
+          </li>
+          <li
+            class="svelte-4th0s9"
+            draggable="true"
+          >
+            <tr
+              class="svelte-133b2lx"
+              slot="item"
+            >
+              <td
+                class="svelte-133b2lx"
+              >
+                17
+              </td>
+               
+              <td
+                class="col-span-6 svelte-133b2lx"
+              >
+                <div
+                  class="undefined root svelte-whrgz7"
+                >
+                  <a
+                    class="flex-none"
+                    href="#/album/1"
+                  >
+                    <img
+                      class="h-16 w-16 text-xs svelte-hn7eai rounded-sm hidden"
+                      loading="lazy"
+                    />
+                     
+                    <span
+                      class="h-16 w-16 text-xs svelte-hn7eai rounded-sm"
+                    >
+                      <i
+                        class="material-icons svelte-hn7eai"
+                      >
+                        music_note
+                      </i>
+                    </span>
+                    
+                  </a>
+                   
+                  <div
+                    class="track svelte-whrgz7"
+                  >
+                    <span
+                      class="title svelte-whrgz7"
+                    >
+                      Forever Broke
+                    </span>
+                     
+                    <a
+                      class="text-sm underlined"
+                      href="#/artist/0"
+                      onclick="event.stopPropagation()"
+                    >
+                      Yoko Kanno and the Seatbelts
+                    </a>
+                  </div>
+                   
+                  <div
+                    class="duration svelte-whrgz7"
+                  >
+                    1:36
+                  </div>
+                </div>
+              </td>
+               
+              <td
+                class="col-span-4 svelte-133b2lx"
+              >
+                <a
+                  class="underlined"
+                  href="#/album/1"
+                  onclick="event.stopPropagation()"
+                >
+                  Cowboy Bebop - NoDisc
+                </a>
+              </td>
+               
+              <td
+                class="svelte-133b2lx"
+              >
+                <span
+                  class="wrapper svelte-14ek7z"
+                >
+                  <button
+                    class="svelte-j6xhgj iconOnly noBorder"
+                  >
+                    <i
+                      class="material-icons svelte-j6xhgj"
+                    >
+                      more_vert
+                    </i>
+                     
+                     
+                    
+                  </button>
+                   
+                </span>
+              </td>
+            </tr>
+             
+          </li>
+          <li
+            class="svelte-4th0s9"
+            draggable="true"
+          >
+            <tr
+              class="svelte-133b2lx"
+              slot="item"
+            >
+              <td
+                class="svelte-133b2lx"
+              >
+                18
+              </td>
+               
+              <td
+                class="col-span-6 svelte-133b2lx"
+              >
+                <div
+                  class="undefined root svelte-whrgz7"
+                >
+                  <a
+                    class="flex-none"
+                    href="#/album/1"
+                  >
+                    <img
+                      class="h-16 w-16 text-xs svelte-hn7eai rounded-sm hidden"
+                      loading="lazy"
+                    />
+                     
+                    <span
+                      class="h-16 w-16 text-xs svelte-hn7eai rounded-sm"
+                    >
+                      <i
+                        class="material-icons svelte-hn7eai"
+                      >
+                        music_note
+                      </i>
+                    </span>
+                    
+                  </a>
+                   
+                  <div
+                    class="track svelte-whrgz7"
+                  >
+                    <span
+                      class="title svelte-whrgz7"
+                    >
+                      Power of Kungfu Remix
+                    </span>
+                     
+                    <a
+                      class="text-sm underlined"
+                      href="#/artist/0"
+                      onclick="event.stopPropagation()"
+                    >
+                      Yoko Kanno and the Seatbelts
+                    </a>
+                  </div>
+                   
+                  <div
+                    class="duration svelte-whrgz7"
+                  >
+                    2:22
+                  </div>
+                </div>
+              </td>
+               
+              <td
+                class="col-span-4 svelte-133b2lx"
+              >
+                <a
+                  class="underlined"
+                  href="#/album/1"
+                  onclick="event.stopPropagation()"
+                >
+                  Cowboy Bebop - NoDisc
+                </a>
+              </td>
+               
+              <td
+                class="svelte-133b2lx"
+              >
+                <span
+                  class="wrapper svelte-14ek7z"
+                >
+                  <button
+                    class="svelte-j6xhgj iconOnly noBorder"
+                  >
+                    <i
+                      class="material-icons svelte-j6xhgj"
+                    >
+                      more_vert
+                    </i>
+                     
+                     
+                    
+                  </button>
+                   
+                </span>
+              </td>
+            </tr>
+             
+          </li>
+        </ol>
+      </tbody>
+    </table>
+    
+  </div>
+</section>
+`;

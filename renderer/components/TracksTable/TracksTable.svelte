@@ -14,7 +14,7 @@
   export let tracks
   export let current
   export let withAlbum = true
-  let currentTrack = null
+  let openedTrack = null
 
   $: sortedTracks = tracks
     ? tracks
@@ -87,9 +87,9 @@
 </style>
 
 <TrackDetailsDialogue
-  src={currentTrack}
-  open={currentTrack !== null}
-  on:close={() => (current = null)} />
+  src={openedTrack}
+  open={openedTrack !== null}
+  on:close={() => (openedTrack = null)} />
 
 {#if tracks}
   <table>
@@ -128,7 +128,7 @@
               noBorder={true}
               withArrow={false}
               valueAsText={false}
-              options={[{ label: $_('play now'), icon: 'play_arrow', act: () => add(track, true) }, { label: $_('enqueue'), icon: 'playlist_add', act: () => add(track) }, { label: $_('show details'), icon: 'local_offer', act: () => (currentTrack = track) }, { label: $_('open folder'), icon: 'launch', act: () => openContainingFolder(track) }]} />
+              options={[{ label: $_('play now'), icon: 'play_arrow', act: () => add(track, true) }, { label: $_('enqueue'), icon: 'playlist_add', act: () => add(track) }, { label: $_('show details'), icon: 'local_offer', act: () => (openedTrack = track) }, { label: $_('open folder'), icon: 'launch', act: () => openContainingFolder(track) }]} />
           </td>
         </tr>
       {/each}

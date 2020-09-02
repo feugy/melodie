@@ -18,11 +18,11 @@
 
 <style type="postcss">
   header {
-    @apply flex flex-row relative text-left px-8;
+    @apply flex flex-row text-left px-8;
   }
 
   div {
-    @apply my-2 relative;
+    @apply my-2;
   }
 
   .totalDuration {

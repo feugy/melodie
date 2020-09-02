@@ -27,6 +27,16 @@
     return !parent ? false : parent === menu ? true : isInMenu(parent)
   }
 
+  function findPositionReference(node) {
+    if (!node) {
+      return null
+    }
+    const { position } = getComputedStyle(node)
+    return position !== 'static'
+      ? node
+      : findPositionReference(node.offsetParent)
+  }
+
   function handleSelect(selected) {
     value = selected
     open = false
@@ -51,11 +61,9 @@
     const position = button.getBoundingClientRect()
     let offsetLeft = 0
     let offsetTop = 0
-    if (
-      button.offsetParent &&
-      getComputedStyle(button.offsetParent).position !== 'static'
-    ) {
-      const offset = button.offsetParent.getBoundingClientRect()
+    const reference = findPositionReference(button.offsetParent)
+    if (reference) {
+      const offset = reference.getBoundingClientRect()
       offsetLeft = offset.left
       offsetTop = offset.top
     }
@@ -152,9 +160,7 @@
               {...option.props}
               on:close={handleInteraction} />
           {:else}
-            {#if option.icon}
-              <i class="material-icons">{option.icon}</i>
-            {/if}
+            {#if option.icon}<i class="material-icons">{option.icon}</i>{/if}
             {option.label || option}
           {/if}
         </li>

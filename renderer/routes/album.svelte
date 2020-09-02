@@ -9,7 +9,7 @@
 
 <style type="postcss">
   section {
-    @apply flex flex-col items-stretch w-full mb-12 overflow-hidden relative;
+    @apply flex flex-col items-stretch w-full mb-12 overflow-hidden;
     min-height: 16rem;
   }
 
@@ -22,7 +22,7 @@
   }
 
   p {
-    @apply my-20 relative;
+    @apply my-20;
   }
 </style>
 

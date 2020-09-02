@@ -34,7 +34,7 @@
 
 <style type="postcss">
   article {
-    @apply relative text-left mx-8 mb-8;
+    @apply text-left mx-8 mb-8;
   }
 
   li {

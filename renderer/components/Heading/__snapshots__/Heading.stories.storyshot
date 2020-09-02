@@ -6,11 +6,11 @@ exports[`Storyshots Components/Heading Default 1`] = `
 >
   <section>
     <header
-      class=" svelte-z1o3ws"
+      class=" svelte-1nfxy4c"
       style="--image: url(./valentino-funghi-MEcxLZ8ENV8-unsplash.jpg); --shade-color: rgba(0, 0, 0, 0.7); --bgPosition: center;"
     >
       <h1
-        class="svelte-z1o3ws"
+        class="svelte-1nfxy4c"
       >
         70 albums
       </h1>

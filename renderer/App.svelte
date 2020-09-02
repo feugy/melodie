@@ -52,7 +52,7 @@
   }
 
   aside {
-    @apply overflow-y-auto h-full;
+    @apply overflow-y-auto h-full relative z-0;
     background: var(--bg-primary-color);
   }
 
@@ -84,7 +84,6 @@
   <main>
     <Sheet bind:open={isPlaylistOpen}>
       <section slot="main">
-
         <Nav />
         <Router {routes} />
       </section>

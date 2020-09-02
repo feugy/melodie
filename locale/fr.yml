@@ -27,6 +27,7 @@ open folder: Ouvrir le dossier parent
 play all: Lire tout
 play now: Lire maintenant
 queue: Liste de lecture
+remove from playlist: Retirer
 results for _: Resultats pour "{searched}"
 settings: Paramètres
 show all: Voir tout

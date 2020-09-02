@@ -39,6 +39,7 @@ play now: Play now
 playlists: Playlists
 provider (_ x _): '{value} ({width} x {height})'
 queue: Queue
+remove from playlist: Remove
 results for _: Results for "{searched}"
 settings: Settings
 show all: Show all

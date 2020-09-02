@@ -1,6 +1,6 @@
 <style type="postcss">
   h4 {
-    @apply font-semibold text-2xl mb-4 uppercase relative text-left;
+    @apply font-semibold text-2xl mb-4 uppercase text-left;
   }
 </style>
 

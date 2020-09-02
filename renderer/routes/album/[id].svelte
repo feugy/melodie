@@ -57,7 +57,7 @@
 
 <style type="postcss">
   section {
-    @apply flex flex-row items-start z-0 relative m-6 mt-0;
+    @apply flex flex-row items-start z-0 m-6 mt-0;
   }
 
   .disks {

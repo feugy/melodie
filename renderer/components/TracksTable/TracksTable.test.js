@@ -87,86 +87,62 @@ describe('TracksTable component', () => {
     expect(location.hash).toEqual(`#/`)
   })
 
-  it('plays track with dropdown', async () => {
-    const track = faker.random.arrayElement(tracksData)
-    render(
-      html`<${TracksTable}
-        tracks=${tracksData}
-        current=${current$Data}
-        withAlbum
-      />`
-    )
+  describe('given the dropdown menu opened', () => {
+    let track
 
-    await fireEvent.click(
-      screen.getByText(track.tags.title).closest('tr').querySelector('button')
-    )
-    await fireEvent.click(screen.getByText('play_arrow'))
-    await sleep()
+    beforeEach(async () => {
+      track = faker.random.arrayElement(tracksData)
+      render(
+        html`<${TracksTable}
+          tracks=${tracksData}
+          current=${current$Data}
+          withAlbum
+        />`
+      )
 
-    expect(add).toHaveBeenCalledWith(track, true)
-    expect(location.hash).toEqual(`#/`)
-  })
+      await fireEvent.click(
+        screen.getByText(track.tags.title).closest('tr').querySelector('button')
+      )
+    })
 
-  it('enqueues track with dropdown', async () => {
-    const track = faker.random.arrayElement(tracksData)
-    render(
-      html`<${TracksTable}
-        tracks=${tracksData}
-        current=${current$Data}
-        withAlbum
-      />`
-    )
+    it('plays track with dropdown', async () => {
+      await fireEvent.click(screen.getByText('play_arrow'))
+      await sleep()
 
-    await fireEvent.click(
-      screen.getByText(track.tags.title).closest('tr').querySelector('button')
-    )
-    await fireEvent.click(screen.getByText('playlist_add'))
-    await sleep()
+      expect(add).toHaveBeenCalledWith(track, true)
+      expect(screen.getByText(translate('track details'))).not.toBeVisible()
+      expect(electron.shell.showItemInFolder).not.toHaveBeenCalled()
+      expect(location.hash).toEqual(`#/`)
+    })
 
-    expect(add).toHaveBeenCalledWith(track)
-    expect(location.hash).toEqual(`#/`)
-  })
+    it('enqueues track with dropdown', async () => {
+      await fireEvent.click(screen.getByText('playlist_add'))
+      await sleep()
 
-  it('opens parent folder', async () => {
-    const track = faker.random.arrayElement(tracksData)
-    render(
-      html`<${TracksTable}
-        tracks=${tracksData}
-        current=${current$Data}
-        withAlbum
-      />`
-    )
+      expect(add).toHaveBeenCalledWith(track)
+      expect(screen.getByText(translate('track details'))).not.toBeVisible()
+      expect(electron.shell.showItemInFolder).not.toHaveBeenCalled()
+      expect(location.hash).toEqual(`#/`)
+    })
 
-    await fireEvent.click(
-      screen.getByText(track.tags.title).closest('tr').querySelector('button')
-    )
-    await fireEvent.click(screen.getByText('launch'))
-    await sleep()
+    it('opens parent folder', async () => {
+      await fireEvent.click(screen.getByText('launch'))
+      await sleep()
 
-    expect(add).not.toHaveBeenCalled()
-    expect(location.hash).toEqual(`#/`)
-    expect(electron.shell.showItemInFolder).toHaveBeenCalledWith(track.path)
-  })
+      expect(electron.shell.showItemInFolder).toHaveBeenCalledWith(track.path)
+      expect(add).not.toHaveBeenCalled()
+      expect(screen.getByText(translate('track details'))).not.toBeVisible()
+      expect(location.hash).toEqual(`#/`)
+    })
 
-  it('opens track details dialogue', async () => {
-    const track = faker.random.arrayElement(tracksData)
-    render(
-      html`<${TracksTable}
-        tracks=${tracksData}
-        current=${current$Data}
-        withAlbum
-      />`
-    )
+    it('opens track details dialogue', async () => {
+      await fireEvent.click(screen.getByText('local_offer'))
+      await sleep()
 
-    await fireEvent.click(
-      screen.getByText(track.tags.title).closest('tr').querySelector('button')
-    )
-    await fireEvent.click(screen.getByText('local_offer'))
-    await sleep()
-
-    expect(screen.getByText(translate('track details'))).toBeInTheDocument()
-
-    expect(add).not.toHaveBeenCalled()
-    expect(location.hash).toEqual(`#/`)
+      expect(screen.getByText(translate('track details'))).toBeVisible()
+      expect(add).not.toHaveBeenCalled()
+      expect(electron.shell.showItemInFolder).not.toHaveBeenCalled()
+      expect(location.hash).toEqual(`#/`)
+    })
   })
 })

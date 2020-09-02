@@ -7,7 +7,8 @@
 
 <style type="postcss">
   header {
-    @apply w-full px-8 pt-24 pb-40;
+    @apply w-full px-8 pt-24 pb-40 relative;
+    z-index: -1;
     margin-bottom: -9rem;
     background-image: linear-gradient(
         to top,

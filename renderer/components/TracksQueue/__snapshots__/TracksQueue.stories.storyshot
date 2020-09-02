@@ -6,18 +6,18 @@ exports[`Storyshots Components/Tracks queue Empty 1`] = `
 >
   <div>
     <header
-      class=" svelte-z1o3ws"
+      class=" svelte-1nfxy4c"
       style="--image: url(../images/jason-rosewell-ASKeuOZqhYU-unsplash.jpg); --shade-color: rgba(0, 0, 0, 0.7); --bgPosition: center;"
     >
       <h1
-        class="svelte-z1o3ws"
+        class="svelte-1nfxy4c"
       >
         Queue
       </h1>
     </header>
      
     <header
-      class="svelte-ljbd4"
+      class="svelte-keiwto"
     >
       <h3>
         0 tracks
@@ -26,7 +26,7 @@ exports[`Storyshots Components/Tracks queue Empty 1`] = `
     </header>
      
     <div
-      class="svelte-ljbd4"
+      class="svelte-keiwto"
     >
       <ol />
     </div>
@@ -40,18 +40,18 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
 >
   <div>
     <header
-      class=" svelte-z1o3ws"
+      class=" svelte-1nfxy4c"
       style="--image: url(../images/jason-rosewell-ASKeuOZqhYU-unsplash.jpg); --shade-color: rgba(0, 0, 0, 0.7); --bgPosition: center;"
     >
       <h1
-        class="svelte-z1o3ws"
+        class="svelte-1nfxy4c"
       >
         Queue
       </h1>
     </header>
      
     <header
-      class="svelte-ljbd4"
+      class="svelte-keiwto"
     >
       <h3>
         8 tracks
@@ -76,7 +76,7 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
       </span>
        
       <span
-        class="totalDuration svelte-ljbd4"
+        class="totalDuration svelte-keiwto"
       >
         7:34
       </span>
@@ -95,7 +95,7 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
     </header>
      
     <div
-      class="svelte-ljbd4"
+      class="svelte-keiwto"
     >
       <ol>
         <li
@@ -106,7 +106,7 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
             slot="item"
           >
             <span
-              class="row svelte-ljbd4 current"
+              class="row svelte-keiwto current"
             >
               <div
                 class="flex-auto root svelte-whrgz7"
@@ -173,7 +173,7 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
             slot="item"
           >
             <span
-              class="row svelte-ljbd4"
+              class="row svelte-keiwto"
             >
               <div
                 class="flex-auto root svelte-whrgz7"
@@ -240,7 +240,7 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
             slot="item"
           >
             <span
-              class="row svelte-ljbd4"
+              class="row svelte-keiwto"
             >
               <div
                 class="flex-auto root svelte-whrgz7"
@@ -307,7 +307,7 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
             slot="item"
           >
             <span
-              class="row svelte-ljbd4"
+              class="row svelte-keiwto"
             >
               <div
                 class="flex-auto root svelte-whrgz7"
@@ -374,7 +374,7 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
             slot="item"
           >
             <span
-              class="row svelte-ljbd4"
+              class="row svelte-keiwto"
             >
               <div
                 class="flex-auto root svelte-whrgz7"
@@ -441,7 +441,7 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
             slot="item"
           >
             <span
-              class="row svelte-ljbd4"
+              class="row svelte-keiwto"
             >
               <div
                 class="flex-auto root svelte-whrgz7"
@@ -508,7 +508,7 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
             slot="item"
           >
             <span
-              class="row svelte-ljbd4"
+              class="row svelte-keiwto"
             >
               <div
                 class="flex-auto root svelte-whrgz7"
@@ -575,7 +575,7 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
             slot="item"
           >
             <span
-              class="row svelte-ljbd4"
+              class="row svelte-keiwto"
             >
               <div
                 class="flex-auto root svelte-whrgz7"

@@ -10,9 +10,7 @@ import {
   playlists as mockedPlaylists,
   changes,
   removals,
-  load,
-  removeTrack,
-  moveTrack
+  load
 } from '../../stores/playlists'
 import { add } from '../../stores/track-queue'
 import { translate, sleep, addRefs } from '../../tests'
@@ -79,7 +77,7 @@ describe('playlist details route', () => {
   function expectDisplayedTracks() {
     for (const track of playlist.tracks) {
       expect(screen.queryByText(track.tags.artists[0])).toBeInTheDocument()
-      expect(screen.queryByText(track.tags.album)).not.toBeInTheDocument()
+      expect(screen.queryByText(track.tags.album)).toBeInTheDocument()
       expect(screen.queryByText(track.tags.title)).toBeInTheDocument()
     }
   }
@@ -183,43 +181,6 @@ describe('playlist details route', () => {
       removals.next(faker.random.number())
 
       expect(replace).not.toHaveBeenCalled()
-    })
-
-    it('removes track from playlist', async () => {
-      jest.resetAllMocks()
-
-      await fireEvent.click(
-        screen
-          .getByText(playlist.tracks[1].tags.title)
-          .closest('li')
-          .querySelector('button')
-      )
-
-      expect(removeTrack).toHaveBeenCalledWith(playlist, 1)
-      expect(removeTrack).toHaveBeenCalledTimes(1)
-      expect(replace).not.toHaveBeenCalled()
-      expect(load).not.toHaveBeenCalled()
-    })
-
-    it('moves track in the playlist', async () => {
-      jest.resetAllMocks()
-
-      const dropped = screen.queryByText(playlist.tracks[2].tags.title)
-      const hovered = screen.queryByText(playlist.tracks[1].tags.title)
-
-      await fireEvent.dragStart(
-        screen.queryByText(playlist.tracks[0].tags.title)
-      )
-      await fireEvent.dragOver(hovered)
-      await fireEvent.dragLeave(hovered)
-      await fireEvent.dragOver(dropped)
-      await fireEvent.drop(dropped)
-      await sleep()
-
-      expect(moveTrack).toHaveBeenCalledWith(playlist, { from: 0, to: 2 })
-      expect(moveTrack).toHaveBeenCalledTimes(1)
-      expect(replace).not.toHaveBeenCalled()
-      expect(load).not.toHaveBeenCalled()
     })
   })
 })
