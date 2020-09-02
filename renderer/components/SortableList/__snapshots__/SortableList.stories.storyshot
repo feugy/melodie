@@ -1,34 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Storyshots Components/Tracks list Empty 1`] = `
+exports[`Storyshots Components/Sortable list Default 1`] = `
 <section
   class="storybook-snapshot-container"
 >
   <div>
-    <ol
-      class="svelte-1fiunj2"
-    />
-  </div>
-</section>
-`;
-
-exports[`Storyshots Components/Tracks list With Track List 1`] = `
-<section
-  class="storybook-snapshot-container"
->
-  <div>
-    <ol
-      class="svelte-1fiunj2"
-    >
+    <ol>
       <li
-        class="svelte-1fiunj2"
+        class="svelte-4th0s9"
         draggable="true"
       >
-        <span
-          class="row svelte-1fiunj2"
+        <div
+          class="svelte-1hrmi6p"
+          slot="item"
         >
           <div
-            class="flex-auto root svelte-whrgz7"
+            class="col-span-11 root svelte-whrgz7"
           >
             <a
               class="flex-none"
@@ -69,29 +56,32 @@ exports[`Storyshots Components/Tracks list With Track List 1`] = `
             </div>
           </div>
            
-          <button
-            class="mx-4 svelte-j6xhgj iconOnly noBorder"
-          >
-            <i
-              class="material-icons svelte-j6xhgj"
+          <span>
+            <button
+              class="svelte-j6xhgj iconOnly noBorder"
             >
-              close
-            </i>
-             
-             
-          </button>
-        </span>
+              <i
+                class="material-icons svelte-j6xhgj"
+              >
+                close
+              </i>
+               
+               
+            </button>
+          </span>
+        </div>
          
       </li>
       <li
-        class="svelte-1fiunj2"
+        class="svelte-4th0s9"
         draggable="true"
       >
-        <span
-          class="row svelte-1fiunj2"
+        <div
+          class="svelte-1hrmi6p"
+          slot="item"
         >
           <div
-            class="flex-auto root svelte-whrgz7"
+            class="col-span-11 root svelte-whrgz7"
           >
             <a
               class="flex-none"
@@ -132,29 +122,32 @@ exports[`Storyshots Components/Tracks list With Track List 1`] = `
             </div>
           </div>
            
-          <button
-            class="mx-4 svelte-j6xhgj iconOnly noBorder"
-          >
-            <i
-              class="material-icons svelte-j6xhgj"
+          <span>
+            <button
+              class="svelte-j6xhgj iconOnly noBorder"
             >
-              close
-            </i>
-             
-             
-          </button>
-        </span>
+              <i
+                class="material-icons svelte-j6xhgj"
+              >
+                close
+              </i>
+               
+               
+            </button>
+          </span>
+        </div>
          
       </li>
       <li
-        class="svelte-1fiunj2"
+        class="svelte-4th0s9"
         draggable="true"
       >
-        <span
-          class="row svelte-1fiunj2"
+        <div
+          class="svelte-1hrmi6p"
+          slot="item"
         >
           <div
-            class="flex-auto root svelte-whrgz7"
+            class="col-span-11 root svelte-whrgz7"
           >
             <a
               class="flex-none"
@@ -195,29 +188,32 @@ exports[`Storyshots Components/Tracks list With Track List 1`] = `
             </div>
           </div>
            
-          <button
-            class="mx-4 svelte-j6xhgj iconOnly noBorder"
-          >
-            <i
-              class="material-icons svelte-j6xhgj"
+          <span>
+            <button
+              class="svelte-j6xhgj iconOnly noBorder"
             >
-              close
-            </i>
-             
-             
-          </button>
-        </span>
+              <i
+                class="material-icons svelte-j6xhgj"
+              >
+                close
+              </i>
+               
+               
+            </button>
+          </span>
+        </div>
          
       </li>
       <li
-        class="svelte-1fiunj2"
+        class="svelte-4th0s9"
         draggable="true"
       >
-        <span
-          class="row svelte-1fiunj2"
+        <div
+          class="svelte-1hrmi6p"
+          slot="item"
         >
           <div
-            class="flex-auto root svelte-whrgz7"
+            class="col-span-11 root svelte-whrgz7"
           >
             <a
               class="flex-none"
@@ -258,29 +254,32 @@ exports[`Storyshots Components/Tracks list With Track List 1`] = `
             </div>
           </div>
            
-          <button
-            class="mx-4 svelte-j6xhgj iconOnly noBorder"
-          >
-            <i
-              class="material-icons svelte-j6xhgj"
+          <span>
+            <button
+              class="svelte-j6xhgj iconOnly noBorder"
             >
-              close
-            </i>
-             
-             
-          </button>
-        </span>
+              <i
+                class="material-icons svelte-j6xhgj"
+              >
+                close
+              </i>
+               
+               
+            </button>
+          </span>
+        </div>
          
       </li>
       <li
-        class="svelte-1fiunj2"
+        class="svelte-4th0s9"
         draggable="true"
       >
-        <span
-          class="row svelte-1fiunj2 current"
+        <div
+          class="svelte-1hrmi6p"
+          slot="item"
         >
           <div
-            class="flex-auto root svelte-whrgz7"
+            class="col-span-11 root svelte-whrgz7"
           >
             <a
               class="flex-none"
@@ -321,29 +320,32 @@ exports[`Storyshots Components/Tracks list With Track List 1`] = `
             </div>
           </div>
            
-          <button
-            class="mx-4 svelte-j6xhgj iconOnly noBorder"
-          >
-            <i
-              class="material-icons svelte-j6xhgj"
+          <span>
+            <button
+              class="svelte-j6xhgj iconOnly noBorder"
             >
-              close
-            </i>
-             
-             
-          </button>
-        </span>
+              <i
+                class="material-icons svelte-j6xhgj"
+              >
+                close
+              </i>
+               
+               
+            </button>
+          </span>
+        </div>
          
       </li>
       <li
-        class="svelte-1fiunj2"
+        class="svelte-4th0s9"
         draggable="true"
       >
-        <span
-          class="row svelte-1fiunj2"
+        <div
+          class="svelte-1hrmi6p"
+          slot="item"
         >
           <div
-            class="flex-auto root svelte-whrgz7"
+            class="col-span-11 root svelte-whrgz7"
           >
             <a
               class="flex-none"
@@ -384,29 +386,32 @@ exports[`Storyshots Components/Tracks list With Track List 1`] = `
             </div>
           </div>
            
-          <button
-            class="mx-4 svelte-j6xhgj iconOnly noBorder"
-          >
-            <i
-              class="material-icons svelte-j6xhgj"
+          <span>
+            <button
+              class="svelte-j6xhgj iconOnly noBorder"
             >
-              close
-            </i>
-             
-             
-          </button>
-        </span>
+              <i
+                class="material-icons svelte-j6xhgj"
+              >
+                close
+              </i>
+               
+               
+            </button>
+          </span>
+        </div>
          
       </li>
       <li
-        class="svelte-1fiunj2"
+        class="svelte-4th0s9"
         draggable="true"
       >
-        <span
-          class="row svelte-1fiunj2"
+        <div
+          class="svelte-1hrmi6p"
+          slot="item"
         >
           <div
-            class="flex-auto root svelte-whrgz7"
+            class="col-span-11 root svelte-whrgz7"
           >
             <a
               class="flex-none"
@@ -447,29 +452,32 @@ exports[`Storyshots Components/Tracks list With Track List 1`] = `
             </div>
           </div>
            
-          <button
-            class="mx-4 svelte-j6xhgj iconOnly noBorder"
-          >
-            <i
-              class="material-icons svelte-j6xhgj"
+          <span>
+            <button
+              class="svelte-j6xhgj iconOnly noBorder"
             >
-              close
-            </i>
-             
-             
-          </button>
-        </span>
+              <i
+                class="material-icons svelte-j6xhgj"
+              >
+                close
+              </i>
+               
+               
+            </button>
+          </span>
+        </div>
          
       </li>
       <li
-        class="svelte-1fiunj2"
+        class="svelte-4th0s9"
         draggable="true"
       >
-        <span
-          class="row svelte-1fiunj2"
+        <div
+          class="svelte-1hrmi6p"
+          slot="item"
         >
           <div
-            class="flex-auto root svelte-whrgz7"
+            class="col-span-11 root svelte-whrgz7"
           >
             <a
               class="flex-none"
@@ -510,18 +518,20 @@ exports[`Storyshots Components/Tracks list With Track List 1`] = `
             </div>
           </div>
            
-          <button
-            class="mx-4 svelte-j6xhgj iconOnly noBorder"
-          >
-            <i
-              class="material-icons svelte-j6xhgj"
+          <span>
+            <button
+              class="svelte-j6xhgj iconOnly noBorder"
             >
-              close
-            </i>
-             
-             
-          </button>
-        </span>
+              <i
+                class="material-icons svelte-j6xhgj"
+              >
+                close
+              </i>
+               
+               
+            </button>
+          </span>
+        </div>
          
       </li>
     </ol>

@@ -2,7 +2,8 @@
   import { _ } from 'svelte-intl'
   import Button from '../Button/Button.svelte'
   import Heading from '../Heading/Heading.svelte'
-  import TracksList from '../TracksList/TracksList.svelte'
+  import SortableList from '../SortableList/SortableList.svelte'
+  import Track from '../Track/Track.svelte'
   import AddToPlaylist from '../AddToPlaylist/AddToPlaylist.svelte'
   import {
     tracks,
@@ -16,19 +17,31 @@
 </script>
 
 <style type="postcss">
-  div {
+  header {
     @apply flex flex-row relative text-left px-8;
+  }
+
+  div {
+    @apply my-2 relative;
   }
 
   .totalDuration {
     @apply flex-grow text-right px-2;
+  }
+
+  .row {
+    @apply py-1 px-8 flex flex-row items-center cursor-pointer;
+  }
+
+  .row.current {
+    background-color: var(--outline-color);
   }
 </style>
 
 <Heading
   title={$_('queue')}
   image={'../images/jason-rosewell-ASKeuOZqhYU-unsplash.jpg'} />
-<div>
+<header>
   <h3>
     {$_($tracks.length === 1 ? 'a track' : '_ tracks', {
       total: $tracks.length
@@ -39,11 +52,16 @@
     <span class="totalDuration">{formatTime(sumDurations($tracks))}</span>
     <Button icon="delete" class="mx-4" on:click={() => clear()} />
   {/if}
+</header>
+<div>
+  <SortableList
+    items={$tracks}
+    on:move={({ detail: { from, to } }) => move(from, to)}>
+    <span slot="item" let:item let:i>
+      <span class="row" class:current={$index === i} on:click={() => jumpTo(i)}>
+        <Track src={item} details class="flex-auto" />
+        <Button icon="close" noBorder class="mx-4" on:click={() => remove(i)} />
+      </span>
+    </span>
+  </SortableList>
 </div>
-
-<TracksList
-  tracks={$tracks}
-  currentIndex={$index}
-  on:click={({ detail }) => jumpTo(detail)}
-  on:move={({ detail: { from, to } }) => move(from, to)}
-  on:remove={({ detail }) => remove(detail)} />

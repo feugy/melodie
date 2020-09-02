@@ -4,7 +4,7 @@
   import { _ } from 'svelte-intl'
   import { replace } from 'svelte-spa-router'
   import { distinct, filter } from 'rxjs/operators'
-  import { Heading, Image, Button, TracksList } from '../../components'
+  import { Heading, Image, Button, Track, SortableList } from '../../components'
   import {
     load,
     changes,
@@ -60,14 +60,13 @@
     max-height: 300px;
   }
 
-  section > div {
-    @apply flex flex-col items-start px-4 self-stretch text-left;
+  .tracks {
+    @apply m-4 relative;
   }
 
-  .image-container {
-    @apply flex-shrink-0 w-full h-full;
-    height: 300px;
-    width: 300px;
+  .row {
+    @apply grid gap-0 items-center;
+    grid-template-columns: 1fr 60px;
   }
 </style>
 
@@ -77,29 +76,32 @@
       title={playlist.name}
       image={'../images/harry-swales-Vfvf3H-5OHc-unsplash.jpg'} />
     <section>
-      <span class="image-container">
-        <Image class="h-full w-full text-3xl" rounded src={playlist.media} />
+      <span class="actions">
+        <Button
+          on:click={track => add(playlist.tracks, true)}
+          icon="play_arrow"
+          text={$_('play all')} />
+        <Button
+          class="ml-4"
+          on:click={track => add(playlist.tracks)}
+          icon="playlist_add"
+          text={$_('enqueue all')} />
       </span>
-      <div>
-        <span class="actions">
-          <Button
-            on:click={track => add(playlist.tracks, true)}
-            icon="play_arrow"
-            text={$_('play all')} />
-          <Button
-            class="ml-4"
-            on:click={track => add(playlist.tracks)}
-            icon="playlist_add"
-            text={$_('enqueue all')} />
-        </span>
-      </div>
     </section>
     <div class="tracks">
       {#if playlist && playlist.tracks}
-        <TracksList
-          tracks={playlist.tracks}
+        <SortableList
+          items={playlist.tracks}
           on:remove={({ detail }) => removeTrack(playlist, detail)}
-          on:move={({ detail }) => moveTrack(playlist, detail)} />
+          on:move={({ detail }) => moveTrack(playlist, detail)}>
+          <div class="row" slot="item" let:item let:i>
+            <Track src={item} details="true" />
+            <span><Button
+                icon="close"
+                noBorder
+                on:click={() => removeTrack(playlist, i)} /></span>
+          </div>
+        </SortableList>
       {/if}
     </div>
   {/if}

@@ -8,7 +8,7 @@ import faker from 'faker'
 import TracksQueue from './TracksQueue.svelte'
 import { add, clear, index, current } from '../../stores/track-queue'
 import * as playlistStore from '../../stores/playlists'
-import { addRefs, translate, mockInvoke, sleep } from '../../tests'
+import { addRefs, mockInvoke, sleep } from '../../tests'
 
 describe('TracksQueue component', () => {
   beforeEach(() => clear())
@@ -101,7 +101,7 @@ describe('TracksQueue component', () => {
       expect(screen.queryByText(removed)).not.toBeInTheDocument()
     })
 
-    it('drags track forward in the list', async () => {
+    it('reorders tracks in the list', async () => {
       expectListItems(tracks)
 
       const hovered = screen.queryByText(tracks[2].tags.title)
@@ -115,32 +115,6 @@ describe('TracksQueue component', () => {
       await tick()
 
       expectListItems([tracks[1], tracks[2], tracks[3], tracks[0]])
-    })
-
-    it('drags track backward in the list', async () => {
-      expectListItems(tracks)
-
-      const dropped = screen.queryByText(tracks[0].tags.title)
-
-      await fireEvent.dragStart(screen.queryByText(tracks[2].tags.title))
-      await fireEvent.dragOver(dropped)
-      await fireEvent.drop(dropped)
-      await tick()
-
-      expectListItems([tracks[2], tracks[0], tracks[1], tracks[3]])
-    })
-
-    it(`does not move track on cancelled drag'n drop`, async () => {
-      expectListItems(tracks)
-
-      const dropped = screen.queryByText(translate('queue'))
-
-      await fireEvent.dragStart(screen.queryByText(tracks[2].tags.title))
-      await fireEvent.dragOver(dropped)
-      await fireEvent.drop(dropped)
-      await tick()
-
-      expectListItems(tracks)
     })
 
     describe('given some playlist', () => {

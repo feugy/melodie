@@ -1,12 +1,12 @@
 'use strict'
 
-import TracksList from './TracksList.svelte'
+import SortableList from './SortableList.stories.svelte'
 import { trackListData } from '../Player/Player.stories'
 import { hrefSinkDecorator } from '../../../.storybook/decorators'
 import { action } from '@storybook/addon-actions'
 
 export default {
-  title: 'Components/Tracks list',
+  title: 'Components/Sortable list',
   excludeStories: /.*Data$/,
   decorators: [hrefSinkDecorator]
 }
@@ -17,19 +17,10 @@ export const actionsData = {
   remove: action('on track removed')
 }
 
-export const Empty = () => ({
-  Component: TracksList,
+export const Default = () => ({
+  Component: SortableList,
   props: {
-    tracks: []
-  },
-  on: actionsData
-})
-
-export const WithTrackList = () => ({
-  Component: TracksList,
-  props: {
-    tracks: [...trackListData, ...trackListData],
-    currentIndex: 4
+    items: [...trackListData, ...trackListData]
   },
   on: actionsData
 })
