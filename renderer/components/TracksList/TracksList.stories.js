@@ -29,7 +29,7 @@ export const WithTrackList = () => ({
   Component: TracksList,
   props: {
     tracks: [...trackListData, ...trackListData],
-    index: 4
+    currentIndex: 4
   },
   on: actionsData
 })

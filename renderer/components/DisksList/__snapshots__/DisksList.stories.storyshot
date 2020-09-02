@@ -56,70 +56,70 @@ exports[`Storyshots Components/Disks list Default 1`] = `
     
      
     <table
-      class="svelte-gq4ifk"
+      class="svelte-pacrnm"
     >
       <thead
-        class="svelte-gq4ifk"
+        class="svelte-pacrnm"
       >
         <tr
-          class="svelte-gq4ifk"
+          class="svelte-pacrnm"
         >
           <th
-            class="svelte-gq4ifk"
+            class="svelte-pacrnm"
           >
             #
           </th>
            
           <th
-            class="svelte-gq4ifk"
+            class="col-span-3 svelte-pacrnm"
           >
             Track
           </th>
            
           <th
-            class="svelte-gq4ifk"
+            class="col-span-3 svelte-pacrnm"
           >
             Artist
           </th>
            
           <th
-            class="svelte-gq4ifk"
+            class="col-span-3 svelte-pacrnm"
           >
             Album
           </th>
            
           <th
-            class="svelte-gq4ifk"
+            class="svelte-pacrnm"
           >
             Duration
           </th>
            
           <th
-            class="svelte-gq4ifk"
+            class="svelte-pacrnm"
           />
         </tr>
       </thead>
        
       <tbody
-        class="svelte-gq4ifk"
+        class="svelte-pacrnm"
       >
         <tr
-          class="svelte-gq4ifk"
+          class="svelte-pacrnm"
         >
           <td
-            class="svelte-gq4ifk"
+            class="svelte-pacrnm"
           >
             1
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="col-span-3 svelte-pacrnm"
           >
             American Money
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="col-span-3 svelte-pacrnm"
           >
             <a
               class="underlined"
@@ -131,7 +131,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="col-span-3 svelte-pacrnm"
           >
             <a
               class="underlined"
@@ -143,13 +143,13 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="svelte-pacrnm"
           >
             5:32
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="svelte-pacrnm"
           >
             <span
               class="wrapper svelte-14ek7z"
@@ -172,22 +172,22 @@ exports[`Storyshots Components/Disks list Default 1`] = `
            
         </tr>
         <tr
-          class="svelte-gq4ifk"
+          class="svelte-pacrnm"
         >
           <td
-            class="svelte-gq4ifk"
+            class="svelte-pacrnm"
           >
             2
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="col-span-3 svelte-pacrnm"
           >
             Fantaisie Sign
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="col-span-3 svelte-pacrnm"
           >
             <a
               class="underlined"
@@ -199,7 +199,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="col-span-3 svelte-pacrnm"
           >
             <a
               class="underlined"
@@ -211,13 +211,13 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="svelte-pacrnm"
           >
             3:35
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="svelte-pacrnm"
           >
             <span
               class="wrapper svelte-14ek7z"
@@ -298,70 +298,70 @@ exports[`Storyshots Components/Disks list Default 1`] = `
     
      
     <table
-      class="svelte-gq4ifk"
+      class="svelte-pacrnm"
     >
       <thead
-        class="svelte-gq4ifk"
+        class="svelte-pacrnm"
       >
         <tr
-          class="svelte-gq4ifk"
+          class="svelte-pacrnm"
         >
           <th
-            class="svelte-gq4ifk"
+            class="svelte-pacrnm"
           >
             #
           </th>
            
           <th
-            class="svelte-gq4ifk"
+            class="col-span-3 svelte-pacrnm"
           >
             Track
           </th>
            
           <th
-            class="svelte-gq4ifk"
+            class="col-span-3 svelte-pacrnm"
           >
             Artist
           </th>
            
           <th
-            class="svelte-gq4ifk"
+            class="col-span-3 svelte-pacrnm"
           >
             Album
           </th>
            
           <th
-            class="svelte-gq4ifk"
+            class="svelte-pacrnm"
           >
             Duration
           </th>
            
           <th
-            class="svelte-gq4ifk"
+            class="svelte-pacrnm"
           />
         </tr>
       </thead>
        
       <tbody
-        class="svelte-gq4ifk"
+        class="svelte-pacrnm"
       >
         <tr
-          class="svelte-gq4ifk current"
+          class="svelte-pacrnm current"
         >
           <td
-            class="svelte-gq4ifk"
+            class="svelte-pacrnm"
           >
             2
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="col-span-3 svelte-pacrnm"
           >
             Vitamin A
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="col-span-3 svelte-pacrnm"
           >
             <a
               class="underlined"
@@ -373,7 +373,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="col-span-3 svelte-pacrnm"
           >
             <a
               class="underlined"
@@ -385,13 +385,13 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="svelte-pacrnm"
           >
             4:41
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="svelte-pacrnm"
           >
             <span
               class="wrapper svelte-14ek7z"
@@ -414,22 +414,22 @@ exports[`Storyshots Components/Disks list Default 1`] = `
            
         </tr>
         <tr
-          class="svelte-gq4ifk"
+          class="svelte-pacrnm"
         >
           <td
-            class="svelte-gq4ifk"
+            class="svelte-pacrnm"
           >
             3
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="col-span-3 svelte-pacrnm"
           >
             Don't Bother None
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="col-span-3 svelte-pacrnm"
           >
             <a
               class="underlined"
@@ -441,7 +441,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="col-span-3 svelte-pacrnm"
           >
             <a
               class="underlined"
@@ -453,13 +453,13 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="svelte-pacrnm"
           >
             3:45
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="svelte-pacrnm"
           >
             <span
               class="wrapper svelte-14ek7z"
@@ -482,22 +482,22 @@ exports[`Storyshots Components/Disks list Default 1`] = `
            
         </tr>
         <tr
-          class="svelte-gq4ifk"
+          class="svelte-pacrnm"
         >
           <td
-            class="svelte-gq4ifk"
+            class="svelte-pacrnm"
           >
             4
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="col-span-3 svelte-pacrnm"
           >
             Want it All Back
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="col-span-3 svelte-pacrnm"
           >
             <a
               class="underlined"
@@ -509,7 +509,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="col-span-3 svelte-pacrnm"
           >
             <a
               class="underlined"
@@ -521,13 +521,13 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="svelte-pacrnm"
           >
             3:51
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="svelte-pacrnm"
           >
             <span
               class="wrapper svelte-14ek7z"
@@ -550,22 +550,22 @@ exports[`Storyshots Components/Disks list Default 1`] = `
            
         </tr>
         <tr
-          class="svelte-gq4ifk"
+          class="svelte-pacrnm"
         >
           <td
-            class="svelte-gq4ifk"
+            class="svelte-pacrnm"
           >
             5
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="col-span-3 svelte-pacrnm"
           >
             Bindy
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="col-span-3 svelte-pacrnm"
           >
             <a
               class="underlined"
@@ -577,7 +577,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="col-span-3 svelte-pacrnm"
           >
             <a
               class="underlined"
@@ -589,13 +589,13 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="svelte-pacrnm"
           >
             0:15
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="svelte-pacrnm"
           >
             <span
               class="wrapper svelte-14ek7z"
@@ -618,22 +618,22 @@ exports[`Storyshots Components/Disks list Default 1`] = `
            
         </tr>
         <tr
-          class="svelte-gq4ifk"
+          class="svelte-pacrnm"
         >
           <td
-            class="svelte-gq4ifk"
+            class="svelte-pacrnm"
           >
             6
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="col-span-3 svelte-pacrnm"
           >
             You Make Me Coo
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="col-span-3 svelte-pacrnm"
           >
             <a
               class="underlined"
@@ -645,7 +645,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="col-span-3 svelte-pacrnm"
           >
             <a
               class="underlined"
@@ -657,13 +657,13 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="svelte-pacrnm"
           >
             3:14
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="svelte-pacrnm"
           >
             <span
               class="wrapper svelte-14ek7z"
@@ -686,22 +686,22 @@ exports[`Storyshots Components/Disks list Default 1`] = `
            
         </tr>
         <tr
-          class="svelte-gq4ifk"
+          class="svelte-pacrnm"
         >
           <td
-            class="svelte-gq4ifk"
+            class="svelte-pacrnm"
           >
             7
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="col-span-3 svelte-pacrnm"
           >
             Vitamin C
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="col-span-3 svelte-pacrnm"
           >
             <a
               class="underlined"
@@ -713,7 +713,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="col-span-3 svelte-pacrnm"
           >
             <a
               class="underlined"
@@ -725,13 +725,13 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="svelte-pacrnm"
           >
             5:24
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="svelte-pacrnm"
           >
             <span
               class="wrapper svelte-14ek7z"
@@ -754,22 +754,22 @@ exports[`Storyshots Components/Disks list Default 1`] = `
            
         </tr>
         <tr
-          class="svelte-gq4ifk"
+          class="svelte-pacrnm"
         >
           <td
-            class="svelte-gq4ifk"
+            class="svelte-pacrnm"
           >
             8
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="col-span-3 svelte-pacrnm"
           >
             Gateway
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="col-span-3 svelte-pacrnm"
           >
             <a
               class="underlined"
@@ -781,7 +781,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="col-span-3 svelte-pacrnm"
           >
             <a
               class="underlined"
@@ -793,13 +793,13 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="svelte-pacrnm"
           >
             0:16
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="svelte-pacrnm"
           >
             <span
               class="wrapper svelte-14ek7z"
@@ -822,22 +822,22 @@ exports[`Storyshots Components/Disks list Default 1`] = `
            
         </tr>
         <tr
-          class="svelte-gq4ifk"
+          class="svelte-pacrnm"
         >
           <td
-            class="svelte-gq4ifk"
+            class="svelte-pacrnm"
           >
             9
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="col-span-3 svelte-pacrnm"
           >
             Forever Broke
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="col-span-3 svelte-pacrnm"
           >
             <a
               class="underlined"
@@ -849,7 +849,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="col-span-3 svelte-pacrnm"
           >
             <a
               class="underlined"
@@ -861,13 +861,13 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="svelte-pacrnm"
           >
             1:36
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="svelte-pacrnm"
           >
             <span
               class="wrapper svelte-14ek7z"
@@ -948,70 +948,70 @@ exports[`Storyshots Components/Disks list Default 1`] = `
     
      
     <table
-      class="svelte-gq4ifk"
+      class="svelte-pacrnm"
     >
       <thead
-        class="svelte-gq4ifk"
+        class="svelte-pacrnm"
       >
         <tr
-          class="svelte-gq4ifk"
+          class="svelte-pacrnm"
         >
           <th
-            class="svelte-gq4ifk"
+            class="svelte-pacrnm"
           >
             #
           </th>
            
           <th
-            class="svelte-gq4ifk"
+            class="col-span-3 svelte-pacrnm"
           >
             Track
           </th>
            
           <th
-            class="svelte-gq4ifk"
+            class="col-span-3 svelte-pacrnm"
           >
             Artist
           </th>
            
           <th
-            class="svelte-gq4ifk"
+            class="col-span-3 svelte-pacrnm"
           >
             Album
           </th>
            
           <th
-            class="svelte-gq4ifk"
+            class="svelte-pacrnm"
           >
             Duration
           </th>
            
           <th
-            class="svelte-gq4ifk"
+            class="svelte-pacrnm"
           />
         </tr>
       </thead>
        
       <tbody
-        class="svelte-gq4ifk"
+        class="svelte-pacrnm"
       >
         <tr
-          class="svelte-gq4ifk"
+          class="svelte-pacrnm"
         >
           <td
-            class="svelte-gq4ifk"
+            class="svelte-pacrnm"
           >
             2
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="col-span-3 svelte-pacrnm"
           >
             Cats on Mars
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="col-span-3 svelte-pacrnm"
           >
             <a
               class="underlined"
@@ -1023,7 +1023,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="col-span-3 svelte-pacrnm"
           >
             <a
               class="underlined"
@@ -1035,13 +1035,13 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="svelte-pacrnm"
           >
             0:07
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="svelte-pacrnm"
           >
             <span
               class="wrapper svelte-14ek7z"
@@ -1064,22 +1064,22 @@ exports[`Storyshots Components/Disks list Default 1`] = `
            
         </tr>
         <tr
-          class="svelte-gq4ifk"
+          class="svelte-pacrnm"
         >
           <td
-            class="svelte-gq4ifk"
+            class="svelte-pacrnm"
           >
             3
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="col-span-3 svelte-pacrnm"
           >
             LIVE in Baghdad
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="col-span-3 svelte-pacrnm"
           >
             <a
               class="underlined"
@@ -1091,7 +1091,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="col-span-3 svelte-pacrnm"
           >
             <a
               class="underlined"
@@ -1103,13 +1103,13 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="svelte-pacrnm"
           >
             2:59
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="svelte-pacrnm"
           >
             <span
               class="wrapper svelte-14ek7z"
@@ -1132,22 +1132,22 @@ exports[`Storyshots Components/Disks list Default 1`] = `
            
         </tr>
         <tr
-          class="svelte-gq4ifk"
+          class="svelte-pacrnm"
         >
           <td
-            class="svelte-gq4ifk"
+            class="svelte-pacrnm"
           >
             4
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="col-span-3 svelte-pacrnm"
           >
             Vitamin B
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="col-span-3 svelte-pacrnm"
           >
             <a
               class="underlined"
@@ -1159,7 +1159,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="col-span-3 svelte-pacrnm"
           >
             <a
               class="underlined"
@@ -1171,13 +1171,13 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="svelte-pacrnm"
           >
             4:06
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="svelte-pacrnm"
           >
             <span
               class="wrapper svelte-14ek7z"
@@ -1200,22 +1200,22 @@ exports[`Storyshots Components/Disks list Default 1`] = `
            
         </tr>
         <tr
-          class="svelte-gq4ifk"
+          class="svelte-pacrnm"
         >
           <td
-            class="svelte-gq4ifk"
+            class="svelte-pacrnm"
           >
             5
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="col-span-3 svelte-pacrnm"
           >
             Green Bird
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="col-span-3 svelte-pacrnm"
           >
             <a
               class="underlined"
@@ -1227,7 +1227,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="col-span-3 svelte-pacrnm"
           >
             <a
               class="underlined"
@@ -1239,13 +1239,13 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="svelte-pacrnm"
           >
             2:33
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="svelte-pacrnm"
           >
             <span
               class="wrapper svelte-14ek7z"
@@ -1268,22 +1268,22 @@ exports[`Storyshots Components/Disks list Default 1`] = `
            
         </tr>
         <tr
-          class="svelte-gq4ifk"
+          class="svelte-pacrnm"
         >
           <td
-            class="svelte-gq4ifk"
+            class="svelte-pacrnm"
           >
             6
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="col-span-3 svelte-pacrnm"
           >
             ELM
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="col-span-3 svelte-pacrnm"
           >
             <a
               class="underlined"
@@ -1295,7 +1295,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="col-span-3 svelte-pacrnm"
           >
             <a
               class="underlined"
@@ -1307,13 +1307,13 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="svelte-pacrnm"
           >
             6:55
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="svelte-pacrnm"
           >
             <span
               class="wrapper svelte-14ek7z"
@@ -1336,22 +1336,22 @@ exports[`Storyshots Components/Disks list Default 1`] = `
            
         </tr>
         <tr
-          class="svelte-gq4ifk"
+          class="svelte-pacrnm"
         >
           <td
-            class="svelte-gq4ifk"
+            class="svelte-pacrnm"
           >
             7
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="col-span-3 svelte-pacrnm"
           >
             The Singing Sea
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="col-span-3 svelte-pacrnm"
           >
             <a
               class="underlined"
@@ -1363,7 +1363,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="col-span-3 svelte-pacrnm"
           >
             <a
               class="underlined"
@@ -1375,13 +1375,13 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="svelte-pacrnm"
           >
             6:41
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="svelte-pacrnm"
           >
             <span
               class="wrapper svelte-14ek7z"
@@ -1404,22 +1404,22 @@ exports[`Storyshots Components/Disks list Default 1`] = `
            
         </tr>
         <tr
-          class="svelte-gq4ifk"
+          class="svelte-pacrnm"
         >
           <td
-            class="svelte-gq4ifk"
+            class="svelte-pacrnm"
           >
             8
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="col-span-3 svelte-pacrnm"
           >
             The Egg and You!
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="col-span-3 svelte-pacrnm"
           >
             <a
               class="underlined"
@@ -1431,7 +1431,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="col-span-3 svelte-pacrnm"
           >
             <a
               class="underlined"
@@ -1443,13 +1443,13 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="svelte-pacrnm"
           >
             4:47
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="svelte-pacrnm"
           >
             <span
               class="wrapper svelte-14ek7z"
@@ -1472,22 +1472,22 @@ exports[`Storyshots Components/Disks list Default 1`] = `
            
         </tr>
         <tr
-          class="svelte-gq4ifk"
+          class="svelte-pacrnm"
         >
           <td
-            class="svelte-gq4ifk"
+            class="svelte-pacrnm"
           >
             9
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="col-span-3 svelte-pacrnm"
           >
             Power of Kungfu Remix
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="col-span-3 svelte-pacrnm"
           >
             <a
               class="underlined"
@@ -1499,7 +1499,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="col-span-3 svelte-pacrnm"
           >
             <a
               class="underlined"
@@ -1511,13 +1511,13 @@ exports[`Storyshots Components/Disks list Default 1`] = `
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="svelte-pacrnm"
           >
             2:22
           </td>
            
           <td
-            class="svelte-gq4ifk"
+            class="svelte-pacrnm"
           >
             <span
               class="wrapper svelte-14ek7z"

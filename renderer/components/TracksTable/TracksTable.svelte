@@ -36,8 +36,22 @@
 </script>
 
 <style type="postcss">
+  table,
+  tbody,
+  thead,
+  tr,
+  td,
+  th {
+    @apply block;
+  }
+
   table {
-    @apply w-full border-collapse mt-4;
+    @apply w-full mt-4;
+  }
+
+  tr {
+    @apply grid gap-0;
+    grid-template-columns: 60px repeat(10, 1fr) 60px;
   }
 
   thead {
@@ -50,13 +64,12 @@
   }
 
   th {
-    @apply font-semibold pt-0 pr-0 text-sm;
+    @apply font-semibold text-sm;
   }
 
   tr > *:first-child,
   tr > *:last-child {
     @apply text-center;
-    width: 60px;
   }
 
   tbody tr:nth-child(2n + 1) {
@@ -83,10 +96,10 @@
     <thead>
       <tr>
         <th>{$_('#')}</th>
-        <th>{$_('track')}</th>
-        <th>{$_('artist')}</th>
+        <th class={`col-span-${withAlbum ? 3 : 5}`}>{$_('track')}</th>
+        <th class={`col-span-${withAlbum ? 3 : 4}`}>{$_('artist')}</th>
         {#if withAlbum}
-          <th>{$_('album')}</th>
+          <th class="col-span-3">{$_('album')}</th>
         {/if}
         <th>{$_('duration')}</th>
         <th />
@@ -98,12 +111,12 @@
           on:click={() => clicks$.next(track)}
           class:current={$current && $current.id === track.id}>
           <td>{(track.tags.track && track.tags.track.no) || '--'}</td>
-          <td>{track.tags.title}</td>
-          <td>
+          <td class={`col-span-${withAlbum ? 3 : 5}`}>{track.tags.title}</td>
+          <td class={`col-span-${withAlbum ? 3 : 4}`}>
             {@html wrapWithLink('artist', track.artistRefs[0])}
           </td>
           {#if withAlbum}
-            <td>
+            <td class="col-span-3">
               {@html wrapWithLink('album', track.albumRef)}
             </td>
           {/if}

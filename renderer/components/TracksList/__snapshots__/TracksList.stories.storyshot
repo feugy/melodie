@@ -277,7 +277,7 @@ exports[`Storyshots Components/Tracks list With Track List 1`] = `
         draggable="true"
       >
         <span
-          class="row svelte-1fiunj2"
+          class="row svelte-1fiunj2 current"
         >
           <div
             class="flex-auto root svelte-whrgz7"
