@@ -21,7 +21,7 @@ describe('Album component', () => {
   it('navigates to playlist details page', async () => {
     render(html`<${Playlist} src=${playlistData} />`)
 
-    fireEvent.click(screen.getByRole('img'))
+    fireEvent.click(screen.getByText(playlistData.name))
     await sleep()
 
     expect(location.hash).toEqual(`#/playlist/${playlistData.id}`)

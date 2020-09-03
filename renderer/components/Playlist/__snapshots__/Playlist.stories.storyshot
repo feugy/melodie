@@ -6,72 +6,50 @@ exports[`Storyshots Components/Playlist Default 1`] = `
 >
   <div>
     <a
-      class=" svelte-my2key"
+      class=" svelte-16scfh8"
       href="#/playlist/1"
     >
-      <div
-        class="content svelte-my2key"
-      >
-        <img
-          class="w-64 h-64 text-3xl svelte-hn7eai rounded-sm hidden"
-          loading="lazy"
-        />
-         
-        <span
-          class="w-64 h-64 text-3xl svelte-hn7eai rounded-sm"
-        >
-          <i
-            class="material-icons svelte-hn7eai"
-          >
-            music_note
-          </i>
-        </span>
-        
-         
-        <p
-          class="controls svelte-my2key"
-        >
-          <button
-            class="svelte-j6xhgj primary iconOnly large"
-            data-testid="play"
-          >
-            <i
-              class="material-icons svelte-j6xhgj"
-            >
-              play_arrow
-            </i>
-             
-             
-          </button>
-           
-          <button
-            class="svelte-j6xhgj primary iconOnly large"
-            data-testid="enqueue"
-          >
-            <i
-              class="material-icons svelte-j6xhgj"
-            >
-              playlist_add
-            </i>
-             
-             
-          </button>
-        </p>
-      </div>
-       
-      <header
-        class="svelte-my2key"
-      >
+      <header>
         <h3>
           My favourites
         </h3>
          
         <h4
-          class="svelte-my2key"
+          class="svelte-16scfh8"
         >
           3 tracks
         </h4>
       </header>
+       
+      <p
+        class="controls svelte-16scfh8"
+      >
+        <button
+          class="svelte-j6xhgj primary iconOnly large"
+          data-testid="play"
+        >
+          <i
+            class="material-icons svelte-j6xhgj"
+          >
+            play_arrow
+          </i>
+           
+           
+        </button>
+         
+        <button
+          class="svelte-j6xhgj primary iconOnly large"
+          data-testid="enqueue"
+        >
+          <i
+            class="material-icons svelte-j6xhgj"
+          >
+            playlist_add
+          </i>
+           
+           
+        </button>
+      </p>
     </a>
   </div>
 </section>
@@ -83,72 +61,50 @@ exports[`Storyshots Components/Playlist Single Track 1`] = `
 >
   <div>
     <a
-      class=" svelte-my2key"
+      class=" svelte-16scfh8"
       href="#/playlist/1"
     >
-      <div
-        class="content svelte-my2key"
-      >
-        <img
-          class="w-64 h-64 text-3xl svelte-hn7eai rounded-sm hidden"
-          loading="lazy"
-        />
-         
-        <span
-          class="w-64 h-64 text-3xl svelte-hn7eai rounded-sm"
-        >
-          <i
-            class="material-icons svelte-hn7eai"
-          >
-            music_note
-          </i>
-        </span>
-        
-         
-        <p
-          class="controls svelte-my2key"
-        >
-          <button
-            class="svelte-j6xhgj primary iconOnly large"
-            data-testid="play"
-          >
-            <i
-              class="material-icons svelte-j6xhgj"
-            >
-              play_arrow
-            </i>
-             
-             
-          </button>
-           
-          <button
-            class="svelte-j6xhgj primary iconOnly large"
-            data-testid="enqueue"
-          >
-            <i
-              class="material-icons svelte-j6xhgj"
-            >
-              playlist_add
-            </i>
-             
-             
-          </button>
-        </p>
-      </div>
-       
-      <header
-        class="svelte-my2key"
-      >
+      <header>
         <h3>
           My favourites
         </h3>
          
         <h4
-          class="svelte-my2key"
+          class="svelte-16scfh8"
         >
           1 track
         </h4>
       </header>
+       
+      <p
+        class="controls svelte-16scfh8"
+      >
+        <button
+          class="svelte-j6xhgj primary iconOnly large"
+          data-testid="play"
+        >
+          <i
+            class="material-icons svelte-j6xhgj"
+          >
+            play_arrow
+          </i>
+           
+           
+        </button>
+         
+        <button
+          class="svelte-j6xhgj primary iconOnly large"
+          data-testid="enqueue"
+        >
+          <i
+            class="material-icons svelte-j6xhgj"
+          >
+            playlist_add
+          </i>
+           
+           
+        </button>
+      </p>
     </a>
   </div>
 </section>

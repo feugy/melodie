@@ -1,6 +1,8 @@
 'use strict'
 
-import { formatTime, sumDurations } from './time'
+import { tick } from 'svelte'
+import { locale } from 'svelte-intl'
+import { formatTime, formatTimeLong, sumDurations } from './time'
 
 describe('time utilities', () => {
   describe('formatTime()', () => {
@@ -19,6 +21,28 @@ describe('time utilities', () => {
     it('handles hours minutes and seconds', () => {
       expect(formatTime(31741)).toEqual('8:49:01')
       expect(formatTime(3608.124)).toEqual('1:00:08')
+    })
+  })
+
+  describe('formatTimeLong()', () => {
+    afterEach(() => locale.set('en'))
+
+    it('round seconds', () => {
+      expect(formatTimeLong(122)).toEqual('2 minutes')
+      expect(formatTimeLong(34.741)).toEqual('1 minute')
+      expect(formatTimeLong(1.124)).toEqual('')
+    })
+
+    it('handles hours ans minutes', () => {
+      expect(formatTimeLong(31741)).toEqual('8 hours 49 minutes')
+      expect(formatTimeLong(3608.124)).toEqual('1 hour')
+    })
+
+    it('handles locale changes', async () => {
+      locale.set('fr')
+      await tick()
+      expect(formatTimeLong(31741)).toEqual('8 heures 49 minutes')
+      expect(formatTimeLong(3608.124)).toEqual('1 heure')
     })
   })
 

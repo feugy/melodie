@@ -22,19 +22,13 @@
 
 <style type="postcss">
   a {
-    @apply cursor-pointer inline-block w-64;
-  }
-
-  header {
-    @apply text-left;
+    @apply cursor-pointer inline-block w-64 rounded-sm border-2 border-solid p-4 text-left relative;
+    border-color: var(--outline-color);
+    background-color: var(--hover-bg-color);
   }
 
   h4 {
     @apply text-sm truncate;
-  }
-
-  .content {
-    @apply relative;
   }
 
   a:hover .controls {
@@ -43,29 +37,12 @@
 
   .controls {
     @apply absolute opacity-0 transition-opacity duration-500 ease-in-out;
-    left: 5%;
-    bottom: 5%;
+    bottom: 0.5rem;
+    right: 0.5rem;
   }
 </style>
 
 <a href={`#/playlist/${src.id}`} class={$$props.class}>
-  <div class="content">
-    <Image class="w-64 h-64 text-3xl" src={src.media} />
-    <p class="controls">
-      <Button
-        data-testid="play"
-        primary
-        icon="play_arrow"
-        large
-        on:click={handlePlay} />
-      <Button
-        data-testid="enqueue"
-        primary
-        icon="playlist_add"
-        large
-        on:click={handleEnqueue} />
-    </p>
-  </div>
   <header>
     <h3>{src.name || $_('unknown')}</h3>
     <h4>
@@ -74,4 +51,18 @@
       })}
     </h4>
   </header>
+  <p class="controls">
+    <Button
+      data-testid="play"
+      primary
+      icon="play_arrow"
+      large
+      on:click={handlePlay} />
+    <Button
+      data-testid="enqueue"
+      primary
+      icon="playlist_add"
+      large
+      on:click={handleEnqueue} />
+  </p>
 </a>

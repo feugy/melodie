@@ -75,6 +75,8 @@ describe('playlist details route', () => {
     ].map(addRefs)
   }
 
+  playlist.trackIds = playlist.tracks.map(({ id }) => id)
+
   function expectDisplayedTracks() {
     for (const track of playlist.tracks) {
       expect(screen.queryByText(track.tags.artists[0])).toBeInTheDocument()
@@ -107,8 +109,17 @@ describe('playlist details route', () => {
       await sleep()
     })
 
-    it('displays playlist name', async () => {
+    it('displays playlist name, total tracks, and total duration', async () => {
       expect(screen.queryByText(playlist.name)).toBeInTheDocument()
+      expect(
+        screen.queryByText(
+          translate('_ tracks', { total: playlist.trackIds.length }),
+          { exact: false }
+        )
+      ).toBeInTheDocument()
+      expect(
+        screen.queryByText('14 minutes', { exact: false })
+      ).toBeInTheDocument()
       expect(load).toHaveBeenCalledWith(playlist.id)
     })
 

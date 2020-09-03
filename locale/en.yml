@@ -1,17 +1,21 @@
 _ albums: '{total} albums'
 _ artists: '{total} artists'
+_ hours: '{value} hours'
+_ minutes: '{value} minutes'
 _ playlists: '{total} playlists'
 _ tracks: '{total} tracks'
 '#': '#'
 'artist: _': 'Artist: {value}'
 'title: _': 'Title: {value}'
-a playlists: '1 playlist'
-a track: '1 track'
+a minute: 1 minute
+a playlists: 1 playlist
+a track: 1 track
 add folders: Add folders
 album: Album
 albums: Albums
-an album: '1 album'
-an artist: '1 artist'
+an album: 1 album
+an artist: 1 artist
+an hour: 1 hour
 artist: Artist
 artists: Artists
 by _: 'by {artist}'
@@ -46,6 +50,7 @@ queue: Queue
 remove from playlist: Remove
 results for _: Results for "{searched}"
 settings: Settings
+separator: ' • '
 show all: Show all
 show details: Show track details
 show less: Show less

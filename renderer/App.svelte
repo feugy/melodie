@@ -20,6 +20,7 @@
 
   let isPlaylistOpen = false
   let isLoading = fromServerChannel('tracking').pipe(pluck('inProgress'))
+  let ready = false
 
   onMount(async () => {
     locale.set(await invoke('settingsManager.getLocale'))
@@ -27,6 +28,8 @@
     listArtists()
     listPlaylists()
     invoke('settingsManager.compareAndWatch')
+    // await on locale to be set before rendering
+    ready = true
     await new Promise(r => setTimeout(r, 200))
     if ($albums.length === 0 && $artists.length === 0) {
       replace('/settings')
@@ -79,22 +82,23 @@
     <Progress />
   </span>
 {/if}
-
-<div>
-  <main>
-    <Sheet bind:open={isPlaylistOpen}>
-      <section slot="main">
-        <Nav />
-        <Router {routes} />
-      </section>
-      <aside slot="aside">
-        <TracksQueue />
-      </aside>
-    </Sheet>
-  </main>
-  <footer>
-    <Player
-      trackList={queue}
-      on:togglePlaylist={() => (isPlaylistOpen = !isPlaylistOpen)} />
-  </footer>
-</div>
+{#if ready}
+  <div>
+    <main>
+      <Sheet bind:open={isPlaylistOpen}>
+        <section slot="main">
+          <Nav />
+          <Router {routes} />
+        </section>
+        <aside slot="aside">
+          <TracksQueue />
+        </aside>
+      </Sheet>
+    </main>
+    <footer>
+      <Player
+        trackList={queue}
+        on:togglePlaylist={() => (isPlaylistOpen = !isPlaylistOpen)} />
+    </footer>
+  </div>
+{/if}

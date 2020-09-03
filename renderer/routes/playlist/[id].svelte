@@ -12,6 +12,7 @@
   } from '../../components'
   import { load, changes, removals, remove } from '../../stores/playlists'
   import { add } from '../../stores/track-queue'
+  import { formatTimeLong, sumDurations } from '../../utils'
 
   export let params
   let playlist
@@ -21,6 +22,7 @@
   $: if (!playlist || playlist.id !== playlistId) {
     loadPlaylist()
   }
+  $: total = playlist && playlist.trackIds ? playlist.trackIds.length : 0
 
   async function loadPlaylist() {
     playlist = await load(playlistId)
@@ -62,8 +64,11 @@
 
 <style type="postcss">
   section {
-    @apply flex flex-row items-start z-0 m-6 mt-0;
-    max-height: 300px;
+    @apply flex flex-row text-left m-6 mt-0;
+  }
+
+  .meta {
+    @apply flex-grow text-xl text-right;
   }
 
   .tracks {
@@ -85,22 +90,25 @@
       image={'../images/bantersnaps-ZfCVTJ30yoc-unsplash.jpg'}
       imagePosition="center 60%" />
     <section>
-      <span class="actions">
-        <Button
-          on:click={track => add(playlist.tracks, true)}
-          icon="play_arrow"
-          text={$_('play all')} />
-        <Button
-          class="ml-4"
-          on:click={track => add(playlist.tracks)}
-          icon="playlist_add"
-          text={$_('enqueue all')} />
-        <Button
-          class="ml-4"
-          on:click={() => (openDeletionConfirmation = true)}
-          icon="delete"
-          text={$_('delete playlist')} />
-      </span>
+      <Button
+        on:click={track => add(playlist.tracks, true)}
+        icon="play_arrow"
+        text={$_('play all')} />
+      <Button
+        class="ml-4"
+        on:click={track => add(playlist.tracks)}
+        icon="playlist_add"
+        text={$_('enqueue all')} />
+      <Button
+        class="ml-4"
+        on:click={() => (openDeletionConfirmation = true)}
+        icon="delete"
+        text={$_('delete playlist')} />
+      <div class="meta">
+        {$_(total === 1 ? 'a track' : '_ tracks', { total })}
+        {$_('separator')}
+        {formatTimeLong(sumDurations(playlist && playlist.tracks))}
+      </div>
     </section>
     <div class="tracks">
       <PlaylistTracksTable {playlist} />

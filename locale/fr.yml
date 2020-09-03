@@ -1,11 +1,13 @@
 _ artists: '{total} artistes'
+_ hours: '{value} heures'
 _ tracks: '{total} pistes'
 '#': N°
 'artist: _': 'Artiste : {value}'
 'title: _': 'Titre : {value}'
-a track: '1 piste'
+a track: 1 piste
 add folders: Ajouter des dossiers
-an artist: '1 artiste'
+an artist: 1 artiste
+an hour: 1 heure
 artist: Artiste
 artists: Artistes
 by _: 'par {artist}'
