@@ -90,8 +90,12 @@ npm run build
 - [x] [open containing folder](https://www.electronjs.org/docs/api/shell#shellshowiteminfolderfullpath) for tracks
 - [x] display track's tags and details
 - [x] playlists
+- [ ] refactor player component & footer
+- [ ] feedback on enqueue, play, and add to playlist actions
 - [ ] help and tips
       ---> release?
+- [ ] enqueue tracks/albums by dragging to tracks queue
+- [ ] add to playlist from Album/Playlist details page
 - [ ] configure replay gain from settings
 - [ ] settings for simple/double click behaviour
 - [ ] display years (artist & album details page)
@@ -99,9 +103,7 @@ npm run build
 - [ ] block power save
 - [ ] system tray integration
 - [ ] loading indicators (one for all operation, fixed so it doesn't push content down)
-- [ ] feedback on enqueue & play actions
 - [ ] number of disk on album details page
-- [ ] enqueue tracks/albums by dragging to tracks queue
 - [ ] display tracks/albums/artists count in settings
 - [ ] allow reseting database from settings
 

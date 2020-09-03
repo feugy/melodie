@@ -1,6 +1,6 @@
 'use strict'
 
-import { get } from 'svelte/store'
+import { get, writable } from 'svelte/store'
 import { screen, render, fireEvent } from '@testing-library/svelte'
 import html from 'svelte-htm'
 import faker from 'faker'
@@ -118,14 +118,15 @@ describe('Player component', () => {
     expect(get(current)).toEqual(trackListData[1])
   })
 
-  it('dispatch event for playlist', async () => {
-    const handleTogglePlaylist = jest.fn()
-
-    render(html`<${Player} on:togglePlaylist=${handleTogglePlaylist} />`)
+  it('toggles playlist open state', async () => {
+    const isPlaylistOpen = new writable(true)
+    render(html`<${Player} bind:isPlaylistOpen=${isPlaylistOpen} />`)
 
     await fireEvent.click(screen.getByText('queue_music'))
+    expect(get(isPlaylistOpen)).toBe(false)
 
-    expect(handleTogglePlaylist).toHaveBeenCalledTimes(1)
+    await fireEvent.click(screen.getByText('queue_music'))
+    expect(get(isPlaylistOpen)).toBe(true)
   })
 
   it('can change volume', async () => {

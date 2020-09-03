@@ -23,7 +23,7 @@ disk _: 'Disque N°{num}'
 duration: Durée
 enqueue all: Ajouter tout
 enqueue: Ajouter à la liste
-how to create playlist: Pour créer une playlist, ajouter des morceaux à la liste de lecture, ouvrez la, et cliquez sur <i class="material-icons">library_add</i>.
+how to create playlist: Pour créer une playlist, ajouter des morceaux à la liste de lecture et cliquez sur <i class="material-icons">library_add</i>.
 locales: Langue de l'interface
 new playlist: nouvelle playlist...
 no: Non

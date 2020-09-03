@@ -1,5 +1,5 @@
 <script>
-  import { createEventDispatcher, onMount } from 'svelte'
+  import { onMount } from 'svelte'
   import { _ } from 'svelte-intl'
   import Button from '../Button/Button.svelte'
   import Track from '../Track/Track.svelte'
@@ -16,7 +16,7 @@
     shuffle
   } from '../../stores/track-queue'
 
-  const dispatch = createEventDispatcher()
+  export let isPlaylistOpen = false
   let isPlaying
   let player
   let duration = 0
@@ -85,10 +85,6 @@
   function handlePrevious() {
     player.pause()
     playPrevious()
-  }
-
-  function handleTogglePlaylist() {
-    dispatch('togglePlaylist')
   }
 
   function handleRepeat() {
@@ -247,6 +243,11 @@
     {#if $current}
       <AddToPlaylist tracks={[$current]} large class="mr-2" />
     {/if}
-    <Button on:click={handleTogglePlaylist} icon="queue_music" large />
+    <span class:isActive={isPlaylistOpen}>
+      <Button
+        on:click={() => (isPlaylistOpen = !isPlaylistOpen)}
+        icon="queue_music"
+        large />
+    </span>
   </span>
 </div>

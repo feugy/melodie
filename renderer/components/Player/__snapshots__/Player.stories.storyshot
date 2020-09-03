@@ -173,17 +173,21 @@ exports[`Storyshots Components/Player Empty 1`] = `
       </div>
        
        
-      <button
-        class="svelte-j6xhgj iconOnly large"
+      <span
+        class="svelte-101j5b"
       >
-        <i
-          class="material-icons svelte-j6xhgj"
+        <button
+          class="svelte-j6xhgj iconOnly large"
         >
-          queue_music
-        </i>
-         
-         
-      </button>
+          <i
+            class="material-icons svelte-j6xhgj"
+          >
+            queue_music
+          </i>
+           
+           
+        </button>
+      </span>
     </span>
   </div>
 </section>
@@ -417,17 +421,21 @@ exports[`Storyshots Components/Player With Track List 1`] = `
          
       </span>
        
-      <button
-        class="svelte-j6xhgj iconOnly large"
+      <span
+        class="svelte-101j5b"
       >
-        <i
-          class="material-icons svelte-j6xhgj"
+        <button
+          class="svelte-j6xhgj iconOnly large"
         >
-          queue_music
-        </i>
-         
-         
-      </button>
+          <i
+            class="material-icons svelte-j6xhgj"
+          >
+            queue_music
+          </i>
+           
+           
+        </button>
+      </span>
     </span>
   </div>
 </section>

@@ -18,7 +18,7 @@
   import { routes } from './routes'
   import { pluck } from 'rxjs/operators'
 
-  let isPlaylistOpen = false
+  let isPlaylistOpen = true
   let isLoading = fromServerChannel('tracking').pipe(pluck('inProgress'))
   let ready = false
 
@@ -62,7 +62,7 @@
   footer {
     @apply p-4;
     background: var(--bg-primary-color);
-    border-top: solid 1px rgba(212, 212, 255, 0.1);
+    border-top: solid 2px var(--outline-color);
   }
 
   .progress {
@@ -96,9 +96,7 @@
       </Sheet>
     </main>
     <footer>
-      <Player
-        trackList={queue}
-        on:togglePlaylist={() => (isPlaylistOpen = !isPlaylistOpen)} />
+      <Player trackList={queue} bind:isPlaylistOpen />
     </footer>
   </div>
 {/if}
