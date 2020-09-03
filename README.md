@@ -107,6 +107,7 @@ npm run build
 
 ### Bugs and unresolved issues
 
+1. ParseRaw issue: "Je vais bien, ne t'en fais pas" gives "Je vais bie"
 1. Startup isn't quick: load artist/album/playlist on demand
 1. Local provider returning too many results, some unusable, for "Rock & Pop for Ballet 2"
 1. Undetected live changes: remove tracks and re-add them. This is a linux-only issue with chokidar

@@ -41,14 +41,14 @@ module.exports = class AbstractTrackList extends Model {
           }
           const savedList = {
             ...previousList,
-            trackIds: uniq(
-              this.mergeTrackIds
-                ? difference(
+            trackIds: this.mergeTrackIds
+              ? uniq(
+                  difference(
                     previousList.trackIds.concat(trackList.trackIds || []),
                     trackList.removedTrackIds || []
                   )
-                : trackList.trackIds || []
-            )
+                )
+              : trackList.trackIds || []
           }
           if (savedList.trackIds.length) {
             // one can not update with sparse data: we have to get previous columns

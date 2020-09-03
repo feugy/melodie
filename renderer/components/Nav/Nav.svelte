@@ -124,7 +124,7 @@
         <Button
           on:click={() => router.push('/playlist')}
           text={$_('playlists')}
-          icon="playlist_play" />
+          icon="library_music" />
       </li>
       <li class="expand">
         <TextInput

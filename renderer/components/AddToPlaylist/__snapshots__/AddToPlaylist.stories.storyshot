@@ -13,7 +13,7 @@ exports[`Storyshots Components/AddToPlaylist Default 1`] = `
       <i
         class="material-icons svelte-j6xhgj"
       >
-        playlist_add
+        library_add
       </i>
        
        

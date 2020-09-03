@@ -152,7 +152,7 @@ describe('TracksQueue component', () => {
       it('adds entire queue to existing playlist', async () => {
         const playlist = faker.random.arrayElement(playlists)
 
-        await fireEvent.click(screen.queryByText('playlist_add'))
+        await fireEvent.click(screen.queryByText('library_add'))
         await fireEvent.click(screen.queryByText(playlist.name))
         await sleep(250)
 

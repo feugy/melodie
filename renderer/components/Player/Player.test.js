@@ -3,6 +3,7 @@
 import { get } from 'svelte/store'
 import { screen, render, fireEvent } from '@testing-library/svelte'
 import html from 'svelte-htm'
+import faker from 'faker'
 import Player from './Player.svelte'
 import { trackListData } from './Player.stories'
 import {
@@ -10,9 +11,11 @@ import {
   clear,
   current,
   jumpTo,
-  isShuffling
+  isShuffling,
+  playNext
 } from '../../stores/track-queue'
-import { sleep } from '../../tests'
+import * as playlistStore from '../../stores/playlists'
+import { sleep, mockInvoke } from '../../tests'
 
 const { play, pause } = HTMLMediaElement.prototype
 
@@ -273,5 +276,73 @@ describe('Player component', () => {
 
     await fireEvent.click(screen.getByText('shuffle'))
     expect(get(isShuffling)).toEqual(false)
+  })
+
+  describe('given some playlist', () => {
+    const playlists = [
+      {
+        id: faker.random.number(),
+        name: faker.commerce.productName(),
+        trackIds: [faker.random.number(), faker.random.number()]
+      },
+      {
+        id: faker.random.number(),
+        name: faker.commerce.productName(),
+        trackIds: [faker.random.number(), faker.random.number()]
+      },
+      {
+        id: faker.random.number(),
+        name: faker.commerce.productName(),
+        trackIds: [faker.random.number(), faker.random.number()]
+      }
+    ]
+
+    beforeAll(async () => {
+      await playlistStore.reset()
+      mockInvoke.mockResolvedValueOnce({
+        total: playlists.length,
+        size: playlists.length,
+        from: 0,
+        results: playlists
+      })
+      await playlistStore.list()
+
+      jest.resetAllMocks()
+    })
+
+    it('adds current track to existing playlist', async () => {
+      add(trackListData)
+      jumpTo(3)
+
+      render(html`<${Player} />`)
+
+      const playlist = faker.random.arrayElement(playlists)
+
+      await fireEvent.click(screen.queryByText('library_add'))
+      await fireEvent.click(screen.queryByText(playlist.name))
+
+      playNext()
+
+      await fireEvent.click(screen.queryByText('library_add'))
+      await fireEvent.click(screen.queryByText(playlist.name))
+
+      expect(mockInvoke).toHaveBeenNthCalledWith(
+        1,
+        'remote',
+        'playlistsManager',
+        'append',
+        playlist.id,
+        [trackListData[3].id]
+      )
+      expect(mockInvoke).toHaveBeenNthCalledWith(
+        2,
+        'remote',
+        'playlistsManager',
+        'append',
+        playlist.id,
+        [trackListData[0].id]
+      )
+      expect(mockInvoke).toHaveBeenCalledTimes(2)
+    })
   })
 })

@@ -4,6 +4,7 @@
   import Button from '../Button/Button.svelte'
   import Track from '../Track/Track.svelte'
   import Slider from '../Slider/Slider.svelte'
+  import AddToPlaylist from '../AddToPlaylist/AddToPlaylist.svelte'
   import { toDOMSrc, formatTime } from '../../utils'
   import {
     playNext,
@@ -240,9 +241,12 @@
           noBorder />
       </span>
       <span class:isActive={$isShuffling}>
-        <Button on:click={handleShuffle} icon={'shuffle'} noBorder />
+        <Button on:click={handleShuffle} icon="shuffle" noBorder />
       </span>
     </div>
-    <Button on:click={handleTogglePlaylist} icon={'queue_music'} large />
+    {#if $current}
+      <AddToPlaylist tracks={[$current]} large class="mr-2" />
+    {/if}
+    <Button on:click={handleTogglePlaylist} icon="queue_music" large />
   </span>
 </div>

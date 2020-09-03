@@ -15,8 +15,8 @@
 </script>
 
 <Dropdown
-  icon="playlist_add"
-  class={$$props.class}
+  {...$$props}
+  icon="library_add"
   withArrow={false}
   valueAsText={false}
   {options}

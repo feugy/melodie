@@ -33,7 +33,7 @@ en: English
 enqueue all: Enqueue all
 enqueue: Add to the queue
 fr: Français
-how to create playlist: To create new playlist, enqueue some tracks, open the queue, and clic on <i class="material-icons">playlist_add</i>.
+how to create playlist: To create new playlist, enqueue some tracks, open the queue, and clic on <i class="material-icons">library_add</i>.
 id: Id
 locales: Interface language
 Mélodie: Mélodie

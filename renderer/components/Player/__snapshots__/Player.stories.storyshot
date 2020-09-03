@@ -172,6 +172,7 @@ exports[`Storyshots Components/Player Empty 1`] = `
         </span>
       </div>
        
+       
       <button
         class="svelte-j6xhgj iconOnly large"
       >
@@ -397,6 +398,24 @@ exports[`Storyshots Components/Player With Track List 1`] = `
           </button>
         </span>
       </div>
+       
+      <span
+        class="wrapper svelte-14ek7z"
+      >
+        <button
+          class="mr-2 svelte-j6xhgj iconOnly large"
+        >
+          <i
+            class="material-icons svelte-j6xhgj"
+          >
+            library_add
+          </i>
+           
+           
+          
+        </button>
+         
+      </span>
        
       <button
         class="svelte-j6xhgj iconOnly large"
