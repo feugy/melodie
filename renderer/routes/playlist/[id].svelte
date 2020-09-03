@@ -4,12 +4,18 @@
   import { _ } from 'svelte-intl'
   import { replace } from 'svelte-spa-router'
   import { distinct, filter } from 'rxjs/operators'
-  import { Heading, Button, PlaylistTracksTable } from '../../components'
-  import { load, changes, removals } from '../../stores/playlists'
+  import {
+    Heading,
+    Button,
+    PlaylistTracksTable,
+    ConfirmationDialogue
+  } from '../../components'
+  import { load, changes, removals, remove } from '../../stores/playlists'
   import { add } from '../../stores/track-queue'
 
   export let params
   let playlist
+  let openDeletionConfirmation = false
 
   $: playlistId = +params.id
   $: if (!playlist || playlist.id !== playlistId) {
@@ -20,6 +26,12 @@
     playlist = await load(playlistId)
     if (!playlist) {
       return replace('/playlist')
+    }
+  }
+
+  function handleDeletionConfirmation({ detail: confirmed }) {
+    if (confirmed) {
+      remove(playlist)
     }
   }
 
@@ -59,11 +71,19 @@
   }
 </style>
 
+<ConfirmationDialogue
+  bind:open={openDeletionConfirmation}
+  title={$_('playlist deletion')}
+  on:close={handleDeletionConfirmation}>
+  <p>{$_('confirm playlist _ delection', playlist)}</p>
+</ConfirmationDialogue>
+
 <div in:fade={{ duration: 200 }}>
   {#if playlist}
     <Heading
       title={playlist.name}
-      image={'../images/harry-swales-Vfvf3H-5OHc-unsplash.jpg'} />
+      image={'../images/bantersnaps-ZfCVTJ30yoc-unsplash.jpg'}
+      imagePosition="center 60%" />
     <section>
       <span class="actions">
         <Button
@@ -75,6 +95,11 @@
           on:click={track => add(playlist.tracks)}
           icon="playlist_add"
           text={$_('enqueue all')} />
+        <Button
+          class="ml-4"
+          on:click={() => (openDeletionConfirmation = true)}
+          icon="delete"
+          text={$_('delete playlist')} />
       </span>
     </section>
     <div class="tracks">

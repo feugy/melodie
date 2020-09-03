@@ -89,7 +89,7 @@ npm run build
 - [x] shuffle, loop
 - [x] [open containing folder](https://www.electronjs.org/docs/api/shell#shellshowiteminfolderfullpath) for tracks
 - [x] display track's tags and details
-- [-] playlists
+- [-] playlists (delete, total duration, total tracks, media)
 - [ ] help and tips
       ---> release?
 - [ ] configure replay gain from settings

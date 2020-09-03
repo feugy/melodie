@@ -14,7 +14,9 @@ check parameters: Vous devrier vérifier les répertoires de musiques dans les <
 choose avatar: Choisissez une photo
 choose cover: Choisissez une couverture
 clear: Vider
+confirm playlist _ delection: Voulez-vous vraiment supprimer la playlist {name} ?
 current locale: 'Langue actuelle :'
+delete playlist: Supprimer
 disk _: 'Disque N°{num}'
 duration: Durée
 enqueue all: Ajouter tout
@@ -22,10 +24,12 @@ enqueue: Ajouter à la liste
 how to create playlist: Pour créer une playlist, ajouter des morceaux à la liste de lecture, ouvrez la, et cliquez sur <i class="material-icons">playlist_add</i>.
 locales: Langue de l'interface
 new playlist: nouvelle playlist...
+no: Non
 no results: Rien du tout !
 open folder: Ouvrir le dossier parent
 play all: Lire tout
 play now: Lire maintenant
+playlist deletion: Suppression de la playlist
 queue: Liste de lecture
 remove from playlist: Retirer
 results for _: Resultats pour "{searched}"
@@ -39,6 +43,7 @@ track details: Détails du morceau
 track: Piste
 unknown: Inconnu
 watched folders: Répertoires de musique
+yes: Oui
 tags:
   albumartist: Artiste de l'album
   arranger: Arranger

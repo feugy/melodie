@@ -1,0 +1,195 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Components/Confirmation dialogue Custom Action 1`] = `
+<section
+  class="storybook-snapshot-container"
+>
+  <div
+    class="filter svelte-7u451e open"
+  />
+   
+  <div
+    class="backdrop svelte-7u451e open"
+  >
+    <button
+      class="absolute top-0 right-0 m-4 svelte-j6xhgj iconOnly"
+    >
+      <i
+        class="material-icons svelte-j6xhgj"
+      >
+        close
+      </i>
+       
+       
+    </button>
+     
+    <article
+      class="svelte-7u451e"
+    >
+      <header
+        class="svelte-7u451e"
+      >
+        This is a title
+      </header>
+       
+      <div
+        class="content svelte-7u451e"
+      >
+        <div
+          class="content svelte-x966ku"
+          slot="content"
+        >
+          Are you really sure?
+        </div>
+      </div>
+       
+      <footer
+        class="svelte-7u451e"
+      >
+        <span
+          slot="buttons"
+        >
+          <button
+            class="svelte-j6xhgj"
+          >
+            <i
+              class="material-icons svelte-j6xhgj"
+            >
+              undo
+            </i>
+             
+            <span>
+              No, let me go!
+            </span>
+             
+          </button>
+           
+          <button
+            class="svelte-j6xhgj"
+          >
+            <i
+              class="material-icons svelte-j6xhgj"
+            >
+              redo
+            </i>
+             
+            <span>
+              Yes, I'm sure!
+            </span>
+             
+          </button>
+        </span>
+      </footer>
+    </article>
+  </div>
+   
+  
+   
+  <button
+    class="svelte-j6xhgj"
+  >
+     
+    <span>
+      Re-open
+    </span>
+     
+  </button>
+</section>
+`;
+
+exports[`Storyshots Components/Confirmation dialogue Default 1`] = `
+<section
+  class="storybook-snapshot-container"
+>
+  <div
+    class="filter svelte-7u451e open"
+  />
+   
+  <div
+    class="backdrop svelte-7u451e open"
+  >
+    <button
+      class="absolute top-0 right-0 m-4 svelte-j6xhgj iconOnly"
+    >
+      <i
+        class="material-icons svelte-j6xhgj"
+      >
+        close
+      </i>
+       
+       
+    </button>
+     
+    <article
+      class="svelte-7u451e"
+    >
+      <header
+        class="svelte-7u451e"
+      >
+        This is a title
+      </header>
+       
+      <div
+        class="content svelte-7u451e"
+      >
+        <div
+          class="content svelte-x966ku"
+          slot="content"
+        >
+          Are you really sure?
+        </div>
+      </div>
+       
+      <footer
+        class="svelte-7u451e"
+      >
+        <span
+          slot="buttons"
+        >
+          <button
+            class="svelte-j6xhgj"
+          >
+            <i
+              class="material-icons svelte-j6xhgj"
+            >
+              cancel
+            </i>
+             
+            <span>
+              No
+            </span>
+             
+          </button>
+           
+          <button
+            class="svelte-j6xhgj"
+          >
+            <i
+              class="material-icons svelte-j6xhgj"
+            >
+              done
+            </i>
+             
+            <span>
+              Yes
+            </span>
+             
+          </button>
+        </span>
+      </footer>
+    </article>
+  </div>
+   
+  
+   
+  <button
+    class="svelte-j6xhgj"
+  >
+     
+    <span>
+      Re-open
+    </span>
+     
+  </button>
+</section>
+`;

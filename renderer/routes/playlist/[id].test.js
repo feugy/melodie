@@ -10,7 +10,8 @@ import {
   playlists as mockedPlaylists,
   changes,
   removals,
-  load
+  load,
+  remove
 } from '../../stores/playlists'
 import { add } from '../../stores/track-queue'
 import { translate, sleep, addRefs } from '../../tests'
@@ -119,6 +120,7 @@ describe('playlist details route', () => {
 
     it('enqueues whole playlist', async () => {
       await fireEvent.click(screen.getByText(translate('enqueue all')))
+      await sleep()
 
       expect(add).toHaveBeenCalledWith(playlist.tracks)
       expect(add).toHaveBeenCalledTimes(1)
@@ -132,6 +134,29 @@ describe('playlist details route', () => {
       expect(add).toHaveBeenCalledWith(playlist.tracks, true)
       expect(add).toHaveBeenCalledTimes(1)
       expect(location.hash).toEqual(`#/playlist/${playlist.id}`)
+    })
+
+    it('can cancel playlist deletion', async () => {
+      await fireEvent.click(screen.queryByText(translate('delete playlist')))
+
+      expect(screen.queryByText(translate('playlist deletion'))).toBeVisible()
+      await fireEvent.click(screen.queryByText('cancel'))
+      await sleep()
+
+      expect(
+        screen.queryByText(translate('playlist deletion'))
+      ).not.toBeVisible()
+      expect(remove).not.toHaveBeenCalled()
+    })
+
+    it('deletes the whole playlist', async () => {
+      await fireEvent.click(screen.queryByText(translate('delete playlist')))
+
+      expect(screen.queryByText(translate('playlist deletion'))).toBeVisible()
+      await fireEvent.click(screen.queryByText('done'))
+      await sleep()
+
+      expect(remove).toHaveBeenCalledWith(playlist)
     })
 
     it('updates on playlist change', async () => {
