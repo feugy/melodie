@@ -11,7 +11,8 @@ import {
   changes,
   removals,
   load,
-  remove
+  remove,
+  save
 } from '../../stores/playlists'
 import { add } from '../../stores/track-queue'
 import { translate, sleep, addRefs } from '../../tests'
@@ -32,6 +33,7 @@ jest.mock('../../stores/playlists', () => {
     moveTrack: jest.fn(),
     removeTrack: jest.fn(),
     remove: jest.fn(),
+    save: jest.fn(),
     playlists: {
       subscribe: () => ({ unsubscribe: () => {} })
     }
@@ -168,6 +170,55 @@ describe('playlist details route', () => {
       await sleep()
 
       expect(remove).toHaveBeenCalledWith(playlist)
+    })
+
+    it('can cancel playlist renamal', async () => {
+      await fireEvent.click(screen.queryByText('edit'))
+
+      expect(screen.queryByText(translate('playlist renamal'))).toBeVisible()
+      await fireEvent.click(screen.queryByText('cancel'))
+      await sleep()
+
+      expect(
+        screen.queryByText(translate('playlist renamal'))
+      ).not.toBeVisible()
+      expect(save).not.toHaveBeenCalled()
+    })
+
+    it('rename playlist', async () => {
+      const name = faker.commerce.productName()
+      await fireEvent.click(screen.queryByText('edit'))
+
+      expect(screen.queryByText(translate('playlist renamal'))).toBeVisible()
+      await fireEvent.input(screen.getByRole('textbox'), {
+        target: { value: name }
+      })
+      await fireEvent.click(screen.queryByText('done'))
+      await sleep()
+
+      expect(save).toHaveBeenCalledWith({ ...playlist, name })
+    })
+
+    it('ignores entered, empty names', async () => {
+      await fireEvent.click(screen.queryByText('edit'))
+
+      expect(screen.queryByText(translate('playlist renamal'))).toBeVisible()
+      await fireEvent.input(screen.getByRole('textbox'), {
+        target: { value: '' }
+      })
+      await fireEvent.click(screen.queryByText('done'))
+      await sleep()
+
+      expect(save).not.toHaveBeenCalled()
+
+      await fireEvent.click(screen.queryByText('edit'))
+      await fireEvent.input(screen.getByRole('textbox'), {
+        target: { value: '   ' }
+      })
+      await fireEvent.click(screen.queryByText('done'))
+      await sleep()
+
+      expect(save).not.toHaveBeenCalled()
     })
 
     it('updates on playlist change', async () => {

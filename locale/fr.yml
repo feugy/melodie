@@ -32,9 +32,12 @@ open folder: Ouvrir le dossier parent
 play all: Lire tout
 play now: Lire maintenant
 playlist deletion: Suppression de la playlist
+playlist renamal: Nouveau nom pour la playlist
 queue: Liste de lecture
 remove from playlist: Retirer
+rename playlist: Renommer
 results for _: Resultats pour "{searched}"
+save: Enregistrer
 settings: Paramètres
 show all: Voir tout
 show details: Afficher les détails

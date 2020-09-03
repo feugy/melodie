@@ -12,7 +12,7 @@ export const changes = store.changes
 export const removals = store.removals
 
 export async function remove({ id }) {
-  return invoke('playlistsManager.save', { id, trackIds: [] })
+  return save({ id, trackIds: [] })
 }
 
 export async function appendTracks({ id, name, tracks }) {
@@ -22,15 +22,19 @@ export async function appendTracks({ id, name, tracks }) {
   }
   return id
     ? invoke('playlistsManager.append', id, trackIds)
-    : invoke('playlistsManager.save', { name, trackIds })
+    : save({ name, trackIds })
 }
 
 export async function removeTrack(playlist, index) {
   playlist.trackIds.splice(index, 1)
-  return invoke('playlistsManager.save', playlist)
+  return save(playlist)
 }
 
 export async function moveTrack(playlist, { from, to }) {
   playlist.trackIds.splice(to, 0, ...playlist.trackIds.splice(from, 1))
+  return save(playlist)
+}
+
+export async function save(playlist) {
   return invoke('playlistsManager.save', playlist)
 }

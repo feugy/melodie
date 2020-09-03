@@ -8,15 +8,18 @@
     Heading,
     Button,
     PlaylistTracksTable,
-    ConfirmationDialogue
+    ConfirmationDialogue,
+    TextInput
   } from '../../components'
-  import { load, changes, removals, remove } from '../../stores/playlists'
+  import { load, changes, removals, remove, save } from '../../stores/playlists'
   import { add } from '../../stores/track-queue'
   import { formatTimeLong, sumDurations } from '../../utils'
 
   export let params
   let playlist
-  let openDeletionConfirmation = false
+  let openDialogue = false
+  let isDeleting = false
+  let newName
 
   $: playlistId = +params.id
   $: if (!playlist || playlist.id !== playlistId) {
@@ -31,9 +34,21 @@
     }
   }
 
-  function handleDeletionConfirmation({ detail: confirmed }) {
-    if (confirmed) {
+  function handleConfirmation({ detail: confirmed }) {
+    if (!confirmed) {
+      return
+    }
+    if (isDeleting) {
       remove(playlist)
+    } else if (newName !== playlist.name) {
+      save({ ...playlist, name: newName })
+    }
+    isDeleting = false
+  }
+
+  function handleInput({ target: { value } }) {
+    if (value.trim().length > 0) {
+      newName = value
     }
   }
 
@@ -76,12 +91,20 @@
   }
 </style>
 
-<ConfirmationDialogue
-  bind:open={openDeletionConfirmation}
-  title={$_('playlist deletion')}
-  on:close={handleDeletionConfirmation}>
-  <p>{$_('confirm playlist _ delection', playlist)}</p>
-</ConfirmationDialogue>
+{#if playlist}
+  <ConfirmationDialogue
+    bind:open={openDialogue}
+    title={$_(isDeleting ? 'playlist deletion' : 'playlist renamal')}
+    confirmText={isDeleting ? 'yes' : 'save'}
+    cancelText={isDeleting ? 'no' : 'cancel'}
+    on:close={handleConfirmation}>
+    {#if isDeleting}
+      <p>{$_('confirm playlist _ delection', playlist)}</p>
+    {:else}
+      <TextInput on:input={handleInput} value={newName} />
+    {/if}
+  </ConfirmationDialogue>
+{/if}
 
 <div in:fade={{ duration: 200 }}>
   {#if playlist}
@@ -101,7 +124,18 @@
         text={$_('enqueue all')} />
       <Button
         class="ml-4"
-        on:click={() => (openDeletionConfirmation = true)}
+        on:click={() => {
+          newName = playlist.name
+          openDialogue = true
+        }}
+        icon="edit"
+        text={$_('rename playlist')} />
+      <Button
+        class="ml-4"
+        on:click={() => {
+          isDeleting = true
+          openDialogue = true
+        }}
         icon="delete"
         text={$_('delete playlist')} />
       <div class="meta">
