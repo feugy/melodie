@@ -118,24 +118,37 @@ describe('collection utilities', () => {
   })
 
   describe('parseRawRef', () => {
-    it('can parse regular ref', () => {
+    it('parses regular ref', () => {
       const ref = [123, 'foo']
       expect(parseRawRef(JSON.stringify(ref))).toEqual(ref)
     })
 
-    it('can parse null ref', () => {
+    it('parses null ref', () => {
       const ref = [123, null]
       expect(parseRawRef(JSON.stringify(ref))).toEqual(ref)
     })
 
-    it('can handle null', () => {
+    it('parses empty string', () => {
+      const ref = [123, '']
+      expect(parseRawRef(JSON.stringify(ref))).toEqual(ref)
+    })
+
+    it('parses text including commas and espaced delimiters', () => {
+      const ref = [123, 'foo, "bar"']
+      console.log(JSON.stringify(ref))
+      console.log(JSON.parse(JSON.stringify(ref)))
+      console.log(parseRawRef(JSON.stringify(ref)))
+      expect(parseRawRef(JSON.stringify(ref))).toEqual(ref)
+    })
+
+    it('handles null', () => {
       const ref = null
       expect(parseRawRef(JSON.stringify(ref))).toEqual(ref)
     })
   })
 
   describe('parseRawRefs', () => {
-    it('can parse regular refs array', () => {
+    it('parses regular refs array', () => {
       const refs = [
         [123, 'foo'],
         [432, 'bar'],
@@ -144,12 +157,21 @@ describe('collection utilities', () => {
       expect(parseRawRefArray(JSON.stringify(refs))).toEqual(refs)
     })
 
-    it('can parse array with single ref', () => {
+    it('parses regular refs with commas', () => {
+      const refs = [
+        [123, 'foo, bar'],
+        [432, 'baz'],
+        [678, 'wee']
+      ]
+      expect(parseRawRefArray(JSON.stringify(refs))).toEqual(refs)
+    })
+
+    it('parses array with single ref', () => {
       const refs = [[123, 'foo']]
       expect(parseRawRefArray(JSON.stringify(refs))).toEqual(refs)
     })
 
-    it('can parse array with null ref', () => {
+    it('parses array with null ref', () => {
       const refs = [
         [123, null],
         [456, 'foo'],
@@ -158,12 +180,12 @@ describe('collection utilities', () => {
       expect(parseRawRefArray(JSON.stringify(refs))).toEqual(refs)
     })
 
-    it('can parse empty array', () => {
+    it('parses empty array', () => {
       const refs = []
       expect(parseRawRefArray(JSON.stringify(refs))).toEqual(refs)
     })
 
-    it('can handle null', () => {
+    it('handles null', () => {
       const refs = null
       expect(parseRawRefArray(JSON.stringify(refs))).toEqual(refs)
     })

@@ -52,8 +52,14 @@ exports.differenceRef = (array, filtered) => {
 }
 
 function parseRawRef(string) {
-  const [id, name] = string.split(',')
-  return [+id, name === 'null' ? null : name.slice(1, -1)]
+  // This implementation is faster than
+  // - split (which does not handle commas inside name)
+  // - for loop
+  // - JSON.parse
+  const comma = string.indexOf(',')
+  const id = string.slice(0, comma)
+  const name = string.slice(comma + 1)
+  return [+id, name === 'null' ? null : name.slice(1, -1).replace(/\\"/g, '"')]
 }
 
 exports.parseRawRef = string =>
