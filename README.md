@@ -91,6 +91,7 @@ npm run build
 - [x] display track's tags and details
 - [x] playlists
 - [ ] feedback on enqueue, play, and add to playlist actions
+- [ ] automatically retrieve artist avatar, in the background
 - [ ] help and tips
       ---> release?
 - [ ] smaller screen support (UI refactor)

@@ -3,7 +3,7 @@
   import { _ } from 'svelte-intl'
   import Dialogue from '../Dialogue/Dialogue.svelte'
   import Button from '../Button/Button.svelte'
-  import Image from '../Image/Image.svelte'
+  import Image, { broken } from '../Image/Image.svelte'
   import ImageUploader from '../ImageUploader/ImageUploader.svelte'
   import Progress from '../Progress/Progress.svelte'
   import { invoke } from '../../utils'
@@ -22,6 +22,8 @@
   }
 
   async function handleSelect(url) {
+    // clear broken images so Image could try reloading the same url
+    broken.clear()
     await invoke(`mediaManager.saveFor${modelName}`, src.id, url)
     open = false
   }

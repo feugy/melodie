@@ -1,3 +1,7 @@
+<script context="module">
+  export const broken = new Set()
+</script>
+
 <script>
   import { toDOMSrc } from '../../utils'
 
@@ -7,9 +11,12 @@
   // exposed dimension
   export let dimension = null
 
-  $: hidden = !src
+  $: hidden = !src || broken.has(src)
 
   function handleError() {
+    if (src) {
+      broken.add(src)
+    }
     src = null
   }
 
@@ -45,7 +52,7 @@
   class:rounded-sm={!rounded}
   class:hidden
   loading="lazy"
-  src={src ? `${toDOMSrc(src)}#nonce=${Math.random()}` : src}
+  src={src && !broken.has(src) ? `${toDOMSrc(src)}#nonce=${Math.random()}` : null}
   alt={src} />
 {#if hidden}
   <span
