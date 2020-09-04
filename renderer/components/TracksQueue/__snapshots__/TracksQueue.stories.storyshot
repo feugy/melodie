@@ -6,11 +6,11 @@ exports[`Storyshots Components/Tracks queue Empty 1`] = `
 >
   <div>
     <header
-      class=" svelte-10gli35"
+      class=" svelte-z38dar"
       style="--image: url(../images/jason-rosewell-ASKeuOZqhYU-unsplash.jpg); --shade-color: rgba(0, 0, 0, 0.7); --bgPosition: center;"
     >
       <h1
-        class="svelte-10gli35"
+        class="svelte-z38dar"
       >
         Queue
       </h1>
@@ -40,11 +40,11 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
 >
   <div>
     <header
-      class=" svelte-10gli35"
+      class=" svelte-z38dar"
       style="--image: url(../images/jason-rosewell-ASKeuOZqhYU-unsplash.jpg); --shade-color: rgba(0, 0, 0, 0.7); --bgPosition: center;"
     >
       <h1
-        class="svelte-10gli35"
+        class="svelte-z38dar"
       >
         Queue
       </h1>

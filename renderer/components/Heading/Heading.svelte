@@ -7,7 +7,7 @@
 
 <style type="postcss">
   header {
-    @apply w-full px-8 pt-24 pb-40 relative;
+    @apply w-full px-8 pt-16 pb-40 relative;
     z-index: -1;
     margin-bottom: -9rem;
     background-image: linear-gradient(
@@ -19,7 +19,7 @@
     background-size: cover, 100% auto;
     background-position: center, var(--bgPosition);
     background-size: cover, cover;
-    clip-path: polygon(0% 0%, 100% 0%, 100% 45%, 0 100%);
+    clip-path: polygon(0% 0%, 100% 0%, 100% 55%, 0 100%);
   }
 
   h1 {
