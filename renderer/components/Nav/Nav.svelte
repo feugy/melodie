@@ -67,7 +67,7 @@
 
   .floating {
     transition: background ease-in-out 200ms;
-    background: rgba(0, 0, 0, 0.8);
+    background: var(--nav-bg-color);
   }
 
   nav {

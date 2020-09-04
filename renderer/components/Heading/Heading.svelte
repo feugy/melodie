@@ -18,6 +18,7 @@
       var(--image);
     background-size: cover, 100% auto;
     background-position: center, var(--bgPosition);
+    background-size: cover, cover;
     clip-path: polygon(0% 0%, 100% 0%, 100% 45%, 0 100%);
   }
 

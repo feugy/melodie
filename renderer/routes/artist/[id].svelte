@@ -113,7 +113,8 @@
   {#if artist}
     <Heading
       title={artist.name}
-      image={'../images/harry-swales-Vfvf3H-5OHc-unsplash.jpg'} />
+      image={'../images/harry-swales-Vfvf3H-5OHc-unsplash.jpg'}
+      imagePosition="center 40%" />
     <section>
       <span class="image-container">
         <Image

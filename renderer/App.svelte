@@ -47,7 +47,8 @@
   }
 
   main {
-    @apply flex-grow overflow-y-auto;
+    @apply flex-grow overflow-y-auto z-0;
+    background: var(--bg-color);
   }
 
   section {
@@ -61,7 +62,7 @@
 
   footer {
     @apply p-4;
-    background: var(--bg-primary-color);
+    background: var(--nav-bg-color);
     border-top: solid 2px var(--outline-color);
   }
 

@@ -16,6 +16,7 @@ check parameters: Vous devrier vérifier les répertoires de musiques dans les <
 choose avatar: Choisissez une photo
 choose cover: Choisissez une couverture
 clear: Vider
+close queue: Fermer la liste
 confirm playlist _ delection: Voulez-vous vraiment supprimer la playlist {name} ?
 current locale: 'Langue actuelle :'
 delete playlist: Supprimer
@@ -29,6 +30,7 @@ new playlist: nouvelle playlist...
 no: Non
 no results: Rien du tout !
 open folder: Ouvrir le dossier parent
+open queue: Liste de lecture
 play all: Lire tout
 play now: Lire maintenant
 playlist deletion: Suppression de la playlist

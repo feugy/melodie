@@ -192,8 +192,14 @@
   </span>
   <div class="player">
     <span class="controls">
+      {#if $current}
+        <AddToPlaylist tracks={[$current]} noBorder />
+      {/if}
+      <span class:isActive={$isShuffling}>
+        <Button on:click={handleShuffle} icon="shuffle" noBorder />
+      </span>
       <Button
-        class="mx-1"
+        class="ml-2 mr-1"
         on:click={handlePrevious}
         icon="skip_previous"
         noBorder />
@@ -202,7 +208,20 @@
         on:click={handlePlay}
         icon={isPlaying ? 'pause' : 'play_arrow'}
         large />
-      <Button class="mx-1" on:click={handleNext} icon="skip_next" noBorder />
+      <Button
+        class="ml-1 mr-2"
+        on:click={handleNext}
+        icon="skip_next"
+        noBorder />
+      <span class:isActive={repeatOne || repeatAll}>
+        <Button
+          on:click={handleRepeat}
+          icon={repeatOne ? 'repeat_one' : 'repeat'}
+          noBorder />
+      </span>
+      {#if $current}
+        <Button icon="favorite_border" noBorder class="invisible" />
+      {/if}
     </span>
     <span class="controls time">
       <span>{formatTime(currentTime)}</span>
@@ -230,24 +249,11 @@
         on:click={() => (muted = !muted)}
         icon={muted ? 'volume_off' : 'volume_up'}
         noBorder />
-      <span class:isActive={repeatOne || repeatAll}>
-        <Button
-          on:click={handleRepeat}
-          icon={repeatOne ? 'repeat_one' : 'repeat'}
-          noBorder />
-      </span>
-      <span class:isActive={$isShuffling}>
-        <Button on:click={handleShuffle} icon="shuffle" noBorder />
-      </span>
     </div>
-    {#if $current}
-      <AddToPlaylist tracks={[$current]} large class="mr-2" />
-    {/if}
-    <span class:isActive={isPlaylistOpen}>
-      <Button
-        on:click={() => (isPlaylistOpen = !isPlaylistOpen)}
-        icon="queue_music"
-        large />
-    </span>
+    <Button
+      on:click={() => (isPlaylistOpen = !isPlaylistOpen)}
+      icon="queue_music"
+      text={$_(isPlaylistOpen ? 'close queue' : 'open queue')}
+      primary={!isPlaylistOpen} />
   </span>
 </div>

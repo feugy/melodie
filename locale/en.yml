@@ -24,6 +24,7 @@ check parameters: You should check your music folders in <a class="underlined" h
 choose avatar: Choose a picture
 choose cover: Choose a cover
 clear: Clear
+close queue: Close queue
 confirm playlist _ delection: Do you really want to delete playlist {name}?
 current locale: 'Current language:'
 delete playlist: Delete
@@ -41,6 +42,7 @@ new playlist: new playlist...
 no: No
 no results: Nothing at all !
 open folder: Open containing folder
+open queue: Open queue
 play all: Play all
 play now: Play now
 playlist deletion: Playlist deletion

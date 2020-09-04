@@ -23,8 +23,25 @@ exports[`Storyshots Components/Player Empty 1`] = `
       <span
         class="controls svelte-101j5b"
       >
+         
+        <span
+          class="svelte-101j5b"
+        >
+          <button
+            class="svelte-j6xhgj iconOnly noBorder"
+          >
+            <i
+              class="material-icons svelte-j6xhgj"
+            >
+              shuffle
+            </i>
+             
+             
+          </button>
+        </span>
+         
         <button
-          class="mx-1 svelte-j6xhgj iconOnly noBorder"
+          class="ml-2 mr-1 svelte-j6xhgj iconOnly noBorder"
         >
           <i
             class="material-icons svelte-j6xhgj"
@@ -48,7 +65,7 @@ exports[`Storyshots Components/Player Empty 1`] = `
         </button>
          
         <button
-          class="mx-1 svelte-j6xhgj iconOnly noBorder"
+          class="ml-1 mr-2 svelte-j6xhgj iconOnly noBorder"
         >
           <i
             class="material-icons svelte-j6xhgj"
@@ -58,6 +75,23 @@ exports[`Storyshots Components/Player Empty 1`] = `
            
            
         </button>
+         
+        <span
+          class="svelte-101j5b"
+        >
+          <button
+            class="svelte-j6xhgj iconOnly noBorder"
+          >
+            <i
+              class="material-icons svelte-j6xhgj"
+            >
+              repeat
+            </i>
+             
+             
+          </button>
+        </span>
+         
       </span>
        
       <span
@@ -138,56 +172,22 @@ exports[`Storyshots Components/Player Empty 1`] = `
            
            
         </button>
-         
-        <span
-          class="svelte-101j5b"
-        >
-          <button
-            class="svelte-j6xhgj iconOnly noBorder"
-          >
-            <i
-              class="material-icons svelte-j6xhgj"
-            >
-              repeat
-            </i>
-             
-             
-          </button>
-        </span>
-         
-        <span
-          class="svelte-101j5b"
-        >
-          <button
-            class="svelte-j6xhgj iconOnly noBorder"
-          >
-            <i
-              class="material-icons svelte-j6xhgj"
-            >
-              shuffle
-            </i>
-             
-             
-          </button>
-        </span>
       </div>
        
-       
-      <span
-        class="svelte-101j5b"
+      <button
+        class="svelte-j6xhgj primary"
       >
-        <button
-          class="svelte-j6xhgj iconOnly large"
+        <i
+          class="material-icons svelte-j6xhgj"
         >
-          <i
-            class="material-icons svelte-j6xhgj"
-          >
-            queue_music
-          </i>
-           
-           
-        </button>
-      </span>
+          queue_music
+        </i>
+         
+        <span>
+          Open queue
+        </span>
+         
+      </button>
     </span>
   </div>
 </section>
@@ -254,8 +254,42 @@ exports[`Storyshots Components/Player With Track List 1`] = `
       <span
         class="controls svelte-101j5b"
       >
+        <span
+          class="wrapper svelte-14ek7z"
+        >
+          <button
+            class="svelte-j6xhgj iconOnly noBorder"
+          >
+            <i
+              class="material-icons svelte-j6xhgj"
+            >
+              library_add
+            </i>
+             
+             
+            
+          </button>
+           
+        </span>
+         
+        <span
+          class="svelte-101j5b"
+        >
+          <button
+            class="svelte-j6xhgj iconOnly noBorder"
+          >
+            <i
+              class="material-icons svelte-j6xhgj"
+            >
+              shuffle
+            </i>
+             
+             
+          </button>
+        </span>
+         
         <button
-          class="mx-1 svelte-j6xhgj iconOnly noBorder"
+          class="ml-2 mr-1 svelte-j6xhgj iconOnly noBorder"
         >
           <i
             class="material-icons svelte-j6xhgj"
@@ -279,12 +313,40 @@ exports[`Storyshots Components/Player With Track List 1`] = `
         </button>
          
         <button
-          class="mx-1 svelte-j6xhgj iconOnly noBorder"
+          class="ml-1 mr-2 svelte-j6xhgj iconOnly noBorder"
         >
           <i
             class="material-icons svelte-j6xhgj"
           >
             skip_next
+          </i>
+           
+           
+        </button>
+         
+        <span
+          class="svelte-101j5b"
+        >
+          <button
+            class="svelte-j6xhgj iconOnly noBorder"
+          >
+            <i
+              class="material-icons svelte-j6xhgj"
+            >
+              repeat
+            </i>
+             
+             
+          </button>
+        </span>
+         
+        <button
+          class="invisible svelte-j6xhgj iconOnly noBorder"
+        >
+          <i
+            class="material-icons svelte-j6xhgj"
+          >
+            favorite_border
           </i>
            
            
@@ -369,73 +431,22 @@ exports[`Storyshots Components/Player With Track List 1`] = `
            
            
         </button>
-         
-        <span
-          class="svelte-101j5b"
-        >
-          <button
-            class="svelte-j6xhgj iconOnly noBorder"
-          >
-            <i
-              class="material-icons svelte-j6xhgj"
-            >
-              repeat
-            </i>
-             
-             
-          </button>
-        </span>
-         
-        <span
-          class="svelte-101j5b"
-        >
-          <button
-            class="svelte-j6xhgj iconOnly noBorder"
-          >
-            <i
-              class="material-icons svelte-j6xhgj"
-            >
-              shuffle
-            </i>
-             
-             
-          </button>
-        </span>
       </div>
        
-      <span
-        class="wrapper svelte-14ek7z"
+      <button
+        class="svelte-j6xhgj primary"
       >
-        <button
-          class="mr-2 svelte-j6xhgj iconOnly large"
+        <i
+          class="material-icons svelte-j6xhgj"
         >
-          <i
-            class="material-icons svelte-j6xhgj"
-          >
-            library_add
-          </i>
-           
-           
-          
-        </button>
+          queue_music
+        </i>
          
-      </span>
-       
-      <span
-        class="svelte-101j5b"
-      >
-        <button
-          class="svelte-j6xhgj iconOnly large"
-        >
-          <i
-            class="material-icons svelte-j6xhgj"
-          >
-            queue_music
-          </i>
-           
-           
-        </button>
-      </span>
+        <span>
+          Open queue
+        </span>
+         
+      </button>
     </span>
   </div>
 </section>
