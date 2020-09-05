@@ -1,7 +1,6 @@
 <script>
   import { onMount } from 'svelte'
   import { _, locale } from 'svelte-intl'
-  import Router from 'svelte-spa-router'
   import {
     Progress,
     Player,
@@ -13,10 +12,10 @@
   import * as queue from './stores/track-queue'
   import { isLoading } from './stores/loading'
   import { invoke } from './utils'
-  import { routes } from './routes'
-
+  import Router from './components/Router'
   let isPlaylistOpen = true
   let ready = false
+  let scrollable
 
   onMount(async () => {
     locale.set(await invoke('settingsManager.getLocale'))
@@ -76,9 +75,9 @@
   <div>
     <main>
       <Sheet bind:open={isPlaylistOpen}>
-        <section slot="main">
+        <section slot="main" bind:this={scrollable}>
           <Nav />
-          <Router {routes} />
+          <Router {scrollable} />
         </section>
         <aside slot="aside">
           <TracksQueue />

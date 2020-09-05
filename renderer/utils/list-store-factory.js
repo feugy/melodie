@@ -33,7 +33,6 @@ export function createListStore(type, sortBy = 'rank') {
         } else {
           list.push(changed)
         }
-        list = list.sort((a, b) => collator.compare(a.name, b.name))
       }
       if (removedId) {
         const idx = list.findIndex(({ id }) => id === removedId)
@@ -41,7 +40,7 @@ export function createListStore(type, sortBy = 'rank') {
           list.splice(idx, 1)
         }
       }
-      return list
+      return list.sort((a, b) => collator.compare(a.name, b.name))
     }, [])
   )
 

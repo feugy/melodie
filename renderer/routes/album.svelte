@@ -5,7 +5,7 @@
   import { Album, Heading } from '../components'
   import { albums, list } from '../stores/albums'
 
-  export const params = {}
+  export let params = {} // eslint-disable-line
 
   onMount(() => {
     if ($albums.length === 0) {

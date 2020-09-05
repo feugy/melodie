@@ -110,8 +110,6 @@ npm run build
 
 ### Bugs and unresolved issues
 
-1. Local provider returning too many results, some unusable, for "Rock & Pop for Ballet 2"
-1. Scroll handling: it'll be better to keep memory on albums/artists page, and reset it on details page
 1. Undetected live changes: remove tracks and re-add them. This is a linux-only issue with chokidar
    - https://github.com/paulmillr/chokidar/issues/917
    - https://github.com/paulmillr/chokidar/issues/591
@@ -119,7 +117,6 @@ npm run build
    - https://github.com/paulmillr/chokidar/issues/303
 1. When loading new folders, enqueuing or going to album details will give incomplete results. Going back and forth won't load new data
 1. Page navigation: use:link doesn't work in tests and raise Svelte warning. a.href is fine
-1. Testing routes: `import regexparam from 'regexparam'` must be replaced with require or `import * as regexparam`: https://github.com/ItalyPaleAle/svelte-spa-router/issues/81
 1. If we knew current position in browser history, then we could disabled navigation button accordingly
 1. Security: clean html in artist/album names (wrapWithRefs returns injectable markup)
 1. Testing input: fireEvent.change, input or keyUp does not trigger svelte's bind:value on input

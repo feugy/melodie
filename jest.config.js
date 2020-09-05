@@ -16,7 +16,10 @@ module.exports = {
         '^.+\\.stories\\.[jt]sx?$': require.resolve(
           '@storybook/addon-storyshots/injectFileName'
         ),
-        '^.+\\.svelte$': ['svelte-jester', { preprocess: true }],
+        '^.+\\.svelte$': [
+          'svelte-jester',
+          { preprocess: true, rootMode: 'upward' }
+        ],
         '^.+\\.ya?ml$': 'jest-yaml-transform',
         '^.+\\.p?css$': 'jest-css-modules-transform'
       },

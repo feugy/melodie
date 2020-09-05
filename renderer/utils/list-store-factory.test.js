@@ -15,6 +15,7 @@ describe('abstract list factory', () => {
   let removals
   let isListing
   let sortBy = 'trackNo'
+  const collator = new Intl.Collator([], { numeric: true })
 
   beforeAll(() => {
     ;({
@@ -139,7 +140,7 @@ describe('abstract list factory', () => {
       const data = Array.from({ length: 8 }, (v, i) => ({
         id: i,
         name: faker.random.word()
-      }))
+      })).sort((a, b) => collator.compare(a.name, b.name))
       const removed1 = data[3].id
       const removed2 = data[6].id
       mockInvoke.mockResolvedValueOnce({
