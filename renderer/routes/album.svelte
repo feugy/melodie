@@ -1,10 +1,17 @@
 <script>
-  import { _ } from 'svelte-intl'
+  import { onMount } from 'svelte'
   import { fade } from 'svelte/transition'
+  import { _ } from 'svelte-intl'
   import { Album, Heading } from '../components'
-  import { albums } from '../stores/albums'
+  import { albums, list } from '../stores/albums'
 
   export const params = {}
+
+  onMount(() => {
+    if ($albums.length === 0) {
+      list()
+    }
+  })
 </script>
 
 <style type="postcss">

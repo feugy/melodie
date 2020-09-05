@@ -110,7 +110,6 @@ npm run build
 
 ### Bugs and unresolved issues
 
-1. Startup isn't quick: load artist/album/playlist on demand
 1. Local provider returning too many results, some unusable, for "Rock & Pop for Ballet 2"
 1. Scroll handling: it'll be better to keep memory on albums/artists page, and reset it on details page
 1. Undetected live changes: remove tracks and re-add them. This is a linux-only issue with chokidar

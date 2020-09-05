@@ -10,3 +10,4 @@ export const list = store.list
 export const load = store.load
 export const changes = store.changes
 export const removals = store.removals
+export const isListing = store.isListing

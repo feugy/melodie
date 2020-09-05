@@ -5,13 +5,15 @@ import html from 'svelte-htm'
 import { BehaviorSubject } from 'rxjs'
 import faker from 'faker'
 import artistRoute from './artist.svelte'
-import { artists as mockedArtists } from '../stores/artists'
+import { artists as mockedArtists, list } from '../stores/artists'
 import { translate, makeRef } from '../tests'
 
 jest.mock('svelte-spa-router')
 jest.mock('../stores/artists')
 
 describe('artist route', () => {
+  beforeEach(jest.resetAllMocks)
+
   it('handles no artists', async () => {
     const store = new BehaviorSubject([])
     mockedArtists.subscribe = store.subscribe.bind(store)
@@ -26,6 +28,7 @@ describe('artist route', () => {
         exact: false
       })
     ).toBeInTheDocument()
+    expect(list).toHaveBeenCalled()
   })
 
   describe('given some artists', () => {
@@ -51,7 +54,6 @@ describe('artist route', () => {
       )
       const store = new BehaviorSubject(artists)
       mockedArtists.subscribe = store.subscribe.bind(store)
-      jest.resetAllMocks()
     })
 
     it('displays all artists', async () => {
@@ -62,6 +64,7 @@ describe('artist route', () => {
       ).toBeInTheDocument()
       expect(screen.getByText(artists[0].name)).toBeInTheDocument()
       expect(screen.getByText(artists[1].name)).toBeInTheDocument()
+      expect(list).not.toHaveBeenCalled()
     })
   })
 })

@@ -1,7 +1,7 @@
 <script>
   import { onMount } from 'svelte'
   import { _, locale } from 'svelte-intl'
-  import Router, { replace } from 'svelte-spa-router'
+  import Router from 'svelte-spa-router'
   import {
     Progress,
     Player,
@@ -11,29 +11,18 @@
     TracksQueue
   } from './components'
   import * as queue from './stores/track-queue'
-  import { list as listArtists, artists } from './stores/artists'
-  import { list as listAlbums, albums } from './stores/albums'
-  import { list as listPlaylists } from './stores/playlists'
-  import { fromServerChannel, invoke } from './utils'
+  import { isLoading } from './stores/loading'
+  import { invoke } from './utils'
   import { routes } from './routes'
-  import { pluck } from 'rxjs/operators'
 
   let isPlaylistOpen = true
-  let isLoading = fromServerChannel('tracking').pipe(pluck('inProgress'))
   let ready = false
 
   onMount(async () => {
     locale.set(await invoke('settingsManager.getLocale'))
-    listAlbums()
-    listArtists()
-    listPlaylists()
     invoke('settingsManager.compareAndWatch')
     // await on locale to be set before rendering
     ready = true
-    await new Promise(r => setTimeout(r, 200))
-    if ($albums.length === 0 && $artists.length === 0) {
-      replace('/settings')
-    }
   })
 </script>
 

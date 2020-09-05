@@ -52,21 +52,11 @@ const sum$ = new ReplaySubject().pipe(
 
 const current$ = new ReplaySubject()
 
-export const albums = {
-  subscribe: albums$.subscribe.bind(albums$)
-}
-export const artists = {
-  subscribe: artists$.subscribe.bind(artists$)
-}
-export const tracks = {
-  subscribe: tracks$.subscribe.bind(tracks$)
-}
-export const total = {
-  subscribe: total$.subscribe.bind(total$)
-}
-export const current = {
-  subscribe: current$.subscribe.bind(current$)
-}
+export const albums = albums$.asObservable()
+export const artists = artists$.asObservable()
+export const tracks = tracks$.asObservable()
+export const total = total$.asObservable()
+export const current = current$.asObservable()
 
 let searchSubscription = null
 

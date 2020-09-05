@@ -135,9 +135,6 @@ describe('collection utilities', () => {
 
     it('parses text including commas and espaced delimiters', () => {
       const ref = [123, 'foo, "bar"']
-      console.log(JSON.stringify(ref))
-      console.log(JSON.parse(JSON.stringify(ref)))
-      console.log(parseRawRef(JSON.stringify(ref)))
       expect(parseRawRef(JSON.stringify(ref))).toEqual(ref)
     })
 

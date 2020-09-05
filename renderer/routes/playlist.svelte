@@ -1,6 +1,7 @@
 <script>
-  import { _ } from 'svelte-intl'
+  import { onMount } from 'svelte'
   import { fade } from 'svelte/transition'
+  import { _ } from 'svelte-intl'
   import {
     Heading,
     Image,
@@ -9,9 +10,15 @@
     TextInput,
     Button
   } from '../components'
-  import { playlists } from '../stores/playlists'
+  import { playlists, list } from '../stores/playlists'
 
   export const params = {}
+
+  onMount(() => {
+    if ($playlists.length === 0) {
+      list()
+    }
+  })
 </script>
 
 <style type="postcss">

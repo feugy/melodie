@@ -45,16 +45,18 @@ export function createListStore(type, sortBy = 'rank') {
     }, [])
   )
 
+  const isListing$ = new BehaviorSubject(false)
+
   let listSubscription = null
 
   const store = {
-    [`${type}s`]: {
-      subscribe: items$.subscribe.bind(items$)
-    },
+    [`${type}s`]: items$.asObservable(),
 
     changes,
 
     removals,
+
+    isListing: isListing$.asObservable(),
 
     reset() {
       items$.next({ clear: true })
@@ -64,6 +66,7 @@ export function createListStore(type, sortBy = 'rank') {
       if (listSubscription) {
         listSubscription.unsubscribe()
       }
+      isListing$.next(true)
       items$.next({ clear: true })
 
       const request$ = new BehaviorSubject({ size: 10 })
@@ -80,6 +83,7 @@ export function createListStore(type, sortBy = 'rank') {
             } else {
               request$.complete()
               listSubscription = null
+              isListing$.next(false)
             }
           })
         )

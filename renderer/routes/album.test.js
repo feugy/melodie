@@ -5,13 +5,15 @@ import html from 'svelte-htm'
 import { BehaviorSubject } from 'rxjs'
 import faker from 'faker'
 import albumRoute from './album.svelte'
-import { albums as mockedAlbums } from '../stores/albums'
+import { albums as mockedAlbums, list } from '../stores/albums'
 import { translate, makeRef } from '../tests'
 
 jest.mock('svelte-spa-router')
 jest.mock('../stores/albums')
 
 describe('album route', () => {
+  beforeEach(jest.resetAllMocks)
+
   it('handles no artists', async () => {
     const store = new BehaviorSubject([])
     mockedAlbums.subscribe = store.subscribe.bind(store)
@@ -26,6 +28,7 @@ describe('album route', () => {
         exact: false
       })
     ).toBeInTheDocument()
+    expect(list).toHaveBeenCalled()
   })
 
   describe('given some albums', () => {
@@ -51,7 +54,6 @@ describe('album route', () => {
       )
       const store = new BehaviorSubject(albums)
       mockedAlbums.subscribe = store.subscribe.bind(store)
-      jest.resetAllMocks()
     })
 
     it('displays all albums', async () => {
@@ -62,6 +64,7 @@ describe('album route', () => {
       ).toBeInTheDocument()
       expect(screen.getByText(albums[0].name)).toBeInTheDocument()
       expect(screen.getByText(albums[1].name)).toBeInTheDocument()
+      expect(list).not.toHaveBeenCalled()
     })
   })
 })

@@ -123,21 +123,10 @@ fromServerChannel(`track-removal`).subscribe(removedId => {
 queue$.subscribe()
 clear()
 
-export const tracks = {
-  subscribe: tracks$.subscribe.bind(tracks$)
-}
-
-export const current = {
-  subscribe: current$.subscribe.bind(current$)
-}
-
-export const index = {
-  subscribe: index$.subscribe.bind(index$)
-}
-
-export const isShuffling = {
-  subscribe: isShuffling$.subscribe.bind(isShuffling$)
-}
+export const tracks = tracks$
+export const current = current$.asObservable()
+export const index = index$
+export const isShuffling = isShuffling$
 
 export function add(values, play = false) {
   if (play) {

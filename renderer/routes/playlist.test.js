@@ -5,13 +5,15 @@ import html from 'svelte-htm'
 import { BehaviorSubject } from 'rxjs'
 import faker from 'faker'
 import playlistRoute from './playlist.svelte'
-import { playlists as mockedPlaylists } from '../stores/playlists'
+import { playlists as mockedPlaylists, list } from '../stores/playlists'
 import { translate, makeRef } from '../tests'
 
 jest.mock('svelte-spa-router')
 jest.mock('../stores/playlists')
 
 describe('playlist route', () => {
+  beforeEach(jest.resetAllMocks)
+
   it('handles no playlists', async () => {
     const store = new BehaviorSubject([])
     mockedPlaylists.subscribe = store.subscribe.bind(store)
@@ -29,6 +31,7 @@ describe('playlist route', () => {
         }
       )
     ).toBeInTheDocument()
+    expect(list).toHaveBeenCalled()
   })
 
   describe('given some playlists', () => {
@@ -66,7 +69,6 @@ describe('playlist route', () => {
       )
       const store = new BehaviorSubject(playlists)
       mockedPlaylists.subscribe = store.subscribe.bind(store)
-      jest.resetAllMocks()
     })
 
     it('displays all playlists', async () => {
@@ -77,6 +79,7 @@ describe('playlist route', () => {
       ).toBeInTheDocument()
       expect(screen.getByText(playlists[0].name)).toBeInTheDocument()
       expect(screen.getByText(playlists[1].name)).toBeInTheDocument()
+      expect(list).not.toHaveBeenCalled()
     })
   })
 })

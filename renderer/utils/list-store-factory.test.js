@@ -13,13 +13,19 @@ describe('abstract list factory', () => {
   let reset
   let changes
   let removals
+  let isListing
   let sortBy = 'trackNo'
 
   beforeAll(() => {
-    ;({ albums, list, load, reset, changes, removals } = createListStore(
-      'album',
-      sortBy
-    ))
+    ;({
+      albums,
+      list,
+      load,
+      reset,
+      changes,
+      removals,
+      isListing
+    } = createListStore('album', sortBy))
   })
 
   beforeEach(() => {
@@ -52,9 +58,12 @@ describe('abstract list factory', () => {
           results: data.slice(size * 2)
         })
       expect(get(albums)).toEqual([])
+      expect(get(isListing)).toBe(false)
       list()
+      expect(get(isListing)).toBe(true)
       await sleep(100)
       expect(get(albums)).toEqual(data)
+      expect(get(isListing)).toBe(false)
       expect(mockInvoke).toHaveBeenCalledTimes(3)
       expect(mockInvoke).toHaveBeenCalledWith(
         'remote',
@@ -168,11 +177,15 @@ describe('abstract list factory', () => {
         })
       )
       expect(get(albums)).toEqual([])
+      expect(get(isListing)).toBe(false)
       // will fire 2 then will be cancelled
       list()
+      expect(get(isListing)).toBe(true)
       // will fire 4
       list()
+      expect(get(isListing)).toBe(true)
       await sleep(100)
+      expect(get(isListing)).toBe(false)
       expect(get(albums)).toEqual(data)
       expect(mockInvoke).toHaveBeenCalledTimes(6)
       expect(mockInvoke).toHaveBeenCalledWith(

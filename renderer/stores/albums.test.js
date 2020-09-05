@@ -1,6 +1,6 @@
 'use strict'
 import { get } from 'svelte/store'
-import { albums, list } from './albums'
+import { albums, list, isListing } from './albums'
 import { mockInvoke, sleep } from '../tests'
 
 describe('albums store', () => {
@@ -16,8 +16,11 @@ describe('albums store', () => {
       })
     )
     expect(get(albums)).toEqual([])
+    expect(get(isListing)).toBe(false)
     await list()
+    expect(get(isListing)).toBe(true)
     await sleep(100)
+    expect(get(isListing)).toBe(false)
     expect(get(albums)).toEqual(data)
     expect(mockInvoke).toHaveBeenCalledWith(
       'remote',

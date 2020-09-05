@@ -8,7 +8,8 @@ import {
   remove,
   appendTracks,
   removeTrack,
-  moveTrack
+  moveTrack,
+  isListing
 } from './playlists'
 import { mockInvoke, sleep } from '../tests'
 
@@ -27,8 +28,11 @@ describe('playlists store', () => {
       })
     )
     expect(get(playlists)).toEqual([])
+    expect(get(isListing)).toBe(false)
     await list()
+    expect(get(isListing)).toBe(true)
     await sleep(100)
+    expect(get(isListing)).toBe(false)
     expect(get(playlists)).toEqual(data)
     expect(mockInvoke).toHaveBeenCalledWith(
       'remote',
