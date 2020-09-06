@@ -2,8 +2,9 @@
   import { onMount } from 'svelte'
   import { fade } from 'svelte/transition'
   import { _ } from 'svelte-intl'
-  import { Album, Heading } from '../components'
+  import { Album, Heading, Tutorial } from '../components'
   import { albums, list } from '../stores/albums'
+  import { isEnabled, currentStep } from '../stores/tutorial'
 
   export let params = {} // eslint-disable-line
 
@@ -41,8 +42,8 @@
     image={'../images/valentino-funghi-MEcxLZ8ENV8-unsplash.jpg'}
     imagePosition="center 25%" />
   <div>
-    {#each $albums as src (src.id)}
-      <span>
+    {#each $albums as src, i (src.id)}
+      <span id={i === 0 ? 'firstAlbum' : null}>
         <Album {src} />
       </span>
     {:else}
@@ -52,3 +53,9 @@
     {/each}
   </div>
 </section>
+
+{#if $isEnabled}
+  <Tutorial {...$currentStep}>
+    {@html $_($currentStep.messageKey)}
+  </Tutorial>
+{/if}

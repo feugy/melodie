@@ -37,16 +37,19 @@ describe('Settings model', () => {
       expect(await settingsModel.get()).toEqual({
         id: settingsModel.ID,
         folders: [],
-        locale: null
+        locale: null,
+        openCount: 1
       })
     })
 
     it('does not overrides settings when present', async () => {
       const locale = faker.random.word()
+      const openCount = faker.random.number({ min: 1 })
       const settings = {
         id: settingsModel.ID,
         folders: [faker.system.fileName(), faker.system.fileName()],
-        locale
+        locale,
+        openCount
       }
       await db.schema.createTable(settingsModel.name, settingsModel.definition)
       await db(settingsModel.name).insert({

@@ -81,6 +81,8 @@ async function createWindow() {
     ...electron
   })
   win.loadURL(`file://${join(publicFolder, 'index.html')}`)
+
+  // TODO settingsManager.recordOpening()
 }
 
 app.whenReady().then(createWindow)

@@ -1,6 +1,7 @@
 <script>
   import { onMount } from 'svelte'
   import { _, locale } from 'svelte-intl'
+  import { replace } from 'svelte-spa-router'
   import {
     Progress,
     Player,
@@ -10,6 +11,7 @@
     TracksQueue
   } from './components'
   import * as queue from './stores/track-queue'
+  import { isEnabled } from './stores/tutorial'
   import { isLoading } from './stores/loading'
   import { invoke } from './utils'
   import Router from './components/Router'
@@ -19,9 +21,16 @@
 
   onMount(async () => {
     locale.set(await invoke('settingsManager.getLocale'))
-    invoke('settingsManager.compareAndWatch')
     // await on locale to be set before rendering
     ready = true
+    const openCount = await invoke('settingsManager.getOpenCount')
+    console.log(openCount)
+    if (openCount === 1) {
+      isEnabled.set(true)
+      replace('/settings')
+    } else {
+      invoke('settingsManager.compareAndWatch')
+    }
   })
 </script>
 
@@ -79,7 +88,7 @@
           <Nav />
           <Router {scrollable} />
         </section>
-        <aside slot="aside">
+        <aside slot="aside" id="queue">
           <TracksQueue />
         </aside>
       </Sheet>

@@ -56,6 +56,24 @@ describe('Settings manager', () => {
     expect(settingsModel.save).toHaveBeenCalledWith({ folders, locale })
   })
 
+  it('returns opening count', async () => {
+    const openCount = faker.random.number({ min: 1 })
+    settingsModel.get.mockResolvedValueOnce({ openCount })
+
+    expect(await engine.getOpenCount()).toEqual(openCount)
+  })
+
+  it('increments opening count', async () => {
+    const openCount = faker.random.number({ min: 1 })
+    settingsModel.get.mockResolvedValueOnce({ openCount })
+
+    await engine.recordOpening()
+    expect(settingsModel.save).toHaveBeenCalledWith({
+      openCount: openCount + 1
+    })
+    expect(settingsModel.save).toHaveBeenCalledTimes(1)
+  })
+
   describe('addFolders', () => {
     it('saves selected folders to settings', async () => {
       const folders = [faker.system.fileName()]

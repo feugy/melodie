@@ -112,7 +112,7 @@
   }
 
   ul {
-    @apply absolute my-3 rounded z-10 text-sm;
+    @apply absolute my-3 rounded z-20 text-sm;
     background-color: var(--bg-primary-color);
     border: 1px solid var(--outline-color);
   }

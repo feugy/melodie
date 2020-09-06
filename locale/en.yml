@@ -100,3 +100,5 @@ tags:
   website: Website
   writer: Writer
   year: Year
+tutorial:
+  chooseLocale: <h3>Welcome to Mélodie!</h3><p>First, let's be sure we can understand each other.</p>

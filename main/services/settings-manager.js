@@ -16,6 +16,18 @@ module.exports = {
     return (await settingsModel.get()).locale || (await getSystemLocale())
   },
 
+  async getOpenCount() {
+    return (await settingsModel.get()).openCount
+  },
+
+  async recordOpening() {
+    const settings = await settingsModel.get()
+    await settingsModel.save({
+      ...settings,
+      openCount: settings.openCount + 1
+    })
+  },
+
   async addFolders() {
     logger.debug('picking new folders')
     const { filePaths: folders } = await dialog.showOpenDialog({

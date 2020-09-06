@@ -1,12 +1,21 @@
 <script>
+  import { tick } from 'svelte'
   import { fade } from 'svelte/transition'
   import { push } from 'svelte-spa-router'
   import { _, locales, locale } from 'svelte-intl'
-  import { Heading, Button, SubHeading, Dropdown } from '../components'
+  import {
+    Heading,
+    Button,
+    SubHeading,
+    Dropdown,
+    Tutorial
+  } from '../components'
+  import { isEnabled, currentStep, onNext } from '../stores/tutorial'
   import { invoke } from '../utils'
 
   export const params = {}
   let currentLocale = $locale ? { value: $locale, label: $_($locale) } : null
+  let localeSection
 
   $: localeOptions = $locales.map(value => ({ value, label: $_(value) }))
   $: if (currentLocale && currentLocale.value !== $locale) {
@@ -45,6 +54,10 @@
   li > span {
     @apply px-4;
   }
+
+  .controlContainer {
+    @apply inline-block;
+  }
 </style>
 
 <section in:fade={{ duration: 200 }}>
@@ -66,15 +79,24 @@
           </li>
         {/each}
       </ul>
-      <Button icon="folder" on:click={handleAdd} text={$_('add folders')} />
+      <span class="controlContainer" id="folder"><Button
+          icon="folder"
+          on:click={handleAdd}
+          text={$_('add folders')} /></span>
     {/await}
   </article>
   <article>
     <SubHeading>{$_('locales')}</SubHeading>
     <label for="locale">{$_('current locale')}</label>
-    <Dropdown
-      valueAsText="true"
-      bind:value={currentLocale}
-      options={localeOptions} />
+    <span class="controlContainer" id="locale"><Dropdown
+        valueAsText="true"
+        bind:value={currentLocale}
+        options={localeOptions} /></span>
   </article>
 </section>
+
+{#if $isEnabled}
+  <Tutorial {...$currentStep} on:next={onNext}>
+    {@html $_($currentStep.messageKey)}
+  </Tutorial>
+{/if}
