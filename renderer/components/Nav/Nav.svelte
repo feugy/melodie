@@ -120,7 +120,7 @@
           text={$_('artists')}
           icon="person" />
       </li>
-      <li>
+      <li id="to-playlists">
         <Button
           on:click={() => router.push('/playlist')}
           text={$_('playlists')}

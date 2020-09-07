@@ -3,19 +3,11 @@
   import { fade } from 'svelte/transition'
   import { push } from 'svelte-spa-router'
   import { _, locales, locale } from 'svelte-intl'
-  import {
-    Heading,
-    Button,
-    SubHeading,
-    Dropdown,
-    Tutorial
-  } from '../components'
-  import { isEnabled, currentStep, onNext } from '../stores/tutorial'
+  import { Heading, Button, SubHeading, Dropdown } from '../components'
   import { invoke } from '../utils'
 
   export const params = {}
   let currentLocale = $locale ? { value: $locale, label: $_($locale) } : null
-  let localeSection
 
   $: localeOptions = $locales.map(value => ({ value, label: $_(value) }))
   $: if (currentLocale && currentLocale.value !== $locale) {
@@ -23,11 +15,11 @@
     invoke('settingsManager.setLocale', currentLocale.value)
   }
 
-  let foldersPromise
-  listFolders()
+  let settingsPromise
+  getSettings()
 
-  function listFolders() {
-    foldersPromise = invoke('settingsManager.getFolders')
+  function getSettings() {
+    settingsPromise = invoke('settingsManager.get')
   }
 
   async function handleAdd() {
@@ -37,7 +29,7 @@
 
   async function handleRemove(folder) {
     await invoke('settingsManager.removeFolder', folder)
-    listFolders()
+    getSettings()
   }
 </script>
 
@@ -67,7 +59,7 @@
     imagePosition="center 65%" />
   <article>
     <SubHeading>{$_('watched folders')}</SubHeading>
-    {#await foldersPromise then folders}
+    {#await settingsPromise then { folders }}
       <ul>
         {#each folders as folder (folder)}
           <li>
@@ -94,9 +86,3 @@
         options={localeOptions} /></span>
   </article>
 </section>
-
-{#if $isEnabled}
-  <Tutorial {...$currentStep} on:next={onNext}>
-    {@html $_($currentStep.messageKey)}
-  </Tutorial>
-{/if}

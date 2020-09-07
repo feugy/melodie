@@ -16,7 +16,7 @@ describe('settings route', () => {
 
   it('displays tracked folders and current language', async () => {
     const folders = [faker.system.fileName(), faker.system.fileName()]
-    mockInvoke.mockResolvedValueOnce(folders)
+    mockInvoke.mockResolvedValueOnce({ folders })
 
     render(html`<${settingsRoute} />`)
     await sleep()
@@ -25,18 +25,14 @@ describe('settings route', () => {
       expect(screen.getByText(folder)).toBeInTheDocument()
     }
     expect(screen.getByText(translate('add folders'))).toBeInTheDocument()
-    expect(mockInvoke).toHaveBeenCalledWith(
-      'remote',
-      'settingsManager',
-      'getFolders'
-    )
+    expect(mockInvoke).toHaveBeenCalledWith('remote', 'settingsManager', 'get')
     expect(mockInvoke).toHaveBeenCalledTimes(1)
 
     expect(screen.getByText(translate('fr'))).toBeInTheDocument()
   })
 
   it('changes current language and updates labels', async () => {
-    mockInvoke.mockResolvedValueOnce([])
+    mockInvoke.mockResolvedValueOnce({ folders: [] })
 
     render(html`<${settingsRoute} />`)
     expect(screen.getByText('Langue actuelle :')).toBeInTheDocument()
@@ -57,7 +53,7 @@ describe('settings route', () => {
   })
 
   it('adds new folders and redirect to folders', async () => {
-    mockInvoke.mockResolvedValue([])
+    mockInvoke.mockResolvedValue({ folders: [] })
 
     render(html`<${settingsRoute} />`)
     await sleep()
@@ -69,7 +65,7 @@ describe('settings route', () => {
       1,
       'remote',
       'settingsManager',
-      'getFolders'
+      'get'
     )
     expect(mockInvoke).toHaveBeenNthCalledWith(
       2,
@@ -84,9 +80,9 @@ describe('settings route', () => {
   it('remove tracked folders', async () => {
     const folders = [faker.system.fileName(), faker.system.fileName()]
     mockInvoke
-      .mockResolvedValueOnce(folders)
+      .mockResolvedValueOnce({ folders })
       .mockResolvedValueOnce()
-      .mockResolvedValueOnce(folders.slice(0, 1))
+      .mockResolvedValueOnce({ folders: folders.slice(0, 1) })
 
     render(html`<${settingsRoute} />`)
     await sleep()
@@ -102,7 +98,7 @@ describe('settings route', () => {
       1,
       'remote',
       'settingsManager',
-      'getFolders'
+      'get'
     )
     expect(mockInvoke).toHaveBeenNthCalledWith(
       2,
@@ -115,7 +111,7 @@ describe('settings route', () => {
       3,
       'remote',
       'settingsManager',
-      'getFolders'
+      'get'
     )
     expect(mockInvoke).toHaveBeenCalledTimes(3)
     expect(screen.queryByText(folders[0])).toBeInTheDocument()

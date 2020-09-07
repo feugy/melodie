@@ -2,14 +2,7 @@
   import { onMount } from 'svelte'
   import { fade } from 'svelte/transition'
   import { _ } from 'svelte-intl'
-  import {
-    Heading,
-    Image,
-    Playlist,
-    Dialogue,
-    TextInput,
-    Button
-  } from '../components'
+  import { Heading, Playlist } from '../components'
   import { playlists, list } from '../stores/playlists'
 
   export const params = {}

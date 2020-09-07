@@ -23,61 +23,64 @@ describe('Settings manager', () => {
     settingsModel.get.mockResolvedValue({})
   })
 
-  it('returns folders from settings', async () => {
+  it('returns settings', async () => {
     const folders = [faker.system.fileName(), faker.system.fileName()]
-    settingsModel.get.mockResolvedValueOnce({ folders })
+    const locale = faker.random.word()
+    const openCount = faker.random.number({ min: 1 })
+    settingsModel.get.mockResolvedValueOnce({ folders, locale, openCount })
+    osLocale.mockResolvedValueOnce('fr-FR')
 
-    expect(await engine.getFolders()).toEqual(folders)
+    expect(await engine.get()).toEqual({ folders, locale, openCount })
+    expect(osLocale).not.toHaveBeenCalled()
   })
 
   it('returns system locale when locale not set', async () => {
-    settingsModel.get.mockResolvedValueOnce({})
+    const folders = [faker.system.fileName(), faker.system.fileName()]
+    const openCount = faker.random.number({ min: 1 })
+    settingsModel.get.mockResolvedValueOnce({ openCount, folders })
     osLocale.mockResolvedValueOnce('fr-FR')
 
-    expect(await engine.getLocale()).toEqual('fr')
-  })
-
-  it('returns previously set locale', async () => {
-    const locale = faker.random.word()
-    settingsModel.get.mockResolvedValueOnce({ locale })
-    osLocale.mockResolvedValueOnce('fr-FR')
-
-    expect(await engine.getLocale()).toEqual(locale)
-    expect(osLocale).not.toHaveBeenCalled()
+    expect(await engine.get()).toEqual({
+      locale: 'fr',
+      openCount,
+      folders
+    })
+    expect(osLocale).toHaveBeenCalled()
   })
 
   it('can set locale', async () => {
     const locale = faker.random.word()
+    const openCount = faker.random.number({ min: 1 })
     const folders = [faker.system.fileName(), faker.system.fileName()]
-    settingsModel.get.mockResolvedValueOnce({ folders })
+    settingsModel.get.mockResolvedValueOnce({ folders, openCount })
 
     await engine.setLocale(locale)
 
-    expect(settingsModel.save).toHaveBeenCalledWith({ folders, locale })
-  })
-
-  it('returns opening count', async () => {
-    const openCount = faker.random.number({ min: 1 })
-    settingsModel.get.mockResolvedValueOnce({ openCount })
-
-    expect(await engine.getOpenCount()).toEqual(openCount)
+    expect(settingsModel.save).toHaveBeenCalledWith({
+      folders,
+      locale,
+      openCount
+    })
   })
 
   it('increments opening count', async () => {
+    const locale = faker.random.word()
     const openCount = faker.random.number({ min: 1 })
-    settingsModel.get.mockResolvedValueOnce({ openCount })
+    settingsModel.get.mockResolvedValueOnce({ openCount, locale })
 
     await engine.recordOpening()
     expect(settingsModel.save).toHaveBeenCalledWith({
-      openCount: openCount + 1
+      openCount: openCount + 1,
+      locale
     })
     expect(settingsModel.save).toHaveBeenCalledTimes(1)
   })
 
   describe('addFolders', () => {
     it('saves selected folders to settings', async () => {
+      const locale = faker.random.word()
       const folders = [faker.system.fileName()]
-      settingsModel.get.mockResolvedValueOnce({ folders })
+      settingsModel.get.mockResolvedValueOnce({ folders, locale })
       const filePaths = [faker.system.fileName(), faker.system.fileName()]
       electron.dialog.showOpenDialog.mockResolvedValueOnce({ filePaths })
 
@@ -86,7 +89,8 @@ describe('Settings manager', () => {
       expect(settingsModel.get).toHaveBeenCalledTimes(1)
       expect(settingsModel.save).toHaveBeenCalledWith({
         id: settingsModel.ID,
-        folders: folders.concat(filePaths)
+        folders: folders.concat(filePaths),
+        locale
       })
       expect(settingsModel.save).toHaveBeenCalledTimes(1)
       expect(fileLoader.walkAndWatch).toHaveBeenCalledWith(
@@ -112,10 +116,11 @@ describe('Settings manager', () => {
     })
 
     it('merges nested added folder into its tracked parent', async () => {
+      const locale = faker.random.word()
       const parent1 = join(faker.lorem.word(), faker.lorem.word())
       const parent2 = join(faker.lorem.word(), faker.lorem.word())
       const folders = [parent1, faker.system.fileName(), parent2]
-      settingsModel.get.mockResolvedValueOnce({ folders })
+      settingsModel.get.mockResolvedValueOnce({ folders, locale })
       const filePaths = [
         join(parent1, faker.system.fileName()),
         join(parent2, faker.system.fileName()),
@@ -128,7 +133,8 @@ describe('Settings manager', () => {
       expect(settingsModel.get).toHaveBeenCalledTimes(1)
       expect(settingsModel.save).toHaveBeenCalledWith({
         id: settingsModel.ID,
-        folders: folders.concat(filePaths.slice(2))
+        folders: folders.concat(filePaths.slice(2)),
+        locale
       })
       expect(settingsModel.save).toHaveBeenCalledTimes(1)
       expect(fileLoader.walkAndWatch).toHaveBeenCalledWith(
@@ -140,13 +146,14 @@ describe('Settings manager', () => {
     })
 
     it('removes nested folders when adding a common parent', async () => {
+      const locale = faker.random.word()
       const parent = join(faker.lorem.word(), faker.lorem.word())
       const folders = [
         join(parent, faker.system.fileName()),
         faker.system.fileName(),
         join(parent, faker.system.fileName())
       ]
-      settingsModel.get.mockResolvedValueOnce({ folders })
+      settingsModel.get.mockResolvedValueOnce({ folders, locale })
       electron.dialog.showOpenDialog.mockResolvedValueOnce({
         filePaths: [parent]
       })
@@ -156,7 +163,8 @@ describe('Settings manager', () => {
       expect(settingsModel.get).toHaveBeenCalledTimes(1)
       expect(settingsModel.save).toHaveBeenCalledWith({
         id: settingsModel.ID,
-        folders: [folders[1], parent]
+        folders: [folders[1], parent],
+        locale
       })
       expect(settingsModel.save).toHaveBeenCalledTimes(1)
       expect(fileLoader.walkAndWatch).toHaveBeenCalledWith([folders[1], parent])
@@ -168,19 +176,21 @@ describe('Settings manager', () => {
 
   describe('removeFolder', () => {
     it('removes tracked folder from settings', async () => {
+      const locale = faker.random.word()
       const folders = [
         faker.system.fileName(),
         faker.system.fileName(),
         faker.system.fileName()
       ]
-      settingsModel.get.mockResolvedValueOnce({ folders: [...folders] })
+      settingsModel.get.mockResolvedValueOnce({ folders: [...folders], locale })
 
       expect(await engine.removeFolder(folders[1]))
 
       expect(settingsModel.get).toHaveBeenCalledTimes(1)
       expect(settingsModel.save).toHaveBeenCalledWith({
         id: settingsModel.ID,
-        folders: [folders[0], folders[2]]
+        folders: [folders[0], folders[2]],
+        locale
       })
       expect(settingsModel.save).toHaveBeenCalledTimes(1)
       expect(fileLoader.unwatch).toHaveBeenCalledWith(folders[1])
@@ -188,8 +198,9 @@ describe('Settings manager', () => {
     })
 
     it('ignores untracked folder', async () => {
+      const locale = faker.random.word()
       const folders = [faker.system.fileName(), faker.system.fileName()]
-      settingsModel.get.mockResolvedValueOnce({ folders })
+      settingsModel.get.mockResolvedValueOnce({ folders, locale })
 
       expect(await engine.removeFolder(faker.system.fileName()))
 
@@ -201,12 +212,13 @@ describe('Settings manager', () => {
 
   describe('compareAndWatch', () => {
     it('gets tracked folders, compares and watches them', async () => {
+      const locale = faker.random.word()
       const folders = [
         faker.system.fileName(),
         faker.system.fileName(),
         faker.system.fileName()
       ]
-      settingsModel.get.mockResolvedValueOnce({ folders })
+      settingsModel.get.mockResolvedValueOnce({ folders, locale })
 
       expect(await engine.compareAndWatch())
 

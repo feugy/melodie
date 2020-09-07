@@ -13,6 +13,7 @@ a track: 1 track
 add folders: Add folders
 album: Album
 albums: Albums
+alright: Alright!
 an album: 1 album
 an artist: 1 artist
 an hour: 1 hour
@@ -35,6 +36,7 @@ enqueue all: Enqueue all
 enqueue: Add to the queue
 fr: Français
 how to create playlist: To create new playlist, enqueue some tracks and clic on <i class="material-icons">library_add</i>.
+let's go: Let's go!
 id: Id
 locales: Interface language
 Mélodie: Mélodie
@@ -101,4 +103,19 @@ tags:
   writer: Writer
   year: Year
 tutorial:
-  chooseLocale: <h3>Welcome to Mélodie!</h3><p>First, let's be sure we can understand each other.</p>
+  chooseLocale: >
+    <h3>Welcome to Mélodie!</h3>
+    <p class="mb-4">First, let's be sure we can understand each other.</p>
+  findMusic: Now, choose a folder on your hard drive that contains your music.
+  playOrEnqueue: >
+    <p>Your albums are progressively loaded.</p>
+    <p>Hover the album: you can enqueue it at the end with <i class="material-icons">play_arrow</i>, or play it now with <i class="material-icons">playlist_add</i></p>
+  makePlaylist: >
+    <p>Drag and drop tracks to organize the queue.</p>
+    <p>Once done, save your first playlist with <i class="material-icons">library_add</i>.</p>
+    <p>All it needs is a name and to press the "Return" key (or click <i class="material-icons">add_box</i>).</p>
+  navigateToPlaylist: >
+    <p>Done! Here is your brand new playlist.</p>
+  end: >
+    <p>This quick tour is over.</p>
+    <p class="mb-4">It is now time to enjoy your music!</p>

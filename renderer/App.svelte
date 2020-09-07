@@ -8,10 +8,11 @@
     Nav,
     Sheet,
     SystemNotifier,
-    TracksQueue
+    TracksQueue,
+    Tutorial
   } from './components'
   import * as queue from './stores/track-queue'
-  import { isEnabled } from './stores/tutorial'
+  import * as tutorial from './stores/tutorial'
   import { isLoading } from './stores/loading'
   import { invoke } from './utils'
   import Router from './components/Router'
@@ -20,14 +21,13 @@
   let scrollable
 
   onMount(async () => {
-    locale.set(await invoke('settingsManager.getLocale'))
+    const settings = await invoke('settingsManager.get')
+    locale.set(settings.locale)
     // await on locale to be set before rendering
     ready = true
-    const openCount = await invoke('settingsManager.getOpenCount')
-    console.log(openCount)
-    if (openCount === 1) {
-      isEnabled.set(true)
+    if (settings.openCount < 20 && !settings.folders.length) {
       replace('/settings')
+      tutorial.start()
     } else {
       invoke('settingsManager.compareAndWatch')
     }
@@ -97,4 +97,5 @@
       <Player trackList={queue} bind:isPlaylistOpen />
     </footer>
   </div>
+  <Tutorial />
 {/if}

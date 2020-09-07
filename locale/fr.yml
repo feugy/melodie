@@ -6,6 +6,7 @@ _ tracks: '{total} pistes'
 'title: _': 'Titre : {value}'
 a track: 1 piste
 add folders: Ajouter des dossiers
+alright: C'est bon !
 an artist: 1 artiste
 an hour: 1 heure
 artist: Artiste
@@ -25,6 +26,7 @@ duration: Durée
 enqueue all: Ajouter tout
 enqueue: Ajouter à la liste
 how to create playlist: Pour créer une playlist, ajouter des morceaux à la liste de lecture et cliquez sur <i class="material-icons">library_add</i>.
+let's go: C'est parti !
 locales: Langue de l'interface
 new playlist: nouvelle playlist...
 no: Non
@@ -78,7 +80,7 @@ tags:
 tutorial:
   chooseLocale: >
     <h3>Bienvenue sur Mélodie!</h3>
-    <p>Tout d'abord, vérifions que nous pouvons nous comprendre.</p>
+    <p class="mb-4">Tout d'abord, vérifions que nous pouvons nous comprendre.</p>
   findMusic: Maintenant, choisissez un dossier de votre disque dur qui contient votre musique.
   playOrEnqueue: >
     <p>Vos albums sont chargés progressivements.</p>
@@ -87,3 +89,8 @@ tutorial:
     <p>Glissez-déposez les morceaux pour re-organiser la liste de lecture.</p>
     <p>Une fois terminé, créez votre première playlist avec <i class="material-icons">library_add</i>.</p>
     <p>Il suffit d'entrer un nom et d'appuyer sur la touche "Entrée" (ou sur <i class="material-icons">add_box</i>).</p>
+  navigateToPlaylist: >
+    <p>Et voilà ! Votre nouvelle playlist se trouve ici.</p>
+  end: >
+    <p>Voila pour cette rapide visite.</p>
+    <p class="mb-4">Il est temps de vous laisser écouter votre musique !</p>

@@ -255,7 +255,7 @@ exports[`Storyshots Components/Player With Track List 1`] = `
         class="controls svelte-101j5b"
       >
         <span
-          class="wrapper svelte-14ek7z"
+          class="wrapper svelte-19pnu2a"
         >
           <button
             class="svelte-j6xhgj iconOnly noBorder"

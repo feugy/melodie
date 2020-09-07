@@ -130,7 +130,7 @@ describe('Router component', () => {
   })
 
   it('renders settings', async () => {
-    mockInvoke.mockResolvedValue([])
+    mockInvoke.mockResolvedValue({ folders: [] })
     location.hash = `#/settings`
     render(html`<${Router} scrollable=${scrollable} />`)
     expect(screen.queryByText(translate('settings'))).toBeVisible()

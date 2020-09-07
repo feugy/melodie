@@ -77,8 +77,8 @@ describe('abstract list factory', () => {
     it('receives change updates', async () => {
       const data = Array.from({ length: 8 }, (v, i) => ({
         id: i,
-        name: i
-      }))
+        name: `${i}0`
+      })).sort((a, b) => collator.compare(a.name, b.name))
       const updated1 = { ...data[3], updated: true }
       const updated2 = { ...data[6], updated: true }
       mockInvoke.mockResolvedValueOnce({
@@ -114,7 +114,7 @@ describe('abstract list factory', () => {
       const data = Array.from({ length: 8 }, (v, i) => ({
         id: i,
         name: `${i}0`
-      }))
+      })).sort((a, b) => collator.compare(a.name, b.name))
       const updated = { ...data[3], name: `2`, updated: true }
       mockInvoke.mockResolvedValueOnce({
         total: data.length,
@@ -139,7 +139,7 @@ describe('abstract list factory', () => {
     it('receives removal updates', async () => {
       const data = Array.from({ length: 8 }, (v, i) => ({
         id: i,
-        name: faker.random.word()
+        name: `${i}0`
       })).sort((a, b) => collator.compare(a.name, b.name))
       const removed1 = data[3].id
       const removed2 = data[6].id

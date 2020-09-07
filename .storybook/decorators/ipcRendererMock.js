@@ -12,7 +12,7 @@ export default function (mock = () => null) {
     window.electron.ipcRenderer = {
       invoke: (channel, service, method, ...args) => {
         invokeAction(service, method, ...args)
-        return mock(method, ...args)
+        return mock(method, ...args) || {}
       }
     }
     return storyFn()

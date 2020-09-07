@@ -90,9 +90,10 @@ npm run build
 - [x] [open containing folder](https://www.electronjs.org/docs/api/shell#shellshowiteminfolderfullpath) for tracks
 - [x] display track's tags and details
 - [x] playlists
+- [x] tutorial
+- [ ] splash screen
 - [ ] feedback on enqueue, play, and add to playlist actions
 - [ ] automatically retrieve artist avatar, in the background
-- [ ] help and tips
       ---> release?
 - [ ] smaller screen support (UI refactor)
 - [ ] enqueue tracks/albums by dragging to tracks queue
@@ -107,6 +108,7 @@ npm run build
 - [ ] number of disk on album details page
 - [ ] display tracks/albums/artists count in settings
 - [ ] allow reseting database from settings
+- [ ] true gapless playback
 
 ### Bugs and unresolved issues
 

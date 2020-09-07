@@ -8,20 +8,16 @@ const { getLogger, mergeFolders, getSystemLocale } = require('../utils')
 const logger = getLogger('services/settings')
 
 module.exports = {
-  async getFolders() {
-    return (await settingsModel.get()).folders
-  },
-
-  async getLocale() {
-    return (await settingsModel.get()).locale || (await getSystemLocale())
-  },
-
-  async getOpenCount() {
-    return (await settingsModel.get()).openCount
+  async get() {
+    const settings = await settingsModel.get()
+    if (!settings.locale) {
+      settings.locale = await getSystemLocale()
+    }
+    return settings
   },
 
   async recordOpening() {
-    const settings = await settingsModel.get()
+    const settings = await this.get()
     await settingsModel.save({
       ...settings,
       openCount: settings.openCount + 1
@@ -35,7 +31,7 @@ module.exports = {
     })
     if (folders.length) {
       logger.info({ folders }, `adding new folders...`)
-      const settings = await settingsModel.get()
+      const settings = await this.get()
       const merged = mergeFolders(folders, settings.folders)
       await settingsModel.save({
         ...settings,
@@ -47,7 +43,7 @@ module.exports = {
   },
 
   async removeFolder(folder) {
-    const settings = await settingsModel.get()
+    const settings = await this.get()
     const { folders } = settings
     logger.debug({ folder, folders }, 'remove watched folders from the list')
     let idx = folders.indexOf(folder)
@@ -59,14 +55,14 @@ module.exports = {
   },
 
   async compareAndWatch() {
-    const { folders } = await settingsModel.get()
+    const { folders } = await this.get()
     logger.debug({ folders }, 'comparing and watching folders')
     await fileLoader.compare(folders)
     fileLoader.watch(folders)
   },
 
   async setLocale(value) {
-    const settings = await settingsModel.get()
+    const settings = await this.get()
     logger.debug({ value }, 'saving new locale value')
     await settingsModel.save({
       ...settings,

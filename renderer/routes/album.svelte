@@ -2,11 +2,10 @@
   import { onMount } from 'svelte'
   import { fade } from 'svelte/transition'
   import { _ } from 'svelte-intl'
-  import { Album, Heading, Tutorial } from '../components'
+  import { Album, Heading } from '../components'
   import { albums, list } from '../stores/albums'
-  import { isEnabled, currentStep } from '../stores/tutorial'
 
-  export let params = {} // eslint-disable-line
+  export const params = {}
 
   onMount(() => {
     if ($albums.length === 0) {
@@ -53,9 +52,3 @@
     {/each}
   </div>
 </section>
-
-{#if $isEnabled}
-  <Tutorial {...$currentStep}>
-    {@html $_($currentStep.messageKey)}
-  </Tutorial>
-{/if}
