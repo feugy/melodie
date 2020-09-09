@@ -93,7 +93,6 @@ npm run build
 - [x] tutorial
 - [x] feedback on enqueue and play actions
 - [x] interaction feedback on buttons, links, images...
-- [ ] feedback on add to playlist actions
 - [ ] configurable "play now" behaviour: either clear & add, or enqueue and jump
 - [ ] disable text selection
 - [ ] automatically retrieve artist avatar, in the background
@@ -115,6 +114,9 @@ npm run build
 
 ### Bugs and unresolved issues
 
+1. Diskist/TrackTable dropdown does not consider scroll position (in storybook only)
+1. Wrong z-order with drop-down & player slider/loop button
+1. "AC/DC" artist analysed as 2 artists: "AC" & "DC"
 1. Undetected live changes: remove tracks and re-add them. This is a linux-only issue with chokidar
    - https://github.com/paulmillr/chokidar/issues/917
    - https://github.com/paulmillr/chokidar/issues/591

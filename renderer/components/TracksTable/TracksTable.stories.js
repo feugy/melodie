@@ -24,6 +24,7 @@ export const current$Data = new BehaviorSubject(tracksData[3])
 export const Default = () => ({
   Component: TracksTable,
   props: {
+    class: 'relative',
     tracks: tracksData,
     current: null
   }
@@ -32,6 +33,7 @@ export const Default = () => ({
 export const WithoutAlbum = () => ({
   Component: TracksTable,
   props: {
+    class: 'relative',
     tracks: tracksData,
     current: null,
     withAlbum: false
@@ -41,6 +43,7 @@ export const WithoutAlbum = () => ({
 export const WithCurrent = () => ({
   Component: TracksTable,
   props: {
+    class: 'relative',
     tracks: tracksData,
     current: current$Data
   }

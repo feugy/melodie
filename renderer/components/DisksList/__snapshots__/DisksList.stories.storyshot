@@ -57,7 +57,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
     
      
     <table
-      class="svelte-pacrnm"
+      class="relative svelte-pacrnm"
     >
       <thead
         class="svelte-pacrnm"
@@ -302,7 +302,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
     
      
     <table
-      class="svelte-pacrnm"
+      class="relative svelte-pacrnm"
     >
       <thead
         class="svelte-pacrnm"
@@ -961,7 +961,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
     
      
     <table
-      class="svelte-pacrnm"
+      class="relative svelte-pacrnm"
     >
       <thead
         class="svelte-pacrnm"

@@ -92,7 +92,7 @@
   on:close={() => (openedTrack = null)} />
 
 {#if tracks}
-  <table>
+  <table class={$$props.class}>
     <thead>
       <tr>
         <th>{$_('#')}</th>

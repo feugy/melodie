@@ -256,6 +256,7 @@ export const disksData = [
 export const Default = () => ({
   Component: DisksList,
   props: {
+    class: 'relative',
     tracks: disksData,
     current: current$Data
   }
