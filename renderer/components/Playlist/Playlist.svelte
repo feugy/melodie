@@ -22,7 +22,7 @@
 
 <style type="postcss">
   a {
-    @apply cursor-pointer inline-block w-64 rounded-sm border-2 border-solid p-4 text-left relative;
+    @apply inline-block w-64 rounded-sm border-2 border-solid p-4 text-left relative;
     border-color: var(--outline-color);
     background-color: var(--hover-bg-color);
   }
@@ -42,7 +42,7 @@
   }
 </style>
 
-<a href={`#/playlist/${src.id}`} class={$$props.class}>
+<a href={`#/playlist/${src.id}`} class="{$$props.class} actionable">
   <header>
     <h3>{src.name || $_('unknown')}</h3>
     <h4>

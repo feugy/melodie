@@ -12,13 +12,14 @@ exports[`Storyshots Components/Dialogue Default 1`] = `
     class="backdrop svelte-7u451e open"
   >
     <button
-      class="absolute top-0 right-0 m-4 svelte-j6xhgj iconOnly"
+      class="absolute top-0 right-0 m-4 svelte-rsfl0b iconOnly"
     >
       <i
-        class="material-icons svelte-j6xhgj"
+        class="material-icons svelte-rsfl0b"
       >
         close
       </i>
+       
        
        
     </button>
@@ -49,10 +50,10 @@ exports[`Storyshots Components/Dialogue Default 1`] = `
           slot="buttons"
         >
           <button
-            class="svelte-j6xhgj"
+            class="svelte-rsfl0b"
           >
             <i
-              class="material-icons svelte-j6xhgj"
+              class="material-icons svelte-rsfl0b"
             >
               close
             </i>
@@ -60,6 +61,7 @@ exports[`Storyshots Components/Dialogue Default 1`] = `
             <span>
               Close
             </span>
+             
              
           </button>
         </span>
@@ -70,12 +72,13 @@ exports[`Storyshots Components/Dialogue Default 1`] = `
   
    
   <button
-    class="svelte-j6xhgj"
+    class="svelte-rsfl0b"
   >
      
     <span>
       Open
     </span>
+     
      
   </button>
    

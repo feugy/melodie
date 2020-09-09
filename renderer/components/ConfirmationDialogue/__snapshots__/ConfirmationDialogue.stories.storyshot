@@ -12,13 +12,14 @@ exports[`Storyshots Components/Confirmation dialogue Custom Action 1`] = `
     class="backdrop svelte-7u451e open"
   >
     <button
-      class="absolute top-0 right-0 m-4 svelte-j6xhgj iconOnly"
+      class="absolute top-0 right-0 m-4 svelte-rsfl0b iconOnly"
     >
       <i
-        class="material-icons svelte-j6xhgj"
+        class="material-icons svelte-rsfl0b"
       >
         close
       </i>
+       
        
        
     </button>
@@ -50,10 +51,10 @@ exports[`Storyshots Components/Confirmation dialogue Custom Action 1`] = `
           slot="buttons"
         >
           <button
-            class="svelte-j6xhgj"
+            class="mr-2 svelte-rsfl0b"
           >
             <i
-              class="material-icons svelte-j6xhgj"
+              class="material-icons svelte-rsfl0b"
             >
               undo
             </i>
@@ -62,13 +63,14 @@ exports[`Storyshots Components/Confirmation dialogue Custom Action 1`] = `
               No, let me go!
             </span>
              
+             
           </button>
            
           <button
-            class="svelte-j6xhgj"
+            class="svelte-rsfl0b"
           >
             <i
-              class="material-icons svelte-j6xhgj"
+              class="material-icons svelte-rsfl0b"
             >
               redo
             </i>
@@ -76,6 +78,7 @@ exports[`Storyshots Components/Confirmation dialogue Custom Action 1`] = `
             <span>
               Yes, I'm sure!
             </span>
+             
              
           </button>
         </span>
@@ -86,12 +89,13 @@ exports[`Storyshots Components/Confirmation dialogue Custom Action 1`] = `
   
    
   <button
-    class="svelte-j6xhgj"
+    class="svelte-rsfl0b"
   >
      
     <span>
       Re-open
     </span>
+     
      
   </button>
 </section>
@@ -109,13 +113,14 @@ exports[`Storyshots Components/Confirmation dialogue Default 1`] = `
     class="backdrop svelte-7u451e open"
   >
     <button
-      class="absolute top-0 right-0 m-4 svelte-j6xhgj iconOnly"
+      class="absolute top-0 right-0 m-4 svelte-rsfl0b iconOnly"
     >
       <i
-        class="material-icons svelte-j6xhgj"
+        class="material-icons svelte-rsfl0b"
       >
         close
       </i>
+       
        
        
     </button>
@@ -147,10 +152,10 @@ exports[`Storyshots Components/Confirmation dialogue Default 1`] = `
           slot="buttons"
         >
           <button
-            class="svelte-j6xhgj"
+            class="mr-2 svelte-rsfl0b"
           >
             <i
-              class="material-icons svelte-j6xhgj"
+              class="material-icons svelte-rsfl0b"
             >
               cancel
             </i>
@@ -159,13 +164,14 @@ exports[`Storyshots Components/Confirmation dialogue Default 1`] = `
               No
             </span>
              
+             
           </button>
            
           <button
-            class="svelte-j6xhgj"
+            class="svelte-rsfl0b"
           >
             <i
-              class="material-icons svelte-j6xhgj"
+              class="material-icons svelte-rsfl0b"
             >
               done
             </i>
@@ -173,6 +179,7 @@ exports[`Storyshots Components/Confirmation dialogue Default 1`] = `
             <span>
               Yes
             </span>
+             
              
           </button>
         </span>
@@ -183,12 +190,13 @@ exports[`Storyshots Components/Confirmation dialogue Default 1`] = `
   
    
   <button
-    class="svelte-j6xhgj"
+    class="svelte-rsfl0b"
   >
      
     <span>
       Re-open
     </span>
+     
      
   </button>
 </section>

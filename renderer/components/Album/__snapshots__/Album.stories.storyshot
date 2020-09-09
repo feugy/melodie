@@ -6,15 +6,15 @@ exports[`Storyshots Components/Album Default 1`] = `
 >
   <div>
     <a
-      class=" svelte-my2key"
+      class=" svelte-nl1lpu"
       href="#/album/1"
     >
       <div
-        class="content svelte-my2key"
+        class="content svelte-nl1lpu"
       >
         <img
           alt="./cover.jpg"
-          class="w-64 h-64 text-3xl svelte-hn7eai rounded-sm"
+          class="w-64 h-64 text-3xl actionable svelte-hn7eai rounded-sm"
           loading="lazy"
           src="./cover.jpg#nonce=0.1"
         />
@@ -22,30 +22,32 @@ exports[`Storyshots Components/Album Default 1`] = `
         
          
         <p
-          class="controls svelte-my2key"
+          class="controls svelte-nl1lpu"
         >
           <button
-            class="svelte-j6xhgj primary iconOnly large"
+            class="svelte-rsfl0b primary iconOnly large"
             data-testid="play"
           >
             <i
-              class="material-icons svelte-j6xhgj"
+              class="material-icons svelte-rsfl0b"
             >
               play_arrow
             </i>
              
              
+             
           </button>
            
           <button
-            class="svelte-j6xhgj primary iconOnly large"
+            class="svelte-rsfl0b primary iconOnly large"
             data-testid="enqueue"
           >
             <i
-              class="material-icons svelte-j6xhgj"
+              class="material-icons svelte-rsfl0b"
             >
               playlist_add
             </i>
+             
              
              
           </button>
@@ -53,14 +55,14 @@ exports[`Storyshots Components/Album Default 1`] = `
       </div>
        
       <header
-        class="svelte-my2key"
+        class="svelte-nl1lpu"
       >
         <h3>
           Diamonds on the inside
         </h3>
          
         <h4
-          class="svelte-my2key"
+          class="svelte-nl1lpu"
         >
           by 
           <a
@@ -91,15 +93,15 @@ exports[`Storyshots Components/Album Many Artists 1`] = `
 >
   <div>
     <a
-      class=" svelte-my2key"
+      class=" svelte-nl1lpu"
       href="#/album/2"
     >
       <div
-        class="content svelte-my2key"
+        class="content svelte-nl1lpu"
       >
         <img
           alt="./cover.jpg"
-          class="w-64 h-64 text-3xl svelte-hn7eai rounded-sm"
+          class="w-64 h-64 text-3xl actionable svelte-hn7eai rounded-sm"
           loading="lazy"
           src="./cover.jpg#nonce=0.1"
         />
@@ -107,30 +109,32 @@ exports[`Storyshots Components/Album Many Artists 1`] = `
         
          
         <p
-          class="controls svelte-my2key"
+          class="controls svelte-nl1lpu"
         >
           <button
-            class="svelte-j6xhgj primary iconOnly large"
+            class="svelte-rsfl0b primary iconOnly large"
             data-testid="play"
           >
             <i
-              class="material-icons svelte-j6xhgj"
+              class="material-icons svelte-rsfl0b"
             >
               play_arrow
             </i>
              
              
+             
           </button>
            
           <button
-            class="svelte-j6xhgj primary iconOnly large"
+            class="svelte-rsfl0b primary iconOnly large"
             data-testid="enqueue"
           >
             <i
-              class="material-icons svelte-j6xhgj"
+              class="material-icons svelte-rsfl0b"
             >
               playlist_add
             </i>
+             
              
              
           </button>
@@ -138,14 +142,14 @@ exports[`Storyshots Components/Album Many Artists 1`] = `
       </div>
        
       <header
-        class="svelte-my2key"
+        class="svelte-nl1lpu"
       >
         <h3>
           Diamonds on the inside
         </h3>
          
         <h4
-          class="svelte-my2key"
+          class="svelte-nl1lpu"
         >
           by 
           <a
@@ -192,15 +196,15 @@ exports[`Storyshots Components/Album No Artist 1`] = `
 >
   <div>
     <a
-      class=" svelte-my2key"
+      class=" svelte-nl1lpu"
       href="#/album/1"
     >
       <div
-        class="content svelte-my2key"
+        class="content svelte-nl1lpu"
       >
         <img
           alt="./cover.jpg"
-          class="w-64 h-64 text-3xl svelte-hn7eai rounded-sm"
+          class="w-64 h-64 text-3xl actionable svelte-hn7eai rounded-sm"
           loading="lazy"
           src="./cover.jpg#nonce=0.1"
         />
@@ -208,30 +212,32 @@ exports[`Storyshots Components/Album No Artist 1`] = `
         
          
         <p
-          class="controls svelte-my2key"
+          class="controls svelte-nl1lpu"
         >
           <button
-            class="svelte-j6xhgj primary iconOnly large"
+            class="svelte-rsfl0b primary iconOnly large"
             data-testid="play"
           >
             <i
-              class="material-icons svelte-j6xhgj"
+              class="material-icons svelte-rsfl0b"
             >
               play_arrow
             </i>
              
              
+             
           </button>
            
           <button
-            class="svelte-j6xhgj primary iconOnly large"
+            class="svelte-rsfl0b primary iconOnly large"
             data-testid="enqueue"
           >
             <i
-              class="material-icons svelte-j6xhgj"
+              class="material-icons svelte-rsfl0b"
             >
               playlist_add
             </i>
+             
              
              
           </button>
@@ -239,7 +245,7 @@ exports[`Storyshots Components/Album No Artist 1`] = `
       </div>
        
       <header
-        class="svelte-my2key"
+        class="svelte-nl1lpu"
       >
         <h3>
           Diamonds on the inside
@@ -257,15 +263,15 @@ exports[`Storyshots Components/Album Unknown 1`] = `
 >
   <div>
     <a
-      class=" svelte-my2key"
+      class=" svelte-nl1lpu"
       href="#/album/1"
     >
       <div
-        class="content svelte-my2key"
+        class="content svelte-nl1lpu"
       >
         <img
           alt="./cover.jpg"
-          class="w-64 h-64 text-3xl svelte-hn7eai rounded-sm"
+          class="w-64 h-64 text-3xl actionable svelte-hn7eai rounded-sm"
           loading="lazy"
           src="./cover.jpg#nonce=0.1"
         />
@@ -273,30 +279,32 @@ exports[`Storyshots Components/Album Unknown 1`] = `
         
          
         <p
-          class="controls svelte-my2key"
+          class="controls svelte-nl1lpu"
         >
           <button
-            class="svelte-j6xhgj primary iconOnly large"
+            class="svelte-rsfl0b primary iconOnly large"
             data-testid="play"
           >
             <i
-              class="material-icons svelte-j6xhgj"
+              class="material-icons svelte-rsfl0b"
             >
               play_arrow
             </i>
              
              
+             
           </button>
            
           <button
-            class="svelte-j6xhgj primary iconOnly large"
+            class="svelte-rsfl0b primary iconOnly large"
             data-testid="enqueue"
           >
             <i
-              class="material-icons svelte-j6xhgj"
+              class="material-icons svelte-rsfl0b"
             >
               playlist_add
             </i>
+             
              
              
           </button>
@@ -304,14 +312,14 @@ exports[`Storyshots Components/Album Unknown 1`] = `
       </div>
        
       <header
-        class="svelte-my2key"
+        class="svelte-nl1lpu"
       >
         <h3>
           Unknown
         </h3>
          
         <h4
-          class="svelte-my2key"
+          class="svelte-nl1lpu"
         >
           by 
           <a

@@ -14,7 +14,7 @@ exports[`Storyshots Components/Track Default 1`] = `
       >
         <img
           alt="./cover.jpg"
-          class="h-16 w-16 text-xs svelte-hn7eai rounded-sm"
+          class="h-16 w-16 text-xs actionable svelte-hn7eai rounded-sm"
           loading="lazy"
           src="./cover.jpg#nonce=0.1"
         />
@@ -59,7 +59,7 @@ exports[`Storyshots Components/Track With Details 1`] = `
       >
         <img
           alt="./cover.jpg"
-          class="h-16 w-16 text-xs svelte-hn7eai rounded-sm"
+          class="h-16 w-16 text-xs actionable svelte-hn7eai rounded-sm"
           loading="lazy"
           src="./cover.jpg#nonce=0.1"
         />

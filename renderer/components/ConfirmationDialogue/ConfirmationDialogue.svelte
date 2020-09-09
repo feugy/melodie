@@ -33,6 +33,7 @@
   </div>
   <span slot="buttons">
     <Button
+      class="mr-2"
       on:click={() => (open = false)}
       text={$_(cancelText)}
       icon={cancelIcon} />

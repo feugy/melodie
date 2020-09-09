@@ -21,7 +21,7 @@
 
 <style type="postcss">
   a {
-    @apply cursor-pointer inline-block w-64;
+    @apply inline-block w-64;
   }
 
   header {
@@ -48,7 +48,7 @@
 
 <a href={`#/artist/${src.id}`} class={$$props.class}>
   <div class="content">
-    <Image class="w-64 h-64 text-3xl" rounded src={src.media} />
+    <Image class="w-64 h-64 text-3xl actionable" rounded src={src.media} />
     <p class="controls">
       <Button
         data-testid="play"

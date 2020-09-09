@@ -49,10 +49,10 @@
     {/await}
     <div class="image-container">
       {#each proposals as image}
-        <div class="m-2 cursor-pointer">
+        <div class="m-2">
           <Image
             src={image.full}
-            class="w-48 h-48"
+            class="w-48 h-48 actionable"
             on:click={() => handleSelect(image.full)}
             bind:dimension={image.dimension} />
           <span>

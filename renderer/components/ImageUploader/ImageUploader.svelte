@@ -48,14 +48,14 @@
   }
 
   input[type='file'] {
-    @apply absolute inset-0 w-full border-none opacity-0 cursor-pointer;
+    @apply absolute inset-0 w-full border-none opacity-0;
   }
 </style>
 
 <svelte:window on:paste={handlePaste} />
 
 <span
-  class={$$props.class}
+  class="{$$props.class} actionable"
   on:dragover|preventDefault|stopPropagation={handleDragOver}
   on:drop|preventDefault|stopPropagation={handleDrop}
   on:click|capture={handleClick}>

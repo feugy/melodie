@@ -13,13 +13,14 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
       class="backdrop svelte-7u451e"
     >
       <button
-        class="absolute top-0 right-0 m-4 svelte-j6xhgj iconOnly"
+        class="absolute top-0 right-0 m-4 svelte-rsfl0b iconOnly"
       >
         <i
-          class="material-icons svelte-j6xhgj"
+          class="material-icons svelte-rsfl0b"
         >
           close
         </i>
+         
          
          
       </button>
@@ -153,16 +154,17 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
               class="wrapper svelte-19pnu2a"
             >
               <button
-                class="svelte-j6xhgj iconOnly noBorder"
+                class="svelte-rsfl0b iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-j6xhgj"
+                  class="material-icons svelte-rsfl0b"
                 >
                   more_vert
                 </i>
                  
                  
                 
+                 
               </button>
                
             </span>
@@ -221,16 +223,17 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
               class="wrapper svelte-19pnu2a"
             >
               <button
-                class="svelte-j6xhgj iconOnly noBorder"
+                class="svelte-rsfl0b iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-j6xhgj"
+                  class="material-icons svelte-rsfl0b"
                 >
                   more_vert
                 </i>
                  
                  
                 
+                 
               </button>
                
             </span>
@@ -289,16 +292,17 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
               class="wrapper svelte-19pnu2a"
             >
               <button
-                class="svelte-j6xhgj iconOnly noBorder"
+                class="svelte-rsfl0b iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-j6xhgj"
+                  class="material-icons svelte-rsfl0b"
                 >
                   more_vert
                 </i>
                  
                  
                 
+                 
               </button>
                
             </span>
@@ -357,16 +361,17 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
               class="wrapper svelte-19pnu2a"
             >
               <button
-                class="svelte-j6xhgj iconOnly noBorder"
+                class="svelte-rsfl0b iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-j6xhgj"
+                  class="material-icons svelte-rsfl0b"
                 >
                   more_vert
                 </i>
                  
                  
                 
+                 
               </button>
                
             </span>
@@ -425,16 +430,17 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
               class="wrapper svelte-19pnu2a"
             >
               <button
-                class="svelte-j6xhgj iconOnly noBorder"
+                class="svelte-rsfl0b iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-j6xhgj"
+                  class="material-icons svelte-rsfl0b"
                 >
                   more_vert
                 </i>
                  
                  
                 
+                 
               </button>
                
             </span>
@@ -493,16 +499,17 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
               class="wrapper svelte-19pnu2a"
             >
               <button
-                class="svelte-j6xhgj iconOnly noBorder"
+                class="svelte-rsfl0b iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-j6xhgj"
+                  class="material-icons svelte-rsfl0b"
                 >
                   more_vert
                 </i>
                  
                  
                 
+                 
               </button>
                
             </span>
@@ -561,16 +568,17 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
               class="wrapper svelte-19pnu2a"
             >
               <button
-                class="svelte-j6xhgj iconOnly noBorder"
+                class="svelte-rsfl0b iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-j6xhgj"
+                  class="material-icons svelte-rsfl0b"
                 >
                   more_vert
                 </i>
                  
                  
                 
+                 
               </button>
                
             </span>
@@ -629,16 +637,17 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
               class="wrapper svelte-19pnu2a"
             >
               <button
-                class="svelte-j6xhgj iconOnly noBorder"
+                class="svelte-rsfl0b iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-j6xhgj"
+                  class="material-icons svelte-rsfl0b"
                 >
                   more_vert
                 </i>
                  
                  
                 
+                 
               </button>
                
             </span>
@@ -697,16 +706,17 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
               class="wrapper svelte-19pnu2a"
             >
               <button
-                class="svelte-j6xhgj iconOnly noBorder"
+                class="svelte-rsfl0b iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-j6xhgj"
+                  class="material-icons svelte-rsfl0b"
                 >
                   more_vert
                 </i>
                  
                  
                 
+                 
               </button>
                
             </span>
@@ -765,16 +775,17 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
               class="wrapper svelte-19pnu2a"
             >
               <button
-                class="svelte-j6xhgj iconOnly noBorder"
+                class="svelte-rsfl0b iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-j6xhgj"
+                  class="material-icons svelte-rsfl0b"
                 >
                   more_vert
                 </i>
                  
                  
                 
+                 
               </button>
                
             </span>
@@ -833,16 +844,17 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
               class="wrapper svelte-19pnu2a"
             >
               <button
-                class="svelte-j6xhgj iconOnly noBorder"
+                class="svelte-rsfl0b iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-j6xhgj"
+                  class="material-icons svelte-rsfl0b"
                 >
                   more_vert
                 </i>
                  
                  
                 
+                 
               </button>
                
             </span>
@@ -901,16 +913,17 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
               class="wrapper svelte-19pnu2a"
             >
               <button
-                class="svelte-j6xhgj iconOnly noBorder"
+                class="svelte-rsfl0b iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-j6xhgj"
+                  class="material-icons svelte-rsfl0b"
                 >
                   more_vert
                 </i>
                  
                  
                 
+                 
               </button>
                
             </span>
@@ -969,16 +982,17 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
               class="wrapper svelte-19pnu2a"
             >
               <button
-                class="svelte-j6xhgj iconOnly noBorder"
+                class="svelte-rsfl0b iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-j6xhgj"
+                  class="material-icons svelte-rsfl0b"
                 >
                   more_vert
                 </i>
                  
                  
                 
+                 
               </button>
                
             </span>
@@ -1037,16 +1051,17 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
               class="wrapper svelte-19pnu2a"
             >
               <button
-                class="svelte-j6xhgj iconOnly noBorder"
+                class="svelte-rsfl0b iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-j6xhgj"
+                  class="material-icons svelte-rsfl0b"
                 >
                   more_vert
                 </i>
                  
                  
                 
+                 
               </button>
                
             </span>
@@ -1105,16 +1120,17 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
               class="wrapper svelte-19pnu2a"
             >
               <button
-                class="svelte-j6xhgj iconOnly noBorder"
+                class="svelte-rsfl0b iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-j6xhgj"
+                  class="material-icons svelte-rsfl0b"
                 >
                   more_vert
                 </i>
                  
                  
                 
+                 
               </button>
                
             </span>
@@ -1173,16 +1189,17 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
               class="wrapper svelte-19pnu2a"
             >
               <button
-                class="svelte-j6xhgj iconOnly noBorder"
+                class="svelte-rsfl0b iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-j6xhgj"
+                  class="material-icons svelte-rsfl0b"
                 >
                   more_vert
                 </i>
                  
                  
                 
+                 
               </button>
                
             </span>
@@ -1241,16 +1258,17 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
               class="wrapper svelte-19pnu2a"
             >
               <button
-                class="svelte-j6xhgj iconOnly noBorder"
+                class="svelte-rsfl0b iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-j6xhgj"
+                  class="material-icons svelte-rsfl0b"
                 >
                   more_vert
                 </i>
                  
                  
                 
+                 
               </button>
                
             </span>
@@ -1309,16 +1327,17 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
               class="wrapper svelte-19pnu2a"
             >
               <button
-                class="svelte-j6xhgj iconOnly noBorder"
+                class="svelte-rsfl0b iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-j6xhgj"
+                  class="material-icons svelte-rsfl0b"
                 >
                   more_vert
                 </i>
                  
                  
                 
+                 
               </button>
                
             </span>
@@ -1345,13 +1364,14 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
       class="backdrop svelte-7u451e"
     >
       <button
-        class="absolute top-0 right-0 m-4 svelte-j6xhgj iconOnly"
+        class="absolute top-0 right-0 m-4 svelte-rsfl0b iconOnly"
       >
         <i
-          class="material-icons svelte-j6xhgj"
+          class="material-icons svelte-rsfl0b"
         >
           close
         </i>
+         
          
          
       </button>
@@ -1485,16 +1505,17 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
               class="wrapper svelte-19pnu2a"
             >
               <button
-                class="svelte-j6xhgj iconOnly noBorder"
+                class="svelte-rsfl0b iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-j6xhgj"
+                  class="material-icons svelte-rsfl0b"
                 >
                   more_vert
                 </i>
                  
                  
                 
+                 
               </button>
                
             </span>
@@ -1553,16 +1574,17 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
               class="wrapper svelte-19pnu2a"
             >
               <button
-                class="svelte-j6xhgj iconOnly noBorder"
+                class="svelte-rsfl0b iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-j6xhgj"
+                  class="material-icons svelte-rsfl0b"
                 >
                   more_vert
                 </i>
                  
                  
                 
+                 
               </button>
                
             </span>
@@ -1621,16 +1643,17 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
               class="wrapper svelte-19pnu2a"
             >
               <button
-                class="svelte-j6xhgj iconOnly noBorder"
+                class="svelte-rsfl0b iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-j6xhgj"
+                  class="material-icons svelte-rsfl0b"
                 >
                   more_vert
                 </i>
                  
                  
                 
+                 
               </button>
                
             </span>
@@ -1689,16 +1712,17 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
               class="wrapper svelte-19pnu2a"
             >
               <button
-                class="svelte-j6xhgj iconOnly noBorder"
+                class="svelte-rsfl0b iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-j6xhgj"
+                  class="material-icons svelte-rsfl0b"
                 >
                   more_vert
                 </i>
                  
                  
                 
+                 
               </button>
                
             </span>
@@ -1757,16 +1781,17 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
               class="wrapper svelte-19pnu2a"
             >
               <button
-                class="svelte-j6xhgj iconOnly noBorder"
+                class="svelte-rsfl0b iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-j6xhgj"
+                  class="material-icons svelte-rsfl0b"
                 >
                   more_vert
                 </i>
                  
                  
                 
+                 
               </button>
                
             </span>
@@ -1825,16 +1850,17 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
               class="wrapper svelte-19pnu2a"
             >
               <button
-                class="svelte-j6xhgj iconOnly noBorder"
+                class="svelte-rsfl0b iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-j6xhgj"
+                  class="material-icons svelte-rsfl0b"
                 >
                   more_vert
                 </i>
                  
                  
                 
+                 
               </button>
                
             </span>
@@ -1893,16 +1919,17 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
               class="wrapper svelte-19pnu2a"
             >
               <button
-                class="svelte-j6xhgj iconOnly noBorder"
+                class="svelte-rsfl0b iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-j6xhgj"
+                  class="material-icons svelte-rsfl0b"
                 >
                   more_vert
                 </i>
                  
                  
                 
+                 
               </button>
                
             </span>
@@ -1961,16 +1988,17 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
               class="wrapper svelte-19pnu2a"
             >
               <button
-                class="svelte-j6xhgj iconOnly noBorder"
+                class="svelte-rsfl0b iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-j6xhgj"
+                  class="material-icons svelte-rsfl0b"
                 >
                   more_vert
                 </i>
                  
                  
                 
+                 
               </button>
                
             </span>
@@ -2029,16 +2057,17 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
               class="wrapper svelte-19pnu2a"
             >
               <button
-                class="svelte-j6xhgj iconOnly noBorder"
+                class="svelte-rsfl0b iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-j6xhgj"
+                  class="material-icons svelte-rsfl0b"
                 >
                   more_vert
                 </i>
                  
                  
                 
+                 
               </button>
                
             </span>
@@ -2097,16 +2126,17 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
               class="wrapper svelte-19pnu2a"
             >
               <button
-                class="svelte-j6xhgj iconOnly noBorder"
+                class="svelte-rsfl0b iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-j6xhgj"
+                  class="material-icons svelte-rsfl0b"
                 >
                   more_vert
                 </i>
                  
                  
                 
+                 
               </button>
                
             </span>
@@ -2165,16 +2195,17 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
               class="wrapper svelte-19pnu2a"
             >
               <button
-                class="svelte-j6xhgj iconOnly noBorder"
+                class="svelte-rsfl0b iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-j6xhgj"
+                  class="material-icons svelte-rsfl0b"
                 >
                   more_vert
                 </i>
                  
                  
                 
+                 
               </button>
                
             </span>
@@ -2233,16 +2264,17 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
               class="wrapper svelte-19pnu2a"
             >
               <button
-                class="svelte-j6xhgj iconOnly noBorder"
+                class="svelte-rsfl0b iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-j6xhgj"
+                  class="material-icons svelte-rsfl0b"
                 >
                   more_vert
                 </i>
                  
                  
                 
+                 
               </button>
                
             </span>
@@ -2301,16 +2333,17 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
               class="wrapper svelte-19pnu2a"
             >
               <button
-                class="svelte-j6xhgj iconOnly noBorder"
+                class="svelte-rsfl0b iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-j6xhgj"
+                  class="material-icons svelte-rsfl0b"
                 >
                   more_vert
                 </i>
                  
                  
                 
+                 
               </button>
                
             </span>
@@ -2369,16 +2402,17 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
               class="wrapper svelte-19pnu2a"
             >
               <button
-                class="svelte-j6xhgj iconOnly noBorder"
+                class="svelte-rsfl0b iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-j6xhgj"
+                  class="material-icons svelte-rsfl0b"
                 >
                   more_vert
                 </i>
                  
                  
                 
+                 
               </button>
                
             </span>
@@ -2437,16 +2471,17 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
               class="wrapper svelte-19pnu2a"
             >
               <button
-                class="svelte-j6xhgj iconOnly noBorder"
+                class="svelte-rsfl0b iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-j6xhgj"
+                  class="material-icons svelte-rsfl0b"
                 >
                   more_vert
                 </i>
                  
                  
                 
+                 
               </button>
                
             </span>
@@ -2505,16 +2540,17 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
               class="wrapper svelte-19pnu2a"
             >
               <button
-                class="svelte-j6xhgj iconOnly noBorder"
+                class="svelte-rsfl0b iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-j6xhgj"
+                  class="material-icons svelte-rsfl0b"
                 >
                   more_vert
                 </i>
                  
                  
                 
+                 
               </button>
                
             </span>
@@ -2573,16 +2609,17 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
               class="wrapper svelte-19pnu2a"
             >
               <button
-                class="svelte-j6xhgj iconOnly noBorder"
+                class="svelte-rsfl0b iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-j6xhgj"
+                  class="material-icons svelte-rsfl0b"
                 >
                   more_vert
                 </i>
                  
                  
                 
+                 
               </button>
                
             </span>
@@ -2641,16 +2678,17 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
               class="wrapper svelte-19pnu2a"
             >
               <button
-                class="svelte-j6xhgj iconOnly noBorder"
+                class="svelte-rsfl0b iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-j6xhgj"
+                  class="material-icons svelte-rsfl0b"
                 >
                   more_vert
                 </i>
                  
                  
                 
+                 
               </button>
                
             </span>
@@ -2677,13 +2715,14 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
       class="backdrop svelte-7u451e"
     >
       <button
-        class="absolute top-0 right-0 m-4 svelte-j6xhgj iconOnly"
+        class="absolute top-0 right-0 m-4 svelte-rsfl0b iconOnly"
       >
         <i
-          class="material-icons svelte-j6xhgj"
+          class="material-icons svelte-rsfl0b"
         >
           close
         </i>
+         
          
          
       </button>
@@ -2801,16 +2840,17 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
               class="wrapper svelte-19pnu2a"
             >
               <button
-                class="svelte-j6xhgj iconOnly noBorder"
+                class="svelte-rsfl0b iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-j6xhgj"
+                  class="material-icons svelte-rsfl0b"
                 >
                   more_vert
                 </i>
                  
                  
                 
+                 
               </button>
                
             </span>
@@ -2858,16 +2898,17 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
               class="wrapper svelte-19pnu2a"
             >
               <button
-                class="svelte-j6xhgj iconOnly noBorder"
+                class="svelte-rsfl0b iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-j6xhgj"
+                  class="material-icons svelte-rsfl0b"
                 >
                   more_vert
                 </i>
                  
                  
                 
+                 
               </button>
                
             </span>
@@ -2915,16 +2956,17 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
               class="wrapper svelte-19pnu2a"
             >
               <button
-                class="svelte-j6xhgj iconOnly noBorder"
+                class="svelte-rsfl0b iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-j6xhgj"
+                  class="material-icons svelte-rsfl0b"
                 >
                   more_vert
                 </i>
                  
                  
                 
+                 
               </button>
                
             </span>
@@ -2972,16 +3014,17 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
               class="wrapper svelte-19pnu2a"
             >
               <button
-                class="svelte-j6xhgj iconOnly noBorder"
+                class="svelte-rsfl0b iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-j6xhgj"
+                  class="material-icons svelte-rsfl0b"
                 >
                   more_vert
                 </i>
                  
                  
                 
+                 
               </button>
                
             </span>
@@ -3029,16 +3072,17 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
               class="wrapper svelte-19pnu2a"
             >
               <button
-                class="svelte-j6xhgj iconOnly noBorder"
+                class="svelte-rsfl0b iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-j6xhgj"
+                  class="material-icons svelte-rsfl0b"
                 >
                   more_vert
                 </i>
                  
                  
                 
+                 
               </button>
                
             </span>
@@ -3086,16 +3130,17 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
               class="wrapper svelte-19pnu2a"
             >
               <button
-                class="svelte-j6xhgj iconOnly noBorder"
+                class="svelte-rsfl0b iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-j6xhgj"
+                  class="material-icons svelte-rsfl0b"
                 >
                   more_vert
                 </i>
                  
                  
                 
+                 
               </button>
                
             </span>
@@ -3143,16 +3188,17 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
               class="wrapper svelte-19pnu2a"
             >
               <button
-                class="svelte-j6xhgj iconOnly noBorder"
+                class="svelte-rsfl0b iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-j6xhgj"
+                  class="material-icons svelte-rsfl0b"
                 >
                   more_vert
                 </i>
                  
                  
                 
+                 
               </button>
                
             </span>
@@ -3200,16 +3246,17 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
               class="wrapper svelte-19pnu2a"
             >
               <button
-                class="svelte-j6xhgj iconOnly noBorder"
+                class="svelte-rsfl0b iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-j6xhgj"
+                  class="material-icons svelte-rsfl0b"
                 >
                   more_vert
                 </i>
                  
                  
                 
+                 
               </button>
                
             </span>
@@ -3257,16 +3304,17 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
               class="wrapper svelte-19pnu2a"
             >
               <button
-                class="svelte-j6xhgj iconOnly noBorder"
+                class="svelte-rsfl0b iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-j6xhgj"
+                  class="material-icons svelte-rsfl0b"
                 >
                   more_vert
                 </i>
                  
                  
                 
+                 
               </button>
                
             </span>
@@ -3314,16 +3362,17 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
               class="wrapper svelte-19pnu2a"
             >
               <button
-                class="svelte-j6xhgj iconOnly noBorder"
+                class="svelte-rsfl0b iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-j6xhgj"
+                  class="material-icons svelte-rsfl0b"
                 >
                   more_vert
                 </i>
                  
                  
                 
+                 
               </button>
                
             </span>
@@ -3371,16 +3420,17 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
               class="wrapper svelte-19pnu2a"
             >
               <button
-                class="svelte-j6xhgj iconOnly noBorder"
+                class="svelte-rsfl0b iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-j6xhgj"
+                  class="material-icons svelte-rsfl0b"
                 >
                   more_vert
                 </i>
                  
                  
                 
+                 
               </button>
                
             </span>
@@ -3428,16 +3478,17 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
               class="wrapper svelte-19pnu2a"
             >
               <button
-                class="svelte-j6xhgj iconOnly noBorder"
+                class="svelte-rsfl0b iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-j6xhgj"
+                  class="material-icons svelte-rsfl0b"
                 >
                   more_vert
                 </i>
                  
                  
                 
+                 
               </button>
                
             </span>
@@ -3485,16 +3536,17 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
               class="wrapper svelte-19pnu2a"
             >
               <button
-                class="svelte-j6xhgj iconOnly noBorder"
+                class="svelte-rsfl0b iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-j6xhgj"
+                  class="material-icons svelte-rsfl0b"
                 >
                   more_vert
                 </i>
                  
                  
                 
+                 
               </button>
                
             </span>
@@ -3542,16 +3594,17 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
               class="wrapper svelte-19pnu2a"
             >
               <button
-                class="svelte-j6xhgj iconOnly noBorder"
+                class="svelte-rsfl0b iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-j6xhgj"
+                  class="material-icons svelte-rsfl0b"
                 >
                   more_vert
                 </i>
                  
                  
                 
+                 
               </button>
                
             </span>
@@ -3599,16 +3652,17 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
               class="wrapper svelte-19pnu2a"
             >
               <button
-                class="svelte-j6xhgj iconOnly noBorder"
+                class="svelte-rsfl0b iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-j6xhgj"
+                  class="material-icons svelte-rsfl0b"
                 >
                   more_vert
                 </i>
                  
                  
                 
+                 
               </button>
                
             </span>
@@ -3656,16 +3710,17 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
               class="wrapper svelte-19pnu2a"
             >
               <button
-                class="svelte-j6xhgj iconOnly noBorder"
+                class="svelte-rsfl0b iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-j6xhgj"
+                  class="material-icons svelte-rsfl0b"
                 >
                   more_vert
                 </i>
                  
                  
                 
+                 
               </button>
                
             </span>
@@ -3713,16 +3768,17 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
               class="wrapper svelte-19pnu2a"
             >
               <button
-                class="svelte-j6xhgj iconOnly noBorder"
+                class="svelte-rsfl0b iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-j6xhgj"
+                  class="material-icons svelte-rsfl0b"
                 >
                   more_vert
                 </i>
                  
                  
                 
+                 
               </button>
                
             </span>
@@ -3770,16 +3826,17 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
               class="wrapper svelte-19pnu2a"
             >
               <button
-                class="svelte-j6xhgj iconOnly noBorder"
+                class="svelte-rsfl0b iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-j6xhgj"
+                  class="material-icons svelte-rsfl0b"
                 >
                   more_vert
                 </i>
                  
                  
                 
+                 
               </button>
                
             </span>

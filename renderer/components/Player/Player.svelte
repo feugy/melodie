@@ -254,6 +254,7 @@
       on:click={() => (isPlaylistOpen = !isPlaylistOpen)}
       icon="queue_music"
       text={$_(isPlaylistOpen ? 'close queue' : 'open queue')}
-      primary={!isPlaylistOpen} />
+      primary={!isPlaylistOpen}
+      badge={$tracks.length || null} />
   </span>
 </div>

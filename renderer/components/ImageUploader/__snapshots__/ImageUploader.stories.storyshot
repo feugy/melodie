@@ -5,7 +5,7 @@ exports[`Storyshots Components/Image Uploader Default 1`] = `
   class="storybook-snapshot-container"
 >
   <span
-    class="h-64 w-64 inline-block svelte-17yt3ww"
+    class="h-64 w-64 inline-block actionable svelte-arse20"
   >
     <img
       class="w-full h-full svelte-hn7eai rounded-sm hidden"
@@ -24,7 +24,7 @@ exports[`Storyshots Components/Image Uploader Default 1`] = `
     
      
     <input
-      class="svelte-17yt3ww"
+      class="svelte-arse20"
       type="file"
     />
   </span>

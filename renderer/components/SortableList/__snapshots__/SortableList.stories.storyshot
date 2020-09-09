@@ -23,7 +23,7 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
             >
               <img
                 alt="./# Films/cover.jpg"
-                class="h-16 w-16 text-xs svelte-hn7eai rounded-sm"
+                class="h-16 w-16 text-xs actionable svelte-hn7eai rounded-sm"
                 loading="lazy"
                 src="./%23 Films/cover.jpg#nonce=0.1"
               />
@@ -58,13 +58,14 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
            
           <span>
             <button
-              class="svelte-j6xhgj iconOnly noBorder"
+              class="svelte-rsfl0b iconOnly noBorder"
             >
               <i
-                class="material-icons svelte-j6xhgj"
+                class="material-icons svelte-rsfl0b"
               >
                 close
               </i>
+               
                
                
             </button>
@@ -89,7 +90,7 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
             >
               <img
                 alt="./# Films/cover.jpg"
-                class="h-16 w-16 text-xs svelte-hn7eai rounded-sm"
+                class="h-16 w-16 text-xs actionable svelte-hn7eai rounded-sm"
                 loading="lazy"
                 src="./%23 Films/cover.jpg#nonce=0.1"
               />
@@ -124,13 +125,14 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
            
           <span>
             <button
-              class="svelte-j6xhgj iconOnly noBorder"
+              class="svelte-rsfl0b iconOnly noBorder"
             >
               <i
-                class="material-icons svelte-j6xhgj"
+                class="material-icons svelte-rsfl0b"
               >
                 close
               </i>
+               
                
                
             </button>
@@ -155,7 +157,7 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
             >
               <img
                 alt="./cover.jpg"
-                class="h-16 w-16 text-xs svelte-hn7eai rounded-sm"
+                class="h-16 w-16 text-xs actionable svelte-hn7eai rounded-sm"
                 loading="lazy"
                 src="./cover.jpg#nonce=0.1"
               />
@@ -190,13 +192,14 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
            
           <span>
             <button
-              class="svelte-j6xhgj iconOnly noBorder"
+              class="svelte-rsfl0b iconOnly noBorder"
             >
               <i
-                class="material-icons svelte-j6xhgj"
+                class="material-icons svelte-rsfl0b"
               >
                 close
               </i>
+               
                
                
             </button>
@@ -221,7 +224,7 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
             >
               <img
                 alt="./cover.jpg"
-                class="h-16 w-16 text-xs svelte-hn7eai rounded-sm"
+                class="h-16 w-16 text-xs actionable svelte-hn7eai rounded-sm"
                 loading="lazy"
                 src="./cover.jpg#nonce=0.1"
               />
@@ -256,13 +259,14 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
            
           <span>
             <button
-              class="svelte-j6xhgj iconOnly noBorder"
+              class="svelte-rsfl0b iconOnly noBorder"
             >
               <i
-                class="material-icons svelte-j6xhgj"
+                class="material-icons svelte-rsfl0b"
               >
                 close
               </i>
+               
                
                
             </button>
@@ -287,7 +291,7 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
             >
               <img
                 alt="./# Films/cover.jpg"
-                class="h-16 w-16 text-xs svelte-hn7eai rounded-sm"
+                class="h-16 w-16 text-xs actionable svelte-hn7eai rounded-sm"
                 loading="lazy"
                 src="./%23 Films/cover.jpg#nonce=0.1"
               />
@@ -322,13 +326,14 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
            
           <span>
             <button
-              class="svelte-j6xhgj iconOnly noBorder"
+              class="svelte-rsfl0b iconOnly noBorder"
             >
               <i
-                class="material-icons svelte-j6xhgj"
+                class="material-icons svelte-rsfl0b"
               >
                 close
               </i>
+               
                
                
             </button>
@@ -353,7 +358,7 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
             >
               <img
                 alt="./# Films/cover.jpg"
-                class="h-16 w-16 text-xs svelte-hn7eai rounded-sm"
+                class="h-16 w-16 text-xs actionable svelte-hn7eai rounded-sm"
                 loading="lazy"
                 src="./%23 Films/cover.jpg#nonce=0.1"
               />
@@ -388,13 +393,14 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
            
           <span>
             <button
-              class="svelte-j6xhgj iconOnly noBorder"
+              class="svelte-rsfl0b iconOnly noBorder"
             >
               <i
-                class="material-icons svelte-j6xhgj"
+                class="material-icons svelte-rsfl0b"
               >
                 close
               </i>
+               
                
                
             </button>
@@ -419,7 +425,7 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
             >
               <img
                 alt="./cover.jpg"
-                class="h-16 w-16 text-xs svelte-hn7eai rounded-sm"
+                class="h-16 w-16 text-xs actionable svelte-hn7eai rounded-sm"
                 loading="lazy"
                 src="./cover.jpg#nonce=0.1"
               />
@@ -454,13 +460,14 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
            
           <span>
             <button
-              class="svelte-j6xhgj iconOnly noBorder"
+              class="svelte-rsfl0b iconOnly noBorder"
             >
               <i
-                class="material-icons svelte-j6xhgj"
+                class="material-icons svelte-rsfl0b"
               >
                 close
               </i>
+               
                
                
             </button>
@@ -485,7 +492,7 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
             >
               <img
                 alt="./cover.jpg"
-                class="h-16 w-16 text-xs svelte-hn7eai rounded-sm"
+                class="h-16 w-16 text-xs actionable svelte-hn7eai rounded-sm"
                 loading="lazy"
                 src="./cover.jpg#nonce=0.1"
               />
@@ -520,13 +527,14 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
            
           <span>
             <button
-              class="svelte-j6xhgj iconOnly noBorder"
+              class="svelte-rsfl0b iconOnly noBorder"
             >
               <i
-                class="material-icons svelte-j6xhgj"
+                class="material-icons svelte-rsfl0b"
               >
                 close
               </i>
+               
                
                
             </button>

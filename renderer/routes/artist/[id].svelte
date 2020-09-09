@@ -119,7 +119,7 @@
       <span class="image-container">
         <Image
           on:click={() => (openMediaSelector = true)}
-          class="h-full w-full text-3xl"
+          class="h-full w-full text-3xl actionable"
           rounded
           src={artist.media} />
       </span>

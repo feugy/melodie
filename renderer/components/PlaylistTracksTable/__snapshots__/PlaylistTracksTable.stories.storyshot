@@ -13,13 +13,14 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
       class="backdrop svelte-7u451e"
     >
       <button
-        class="absolute top-0 right-0 m-4 svelte-j6xhgj iconOnly"
+        class="absolute top-0 right-0 m-4 svelte-rsfl0b iconOnly"
       >
         <i
-          class="material-icons svelte-j6xhgj"
+          class="material-icons svelte-rsfl0b"
         >
           close
         </i>
+         
          
          
       </button>
@@ -121,12 +122,12 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
                     href="#/album/1"
                   >
                     <img
-                      class="h-16 w-16 text-xs svelte-hn7eai rounded-sm hidden"
+                      class="h-16 w-16 text-xs actionable svelte-hn7eai rounded-sm hidden"
                       loading="lazy"
                     />
                      
                     <span
-                      class="h-16 w-16 text-xs svelte-hn7eai rounded-sm"
+                      class="h-16 w-16 text-xs actionable svelte-hn7eai rounded-sm"
                     >
                       <i
                         class="material-icons svelte-hn7eai"
@@ -182,16 +183,17 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
                   class="wrapper svelte-19pnu2a"
                 >
                   <button
-                    class="svelte-j6xhgj iconOnly noBorder"
+                    class="svelte-rsfl0b iconOnly noBorder"
                   >
                     <i
-                      class="material-icons svelte-j6xhgj"
+                      class="material-icons svelte-rsfl0b"
                     >
                       more_vert
                     </i>
                      
                      
                     
+                     
                   </button>
                    
                 </span>
@@ -224,12 +226,12 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
                     href="#/album/1"
                   >
                     <img
-                      class="h-16 w-16 text-xs svelte-hn7eai rounded-sm hidden"
+                      class="h-16 w-16 text-xs actionable svelte-hn7eai rounded-sm hidden"
                       loading="lazy"
                     />
                      
                     <span
-                      class="h-16 w-16 text-xs svelte-hn7eai rounded-sm"
+                      class="h-16 w-16 text-xs actionable svelte-hn7eai rounded-sm"
                     >
                       <i
                         class="material-icons svelte-hn7eai"
@@ -285,16 +287,17 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
                   class="wrapper svelte-19pnu2a"
                 >
                   <button
-                    class="svelte-j6xhgj iconOnly noBorder"
+                    class="svelte-rsfl0b iconOnly noBorder"
                   >
                     <i
-                      class="material-icons svelte-j6xhgj"
+                      class="material-icons svelte-rsfl0b"
                     >
                       more_vert
                     </i>
                      
                      
                     
+                     
                   </button>
                    
                 </span>
@@ -327,12 +330,12 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
                     href="#/album/1"
                   >
                     <img
-                      class="h-16 w-16 text-xs svelte-hn7eai rounded-sm hidden"
+                      class="h-16 w-16 text-xs actionable svelte-hn7eai rounded-sm hidden"
                       loading="lazy"
                     />
                      
                     <span
-                      class="h-16 w-16 text-xs svelte-hn7eai rounded-sm"
+                      class="h-16 w-16 text-xs actionable svelte-hn7eai rounded-sm"
                     >
                       <i
                         class="material-icons svelte-hn7eai"
@@ -388,16 +391,17 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
                   class="wrapper svelte-19pnu2a"
                 >
                   <button
-                    class="svelte-j6xhgj iconOnly noBorder"
+                    class="svelte-rsfl0b iconOnly noBorder"
                   >
                     <i
-                      class="material-icons svelte-j6xhgj"
+                      class="material-icons svelte-rsfl0b"
                     >
                       more_vert
                     </i>
                      
                      
                     
+                     
                   </button>
                    
                 </span>
@@ -430,12 +434,12 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
                     href="#/album/1"
                   >
                     <img
-                      class="h-16 w-16 text-xs svelte-hn7eai rounded-sm hidden"
+                      class="h-16 w-16 text-xs actionable svelte-hn7eai rounded-sm hidden"
                       loading="lazy"
                     />
                      
                     <span
-                      class="h-16 w-16 text-xs svelte-hn7eai rounded-sm"
+                      class="h-16 w-16 text-xs actionable svelte-hn7eai rounded-sm"
                     >
                       <i
                         class="material-icons svelte-hn7eai"
@@ -491,16 +495,17 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
                   class="wrapper svelte-19pnu2a"
                 >
                   <button
-                    class="svelte-j6xhgj iconOnly noBorder"
+                    class="svelte-rsfl0b iconOnly noBorder"
                   >
                     <i
-                      class="material-icons svelte-j6xhgj"
+                      class="material-icons svelte-rsfl0b"
                     >
                       more_vert
                     </i>
                      
                      
                     
+                     
                   </button>
                    
                 </span>
@@ -533,12 +538,12 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
                     href="#/album/1"
                   >
                     <img
-                      class="h-16 w-16 text-xs svelte-hn7eai rounded-sm hidden"
+                      class="h-16 w-16 text-xs actionable svelte-hn7eai rounded-sm hidden"
                       loading="lazy"
                     />
                      
                     <span
-                      class="h-16 w-16 text-xs svelte-hn7eai rounded-sm"
+                      class="h-16 w-16 text-xs actionable svelte-hn7eai rounded-sm"
                     >
                       <i
                         class="material-icons svelte-hn7eai"
@@ -594,16 +599,17 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
                   class="wrapper svelte-19pnu2a"
                 >
                   <button
-                    class="svelte-j6xhgj iconOnly noBorder"
+                    class="svelte-rsfl0b iconOnly noBorder"
                   >
                     <i
-                      class="material-icons svelte-j6xhgj"
+                      class="material-icons svelte-rsfl0b"
                     >
                       more_vert
                     </i>
                      
                      
                     
+                     
                   </button>
                    
                 </span>
@@ -636,12 +642,12 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
                     href="#/album/1"
                   >
                     <img
-                      class="h-16 w-16 text-xs svelte-hn7eai rounded-sm hidden"
+                      class="h-16 w-16 text-xs actionable svelte-hn7eai rounded-sm hidden"
                       loading="lazy"
                     />
                      
                     <span
-                      class="h-16 w-16 text-xs svelte-hn7eai rounded-sm"
+                      class="h-16 w-16 text-xs actionable svelte-hn7eai rounded-sm"
                     >
                       <i
                         class="material-icons svelte-hn7eai"
@@ -697,16 +703,17 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
                   class="wrapper svelte-19pnu2a"
                 >
                   <button
-                    class="svelte-j6xhgj iconOnly noBorder"
+                    class="svelte-rsfl0b iconOnly noBorder"
                   >
                     <i
-                      class="material-icons svelte-j6xhgj"
+                      class="material-icons svelte-rsfl0b"
                     >
                       more_vert
                     </i>
                      
                      
                     
+                     
                   </button>
                    
                 </span>
@@ -739,12 +746,12 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
                     href="#/album/1"
                   >
                     <img
-                      class="h-16 w-16 text-xs svelte-hn7eai rounded-sm hidden"
+                      class="h-16 w-16 text-xs actionable svelte-hn7eai rounded-sm hidden"
                       loading="lazy"
                     />
                      
                     <span
-                      class="h-16 w-16 text-xs svelte-hn7eai rounded-sm"
+                      class="h-16 w-16 text-xs actionable svelte-hn7eai rounded-sm"
                     >
                       <i
                         class="material-icons svelte-hn7eai"
@@ -800,16 +807,17 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
                   class="wrapper svelte-19pnu2a"
                 >
                   <button
-                    class="svelte-j6xhgj iconOnly noBorder"
+                    class="svelte-rsfl0b iconOnly noBorder"
                   >
                     <i
-                      class="material-icons svelte-j6xhgj"
+                      class="material-icons svelte-rsfl0b"
                     >
                       more_vert
                     </i>
                      
                      
                     
+                     
                   </button>
                    
                 </span>
@@ -842,12 +850,12 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
                     href="#/album/1"
                   >
                     <img
-                      class="h-16 w-16 text-xs svelte-hn7eai rounded-sm hidden"
+                      class="h-16 w-16 text-xs actionable svelte-hn7eai rounded-sm hidden"
                       loading="lazy"
                     />
                      
                     <span
-                      class="h-16 w-16 text-xs svelte-hn7eai rounded-sm"
+                      class="h-16 w-16 text-xs actionable svelte-hn7eai rounded-sm"
                     >
                       <i
                         class="material-icons svelte-hn7eai"
@@ -903,16 +911,17 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
                   class="wrapper svelte-19pnu2a"
                 >
                   <button
-                    class="svelte-j6xhgj iconOnly noBorder"
+                    class="svelte-rsfl0b iconOnly noBorder"
                   >
                     <i
-                      class="material-icons svelte-j6xhgj"
+                      class="material-icons svelte-rsfl0b"
                     >
                       more_vert
                     </i>
                      
                      
                     
+                     
                   </button>
                    
                 </span>
@@ -945,12 +954,12 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
                     href="#/album/1"
                   >
                     <img
-                      class="h-16 w-16 text-xs svelte-hn7eai rounded-sm hidden"
+                      class="h-16 w-16 text-xs actionable svelte-hn7eai rounded-sm hidden"
                       loading="lazy"
                     />
                      
                     <span
-                      class="h-16 w-16 text-xs svelte-hn7eai rounded-sm"
+                      class="h-16 w-16 text-xs actionable svelte-hn7eai rounded-sm"
                     >
                       <i
                         class="material-icons svelte-hn7eai"
@@ -1006,16 +1015,17 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
                   class="wrapper svelte-19pnu2a"
                 >
                   <button
-                    class="svelte-j6xhgj iconOnly noBorder"
+                    class="svelte-rsfl0b iconOnly noBorder"
                   >
                     <i
-                      class="material-icons svelte-j6xhgj"
+                      class="material-icons svelte-rsfl0b"
                     >
                       more_vert
                     </i>
                      
                      
                     
+                     
                   </button>
                    
                 </span>
@@ -1048,12 +1058,12 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
                     href="#/album/1"
                   >
                     <img
-                      class="h-16 w-16 text-xs svelte-hn7eai rounded-sm hidden"
+                      class="h-16 w-16 text-xs actionable svelte-hn7eai rounded-sm hidden"
                       loading="lazy"
                     />
                      
                     <span
-                      class="h-16 w-16 text-xs svelte-hn7eai rounded-sm"
+                      class="h-16 w-16 text-xs actionable svelte-hn7eai rounded-sm"
                     >
                       <i
                         class="material-icons svelte-hn7eai"
@@ -1109,16 +1119,17 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
                   class="wrapper svelte-19pnu2a"
                 >
                   <button
-                    class="svelte-j6xhgj iconOnly noBorder"
+                    class="svelte-rsfl0b iconOnly noBorder"
                   >
                     <i
-                      class="material-icons svelte-j6xhgj"
+                      class="material-icons svelte-rsfl0b"
                     >
                       more_vert
                     </i>
                      
                      
                     
+                     
                   </button>
                    
                 </span>
@@ -1151,12 +1162,12 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
                     href="#/album/1"
                   >
                     <img
-                      class="h-16 w-16 text-xs svelte-hn7eai rounded-sm hidden"
+                      class="h-16 w-16 text-xs actionable svelte-hn7eai rounded-sm hidden"
                       loading="lazy"
                     />
                      
                     <span
-                      class="h-16 w-16 text-xs svelte-hn7eai rounded-sm"
+                      class="h-16 w-16 text-xs actionable svelte-hn7eai rounded-sm"
                     >
                       <i
                         class="material-icons svelte-hn7eai"
@@ -1212,16 +1223,17 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
                   class="wrapper svelte-19pnu2a"
                 >
                   <button
-                    class="svelte-j6xhgj iconOnly noBorder"
+                    class="svelte-rsfl0b iconOnly noBorder"
                   >
                     <i
-                      class="material-icons svelte-j6xhgj"
+                      class="material-icons svelte-rsfl0b"
                     >
                       more_vert
                     </i>
                      
                      
                     
+                     
                   </button>
                    
                 </span>
@@ -1254,12 +1266,12 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
                     href="#/album/1"
                   >
                     <img
-                      class="h-16 w-16 text-xs svelte-hn7eai rounded-sm hidden"
+                      class="h-16 w-16 text-xs actionable svelte-hn7eai rounded-sm hidden"
                       loading="lazy"
                     />
                      
                     <span
-                      class="h-16 w-16 text-xs svelte-hn7eai rounded-sm"
+                      class="h-16 w-16 text-xs actionable svelte-hn7eai rounded-sm"
                     >
                       <i
                         class="material-icons svelte-hn7eai"
@@ -1315,16 +1327,17 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
                   class="wrapper svelte-19pnu2a"
                 >
                   <button
-                    class="svelte-j6xhgj iconOnly noBorder"
+                    class="svelte-rsfl0b iconOnly noBorder"
                   >
                     <i
-                      class="material-icons svelte-j6xhgj"
+                      class="material-icons svelte-rsfl0b"
                     >
                       more_vert
                     </i>
                      
                      
                     
+                     
                   </button>
                    
                 </span>
@@ -1357,12 +1370,12 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
                     href="#/album/1"
                   >
                     <img
-                      class="h-16 w-16 text-xs svelte-hn7eai rounded-sm hidden"
+                      class="h-16 w-16 text-xs actionable svelte-hn7eai rounded-sm hidden"
                       loading="lazy"
                     />
                      
                     <span
-                      class="h-16 w-16 text-xs svelte-hn7eai rounded-sm"
+                      class="h-16 w-16 text-xs actionable svelte-hn7eai rounded-sm"
                     >
                       <i
                         class="material-icons svelte-hn7eai"
@@ -1418,16 +1431,17 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
                   class="wrapper svelte-19pnu2a"
                 >
                   <button
-                    class="svelte-j6xhgj iconOnly noBorder"
+                    class="svelte-rsfl0b iconOnly noBorder"
                   >
                     <i
-                      class="material-icons svelte-j6xhgj"
+                      class="material-icons svelte-rsfl0b"
                     >
                       more_vert
                     </i>
                      
                      
                     
+                     
                   </button>
                    
                 </span>
@@ -1460,12 +1474,12 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
                     href="#/album/1"
                   >
                     <img
-                      class="h-16 w-16 text-xs svelte-hn7eai rounded-sm hidden"
+                      class="h-16 w-16 text-xs actionable svelte-hn7eai rounded-sm hidden"
                       loading="lazy"
                     />
                      
                     <span
-                      class="h-16 w-16 text-xs svelte-hn7eai rounded-sm"
+                      class="h-16 w-16 text-xs actionable svelte-hn7eai rounded-sm"
                     >
                       <i
                         class="material-icons svelte-hn7eai"
@@ -1521,16 +1535,17 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
                   class="wrapper svelte-19pnu2a"
                 >
                   <button
-                    class="svelte-j6xhgj iconOnly noBorder"
+                    class="svelte-rsfl0b iconOnly noBorder"
                   >
                     <i
-                      class="material-icons svelte-j6xhgj"
+                      class="material-icons svelte-rsfl0b"
                     >
                       more_vert
                     </i>
                      
                      
                     
+                     
                   </button>
                    
                 </span>
@@ -1563,12 +1578,12 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
                     href="#/album/1"
                   >
                     <img
-                      class="h-16 w-16 text-xs svelte-hn7eai rounded-sm hidden"
+                      class="h-16 w-16 text-xs actionable svelte-hn7eai rounded-sm hidden"
                       loading="lazy"
                     />
                      
                     <span
-                      class="h-16 w-16 text-xs svelte-hn7eai rounded-sm"
+                      class="h-16 w-16 text-xs actionable svelte-hn7eai rounded-sm"
                     >
                       <i
                         class="material-icons svelte-hn7eai"
@@ -1624,16 +1639,17 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
                   class="wrapper svelte-19pnu2a"
                 >
                   <button
-                    class="svelte-j6xhgj iconOnly noBorder"
+                    class="svelte-rsfl0b iconOnly noBorder"
                   >
                     <i
-                      class="material-icons svelte-j6xhgj"
+                      class="material-icons svelte-rsfl0b"
                     >
                       more_vert
                     </i>
                      
                      
                     
+                     
                   </button>
                    
                 </span>
@@ -1666,12 +1682,12 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
                     href="#/album/1"
                   >
                     <img
-                      class="h-16 w-16 text-xs svelte-hn7eai rounded-sm hidden"
+                      class="h-16 w-16 text-xs actionable svelte-hn7eai rounded-sm hidden"
                       loading="lazy"
                     />
                      
                     <span
-                      class="h-16 w-16 text-xs svelte-hn7eai rounded-sm"
+                      class="h-16 w-16 text-xs actionable svelte-hn7eai rounded-sm"
                     >
                       <i
                         class="material-icons svelte-hn7eai"
@@ -1727,16 +1743,17 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
                   class="wrapper svelte-19pnu2a"
                 >
                   <button
-                    class="svelte-j6xhgj iconOnly noBorder"
+                    class="svelte-rsfl0b iconOnly noBorder"
                   >
                     <i
-                      class="material-icons svelte-j6xhgj"
+                      class="material-icons svelte-rsfl0b"
                     >
                       more_vert
                     </i>
                      
                      
                     
+                     
                   </button>
                    
                 </span>
@@ -1769,12 +1786,12 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
                     href="#/album/1"
                   >
                     <img
-                      class="h-16 w-16 text-xs svelte-hn7eai rounded-sm hidden"
+                      class="h-16 w-16 text-xs actionable svelte-hn7eai rounded-sm hidden"
                       loading="lazy"
                     />
                      
                     <span
-                      class="h-16 w-16 text-xs svelte-hn7eai rounded-sm"
+                      class="h-16 w-16 text-xs actionable svelte-hn7eai rounded-sm"
                     >
                       <i
                         class="material-icons svelte-hn7eai"
@@ -1830,16 +1847,17 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
                   class="wrapper svelte-19pnu2a"
                 >
                   <button
-                    class="svelte-j6xhgj iconOnly noBorder"
+                    class="svelte-rsfl0b iconOnly noBorder"
                   >
                     <i
-                      class="material-icons svelte-j6xhgj"
+                      class="material-icons svelte-rsfl0b"
                     >
                       more_vert
                     </i>
                      
                      
                     
+                     
                   </button>
                    
                 </span>
@@ -1872,12 +1890,12 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
                     href="#/album/1"
                   >
                     <img
-                      class="h-16 w-16 text-xs svelte-hn7eai rounded-sm hidden"
+                      class="h-16 w-16 text-xs actionable svelte-hn7eai rounded-sm hidden"
                       loading="lazy"
                     />
                      
                     <span
-                      class="h-16 w-16 text-xs svelte-hn7eai rounded-sm"
+                      class="h-16 w-16 text-xs actionable svelte-hn7eai rounded-sm"
                     >
                       <i
                         class="material-icons svelte-hn7eai"
@@ -1933,16 +1951,17 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
                   class="wrapper svelte-19pnu2a"
                 >
                   <button
-                    class="svelte-j6xhgj iconOnly noBorder"
+                    class="svelte-rsfl0b iconOnly noBorder"
                   >
                     <i
-                      class="material-icons svelte-j6xhgj"
+                      class="material-icons svelte-rsfl0b"
                     >
                       more_vert
                     </i>
                      
                      
                     
+                     
                   </button>
                    
                 </span>

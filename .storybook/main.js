@@ -2,7 +2,7 @@
 
 module.exports = {
   stories: ['../renderer/**/*.stories.js'],
-  addons: ['@storybook/addon-actions'],
+  addons: ['@storybook/addon-actions', '@storybook/addon-knobs'],
   webpackFinal: config => {
     const svelteRule = config.module.rules.find(
       ({ loader }) => loader && loader.includes('svelte-loader')

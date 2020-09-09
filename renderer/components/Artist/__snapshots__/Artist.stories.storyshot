@@ -6,15 +6,15 @@ exports[`Storyshots Components/Artist Default 1`] = `
 >
   <div>
     <a
-      class=" svelte-fh6j1p"
+      class=" svelte-s3ihqj"
       href="#/artist/1"
     >
       <div
-        class="content svelte-fh6j1p"
+        class="content svelte-s3ihqj"
       >
         <img
           alt="./avatar.jpg"
-          class="w-64 h-64 text-3xl svelte-hn7eai rounded-full"
+          class="w-64 h-64 text-3xl actionable svelte-hn7eai rounded-full"
           loading="lazy"
           src="./avatar.jpg#nonce=0.1"
         />
@@ -22,30 +22,32 @@ exports[`Storyshots Components/Artist Default 1`] = `
         
          
         <p
-          class="controls svelte-fh6j1p"
+          class="controls svelte-s3ihqj"
         >
           <button
-            class="svelte-j6xhgj primary iconOnly large"
+            class="svelte-rsfl0b primary iconOnly large"
             data-testid="play"
           >
             <i
-              class="material-icons svelte-j6xhgj"
+              class="material-icons svelte-rsfl0b"
             >
               play_arrow
             </i>
              
              
+             
           </button>
            
           <button
-            class="svelte-j6xhgj primary iconOnly large"
+            class="svelte-rsfl0b primary iconOnly large"
             data-testid="enqueue"
           >
             <i
-              class="material-icons svelte-j6xhgj"
+              class="material-icons svelte-rsfl0b"
             >
               playlist_add
             </i>
+             
              
              
           </button>
@@ -53,14 +55,14 @@ exports[`Storyshots Components/Artist Default 1`] = `
       </div>
        
       <header
-        class="svelte-fh6j1p"
+        class="svelte-s3ihqj"
       >
         <h3>
           Foo Fighters
         </h3>
          
         <h4
-          class="svelte-fh6j1p"
+          class="svelte-s3ihqj"
         >
           2 albums
         </h4>
@@ -76,15 +78,15 @@ exports[`Storyshots Components/Artist No Albums 1`] = `
 >
   <div>
     <a
-      class=" svelte-fh6j1p"
+      class=" svelte-s3ihqj"
       href="#/artist/1"
     >
       <div
-        class="content svelte-fh6j1p"
+        class="content svelte-s3ihqj"
       >
         <img
           alt="./avatar.jpg"
-          class="w-64 h-64 text-3xl svelte-hn7eai rounded-full"
+          class="w-64 h-64 text-3xl actionable svelte-hn7eai rounded-full"
           loading="lazy"
           src="./avatar.jpg#nonce=0.1"
         />
@@ -92,30 +94,32 @@ exports[`Storyshots Components/Artist No Albums 1`] = `
         
          
         <p
-          class="controls svelte-fh6j1p"
+          class="controls svelte-s3ihqj"
         >
           <button
-            class="svelte-j6xhgj primary iconOnly large"
+            class="svelte-rsfl0b primary iconOnly large"
             data-testid="play"
           >
             <i
-              class="material-icons svelte-j6xhgj"
+              class="material-icons svelte-rsfl0b"
             >
               play_arrow
             </i>
              
              
+             
           </button>
            
           <button
-            class="svelte-j6xhgj primary iconOnly large"
+            class="svelte-rsfl0b primary iconOnly large"
             data-testid="enqueue"
           >
             <i
-              class="material-icons svelte-j6xhgj"
+              class="material-icons svelte-rsfl0b"
             >
               playlist_add
             </i>
+             
              
              
           </button>
@@ -123,7 +127,7 @@ exports[`Storyshots Components/Artist No Albums 1`] = `
       </div>
        
       <header
-        class="svelte-fh6j1p"
+        class="svelte-s3ihqj"
       >
         <h3>
           Foo Fighters
@@ -141,15 +145,15 @@ exports[`Storyshots Components/Artist Unknown 1`] = `
 >
   <div>
     <a
-      class=" svelte-fh6j1p"
+      class=" svelte-s3ihqj"
       href="#/artist/1"
     >
       <div
-        class="content svelte-fh6j1p"
+        class="content svelte-s3ihqj"
       >
         <img
           alt="./avatar.jpg"
-          class="w-64 h-64 text-3xl svelte-hn7eai rounded-full"
+          class="w-64 h-64 text-3xl actionable svelte-hn7eai rounded-full"
           loading="lazy"
           src="./avatar.jpg#nonce=0.1"
         />
@@ -157,30 +161,32 @@ exports[`Storyshots Components/Artist Unknown 1`] = `
         
          
         <p
-          class="controls svelte-fh6j1p"
+          class="controls svelte-s3ihqj"
         >
           <button
-            class="svelte-j6xhgj primary iconOnly large"
+            class="svelte-rsfl0b primary iconOnly large"
             data-testid="play"
           >
             <i
-              class="material-icons svelte-j6xhgj"
+              class="material-icons svelte-rsfl0b"
             >
               play_arrow
             </i>
              
              
+             
           </button>
            
           <button
-            class="svelte-j6xhgj primary iconOnly large"
+            class="svelte-rsfl0b primary iconOnly large"
             data-testid="enqueue"
           >
             <i
-              class="material-icons svelte-j6xhgj"
+              class="material-icons svelte-rsfl0b"
             >
               playlist_add
             </i>
+             
              
              
           </button>
@@ -188,14 +194,14 @@ exports[`Storyshots Components/Artist Unknown 1`] = `
       </div>
        
       <header
-        class="svelte-fh6j1p"
+        class="svelte-s3ihqj"
       >
         <h3>
           Unknown
         </h3>
          
         <h4
-          class="svelte-fh6j1p"
+          class="svelte-s3ihqj"
         >
           2 albums
         </h4>

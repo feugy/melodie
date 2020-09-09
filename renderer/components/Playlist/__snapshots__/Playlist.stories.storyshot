@@ -6,7 +6,7 @@ exports[`Storyshots Components/Playlist Default 1`] = `
 >
   <div>
     <a
-      class=" svelte-16scfh8"
+      class="undefined actionable svelte-1lsew7w"
       href="#/playlist/1"
     >
       <header>
@@ -15,37 +15,39 @@ exports[`Storyshots Components/Playlist Default 1`] = `
         </h3>
          
         <h4
-          class="svelte-16scfh8"
+          class="svelte-1lsew7w"
         >
           3 tracks
         </h4>
       </header>
        
       <p
-        class="controls svelte-16scfh8"
+        class="controls svelte-1lsew7w"
       >
         <button
-          class="svelte-j6xhgj primary iconOnly large"
+          class="svelte-rsfl0b primary iconOnly large"
           data-testid="play"
         >
           <i
-            class="material-icons svelte-j6xhgj"
+            class="material-icons svelte-rsfl0b"
           >
             play_arrow
           </i>
            
            
+           
         </button>
          
         <button
-          class="svelte-j6xhgj primary iconOnly large"
+          class="svelte-rsfl0b primary iconOnly large"
           data-testid="enqueue"
         >
           <i
-            class="material-icons svelte-j6xhgj"
+            class="material-icons svelte-rsfl0b"
           >
             playlist_add
           </i>
+           
            
            
         </button>
@@ -61,7 +63,7 @@ exports[`Storyshots Components/Playlist Single Track 1`] = `
 >
   <div>
     <a
-      class=" svelte-16scfh8"
+      class="undefined actionable svelte-1lsew7w"
       href="#/playlist/1"
     >
       <header>
@@ -70,37 +72,39 @@ exports[`Storyshots Components/Playlist Single Track 1`] = `
         </h3>
          
         <h4
-          class="svelte-16scfh8"
+          class="svelte-1lsew7w"
         >
           1 track
         </h4>
       </header>
        
       <p
-        class="controls svelte-16scfh8"
+        class="controls svelte-1lsew7w"
       >
         <button
-          class="svelte-j6xhgj primary iconOnly large"
+          class="svelte-rsfl0b primary iconOnly large"
           data-testid="play"
         >
           <i
-            class="material-icons svelte-j6xhgj"
+            class="material-icons svelte-rsfl0b"
           >
             play_arrow
           </i>
            
            
+           
         </button>
          
         <button
-          class="svelte-j6xhgj primary iconOnly large"
+          class="svelte-rsfl0b primary iconOnly large"
           data-testid="enqueue"
         >
           <i
-            class="material-icons svelte-j6xhgj"
+            class="material-icons svelte-rsfl0b"
           >
             playlist_add
           </i>
+           
            
            
         </button>

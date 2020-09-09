@@ -91,8 +91,11 @@ npm run build
 - [x] display track's tags and details
 - [x] playlists
 - [x] tutorial
-- [ ] splash screen
-- [ ] feedback on enqueue, play, and add to playlist actions
+- [x] feedback on enqueue and play actions
+- [x] interaction feedback on buttons, links, images...
+- [ ] feedback on add to playlist actions
+- [ ] configurable "play now" behaviour: either clear & add, or enqueue and jump
+- [ ] disable text selection
 - [ ] automatically retrieve artist avatar, in the background
       ---> release?
 - [ ] smaller screen support (UI refactor)

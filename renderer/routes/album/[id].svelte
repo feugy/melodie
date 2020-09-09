@@ -93,7 +93,7 @@
     <section>
       <span class="image-container">
         <Image
-          class="h-full w-full text-3xl"
+          class="h-full w-full text-3xl actionable"
           src={album.media}
           on:click={() => (openMediaSelector = true)} />
       </span>
