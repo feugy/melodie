@@ -1,5 +1,5 @@
 <script>
-  import { onMount } from 'svelte'
+  import { onMount, tick } from 'svelte'
   import { _, locale } from 'svelte-intl'
   import { replace } from 'svelte-spa-router'
   import {
@@ -26,6 +26,7 @@
     // await on locale to be set before rendering
     ready = true
     if (settings.openCount < 20 && !settings.folders.length) {
+      await tick()
       replace('/settings')
       tutorial.start()
     } else {
@@ -35,10 +36,6 @@
 </script>
 
 <style class="postcss">
-  :global(body) {
-    @apply p-0 m-0;
-  }
-
   div {
     @apply flex flex-col h-full max-h-full;
   }

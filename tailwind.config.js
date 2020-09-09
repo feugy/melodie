@@ -3,5 +3,9 @@
 module.exports = {
   theme: {},
   variants: {},
-  plugins: []
+  plugins: [],
+  future: {
+    removeDeprecatedGapUtilities: true,
+    purgeLayersByDefault: true
+  }
 }
