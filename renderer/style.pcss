@@ -107,6 +107,7 @@
 html,
 body {
   @apply relative w-full h-full overflow-hidden p-0 m-0;
+  user-select: none;
 }
 
 body {
@@ -161,6 +162,12 @@ a.underlined:active:before {
 .actionable:hover,
 a:hover .actionable {
   box-shadow: 0 0 0 2px var(--hover-color);
+}
+
+input,
+textarea,
+*[contenteditable='true'] {
+  user-select: auto;
 }
 
 *::-webkit-scrollbar {

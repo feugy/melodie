@@ -93,8 +93,7 @@ npm run build
 - [x] tutorial
 - [x] feedback on enqueue and play actions
 - [x] interaction feedback on buttons, links, images...
-- [ ] configurable "play now" behaviour: either clear & add, or enqueue and jump
-- [ ] disable text selection
+      [ ] configurable "play now" behaviour: either clear & add, or enqueue and jump
 - [ ] automatically retrieve artist avatar, in the background
       ---> release?
 - [ ] smaller screen support (UI refactor)
