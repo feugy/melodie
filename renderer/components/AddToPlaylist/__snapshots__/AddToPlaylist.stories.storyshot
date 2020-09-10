@@ -5,7 +5,7 @@ exports[`Storyshots Components/AddToPlaylist Default 1`] = `
   class="storybook-snapshot-container"
 >
   <span
-    class="wrapper svelte-19pnu2a"
+    class="wrapper svelte-12ofrds"
   >
     <button
       class="svelte-rsfl0b iconOnly"
@@ -20,7 +20,7 @@ exports[`Storyshots Components/AddToPlaylist Default 1`] = `
       
        
     </button>
-     
   </span>
+   
 </section>
 `;

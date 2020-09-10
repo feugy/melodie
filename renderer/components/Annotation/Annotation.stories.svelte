@@ -38,3 +38,4 @@
     <div bind:this={anchors[i]}>{text}</div>
   {/each}
 </div>
+<div bind:this={anchors[texts.length]} class="hidden" />

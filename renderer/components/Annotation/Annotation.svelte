@@ -8,25 +8,10 @@
 
   let tracking = false
   let article
-  let articleRect = {
-    top: 0,
-    right: 0,
-    bottom: 0,
-    left: 0
-  }
-  let clip = {
-    top: 0,
-    right: 0,
-    bottom: 0,
-    left: 0
-  }
-  let connector = {
-    startX: 0,
-    startY: 0,
-    endX: 0,
-    endY: 0
-  }
-  let curve = { x: 0, y: 0 }
+  let articleRect = { top: 0, left: 0, bottom: 0, right: 0 }
+  let clip = null
+  let connector = null
+  let curve = null
 
   onMount(() => {
     reset()
@@ -38,25 +23,10 @@
   })
 
   function reset() {
-    articleRect = {
-      top: 0,
-      right: 0,
-      bottom: 0,
-      left: 0
-    }
-    clip = {
-      top: 0,
-      right: 0,
-      bottom: 0,
-      left: 0
-    }
-    connector = {
-      startX: 0,
-      startY: 0,
-      endX: 0,
-      endY: 0
-    }
-    curve = { x: 0, y: 0 }
+    articleRect = null
+    clip = null
+    connector = null
+    curve = null
   }
 
   function handleFrame() {
@@ -72,6 +42,8 @@
     const newClip = anchor.getBoundingClientRect()
     const rect = article.getBoundingClientRect()
     if (
+      articleRect &&
+      clip &&
       rect.top === articleRect.top &&
       rect.bottom === articleRect.bottom &&
       rect.left === articleRect.left &&
@@ -83,6 +55,12 @@
     ) {
       return
     }
+    if (newClip.width === 0 && newClip.height === 0) {
+      // invisible anchor
+      reset()
+      return
+    }
+    console.log('has anchor', anchor, { newClip, rect })
     clip = newClip
     articleRect = rect
 
@@ -177,11 +155,13 @@
 
 <div
   class="backdrop"
-  style="--top:{clip.top}px; --right:{clip.right}px; --bottom:{clip.bottom}px; --left:{clip.left}px;">
-  <svg class="connector">
-    <path
-      d="M {connector.startX} {connector.startY} Q {curve.x} {curve.y} {connector.endX} {connector.endY}" />
-  </svg>
+  style={clip ? `--top:${clip.top}px; --right:${clip.right}px; --bottom:${clip.bottom}px; --left:${clip.left}px;` : ''}>
+  {#if connector}
+    <svg class="connector">
+      <path
+        d="M {connector.startX} {connector.startY} Q {curve.x} {curve.y} {connector.endX} {connector.endY}" />
+    </svg>
+  {/if}
   <article style="top: {top}; left: {left};" bind:this={article}>
     <slot />
   </article>

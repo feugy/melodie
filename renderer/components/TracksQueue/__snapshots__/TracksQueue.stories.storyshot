@@ -58,7 +58,7 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
       </h3>
        
       <span
-        class="wrapper svelte-19pnu2a"
+        class="wrapper svelte-12ofrds"
       >
         <button
           class="mx-4 svelte-rsfl0b iconOnly"
@@ -73,8 +73,8 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
           
            
         </button>
-         
       </span>
+       
        
       <span
         class="totalDuration svelte-keiwto"

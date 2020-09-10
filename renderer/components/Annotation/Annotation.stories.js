@@ -62,3 +62,13 @@ export const BellowRight = () => ({
   Component: Annotation,
   props: { slot: 11 }
 })
+
+export const AnchorNotFound = () => ({
+  Component: Annotation,
+  props: { slot: null }
+})
+
+export const HiddenAnchor = () => ({
+  Component: Annotation,
+  props: { slot: 12 }
+})

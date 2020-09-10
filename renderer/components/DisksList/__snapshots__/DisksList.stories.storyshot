@@ -57,7 +57,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
     
      
     <table
-      class="relative svelte-pacrnm"
+      class=" svelte-pacrnm"
     >
       <thead
         class="svelte-pacrnm"
@@ -153,7 +153,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
             class="svelte-pacrnm"
           >
             <span
-              class="wrapper svelte-19pnu2a"
+              class="wrapper svelte-12ofrds"
             >
               <button
                 class="svelte-rsfl0b iconOnly noBorder"
@@ -168,8 +168,8 @@ exports[`Storyshots Components/Disks list Default 1`] = `
                 
                  
               </button>
-               
             </span>
+             
           </td>
            
         </tr>
@@ -222,7 +222,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
             class="svelte-pacrnm"
           >
             <span
-              class="wrapper svelte-19pnu2a"
+              class="wrapper svelte-12ofrds"
             >
               <button
                 class="svelte-rsfl0b iconOnly noBorder"
@@ -237,8 +237,8 @@ exports[`Storyshots Components/Disks list Default 1`] = `
                 
                  
               </button>
-               
             </span>
+             
           </td>
            
         </tr>
@@ -302,7 +302,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
     
      
     <table
-      class="relative svelte-pacrnm"
+      class=" svelte-pacrnm"
     >
       <thead
         class="svelte-pacrnm"
@@ -398,7 +398,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
             class="svelte-pacrnm"
           >
             <span
-              class="wrapper svelte-19pnu2a"
+              class="wrapper svelte-12ofrds"
             >
               <button
                 class="svelte-rsfl0b iconOnly noBorder"
@@ -413,8 +413,8 @@ exports[`Storyshots Components/Disks list Default 1`] = `
                 
                  
               </button>
-               
             </span>
+             
           </td>
            
         </tr>
@@ -467,7 +467,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
             class="svelte-pacrnm"
           >
             <span
-              class="wrapper svelte-19pnu2a"
+              class="wrapper svelte-12ofrds"
             >
               <button
                 class="svelte-rsfl0b iconOnly noBorder"
@@ -482,8 +482,8 @@ exports[`Storyshots Components/Disks list Default 1`] = `
                 
                  
               </button>
-               
             </span>
+             
           </td>
            
         </tr>
@@ -536,7 +536,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
             class="svelte-pacrnm"
           >
             <span
-              class="wrapper svelte-19pnu2a"
+              class="wrapper svelte-12ofrds"
             >
               <button
                 class="svelte-rsfl0b iconOnly noBorder"
@@ -551,8 +551,8 @@ exports[`Storyshots Components/Disks list Default 1`] = `
                 
                  
               </button>
-               
             </span>
+             
           </td>
            
         </tr>
@@ -605,7 +605,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
             class="svelte-pacrnm"
           >
             <span
-              class="wrapper svelte-19pnu2a"
+              class="wrapper svelte-12ofrds"
             >
               <button
                 class="svelte-rsfl0b iconOnly noBorder"
@@ -620,8 +620,8 @@ exports[`Storyshots Components/Disks list Default 1`] = `
                 
                  
               </button>
-               
             </span>
+             
           </td>
            
         </tr>
@@ -674,7 +674,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
             class="svelte-pacrnm"
           >
             <span
-              class="wrapper svelte-19pnu2a"
+              class="wrapper svelte-12ofrds"
             >
               <button
                 class="svelte-rsfl0b iconOnly noBorder"
@@ -689,8 +689,8 @@ exports[`Storyshots Components/Disks list Default 1`] = `
                 
                  
               </button>
-               
             </span>
+             
           </td>
            
         </tr>
@@ -743,7 +743,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
             class="svelte-pacrnm"
           >
             <span
-              class="wrapper svelte-19pnu2a"
+              class="wrapper svelte-12ofrds"
             >
               <button
                 class="svelte-rsfl0b iconOnly noBorder"
@@ -758,8 +758,8 @@ exports[`Storyshots Components/Disks list Default 1`] = `
                 
                  
               </button>
-               
             </span>
+             
           </td>
            
         </tr>
@@ -812,7 +812,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
             class="svelte-pacrnm"
           >
             <span
-              class="wrapper svelte-19pnu2a"
+              class="wrapper svelte-12ofrds"
             >
               <button
                 class="svelte-rsfl0b iconOnly noBorder"
@@ -827,8 +827,8 @@ exports[`Storyshots Components/Disks list Default 1`] = `
                 
                  
               </button>
-               
             </span>
+             
           </td>
            
         </tr>
@@ -881,7 +881,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
             class="svelte-pacrnm"
           >
             <span
-              class="wrapper svelte-19pnu2a"
+              class="wrapper svelte-12ofrds"
             >
               <button
                 class="svelte-rsfl0b iconOnly noBorder"
@@ -896,8 +896,8 @@ exports[`Storyshots Components/Disks list Default 1`] = `
                 
                  
               </button>
-               
             </span>
+             
           </td>
            
         </tr>
@@ -961,7 +961,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
     
      
     <table
-      class="relative svelte-pacrnm"
+      class=" svelte-pacrnm"
     >
       <thead
         class="svelte-pacrnm"
@@ -1057,7 +1057,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
             class="svelte-pacrnm"
           >
             <span
-              class="wrapper svelte-19pnu2a"
+              class="wrapper svelte-12ofrds"
             >
               <button
                 class="svelte-rsfl0b iconOnly noBorder"
@@ -1072,8 +1072,8 @@ exports[`Storyshots Components/Disks list Default 1`] = `
                 
                  
               </button>
-               
             </span>
+             
           </td>
            
         </tr>
@@ -1126,7 +1126,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
             class="svelte-pacrnm"
           >
             <span
-              class="wrapper svelte-19pnu2a"
+              class="wrapper svelte-12ofrds"
             >
               <button
                 class="svelte-rsfl0b iconOnly noBorder"
@@ -1141,8 +1141,8 @@ exports[`Storyshots Components/Disks list Default 1`] = `
                 
                  
               </button>
-               
             </span>
+             
           </td>
            
         </tr>
@@ -1195,7 +1195,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
             class="svelte-pacrnm"
           >
             <span
-              class="wrapper svelte-19pnu2a"
+              class="wrapper svelte-12ofrds"
             >
               <button
                 class="svelte-rsfl0b iconOnly noBorder"
@@ -1210,8 +1210,8 @@ exports[`Storyshots Components/Disks list Default 1`] = `
                 
                  
               </button>
-               
             </span>
+             
           </td>
            
         </tr>
@@ -1264,7 +1264,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
             class="svelte-pacrnm"
           >
             <span
-              class="wrapper svelte-19pnu2a"
+              class="wrapper svelte-12ofrds"
             >
               <button
                 class="svelte-rsfl0b iconOnly noBorder"
@@ -1279,8 +1279,8 @@ exports[`Storyshots Components/Disks list Default 1`] = `
                 
                  
               </button>
-               
             </span>
+             
           </td>
            
         </tr>
@@ -1333,7 +1333,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
             class="svelte-pacrnm"
           >
             <span
-              class="wrapper svelte-19pnu2a"
+              class="wrapper svelte-12ofrds"
             >
               <button
                 class="svelte-rsfl0b iconOnly noBorder"
@@ -1348,8 +1348,8 @@ exports[`Storyshots Components/Disks list Default 1`] = `
                 
                  
               </button>
-               
             </span>
+             
           </td>
            
         </tr>
@@ -1402,7 +1402,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
             class="svelte-pacrnm"
           >
             <span
-              class="wrapper svelte-19pnu2a"
+              class="wrapper svelte-12ofrds"
             >
               <button
                 class="svelte-rsfl0b iconOnly noBorder"
@@ -1417,8 +1417,8 @@ exports[`Storyshots Components/Disks list Default 1`] = `
                 
                  
               </button>
-               
             </span>
+             
           </td>
            
         </tr>
@@ -1471,7 +1471,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
             class="svelte-pacrnm"
           >
             <span
-              class="wrapper svelte-19pnu2a"
+              class="wrapper svelte-12ofrds"
             >
               <button
                 class="svelte-rsfl0b iconOnly noBorder"
@@ -1486,8 +1486,8 @@ exports[`Storyshots Components/Disks list Default 1`] = `
                 
                  
               </button>
-               
             </span>
+             
           </td>
            
         </tr>
@@ -1540,7 +1540,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
             class="svelte-pacrnm"
           >
             <span
-              class="wrapper svelte-19pnu2a"
+              class="wrapper svelte-12ofrds"
             >
               <button
                 class="svelte-rsfl0b iconOnly noBorder"
@@ -1555,8 +1555,8 @@ exports[`Storyshots Components/Disks list Default 1`] = `
                 
                  
               </button>
-               
             </span>
+             
           </td>
            
         </tr>

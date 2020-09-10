@@ -114,9 +114,8 @@ npm run build
 
 ### Bugs and unresolved issues
 
-1. locale dropdown is hidden by annotation. Use svelte-portal
-1. Wrong z-order with drop-down & player slider/loop button. Use svelte-portal
 1. First album could become invisible during tutorial
+1. When DB has albums and playlists, tutorial enters infinite loop
 1. Diskist/TrackTable dropdown does not consider scroll position (in storybook only)
 1. Undetected live changes: remove tracks and re-add them. This is a linux-only issue with chokidar
    - https://github.com/paulmillr/chokidar/issues/917

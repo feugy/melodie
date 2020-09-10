@@ -262,7 +262,7 @@ exports[`Storyshots Components/Player With Track List 1`] = `
         class="controls svelte-101j5b"
       >
         <span
-          class="wrapper svelte-19pnu2a"
+          class="wrapper svelte-12ofrds"
         >
           <button
             class="svelte-rsfl0b iconOnly noBorder"
@@ -277,8 +277,8 @@ exports[`Storyshots Components/Player With Track List 1`] = `
             
              
           </button>
-           
         </span>
+         
          
         <span
           class="svelte-101j5b"

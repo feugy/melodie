@@ -1,6 +1,7 @@
 <script>
   import { createEventDispatcher } from 'svelte'
   import { slide } from 'svelte/transition'
+  import Portal from 'svelte-portal'
   import Button from '../Button/Button.svelte'
 
   export let value
@@ -22,19 +23,13 @@
     text = value ? value.label || value : text
   }
 
-  function isInMenu(element) {
+  function isInComponent(element) {
     const parent = element.parentElement
-    return !parent ? false : parent === menu ? true : isInMenu(parent)
-  }
-
-  function findPositionReference(node) {
-    if (!node) {
-      return null
-    }
-    const { position } = getComputedStyle(node)
-    return position !== 'static'
-      ? node
-      : findPositionReference(node.offsetParent)
+    return !parent
+      ? false
+      : parent === menu || parent === button
+      ? true
+      : isInComponent(parent)
   }
 
   function handleSelect(selected) {
@@ -44,7 +39,7 @@
   }
 
   function handleInteraction(evt) {
-    if (evt.target && isInMenu(evt.target)) {
+    if (evt.target && isInComponent(evt.target)) {
       return
     }
     open = false
@@ -58,49 +53,49 @@
     const sav = menu.getAttribute('style')
     // reset styling to get final menu dimension
     menu.setAttribute('style', '')
-    const position = button.getBoundingClientRect()
-    let offsetLeft = 0
-    let offsetTop = 0
-    const reference = findPositionReference(button.offsetParent)
-    if (reference) {
-      const offset = reference.getBoundingClientRect()
-      offsetLeft = offset.left
-      offsetTop = offset.top
-    }
-    const visible = document.body.getBoundingClientRect()
-    const dim = menu.getBoundingClientRect()
+    const buttonDim = button.getBoundingClientRect()
+    const {
+      width: menuWidth,
+      height: menuHeight
+    } = menu.getBoundingClientRect()
+    const { innerWidth, innerHeight } = window
     // restore styling to resume anumations
     menu.setAttribute('style', sav)
 
-    const minWidth = `${position.width}px`
-    let top = `${position.bottom - offsetTop}px`
-    let left = `${
-      position.left -
-      offsetLeft +
-      (position.width - Math.max(dim.width, position.width)) / 2
-    }px`
-    let right
-    let bottom
-    if (visible.right < dim.right) {
-      left = ''
-      right = `${visible.right - position.right - offsetLeft}px`
-    } else if (visible.left > dim.left) {
-      left = `${position.left - offsetLeft}px`
+    const minWidth = buttonDim.width
+    let top = buttonDim.bottom
+    let left =
+      buttonDim.left +
+      (buttonDim.width - Math.max(menuWidth, buttonDim.width)) / 2
+
+    let right = null
+    let bottom = null
+    if (left + Math.max(menuWidth, minWidth) > innerWidth) {
+      left = null
+      right = innerWidth - buttonDim.right
+    } else if (left < 0) {
+      left = buttonDim.left
     }
     if (
-      position.top - dim.height >= 0 &&
-      visible.bottom < position.bottom + dim.height
+      buttonDim.top - menuHeight >= 0 &&
+      innerHeight < buttonDim.bottom + menuHeight
     ) {
-      top = ''
-      bottom = `${visible.bottom - position.top - offsetTop}px`
+      top = null
+      bottom = innerHeight - buttonDim.top
     }
-    Object.assign(menu.style, { top, left, right, bottom, minWidth })
+    Object.assign(menu.style, {
+      top: top !== null ? `${top}px` : '',
+      left: left !== null ? `${left}px` : '',
+      right: right !== null ? `${right}px` : '',
+      bottom: bottom !== null ? `${bottom}px` : '',
+      minWidth: `${minWidth}px`
+    })
   }
 </script>
 
 <style type="postcss">
   .wrapper {
-    @apply inline-flex flex-col items-center;
+    @apply inline-block;
   }
 
   .arrow {
@@ -143,6 +138,8 @@
       </i>
     {/if}
   </Button>
+</span>
+<Portal>
   {#if open}
     <ul transition:slide on:introstart={handleMenuVisible} bind:this={menu}>
       {#each options as option}
@@ -167,4 +164,4 @@
       {/each}
     </ul>
   {/if}
-</span>
+</Portal>

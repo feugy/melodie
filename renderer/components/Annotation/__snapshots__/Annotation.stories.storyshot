@@ -6,15 +6,8 @@ exports[`Storyshots Components/Annotation Above Center Left 1`] = `
 >
   <div
     class="backdrop svelte-1g09j0k"
-    style="--top: 0px; --right: 0px; --bottom: 0px; --left: 0px;"
+    style=""
   >
-    <svg
-      class="connector svelte-1g09j0k"
-    >
-      <path
-        d="M 0 0 Q 0 0 0 0"
-      />
-    </svg>
      
     <article
       class="svelte-1g09j0k"
@@ -87,6 +80,10 @@ exports[`Storyshots Components/Annotation Above Center Left 1`] = `
       Reprehenderit excepteur sint nostrud aliquip voluptate amet.
     </div>
   </div>
+   
+  <div
+    class="hidden svelte-8p5boq"
+  />
 </section>
 `;
 
@@ -96,15 +93,8 @@ exports[`Storyshots Components/Annotation Above Center Right 1`] = `
 >
   <div
     class="backdrop svelte-1g09j0k"
-    style="--top: 0px; --right: 0px; --bottom: 0px; --left: 0px;"
+    style=""
   >
-    <svg
-      class="connector svelte-1g09j0k"
-    >
-      <path
-        d="M 0 0 Q 0 0 0 0"
-      />
-    </svg>
      
     <article
       class="svelte-1g09j0k"
@@ -177,6 +167,10 @@ exports[`Storyshots Components/Annotation Above Center Right 1`] = `
       Reprehenderit excepteur sint nostrud aliquip voluptate amet.
     </div>
   </div>
+   
+  <div
+    class="hidden svelte-8p5boq"
+  />
 </section>
 `;
 
@@ -186,15 +180,8 @@ exports[`Storyshots Components/Annotation Above Right 1`] = `
 >
   <div
     class="backdrop svelte-1g09j0k"
-    style="--top: 0px; --right: 0px; --bottom: 0px; --left: 0px;"
+    style=""
   >
-    <svg
-      class="connector svelte-1g09j0k"
-    >
-      <path
-        d="M 0 0 Q 0 0 0 0"
-      />
-    </svg>
      
     <article
       class="svelte-1g09j0k"
@@ -267,6 +254,97 @@ exports[`Storyshots Components/Annotation Above Right 1`] = `
       Reprehenderit excepteur sint nostrud aliquip voluptate amet.
     </div>
   </div>
+   
+  <div
+    class="hidden svelte-8p5boq"
+  />
+</section>
+`;
+
+exports[`Storyshots Components/Annotation Anchor Not Found 1`] = `
+<section
+  class="storybook-snapshot-container"
+>
+  <div
+    class="backdrop svelte-1g09j0k"
+    style=""
+  >
+     
+    <article
+      class="svelte-1g09j0k"
+    >
+      Look! This text looks very interesting
+    </article>
+  </div>
+   
+  <div
+    class="grid svelte-8p5boq"
+  >
+    <div
+      class="svelte-8p5boq"
+    >
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    </div>
+    <div
+      class="svelte-8p5boq"
+    >
+      Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    </div>
+    <div
+      class="svelte-8p5boq"
+    >
+      Ut enim ad minim veniam, quis nostrud exercitation ullamco.
+    </div>
+    <div
+      class="svelte-8p5boq"
+    >
+      Laboris nisi ut aliquip ex ea commodo consequat.
+    </div>
+    <div
+      class="svelte-8p5boq"
+    >
+      Duis aute irure dolor in reprehenderit in voluptate velit esse.
+    </div>
+    <div
+      class="svelte-8p5boq"
+    >
+      Cillum dolore eu fugiat nulla pariatur.
+    </div>
+    <div
+      class="svelte-8p5boq"
+    >
+      Mauris pellentesque pulvinar pellentesque habitant morbi tristique.
+    </div>
+    <div
+      class="svelte-8p5boq"
+    >
+      Volutpat diam ut venenatis tellus in metus vulputate eu scelerisque.
+    </div>
+    <div
+      class="svelte-8p5boq"
+    >
+      Cras semper auctor neque vitae tempus quam pellentesque nec.
+    </div>
+    <div
+      class="svelte-8p5boq"
+    >
+      Excepteur sint occaecat cupidatat non proident.
+    </div>
+    <div
+      class="svelte-8p5boq"
+    >
+      Sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </div>
+    <div
+      class="svelte-8p5boq"
+    >
+      Reprehenderit excepteur sint nostrud aliquip voluptate amet.
+    </div>
+  </div>
+   
+  <div
+    class="hidden svelte-8p5boq"
+  />
 </section>
 `;
 
@@ -276,15 +354,8 @@ exports[`Storyshots Components/Annotation Bellow Center Left 1`] = `
 >
   <div
     class="backdrop svelte-1g09j0k"
-    style="--top: 0px; --right: 0px; --bottom: 0px; --left: 0px;"
+    style=""
   >
-    <svg
-      class="connector svelte-1g09j0k"
-    >
-      <path
-        d="M 0 0 Q 0 0 0 0"
-      />
-    </svg>
      
     <article
       class="svelte-1g09j0k"
@@ -357,6 +428,10 @@ exports[`Storyshots Components/Annotation Bellow Center Left 1`] = `
       Reprehenderit excepteur sint nostrud aliquip voluptate amet.
     </div>
   </div>
+   
+  <div
+    class="hidden svelte-8p5boq"
+  />
 </section>
 `;
 
@@ -366,15 +441,8 @@ exports[`Storyshots Components/Annotation Bellow Center Right 1`] = `
 >
   <div
     class="backdrop svelte-1g09j0k"
-    style="--top: 0px; --right: 0px; --bottom: 0px; --left: 0px;"
+    style=""
   >
-    <svg
-      class="connector svelte-1g09j0k"
-    >
-      <path
-        d="M 0 0 Q 0 0 0 0"
-      />
-    </svg>
      
     <article
       class="svelte-1g09j0k"
@@ -447,6 +515,10 @@ exports[`Storyshots Components/Annotation Bellow Center Right 1`] = `
       Reprehenderit excepteur sint nostrud aliquip voluptate amet.
     </div>
   </div>
+   
+  <div
+    class="hidden svelte-8p5boq"
+  />
 </section>
 `;
 
@@ -456,15 +528,8 @@ exports[`Storyshots Components/Annotation Bellow Left 1`] = `
 >
   <div
     class="backdrop svelte-1g09j0k"
-    style="--top: 0px; --right: 0px; --bottom: 0px; --left: 0px;"
+    style=""
   >
-    <svg
-      class="connector svelte-1g09j0k"
-    >
-      <path
-        d="M 0 0 Q 0 0 0 0"
-      />
-    </svg>
      
     <article
       class="svelte-1g09j0k"
@@ -537,6 +602,10 @@ exports[`Storyshots Components/Annotation Bellow Left 1`] = `
       Reprehenderit excepteur sint nostrud aliquip voluptate amet.
     </div>
   </div>
+   
+  <div
+    class="hidden svelte-8p5boq"
+  />
 </section>
 `;
 
@@ -546,15 +615,8 @@ exports[`Storyshots Components/Annotation Bellow Right 1`] = `
 >
   <div
     class="backdrop svelte-1g09j0k"
-    style="--top: 0px; --right: 0px; --bottom: 0px; --left: 0px;"
+    style=""
   >
-    <svg
-      class="connector svelte-1g09j0k"
-    >
-      <path
-        d="M 0 0 Q 0 0 0 0"
-      />
-    </svg>
      
     <article
       class="svelte-1g09j0k"
@@ -627,6 +689,10 @@ exports[`Storyshots Components/Annotation Bellow Right 1`] = `
       Reprehenderit excepteur sint nostrud aliquip voluptate amet.
     </div>
   </div>
+   
+  <div
+    class="hidden svelte-8p5boq"
+  />
 </section>
 `;
 
@@ -636,15 +702,8 @@ exports[`Storyshots Components/Annotation Default 1`] = `
 >
   <div
     class="backdrop svelte-1g09j0k"
-    style="--top: 0px; --right: 0px; --bottom: 0px; --left: 0px;"
+    style=""
   >
-    <svg
-      class="connector svelte-1g09j0k"
-    >
-      <path
-        d="M 0 0 Q 0 0 0 0"
-      />
-    </svg>
      
     <article
       class="svelte-1g09j0k"
@@ -717,6 +776,97 @@ exports[`Storyshots Components/Annotation Default 1`] = `
       Reprehenderit excepteur sint nostrud aliquip voluptate amet.
     </div>
   </div>
+   
+  <div
+    class="hidden svelte-8p5boq"
+  />
+</section>
+`;
+
+exports[`Storyshots Components/Annotation Hidden Anchor 1`] = `
+<section
+  class="storybook-snapshot-container"
+>
+  <div
+    class="backdrop svelte-1g09j0k"
+    style=""
+  >
+     
+    <article
+      class="svelte-1g09j0k"
+    >
+      Look! This text looks very interesting
+    </article>
+  </div>
+   
+  <div
+    class="grid svelte-8p5boq"
+  >
+    <div
+      class="svelte-8p5boq"
+    >
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    </div>
+    <div
+      class="svelte-8p5boq"
+    >
+      Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    </div>
+    <div
+      class="svelte-8p5boq"
+    >
+      Ut enim ad minim veniam, quis nostrud exercitation ullamco.
+    </div>
+    <div
+      class="svelte-8p5boq"
+    >
+      Laboris nisi ut aliquip ex ea commodo consequat.
+    </div>
+    <div
+      class="svelte-8p5boq"
+    >
+      Duis aute irure dolor in reprehenderit in voluptate velit esse.
+    </div>
+    <div
+      class="svelte-8p5boq"
+    >
+      Cillum dolore eu fugiat nulla pariatur.
+    </div>
+    <div
+      class="svelte-8p5boq"
+    >
+      Mauris pellentesque pulvinar pellentesque habitant morbi tristique.
+    </div>
+    <div
+      class="svelte-8p5boq"
+    >
+      Volutpat diam ut venenatis tellus in metus vulputate eu scelerisque.
+    </div>
+    <div
+      class="svelte-8p5boq"
+    >
+      Cras semper auctor neque vitae tempus quam pellentesque nec.
+    </div>
+    <div
+      class="svelte-8p5boq"
+    >
+      Excepteur sint occaecat cupidatat non proident.
+    </div>
+    <div
+      class="svelte-8p5boq"
+    >
+      Sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </div>
+    <div
+      class="svelte-8p5boq"
+    >
+      Reprehenderit excepteur sint nostrud aliquip voluptate amet.
+    </div>
+  </div>
+   
+  <div
+    class="hidden svelte-8p5boq"
+  />
 </section>
 `;
 
@@ -726,15 +876,8 @@ exports[`Storyshots Components/Annotation Middle Left 1`] = `
 >
   <div
     class="backdrop svelte-1g09j0k"
-    style="--top: 0px; --right: 0px; --bottom: 0px; --left: 0px;"
+    style=""
   >
-    <svg
-      class="connector svelte-1g09j0k"
-    >
-      <path
-        d="M 0 0 Q 0 0 0 0"
-      />
-    </svg>
      
     <article
       class="svelte-1g09j0k"
@@ -807,6 +950,10 @@ exports[`Storyshots Components/Annotation Middle Left 1`] = `
       Reprehenderit excepteur sint nostrud aliquip voluptate amet.
     </div>
   </div>
+   
+  <div
+    class="hidden svelte-8p5boq"
+  />
 </section>
 `;
 
@@ -816,15 +963,8 @@ exports[`Storyshots Components/Annotation Middle Right 1`] = `
 >
   <div
     class="backdrop svelte-1g09j0k"
-    style="--top: 0px; --right: 0px; --bottom: 0px; --left: 0px;"
+    style=""
   >
-    <svg
-      class="connector svelte-1g09j0k"
-    >
-      <path
-        d="M 0 0 Q 0 0 0 0"
-      />
-    </svg>
      
     <article
       class="svelte-1g09j0k"
@@ -897,6 +1037,10 @@ exports[`Storyshots Components/Annotation Middle Right 1`] = `
       Reprehenderit excepteur sint nostrud aliquip voluptate amet.
     </div>
   </div>
+   
+  <div
+    class="hidden svelte-8p5boq"
+  />
 </section>
 `;
 
@@ -906,15 +1050,8 @@ exports[`Storyshots Components/Annotation Positionned 1`] = `
 >
   <div
     class="backdrop svelte-1g09j0k"
-    style="--top: 0px; --right: 0px; --bottom: 0px; --left: 0px;"
+    style=""
   >
-    <svg
-      class="connector svelte-1g09j0k"
-    >
-      <path
-        d="M 0 0 Q 0 0 0 0"
-      />
-    </svg>
      
     <article
       class="svelte-1g09j0k"
@@ -988,5 +1125,9 @@ exports[`Storyshots Components/Annotation Positionned 1`] = `
       Reprehenderit excepteur sint nostrud aliquip voluptate amet.
     </div>
   </div>
+   
+  <div
+    class="hidden svelte-8p5boq"
+  />
 </section>
 `;

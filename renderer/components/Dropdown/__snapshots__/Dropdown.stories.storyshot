@@ -14,7 +14,7 @@ exports[`Storyshots Components/Dropdown Custom Button Options 1`] = `
     style="position: inherited"
   >
     <span
-      class="wrapper svelte-19pnu2a"
+      class="wrapper svelte-12ofrds"
     >
       <button
         class="svelte-rsfl0b primary"
@@ -30,15 +30,15 @@ exports[`Storyshots Components/Dropdown Custom Button Options 1`] = `
         </span>
          
         <i
-          class="material-icons arrow svelte-19pnu2a"
+          class="material-icons arrow svelte-12ofrds"
         >
           arrow_drop_down
         </i>
         
          
       </button>
-       
     </span>
+     
   </div>
    
   <p>
@@ -75,7 +75,7 @@ exports[`Storyshots Components/Dropdown Custom Options 1`] = `
     style="position: inherited"
   >
     <span
-      class="wrapper svelte-19pnu2a"
+      class="wrapper svelte-12ofrds"
     >
       <button
         class="svelte-rsfl0b"
@@ -86,15 +86,15 @@ exports[`Storyshots Components/Dropdown Custom Options 1`] = `
         </span>
          
         <i
-          class="material-icons arrow svelte-19pnu2a"
+          class="material-icons arrow svelte-12ofrds"
         >
           arrow_drop_down
         </i>
         
          
       </button>
-       
     </span>
+     
   </div>
    
   <p>
@@ -131,7 +131,7 @@ exports[`Storyshots Components/Dropdown Default 1`] = `
     style="position: inherited"
   >
     <span
-      class="wrapper svelte-19pnu2a"
+      class="wrapper svelte-12ofrds"
     >
       <button
         class="svelte-rsfl0b"
@@ -142,15 +142,15 @@ exports[`Storyshots Components/Dropdown Default 1`] = `
         </span>
          
         <i
-          class="material-icons arrow svelte-19pnu2a"
+          class="material-icons arrow svelte-12ofrds"
         >
           arrow_drop_down
         </i>
         
          
       </button>
-       
     </span>
+     
   </div>
    
   <p>
@@ -187,7 +187,7 @@ exports[`Storyshots Components/Dropdown Icon Only With Relative Parent 1`] = `
     style="position: relative"
   >
     <span
-      class="wrapper svelte-19pnu2a"
+      class="wrapper svelte-12ofrds"
     >
       <button
         class="svelte-rsfl0b iconOnly"
@@ -202,8 +202,8 @@ exports[`Storyshots Components/Dropdown Icon Only With Relative Parent 1`] = `
         
          
       </button>
-       
     </span>
+     
   </div>
    
   <p>
@@ -240,7 +240,7 @@ exports[`Storyshots Components/Dropdown Independent Text And Icon 1`] = `
     style="position: inherited"
   >
     <span
-      class="wrapper svelte-19pnu2a"
+      class="wrapper svelte-12ofrds"
     >
       <button
         class="svelte-rsfl0b"
@@ -256,15 +256,15 @@ exports[`Storyshots Components/Dropdown Independent Text And Icon 1`] = `
         </span>
          
         <i
-          class="material-icons arrow svelte-19pnu2a"
+          class="material-icons arrow svelte-12ofrds"
         >
           arrow_drop_down
         </i>
         
          
       </button>
-       
     </span>
+     
   </div>
    
   <p>
@@ -301,7 +301,7 @@ exports[`Storyshots Components/Dropdown Simple Array 1`] = `
     style="position: inherited"
   >
     <span
-      class="wrapper svelte-19pnu2a"
+      class="wrapper svelte-12ofrds"
     >
       <button
         class="svelte-rsfl0b"
@@ -312,15 +312,15 @@ exports[`Storyshots Components/Dropdown Simple Array 1`] = `
         </span>
          
         <i
-          class="material-icons arrow svelte-19pnu2a"
+          class="material-icons arrow svelte-12ofrds"
         >
           arrow_drop_down
         </i>
         
          
       </button>
-       
     </span>
+     
   </div>
    
   <p>
