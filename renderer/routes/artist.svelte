@@ -1,3 +1,7 @@
+<script context="module">
+  let listLoaded = false
+</script>
+
 <script>
   import { onMount } from 'svelte'
   import { fade } from 'svelte/transition'
@@ -8,8 +12,9 @@
   export const params = {}
 
   onMount(() => {
-    if ($artists.length === 0) {
+    if (!listLoaded) {
       list()
+      listLoaded = true
     }
   })
 </script>
