@@ -4,6 +4,7 @@ require('dotenv').config()
 const { join } = require('path')
 const electron = require('electron')
 const shortcut = require('electron-localshortcut')
+const models = require('./models')
 const listEngine = require('./services/list-engine')
 const mediaManager = require('./services/media-manager')
 const settingsManager = require('./services/settings-manager')
@@ -71,7 +72,7 @@ async function createWindow() {
   }
 
   registerRenderer(win)
-  await listEngine.init(getStoragePath('db.sqlite3'))
+  await models.init(getStoragePath('db.sqlite3'))
 
   unsubscribe = subscribeRemote({
     listEngine,

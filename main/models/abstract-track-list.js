@@ -4,14 +4,9 @@ const Model = require('./abstract-model')
 const { uniq, difference } = require('../utils')
 
 module.exports = class AbstractTrackList extends Model {
-  constructor(name, definition, mergeTrackIds = true) {
-    super(name, table => {
-      definition(table)
-      table.json('trackIds')
-      table.json('refs')
-    })
+  constructor({ mergeTrackIds = true, jsonColumns = [], ...rest }) {
+    super({ jsonColumns: [...jsonColumns, 'trackIds', 'refs'], ...rest })
     this.mergeTrackIds = mergeTrackIds
-    this.jsonColumns.push('trackIds', 'refs')
   }
 
   async save(data) {

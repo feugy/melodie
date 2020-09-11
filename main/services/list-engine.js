@@ -15,7 +15,6 @@ const {
   albumsModel,
   tracksModel,
   artistsModel,
-  settingsModel,
   playlistsModel
 } = require('../models')
 
@@ -82,25 +81,6 @@ function makeListPipeline(property, model) {
 }
 
 module.exports = {
-  async init(dbFile) {
-    logger.info(`initialize list service`)
-    await settingsModel.init(dbFile)
-    await albumsModel.init(dbFile)
-    await artistsModel.init(dbFile)
-    await tracksModel.init(dbFile)
-    await playlistsModel.init(dbFile)
-  },
-
-  async reset() {
-    logger.info(`reset list service`)
-    await tracksModel.reset()
-    await artistsModel.reset()
-    await albumsModel.reset()
-    await settingsModel.reset()
-    await playlistsModel.reset()
-    await module.exports.init()
-  },
-
   async add(tracks) {
     const tracks$ = from(tracksModel.save(tracks)).pipe(
       mergeMap(from),

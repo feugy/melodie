@@ -1,6 +1,5 @@
 'use strict'
 
-const faker = require('faker')
 const knex = require('knex')
 const fs = require('fs-extra')
 const os = require('os')
@@ -20,60 +19,28 @@ describe('Settings model', () => {
     })
   })
 
-  afterEach(async () => {
-    if (await db.schema.hasTable(settingsModel.name)) {
-      await db.schema.dropTable(settingsModel.name)
-    }
-    await settingsModel.constructor.release()
-  })
-
   afterAll(async () => {
+    await settingsModel.constructor.release()
     await db.context.destroy()
   })
 
-  describe('init', () => {
-    it('creates settings', async () => {
-      await settingsModel.init(dbFile)
-      expect(await settingsModel.get()).toEqual({
-        id: settingsModel.ID,
-        folders: [],
-        locale: null,
-        openCount: 1
-      })
-    })
-
-    it('does not overrides settings when present', async () => {
-      const locale = faker.random.word()
-      const openCount = faker.random.number({ min: 1 })
-      const settings = {
-        id: settingsModel.ID,
-        folders: [faker.system.fileName(), faker.system.fileName()],
-        locale,
-        openCount
-      }
-      await db.schema.createTable(settingsModel.name, settingsModel.definition)
-      await db(settingsModel.name).insert({
-        ...settings,
-        folders: JSON.stringify(settings.folders),
-        locale
-      })
-
-      await settingsModel.init(dbFile)
-      expect(await settingsModel.get()).toEqual(settings)
+  it('creates default settings on init', async () => {
+    await settingsModel.init(dbFile)
+    expect(await settingsModel.get()).toEqual({
+      id: settingsModel.ID,
+      folders: [],
+      locale: null,
+      openCount: 1
     })
   })
 
-  describe('get', () => {
-    beforeEach(async () => settingsModel.init(dbFile))
-
-    it('returns settings', async () => {
-      const settings = (
-        await db(settingsModel.name).select().where({ id: settingsModel.ID })
-      )[0]
-      expect(await settingsModel.get()).toEqual({
-        ...settings,
-        folders: JSON.parse(settings.folders)
-      })
+  it('returns settings', async () => {
+    const settings = (
+      await db(settingsModel.name).select().where({ id: settingsModel.ID })
+    )[0]
+    expect(await settingsModel.get()).toEqual({
+      ...settings,
+      folders: JSON.parse(settings.folders)
     })
   })
 })

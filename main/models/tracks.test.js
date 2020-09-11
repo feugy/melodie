@@ -64,21 +64,16 @@ describe('Tracks model', () => {
       useNullAsDefault: true,
       connection: { filename: dbFile }
     })
+    await tracksModel.init(dbFile)
   })
 
   beforeEach(async () => {
-    await tracksModel.init(dbFile)
+    await tracksModel.reset()
     await db(tracksModel.name).insert(models)
   })
 
-  afterEach(async () => {
-    if (await db.schema.hasTable(tracksModel.name)) {
-      await db.schema.dropTable(tracksModel.name)
-    }
-    await tracksModel.constructor.release()
-  })
-
   afterAll(async () => {
+    await tracksModel.constructor.release()
     await db.context.destroy()
   })
 

@@ -30,27 +30,29 @@ npm run build
 - [x] reactive stores: send update on new albums/artists/tracks
 - [x] images from AudioDB/discogs
 - [x] local provider for album covers
-- [ ] artists' albums
-- [ ] consider knex-migrate
+- [x] consider knex-migrate
+- [ ] logging to file
+- [ ] catch all to logs
 - [ ] images from tags
+- [ ] artists' albums
 
 ### tools
 
 - [x] reload on changes occuring in `main/` folder (rollup can only watch changes to the bundle, that is, in `renderer/`)
 - [x] logs with level hot reloading
-- [ ] logging to file
 - [x] Core automated unit tests
 - [x] UI automated unit tests
-- [ ] App automated end to end tests
 - [x] Continuous integration
+- [ ] App automated end to end tests
 - [ ] Code coverage follow-up
 
 ### release
 
-- [ ] usage statistics
-- [ ] auto updater
+- [ ] new name
 - [ ] logo
+- [ ] auto updater
 - [ ] github page
+- [ ] usage statistics
 - [ ] reference in Electron's [app list](https://www.electronjs.org/apps)
 - [ ] reference in Svelte's [showcase](https://svelte-community.netlify.app/showcase)
 - [ ] reference in [Snap store](https://snapcraft.io/)
@@ -93,7 +95,7 @@ npm run build
 - [x] tutorial
 - [x] feedback on enqueue and play actions
 - [x] interaction feedback on buttons, links, images...
-      [ ] configurable "play now" behaviour: either clear & add, or enqueue and jump
+- [ ] configurable "play now" behaviour: either clear & add, or enqueue and jump
 - [ ] automatically retrieve artist avatar, in the background
       ---> release?
 - [ ] smaller screen support (UI refactor)
@@ -113,6 +115,7 @@ npm run build
 
 ### Bugs and unresolved issues
 
+1. Shuffling animation lagging on 100+ track list
 1. First album could become invisible during tutorial
 1. When DB has albums and playlists, tutorial enters infinite loop
 1. Diskist/TrackTable dropdown does not consider scroll position (in storybook only)

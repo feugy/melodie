@@ -5,17 +5,11 @@ const { hash } = require('../utils')
 
 class TracksModel extends Model {
   constructor() {
-    super('tracks', table => {
-      table.integer('id').primary()
-      table.string('path')
-      table.string('media')
-      table.json('tags')
-      table.json('artistRefs')
-      table.json('albumRef')
-      table.float('mtimeMs')
+    super({
+      name: 'tracks',
+      jsonColumns: ['tags', 'artistRefs', 'albumRef'],
+      searchCol: 'title.value'
     })
-    this.jsonColumns = ['tags', 'artistRefs', 'albumRef']
-    this.searchCol = 'title.value'
   }
 
   async listWithTime() {

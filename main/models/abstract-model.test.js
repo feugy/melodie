@@ -11,18 +11,14 @@ const modelName = 'test'
 
 class Test extends Model {
   constructor() {
-    super(modelName, table => {
-      table.integer('id').primary()
-      table.string('name')
-      table.json('tags')
-    })
-    this.jsonColumns = ['tags']
-    this.searchCol = 'name'
+    super({ name: modelName, jsonColumns: ['tags'], searchCol: 'name' })
   }
 }
 
 let dbFile
 let db
+const latestMigration = '001-init'
+const migrationsTable = 'knex_migrations'
 
 describe('Abstract model', () => {
   beforeAll(async () => {
@@ -34,49 +30,55 @@ describe('Abstract model', () => {
     })
   })
 
-  afterEach(async () => {
-    if (await db.schema.hasTable(modelName)) {
-      await db.schema.dropTable(modelName)
-    }
-    await Model.release()
-  })
-
   afterAll(async () => {
     await db.context.destroy()
   })
 
-  describe('constructor', () => {
-    it('can not create model without name', () => {
-      expect(() => new Model()).toThrow(/every model needs a name/)
-    })
-
-    it('can not create model without definition', () => {
-      expect(() => new Model('definitionless')).toThrow(
-        /definitionless model needs a table definition/
-      )
-    })
+  it('can not constructor model without name', () => {
+    expect(() => new Model({})).toThrow(/every model needs a name/)
   })
 
   describe('init', () => {
+    afterEach(async () => {
+      if (await db.schema.hasTable(migrationsTable)) {
+        try {
+          await db.migrate.down()
+          await db.schema.dropTable(migrationsTable)
+        } catch (err) {
+          // silent migration errors
+        }
+      }
+      await Model.release()
+    })
+
     it('can not create init without db file', async () => {
       expect(new Test().init()).rejects.toThrow(
         /must be initialized with an sqlite3 file/
       )
     })
 
-    it('creates table on init', async () => {
+    it('triggers migrations', async () => {
       const tested = new Test(modelName)
       await tested.init(dbFile)
-      expect(await db.schema.hasTable(modelName)).toBe(true)
+      expect(await db.schema.hasTable(migrationsTable)).toBe(true)
+      expect(await db(migrationsTable).select()).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({ id: 1, name: `${latestMigration}.js` })
+        ])
+      )
     })
 
-    it('does not creates table on init if it exists', async () => {
-      const tested = new Test(modelName)
-      await db.schema.createTable(modelName, table => {
+    it('does not trigger migration if already at the latest', async () => {
+      await db.schema.createTable(migrationsTable, table => {
         table.integer('id')
+        table.string('name')
+        table.integer('batch')
       })
+      await db(migrationsTable).insert({ id: 1, name: `${latestMigration}.js` })
+
+      const tested = new Test(modelName)
       await tested.init(dbFile)
-      expect(await db.schema.hasTable(modelName)).toBe(true)
+      expect(await db(migrationsTable).count({ c: 'id' })).toEqual([{ c: 1 }])
     })
   })
 
@@ -95,23 +97,29 @@ describe('Abstract model', () => {
     ]
 
     beforeEach(async () => {
-      await tested.init(dbFile)
+      await db.schema.createTable(modelName, table => {
+        table.integer('id').primary()
+        table.string('name')
+        table.json('tags')
+      })
       await db(modelName).insert(models)
+      await tested.init(dbFile)
+    })
+
+    afterEach(async () => {
+      if (await db.schema.hasTable(modelName)) {
+        await db.schema.dropTable(modelName)
+      }
+      await Model.release()
     })
 
     describe('reset', () => {
       it('resets table', async () => {
         expect(await db(modelName).count({ c: 'id' })).toEqual([
-          {
-            c: models.length
-          }
+          { c: models.length }
         ])
         await tested.reset()
-        expect(await db(modelName).count({ c: 'id' })).toEqual([
-          {
-            c: 0
-          }
-        ])
+        expect(await db(modelName).count({ c: 'id' })).toEqual([{ c: 0 }])
       })
     })
 

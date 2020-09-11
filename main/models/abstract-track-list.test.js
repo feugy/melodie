@@ -14,11 +14,7 @@ const computeRefs = jest.fn()
 
 class Test extends TrackList {
   constructor() {
-    super(modelName, table => {
-      table.integer('id').primary()
-      table.string('name')
-      table.string('media')
-    })
+    super({ name: modelName })
   }
 
   async computeRefs(trx, trackIds) {
@@ -75,22 +71,27 @@ describe('Abstract track list', () => {
       useNullAsDefault: true,
       connection: { filename: dbFile }
     })
+    await tested.init(dbFile)
+    await db.schema.createTable(modelName, table => {
+      table.integer('id').primary()
+      table.string('name')
+      table.string('media')
+      table.json('trackIds')
+      table.json('refs')
+    })
   })
 
   beforeEach(async () => {
     jest.resetAllMocks()
-    await tested.init(dbFile)
+    await tested.reset()
     await db(modelName).insert(models)
   })
 
-  afterEach(async () => {
+  afterAll(async () => {
     if (await db.schema.hasTable(modelName)) {
       await db.schema.dropTable(modelName)
     }
     await Test.release()
-  })
-
-  afterAll(async () => {
     await db.context.destroy()
   })
 

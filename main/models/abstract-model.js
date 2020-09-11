@@ -6,14 +6,23 @@ const { getLogger } = require('../utils')
 
 let db
 
-async function connect(filename) {
+async function connect(filename, logger) {
   if (!db) {
+    logger.debug({ filename }, `initializing database file...`)
     await fs.ensureFile(filename)
+    logger.debug({ filename }, `connecting...`)
     db = knex({
       client: 'sqlite3',
       useNullAsDefault: true,
       connection: { filename }
     })
+    logger.debug({ filename }, `migrating to latest...`)
+    await db.migrate.latest()
+    const version = await db.migrate.currentVersion()
+    logger.info(
+      { filename, version },
+      `database connection ready on version ${version}`
+    )
   }
   return db
 }
@@ -26,19 +35,13 @@ module.exports = class AbstractModel {
     }
   }
 
-  constructor(name, definition) {
+  constructor({ name, searchCol = '', jsonColumns = [] }) {
     if (!name) {
       throw new Error(`every model needs a name`)
     }
-    if (typeof definition !== 'function') {
-      throw new Error(
-        `${name} model needs a table definition, as for knex.createTable()`
-      )
-    }
     this.name = name
-    this.definition = definition
-    this.searchCol = ''
-    this.jsonColumns = []
+    this.searchCol = searchCol
+    this.jsonColumns = jsonColumns
     this.logger = getLogger(`models/${this.name}`)
   }
 
@@ -48,13 +51,7 @@ module.exports = class AbstractModel {
         `${this.name} model must be initialized with an sqlite3 file path`
       )
     }
-    this.logger.debug({ filename, model: this.name }, `initializing model...`)
-    this.db = await connect(filename)
-    if (!(await this.db.schema.hasTable(this.name))) {
-      this.logger.info({ filename, model: this.name }, 'table created')
-      await this.db.schema.createTable(this.name, this.definition)
-    }
-    this.logger.debug({ filename, model: this.name }, 'initialized')
+    this.db = await connect(filename, this.logger)
   }
 
   async list({ from = 0, size = 10, sort = 'id', searched } = {}) {
@@ -124,11 +121,8 @@ module.exports = class AbstractModel {
   }
 
   async reset() {
-    if (await this.db.schema.hasTable(this.name)) {
-      await this.db.schema.dropTable(this.name)
-      this.logger.info('table dropped')
-    }
-    await this.init(this.db)
+    await this.db(this.name).delete()
+    this.logger.info('table truncated')
   }
 
   enrichForSearch(query, searched) {

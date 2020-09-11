@@ -1,13 +1,9 @@
 'use strict'
 
 const faker = require('faker')
-const fs = require('fs-extra')
-const { join } = require('path')
-const os = require('os')
 const { artistsModel } = require('../models/artists')
 const { albumsModel } = require('../models/albums')
 const { tracksModel } = require('../models/tracks')
-const { settingsModel } = require('../models/settings')
 const { playlistsModel } = require('../models/playlists')
 const engine = require('./list-engine')
 const { hash, broadcast } = require('../utils')
@@ -16,17 +12,10 @@ const { sleep, addRefs, addId } = require('../tests')
 jest.mock('../models/artists')
 jest.mock('../models/albums')
 jest.mock('../models/tracks')
-jest.mock('../models/settings')
 jest.mock('../models/playlists')
 jest.mock('../utils/electron-remote')
 
-let dbFile
-
 describe('Lists Engine', () => {
-  beforeAll(async () => {
-    dbFile = join(await fs.mkdtemp(join(os.tmpdir(), 'melodie-')), 'db.sqlite3')
-  })
-
   beforeEach(() => {
     jest.resetAllMocks()
     albumsModel.list.mockResolvedValue([])
@@ -36,35 +25,6 @@ describe('Lists Engine', () => {
     tracksModel.list.mockResolvedValue([])
     tracksModel.save.mockResolvedValue([])
     playlistsModel.list.mockResolvedValue([])
-  })
-
-  describe('init', () => {
-    it('initializes properly', async () => {
-      await engine.init(dbFile)
-
-      expect(settingsModel.init).toHaveBeenCalled()
-      expect(albumsModel.init).toHaveBeenCalled()
-      expect(artistsModel.init).toHaveBeenCalled()
-      expect(tracksModel.init).toHaveBeenCalled()
-      expect(playlistsModel.init).toHaveBeenCalled()
-    })
-  })
-
-  describe('reset', () => {
-    it('resets properly', async () => {
-      await engine.reset()
-
-      expect(settingsModel.reset).toHaveBeenCalled()
-      expect(albumsModel.reset).toHaveBeenCalled()
-      expect(artistsModel.reset).toHaveBeenCalled()
-      expect(tracksModel.reset).toHaveBeenCalled()
-      expect(playlistsModel.reset).toHaveBeenCalled()
-      expect(settingsModel.init).toHaveBeenCalled()
-      expect(albumsModel.init).toHaveBeenCalled()
-      expect(artistsModel.init).toHaveBeenCalled()
-      expect(tracksModel.init).toHaveBeenCalled()
-      expect(playlistsModel.init).toHaveBeenCalled()
-    })
   })
 
   describe('add', () => {
