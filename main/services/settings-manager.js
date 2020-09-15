@@ -29,17 +29,19 @@ module.exports = {
     const { filePaths: folders } = await dialog.showOpenDialog({
       properties: ['openDirectory', 'multiSelections']
     })
-    if (folders.length) {
-      logger.info({ folders }, `adding new folders...`)
-      const settings = await this.get()
-      const merged = mergeFolders(folders, settings.folders)
-      await settingsModel.save({
-        ...settings,
-        folders: merged
-      })
-      fileLoader.unwatch(settings.folders)
-      fileLoader.walkAndWatch(merged)
+    if (!folders.length) {
+      return null
     }
+    logger.info({ folders }, `adding new folders...`)
+    const settings = await this.get()
+    const merged = mergeFolders(folders, settings.folders)
+    await settingsModel.save({
+      ...settings,
+      folders: merged
+    })
+    fileLoader.unwatch(settings.folders)
+    fileLoader.walkAndWatch(merged)
+    return merged
   },
 
   async removeFolder(folder) {

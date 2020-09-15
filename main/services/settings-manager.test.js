@@ -83,19 +83,18 @@ describe('Settings manager', () => {
       settingsModel.get.mockResolvedValueOnce({ folders, locale })
       const filePaths = [faker.system.fileName(), faker.system.fileName()]
       electron.dialog.showOpenDialog.mockResolvedValueOnce({ filePaths })
+      const finalFolders = folders.concat(filePaths)
 
-      expect(await engine.addFolders())
+      expect(await engine.addFolders()).toEqual(finalFolders)
 
       expect(settingsModel.get).toHaveBeenCalledTimes(1)
       expect(settingsModel.save).toHaveBeenCalledWith({
         id: settingsModel.ID,
-        folders: folders.concat(filePaths),
+        folders: finalFolders,
         locale
       })
       expect(settingsModel.save).toHaveBeenCalledTimes(1)
-      expect(fileLoader.walkAndWatch).toHaveBeenCalledWith(
-        folders.concat(filePaths)
-      )
+      expect(fileLoader.walkAndWatch).toHaveBeenCalledWith(finalFolders)
       expect(fileLoader.walkAndWatch).toHaveBeenCalledTimes(1)
       expect(fileLoader.unwatch).toHaveBeenCalledWith(folders)
       expect(fileLoader.unwatch).toHaveBeenCalledTimes(1)
@@ -107,7 +106,7 @@ describe('Settings manager', () => {
     it('does not saves empty selection', async () => {
       electron.dialog.showOpenDialog.mockResolvedValueOnce({ filePaths: [] })
 
-      expect(await engine.addFolders())
+      expect(await engine.addFolders()).toEqual(null)
 
       expect(settingsModel.get).not.toHaveBeenCalled()
       expect(settingsModel.save).not.toHaveBeenCalled()
@@ -127,19 +126,18 @@ describe('Settings manager', () => {
         faker.system.fileName()
       ]
       electron.dialog.showOpenDialog.mockResolvedValueOnce({ filePaths })
+      const finalFolders = folders.concat(filePaths.slice(2))
 
-      expect(await engine.addFolders())
+      expect(await engine.addFolders()).toEqual(finalFolders)
 
       expect(settingsModel.get).toHaveBeenCalledTimes(1)
       expect(settingsModel.save).toHaveBeenCalledWith({
         id: settingsModel.ID,
-        folders: folders.concat(filePaths.slice(2)),
+        folders: finalFolders,
         locale
       })
       expect(settingsModel.save).toHaveBeenCalledTimes(1)
-      expect(fileLoader.walkAndWatch).toHaveBeenCalledWith(
-        folders.concat(filePaths.slice(2))
-      )
+      expect(fileLoader.walkAndWatch).toHaveBeenCalledWith(finalFolders)
       expect(fileLoader.walkAndWatch).toHaveBeenCalledTimes(1)
       expect(fileLoader.unwatch).toHaveBeenCalledWith(folders)
       expect(fileLoader.unwatch).toHaveBeenCalledTimes(1)
@@ -157,17 +155,18 @@ describe('Settings manager', () => {
       electron.dialog.showOpenDialog.mockResolvedValueOnce({
         filePaths: [parent]
       })
+      const finalFolders = [folders[1], parent]
 
-      expect(await engine.addFolders())
+      expect(await engine.addFolders()).toEqual(finalFolders)
 
       expect(settingsModel.get).toHaveBeenCalledTimes(1)
       expect(settingsModel.save).toHaveBeenCalledWith({
         id: settingsModel.ID,
-        folders: [folders[1], parent],
+        folders: finalFolders,
         locale
       })
       expect(settingsModel.save).toHaveBeenCalledTimes(1)
-      expect(fileLoader.walkAndWatch).toHaveBeenCalledWith([folders[1], parent])
+      expect(fileLoader.walkAndWatch).toHaveBeenCalledWith(finalFolders)
       expect(fileLoader.walkAndWatch).toHaveBeenCalledTimes(1)
       expect(fileLoader.unwatch).toHaveBeenCalledWith(folders)
       expect(fileLoader.unwatch).toHaveBeenCalledTimes(1)

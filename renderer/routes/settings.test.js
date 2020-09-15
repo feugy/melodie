@@ -53,7 +53,7 @@ describe('settings route', () => {
   })
 
   it('adds new folders and redirect to folders', async () => {
-    mockInvoke.mockResolvedValue({ folders: [] })
+    mockInvoke.mockResolvedValue({ folders: [faker.random.word()] })
 
     render(html`<${settingsRoute} />`)
     await sleep()
@@ -74,7 +74,7 @@ describe('settings route', () => {
       'addFolders'
     )
     expect(mockInvoke).toHaveBeenCalledTimes(2)
-    expect(location.hash).toEqual('#/albums')
+    expect(location.hash).toEqual('#/album')
   })
 
   it('remove tracked folders', async () => {

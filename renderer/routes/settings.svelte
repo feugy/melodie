@@ -23,8 +23,9 @@
   }
 
   async function handleAdd() {
-    await invoke('settingsManager.addFolders')
-    push('/albums')
+    if (await invoke('settingsManager.addFolders')) {
+      push('/album')
+    }
   }
 
   async function handleRemove(folder) {
