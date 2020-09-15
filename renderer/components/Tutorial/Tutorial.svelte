@@ -1,5 +1,6 @@
 <script>
-  import { afterUpdate } from 'svelte'
+  import { onMount, afterUpdate } from 'svelte'
+  import { location } from 'svelte-spa-router'
   import { _ } from 'svelte-intl'
   import Annotation from '../Annotation/Annotation.svelte'
   import Button from '../Button/Button.svelte'
@@ -7,8 +8,13 @@
 
   let anchor
   let annotation
+  const observer = new MutationObserver(updateAnchor)
 
-  afterUpdate(() => {
+  onMount(() => location.subscribe(updateAnchor))
+  afterUpdate(updateAnchor)
+
+  function updateAnchor() {
+    observer.disconnect()
     if ($current) {
       annotation = {
         top: null,
@@ -16,10 +22,13 @@
         ...$current.annotation
       }
       anchor = document.getElementById($current.anchorId)
+      if (anchor) {
+        observer.observe(anchor.parentElement, { childList: true })
+      }
     } else {
       anchor = null
     }
-  })
+  }
 </script>
 
 {#if $current}

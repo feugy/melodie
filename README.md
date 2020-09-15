@@ -116,7 +116,6 @@ npm run build
 ### Bugs and unresolved issues
 
 1. Shuffling animation lagging on 100+ track list
-1. First album could become invisible during tutorial
 1. When DB has albums and playlists, tutorial enters infinite loop
 1. Diskist/TrackTable dropdown does not consider scroll position (in storybook only)
 1. Undetected live changes: remove tracks and re-add them. This is a linux-only issue with chokidar

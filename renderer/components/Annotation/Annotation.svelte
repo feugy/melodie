@@ -23,7 +23,7 @@
   })
 
   function reset() {
-    articleRect = null
+    articleRect = { top: 0, left: 0, bottom: 0, right: 0 }
     clip = null
     connector = null
     curve = null
@@ -60,7 +60,6 @@
       reset()
       return
     }
-    console.log('has anchor', anchor, { newClip, rect })
     clip = newClip
     articleRect = rect
 

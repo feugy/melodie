@@ -9,13 +9,19 @@ import * as trackQueue from './track-queue'
 import { mockInvoke, sleep } from '../tests'
 
 describe('tutorial store', () => {
-  beforeEach(jest.resetAllMocks)
-
-  it('is disabled by default', () => {
-    expect(get(current)).toEqual(null)
+  beforeEach(() => {
+    location.hash = `#/`
+    jest.resetAllMocks()
   })
 
-  it('starts on first step', async () => {
+  it('is disabled by default, and allows navigation', async () => {
+    expect(get(current)).toEqual(null)
+    push('/search/test')
+    await sleep(10)
+    expect(location.hash).toEqual('#/search/test')
+  })
+
+  it('starts on first step, and prevents navigation', async () => {
     start()
     await sleep()
     expect(get(current)).toEqual(
@@ -25,6 +31,9 @@ describe('tutorial store', () => {
         nextButtonKey: 'alright'
       })
     )
+    push('/search/test')
+    await sleep(10)
+    expect(location.hash).toEqual('#/')
   })
 
   it('goes to second step on click', async () => {
@@ -105,9 +114,18 @@ describe('tutorial store', () => {
     )
   })
 
-  it('stops on button click', async () => {
+  it('stops on button click, and allows navigation', async () => {
+    push('/search/test')
+    await sleep(10)
+
+    expect(location.hash).toEqual('#/playlist')
     handleNextButtonClick()
     await sleep()
+
     expect(get(current)).toEqual(null)
+    push('/search/test')
+    await sleep(10)
+
+    expect(location.hash).toEqual('#/search/test')
   })
 })

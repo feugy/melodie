@@ -1,7 +1,7 @@
 'use strict'
 
 import { BehaviorSubject, Subject } from 'rxjs'
-import { location } from 'svelte-spa-router'
+import { location, replace } from 'svelte-spa-router'
 import { albums } from './albums'
 import { playlists } from './playlists'
 import { tracks } from './track-queue'
@@ -53,6 +53,21 @@ const steps = [
   }
 ]
 
+let allowNavigation
+const whitelist = ['/album', '/playlist', '/settings']
+
+function preventNavigation() {
+  let currentLoc = null
+  allowNavigation = location.subscribe(async value => {
+    if (currentLoc === null || whitelist.includes(value)) {
+      currentLoc = value
+    } else {
+      await tick()
+      replace(currentLoc)
+    }
+  })
+}
+
 const current$ = new BehaviorSubject(null)
 
 const clickNextButton$ = new Subject()
@@ -83,11 +98,13 @@ function next() {
     current$.next(nextStep)
   } else {
     current$.next(null)
+    allowNavigation()
   }
 }
 
 export async function start() {
   await tick()
+  preventNavigation()
   current$.next()
   next()
 }
