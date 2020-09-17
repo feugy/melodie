@@ -12,6 +12,9 @@ jest.mock('os-locale')
 jest.mock('electron', () => ({
   dialog: {
     showOpenDialog: jest.fn()
+  },
+  app: {
+    getPath: jest.fn().mockReturnValue('')
   }
 }))
 jest.mock('./file-loader')

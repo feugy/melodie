@@ -2,6 +2,7 @@
 
 const pino = require('pino')
 const fs = require('fs-extra')
+const { getLogPath } = require('./files')
 
 let root
 let levelSpecs
@@ -62,15 +63,19 @@ exports.getLogger = (name = 'core', lvl) => {
     }
     const level = lvl || computeLevel(name, levelSpecs) || computeDefaultLevel()
     if (!root) {
-      root = pino({
-        name: 'core',
-        // don't set as parameter default value
-        level,
-        base: false,
-        prettyPrint: {
-          translateTime: true
-        }
-      })
+      root = pino(
+        {
+          name: 'core',
+          // don't set as parameter default value
+          level,
+          base: false,
+          prettyPrint: {
+            translateTime: true,
+            colorize: false
+          }
+        },
+        pino.destination(getLogPath())
+      )
     }
     logger = name === 'core' ? root : root.child({ name, level })
     loggers.set(name, logger)

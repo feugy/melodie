@@ -83,7 +83,7 @@ async function createWindow() {
   })
   win.loadURL(`file://${join(publicFolder, 'index.html')}`)
 
-  // TODO settingsManager.recordOpening()
+  settingsManager.recordOpening()
 }
 
 app.whenReady().then(createWindow)

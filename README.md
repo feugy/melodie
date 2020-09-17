@@ -31,7 +31,7 @@ npm run build
 - [x] images from AudioDB/discogs
 - [x] local provider for album covers
 - [x] consider knex-migrate
-- [ ] logging to file
+- [x] logging to file
 - [ ] catch all to logs
 - [ ] images from tags
 - [ ] artists' albums

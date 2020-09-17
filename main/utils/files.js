@@ -5,6 +5,10 @@ const { join, dirname, sep } = require('path')
 const { Observable } = require('rxjs')
 const klaw = require('klaw')
 
+exports.getLogPath = function () {
+  return join(app.getPath('logs') || '', `logs.txt`)
+}
+
 exports.getStoragePath = function (file) {
   return join(app.getPath('userData'), `${file}`)
 }

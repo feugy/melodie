@@ -3,11 +3,13 @@
 const faker = require('faker')
 const pino = require('pino')
 const fs = require('fs-extra')
+const { getLogPath } = require('./files')
 
 let getLogger
 let refreshLogLevels
 
 jest.mock('pino')
+jest.mock('./files')
 
 describe('logger', () => {
   const envSave = Object.assign({}, process.env)
@@ -38,6 +40,8 @@ describe('logger', () => {
         child: jest.fn().mockImplementation(({ name }) => setupLogger(name))
       })
     )
+    // use pino.destination(1)
+    getLogPath.mockReturnValue(1)
   })
 
   afterEach(async () => {
@@ -52,14 +56,18 @@ describe('logger', () => {
     const logger = getLogger()
 
     expect(logger).toBe(loggers.core)
-    expect(pino).toHaveBeenCalledWith({
-      name: 'core',
-      level: 'silent',
-      base: false,
-      prettyPrint: {
-        translateTime: true
-      }
-    })
+    expect(pino).toHaveBeenCalledWith(
+      {
+        name: 'core',
+        level: 'silent',
+        base: false,
+        prettyPrint: {
+          translateTime: true,
+          colorize: false
+        }
+      },
+      pino.destination(1)
+    )
     expect(pino).toHaveBeenCalledTimes(1)
     pino.mockClear()
 
@@ -97,7 +105,8 @@ describe('logger', () => {
       expect.objectContaining({
         name: 'core',
         level: 'debug'
-      })
+      }),
+      pino.destination(1)
     )
 
     getLogger(name)
@@ -112,7 +121,8 @@ describe('logger', () => {
       expect.objectContaining({
         name: 'core',
         level: 'info'
-      })
+      }),
+      pino.destination(1)
     )
 
     getLogger(name)
@@ -133,7 +143,8 @@ describe('logger', () => {
       expect.objectContaining({
         name: 'core',
         level: level1
-      })
+      }),
+      pino.destination(1)
     )
 
     getLogger(name)

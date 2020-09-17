@@ -4,3 +4,4 @@
 /dist/
 .levels
 .env
+logs.txt
