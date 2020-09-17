@@ -32,7 +32,7 @@ npm run build
 - [x] local provider for album covers
 - [x] consider knex-migrate
 - [x] logging to file
-- [ ] catch all to logs
+- [x] catch all to logs
 - [ ] images from tags
 - [ ] artists' albums
 

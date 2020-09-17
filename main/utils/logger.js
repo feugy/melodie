@@ -71,7 +71,8 @@ exports.getLogger = (name = 'core', lvl) => {
           base: false,
           prettyPrint: {
             translateTime: true,
-            colorize: false
+            colorize: false,
+            errorProps: '*'
           }
         },
         pino.destination(getLogPath())

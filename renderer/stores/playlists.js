@@ -22,7 +22,7 @@ export async function appendTracks({ id, name, tracks }) {
     return null
   }
   return id
-    ? invoke('playlistsManager.append', id, trackIds)
+    ? invoke('playlistManager.append', id, trackIds)
     : save({ name, trackIds })
 }
 
@@ -37,5 +37,5 @@ export async function moveTrack(playlist, { from, to }) {
 }
 
 export async function save(playlist) {
-  return invoke('playlistsManager.save', playlist)
+  return invoke('playlistManager.save', playlist)
 }

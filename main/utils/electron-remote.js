@@ -1,13 +1,28 @@
 'use strict'
 
 const electron = require('electron')
+const { getLogger } = require('./logger')
+
+const logger = getLogger('renderer')
 
 exports.subscribeRemote = function (services = electron) {
+  electron.ipcMain.on('error', (event, error) => {
+    logger.error(error, 'UI error')
+  })
+
   electron.ipcMain.handle('remote', async (event, module, fn, ...args) => {
     if (!(module in services) || !(fn in services[module])) {
-      throw new Error(`electron doesn't support ${module}.${fn}()`)
+      logger.error({ module, fn }, `electron doesn't support ${module}.${fn}()`)
+    } else {
+      try {
+        return await services[module][fn](...args)
+      } catch (error) {
+        logger.error(
+          error,
+          `Error while running ${module}.${fn}(${args.join(', ')})`
+        )
+      }
     }
-    return services[module][fn](...args)
   })
 
   return function () {

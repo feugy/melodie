@@ -26,7 +26,8 @@ describe('Abstract model', () => {
     db = knex({
       client: 'sqlite3',
       useNullAsDefault: true,
-      connection: { filename: dbFile }
+      connection: { filename: dbFile },
+      log: { warn: () => {} }
     })
   })
 

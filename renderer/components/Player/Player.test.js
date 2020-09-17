@@ -330,7 +330,7 @@ describe('Player component', () => {
       expect(mockInvoke).toHaveBeenNthCalledWith(
         1,
         'remote',
-        'playlistsManager',
+        'playlistManager',
         'append',
         playlist.id,
         [trackListData[3].id]
@@ -338,7 +338,7 @@ describe('Player component', () => {
       expect(mockInvoke).toHaveBeenNthCalledWith(
         2,
         'remote',
-        'playlistsManager',
+        'playlistManager',
         'append',
         playlist.id,
         [trackListData[0].id]

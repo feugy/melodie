@@ -11,10 +11,12 @@ async function connect(filename, logger) {
     logger.debug({ filename }, `initializing database file...`)
     await fs.ensureFile(filename)
     logger.debug({ filename }, `connecting...`)
+    logger.deprecate = logger.info
     db = knex({
       client: 'sqlite3',
       useNullAsDefault: true,
-      connection: { filename }
+      connection: { filename },
+      log: logger
     })
     logger.debug({ filename }, `migrating to latest...`)
     await db.migrate.latest()
