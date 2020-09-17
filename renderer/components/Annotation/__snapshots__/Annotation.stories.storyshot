@@ -82,7 +82,7 @@ exports[`Storyshots Components/Annotation Above Center Left 1`] = `
   </div>
    
   <div
-    class="hidden svelte-8p5boq"
+    class="hidden"
   />
 </section>
 `;
@@ -169,7 +169,7 @@ exports[`Storyshots Components/Annotation Above Center Right 1`] = `
   </div>
    
   <div
-    class="hidden svelte-8p5boq"
+    class="hidden"
   />
 </section>
 `;
@@ -256,7 +256,7 @@ exports[`Storyshots Components/Annotation Above Right 1`] = `
   </div>
    
   <div
-    class="hidden svelte-8p5boq"
+    class="hidden"
   />
 </section>
 `;
@@ -343,7 +343,7 @@ exports[`Storyshots Components/Annotation Anchor Not Found 1`] = `
   </div>
    
   <div
-    class="hidden svelte-8p5boq"
+    class="hidden"
   />
 </section>
 `;
@@ -430,7 +430,7 @@ exports[`Storyshots Components/Annotation Bellow Center Left 1`] = `
   </div>
    
   <div
-    class="hidden svelte-8p5boq"
+    class="hidden"
   />
 </section>
 `;
@@ -517,7 +517,7 @@ exports[`Storyshots Components/Annotation Bellow Center Right 1`] = `
   </div>
    
   <div
-    class="hidden svelte-8p5boq"
+    class="hidden"
   />
 </section>
 `;
@@ -604,7 +604,7 @@ exports[`Storyshots Components/Annotation Bellow Left 1`] = `
   </div>
    
   <div
-    class="hidden svelte-8p5boq"
+    class="hidden"
   />
 </section>
 `;
@@ -691,7 +691,7 @@ exports[`Storyshots Components/Annotation Bellow Right 1`] = `
   </div>
    
   <div
-    class="hidden svelte-8p5boq"
+    class="hidden"
   />
 </section>
 `;
@@ -778,7 +778,7 @@ exports[`Storyshots Components/Annotation Default 1`] = `
   </div>
    
   <div
-    class="hidden svelte-8p5boq"
+    class="hidden"
   />
 </section>
 `;
@@ -865,7 +865,7 @@ exports[`Storyshots Components/Annotation Hidden Anchor 1`] = `
   </div>
    
   <div
-    class="hidden svelte-8p5boq"
+    class="hidden"
   />
 </section>
 `;
@@ -952,7 +952,7 @@ exports[`Storyshots Components/Annotation Middle Left 1`] = `
   </div>
    
   <div
-    class="hidden svelte-8p5boq"
+    class="hidden"
   />
 </section>
 `;
@@ -1039,7 +1039,7 @@ exports[`Storyshots Components/Annotation Middle Right 1`] = `
   </div>
    
   <div
-    class="hidden svelte-8p5boq"
+    class="hidden"
   />
 </section>
 `;
@@ -1127,7 +1127,7 @@ exports[`Storyshots Components/Annotation Positionned 1`] = `
   </div>
    
   <div
-    class="hidden svelte-8p5boq"
+    class="hidden"
   />
 </section>
 `;

@@ -6,12 +6,11 @@ exports[`Storyshots Components/Player Empty 1`] = `
 >
   <audio
     autoplay=""
-    class="svelte-101j5b"
     data-testid="audio"
   />
    
   <div
-    class="flex items-center svelte-101j5b"
+    class="flex items-center"
   >
     <span
       class="current svelte-101j5b"
@@ -206,13 +205,12 @@ exports[`Storyshots Components/Player With Track List 1`] = `
 >
   <audio
     autoplay=""
-    class="svelte-101j5b"
     data-testid="audio"
     src="./no-duration.mp3"
   />
    
   <div
-    class="flex items-center svelte-101j5b"
+    class="flex items-center"
   >
     <span
       class="current svelte-101j5b"
