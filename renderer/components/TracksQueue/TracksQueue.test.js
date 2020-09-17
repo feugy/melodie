@@ -82,7 +82,7 @@ describe('TracksQueue component', () => {
       expect(get(current)).toEqual(tracks[0])
 
       await fireEvent.click(screen.queryByText('delete'))
-      await tick()
+      await sleep(300)
 
       expect(get(current)).not.toBeDefined()
       expect(screen.queryAllByRole('listitem')).toHaveLength(0)
@@ -95,7 +95,7 @@ describe('TracksQueue component', () => {
       await fireEvent.click(
         screen.getByText(removed).closest('li').querySelector('button')
       )
-      await tick()
+      await sleep(300)
 
       expectListItems([tracks[0], ...tracks.slice(2)])
       expect(screen.queryByText(removed)).not.toBeInTheDocument()
@@ -104,17 +104,18 @@ describe('TracksQueue component', () => {
     it('reorders tracks in the list', async () => {
       expectListItems(tracks)
 
+      const dragged = screen.queryByText(tracks[0].tags.title)
       const hovered = screen.queryByText(tracks[2].tags.title)
       const dropped = screen.queryByText(tracks[3].tags.title)
 
-      await fireEvent.dragStart(screen.queryByText(tracks[0].tags.title))
-      await fireEvent.dragOver(hovered)
-      await fireEvent.dragLeave(hovered)
-      await fireEvent.dragOver(dropped)
-      await fireEvent.drop(dropped)
+      await fireEvent.mouseDown(dragged)
+      await fireEvent.mouseMove(dragged)
+      await fireEvent.mouseEnter(hovered.closest('li'))
+      await fireEvent.mouseEnter(dropped.closest('li'))
+      await fireEvent.mouseUp(dropped)
       await tick()
 
-      expectListItems([tracks[1], tracks[2], tracks[3], tracks[0]])
+      expectListItems([tracks[1], tracks[2], tracks[0], tracks[3]])
     })
 
     describe('given some playlist', () => {

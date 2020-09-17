@@ -65,6 +65,14 @@ describe('SortableList component', () => {
           artists: [faker.name.findName()]
         },
         media: faker.system.fileName()
+      },
+      {
+        id: 5,
+        tags: {
+          title: faker.commerce.productName(),
+          artists: [faker.name.findName()]
+        },
+        media: faker.system.fileName()
       }
     ].map(addRefs)
 
@@ -79,40 +87,88 @@ describe('SortableList component', () => {
     })
 
     it('drags track forward in the list', async () => {
+      const dragged = screen.queryByText(items[1].tags.title)
       const hovered = screen.queryByText(items[2].tags.title)
       const dropped = screen.queryByText(items[3].tags.title)
 
-      await fireEvent.dragStart(screen.queryByText(items[0].tags.title))
-      await fireEvent.dragOver(hovered)
-      await fireEvent.dragLeave(hovered)
-      await fireEvent.dragOver(dropped)
-      await fireEvent.drop(dropped)
+      await fireEvent.mouseDown(dragged)
+      await fireEvent.mouseMove(dragged)
+      await fireEvent.mouseEnter(hovered.closest('li'))
+      await fireEvent.mouseEnter(dropped.closest('li'))
+      await fireEvent.mouseUp(dropped)
 
       expect(onMove).toHaveBeenCalledWith(
-        expect.objectContaining({ detail: { from: 0, to: 3 } })
+        expect.objectContaining({ detail: { from: 1, to: 2 } })
       )
       expect(onMove).toHaveBeenCalledTimes(1)
     })
 
     it('drags track backward in the list', async () => {
-      const dropped = screen.queryByText(items[0].tags.title)
+      const dragged = screen.queryByText(items[3].tags.title)
+      const hovered = screen.queryByText(items[2].tags.title)
+      const dropped = screen.queryByText(items[1].tags.title)
 
-      await fireEvent.dragStart(screen.queryByText(items[2].tags.title))
-      await fireEvent.dragOver(dropped)
-      await fireEvent.drop(dropped)
+      await fireEvent.mouseDown(dragged)
+      await fireEvent.mouseMove(dragged)
+      await fireEvent.mouseEnter(hovered.closest('li'))
+      await fireEvent.mouseEnter(dropped.closest('li'))
+      await fireEvent.mouseUp(dropped)
 
       expect(onMove).toHaveBeenCalledWith(
-        expect.objectContaining({ detail: { from: 2, to: 0 } })
+        expect.objectContaining({ detail: { from: 3, to: 1 } })
+      )
+      expect(onMove).toHaveBeenCalledTimes(1)
+    })
+
+    it('drags track at the very end', async () => {
+      const dragged = screen.queryByText(items[0].tags.title)
+      const hovered = screen.queryByText(items[4].tags.title)
+
+      await fireEvent.mouseDown(dragged)
+      await fireEvent.mouseMove(dragged)
+      await fireEvent.mouseEnter(hovered.closest('li'))
+      await fireEvent.mouseLeave(hovered.closest('ol'))
+      await fireEvent.mouseUp(dragged)
+
+      expect(onMove).toHaveBeenCalledWith(
+        expect.objectContaining({ detail: { from: 0, to: 4 } })
+      )
+      expect(onMove).toHaveBeenCalledTimes(1)
+    })
+
+    it('drags track at the very beginning', async () => {
+      const dragged = screen.queryByText(items[1].tags.title)
+      const hovered = screen.queryByText(items[0].tags.title)
+
+      await fireEvent.mouseDown(dragged)
+      await fireEvent.mouseMove(dragged)
+      await fireEvent.mouseEnter(hovered.closest('li'))
+      await fireEvent.mouseLeave(hovered.closest('ol'))
+      await fireEvent.mouseUp(dragged)
+
+      expect(onMove).toHaveBeenCalledWith(
+        expect.objectContaining({ detail: { from: 1, to: 0 } })
       )
       expect(onMove).toHaveBeenCalledTimes(1)
     })
 
     it(`does not move track on cancelled drag'n drop`, async () => {
       const dropped = screen.queryByTestId('paragraph')
+      const dragged = screen.queryByText(items[2].tags.title)
 
-      await fireEvent.dragStart(screen.queryByText(items[2].tags.title))
-      await fireEvent.dragOver(dropped)
-      await fireEvent.drop(dropped)
+      await fireEvent.mouseDown(dragged)
+      await fireEvent.mouseMove(dragged)
+      await fireEvent.mouseEnter(dropped)
+      await fireEvent.mouseUp(dropped)
+
+      expect(onMove).not.toHaveBeenCalled()
+    })
+
+    it(`does not move track on click`, async () => {
+      const dragged = screen.queryByText(items[2].tags.title)
+
+      await fireEvent.mouseDown(dragged)
+      await fireEvent.mouseUp(dragged)
 
       expect(onMove).not.toHaveBeenCalled()
     })

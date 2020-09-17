@@ -152,14 +152,15 @@ describe('PlaylistTracksTable component', () => {
   it('moves track in the playlist', async () => {
     render(html`<${PlaylistTracksTable} playlist=${playlist} />`)
 
-    const dropped = screen.queryByText(playlist.tracks[2].tags.title)
-    const hovered = screen.queryByText(playlist.tracks[1].tags.title)
+    const dragged = screen.queryByText(playlist.tracks[0].tags.title)
+    const hovered = screen.queryByText(playlist.tracks[2].tags.title)
+    const dropped = screen.queryByText(playlist.tracks[3].tags.title)
 
-    await fireEvent.dragStart(screen.queryByText(playlist.tracks[0].tags.title))
-    await fireEvent.dragOver(hovered)
-    await fireEvent.dragLeave(hovered)
-    await fireEvent.dragOver(dropped)
-    await fireEvent.drop(dropped)
+    await fireEvent.mouseDown(dragged)
+    await fireEvent.mouseMove(dragged)
+    await fireEvent.mouseEnter(hovered.closest('li'))
+    await fireEvent.mouseEnter(dropped.closest('li'))
+    await fireEvent.mouseUp(dropped)
     await sleep()
 
     expect(moveTrack).toHaveBeenCalledWith(playlist, { from: 0, to: 2 })

@@ -1,14 +1,15 @@
 <script>
   import { createEventDispatcher, tick } from 'svelte'
-  import { flip } from 'svelte/animate'
+  import { slide } from 'svelte/transition'
   import { _ } from 'svelte-intl'
 
   export let items = []
 
   const dispatch = createEventDispatcher()
-  let from = null
+  let dragged = null
+  let target = null
   let keyedItems = []
-  let hovered = null
+  let possibleDrag = null
 
   $: {
     // ensure items have unique keys: same item could appear multiple times in the list
@@ -21,55 +22,128 @@
     }
   }
 
-  function handleDrag(evt, idx) {
-    from = idx
+  function findPositionned(node) {
+    return !node
+      ? null
+      : node.offsetParent &&
+        getComputedStyle(node.offsetParent).position !== 'static'
+      ? node.offsetParent
+      : findPositionned(node.offsetParent)
   }
 
-  async function handleDrop(to) {
-    const params = { from, to }
-    hovered = null
-    from = null
-    if (params.from !== null) {
-      await tick()
-      dispatch('move', params)
+  function handleDrag(evt, key, idx) {
+    const item = evt.target.closest('li')
+    const bounds = item.parentNode.getBoundingClientRect()
+    const { height, width, left, top } = item.getBoundingClientRect()
+    possibleDrag = {
+      item,
+      key,
+      idx,
+      offset: top - evt.clientY,
+      height,
+      width,
+      left,
+      min: bounds.top,
+      max: bounds.bottom - height
+    }
+    const positionned = findPositionned(item)
+    if (positionned) {
+      const { left, top } = positionned.getBoundingClientRect()
+      possibleDrag.left -= left
+      possibleDrag.offset -= top
     }
   }
 
-  function conditionalFlip(...args) {
-    return from !== null ? {} : flip(...args)
+  function handleOver(evt, key, idx) {
+    if (dragged) {
+      if (target) {
+        target.item.style.marginTop = null
+        target.item.style.marginBottom = null
+      }
+      target = { item: evt.target.closest('li'), key, idx }
+      target.item.before(dragged.item)
+      target.item.style.marginTop = `${dragged.height}px`
+    }
+  }
+
+  function handleOut() {
+    if (
+      dragged &&
+      target &&
+      target.key === keyedItems[keyedItems.length - 1].key
+    ) {
+      target.idx++
+      target.item.after(dragged.item)
+      target.item.style.marginTop = null
+      target.item.style.marginBottom = `${dragged.height}px`
+    }
+  }
+
+  function handleMove(evt) {
+    if (possibleDrag) {
+      dragged = possibleDrag
+      dragged.item.style.top = `${evt.clientY + dragged.offset}px`
+      dragged.item.style.left = `${dragged.left}px`
+      dragged.item.style.height = `${dragged.height}px`
+      dragged.item.style.width = `${dragged.width}px`
+      possibleDrag = null
+      handleOver(evt, dragged.key, dragged.idx)
+    }
+    if (dragged) {
+      const value = evt.clientY + dragged.offset
+      dragged.item.style.top = `${
+        value < dragged.min
+          ? dragged.min
+          : value > dragged.max
+          ? dragged.max
+          : value
+      }px`
+    }
+  }
+
+  function handleDrop() {
+    if (target) {
+      target.item.style.marginTop = null
+      target.item.style.marginBottom = null
+    }
+    if (dragged && target) {
+      const from = dragged.idx
+      const to = target.idx - (from < target.idx ? 1 : 0)
+      if (from !== to) {
+        dispatch('move', { from, to })
+      }
+    }
+    possibleDrag = null
+    dragged = null
+    target = null
+  }
+
+  function slideOnRemove(...args) {
+    return dragged ? {} : slide(...args)
   }
 </script>
 
 <style type="postcss">
-  /*
-    Adding pseudo elements during DND is slowing animation down
-    In case we want simpler solution, we can just change the drop zone border
-
   li {
-    border: 2px dotted transparent;
+    transition: margin-top 150ms linear, margin-bottom 150ms linear;
   }
 
-  li.dropTarget {
-    border-color: var(--outline-color);
-  }
-  */
-
-  li.dropTarget::before {
-    @apply block w-full h-12 border-dotted border-2;
-    content: '';
-    border-color: var(--outline-color);
+  li.dragged {
+    @apply absolute inline-block pointer-events-none cursor-move;
+    background: var(--hover-bg-color);
+    transition: top 150ms linear;
   }
 </style>
 
-<ol on:dragover|preventDefault on:dragend={() => (hovered = null)}>
+<svelte:body on:mousemove={handleMove} on:mouseup={handleDrop} />
+<ol on:mouseleave={handleOut}>
   {#each keyedItems as item, i (item.key)}
     <li
-      draggable="true"
-      class:dropTarget={hovered === i}
-      animate:conditionalFlip={{ duration: 250 }}
-      on:dragstart={evt => handleDrag(evt, i)}
-      on:dragenter={() => (hovered = i)}
-      on:drop|preventDefault={() => handleDrop(i)}>
+      out:slideOnRemove={{ duration: 250 }}
+      class:dragged={dragged && dragged.key === item.key}
+      class:target={target && target.key === item.key}
+      on:mousedown={evt => handleDrag(evt, item.key, i)}
+      on:mouseenter={evt => handleOver(evt, item.key, i)}>
       <slot name="item" {item} {i} />
     </li>
   {/each}

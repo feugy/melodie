@@ -5,10 +5,10 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
   class="storybook-snapshot-container"
 >
   <div>
+     
     <ol>
       <li
-        class="svelte-4th0s9"
-        draggable="true"
+        class="svelte-13iddqb"
       >
         <div
           class="svelte-1hrmi6p"
@@ -74,8 +74,7 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
          
       </li>
       <li
-        class="svelte-4th0s9"
-        draggable="true"
+        class="svelte-13iddqb"
       >
         <div
           class="svelte-1hrmi6p"
@@ -141,8 +140,7 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
          
       </li>
       <li
-        class="svelte-4th0s9"
-        draggable="true"
+        class="svelte-13iddqb"
       >
         <div
           class="svelte-1hrmi6p"
@@ -208,8 +206,7 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
          
       </li>
       <li
-        class="svelte-4th0s9"
-        draggable="true"
+        class="svelte-13iddqb"
       >
         <div
           class="svelte-1hrmi6p"
@@ -275,8 +272,7 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
          
       </li>
       <li
-        class="svelte-4th0s9"
-        draggable="true"
+        class="svelte-13iddqb"
       >
         <div
           class="svelte-1hrmi6p"
@@ -342,8 +338,7 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
          
       </li>
       <li
-        class="svelte-4th0s9"
-        draggable="true"
+        class="svelte-13iddqb"
       >
         <div
           class="svelte-1hrmi6p"
@@ -409,8 +404,7 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
          
       </li>
       <li
-        class="svelte-4th0s9"
-        draggable="true"
+        class="svelte-13iddqb"
       >
         <div
           class="svelte-1hrmi6p"
@@ -476,8 +470,7 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
          
       </li>
       <li
-        class="svelte-4th0s9"
-        draggable="true"
+        class="svelte-13iddqb"
       >
         <div
           class="svelte-1hrmi6p"
