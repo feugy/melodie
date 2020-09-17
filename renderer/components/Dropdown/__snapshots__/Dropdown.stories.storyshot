@@ -17,10 +17,10 @@ exports[`Storyshots Components/Dropdown Custom Button Options 1`] = `
       class="wrapper svelte-12ofrds"
     >
       <button
-        class="svelte-rsfl0b primary"
+        class="svelte-1f17ahs primary"
       >
         <i
-          class="material-icons svelte-rsfl0b"
+          class="material-icons svelte-1f17ahs"
         >
           person
         </i>
@@ -78,7 +78,7 @@ exports[`Storyshots Components/Dropdown Custom Options 1`] = `
       class="wrapper svelte-12ofrds"
     >
       <button
-        class="svelte-rsfl0b"
+        class="svelte-1f17ahs"
       >
          
         <span>
@@ -134,7 +134,7 @@ exports[`Storyshots Components/Dropdown Default 1`] = `
       class="wrapper svelte-12ofrds"
     >
       <button
-        class="svelte-rsfl0b"
+        class="svelte-1f17ahs"
       >
          
         <span>
@@ -190,10 +190,10 @@ exports[`Storyshots Components/Dropdown Icon Only With Relative Parent 1`] = `
       class="wrapper svelte-12ofrds"
     >
       <button
-        class="svelte-rsfl0b iconOnly"
+        class="svelte-1f17ahs iconOnly"
       >
         <i
-          class="material-icons svelte-rsfl0b"
+          class="material-icons svelte-1f17ahs"
         >
           more_vert
         </i>
@@ -243,10 +243,10 @@ exports[`Storyshots Components/Dropdown Independent Text And Icon 1`] = `
       class="wrapper svelte-12ofrds"
     >
       <button
-        class="svelte-rsfl0b"
+        class="svelte-1f17ahs"
       >
         <i
-          class="material-icons svelte-rsfl0b"
+          class="material-icons svelte-1f17ahs"
         >
           settings
         </i>
@@ -304,7 +304,7 @@ exports[`Storyshots Components/Dropdown Simple Array 1`] = `
       class="wrapper svelte-12ofrds"
     >
       <button
-        class="svelte-rsfl0b"
+        class="svelte-1f17ahs"
       >
          
         <span>

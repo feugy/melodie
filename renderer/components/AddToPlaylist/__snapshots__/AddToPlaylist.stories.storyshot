@@ -8,10 +8,10 @@ exports[`Storyshots Components/AddToPlaylist Default 1`] = `
     class="wrapper svelte-12ofrds"
   >
     <button
-      class="svelte-rsfl0b iconOnly"
+      class="svelte-1f17ahs iconOnly"
     >
       <i
-        class="material-icons svelte-rsfl0b"
+        class="material-icons svelte-1f17ahs"
       >
         library_add
       </i>

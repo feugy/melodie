@@ -12,10 +12,10 @@ exports[`Storyshots Components/Confirmation dialogue Custom Action 1`] = `
     class="backdrop svelte-7u451e open"
   >
     <button
-      class="absolute top-0 right-0 m-4 svelte-rsfl0b iconOnly"
+      class="absolute top-0 right-0 m-4 svelte-1f17ahs iconOnly"
     >
       <i
-        class="material-icons svelte-rsfl0b"
+        class="material-icons svelte-1f17ahs"
       >
         close
       </i>
@@ -51,10 +51,10 @@ exports[`Storyshots Components/Confirmation dialogue Custom Action 1`] = `
           slot="buttons"
         >
           <button
-            class="mr-2 svelte-rsfl0b"
+            class="mr-2 svelte-1f17ahs"
           >
             <i
-              class="material-icons svelte-rsfl0b"
+              class="material-icons svelte-1f17ahs"
             >
               undo
             </i>
@@ -67,10 +67,10 @@ exports[`Storyshots Components/Confirmation dialogue Custom Action 1`] = `
           </button>
            
           <button
-            class="svelte-rsfl0b"
+            class="svelte-1f17ahs"
           >
             <i
-              class="material-icons svelte-rsfl0b"
+              class="material-icons svelte-1f17ahs"
             >
               redo
             </i>
@@ -89,7 +89,7 @@ exports[`Storyshots Components/Confirmation dialogue Custom Action 1`] = `
   
    
   <button
-    class="svelte-rsfl0b"
+    class="svelte-1f17ahs"
   >
      
     <span>
@@ -113,10 +113,10 @@ exports[`Storyshots Components/Confirmation dialogue Default 1`] = `
     class="backdrop svelte-7u451e open"
   >
     <button
-      class="absolute top-0 right-0 m-4 svelte-rsfl0b iconOnly"
+      class="absolute top-0 right-0 m-4 svelte-1f17ahs iconOnly"
     >
       <i
-        class="material-icons svelte-rsfl0b"
+        class="material-icons svelte-1f17ahs"
       >
         close
       </i>
@@ -152,10 +152,10 @@ exports[`Storyshots Components/Confirmation dialogue Default 1`] = `
           slot="buttons"
         >
           <button
-            class="mr-2 svelte-rsfl0b"
+            class="mr-2 svelte-1f17ahs"
           >
             <i
-              class="material-icons svelte-rsfl0b"
+              class="material-icons svelte-1f17ahs"
             >
               cancel
             </i>
@@ -168,10 +168,10 @@ exports[`Storyshots Components/Confirmation dialogue Default 1`] = `
           </button>
            
           <button
-            class="svelte-rsfl0b"
+            class="svelte-1f17ahs"
           >
             <i
-              class="material-icons svelte-rsfl0b"
+              class="material-icons svelte-1f17ahs"
             >
               done
             </i>
@@ -190,7 +190,7 @@ exports[`Storyshots Components/Confirmation dialogue Default 1`] = `
   
    
   <button
-    class="svelte-rsfl0b"
+    class="svelte-1f17ahs"
   >
      
     <span>

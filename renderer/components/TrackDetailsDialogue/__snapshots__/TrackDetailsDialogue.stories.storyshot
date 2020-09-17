@@ -12,10 +12,10 @@ exports[`Storyshots Components/Track details dialogue Default 1`] = `
     class="backdrop svelte-7u451e open"
   >
     <button
-      class="absolute top-0 right-0 m-4 svelte-rsfl0b iconOnly"
+      class="absolute top-0 right-0 m-4 svelte-1f17ahs iconOnly"
     >
       <i
-        class="material-icons svelte-rsfl0b"
+        class="material-icons svelte-1f17ahs"
       >
         close
       </i>
@@ -231,7 +231,7 @@ exports[`Storyshots Components/Track details dialogue Default 1`] = `
   
    
   <button
-    class="svelte-rsfl0b"
+    class="svelte-1f17ahs"
   >
      
     <span>
@@ -255,10 +255,10 @@ exports[`Storyshots Components/Track details dialogue With Music Brainz 1`] = `
     class="backdrop svelte-7u451e open"
   >
     <button
-      class="absolute top-0 right-0 m-4 svelte-rsfl0b iconOnly"
+      class="absolute top-0 right-0 m-4 svelte-1f17ahs iconOnly"
     >
       <i
-        class="material-icons svelte-rsfl0b"
+        class="material-icons svelte-1f17ahs"
       >
         close
       </i>
@@ -506,7 +506,7 @@ exports[`Storyshots Components/Track details dialogue With Music Brainz 1`] = `
   
    
   <button
-    class="svelte-rsfl0b"
+    class="svelte-1f17ahs"
   >
      
     <span>
@@ -530,10 +530,10 @@ exports[`Storyshots Components/Track details dialogue With Partial 1`] = `
     class="backdrop svelte-7u451e open"
   >
     <button
-      class="absolute top-0 right-0 m-4 svelte-rsfl0b iconOnly"
+      class="absolute top-0 right-0 m-4 svelte-1f17ahs iconOnly"
     >
       <i
-        class="material-icons svelte-rsfl0b"
+        class="material-icons svelte-1f17ahs"
       >
         close
       </i>
@@ -717,7 +717,7 @@ exports[`Storyshots Components/Track details dialogue With Partial 1`] = `
   
    
   <button
-    class="svelte-rsfl0b"
+    class="svelte-1f17ahs"
   >
      
     <span>
@@ -741,10 +741,10 @@ exports[`Storyshots Components/Track details dialogue With Replay Gain 1`] = `
     class="backdrop svelte-7u451e open"
   >
     <button
-      class="absolute top-0 right-0 m-4 svelte-rsfl0b iconOnly"
+      class="absolute top-0 right-0 m-4 svelte-1f17ahs iconOnly"
     >
       <i
-        class="material-icons svelte-rsfl0b"
+        class="material-icons svelte-1f17ahs"
       >
         close
       </i>
@@ -976,7 +976,7 @@ exports[`Storyshots Components/Track details dialogue With Replay Gain 1`] = `
   
    
   <button
-    class="svelte-rsfl0b"
+    class="svelte-1f17ahs"
   >
      
     <span>

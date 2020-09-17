@@ -63,7 +63,10 @@
   }
 
   button:hover {
-    transform: scale(1.05);
+    transform: scale(1.03);
+  }
+  button.iconOnly:hover {
+    transform: scale(1.1);
   }
   button:active {
     transform: scale(0.95);
