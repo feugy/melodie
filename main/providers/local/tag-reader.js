@@ -1,9 +1,9 @@
 'use strict'
 
 const { parseFile } = require('music-metadata')
-const { getLogger } = require('../utils')
+const { getLogger } = require('../../utils')
 
-const logger = getLogger('services/tag')
+const logger = getLogger('providers/local')
 
 module.exports = {
   async read(path) {

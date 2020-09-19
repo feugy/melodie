@@ -2,8 +2,8 @@
 
 const { dialog } = require('electron')
 const { settingsModel } = require('../models')
-const fileLoader = require('./file-loader')
 const { getLogger, mergeFolders, getSystemLocale } = require('../utils')
+const localProvider = require('../providers/local')
 
 const logger = getLogger('services/settings')
 
@@ -39,8 +39,7 @@ module.exports = {
       ...settings,
       folders: merged
     })
-    fileLoader.unwatch(settings.folders)
-    fileLoader.walkAndWatch(merged)
+    localProvider.importTracks()
     return merged
   },
 
@@ -52,15 +51,8 @@ module.exports = {
     if (idx >= 0) {
       folders.splice(idx, 1)
       await settingsModel.save(settings)
-      fileLoader.unwatch(folder)
+      localProvider.importTracks()
     }
-  },
-
-  async compareAndWatch() {
-    const { folders } = await this.get()
-    logger.debug({ folders }, 'comparing and watching folders')
-    await fileLoader.compare(folders)
-    fileLoader.watch(folders)
   },
 
   async setLocale(value) {

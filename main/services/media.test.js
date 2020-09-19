@@ -8,7 +8,7 @@ const { constants } = require('fs')
 const { resolve } = require('path')
 const { artistsModel, albumsModel, tracksModel } = require('../models')
 const { broadcast } = require('../utils')
-const manager = require('./media-manager')
+const mediaService = require('./media')
 const discogs = require('../providers/discogs')
 const audiodb = require('../providers/audiodb')
 const local = require('../providers/local')
@@ -22,7 +22,7 @@ jest.mock('../models/tracks')
 jest.mock('../utils/electron-remote')
 jest.mock('electron', () => ({ app: { getPath: jest.fn() } }))
 
-describe('Media manager', () => {
+describe('Media service', () => {
   it('returns artwork for artist', async () => {
     const artworks = [
       {
@@ -48,7 +48,7 @@ describe('Media manager', () => {
     discogs.findArtistArtwork.mockResolvedValueOnce(artworks.slice(2))
     local.findArtistArtwork.mockResolvedValueOnce([])
 
-    expect(await manager.findForArtist('coldplay')).toEqual(artworks)
+    expect(await mediaService.findForArtist('coldplay')).toEqual(artworks)
   })
 
   it('returns cover for album', async () => {
@@ -82,7 +82,7 @@ describe('Media manager', () => {
     discogs.findAlbumCover.mockResolvedValueOnce(covers.slice(1))
     local.findAlbumCover.mockResolvedValueOnce([])
 
-    expect(await manager.findForAlbum('Parachutes')).toEqual(covers)
+    expect(await mediaService.findForAlbum('Parachutes')).toEqual(covers)
   })
 
   describe('saveForAlbum()', () => {
@@ -136,7 +136,7 @@ describe('Media manager', () => {
           saved: [savedTrack1, savedTrack2]
         })
 
-        await manager.saveForAlbum(album.id, source)
+        await mediaService.saveForAlbum(album.id, source)
 
         expect(albumsModel.save).toHaveBeenCalledWith(savedAlbum)
         expect(albumsModel.save).toHaveBeenCalledTimes(1)
@@ -177,7 +177,7 @@ describe('Media manager', () => {
         await fs.ensureFile(media)
         await fs.writeFile(media, oldContent)
 
-        await manager.saveForAlbum(album.id, source)
+        await mediaService.saveForAlbum(album.id, source)
 
         expect(albumsModel.save).toHaveBeenCalledWith(savedAlbum)
         expect(albumsModel.save).toHaveBeenCalledTimes(1)
@@ -204,7 +204,7 @@ describe('Media manager', () => {
 
       it('ignores unknown album', async () => {
         albumsModel.getById.mockResolvedValueOnce(null)
-        await manager.saveForAlbum(album.id, source)
+        await mediaService.saveForAlbum(album.id, source)
 
         expect(albumsModel.save).not.toHaveBeenCalled()
         expect(tracksModel.getByIds).not.toHaveBeenCalled()
@@ -222,7 +222,10 @@ describe('Media manager', () => {
       await fs.ensureFile(media)
       await fs.writeFile(media, oldContent)
 
-      await manager.saveForAlbum(album.id, 'https://doesnotexist.ukn/image.jpg')
+      await mediaService.saveForAlbum(
+        album.id,
+        'https://doesnotexist.ukn/image.jpg'
+      )
 
       expect(albumsModel.save).not.toHaveBeenCalled()
       expect(tracksModel.save).not.toHaveBeenCalled()
@@ -239,7 +242,7 @@ describe('Media manager', () => {
       await fs.ensureFile(media)
       await fs.writeFile(media, oldContent)
 
-      await manager.saveForAlbum(album.id, '/user/doesnotexist/source.jpg')
+      await mediaService.saveForAlbum(album.id, '/user/doesnotexist/source.jpg')
 
       expect(albumsModel.save).not.toHaveBeenCalled()
       expect(tracksModel.save).not.toHaveBeenCalled()
@@ -283,7 +286,7 @@ describe('Media manager', () => {
         artistsModel.getById.mockResolvedValueOnce(artist)
         artistsModel.save.mockResolvedValueOnce({ saved: [savedArtist] })
 
-        await manager.saveForArtist(artist.id, source)
+        await mediaService.saveForArtist(artist.id, source)
 
         expect(artistsModel.save).toHaveBeenCalledWith(savedArtist)
         expect(artistsModel.save).toHaveBeenCalledTimes(1)
@@ -305,7 +308,7 @@ describe('Media manager', () => {
         await fs.ensureFile(media)
         await fs.writeFile(media, oldContent)
 
-        await manager.saveForArtist(artist.id, source)
+        await mediaService.saveForArtist(artist.id, source)
 
         expect(artistsModel.save).toHaveBeenCalledWith(savedArtist)
         expect(artistsModel.save).toHaveBeenCalledTimes(1)
@@ -324,7 +327,7 @@ describe('Media manager', () => {
 
       it('ignores unknown artist', async () => {
         artistsModel.getById.mockResolvedValueOnce(null)
-        await manager.saveForArtist(artist.id, source)
+        await mediaService.saveForArtist(artist.id, source)
 
         expect(artistsModel.save).not.toHaveBeenCalled()
         await expect(fs.access(media, constants.R_OK)).rejects.toThrow(/ENOENT/)
@@ -339,7 +342,7 @@ describe('Media manager', () => {
       await fs.ensureFile(media)
       await fs.writeFile(media, oldContent)
 
-      await manager.saveForArtist(
+      await mediaService.saveForArtist(
         artist.id,
         'https://doesnotexist.ukn/image.jpg'
       )
@@ -357,7 +360,10 @@ describe('Media manager', () => {
       await fs.ensureFile(media)
       await fs.writeFile(media, oldContent)
 
-      await manager.saveForArtist(artist.id, '/user/doesnotexist/source.jpg')
+      await mediaService.saveForArtist(
+        artist.id,
+        '/user/doesnotexist/source.jpg'
+      )
 
       expect(artistsModel.save).not.toHaveBeenCalled()
       const content = await fs.readFile(media, 'utf8')

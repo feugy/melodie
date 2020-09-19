@@ -2,13 +2,13 @@
 
 const faker = require('faker')
 const { playlistsModel } = require('../models/playlists')
-const engine = require('./playlist-manager')
+const playlistsService = require('./playlists')
 const { broadcast } = require('../utils')
 
 jest.mock('../models/playlists')
 jest.mock('../utils/electron-remote')
 
-describe('Playlists Manager', () => {
+describe('Playlists service', () => {
   beforeEach(jest.resetAllMocks)
 
   describe('save', () => {
@@ -21,7 +21,7 @@ describe('Playlists Manager', () => {
         removedIds: []
       }))
 
-      await engine.save({ name, desc, trackIds, trimmedOut: [] })
+      await playlistsService.save({ name, desc, trackIds, trimmedOut: [] })
 
       const playlist = { id: expect.any(Number), name, desc, trackIds }
       expect(playlistsModel.save).toHaveBeenCalledWith(playlist)
@@ -44,7 +44,7 @@ describe('Playlists Manager', () => {
         removedIds: []
       })
 
-      await engine.save({ ...playlist, ignored: true })
+      await playlistsService.save({ ...playlist, ignored: true })
 
       expect(playlistsModel.save).toHaveBeenCalledWith(playlist)
       expect(playlistsModel.save).toHaveBeenCalledTimes(1)
@@ -59,7 +59,7 @@ describe('Playlists Manager', () => {
       const id = faker.random.number()
       playlistsModel.save.mockResolvedValueOnce({ saved: [], removedIds: [id] })
 
-      await engine.save({ id, trackIds: [] })
+      await playlistsService.save({ id, trackIds: [] })
 
       expect(playlistsModel.save).toHaveBeenCalledWith({ id, trackIds: [] })
       expect(playlistsModel.save).toHaveBeenCalledTimes(1)
@@ -87,7 +87,7 @@ describe('Playlists Manager', () => {
         removedIds: []
       })
 
-      await engine.append(id, added)
+      await playlistsService.append(id, added)
 
       expect(playlistsModel.getById).toHaveBeenCalledWith(id)
       expect(playlistsModel.getById).toHaveBeenCalledTimes(1)
@@ -115,7 +115,7 @@ describe('Playlists Manager', () => {
         removedIds: []
       })
 
-      await engine.append(id, added)
+      await playlistsService.append(id, added)
 
       expect(playlistsModel.getById).toHaveBeenCalledWith(id)
       expect(playlistsModel.getById).toHaveBeenCalledTimes(1)
@@ -132,7 +132,10 @@ describe('Playlists Manager', () => {
       const id = faker.random.number()
       playlistsModel.getById.mockResolvedValueOnce(null)
 
-      await engine.append(id, [faker.random.number(), faker.random.number()])
+      await playlistsService.append(id, [
+        faker.random.number(),
+        faker.random.number()
+      ])
 
       expect(playlistsModel.getById).toHaveBeenCalledWith(id)
       expect(playlistsModel.getById).toHaveBeenCalledTimes(1)

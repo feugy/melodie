@@ -95,6 +95,7 @@ npm run build
 - [x] tutorial
 - [x] feedback on enqueue and play actions
 - [x] interaction feedback on buttons, links, images...
+- [ ] configurable keys for Discogs & AudioDB providers
 - [ ] configurable "play now" behaviour: either clear & add, or enqueue and jump
 - [ ] automatically retrieve artist avatar, in the background
       ---> release?
@@ -198,6 +199,18 @@ musings on watch & diff
   1.  [x] crawl new folder, return array of paths
   1.  [x] compute hash, enrich with tags & media
   1.  [x] save
+
+## Providers
+
+Some providers need access keys. Just make a `.env` file in the root folder, with the appropriate values:
+
+```
+DISCOGS_KEY=XYZ
+DISCOGS_SECRET=ABC
+AUDIODB_KEY=123
+```
+
+Rebuild the application to use them.
 
 ## Logging
 

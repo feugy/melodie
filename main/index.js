@@ -5,12 +5,7 @@ const { join } = require('path')
 const electron = require('electron')
 const shortcut = require('electron-localshortcut')
 const models = require('./models')
-const {
-  listEngine,
-  mediaManager,
-  settingsManager,
-  playlistManager
-} = require('./services')
+const { tracks, media, settings, playlists } = require('./services')
 const {
   getLogger,
   getStoragePath,
@@ -18,6 +13,7 @@ const {
   registerRenderer,
   subscribeRemote
 } = require('./utils')
+const providers = require('./providers')
 
 exports.main = async () => {
   config()
@@ -86,15 +82,19 @@ exports.main = async () => {
     await models.init(getStoragePath('db.sqlite3'))
 
     unsubscribe = subscribeRemote({
-      listEngine,
-      settingsManager,
-      playlistManager,
-      mediaManager,
+      tracks,
+      settings,
+      playlists,
+      media,
       ...electron
     })
     win.loadURL(`file://${join(publicFolder, 'index.html')}`)
 
-    settingsManager.recordOpening()
+    settings.recordOpening()
+    logger.info('initializing providers')
+    for (const provider of providers) {
+      provider.compareTracks()
+    }
   }
 
   // Quit when all windows are closed, except on macOS.

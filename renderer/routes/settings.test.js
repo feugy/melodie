@@ -25,7 +25,7 @@ describe('settings route', () => {
       expect(screen.getByText(folder)).toBeInTheDocument()
     }
     expect(screen.getByText(translate('add folders'))).toBeInTheDocument()
-    expect(mockInvoke).toHaveBeenCalledWith('remote', 'settingsManager', 'get')
+    expect(mockInvoke).toHaveBeenCalledWith('remote', 'settings', 'get')
     expect(mockInvoke).toHaveBeenCalledTimes(1)
 
     expect(screen.getByText(translate('fr'))).toBeInTheDocument()
@@ -46,7 +46,7 @@ describe('settings route', () => {
     expect(screen.getByText('Current language:')).toBeInTheDocument()
     expect(mockInvoke).toHaveBeenCalledWith(
       'remote',
-      'settingsManager',
+      'settings',
       'setLocale',
       'en'
     )
@@ -61,16 +61,11 @@ describe('settings route', () => {
     await fireEvent.click(screen.getByText(translate('add folders')))
     await sleep(10)
 
-    expect(mockInvoke).toHaveBeenNthCalledWith(
-      1,
-      'remote',
-      'settingsManager',
-      'get'
-    )
+    expect(mockInvoke).toHaveBeenNthCalledWith(1, 'remote', 'settings', 'get')
     expect(mockInvoke).toHaveBeenNthCalledWith(
       2,
       'remote',
-      'settingsManager',
+      'settings',
       'addFolders'
     )
     expect(mockInvoke).toHaveBeenCalledTimes(2)
@@ -94,25 +89,15 @@ describe('settings route', () => {
     await fireEvent.click(screen.getAllByText('close')[1])
     await sleep(0)
 
-    expect(mockInvoke).toHaveBeenNthCalledWith(
-      1,
-      'remote',
-      'settingsManager',
-      'get'
-    )
+    expect(mockInvoke).toHaveBeenNthCalledWith(1, 'remote', 'settings', 'get')
     expect(mockInvoke).toHaveBeenNthCalledWith(
       2,
       'remote',
-      'settingsManager',
+      'settings',
       'removeFolder',
       folders[1]
     )
-    expect(mockInvoke).toHaveBeenNthCalledWith(
-      3,
-      'remote',
-      'settingsManager',
-      'get'
-    )
+    expect(mockInvoke).toHaveBeenNthCalledWith(3, 'remote', 'settings', 'get')
     expect(mockInvoke).toHaveBeenCalledTimes(3)
     expect(screen.queryByText(folders[0])).toBeInTheDocument()
     expect(screen.queryByText(folders[1])).toBeNull()

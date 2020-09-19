@@ -20,7 +20,7 @@ describe('playlists store', () => {
     const total = 13
     const data = Array.from({ length: total }, (v, i) => i)
     mockInvoke.mockImplementation(
-      async (channel, service, method, { size, from }) => ({
+      async (channel, service, method, type, { size, from }) => ({
         total,
         size,
         from: from || 0,
@@ -36,8 +36,9 @@ describe('playlists store', () => {
     expect(get(playlists)).toEqual(data)
     expect(mockInvoke).toHaveBeenCalledWith(
       'remote',
-      'listEngine',
-      'listPlaylists',
+      'tracks',
+      'list',
+      'playlist',
       expect.any(Object)
     )
   })
@@ -63,7 +64,7 @@ describe('playlists store', () => {
       expect(await appendTracks({ id, tracks })).toEqual(playlist)
       expect(mockInvoke).toHaveBeenCalledWith(
         'remote',
-        'playlistManager',
+        'playlists',
         'append',
         id,
         trackIds
@@ -83,12 +84,10 @@ describe('playlists store', () => {
       mockInvoke.mockResolvedValueOnce(playlist)
 
       expect(await appendTracks({ name, tracks })).toEqual(playlist)
-      expect(mockInvoke).toHaveBeenCalledWith(
-        'remote',
-        'playlistManager',
-        'save',
-        { name, trackIds }
-      )
+      expect(mockInvoke).toHaveBeenCalledWith('remote', 'playlists', 'save', {
+        name,
+        trackIds
+      })
       expect(mockInvoke).toHaveBeenCalledTimes(1)
     })
   })
@@ -108,18 +107,13 @@ describe('playlists store', () => {
       mockInvoke.mockResolvedValueOnce(playlist)
 
       expect(await removeTrack(playlist, 2)).toEqual(playlist)
-      expect(mockInvoke).toHaveBeenCalledWith(
-        'remote',
-        'playlistManager',
-        'save',
-        {
-          ...playlist,
-          trackIds: [
-            ...playlist.trackIds.slice(0, 2),
-            ...playlist.trackIds.slice(2)
-          ]
-        }
-      )
+      expect(mockInvoke).toHaveBeenCalledWith('remote', 'playlists', 'save', {
+        ...playlist,
+        trackIds: [
+          ...playlist.trackIds.slice(0, 2),
+          ...playlist.trackIds.slice(2)
+        ]
+      })
       expect(mockInvoke).toHaveBeenCalledTimes(1)
     })
 
@@ -140,7 +134,7 @@ describe('playlists store', () => {
       expect(mockInvoke).toHaveBeenNthCalledWith(
         1,
         'remote',
-        'playlistManager',
+        'playlists',
         'save',
         playlist
       )
@@ -149,7 +143,7 @@ describe('playlists store', () => {
       expect(mockInvoke).toHaveBeenNthCalledWith(
         2,
         'remote',
-        'playlistManager',
+        'playlists',
         'save',
         playlist
       )
@@ -167,12 +161,10 @@ describe('playlists store', () => {
       mockInvoke.mockResolvedValueOnce(playlist)
 
       expect(await moveTrack(playlist, { from: 0, to: 2 })).toEqual(playlist)
-      expect(mockInvoke).toHaveBeenCalledWith(
-        'remote',
-        'playlistManager',
-        'save',
-        { ...playlist, trackIds: [2, 3, 1, 4] }
-      )
+      expect(mockInvoke).toHaveBeenCalledWith('remote', 'playlists', 'save', {
+        ...playlist,
+        trackIds: [2, 3, 1, 4]
+      })
       expect(mockInvoke).toHaveBeenCalledTimes(1)
     })
 
@@ -187,7 +179,7 @@ describe('playlists store', () => {
       expect(await moveTrack(playlist, { from: 3, to: 1 })).toEqual(playlist)
       expect(mockInvoke).toHaveBeenCalledWith(
         'remote',
-        'playlistManager',
+        'playlists',
         'save',
 
         { ...playlist, trackIds: [1, 4, 2, 3] }
@@ -207,7 +199,7 @@ describe('playlists store', () => {
       expect(mockInvoke).toHaveBeenNthCalledWith(
         1,
         'remote',
-        'playlistManager',
+        'playlists',
         'save',
         playlist
       )
@@ -216,7 +208,7 @@ describe('playlists store', () => {
       expect(mockInvoke).toHaveBeenNthCalledWith(
         2,
         'remote',
-        'playlistManager',
+        'playlists',
         'save',
         playlist
       )
@@ -225,7 +217,7 @@ describe('playlists store', () => {
       expect(mockInvoke).toHaveBeenNthCalledWith(
         3,
         'remote',
-        'playlistManager',
+        'playlists',
         'save',
         playlist
       )
@@ -234,7 +226,7 @@ describe('playlists store', () => {
       expect(mockInvoke).toHaveBeenNthCalledWith(
         4,
         'remote',
-        'playlistManager',
+        'playlists',
         'save',
         playlist
       )
@@ -252,12 +244,10 @@ describe('playlists store', () => {
       mockInvoke.mockResolvedValueOnce(null)
 
       expect(await remove(playlist)).toBeNull()
-      expect(mockInvoke).toHaveBeenCalledWith(
-        'remote',
-        'playlistManager',
-        'save',
-        { id: playlist.id, trackIds: [] }
-      )
+      expect(mockInvoke).toHaveBeenCalledWith('remote', 'playlists', 'save', {
+        id: playlist.id,
+        trackIds: []
+      })
       expect(mockInvoke).toHaveBeenCalledTimes(1)
     })
   })

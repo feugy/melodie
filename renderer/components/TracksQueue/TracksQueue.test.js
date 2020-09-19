@@ -160,7 +160,7 @@ describe('TracksQueue component', () => {
         expectListItems(tracks)
         expect(mockInvoke).toHaveBeenCalledWith(
           'remote',
-          'playlistManager',
+          'playlists',
           'append',
           playlist.id,
           tracks.map(({ id }) => id)

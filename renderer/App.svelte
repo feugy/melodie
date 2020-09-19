@@ -21,7 +21,7 @@
   let scrollable
 
   onMount(async () => {
-    const settings = await invoke('settingsManager.get')
+    const settings = await invoke('settings.get')
     locale.set(settings.locale)
     // await on locale to be set before rendering
     ready = true
@@ -29,8 +29,6 @@
       await tick()
       replace('/settings')
       tutorial.start()
-    } else {
-      invoke('settingsManager.compareAndWatch')
     }
   })
 </script>

@@ -12,24 +12,24 @@
   $: localeOptions = $locales.map(value => ({ value, label: $_(value) }))
   $: if (currentLocale && currentLocale.value !== $locale) {
     locale.set(currentLocale.value)
-    invoke('settingsManager.setLocale', currentLocale.value)
+    invoke('settings.setLocale', currentLocale.value)
   }
 
   let settingsPromise
   getSettings()
 
   function getSettings() {
-    settingsPromise = invoke('settingsManager.get')
+    settingsPromise = invoke('settings.get')
   }
 
   async function handleAdd() {
-    if (await invoke('settingsManager.addFolders')) {
+    if (await invoke('settings.addFolders')) {
       push('/album')
     }
   }
 
   async function handleRemove(folder) {
-    await invoke('settingsManager.removeFolder', folder)
+    await invoke('settings.removeFolder', folder)
     getSettings()
   }
 </script>

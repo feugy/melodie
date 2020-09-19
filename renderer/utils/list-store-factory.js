@@ -8,8 +8,6 @@ import { invoke } from './invoke'
 const collator = new Intl.Collator([], { numeric: true })
 
 export function createListStore(type, sortBy = 'rank') {
-  const capitalType = type[0].toUpperCase() + type.slice(1)
-
   const changes = fromServerChannel(`${type}-change`)
 
   const removals = fromServerChannel(`${type}-removal`)
@@ -72,7 +70,7 @@ export function createListStore(type, sortBy = 'rank') {
 
       listSubscription = request$
         .pipe(
-          mergeMap(arg => invoke(`listEngine.list${capitalType}s`, arg)),
+          mergeMap(arg => invoke('tracks.list', type, arg)),
           map(data => {
             const { size, from, total, results } = data
             items$.next({ added: results })
@@ -90,7 +88,7 @@ export function createListStore(type, sortBy = 'rank') {
     },
 
     async load(id) {
-      const item = await invoke('listEngine.fetchWithTracks', type, id, sortBy)
+      const item = await invoke('tracks.fetchWithTracks', type, id, sortBy)
       if (item) {
         items$.next({ changed: item })
       }

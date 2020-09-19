@@ -8,7 +8,7 @@ describe('albums store', () => {
     const total = 13
     const data = Array.from({ length: total }, (v, i) => i)
     mockInvoke.mockImplementation(
-      async (channel, service, method, { size, from }) => ({
+      async (channel, service, method, type, { size, from }) => ({
         total,
         size,
         from: from || 0,
@@ -24,8 +24,9 @@ describe('albums store', () => {
     expect(get(albums)).toEqual(data)
     expect(mockInvoke).toHaveBeenCalledWith(
       'remote',
-      'listEngine',
-      'listAlbums',
+      'tracks',
+      'list',
+      'album',
       expect.any(Object)
     )
   })

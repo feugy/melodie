@@ -70,7 +70,7 @@ describe('searchstore', () => {
     expect(mockInvoke).toHaveBeenNthCalledWith(
       1,
       'remote',
-      'listEngine',
+      'tracks',
       'search',
       text,
       { size }
@@ -78,7 +78,7 @@ describe('searchstore', () => {
     expect(mockInvoke).toHaveBeenNthCalledWith(
       2,
       'remote',
-      'listEngine',
+      'tracks',
       'search',
       text,
       { size, from: size }
@@ -86,7 +86,7 @@ describe('searchstore', () => {
     expect(mockInvoke).toHaveBeenNthCalledWith(
       3,
       'remote',
-      'listEngine',
+      'tracks',
       'search',
       text,
       { size, from: size * 2 }

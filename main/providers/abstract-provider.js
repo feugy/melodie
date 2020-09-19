@@ -11,10 +11,18 @@ module.exports = class AbstractProvider {
   }
 
   async findArtistArtwork() {
-    throw new Error(`${this.name} does not support findArtistArtwork()`)
+    return []
   }
 
   async findAlbumCover() {
-    throw new Error(`${this.name} does not support findAlbumCover()`)
+    return []
+  }
+
+  async importTracks() {
+    return []
+  }
+
+  async compareTracks() {
+    return { saved: [], removedIds: [] }
   }
 }

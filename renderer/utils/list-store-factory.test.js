@@ -68,8 +68,9 @@ describe('abstract list factory', () => {
       expect(mockInvoke).toHaveBeenCalledTimes(3)
       expect(mockInvoke).toHaveBeenCalledWith(
         'remote',
-        'listEngine',
-        'listAlbums',
+        'tracks',
+        'list',
+        'album',
         expect.any(Object)
       )
     })
@@ -170,7 +171,7 @@ describe('abstract list factory', () => {
       const total = 38
       const data = Array.from({ length: total }, (v, i) => i)
       mockInvoke.mockImplementation(
-        async (channel, service, method, { size, from }) => ({
+        async (channel, service, method, type, { size, from }) => ({
           total,
           size,
           from: from || 0,
@@ -191,8 +192,9 @@ describe('abstract list factory', () => {
       expect(mockInvoke).toHaveBeenCalledTimes(6)
       expect(mockInvoke).toHaveBeenCalledWith(
         'remote',
-        'listEngine',
-        'listAlbums',
+        'tracks',
+        'list',
+        'album',
         expect.any(Object)
       )
     })
@@ -222,7 +224,7 @@ describe('abstract list factory', () => {
       expect(mockInvoke).toHaveBeenNthCalledWith(
         2,
         'remote',
-        'listEngine',
+        'tracks',
         'fetchWithTracks',
         'album',
         album.id,
@@ -246,7 +248,7 @@ describe('abstract list factory', () => {
       expect(get(albums)).toEqual([album])
       expect(mockInvoke).toHaveBeenCalledWith(
         'remote',
-        'listEngine',
+        'tracks',
         'fetchWithTracks',
         'album',
         album.id,
@@ -264,7 +266,7 @@ describe('abstract list factory', () => {
     expect(get(albums)).toEqual([])
     expect(mockInvoke).toHaveBeenCalledWith(
       'remote',
-      'listEngine',
+      'tracks',
       'fetchWithTracks',
       'album',
       id,

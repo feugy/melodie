@@ -9,13 +9,24 @@ class Test extends AbstractProvider {
 }
 
 describe('Abstract provider', () => {
-  it('throws error on unsupported operations', () => {
-    const provider = new Test()
-    expect(provider.findArtistArtwork()).rejects.toThrow(
-      /test does not support findArtistArtwork/
-    )
-    expect(provider.findAlbumCover()).rejects.toThrow(
-      /test does not support findAlbumCover/
-    )
+  const provider = new Test()
+
+  it('returns empty artworks array for artist', async () => {
+    expect(await provider.findArtistArtwork()).toEqual([])
+  })
+
+  it('returns empty covers array for album', async () => {
+    expect(await provider.findAlbumCover()).toEqual([])
+  })
+
+  it('returns empty tracks on import', async () => {
+    expect(await provider.importTracks()).toEqual([])
+  })
+
+  it('returns no saved tracks nor removed ids on compare', async () => {
+    expect(await provider.compareTracks()).toEqual({
+      saved: [],
+      removedIds: []
+    })
   })
 })

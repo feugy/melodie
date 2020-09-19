@@ -6,6 +6,7 @@ const electron = require('electron')
 const { main } = require('.')
 const models = require('./models')
 const services = require('./services')
+const providers = require('./providers')
 
 jest.mock('electron', () => {
   const { EventEmitter } = require('events')
@@ -29,6 +30,10 @@ jest.mock('electron', () => {
 jest.mock('./services')
 jest.mock('./models')
 jest.mock('electron-reload')
+jest.mock('./providers', () => [
+  { compareTracks: jest.fn() },
+  { compareTracks: jest.fn() }
+])
 
 describe('Application test', () => {
   let win
@@ -42,17 +47,20 @@ describe('Application test', () => {
     electron.app.removeAllListeners()
   })
 
-  it('initialize models and loads renderer', async () => {
+  it('initialize models, tracks service and loads renderer', async () => {
     await main()
 
     expect(models.init).toHaveBeenCalledWith('db.sqlite3')
     expect(models.init).toHaveBeenCalledTimes(1)
-    expect(services.settingsManager.recordOpening).toHaveBeenCalledWith()
-    expect(services.settingsManager.recordOpening).toHaveBeenCalledTimes(1)
+    expect(services.settings.recordOpening).toHaveBeenCalledWith()
+    expect(services.settings.recordOpening).toHaveBeenCalledTimes(1)
     expect(win.loadURL).toHaveBeenCalledWith(
       `file://${resolve(__dirname, '..', 'public')}/index.html`
     )
     expect(electron.app.quit).not.toHaveBeenCalled()
+    for (const provider of providers) {
+      expect(provider.compareTracks).toHaveBeenCalled()
+    }
   })
 
   it('quits when closing window', async () => {

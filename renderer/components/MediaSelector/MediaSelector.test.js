@@ -27,10 +27,7 @@ describe('MediaSelector component', () => {
     await sleep()
 
     expect(screen.queryByText(title)).toBeVisible()
-    expect(invoke).toHaveBeenCalledWith(
-      'mediaManager.findForArtist',
-      artistData.name
-    )
+    expect(invoke).toHaveBeenCalledWith('media.findForArtist', artistData.name)
     expect(invoke).toHaveBeenCalledTimes(1)
     const images = screen.getAllByRole('img')
     for (const { full, provider } of suggestionsData) {
@@ -60,7 +57,7 @@ describe('MediaSelector component', () => {
     )
 
     expect(invoke).toHaveBeenCalledWith(
-      'mediaManager.saveForArtist',
+      'media.saveForArtist',
       artistData.id,
       full
     )
@@ -83,10 +80,7 @@ describe('MediaSelector component', () => {
     await sleep()
 
     expect(screen.queryByText(title)).toBeVisible()
-    expect(invoke).toHaveBeenCalledWith(
-      'mediaManager.findForAlbum',
-      artistData.name
-    )
+    expect(invoke).toHaveBeenCalledWith('media.findForAlbum', artistData.name)
 
     const { full } = suggestionsData[1]
     await fireEvent.click(
@@ -96,7 +90,7 @@ describe('MediaSelector component', () => {
     )
 
     expect(invoke).toHaveBeenCalledWith(
-      'mediaManager.saveForAlbum',
+      'media.saveForAlbum',
       artistData.id,
       full
     )
@@ -120,10 +114,7 @@ describe('MediaSelector component', () => {
     await sleep()
 
     expect(screen.queryByText(title)).toBeVisible()
-    expect(invoke).toHaveBeenCalledWith(
-      'mediaManager.findForAlbum',
-      artistData.name
-    )
+    expect(invoke).toHaveBeenCalledWith('media.findForAlbum', artistData.name)
 
     const path = faker.system.fileName()
     const item = {
@@ -141,7 +132,7 @@ describe('MediaSelector component', () => {
     )
 
     expect(invoke).toHaveBeenCalledWith(
-      'mediaManager.saveForAlbum',
+      'media.saveForAlbum',
       artistData.id,
       path
     )

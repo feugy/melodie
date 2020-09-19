@@ -7,8 +7,10 @@ import svelte from 'rollup-plugin-svelte'
 import livereload from 'rollup-plugin-livereload'
 import { terser } from 'rollup-plugin-terser'
 import postcss from 'rollup-plugin-postcss'
+import { config } from 'dotenv'
 const svelteConfig = require('./svelte.config')
 
+config()
 const production = !process.env.ROLLUP_WATCH
 
 export default {

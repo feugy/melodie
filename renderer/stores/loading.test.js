@@ -28,8 +28,8 @@ describe('loading store', () => {
   })
 
   it('is loading until at least one observable is', async () => {
-    mockInvoke.mockImplementation(async (channel, service, method) => {
-      await sleep(method !== 'listArtists' ? 10 : 100)
+    mockInvoke.mockImplementation(async (channel, service, method, type) => {
+      await sleep(type !== 'artist' ? 10 : 100)
       return {
         total: 0,
         size: 10,

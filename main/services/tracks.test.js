@@ -5,7 +5,7 @@ const { artistsModel } = require('../models/artists')
 const { albumsModel } = require('../models/albums')
 const { tracksModel } = require('../models/tracks')
 const { playlistsModel } = require('../models/playlists')
-const engine = require('./list-engine')
+const tracksService = require('./tracks')
 const { hash, broadcast } = require('../utils')
 const { sleep, addRefs, addId } = require('../tests')
 
@@ -15,7 +15,7 @@ jest.mock('../models/tracks')
 jest.mock('../models/playlists')
 jest.mock('../utils/electron-remote')
 
-describe('Lists Engine', () => {
+describe('Tracks service', () => {
   beforeEach(() => {
     jest.resetAllMocks()
     albumsModel.list.mockResolvedValue([])
@@ -57,7 +57,7 @@ describe('Lists Engine', () => {
         removedIds: []
       })
 
-      await engine.add(tracks)
+      await tracksService.add(tracks)
 
       expect(tracksModel.save).toHaveBeenCalledWith(tracks)
       expect(tracksModel.save).toHaveBeenCalledTimes(1)
@@ -106,7 +106,7 @@ describe('Lists Engine', () => {
         removedIds: []
       })
 
-      await engine.add(tracks)
+      await tracksService.add(tracks)
 
       expect(tracksModel.save).toHaveBeenCalledWith(tracks)
       expect(tracksModel.save).toHaveBeenCalledTimes(1)
@@ -158,7 +158,7 @@ describe('Lists Engine', () => {
         removedIds: []
       })
 
-      await engine.add(tracks)
+      await tracksService.add(tracks)
 
       expect(tracksModel.save).toHaveBeenCalledWith(tracks)
       expect(tracksModel.save).toHaveBeenCalledTimes(1)
@@ -220,7 +220,7 @@ describe('Lists Engine', () => {
         removedIds: []
       })
 
-      await engine.add(tracks)
+      await tracksService.add(tracks)
 
       expect(tracksModel.save).toHaveBeenCalledWith(tracks)
       expect(tracksModel.save).toHaveBeenCalledTimes(1)
@@ -294,7 +294,7 @@ describe('Lists Engine', () => {
         removedIds: []
       })
 
-      await engine.add(tracks)
+      await tracksService.add(tracks)
 
       expect(tracksModel.save).toHaveBeenCalledWith(tracks)
       expect(tracksModel.save).toHaveBeenCalledTimes(1)
@@ -392,7 +392,7 @@ describe('Lists Engine', () => {
         removedIds: []
       })
 
-      await engine.add(tracks)
+      await tracksService.add(tracks)
 
       expect(tracksModel.save).toHaveBeenCalledWith(tracks)
       expect(tracksModel.save).toHaveBeenCalledTimes(1)
@@ -472,7 +472,7 @@ describe('Lists Engine', () => {
         removedIds: []
       })
 
-      await engine.add(tracks)
+      await tracksService.add(tracks)
 
       expect(artistsModel.save).toHaveBeenCalledWith([
         newArtist,
@@ -530,7 +530,7 @@ describe('Lists Engine', () => {
         removedIds: []
       })
 
-      await engine.remove(trackIds)
+      await tracksService.remove(trackIds)
       await sleep(200)
 
       expect(tracksModel.removeByIds).toHaveBeenCalledWith(trackIds)
@@ -583,7 +583,7 @@ describe('Lists Engine', () => {
         removedIds: []
       })
 
-      await engine.remove(trackIds)
+      await tracksService.remove(trackIds)
       await sleep(200)
 
       expect(tracksModel.removeByIds).toHaveBeenCalledWith(trackIds)
@@ -650,7 +650,7 @@ describe('Lists Engine', () => {
         removedIds: []
       })
 
-      await engine.remove(trackIds)
+      await tracksService.remove(trackIds)
       await sleep(200)
 
       expect(tracksModel.removeByIds).toHaveBeenCalledWith(trackIds)
@@ -692,7 +692,7 @@ describe('Lists Engine', () => {
         }
       ].map(addId)
       artistsModel.list.mockResolvedValueOnce(artists)
-      expect(await engine.listArtists()).toEqual(artists)
+      expect(await tracksService.list('artist')).toEqual(artists)
     })
   })
 
@@ -708,7 +708,7 @@ describe('Lists Engine', () => {
       }
     ].map(addId)
     albumsModel.list.mockResolvedValueOnce(albums)
-    expect(await engine.listAlbums()).toEqual(albums)
+    expect(await tracksService.list('album')).toEqual(albums)
   })
 
   it('returns all playlists', async () => {
@@ -723,7 +723,7 @@ describe('Lists Engine', () => {
       }
     ].map(addId)
     playlistsModel.list.mockResolvedValueOnce(playlists)
-    expect(await engine.listPlaylists()).toEqual(playlists)
+    expect(await tracksService.list('playlist')).toEqual(playlists)
   })
 })
 
@@ -755,7 +755,7 @@ describe('fetchWithTracks', () => {
 
     albumsModel.getById.mockResolvedValueOnce(album)
     tracksModel.getByIds.mockResolvedValueOnce([track1, track2, track3])
-    expect(await engine.fetchWithTracks('album', album.id)).toEqual({
+    expect(await tracksService.fetchWithTracks('album', album.id)).toEqual({
       ...album,
       tracks: [track3, track1, track2]
     })
@@ -793,7 +793,7 @@ describe('fetchWithTracks', () => {
 
     albumsModel.getById.mockResolvedValueOnce(album)
     tracksModel.getByIds.mockResolvedValueOnce([track1, track2, track3, track4])
-    expect(await engine.fetchWithTracks('album', album.id)).toEqual({
+    expect(await tracksService.fetchWithTracks('album', album.id)).toEqual({
       ...album,
       tracks: [track2, track4, track1, track3]
     })
@@ -825,7 +825,9 @@ describe('fetchWithTracks', () => {
 
     albumsModel.getById.mockResolvedValueOnce(album)
     tracksModel.getByIds.mockResolvedValueOnce([track1, track2, track3])
-    expect(await engine.fetchWithTracks('album', album.id, 'rank')).toEqual({
+    expect(
+      await tracksService.fetchWithTracks('album', album.id, 'rank')
+    ).toEqual({
       ...album,
       tracks: [track3, track2, track1]
     })
@@ -857,7 +859,7 @@ describe('fetchWithTracks', () => {
 
     artistsModel.getById.mockResolvedValueOnce(artist)
     tracksModel.getByIds.mockResolvedValueOnce([track1, track2, track3])
-    expect(await engine.fetchWithTracks('artist', artist.id)).toEqual({
+    expect(await tracksService.fetchWithTracks('artist', artist.id)).toEqual({
       ...artist,
       tracks: [track3, track1, track2]
     })
@@ -889,7 +891,9 @@ describe('fetchWithTracks', () => {
 
     playlistsModel.getById.mockResolvedValueOnce(playlist)
     tracksModel.getByIds.mockResolvedValueOnce([track1, track2, track3])
-    expect(await engine.fetchWithTracks('playlist', playlist.id)).toEqual({
+    expect(
+      await tracksService.fetchWithTracks('playlist', playlist.id)
+    ).toEqual({
       ...playlist,
       tracks: [track3, track1, track2]
     })
@@ -920,7 +924,9 @@ describe('fetchWithTracks', () => {
     }
 
     artistsModel.getById.mockResolvedValueOnce(null)
-    expect(await engine.fetchWithTracks('artist', artist.id)).toEqual(null)
+    expect(await tracksService.fetchWithTracks('artist', artist.id)).toEqual(
+      null
+    )
     expect(albumsModel.getById).not.toHaveBeenCalled()
     expect(tracksModel.getByIds).not.toHaveBeenCalled()
   })
@@ -979,7 +985,7 @@ describe('fetchWithTracks', () => {
         from
       })
 
-      const results = await engine.search(searched)
+      const results = await tracksService.search(searched)
 
       expect(results.albums).toEqual([album1, album2])
       expect(results.artists).toEqual([artist1, artist2])
@@ -1007,7 +1013,7 @@ describe('fetchWithTracks', () => {
       artistsModel.list.mockResolvedValue({ results: [], total: 0, size, from })
       tracksModel.list.mockResolvedValue({ results: [], total: 0, size, from })
 
-      const results = await engine.search(searched)
+      const results = await tracksService.search(searched)
 
       expect(results.albums).toEqual([])
       expect(results.artists).toEqual([])
@@ -1035,7 +1041,7 @@ describe('fetchWithTracks', () => {
       artistsModel.list.mockResolvedValue({ results: [], total: 0, size, from })
       tracksModel.list.mockResolvedValue({ results: [], total: 0, size, from })
 
-      const results = await engine.search(searched, {
+      const results = await tracksService.search(searched, {
         size,
         from,
         sort: '-unused',

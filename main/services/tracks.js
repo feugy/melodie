@@ -18,7 +18,7 @@ const {
   playlistsModel
 } = require('../models')
 
-const logger = getLogger('services/list')
+const logger = getLogger('services/tracks')
 
 const sorters = {
   trackNo: (list, results) =>
@@ -154,19 +154,14 @@ module.exports = {
     await tracks$.toPromise()
   },
 
-  async listAlbums(criteria) {
-    logger.debug({ criteria }, `list albums`)
-    return albumsModel.list({ sort: 'name', ...criteria })
-  },
-
-  async listArtists(criteria) {
-    logger.debug({ criteria }, `list albums`)
-    return artistsModel.list({ sort: 'name', ...criteria })
-  },
-
-  async listPlaylists(criteria) {
-    logger.debug({ criteria }, `list playlist`)
-    return playlistsModel.list({ sort: 'name', ...criteria })
+  async list(modelName, criteria) {
+    logger.debug({ modelName, criteria }, `list ${modelName}s`)
+    return (modelName === 'artist'
+      ? artistsModel
+      : modelName === 'album'
+      ? albumsModel
+      : playlistsModel
+    ).list({ sort: 'name', ...criteria })
   },
 
   async fetchWithTracks(modelName, id, sortBy = 'trackNo') {

@@ -17,14 +17,14 @@
   let findPromise
   async function handleOpen() {
     uploaded = null
-    findPromise = invoke(`mediaManager.findFor${modelName}`, src.name)
+    findPromise = invoke(`media.findFor${modelName}`, src.name)
     proposals = (await findPromise) || []
   }
 
   async function handleSelect(url) {
     // clear broken images so Image could try reloading the same url
     broken.clear()
-    await invoke(`mediaManager.saveFor${modelName}`, src.id, url)
+    await invoke(`media.saveFor${modelName}`, src.id, url)
     open = false
   }
 </script>

@@ -79,7 +79,7 @@ export function search(text, size = 10) {
 
   searchSubscription = request$
     .pipe(
-      mergeMap(({ text, ...args }) => invoke(`listEngine.search`, text, args)),
+      mergeMap(({ text, ...args }) => invoke(`tracks.search`, text, args)),
       map(data => {
         const { size, from, totalSum, albums, artists, tracks } = data
         total$.next(totalSum)
