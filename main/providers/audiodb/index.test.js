@@ -3,9 +3,14 @@
 if (process.env.REAL_NETWORK) require('dotenv').config()
 const nock = require('nock')
 const provider = require('.')
+const TooManyRequestsError = require('../too-many-requests-error')
 const { withNockIt } = require('../../tests')
 
 describe('AudioDB provider', () => {
+  beforeEach(() => {
+    provider.lastReqEpoch = 0
+  })
+
   describe('findArtistArtwork()', () => {
     withNockIt('returns artwork', async () => {
       expect(await provider.findArtistArtwork('coldplay')).toEqual([
@@ -46,6 +51,16 @@ describe('AudioDB provider', () => {
       it('returns no artwork', async () => {
         expect(await provider.findArtistArtwork('coldplay')).toEqual([])
       })
+
+      it('throws error when calling too frequently', async () => {
+        expect(
+          Promise.all(
+            Array.from({ length: 50 }, () =>
+              provider.findArtistArtwork('loremipsum')
+            )
+          )
+        ).rejects.toThrow(TooManyRequestsError)
+      })
     })
   })
 
@@ -80,6 +95,16 @@ describe('AudioDB provider', () => {
 
       it('returns no cover', async () => {
         expect(await provider.findAlbumCover('Parachutes')).toEqual([])
+      })
+
+      it('throws error when calling too frequently', async () => {
+        expect(
+          Promise.all(
+            Array.from({ length: 50 }, () =>
+              provider.findAlbumCover('loremipsum')
+            )
+          )
+        ).rejects.toThrow(TooManyRequestsError)
       })
     })
   })

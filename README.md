@@ -17,7 +17,7 @@ npm i
 npm run build
 ```
 
-## TODO
+## TODOs
 
 ### core
 
@@ -95,9 +95,10 @@ npm run build
 - [x] tutorial
 - [x] feedback on enqueue and play actions
 - [x] interaction feedback on buttons, links, images...
+- [-] automatically retrieve artist avatar, in the background
+- [ ] tutorial: prevent removing all tracks from queue
 - [ ] configurable keys for Discogs & AudioDB providers
 - [ ] configurable "play now" behaviour: either clear & add, or enqueue and jump
-- [ ] automatically retrieve artist avatar, in the background
       ---> release?
 - [ ] smaller screen support (UI refactor)
 - [ ] enqueue tracks/albums by dragging to tracks queue
@@ -176,6 +177,9 @@ npm run build
 - IntersectionObserver does not call the intersection entry when the position inside viewport is changing but the intersection doesn't.
   As a result, dropdown in the sheet will enter viewport during sheet animation, causing troubles positioning the menu
 
+- AC/DC was displayed as 2 different artists ('AC' and 'DC'). This is an issue with ID3 tags: version 2.3 uses `/` as a separators for artists.
+  Overitting mp3 tags with 2.4 [solved the issue](https://github.com/Borewit/music-metadata/issues/432)
+
 musings on watch & diff
 
 - [x] on app load, trigger diff
@@ -199,6 +203,16 @@ musings on watch & diff
   1.  [x] crawl new folder, return array of paths
   1.  [x] compute hash, enrich with tags & media
   1.  [x] save
+
+musings on missing artwork
+
+- [x] on UI demand trigger process
+  1.  [x] push all artists/albums without artwork/cover, and not process since N in a queue
+  1.  [x] apply rate limit (to avoid flooding disks/providers)
+  1.  [x] call providers one by one
+      1.  [x] save first result as artwork/cover, stop
+      1.  [x] on no results, but at least on provider returned rate limitation, enqueue artist/album
+      1.  [x] on no results, save date on artist/album
 
 ## Providers
 

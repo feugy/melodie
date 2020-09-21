@@ -50,6 +50,7 @@ describe('Albums model', () => {
     const album = {
       id: faker.random.number(),
       media: faker.image.image(),
+      processedEpoch: null,
       name: faker.commerce.productName(),
       trackIds: [tracks[0].id, tracks[3].id]
     }
@@ -67,6 +68,7 @@ describe('Albums model', () => {
     const album = {
       id: faker.random.number(),
       media: faker.image.image(),
+      processedEpoch: null,
       name: faker.commerce.productName(),
       trackIds: [tracks[0].id, tracks[3].id]
     }
@@ -100,6 +102,7 @@ describe('Albums model', () => {
     const album1 = {
       id: faker.random.number(),
       media: faker.image.image(),
+      processedEpoch: null,
       name,
       trackIds: [tracks[0].id, tracks[3].id],
       refs: [makeRef(artist1), [1, null]]
@@ -107,6 +110,7 @@ describe('Albums model', () => {
     const album2 = {
       id: faker.random.number(),
       media: faker.image.image(),
+      processedEpoch: null,
       name: faker.commerce.productName(),
       trackIds: [tracks[1].id],
       refs: [makeRef(artist1), makeRef(artist2)]
@@ -114,6 +118,7 @@ describe('Albums model', () => {
     const album3 = {
       id: faker.random.number(),
       media: faker.image.image(),
+      processedEpoch: null,
       name,
       trackIds: [tracks[2].id],
       refs: [makeRef(artist2)]

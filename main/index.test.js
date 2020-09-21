@@ -6,7 +6,7 @@ const electron = require('electron')
 const { main } = require('.')
 const models = require('./models')
 const services = require('./services')
-const providers = require('./providers')
+const { allProviders } = require('./providers')
 
 jest.mock('electron', () => {
   const { EventEmitter } = require('events')
@@ -30,10 +30,9 @@ jest.mock('electron', () => {
 jest.mock('./services')
 jest.mock('./models')
 jest.mock('electron-reload')
-jest.mock('./providers', () => [
-  { compareTracks: jest.fn() },
-  { compareTracks: jest.fn() }
-])
+jest.mock('./providers', () => ({
+  allProviders: [{ compareTracks: jest.fn() }, { compareTracks: jest.fn() }]
+}))
 
 describe('Application test', () => {
   let win
@@ -58,7 +57,7 @@ describe('Application test', () => {
       `file://${resolve(__dirname, '..', 'public')}/index.html`
     )
     expect(electron.app.quit).not.toHaveBeenCalled()
-    for (const provider of providers) {
+    for (const provider of allProviders) {
       expect(provider.compareTracks).toHaveBeenCalled()
     }
   })

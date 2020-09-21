@@ -4,6 +4,7 @@ const { join } = require('path')
 const os = require('os')
 const fs = require('fs-extra')
 const faker = require('faker')
+const electron = require('electron')
 const provider = require('.')
 const tag = require('./tag-reader')
 const covers = require('./cover-finder')
@@ -19,6 +20,7 @@ jest.mock('../../services/tracks')
 jest.mock('../../utils/electron-remote')
 jest.mock('./cover-finder')
 jest.mock('./tag-reader')
+jest.mock('electron', () => ({ app: { getPath: jest.fn() } }))
 
 describe('Local provider', () => {
   beforeEach(() => {
@@ -30,6 +32,53 @@ describe('Local provider', () => {
   })
 
   afterEach(() => provider.unwatchAll())
+
+  describe('findArtistArtwork()', () => {
+    const folder = join(os.tmpdir(), 'melodie', faker.random.uuid())
+
+    beforeEach(async () => {
+      jest.resetAllMocks()
+      await fs.ensureDir(folder)
+      electron.app.getPath.mockReturnValue(folder)
+    })
+
+    afterEach(async () => {
+      try {
+        await fs.remove(folder)
+      } catch (err) {
+        // ignore missing files
+      }
+    })
+
+    it('returns existing images for known artist', async () => {
+      const searched = faker.random.word()
+      const id = hash(searched)
+      const files = [
+        join(folder, 'media', `${id}.jpg`),
+        join(folder, 'media', `${id}.png`)
+      ]
+      for (const file of files) {
+        await fs.ensureFile(file)
+      }
+
+      expect(await provider.findArtistArtwork(searched)).toEqual([
+        {
+          full: files[1],
+          provider: provider.name
+        },
+        {
+          full: files[0],
+          provider: provider.name
+        }
+      ])
+    })
+
+    it('returns nothing on unknown artist', async () => {
+      const searched = faker.random.word()
+
+      expect(await provider.findArtistArtwork(searched)).toEqual([])
+    })
+  })
 
   describe('findAlbumCover()', () => {
     const folder = join(os.tmpdir(), 'melodie', faker.random.uuid())

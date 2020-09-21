@@ -2,12 +2,26 @@
 
 const app = require('../../package')
 const { getLogger } = require('../utils')
+const TooManyRequestsError = require('./too-many-requests-error')
 
 module.exports = class AbstractProvider {
-  constructor(name) {
+  constructor(name, requestsPerMinute = null) {
     this.name = name
+    this.requestsPerMinute = requestsPerMinute
     this.userAgent = `${app.name}/${app.version}`
     this.logger = getLogger(`providers/${this.name.toLowerCase()}`)
+    this.lastReqEpoch = 0
+  }
+
+  checkRate(operation) {
+    const now = Date.now()
+    if (
+      this.requestsPerMinute &&
+      now - this.lastReqEpoch < 60000 / this.requestsPerMinute
+    ) {
+      throw new TooManyRequestsError(operation, this.name)
+    }
+    this.lastReqEpoch = now
   }
 
   async findArtistArtwork() {

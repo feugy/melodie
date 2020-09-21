@@ -3,7 +3,7 @@
 const { dialog } = require('electron')
 const { settingsModel } = require('../models')
 const { getLogger, mergeFolders, getSystemLocale } = require('../utils')
-const localProvider = require('../providers/local')
+const { local } = require('../providers')
 
 const logger = getLogger('services/settings')
 
@@ -39,7 +39,7 @@ module.exports = {
       ...settings,
       folders: merged
     })
-    localProvider.importTracks()
+    local.importTracks()
     return merged
   },
 
@@ -51,7 +51,7 @@ module.exports = {
     if (idx >= 0) {
       folders.splice(idx, 1)
       await settingsModel.save(settings)
-      localProvider.importTracks()
+      local.importTracks()
     }
   },
 

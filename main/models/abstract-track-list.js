@@ -31,6 +31,7 @@ module.exports = class AbstractTrackList extends Model {
             ({ id }) => id === trackList.id
           ) || {
             media: null,
+            processedEpoch: null,
             trackIds: [],
             refs: []
           }
@@ -70,8 +71,8 @@ module.exports = class AbstractTrackList extends Model {
         for (const data of saved) {
           data.refs = await this.computeRefs(trx, data.trackIds)
         }
-        this.logger.debug({ data: saved }, `saving`)
         const cols = Object.keys(saved[0])
+        this.logger.debug({ data: saved, cols }, `saving`)
         await trx.raw(
           `? on conflict (\`id\`) do update set ${cols
             .map(col => `\`${col}\` = excluded.\`${col}\``)
@@ -85,5 +86,23 @@ module.exports = class AbstractTrackList extends Model {
       }
       return { saved, removedIds }
     })
+  }
+
+  async listMedialess(when) {
+    const results = (
+      await this.db
+        .select()
+        .from(this.name)
+        .whereNull('media')
+        .andWhere(function () {
+          this.where('processedEpoch', '<=', when).orWhereNull('processedEpoch')
+        })
+        .orderBy('name', 'asc')
+    ).map(this.makeDeserializer())
+    this.logger.debug(
+      { hitCount: results.length, when },
+      `list medialess since ${new Date(when).toISOString()}`
+    )
+    return results
   }
 }

@@ -6,7 +6,7 @@ const AbstractProvider = require('../abstract-provider')
 
 class Discogs extends AbstractProvider {
   constructor() {
-    super('Discogs')
+    super('Discogs', 25)
     this.key = process.env.DISCOGS_KEY || 'KEY'
     this.secret = process.env.DISCOGS_SECRET || 'SECRET'
     this.prefixUrl = `https://api.discogs.com`
@@ -14,6 +14,7 @@ class Discogs extends AbstractProvider {
 
   async findArtistArtwork(searched) {
     this.logger.debug({ searched }, `search artist artwork for ${searched}`)
+    this.checkRate(`Can not search artist artwork for ${searched}`)
     try {
       const { results } = await got('database/search', {
         prefixUrl: this.prefixUrl,
@@ -48,6 +49,7 @@ class Discogs extends AbstractProvider {
 
   async findAlbumCover(searched) {
     this.logger.debug({ searched }, `search album cover for ${searched}`)
+    this.checkRate(`Can not search album cover for ${searched}`)
     try {
       const { results } = await got(`database/search`, {
         prefixUrl: this.prefixUrl,

@@ -7,6 +7,7 @@ const fs = require('fs-extra')
 const { join } = require('path')
 const merge = require('deepmerge')
 const TrackList = require('./abstract-track-list')
+const { dayMs } = require('../utils')
 
 const modelName = 'test'
 
@@ -27,13 +28,15 @@ let db
 
 describe('Abstract track list', () => {
   const tested = new Test()
+  const lastProcessed = Date.now() - dayMs
   const models = [
     {
       id: faker.random.number(),
       name: faker.name.findName(),
       media: null,
       trackIds: JSON.stringify([]),
-      refs: JSON.stringify([[faker.random.number(), faker.name.findName()]])
+      refs: JSON.stringify([[faker.random.number(), faker.name.findName()]]),
+      processedEpoch: null
     },
     {
       id: faker.random.number(),
@@ -48,7 +51,7 @@ describe('Abstract track list', () => {
     {
       id: faker.random.number(),
       name: faker.name.findName(),
-      media: null,
+      media: faker.image.image(),
       trackIds: JSON.stringify([faker.random.number(), faker.random.number()]),
       refs: JSON.stringify([
         [faker.random.number(), faker.name.findName()],
@@ -60,7 +63,8 @@ describe('Abstract track list', () => {
       name: faker.name.findName(),
       media: null,
       trackIds: JSON.stringify([]),
-      refs: JSON.stringify([])
+      refs: JSON.stringify([]),
+      processedEpoch: lastProcessed
     }
   ]
 
@@ -76,6 +80,7 @@ describe('Abstract track list', () => {
       table.integer('id').primary()
       table.string('name')
       table.string('media')
+      table.integer('processedEpoch')
       table.json('trackIds')
       table.json('refs')
     })
@@ -95,6 +100,32 @@ describe('Abstract track list', () => {
     await db.context.destroy()
   })
 
+  describe('listMedialess', () => {
+    it('does not return models with media', async () => {
+      expect(await tested.listMedialess(Date.now())).toEqual(
+        [models[0], models[3]]
+          .map(model => ({
+            processedEpoch: null,
+            ...model,
+            trackIds: JSON.parse(model.trackIds),
+            refs: JSON.parse(model.refs)
+          }))
+          .sort((a, b) => (a.name < b.name ? -1 : 1))
+      )
+    })
+
+    it('does not return models younger than given date', async () => {
+      expect(await tested.listMedialess(Date.now() - 2 * dayMs)).toEqual([
+        {
+          ...models[0],
+          processedEpoch: null,
+          trackIds: JSON.parse(models[0].trackIds),
+          refs: JSON.parse(models[0].refs)
+        }
+      ])
+    })
+  })
+
   describe('save', () => {
     it('adds new model', async () => {
       const refs = [[faker.random.number(), faker.name.findName()]]
@@ -107,7 +138,7 @@ describe('Abstract track list', () => {
 
       const { saved, removedIds } = await tested.save(model)
 
-      const savedModel = { ...model, media: null, refs }
+      const savedModel = { ...model, media: null, processedEpoch: null, refs }
 
       expect(saved).toEqual([savedModel])
       expect(removedIds).toEqual([])
@@ -144,11 +175,13 @@ describe('Abstract track list', () => {
       const savedModels = [
         {
           ...models[0],
+          processedEpoch: null,
           media: null,
           refs: refs1
         },
         {
           ...models[1],
+          processedEpoch: null,
           media: null,
           refs: refs2
         }
@@ -183,12 +216,18 @@ describe('Abstract track list', () => {
           id: models[0].id,
           name: models[0].name,
           media: faker.image.image(),
+          processedEpoch: null,
           trackIds: [faker.random.number()]
         },
         {
           id: models[1].id,
           name: models[1].name,
           removedTrackIds: [faker.random.number()]
+        },
+        {
+          id: faker.random.number(),
+          name: faker.name.findName(),
+          trackIds: [faker.random.number()]
         }
       ]
 
@@ -204,30 +243,45 @@ describe('Abstract track list', () => {
         },
         {
           ...models[1],
+          processedEpoch: null,
           trackIds: JSON.parse(models[1].trackIds),
+          refs
+        },
+        {
+          ...originals[2],
+          processedEpoch: null,
+          media: null,
           refs
         }
       ]
 
       expect(saved).toEqual(savedModels)
       expect(removedIds).toEqual([])
-      expect(await db(modelName).where({ id: models[0].id })).toEqual([
+      expect(await db(modelName).where({ id: savedModels[0].id })).toEqual([
         {
           ...savedModels[0],
           trackIds: JSON.stringify(savedModels[0].trackIds),
           refs: JSON.stringify(savedModels[0].refs)
         }
       ])
-      expect(await db(modelName).where({ id: models[1].id })).toEqual([
+      expect(await db(modelName).where({ id: savedModels[1].id })).toEqual([
         {
           ...savedModels[1],
           trackIds: JSON.stringify(savedModels[1].trackIds),
           refs: JSON.stringify(savedModels[1].refs)
         }
       ])
+      expect(await db(modelName).where({ id: savedModels[2].id })).toEqual([
+        {
+          ...savedModels[2],
+          trackIds: JSON.stringify(savedModels[2].trackIds),
+          refs: JSON.stringify(savedModels[2].refs)
+        }
+      ])
       expect(computeRefs).toHaveBeenCalledWith(savedModels[0].trackIds)
       expect(computeRefs).toHaveBeenCalledWith(savedModels[1].trackIds)
-      expect(computeRefs).toHaveBeenCalledTimes(2)
+      expect(computeRefs).toHaveBeenCalledWith(savedModels[2].trackIds)
+      expect(computeRefs).toHaveBeenCalledTimes(3)
     })
 
     it('updates existing model and appends track ids and refs', async () => {
@@ -244,6 +298,7 @@ describe('Abstract track list', () => {
 
       const savedModel = {
         ...model,
+        processedEpoch: null,
         trackIds: JSON.parse(models[1].trackIds).concat(model.trackIds),
         refs
       }
@@ -273,6 +328,7 @@ describe('Abstract track list', () => {
 
       const savedModel = {
         ...model,
+        processedEpoch: null,
         removedTrackIds: undefined,
         trackIds: [JSON.parse(models[2].trackIds)[0], model.trackIds[0]],
         refs
@@ -304,6 +360,7 @@ describe('Abstract track list', () => {
       expect(saved).toEqual([
         {
           ...model,
+          processedEpoch: null,
           refs
         }
       ])
@@ -312,7 +369,8 @@ describe('Abstract track list', () => {
         {
           ...model,
           trackIds: JSON.stringify(model.trackIds),
-          refs: JSON.stringify(refs)
+          refs: JSON.stringify(refs),
+          processedEpoch: null
         }
       ])
       expect(computeRefs).toHaveBeenCalledWith(model.trackIds)

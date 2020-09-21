@@ -8,12 +8,18 @@ describe('artists store', () => {
     const total = 13
     const data = Array.from({ length: total }, (v, i) => i)
     mockInvoke.mockImplementation(
-      async (channel, service, method, type, { size, from }) => ({
-        total,
-        size,
-        from: from || 0,
-        results: data.slice(from || 0, from + size)
-      })
+      async (channel, service, method, type, params) =>
+        params
+          ? {
+              total,
+              size: params.size,
+              from: params.from || 0,
+              results: data.slice(
+                params.from || 0,
+                (params.from || 0) + params.size
+              )
+            }
+          : null
     )
     expect(get(artists)).toEqual([])
     expect(get(isListing)).toBe(false)
@@ -22,12 +28,28 @@ describe('artists store', () => {
     await sleep(100)
     expect(get(isListing)).toBe(false)
     expect(get(artists)).toEqual(data)
-    expect(mockInvoke).toHaveBeenCalledWith(
+    expect(mockInvoke).toHaveBeenNthCalledWith(
+      1,
+      'remote',
+      'media',
+      'triggerArtistsEnrichment'
+    )
+    expect(mockInvoke).toHaveBeenNthCalledWith(
+      2,
       'remote',
       'tracks',
       'list',
       'artist',
-      expect.any(Object)
+      { size: 10 }
     )
+    expect(mockInvoke).toHaveBeenNthCalledWith(
+      3,
+      'remote',
+      'tracks',
+      'list',
+      'artist',
+      { size: 10, from: 10 }
+    )
+    expect(mockInvoke).toHaveBeenCalledTimes(3)
   })
 })

@@ -1,18 +1,34 @@
 'use strict'
 
-const got = require('got')
 const fs = require('fs-extra')
 const stream = require('stream')
 const { promisify } = require('util')
 const { parse } = require('url')
 const { extname, dirname, resolve } = require('path')
+const got = require('got')
 const mime = require('mime-types')
+const { from, of, EMPTY, interval } = require('rxjs')
+const {
+  mergeMap,
+  filter,
+  expand,
+  take,
+  map,
+  catchError,
+  tap,
+  reduce
+} = require('rxjs/operators')
 const { artistsModel, albumsModel, tracksModel } = require('../models')
-const { getLogger, getMediaPath, broadcast } = require('../utils')
-const providers = require('../providers')
+const { getLogger, getMediaPath, broadcast, dayMs } = require('../utils')
+const {
+  audiodb,
+  discogs,
+  local,
+  allProviders,
+  TooManyRequestsError
+} = require('../providers')
 
 const pipeline = promisify(stream.pipeline)
-
 const logger = getLogger('services/media')
 
 async function downloadAndSave(media, url) {
@@ -32,17 +48,93 @@ async function downloadAndSave(media, url) {
   return `${media}${ext}`
 }
 
+let subscription
+
 module.exports = {
+  triggerArtistsEnrichment(perMinute = 20) {
+    if (subscription && !subscription.isClosed) {
+      subscription.unsubscribe()
+    }
+
+    const enrichWithProvider = provider => [
+      filter(artist => artist && artist.id),
+      mergeMap(artist =>
+        from(provider.findArtistArtwork(artist.name)).pipe(
+          mergeMap(results =>
+            results.length
+              ? this.saveForArtist(artist.id, results[0].full)
+              : of(artist)
+          ),
+          catchError(err => {
+            return err instanceof TooManyRequestsError
+              ? of({ ...artist, wasLimited: true })
+              : EMPTY
+          })
+        )
+      )
+    ]
+
+    const now = Date.now()
+    subscription = from(artistsModel.listMedialess(now - dayMs))
+      .pipe(
+        tap(artists =>
+          logger.debug(
+            { total: artists.length },
+            `triggering artwork enrichments for artists`
+          )
+        ),
+        expand(input =>
+          Array.isArray(input) && input.length
+            ? interval(60000 / perMinute).pipe(
+                take(input.length),
+                map(i => input[i]),
+                tap(artist =>
+                  logger.debug(
+                    { artist },
+                    `automatically searching artwork for ${artist.name}`
+                  )
+                ),
+                ...enrichWithProvider(local),
+                ...enrichWithProvider(audiodb),
+                ...enrichWithProvider(discogs),
+                mergeMap(artist =>
+                  artist && !artist.wasLimited
+                    ? from(
+                        artistsModel.save({ ...artist, processedEpoch: now })
+                      )
+                    : of(artist)
+                ),
+                reduce((remaining, artist) => {
+                  return artist && artist.wasLimited
+                    ? [...remaining, { ...artist, wasLimited: undefined }]
+                    : remaining
+                }, [])
+              )
+            : EMPTY
+        )
+      )
+      .subscribe()
+  },
+
+  enrichAlbums() {},
+
+  stopEnrichment() {
+    if (subscription) {
+      subscription.unsubscribe()
+      subscription = null
+    }
+  },
+
   async findForArtist(name) {
     const requests = await Promise.all(
-      providers.map(provider => provider.findArtistArtwork(name))
+      allProviders.map(provider => provider.findArtistArtwork(name))
     )
     return requests.reduce((results, value) => [...results, ...value])
   },
 
   async findForAlbum(name) {
     const requests = await Promise.all(
-      providers.map(provider => provider.findAlbumCover(name))
+      allProviders.map(provider => provider.findAlbumCover(name))
     )
     return requests.reduce((results, value) => [...results, ...value])
   },

@@ -50,6 +50,7 @@ describe('Artist model', () => {
     const artist = {
       id: faker.random.number(),
       media: faker.image.image(),
+      processedEpoch: null,
       name: faker.commerce.productName(),
       trackIds: [tracks[0].id, tracks[3].id]
     }
@@ -67,6 +68,7 @@ describe('Artist model', () => {
     const artist = {
       id: faker.random.number(),
       media: faker.image.image(),
+      processedEpoch: null,
       name: faker.commerce.productName(),
       trackIds: [tracks[0].id, tracks[3].id]
     }

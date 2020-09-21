@@ -52,6 +52,7 @@ describe('Playlists model', () => {
     const playlist = {
       id: faker.random.number(),
       media: faker.image.image(),
+      processedEpoch: null,
       name: faker.lorem.words(),
       desc: faker.lorem.paragraph(),
       trackIds: [tracks[0].id, tracks[3].id]
@@ -70,6 +71,7 @@ describe('Playlists model', () => {
     const playlist = {
       id: faker.random.number(),
       media: faker.image.image(),
+      processedEpoch: null,
       name: faker.lorem.words(),
       desc: faker.lorem.paragraph(),
       trackIds: [tracks[0].id, tracks[3].id]

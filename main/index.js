@@ -13,7 +13,7 @@ const {
   registerRenderer,
   subscribeRemote
 } = require('./utils')
-const providers = require('./providers')
+const { allProviders } = require('./providers')
 
 exports.main = async () => {
   config()
@@ -92,7 +92,7 @@ exports.main = async () => {
 
     settings.recordOpening()
     logger.info('initializing providers')
-    for (const provider of providers) {
+    for (const provider of allProviders) {
       provider.compareTracks()
     }
   }

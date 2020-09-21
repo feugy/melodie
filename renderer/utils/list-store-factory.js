@@ -76,7 +76,7 @@ export function createListStore(type, sortBy = 'rank') {
             items$.next({ added: results })
             const nextFrom = from + results.length
             if (nextFrom < total) {
-              request$.next({ from: nextFrom, size, total })
+              request$.next({ from: nextFrom, size })
             } else {
               request$.complete()
               listSubscription = null

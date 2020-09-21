@@ -18,7 +18,7 @@ const AbstractProvider = require('../abstract-provider')
 const { albumsModel, settingsModel, tracksModel } = require('../../models')
 // do not import ../../services to avoid circular dep
 const tracks = require('../../services/tracks')
-const { hash, broadcast, walk } = require('../../utils')
+const { hash, broadcast, walk, getMediaPath } = require('../../utils')
 const { findInFolder, findForAlbum } = require('./cover-finder')
 const tag = require('./tag-reader')
 
@@ -112,6 +112,26 @@ function watch(folders, logger) {
 class Local extends AbstractProvider {
   constructor() {
     super('Local')
+  }
+
+  async findArtistArtwork(searched) {
+    this.logger.debug({ searched }, `search artist artwork for ${searched}`)
+    const prefix = getMediaPath(hash(searched))
+    const results = []
+    for (const ext of ['jpeg', 'gif', 'png', 'jpg']) {
+      const full = `${prefix}.${ext}`
+      try {
+        await fs.access(full, fs.constants.R_OK)
+        results.push({ full, provider: this.name })
+      } catch {
+        // ignore missing file
+      }
+    }
+    this.logger.debug(
+      { length: results.length, searched },
+      `got results for ${searched}`
+    )
+    return results
   }
 
   async findAlbumCover(searched) {

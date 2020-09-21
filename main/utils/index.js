@@ -7,5 +7,6 @@ module.exports = {
   ...require('./hash'),
   ...require('./locale'),
   ...require('./logger'),
+  ...require('./time'),
   ...require('./window-state')
 }

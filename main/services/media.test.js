@@ -7,11 +7,15 @@ const fs = require('fs-extra')
 const { constants } = require('fs')
 const { resolve } = require('path')
 const { artistsModel, albumsModel, tracksModel } = require('../models')
-const { broadcast } = require('../utils')
+const { broadcast, dayMs } = require('../utils')
+const { sleep } = require('../tests')
 const mediaService = require('./media')
-const discogs = require('../providers/discogs')
-const audiodb = require('../providers/audiodb')
-const local = require('../providers/local')
+const {
+  discogs,
+  audiodb,
+  local,
+  TooManyRequestsError
+} = require('../providers')
 
 jest.mock('../providers/audiodb')
 jest.mock('../providers/discogs')
@@ -370,5 +374,297 @@ describe('Media service', () => {
       expect(content).toEqual(oldContent)
       expect(broadcast).not.toHaveBeenCalled()
     }, 10e3)
+  })
+
+  describe('triggerArtistsEnrichment', () => {
+    beforeEach(async () => {
+      jest.resetAllMocks()
+      electron.app.getPath.mockReturnValue(os.tmpdir())
+      await fs.ensureDir(resolve(os.tmpdir(), 'media'))
+    })
+
+    afterEach(() => mediaService.stopEnrichment())
+
+    it('saves first returned artwork for artist', async () => {
+      const artists = [
+        {
+          id: faker.random.number({ min: 9999 }),
+          name: faker.name.findName(),
+          media: null,
+          trackIds: []
+        },
+        {
+          id: faker.random.number({ min: 9999 }),
+          name: faker.name.findName(),
+          media: null,
+          trackIds: []
+        }
+      ]
+      const media = resolve(__dirname, '..', '..', 'fixtures', 'cover.jpg')
+      artistsModel.listMedialess.mockResolvedValueOnce(artists)
+      artistsModel.getById.mockImplementation(async id =>
+        artists.find(artist => artist.id === id)
+      )
+      artistsModel.save.mockImplementation(async artist => ({
+        saved: [artist]
+      }))
+      local.findArtistArtwork.mockImplementation(async searched =>
+        searched === artists[0].name
+          ? [
+              {
+                full: media,
+                provider: local.name
+              },
+              {
+                full: resolve(__dirname, '..', '..', 'fixtures', 'avatar.jpg'),
+                provider: local.name
+              }
+            ]
+          : []
+      )
+      audiodb.findArtistArtwork.mockImplementation(async searched =>
+        searched === artists[1].name
+          ? [
+              {
+                full:
+                  'https://www.theaudiodb.com/images/media/artist/thumb/uxrqxy1347913147.jpg',
+                provider: audiodb.name
+              }
+            ]
+          : []
+      )
+      discogs.findArtistArtwork.mockResolvedValue([])
+      const savedArtists = artists.map(artist => ({
+        ...artist,
+        media: resolve(
+          os.tmpdir(),
+          'media',
+          `${artist.id}.${artist === artists[0] ? 'jpg' : 'jpeg'}`
+        )
+      }))
+
+      const now = Date.now()
+      mediaService.triggerArtistsEnrichment(6000)
+      await sleep(1000)
+
+      expect(await fs.access(savedArtists[0].media, constants.R_OK))
+      expect(await fs.readFile(savedArtists[0].media, 'utf8')).toEqual(
+        await fs.readFile(media, 'utf8')
+      )
+
+      expect(local.findArtistArtwork).toHaveBeenCalledWith(artists[0].name)
+      expect(local.findArtistArtwork).toHaveBeenCalledWith(artists[1].name)
+      expect(local.findArtistArtwork).toHaveBeenCalledTimes(2)
+      expect(audiodb.findArtistArtwork).toHaveBeenCalledWith(artists[1].name)
+      expect(audiodb.findArtistArtwork).toHaveBeenCalledTimes(1)
+      expect(discogs.findArtistArtwork).not.toHaveBeenCalled()
+      expect(artistsModel.listMedialess).toHaveBeenCalledWith(now - dayMs)
+      expect(artistsModel.listMedialess).toHaveBeenCalledTimes(1)
+      expect(artistsModel.save).toHaveBeenCalledWith(savedArtists[0])
+      expect(artistsModel.save).toHaveBeenCalledWith(savedArtists[1])
+      expect(artistsModel.save).toHaveBeenCalledTimes(2)
+      expect(broadcast).toHaveBeenCalledWith('artist-change', savedArtists[0])
+      expect(broadcast).toHaveBeenCalledWith('artist-change', {
+        ...savedArtists[0],
+        media: null
+      })
+      expect(broadcast).toHaveBeenCalledWith('artist-change', savedArtists[1])
+      expect(broadcast).toHaveBeenCalledWith('artist-change', {
+        ...savedArtists[1],
+        media: null
+      })
+      expect(broadcast).toHaveBeenCalledTimes(4)
+    })
+
+    it('saves processing date on artist with no artwork', async () => {
+      const artist = {
+        id: faker.random.number({ min: 9999 }),
+        name: faker.name.findName(),
+        media: null,
+        trackIds: []
+      }
+      artistsModel.listMedialess.mockResolvedValueOnce([artist])
+      artistsModel.save.mockImplementation(async artist => ({
+        saved: [artist]
+      }))
+      local.findArtistArtwork.mockResolvedValue([])
+      audiodb.findArtistArtwork.mockResolvedValue([])
+      discogs.findArtistArtwork.mockResolvedValue([])
+
+      const now = Date.now()
+      mediaService.triggerArtistsEnrichment(6000)
+      await sleep(1000)
+
+      expect(artistsModel.listMedialess).toHaveBeenCalledWith(now - dayMs)
+      expect(artistsModel.listMedialess).toHaveBeenCalledTimes(1)
+      expect(artistsModel.save).toHaveBeenCalledWith({
+        ...artist,
+        processedEpoch: now
+      })
+      expect(artistsModel.save).toHaveBeenCalledTimes(1)
+      expect(broadcast).not.toHaveBeenCalled()
+    })
+
+    it('retries artist with no artwork but at least one restriced provided', async () => {
+      const artists = [
+        {
+          id: faker.random.number({ min: 9999 }),
+          name: faker.name.findName(),
+          media: null,
+          trackIds: []
+        },
+        {
+          id: faker.random.number({ min: 9999 }),
+          name: faker.name.findName(),
+          media: null,
+          trackIds: []
+        }
+      ]
+      artistsModel.listMedialess.mockResolvedValueOnce(artists)
+      artistsModel.getById.mockImplementation(async id =>
+        artists.find(artist => artist.id === id)
+      )
+      artistsModel.save.mockImplementation(async artist => ({
+        saved: [artist]
+      }))
+      local.findArtistArtwork.mockResolvedValue([])
+      let i = 0
+      audiodb.findArtistArtwork.mockImplementation(async () => {
+        if (++i <= 1) {
+          throw new TooManyRequestsError()
+        }
+        return []
+      })
+      discogs.findArtistArtwork.mockResolvedValue([])
+
+      const now = Date.now()
+      mediaService.triggerArtistsEnrichment(6000)
+      await sleep(1000)
+
+      for (const provider of [local, audiodb, discogs]) {
+        expect(provider.findArtistArtwork).toHaveBeenNthCalledWith(
+          1,
+          artists[0].name
+        )
+        expect(provider.findArtistArtwork).toHaveBeenNthCalledWith(
+          2,
+          artists[1].name
+        )
+        expect(provider.findArtistArtwork).toHaveBeenNthCalledWith(
+          3,
+          artists[0].name
+        )
+        expect(provider.findArtistArtwork).toHaveBeenCalledTimes(3)
+      }
+      expect(artistsModel.listMedialess).toHaveBeenCalledWith(now - dayMs)
+      expect(artistsModel.listMedialess).toHaveBeenCalledTimes(1)
+      expect(artistsModel.save).toHaveBeenCalledWith({
+        ...artists[0],
+        processedEpoch: now
+      })
+      expect(artistsModel.save).toHaveBeenCalledWith({
+        ...artists[1],
+        processedEpoch: now
+      })
+      expect(artistsModel.save).toHaveBeenCalledTimes(2)
+      expect(broadcast).not.toHaveBeenCalled()
+      expect(broadcast).not.toHaveBeenCalled()
+    })
+
+    it('does not process more than N artists per minute', async () => {
+      const artists = Array.from({ length: 5 }, () => ({
+        id: faker.random.number({ min: 9999 }),
+        name: faker.name.findName(),
+        media: null,
+        trackIds: []
+      }))
+      artistsModel.listMedialess.mockResolvedValueOnce(artists)
+      artistsModel.getById.mockImplementation(async id =>
+        artists.find(artist => artist.id === id)
+      )
+      artistsModel.save.mockImplementation(async artist => ({
+        saved: [artist]
+      }))
+      local.findArtistArtwork.mockResolvedValue([
+        {
+          full: resolve(__dirname, '..', '..', 'fixtures', 'cover.jpg'),
+          provider: local.name
+        }
+      ])
+      audiodb.findArtistArtwork.mockResolvedValue([])
+      discogs.findArtistArtwork.mockResolvedValue([])
+      const savedArtists = artists.map(artist => ({
+        ...artist,
+        media: resolve(os.tmpdir(), 'media', `${artist.id}.jpg`)
+      }))
+
+      const now = Date.now()
+      mediaService.triggerArtistsEnrichment(60)
+      await sleep(1500)
+
+      expect(local.findArtistArtwork).toHaveBeenCalledWith(artists[0].name)
+      expect(local.findArtistArtwork).toHaveBeenCalledTimes(1)
+      expect(audiodb.findArtistArtwork).not.toHaveBeenCalled()
+      expect(discogs.findArtistArtwork).not.toHaveBeenCalled()
+      expect(artistsModel.listMedialess).toHaveBeenCalledWith(now - dayMs)
+      expect(artistsModel.listMedialess).toHaveBeenCalledTimes(1)
+      expect(artistsModel.save).toHaveBeenCalledWith(savedArtists[0])
+      expect(artistsModel.save).toHaveBeenCalledTimes(1)
+      expect(broadcast).toHaveBeenCalledWith('artist-change', savedArtists[0])
+      expect(broadcast).toHaveBeenCalledWith('artist-change', {
+        ...savedArtists[0],
+        media: null
+      })
+      expect(broadcast).toHaveBeenCalledTimes(2)
+    })
+
+    it('stops previous enrichment', async () => {
+      const artists = Array.from({ length: 5 }, () => ({
+        id: faker.random.number({ min: 9999 }),
+        name: faker.name.findName(),
+        media: null,
+        trackIds: []
+      }))
+      artistsModel.listMedialess.mockResolvedValue(artists)
+      artistsModel.getById.mockImplementation(async id =>
+        artists.find(artist => artist.id === id)
+      )
+      artistsModel.save.mockImplementation(async artist => ({
+        saved: [artist]
+      }))
+      local.findArtistArtwork.mockResolvedValue([
+        {
+          full: resolve(__dirname, '..', '..', 'fixtures', 'cover.jpg'),
+          provider: local.name
+        }
+      ])
+      audiodb.findArtistArtwork.mockResolvedValue([])
+      discogs.findArtistArtwork.mockResolvedValue([])
+      const savedArtists = artists.map(artist => ({
+        ...artist,
+        media: resolve(os.tmpdir(), 'media', `${artist.id}.jpg`)
+      }))
+
+      const now = Date.now()
+      mediaService.triggerArtistsEnrichment(60)
+      mediaService.triggerArtistsEnrichment(60)
+      await sleep(1500)
+
+      expect(local.findArtistArtwork).toHaveBeenCalledWith(artists[0].name)
+      expect(local.findArtistArtwork).toHaveBeenCalledTimes(1)
+      expect(audiodb.findArtistArtwork).not.toHaveBeenCalled()
+      expect(discogs.findArtistArtwork).not.toHaveBeenCalled()
+      expect(artistsModel.listMedialess).toHaveBeenNthCalledWith(1, now - dayMs)
+      expect(artistsModel.listMedialess).toHaveBeenNthCalledWith(2, now - dayMs)
+      expect(artistsModel.listMedialess).toHaveBeenCalledTimes(2)
+      expect(artistsModel.save).toHaveBeenCalledWith(savedArtists[0])
+      expect(artistsModel.save).toHaveBeenCalledTimes(1)
+      expect(broadcast).toHaveBeenCalledWith('artist-change', savedArtists[0])
+      expect(broadcast).toHaveBeenCalledWith('artist-change', {
+        ...savedArtists[0],
+        media: null
+      })
+      expect(broadcast).toHaveBeenCalledTimes(2)
+    })
   })
 })

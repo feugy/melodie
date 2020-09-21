@@ -5,13 +5,14 @@ const AbstractProvider = require('../abstract-provider')
 
 class AudioDB extends AbstractProvider {
   constructor() {
-    super('AudioDB')
+    super('AudioDB', 25)
     this.key = process.env.AUDIODB_KEY || 1
     this.prefixUrl = `https://www.theaudiodb.com/api/v1/json/${this.key}`
   }
 
   async findArtistArtwork(searched) {
     this.logger.debug({ searched }, `search artist artwork for ${searched}`)
+    this.checkRate(`Can not search artist artwork for ${searched}`)
     try {
       const { artists } = await got(`search.php`, {
         prefixUrl: this.prefixUrl,
@@ -52,6 +53,7 @@ class AudioDB extends AbstractProvider {
 
   async findAlbumCover(searched) {
     this.logger.debug({ searched }, `search album cover for ${searched}`)
+    this.checkRate(`Can not search album cover for ${searched}`)
     try {
       const { album } = await got(`searchalbum.php`, {
         prefixUrl: this.prefixUrl,
