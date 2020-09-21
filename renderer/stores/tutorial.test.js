@@ -48,7 +48,7 @@ describe('tutorial store', () => {
   })
 
   it('goes to third step on first album retrieved', async () => {
-    mockInvoke.mockResolvedValueOnce({
+    mockInvoke.mockResolvedValue({
       results: [{}],
       total: 1,
       size: 1,

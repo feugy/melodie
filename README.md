@@ -95,7 +95,7 @@ npm run build
 - [x] tutorial
 - [x] feedback on enqueue and play actions
 - [x] interaction feedback on buttons, links, images...
-- [-] automatically retrieve artist avatar, in the background
+- [x] automatically retrieve artist avatar, in the background
 - [ ] tutorial: prevent removing all tracks from queue
 - [ ] configurable keys for Discogs & AudioDB providers
 - [ ] configurable "play now" behaviour: either clear & add, or enqueue and jump

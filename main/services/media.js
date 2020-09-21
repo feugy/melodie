@@ -116,7 +116,68 @@ module.exports = {
       .subscribe()
   },
 
-  enrichAlbums() {},
+  triggerAlbumsEnrichment(perMinute = 20) {
+    if (subscription && !subscription.isClosed) {
+      subscription.unsubscribe()
+    }
+
+    const enrichWithProvider = provider => [
+      filter(album => album && album.id),
+      mergeMap(album =>
+        from(provider.findAlbumCover(album.name)).pipe(
+          mergeMap(results =>
+            results.length
+              ? this.saveForAlbum(album.id, results[0].full)
+              : of(album)
+          ),
+          catchError(err => {
+            return err instanceof TooManyRequestsError
+              ? of({ ...album, wasLimited: true })
+              : EMPTY
+          })
+        )
+      )
+    ]
+
+    const now = Date.now()
+    subscription = from(albumsModel.listMedialess(now - dayMs))
+      .pipe(
+        tap(albums =>
+          logger.debug(
+            { total: albums.length },
+            `triggering cover enrichments for albums`
+          )
+        ),
+        expand(input =>
+          Array.isArray(input) && input.length
+            ? interval(60000 / perMinute).pipe(
+                take(input.length),
+                map(i => input[i]),
+                tap(album =>
+                  logger.debug(
+                    { album },
+                    `automatically searching cover for ${album.name}`
+                  )
+                ),
+                ...enrichWithProvider(local),
+                ...enrichWithProvider(audiodb),
+                ...enrichWithProvider(discogs),
+                mergeMap(album =>
+                  album && !album.wasLimited
+                    ? from(albumsModel.save({ ...album, processedEpoch: now }))
+                    : of(album)
+                ),
+                reduce((remaining, album) => {
+                  return album && album.wasLimited
+                    ? [...remaining, { ...album, wasLimited: undefined }]
+                    : remaining
+                }, [])
+              )
+            : EMPTY
+        )
+      )
+      .subscribe()
+  },
 
   stopEnrichment() {
     if (subscription) {
@@ -208,7 +269,7 @@ module.exports = {
       broadcast('album-change', saved[0])
       logger.debug(
         { id, url, media },
-        `media successfully saved into artist ${album.name}`
+        `media successfully saved into album ${album.name}`
       )
       const savedTracks = tracks.map(track => ({ ...track, media }))
       await tracksModel.save(savedTracks)
@@ -217,7 +278,7 @@ module.exports = {
         broadcast('track-change', track)
         logger.debug(
           { id: track.id, url, media },
-          `media successfully saved for track artist ${track.path}`
+          `media successfully saved for track ${track.path}`
         )
       }
     }

@@ -26,14 +26,18 @@ module.exports = {
       transformIgnorePatterns: ['node_modules/(?!(svelte-spa-router))/'],
       moduleFileExtensions: ['js', 'svelte', 'json', 'yml'],
       setupFiles: ['./tests/jest-setup'],
-      setupFilesAfterEnv: ['@testing-library/jest-dom/extend-expect']
+      setupFilesAfterEnv: [
+        'jest-extended',
+        '@testing-library/jest-dom/extend-expect'
+      ]
     },
     {
       displayName: 'main',
       rootDir: 'main/',
       testEnvironment: 'node',
       setupFiles: ['./tests/jest-setup'],
-      watchPathIgnorePatterns: ['/node_modules/', '/__nocks__/']
+      watchPathIgnorePatterns: ['/node_modules/', '/__nocks__/'],
+      setupFilesAfterEnv: ['jest-extended']
     },
     {
       displayName: 'e2e',
