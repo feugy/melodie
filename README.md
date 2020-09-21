@@ -99,6 +99,7 @@ npm run build
 - [ ] tutorial: prevent removing all tracks from queue
 - [ ] configurable keys for Discogs & AudioDB providers
 - [ ] configurable "play now" behaviour: either clear & add, or enqueue and jump
+- [ ] close modal dialogues on esc key
       ---> release?
 - [ ] smaller screen support (UI refactor)
 - [ ] enqueue tracks/albums by dragging to tracks queue
@@ -117,6 +118,7 @@ npm run build
 
 ### Bugs and unresolved issues
 
+1. Dragged element not visible when container has been vertically scrolled
 1. When DB has albums and playlists, tutorial enters infinite loop
 1. Undetected live changes: remove tracks and re-add them. This is a linux-only issue with chokidar
    - https://github.com/paulmillr/chokidar/issues/917
@@ -266,7 +268,6 @@ When using real services, update the mocks by defining `UPDATE_NOCKS` environmen
 Some providers need access keys. Just make a `.env` file in the root folder, with the appropriate values:
 
 ```
-DISCOGS_KEY=XYZ
-DISCOGS_SECRET=ABC
+DISCOGS_TOKEN=XYZ
 AUDIODB_KEY=123
 ```

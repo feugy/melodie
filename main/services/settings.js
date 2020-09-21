@@ -64,23 +64,25 @@ module.exports = {
     })
   },
 
-  async setAudioDBCredentials({ key }) {
+  async setAudioDBKey(key) {
     const settings = await this.get()
-    logger.debug('saving new credentials for AudioDB provider')
+    const conf = { key }
+    logger.debug(conf, 'saving new key for AudioDB provider')
     await settingsModel.save({
       ...settings,
-      providers: { ...settings.providers, audiodb: { key } }
+      providers: { ...settings.providers, audiodb: conf }
     })
-    audiodb.init({ key })
+    audiodb.init(conf)
   },
 
-  async setDiscogsCredentials({ key, secret }) {
+  async setDiscogsToken(token) {
     const settings = await this.get()
-    logger.debug('saving new credentials for Discogs provider')
+    const conf = { token }
+    logger.debug(conf, 'saving new token for Discogs provider')
     await settingsModel.save({
       ...settings,
-      providers: { ...settings.providers, discogs: { key, secret } }
+      providers: { ...settings.providers, discogs: conf }
     })
-    discogs.init({ key, secret })
+    discogs.init(conf)
   }
 }

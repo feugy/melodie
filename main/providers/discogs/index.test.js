@@ -10,8 +10,7 @@ describe('Discogs provider', () => {
   beforeEach(() => {
     provider.lastReqEpoch = 0
     provider.init({
-      key: process.env.DISCOGS_KEY,
-      secret: process.env.DISCOGS_SECRET
+      token: process.env.DISCOGS_TOKEN
     })
   })
 

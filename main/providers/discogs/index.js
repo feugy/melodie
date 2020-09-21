@@ -9,9 +9,8 @@ class Discogs extends AbstractProvider {
     super('Discogs', 25)
   }
 
-  init({ key, secret } = {}) {
-    this.key = key || 'KEY'
-    this.secret = secret || 'SECRET'
+  init({ token } = {}) {
+    this.token = token || 'TOKEN'
     this.prefixUrl = `https://api.discogs.com`
   }
 
@@ -23,8 +22,7 @@ class Discogs extends AbstractProvider {
         prefixUrl: this.prefixUrl,
         headers: { 'user-agent': this.userAgent },
         searchParams: {
-          key: this.key,
-          secret: this.secret,
+          token: this.token,
           type: 'artist',
           title: `"${searched.toLowerCase().trim()}"`,
           per_page: 3
@@ -58,8 +56,7 @@ class Discogs extends AbstractProvider {
         prefixUrl: this.prefixUrl,
         headers: { 'user-agent': this.userAgent },
         searchParams: {
-          key: this.key,
-          secret: this.secret,
+          token: this.token,
           type: 'release',
           release_title: `"${searched.toLowerCase().trim()}"`,
           per_page: 3

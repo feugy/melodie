@@ -2,15 +2,15 @@
   {
     "scope": "https://api.discogs.com:443",
     "method": "GET",
-    "path": "/database/search?key=KEY&secret=SECRET&type=artist&title=%22coldplay%22&per_page=3",
+    "path": "/database/search?token=TOKEN&type=artist&title=%22coldplay%22&per_page=3",
     "body": "",
     "status": 200,
     "response": [
-      "1f8b0800000000000003a551cb6ec23010fc159413480d4e20e111890320f525d4d2972ab5aa229398606ac7aeed1410cabf779d402b2e3db407dbeb99ddf17877ef489cd11c1b2a72276aeced9540e09f35aa501f63a2e203d5058a1ac28f54a1980df765098422ba60c6de5ff70e4de1ec0cfbdd1018b39356d8c1ca506d1c4038d60664abacbc60ec070249483d6085a2b60ed585a8d273a782a592e19dd531d4b04afa045c157c61eb56c6481d214479d64ea94e44a6db89e068f338d001e94ca6f3db647a2e662bb9e9cf737d397bd023e487de1616d21c5e454bcac0a88eb45154c634499aad682914c7a6b996246b455ca42456d902f08f02336a76cdc06ba1c3732ee5d0548dc66eeddd0f87fec0f37a61e076fc41af6d3560cbec5f12f1695b620b7e337f3f7b1f87775cf46272239f2fd654e0ab6071fdf2340946a8e7795b58ff303ffc9b7918be285442e27a7edfadc7929eb4be9ea4ae47e9946fe51712d2c7c286020000"
+      "1f8b0800000000000003a5524d4fe33010fd2b554eadb4ad939294361207a8b45faaf8584048a055e43a6e3aac1d7b3d0ea5aafadf779c1410973dc0c1f6f83dcdbce719ef22cb2ba8b9075347796f17ae9282e44baf0df12596ae385047448197fa856a9c0ae16ebf27c2496c940ff7875d04259de3d9f151468cdfda5038e2ce03fa889006a968c93d0fd911d4c586d75e0532efadb8421984ea4218a5a438186cf120a4397a4a6f25ea46a93788fc508103d63808a2ac5365ad99e1dca8d22abe0d263c78d5fa7a07ae1bbd0c796bef2de68c81ae4625a030158e84d16c7333c5548ecfe6971762fed52cd676737c59e3f7c5359eb0248b9f6931d4a4ca56a0c828e6e81dd80284e80ff295719afbfea395d520d7a69485ab9684ff6db802bfeda7f1801de486a06922c84e879df7249b25d3389e64e9709c4c27a35083b62abc4598a7d09290f03ff3bf167f4eb32b6d26853cb777df1ec1f01fe9f2e7fded597ac22671fc4ceb13e6671f334f3fc7344ec8a29bdf6bebb98577adef2689dd28a3fdeffd3fc7a9aa3dc3020000"
     ],
     "rawHeaders": [
       "Date",
-      "Mon, 21 Sep 2020 11:07:55 GMT",
+      "Mon, 21 Sep 2020 19:14:16 GMT",
       "Content-Type",
       "application/json",
       "Transfer-Encoding",
@@ -22,9 +22,9 @@
       "X-Discogs-Ratelimit",
       "60",
       "X-Discogs-Ratelimit-Remaining",
-      "59",
+      "47",
       "X-Discogs-Ratelimit-Used",
-      "1",
+      "13",
       "Access-Control-Allow-Headers",
       "Content-Type, authorization, User-Agent, Private-Auth-Secret, Discogs-UID",
       "Access-Control-Allow-Methods",

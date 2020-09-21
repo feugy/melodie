@@ -2,7 +2,7 @@
   {
     "scope": "https://api.discogs.com:443",
     "method": "GET",
-    "path": "/database/search?key=KEY&secret=SECRET&type=release&release_title=%22loremipsum%22&per_page=3",
+    "path": "/database/search?token=TOKEN&type=release&release_title=%22loremipsum%22&per_page=3",
     "body": "",
     "status": 200,
     "response": [
@@ -10,7 +10,7 @@
     ],
     "rawHeaders": [
       "Date",
-      "Mon, 21 Sep 2020 11:08:00 GMT",
+      "Mon, 21 Sep 2020 19:14:21 GMT",
       "Content-Type",
       "application/json",
       "Transfer-Encoding",
@@ -22,9 +22,9 @@
       "X-Discogs-Ratelimit",
       "60",
       "X-Discogs-Ratelimit-Remaining",
-      "55",
+      "42",
       "X-Discogs-Ratelimit-Used",
-      "5",
+      "18",
       "Access-Control-Allow-Headers",
       "Content-Type, authorization, User-Agent, Private-Auth-Secret, Discogs-UID",
       "Access-Control-Allow-Methods",

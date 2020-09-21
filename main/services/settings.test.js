@@ -82,7 +82,7 @@ describe('Settings service', () => {
     expect(settingsModel.save).toHaveBeenCalledTimes(1)
   })
 
-  it('saves AudioDB provider credentials', async () => {
+  it('saves AudioDB provider key', async () => {
     const locale = faker.random.word()
     const key = faker.random.uuid()
     const providers = {
@@ -91,7 +91,7 @@ describe('Settings service', () => {
     }
     settingsModel.get.mockResolvedValueOnce({ locale, providers })
 
-    await settingsService.setAudioDBCredentials({ key })
+    await settingsService.setAudioDBKey(key)
     expect(settingsModel.save).toHaveBeenCalledWith({
       locale,
       providers: {
@@ -105,26 +105,25 @@ describe('Settings service', () => {
     expect(discogs.init).not.toHaveBeenCalled()
   })
 
-  it('saves Discogs provider credentials', async () => {
+  it('saves Discogs provider token', async () => {
     const locale = faker.random.word()
-    const key = faker.random.uuid()
-    const secret = faker.random.alphaNumeric(12)
+    const token = faker.random.uuid()
     const providers = {
       audiodb: { foo: faker.random.word() },
       discogs: { foo: faker.random.word() }
     }
     settingsModel.get.mockResolvedValueOnce({ locale, providers })
 
-    await settingsService.setDiscogsCredentials({ key, secret })
+    await settingsService.setDiscogsToken(token)
     expect(settingsModel.save).toHaveBeenCalledWith({
       locale,
       providers: {
         ...providers,
-        discogs: { secret, key }
+        discogs: { token }
       }
     })
     expect(settingsModel.save).toHaveBeenCalledTimes(1)
-    expect(discogs.init).toHaveBeenCalledWith({ secret, key })
+    expect(discogs.init).toHaveBeenCalledWith({ token })
     expect(discogs.init).toHaveBeenCalledTimes(1)
     expect(audiodb.init).not.toHaveBeenCalled()
   })
