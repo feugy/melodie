@@ -46,7 +46,7 @@
   }
 </style>
 
-<a href={`#/artist/${src.id}`} class={$$props.class}>
+<a href={`#/artist/${src.id}`} class={$$restProps.class}>
   <div class="content">
     <Image class="w-64 h-64 text-3xl actionable" rounded src={src.media} />
     <p class="controls">

@@ -130,9 +130,6 @@
       100% 100%,
       100% 0%
     );
-  }
-
-  .backdrop {
     background-color: var(--backdrop-color);
   }
 

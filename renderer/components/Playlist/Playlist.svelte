@@ -1,10 +1,8 @@
 <script>
   import { _ } from 'svelte-intl'
-  import Image from '../Image/Image.svelte'
   import Button from '../Button/Button.svelte'
   import { add } from '../../stores/track-queue'
   import { load } from '../../stores/playlists'
-  import { wrapWithLinks } from '../../utils'
 
   export let src
 
@@ -42,7 +40,7 @@
   }
 </style>
 
-<a href={`#/playlist/${src.id}`} class="{$$props.class} actionable">
+<a href={`#/playlist/${src.id}`} class="{$$restProps.class} actionable">
   <header>
     <h3>{src.name || $_('unknown')}</h3>
     <h4>

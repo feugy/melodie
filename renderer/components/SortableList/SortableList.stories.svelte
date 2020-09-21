@@ -13,7 +13,7 @@
   }
 </style>
 
-<SortableList {...$$props} on:move>
+<SortableList {...$$restProps} on:move>
   <div slot="item" let:item let:i on:click={() => dispatch('click', item)}>
     <Track src={item} details class="col-span-11" />
     <span><Button

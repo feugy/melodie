@@ -31,10 +31,10 @@
 
   .row {
     @apply py-1 px-8 flex flex-row items-center cursor-pointer;
-  }
 
-  .row.current {
-    background-color: var(--outline-color);
+    &.current {
+      background-color: var(--outline-color);
+    }
   }
 </style>
 

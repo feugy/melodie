@@ -13,24 +13,24 @@ exports[`Storyshots Components/Player Empty 1`] = `
     class="flex items-center"
   >
     <span
-      class="current svelte-101j5b"
+      class="current svelte-bkxo3s"
     />
      
     <div
-      class="player svelte-101j5b"
+      class="player svelte-bkxo3s"
     >
       <span
-        class="controls svelte-101j5b"
+        class="controls svelte-bkxo3s"
       >
          
         <span
-          class="svelte-101j5b"
+          class="svelte-bkxo3s"
         >
           <button
-            class="svelte-1f17ahs iconOnly noBorder"
+            class="svelte-2vu076 iconOnly noBorder"
           >
             <i
-              class="material-icons svelte-1f17ahs"
+              class="material-icons svelte-2vu076"
             >
               shuffle
             </i>
@@ -41,10 +41,10 @@ exports[`Storyshots Components/Player Empty 1`] = `
         </span>
          
         <button
-          class="ml-2 mr-1 svelte-1f17ahs iconOnly noBorder"
+          class="ml-2 mr-1 svelte-2vu076 iconOnly noBorder"
         >
           <i
-            class="material-icons svelte-1f17ahs"
+            class="material-icons svelte-2vu076"
           >
             skip_previous
           </i>
@@ -54,10 +54,10 @@ exports[`Storyshots Components/Player Empty 1`] = `
         </button>
          
         <button
-          class="mx-1 svelte-1f17ahs iconOnly large"
+          class="mx-1 svelte-2vu076 iconOnly large"
         >
           <i
-            class="material-icons svelte-1f17ahs"
+            class="material-icons svelte-2vu076"
           >
             play_arrow
           </i>
@@ -67,10 +67,10 @@ exports[`Storyshots Components/Player Empty 1`] = `
         </button>
          
         <button
-          class="ml-1 mr-2 svelte-1f17ahs iconOnly noBorder"
+          class="ml-1 mr-2 svelte-2vu076 iconOnly noBorder"
         >
           <i
-            class="material-icons svelte-1f17ahs"
+            class="material-icons svelte-2vu076"
           >
             skip_next
           </i>
@@ -80,13 +80,13 @@ exports[`Storyshots Components/Player Empty 1`] = `
         </button>
          
         <span
-          class="svelte-101j5b"
+          class="svelte-bkxo3s"
         >
           <button
-            class="svelte-1f17ahs iconOnly noBorder"
+            class="svelte-2vu076 iconOnly noBorder"
           >
             <i
-              class="material-icons svelte-1f17ahs"
+              class="material-icons svelte-2vu076"
             >
               repeat
             </i>
@@ -99,36 +99,36 @@ exports[`Storyshots Components/Player Empty 1`] = `
       </span>
        
       <span
-        class="controls time svelte-101j5b"
+        class="controls time svelte-bkxo3s"
       >
         <span
-          class="svelte-101j5b"
+          class="svelte-bkxo3s"
         >
           0:00
         </span>
          
         <div
-          class="wrapper w-full svelte-3pkjx0"
+          class="wrapper w-full svelte-h3fiyo"
         >
           <input
-            class="w-full svelte-3pkjx0"
+            class="w-full svelte-h3fiyo"
             max="0"
             min="0"
             type="range"
           />
            
           <div
-            class="sliderTrack svelte-3pkjx0"
+            class="sliderTrack svelte-h3fiyo"
           >
             <span
-              class="progress svelte-3pkjx0"
+              class="progress svelte-h3fiyo"
               style="right:100%"
             />
           </div>
         </div>
          
         <span
-          class="svelte-101j5b"
+          class="svelte-bkxo3s"
         >
           0:00
         </span>
@@ -136,29 +136,29 @@ exports[`Storyshots Components/Player Empty 1`] = `
     </div>
      
     <span
-      class="playlist svelte-101j5b"
+      class="playlist svelte-bkxo3s"
     >
       <div
-        class="volume svelte-101j5b"
+        class="volume svelte-bkxo3s"
       >
         <span
-          class="volume-slider svelte-101j5b"
+          class="volume-slider svelte-bkxo3s"
         >
           <div
-            class="wrapper undefined svelte-3pkjx0"
+            class="wrapper undefined svelte-h3fiyo"
           >
             <input
-              class=" svelte-3pkjx0"
+              class=" svelte-h3fiyo"
               max="100"
               min="0"
               type="range"
             />
              
             <div
-              class="sliderTrack svelte-3pkjx0"
+              class="sliderTrack svelte-h3fiyo"
             >
               <span
-                class="progress svelte-3pkjx0"
+                class="progress svelte-h3fiyo"
                 style="right:0%"
               />
             </div>
@@ -166,10 +166,10 @@ exports[`Storyshots Components/Player Empty 1`] = `
         </span>
          
         <button
-          class="svelte-1f17ahs iconOnly noBorder"
+          class="svelte-2vu076 iconOnly noBorder"
         >
           <i
-            class="material-icons svelte-1f17ahs"
+            class="material-icons svelte-2vu076"
           >
             volume_up
           </i>
@@ -180,10 +180,10 @@ exports[`Storyshots Components/Player Empty 1`] = `
       </div>
        
       <button
-        class="svelte-1f17ahs primary"
+        class="svelte-2vu076 primary"
       >
         <i
-          class="material-icons svelte-1f17ahs"
+          class="material-icons svelte-2vu076"
         >
           queue_music
         </i>
@@ -213,7 +213,7 @@ exports[`Storyshots Components/Player With Track List 1`] = `
     class="flex items-center"
   >
     <span
-      class="current svelte-101j5b"
+      class="current svelte-bkxo3s"
     >
       <div
         class="undefined root svelte-whrgz7"
@@ -254,19 +254,19 @@ exports[`Storyshots Components/Player With Track List 1`] = `
     </span>
      
     <div
-      class="player svelte-101j5b"
+      class="player svelte-bkxo3s"
     >
       <span
-        class="controls svelte-101j5b"
+        class="controls svelte-bkxo3s"
       >
         <span
-          class="wrapper svelte-12ofrds"
+          class="wrapper svelte-1dsb53o"
         >
           <button
-            class="svelte-1f17ahs iconOnly noBorder"
+            class="svelte-2vu076 iconOnly noBorder"
           >
             <i
-              class="material-icons svelte-1f17ahs"
+              class="material-icons svelte-2vu076"
             >
               library_add
             </i>
@@ -279,13 +279,13 @@ exports[`Storyshots Components/Player With Track List 1`] = `
          
          
         <span
-          class="svelte-101j5b"
+          class="svelte-bkxo3s"
         >
           <button
-            class="svelte-1f17ahs iconOnly noBorder"
+            class="svelte-2vu076 iconOnly noBorder"
           >
             <i
-              class="material-icons svelte-1f17ahs"
+              class="material-icons svelte-2vu076"
             >
               shuffle
             </i>
@@ -296,10 +296,10 @@ exports[`Storyshots Components/Player With Track List 1`] = `
         </span>
          
         <button
-          class="ml-2 mr-1 svelte-1f17ahs iconOnly noBorder"
+          class="ml-2 mr-1 svelte-2vu076 iconOnly noBorder"
         >
           <i
-            class="material-icons svelte-1f17ahs"
+            class="material-icons svelte-2vu076"
           >
             skip_previous
           </i>
@@ -309,10 +309,10 @@ exports[`Storyshots Components/Player With Track List 1`] = `
         </button>
          
         <button
-          class="mx-1 svelte-1f17ahs iconOnly large"
+          class="mx-1 svelte-2vu076 iconOnly large"
         >
           <i
-            class="material-icons svelte-1f17ahs"
+            class="material-icons svelte-2vu076"
           >
             play_arrow
           </i>
@@ -322,10 +322,10 @@ exports[`Storyshots Components/Player With Track List 1`] = `
         </button>
          
         <button
-          class="ml-1 mr-2 svelte-1f17ahs iconOnly noBorder"
+          class="ml-1 mr-2 svelte-2vu076 iconOnly noBorder"
         >
           <i
-            class="material-icons svelte-1f17ahs"
+            class="material-icons svelte-2vu076"
           >
             skip_next
           </i>
@@ -335,13 +335,13 @@ exports[`Storyshots Components/Player With Track List 1`] = `
         </button>
          
         <span
-          class="svelte-101j5b"
+          class="svelte-bkxo3s"
         >
           <button
-            class="svelte-1f17ahs iconOnly noBorder"
+            class="svelte-2vu076 iconOnly noBorder"
           >
             <i
-              class="material-icons svelte-1f17ahs"
+              class="material-icons svelte-2vu076"
             >
               repeat
             </i>
@@ -352,10 +352,10 @@ exports[`Storyshots Components/Player With Track List 1`] = `
         </span>
          
         <button
-          class="invisible svelte-1f17ahs iconOnly noBorder"
+          class="invisible svelte-2vu076 iconOnly noBorder"
         >
           <i
-            class="material-icons svelte-1f17ahs"
+            class="material-icons svelte-2vu076"
           >
             favorite_border
           </i>
@@ -366,36 +366,36 @@ exports[`Storyshots Components/Player With Track List 1`] = `
       </span>
        
       <span
-        class="controls time svelte-101j5b"
+        class="controls time svelte-bkxo3s"
       >
         <span
-          class="svelte-101j5b"
+          class="svelte-bkxo3s"
         >
           0:00
         </span>
          
         <div
-          class="wrapper w-full svelte-3pkjx0"
+          class="wrapper w-full svelte-h3fiyo"
         >
           <input
-            class="w-full svelte-3pkjx0"
+            class="w-full svelte-h3fiyo"
             max="0"
             min="0"
             type="range"
           />
            
           <div
-            class="sliderTrack svelte-3pkjx0"
+            class="sliderTrack svelte-h3fiyo"
           >
             <span
-              class="progress svelte-3pkjx0"
+              class="progress svelte-h3fiyo"
               style="right:100%"
             />
           </div>
         </div>
          
         <span
-          class="svelte-101j5b"
+          class="svelte-bkxo3s"
         >
           0:00
         </span>
@@ -403,29 +403,29 @@ exports[`Storyshots Components/Player With Track List 1`] = `
     </div>
      
     <span
-      class="playlist svelte-101j5b"
+      class="playlist svelte-bkxo3s"
     >
       <div
-        class="volume svelte-101j5b"
+        class="volume svelte-bkxo3s"
       >
         <span
-          class="volume-slider svelte-101j5b"
+          class="volume-slider svelte-bkxo3s"
         >
           <div
-            class="wrapper undefined svelte-3pkjx0"
+            class="wrapper undefined svelte-h3fiyo"
           >
             <input
-              class=" svelte-3pkjx0"
+              class=" svelte-h3fiyo"
               max="100"
               min="0"
               type="range"
             />
              
             <div
-              class="sliderTrack svelte-3pkjx0"
+              class="sliderTrack svelte-h3fiyo"
             >
               <span
-                class="progress svelte-3pkjx0"
+                class="progress svelte-h3fiyo"
                 style="right:0%"
               />
             </div>
@@ -433,10 +433,10 @@ exports[`Storyshots Components/Player With Track List 1`] = `
         </span>
          
         <button
-          class="svelte-1f17ahs iconOnly noBorder"
+          class="svelte-2vu076 iconOnly noBorder"
         >
           <i
-            class="material-icons svelte-1f17ahs"
+            class="material-icons svelte-2vu076"
           >
             volume_up
           </i>
@@ -447,10 +447,10 @@ exports[`Storyshots Components/Player With Track List 1`] = `
       </div>
        
       <button
-        class="svelte-1f17ahs primary"
+        class="svelte-2vu076 primary"
       >
         <i
-          class="material-icons svelte-1f17ahs"
+          class="material-icons svelte-2vu076"
         >
           queue_music
         </i>
@@ -461,7 +461,7 @@ exports[`Storyshots Components/Player With Track List 1`] = `
          
          
         <div
-          class="badge svelte-1f17ahs halo"
+          class="badge svelte-2vu076 halo"
         >
           4
         </div>

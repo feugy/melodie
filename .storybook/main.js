@@ -1,5 +1,7 @@
 'use strict'
 
+const { preprocess } = require('../svelte.config')
+
 module.exports = {
   stories: ['../renderer/**/*.stories.js'],
   addons: ['@storybook/addon-actions', '@storybook/addon-knobs'],
@@ -10,7 +12,8 @@ module.exports = {
     svelteRule.options = {
       ...svelteRule.options,
       emitCss: true,
-      hotReload: false
+      hotReload: false,
+      preprocess
     }
 
     const postcssRule = config.module.rules.find(

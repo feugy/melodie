@@ -124,10 +124,9 @@
 
   .controls {
     @apply flex items-center justify-center;
-  }
-
-  .controls > * {
-    @apply mx-2;
+    & > * {
+      @apply mx-2;
+    }
   }
 
   .time > span {

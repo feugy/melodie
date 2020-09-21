@@ -8,11 +8,11 @@ exports[`Storyshots Components/TextInput Default 1`] = `
     class="inline-block w-64"
   >
     <span
-      class="svelte-kqycap"
+      class="svelte-omlpnd"
     >
        
       <input
-        class="svelte-kqycap"
+        class="svelte-omlpnd"
         placeholder=""
         type="text"
       />
@@ -29,16 +29,16 @@ exports[`Storyshots Components/TextInput With Icon And Placeholder 1`] = `
     class="inline-block w-64"
   >
     <span
-      class="svelte-kqycap icon"
+      class="svelte-omlpnd icon"
     >
       <i
-        class="material-icons svelte-kqycap"
+        class="material-icons svelte-omlpnd"
       >
         search
       </i>
        
       <input
-        class="svelte-kqycap"
+        class="svelte-omlpnd"
         placeholder="search..."
         type="search"
       />
@@ -55,16 +55,16 @@ exports[`Storyshots Components/TextInput With Value 1`] = `
     class="inline-block w-64"
   >
     <span
-      class="svelte-kqycap icon"
+      class="svelte-omlpnd icon"
     >
       <i
-        class="material-icons svelte-kqycap"
+        class="material-icons svelte-omlpnd"
       >
         person
       </i>
        
       <input
-        class="svelte-kqycap"
+        class="svelte-omlpnd"
         placeholder=""
         type="text"
       />

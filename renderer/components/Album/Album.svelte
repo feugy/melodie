@@ -48,7 +48,7 @@
   }
 </style>
 
-<a href={`#/album/${src.id}`} class={$$props.class}>
+<a href={`#/album/${src.id}`} class={$$restProps.class}>
   <div class="content">
     <Image class="w-64 h-64 text-3xl actionable" src={src.media} />
     <p class="controls">

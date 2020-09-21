@@ -34,10 +34,10 @@
     opacity: 0;
     transition: all 0.35s ease;
     background-color: var(--backdrop-color);
-  }
 
-  .backdrop.open {
-    @apply opacity-100 visible;
+    &.open {
+      @apply opacity-100 visible;
+    }
   }
 
   article {

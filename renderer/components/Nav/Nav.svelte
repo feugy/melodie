@@ -62,7 +62,7 @@
 
   .sentinel {
     @apply block w-full h-0 relative;
-    top: 4rem;
+    top: 3rem;
   }
 
   .floating {
@@ -99,7 +99,7 @@
 
 <div class="wrapper">
   <span bind:this={sentinel} class="sentinel" />
-  <nav class={$$props.class} class:floating>
+  <nav class={$$restProps.class} class:floating>
     <ul>
       <li>
         <h1>{$_('Mélodie')}</h1>

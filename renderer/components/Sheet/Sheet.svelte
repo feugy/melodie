@@ -25,7 +25,7 @@
   </div>
   {#if open}
     <div
-      class={`${$$props.class} aside`}
+      class={`${$$restProps.class} aside`}
       style={`min-width: ${width}; max-width: ${width}`}
       transition:fly={{ duration: 250, x: 500 }}>
       <slot name="aside" />

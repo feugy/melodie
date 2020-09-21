@@ -5,7 +5,11 @@
   let dimension
 </script>
 
-<Image class="w-64 h-64 inline-block" on:click {...$$props} bind:dimension />
+<Image
+  class="w-64 h-64 inline-block"
+  on:click
+  {...$$restProps}
+  bind:dimension />
 <div>
   {dimension ? $_('provider (_ x _)', {
         value: 'dimensions',

@@ -5,12 +5,12 @@ exports[`Storyshots Components/Annotation Above Center Left 1`] = `
   class="storybook-snapshot-container"
 >
   <div
-    class="backdrop svelte-1g09j0k"
+    class="backdrop svelte-1aqttrc"
     style=""
   >
      
     <article
-      class="svelte-1g09j0k"
+      class="svelte-1aqttrc"
     >
       Look! This text looks very interesting
     </article>
@@ -92,12 +92,12 @@ exports[`Storyshots Components/Annotation Above Center Right 1`] = `
   class="storybook-snapshot-container"
 >
   <div
-    class="backdrop svelte-1g09j0k"
+    class="backdrop svelte-1aqttrc"
     style=""
   >
      
     <article
-      class="svelte-1g09j0k"
+      class="svelte-1aqttrc"
     >
       Look! This text looks very interesting
     </article>
@@ -179,12 +179,12 @@ exports[`Storyshots Components/Annotation Above Right 1`] = `
   class="storybook-snapshot-container"
 >
   <div
-    class="backdrop svelte-1g09j0k"
+    class="backdrop svelte-1aqttrc"
     style=""
   >
      
     <article
-      class="svelte-1g09j0k"
+      class="svelte-1aqttrc"
     >
       Look! This text looks very interesting
     </article>
@@ -266,12 +266,12 @@ exports[`Storyshots Components/Annotation Anchor Not Found 1`] = `
   class="storybook-snapshot-container"
 >
   <div
-    class="backdrop svelte-1g09j0k"
+    class="backdrop svelte-1aqttrc"
     style=""
   >
      
     <article
-      class="svelte-1g09j0k"
+      class="svelte-1aqttrc"
     >
       Look! This text looks very interesting
     </article>
@@ -353,12 +353,12 @@ exports[`Storyshots Components/Annotation Bellow Center Left 1`] = `
   class="storybook-snapshot-container"
 >
   <div
-    class="backdrop svelte-1g09j0k"
+    class="backdrop svelte-1aqttrc"
     style=""
   >
      
     <article
-      class="svelte-1g09j0k"
+      class="svelte-1aqttrc"
     >
       Look! This text looks very interesting
     </article>
@@ -440,12 +440,12 @@ exports[`Storyshots Components/Annotation Bellow Center Right 1`] = `
   class="storybook-snapshot-container"
 >
   <div
-    class="backdrop svelte-1g09j0k"
+    class="backdrop svelte-1aqttrc"
     style=""
   >
      
     <article
-      class="svelte-1g09j0k"
+      class="svelte-1aqttrc"
     >
       Look! This text looks very interesting
     </article>
@@ -527,12 +527,12 @@ exports[`Storyshots Components/Annotation Bellow Left 1`] = `
   class="storybook-snapshot-container"
 >
   <div
-    class="backdrop svelte-1g09j0k"
+    class="backdrop svelte-1aqttrc"
     style=""
   >
      
     <article
-      class="svelte-1g09j0k"
+      class="svelte-1aqttrc"
     >
       Look! This text looks very interesting
     </article>
@@ -614,12 +614,12 @@ exports[`Storyshots Components/Annotation Bellow Right 1`] = `
   class="storybook-snapshot-container"
 >
   <div
-    class="backdrop svelte-1g09j0k"
+    class="backdrop svelte-1aqttrc"
     style=""
   >
      
     <article
-      class="svelte-1g09j0k"
+      class="svelte-1aqttrc"
     >
       Look! This text looks very interesting
     </article>
@@ -701,12 +701,12 @@ exports[`Storyshots Components/Annotation Default 1`] = `
   class="storybook-snapshot-container"
 >
   <div
-    class="backdrop svelte-1g09j0k"
+    class="backdrop svelte-1aqttrc"
     style=""
   >
      
     <article
-      class="svelte-1g09j0k"
+      class="svelte-1aqttrc"
     >
       Look! This text looks very interesting
     </article>
@@ -788,12 +788,12 @@ exports[`Storyshots Components/Annotation Hidden Anchor 1`] = `
   class="storybook-snapshot-container"
 >
   <div
-    class="backdrop svelte-1g09j0k"
+    class="backdrop svelte-1aqttrc"
     style=""
   >
      
     <article
-      class="svelte-1g09j0k"
+      class="svelte-1aqttrc"
     >
       Look! This text looks very interesting
     </article>
@@ -875,12 +875,12 @@ exports[`Storyshots Components/Annotation Middle Left 1`] = `
   class="storybook-snapshot-container"
 >
   <div
-    class="backdrop svelte-1g09j0k"
+    class="backdrop svelte-1aqttrc"
     style=""
   >
      
     <article
-      class="svelte-1g09j0k"
+      class="svelte-1aqttrc"
     >
       Look! This text looks very interesting
     </article>
@@ -962,12 +962,12 @@ exports[`Storyshots Components/Annotation Middle Right 1`] = `
   class="storybook-snapshot-container"
 >
   <div
-    class="backdrop svelte-1g09j0k"
+    class="backdrop svelte-1aqttrc"
     style=""
   >
      
     <article
-      class="svelte-1g09j0k"
+      class="svelte-1aqttrc"
     >
       Look! This text looks very interesting
     </article>
@@ -1049,12 +1049,12 @@ exports[`Storyshots Components/Annotation Positionned 1`] = `
   class="storybook-snapshot-container"
 >
   <div
-    class="backdrop svelte-1g09j0k"
+    class="backdrop svelte-1aqttrc"
     style=""
   >
      
     <article
-      class="svelte-1g09j0k"
+      class="svelte-1aqttrc"
       style="top: 5%; left: 60%;"
     >
       Look! This text looks very interesting

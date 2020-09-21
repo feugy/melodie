@@ -17,7 +17,7 @@ exports[`Storyshots Components/Tracks queue Empty 1`] = `
     </header>
      
     <header
-      class="svelte-keiwto"
+      class="svelte-1bbcl7z"
     >
       <h3>
         0 tracks
@@ -26,7 +26,7 @@ exports[`Storyshots Components/Tracks queue Empty 1`] = `
     </header>
      
     <div
-      class="svelte-keiwto"
+      class="svelte-1bbcl7z"
     >
        
       <ol />
@@ -52,20 +52,20 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
     </header>
      
     <header
-      class="svelte-keiwto"
+      class="svelte-1bbcl7z"
     >
       <h3>
         8 tracks
       </h3>
        
       <span
-        class="wrapper svelte-12ofrds"
+        class="wrapper svelte-1dsb53o"
       >
         <button
-          class="mx-4 svelte-1f17ahs iconOnly"
+          class="mx-4 svelte-2vu076 iconOnly"
         >
           <i
-            class="material-icons svelte-1f17ahs"
+            class="material-icons svelte-2vu076"
           >
             library_add
           </i>
@@ -78,16 +78,16 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
        
        
       <span
-        class="totalDuration svelte-keiwto"
+        class="totalDuration svelte-1bbcl7z"
       >
         7:34
       </span>
        
       <button
-        class="mx-4 svelte-1f17ahs iconOnly"
+        class="mx-4 svelte-2vu076 iconOnly"
       >
         <i
-          class="material-icons svelte-1f17ahs"
+          class="material-icons svelte-2vu076"
         >
           delete
         </i>
@@ -98,7 +98,7 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
     </header>
      
     <div
-      class="svelte-keiwto"
+      class="svelte-1bbcl7z"
     >
        
       <ol>
@@ -109,7 +109,7 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
             slot="item"
           >
             <span
-              class="row svelte-keiwto current"
+              class="row svelte-1bbcl7z current"
             >
               <div
                 class="flex-auto root svelte-whrgz7"
@@ -154,10 +154,10 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
               </div>
                
               <button
-                class="mx-4 svelte-1f17ahs iconOnly noBorder"
+                class="mx-4 svelte-2vu076 iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-1f17ahs"
+                  class="material-icons svelte-2vu076"
                 >
                   close
                 </i>
@@ -176,7 +176,7 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
             slot="item"
           >
             <span
-              class="row svelte-keiwto"
+              class="row svelte-1bbcl7z"
             >
               <div
                 class="flex-auto root svelte-whrgz7"
@@ -221,10 +221,10 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
               </div>
                
               <button
-                class="mx-4 svelte-1f17ahs iconOnly noBorder"
+                class="mx-4 svelte-2vu076 iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-1f17ahs"
+                  class="material-icons svelte-2vu076"
                 >
                   close
                 </i>
@@ -243,7 +243,7 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
             slot="item"
           >
             <span
-              class="row svelte-keiwto"
+              class="row svelte-1bbcl7z"
             >
               <div
                 class="flex-auto root svelte-whrgz7"
@@ -288,10 +288,10 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
               </div>
                
               <button
-                class="mx-4 svelte-1f17ahs iconOnly noBorder"
+                class="mx-4 svelte-2vu076 iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-1f17ahs"
+                  class="material-icons svelte-2vu076"
                 >
                   close
                 </i>
@@ -310,7 +310,7 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
             slot="item"
           >
             <span
-              class="row svelte-keiwto"
+              class="row svelte-1bbcl7z"
             >
               <div
                 class="flex-auto root svelte-whrgz7"
@@ -355,10 +355,10 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
               </div>
                
               <button
-                class="mx-4 svelte-1f17ahs iconOnly noBorder"
+                class="mx-4 svelte-2vu076 iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-1f17ahs"
+                  class="material-icons svelte-2vu076"
                 >
                   close
                 </i>
@@ -377,7 +377,7 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
             slot="item"
           >
             <span
-              class="row svelte-keiwto"
+              class="row svelte-1bbcl7z"
             >
               <div
                 class="flex-auto root svelte-whrgz7"
@@ -422,10 +422,10 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
               </div>
                
               <button
-                class="mx-4 svelte-1f17ahs iconOnly noBorder"
+                class="mx-4 svelte-2vu076 iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-1f17ahs"
+                  class="material-icons svelte-2vu076"
                 >
                   close
                 </i>
@@ -444,7 +444,7 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
             slot="item"
           >
             <span
-              class="row svelte-keiwto"
+              class="row svelte-1bbcl7z"
             >
               <div
                 class="flex-auto root svelte-whrgz7"
@@ -489,10 +489,10 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
               </div>
                
               <button
-                class="mx-4 svelte-1f17ahs iconOnly noBorder"
+                class="mx-4 svelte-2vu076 iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-1f17ahs"
+                  class="material-icons svelte-2vu076"
                 >
                   close
                 </i>
@@ -511,7 +511,7 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
             slot="item"
           >
             <span
-              class="row svelte-keiwto"
+              class="row svelte-1bbcl7z"
             >
               <div
                 class="flex-auto root svelte-whrgz7"
@@ -556,10 +556,10 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
               </div>
                
               <button
-                class="mx-4 svelte-1f17ahs iconOnly noBorder"
+                class="mx-4 svelte-2vu076 iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-1f17ahs"
+                  class="material-icons svelte-2vu076"
                 >
                   close
                 </i>
@@ -578,7 +578,7 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
             slot="item"
           >
             <span
-              class="row svelte-keiwto"
+              class="row svelte-1bbcl7z"
             >
               <div
                 class="flex-auto root svelte-whrgz7"
@@ -623,10 +623,10 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
               </div>
                
               <button
-                class="mx-4 svelte-1f17ahs iconOnly noBorder"
+                class="mx-4 svelte-2vu076 iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-1f17ahs"
+                  class="material-icons svelte-2vu076"
                 >
                   close
                 </i>

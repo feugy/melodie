@@ -98,7 +98,7 @@
 </style>
 
 {#if $items && $items.length}
-  <span class={$$props.class} bind:clientWidth={_width}>
+  <span class={$$restProps.class} bind:clientWidth={_width}>
     <h3>{$_(title, { total: $items.length })}</h3>
     <ul bind:this={list} class:expanded>
       {#each $items as src (src.id)}

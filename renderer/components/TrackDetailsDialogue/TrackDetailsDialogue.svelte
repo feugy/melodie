@@ -1,7 +1,6 @@
 <script>
   import { _ } from 'svelte-intl'
   import Dialogue from '../Dialogue/Dialogue.svelte'
-  import Image from '../Image/Image.svelte'
   import { formatTime } from '../../utils'
 
   export let src
@@ -63,7 +62,7 @@
 
 <style type="postcss">
   table {
-    @apply mx-auto border-collapse text-left;
+    @apply w-full border-collapse text-left;
   }
 
   td {

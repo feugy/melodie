@@ -21,7 +21,7 @@
 </script>
 
 <Dropdown
-  {...$$props}
+  {...$$restProps}
   value={null}
   icon="library_add"
   withArrow={false}

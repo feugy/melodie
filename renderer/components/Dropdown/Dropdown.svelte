@@ -100,10 +100,10 @@
 
   .arrow {
     @apply ml-2;
-  }
 
-  .arrow:not(.iconOnly) {
-    @apply -mr-4;
+    &:not(.iconOnly) {
+      @apply -mr-4;
+    }
   }
 
   ul {
@@ -114,15 +114,15 @@
 
   li {
     @apply px-4 py-2 cursor-pointer whitespace-no-wrap flex items-center;
-  }
 
-  li:hover {
-    color: var(--hover-color);
-    background-color: var(--hover-bg-color);
-  }
+    &:hover {
+      color: var(--hover-color);
+      background-color: var(--hover-bg-color);
+    }
 
-  li > i {
-    @apply mr-2 text-base;
+    & > i {
+      @apply mr-2 text-base;
+    }
   }
 </style>
 
@@ -131,7 +131,7 @@
   on:scroll|capture={handleInteraction} />
 
 <span class="wrapper" bind:this={button}>
-  <Button {...$$props} {text} on:click={handleButtonClick}>
+  <Button {...$$restProps} {text} on:click={handleButtonClick}>
     {#if withArrow}
       <i class:iconOnly class="material-icons arrow">
         {`arrow_drop_${open ? 'up' : 'down'}`}

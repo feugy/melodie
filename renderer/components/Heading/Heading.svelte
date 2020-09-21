@@ -29,7 +29,7 @@
 </style>
 
 <header
-  class={$$props.class}
+  class={$$restProps.class}
   style="--image:url({image}); --shade-color:{shadeColor}; --bgPosition:{imagePosition}">
   <h1>{title}</h1>
 </header>

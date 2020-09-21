@@ -33,21 +33,21 @@
   .progress {
     @apply absolute inset-0;
     background-color: var(--font-color);
+
+    &::after {
+      @apply absolute rounded-full inline-block bg-transparent;
+      content: '';
+      right: -9px;
+      top: -5px;
+      width: 0.8em;
+      height: 0.8em;
+      border: 1px solid transparent;
+    }
   }
 
   .wrapper:hover .progress::after {
     background: var(--font-color);
     border-color: var(--bg-color);
-  }
-
-  .progress::after {
-    @apply absolute rounded-full inline-block bg-transparent;
-    content: '';
-    right: -9px;
-    top: -5px;
-    width: 0.8em;
-    height: 0.8em;
-    border: 1px solid transparent;
   }
 
   input {
@@ -56,26 +56,26 @@
     height: 0.3rem;
     margin-top: -0.3rem;
     -webkit-appearance: none;
-  }
 
-  input:focus {
-    @apply outline-none;
-  }
+    &:focus {
+      @apply outline-none;
+    }
 
-  input::-webkit-slider-thumb {
-    height: 1px;
-    width: 1px;
-    -webkit-appearance: none;
-  }
+    &::-webkit-slider-thumb {
+      height: 1px;
+      width: 1px;
+      -webkit-appearance: none;
+    }
 
-  input::-moz-range-thumb {
-    @apply border-none bg-transparent;
+    &::-moz-range-thumb {
+      @apply border-none bg-transparent;
+    }
   }
 </style>
 
-<div class={'wrapper ' + $$props.class}>
+<div class={'wrapper ' + $$restProps.class}>
   <input
-    class={$$props.class}
+    class={$$restProps.class}
     type="range"
     min={0}
     value={current}

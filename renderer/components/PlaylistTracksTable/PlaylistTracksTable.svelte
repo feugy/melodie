@@ -42,6 +42,11 @@
   tr {
     @apply grid gap-0 items-center;
     grid-template-columns: 60px repeat(10, 1fr) 60px;
+
+    & > *:first-child,
+    & > *:last-child {
+      @apply text-center;
+    }
   }
 
   thead {
@@ -53,17 +58,12 @@
     @apply p-3 text-left;
   }
 
-  th:nth-child(3) {
-    @apply text-right;
-  }
-
   th {
     @apply font-semibold text-sm;
-  }
 
-  tr > *:first-child,
-  tr > *:last-child {
-    @apply text-center;
+    &:nth-child(3) {
+      @apply text-right;
+    }
   }
 
   tbody > * > *:nth-child(2n + 1) {

@@ -25,11 +25,11 @@ exports[`Storyshots Components/Playlist Default 1`] = `
         class="controls svelte-1lsew7w"
       >
         <button
-          class="svelte-1f17ahs primary iconOnly large"
+          class="svelte-2vu076 primary iconOnly large"
           data-testid="play"
         >
           <i
-            class="material-icons svelte-1f17ahs"
+            class="material-icons svelte-2vu076"
           >
             play_arrow
           </i>
@@ -39,11 +39,11 @@ exports[`Storyshots Components/Playlist Default 1`] = `
         </button>
          
         <button
-          class="svelte-1f17ahs primary iconOnly large"
+          class="svelte-2vu076 primary iconOnly large"
           data-testid="enqueue"
         >
           <i
-            class="material-icons svelte-1f17ahs"
+            class="material-icons svelte-2vu076"
           >
             playlist_add
           </i>
@@ -82,11 +82,11 @@ exports[`Storyshots Components/Playlist Single Track 1`] = `
         class="controls svelte-1lsew7w"
       >
         <button
-          class="svelte-1f17ahs primary iconOnly large"
+          class="svelte-2vu076 primary iconOnly large"
           data-testid="play"
         >
           <i
-            class="material-icons svelte-1f17ahs"
+            class="material-icons svelte-2vu076"
           >
             play_arrow
           </i>
@@ -96,11 +96,11 @@ exports[`Storyshots Components/Playlist Single Track 1`] = `
         </button>
          
         <button
-          class="svelte-1f17ahs primary iconOnly large"
+          class="svelte-2vu076 primary iconOnly large"
           data-testid="enqueue"
         >
           <i
-            class="material-icons svelte-1f17ahs"
+            class="material-icons svelte-2vu076"
           >
             playlist_add
           </i>

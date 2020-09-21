@@ -4,6 +4,6 @@
   }
 </style>
 
-<h4 class={$$props.class}>
+<h4 class={$$restProps.class}>
   <slot />
 </h4>

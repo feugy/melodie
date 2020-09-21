@@ -6,17 +6,17 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
 >
   <div>
     <div
-      class="filter svelte-7u451e"
+      class="filter svelte-1vslz6j"
     />
      
     <div
-      class="backdrop svelte-7u451e"
+      class="backdrop svelte-1vslz6j"
     >
       <button
-        class="absolute top-0 right-0 m-4 svelte-1f17ahs iconOnly"
+        class="absolute top-0 right-0 m-4 svelte-2vu076 iconOnly"
       >
         <i
-          class="material-icons svelte-1f17ahs"
+          class="material-icons svelte-2vu076"
         >
           close
         </i>
@@ -26,28 +26,28 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
       </button>
        
       <article
-        class="svelte-7u451e"
+        class="svelte-1vslz6j"
       >
         <header
-          class="svelte-7u451e"
+          class="svelte-1vslz6j"
         >
           Track details
         </header>
          
         <div
-          class="content svelte-7u451e"
+          class="content svelte-1vslz6j"
         >
           <div
             slot="content"
           >
             <table
-              class="svelte-sq4n81"
+              class="svelte-1v0xvp5"
             />
           </div>
         </div>
          
         <footer
-          class="svelte-7u451e"
+          class="svelte-1vslz6j"
         />
       </article>
     </div>
@@ -55,46 +55,46 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
     
      
     <table
-      class="svelte-133b2lx"
+      class="svelte-1nzz15j"
     >
       <thead
-        class="svelte-133b2lx"
+        class="svelte-1nzz15j"
       >
         <tr
-          class="svelte-133b2lx"
+          class="svelte-1nzz15j"
         >
           <th
-            class="svelte-133b2lx"
+            class="svelte-1nzz15j"
           >
             #
           </th>
            
           <th
-            class="col-span-5 svelte-133b2lx"
+            class="col-span-5 svelte-1nzz15j"
           >
             Track
           </th>
            
           <th
-            class="col-span-1 svelte-133b2lx"
+            class="col-span-1 svelte-1nzz15j"
           >
             Duration
           </th>
            
           <th
-            class="col-span-4 svelte-133b2lx"
+            class="col-span-4 svelte-1nzz15j"
           >
             Album
           </th>
            
           <th
-            class="svelte-133b2lx"
+            class="svelte-1nzz15j"
           />
         </tr>
       </thead>
        
       <tbody
-        class="svelte-133b2lx"
+        class="svelte-1nzz15j"
       >
          
         <ol>
@@ -102,17 +102,17 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
             class="svelte-13iddqb"
           >
             <tr
-              class="svelte-133b2lx"
+              class="svelte-1nzz15j"
               slot="item"
             >
               <td
-                class="svelte-133b2lx"
+                class="svelte-1nzz15j"
               >
                 1
               </td>
                
               <td
-                class="col-span-6 svelte-133b2lx"
+                class="col-span-6 svelte-1nzz15j"
               >
                 <div
                   class="undefined root svelte-whrgz7"
@@ -165,7 +165,7 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
               </td>
                
               <td
-                class="col-span-4 svelte-133b2lx"
+                class="col-span-4 svelte-1nzz15j"
               >
                 <a
                   class="underlined"
@@ -177,16 +177,16 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
               </td>
                
               <td
-                class="svelte-133b2lx"
+                class="svelte-1nzz15j"
               >
                 <span
-                  class="wrapper svelte-12ofrds"
+                  class="wrapper svelte-1dsb53o"
                 >
                   <button
-                    class="svelte-1f17ahs iconOnly noBorder"
+                    class="svelte-2vu076 iconOnly noBorder"
                   >
                     <i
-                      class="material-icons svelte-1f17ahs"
+                      class="material-icons svelte-2vu076"
                     >
                       more_vert
                     </i>
@@ -205,17 +205,17 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
             class="svelte-13iddqb"
           >
             <tr
-              class="svelte-133b2lx"
+              class="svelte-1nzz15j"
               slot="item"
             >
               <td
-                class="svelte-133b2lx"
+                class="svelte-1nzz15j"
               >
                 2
               </td>
                
               <td
-                class="col-span-6 svelte-133b2lx"
+                class="col-span-6 svelte-1nzz15j"
               >
                 <div
                   class="undefined root svelte-whrgz7"
@@ -268,7 +268,7 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
               </td>
                
               <td
-                class="col-span-4 svelte-133b2lx"
+                class="col-span-4 svelte-1nzz15j"
               >
                 <a
                   class="underlined"
@@ -280,16 +280,16 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
               </td>
                
               <td
-                class="svelte-133b2lx"
+                class="svelte-1nzz15j"
               >
                 <span
-                  class="wrapper svelte-12ofrds"
+                  class="wrapper svelte-1dsb53o"
                 >
                   <button
-                    class="svelte-1f17ahs iconOnly noBorder"
+                    class="svelte-2vu076 iconOnly noBorder"
                   >
                     <i
-                      class="material-icons svelte-1f17ahs"
+                      class="material-icons svelte-2vu076"
                     >
                       more_vert
                     </i>
@@ -308,17 +308,17 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
             class="svelte-13iddqb"
           >
             <tr
-              class="svelte-133b2lx"
+              class="svelte-1nzz15j"
               slot="item"
             >
               <td
-                class="svelte-133b2lx"
+                class="svelte-1nzz15j"
               >
                 3
               </td>
                
               <td
-                class="col-span-6 svelte-133b2lx"
+                class="col-span-6 svelte-1nzz15j"
               >
                 <div
                   class="undefined root svelte-whrgz7"
@@ -371,7 +371,7 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
               </td>
                
               <td
-                class="col-span-4 svelte-133b2lx"
+                class="col-span-4 svelte-1nzz15j"
               >
                 <a
                   class="underlined"
@@ -383,16 +383,16 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
               </td>
                
               <td
-                class="svelte-133b2lx"
+                class="svelte-1nzz15j"
               >
                 <span
-                  class="wrapper svelte-12ofrds"
+                  class="wrapper svelte-1dsb53o"
                 >
                   <button
-                    class="svelte-1f17ahs iconOnly noBorder"
+                    class="svelte-2vu076 iconOnly noBorder"
                   >
                     <i
-                      class="material-icons svelte-1f17ahs"
+                      class="material-icons svelte-2vu076"
                     >
                       more_vert
                     </i>
@@ -411,17 +411,17 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
             class="svelte-13iddqb"
           >
             <tr
-              class="svelte-133b2lx"
+              class="svelte-1nzz15j"
               slot="item"
             >
               <td
-                class="svelte-133b2lx"
+                class="svelte-1nzz15j"
               >
                 4
               </td>
                
               <td
-                class="col-span-6 svelte-133b2lx"
+                class="col-span-6 svelte-1nzz15j"
               >
                 <div
                   class="undefined root svelte-whrgz7"
@@ -474,7 +474,7 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
               </td>
                
               <td
-                class="col-span-4 svelte-133b2lx"
+                class="col-span-4 svelte-1nzz15j"
               >
                 <a
                   class="underlined"
@@ -486,16 +486,16 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
               </td>
                
               <td
-                class="svelte-133b2lx"
+                class="svelte-1nzz15j"
               >
                 <span
-                  class="wrapper svelte-12ofrds"
+                  class="wrapper svelte-1dsb53o"
                 >
                   <button
-                    class="svelte-1f17ahs iconOnly noBorder"
+                    class="svelte-2vu076 iconOnly noBorder"
                   >
                     <i
-                      class="material-icons svelte-1f17ahs"
+                      class="material-icons svelte-2vu076"
                     >
                       more_vert
                     </i>
@@ -514,17 +514,17 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
             class="svelte-13iddqb"
           >
             <tr
-              class="svelte-133b2lx"
+              class="svelte-1nzz15j"
               slot="item"
             >
               <td
-                class="svelte-133b2lx"
+                class="svelte-1nzz15j"
               >
                 5
               </td>
                
               <td
-                class="col-span-6 svelte-133b2lx"
+                class="col-span-6 svelte-1nzz15j"
               >
                 <div
                   class="undefined root svelte-whrgz7"
@@ -577,7 +577,7 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
               </td>
                
               <td
-                class="col-span-4 svelte-133b2lx"
+                class="col-span-4 svelte-1nzz15j"
               >
                 <a
                   class="underlined"
@@ -589,16 +589,16 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
               </td>
                
               <td
-                class="svelte-133b2lx"
+                class="svelte-1nzz15j"
               >
                 <span
-                  class="wrapper svelte-12ofrds"
+                  class="wrapper svelte-1dsb53o"
                 >
                   <button
-                    class="svelte-1f17ahs iconOnly noBorder"
+                    class="svelte-2vu076 iconOnly noBorder"
                   >
                     <i
-                      class="material-icons svelte-1f17ahs"
+                      class="material-icons svelte-2vu076"
                     >
                       more_vert
                     </i>
@@ -617,17 +617,17 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
             class="svelte-13iddqb"
           >
             <tr
-              class="svelte-133b2lx"
+              class="svelte-1nzz15j"
               slot="item"
             >
               <td
-                class="svelte-133b2lx"
+                class="svelte-1nzz15j"
               >
                 6
               </td>
                
               <td
-                class="col-span-6 svelte-133b2lx"
+                class="col-span-6 svelte-1nzz15j"
               >
                 <div
                   class="undefined root svelte-whrgz7"
@@ -680,7 +680,7 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
               </td>
                
               <td
-                class="col-span-4 svelte-133b2lx"
+                class="col-span-4 svelte-1nzz15j"
               >
                 <a
                   class="underlined"
@@ -692,16 +692,16 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
               </td>
                
               <td
-                class="svelte-133b2lx"
+                class="svelte-1nzz15j"
               >
                 <span
-                  class="wrapper svelte-12ofrds"
+                  class="wrapper svelte-1dsb53o"
                 >
                   <button
-                    class="svelte-1f17ahs iconOnly noBorder"
+                    class="svelte-2vu076 iconOnly noBorder"
                   >
                     <i
-                      class="material-icons svelte-1f17ahs"
+                      class="material-icons svelte-2vu076"
                     >
                       more_vert
                     </i>
@@ -720,17 +720,17 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
             class="svelte-13iddqb"
           >
             <tr
-              class="svelte-133b2lx"
+              class="svelte-1nzz15j"
               slot="item"
             >
               <td
-                class="svelte-133b2lx"
+                class="svelte-1nzz15j"
               >
                 7
               </td>
                
               <td
-                class="col-span-6 svelte-133b2lx"
+                class="col-span-6 svelte-1nzz15j"
               >
                 <div
                   class="undefined root svelte-whrgz7"
@@ -783,7 +783,7 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
               </td>
                
               <td
-                class="col-span-4 svelte-133b2lx"
+                class="col-span-4 svelte-1nzz15j"
               >
                 <a
                   class="underlined"
@@ -795,16 +795,16 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
               </td>
                
               <td
-                class="svelte-133b2lx"
+                class="svelte-1nzz15j"
               >
                 <span
-                  class="wrapper svelte-12ofrds"
+                  class="wrapper svelte-1dsb53o"
                 >
                   <button
-                    class="svelte-1f17ahs iconOnly noBorder"
+                    class="svelte-2vu076 iconOnly noBorder"
                   >
                     <i
-                      class="material-icons svelte-1f17ahs"
+                      class="material-icons svelte-2vu076"
                     >
                       more_vert
                     </i>
@@ -823,17 +823,17 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
             class="svelte-13iddqb"
           >
             <tr
-              class="svelte-133b2lx"
+              class="svelte-1nzz15j"
               slot="item"
             >
               <td
-                class="svelte-133b2lx"
+                class="svelte-1nzz15j"
               >
                 8
               </td>
                
               <td
-                class="col-span-6 svelte-133b2lx"
+                class="col-span-6 svelte-1nzz15j"
               >
                 <div
                   class="undefined root svelte-whrgz7"
@@ -886,7 +886,7 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
               </td>
                
               <td
-                class="col-span-4 svelte-133b2lx"
+                class="col-span-4 svelte-1nzz15j"
               >
                 <a
                   class="underlined"
@@ -898,16 +898,16 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
               </td>
                
               <td
-                class="svelte-133b2lx"
+                class="svelte-1nzz15j"
               >
                 <span
-                  class="wrapper svelte-12ofrds"
+                  class="wrapper svelte-1dsb53o"
                 >
                   <button
-                    class="svelte-1f17ahs iconOnly noBorder"
+                    class="svelte-2vu076 iconOnly noBorder"
                   >
                     <i
-                      class="material-icons svelte-1f17ahs"
+                      class="material-icons svelte-2vu076"
                     >
                       more_vert
                     </i>
@@ -926,17 +926,17 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
             class="svelte-13iddqb"
           >
             <tr
-              class="svelte-133b2lx"
+              class="svelte-1nzz15j"
               slot="item"
             >
               <td
-                class="svelte-133b2lx"
+                class="svelte-1nzz15j"
               >
                 9
               </td>
                
               <td
-                class="col-span-6 svelte-133b2lx"
+                class="col-span-6 svelte-1nzz15j"
               >
                 <div
                   class="undefined root svelte-whrgz7"
@@ -989,7 +989,7 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
               </td>
                
               <td
-                class="col-span-4 svelte-133b2lx"
+                class="col-span-4 svelte-1nzz15j"
               >
                 <a
                   class="underlined"
@@ -1001,16 +1001,16 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
               </td>
                
               <td
-                class="svelte-133b2lx"
+                class="svelte-1nzz15j"
               >
                 <span
-                  class="wrapper svelte-12ofrds"
+                  class="wrapper svelte-1dsb53o"
                 >
                   <button
-                    class="svelte-1f17ahs iconOnly noBorder"
+                    class="svelte-2vu076 iconOnly noBorder"
                   >
                     <i
-                      class="material-icons svelte-1f17ahs"
+                      class="material-icons svelte-2vu076"
                     >
                       more_vert
                     </i>
@@ -1029,17 +1029,17 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
             class="svelte-13iddqb"
           >
             <tr
-              class="svelte-133b2lx"
+              class="svelte-1nzz15j"
               slot="item"
             >
               <td
-                class="svelte-133b2lx"
+                class="svelte-1nzz15j"
               >
                 10
               </td>
                
               <td
-                class="col-span-6 svelte-133b2lx"
+                class="col-span-6 svelte-1nzz15j"
               >
                 <div
                   class="undefined root svelte-whrgz7"
@@ -1092,7 +1092,7 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
               </td>
                
               <td
-                class="col-span-4 svelte-133b2lx"
+                class="col-span-4 svelte-1nzz15j"
               >
                 <a
                   class="underlined"
@@ -1104,16 +1104,16 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
               </td>
                
               <td
-                class="svelte-133b2lx"
+                class="svelte-1nzz15j"
               >
                 <span
-                  class="wrapper svelte-12ofrds"
+                  class="wrapper svelte-1dsb53o"
                 >
                   <button
-                    class="svelte-1f17ahs iconOnly noBorder"
+                    class="svelte-2vu076 iconOnly noBorder"
                   >
                     <i
-                      class="material-icons svelte-1f17ahs"
+                      class="material-icons svelte-2vu076"
                     >
                       more_vert
                     </i>
@@ -1132,17 +1132,17 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
             class="svelte-13iddqb"
           >
             <tr
-              class="svelte-133b2lx"
+              class="svelte-1nzz15j"
               slot="item"
             >
               <td
-                class="svelte-133b2lx"
+                class="svelte-1nzz15j"
               >
                 11
               </td>
                
               <td
-                class="col-span-6 svelte-133b2lx"
+                class="col-span-6 svelte-1nzz15j"
               >
                 <div
                   class="undefined root svelte-whrgz7"
@@ -1195,7 +1195,7 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
               </td>
                
               <td
-                class="col-span-4 svelte-133b2lx"
+                class="col-span-4 svelte-1nzz15j"
               >
                 <a
                   class="underlined"
@@ -1207,16 +1207,16 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
               </td>
                
               <td
-                class="svelte-133b2lx"
+                class="svelte-1nzz15j"
               >
                 <span
-                  class="wrapper svelte-12ofrds"
+                  class="wrapper svelte-1dsb53o"
                 >
                   <button
-                    class="svelte-1f17ahs iconOnly noBorder"
+                    class="svelte-2vu076 iconOnly noBorder"
                   >
                     <i
-                      class="material-icons svelte-1f17ahs"
+                      class="material-icons svelte-2vu076"
                     >
                       more_vert
                     </i>
@@ -1235,17 +1235,17 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
             class="svelte-13iddqb"
           >
             <tr
-              class="svelte-133b2lx"
+              class="svelte-1nzz15j"
               slot="item"
             >
               <td
-                class="svelte-133b2lx"
+                class="svelte-1nzz15j"
               >
                 12
               </td>
                
               <td
-                class="col-span-6 svelte-133b2lx"
+                class="col-span-6 svelte-1nzz15j"
               >
                 <div
                   class="undefined root svelte-whrgz7"
@@ -1298,7 +1298,7 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
               </td>
                
               <td
-                class="col-span-4 svelte-133b2lx"
+                class="col-span-4 svelte-1nzz15j"
               >
                 <a
                   class="underlined"
@@ -1310,16 +1310,16 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
               </td>
                
               <td
-                class="svelte-133b2lx"
+                class="svelte-1nzz15j"
               >
                 <span
-                  class="wrapper svelte-12ofrds"
+                  class="wrapper svelte-1dsb53o"
                 >
                   <button
-                    class="svelte-1f17ahs iconOnly noBorder"
+                    class="svelte-2vu076 iconOnly noBorder"
                   >
                     <i
-                      class="material-icons svelte-1f17ahs"
+                      class="material-icons svelte-2vu076"
                     >
                       more_vert
                     </i>
@@ -1338,17 +1338,17 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
             class="svelte-13iddqb"
           >
             <tr
-              class="svelte-133b2lx"
+              class="svelte-1nzz15j"
               slot="item"
             >
               <td
-                class="svelte-133b2lx"
+                class="svelte-1nzz15j"
               >
                 13
               </td>
                
               <td
-                class="col-span-6 svelte-133b2lx"
+                class="col-span-6 svelte-1nzz15j"
               >
                 <div
                   class="undefined root svelte-whrgz7"
@@ -1401,7 +1401,7 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
               </td>
                
               <td
-                class="col-span-4 svelte-133b2lx"
+                class="col-span-4 svelte-1nzz15j"
               >
                 <a
                   class="underlined"
@@ -1413,16 +1413,16 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
               </td>
                
               <td
-                class="svelte-133b2lx"
+                class="svelte-1nzz15j"
               >
                 <span
-                  class="wrapper svelte-12ofrds"
+                  class="wrapper svelte-1dsb53o"
                 >
                   <button
-                    class="svelte-1f17ahs iconOnly noBorder"
+                    class="svelte-2vu076 iconOnly noBorder"
                   >
                     <i
-                      class="material-icons svelte-1f17ahs"
+                      class="material-icons svelte-2vu076"
                     >
                       more_vert
                     </i>
@@ -1441,17 +1441,17 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
             class="svelte-13iddqb"
           >
             <tr
-              class="svelte-133b2lx"
+              class="svelte-1nzz15j"
               slot="item"
             >
               <td
-                class="svelte-133b2lx"
+                class="svelte-1nzz15j"
               >
                 14
               </td>
                
               <td
-                class="col-span-6 svelte-133b2lx"
+                class="col-span-6 svelte-1nzz15j"
               >
                 <div
                   class="undefined root svelte-whrgz7"
@@ -1504,7 +1504,7 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
               </td>
                
               <td
-                class="col-span-4 svelte-133b2lx"
+                class="col-span-4 svelte-1nzz15j"
               >
                 <a
                   class="underlined"
@@ -1516,16 +1516,16 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
               </td>
                
               <td
-                class="svelte-133b2lx"
+                class="svelte-1nzz15j"
               >
                 <span
-                  class="wrapper svelte-12ofrds"
+                  class="wrapper svelte-1dsb53o"
                 >
                   <button
-                    class="svelte-1f17ahs iconOnly noBorder"
+                    class="svelte-2vu076 iconOnly noBorder"
                   >
                     <i
-                      class="material-icons svelte-1f17ahs"
+                      class="material-icons svelte-2vu076"
                     >
                       more_vert
                     </i>
@@ -1544,17 +1544,17 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
             class="svelte-13iddqb"
           >
             <tr
-              class="svelte-133b2lx"
+              class="svelte-1nzz15j"
               slot="item"
             >
               <td
-                class="svelte-133b2lx"
+                class="svelte-1nzz15j"
               >
                 15
               </td>
                
               <td
-                class="col-span-6 svelte-133b2lx"
+                class="col-span-6 svelte-1nzz15j"
               >
                 <div
                   class="undefined root svelte-whrgz7"
@@ -1607,7 +1607,7 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
               </td>
                
               <td
-                class="col-span-4 svelte-133b2lx"
+                class="col-span-4 svelte-1nzz15j"
               >
                 <a
                   class="underlined"
@@ -1619,16 +1619,16 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
               </td>
                
               <td
-                class="svelte-133b2lx"
+                class="svelte-1nzz15j"
               >
                 <span
-                  class="wrapper svelte-12ofrds"
+                  class="wrapper svelte-1dsb53o"
                 >
                   <button
-                    class="svelte-1f17ahs iconOnly noBorder"
+                    class="svelte-2vu076 iconOnly noBorder"
                   >
                     <i
-                      class="material-icons svelte-1f17ahs"
+                      class="material-icons svelte-2vu076"
                     >
                       more_vert
                     </i>
@@ -1647,17 +1647,17 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
             class="svelte-13iddqb"
           >
             <tr
-              class="svelte-133b2lx"
+              class="svelte-1nzz15j"
               slot="item"
             >
               <td
-                class="svelte-133b2lx"
+                class="svelte-1nzz15j"
               >
                 16
               </td>
                
               <td
-                class="col-span-6 svelte-133b2lx"
+                class="col-span-6 svelte-1nzz15j"
               >
                 <div
                   class="undefined root svelte-whrgz7"
@@ -1710,7 +1710,7 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
               </td>
                
               <td
-                class="col-span-4 svelte-133b2lx"
+                class="col-span-4 svelte-1nzz15j"
               >
                 <a
                   class="underlined"
@@ -1722,16 +1722,16 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
               </td>
                
               <td
-                class="svelte-133b2lx"
+                class="svelte-1nzz15j"
               >
                 <span
-                  class="wrapper svelte-12ofrds"
+                  class="wrapper svelte-1dsb53o"
                 >
                   <button
-                    class="svelte-1f17ahs iconOnly noBorder"
+                    class="svelte-2vu076 iconOnly noBorder"
                   >
                     <i
-                      class="material-icons svelte-1f17ahs"
+                      class="material-icons svelte-2vu076"
                     >
                       more_vert
                     </i>
@@ -1750,17 +1750,17 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
             class="svelte-13iddqb"
           >
             <tr
-              class="svelte-133b2lx"
+              class="svelte-1nzz15j"
               slot="item"
             >
               <td
-                class="svelte-133b2lx"
+                class="svelte-1nzz15j"
               >
                 17
               </td>
                
               <td
-                class="col-span-6 svelte-133b2lx"
+                class="col-span-6 svelte-1nzz15j"
               >
                 <div
                   class="undefined root svelte-whrgz7"
@@ -1813,7 +1813,7 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
               </td>
                
               <td
-                class="col-span-4 svelte-133b2lx"
+                class="col-span-4 svelte-1nzz15j"
               >
                 <a
                   class="underlined"
@@ -1825,16 +1825,16 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
               </td>
                
               <td
-                class="svelte-133b2lx"
+                class="svelte-1nzz15j"
               >
                 <span
-                  class="wrapper svelte-12ofrds"
+                  class="wrapper svelte-1dsb53o"
                 >
                   <button
-                    class="svelte-1f17ahs iconOnly noBorder"
+                    class="svelte-2vu076 iconOnly noBorder"
                   >
                     <i
-                      class="material-icons svelte-1f17ahs"
+                      class="material-icons svelte-2vu076"
                     >
                       more_vert
                     </i>
@@ -1853,17 +1853,17 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
             class="svelte-13iddqb"
           >
             <tr
-              class="svelte-133b2lx"
+              class="svelte-1nzz15j"
               slot="item"
             >
               <td
-                class="svelte-133b2lx"
+                class="svelte-1nzz15j"
               >
                 18
               </td>
                
               <td
-                class="col-span-6 svelte-133b2lx"
+                class="col-span-6 svelte-1nzz15j"
               >
                 <div
                   class="undefined root svelte-whrgz7"
@@ -1916,7 +1916,7 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
               </td>
                
               <td
-                class="col-span-4 svelte-133b2lx"
+                class="col-span-4 svelte-1nzz15j"
               >
                 <a
                   class="underlined"
@@ -1928,16 +1928,16 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
               </td>
                
               <td
-                class="svelte-133b2lx"
+                class="svelte-1nzz15j"
               >
                 <span
-                  class="wrapper svelte-12ofrds"
+                  class="wrapper svelte-1dsb53o"
                 >
                   <button
-                    class="svelte-1f17ahs iconOnly noBorder"
+                    class="svelte-2vu076 iconOnly noBorder"
                   >
                     <i
-                      class="material-icons svelte-1f17ahs"
+                      class="material-icons svelte-2vu076"
                     >
                       more_vert
                     </i>

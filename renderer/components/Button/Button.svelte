@@ -22,63 +22,64 @@
     box-shadow: inset 0 0 0 2px var(--outline-color);
     /* hack to avoid setting relative on button (makes it harder to position in Dialogue) and still allow badge */
     transform: scale(1);
-  }
 
-  button:focus {
-    @apply outline-none;
-  }
+    &:focus {
+      @apply outline-none;
+    }
 
-  button.noBorder,
-  button.noBorder:hover,
-  button.noBorder:active {
-    @apply shadow-none;
-  }
+    &.noBorder,
+    &.noBorder:hover,
+    &.noBorder:active {
+      @apply shadow-none;
+    }
 
-  button.large {
-    @apply text-lg;
-    line-height: 4rem;
-  }
+    &.large {
+      @apply text-lg;
+      line-height: 4rem;
 
-  button > i {
-    font-size: 150%;
-  }
+      &:not(.iconOnly) {
+        @apply px-8;
+      }
+    }
 
-  button.large:not(.iconOnly) {
-    @apply px-8;
-  }
+    & > i {
+      font-size: 150%;
+    }
 
-  .primary {
-    @apply shadow-none;
-    background-color: var(--primary-color);
-  }
+    &:hover {
+      background-color: var(--hover-bg-color);
+      transform: scale(1.03);
+    }
+    &:active {
+      background-color: var(--hover-bg-color);
+      transform: scale(0.95);
+    }
 
-  button:hover,
-  button:active {
-    background-color: var(--hover-bg-color);
-  }
+    &.iconOnly {
+      @apply p-2 rounded-full;
 
-  button.primary:hover,
-  button.primary:active {
-    background-color: var(--hover-primary-color);
-  }
+      &:hover {
+        transform: scale(1.1);
+      }
+      &:active {
+        transform: scale(0.95);
+      }
+    }
 
-  button:hover {
-    transform: scale(1.03);
-  }
-  button.iconOnly:hover {
-    transform: scale(1.1);
-  }
-  button:active {
-    transform: scale(0.95);
-  }
+    &.primary {
+      @apply shadow-none;
+      background-color: var(--primary-color);
 
-  :not(.iconOnly) > i {
-    margin-left: -0.3em;
-    margin-right: 0.3em;
-  }
+      &:hover,
+      &:active {
+        background-color: var(--hover-primary-color);
+      }
+    }
 
-  .iconOnly {
-    @apply p-2 rounded-full;
+    &:not(.iconOnly) > i {
+      margin-left: -0.3em;
+      margin-right: 0.3em;
+    }
   }
 
   .badge {
@@ -91,7 +92,7 @@
     min-width: 1.5rem;
   }
 
-  .halo:before {
+  .halo::before {
     @apply absolute inline-block opacity-0 rounded-full pointer-events-none z-10;
     content: '';
     border: 1px solid var(--hover-color);
@@ -122,8 +123,8 @@
   class:iconOnly
   class:large
   class:noBorder
-  data-testid={$$props['data-testid']}
-  class={$$props.class}
+  data-testid={$$restProps['data-testid']}
+  class={$$restProps.class}
   on:click|preventDefault|stopPropagation>
   {#if icon}<i class="material-icons">{icon}</i>{/if}
   {#if text}<span>{text}</span>{/if}

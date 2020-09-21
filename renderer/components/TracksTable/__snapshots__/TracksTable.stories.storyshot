@@ -6,17 +6,17 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
 >
   <div>
     <div
-      class="filter svelte-7u451e"
+      class="filter svelte-1vslz6j"
     />
      
     <div
-      class="backdrop svelte-7u451e"
+      class="backdrop svelte-1vslz6j"
     >
       <button
-        class="absolute top-0 right-0 m-4 svelte-1f17ahs iconOnly"
+        class="absolute top-0 right-0 m-4 svelte-2vu076 iconOnly"
       >
         <i
-          class="material-icons svelte-1f17ahs"
+          class="material-icons svelte-2vu076"
         >
           close
         </i>
@@ -26,28 +26,28 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
       </button>
        
       <article
-        class="svelte-7u451e"
+        class="svelte-1vslz6j"
       >
         <header
-          class="svelte-7u451e"
+          class="svelte-1vslz6j"
         >
           Track details
         </header>
          
         <div
-          class="content svelte-7u451e"
+          class="content svelte-1vslz6j"
         >
           <div
             slot="content"
           >
             <table
-              class="svelte-sq4n81"
+              class="svelte-1v0xvp5"
             />
           </div>
         </div>
          
         <footer
-          class="svelte-7u451e"
+          class="svelte-1vslz6j"
         />
       </article>
     </div>
@@ -55,70 +55,70 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
     
      
     <table
-      class=" svelte-pacrnm"
+      class=" svelte-1fki7pe"
     >
       <thead
-        class="svelte-pacrnm"
+        class="svelte-1fki7pe"
       >
         <tr
-          class="svelte-pacrnm"
+          class="svelte-1fki7pe"
         >
           <th
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             #
           </th>
            
           <th
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             Track
           </th>
            
           <th
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             Artist
           </th>
            
           <th
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             Album
           </th>
            
           <th
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             Duration
           </th>
            
           <th
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           />
         </tr>
       </thead>
        
       <tbody
-        class="svelte-pacrnm"
+        class="svelte-1fki7pe"
       >
         <tr
-          class="svelte-pacrnm"
+          class="svelte-1fki7pe"
         >
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             1
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             American Money
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -130,7 +130,7 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -142,22 +142,22 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             5:32
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             <span
-              class="wrapper svelte-12ofrds"
+              class="wrapper svelte-1dsb53o"
             >
               <button
-                class="svelte-1f17ahs iconOnly noBorder"
+                class="svelte-2vu076 iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-1f17ahs"
+                  class="material-icons svelte-2vu076"
                 >
                   more_vert
                 </i>
@@ -172,22 +172,22 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
            
         </tr>
         <tr
-          class="svelte-pacrnm"
+          class="svelte-1fki7pe"
         >
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             2
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             Fantaisie Sign
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -199,7 +199,7 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -211,22 +211,22 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             3:35
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             <span
-              class="wrapper svelte-12ofrds"
+              class="wrapper svelte-1dsb53o"
             >
               <button
-                class="svelte-1f17ahs iconOnly noBorder"
+                class="svelte-2vu076 iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-1f17ahs"
+                  class="material-icons svelte-2vu076"
                 >
                   more_vert
                 </i>
@@ -241,22 +241,22 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
            
         </tr>
         <tr
-          class="svelte-pacrnm"
+          class="svelte-1fki7pe"
         >
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             3
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             Don't Bother None
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -268,7 +268,7 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -280,22 +280,22 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             3:45
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             <span
-              class="wrapper svelte-12ofrds"
+              class="wrapper svelte-1dsb53o"
             >
               <button
-                class="svelte-1f17ahs iconOnly noBorder"
+                class="svelte-2vu076 iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-1f17ahs"
+                  class="material-icons svelte-2vu076"
                 >
                   more_vert
                 </i>
@@ -310,22 +310,22 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
            
         </tr>
         <tr
-          class="svelte-pacrnm"
+          class="svelte-1fki7pe"
         >
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             4
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             Vitamin A
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -337,7 +337,7 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -349,22 +349,22 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             4:41
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             <span
-              class="wrapper svelte-12ofrds"
+              class="wrapper svelte-1dsb53o"
             >
               <button
-                class="svelte-1f17ahs iconOnly noBorder"
+                class="svelte-2vu076 iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-1f17ahs"
+                  class="material-icons svelte-2vu076"
                 >
                   more_vert
                 </i>
@@ -379,22 +379,22 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
            
         </tr>
         <tr
-          class="svelte-pacrnm"
+          class="svelte-1fki7pe"
         >
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             5
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             LIVE in Baghdad
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -406,7 +406,7 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -418,22 +418,22 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             2:59
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             <span
-              class="wrapper svelte-12ofrds"
+              class="wrapper svelte-1dsb53o"
             >
               <button
-                class="svelte-1f17ahs iconOnly noBorder"
+                class="svelte-2vu076 iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-1f17ahs"
+                  class="material-icons svelte-2vu076"
                 >
                   more_vert
                 </i>
@@ -448,22 +448,22 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
            
         </tr>
         <tr
-          class="svelte-pacrnm"
+          class="svelte-1fki7pe"
         >
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             6
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             Cats on Mars
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -475,7 +475,7 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -487,22 +487,22 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             0:07
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             <span
-              class="wrapper svelte-12ofrds"
+              class="wrapper svelte-1dsb53o"
             >
               <button
-                class="svelte-1f17ahs iconOnly noBorder"
+                class="svelte-2vu076 iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-1f17ahs"
+                  class="material-icons svelte-2vu076"
                 >
                   more_vert
                 </i>
@@ -517,22 +517,22 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
            
         </tr>
         <tr
-          class="svelte-pacrnm"
+          class="svelte-1fki7pe"
         >
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             7
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             Want it All Back
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -544,7 +544,7 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -556,22 +556,22 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             3:51
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             <span
-              class="wrapper svelte-12ofrds"
+              class="wrapper svelte-1dsb53o"
             >
               <button
-                class="svelte-1f17ahs iconOnly noBorder"
+                class="svelte-2vu076 iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-1f17ahs"
+                  class="material-icons svelte-2vu076"
                 >
                   more_vert
                 </i>
@@ -586,22 +586,22 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
            
         </tr>
         <tr
-          class="svelte-pacrnm"
+          class="svelte-1fki7pe"
         >
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             8
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             Bindy
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -613,7 +613,7 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -625,22 +625,22 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             0:15
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             <span
-              class="wrapper svelte-12ofrds"
+              class="wrapper svelte-1dsb53o"
             >
               <button
-                class="svelte-1f17ahs iconOnly noBorder"
+                class="svelte-2vu076 iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-1f17ahs"
+                  class="material-icons svelte-2vu076"
                 >
                   more_vert
                 </i>
@@ -655,22 +655,22 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
            
         </tr>
         <tr
-          class="svelte-pacrnm"
+          class="svelte-1fki7pe"
         >
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             9
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             You Make Me Coo
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -682,7 +682,7 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -694,22 +694,22 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             3:14
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             <span
-              class="wrapper svelte-12ofrds"
+              class="wrapper svelte-1dsb53o"
             >
               <button
-                class="svelte-1f17ahs iconOnly noBorder"
+                class="svelte-2vu076 iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-1f17ahs"
+                  class="material-icons svelte-2vu076"
                 >
                   more_vert
                 </i>
@@ -724,22 +724,22 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
            
         </tr>
         <tr
-          class="svelte-pacrnm"
+          class="svelte-1fki7pe"
         >
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             10
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             Vitamin B
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -751,7 +751,7 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -763,22 +763,22 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             4:06
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             <span
-              class="wrapper svelte-12ofrds"
+              class="wrapper svelte-1dsb53o"
             >
               <button
-                class="svelte-1f17ahs iconOnly noBorder"
+                class="svelte-2vu076 iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-1f17ahs"
+                  class="material-icons svelte-2vu076"
                 >
                   more_vert
                 </i>
@@ -793,22 +793,22 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
            
         </tr>
         <tr
-          class="svelte-pacrnm"
+          class="svelte-1fki7pe"
         >
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             11
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             Green Bird
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -820,7 +820,7 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -832,22 +832,22 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             2:33
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             <span
-              class="wrapper svelte-12ofrds"
+              class="wrapper svelte-1dsb53o"
             >
               <button
-                class="svelte-1f17ahs iconOnly noBorder"
+                class="svelte-2vu076 iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-1f17ahs"
+                  class="material-icons svelte-2vu076"
                 >
                   more_vert
                 </i>
@@ -862,22 +862,22 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
            
         </tr>
         <tr
-          class="svelte-pacrnm"
+          class="svelte-1fki7pe"
         >
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             12
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             ELM
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -889,7 +889,7 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -901,22 +901,22 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             6:55
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             <span
-              class="wrapper svelte-12ofrds"
+              class="wrapper svelte-1dsb53o"
             >
               <button
-                class="svelte-1f17ahs iconOnly noBorder"
+                class="svelte-2vu076 iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-1f17ahs"
+                  class="material-icons svelte-2vu076"
                 >
                   more_vert
                 </i>
@@ -931,22 +931,22 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
            
         </tr>
         <tr
-          class="svelte-pacrnm"
+          class="svelte-1fki7pe"
         >
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             13
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             Vitamin C
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -958,7 +958,7 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -970,22 +970,22 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             5:24
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             <span
-              class="wrapper svelte-12ofrds"
+              class="wrapper svelte-1dsb53o"
             >
               <button
-                class="svelte-1f17ahs iconOnly noBorder"
+                class="svelte-2vu076 iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-1f17ahs"
+                  class="material-icons svelte-2vu076"
                 >
                   more_vert
                 </i>
@@ -1000,22 +1000,22 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
            
         </tr>
         <tr
-          class="svelte-pacrnm"
+          class="svelte-1fki7pe"
         >
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             14
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             Gateway
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -1027,7 +1027,7 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -1039,22 +1039,22 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             0:16
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             <span
-              class="wrapper svelte-12ofrds"
+              class="wrapper svelte-1dsb53o"
             >
               <button
-                class="svelte-1f17ahs iconOnly noBorder"
+                class="svelte-2vu076 iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-1f17ahs"
+                  class="material-icons svelte-2vu076"
                 >
                   more_vert
                 </i>
@@ -1069,22 +1069,22 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
            
         </tr>
         <tr
-          class="svelte-pacrnm"
+          class="svelte-1fki7pe"
         >
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             15
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             The Singing Sea
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -1096,7 +1096,7 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -1108,22 +1108,22 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             6:41
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             <span
-              class="wrapper svelte-12ofrds"
+              class="wrapper svelte-1dsb53o"
             >
               <button
-                class="svelte-1f17ahs iconOnly noBorder"
+                class="svelte-2vu076 iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-1f17ahs"
+                  class="material-icons svelte-2vu076"
                 >
                   more_vert
                 </i>
@@ -1138,22 +1138,22 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
            
         </tr>
         <tr
-          class="svelte-pacrnm"
+          class="svelte-1fki7pe"
         >
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             16
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             The Egg and You!
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -1165,7 +1165,7 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -1177,22 +1177,22 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             4:47
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             <span
-              class="wrapper svelte-12ofrds"
+              class="wrapper svelte-1dsb53o"
             >
               <button
-                class="svelte-1f17ahs iconOnly noBorder"
+                class="svelte-2vu076 iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-1f17ahs"
+                  class="material-icons svelte-2vu076"
                 >
                   more_vert
                 </i>
@@ -1207,22 +1207,22 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
            
         </tr>
         <tr
-          class="svelte-pacrnm"
+          class="svelte-1fki7pe"
         >
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             17
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             Forever Broke
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -1234,7 +1234,7 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -1246,22 +1246,22 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             1:36
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             <span
-              class="wrapper svelte-12ofrds"
+              class="wrapper svelte-1dsb53o"
             >
               <button
-                class="svelte-1f17ahs iconOnly noBorder"
+                class="svelte-2vu076 iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-1f17ahs"
+                  class="material-icons svelte-2vu076"
                 >
                   more_vert
                 </i>
@@ -1276,22 +1276,22 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
            
         </tr>
         <tr
-          class="svelte-pacrnm"
+          class="svelte-1fki7pe"
         >
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             18
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             Power of Kungfu Remix
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -1303,7 +1303,7 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -1315,22 +1315,22 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             2:22
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             <span
-              class="wrapper svelte-12ofrds"
+              class="wrapper svelte-1dsb53o"
             >
               <button
-                class="svelte-1f17ahs iconOnly noBorder"
+                class="svelte-2vu076 iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-1f17ahs"
+                  class="material-icons svelte-2vu076"
                 >
                   more_vert
                 </i>
@@ -1357,17 +1357,17 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
 >
   <div>
     <div
-      class="filter svelte-7u451e"
+      class="filter svelte-1vslz6j"
     />
      
     <div
-      class="backdrop svelte-7u451e"
+      class="backdrop svelte-1vslz6j"
     >
       <button
-        class="absolute top-0 right-0 m-4 svelte-1f17ahs iconOnly"
+        class="absolute top-0 right-0 m-4 svelte-2vu076 iconOnly"
       >
         <i
-          class="material-icons svelte-1f17ahs"
+          class="material-icons svelte-2vu076"
         >
           close
         </i>
@@ -1377,28 +1377,28 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
       </button>
        
       <article
-        class="svelte-7u451e"
+        class="svelte-1vslz6j"
       >
         <header
-          class="svelte-7u451e"
+          class="svelte-1vslz6j"
         >
           Track details
         </header>
          
         <div
-          class="content svelte-7u451e"
+          class="content svelte-1vslz6j"
         >
           <div
             slot="content"
           >
             <table
-              class="svelte-sq4n81"
+              class="svelte-1v0xvp5"
             />
           </div>
         </div>
          
         <footer
-          class="svelte-7u451e"
+          class="svelte-1vslz6j"
         />
       </article>
     </div>
@@ -1406,70 +1406,70 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
     
      
     <table
-      class=" svelte-pacrnm"
+      class=" svelte-1fki7pe"
     >
       <thead
-        class="svelte-pacrnm"
+        class="svelte-1fki7pe"
       >
         <tr
-          class="svelte-pacrnm"
+          class="svelte-1fki7pe"
         >
           <th
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             #
           </th>
            
           <th
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             Track
           </th>
            
           <th
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             Artist
           </th>
            
           <th
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             Album
           </th>
            
           <th
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             Duration
           </th>
            
           <th
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           />
         </tr>
       </thead>
        
       <tbody
-        class="svelte-pacrnm"
+        class="svelte-1fki7pe"
       >
         <tr
-          class="svelte-pacrnm"
+          class="svelte-1fki7pe"
         >
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             1
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             American Money
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -1481,7 +1481,7 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -1493,22 +1493,22 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             5:32
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             <span
-              class="wrapper svelte-12ofrds"
+              class="wrapper svelte-1dsb53o"
             >
               <button
-                class="svelte-1f17ahs iconOnly noBorder"
+                class="svelte-2vu076 iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-1f17ahs"
+                  class="material-icons svelte-2vu076"
                 >
                   more_vert
                 </i>
@@ -1523,22 +1523,22 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
            
         </tr>
         <tr
-          class="svelte-pacrnm"
+          class="svelte-1fki7pe"
         >
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             2
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             Fantaisie Sign
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -1550,7 +1550,7 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -1562,22 +1562,22 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             3:35
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             <span
-              class="wrapper svelte-12ofrds"
+              class="wrapper svelte-1dsb53o"
             >
               <button
-                class="svelte-1f17ahs iconOnly noBorder"
+                class="svelte-2vu076 iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-1f17ahs"
+                  class="material-icons svelte-2vu076"
                 >
                   more_vert
                 </i>
@@ -1592,22 +1592,22 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
            
         </tr>
         <tr
-          class="svelte-pacrnm"
+          class="svelte-1fki7pe"
         >
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             3
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             Don't Bother None
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -1619,7 +1619,7 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -1631,22 +1631,22 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             3:45
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             <span
-              class="wrapper svelte-12ofrds"
+              class="wrapper svelte-1dsb53o"
             >
               <button
-                class="svelte-1f17ahs iconOnly noBorder"
+                class="svelte-2vu076 iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-1f17ahs"
+                  class="material-icons svelte-2vu076"
                 >
                   more_vert
                 </i>
@@ -1661,22 +1661,22 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
            
         </tr>
         <tr
-          class="svelte-pacrnm current"
+          class="svelte-1fki7pe current"
         >
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             4
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             Vitamin A
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -1688,7 +1688,7 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -1700,22 +1700,22 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             4:41
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             <span
-              class="wrapper svelte-12ofrds"
+              class="wrapper svelte-1dsb53o"
             >
               <button
-                class="svelte-1f17ahs iconOnly noBorder"
+                class="svelte-2vu076 iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-1f17ahs"
+                  class="material-icons svelte-2vu076"
                 >
                   more_vert
                 </i>
@@ -1730,22 +1730,22 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
            
         </tr>
         <tr
-          class="svelte-pacrnm"
+          class="svelte-1fki7pe"
         >
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             5
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             LIVE in Baghdad
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -1757,7 +1757,7 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -1769,22 +1769,22 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             2:59
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             <span
-              class="wrapper svelte-12ofrds"
+              class="wrapper svelte-1dsb53o"
             >
               <button
-                class="svelte-1f17ahs iconOnly noBorder"
+                class="svelte-2vu076 iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-1f17ahs"
+                  class="material-icons svelte-2vu076"
                 >
                   more_vert
                 </i>
@@ -1799,22 +1799,22 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
            
         </tr>
         <tr
-          class="svelte-pacrnm"
+          class="svelte-1fki7pe"
         >
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             6
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             Cats on Mars
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -1826,7 +1826,7 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -1838,22 +1838,22 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             0:07
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             <span
-              class="wrapper svelte-12ofrds"
+              class="wrapper svelte-1dsb53o"
             >
               <button
-                class="svelte-1f17ahs iconOnly noBorder"
+                class="svelte-2vu076 iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-1f17ahs"
+                  class="material-icons svelte-2vu076"
                 >
                   more_vert
                 </i>
@@ -1868,22 +1868,22 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
            
         </tr>
         <tr
-          class="svelte-pacrnm"
+          class="svelte-1fki7pe"
         >
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             7
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             Want it All Back
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -1895,7 +1895,7 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -1907,22 +1907,22 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             3:51
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             <span
-              class="wrapper svelte-12ofrds"
+              class="wrapper svelte-1dsb53o"
             >
               <button
-                class="svelte-1f17ahs iconOnly noBorder"
+                class="svelte-2vu076 iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-1f17ahs"
+                  class="material-icons svelte-2vu076"
                 >
                   more_vert
                 </i>
@@ -1937,22 +1937,22 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
            
         </tr>
         <tr
-          class="svelte-pacrnm"
+          class="svelte-1fki7pe"
         >
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             8
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             Bindy
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -1964,7 +1964,7 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -1976,22 +1976,22 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             0:15
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             <span
-              class="wrapper svelte-12ofrds"
+              class="wrapper svelte-1dsb53o"
             >
               <button
-                class="svelte-1f17ahs iconOnly noBorder"
+                class="svelte-2vu076 iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-1f17ahs"
+                  class="material-icons svelte-2vu076"
                 >
                   more_vert
                 </i>
@@ -2006,22 +2006,22 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
            
         </tr>
         <tr
-          class="svelte-pacrnm"
+          class="svelte-1fki7pe"
         >
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             9
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             You Make Me Coo
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -2033,7 +2033,7 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -2045,22 +2045,22 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             3:14
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             <span
-              class="wrapper svelte-12ofrds"
+              class="wrapper svelte-1dsb53o"
             >
               <button
-                class="svelte-1f17ahs iconOnly noBorder"
+                class="svelte-2vu076 iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-1f17ahs"
+                  class="material-icons svelte-2vu076"
                 >
                   more_vert
                 </i>
@@ -2075,22 +2075,22 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
            
         </tr>
         <tr
-          class="svelte-pacrnm"
+          class="svelte-1fki7pe"
         >
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             10
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             Vitamin B
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -2102,7 +2102,7 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -2114,22 +2114,22 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             4:06
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             <span
-              class="wrapper svelte-12ofrds"
+              class="wrapper svelte-1dsb53o"
             >
               <button
-                class="svelte-1f17ahs iconOnly noBorder"
+                class="svelte-2vu076 iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-1f17ahs"
+                  class="material-icons svelte-2vu076"
                 >
                   more_vert
                 </i>
@@ -2144,22 +2144,22 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
            
         </tr>
         <tr
-          class="svelte-pacrnm"
+          class="svelte-1fki7pe"
         >
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             11
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             Green Bird
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -2171,7 +2171,7 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -2183,22 +2183,22 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             2:33
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             <span
-              class="wrapper svelte-12ofrds"
+              class="wrapper svelte-1dsb53o"
             >
               <button
-                class="svelte-1f17ahs iconOnly noBorder"
+                class="svelte-2vu076 iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-1f17ahs"
+                  class="material-icons svelte-2vu076"
                 >
                   more_vert
                 </i>
@@ -2213,22 +2213,22 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
            
         </tr>
         <tr
-          class="svelte-pacrnm"
+          class="svelte-1fki7pe"
         >
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             12
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             ELM
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -2240,7 +2240,7 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -2252,22 +2252,22 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             6:55
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             <span
-              class="wrapper svelte-12ofrds"
+              class="wrapper svelte-1dsb53o"
             >
               <button
-                class="svelte-1f17ahs iconOnly noBorder"
+                class="svelte-2vu076 iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-1f17ahs"
+                  class="material-icons svelte-2vu076"
                 >
                   more_vert
                 </i>
@@ -2282,22 +2282,22 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
            
         </tr>
         <tr
-          class="svelte-pacrnm"
+          class="svelte-1fki7pe"
         >
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             13
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             Vitamin C
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -2309,7 +2309,7 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -2321,22 +2321,22 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             5:24
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             <span
-              class="wrapper svelte-12ofrds"
+              class="wrapper svelte-1dsb53o"
             >
               <button
-                class="svelte-1f17ahs iconOnly noBorder"
+                class="svelte-2vu076 iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-1f17ahs"
+                  class="material-icons svelte-2vu076"
                 >
                   more_vert
                 </i>
@@ -2351,22 +2351,22 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
            
         </tr>
         <tr
-          class="svelte-pacrnm"
+          class="svelte-1fki7pe"
         >
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             14
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             Gateway
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -2378,7 +2378,7 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -2390,22 +2390,22 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             0:16
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             <span
-              class="wrapper svelte-12ofrds"
+              class="wrapper svelte-1dsb53o"
             >
               <button
-                class="svelte-1f17ahs iconOnly noBorder"
+                class="svelte-2vu076 iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-1f17ahs"
+                  class="material-icons svelte-2vu076"
                 >
                   more_vert
                 </i>
@@ -2420,22 +2420,22 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
            
         </tr>
         <tr
-          class="svelte-pacrnm"
+          class="svelte-1fki7pe"
         >
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             15
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             The Singing Sea
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -2447,7 +2447,7 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -2459,22 +2459,22 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             6:41
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             <span
-              class="wrapper svelte-12ofrds"
+              class="wrapper svelte-1dsb53o"
             >
               <button
-                class="svelte-1f17ahs iconOnly noBorder"
+                class="svelte-2vu076 iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-1f17ahs"
+                  class="material-icons svelte-2vu076"
                 >
                   more_vert
                 </i>
@@ -2489,22 +2489,22 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
            
         </tr>
         <tr
-          class="svelte-pacrnm"
+          class="svelte-1fki7pe"
         >
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             16
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             The Egg and You!
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -2516,7 +2516,7 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -2528,22 +2528,22 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             4:47
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             <span
-              class="wrapper svelte-12ofrds"
+              class="wrapper svelte-1dsb53o"
             >
               <button
-                class="svelte-1f17ahs iconOnly noBorder"
+                class="svelte-2vu076 iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-1f17ahs"
+                  class="material-icons svelte-2vu076"
                 >
                   more_vert
                 </i>
@@ -2558,22 +2558,22 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
            
         </tr>
         <tr
-          class="svelte-pacrnm"
+          class="svelte-1fki7pe"
         >
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             17
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             Forever Broke
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -2585,7 +2585,7 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -2597,22 +2597,22 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             1:36
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             <span
-              class="wrapper svelte-12ofrds"
+              class="wrapper svelte-1dsb53o"
             >
               <button
-                class="svelte-1f17ahs iconOnly noBorder"
+                class="svelte-2vu076 iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-1f17ahs"
+                  class="material-icons svelte-2vu076"
                 >
                   more_vert
                 </i>
@@ -2627,22 +2627,22 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
            
         </tr>
         <tr
-          class="svelte-pacrnm"
+          class="svelte-1fki7pe"
         >
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             18
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             Power of Kungfu Remix
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -2654,7 +2654,7 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="col-span-3 svelte-pacrnm"
+            class="col-span-3 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -2666,22 +2666,22 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             2:22
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             <span
-              class="wrapper svelte-12ofrds"
+              class="wrapper svelte-1dsb53o"
             >
               <button
-                class="svelte-1f17ahs iconOnly noBorder"
+                class="svelte-2vu076 iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-1f17ahs"
+                  class="material-icons svelte-2vu076"
                 >
                   more_vert
                 </i>
@@ -2708,17 +2708,17 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
 >
   <div>
     <div
-      class="filter svelte-7u451e"
+      class="filter svelte-1vslz6j"
     />
      
     <div
-      class="backdrop svelte-7u451e"
+      class="backdrop svelte-1vslz6j"
     >
       <button
-        class="absolute top-0 right-0 m-4 svelte-1f17ahs iconOnly"
+        class="absolute top-0 right-0 m-4 svelte-2vu076 iconOnly"
       >
         <i
-          class="material-icons svelte-1f17ahs"
+          class="material-icons svelte-2vu076"
         >
           close
         </i>
@@ -2728,28 +2728,28 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
       </button>
        
       <article
-        class="svelte-7u451e"
+        class="svelte-1vslz6j"
       >
         <header
-          class="svelte-7u451e"
+          class="svelte-1vslz6j"
         >
           Track details
         </header>
          
         <div
-          class="content svelte-7u451e"
+          class="content svelte-1vslz6j"
         >
           <div
             slot="content"
           >
             <table
-              class="svelte-sq4n81"
+              class="svelte-1v0xvp5"
             />
           </div>
         </div>
          
         <footer
-          class="svelte-7u451e"
+          class="svelte-1vslz6j"
         />
       </article>
     </div>
@@ -2757,65 +2757,65 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
     
      
     <table
-      class=" svelte-pacrnm"
+      class=" svelte-1fki7pe"
     >
       <thead
-        class="svelte-pacrnm"
+        class="svelte-1fki7pe"
       >
         <tr
-          class="svelte-pacrnm"
+          class="svelte-1fki7pe"
         >
           <th
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             #
           </th>
            
           <th
-            class="col-span-5 svelte-pacrnm"
+            class="col-span-5 svelte-1fki7pe"
           >
             Track
           </th>
            
           <th
-            class="col-span-4 svelte-pacrnm"
+            class="col-span-4 svelte-1fki7pe"
           >
             Artist
           </th>
            
            
           <th
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             Duration
           </th>
            
           <th
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           />
         </tr>
       </thead>
        
       <tbody
-        class="svelte-pacrnm"
+        class="svelte-1fki7pe"
       >
         <tr
-          class="svelte-pacrnm"
+          class="svelte-1fki7pe"
         >
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             1
           </td>
            
           <td
-            class="col-span-5 svelte-pacrnm"
+            class="col-span-5 svelte-1fki7pe"
           >
             American Money
           </td>
            
           <td
-            class="col-span-4 svelte-pacrnm"
+            class="col-span-4 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -2828,22 +2828,22 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
            
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             5:32
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             <span
-              class="wrapper svelte-12ofrds"
+              class="wrapper svelte-1dsb53o"
             >
               <button
-                class="svelte-1f17ahs iconOnly noBorder"
+                class="svelte-2vu076 iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-1f17ahs"
+                  class="material-icons svelte-2vu076"
                 >
                   more_vert
                 </i>
@@ -2858,22 +2858,22 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
            
         </tr>
         <tr
-          class="svelte-pacrnm"
+          class="svelte-1fki7pe"
         >
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             2
           </td>
            
           <td
-            class="col-span-5 svelte-pacrnm"
+            class="col-span-5 svelte-1fki7pe"
           >
             Fantaisie Sign
           </td>
            
           <td
-            class="col-span-4 svelte-pacrnm"
+            class="col-span-4 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -2886,22 +2886,22 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
            
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             3:35
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             <span
-              class="wrapper svelte-12ofrds"
+              class="wrapper svelte-1dsb53o"
             >
               <button
-                class="svelte-1f17ahs iconOnly noBorder"
+                class="svelte-2vu076 iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-1f17ahs"
+                  class="material-icons svelte-2vu076"
                 >
                   more_vert
                 </i>
@@ -2916,22 +2916,22 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
            
         </tr>
         <tr
-          class="svelte-pacrnm"
+          class="svelte-1fki7pe"
         >
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             3
           </td>
            
           <td
-            class="col-span-5 svelte-pacrnm"
+            class="col-span-5 svelte-1fki7pe"
           >
             Don't Bother None
           </td>
            
           <td
-            class="col-span-4 svelte-pacrnm"
+            class="col-span-4 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -2944,22 +2944,22 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
            
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             3:45
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             <span
-              class="wrapper svelte-12ofrds"
+              class="wrapper svelte-1dsb53o"
             >
               <button
-                class="svelte-1f17ahs iconOnly noBorder"
+                class="svelte-2vu076 iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-1f17ahs"
+                  class="material-icons svelte-2vu076"
                 >
                   more_vert
                 </i>
@@ -2974,22 +2974,22 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
            
         </tr>
         <tr
-          class="svelte-pacrnm"
+          class="svelte-1fki7pe"
         >
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             4
           </td>
            
           <td
-            class="col-span-5 svelte-pacrnm"
+            class="col-span-5 svelte-1fki7pe"
           >
             Vitamin A
           </td>
            
           <td
-            class="col-span-4 svelte-pacrnm"
+            class="col-span-4 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -3002,22 +3002,22 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
            
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             4:41
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             <span
-              class="wrapper svelte-12ofrds"
+              class="wrapper svelte-1dsb53o"
             >
               <button
-                class="svelte-1f17ahs iconOnly noBorder"
+                class="svelte-2vu076 iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-1f17ahs"
+                  class="material-icons svelte-2vu076"
                 >
                   more_vert
                 </i>
@@ -3032,22 +3032,22 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
            
         </tr>
         <tr
-          class="svelte-pacrnm"
+          class="svelte-1fki7pe"
         >
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             5
           </td>
            
           <td
-            class="col-span-5 svelte-pacrnm"
+            class="col-span-5 svelte-1fki7pe"
           >
             LIVE in Baghdad
           </td>
            
           <td
-            class="col-span-4 svelte-pacrnm"
+            class="col-span-4 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -3060,22 +3060,22 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
            
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             2:59
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             <span
-              class="wrapper svelte-12ofrds"
+              class="wrapper svelte-1dsb53o"
             >
               <button
-                class="svelte-1f17ahs iconOnly noBorder"
+                class="svelte-2vu076 iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-1f17ahs"
+                  class="material-icons svelte-2vu076"
                 >
                   more_vert
                 </i>
@@ -3090,22 +3090,22 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
            
         </tr>
         <tr
-          class="svelte-pacrnm"
+          class="svelte-1fki7pe"
         >
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             6
           </td>
            
           <td
-            class="col-span-5 svelte-pacrnm"
+            class="col-span-5 svelte-1fki7pe"
           >
             Cats on Mars
           </td>
            
           <td
-            class="col-span-4 svelte-pacrnm"
+            class="col-span-4 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -3118,22 +3118,22 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
            
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             0:07
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             <span
-              class="wrapper svelte-12ofrds"
+              class="wrapper svelte-1dsb53o"
             >
               <button
-                class="svelte-1f17ahs iconOnly noBorder"
+                class="svelte-2vu076 iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-1f17ahs"
+                  class="material-icons svelte-2vu076"
                 >
                   more_vert
                 </i>
@@ -3148,22 +3148,22 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
            
         </tr>
         <tr
-          class="svelte-pacrnm"
+          class="svelte-1fki7pe"
         >
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             7
           </td>
            
           <td
-            class="col-span-5 svelte-pacrnm"
+            class="col-span-5 svelte-1fki7pe"
           >
             Want it All Back
           </td>
            
           <td
-            class="col-span-4 svelte-pacrnm"
+            class="col-span-4 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -3176,22 +3176,22 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
            
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             3:51
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             <span
-              class="wrapper svelte-12ofrds"
+              class="wrapper svelte-1dsb53o"
             >
               <button
-                class="svelte-1f17ahs iconOnly noBorder"
+                class="svelte-2vu076 iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-1f17ahs"
+                  class="material-icons svelte-2vu076"
                 >
                   more_vert
                 </i>
@@ -3206,22 +3206,22 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
            
         </tr>
         <tr
-          class="svelte-pacrnm"
+          class="svelte-1fki7pe"
         >
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             8
           </td>
            
           <td
-            class="col-span-5 svelte-pacrnm"
+            class="col-span-5 svelte-1fki7pe"
           >
             Bindy
           </td>
            
           <td
-            class="col-span-4 svelte-pacrnm"
+            class="col-span-4 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -3234,22 +3234,22 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
            
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             0:15
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             <span
-              class="wrapper svelte-12ofrds"
+              class="wrapper svelte-1dsb53o"
             >
               <button
-                class="svelte-1f17ahs iconOnly noBorder"
+                class="svelte-2vu076 iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-1f17ahs"
+                  class="material-icons svelte-2vu076"
                 >
                   more_vert
                 </i>
@@ -3264,22 +3264,22 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
            
         </tr>
         <tr
-          class="svelte-pacrnm"
+          class="svelte-1fki7pe"
         >
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             9
           </td>
            
           <td
-            class="col-span-5 svelte-pacrnm"
+            class="col-span-5 svelte-1fki7pe"
           >
             You Make Me Coo
           </td>
            
           <td
-            class="col-span-4 svelte-pacrnm"
+            class="col-span-4 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -3292,22 +3292,22 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
            
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             3:14
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             <span
-              class="wrapper svelte-12ofrds"
+              class="wrapper svelte-1dsb53o"
             >
               <button
-                class="svelte-1f17ahs iconOnly noBorder"
+                class="svelte-2vu076 iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-1f17ahs"
+                  class="material-icons svelte-2vu076"
                 >
                   more_vert
                 </i>
@@ -3322,22 +3322,22 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
            
         </tr>
         <tr
-          class="svelte-pacrnm"
+          class="svelte-1fki7pe"
         >
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             10
           </td>
            
           <td
-            class="col-span-5 svelte-pacrnm"
+            class="col-span-5 svelte-1fki7pe"
           >
             Vitamin B
           </td>
            
           <td
-            class="col-span-4 svelte-pacrnm"
+            class="col-span-4 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -3350,22 +3350,22 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
            
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             4:06
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             <span
-              class="wrapper svelte-12ofrds"
+              class="wrapper svelte-1dsb53o"
             >
               <button
-                class="svelte-1f17ahs iconOnly noBorder"
+                class="svelte-2vu076 iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-1f17ahs"
+                  class="material-icons svelte-2vu076"
                 >
                   more_vert
                 </i>
@@ -3380,22 +3380,22 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
            
         </tr>
         <tr
-          class="svelte-pacrnm"
+          class="svelte-1fki7pe"
         >
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             11
           </td>
            
           <td
-            class="col-span-5 svelte-pacrnm"
+            class="col-span-5 svelte-1fki7pe"
           >
             Green Bird
           </td>
            
           <td
-            class="col-span-4 svelte-pacrnm"
+            class="col-span-4 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -3408,22 +3408,22 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
            
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             2:33
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             <span
-              class="wrapper svelte-12ofrds"
+              class="wrapper svelte-1dsb53o"
             >
               <button
-                class="svelte-1f17ahs iconOnly noBorder"
+                class="svelte-2vu076 iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-1f17ahs"
+                  class="material-icons svelte-2vu076"
                 >
                   more_vert
                 </i>
@@ -3438,22 +3438,22 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
            
         </tr>
         <tr
-          class="svelte-pacrnm"
+          class="svelte-1fki7pe"
         >
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             12
           </td>
            
           <td
-            class="col-span-5 svelte-pacrnm"
+            class="col-span-5 svelte-1fki7pe"
           >
             ELM
           </td>
            
           <td
-            class="col-span-4 svelte-pacrnm"
+            class="col-span-4 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -3466,22 +3466,22 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
            
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             6:55
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             <span
-              class="wrapper svelte-12ofrds"
+              class="wrapper svelte-1dsb53o"
             >
               <button
-                class="svelte-1f17ahs iconOnly noBorder"
+                class="svelte-2vu076 iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-1f17ahs"
+                  class="material-icons svelte-2vu076"
                 >
                   more_vert
                 </i>
@@ -3496,22 +3496,22 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
            
         </tr>
         <tr
-          class="svelte-pacrnm"
+          class="svelte-1fki7pe"
         >
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             13
           </td>
            
           <td
-            class="col-span-5 svelte-pacrnm"
+            class="col-span-5 svelte-1fki7pe"
           >
             Vitamin C
           </td>
            
           <td
-            class="col-span-4 svelte-pacrnm"
+            class="col-span-4 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -3524,22 +3524,22 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
            
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             5:24
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             <span
-              class="wrapper svelte-12ofrds"
+              class="wrapper svelte-1dsb53o"
             >
               <button
-                class="svelte-1f17ahs iconOnly noBorder"
+                class="svelte-2vu076 iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-1f17ahs"
+                  class="material-icons svelte-2vu076"
                 >
                   more_vert
                 </i>
@@ -3554,22 +3554,22 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
            
         </tr>
         <tr
-          class="svelte-pacrnm"
+          class="svelte-1fki7pe"
         >
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             14
           </td>
            
           <td
-            class="col-span-5 svelte-pacrnm"
+            class="col-span-5 svelte-1fki7pe"
           >
             Gateway
           </td>
            
           <td
-            class="col-span-4 svelte-pacrnm"
+            class="col-span-4 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -3582,22 +3582,22 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
            
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             0:16
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             <span
-              class="wrapper svelte-12ofrds"
+              class="wrapper svelte-1dsb53o"
             >
               <button
-                class="svelte-1f17ahs iconOnly noBorder"
+                class="svelte-2vu076 iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-1f17ahs"
+                  class="material-icons svelte-2vu076"
                 >
                   more_vert
                 </i>
@@ -3612,22 +3612,22 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
            
         </tr>
         <tr
-          class="svelte-pacrnm"
+          class="svelte-1fki7pe"
         >
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             15
           </td>
            
           <td
-            class="col-span-5 svelte-pacrnm"
+            class="col-span-5 svelte-1fki7pe"
           >
             The Singing Sea
           </td>
            
           <td
-            class="col-span-4 svelte-pacrnm"
+            class="col-span-4 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -3640,22 +3640,22 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
            
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             6:41
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             <span
-              class="wrapper svelte-12ofrds"
+              class="wrapper svelte-1dsb53o"
             >
               <button
-                class="svelte-1f17ahs iconOnly noBorder"
+                class="svelte-2vu076 iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-1f17ahs"
+                  class="material-icons svelte-2vu076"
                 >
                   more_vert
                 </i>
@@ -3670,22 +3670,22 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
            
         </tr>
         <tr
-          class="svelte-pacrnm"
+          class="svelte-1fki7pe"
         >
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             16
           </td>
            
           <td
-            class="col-span-5 svelte-pacrnm"
+            class="col-span-5 svelte-1fki7pe"
           >
             The Egg and You!
           </td>
            
           <td
-            class="col-span-4 svelte-pacrnm"
+            class="col-span-4 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -3698,22 +3698,22 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
            
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             4:47
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             <span
-              class="wrapper svelte-12ofrds"
+              class="wrapper svelte-1dsb53o"
             >
               <button
-                class="svelte-1f17ahs iconOnly noBorder"
+                class="svelte-2vu076 iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-1f17ahs"
+                  class="material-icons svelte-2vu076"
                 >
                   more_vert
                 </i>
@@ -3728,22 +3728,22 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
            
         </tr>
         <tr
-          class="svelte-pacrnm"
+          class="svelte-1fki7pe"
         >
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             17
           </td>
            
           <td
-            class="col-span-5 svelte-pacrnm"
+            class="col-span-5 svelte-1fki7pe"
           >
             Forever Broke
           </td>
            
           <td
-            class="col-span-4 svelte-pacrnm"
+            class="col-span-4 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -3756,22 +3756,22 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
            
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             1:36
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             <span
-              class="wrapper svelte-12ofrds"
+              class="wrapper svelte-1dsb53o"
             >
               <button
-                class="svelte-1f17ahs iconOnly noBorder"
+                class="svelte-2vu076 iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-1f17ahs"
+                  class="material-icons svelte-2vu076"
                 >
                   more_vert
                 </i>
@@ -3786,22 +3786,22 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
            
         </tr>
         <tr
-          class="svelte-pacrnm"
+          class="svelte-1fki7pe"
         >
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             18
           </td>
            
           <td
-            class="col-span-5 svelte-pacrnm"
+            class="col-span-5 svelte-1fki7pe"
           >
             Power of Kungfu Remix
           </td>
            
           <td
-            class="col-span-4 svelte-pacrnm"
+            class="col-span-4 svelte-1fki7pe"
           >
             <a
               class="underlined"
@@ -3814,22 +3814,22 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
            
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             2:22
           </td>
            
           <td
-            class="svelte-pacrnm"
+            class="svelte-1fki7pe"
           >
             <span
-              class="wrapper svelte-12ofrds"
+              class="wrapper svelte-1dsb53o"
             >
               <button
-                class="svelte-1f17ahs iconOnly noBorder"
+                class="svelte-2vu076 iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-1f17ahs"
+                  class="material-icons svelte-2vu076"
                 >
                   more_vert
                 </i>

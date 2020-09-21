@@ -72,17 +72,19 @@
     @apply text-center;
   }
 
-  tbody tr:nth-child(2n + 1) {
-    background-color: var(--hover-bg-color);
-  }
+  tbody tr {
+    &:nth-child(2n + 1) {
+      background-color: var(--hover-bg-color);
+    }
 
-  tbody tr:hover {
-    @apply cursor-pointer;
-    background-color: var(--hover-primary-color);
-  }
+    &:hover {
+      @apply cursor-pointer;
+      background-color: var(--hover-primary-color);
+    }
 
-  tbody tr.current {
-    background-color: var(--outline-color);
+    &.current {
+      background-color: var(--outline-color);
+    }
   }
 </style>
 
@@ -92,7 +94,7 @@
   on:close={() => (openedTrack = null)} />
 
 {#if tracks}
-  <table class={$$props.class}>
+  <table class={$$restProps.class}>
     <thead>
       <tr>
         <th>{$_('#')}</th>

@@ -1,5 +1,4 @@
 <script>
-  import { afterUpdate } from 'svelte'
   import { _ } from 'svelte-intl'
   import Dialogue from '../Dialogue/Dialogue.svelte'
   import Button from '../Button/Button.svelte'
@@ -32,10 +31,10 @@
 <style type="postcss">
   .image-container {
     @apply flex flex-wrap justify-start my-4;
-  }
 
-  .image-container span {
-    @apply text-xs;
+    & span {
+      @apply text-xs;
+    }
   }
 </style>
 

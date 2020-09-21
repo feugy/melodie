@@ -47,7 +47,7 @@
   on:click
   on:error={handleError}
   on:load={handleLoad}
-  class={$$props.class}
+  class={$$restProps.class}
   class:rounded-full={rounded}
   class:rounded-sm={!rounded}
   class:hidden
@@ -57,7 +57,7 @@
 {#if hidden}
   <span
     on:click
-    class={$$props.class}
+    class={$$restProps.class}
     class:rounded-full={rounded}
     class:rounded-sm={!rounded}>
     <i class="material-icons">{fallback}</i>

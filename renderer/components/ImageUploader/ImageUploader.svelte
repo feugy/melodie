@@ -55,7 +55,7 @@
 <svelte:window on:paste={handlePaste} />
 
 <span
-  class="{$$props.class} actionable"
+  class="{$$restProps.class} actionable"
   on:dragover|preventDefault|stopPropagation={handleDragOver}
   on:drop|preventDefault|stopPropagation={handleDrop}
   on:click|capture={handleClick}>
