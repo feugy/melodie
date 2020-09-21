@@ -9,6 +9,7 @@ const { withNockIt } = require('../../tests')
 describe('AudioDB provider', () => {
   beforeEach(() => {
     provider.lastReqEpoch = 0
+    provider.init({ key: process.env.AUDIODB_KEY })
   })
 
   describe('findArtistArtwork()', () => {

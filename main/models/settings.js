@@ -4,7 +4,7 @@ const Model = require('./abstract-model')
 
 class SettingsModel extends Model {
   constructor() {
-    super({ name: 'settings', jsonColumns: ['folders'] })
+    super({ name: 'settings', jsonColumns: ['folders', 'providers'] })
   }
 
   get ID() {

@@ -9,6 +9,10 @@ const { withNockIt } = require('../../tests')
 describe('Discogs provider', () => {
   beforeEach(() => {
     provider.lastReqEpoch = 0
+    provider.init({
+      key: process.env.DISCOGS_KEY,
+      secret: process.env.DISCOGS_SECRET
+    })
   })
 
   describe('findArtistArtwork()', () => {
@@ -64,17 +68,17 @@ describe('Discogs provider', () => {
       expect(await provider.findAlbumCover('Parachutes')).toEqual([
         {
           full:
-            'https://img.discogs.com/QpNOv7TPg9VIkdbCYKqEtNbCN04=/fit-in/600x595/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-2898241-1306263310.jpeg.jpg',
-          provider: provider.name
-        },
-        {
-          full:
             'https://img.discogs.com/LXxOjvGFYExbXFWSPgkfdqqe33M=/fit-in/600x579/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-3673614-1458060187-6793.jpeg.jpg',
           provider: provider.name
         },
         {
           full:
-            'https://img.discogs.com/816D9KU4HziOUuokH-SDgVzK9fI=/fit-in/400x399/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-512653-1277759045.jpeg.jpg',
+            'https://img.discogs.com/eTfvDOHIvDIHuMFHv28H6_MG-b0=/fit-in/500x505/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-3069838-1466508617-4579.jpeg.jpg',
+          provider: provider.name
+        },
+        {
+          full:
+            'https://img.discogs.com/QbarN9yIJGVkyIwse7B9qmh1iZw=/fit-in/360x315/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-1376973-1214264136.jpeg.jpg',
           provider: provider.name
         }
       ])

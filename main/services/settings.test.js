@@ -5,7 +5,7 @@ const faker = require('faker')
 const electron = require('electron')
 const osLocale = require('os-locale')
 const settingsService = require('./settings')
-const provider = require('../providers/local')
+const { local, audiodb, discogs } = require('../providers')
 const { settingsModel } = require('../models/settings')
 
 jest.mock('os-locale')
@@ -20,6 +20,8 @@ jest.mock('electron', () => ({
 jest.mock('../services')
 jest.mock('../models/settings')
 jest.mock('../providers/local')
+jest.mock('../providers/discogs')
+jest.mock('../providers/audiodb')
 
 describe('Settings service', () => {
   beforeEach(() => {
@@ -80,6 +82,53 @@ describe('Settings service', () => {
     expect(settingsModel.save).toHaveBeenCalledTimes(1)
   })
 
+  it('saves AudioDB provider credentials', async () => {
+    const locale = faker.random.word()
+    const key = faker.random.uuid()
+    const providers = {
+      audiodb: { foo: faker.random.word() },
+      discogs: { foo: faker.random.word() }
+    }
+    settingsModel.get.mockResolvedValueOnce({ locale, providers })
+
+    await settingsService.setAudioDBCredentials({ key })
+    expect(settingsModel.save).toHaveBeenCalledWith({
+      locale,
+      providers: {
+        ...providers,
+        audiodb: { key }
+      }
+    })
+    expect(settingsModel.save).toHaveBeenCalledTimes(1)
+    expect(audiodb.init).toHaveBeenCalledWith({ key })
+    expect(audiodb.init).toHaveBeenCalledTimes(1)
+    expect(discogs.init).not.toHaveBeenCalled()
+  })
+
+  it('saves Discogs provider credentials', async () => {
+    const locale = faker.random.word()
+    const key = faker.random.uuid()
+    const secret = faker.random.alphaNumeric(12)
+    const providers = {
+      audiodb: { foo: faker.random.word() },
+      discogs: { foo: faker.random.word() }
+    }
+    settingsModel.get.mockResolvedValueOnce({ locale, providers })
+
+    await settingsService.setDiscogsCredentials({ key, secret })
+    expect(settingsModel.save).toHaveBeenCalledWith({
+      locale,
+      providers: {
+        ...providers,
+        discogs: { secret, key }
+      }
+    })
+    expect(settingsModel.save).toHaveBeenCalledTimes(1)
+    expect(discogs.init).toHaveBeenCalledWith({ secret, key })
+    expect(discogs.init).toHaveBeenCalledTimes(1)
+    expect(audiodb.init).not.toHaveBeenCalled()
+  })
+
   describe('addFolders', () => {
     it('saves selected folders to settings', async () => {
       const locale = faker.random.word()
@@ -98,7 +147,7 @@ describe('Settings service', () => {
         locale
       })
       expect(settingsModel.save).toHaveBeenCalledTimes(1)
-      expect(provider.importTracks).toHaveBeenCalledTimes(1)
+      expect(local.importTracks).toHaveBeenCalledTimes(1)
       expect(electron.dialog.showOpenDialog).toHaveBeenCalledWith({
         properties: ['openDirectory', 'multiSelections']
       })
@@ -111,7 +160,7 @@ describe('Settings service', () => {
 
       expect(settingsModel.get).not.toHaveBeenCalled()
       expect(settingsModel.save).not.toHaveBeenCalled()
-      expect(provider.importTracks).not.toHaveBeenCalled()
+      expect(local.importTracks).not.toHaveBeenCalled()
     })
 
     it('merges nested added folder into its tracked parent', async () => {
@@ -137,7 +186,7 @@ describe('Settings service', () => {
         locale
       })
       expect(settingsModel.save).toHaveBeenCalledTimes(1)
-      expect(provider.importTracks).toHaveBeenCalledTimes(1)
+      expect(local.importTracks).toHaveBeenCalledTimes(1)
     })
 
     it('removes nested folders when adding a common parent', async () => {
@@ -163,7 +212,7 @@ describe('Settings service', () => {
         locale
       })
       expect(settingsModel.save).toHaveBeenCalledTimes(1)
-      expect(provider.importTracks).toHaveBeenCalledTimes(1)
+      expect(local.importTracks).toHaveBeenCalledTimes(1)
     })
   })
 
@@ -186,7 +235,7 @@ describe('Settings service', () => {
         locale
       })
       expect(settingsModel.save).toHaveBeenCalledTimes(1)
-      expect(provider.importTracks).toHaveBeenCalledTimes(1)
+      expect(local.importTracks).toHaveBeenCalledTimes(1)
     })
 
     it('ignores untracked folder', async () => {
@@ -198,7 +247,7 @@ describe('Settings service', () => {
 
       expect(settingsModel.get).toHaveBeenCalledTimes(1)
       expect(settingsModel.save).not.toHaveBeenCalled()
-      expect(provider.importTracks).not.toHaveBeenCalled()
+      expect(local.importTracks).not.toHaveBeenCalled()
     })
   })
 })

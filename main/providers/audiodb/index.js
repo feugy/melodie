@@ -6,7 +6,10 @@ const AbstractProvider = require('../abstract-provider')
 class AudioDB extends AbstractProvider {
   constructor() {
     super('AudioDB', 25)
-    this.key = process.env.AUDIODB_KEY || 1
+  }
+
+  init({ key } = {}) {
+    this.key = key || 1
     this.prefixUrl = `https://www.theaudiodb.com/api/v1/json/${this.key}`
   }
 

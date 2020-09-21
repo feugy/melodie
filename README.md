@@ -214,18 +214,6 @@ musings on missing artwork
       1.  [x] on no results, but at least on provider returned rate limitation, enqueue artist/album
       1.  [x] on no results, save date on artist/album
 
-## Providers
-
-Some providers need access keys. Just make a `.env` file in the root folder, with the appropriate values:
-
-```
-DISCOGS_KEY=XYZ
-DISCOGS_SECRET=ABC
-AUDIODB_KEY=123
-```
-
-Rebuild the application to use them.
-
 ## Logging
 
 Log level file is `.levels` in execution folder.
@@ -274,3 +262,11 @@ As we don't want to flood them with test requests, these are using network mocks
 To use real services, run your tests with `REAL_NETWORK` environment variables (whatever its value).
 When using real services, update the mocks by defining `UPDATE_NOCKS` environment variables (whatever its value).
 **Nocks will stay unchanged on test failure**.
+
+Some providers need access keys. Just make a `.env` file in the root folder, with the appropriate values:
+
+```
+DISCOGS_KEY=XYZ
+DISCOGS_SECRET=ABC
+AUDIODB_KEY=123
+```

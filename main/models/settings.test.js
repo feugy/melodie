@@ -30,7 +30,11 @@ describe('Settings model', () => {
       id: settingsModel.ID,
       folders: [],
       locale: null,
-      openCount: 1
+      openCount: 1,
+      providers: {
+        audiodb: {},
+        discogs: {}
+      }
     })
   })
 
@@ -40,7 +44,8 @@ describe('Settings model', () => {
     )[0]
     expect(await settingsModel.get()).toEqual({
       ...settings,
-      folders: JSON.parse(settings.folders)
+      folders: JSON.parse(settings.folders),
+      providers: JSON.parse(settings.providers)
     })
   })
 })

@@ -13,6 +13,7 @@ exports.up = async function (db) {
     .createTable(settingsModel.name, table => {
       table.integer('id').primary()
       table.json('folders')
+      table.json('providers')
       table.string('locale')
       table.integer('openCount').unsigned()
     })
@@ -51,7 +52,12 @@ exports.up = async function (db) {
       table.float('mtimeMs')
     })
   settingsModel.db = db
-  return settingsModel.save({ id: settingsModel.ID, folders: [], openCount: 1 })
+  return settingsModel.save({
+    id: settingsModel.ID,
+    folders: [],
+    openCount: 1,
+    providers: { audiodb: {}, discogs: {} }
+  })
 }
 
 exports.down = async function ({ schema }) {

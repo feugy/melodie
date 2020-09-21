@@ -3,7 +3,7 @@
 const { dialog } = require('electron')
 const { settingsModel } = require('../models')
 const { getLogger, mergeFolders, getSystemLocale } = require('../utils')
-const { local } = require('../providers')
+const { local, audiodb, discogs } = require('../providers')
 
 const logger = getLogger('services/settings')
 
@@ -62,5 +62,25 @@ module.exports = {
       ...settings,
       locale: value
     })
+  },
+
+  async setAudioDBCredentials({ key }) {
+    const settings = await this.get()
+    logger.debug('saving new credentials for AudioDB provider')
+    await settingsModel.save({
+      ...settings,
+      providers: { ...settings.providers, audiodb: { key } }
+    })
+    audiodb.init({ key })
+  },
+
+  async setDiscogsCredentials({ key, secret }) {
+    const settings = await this.get()
+    logger.debug('saving new credentials for Discogs provider')
+    await settingsModel.save({
+      ...settings,
+      providers: { ...settings.providers, discogs: { key, secret } }
+    })
+    discogs.init({ key, secret })
   }
 }

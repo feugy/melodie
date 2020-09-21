@@ -7,8 +7,11 @@ const AbstractProvider = require('../abstract-provider')
 class Discogs extends AbstractProvider {
   constructor() {
     super('Discogs', 25)
-    this.key = process.env.DISCOGS_KEY || 'KEY'
-    this.secret = process.env.DISCOGS_SECRET || 'SECRET'
+  }
+
+  init({ key, secret } = {}) {
+    this.key = key || 'KEY'
+    this.secret = secret || 'SECRET'
     this.prefixUrl = `https://api.discogs.com`
   }
 

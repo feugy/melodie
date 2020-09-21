@@ -10,7 +10,7 @@
     },
     "rawHeaders": [
       "Date",
-      "Mon, 10 Aug 2020 06:23:56 GMT",
+      "Mon, 21 Sep 2020 11:07:55 GMT",
       "Content-Type",
       "application/json",
       "Content-Length",
@@ -18,7 +18,7 @@
       "Connection",
       "close",
       "Set-Cookie",
-      "__cfduid=d5c8d03c05f8d406f69e01672f0010ded1597040636; expires=Wed, 09-Sep-20 06:23:56 GMT; path=/; domain=.theaudiodb.com; HttpOnly; SameSite=Lax; Secure",
+      "__cfduid=dd034c6fd7b5d81ec4cf9547337a928e81600686474; expires=Wed, 21-Oct-20 11:07:54 GMT; path=/; domain=.theaudiodb.com; HttpOnly; SameSite=Lax; Secure",
       "X-Powered-By",
       "PHP/7.4.1",
       "Access-Control-Allow-Origin",
@@ -26,13 +26,13 @@
       "CF-Cache-Status",
       "DYNAMIC",
       "cf-request-id",
-      "0478a34891000008430dbb7200000001",
+      "0551f25ed90000e5e87f9db200000001",
       "Expect-CT",
       "max-age=604800, report-uri=\"https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct\"",
       "Server",
       "cloudflare",
       "CF-RAY",
-      "5c07a18749fd0843-CDG"
+      "5d6353448fbbe5e8-LHR"
     ],
     "responseIsBinary": false
   }

@@ -11,7 +11,10 @@ module.exports = class AbstractProvider {
     this.userAgent = `${app.name}/${app.version}`
     this.logger = getLogger(`providers/${this.name.toLowerCase()}`)
     this.lastReqEpoch = 0
+    this.init()
   }
+
+  init() {}
 
   checkRate(operation) {
     const now = Date.now()
