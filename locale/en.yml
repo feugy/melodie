@@ -134,4 +134,5 @@ tutorial:
     <p>Done! Here is your brand new playlist.</p>
   end: >
     <p>This quick tour is over.</p>
+    <p>Don't forget to return to settings later on, to configure Discogs and AudioDB.</p>
     <p class="mb-4">It is now time to enjoy your music!</p>

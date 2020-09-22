@@ -7,54 +7,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
   <div>
     
      
-    <div
-      class="filter svelte-1vslz6j"
-    />
      
-    <div
-      class="backdrop svelte-1vslz6j"
-    >
-      <button
-        class="absolute top-0 right-0 m-4 svelte-2vu076 iconOnly"
-      >
-        <i
-          class="material-icons svelte-2vu076"
-        >
-          close
-        </i>
-         
-         
-         
-      </button>
-       
-      <article
-        class="svelte-1vslz6j"
-      >
-        <header
-          class="svelte-1vslz6j"
-        >
-          Track details
-        </header>
-         
-        <div
-          class="content svelte-1vslz6j"
-        >
-          <div
-            slot="content"
-          >
-            <table
-              class="svelte-1v0xvp5"
-            />
-          </div>
-        </div>
-         
-        <footer
-          class="svelte-1vslz6j"
-        />
-      </article>
-    </div>
-     
-    
      
     <table
       class=" svelte-1fki7pe"
@@ -252,54 +205,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
       Disk #1
     </h3>
      
-    <div
-      class="filter svelte-1vslz6j"
-    />
      
-    <div
-      class="backdrop svelte-1vslz6j"
-    >
-      <button
-        class="absolute top-0 right-0 m-4 svelte-2vu076 iconOnly"
-      >
-        <i
-          class="material-icons svelte-2vu076"
-        >
-          close
-        </i>
-         
-         
-         
-      </button>
-       
-      <article
-        class="svelte-1vslz6j"
-      >
-        <header
-          class="svelte-1vslz6j"
-        >
-          Track details
-        </header>
-         
-        <div
-          class="content svelte-1vslz6j"
-        >
-          <div
-            slot="content"
-          >
-            <table
-              class="svelte-1v0xvp5"
-            />
-          </div>
-        </div>
-         
-        <footer
-          class="svelte-1vslz6j"
-        />
-      </article>
-    </div>
-     
-    
      
     <table
       class=" svelte-1fki7pe"
@@ -911,54 +817,7 @@ exports[`Storyshots Components/Disks list Default 1`] = `
       Disk #2
     </h3>
      
-    <div
-      class="filter svelte-1vslz6j"
-    />
      
-    <div
-      class="backdrop svelte-1vslz6j"
-    >
-      <button
-        class="absolute top-0 right-0 m-4 svelte-2vu076 iconOnly"
-      >
-        <i
-          class="material-icons svelte-2vu076"
-        >
-          close
-        </i>
-         
-         
-         
-      </button>
-       
-      <article
-        class="svelte-1vslz6j"
-      >
-        <header
-          class="svelte-1vslz6j"
-        >
-          Track details
-        </header>
-         
-        <div
-          class="content svelte-1vslz6j"
-        >
-          <div
-            slot="content"
-          >
-            <table
-              class="svelte-1v0xvp5"
-            />
-          </div>
-        </div>
-         
-        <footer
-          class="svelte-1vslz6j"
-        />
-      </article>
-    </div>
-     
-    
      
     <table
       class=" svelte-1fki7pe"

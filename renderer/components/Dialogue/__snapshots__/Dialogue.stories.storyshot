@@ -4,72 +4,7 @@ exports[`Storyshots Components/Dialogue Default 1`] = `
 <section
   class="storybook-snapshot-container"
 >
-  <div
-    class="filter svelte-1vslz6j open"
-  />
    
-  <div
-    class="backdrop svelte-1vslz6j open"
-  >
-    <button
-      class="absolute top-0 right-0 m-4 svelte-2vu076 iconOnly"
-    >
-      <i
-        class="material-icons svelte-2vu076"
-      >
-        close
-      </i>
-       
-       
-       
-    </button>
-     
-    <article
-      class="svelte-1vslz6j"
-    >
-      <header
-        class="svelte-1vslz6j"
-      >
-        This is a title
-      </header>
-       
-      <div
-        class="content svelte-1vslz6j"
-      >
-        <div
-          slot="content"
-        >
-          Here is an important message, that you absolutely need to be aware of.
-        </div>
-      </div>
-       
-      <footer
-        class="svelte-1vslz6j"
-      >
-        <span
-          slot="buttons"
-        >
-          <button
-            class="svelte-2vu076"
-          >
-            <i
-              class="material-icons svelte-2vu076"
-            >
-              close
-            </i>
-             
-            <span>
-              Close
-            </span>
-             
-             
-          </button>
-        </span>
-      </footer>
-    </article>
-  </div>
-   
-  
    
   <button
     class="svelte-2vu076"

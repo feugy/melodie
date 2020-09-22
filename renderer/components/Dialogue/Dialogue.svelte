@@ -1,4 +1,5 @@
 <script>
+  import Portal from 'svelte-portal'
   import { afterUpdate, createEventDispatcher } from 'svelte'
   import Button from '../Button/Button.svelte'
 
@@ -16,6 +17,12 @@
       previous = open
     }
   })
+
+  function handleKeyup({ key }) {
+    if (key === 'Escape') {
+      open = false
+    }
+  }
 </script>
 
 <style type="postcss">
@@ -60,23 +67,26 @@
   }
 </style>
 
-<div class="filter" class:open />
-<div class="backdrop" class:open on:click={() => (open = false)}>
-  <Button
-    icon={'close'}
-    class="absolute top-0 right-0 m-4"
-    on:click={() => (open = false)} />
-  <article on:click|stopPropagation>
-    <header>{title}</header>
-    <div class="content">
-      <slot name="content" />
-    </div>
-    <footer>
-      <slot name="buttons" />
-    </footer>
-  </article>
-</div>
-<!-- Svelte issue: https://github.com/sveltejs/svelte/issues/4546 -->
-{#if false}
-  <slot />
-{/if}
+<svelte:body on:keyup={handleKeyup} />
+<Portal>
+  <div class="filter" class:open />
+  <div class="backdrop" class:open on:click={() => (open = false)}>
+    <Button
+      icon={'close'}
+      class="absolute top-0 right-0 m-4"
+      on:click={() => (open = false)} />
+    <article on:click|stopPropagation>
+      <header>{title}</header>
+      <div class="content">
+        <slot name="content" />
+      </div>
+      <footer>
+        <slot name="buttons" />
+      </footer>
+    </article>
+  </div>
+  <!-- Svelte issue: https://github.com/sveltejs/svelte/issues/4546 -->
+  {#if false}
+    <slot />
+  {/if}
+</Portal>

@@ -97,15 +97,15 @@ npm run build
 - [x] interaction feedback on buttons, links, images...
 - [x] automatically retrieve artist avatar, in the background
 - [x] configurable keys for Discogs & AudioDB providers
-- [ ] close modal dialogues on esc key
+- [x] close modal dialogues on esc key
 - [ ] tutorial: prevent removing all tracks from queue
       ---> release?
-- [ ] configurable "play now" behaviour: either clear & add, or enqueue and jump
 - [ ] smaller screen support (UI refactor)
 - [ ] enqueue tracks/albums by dragging to tracks queue
 - [ ] add to playlist from Album/Playlist details page
 - [ ] configure replay gain from settings
-- [ ] settings for simple/double click behaviour
+- [ ] configurable simple/double click behaviour
+- [ ] configurable "play now" behaviour: either clear & add, or enqueue and jump
 - [ ] display years (artist & album details page)
 - [ ] display album/artist descriptions
 - [ ] block power save

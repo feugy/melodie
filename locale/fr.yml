@@ -109,4 +109,5 @@ tutorial:
     <p>Et voilà ! Votre nouvelle playlist se trouve ici.</p>
   end: >
     <p>Voila pour cette rapide visite.</p>
+    <p>Un peu plus tard, pensez à retourner dans les paramètres pour configurer Discogs et AudioDB.</p>
     <p class="mb-4">Il est temps de vous laisser écouter votre musique !</p>
