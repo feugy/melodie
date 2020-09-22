@@ -96,11 +96,11 @@ npm run build
 - [x] feedback on enqueue and play actions
 - [x] interaction feedback on buttons, links, images...
 - [x] automatically retrieve artist avatar, in the background
-- [ ] tutorial: prevent removing all tracks from queue
-- [ ] configurable keys for Discogs & AudioDB providers
-- [ ] configurable "play now" behaviour: either clear & add, or enqueue and jump
+- [x] configurable keys for Discogs & AudioDB providers
 - [ ] close modal dialogues on esc key
+- [ ] tutorial: prevent removing all tracks from queue
       ---> release?
+- [ ] configurable "play now" behaviour: either clear & add, or enqueue and jump
 - [ ] smaller screen support (UI refactor)
 - [ ] enqueue tracks/albums by dragging to tracks queue
 - [ ] add to playlist from Album/Playlist details page
@@ -265,9 +265,9 @@ To use real services, run your tests with `REAL_NETWORK` environment variables (
 When using real services, update the mocks by defining `UPDATE_NOCKS` environment variables (whatever its value).
 **Nocks will stay unchanged on test failure**.
 
-Some providers need access keys. Just make a `.env` file in the root folder, with the appropriate values:
+Some providers need access keys during tests. Just make a `.env` file in the root folder, with the appropriate values:
 
 ```
 DISCOGS_TOKEN=XYZ
-AUDIODB_KEY=123
+AUDIODB_KEY=1
 ```

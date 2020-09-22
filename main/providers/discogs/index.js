@@ -10,12 +10,15 @@ class Discogs extends AbstractProvider {
   }
 
   init({ token } = {}) {
-    this.token = token || 'TOKEN'
+    this.token = token || null
     this.prefixUrl = `https://api.discogs.com`
   }
 
   async findArtistArtwork(searched) {
     this.logger.debug({ searched }, `search artist artwork for ${searched}`)
+    if (!this.token) {
+      return []
+    }
     this.checkRate(`Can not search artist artwork for ${searched}`)
     try {
       const { results } = await got('database/search', {
@@ -50,6 +53,9 @@ class Discogs extends AbstractProvider {
 
   async findAlbumCover(searched) {
     this.logger.debug({ searched }, `search album cover for ${searched}`)
+    if (!this.token) {
+      return []
+    }
     this.checkRate(`Can not search album cover for ${searched}`)
     try {
       const { results } = await got(`database/search`, {

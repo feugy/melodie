@@ -132,33 +132,42 @@ a:hover {
 
 a.underlined {
   @apply relative;
-}
-a.underlined:before {
-  @apply opacity-0 absolute left-0;
-  content: '';
-  bottom: -2px;
-  height: 0.5px;
-  right: 100%;
-  transition: all 0.5s ease-in-out;
-  background-color: var(--hover-color);
-}
 
-a.underlined:hover {
-  @apply no-underline border-none outline-none;
-  color: var(--hover-color);
-}
-a.underlined:hover:before {
-  @apply opacity-100;
-  right: 0%;
-}
-a.underlined:active:before {
-  left: 100%;
+  &:before {
+    @apply opacity-0 absolute left-0;
+    content: '';
+    bottom: -2px;
+    height: 0.5px;
+    right: 100%;
+    transition: all 0.5s ease-in-out;
+    background-color: var(--hover-color);
+  }
+
+  &:active:before {
+    left: 100%;
+  }
+
+  &:hover {
+    @apply no-underline border-none outline-none;
+    color: var(--hover-color);
+
+    &:before {
+      @apply opacity-100;
+      right: 0%;
+    }
+  }
+
+  & > .material-icons {
+    font-size: 1em;
+    vertical-align: -0.15rem;
+  }
 }
 
 .actionable {
   @apply: cursor-pointer;
   transition: box-shadow 0.1s linear;
 }
+
 .actionable:hover,
 a:hover .actionable {
   box-shadow: 0 0 0 2px var(--hover-color);

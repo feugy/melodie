@@ -9,12 +9,15 @@ class AudioDB extends AbstractProvider {
   }
 
   init({ key } = {}) {
-    this.key = key || 1
+    this.key = key || null
     this.prefixUrl = `https://www.theaudiodb.com/api/v1/json/${this.key}`
   }
 
   async findArtistArtwork(searched) {
     this.logger.debug({ searched }, `search artist artwork for ${searched}`)
+    if (!this.key) {
+      return []
+    }
     this.checkRate(`Can not search artist artwork for ${searched}`)
     try {
       const { artists } = await got(`search.php`, {
@@ -56,6 +59,9 @@ class AudioDB extends AbstractProvider {
 
   async findAlbumCover(searched) {
     this.logger.debug({ searched }, `search album cover for ${searched}`)
+    if (!this.key) {
+      return []
+    }
     this.checkRate(`Can not search album cover for ${searched}`)
     try {
       const { album } = await got(`searchalbum.php`, {

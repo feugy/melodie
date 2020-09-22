@@ -7,6 +7,7 @@ const { main } = require('.')
 const models = require('./models')
 const services = require('./services')
 const { allProviders } = require('./providers')
+const { configureExternalLinks } = require('./utils')
 
 jest.mock('electron', () => {
   const { EventEmitter } = require('events')
@@ -18,13 +19,14 @@ jest.mock('electron', () => {
   const ipcMain = new EventEmitter()
   ipcMain.handle = jest.fn()
   ipcMain.removeHandler = jest.fn()
+  const webContents = new EventEmitter()
   return {
     app,
     ipcMain,
     Menu: {
       setApplicationMenu: jest.fn()
     },
-    BrowserWindow: jest.fn()
+    BrowserWindow: jest.fn().mockResolvedValue({ webContents })
   }
 })
 jest.mock('./services')
@@ -33,6 +35,7 @@ jest.mock('electron-reload')
 jest.mock('./providers', () => ({
   allProviders: [{ compareTracks: jest.fn() }, { compareTracks: jest.fn() }]
 }))
+jest.mock('./utils/links')
 
 describe('Application test', () => {
   let win
@@ -60,6 +63,8 @@ describe('Application test', () => {
     for (const provider of allProviders) {
       expect(provider.compareTracks).toHaveBeenCalled()
     }
+    expect(configureExternalLinks).toHaveBeenCalledWith(win)
+    expect(configureExternalLinks).toHaveBeenCalledTimes(1)
   })
 
   it('quits when closing window', async () => {

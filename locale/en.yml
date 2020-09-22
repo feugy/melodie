@@ -68,6 +68,22 @@ track: Track
 unknown: Unknown
 watched folders: Music folders
 yes: Yes
+audiodb:
+  description: >
+    <p>TheAudioDB is a community Database of audio artwork and data with a JSON API. Mélodie can use it for album covers and artist artwork, but it needs an API key.</p>
+    <p>To get your key, <a class="underlined" href="https://www.theaudiodb.com/api_apply.php">apply as a Patreon <i class="material-icons">launch</i></a>.<p/>
+  key: >
+    Key:
+  key placeholder: Paste your key here
+  title: AudioDB data provider
+discogs:
+  description: >
+    <p>Discogs is on a mission to build the biggest and most comprehensive music database and marketplace. Mélodie can use it for album covers and artist artwork, but it needs an access token.</p>
+    <p>To get one, <a class="underlined" href="https://www.discogs.com/settings/developers">opens a developer account at Discogs and generates a personal access token <i class="material-icons">launch</i></a>.<p/>
+  token: >
+    Access token:
+  token placeholder: Paste your token here
+  title: Discogs data provider
 tags:
   album: Album
   albumartist: Album artist

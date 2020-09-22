@@ -11,6 +11,7 @@ const {
   getStoragePath,
   manageState,
   registerRenderer,
+  configureExternalLinks,
   subscribeRemote
 } = require('./utils')
 const { allProviders } = require('./providers')
@@ -79,6 +80,7 @@ exports.main = async () => {
     }
 
     registerRenderer(win)
+    configureExternalLinks(win)
     await models.init(getStoragePath('db.sqlite3'))
 
     unsubscribe = subscribeRemote({

@@ -77,6 +77,22 @@ tags:
   website: Site web
   writer: Auteur
   year: Année
+audiodb:
+  description: >
+    <p>TheAudioDB est une base de donnée communautaire de morceaux de musique avec une API JSON. Avec une clé d'API, Mélodie peux utiliser AudioDB pour retrouver les couvertures d'albums et les images d'artistes.</p>
+    <p>Pour obtenir votre clé, <a class="underlined" href="https://www.theaudiodb.com/api_apply.php">devenez un sponsor <i class="material-icons">launch</i></a>.<p/>
+  key: >
+    Clé :
+  key placeholder: Copiez votre clé ici
+  title: Fournisseur de données AudioDB
+discogs:
+  description: >
+    <p>Discogs s'est donné pour mission de construire la base de données musicale la plus grande et la plus complète. Avec un jeton d'accès, Mélodie peux utliser Discogs pour retrouver les couvertures d'albums et les images d'artistes.</p>
+    <p>Pour obtenir un jeton d'accès, <a class="underlined" href="https://www.discogs.com/fr/settings/developers">créez un compte développeur et générez un jeton d'accès personnel <i class="material-icons">launch</i></a>.<p/>
+  token: >
+    Jeton d'accès :
+  token placeholder: Copiez votre jeton ici
+  title: Fournisseur de données Discogs
 tutorial:
   chooseLocale: >
     <h3>Bienvenue sur Mélodie!</h3>

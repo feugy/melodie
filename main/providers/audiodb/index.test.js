@@ -1,6 +1,6 @@
 'use strict'
 
-if (process.env.REAL_NETWORK) require('dotenv').config()
+require('dotenv').config()
 const nock = require('nock')
 const provider = require('.')
 const TooManyRequestsError = require('../too-many-requests-error')
@@ -9,10 +9,17 @@ const { withNockIt } = require('../../tests')
 describe('AudioDB provider', () => {
   beforeEach(() => {
     provider.lastReqEpoch = 0
-    provider.init({ key: process.env.AUDIODB_KEY })
+    provider.init({
+      key: process.env.AUDIODB_KEY
+    })
   })
 
   describe('findArtistArtwork()', () => {
+    it('returns nothing when not initialized', async () => {
+      provider.init()
+      expect(await provider.findArtistArtwork('coldplay')).toEqual([])
+    })
+
     withNockIt('returns artwork', async () => {
       expect(await provider.findArtistArtwork('coldplay')).toEqual([
         {
@@ -66,6 +73,11 @@ describe('AudioDB provider', () => {
   })
 
   describe('findAlbumCover()', () => {
+    it('returns nothing when not initialized', async () => {
+      provider.init()
+      expect(await provider.findAlbumCover('Parachutes')).toEqual([])
+    })
+
     withNockIt('returns cover', async () => {
       expect(await provider.findAlbumCover('Parachutes')).toEqual([
         {

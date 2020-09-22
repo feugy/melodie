@@ -3,11 +3,19 @@
   import { fade } from 'svelte/transition'
   import { push } from 'svelte-spa-router'
   import { _, locales, locale } from 'svelte-intl'
-  import { Heading, Button, SubHeading, Dropdown } from '../components'
+  import {
+    Heading,
+    Button,
+    SubHeading,
+    Dropdown,
+    TextInput
+  } from '../components'
   import { invoke } from '../utils'
 
   export const params = {}
   let currentLocale = $locale ? { value: $locale, label: $_($locale) } : null
+  let audiodbKey = ''
+  let discogsToken = ''
 
   $: localeOptions = $locales.map(value => ({ value, label: $_(value) }))
   $: if (currentLocale && currentLocale.value !== $locale) {
@@ -20,6 +28,10 @@
 
   function getSettings() {
     settingsPromise = invoke('settings.get')
+    settingsPromise.then(({ providers: { audiodb, discogs } }) => {
+      audiodbKey = audiodb.key || ''
+      discogsToken = discogs.token || ''
+    })
   }
 
   async function handleAdd() {
@@ -32,24 +44,48 @@
     await invoke('settings.removeFolder', folder)
     getSettings()
   }
+
+  async function handleSaveAudioDB(value) {
+    audiodbKey = value
+    await invoke('settings.setAudioDBKey', audiodbKey)
+  }
+
+  async function handleSaveDiscogs(value) {
+    discogsToken = value
+    await invoke('settings.setDiscogsToken', discogsToken)
+  }
 </script>
 
 <style type="postcss">
   article {
     @apply text-left mx-8 mb-8;
+
+    & > div {
+      @apply text-sm my-4;
+    }
   }
 
   li {
     @apply p-2 rounded-full mb-4 mr-4 inline-flex;
     background-color: var(--bg-primary-color);
-  }
 
-  li > span {
-    @apply px-4;
+    & > span {
+      @apply px-4;
+    }
   }
 
   .controlContainer {
     @apply inline-block;
+  }
+
+  label {
+    @apply text-right inline-block;
+    min-width: 180px;
+  }
+
+  :global(.settings-input) {
+    @apply inline-block;
+    width: 400px;
   }
 </style>
 
@@ -85,5 +121,29 @@
         valueAsText="true"
         bind:value={currentLocale}
         options={localeOptions} /></span>
+  </article>
+  <article>
+    <SubHeading>{$_('audiodb.title')}</SubHeading>
+    <div>
+      {@html $_('audiodb.description')}
+    </div>
+    <label for="audiodb-key">{$_('audiodb.key')}</label>
+    <span class="controlContainer" id="audiodb-key"><TextInput
+        class="settings-input"
+        placeholder={$_('audiodb.key placeholder')}
+        value={audiodbKey}
+        on:change={({ target: { value } }) => handleSaveAudioDB(value)} /></span>
+  </article>
+  <article>
+    <SubHeading>{$_('discogs.title')}</SubHeading>
+    <div>
+      {@html $_('discogs.description')}
+    </div>
+    <label for="discogs-token">{$_('discogs.token')}</label>
+    <span class="controlContainer" id="discogs-token"><TextInput
+        class="settings-input"
+        placeholder={$_('discogs.token placeholder')}
+        value={discogsToken}
+        on:change={({ target: { value } }) => handleSaveDiscogs(value)} /></span>
   </article>
 </section>

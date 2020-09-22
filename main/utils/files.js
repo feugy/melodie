@@ -22,7 +22,7 @@ exports.parentName = function (path) {
 }
 
 exports.walk = function (path) {
-  return Observable.create(function (observer) {
+  return new Observable(function (observer) {
     klaw(path)
       .on('readable', function () {
         let item

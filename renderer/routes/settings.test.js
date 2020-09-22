@@ -8,15 +8,19 @@ import settingsRoute from './settings.svelte'
 import { translate, mockInvoke, sleep } from '../tests'
 
 describe('settings route', () => {
+  const key = faker.random.alphaNumeric(10)
+  const token = faker.random.uuid()
+  const providers = { audiodb: { key }, discogs: { token } }
+  const folders = [faker.system.fileName(), faker.system.fileName()]
+
   beforeEach(() => {
     location.hash = '#/'
     jest.resetAllMocks()
     locale.set('fr')
   })
 
-  it('displays tracked folders and current language', async () => {
-    const folders = [faker.system.fileName(), faker.system.fileName()]
-    mockInvoke.mockResolvedValueOnce({ folders })
+  it('displays tracked folders, current language and providers data', async () => {
+    mockInvoke.mockResolvedValueOnce({ folders, providers })
 
     render(html`<${settingsRoute} />`)
     await sleep()
@@ -25,14 +29,18 @@ describe('settings route', () => {
       expect(screen.getByText(folder)).toBeInTheDocument()
     }
     expect(screen.getByText(translate('add folders'))).toBeInTheDocument()
-    expect(mockInvoke).toHaveBeenCalledWith('remote', 'settings', 'get')
-    expect(mockInvoke).toHaveBeenCalledTimes(1)
 
     expect(screen.getByText(translate('fr'))).toBeInTheDocument()
+
+    expect(screen.getAllByRole('textbox')[0]).toHaveValue(key)
+    expect(screen.getAllByRole('textbox')[1]).toHaveValue(token)
+
+    expect(mockInvoke).toHaveBeenCalledWith('remote', 'settings', 'get')
+    expect(mockInvoke).toHaveBeenCalledTimes(1)
   })
 
   it('changes current language and updates labels', async () => {
-    mockInvoke.mockResolvedValueOnce({ folders: [] })
+    mockInvoke.mockResolvedValueOnce({ folders: [], providers })
 
     render(html`<${settingsRoute} />`)
     expect(screen.getByText('Langue actuelle :')).toBeInTheDocument()
@@ -53,7 +61,10 @@ describe('settings route', () => {
   })
 
   it('adds new folders and redirect to folders', async () => {
-    mockInvoke.mockResolvedValue({ folders: [faker.random.word()] })
+    mockInvoke.mockResolvedValue({
+      folders: [faker.random.word()],
+      providers
+    })
 
     render(html`<${settingsRoute} />`)
     await sleep()
@@ -73,11 +84,10 @@ describe('settings route', () => {
   })
 
   it('remove tracked folders', async () => {
-    const folders = [faker.system.fileName(), faker.system.fileName()]
     mockInvoke
-      .mockResolvedValueOnce({ folders })
+      .mockResolvedValueOnce({ folders, providers })
       .mockResolvedValueOnce()
-      .mockResolvedValueOnce({ folders: folders.slice(0, 1) })
+      .mockResolvedValueOnce({ folders: folders.slice(0, 1), providers })
 
     render(html`<${settingsRoute} />`)
     await sleep()
@@ -87,7 +97,7 @@ describe('settings route', () => {
 
     // remove second one
     await fireEvent.click(screen.getAllByText('close')[1])
-    await sleep(0)
+    await sleep()
 
     expect(mockInvoke).toHaveBeenNthCalledWith(1, 'remote', 'settings', 'get')
     expect(mockInvoke).toHaveBeenNthCalledWith(
@@ -101,5 +111,55 @@ describe('settings route', () => {
     expect(mockInvoke).toHaveBeenCalledTimes(3)
     expect(screen.queryByText(folders[0])).toBeInTheDocument()
     expect(screen.queryByText(folders[1])).toBeNull()
+  })
+
+  it('saves new key for AudioDB provider', async () => {
+    const newKey = faker.random.alphaNumeric(12)
+    mockInvoke
+      .mockResolvedValueOnce({ folders, providers })
+      .mockResolvedValueOnce()
+
+    render(html`<${settingsRoute} />`)
+    await sleep()
+
+    await fireEvent.change(screen.getAllByRole('textbox')[0], {
+      target: { value: newKey }
+    })
+    await sleep()
+
+    expect(mockInvoke).toHaveBeenNthCalledWith(1, 'remote', 'settings', 'get')
+    expect(mockInvoke).toHaveBeenNthCalledWith(
+      2,
+      'remote',
+      'settings',
+      'setAudioDBKey',
+      newKey
+    )
+    expect(mockInvoke).toHaveBeenCalledTimes(2)
+  })
+
+  it('saves new token for Discogs provider', async () => {
+    const newToken = faker.random.uuid()
+    mockInvoke
+      .mockResolvedValueOnce({ folders, providers })
+      .mockResolvedValueOnce()
+
+    render(html`<${settingsRoute} />`)
+    await sleep()
+
+    await fireEvent.change(screen.getAllByRole('textbox')[1], {
+      target: { value: newToken }
+    })
+    await sleep()
+
+    expect(mockInvoke).toHaveBeenNthCalledWith(1, 'remote', 'settings', 'get')
+    expect(mockInvoke).toHaveBeenNthCalledWith(
+      2,
+      'remote',
+      'settings',
+      'setDiscogsToken',
+      newToken
+    )
+    expect(mockInvoke).toHaveBeenCalledTimes(2)
   })
 })
