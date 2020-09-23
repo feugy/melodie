@@ -154,7 +154,7 @@
 <ol on:mouseleave={handleOut} class:dragged>
   {#each keyedItems as item, i (item.key)}
     <li
-      out:slideOnRemove={{ duration: 250 }}
+      out:slideOnRemove|local={{ duration: 250 }}
       class:dragged={dragged && dragged.key === item.key}
       class:target={target && target.key === item.key}
       on:mousedown={evt => handleDrag(evt, item.key, i)}

@@ -118,7 +118,6 @@ npm run build
 
 ### Bugs and unresolved issues
 
-1. When leaving playlist detailed page, removal animation slows navigation down
 1. When DB has albums and playlists, tutorial enters infinite loop
 1. Undetected live changes: remove tracks and re-add them. This is a linux-only issue with chokidar
    - https://github.com/paulmillr/chokidar/issues/917
