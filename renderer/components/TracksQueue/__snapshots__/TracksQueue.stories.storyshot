@@ -29,7 +29,9 @@ exports[`Storyshots Components/Tracks queue Empty 1`] = `
       class="svelte-1bbcl7z"
     >
        
-      <ol />
+      <ol
+        class="svelte-c121nq"
+      />
     </div>
   </div>
 </section>
@@ -101,9 +103,11 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
       class="svelte-1bbcl7z"
     >
        
-      <ol>
+      <ol
+        class="svelte-c121nq"
+      >
         <li
-          class="svelte-13iddqb"
+          class="svelte-c121nq"
         >
           <span
             slot="item"
@@ -170,7 +174,7 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
            
         </li>
         <li
-          class="svelte-13iddqb"
+          class="svelte-c121nq"
         >
           <span
             slot="item"
@@ -237,7 +241,7 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
            
         </li>
         <li
-          class="svelte-13iddqb"
+          class="svelte-c121nq"
         >
           <span
             slot="item"
@@ -304,7 +308,7 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
            
         </li>
         <li
-          class="svelte-13iddqb"
+          class="svelte-c121nq"
         >
           <span
             slot="item"
@@ -371,7 +375,7 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
            
         </li>
         <li
-          class="svelte-13iddqb"
+          class="svelte-c121nq"
         >
           <span
             slot="item"
@@ -438,7 +442,7 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
            
         </li>
         <li
-          class="svelte-13iddqb"
+          class="svelte-c121nq"
         >
           <span
             slot="item"
@@ -505,7 +509,7 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
            
         </li>
         <li
-          class="svelte-13iddqb"
+          class="svelte-c121nq"
         >
           <span
             slot="item"
@@ -572,7 +576,7 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
            
         </li>
         <li
-          class="svelte-13iddqb"
+          class="svelte-c121nq"
         >
           <span
             slot="item"

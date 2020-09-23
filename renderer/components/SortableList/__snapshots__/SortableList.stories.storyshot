@@ -6,9 +6,11 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
 >
   <div>
      
-    <ol>
+    <ol
+      class="svelte-c121nq"
+    >
       <li
-        class="svelte-13iddqb"
+        class="svelte-c121nq"
       >
         <div
           class="svelte-1hrmi6p"
@@ -74,7 +76,7 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
          
       </li>
       <li
-        class="svelte-13iddqb"
+        class="svelte-c121nq"
       >
         <div
           class="svelte-1hrmi6p"
@@ -140,7 +142,7 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
          
       </li>
       <li
-        class="svelte-13iddqb"
+        class="svelte-c121nq"
       >
         <div
           class="svelte-1hrmi6p"
@@ -206,7 +208,7 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
          
       </li>
       <li
-        class="svelte-13iddqb"
+        class="svelte-c121nq"
       >
         <div
           class="svelte-1hrmi6p"
@@ -272,7 +274,7 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
          
       </li>
       <li
-        class="svelte-13iddqb"
+        class="svelte-c121nq"
       >
         <div
           class="svelte-1hrmi6p"
@@ -338,7 +340,7 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
          
       </li>
       <li
-        class="svelte-13iddqb"
+        class="svelte-c121nq"
       >
         <div
           class="svelte-1hrmi6p"
@@ -404,7 +406,7 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
          
       </li>
       <li
-        class="svelte-13iddqb"
+        class="svelte-c121nq"
       >
         <div
           class="svelte-1hrmi6p"
@@ -470,7 +472,7 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
          
       </li>
       <li
-        class="svelte-13iddqb"
+        class="svelte-c121nq"
       >
         <div
           class="svelte-1hrmi6p"

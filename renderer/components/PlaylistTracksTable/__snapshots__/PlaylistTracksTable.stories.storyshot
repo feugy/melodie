@@ -50,9 +50,11 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
         class="svelte-1nzz15j"
       >
          
-        <ol>
+        <ol
+          class="svelte-c121nq"
+        >
           <li
-            class="svelte-13iddqb"
+            class="svelte-c121nq"
           >
             <tr
               class="svelte-1nzz15j"
@@ -155,7 +157,7 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
              
           </li>
           <li
-            class="svelte-13iddqb"
+            class="svelte-c121nq"
           >
             <tr
               class="svelte-1nzz15j"
@@ -258,7 +260,7 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
              
           </li>
           <li
-            class="svelte-13iddqb"
+            class="svelte-c121nq"
           >
             <tr
               class="svelte-1nzz15j"
@@ -361,7 +363,7 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
              
           </li>
           <li
-            class="svelte-13iddqb"
+            class="svelte-c121nq"
           >
             <tr
               class="svelte-1nzz15j"
@@ -464,7 +466,7 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
              
           </li>
           <li
-            class="svelte-13iddqb"
+            class="svelte-c121nq"
           >
             <tr
               class="svelte-1nzz15j"
@@ -567,7 +569,7 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
              
           </li>
           <li
-            class="svelte-13iddqb"
+            class="svelte-c121nq"
           >
             <tr
               class="svelte-1nzz15j"
@@ -670,7 +672,7 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
              
           </li>
           <li
-            class="svelte-13iddqb"
+            class="svelte-c121nq"
           >
             <tr
               class="svelte-1nzz15j"
@@ -773,7 +775,7 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
              
           </li>
           <li
-            class="svelte-13iddqb"
+            class="svelte-c121nq"
           >
             <tr
               class="svelte-1nzz15j"
@@ -876,7 +878,7 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
              
           </li>
           <li
-            class="svelte-13iddqb"
+            class="svelte-c121nq"
           >
             <tr
               class="svelte-1nzz15j"
@@ -979,7 +981,7 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
              
           </li>
           <li
-            class="svelte-13iddqb"
+            class="svelte-c121nq"
           >
             <tr
               class="svelte-1nzz15j"
@@ -1082,7 +1084,7 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
              
           </li>
           <li
-            class="svelte-13iddqb"
+            class="svelte-c121nq"
           >
             <tr
               class="svelte-1nzz15j"
@@ -1185,7 +1187,7 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
              
           </li>
           <li
-            class="svelte-13iddqb"
+            class="svelte-c121nq"
           >
             <tr
               class="svelte-1nzz15j"
@@ -1288,7 +1290,7 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
              
           </li>
           <li
-            class="svelte-13iddqb"
+            class="svelte-c121nq"
           >
             <tr
               class="svelte-1nzz15j"
@@ -1391,7 +1393,7 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
              
           </li>
           <li
-            class="svelte-13iddqb"
+            class="svelte-c121nq"
           >
             <tr
               class="svelte-1nzz15j"
@@ -1494,7 +1496,7 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
              
           </li>
           <li
-            class="svelte-13iddqb"
+            class="svelte-c121nq"
           >
             <tr
               class="svelte-1nzz15j"
@@ -1597,7 +1599,7 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
              
           </li>
           <li
-            class="svelte-13iddqb"
+            class="svelte-c121nq"
           >
             <tr
               class="svelte-1nzz15j"
@@ -1700,7 +1702,7 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
              
           </li>
           <li
-            class="svelte-13iddqb"
+            class="svelte-c121nq"
           >
             <tr
               class="svelte-1nzz15j"
@@ -1803,7 +1805,7 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
              
           </li>
           <li
-            class="svelte-13iddqb"
+            class="svelte-c121nq"
           >
             <tr
               class="svelte-1nzz15j"

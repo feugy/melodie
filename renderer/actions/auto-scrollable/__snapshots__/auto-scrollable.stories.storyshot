@@ -1,0 +1,103 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Actions/auto-scrollable Default 1`] = `
+<section
+  class="storybook-snapshot-container"
+>
+  <ol
+    class="svelte-886hq0"
+    style="--padding: 75px; --margin: -75px;"
+  >
+    <li>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    </li>
+    <li>
+      In eu mi bibendum neque egestas congue quisque egestas
+    </li>
+    <li>
+      Arcu non odio euismod lacinia at quis risus sed
+    </li>
+    <li>
+      Massa tempor nec feugiat nisl
+    </li>
+    <li>
+      Sagittis aliquam malesuada bibendum arcu vitae elementum
+    </li>
+    <li>
+      Elementum facilisis leo vel fringilla est ullamcorper eget nulla
+    </li>
+    <li>
+      Bibendum arcu vitae elementum curabitur vitae nunc sed velit dignissim
+    </li>
+    <li>
+      Elit sed vulputate mi sit amet mauris commodo
+    </li>
+    <li>
+      Ut enim blandit volutpat maecenas volutpat blandit aliquam etiam erat
+    </li>
+    <li>
+      Lorem mollis aliquam ut porttitor leo a diam sollicitudin
+    </li>
+    <li>
+      Vitae proin sagittis nisl rhoncus mattis
+    </li>
+    <li>
+      Ut morbi tincidunt augue interdum velit euismod in pellentesque
+    </li>
+    <li>
+      Aliquam purus sit amet luctus venenatis lectus magna
+    </li>
+    <li>
+      Amet venenatis urna cursus eget
+    </li>
+    <li>
+      Et pharetra pharetra massa massa
+    </li>
+    <li>
+      Ac ut consequat semper viverra nam libero justo laoreet
+    </li>
+    <li>
+      Eget arcu dictum varius duis at consectetur lorem
+    </li>
+    <li>
+      Tellus id interdum velit laoreet id donec
+    </li>
+    <li>
+      Aliquam sem fringilla ut morbi
+    </li>
+    <li>
+      Consequat nisl vel pretium lectus quam id leo in vitae
+    </li>
+    <li>
+      Velit scelerisque in dictum non
+    </li>
+    <li>
+      Pretium aenean pharetra magna ac
+    </li>
+    <li>
+      Tincidunt arcu non sodales neque sodales ut etiam
+    </li>
+    <li>
+      Cursus eget nunc scelerisque viverra mauris in aliquam
+    </li>
+    <li>
+      Tortor at auctor urna nunc id cursus
+    </li>
+    <li>
+      Consequat interdum varius sit amet mattis vulputate enim nulla
+    </li>
+    <li>
+      Sagittis vitae et leo duis ut
+    </li>
+    <li>
+      Pretium lectus quam id leo in
+    </li>
+    <li>
+      Fusce ut placerat orci nulla pellentesque dignissim enim sit
+    </li>
+    <li>
+      Sed cras ornare arcu dui vivamus arcu.
+    </li>
+  </ol>
+</section>
+`;

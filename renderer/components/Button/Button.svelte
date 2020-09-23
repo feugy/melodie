@@ -1,5 +1,5 @@
 <script>
-  import { classOnChange } from '../../utils'
+  import { classOnChange } from '../../actions'
 
   export let text = null
   export let primary = false

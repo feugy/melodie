@@ -1,5 +1,12 @@
+<script context="module">
+  import { BehaviorSubject } from 'rxjs'
+
+  const isMoveInProgress$ = new BehaviorSubject(false)
+  export const isMoveInProgress = isMoveInProgress$.asObservable()
+</script>
+
 <script>
-  import { createEventDispatcher, tick } from 'svelte'
+  import { createEventDispatcher } from 'svelte'
   import { slide } from 'svelte/transition'
   import { _ } from 'svelte-intl'
 
@@ -44,11 +51,11 @@
       width,
       left,
       min: bounds.top,
-      max: bounds.bottom - height
+      max: bounds.bottom - height,
+      positionned: findPositionned(item)
     }
-    const positionned = findPositionned(item)
-    if (positionned) {
-      const { left, top } = positionned.getBoundingClientRect()
+    if (possibleDrag.positionned) {
+      const { left, top } = possibleDrag.positionned.getBoundingClientRect()
       possibleDrag.left -= left
       possibleDrag.offset -= top
     }
@@ -82,15 +89,18 @@
   function handleMove(evt) {
     if (possibleDrag) {
       dragged = possibleDrag
-      dragged.item.style.top = `${evt.clientY + dragged.offset}px`
       dragged.item.style.left = `${dragged.left}px`
       dragged.item.style.height = `${dragged.height}px`
       dragged.item.style.width = `${dragged.width}px`
       possibleDrag = null
       handleOver(evt, dragged.key, dragged.idx)
+      isMoveInProgress$.next(true)
     }
     if (dragged) {
-      const value = evt.clientY + dragged.offset
+      const value =
+        evt.clientY +
+        dragged.offset +
+        (dragged.positionned ? dragged.positionned.scrollTop : 0)
       dragged.item.style.top = `${
         value < dragged.min
           ? dragged.min
@@ -116,6 +126,7 @@
     possibleDrag = null
     dragged = null
     target = null
+    isMoveInProgress$.next(false)
   }
 
   function slideOnRemove(...args) {
@@ -129,14 +140,18 @@
   }
 
   li.dragged {
-    @apply absolute inline-block pointer-events-none cursor-move;
+    @apply absolute inline-block pointer-events-none;
     background: var(--hover-bg-color);
     transition: top 150ms linear;
+  }
+
+  ol.dragged {
+    @apply cursor-move;
   }
 </style>
 
 <svelte:body on:mousemove={handleMove} on:mouseup={handleDrop} />
-<ol on:mouseleave={handleOut}>
+<ol on:mouseleave={handleOut} class:dragged>
   {#each keyedItems as item, i (item.key)}
     <li
       out:slideOnRemove={{ duration: 250 }}

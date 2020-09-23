@@ -7,6 +7,7 @@
     Player,
     Nav,
     Sheet,
+    SortableListConstants,
     SystemNotifier,
     TracksQueue,
     Tutorial
@@ -15,10 +16,13 @@
   import * as tutorial from './stores/tutorial'
   import { isLoading } from './stores/loading'
   import { invoke } from './utils'
+  import { autoScrollable } from './actions'
   import Router from './components/Router'
+
   let isPlaylistOpen = true
   let ready = false
   let scrollable
+  const { isMoveInProgress } = SortableListConstants
 
   onMount(async () => {
     const settings = await invoke('settings.get')
@@ -79,11 +83,17 @@
   <div>
     <main>
       <Sheet bind:open={isPlaylistOpen}>
-        <section slot="main" bind:this={scrollable}>
+        <section
+          slot="main"
+          bind:this={scrollable}
+          use:autoScrollable={{ enabled: $isMoveInProgress }}>
           <Nav />
           <Router {scrollable} />
         </section>
-        <aside slot="aside" id="queue">
+        <aside
+          slot="aside"
+          id="queue"
+          use:autoScrollable={{ enabled: $isMoveInProgress }}>
           <TracksQueue />
         </aside>
       </Sheet>

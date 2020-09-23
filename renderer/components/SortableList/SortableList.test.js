@@ -1,8 +1,10 @@
 'use strict'
 
 import { screen, render, fireEvent } from '@testing-library/svelte'
+import { get } from 'svelte/store'
 import html from 'svelte-htm'
 import faker from 'faker'
+import { isMoveInProgress } from './SortableList.svelte'
 import SortableList from './SortableList.stories.svelte'
 import { addRefs } from '../../tests'
 
@@ -87,16 +89,19 @@ describe('SortableList component', () => {
     })
 
     it('drags track forward in the list', async () => {
+      expect(get(isMoveInProgress)).toBe(false)
       const dragged = screen.queryByText(items[1].tags.title)
       const hovered = screen.queryByText(items[2].tags.title)
       const dropped = screen.queryByText(items[3].tags.title)
 
       await fireEvent.mouseDown(dragged)
       await fireEvent.mouseMove(dragged)
+      expect(get(isMoveInProgress)).toBe(true)
       await fireEvent.mouseEnter(hovered.closest('li'))
       await fireEvent.mouseEnter(dropped.closest('li'))
       await fireEvent.mouseUp(dropped)
 
+      expect(get(isMoveInProgress)).toBe(false)
       expect(onMove).toHaveBeenCalledWith(
         expect.objectContaining({ detail: { from: 1, to: 2 } })
       )
@@ -104,16 +109,19 @@ describe('SortableList component', () => {
     })
 
     it('drags track backward in the list', async () => {
+      expect(get(isMoveInProgress)).toBe(false)
       const dragged = screen.queryByText(items[3].tags.title)
       const hovered = screen.queryByText(items[2].tags.title)
       const dropped = screen.queryByText(items[1].tags.title)
 
       await fireEvent.mouseDown(dragged)
       await fireEvent.mouseMove(dragged)
+      expect(get(isMoveInProgress)).toBe(true)
       await fireEvent.mouseEnter(hovered.closest('li'))
       await fireEvent.mouseEnter(dropped.closest('li'))
       await fireEvent.mouseUp(dropped)
 
+      expect(get(isMoveInProgress)).toBe(false)
       expect(onMove).toHaveBeenCalledWith(
         expect.objectContaining({ detail: { from: 3, to: 1 } })
       )
@@ -121,15 +129,18 @@ describe('SortableList component', () => {
     })
 
     it('drags track at the very end', async () => {
+      expect(get(isMoveInProgress)).toBe(false)
       const dragged = screen.queryByText(items[0].tags.title)
       const hovered = screen.queryByText(items[4].tags.title)
 
       await fireEvent.mouseDown(dragged)
       await fireEvent.mouseMove(dragged)
+      expect(get(isMoveInProgress)).toBe(true)
       await fireEvent.mouseEnter(hovered.closest('li'))
       await fireEvent.mouseLeave(hovered.closest('ol'))
       await fireEvent.mouseUp(dragged)
 
+      expect(get(isMoveInProgress)).toBe(false)
       expect(onMove).toHaveBeenCalledWith(
         expect.objectContaining({ detail: { from: 0, to: 4 } })
       )
@@ -137,15 +148,18 @@ describe('SortableList component', () => {
     })
 
     it('drags track at the very beginning', async () => {
+      expect(get(isMoveInProgress)).toBe(false)
       const dragged = screen.queryByText(items[1].tags.title)
       const hovered = screen.queryByText(items[0].tags.title)
 
       await fireEvent.mouseDown(dragged)
       await fireEvent.mouseMove(dragged)
+      expect(get(isMoveInProgress)).toBe(true)
       await fireEvent.mouseEnter(hovered.closest('li'))
       await fireEvent.mouseLeave(hovered.closest('ol'))
       await fireEvent.mouseUp(dragged)
 
+      expect(get(isMoveInProgress)).toBe(false)
       expect(onMove).toHaveBeenCalledWith(
         expect.objectContaining({ detail: { from: 1, to: 0 } })
       )
@@ -153,14 +167,17 @@ describe('SortableList component', () => {
     })
 
     it(`does not move track on cancelled drag'n drop`, async () => {
+      expect(get(isMoveInProgress)).toBe(false)
       const dropped = screen.queryByTestId('paragraph')
       const dragged = screen.queryByText(items[2].tags.title)
 
       await fireEvent.mouseDown(dragged)
       await fireEvent.mouseMove(dragged)
+      expect(get(isMoveInProgress)).toBe(true)
       await fireEvent.mouseEnter(dropped)
       await fireEvent.mouseUp(dropped)
 
+      expect(get(isMoveInProgress)).toBe(false)
       expect(onMove).not.toHaveBeenCalled()
     })
 
@@ -168,8 +185,10 @@ describe('SortableList component', () => {
       const dragged = screen.queryByText(items[2].tags.title)
 
       await fireEvent.mouseDown(dragged)
+      expect(get(isMoveInProgress)).toBe(false)
       await fireEvent.mouseUp(dragged)
 
+      expect(get(isMoveInProgress)).toBe(false)
       expect(onMove).not.toHaveBeenCalled()
     })
   })
