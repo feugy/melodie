@@ -3,7 +3,7 @@
 const { playlistsModel } = require('../models')
 const { getLogger, broadcast, hash } = require('../utils')
 
-const logger = getLogger('services/playlist')
+const logger = getLogger('services/playlists')
 
 function pickData({ id, name, media, desc, trackIds }) {
   // whitelist saved data

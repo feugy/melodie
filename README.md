@@ -8,41 +8,15 @@ Melodie is a portable, simple-as-pie music player.
 
 There are thunsands of them in the wild. This mine is an excuse for learning [Electron](https://www.electronjs.org), [Svelte](https://svelte.dev) and [reactive programming](https://www.learnrxjs.io).
 
-## Run
-
-```shell
-git clone git@github.com:feugy/melodie.git
-cd melodie
-npm i
-npm run build
-```
-
 ## TODOs
 
 ### core
 
-- [x] consider albums & artists as track lists? name + image + tracks
-- [x] load (and save) folders and not files
-- [x] run track analysis in the background
-- [x] watch folder changes
-- [x] send start/stop events when updating
-- [x] embed file-loader's crawl() into chooseFolders()
-- [x] reactive stores: send update on new albums/artists/tracks
-- [x] images from AudioDB/discogs
-- [x] local provider for album covers
-- [x] consider knex-migrate
-- [x] logging to file
-- [x] catch all to logs
 - [ ] images from tags
 - [ ] artists' albums
 
 ### tools
 
-- [x] reload on changes occuring in `main/` folder (rollup can only watch changes to the bundle, that is, in `renderer/`)
-- [x] logs with level hot reloading
-- [x] Core automated unit tests
-- [x] UI automated unit tests
-- [x] Continuous integration
 - [ ] App automated end to end tests
 - [ ] Code coverage follow-up
 
@@ -65,47 +39,7 @@ npm run build
 
 ### features
 
-- [x] navigation bar: albums
-- [x] icons
-- [x] routing
-- [x] list all albums
-- [x] album details
-- [x] enqueue & play album buttons on album details page
-- [x] enqueue button on Album component
-- [x] current play list
-- [x] tracks' duration
-- [x] albums' artists
-- [x] animated transitions
-- [x] manually set album's cover
-- [x] manually set artist's avatar
-- [x] suggest album's cover from 3rd party DBs
-- [x] suggest artist's avatar from 3rd party DBs
-- [x] list all artists
-- [x] artist details
-- [x] page navigation (to artists, to albums)
-- [x] remove tracks from queue
-- [x] update track queue on track changes
-- [x] volume control
-- [x] search input and results
-- [x] navigation buttons
-- [x] system notification on next track
-- [x] reorder tracks queue with drag'n drop
-- [x] settings panel with watched folders
-- [x] memorize window position and state
-- [x] language change
-- [x] tracks without artists/album
-- [x] shuffle, loop
-- [x] [open containing folder](https://www.electronjs.org/docs/api/shell#shellshowiteminfolderfullpath) for tracks
-- [x] display track's tags and details
-- [x] playlists
-- [x] tutorial
-- [x] feedback on enqueue and play actions
-- [x] interaction feedback on buttons, links, images...
-- [x] automatically retrieve artist avatar, in the background
-- [x] configurable keys for Discogs & AudioDB providers
-- [x] close modal dialogues on esc key
 - [ ] tutorial: prevent removing all tracks from queue
-      ---> release?
 - [ ] smaller screen support (UI refactor)
 - [ ] enqueue tracks/albums by dragging to tracks queue
 - [ ] add to playlist from Album details/Playlist details/Search results pages
@@ -114,15 +48,12 @@ npm run build
 - [ ] configurable "play now" behaviour: either clear & add, or enqueue and jump
 - [ ] display years (artist & album details page)
 - [ ] display album/artist descriptions
-- [ ] block power save
-- [ ] system tray integration
-- [ ] loading indicators (one for all operation, fixed so it doesn't push content down)
+- [ ] system integration (play folder/file)
 - [ ] number of disk on album details page
 - [ ] display tracks/albums/artists count in settings
 - [ ] allow reseting database from settings
-- [ ] true gapless playback
 
-### Bugs and unresolved issues
+### Bugs and known issues
 
 1. When DB has albums and playlists, tutorial enters infinite loop
 1. Undetected live changes: remove tracks and re-add them. This is a linux-only issue with chokidar
@@ -137,7 +68,61 @@ npm run build
 1. Disklist/TrackTable dropdown does not consider scroll position (in storybook only)
 1. Testing input: fireEvent.change, input or keyUp does not trigger svelte's bind:value on input
 
-## History
+## Logging
+
+Log level file is `.levels` in the [application `userData` folder](https://www.electronjs.org/docs/api/app#appgetpathname).
+Its syntax is:
+
+```shell
+# this is a comment
+logger-name=level
+wildcard*=level
+```
+
+logger names are:
+
+- `core`
+- `renderer`
+- `updater`
+- `services/`_<serviceName>_ where _<serviceName>_ is `tracks`, `playlists`, `media`, `settings`
+- `providers/`_<providerName>_ where _<providerName>_ is `local`, `audiodb`, `discogs`
+- `models/`_<modelName>_ where _<modelName>_ is `tracks`, `albums`, `artists`, `playlists`, `settings`
+
+and levels are (in order): `trace` (most verbose), `debug`, `info`, `warn`, `error`, `fatal`, `silent` (no logs)
+
+Wildcards can be at the beginning `*tracks` or the end `models/*`.
+In case a logger name is matching several directives, the first always wins.
+
+You can edit the file, and trigger logger level refresh by sending SIGUSR2 to the application: `kill -USR2 {pid}` (first log issued contains pid)
+
+## Run locally
+
+```shell
+git clone git@github.com:feugy/melodie.git
+cd melodie
+npm i
+npm run build
+```
+
+## Test
+
+### Core services network mocks (nocks)
+
+Some services are hitting external APIs, such as AudioDB.
+As we don't want to flood them with test requests, these are using network mocks.
+
+To use real services, run your tests with `REAL_NETWORK` environment variables (whatever its value).
+When using real services, update the mocks by defining `UPDATE_NOCKS` environment variables (whatever its value).
+**Nocks will stay unchanged on test failure**.
+
+Some providers need access keys during tests. Just make a `.env` file in the root folder, with the appropriate values:
+
+```
+DISCOGS_TOKEN=XYZ
+AUDIODB_KEY=1
+```
+
+## Notable facts
 
 - Started with a search engine (FlexSearch) to store tracks, and serialized JS lists for albums & artists.
   Altough very performant (50s to index the whole music library), the memory footprint is heavy (700Mo) since
@@ -187,92 +172,36 @@ npm run build
 - AC/DC was displayed as 2 different artists ('AC' and 'DC'). This is an issue with ID3 tags: version 2.3 uses `/` as a separators for artists.
   Overitting mp3 tags with 2.4 [solved the issue](https://github.com/Borewit/music-metadata/issues/432)
 
-musings on watch & diff
+#### How watch & diff works
 
-- [x] on app load, trigger diff
-  1.  [x] get followed folders from store
-  1.  [x] crawl followed folders, return array of paths + hashs + last changed
-  1.  [x] get array of tracks with hash + last changed from DB
-  1.  [x] compare to find new & changed hashes
-      1. [x] enrich with tags & media
-      1. [x] save
-  1.  [x] compare to isolate deleted hashes
-      1. [x] remove corresponding tracks
-- [x] while app is running
-  1.  [x] watch new & changed paths
-      1. [x] compute hash, enrich with tags & media
-      1. [x] save
-  1.  [x] watch deleted paths
-      1. [x] compute hash
-      1. [x] remove corresponding tracks
-- [x] when adding new followed folder
-  1.  [x] save in store
-  1.  [x] crawl new folder, return array of paths
-  1.  [x] compute hash, enrich with tags & media
-  1.  [x] save
+- on app load, trigger diff
+  1. get followed folders from store
+  1. crawl followed folders, return array of paths + hashs + last changed
+  1. get array of tracks with hash + last changed from DB
+  1. compare to find new & changed hashes
+     1. enrich with tags & media
+     1. save
+  1. compare to isolate deleted hashes
+     1. remove corresponding tracks
+- while app is running
+  1. watch new & changed paths
+     1. compute hash, enrich with tags & media
+     1. save
+  1. watch deleted paths
+     1. compute hash
+     1. remove corresponding tracks
+- when adding new followed folder
+  1. save in store
+  1. crawl new folder, return array of paths
+  1. compute hash, enrich with tags & media
+  1. save
 
-musings on missing artwork
+### How missing artworks/covers retrieval works
 
-- [x] on UI demand trigger process
-  1.  [x] push all artists/albums without artwork/cover, and not process since N in a queue
-  1.  [x] apply rate limit (to avoid flooding disks/providers)
-  1.  [x] call providers one by one
-      1.  [x] save first result as artwork/cover, stop
-      1.  [x] on no results, but at least on provider returned rate limitation, enqueue artist/album
-      1.  [x] on no results, save date on artist/album
-
-## Logging
-
-Log level file is `.levels` in execution folder.
-It can be configured wth `LOG_LEVEL_FILE` env variable
-Its syntax is:
-
-```shell
-# this is a comment
-logger-name=level
-wildcard*=level
-```
-
-logger names are:
-
-- core
-- services/list
-- services/file
-- services/tag
-- models/tracks
-- models/albums
-- models/artists
-- models/settings
-
-levels are:
-
-- trace
-- debug
-- info
-- warn
-- error
-- fatal
-- silent
-
-Wildcards can be at the beginning `*tracks` or the end `models*`.
-In case a logger name is matching several directives, the first always wins.
-
-You can edit the file, and trigger logger level refresh by sending SIGUSR2 to the application: `kill -USR2 {pid}` (first log issued contains pid)
-
-## Testing
-
-### Core services network mocks (nocks)
-
-Some services are hitting external APIs, such as AudioDB.
-As we don't want to flood them with test requests, these are using network mocks.
-
-To use real services, run your tests with `REAL_NETWORK` environment variables (whatever its value).
-When using real services, update the mocks by defining `UPDATE_NOCKS` environment variables (whatever its value).
-**Nocks will stay unchanged on test failure**.
-
-Some providers need access keys during tests. Just make a `.env` file in the root folder, with the appropriate values:
-
-```
-DISCOGS_TOKEN=XYZ
-AUDIODB_KEY=1
-```
+- on UI demand trigger process
+  1. push all artists/albums without artwork/cover, and not process since N in a queue
+  1. apply rate limit (to avoid flooding disks/providers)
+  1. call providers one by one
+     1. save first result as artwork/cover, stop
+     1. on no results, but at least on provider returned rate limitation, enqueue artist/album
+     1. on no results, save date on artist/album
