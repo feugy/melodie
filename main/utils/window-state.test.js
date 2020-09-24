@@ -10,7 +10,6 @@ const { manageState, unmanageState } = require('./window-state')
 const { sleep } = require('../tests')
 const { getLogger } = require('./logger')
 
-jest.mock('electron', () => ({ app: { getPath: jest.fn() } }))
 jest.mock('./logger', () => {
   const logger = { warn: jest.fn() }
   return { getLogger: () => logger }

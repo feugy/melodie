@@ -3,7 +3,7 @@
 const { dialog } = require('electron')
 const { settingsModel } = require('../models')
 const { getLogger, mergeFolders, getSystemLocale } = require('../utils')
-const { local, audiodb, discogs } = require('../providers')
+const { local, audiodb, discogs, allProviders } = require('../providers')
 
 const logger = getLogger('services/settings')
 
@@ -16,12 +16,19 @@ module.exports = {
     return settings
   },
 
-  async recordOpening() {
+  async init() {
     const settings = await this.get()
     await settingsModel.save({
       ...settings,
       openCount: settings.openCount + 1
     })
+    logger.info('initializing providers')
+    audiodb.init(settings.providers.audiodb)
+    discogs.init(settings.providers.discogs)
+    logger.info('comparing provider tracks')
+    for (const provider of allProviders) {
+      provider.compareTracks()
+    }
   },
 
   async addFolders() {

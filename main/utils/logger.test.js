@@ -1,9 +1,11 @@
 'use strict'
 
+const { join } = require('path')
+const os = require('os')
 const faker = require('faker')
 const pino = require('pino')
 const fs = require('fs-extra')
-const { getLogPath } = require('./files')
+const { getLogPath, getStoragePath } = require('./files')
 
 let getLogger
 let refreshLogLevels
@@ -13,6 +15,7 @@ jest.mock('./files')
 
 describe('logger', () => {
   const envSave = Object.assign({}, process.env)
+  const logFile = join(os.tmpdir(), '.levels-test')
   let loggers = {}
   let setters = {}
 
@@ -31,8 +34,8 @@ describe('logger', () => {
     })
     process.env = {}
     Object.assign(process.env, envSave)
-    process.env.LOG_LEVEL_FILE = '.levels-test'
-    await fs.writeFile(process.env.LOG_LEVEL_FILE, '')
+    getStoragePath.mockReturnValue(logFile)
+    await fs.writeFile(logFile, '')
     loggers = {}
     setters = {}
     pino.mockReturnValue(
@@ -46,7 +49,7 @@ describe('logger', () => {
 
   afterEach(async () => {
     try {
-      await fs.unlink(process.env.LOG_LEVEL_FILE)
+      await fs.unlink(logFile)
     } catch {
       // no error on missing file
     }
@@ -134,10 +137,7 @@ describe('logger', () => {
     const level1 = 'trace'
     const level2 = 'trace'
     const name = 'child'
-    await fs.writeFile(
-      process.env.LOG_LEVEL_FILE,
-      `core=${level1}\nchild=${level2}`
-    )
+    await fs.writeFile(logFile, `core=${level1}\nchild=${level2}`)
 
     getLogger()
     expect(pino).toHaveBeenCalledWith(
@@ -161,7 +161,7 @@ describe('logger', () => {
 
     const newLevel = faker.random.arrayElement(['trace', 'error', 'warn'])
 
-    await fs.writeFile(process.env.LOG_LEVEL_FILE, `${name1}=${newLevel}`)
+    await fs.writeFile(logFile, `${name1}=${newLevel}`)
     process.emit('SIGUSR2')
 
     await new Promise(r => setTimeout(r, 200))
@@ -180,7 +180,7 @@ describe('logger', () => {
 
     const newLevel = faker.random.arrayElement(['trace', 'error', 'warn'])
 
-    await fs.writeFile(process.env.LOG_LEVEL_FILE, `models/*=${newLevel}`)
+    await fs.writeFile(logFile, `models/*=${newLevel}`)
     refreshLogLevels()
 
     expect(setters.core).not.toHaveBeenCalled()
@@ -189,12 +189,12 @@ describe('logger', () => {
   })
 
   it('throws error on unparseable logger levels file', async () => {
-    await fs.chmod(process.env.LOG_LEVEL_FILE, 0o200)
+    await fs.chmod(logFile, 0o200)
     expect(() => getLogger()).toThrow(/EACCES/)
   })
 
   it('throws error on unknown logger levels', async () => {
-    await fs.writeFile(process.env.LOG_LEVEL_FILE, `core=unknown`)
+    await fs.writeFile(logFile, `core=unknown`)
     expect(() => getLogger()).toThrow(/unsupported log level/)
   })
 })

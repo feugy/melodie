@@ -69,19 +69,6 @@ describe('Settings service', () => {
     })
   })
 
-  it('increments opening count', async () => {
-    const locale = faker.random.word()
-    const openCount = faker.random.number({ min: 1 })
-    settingsModel.get.mockResolvedValueOnce({ openCount, locale })
-
-    await settingsService.recordOpening()
-    expect(settingsModel.save).toHaveBeenCalledWith({
-      openCount: openCount + 1,
-      locale
-    })
-    expect(settingsModel.save).toHaveBeenCalledTimes(1)
-  })
-
   it('saves AudioDB provider key', async () => {
     const locale = faker.random.word()
     const key = faker.random.uuid()
@@ -126,6 +113,55 @@ describe('Settings service', () => {
     expect(discogs.init).toHaveBeenCalledWith({ token })
     expect(discogs.init).toHaveBeenCalledTimes(1)
     expect(audiodb.init).not.toHaveBeenCalled()
+  })
+
+  describe('init', () => {
+    const providers = {
+      audiodb: { foo: faker.random.word() },
+      discogs: { foo: faker.random.word() }
+    }
+    const locale = faker.random.word()
+
+    it('increments opening count', async () => {
+      const openCount = faker.random.number({ min: 1 })
+      settingsModel.get.mockResolvedValueOnce({ openCount, locale, providers })
+
+      await settingsService.init()
+      expect(settingsModel.save).toHaveBeenCalledWith({
+        openCount: openCount + 1,
+        locale,
+        providers
+      })
+      expect(settingsModel.save).toHaveBeenCalledTimes(1)
+    })
+
+    it('initialize providers', async () => {
+      settingsModel.get.mockResolvedValueOnce({
+        openCount: 0,
+        locale,
+        providers
+      })
+
+      await settingsService.init()
+      expect(discogs.init).toHaveBeenCalledWith(providers.discogs)
+      expect(discogs.init).toHaveBeenCalledTimes(1)
+      expect(audiodb.init).toHaveBeenCalledWith(providers.audiodb)
+      expect(audiodb.init).toHaveBeenCalledTimes(1)
+    })
+
+    it('triggers comparison providers', async () => {
+      settingsModel.get.mockResolvedValueOnce({
+        openCount: 0,
+        locale,
+        providers
+      })
+
+      await settingsService.init()
+
+      expect(local.compareTracks).toHaveBeenCalledTimes(1)
+      expect(audiodb.compareTracks).toHaveBeenCalledTimes(1)
+      expect(discogs.compareTracks).toHaveBeenCalledTimes(1)
+    })
   })
 
   describe('addFolders', () => {

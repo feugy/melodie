@@ -4,6 +4,7 @@ const { config } = require('dotenv')
 const { join } = require('path')
 const electron = require('electron')
 const shortcut = require('electron-localshortcut')
+const { autoUpdater } = require('electron-updater')
 const models = require('./models')
 const { tracks, media, settings, playlists } = require('./services')
 const {
@@ -14,7 +15,6 @@ const {
   configureExternalLinks,
   subscribeRemote
 } = require('./utils')
-const { allProviders } = require('./providers')
 
 exports.main = async () => {
   config()
@@ -81,7 +81,6 @@ exports.main = async () => {
 
     registerRenderer(win)
     configureExternalLinks(win)
-    await models.init(getStoragePath('db.sqlite3'))
 
     unsubscribe = subscribeRemote({
       tracks,
@@ -91,12 +90,6 @@ exports.main = async () => {
       ...electron
     })
     win.loadURL(`file://${join(publicFolder, 'index.html')}`)
-
-    settings.recordOpening()
-    logger.info('initializing providers')
-    for (const provider of allProviders) {
-      provider.compareTracks()
-    }
   }
 
   // Quit when all windows are closed, except on macOS.
@@ -116,6 +109,11 @@ exports.main = async () => {
 
   await app.whenReady()
   await createWindow()
+
+  await models.init(getStoragePath('db.sqlite3'))
+  settings.init()
+  autoUpdater.logger = getLogger('updater')
+  autoUpdater.checkForUpdatesAndNotify()
 }
 
 if (require.main === module) {

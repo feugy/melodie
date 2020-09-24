@@ -3,10 +3,10 @@
 const { EventEmitter } = require('events')
 const { resolve } = require('path')
 const electron = require('electron')
+const { autoUpdater } = require('electron-updater')
 const { main } = require('.')
 const models = require('./models')
 const services = require('./services')
-const { allProviders } = require('./providers')
 const { configureExternalLinks } = require('./utils')
 
 jest.mock('electron', () => {
@@ -29,12 +29,14 @@ jest.mock('electron', () => {
     BrowserWindow: jest.fn().mockResolvedValue({ webContents })
   }
 })
+jest.mock('electron-updater', () => ({
+  autoUpdater: {
+    checkForUpdatesAndNotify: jest.fn()
+  }
+}))
+jest.mock('electron-reload')
 jest.mock('./services')
 jest.mock('./models')
-jest.mock('electron-reload')
-jest.mock('./providers', () => ({
-  allProviders: [{ compareTracks: jest.fn() }, { compareTracks: jest.fn() }]
-}))
 jest.mock('./utils/links')
 
 describe('Application test', () => {
@@ -54,17 +56,14 @@ describe('Application test', () => {
 
     expect(models.init).toHaveBeenCalledWith('db.sqlite3')
     expect(models.init).toHaveBeenCalledTimes(1)
-    expect(services.settings.recordOpening).toHaveBeenCalledWith()
-    expect(services.settings.recordOpening).toHaveBeenCalledTimes(1)
+    expect(services.settings.init).toHaveBeenCalledTimes(1)
     expect(win.loadURL).toHaveBeenCalledWith(
       `file://${resolve(__dirname, '..', 'public')}/index.html`
     )
     expect(electron.app.quit).not.toHaveBeenCalled()
-    for (const provider of allProviders) {
-      expect(provider.compareTracks).toHaveBeenCalled()
-    }
     expect(configureExternalLinks).toHaveBeenCalledWith(win)
     expect(configureExternalLinks).toHaveBeenCalledTimes(1)
+    expect(autoUpdater.checkForUpdatesAndNotify).toHaveBeenCalledTimes(1)
   })
 
   it('quits when closing window', async () => {

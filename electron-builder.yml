@@ -1,9 +1,14 @@
+appId: org.feugy.melodie
+productName: Mélodie
+
 files:
   - LICENSE
   - README.md
   - main/**/*
   - public/**/*
+  - '!**/tests/**/*'
   - '!**/*.test.js'
+  - '!**/__nocks__/**/*'
   - '!**/.*'
   - '!**/node_modules/*/{CHANGELOG.md,README.md,README,readme.md,readme}'
   - '!**/node_modules/*/{test,__tests__,tests,powered-test,example,examples}'
@@ -18,6 +23,21 @@ files:
 directories:
   buildResources: ./public
 
+publish:
+  - provider: github
+    owner: feugy
+    repo: melodie
+
 linux:
-  icon: ./icon-256x256.png
+  target: [snap, AppImage]
+  icon: icon-256x256.png
   category: Audio
+
+snap:
+  plugs:
+    - default
+    - removable-media
+
+win:
+  target: [nsis, portable]
+  icon: icon-256x256.png

@@ -14,7 +14,7 @@ jest.mock('electron', () => ({
     showOpenDialog: jest.fn()
   },
   app: {
-    getPath: jest.fn()
+    getPath: jest.fn().mockReturnValue('')
   }
 }))
 

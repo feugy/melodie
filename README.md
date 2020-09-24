@@ -49,13 +49,19 @@ npm run build
 ### release
 
 - [ ] new name
-- [ ] logo
-- [ ] auto updater
+- [ ] logo/icons
+- [x] auto updater
+- [ ] packages
+  - [-] Linux snap
+  - [-] Linux AppImage
+  - [ ] Windows Nsis
+  - [ ] Windows Portable
 - [ ] github page
 - [ ] usage statistics
-- [ ] reference in Electron's [app list](https://www.electronjs.org/apps)
-- [ ] reference in Svelte's [showcase](https://svelte-community.netlify.app/showcase)
-- [ ] reference in [Snap store](https://snapcraft.io/)
+- [ ] references
+  - [ ] Electron's [app list](https://www.electronjs.org/apps)
+  - [ ] Svelte's [showcase](https://svelte-community.netlify.app/showcase)
+  - [ ] [Snap store](https://snapcraft.io/)
 
 ### features
 
@@ -102,7 +108,7 @@ npm run build
       ---> release?
 - [ ] smaller screen support (UI refactor)
 - [ ] enqueue tracks/albums by dragging to tracks queue
-- [ ] add to playlist from Album/Playlist details page
+- [ ] add to playlist from Album details/Playlist details/Search results pages
 - [ ] configure replay gain from settings
 - [ ] configurable simple/double click behaviour
 - [ ] configurable "play now" behaviour: either clear & add, or enqueue and jump

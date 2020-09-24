@@ -20,7 +20,6 @@ jest.mock('../../services/tracks')
 jest.mock('../../utils/electron-remote')
 jest.mock('./cover-finder')
 jest.mock('./tag-reader')
-jest.mock('electron', () => ({ app: { getPath: jest.fn() } }))
 
 describe('Local provider', () => {
   beforeEach(() => {

@@ -18,3 +18,5 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: npm ci
       - run: npm test
+        env:
+          AUDIODB_KEY: ${{ secrets.AUDIODB_KEY }}

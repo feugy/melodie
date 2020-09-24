@@ -24,7 +24,6 @@ jest.mock('../models/artists')
 jest.mock('../models/albums')
 jest.mock('../models/tracks')
 jest.mock('../utils/electron-remote')
-jest.mock('electron', () => ({ app: { getPath: jest.fn() } }))
 
 describe('Media service', () => {
   it('returns artwork for artist', async () => {

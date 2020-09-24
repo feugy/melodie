@@ -6,7 +6,7 @@ const {
   artistsModel,
   playlistsModel,
   tracksModel
-} = require('../main/models')
+} = require('../')
 
 exports.up = async function (db) {
   await db.schema

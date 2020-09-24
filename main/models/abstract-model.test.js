@@ -4,7 +4,7 @@ const faker = require('faker')
 const knex = require('knex')
 const os = require('os')
 const fs = require('fs-extra')
-const { join } = require('path')
+const { join, resolve } = require('path')
 const Model = require('./abstract-model')
 
 const modelName = 'test'
@@ -27,6 +27,7 @@ describe('Abstract model', () => {
       client: 'sqlite3',
       useNullAsDefault: true,
       connection: { filename: dbFile },
+      migrations: { directory: resolve(__dirname, 'migrations') },
       log: { warn: () => {} }
     })
   })

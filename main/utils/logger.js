@@ -2,7 +2,7 @@
 
 const pino = require('pino')
 const fs = require('fs-extra')
-const { getLogPath } = require('./files')
+const { getLogPath, getStoragePath } = require('./files')
 
 let root
 let levelSpecs
@@ -11,14 +11,12 @@ const supportedLevels = Object.keys(pino.levels.values)
 supportedLevels.push('silent')
 
 function readLevels() {
-  const { LOG_LEVEL_FILE = '.levels' } = process.env
+  const levelFile = getStoragePath('.levels') || '.levels'
   try {
-    return fs.readFileSync(LOG_LEVEL_FILE, 'utf8')
+    return fs.readFileSync(levelFile, 'utf8')
   } catch (err) {
     if (err.code !== 'ENOENT') {
-      throw new Error(
-        `failed to read level file ${LOG_LEVEL_FILE}: ${err.message}`
-      )
+      throw new Error(`failed to read level file ${levelFile}: ${err.message}`)
     }
   }
   return null
