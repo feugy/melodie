@@ -5,7 +5,7 @@ import { render } from '@testing-library/svelte'
 import html from 'svelte-htm'
 import SystemNotifier from './SystemNotifier.svelte'
 import { toDOMSrc } from '../../utils'
-import { sleep } from '../../tests'
+import { sleep, mockInvoke } from '../../tests'
 import { clear, add, playNext } from '../../stores/track-queue'
 import { trackListData } from '../Player/Player.stories'
 
@@ -19,10 +19,14 @@ function expectMetadata(track, artwork = [{}]) {
 }
 
 function expectNotification(track) {
-  expect(Notification).toHaveBeenCalledWith(track.tags.title, {
-    body: `${track.artistRefs[0][1]} - ${track.albumRef[1]}`,
-    icon: toDOMSrc(track.media)
-  })
+  expect(Notification).toHaveBeenCalledWith(
+    track.tags.title,
+    expect.objectContaining({
+      body: `${track.artistRefs[0][1]} - ${track.albumRef[1]}`,
+      icon: toDOMSrc(track.media),
+      silent: true
+    })
+  )
 }
 
 describe('SystemNotifier Component', () => {
@@ -30,7 +34,7 @@ describe('SystemNotifier Component', () => {
     clear()
     jest.resetAllMocks()
     window.MediaMetadata = jest.fn().mockImplementation(arg => arg)
-    window.Notification = jest.fn().mockImplementation(arg => arg)
+    window.Notification = jest.fn().mockImplementation((title, opts) => opts)
     navigator.mediaSession.metadata = null
   })
 
@@ -80,6 +84,7 @@ describe('SystemNotifier Component', () => {
       expectMetadata(trackListData[0])
       expectNotification(trackListData[0])
       expect(Notification).toHaveBeenCalledTimes(1)
+      expect(mockInvoke).not.toHaveBeenCalled()
     })
 
     it('updates media session metadatas when receiving different track', async () => {
@@ -96,6 +101,7 @@ describe('SystemNotifier Component', () => {
       expectMetadata(trackListData[1])
       expectNotification(trackListData[1])
       expect(Notification).toHaveBeenCalledTimes(2)
+      expect(mockInvoke).not.toHaveBeenCalled()
     })
 
     it('does not update media session metadata when receiving the same track', async () => {
@@ -113,6 +119,7 @@ describe('SystemNotifier Component', () => {
 
       expectMetadata(trackListData[0])
       expect(Notification).not.toHaveBeenCalled()
+      expect(mockInvoke).not.toHaveBeenCalled()
     })
 
     it('does not update media session metadata when receiving null', async () => {
@@ -127,6 +134,7 @@ describe('SystemNotifier Component', () => {
 
       expect(navigator.mediaSession.metadata).toBeNull()
       expect(Notification).not.toHaveBeenCalled()
+      expect(mockInvoke).not.toHaveBeenCalled()
     })
 
     it('does not trigger notification when app is focused', async () => {
@@ -153,6 +161,7 @@ describe('SystemNotifier Component', () => {
       expectMetadata(trackListData[2])
       expectNotification(trackListData[2])
       expect(Notification).toHaveBeenCalledTimes(1)
+      expect(mockInvoke).not.toHaveBeenCalled()
     })
 
     it('plays next track from media session', async () => {
@@ -171,6 +180,7 @@ describe('SystemNotifier Component', () => {
       expectMetadata(trackListData[1])
       expectNotification(trackListData[1])
       expect(Notification).toHaveBeenCalledTimes(1)
+      expect(mockInvoke).not.toHaveBeenCalled()
     })
 
     it('plays previous track from media session', async () => {
@@ -189,6 +199,20 @@ describe('SystemNotifier Component', () => {
       expectMetadata(trackListData[trackListData.length - 1])
       expectNotification(trackListData[trackListData.length - 1])
       expect(Notification).toHaveBeenCalledTimes(1)
+      expect(mockInvoke).not.toHaveBeenCalled()
+    })
+
+    it('focuses the application on notification click', async () => {
+      render(html`<${SystemNotifier} />`)
+      add(trackListData)
+      await sleep()
+
+      expectNotification(trackListData[0])
+      expect(Notification).toHaveBeenCalledTimes(1)
+
+      Notification.mock.calls[0][1].onclick()
+      expect(mockInvoke).toHaveBeenCalledWith('remote', 'core', 'focusWindow')
+      expect(mockInvoke).toHaveBeenCalledTimes(1)
     })
   })
 })

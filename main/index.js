@@ -12,6 +12,7 @@ const {
   getStoragePath,
   manageState,
   registerRenderer,
+  focusOnNotification,
   configureExternalLinks,
   subscribeRemote
 } = require('./utils')
@@ -83,6 +84,9 @@ exports.main = async () => {
     configureExternalLinks(win)
 
     unsubscribe = subscribeRemote({
+      core: {
+        focusWindow: () => focusOnNotification(win)
+      },
       tracks,
       settings,
       playlists,

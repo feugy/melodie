@@ -5,8 +5,9 @@
 
 <script>
   import { onMount } from 'svelte'
-  import { toDOMSrc } from '../../utils'
+  import { invoke, toDOMSrc } from '../../utils'
   import { current, playPrevious, playNext } from '../../stores/track-queue'
+  const electron = require('electron')
 
   let trackId = null
   let isFocused = false
@@ -26,10 +27,12 @@
       trackId = id
 
       if (!isFocused) {
-        new Notification(title, {
+        const notif = new Notification(title, {
           body: `${artist} - ${album}`,
-          icon: toDOMSrc(media)
+          icon: toDOMSrc(media),
+          silent: true
         })
+        notif.onclick = () => invoke('core.focusWindow')
       }
 
       if (mediaSession) {

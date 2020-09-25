@@ -75,5 +75,12 @@ module.exports = {
     if (subscription) {
       subscription.unsubscribe()
     }
+  },
+
+  focusOnNotification(win) {
+    if (win.isMinimized()) {
+      win.restore()
+    }
+    win.focus()
   }
 }

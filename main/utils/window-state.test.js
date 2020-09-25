@@ -6,7 +6,11 @@ const os = require('os')
 const fs = require('fs-extra')
 const { join } = require('path')
 const { EventEmitter } = require('events')
-const { manageState, unmanageState } = require('./window-state')
+const {
+  manageState,
+  unmanageState,
+  focusOnNotification
+} = require('./window-state')
 const { sleep } = require('../tests')
 const { getLogger } = require('./logger')
 
@@ -31,6 +35,8 @@ function makeWin(id = faker.random.number()) {
     isFullScreen: jest.fn().mockReturnValue(faker.random.boolean()),
     maximize: jest.fn(),
     minimize: jest.fn(),
+    restore: jest.fn(),
+    focus: jest.fn(),
     setFullScreen: jest.fn()
   })
   return win
@@ -227,5 +233,28 @@ describe('window state management utilities', () => {
       isMinimized: true,
       isFullScreen: false
     })
+  })
+
+  it('focuses window on notification click', () => {
+    win = makeWin()
+    win.isMinimized.mockReturnValueOnce(false)
+
+    focusOnNotification(win)
+    expect(win.focus).toHaveBeenCalledTimes(1)
+    expect(win.restore).not.toHaveBeenCalled()
+    expect(win.maximize).not.toHaveBeenCalled()
+    expect(win.minimize).not.toHaveBeenCalled()
+  })
+
+  it('restored minimized window and focuses it on notification click', () => {
+    win = makeWin()
+    win.isMinimized.mockReturnValueOnce(true)
+
+    focusOnNotification(win)
+    expect(win.focus).toHaveBeenCalledTimes(1)
+    expect(win.restore).toHaveBeenCalledTimes(1)
+    expect(win.focus).toHaveBeenCalledAfter(win.restore)
+    expect(win.maximize).not.toHaveBeenCalled()
+    expect(win.minimize).not.toHaveBeenCalled()
   })
 })
