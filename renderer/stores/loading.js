@@ -1,21 +1,17 @@
 'use strict'
 
-import { combineLatest, BehaviorSubject } from 'rxjs'
-import { pluck } from 'rxjs/operators'
+import { combineLatest } from 'rxjs'
+import { pluck, map } from 'rxjs/operators'
 import * as albums from './albums'
 import * as artists from './artists'
 import * as playlists from './playlists'
 import { fromServerChannel } from '../utils'
 
-const initValue = new BehaviorSubject()
-
-export const isLoading = combineLatest(
-  initValue,
+export const isLoading = combineLatest([
   fromServerChannel('tracking').pipe(pluck('inProgress')),
   albums.isListing,
   artists.isListing,
-  playlists.isListing,
-  (...statuses) => statuses.some(status => status)
+  playlists.isListing
+]).pipe(
+  map(statuses => (statuses.length ? statuses.some(status => status) : false))
 )
-
-initValue.next(false)

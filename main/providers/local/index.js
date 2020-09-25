@@ -2,14 +2,21 @@
 
 const { extname } = require('path')
 const fs = require('fs-extra')
-const { of, Observable, forkJoin, from, merge, EMPTY } = require('rxjs')
+const {
+  of,
+  Observable,
+  forkJoin,
+  from,
+  merge,
+  EMPTY,
+  partition
+} = require('rxjs')
 const {
   mergeMap,
   filter,
   reduce,
   bufferCount,
   map,
-  partition,
   tap,
   share
 } = require('rxjs/operators')
@@ -56,38 +63,38 @@ function makeEnrichAndSavePipeline(bufferSize = saveThreshold) {
 
 function watch(folders, logger) {
   for (const folder of Array.isArray(folders) ? folders : [folders]) {
-    const [additions, removals] = Observable.create(observer => {
-      const onSave = path => {
-        logger.debug({ path }, 'file change watched')
-        observer.next({ isSave: true, path })
-      }
-      const onRemove = path => {
-        logger.debug({ path }, 'file deletion watched')
-        observer.next({ isSave: false, path })
-      }
-      logger.info({ folder }, `starting watch`)
-      const watcher = chokidar
-        .watch(folder, {
-          ignoreInitial: true,
-          disableGlobbing: true,
-          awaitWriteFinish: {
-            stabilityThreshold: 200,
-            pollInterval: 100
-          }
-        })
-        .on('add', onSave)
-        .on('change', onSave)
-        .on('unlink', onRemove)
-        .on('error', observer.error.bind(observer))
-      return {
-        unsubscribe: () => {
-          watcher.close()
-          logger.info({ folder }, `watcher stopped`)
+    const [additions, removals] = partition(
+      new Observable(function (observer) {
+        const onSave = path => {
+          logger.debug({ path }, 'file change watched')
+          observer.next({ isSave: true, path })
         }
-      }
-    }).pipe(
-      share(),
-      partition(({ isSave }) => isSave)
+        const onRemove = path => {
+          logger.debug({ path }, 'file deletion watched')
+          observer.next({ isSave: false, path })
+        }
+        logger.info({ folder }, `starting watch`)
+        const watcher = chokidar
+          .watch(folder, {
+            ignoreInitial: true,
+            disableGlobbing: true,
+            awaitWriteFinish: {
+              stabilityThreshold: 200,
+              pollInterval: 100
+            }
+          })
+          .on('add', onSave)
+          .on('change', onSave)
+          .on('unlink', onRemove)
+          .on('error', observer.error.bind(observer))
+        return {
+          unsubscribe: () => {
+            watcher.close()
+            logger.info({ folder }, `watcher stopped`)
+          }
+        }
+      }).pipe(share()),
+      ({ isSave }) => isSave
     )
 
     subscriptions.set(
