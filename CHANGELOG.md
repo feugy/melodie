@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0-alpha.4](https://github.com/feugy/melodie/compare/v1.0.0-alpha.3...v1.0.0-alpha.4) (2020-09-26)
+
+
+### Bug Fixes
+
+* **core:** app crash due to missing package-lock.json ([3437035](https://github.com/feugy/melodie/commit/3437035e8529d0f37b53d4aca64ad161ce6699e6))
+* **core:** attempt to search artworks/covers for items with no name (null) ([b7a0ab1](https://github.com/feugy/melodie/commit/b7a0ab1182bc49f231aaa23bfdf48b058500ad56))
+* **core:** when manually asking for artworks/cover, first provider that throws rate error fails the whole function ([17ac654](https://github.com/feugy/melodie/commit/17ac654502997d0b9ff25d54baf00c0f8f711c0b))
+* **ui:** addToPlaylist component is empty unless playlist list page was opened ([d013f4c](https://github.com/feugy/melodie/commit/d013f4c8f3b2e2ba2b136d8c33783f94192fc3b5))
+* **ui:** empty UI with "duplicated keys in keyed each" error ([872479a](https://github.com/feugy/melodie/commit/872479a7bcbb5ce35385538bdfca7e5064462426))
+* **ui:** tracks without album or artists display "null" in system notifications ([1376145](https://github.com/feugy/melodie/commit/1376145280113884706a69974ba81e7d4ee05cb6))
+
 ## [1.0.0-alpha.3](https://github.com/feugy/melodie/compare/v1.0.0-alpha.2...v1.0.0-alpha.3) (2020-09-26)
 
 
