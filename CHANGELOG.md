@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0-alpha.2](https://github.com/feugy/melodie/compare/v1.0.0-alpha.1...v1.0.0-alpha.2) (2020-09-26)
+
+
+### Features
+
+* **ui:** about and credits ([7449239](https://github.com/feugy/melodie/commit/74492392591ad170864fd0cbe6737eca7d7decec))
+* **ui:** focus window when clicking on system notification ([eea8c62](https://github.com/feugy/melodie/commit/eea8c62491af10df8e02878f5a717cac194b6b6c))
+
 ## 1.0.0-alpha.1 (2020-09-24)
 
 ### Features

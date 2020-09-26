@@ -1,6 +1,6 @@
 {
   "name": "melodie",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0-alpha.2",
   "description": "Melodie is a portable, simple-as-pie music player",
   "author": {
     "name": "Damien Simonin Feugas",
@@ -16,7 +16,7 @@
     "build:svelte": "rollup -c",
     "build:storybook": "build-storybook",
     "dev": "rollup -c -w",
-    "dist": "electron-builder -lw",
+    "dist": "electron-builder",
     "postinstall": "electron-builder install-app-deps",
     "release": "run-s release:bump release:artifacts",
     "release:bump": "standard-version",
