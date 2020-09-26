@@ -124,7 +124,16 @@ exports.main = async () => {
   await models.init(getStoragePath('db.sqlite3'))
   settings.init()
   autoUpdater.logger = getLogger('updater')
-  autoUpdater.checkForUpdatesAndNotify()
+  if (!process.env.PORTABLE_EXECUTABLE_DIR) {
+    // portable app can not automatically update
+    autoUpdater.checkForUpdatesAndNotify()
+    // https://github.com/electron-userland/electron-builder/issues/4046#issuecomment-670367840
+    autoUpdater.on('update-downloaded', () => {
+      if (process.env.DESKTOPINTEGRATION === 'AppImageLauncher') {
+        process.env.APPIMAGE = process.env.ARGV0
+      }
+    })
+  }
 }
 
 if (require.main === module) {

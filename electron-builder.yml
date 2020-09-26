@@ -3,8 +3,11 @@ productName: Mélodie
 
 files:
   - LICENSE
+  - CHANGELOG.md
   - README.md
   - main/**/*
+  - package.json
+  - package-lock.json
   - public/**/*
   - '!**/tests/**/*'
   - '!**/*.test.js'
@@ -36,7 +39,14 @@ linux:
 snap:
   plugs:
     - default
+    - alsa
+    - audio-playback
     - removable-media
+    - screen-inhibit-control
+    - upower-observe
+    - wayland
+  slots:
+    - mpris
 
 win:
   target: [nsis, portable]

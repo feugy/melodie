@@ -44,8 +44,8 @@ There are thunsands of them in the wild. This mine is an excuse for learning [El
 - [ ] packages
   - [-] Linux snap: no OS music controls (need mpris integration)
   - [-] Linux AppImage: no desktop menu icon (need AppImageLauncher)
-  - [ ] Windows Nsis: not signed, the executable is flaged as insecure
-  - [ ] Windows Portable
+  - [-] Windows Nsis: not signed, the executable is flaged as insecure
+  - [-] Windows Portable: not signed, and does not update automatically
 - [ ] release on tag with github actions
 - [ ] github page
 - [ ] usage statistics
@@ -70,6 +70,7 @@ There are thunsands of them in the wild. This mine is an excuse for learning [El
    - https://github.com/paulmillr/chokidar/issues/303
 1. When loading new folders, enqueuing or going to album details will give incomplete results. Going back and forth won't load new data
 1. Security: clean html in artist/album names (wrapWithRefs returns injectable markup)
+1. AppImage, when used with AppImageLauncher, fail to auto update: https://github.com/electron-userland/electron-builder/issues/4046#issuecomment-670367840
 1. If we knew current position in browser history, then we could disabled navigation button accordingly
 1. Page navigation: use:link doesn't work in tests and raise Svelte warning. a.href is fine
 1. Disklist/TrackTable dropdown does not consider scroll position (in storybook only)
