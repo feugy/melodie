@@ -8,9 +8,10 @@ import { BehaviorSubject } from 'rxjs'
 import AddToPlaylist from './AddToPlaylist.svelte'
 import {
   playlists as mockedPlaylists,
+  list,
   appendTracks
 } from '../../stores/playlists'
-import { sleep } from '../../tests'
+import { sleep, mockInvoke } from '../../tests'
 
 jest.mock('../../stores/playlists')
 
@@ -30,9 +31,10 @@ describe('AddToPlaylist component', () => {
       { id: faker.random.number() }
     )
     jest.resetAllMocks()
+    mockInvoke.mockResolvedValueOnce({})
   })
 
-  it('displays only new list option', async () => {
+  it('displays only new list option, and fetch playlist list', async () => {
     render(
       html`<p data-testid="paragraph">lorem ipsum</p>
         <${AddToPlaylist} tracks=${tracks} />`
@@ -47,6 +49,7 @@ describe('AddToPlaylist component', () => {
     await sleep(350)
 
     expect(screen.queryAllByRole('listitem')).toHaveLength(0)
+    expect(list).toHaveBeenCalled()
   })
 
   describe('given some playlists', () => {
@@ -80,6 +83,7 @@ describe('AddToPlaylist component', () => {
       expect(screen.queryAllByRole('listitem')).toHaveLength(
         playlists.length + 1
       )
+      expect(list).toHaveBeenCalled()
     })
 
     it('adds all tracks to clicked playlist', async () => {

@@ -2,13 +2,14 @@
   import { onMount } from 'svelte'
   import Dropdown from '../Dropdown/Dropdown.svelte'
   import CreatePlaylist from './CreatePlaylist.svelte'
-  import { playlists, appendTracks } from '../../stores/playlists'
+  import { playlists, appendTracks, list } from '../../stores/playlists'
 
   export let tracks
   let options = []
 
-  onMount(() =>
-    playlists.subscribe(playlists => {
+  onMount(() => {
+    list()
+    return playlists.subscribe(playlists => {
       options = [
         {
           Component: CreatePlaylist,
@@ -17,7 +18,7 @@
         ...playlists.map(({ id, name }) => ({ label: name, id }))
       ]
     })
-  )
+  })
 </script>
 
 <Dropdown

@@ -2,10 +2,12 @@
 
 import Player from './Player.svelte'
 import * as queue from '../../stores/track-queue'
+import { ipcRendererMock } from '../../../.storybook/decorators'
 
 export default {
   title: 'Components/Player',
-  excludeStories: /.*Data$/
+  excludeStories: /.*Data$/,
+  decorators: [ipcRendererMock(() => ({ totals: 0, results: [] }))]
 }
 
 const album = 'An album'

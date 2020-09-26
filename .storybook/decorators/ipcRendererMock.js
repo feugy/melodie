@@ -10,6 +10,8 @@ export default function (mock = () => null) {
       window.electron = {}
     }
     window.electron.ipcRenderer = {
+      addEventListener: () => {},
+      removeEventListener: () => {},
       invoke: (channel, service, method, ...args) => {
         invokeAction(service, method, ...args)
         return mock(method, ...args) || {}

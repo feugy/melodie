@@ -54,6 +54,7 @@ describe('Player component', () => {
       this.dispatchEvent(new Event('pause'))
     })
     clear()
+    mockInvoke.mockResolvedValueOnce({ total: 0, results: [] })
   })
 
   afterEach(() => {
@@ -298,17 +299,15 @@ describe('Player component', () => {
       }
     ]
 
-    beforeAll(async () => {
-      await playlistStore.reset()
-      mockInvoke.mockResolvedValueOnce({
+    beforeEach(async () => {
+      jest.resetAllMocks()
+      playlistStore.reset()
+      mockInvoke.mockResolvedValue({
         total: playlists.length,
         size: playlists.length,
         from: 0,
         results: playlists
       })
-      await playlistStore.list()
-
-      jest.resetAllMocks()
     })
 
     it('adds current track to existing playlist', async () => {
@@ -316,6 +315,8 @@ describe('Player component', () => {
       jumpTo(3)
 
       render(html`<${Player} />`)
+      await sleep()
+      jest.resetAllMocks()
 
       const playlist = faker.random.arrayElement(playlists)
 

@@ -8,5 +8,11 @@
 </style>
 
 <script type="application/javascript">
-  window.electron = {}
+  window.electron = {
+    ipcRenderer: {
+      addEventListener: () => {},
+      removeEventListener: () => {},
+      invoke: () => {}
+    }
+  }
 </script>

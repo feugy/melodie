@@ -11,54 +11,58 @@ import * as playlistStore from '../../stores/playlists'
 import { addRefs, mockInvoke, sleep } from '../../tests'
 
 describe('TracksQueue component', () => {
-  beforeEach(() => clear())
+  beforeEach(() => {
+    jest.resetAllMocks()
+    clear()
+  })
+
+  const tracks = [
+    {
+      id: 1,
+      tags: {
+        title: faker.commerce.productName(),
+        artists: [faker.name.findName()]
+      },
+      media: faker.system.fileName()
+    },
+    {
+      id: 2,
+      tags: {
+        title: faker.commerce.productName(),
+        artists: [faker.name.findName()]
+      },
+      media: faker.system.fileName()
+    },
+    {
+      id: 3,
+      tags: {
+        title: faker.commerce.productName(),
+        artists: [faker.name.findName()]
+      },
+      media: faker.system.fileName()
+    },
+    {
+      id: 4,
+      tags: {
+        title: faker.commerce.productName(),
+        artists: [faker.name.findName()]
+      },
+      media: faker.system.fileName()
+    }
+  ].map(addRefs)
+
+  function expectListItems(tracks) {
+    expect(
+      screen.queryAllByRole('listitem').map(node => node.textContent)
+    ).toEqual(
+      tracks.map(({ tags: { title } }) => expect.stringContaining(title))
+    )
+  }
 
   describe('given a list of track', () => {
-    const tracks = [
-      {
-        id: 1,
-        tags: {
-          title: faker.commerce.productName(),
-          artists: [faker.name.findName()]
-        },
-        media: faker.system.fileName()
-      },
-      {
-        id: 2,
-        tags: {
-          title: faker.commerce.productName(),
-          artists: [faker.name.findName()]
-        },
-        media: faker.system.fileName()
-      },
-      {
-        id: 3,
-        tags: {
-          title: faker.commerce.productName(),
-          artists: [faker.name.findName()]
-        },
-        media: faker.system.fileName()
-      },
-      {
-        id: 4,
-        tags: {
-          title: faker.commerce.productName(),
-          artists: [faker.name.findName()]
-        },
-        media: faker.system.fileName()
-      }
-    ].map(addRefs)
-
-    function expectListItems(tracks) {
-      expect(
-        screen.queryAllByRole('listitem').map(node => node.textContent)
-      ).toEqual(
-        tracks.map(({ tags: { title } }) => expect.stringContaining(title))
-      )
-    }
-
     beforeEach(async () => {
       add(tracks)
+      mockInvoke.mockResolvedValueOnce({ total: 0, results: [] })
       render(html`<${TracksQueue} />`)
       await tick()
     })
@@ -117,56 +121,56 @@ describe('TracksQueue component', () => {
 
       expectListItems([tracks[1], tracks[2], tracks[0], tracks[3]])
     })
+  })
 
-    describe('given some playlist', () => {
-      const playlists = [
-        {
-          id: faker.random.number(),
-          name: faker.commerce.productName(),
-          trackIds: [faker.random.number(), faker.random.number()]
-        },
-        {
-          id: faker.random.number(),
-          name: faker.commerce.productName(),
-          trackIds: [faker.random.number(), faker.random.number()]
-        },
-        {
-          id: faker.random.number(),
-          name: faker.commerce.productName(),
-          trackIds: [faker.random.number(), faker.random.number()]
-        }
-      ]
+  describe('given some playlist', () => {
+    const playlists = [
+      {
+        id: faker.random.number(),
+        name: faker.commerce.productName(),
+        trackIds: [faker.random.number(), faker.random.number()]
+      },
+      {
+        id: faker.random.number(),
+        name: faker.commerce.productName(),
+        trackIds: [faker.random.number(), faker.random.number()]
+      },
+      {
+        id: faker.random.number(),
+        name: faker.commerce.productName(),
+        trackIds: [faker.random.number(), faker.random.number()]
+      }
+    ]
 
-      beforeAll(async () => {
-        await playlistStore.reset()
-        mockInvoke.mockResolvedValueOnce({
-          total: playlists.length,
-          size: playlists.length,
-          from: 0,
-          results: playlists
-        })
-        await playlistStore.list()
-
-        jest.resetAllMocks()
+    beforeEach(async () => {
+      add(tracks)
+      playlistStore.reset()
+      mockInvoke.mockResolvedValueOnce({
+        total: playlists.length,
+        size: playlists.length,
+        from: 0,
+        results: playlists
       })
+      render(html`<${TracksQueue} />`)
+      await sleep()
+    })
 
-      it('adds entire queue to existing playlist', async () => {
-        const playlist = faker.random.arrayElement(playlists)
+    it('adds entire queue to existing playlist', async () => {
+      const playlist = faker.random.arrayElement(playlists)
 
-        await fireEvent.click(screen.queryByText('library_add'))
-        await fireEvent.click(screen.queryByText(playlist.name))
-        await sleep(250)
+      await fireEvent.click(screen.queryByText('library_add'))
+      await fireEvent.click(screen.queryByText(playlist.name))
+      await sleep(250)
 
-        expectListItems(tracks)
-        expect(mockInvoke).toHaveBeenCalledWith(
-          'remote',
-          'playlists',
-          'append',
-          playlist.id,
-          tracks.map(({ id }) => id)
-        )
-        expect(mockInvoke).toHaveBeenCalledTimes(1)
-      })
+      expectListItems(tracks)
+      expect(mockInvoke).toHaveBeenCalledWith(
+        'remote',
+        'playlists',
+        'append',
+        playlist.id,
+        tracks.map(({ id }) => id)
+      )
+      expect(mockInvoke).toHaveBeenCalledTimes(2)
     })
   })
 })

@@ -56,7 +56,6 @@ There are thunsands of them in the wild. This mine is an excuse for learning [El
 
 ### Bugs and known issues
 
-1. addToPlaylist component is empty unless opening the playlist list page
 1. empty UI when navigating back and forth between albums and artists list: end up with "duplicated keys in keyed each"
 1. when manually asking for artworks/cover, first provider that throw rate error fails the whole function
 1. attempt to search artworks/covers for items with no name (null)
