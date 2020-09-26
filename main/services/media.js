@@ -187,6 +187,9 @@ module.exports = {
   },
 
   async findForArtist(name) {
+    if (!name) {
+      return []
+    }
     const requests = await Promise.allSettled(
       allProviders.map(provider => provider.findArtistArtwork(name))
     )
@@ -197,6 +200,9 @@ module.exports = {
   },
 
   async findForAlbum(name) {
+    if (!name) {
+      return []
+    }
     const requests = await Promise.allSettled(
       allProviders.map(provider => provider.findAlbumCover(name))
     )

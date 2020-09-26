@@ -26,86 +26,114 @@ jest.mock('../models/tracks')
 jest.mock('../utils/electron-remote')
 
 describe('Media service', () => {
-  it('returns artwork for artist', async () => {
-    const artworks = [
-      {
-        full:
-          'https://www.theaudiodb.com/images/media/artist/thumb/uxrqxy1347913147.jpg'
-      },
-      {
-        full:
-          'https://www.theaudiodb.com/images/media/artist/fanart/spvryu1347980801.jpg'
-      },
-      {
-        full:
-          'https://img.discogs.com/RLkA5Qmo6_eNpWGjioaI4bJZUB4=/600x600/smart/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/A-29735-1591800654-2186.jpeg.jpg'
-      }
-    ]
-    audiodb.findArtistArtwork.mockResolvedValueOnce(artworks.slice(0, 2))
-    discogs.findArtistArtwork.mockResolvedValueOnce(artworks.slice(2))
-    local.findArtistArtwork.mockResolvedValueOnce([])
+  beforeEach(jest.clearAllMocks)
 
-    expect(await mediaService.findForArtist('coldplay')).toEqual(artworks)
+  describe('findArtistArtwork', () => {
+    it('returns artwork for artist', async () => {
+      const artworks = [
+        {
+          full:
+            'https://www.theaudiodb.com/images/media/artist/thumb/uxrqxy1347913147.jpg'
+        },
+        {
+          full:
+            'https://www.theaudiodb.com/images/media/artist/fanart/spvryu1347980801.jpg'
+        },
+        {
+          full:
+            'https://img.discogs.com/RLkA5Qmo6_eNpWGjioaI4bJZUB4=/600x600/smart/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/A-29735-1591800654-2186.jpeg.jpg'
+        }
+      ]
+      audiodb.findArtistArtwork.mockResolvedValueOnce(artworks.slice(0, 2))
+      discogs.findArtistArtwork.mockResolvedValueOnce(artworks.slice(2))
+      local.findArtistArtwork.mockResolvedValueOnce([])
+
+      expect(await mediaService.findForArtist('coldplay')).toEqual(artworks)
+    })
+
+    it('does not fail error', async () => {
+      const artworks = [
+        {
+          full:
+            'https://www.theaudiodb.com/images/media/artist/thumb/uxrqxy1347913147.jpg'
+        },
+        {
+          full: resolve(__dirname, '..', '..', 'fixtures', 'cover.jpg')
+        }
+      ]
+      audiodb.findArtistArtwork.mockResolvedValueOnce(artworks.slice(0, 1))
+      discogs.findArtistArtwork.mockRejectedValueOnce(
+        new TooManyRequestsError()
+      )
+      local.findArtistArtwork.mockResolvedValueOnce(artworks.slice(1))
+
+      expect(await mediaService.findForArtist('coldplay')).toEqual(artworks)
+    })
+
+    it('does not search falsy values', async () => {
+      expect(await mediaService.findForArtist(null)).toEqual([])
+      expect(await mediaService.findForArtist('')).toEqual([])
+      expect(await mediaService.findForArtist(false)).toEqual([])
+
+      expect(audiodb.findArtistArtwork).not.toHaveBeenCalled()
+      expect(discogs.findArtistArtwork).not.toHaveBeenCalled()
+      expect(local.findArtistArtwork).not.toHaveBeenCalled()
+    })
   })
 
-  it('does not fail on first artwork error', async () => {
-    const artworks = [
-      {
-        full:
-          'https://www.theaudiodb.com/images/media/artist/thumb/uxrqxy1347913147.jpg'
-      },
-      {
-        full: resolve(__dirname, '..', '..', 'fixtures', 'cover.jpg')
-      }
-    ]
-    audiodb.findArtistArtwork.mockResolvedValueOnce(artworks.slice(0, 1))
-    discogs.findArtistArtwork.mockRejectedValueOnce(new TooManyRequestsError())
-    local.findArtistArtwork.mockResolvedValueOnce(artworks.slice(1))
+  describe('findArtistArtwork', () => {
+    it('returns cover for album', async () => {
+      const covers = [
+        {
+          full:
+            'https://www.theaudiodb.com/images/media/album/thumb/swxywp1367234202.jpg'
+        },
+        {
+          full:
+            'https://img.discogs.com/eTfvDOHIvDIHuMFHv28H6_MG-b0=/fit-in/500x505/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-3069838-1466508617-4579.jpeg.jpg'
+        },
+        {
+          full:
+            'https://img.discogs.com/hp9V11cwfD4e4lWid6zV5j8P-g8=/fit-in/557x559/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-5589468-1397410589-8616.jpeg.jpg'
+        },
+        {
+          full:
+            'https://img.discogs.com/QpNOv7TPg9VIkdbCYKqEtNbCN04=/fit-in/600x595/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-2898241-1306263310.jpeg.jpg'
+        }
+      ]
+      audiodb.findAlbumCover.mockResolvedValueOnce(covers.slice(0, 1))
+      discogs.findAlbumCover.mockResolvedValueOnce(covers.slice(1))
+      local.findAlbumCover.mockResolvedValueOnce([])
 
-    expect(await mediaService.findForArtist('coldplay')).toEqual(artworks)
-  })
+      expect(await mediaService.findForAlbum('Parachutes')).toEqual(covers)
+    })
 
-  it('returns cover for album', async () => {
-    const covers = [
-      {
-        full:
-          'https://www.theaudiodb.com/images/media/album/thumb/swxywp1367234202.jpg'
-      },
-      {
-        full:
-          'https://img.discogs.com/eTfvDOHIvDIHuMFHv28H6_MG-b0=/fit-in/500x505/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-3069838-1466508617-4579.jpeg.jpg'
-      },
-      {
-        full:
-          'https://img.discogs.com/hp9V11cwfD4e4lWid6zV5j8P-g8=/fit-in/557x559/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-5589468-1397410589-8616.jpeg.jpg'
-      },
-      {
-        full:
-          'https://img.discogs.com/QpNOv7TPg9VIkdbCYKqEtNbCN04=/fit-in/600x595/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-2898241-1306263310.jpeg.jpg'
-      }
-    ]
-    audiodb.findAlbumCover.mockResolvedValueOnce(covers.slice(0, 1))
-    discogs.findAlbumCover.mockResolvedValueOnce(covers.slice(1))
-    local.findAlbumCover.mockResolvedValueOnce([])
+    it('does not fail on error', async () => {
+      const covers = [
+        {
+          full:
+            'https://img.discogs.com/eTfvDOHIvDIHuMFHv28H6_MG-b0=/fit-in/500x505/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-3069838-1466508617-4579.jpeg.jpg'
+        },
+        {
+          full: resolve(__dirname, '..', '..', 'fixtures', 'cover.jpg')
+        }
+      ]
+      audiodb.findAlbumCover.mockRejectedValueOnce(new TooManyRequestsError())
+      discogs.findAlbumCover.mockResolvedValueOnce(covers.slice(0, 1))
+      local.findAlbumCover.mockResolvedValueOnce(covers.slice(1))
 
-    expect(await mediaService.findForAlbum('Parachutes')).toEqual(covers)
-  })
+      expect(await mediaService.findForAlbum('Parachutes')).toEqual(covers)
+    })
 
-  it('does not fail on first album error', async () => {
-    const covers = [
-      {
-        full:
-          'https://img.discogs.com/eTfvDOHIvDIHuMFHv28H6_MG-b0=/fit-in/500x505/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-3069838-1466508617-4579.jpeg.jpg'
-      },
-      {
-        full: resolve(__dirname, '..', '..', 'fixtures', 'cover.jpg')
-      }
-    ]
-    audiodb.findAlbumCover.mockRejectedValueOnce(new TooManyRequestsError())
-    discogs.findAlbumCover.mockResolvedValueOnce(covers.slice(0, 1))
-    local.findAlbumCover.mockResolvedValueOnce(covers.slice(1))
+    it('does not search falsy values', async () => {
+      expect(await mediaService.findForAlbum(null)).toEqual([])
+      expect(await mediaService.findForAlbum('')).toEqual([])
+      expect(await mediaService.findForAlbum(false)).toEqual([])
 
-    expect(await mediaService.findForAlbum('Parachutes')).toEqual(covers)
+      expect(audiodb.findAlbumCover).not.toHaveBeenCalled()
+      expect(discogs.findAlbumCover).not.toHaveBeenCalled()
+      expect(local.findAlbumCover).not.toHaveBeenCalled()
+    })
   })
 
   describe('saveForAlbum()', () => {
@@ -140,7 +168,6 @@ describe('Media service', () => {
       ]
     ])('given a %s media', (unused, source, media) => {
       beforeEach(async () => {
-        jest.resetAllMocks()
         electron.app.getPath.mockReturnValue(os.tmpdir())
         try {
           await fs.unlink(media)
@@ -296,7 +323,6 @@ describe('Media service', () => {
       ]
     ])('given a %s media', (unused, source, media) => {
       beforeEach(async () => {
-        jest.resetAllMocks()
         electron.app.getPath.mockReturnValue(os.tmpdir())
         try {
           await fs.unlink(media)
@@ -397,7 +423,6 @@ describe('Media service', () => {
 
   describe('triggerArtistsEnrichment', () => {
     beforeEach(async () => {
-      jest.resetAllMocks()
       electron.app.getPath.mockReturnValue(os.tmpdir())
       await fs.ensureDir(resolve(os.tmpdir(), 'media'))
     })
@@ -722,7 +747,6 @@ describe('Media service', () => {
 
   describe('triggerAlbumsEnrichment', () => {
     beforeEach(async () => {
-      jest.resetAllMocks()
       electron.app.getPath.mockReturnValue(os.tmpdir())
       await fs.ensureDir(resolve(os.tmpdir(), 'media'))
     })
