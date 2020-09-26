@@ -5,12 +5,14 @@ _ tracks: '{total} pistes'
 'artist: _': 'Artiste : {value}'
 'title: _': 'Titre : {value}'
 a track: 1 piste
+about: A propos
 add folders: Ajouter des dossiers
 alright: C'est bon !
 an artist: 1 artiste
 an hour: 1 heure
 artist: Artiste
 artists: Artistes
+build with love by: Fait avec amour par <a href="http://feugy.github.io" class="underlined">Damien Simonin Feugas</a>
 by _: 'par {artist}'
 cancel: Annuler
 check parameters: Vous devrier vérifier les répertoires de musiques dans les <a class="underlined" href="#/settings">paramètres</a>.
@@ -31,12 +33,14 @@ locales: Langue de l'interface
 new playlist: nouvelle playlist...
 no: Non
 no results: Rien du tout !
+on unsplash: sur Unsplash.
 open folder: Ouvrir le dossier parent
 open queue: Liste de lecture
 play all: Lire tout
 play now: Lire maintenant
 playlist deletion: Suppression de la playlist
 playlist renamal: Nouveau nom pour la playlist
+photos by: 'Photos par :'
 queue: Liste de lecture
 remove from playlist: Retirer
 rename playlist: Renommer

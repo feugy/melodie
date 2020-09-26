@@ -110,7 +110,7 @@
   {#if playlist}
     <Heading
       title={playlist.name}
-      image={'../images/bantersnaps-ZfCVTJ30yoc-unsplash.jpg'}
+      image={'../images/bantersnaps-nE1K_qO2z38-unsplash.jpg'}
       imagePosition="center 60%" />
     <section>
       <Button

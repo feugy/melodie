@@ -10,6 +10,7 @@ _ tracks: '{total} tracks'
 a minute: 1 minute
 a playlists: 1 playlist
 a track: 1 track
+about: About
 add folders: Add folders
 album: Album
 albums: Albums
@@ -19,6 +20,7 @@ an artist: 1 artist
 an hour: 1 hour
 artist: Artist
 artists: Artists
+build with love by: Built with love by <a href="http://feugy.github.io" class="underlined">Damien Simonin Feugas</a>
 by _: 'by {artist}'
 cancel: Cancel
 check parameters: You should check your music folders in <a class="underlined" href="#/settings">settings</a>.
@@ -43,6 +45,7 @@ Mélodie: Mélodie
 new playlist: new playlist...
 no: No
 no results: Nothing at all !
+on unsplash: on Unsplash.
 open folder: Open containing folder
 open queue: Open queue
 play all: Play all
@@ -50,6 +53,7 @@ play now: Play now
 playlist deletion: Playlist deletion
 playlist renamal: Playlist new name
 playlists: Playlists
+photos by: 'Photos by:'
 provider (_ x _): '{value} ({width} x {height})'
 queue: Queue
 remove from playlist: Remove

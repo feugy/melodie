@@ -1,5 +1,6 @@
 <script>
-  import { tick } from 'svelte'
+  import { VERSION } from 'svelte/compiler'
+  import { onMount } from 'svelte'
   import { fade } from 'svelte/transition'
   import { push } from 'svelte-spa-router'
   import { _, locales, locale } from 'svelte-intl'
@@ -16,6 +17,30 @@
   let currentLocale = $locale ? { value: $locale, label: $_($locale) } : null
   let audiodbKey = ''
   let discogsToken = ''
+  let settingsPromise
+  let versions = []
+  const photographers = [
+    {
+      href: 'https://unsplash.com/photos/6AtQNsjMoJo',
+      label: 'Anthony Martino'
+    },
+    {
+      href: 'https://unsplash.com/photos/YNJGB-_Vlgw',
+      label: 'David Villasana'
+    },
+    { href: 'https://unsplash.com/photos/JmVaNyemtN8', label: 'Dark Rider' },
+    { href: 'https://unsplash.com/photos/Vfvf3H-5OHc', label: 'Harry Swales' },
+    {
+      href: 'https://unsplash.com/photos/ASKeuOZqhYU',
+      label: 'Jason Rosewell'
+    },
+    { href: 'https://unsplash.com/photos/slbOcNlWNHA', label: 'Larisa Birta' },
+    { href: 'https://unsplash.com/photos/gpKe3hmIawg', label: 'Rima Kruciene' },
+    {
+      href: 'https://unsplash.com/photos/MEcxLZ8ENV8',
+      label: 'Valentino Funghi'
+    }
+  ]
 
   $: localeOptions = $locales.map(value => ({ value, label: $_(value) }))
   $: if (currentLocale && currentLocale.value !== $locale) {
@@ -23,8 +48,42 @@
     invoke('settings.setLocale', currentLocale.value)
   }
 
-  let settingsPromise
-  getSettings()
+  onMount(async () => {
+    const data = await invoke('core.getVersions')
+    versions = [
+      {
+        label: $_('Mélodie'),
+        value: data.melodie,
+        src: 'icon-256x256.png'
+      },
+      {
+        label: 'Electron',
+        value: data.electron,
+        src: 'images/electron-logo.png'
+      },
+      {
+        label: 'Svelte',
+        value: VERSION,
+        src: 'images/svelte-logo.png'
+      },
+      {
+        label: 'Tailwind',
+        value: data.tailwindcss,
+        src: 'images/tailwindcss-logo.png'
+      },
+      {
+        label: 'RxJS',
+        value: data.rxjs,
+        src: 'images/rx-logo.png'
+      },
+      {
+        label: 'SQLite',
+        value: '3.26.0',
+        src: 'images/sqlite-logo.png'
+      }
+    ]
+    getSettings()
+  })
 
   function getSettings() {
     settingsPromise = invoke('settings.get')
@@ -87,6 +146,27 @@
     @apply inline-block;
     width: 400px;
   }
+
+  .version-container {
+    @apply flex flex-wrap justify-center gap-8 m-4;
+
+    & > div {
+      @apply rounded shadow-lg w-32 whitespace-no-wrap;
+      background: var(--bg-primary-color);
+
+      & > header {
+        @apply px-4 pt-2;
+
+        & > div:first-child {
+          @apply font-bold text-lg;
+        }
+      }
+
+      & > img {
+        @apply w-full p-2;
+      }
+    }
+  }
 </style>
 
 <section in:fade={{ duration: 200 }}>
@@ -96,23 +176,25 @@
     imagePosition="center 65%" />
   <article>
     <SubHeading>{$_('watched folders')}</SubHeading>
-    {#await settingsPromise then { folders }}
-      <ul>
-        {#each folders as folder (folder)}
-          <li>
-            <span>{folder}</span>
-            <Button
-              on:click={() => handleRemove(folder)}
-              noBorder
-              icon="close" />
-          </li>
-        {/each}
-      </ul>
-      <span class="controlContainer" id="folder"><Button
-          icon="folder"
-          on:click={handleAdd}
-          text={$_('add folders')} /></span>
-    {/await}
+    {#if settingsPromise}
+      {#await settingsPromise then { folders }}
+        <ul>
+          {#each folders as folder (folder)}
+            <li>
+              <span>{folder}</span>
+              <Button
+                on:click={() => handleRemove(folder)}
+                noBorder
+                icon="close" />
+            </li>
+          {/each}
+        </ul>
+        <span class="controlContainer" id="folder"><Button
+            icon="folder"
+            on:click={handleAdd}
+            text={$_('add folders')} /></span>
+      {/await}
+    {/if}
   </article>
   <article>
     <SubHeading>{$_('locales')}</SubHeading>
@@ -145,5 +227,31 @@
         placeholder={$_('discogs.token placeholder')}
         value={discogsToken}
         on:change={({ target: { value } }) => handleSaveDiscogs(value)} /></span>
+  </article>
+  <article>
+    <SubHeading>{$_('about')}</SubHeading>
+    <div>
+      <p>
+        {@html $_('build with love by')}
+      </p>
+      <p class="version-container">
+        {#each versions as { label, value, src }}
+          <div>
+            <header>
+              <div>{label}</div>
+              <div>{value}</div>
+            </header>
+            <img {src} alt={label} />
+          </div>
+        {/each}
+      </p>
+      <p>
+        <span>{$_('photos by')}{#each photographers as { href, label }, i}{i > 0 ? ', ' : ' '}<a
+              {href}
+              class="underlined whitespace-no-wrap">{label}
+              <i class="material-icons">launch</i></a>{/each}
+          {$_('on unsplash')}</span>
+      </p>
+    </div>
   </article>
 </section>

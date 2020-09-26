@@ -10,36 +10,14 @@ There are thunsands of them in the wild. This mine is an excuse for learning [El
 
 ## TODOs
 
-### core
-
-- [ ] images from tags
-- [ ] artists' albums
-
-### tools
-
-- [ ] App automated end to end tests
-- [ ] Code coverage follow-up
-
-### release
-
-- [ ] new name
-- [ ] logo/icons
-- [x] auto updater
-- [ ] packages
-  - [-] Linux snap
-  - [-] Linux AppImage
-  - [ ] Windows Nsis
-  - [ ] Windows Portable
-- [ ] github page
-- [ ] usage statistics
-- [ ] references
-  - [ ] Electron's [app list](https://www.electronjs.org/apps)
-  - [ ] Svelte's [showcase](https://svelte-community.netlify.app/showcase)
-  - [ ] [Snap store](https://snapcraft.io/)
-
 ### features
 
+- [ ] tutorial: skip
 - [ ] tutorial: prevent removing all tracks from queue
+- [x] about & credits
+- [ ] system integration (play folder/file)
+- [ ] images from tags
+- [ ] artists' albums
 - [ ] smaller screen support (UI refactor)
 - [ ] enqueue tracks/albums by dragging to tracks queue
 - [ ] add to playlist from Album details/Playlist details/Search results pages
@@ -48,13 +26,42 @@ There are thunsands of them in the wild. This mine is an excuse for learning [El
 - [ ] configurable "play now" behaviour: either clear & add, or enqueue and jump
 - [ ] display years (artist & album details page)
 - [ ] display album/artist descriptions
-- [ ] system integration (play folder/file)
 - [ ] number of disk on album details page
 - [ ] display tracks/albums/artists count in settings
 - [ ] allow reseting database from settings
 
+### tools
+
+- [ ] App automated end to end tests
+- [ ] Code coverage follow-up
+- [ ] more technical documentation (install & release process notably)
+
+### release
+
+- [ ] new name
+- [ ] logo/icons
+- [x] auto updater
+- [ ] packages
+  - [-] Linux snap: no OS music controls (need mpris integration)
+  - [-] Linux AppImage: no desktop menu icon (need AppImageLauncher)
+  - [ ] Windows Nsis: not signed, the executable is flaged as insecure
+  - [ ] Windows Portable
+- [ ] release on tag with github actions
+- [ ] github page
+- [ ] usage statistics
+- [ ] references
+  - [ ] Electron's [app list](https://www.electronjs.org/apps)
+  - [ ] Svelte's [showcase](https://svelte-community.netlify.app/showcase)
+  - [ ] [Snap store](https://snapcraft.io/)
+
 ### Bugs and known issues
 
+1. addToPlaylist component is empty unless opening the playlist list page
+1. empty UI when navigating back and forth between albums and artists list: end up with "duplicated keys in keyed each"
+1. when manually asking for artworks/cover, first provider that throw rate error fails the whole function
+1. attempt to search artworks/covers for items with no name (null)
+1. tracks without album or artists display "null" in system notifications
+1. startup performance isn't great
 1. When DB has albums and playlists, tutorial enters infinite loop
 1. Undetected live changes: remove tracks and re-add them. This is a linux-only issue with chokidar
    - https://github.com/paulmillr/chokidar/issues/917

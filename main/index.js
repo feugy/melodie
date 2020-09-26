@@ -16,6 +16,7 @@ const {
   configureExternalLinks,
   subscribeRemote
 } = require('./utils')
+const { version, name, dependencies } = require('../package-lock')
 
 exports.main = async () => {
   config()
@@ -85,7 +86,13 @@ exports.main = async () => {
 
     unsubscribe = subscribeRemote({
       core: {
-        focusWindow: () => focusOnNotification(win)
+        focusWindow: () => focusOnNotification(win),
+        getVersions: () => ({
+          ...process.versions,
+          [name]: version,
+          rxjs: dependencies.rxjs.version,
+          tailwindcss: dependencies.tailwindcss.version
+        })
       },
       tracks,
       settings,
