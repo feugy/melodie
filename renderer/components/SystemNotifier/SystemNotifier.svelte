@@ -5,9 +5,9 @@
 
 <script>
   import { onMount } from 'svelte'
+  import { _ } from 'svelte-intl'
   import { invoke, toDOMSrc } from '../../utils'
   import { current, playPrevious, playNext } from '../../stores/track-queue'
-  const electron = require('electron')
 
   let trackId = null
   let isFocused = false
@@ -18,12 +18,12 @@
         return
       }
 
-      const {
-        id,
-        media,
-        tags: { title, artists, album }
-      } = track
-      const artist = artists.length ? artists[0] : null
+      const unknown = $_('unknown')
+
+      const { id, media, tags } = track
+      const artist = tags.artists.length ? tags.artists[0] : unknown
+      const title = tags.title || unknown
+      const album = tags.album || unknown
       trackId = id
 
       if (!isFocused) {

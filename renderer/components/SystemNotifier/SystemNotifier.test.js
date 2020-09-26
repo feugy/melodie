@@ -5,7 +5,7 @@ import { render } from '@testing-library/svelte'
 import html from 'svelte-htm'
 import SystemNotifier from './SystemNotifier.svelte'
 import { toDOMSrc } from '../../utils'
-import { sleep, mockInvoke } from '../../tests'
+import { sleep, mockInvoke, translate } from '../../tests'
 import { clear, add, playNext } from '../../stores/track-queue'
 import { trackListData } from '../Player/Player.stories'
 
@@ -83,6 +83,44 @@ describe('SystemNotifier Component', () => {
 
       expectMetadata(trackListData[0])
       expectNotification(trackListData[0])
+      expect(Notification).toHaveBeenCalledTimes(1)
+      expect(mockInvoke).not.toHaveBeenCalled()
+    })
+
+    it('handles missing tags', async () => {
+      render(html`<${SystemNotifier} />`)
+      add([
+        {
+          id: 1,
+          tags: {
+            title: null,
+            album: null,
+            artists: [],
+            duration: 218.42
+          },
+          media: null,
+          path: './no-duration.mp3',
+          albumRef: null,
+          artistRefs: []
+        }
+      ])
+      await sleep()
+
+      const unknown = translate('unknown')
+      expect(navigator.mediaSession.metadata).toEqual({
+        album: unknown,
+        artist: unknown,
+        artwork: [],
+        title: unknown
+      })
+      expect(Notification).toHaveBeenCalledWith(
+        unknown,
+        expect.objectContaining({
+          body: `${unknown} - ${unknown}`,
+          icon: null,
+          silent: true
+        })
+      )
       expect(Notification).toHaveBeenCalledTimes(1)
       expect(mockInvoke).not.toHaveBeenCalled()
     })

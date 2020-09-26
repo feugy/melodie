@@ -58,7 +58,6 @@ There are thunsands of them in the wild. This mine is an excuse for learning [El
 
 1. empty UI when navigating back and forth between albums and artists list: end up with "duplicated keys in keyed each"
 1. attempt to search artworks/covers for items with no name (null)
-1. tracks without album or artists display "null" in system notifications
 1. startup performance isn't great
 1. When DB has albums and playlists, tutorial enters infinite loop
 1. Undetected live changes: remove tracks and re-add them. This is a linux-only issue with chokidar
