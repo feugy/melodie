@@ -33,7 +33,7 @@ describe('Local provider', () => {
   afterEach(() => provider.unwatchAll())
 
   describe('findArtistArtwork()', () => {
-    const folder = join(os.tmpdir(), 'melodie', faker.random.uuid())
+    const folder = join(os.tmpdir(), faker.random.uuid())
 
     beforeEach(async () => {
       jest.resetAllMocks()
@@ -53,8 +53,8 @@ describe('Local provider', () => {
       const searched = faker.random.word()
       const id = hash(searched)
       const files = [
-        join(folder, 'media', `${id}.jpg`),
-        join(folder, 'media', `${id}.png`)
+        join(folder, 'melodie-media', `${id}.jpg`),
+        join(folder, 'melodie-media', `${id}.png`)
       ]
       for (const file of files) {
         await fs.ensureFile(file)

@@ -14,7 +14,7 @@ exports.getStoragePath = function (file) {
 }
 
 exports.getMediaPath = function (id) {
-  return join(app.getPath('userData'), 'media', `${id}`)
+  return join(app.getPath('pictures'), 'melodie-media', `${id}`)
 }
 
 exports.parentName = function (path) {

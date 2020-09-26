@@ -314,12 +314,12 @@ describe('Media service', () => {
       [
         'remote',
         'https://www.theaudiodb.com/images/media/artist/thumb/uxrqxy1347913147.jpg',
-        resolve(os.tmpdir(), 'media', `${artist.id}.jpeg`)
+        resolve(os.tmpdir(), 'melodie-media', `${artist.id}.jpeg`)
       ],
       [
         'local',
         resolve(__dirname, '..', '..', 'fixtures', 'avatar.jpg'),
-        resolve(os.tmpdir(), 'media', `${artist.id}.jpg`)
+        resolve(os.tmpdir(), 'melodie-media', `${artist.id}.jpg`)
       ]
     ])('given a %s media', (unused, source, media) => {
       beforeEach(async () => {
@@ -424,7 +424,7 @@ describe('Media service', () => {
   describe('triggerArtistsEnrichment', () => {
     beforeEach(async () => {
       electron.app.getPath.mockReturnValue(os.tmpdir())
-      await fs.ensureDir(resolve(os.tmpdir(), 'media'))
+      await fs.ensureDir(resolve(os.tmpdir(), 'melodie-media'))
     })
 
     afterEach(() => mediaService.stopEnrichment())
@@ -482,7 +482,7 @@ describe('Media service', () => {
         ...artist,
         media: resolve(
           os.tmpdir(),
-          'media',
+          'melodie-media',
           `${artist.id}.${artist === artists[0] ? 'jpg' : 'jpeg'}`
         )
       }))
@@ -648,7 +648,7 @@ describe('Media service', () => {
       discogs.findArtistArtwork.mockResolvedValue([])
       const savedArtists = artists.map(artist => ({
         ...artist,
-        media: resolve(os.tmpdir(), 'media', `${artist.id}.jpg`)
+        media: resolve(os.tmpdir(), 'melodie-media', `${artist.id}.jpg`)
       }))
 
       const now = Date.now()
@@ -710,7 +710,7 @@ describe('Media service', () => {
       discogs.findArtistArtwork.mockResolvedValue([])
       const savedArtists = artists.map(artist => ({
         ...artist,
-        media: resolve(os.tmpdir(), 'media', `${artist.id}.jpg`)
+        media: resolve(os.tmpdir(), 'melodie-media', `${artist.id}.jpg`)
       }))
 
       const now = Date.now()
