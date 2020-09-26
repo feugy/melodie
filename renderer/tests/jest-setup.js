@@ -22,3 +22,6 @@ window.fetch = jest.fn()
 jest.mock('electron', () => ({
   ipcRenderer: mockIpcRenderer
 }))
+
+global.RXJS_VERSION = 'a.b.c'
+global.TAILWINDCSS_VERSION = 'x.y.z'

@@ -7,7 +7,9 @@ import svelte from 'rollup-plugin-svelte'
 import livereload from 'rollup-plugin-livereload'
 import { terser } from 'rollup-plugin-terser'
 import postcss from 'rollup-plugin-postcss'
+import replace from '@rollup/plugin-replace'
 import { config } from 'dotenv'
+const { dependencies } = require('./package-lock')
 const svelteConfig = require('./svelte.config')
 
 config()
@@ -22,6 +24,11 @@ export default {
     file: 'public/build/bundle.js'
   },
   plugins: [
+    replace({
+      RXJS_VERSION: JSON.stringify(dependencies.rxjs.version),
+      TAILWINDCSS_VERSION: JSON.stringify(dependencies.rxjs.version)
+    }),
+
     svelte(svelteConfig),
 
     postcss({

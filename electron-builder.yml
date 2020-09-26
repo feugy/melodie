@@ -7,7 +7,6 @@ files:
   - README.md
   - main/**/*
   - package.json
-  - package-lock.json
   - public/**/*
   - '!**/tests/**/*'
   - '!**/*.test.js'

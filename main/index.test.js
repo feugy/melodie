@@ -29,11 +29,11 @@ jest.mock('electron', () => {
     BrowserWindow: jest.fn().mockResolvedValue({ webContents })
   }
 })
-jest.mock('electron-updater', () => ({
-  autoUpdater: {
-    checkForUpdatesAndNotify: jest.fn()
-  }
-}))
+jest.mock('electron-updater', () => {
+  const autoUpdater = new (require('events').EventEmitter)()
+  autoUpdater.checkForUpdatesAndNotify = jest.fn()
+  return { autoUpdater }
+})
 jest.mock('electron-reload')
 jest.mock('./services')
 jest.mock('./models')

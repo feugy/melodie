@@ -68,12 +68,12 @@
       },
       {
         label: 'Tailwind',
-        value: data.tailwindcss,
+        value: TAILWINDCSS_VERSION,
         src: 'images/tailwindcss-logo.png'
       },
       {
         label: 'RxJS',
-        value: data.rxjs,
+        value: RXJS_VERSION,
         src: 'images/rx-logo.png'
       },
       {
