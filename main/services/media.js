@@ -187,17 +187,23 @@ module.exports = {
   },
 
   async findForArtist(name) {
-    const requests = await Promise.all(
+    const requests = await Promise.allSettled(
       allProviders.map(provider => provider.findArtistArtwork(name))
     )
-    return requests.reduce((results, value) => [...results, ...value])
+    return requests.reduce(
+      (results, { value = [] }) => [...results, ...value],
+      []
+    )
   },
 
   async findForAlbum(name) {
-    const requests = await Promise.all(
+    const requests = await Promise.allSettled(
       allProviders.map(provider => provider.findAlbumCover(name))
     )
-    return requests.reduce((results, value) => [...results, ...value])
+    return requests.reduce(
+      (results, { value = [] }) => [...results, ...value],
+      []
+    )
   },
 
   async saveForArtist(id, url) {
