@@ -6,7 +6,10 @@ import { mockInvoke, sleep } from '../tests'
 describe('albums store', () => {
   it('lists all albums', async () => {
     const total = 13
-    const data = Array.from({ length: total }, (v, i) => i)
+    const data = Array.from({ length: total }, (v, i) => ({
+      id: i,
+      name: `${i}0`
+    }))
     mockInvoke.mockImplementation(
       async (channel, service, method, type, params) =>
         params

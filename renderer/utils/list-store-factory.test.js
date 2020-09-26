@@ -38,7 +38,10 @@ describe('abstract list factory', () => {
     it('fetches all items progressively', async () => {
       const total = 13
       const size = 5
-      const data = Array.from({ length: total }, (v, i) => i)
+      const data = Array.from({ length: total }, (v, i) => ({
+        id: i,
+        name: `${i}0`
+      }))
       mockInvoke
         .mockResolvedValueOnce({
           total,
@@ -72,6 +75,51 @@ describe('abstract list factory', () => {
         'list',
         'album',
         expect.any(Object)
+      )
+    })
+
+    it('can handle concurrent load operation', async () => {
+      const total = 23
+      const size = 5
+      const data = Array.from({ length: total }, (v, i) => ({
+        id: i,
+        name: `${i}0`
+      }))
+      mockInvoke.mockImplementation(
+        async (channel, service, method, kind, args) =>
+          method === 'list'
+            ? {
+                total,
+                size,
+                from: args.from || 0,
+                results: data.slice(args.from || 0, (args.from || 0) + size)
+              }
+            : data.find(({ id }) => id === args)
+      )
+
+      // fetches first page
+      list()
+      expect(get(isListing)).toBe(true)
+      // adds data from an unfetched page
+      load(data[size * 2].id)
+      await sleep(100)
+      expect(get(albums)).toEqual(data)
+      expect(get(isListing)).toBe(false)
+      expect(mockInvoke).toHaveBeenCalledTimes(6)
+      expect(mockInvoke).toHaveBeenCalledWith(
+        'remote',
+        'tracks',
+        'list',
+        'album',
+        expect.any(Object)
+      )
+      expect(mockInvoke).toHaveBeenCalledWith(
+        'remote',
+        'tracks',
+        'fetchWithTracks',
+        'album',
+        data[size * 2].id,
+        'trackNo'
       )
     })
 
@@ -169,7 +217,10 @@ describe('abstract list factory', () => {
 
     it('cancels pending operation when called', async () => {
       const total = 38
-      const data = Array.from({ length: total }, (v, i) => i)
+      const data = Array.from({ length: total }, (v, i) => ({
+        id: i,
+        name: `${i}0`
+      }))
       mockInvoke.mockImplementation(
         async (channel, service, method, type, { size, from }) => ({
           total,

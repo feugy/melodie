@@ -12,24 +12,23 @@ export function createListStore(type, sortBy = 'rank') {
 
   const removals = fromServerChannel(`${type}-removal`)
 
-  changes.subscribe(changed => items$.next({ changed }))
+  changes.subscribe(changed => items$.next({ added: [changed] }))
 
   removals.subscribe(removedId => items$.next({ removedId }))
 
   const items$ = new ReplaySubject().pipe(
-    scan((list, { clear, added, changed, removedId }) => {
+    scan((list, { clear, added, removedId }) => {
       if (clear) {
         list = []
       }
       if (added) {
-        list.push(...added)
-      }
-      if (changed) {
-        const idx = list.findIndex(({ id }) => id === changed.id)
-        if (idx !== -1) {
-          list[idx] = changed
-        } else {
-          list.push(changed)
+        for (const item of added) {
+          const idx = list.findIndex(({ id }) => id === item.id)
+          if (idx !== -1) {
+            list[idx] = item
+          } else {
+            list.push(item)
+          }
         }
       }
       if (removedId) {
@@ -90,7 +89,7 @@ export function createListStore(type, sortBy = 'rank') {
     async load(id) {
       const item = await invoke('tracks.fetchWithTracks', type, id, sortBy)
       if (item) {
-        items$.next({ changed: item })
+        items$.next({ added: [item] })
       }
       return item
     }

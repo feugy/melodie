@@ -13,6 +13,7 @@ There are thunsands of them in the wild. This mine is an excuse for learning [El
 ### features
 
 - [ ] tutorial: skip
+- [ ] tutorial: extra step while waiting for the first album
 - [ ] tutorial: prevent removing all tracks from queue
 - [x] about & credits
 - [ ] system integration (play folder/file)
@@ -56,7 +57,6 @@ There are thunsands of them in the wild. This mine is an excuse for learning [El
 
 ### Bugs and known issues
 
-1. empty UI when navigating back and forth between albums and artists list: end up with "duplicated keys in keyed each"
 1. startup performance isn't great
 1. When DB has albums and playlists, tutorial enters infinite loop
 1. Undetected live changes: remove tracks and re-add them. This is a linux-only issue with chokidar
