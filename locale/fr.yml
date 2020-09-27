@@ -29,6 +29,7 @@ enqueue all: Ajouter tout
 enqueue: Ajouter à la liste
 how to create playlist: Pour créer une playlist, ajouter des morceaux à la liste de lecture et cliquez sur <i class="material-icons">library_add</i>.
 let's go: C'est parti !
+i will figure out: Je me débrouillerai
 locales: Langue de l'interface
 new playlist: nouvelle playlist...
 no: Non

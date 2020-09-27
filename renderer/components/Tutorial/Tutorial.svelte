@@ -4,7 +4,7 @@
   import { _ } from 'svelte-intl'
   import Annotation from '../Annotation/Annotation.svelte'
   import Button from '../Button/Button.svelte'
-  import { handleNextButtonClick, current } from '../../stores/tutorial'
+  import { handleNextButtonClick, current, stop } from '../../stores/tutorial'
 
   let anchor
   let annotation
@@ -31,6 +31,14 @@
   }
 </script>
 
+<style type="postcss">
+  .skip {
+    @apply fixed;
+    bottom: 100px;
+    left: 100px;
+  }
+</style>
+
 {#if $current}
   <Annotation {anchor} {...annotation}>
     {@html $_($current.messageKey)}
@@ -42,5 +50,12 @@
         on:click={handleNextButtonClick}
         primary="true" />
     {/if}
+    <span class="skip">
+      <Button
+        text={$_('i will figure out')}
+        icon="close"
+        noBorder
+        on:click={stop} />
+    </span>
   </Annotation>
 {/if}

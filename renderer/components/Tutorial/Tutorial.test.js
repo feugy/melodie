@@ -41,7 +41,9 @@ describe('TracksTable component', () => {
     )
 
     expect(screen.queryByText(translate(messageKey))).toBeVisible()
-    expect(screen.queryByRole('button')).toBeNull()
+    expect(screen.queryByText(translate('i will figure out'))).toBeVisible()
+    expect(screen.queryByText('navigate_next')).toBeNull()
+    expect(tutorial.stop).not.toHaveBeenCalled()
   })
 
   it('updates store on button click', async () => {
@@ -61,12 +63,21 @@ describe('TracksTable component', () => {
         <${Tutorial} />`
     )
 
-    expect(screen.queryByRole('button')).toBeVisible()
-    expect(screen.queryByRole('button')).toHaveTextContent(
-      translate(nextButtonKey)
-    )
+    const nextButton = screen.queryByText(translate(nextButtonKey))
+    expect(nextButton).toBeVisible()
 
-    fireEvent.click(screen.queryByRole('button'))
+    fireEvent.click(nextButton)
     expect(tutorial.handleNextButtonClick).toHaveBeenCalledTimes(1)
+    expect(tutorial.stop).not.toHaveBeenCalled()
+  })
+
+  it('stops on skip button', async () => {
+    store.next({ messageKey: 'yes' })
+    render(html`<${Tutorial} />`)
+
+    const skipButton = screen.queryByText(translate('i will figure out'))
+    expect(skipButton).toBeVisible()
+    fireEvent.click(skipButton)
+    expect(tutorial.stop).toHaveBeenCalledTimes(1)
   })
 })
