@@ -63,7 +63,7 @@ exports.main = async () => {
       webPreferences: {
         nodeIntegration: true
       },
-      icon: `${join(publicFolder, 'icon-256x256.png')}`
+      icon: `${join(publicFolder, 'icon.png')}`
     })
     manageState(win)
 

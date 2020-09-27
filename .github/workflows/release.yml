@@ -1,0 +1,51 @@
+name: release
+
+on:
+  workflow_run:
+    workflows: [CI]
+    branches: [master]
+    types:
+      - completed
+
+jobs:
+  release-linux:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+      - run: npm ci
+      - run: npm run release:publish -- -l
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+
+  release-windows:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+      - run: npm ci
+      - run: npm run release:publish -- -w
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+
+  release-macos:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+      - run: npm ci
+      - run: npm run release:publish -- -m
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}

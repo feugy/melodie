@@ -54,7 +54,7 @@
       {
         label: $_('Mélodie'),
         value: data.melodie,
-        src: 'icon-256x256.png'
+        src: 'icon.png'
       },
       {
         label: 'Electron',

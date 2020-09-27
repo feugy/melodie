@@ -1,5 +1,6 @@
 appId: org.feugy.melodie
 productName: Mélodie
+copyright: Copyright © 2020 ${author}
 
 files:
   - LICENSE
@@ -31,22 +32,23 @@ publish:
     repo: melodie
 
 linux:
-  target: [snap, AppImage]
-  icon: icon-256x256.png
+  target: [snap, AppImage, tar.gz]
   category: Audio
 
 snap:
   plugs:
     - default
-    - alsa
     - audio-playback
     - removable-media
     - screen-inhibit-control
-    - upower-observe
-    - wayland
   slots:
+    # - mpris:
+    #     name: chromium
     - mpris
 
 win:
-  target: [nsis, portable]
-  icon: icon-256x256.png
+  target: [nsis, portable, zip]
+
+mac:
+  identity: null
+  category: public.app-category.music

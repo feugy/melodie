@@ -33,8 +33,9 @@ There are thunsands of them in the wild. This mine is an excuse for learning [El
 
 ### tools
 
+- [x] Automated release process with github action
 - [ ] App automated end to end tests
-- [ ] Code coverage follow-up
+- [ ] Code coverage follow-up (https://app.codacy.com/login/https://codeclimate.com/dashboard)
 - [ ] more technical documentation (install & release process notably)
 
 ### release
@@ -43,11 +44,12 @@ There are thunsands of them in the wild. This mine is an excuse for learning [El
 - [ ] logo/icons
 - [x] auto updater
 - [ ] packages
-  - [-] Linux snap: no OS music controls (need mpris integration)
+  - [x] Linux snap
   - [-] Linux AppImage: no desktop menu icon (need AppImageLauncher)
   - [-] Windows Nsis: not signed, the executable is flaged as insecure
   - [-] Windows Portable: not signed, and does not update automatically
-- [ ] release on tag with github actions
+  - [-] MacOS DMG
+  - [ ] MacOS zip
 - [ ] github page
 - [ ] usage statistics
 - [ ] references
@@ -72,7 +74,7 @@ There are thunsands of them in the wild. This mine is an excuse for learning [El
 1. Disklist/TrackTable dropdown does not consider scroll position (in storybook only)
 1. Testing input: fireEvent.change, input or keyUp does not trigger svelte's bind:value on input
 
-## Logging
+## Configuring logs
 
 Log level file is `.levels` in the [application `userData` folder](https://www.electronjs.org/docs/api/app#appgetpathname).
 Its syntax is:
@@ -99,7 +101,7 @@ In case a logger name is matching several directives, the first always wins.
 
 You can edit the file, and trigger logger level refresh by sending SIGUSR2 to the application: `kill -USR2 {pid}` (first log issued contains pid)
 
-## Run locally
+## Running locally
 
 ```shell
 git clone git@github.com:feugy/melodie.git
@@ -108,7 +110,7 @@ npm i
 npm run build
 ```
 
-## Test
+## Testing
 
 ### Core services network mocks (nocks)
 
@@ -125,6 +127,58 @@ Some providers need access keys during tests. Just make a `.env` file in the roo
 DISCOGS_TOKEN=XYZ
 AUDIODB_KEY=1
 ```
+
+### Trying snaps out
+
+Working with snaps locally isn't really easy.
+
+1. install the real app from the store:
+   ```shell
+   snap install melodie
+   ```
+1. then package your app in debug mode, to access the unpacked snap:
+   ```shell
+   DEBUG=electron-builder npm run release:artifacts -- -l
+   ```
+1. copy missing files to the unpacked snap, and keep your latest changes:
+   ```shell
+   mkdir dist/__snap-amd64/tmp
+   mv dist/__snap-amd64/* dist/__snap-amd64/tmp
+   cp -r /snap/melodie/current/* dist/__snap-amd64/
+   cp -r dist/linux-unpacked/* dist/__snap-amd64/
+   mv dist/__snap-amd64/tmp/* dist/__snap-amd64/*
+   ```
+1. now use your development code:
+   ```shell
+   snap try dist/__snap-amd64
+   melodie
+   ```
+1. and revert when you're done:
+   ```shell
+   snap revert melodie
+   ```
+
+## Releasing
+
+Release process is fairly automated: it will generate changelog, bump version, and build melodie for different platform, creating several artifacts which are either packages (snap, AppImage, Nsis) or plain files (zip).
+
+Theses artifacts will be either published on their respective store (snapcraft...) or uploaded to github as a release.
+Once a Github release is published, users who installed an auto-updatable package (snap, AppImage, Nsis) will get the new version auto-magically.
+
+1. When ready, bump the version on local machine:
+   ```shell
+   npm run release:bump
+   ```
+1. Then push tags to github, as it'll trigger the artifact creation:
+   ```shell
+   git push --follow-tags
+   ```
+1. Finally, go to [github releases](https://github.com/feugy/melodie/releases), and edit the newest one:
+   1. give it a code name
+   1. copy the latest section of the [changelog](https://github.com/feugy/melodie/blob/master/CHANGELOG.md) in the release body
+   1. don't forget to select "is a prerelease" checkbox in case it is one
+   1. publish your release
+   1. go and slack off!
 
 ## Notable facts
 
@@ -175,6 +229,8 @@ AUDIODB_KEY=1
 
 - AC/DC was displayed as 2 different artists ('AC' and 'DC'). This is an issue with ID3 tags: version 2.3 uses `/` as a separators for artists.
   Overitting mp3 tags with 2.4 [solved the issue](https://github.com/Borewit/music-metadata/issues/432)
+
+- Snap packaging was hairy to figure out. It is clearly the best option on Linux, as it has great desktop integration (which AppImage lacks) and a renowed app store. However, getting the MediaMetadata to work with snap confinement took two days of try-and-fail research. The full journey is available in this [PR on electron-builnder](https://github.com/electron-userland/electron-builder/pull/5313). Besides, the way snapd is creating different folders for each new version forced me to move artist albums outside of electron's data folders: snapd ensure that files are copied from old to new version, but can not update the media full paths store inside SQLite DB.
 
 #### How watch & diff works
 
