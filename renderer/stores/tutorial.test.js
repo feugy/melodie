@@ -47,7 +47,17 @@ describe('tutorial store', () => {
     )
   })
 
-  it('goes to third step on first album retrieved', async () => {
+  it('goes to third step when navigating to albums', async () => {
+    push('/album')
+    await sleep(10)
+    expect(get(current)).toEqual(
+      expect.objectContaining({
+        messageKey: 'tutorial.awaitFirstAlbum'
+      })
+    )
+  })
+
+  it('goes to fourth step on first album retrieved', async () => {
     mockInvoke.mockResolvedValue({
       results: [{}],
       total: 1,
@@ -68,7 +78,7 @@ describe('tutorial store', () => {
     )
   })
 
-  it('goes to fourth step on enqueued tracks', async () => {
+  it('goes to fifth step on enqueued tracks', async () => {
     trackQueue.add({})
     await sleep()
     expect(get(current)).toEqual(
@@ -82,7 +92,7 @@ describe('tutorial store', () => {
     )
   })
 
-  it('goes to fifth step when creating a playlist', async () => {
+  it('goes to sixth step when creating a playlist', async () => {
     mockInvoke.mockResolvedValueOnce({
       results: [{}],
       total: 1,

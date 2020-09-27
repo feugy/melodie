@@ -13,9 +13,7 @@ There are thunsands of them in the wild. This mine is an excuse for learning [El
 ### features
 
 - [ ] tutorial: skip
-- [ ] tutorial: extra step while waiting for the first album
 - [ ] tutorial: prevent removing all tracks from queue
-- [x] about & credits
 - [ ] system integration (play folder/file)
 - [ ] images from tags
 - [ ] artists' albums

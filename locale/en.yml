@@ -127,9 +127,10 @@ tutorial:
     <h3>Welcome to Mélodie!</h3>
     <p class="mb-4">First, let's be sure we can understand each other.</p>
   findMusic: Now, choose a folder on your hard drive that contains your music.
+  awaitFirstAlbum: >
+    <p>Your albums are progressively loaded, and will appear shortly.</p>
   playOrEnqueue: >
-    <p>Your albums are progressively loaded.</p>
-    <p>Hover the album: you can enqueue it at the end with <i class="material-icons">play_arrow</i>, or play it now with <i class="material-icons">playlist_add</i></p>
+    <p>Hover this album: you can enqueue it at the end with <i class="material-icons">play_arrow</i>, or play it now with <i class="material-icons">playlist_add</i></p>
   makePlaylist: >
     <p>Drag and drop tracks to organize the queue.</p>
     <p>Once done, save your first playlist with <i class="material-icons">library_add</i>.</p>

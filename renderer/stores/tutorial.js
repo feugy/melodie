@@ -19,6 +19,10 @@ const steps = [
   {
     anchorId: 'folder',
     messageKey: 'tutorial.findMusic',
+    listen: () => awaitsEvent(location, location => location === '/album')
+  },
+  {
+    messageKey: 'tutorial.awaitFirstAlbum',
     listen: () => awaitsEvent(albums, albums => albums.length > 0)
   },
   {

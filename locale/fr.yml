@@ -102,9 +102,10 @@ tutorial:
     <h3>Bienvenue sur Mélodie!</h3>
     <p class="mb-4">Tout d'abord, vérifions que nous pouvons nous comprendre.</p>
   findMusic: Maintenant, choisissez un dossier de votre disque dur qui contient votre musique.
+  awaitFirstAlbum: >
+    <p>Vos albums sont en cours de chargement, et vons apparaître sous peu.</p>
   playOrEnqueue: >
-    <p>Vos albums sont chargés progressivements.</p>
-    <p>Survolez l'album : ajoutez le à la fin de la liste de lecture avec <i class="material-icons">play_arrow</i>, ou jouez le immediatement avec <i class="material-icons">playlist_add</i></p>
+    <p>Survolez cet album : ajoutez le à la fin de la liste de lecture avec <i class="material-icons">play_arrow</i>, ou jouez le immediatement avec <i class="material-icons">playlist_add</i></p>
   makePlaylist: >
     <p>Glissez-déposez les morceaux pour re-organiser la liste de lecture.</p>
     <p>Une fois terminé, créez votre première playlist avec <i class="material-icons">library_add</i>.</p>
