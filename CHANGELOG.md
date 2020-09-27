@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0-alpha.5](https://github.com/feugy/melodie/compare/v1.0.0-alpha.4...v1.0.0-alpha.5) (2020-09-27)
+
+
+### Features
+
+* **ui:**  during tutorial, add an step while waiting for the first album ([5ac2add](https://github.com/feugy/melodie/commit/5ac2addf4c2424f391acac6380414577230d69ac))
+* **ui:** prevent removing all tracks from queue during tutorial ([3cc9c20](https://github.com/feugy/melodie/commit/3cc9c2044b01fbb7ba92f59e6681e1ee04d828af))
+* **ui:** skip tutorial ([27fa2cb](https://github.com/feugy/melodie/commit/27fa2cbcb04cabe6b2885ad16d5faf62b2d24906))
+
+
+### Bug Fixes
+
+* **core:** lost artist artwork when updating to a newer version (snap packaging only) ([2e37dd5](https://github.com/feugy/melodie/commit/2e37dd5f5de8d475f6b4c93574fe4976943bcb64))
+
 ## [1.0.0-alpha.4](https://github.com/feugy/melodie/compare/v1.0.0-alpha.3...v1.0.0-alpha.4) (2020-09-26)
 
 
