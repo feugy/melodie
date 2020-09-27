@@ -101,8 +101,7 @@ function next() {
     }
     current$.next(nextStep)
   } else {
-    current$.next(null)
-    allowNavigation()
+    stop()
   }
 }
 
@@ -111,6 +110,13 @@ export async function start() {
   preventNavigation()
   current$.next()
   next()
+}
+
+export async function stop() {
+  if (current$.value !== null) {
+    current$.next(null)
+    allowNavigation()
+  }
 }
 
 export const current = current$.asObservable()

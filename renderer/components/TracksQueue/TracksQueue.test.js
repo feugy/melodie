@@ -8,7 +8,9 @@ import faker from 'faker'
 import TracksQueue from './TracksQueue.svelte'
 import { add, clear, index, current } from '../../stores/track-queue'
 import * as playlistStore from '../../stores/playlists'
-import { addRefs, mockInvoke, sleep } from '../../tests'
+import * as tutorial from '../../stores/tutorial'
+import * as snackbars from '../../stores/snackbars'
+import { addRefs, mockInvoke, sleep, translate } from '../../tests'
 
 describe('TracksQueue component', () => {
   beforeEach(() => {
@@ -59,7 +61,7 @@ describe('TracksQueue component', () => {
     )
   }
 
-  describe('given a list of track', () => {
+  describe('given a list of tracks', () => {
     beforeEach(async () => {
       add(tracks)
       mockInvoke.mockResolvedValueOnce({ total: 0, results: [] })
@@ -120,6 +122,76 @@ describe('TracksQueue component', () => {
       await tick()
 
       expectListItems([tracks[1], tracks[2], tracks[0], tracks[3]])
+    })
+  })
+
+  describe('given playing tutorial and having a list of tracks', () => {
+    let snackbar
+    let snackbarSubscription
+
+    beforeEach(async () => {
+      snackbars.clear()
+      snackbarSubscription = snackbars.current.subscribe(
+        data => (snackbar = data)
+      )
+      add(tracks.slice(0, 2))
+      mockInvoke.mockResolvedValueOnce({ total: 0, results: [] })
+      tutorial.start()
+      await tick()
+      render(html`<${TracksQueue} />`)
+      await tick()
+    })
+
+    afterEach(() => {
+      snackbarSubscription.unsubscribe()
+    })
+
+    it('can not clear the tracks queue', async () => {
+      expect(get(tutorial.current)).not.toEqual(null)
+      expectListItems(tracks.slice(0, 2))
+      expect(get(current)).toEqual(tracks[0])
+
+      await fireEvent.click(screen.queryByText('delete'))
+      await sleep(300)
+
+      expectListItems(tracks.slice(0, 2))
+      expect(get(current)).toEqual(tracks[0])
+
+      expect(snackbar).toEqual({
+        message: translate('no clear during tutorial')
+      })
+    })
+
+    it('can not remove last track', async () => {
+      expect(get(tutorial.current)).not.toEqual(null)
+      expectListItems(tracks.slice(0, 2))
+      expect(get(current)).toEqual(tracks[0])
+
+      await fireEvent.click(
+        screen
+          .getByText(tracks[0].tags.title)
+          .closest('li')
+          .querySelector('button')
+      )
+      await sleep(300)
+
+      expectListItems(tracks.slice(1, 2))
+      expect(get(current)).toEqual(tracks[1])
+
+      await fireEvent.click(
+        screen
+          .getByText(tracks[1].tags.title)
+          .closest('li')
+          .querySelector('button')
+      )
+      await sleep(300)
+
+      expectListItems(tracks.slice(1, 2))
+      expect(get(current)).toEqual(tracks[1])
+
+      expect(snackbar).toEqual({
+        message: translate('no clear during tutorial')
+      })
     })
   })
 

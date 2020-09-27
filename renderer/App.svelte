@@ -7,6 +7,7 @@
     Player,
     Nav,
     Sheet,
+    Snackbar,
     SortableListConstants,
     SystemNotifier,
     TracksQueue,
@@ -103,4 +104,5 @@
     </footer>
   </div>
   <Tutorial />
+  <Snackbar />
 {/if}

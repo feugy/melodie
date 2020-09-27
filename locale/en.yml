@@ -44,6 +44,7 @@ locales: Interface language
 Mélodie: Mélodie
 new playlist: new playlist...
 no: No
+no clear during tutorial: It is not possible to clear the queue during this tutorial
 no results: Nothing at all !
 on unsplash: on Unsplash.
 open folder: Open containing folder

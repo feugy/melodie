@@ -21,6 +21,7 @@ export { default as PlaylistTracksTable } from './PlaylistTracksTable/PlaylistTr
 export { default as Progress } from './Progress/Progress.svelte'
 export { default as Sheet } from './Sheet/Sheet.svelte'
 export { default as Slider } from './Slider/Slider.svelte'
+export { default as Snackbar } from './Snackbar/Snackbar.svelte'
 export { default as SortableList } from './SortableList/SortableList.svelte'
 export * as SortableListConstants from './SortableList/SortableList.svelte'
 export { default as SubHeading } from './SubHeading/SubHeading.svelte'

@@ -2,7 +2,7 @@
 
 import { get } from 'svelte/store'
 import { push } from 'svelte-spa-router'
-import { start, current, handleNextButtonClick } from './tutorial'
+import { start, stop, current, handleNextButtonClick } from './tutorial'
 import * as albums from './albums'
 import * as playlists from './playlists'
 import * as trackQueue from './track-queue'
@@ -16,6 +16,14 @@ describe('tutorial store', () => {
 
   it('is disabled by default, and allows navigation', async () => {
     expect(get(current)).toEqual(null)
+    push('/search/test')
+    await sleep(10)
+    expect(location.hash).toEqual('#/search/test')
+  })
+
+  it('does nothing when stopping unstarted tutorial', async () => {
+    expect(get(current)).toEqual(null)
+    stop()
     push('/search/test')
     await sleep(10)
     expect(location.hash).toEqual('#/search/test')
@@ -137,5 +145,19 @@ describe('tutorial store', () => {
     await sleep(10)
 
     expect(location.hash).toEqual('#/search/test')
+  })
+
+  it('can be started and stopped', async () => {
+    start()
+    await sleep()
+    expect(get(current)).toEqual(
+      expect.objectContaining({
+        anchorId: 'locale',
+        messageKey: 'tutorial.chooseLocale',
+        nextButtonKey: 'alright'
+      })
+    )
+    stop()
+    expect(get(current)).toEqual(null)
   })
 })

@@ -13,7 +13,25 @@
     remove,
     move
   } from '../../stores/track-queue'
+  import { showSnack } from '../../stores/snackbars'
+  import { current } from '../../stores/tutorial'
   import { formatTime, sumDurations } from '../../utils'
+
+  function handleRemove(i) {
+    if ($current !== null && $tracks.length === 1) {
+      showSnack({ message: $_('no clear during tutorial') })
+      return
+    }
+    remove(i)
+  }
+
+  function handleClear() {
+    if ($current !== null) {
+      showSnack({ message: $_('no clear during tutorial') })
+      return
+    }
+    clear()
+  }
 </script>
 
 <style type="postcss">
@@ -50,7 +68,7 @@
   {#if $tracks.length}
     <AddToPlaylist class="mx-4" tracks={$tracks} />
     <span class="totalDuration">{formatTime(sumDurations($tracks))}</span>
-    <Button icon="delete" class="mx-4" on:click={() => clear()} />
+    <Button icon="delete" class="mx-4" on:click={handleClear} />
   {/if}
 </header>
 <div>
@@ -60,7 +78,11 @@
     <span slot="item" let:item let:i>
       <span class="row" class:current={$index === i} on:click={() => jumpTo(i)}>
         <Track src={item} details class="flex-auto" />
-        <Button icon="close" noBorder class="mx-4" on:click={() => remove(i)} />
+        <Button
+          icon="close"
+          noBorder
+          class="mx-4"
+          on:click={() => handleRemove(i)} />
       </span>
     </span>
   </SortableList>

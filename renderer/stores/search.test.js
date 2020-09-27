@@ -5,7 +5,7 @@ import faker from 'faker'
 import { search, albums, artists, tracks, total, current } from './search'
 import { mockInvoke, sleep } from '../tests'
 
-describe('searchstore', () => {
+describe('search store', () => {
   it('triggers search and enqueue results', async () => {
     const text = faker.lorem.words()
     const totals = {
