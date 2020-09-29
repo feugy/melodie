@@ -26,9 +26,9 @@ describe('Playlists service', () => {
       const playlist = { id: expect.any(Number), name, desc, trackIds }
       expect(playlistsModel.save).toHaveBeenCalledWith(playlist)
       expect(playlistsModel.save).toHaveBeenCalledTimes(1)
-      expect(broadcast).toHaveBeenCalledWith('playlist-change', playlist)
+      expect(broadcast).toHaveBeenCalledWith('playlist-changes', [playlist])
       expect(broadcast).not.toHaveBeenCalledWith(
-        'playlist-removal',
+        'playlist-removals',
         expect.anything()
       )
     })
@@ -48,9 +48,9 @@ describe('Playlists service', () => {
 
       expect(playlistsModel.save).toHaveBeenCalledWith(playlist)
       expect(playlistsModel.save).toHaveBeenCalledTimes(1)
-      expect(broadcast).toHaveBeenCalledWith('playlist-change', playlist)
+      expect(broadcast).toHaveBeenCalledWith('playlist-changes', [playlist])
       expect(broadcast).not.toHaveBeenCalledWith(
-        'playlist-removal',
+        'playlist-removals',
         expect.anything()
       )
     })
@@ -63,9 +63,9 @@ describe('Playlists service', () => {
 
       expect(playlistsModel.save).toHaveBeenCalledWith({ id, trackIds: [] })
       expect(playlistsModel.save).toHaveBeenCalledTimes(1)
-      expect(broadcast).toHaveBeenCalledWith('playlist-removal', id)
+      expect(broadcast).toHaveBeenCalledWith('playlist-removals', [id])
       expect(broadcast).not.toHaveBeenCalledWith(
-        'playlist-change',
+        'playlist-changes',
         expect.anything()
       )
     })
@@ -93,9 +93,9 @@ describe('Playlists service', () => {
       expect(playlistsModel.getById).toHaveBeenCalledTimes(1)
       expect(playlistsModel.save).toHaveBeenCalledWith(saved)
       expect(playlistsModel.save).toHaveBeenCalledTimes(1)
-      expect(broadcast).toHaveBeenCalledWith('playlist-change', saved)
+      expect(broadcast).toHaveBeenCalledWith('playlist-changes', [saved])
       expect(broadcast).not.toHaveBeenCalledWith(
-        'playlist-removal',
+        'playlist-removals',
         expect.anything()
       )
     })
@@ -121,9 +121,9 @@ describe('Playlists service', () => {
       expect(playlistsModel.getById).toHaveBeenCalledTimes(1)
       expect(playlistsModel.save).toHaveBeenCalledWith(saved)
       expect(playlistsModel.save).toHaveBeenCalledTimes(1)
-      expect(broadcast).toHaveBeenCalledWith('playlist-change', saved)
+      expect(broadcast).toHaveBeenCalledWith('playlist-changes', [saved])
       expect(broadcast).not.toHaveBeenCalledWith(
-        'playlist-removal',
+        'playlist-removals',
         expect.anything()
       )
     })

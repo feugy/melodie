@@ -225,7 +225,7 @@ describe('playlist details route', () => {
       load.mockReset()
 
       const newName = faker.commerce.productName()
-      changes.next({ ...playlist, name: newName })
+      changes.next([{ ...playlist, name: newName }])
       await sleep()
 
       expect(screen.queryByText(playlist.name)).toBeFalsy()
@@ -236,11 +236,13 @@ describe('playlist details route', () => {
     it('ignores changes on other playlist', async () => {
       load.mockReset()
 
-      changes.next({
-        ...playlist,
-        id: faker.random.number(),
-        tracks: undefined
-      })
+      changes.next([
+        {
+          ...playlist,
+          id: faker.random.number(),
+          tracks: undefined
+        }
+      ])
       await sleep()
 
       expectDisplayedTracks()
@@ -250,7 +252,7 @@ describe('playlist details route', () => {
     it('reloads tracks on playlist change', async () => {
       load.mockReset().mockResolvedValueOnce(playlist)
 
-      changes.next({ ...playlist, tracks: undefined })
+      changes.next([{ ...playlist, tracks: undefined }])
       await sleep()
 
       expect(load).toHaveBeenCalledWith(playlist.id)
@@ -259,13 +261,13 @@ describe('playlist details route', () => {
     })
 
     it('redirects to playlist list on removal', async () => {
-      removals.next(playlist.id)
+      removals.next([playlist.id])
 
       expect(replace).toHaveBeenCalledWith('/playlist')
     })
 
     it('ignores other playlist removals', async () => {
-      removals.next(faker.random.number())
+      removals.next([faker.random.number()])
 
       expect(replace).not.toHaveBeenCalled()
     })

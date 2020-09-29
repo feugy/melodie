@@ -576,10 +576,12 @@ describe('track-queue store', () => {
   describe('given incoming changes', () => {
     it('does not change empty queue', async () => {
       const { current, index, tracks } = queue
-      mockIpcRenderer.emit('track-change', null, {
-        id: 1,
-        path: faker.system.fileName()
-      })
+      mockIpcRenderer.emit('track-changes', null, [
+        {
+          id: 1,
+          path: faker.system.fileName()
+        }
+      ])
       await tick()
 
       expect(get(tracks)).toEqual([])
@@ -595,10 +597,12 @@ describe('track-queue store', () => {
       ]
       add(files)
 
-      mockIpcRenderer.emit('track-change', null, {
-        id: 3,
-        path: faker.system.fileName()
-      })
+      mockIpcRenderer.emit('track-changes', null, [
+        {
+          id: 3,
+          path: faker.system.fileName()
+        }
+      ])
       await tick()
 
       expect(get(tracks)).toEqual(files)
@@ -620,7 +624,7 @@ describe('track-queue store', () => {
       expect(get(current)).toEqual(files[0])
 
       const changed = { id: 1, path: faker.system.fileName() }
-      mockIpcRenderer.emit('track-change', null, changed)
+      mockIpcRenderer.emit('track-changes', null, [changed])
       await tick()
 
       expect(get(tracks)).toEqual([changed, files[1], changed, files[3]])
@@ -642,7 +646,7 @@ describe('track-queue store', () => {
       expect(get(current)).toEqual(files[0])
 
       const changed = { id: 1, path: faker.system.fileName() }
-      mockIpcRenderer.emit('track-change', null, changed)
+      mockIpcRenderer.emit('track-changes', null, [changed])
       await tick()
 
       expect(get(tracks)).toEqual(
@@ -663,7 +667,7 @@ describe('track-queue store', () => {
 
   describe('given incoming removal', () => {
     it('does not change empty queue', async () => {
-      mockIpcRenderer.emit('track-removal', null, 1)
+      mockIpcRenderer.emit('track-removals', null, [1])
       const { current, index, tracks } = queue
       await tick()
 
@@ -680,7 +684,7 @@ describe('track-queue store', () => {
       ]
       add(files)
 
-      mockIpcRenderer.emit('track-removal', null, 3)
+      mockIpcRenderer.emit('track-removals', null, [3])
       await tick()
 
       expect(get(tracks)).toEqual(files)
@@ -703,7 +707,7 @@ describe('track-queue store', () => {
       expect(get(index)).toEqual(1)
       expect(get(current)).toEqual(files[1])
 
-      mockIpcRenderer.emit('track-removal', null, files[1].id)
+      mockIpcRenderer.emit('track-removals', null, [files[1].id])
       await tick()
 
       expect(get(tracks)).toEqual([files[0], files[2]])
@@ -726,7 +730,7 @@ describe('track-queue store', () => {
       expect(get(index)).toEqual(1)
       expect(get(current)).toEqual(files[1])
 
-      mockIpcRenderer.emit('track-removal', null, files[1].id)
+      mockIpcRenderer.emit('track-removals', null, [files[1].id])
       await tick()
 
       expect(get(tracks)).toEqual([files[0], files[3]])
@@ -749,7 +753,7 @@ describe('track-queue store', () => {
       expect(get(index)).toEqual(0)
       expect(get(current)).toEqual(files[1])
 
-      mockIpcRenderer.emit('track-removal', null, files[1].id)
+      mockIpcRenderer.emit('track-removals', null, [files[1].id])
       await tick()
 
       expect(get(tracks)).toEqual(expect.arrayContaining([files[0], files[3]]))

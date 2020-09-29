@@ -196,21 +196,19 @@ describe('Media service', () => {
         ])
         expect(tracksModel.save).toHaveBeenCalledTimes(1)
         expect(await fs.access(media, constants.R_OK))
-        expect(broadcast).toHaveBeenNthCalledWith(1, 'album-change', album)
-        expect(broadcast).toHaveBeenNthCalledWith(2, 'album-change', savedAlbum)
-        expect(broadcast).toHaveBeenNthCalledWith(3, 'track-change', track1)
-        expect(broadcast).toHaveBeenNthCalledWith(
-          4,
-          'track-change',
-          savedTrack1
-        )
-        expect(broadcast).toHaveBeenNthCalledWith(5, 'track-change', track2)
-        expect(broadcast).toHaveBeenNthCalledWith(
-          6,
-          'track-change',
+        expect(broadcast).toHaveBeenNthCalledWith(1, 'album-changes', [
+          album,
+          savedAlbum
+        ])
+        expect(broadcast).toHaveBeenNthCalledWith(2, 'track-changes', [
+          track1,
+          track2
+        ])
+        expect(broadcast).toHaveBeenNthCalledWith(3, 'track-changes', [
+          savedTrack1,
           savedTrack2
-        )
-        expect(broadcast).toHaveBeenCalledTimes(6)
+        ])
+        expect(broadcast).toHaveBeenCalledTimes(3)
       })
 
       it('downloads and replace album cover', async () => {
@@ -235,21 +233,19 @@ describe('Media service', () => {
         const content = await fs.readFile(media, 'utf8')
         expect(content).not.toEqual(oldContent)
         expect(content).toBeDefined()
-        expect(broadcast).toHaveBeenNthCalledWith(1, 'album-change', album)
-        expect(broadcast).toHaveBeenNthCalledWith(2, 'album-change', savedAlbum)
-        expect(broadcast).toHaveBeenNthCalledWith(3, 'track-change', track1)
-        expect(broadcast).toHaveBeenNthCalledWith(
-          4,
-          'track-change',
-          savedTrack1
-        )
-        expect(broadcast).toHaveBeenNthCalledWith(5, 'track-change', track2)
-        expect(broadcast).toHaveBeenNthCalledWith(
-          6,
-          'track-change',
+        expect(broadcast).toHaveBeenNthCalledWith(1, 'album-changes', [
+          album,
+          savedAlbum
+        ])
+        expect(broadcast).toHaveBeenNthCalledWith(2, 'track-changes', [
+          track1,
+          track2
+        ])
+        expect(broadcast).toHaveBeenNthCalledWith(3, 'track-changes', [
+          savedTrack1,
           savedTrack2
-        )
-        expect(broadcast).toHaveBeenCalledTimes(6)
+        ])
+        expect(broadcast).toHaveBeenCalledTimes(3)
       })
 
       it('ignores unknown album', async () => {
@@ -340,13 +336,11 @@ describe('Media service', () => {
         expect(artistsModel.save).toHaveBeenCalledWith(savedArtist)
         expect(artistsModel.save).toHaveBeenCalledTimes(1)
         expect(await fs.access(media, constants.R_OK))
-        expect(broadcast).toHaveBeenNthCalledWith(1, 'artist-change', artist)
-        expect(broadcast).toHaveBeenNthCalledWith(
-          2,
-          'artist-change',
+        expect(broadcast).toHaveBeenCalledWith('artist-changes', [
+          artist,
           savedArtist
-        )
-        expect(broadcast).toHaveBeenCalledTimes(2)
+        ])
+        expect(broadcast).toHaveBeenCalledTimes(1)
       })
 
       it('downloads and replace media artist', async () => {
@@ -365,13 +359,11 @@ describe('Media service', () => {
         const content = await fs.readFile(media, 'utf8')
         expect(content).not.toEqual(oldContent)
         expect(content).toBeDefined()
-        expect(broadcast).toHaveBeenNthCalledWith(1, 'artist-change', artist)
-        expect(broadcast).toHaveBeenNthCalledWith(
-          2,
-          'artist-change',
+        expect(broadcast).toHaveBeenCalledWith('artist-changes', [
+          artist,
           savedArtist
-        )
-        expect(broadcast).toHaveBeenCalledTimes(2)
+        ])
+        expect(broadcast).toHaveBeenCalledTimes(1)
       })
 
       it('ignores unknown artist', async () => {
@@ -510,17 +502,21 @@ describe('Media service', () => {
       expect(artistsModel.save).toHaveBeenCalledWith(savedArtists[0])
       expect(artistsModel.save).toHaveBeenCalledWith(savedArtists[1])
       expect(artistsModel.save).toHaveBeenCalledTimes(2)
-      expect(broadcast).toHaveBeenCalledWith('artist-change', savedArtists[0])
-      expect(broadcast).toHaveBeenCalledWith('artist-change', {
-        ...savedArtists[0],
-        media: null
-      })
-      expect(broadcast).toHaveBeenCalledWith('artist-change', savedArtists[1])
-      expect(broadcast).toHaveBeenCalledWith('artist-change', {
-        ...savedArtists[1],
-        media: null
-      })
-      expect(broadcast).toHaveBeenCalledTimes(4)
+      expect(broadcast).toHaveBeenCalledWith('artist-changes', [
+        {
+          ...savedArtists[0],
+          media: null
+        },
+        savedArtists[0]
+      ])
+      expect(broadcast).toHaveBeenCalledWith('artist-changes', [
+        {
+          ...savedArtists[1],
+          media: null
+        },
+        savedArtists[1]
+      ])
+      expect(broadcast).toHaveBeenCalledTimes(2)
     })
 
     it('saves processing date on artist with no artwork', async () => {
@@ -621,7 +617,6 @@ describe('Media service', () => {
       })
       expect(artistsModel.save).toHaveBeenCalledTimes(2)
       expect(broadcast).not.toHaveBeenCalled()
-      expect(broadcast).not.toHaveBeenCalled()
     })
 
     it('does not process more than N artists per minute', async () => {
@@ -666,12 +661,14 @@ describe('Media service', () => {
       )
       expect(artistsModel.save).toHaveBeenCalledWith(savedArtists[0])
       expect(artistsModel.save).toHaveBeenCalledTimes(1)
-      expect(broadcast).toHaveBeenCalledWith('artist-change', savedArtists[0])
-      expect(broadcast).toHaveBeenCalledWith('artist-change', {
-        ...savedArtists[0],
-        media: null
-      })
-      expect(broadcast).toHaveBeenCalledTimes(2)
+      expect(broadcast).toHaveBeenCalledWith('artist-changes', [
+        {
+          ...savedArtists[0],
+          media: null
+        },
+        savedArtists[0]
+      ])
+      expect(broadcast).toHaveBeenCalledTimes(1)
     })
 
     it('stops previous enrichment', async () => {
@@ -736,12 +733,14 @@ describe('Media service', () => {
       expect(artistsModel.save).toHaveBeenCalledTimes(1)
       expect(albumsModel.save).not.toHaveBeenCalled()
       expect(tracksModel.save).not.toHaveBeenCalled()
-      expect(broadcast).toHaveBeenCalledWith('artist-change', savedArtists[0])
-      expect(broadcast).toHaveBeenCalledWith('artist-change', {
-        ...savedArtists[0],
-        media: null
-      })
-      expect(broadcast).toHaveBeenCalledTimes(2)
+      expect(broadcast).toHaveBeenCalledWith('artist-changes', [
+        {
+          ...savedArtists[0],
+          media: null
+        },
+        savedArtists[0]
+      ])
+      expect(broadcast).toHaveBeenCalledTimes(1)
     })
   })
 
@@ -858,43 +857,43 @@ describe('Media service', () => {
       expect(tracksModel.save).toHaveBeenNthCalledWith(1, [savedTracks[0]])
       expect(tracksModel.save).toHaveBeenNthCalledWith(2, [savedTracks[1]])
       expect(tracksModel.save).toHaveBeenCalledTimes(2)
-      expect(broadcast).toHaveBeenNthCalledWith(1, 'album-change', {
-        ...savedAlbums[0],
-        media: null
-      })
-      expect(broadcast).toHaveBeenNthCalledWith(
-        2,
-        'album-change',
+      expect(broadcast).toHaveBeenNthCalledWith(1, 'album-changes', [
+        {
+          ...savedAlbums[0],
+          media: null
+        },
         savedAlbums[0]
-      )
-      expect(broadcast).toHaveBeenNthCalledWith(3, 'track-change', {
-        ...savedTracks[0],
-        media: null
-      })
+      ])
+      expect(broadcast).toHaveBeenNthCalledWith(2, 'track-changes', [
+        {
+          ...savedTracks[0],
+          media: null
+        }
+      ])
       expect(broadcast).toHaveBeenNthCalledWith(
-        4,
-        'track-change',
-        savedTracks[0]
+        3,
+        'track-changes',
+        savedTracks.slice(0, 1)
       )
-      expect(broadcast).toHaveBeenNthCalledWith(5, 'album-change', {
-        ...savedAlbums[1],
-        media: null
-      })
+      expect(broadcast).toHaveBeenNthCalledWith(4, 'album-changes', [
+        {
+          ...savedAlbums[1],
+          media: null
+        },
+        savedAlbums[1]
+      ])
+      expect(broadcast).toHaveBeenNthCalledWith(5, 'track-changes', [
+        {
+          ...savedTracks[1],
+          media: null
+        }
+      ])
       expect(broadcast).toHaveBeenNthCalledWith(
         6,
-        'album-change',
-        savedAlbums[1]
+        'track-changes',
+        savedTracks.slice(1)
       )
-      expect(broadcast).toHaveBeenNthCalledWith(7, 'track-change', {
-        ...savedTracks[1],
-        media: null
-      })
-      expect(broadcast).toHaveBeenNthCalledWith(
-        8,
-        'track-change',
-        savedTracks[1]
-      )
-      expect(broadcast).toHaveBeenCalledTimes(8)
+      expect(broadcast).toHaveBeenCalledTimes(6)
     })
 
     it('saves processing date on album with no cover', async () => {
@@ -1067,25 +1066,25 @@ describe('Media service', () => {
       expect(albumsModel.save).toHaveBeenCalledTimes(1)
       expect(tracksModel.save).toHaveBeenCalledWith([savedTracks[0]])
       expect(tracksModel.save).toHaveBeenCalledTimes(1)
-      expect(broadcast).toHaveBeenNthCalledWith(1, 'album-change', {
-        ...savedAlbums[0],
-        media: null
-      })
-      expect(broadcast).toHaveBeenNthCalledWith(
-        2,
-        'album-change',
+      expect(broadcast).toHaveBeenNthCalledWith(1, 'album-changes', [
+        {
+          ...savedAlbums[0],
+          media: null
+        },
         savedAlbums[0]
-      )
-      expect(broadcast).toHaveBeenNthCalledWith(3, 'track-change', {
-        ...savedTracks[0],
-        media: null
-      })
+      ])
+      expect(broadcast).toHaveBeenNthCalledWith(2, 'track-changes', [
+        {
+          ...savedTracks[0],
+          media: null
+        }
+      ])
       expect(broadcast).toHaveBeenNthCalledWith(
-        4,
-        'track-change',
-        savedTracks[0]
+        3,
+        'track-changes',
+        savedTracks.slice(0, 1)
       )
-      expect(broadcast).toHaveBeenCalledTimes(4)
+      expect(broadcast).toHaveBeenCalledTimes(3)
     })
 
     it('stops previous enrichment', async () => {
@@ -1158,25 +1157,25 @@ describe('Media service', () => {
       expect(albumsModel.save).toHaveBeenCalledTimes(1)
       expect(tracksModel.save).toHaveBeenCalledWith([savedTracks[0]])
       expect(tracksModel.save).toHaveBeenCalledTimes(1)
-      expect(broadcast).toHaveBeenNthCalledWith(1, 'album-change', {
-        ...savedAlbums[0],
-        media: null
-      })
-      expect(broadcast).toHaveBeenNthCalledWith(
-        2,
-        'album-change',
+      expect(broadcast).toHaveBeenNthCalledWith(1, 'album-changes', [
+        {
+          ...savedAlbums[0],
+          media: null
+        },
         savedAlbums[0]
-      )
-      expect(broadcast).toHaveBeenNthCalledWith(3, 'track-change', {
-        ...savedTracks[0],
-        media: null
-      })
+      ])
+      expect(broadcast).toHaveBeenNthCalledWith(2, 'track-changes', [
+        {
+          ...savedTracks[0],
+          media: null
+        }
+      ])
       expect(broadcast).toHaveBeenNthCalledWith(
-        4,
-        'track-change',
-        savedTracks[0]
+        3,
+        'track-changes',
+        savedTracks.slice(0, 1)
       )
-      expect(broadcast).toHaveBeenCalledTimes(4)
+      expect(broadcast).toHaveBeenCalledTimes(3)
     })
   })
 })

@@ -27,657 +27,693 @@ describe('Tracks service', () => {
     playlistsModel.list.mockResolvedValue([])
   })
 
-  describe('add', () => {
-    it('stores track with multiple artists', async () => {
+  describe('listen', () => {
+    beforeEach(() => {
+      tracksModel.save.mockImplementation(async saved =>
+        saved.map(track => ({ current: addRefs(track) }))
+      )
+    })
+
+    it('does not broadcast if service is not listening', async () => {
       const path = faker.system.fileName()
-      const artistNames = [faker.name.findName(), faker.name.findName()]
-      const artists = artistNames.map(name =>
-        addId({
+      const tracks = [{ id: hash(path), path, tags: { artists: [] } }]
+
+      tracksService.add(tracks)
+      tracksService.stopListening()
+
+      await sleep(1100)
+      expect(broadcast).not.toHaveBeenCalled()
+    })
+
+    it('does not broadcast if service has stopped listening', async () => {
+      const path1 = faker.system.fileName()
+      const path2 = faker.system.fileName()
+      const tracks = [
+        { id: hash(path1), path: path1, tags: { artists: [] } },
+        { id: hash(path2), path: path1, tags: { artists: [] } }
+      ]
+
+      tracksService.listen()
+      tracksService.add(tracks.slice(0, 1))
+
+      await sleep(1100)
+
+      tracksService.stopListening()
+      tracksService.add(tracks.slice(1))
+
+      await sleep(1100)
+      expect(broadcast).toHaveBeenCalledWith(
+        'track-changes',
+        tracks.slice(0, 1).map(addRefs)
+      )
+      expect(broadcast).toHaveBeenCalledTimes(1)
+    }, 3000)
+  })
+
+  describe('given a listening service', () => {
+    beforeAll(tracksService.listen)
+
+    afterAll(tracksService.stopListening)
+
+    describe('add', () => {
+      it('stores track with multiple artists', async () => {
+        const path = faker.system.fileName()
+        const artistNames = [faker.name.findName(), faker.name.findName()]
+        const artists = artistNames.map(name =>
+          addId({
+            name,
+            trackIds: [hash(path)]
+          })
+        )
+        const tracks = [
+          { id: hash(path), path, tags: { artists: artistNames } }
+        ]
+        const unknownAlbum = {
+          id: 1,
+          name: null,
+          media: null,
+          trackIds: tracks.map(({ id }) => id)
+        }
+        const savedTracks = tracks.map(addRefs)
+        tracksModel.save.mockResolvedValue(
+          savedTracks.map(current => ({ current }))
+        )
+        artistsModel.save.mockResolvedValueOnce({
+          saved: artists,
+          removedIds: []
+        })
+        albumsModel.save.mockResolvedValueOnce({
+          saved: [unknownAlbum],
+          removedIds: []
+        })
+
+        await tracksService.add(tracks)
+
+        expect(tracksModel.save).toHaveBeenCalledWith(tracks)
+        expect(tracksModel.save).toHaveBeenCalledTimes(1)
+        expect(artistsModel.save).toHaveBeenCalledWith(artists)
+        expect(artistsModel.save).toHaveBeenCalledTimes(1)
+        expect(albumsModel.save).toHaveBeenCalledWith([unknownAlbum])
+        expect(albumsModel.save).toHaveBeenCalledTimes(1)
+
+        await sleep(1100)
+        expect(broadcast).toHaveBeenCalledWith('artist-changes', artists)
+        expect(broadcast).toHaveBeenCalledWith('track-changes', savedTracks)
+        expect(broadcast).toHaveBeenCalledWith('album-changes', [unknownAlbum])
+        expect(broadcast).toHaveBeenCalledTimes(3)
+      })
+
+      it('stores track with album', async () => {
+        const name = faker.commerce.productName()
+        const path = faker.system.fileName()
+        const tracks = [
+          { id: hash(path), path, tags: { album: name, artists: [] } }
+        ]
+        const savedTracks = tracks.map(addRefs)
+        tracksModel.save.mockResolvedValue(
+          savedTracks.map(current => ({ current }))
+        )
+        const unknownArtist = {
+          id: 1,
+          name: null,
+          media: null,
+          trackIds: tracks.map(({ id }) => id)
+        }
+        const album = addId({
           name,
           trackIds: [hash(path)]
         })
-      )
-      const tracks = [{ id: hash(path), path, tags: { artists: artistNames } }]
-      const unknownAlbum = {
-        id: 1,
-        name: null,
-        media: null,
-        trackIds: tracks.map(({ id }) => id)
-      }
-      const savedTracks = tracks.map(addRefs)
-      tracksModel.save.mockResolvedValue(
-        savedTracks.map(current => ({ current }))
-      )
-      artistsModel.save.mockResolvedValueOnce({
-        saved: artists,
-        removedIds: []
-      })
-      albumsModel.save.mockResolvedValueOnce({
-        saved: [unknownAlbum],
-        removedIds: []
-      })
-
-      await tracksService.add(tracks)
-
-      expect(tracksModel.save).toHaveBeenCalledWith(tracks)
-      expect(tracksModel.save).toHaveBeenCalledTimes(1)
-      expect(artistsModel.save).toHaveBeenCalledWith(artists)
-      expect(artistsModel.save).toHaveBeenCalledTimes(1)
-      expect(albumsModel.save).toHaveBeenCalledWith([unknownAlbum])
-      expect(albumsModel.save).toHaveBeenCalledTimes(1)
-      for (const artist of artists) {
-        expect(broadcast).toHaveBeenCalledWith('artist-change', artist)
-      }
-      for (const track of savedTracks) {
-        expect(broadcast).toHaveBeenCalledWith('track-change', track)
-      }
-      expect(broadcast).toHaveBeenCalledWith('album-change', unknownAlbum)
-      expect(broadcast).toHaveBeenCalledTimes(
-        tracks.length + artists.length + 1
-      )
-    })
-
-    it('stores track with album', async () => {
-      const name = faker.commerce.productName()
-      const path = faker.system.fileName()
-      const tracks = [
-        { id: hash(path), path, tags: { album: name, artists: [] } }
-      ]
-      const savedTracks = tracks.map(addRefs)
-      tracksModel.save.mockResolvedValue(
-        savedTracks.map(current => ({ current }))
-      )
-      const unknownArtist = {
-        id: 1,
-        name: null,
-        media: null,
-        trackIds: tracks.map(({ id }) => id)
-      }
-      const album = addId({
-        name,
-        trackIds: [hash(path)]
-      })
-      albumsModel.save.mockResolvedValueOnce({
-        saved: [album],
-        removedIds: []
-      })
-      artistsModel.save.mockResolvedValueOnce({
-        saved: [unknownArtist],
-        removedIds: []
-      })
-
-      await tracksService.add(tracks)
-
-      expect(tracksModel.save).toHaveBeenCalledWith(tracks)
-      expect(tracksModel.save).toHaveBeenCalledTimes(1)
-      expect(albumsModel.save).toHaveBeenCalledWith([album])
-      expect(albumsModel.save).toHaveBeenCalledTimes(1)
-      expect(artistsModel.save).toHaveBeenCalledWith([unknownArtist])
-      expect(artistsModel.save).toHaveBeenCalledTimes(1)
-      expect(broadcast).toHaveBeenCalledWith('album-change', album)
-      expect(broadcast).toHaveBeenCalledWith('artist-change', unknownArtist)
-      for (const track of savedTracks) {
-        expect(broadcast).toHaveBeenCalledWith('track-change', track)
-      }
-      expect(broadcast).toHaveBeenCalledTimes(tracks.length + 2)
-    })
-
-    it('stores track with cover', async () => {
-      const name = faker.commerce.productName()
-      const media = faker.image.image()
-      const path = faker.system.fileName()
-      const album = addId({
-        name,
-        media,
-        trackIds: [hash(path)]
-      })
-      const tracks = [
-        {
-          id: hash(path),
-          path,
-          tags: { album: name, artists: [] },
-          media
-        }
-      ]
-      const unknownArtist = {
-        id: 1,
-        name: null,
-        media: null,
-        trackIds: tracks.map(({ id }) => id)
-      }
-      const savedTracks = tracks.map(addRefs)
-      tracksModel.save.mockResolvedValue(
-        savedTracks.map(current => ({ current }))
-      )
-      albumsModel.save.mockResolvedValueOnce({
-        saved: [album],
-        removedIds: []
-      })
-      artistsModel.save.mockResolvedValueOnce({
-        saved: [unknownArtist],
-        removedIds: []
-      })
-
-      await tracksService.add(tracks)
-
-      expect(tracksModel.save).toHaveBeenCalledWith(tracks)
-      expect(tracksModel.save).toHaveBeenCalledTimes(1)
-      expect(albumsModel.save).toHaveBeenCalledWith([album])
-      expect(albumsModel.save).toHaveBeenCalledTimes(1)
-      expect(broadcast).toHaveBeenCalledWith('album-change', album)
-      expect(broadcast).toHaveBeenCalledWith('artist-change', unknownArtist)
-      for (const track of savedTracks) {
-        expect(broadcast).toHaveBeenCalledWith('track-change', track)
-      }
-      expect(broadcast).toHaveBeenCalledTimes(tracks.length + 2)
-    })
-
-    it('skip existing albums', async () => {
-      const name = faker.commerce.productName()
-      const artist1 = faker.name.findName()
-      const artist2 = faker.name.findName()
-      const track1 = {
-        path: faker.system.fileName(),
-        tags: { album: name, artists: [artist1] }
-      }
-      track1.id = hash(track1.path)
-      const track2 = {
-        path: faker.system.fileName(),
-        tags: { album: name, artists: [artist2] }
-      }
-      track2.id = hash(track2.path)
-      const track3 = {
-        path: faker.system.fileName(),
-        tags: { album: name, artists: [artist2] }
-      }
-      track3.id = hash(track3.path)
-
-      const tracks = [track1, track2, track3]
-      const album = addId({
-        name,
-        trackIds: tracks.map(({ id }) => id)
-      })
-      const artists = [
-        {
-          name: artist1,
-          trackIds: [track1.id]
-        },
-        {
-          name: artist2,
-          trackIds: [track2.id, track3.id]
-        }
-      ].map(addId)
-      const savedTracks = tracks.map(addRefs)
-      tracksModel.save.mockResolvedValue(
-        savedTracks.map(current => ({ current }))
-      )
-      albumsModel.save.mockResolvedValueOnce({
-        saved: [album],
-        removedIds: []
-      })
-      artistsModel.save.mockResolvedValueOnce({
-        saved: artists,
-        removedIds: []
-      })
-
-      await tracksService.add(tracks)
-
-      expect(tracksModel.save).toHaveBeenCalledWith(tracks)
-      expect(tracksModel.save).toHaveBeenCalledTimes(1)
-      expect(albumsModel.save).toHaveBeenCalledWith([album])
-      expect(albumsModel.save).toHaveBeenCalledTimes(1)
-      expect(artistsModel.save).toHaveBeenCalledWith(artists)
-      expect(artistsModel.save).toHaveBeenCalledTimes(1)
-      expect(broadcast).toHaveBeenCalledWith('album-change', album)
-      for (const track of savedTracks) {
-        expect(broadcast).toHaveBeenCalledWith('track-change', track)
-      }
-      for (const artist of artists) {
-        expect(broadcast).toHaveBeenCalledWith('artist-change', artist)
-      }
-      expect(broadcast).toHaveBeenCalledTimes(
-        tracks.length + artists.length + 1
-      )
-    })
-
-    it('skip existing artists', async () => {
-      const artist1 = faker.name.findName()
-      const artist2 = faker.name.findName()
-      const artist3 = faker.name.findName()
-      const track1 = {
-        path: faker.system.fileName(),
-        tags: { artists: [artist1, artist2] }
-      }
-      track1.id = hash(track1.path)
-      const track2 = {
-        path: faker.system.fileName(),
-        tags: { artists: [artist2, artist3] }
-      }
-      track2.id = hash(track2.path)
-      const track3 = {
-        path: faker.system.fileName(),
-        tags: { artists: [artist3] }
-      }
-      track3.id = hash(track3.path)
-
-      const artists = [
-        addId({
-          name: artist1,
-          trackIds: [track1.id]
-        }),
-        addId({
-          name: artist2,
-          trackIds: [track1.id, track2.id]
-        }),
-        addId({
-          name: artist3,
-          trackIds: [track2.id, track3.id]
+        albumsModel.save.mockResolvedValueOnce({
+          saved: [album],
+          removedIds: []
         })
-      ]
-      const tracks = [track1, track2, track3]
-      const savedTracks = tracks.map(addRefs)
-      const unknownAlbum = {
-        id: 1,
-        name: null,
-        media: null,
-        trackIds: tracks.map(({ id }) => id)
-      }
-      tracksModel.save.mockResolvedValue(
-        savedTracks.map(current => ({ current }))
-      )
-      artistsModel.save.mockResolvedValueOnce({
-        saved: artists,
-        removedIds: []
-      })
-      albumsModel.save.mockResolvedValueOnce({
-        saved: [unknownAlbum],
-        removedIds: []
-      })
-
-      await tracksService.add(tracks)
-
-      expect(tracksModel.save).toHaveBeenCalledWith(tracks)
-      expect(tracksModel.save).toHaveBeenCalledTimes(1)
-      expect(artistsModel.save).toHaveBeenCalledWith(artists)
-      expect(artistsModel.save).toHaveBeenCalledTimes(1)
-      expect(albumsModel.save).toHaveBeenCalledWith([unknownAlbum])
-      expect(albumsModel.save).toHaveBeenCalledTimes(1)
-      expect(broadcast).toHaveBeenCalledWith('album-change', unknownAlbum)
-      for (const artist of artists) {
-        expect(broadcast).toHaveBeenCalledWith('artist-change', artist)
-      }
-      for (const track of savedTracks) {
-        expect(broadcast).toHaveBeenCalledWith('track-change', track)
-      }
-      expect(broadcast).toHaveBeenCalledTimes(
-        tracks.length + artists.length + 1
-      )
-    })
-
-    it('detects album changes for existing tracks', async () => {
-      const oldName = faker.commerce.productName()
-      const updatedName = faker.commerce.productName()
-      const newName = faker.commerce.productName()
-      const artist1 = faker.name.findName()
-      const artist2 = faker.name.findName()
-      const artist3 = faker.name.findName()
-
-      const track1 = {
-        path: faker.system.fileName(),
-        tags: { album: newName, artists: [artist2] }
-      }
-      track1.id = hash(track1.path)
-      const track2 = {
-        path: faker.system.fileName(),
-        tags: { album: newName, artists: [artist1] }
-      }
-      track2.id = hash(track2.path)
-      const track3 = {
-        path: faker.system.fileName(),
-        tags: { album: newName, artists: [artist1, artist2] }
-      }
-      track3.id = hash(track3.path)
-      const track4 = {
-        path: faker.system.fileName(),
-        tags: { album: updatedName, artists: [artist3] }
-      }
-      track4.id = hash(track4.path)
-
-      const tracks = [track1, track2, track3, track4]
-      const savedTracks = tracks.map(addRefs)
-      tracksModel.save.mockResolvedValue([
-        {
-          current: savedTracks[0],
-          previous: addRefs({
-            id: track1.id,
-            tags: { album: oldName, artists: [artist1] }
-          })
-        },
-        {
-          current: savedTracks[1],
-          previous: addRefs({
-            id: track2.id,
-            tags: { album: oldName, artists: [artist3] }
-          })
-        },
-        {
-          current: savedTracks[2],
-          previous: addRefs({
-            id: track3.id,
-            tags: { album: updatedName, artists: [artist1, artist2] }
-          })
-        },
-        { current: savedTracks[3] }
-      ])
-
-      const oldAlbum = addId({
-        name: oldName,
-        trackIds: [],
-        removedTrackIds: [track1.id, track2.id]
-      })
-
-      const updatedAlbum = addId({
-        name: updatedName,
-        removedTrackIds: [track3.id],
-        trackIds: [track4.id]
-      })
-
-      const newAlbum = addId({
-        name: newName,
-        trackIds: [track1.id, track2.id, track3.id]
-      })
-
-      albumsModel.save.mockResolvedValueOnce({
-        saved: [oldAlbum, updatedAlbum, newAlbum],
-        removedIds: []
-      })
-
-      await tracksService.add(tracks)
-
-      expect(tracksModel.save).toHaveBeenCalledWith(tracks)
-      expect(tracksModel.save).toHaveBeenCalledTimes(1)
-      expect(albumsModel.save).toHaveBeenCalledWith([
-        newAlbum,
-        oldAlbum,
-        updatedAlbum
-      ])
-      expect(albumsModel.save).toHaveBeenCalledTimes(1)
-      expect(broadcast).toHaveBeenCalledWith('album-change', oldAlbum)
-      expect(broadcast).toHaveBeenCalledWith('album-change', updatedAlbum)
-      expect(broadcast).toHaveBeenCalledWith('album-change', newAlbum)
-      for (const track of savedTracks) {
-        expect(broadcast).toHaveBeenCalledWith('track-change', track)
-      }
-      expect(broadcast).toHaveBeenCalledTimes(tracks.length + 3)
-    })
-
-    it('detects artist changes for existing tracks', async () => {
-      const oldName = faker.name.findName()
-      const updatedName = faker.name.findName()
-      const newName = faker.name.findName()
-
-      const track1 = {
-        path: faker.system.fileName(),
-        tags: { artists: [newName, updatedName] }
-      }
-      track1.id = hash(track1.path)
-      const track2 = {
-        path: faker.system.fileName(),
-        tags: { artists: [newName] }
-      }
-      track2.id = hash(track2.path)
-
-      const tracks = [track1, track2]
-      const savedTracks = tracks.map(addRefs)
-      tracksModel.save.mockResolvedValue([
-        {
-          current: savedTracks[0],
-          previous: addRefs({ id: track1.id, tags: { artists: [oldName] } })
-        },
-        {
-          current: savedTracks[1],
-          previous: addRefs({
-            id: track2.id,
-            tags: { artists: [oldName, updatedName] }
-          })
-        }
-      ])
-
-      const oldArtist = addId({
-        name: oldName,
-        trackIds: [],
-        removedTrackIds: [track1.id, track2.id]
-      })
-      const updatedArtist = addId({
-        name: updatedName,
-        removedTrackIds: [track2.id],
-        trackIds: [track1.id]
-      })
-      const newArtist = addId({
-        name: newName,
-        trackIds: [track1.id, track2.id]
-      })
-      artistsModel.save.mockResolvedValueOnce({
-        saved: [oldArtist, updatedArtist, newArtist],
-        removedIds: []
-      })
-      const unknownAlbum = {
-        id: 1,
-        name: null,
-        media: null,
-        trackIds: tracks.map(({ id }) => id)
-      }
-      albumsModel.save.mockResolvedValueOnce({
-        saved: [unknownAlbum],
-        removedIds: []
-      })
-
-      await tracksService.add(tracks)
-
-      expect(artistsModel.save).toHaveBeenCalledWith([
-        newArtist,
-        updatedArtist,
-        oldArtist
-      ])
-      expect(artistsModel.save).toHaveBeenCalledTimes(1)
-      expect(albumsModel.save).toHaveBeenCalledWith([unknownAlbum])
-      expect(albumsModel.save).toHaveBeenCalledTimes(1)
-      expect(broadcast).toHaveBeenCalledWith('artist-change', oldArtist)
-      expect(broadcast).toHaveBeenCalledWith('artist-change', updatedArtist)
-      expect(broadcast).toHaveBeenCalledWith('artist-change', newArtist)
-      expect(broadcast).toHaveBeenCalledWith('album-change', unknownAlbum)
-      for (const track of savedTracks) {
-        expect(broadcast).toHaveBeenCalledWith('track-change', track)
-      }
-      expect(broadcast).toHaveBeenCalledTimes(6)
-    })
-  })
-
-  describe('remove', () => {
-    it('updates album', async () => {
-      const name = faker.commerce.productName()
-      const path = faker.system.fileName()
-      const artistNames = [faker.name.findName(), faker.name.findName()]
-
-      const album = addId({
-        name,
-        removedTrackIds: [hash(path)],
-        trackIds: []
-      })
-      const tracks = [
-        addRefs({
-          id: hash(path),
-          path,
-          tags: { album: name, artists: artistNames }
+        artistsModel.save.mockResolvedValueOnce({
+          saved: [unknownArtist],
+          removedIds: []
         })
-      ]
-      const trackIds = tracks.map(({ id }) => id)
 
-      const artists = artistNames.map(name =>
-        addId({
+        await tracksService.add(tracks)
+
+        expect(tracksModel.save).toHaveBeenCalledWith(tracks)
+        expect(tracksModel.save).toHaveBeenCalledTimes(1)
+        expect(albumsModel.save).toHaveBeenCalledWith([album])
+        expect(albumsModel.save).toHaveBeenCalledTimes(1)
+        expect(artistsModel.save).toHaveBeenCalledWith([unknownArtist])
+        expect(artistsModel.save).toHaveBeenCalledTimes(1)
+
+        await sleep(1100)
+        expect(broadcast).toHaveBeenCalledWith('album-changes', [album])
+        expect(broadcast).toHaveBeenCalledWith('artist-changes', [
+          unknownArtist
+        ])
+        expect(broadcast).toHaveBeenCalledWith('track-changes', savedTracks)
+        expect(broadcast).toHaveBeenCalledTimes(3)
+      })
+
+      it('stores track with cover', async () => {
+        const name = faker.commerce.productName()
+        const media = faker.image.image()
+        const path = faker.system.fileName()
+        const album = addId({
           name,
-          trackIds: [],
-          removedTrackIds: trackIds
+          media,
+          trackIds: [hash(path)]
         })
-      )
-      tracksModel.removeByIds.mockResolvedValueOnce(tracks)
-      albumsModel.save.mockResolvedValueOnce({
-        saved: [],
-        removedIds: [album.id]
+        const tracks = [
+          {
+            id: hash(path),
+            path,
+            tags: { album: name, artists: [] },
+            media
+          }
+        ]
+        const unknownArtist = {
+          id: 1,
+          name: null,
+          media: null,
+          trackIds: tracks.map(({ id }) => id)
+        }
+        const savedTracks = tracks.map(addRefs)
+        tracksModel.save.mockResolvedValue(
+          savedTracks.map(current => ({ current }))
+        )
+        albumsModel.save.mockResolvedValueOnce({
+          saved: [album],
+          removedIds: []
+        })
+        artistsModel.save.mockResolvedValueOnce({
+          saved: [unknownArtist],
+          removedIds: []
+        })
+
+        await tracksService.add(tracks)
+
+        expect(tracksModel.save).toHaveBeenCalledWith(tracks)
+        expect(tracksModel.save).toHaveBeenCalledTimes(1)
+        expect(albumsModel.save).toHaveBeenCalledWith([album])
+        expect(albumsModel.save).toHaveBeenCalledTimes(1)
+
+        await sleep(1100)
+        expect(broadcast).toHaveBeenCalledWith('album-changes', [album])
+        expect(broadcast).toHaveBeenCalledWith('artist-changes', [
+          unknownArtist
+        ])
+        expect(broadcast).toHaveBeenCalledWith('track-changes', savedTracks)
+        expect(broadcast).toHaveBeenCalledTimes(3)
       })
-      artistsModel.save.mockResolvedValueOnce({
-        saved: artists,
-        removedIds: []
+
+      it('skip existing albums', async () => {
+        const name = faker.commerce.productName()
+        const artist1 = faker.name.findName()
+        const artist2 = faker.name.findName()
+        const track1 = {
+          path: faker.system.fileName(),
+          tags: { album: name, artists: [artist1] }
+        }
+        track1.id = hash(track1.path)
+        const track2 = {
+          path: faker.system.fileName(),
+          tags: { album: name, artists: [artist2] }
+        }
+        track2.id = hash(track2.path)
+        const track3 = {
+          path: faker.system.fileName(),
+          tags: { album: name, artists: [artist2] }
+        }
+        track3.id = hash(track3.path)
+
+        const tracks = [track1, track2, track3]
+        const album = addId({
+          name,
+          trackIds: tracks.map(({ id }) => id)
+        })
+        const artists = [
+          {
+            name: artist1,
+            trackIds: [track1.id]
+          },
+          {
+            name: artist2,
+            trackIds: [track2.id, track3.id]
+          }
+        ].map(addId)
+        const savedTracks = tracks.map(addRefs)
+        tracksModel.save.mockResolvedValue(
+          savedTracks.map(current => ({ current }))
+        )
+        albumsModel.save.mockResolvedValueOnce({
+          saved: [album],
+          removedIds: []
+        })
+        artistsModel.save.mockResolvedValueOnce({
+          saved: artists,
+          removedIds: []
+        })
+
+        await tracksService.add(tracks)
+
+        expect(tracksModel.save).toHaveBeenCalledWith(tracks)
+        expect(tracksModel.save).toHaveBeenCalledTimes(1)
+        expect(albumsModel.save).toHaveBeenCalledWith([album])
+        expect(albumsModel.save).toHaveBeenCalledTimes(1)
+        expect(artistsModel.save).toHaveBeenCalledWith(artists)
+        expect(artistsModel.save).toHaveBeenCalledTimes(1)
+
+        await sleep(1100)
+        expect(broadcast).toHaveBeenCalledWith('album-changes', [album])
+        expect(broadcast).toHaveBeenCalledWith('track-changes', savedTracks)
+        expect(broadcast).toHaveBeenCalledWith('artist-changes', artists)
+        expect(broadcast).toHaveBeenCalledTimes(3)
       })
 
-      await tracksService.remove(trackIds)
-      await sleep(200)
+      it('skip existing artists', async () => {
+        const artist1 = faker.name.findName()
+        const artist2 = faker.name.findName()
+        const artist3 = faker.name.findName()
+        const track1 = {
+          path: faker.system.fileName(),
+          tags: { artists: [artist1, artist2] }
+        }
+        track1.id = hash(track1.path)
+        const track2 = {
+          path: faker.system.fileName(),
+          tags: { artists: [artist2, artist3] }
+        }
+        track2.id = hash(track2.path)
+        const track3 = {
+          path: faker.system.fileName(),
+          tags: { artists: [artist3] }
+        }
+        track3.id = hash(track3.path)
 
-      expect(tracksModel.removeByIds).toHaveBeenCalledWith(trackIds)
-      expect(tracksModel.removeByIds).toHaveBeenCalledTimes(1)
-      expect(albumsModel.save).toHaveBeenCalledWith([album])
-      expect(albumsModel.save).toHaveBeenCalledTimes(1)
-      expect(artistsModel.save).toHaveBeenCalledWith(artists)
-      expect(artistsModel.save).toHaveBeenCalledTimes(1)
+        const artists = [
+          addId({
+            name: artist1,
+            trackIds: [track1.id]
+          }),
+          addId({
+            name: artist2,
+            trackIds: [track1.id, track2.id]
+          }),
+          addId({
+            name: artist3,
+            trackIds: [track2.id, track3.id]
+          })
+        ]
+        const tracks = [track1, track2, track3]
+        const savedTracks = tracks.map(addRefs)
+        const unknownAlbum = {
+          id: 1,
+          name: null,
+          media: null,
+          trackIds: tracks.map(({ id }) => id)
+        }
+        tracksModel.save.mockResolvedValue(
+          savedTracks.map(current => ({ current }))
+        )
+        artistsModel.save.mockResolvedValueOnce({
+          saved: artists,
+          removedIds: []
+        })
+        albumsModel.save.mockResolvedValueOnce({
+          saved: [unknownAlbum],
+          removedIds: []
+        })
 
-      expect(broadcast).toHaveBeenCalledWith('album-removal', album.id)
-      for (const artist of artists) {
-        expect(broadcast).toHaveBeenCalledWith('artist-change', artist)
-      }
-      for (const id of trackIds) {
-        expect(broadcast).toHaveBeenCalledWith('track-removal', id)
-      }
-      expect(broadcast).toHaveBeenCalledTimes(
-        tracks.length + artists.length + 1
-      )
+        await tracksService.add(tracks)
+
+        expect(tracksModel.save).toHaveBeenCalledWith(tracks)
+        expect(tracksModel.save).toHaveBeenCalledTimes(1)
+        expect(artistsModel.save).toHaveBeenCalledWith(artists)
+        expect(artistsModel.save).toHaveBeenCalledTimes(1)
+        expect(albumsModel.save).toHaveBeenCalledWith([unknownAlbum])
+        expect(albumsModel.save).toHaveBeenCalledTimes(1)
+
+        await sleep(1100)
+        expect(broadcast).toHaveBeenCalledWith('album-changes', [unknownAlbum])
+        expect(broadcast).toHaveBeenCalledWith('artist-changes', artists)
+        expect(broadcast).toHaveBeenCalledWith('track-changes', savedTracks)
+        expect(broadcast).toHaveBeenCalledTimes(3)
+      })
+
+      it('detects album changes for existing tracks', async () => {
+        const oldName = faker.commerce.productName()
+        const updatedName = faker.commerce.productName()
+        const newName = faker.commerce.productName()
+        const artist1 = faker.name.findName()
+        const artist2 = faker.name.findName()
+        const artist3 = faker.name.findName()
+
+        const track1 = {
+          path: faker.system.fileName(),
+          tags: { album: newName, artists: [artist2] }
+        }
+        track1.id = hash(track1.path)
+        const track2 = {
+          path: faker.system.fileName(),
+          tags: { album: newName, artists: [artist1] }
+        }
+        track2.id = hash(track2.path)
+        const track3 = {
+          path: faker.system.fileName(),
+          tags: { album: newName, artists: [artist1, artist2] }
+        }
+        track3.id = hash(track3.path)
+        const track4 = {
+          path: faker.system.fileName(),
+          tags: { album: updatedName, artists: [artist3] }
+        }
+        track4.id = hash(track4.path)
+
+        const tracks = [track1, track2, track3, track4]
+        const savedTracks = tracks.map(addRefs)
+        tracksModel.save.mockResolvedValue([
+          {
+            current: savedTracks[0],
+            previous: addRefs({
+              id: track1.id,
+              tags: { album: oldName, artists: [artist1] }
+            })
+          },
+          {
+            current: savedTracks[1],
+            previous: addRefs({
+              id: track2.id,
+              tags: { album: oldName, artists: [artist3] }
+            })
+          },
+          {
+            current: savedTracks[2],
+            previous: addRefs({
+              id: track3.id,
+              tags: { album: updatedName, artists: [artist1, artist2] }
+            })
+          },
+          { current: savedTracks[3] }
+        ])
+
+        const oldAlbum = addId({
+          name: oldName,
+          trackIds: [],
+          removedTrackIds: [track1.id, track2.id]
+        })
+
+        const updatedAlbum = addId({
+          name: updatedName,
+          removedTrackIds: [track3.id],
+          trackIds: [track4.id]
+        })
+
+        const newAlbum = addId({
+          name: newName,
+          trackIds: [track1.id, track2.id, track3.id]
+        })
+
+        albumsModel.save.mockResolvedValueOnce({
+          saved: [oldAlbum, updatedAlbum, newAlbum],
+          removedIds: []
+        })
+
+        await tracksService.add(tracks)
+
+        expect(tracksModel.save).toHaveBeenCalledWith(tracks)
+        expect(tracksModel.save).toHaveBeenCalledTimes(1)
+        expect(albumsModel.save).toHaveBeenCalledWith([
+          newAlbum,
+          oldAlbum,
+          updatedAlbum
+        ])
+        expect(albumsModel.save).toHaveBeenCalledTimes(1)
+
+        await sleep(1100)
+        expect(broadcast).toHaveBeenCalledWith('album-changes', [
+          oldAlbum,
+          updatedAlbum,
+          newAlbum
+        ])
+        expect(broadcast).toHaveBeenCalledWith('track-changes', savedTracks)
+        expect(broadcast).toHaveBeenCalledTimes(2)
+      })
+
+      it('detects artist changes for existing tracks', async () => {
+        const oldName = faker.name.findName()
+        const updatedName = faker.name.findName()
+        const newName = faker.name.findName()
+
+        const track1 = {
+          path: faker.system.fileName(),
+          tags: { artists: [newName, updatedName] }
+        }
+        track1.id = hash(track1.path)
+        const track2 = {
+          path: faker.system.fileName(),
+          tags: { artists: [newName] }
+        }
+        track2.id = hash(track2.path)
+
+        const tracks = [track1, track2]
+        const savedTracks = tracks.map(addRefs)
+        tracksModel.save.mockResolvedValue([
+          {
+            current: savedTracks[0],
+            previous: addRefs({ id: track1.id, tags: { artists: [oldName] } })
+          },
+          {
+            current: savedTracks[1],
+            previous: addRefs({
+              id: track2.id,
+              tags: { artists: [oldName, updatedName] }
+            })
+          }
+        ])
+
+        const oldArtist = addId({
+          name: oldName,
+          trackIds: [],
+          removedTrackIds: [track1.id, track2.id]
+        })
+        const updatedArtist = addId({
+          name: updatedName,
+          removedTrackIds: [track2.id],
+          trackIds: [track1.id]
+        })
+        const newArtist = addId({
+          name: newName,
+          trackIds: [track1.id, track2.id]
+        })
+        artistsModel.save.mockResolvedValueOnce({
+          saved: [oldArtist, updatedArtist, newArtist],
+          removedIds: []
+        })
+        const unknownAlbum = {
+          id: 1,
+          name: null,
+          media: null,
+          trackIds: tracks.map(({ id }) => id)
+        }
+        albumsModel.save.mockResolvedValueOnce({
+          saved: [unknownAlbum],
+          removedIds: []
+        })
+
+        await tracksService.add(tracks)
+
+        expect(artistsModel.save).toHaveBeenCalledWith([
+          newArtist,
+          updatedArtist,
+          oldArtist
+        ])
+        expect(artistsModel.save).toHaveBeenCalledTimes(1)
+        expect(albumsModel.save).toHaveBeenCalledWith([unknownAlbum])
+        expect(albumsModel.save).toHaveBeenCalledTimes(1)
+
+        await sleep(1100)
+        expect(broadcast).toHaveBeenCalledWith('artist-changes', [
+          oldArtist,
+          updatedArtist,
+          newArtist
+        ])
+        expect(broadcast).toHaveBeenCalledWith('album-changes', [unknownAlbum])
+        expect(broadcast).toHaveBeenCalledWith('track-changes', savedTracks)
+        expect(broadcast).toHaveBeenCalledTimes(3)
+      })
     })
 
-    it('updates artists', async () => {
-      const path = faker.system.fileName()
-      const artistNames = [faker.name.findName(), faker.name.findName()]
-      const artists = artistNames.map(name =>
-        addId({
+    describe('remove', () => {
+      it('updates album', async () => {
+        const name = faker.commerce.productName()
+        const path = faker.system.fileName()
+        const artistNames = [faker.name.findName(), faker.name.findName()]
+
+        const album = addId({
           name,
           removedTrackIds: [hash(path)],
           trackIds: []
         })
-      )
-      const tracks = [
-        addRefs({ id: hash(path), path, tags: { artists: artistNames } })
-      ]
-      const trackIds = tracks.map(({ id }) => id)
-      tracksModel.removeByIds.mockResolvedValueOnce(tracks)
-      const unknownAlbum = {
-        id: 1,
-        name: null,
-        media: null,
-        removedTrackIds: [hash(path)],
-        trackIds: []
-      }
-      artistsModel.save.mockResolvedValueOnce({
-        saved: [],
-        removedIds: artists.map(({ id }) => id)
-      })
-      albumsModel.save.mockResolvedValueOnce({
-        saved: [unknownAlbum],
-        removedIds: []
-      })
+        const tracks = [
+          addRefs({
+            id: hash(path),
+            path,
+            tags: { album: name, artists: artistNames }
+          })
+        ]
+        const trackIds = tracks.map(({ id }) => id)
 
-      await tracksService.remove(trackIds)
-      await sleep(200)
-
-      expect(tracksModel.removeByIds).toHaveBeenCalledWith(trackIds)
-      expect(tracksModel.removeByIds).toHaveBeenCalledTimes(1)
-      expect(artistsModel.save).toHaveBeenCalledWith(artists)
-      expect(artistsModel.save).toHaveBeenCalledTimes(1)
-
-      expect(broadcast).toHaveBeenCalledWith('album-change', unknownAlbum)
-      for (const { id } of artists) {
-        expect(broadcast).toHaveBeenCalledWith('artist-removal', id)
-      }
-      for (const id of trackIds) {
-        expect(broadcast).toHaveBeenCalledWith('track-removal', id)
-      }
-      expect(broadcast).toHaveBeenCalledTimes(
-        tracks.length + artists.length + 1
-      )
-    })
-
-    it('sends changes before removals', async () => {
-      const path1 = faker.system.fileName()
-      const path2 = faker.system.fileName()
-      const artistNames = [faker.name.findName(), faker.name.findName()]
-      const artists = [
-        addId({
-          name: artistNames[0],
-          removedTrackIds: [hash(path1), hash(path2)],
-          trackIds: []
-        }),
-        addId({
-          name: artistNames[1],
-          removedTrackIds: [hash(path1)],
-          trackIds: []
+        const artists = artistNames.map(name =>
+          addId({
+            name,
+            trackIds: [],
+            removedTrackIds: trackIds
+          })
+        )
+        tracksModel.removeByIds.mockResolvedValueOnce(tracks)
+        albumsModel.save.mockResolvedValueOnce({
+          saved: [],
+          removedIds: [album.id]
         })
-      ]
-      const tracks = [
-        addRefs({
-          id: hash(path1),
-          path: path1,
-          tags: { artists: artistNames }
-        }),
-        addRefs({
-          id: hash(path2),
-          path: path2,
-          tags: { artists: artistNames.slice(0, 1) }
+        artistsModel.save.mockResolvedValueOnce({
+          saved: artists,
+          removedIds: []
         })
-      ]
-      const trackIds = tracks.map(({ id }) => id)
 
-      tracksModel.removeByIds.mockResolvedValueOnce(tracks)
-      const unknownAlbum = {
-        id: 1,
-        name: null,
-        media: null,
-        removedTrackIds: trackIds,
-        trackIds: []
-      }
-      artistsModel.save.mockResolvedValueOnce({
-        saved: [artists[0]],
-        removedIds: [artists[1].id]
-      })
-      albumsModel.save.mockResolvedValueOnce({
-        saved: [unknownAlbum],
-        removedIds: []
+        await tracksService.remove(trackIds)
+        await sleep(200)
+
+        expect(tracksModel.removeByIds).toHaveBeenCalledWith(trackIds)
+        expect(tracksModel.removeByIds).toHaveBeenCalledTimes(1)
+        expect(albumsModel.save).toHaveBeenCalledWith([album])
+        expect(albumsModel.save).toHaveBeenCalledTimes(1)
+        expect(artistsModel.save).toHaveBeenCalledWith(artists)
+        expect(artistsModel.save).toHaveBeenCalledTimes(1)
+
+        await sleep(1100)
+        expect(broadcast).toHaveBeenCalledWith('album-removals', [album.id])
+        expect(broadcast).toHaveBeenCalledWith('artist-changes', artists)
+        expect(broadcast).toHaveBeenCalledWith('track-removals', trackIds)
+        expect(broadcast).toHaveBeenCalledTimes(3)
       })
 
-      await tracksService.remove(trackIds)
-      await sleep(200)
+      it('updates artists', async () => {
+        const path = faker.system.fileName()
+        const artistNames = [faker.name.findName(), faker.name.findName()]
+        const artists = artistNames.map(name =>
+          addId({
+            name,
+            removedTrackIds: [hash(path)],
+            trackIds: []
+          })
+        )
+        const tracks = [
+          addRefs({ id: hash(path), path, tags: { artists: artistNames } })
+        ]
+        const trackIds = tracks.map(({ id }) => id)
+        tracksModel.removeByIds.mockResolvedValueOnce(tracks)
+        const unknownAlbum = {
+          id: 1,
+          name: null,
+          media: null,
+          removedTrackIds: [hash(path)],
+          trackIds: []
+        }
+        artistsModel.save.mockResolvedValueOnce({
+          saved: [],
+          removedIds: artists.map(({ id }) => id)
+        })
+        albumsModel.save.mockResolvedValueOnce({
+          saved: [unknownAlbum],
+          removedIds: []
+        })
 
-      expect(tracksModel.removeByIds).toHaveBeenCalledWith(trackIds)
-      expect(tracksModel.removeByIds).toHaveBeenCalledTimes(1)
-      expect(artistsModel.save).toHaveBeenCalledWith(artists)
-      expect(artistsModel.save).toHaveBeenCalledTimes(1)
-      expect(albumsModel.save).toHaveBeenCalledWith([unknownAlbum])
-      expect(albumsModel.save).toHaveBeenCalledTimes(1)
+        await tracksService.remove(trackIds)
+        await sleep(200)
 
-      expect(broadcast).toHaveBeenNthCalledWith(
-        1,
-        'track-removal',
-        tracks[0].id
-      )
-      expect(broadcast).toHaveBeenNthCalledWith(
-        2,
-        'track-removal',
-        tracks[1].id
-      )
-      expect(broadcast).toHaveBeenNthCalledWith(3, 'album-change', unknownAlbum)
-      expect(broadcast).toHaveBeenNthCalledWith(4, 'artist-change', artists[0])
-      expect(broadcast).toHaveBeenNthCalledWith(
-        5,
-        'artist-removal',
-        artists[1].id
-      )
-      expect(broadcast).toHaveBeenCalledTimes(5)
+        expect(tracksModel.removeByIds).toHaveBeenCalledWith(trackIds)
+        expect(tracksModel.removeByIds).toHaveBeenCalledTimes(1)
+        expect(artistsModel.save).toHaveBeenCalledWith(artists)
+        expect(artistsModel.save).toHaveBeenCalledTimes(1)
+
+        await sleep(1100)
+        expect(broadcast).toHaveBeenCalledWith('album-changes', [unknownAlbum])
+        expect(broadcast).toHaveBeenCalledWith(
+          'artist-removals',
+          artists.map(({ id }) => id)
+        )
+        expect(broadcast).toHaveBeenCalledWith('track-removals', trackIds)
+        expect(broadcast).toHaveBeenCalledTimes(3)
+      })
+
+      it('sends changes before removals', async () => {
+        const path1 = faker.system.fileName()
+        const path2 = faker.system.fileName()
+        const artistNames = [faker.name.findName(), faker.name.findName()]
+        const artists = [
+          addId({
+            name: artistNames[0],
+            removedTrackIds: [hash(path1), hash(path2)],
+            trackIds: []
+          }),
+          addId({
+            name: artistNames[1],
+            removedTrackIds: [hash(path1)],
+            trackIds: []
+          })
+        ]
+        const tracks = [
+          addRefs({
+            id: hash(path1),
+            path: path1,
+            tags: { artists: artistNames }
+          }),
+          addRefs({
+            id: hash(path2),
+            path: path2,
+            tags: { artists: artistNames.slice(0, 1) }
+          })
+        ]
+        const trackIds = tracks.map(({ id }) => id)
+
+        tracksModel.removeByIds.mockResolvedValueOnce(tracks)
+        const unknownAlbum = {
+          id: 1,
+          name: null,
+          media: null,
+          removedTrackIds: trackIds,
+          trackIds: []
+        }
+        artistsModel.save.mockResolvedValueOnce({
+          saved: [artists[0]],
+          removedIds: [artists[1].id]
+        })
+        albumsModel.save.mockResolvedValueOnce({
+          saved: [unknownAlbum],
+          removedIds: []
+        })
+
+        await tracksService.remove(trackIds)
+        await sleep(200)
+
+        expect(tracksModel.removeByIds).toHaveBeenCalledWith(trackIds)
+        expect(tracksModel.removeByIds).toHaveBeenCalledTimes(1)
+        expect(artistsModel.save).toHaveBeenCalledWith(artists)
+        expect(artistsModel.save).toHaveBeenCalledTimes(1)
+        expect(albumsModel.save).toHaveBeenCalledWith([unknownAlbum])
+        expect(albumsModel.save).toHaveBeenCalledTimes(1)
+
+        await sleep(1100)
+        expect(broadcast).toHaveBeenNthCalledWith(1, 'track-removals', trackIds)
+        expect(broadcast).toHaveBeenNthCalledWith(2, 'album-changes', [
+          unknownAlbum
+        ])
+        expect(broadcast).toHaveBeenNthCalledWith(
+          3,
+          'artist-changes',
+          artists.slice(0, 1)
+        )
+        expect(broadcast).toHaveBeenNthCalledWith(4, 'artist-removals', [
+          artists[1].id
+        ])
+        expect(broadcast).toHaveBeenCalledTimes(4)
+      })
     })
   })
 

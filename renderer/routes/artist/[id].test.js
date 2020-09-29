@@ -172,25 +172,27 @@ describe('artist details route', () => {
       load.mockReset()
 
       const newName = faker.name.findName()
-      changes.next({
-        ...artist,
-        name: newName,
-        tracks: [
-          ...artist.tracks,
-          {
-            id: faker.random.uuid(),
-            media: album3.media,
-            tags: {
-              title: faker.commerce.productName(),
-              artists: [artistName],
-              album: album3.name,
-              duration: 354
-            },
-            albumRef: [album3.id, album3.name],
-            artistRefs
-          }
-        ]
-      })
+      changes.next([
+        {
+          ...artist,
+          name: newName,
+          tracks: [
+            ...artist.tracks,
+            {
+              id: faker.random.uuid(),
+              media: album3.media,
+              tags: {
+                title: faker.commerce.productName(),
+                artists: [artistName],
+                album: album3.name,
+                duration: 354
+              },
+              albumRef: [album3.id, album3.name],
+              artistRefs
+            }
+          ]
+        }
+      ])
       await sleep()
 
       expect(screen.queryByText(artist.name)).toBeFalsy()
@@ -216,7 +218,9 @@ describe('artist details route', () => {
     it('ignores changes on other artists', async () => {
       load.mockReset()
 
-      changes.next({ ...artist, id: faker.random.number(), tracks: undefined })
+      changes.next([
+        { ...artist, id: faker.random.number(), tracks: undefined }
+      ])
       await sleep()
 
       expect(load).not.toHaveBeenCalled()
@@ -225,7 +229,7 @@ describe('artist details route', () => {
     it('reloads tracks on album change', async () => {
       load.mockReset().mockResolvedValueOnce(artist)
 
-      changes.next({ ...artist, tracks: undefined })
+      changes.next([{ ...artist, tracks: undefined }])
       await sleep()
 
       expect(load).toHaveBeenCalledWith(artist.id)
@@ -245,13 +249,13 @@ describe('artist details route', () => {
     })
 
     it('redirects to artist list on removal', async () => {
-      removals.next(artist.id)
+      removals.next([artist.id])
 
       expect(replace).toHaveBeenCalledWith('/artist')
     })
 
     it('ignores other artist removals', async () => {
-      removals.next(faker.random.number())
+      removals.next([faker.random.number()])
 
       expect(replace).not.toHaveBeenCalledWith('/artist')
     })

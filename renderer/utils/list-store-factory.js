@@ -8,16 +8,16 @@ import { invoke } from './invoke'
 const collator = new Intl.Collator([], { numeric: true })
 
 export function createListStore(type, sortBy = 'rank') {
-  const changes = fromServerChannel(`${type}-change`)
+  const changes = fromServerChannel(`${type}-changes`)
 
-  const removals = fromServerChannel(`${type}-removal`)
+  const removals = fromServerChannel(`${type}-removals`)
 
-  changes.subscribe(changed => items$.next({ added: [changed] }))
+  changes.subscribe(added => items$.next({ added }))
 
-  removals.subscribe(removedId => items$.next({ removedId }))
+  removals.subscribe(removedIds => items$.next({ removedIds }))
 
   const items$ = new ReplaySubject().pipe(
-    scan((list, { clear, added, removedId }) => {
+    scan((list, { clear, added, removedIds }) => {
       if (clear) {
         list = []
       }
@@ -31,10 +31,12 @@ export function createListStore(type, sortBy = 'rank') {
           }
         }
       }
-      if (removedId) {
-        const idx = list.findIndex(({ id }) => id === removedId)
-        if (idx !== -1) {
-          list.splice(idx, 1)
+      if (removedIds) {
+        for (const removed of removedIds) {
+          const idx = list.findIndex(({ id }) => id === removed)
+          if (idx !== -1) {
+            list.splice(idx, 1)
+          }
         }
       }
       return list.sort((a, b) => collator.compare(a.name, b.name))

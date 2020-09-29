@@ -3,7 +3,7 @@
   import { fade } from 'svelte/transition'
   import { _ } from 'svelte-intl'
   import { replace } from 'svelte-spa-router'
-  import { distinct, filter } from 'rxjs/operators'
+  import { distinct, filter, map } from 'rxjs/operators'
   import {
     Heading,
     Button,
@@ -54,7 +54,8 @@
 
   const changeSub = changes
     .pipe(
-      filter(({ id }) => id === playlistId),
+      map(changed => changed.find(({ id }) => id === playlistId)),
+      filter(n => n),
       distinct()
     )
     .subscribe(async changed => {
@@ -68,7 +69,7 @@
     })
 
   const removalSub = removals
-    .pipe(filter(id => id === playlistId))
+    .pipe(filter(ids => ids.includes(playlistId)))
     .subscribe(() => replace('/playlist'))
 
   onDestroy(() => {

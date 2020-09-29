@@ -63,15 +63,17 @@ const queue$ = merge(actions$, new ReplaySubject()).pipe(
             }
           }
         } else if (action.changed) {
-          for (let i = 0; i < list.length; i++) {
-            if (list[i].id === action.changed.id) {
-              list[i] = action.changed
+          for (const changed of action.changed) {
+            for (let i = 0; i < list.length; i++) {
+              if (list[i].id === changed.id) {
+                list[i] = changed
+              }
             }
-          }
-          if (backup) {
-            for (let i = 0; i < backup.length; i++) {
-              if (backup[i].id === action.changed.id) {
-                backup[i] = action.changed
+            if (backup) {
+              for (let i = 0; i < backup.length; i++) {
+                if (backup[i].id === changed.id) {
+                  backup[i] = changed
+                }
               }
             }
           }
@@ -106,16 +108,18 @@ const tracks$ = queue$.pipe(pluck('list'))
 
 const isShuffling$ = queue$.pipe(map(({ backup }) => Array.isArray(backup)))
 
-fromServerChannel(`track-change`).subscribe(changed =>
+fromServerChannel(`track-changes`).subscribe(changed =>
   actions$.next({ changed })
 )
 
-fromServerChannel(`track-removal`).subscribe(removedId => {
-  let idx = 0
-  while (idx !== -1) {
-    const queued = get(tracks$)
-    idx = queued.findIndex(({ id }) => id === removedId)
-    remove(idx)
+fromServerChannel(`track-removals`).subscribe(removedIds => {
+  for (const removed of removedIds) {
+    let idx = 0
+    while (idx !== -1) {
+      const queued = get(tracks$)
+      idx = queued.findIndex(({ id }) => id === removed)
+      remove(idx)
+    }
   }
 })
 

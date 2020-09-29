@@ -121,6 +121,7 @@ exports.main = async () => {
 
   await models.init(getStoragePath('db.sqlite3'))
   settings.init()
+  tracks.listen()
   autoUpdater.logger = getLogger('updater')
   if (!process.env.PORTABLE_EXECUTABLE_DIR) {
     // portable app can not automatically update

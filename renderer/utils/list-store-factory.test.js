@@ -140,14 +140,7 @@ describe('abstract list factory', () => {
       await sleep(100)
       expect(get(albums)).toEqual(data)
 
-      mockIpcRenderer.emit('album-change', null, updated1)
-      expect(get(albums)).toEqual([
-        ...data.slice(0, 3),
-        updated1,
-        ...data.slice(4)
-      ])
-
-      mockIpcRenderer.emit('album-change', null, updated2)
+      mockIpcRenderer.emit('album-changes', null, [updated1, updated2])
       expect(get(albums)).toEqual([
         ...data.slice(0, 3),
         updated1,
@@ -175,7 +168,7 @@ describe('abstract list factory', () => {
       await sleep(100)
       expect(get(albums)).toEqual(data)
 
-      mockIpcRenderer.emit('album-change', null, updated)
+      mockIpcRenderer.emit('album-changes', null, [updated])
       expect(get(albums)).toEqual([
         ...data.slice(0, 1),
         updated,
@@ -202,10 +195,7 @@ describe('abstract list factory', () => {
       await sleep(100)
       expect(get(albums)).toEqual(data)
 
-      mockIpcRenderer.emit('album-removal', null, removed1)
-      expect(get(albums)).toEqual([...data.slice(0, 3), ...data.slice(4)])
-
-      mockIpcRenderer.emit('album-removal', null, removed2)
+      mockIpcRenderer.emit('album-removals', null, [removed1, removed2])
       expect(get(albums)).toEqual([
         ...data.slice(0, 3),
         ...data.slice(4, 6),
@@ -339,12 +329,14 @@ describe('abstract list factory', () => {
       const album = { id: faker.random.number() }
       subscription = changes.subscribe(listener)
 
-      mockIpcRenderer.emit('whatever-change', null)
-      mockIpcRenderer.emit('artist-change', null, { id: faker.random.number() })
-      mockIpcRenderer.emit('album-change', null, album)
+      mockIpcRenderer.emit('whatever-changes', null)
+      mockIpcRenderer.emit('artist-changes', null, [
+        { id: faker.random.number() }
+      ])
+      mockIpcRenderer.emit('album-changes', null, [album])
       await sleep()
 
-      expect(listener).toHaveBeenCalledWith(album)
+      expect(listener).toHaveBeenCalledWith([album])
       expect(listener).toHaveBeenCalledTimes(1)
     })
 
@@ -353,12 +345,12 @@ describe('abstract list factory', () => {
       const albumId = faker.random.number()
       subscription = removals.subscribe(listener)
 
-      mockIpcRenderer.emit('whatever-removal', null)
-      mockIpcRenderer.emit('artist-removal', null, faker.random.number())
-      mockIpcRenderer.emit('album-removal', null, albumId)
+      mockIpcRenderer.emit('whatever-removals', null)
+      mockIpcRenderer.emit('artist-removals', null, [faker.random.number()])
+      mockIpcRenderer.emit('album-removals', null, [albumId])
       await sleep()
 
-      expect(listener).toHaveBeenCalledWith(albumId)
+      expect(listener).toHaveBeenCalledWith([albumId])
       expect(listener).toHaveBeenCalledTimes(1)
     })
   })

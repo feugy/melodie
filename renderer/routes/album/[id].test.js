@@ -163,7 +163,7 @@ describe('album details route', () => {
       load.mockReset()
 
       const newName = faker.commerce.productName()
-      changes.next({ ...album, name: newName })
+      changes.next([{ ...album, name: newName }])
       await sleep()
 
       expect(screen.queryByText(album.name)).toBeFalsy()
@@ -174,7 +174,7 @@ describe('album details route', () => {
     it('ignores changes on other albums', async () => {
       load.mockReset()
 
-      changes.next({ ...album, id: faker.random.number(), tracks: undefined })
+      changes.next([{ ...album, id: faker.random.number(), tracks: undefined }])
       await sleep()
 
       expectDisplayedTracks()
@@ -184,7 +184,7 @@ describe('album details route', () => {
     it('reloads tracks on album change', async () => {
       load.mockReset().mockResolvedValueOnce(album)
 
-      changes.next({ ...album, tracks: undefined })
+      changes.next([{ ...album, tracks: undefined }])
       await sleep()
 
       expect(load).toHaveBeenCalledWith(album.id)
@@ -193,13 +193,13 @@ describe('album details route', () => {
     })
 
     it('redirects to albums list on removal', async () => {
-      removals.next(album.id)
+      removals.next([album.id])
 
       expect(replace).toHaveBeenCalledWith('/album')
     })
 
     it('ignores other album removals', async () => {
-      removals.next(faker.random.number())
+      removals.next([faker.random.number()])
 
       expect(replace).not.toHaveBeenCalledWith('/album')
     })

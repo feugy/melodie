@@ -53,7 +53,6 @@ There are thunsands of them in the wild. This mine is an excuse for learning [El
 
 ### Bugs and known issues
 
-1. startup performance isn't great
 1. now that I'm not using FLIP animations, native drag'n drop may be leaner than my mouse-event based implementation
 1. Undetected live changes: remove tracks and re-add them. This is a linux-only issue with chokidar
    - https://github.com/paulmillr/chokidar/issues/917

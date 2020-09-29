@@ -3,7 +3,7 @@
   import { fade } from 'svelte/transition'
   import { _ } from 'svelte-intl'
   import { replace } from 'svelte-spa-router'
-  import { filter, distinct } from 'rxjs/operators'
+  import { filter, distinct, map } from 'rxjs/operators'
   import {
     Heading,
     Image,
@@ -34,7 +34,8 @@
 
   const changeSub = changes
     .pipe(
-      filter(({ id }) => id === artistId),
+      map(changed => changed.find(({ id }) => id === artistId)),
+      filter(n => n),
       distinct()
     )
     .subscribe(async changed => {
@@ -48,7 +49,7 @@
     })
 
   const removalSub = removals
-    .pipe(filter(id => id === artistId))
+    .pipe(filter(ids => ids.includes(artistId)))
     .subscribe(() => replace('/artist'))
 
   function groupByAlbum() {

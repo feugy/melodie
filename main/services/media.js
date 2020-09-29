@@ -239,8 +239,7 @@ module.exports = {
     if (written) {
       const { saved } = await artistsModel.save({ ...artist, media })
       // broadcast 2 changes so UI would detect changes event when the media path is the same
-      broadcast('artist-change', { ...artist, media: null })
-      broadcast('artist-change', saved[0])
+      broadcast('artist-changes', [{ ...artist, media: null }, saved[0]])
       logger.debug(
         { id, url, media },
         `media successfully saved into artist ${artist.name}`
@@ -277,22 +276,24 @@ module.exports = {
     if (written) {
       const { saved } = await albumsModel.save({ ...album, media })
       // broadcast 2 changes so UI would detect changes event when the media path is the same
-      broadcast('album-change', { ...album, media: null })
-      broadcast('album-change', saved[0])
+      broadcast('album-changes', [{ ...album, media: null }, saved[0]])
       logger.debug(
         { id, url, media },
         `media successfully saved into album ${album.name}`
       )
       const savedTracks = tracks.map(track => ({ ...track, media }))
       await tracksModel.save(savedTracks)
+      const resetedTracks = []
       for (const track of savedTracks) {
-        broadcast('track-change', { ...track, media: null })
-        broadcast('track-change', track)
+        resetedTracks.push({ ...track, media: null })
         logger.debug(
           { id: track.id, url, media },
           `media successfully saved for track ${track.path}`
         )
       }
+      // split in 2 different messages for UI to update
+      broadcast('track-changes', resetedTracks)
+      broadcast('track-changes', savedTracks)
     }
   }
 }

@@ -1,6 +1,6 @@
 'use strict'
 
-const { of, from, concat, merge, EMPTY } = require('rxjs')
+const { of, from, concat, merge, EMPTY, Subject } = require('rxjs')
 const {
   reduce,
   mergeMap,
@@ -8,7 +8,8 @@ const {
   expand,
   filter,
   delay,
-  tap
+  tap,
+  bufferTime
 } = require('rxjs/operators')
 const { broadcast, getLogger, differenceRef } = require('../utils')
 const {
@@ -19,6 +20,8 @@ const {
 } = require('../models')
 
 const logger = getLogger('services/tracks')
+
+const messages$ = new Subject()
 
 const sorters = {
   trackNo: (list, results) =>
@@ -66,12 +69,16 @@ function makeListPipeline(property, model) {
         mergeMap(({ saved, removedIds }) =>
           concat(
             from(saved).pipe(
-              tap(record => broadcast(`${property}-change`, record))
+              tap(record =>
+                messages$.next({ type: `${property}-changes`, data: record })
+              )
             ),
             // removals must be delays to that change are transfered before
             of(null).pipe(delay(100)),
             from(removedIds).pipe(
-              tap(id => broadcast(`${property}-removal`, id))
+              tap(id =>
+                messages$.next({ type: `${property}-removals`, data: id })
+              )
             )
           )
         )
@@ -80,11 +87,46 @@ function makeListPipeline(property, model) {
   ]
 }
 
+let subscription
+
+function stopListening() {
+  if (subscription) {
+    subscription.unsubscribe()
+  }
+}
+
 module.exports = {
+  listen() {
+    stopListening()
+    subscription = messages$
+      .pipe(
+        bufferTime(1000),
+        filter(messages => messages.length > 0)
+      )
+      .subscribe(messages => {
+        const types = new Map()
+        for (const { type, data } of messages) {
+          let messagesByType = types.get(type)
+          if (!messagesByType) {
+            messagesByType = []
+            types.set(type, messagesByType)
+          }
+          messagesByType.push(data)
+        }
+        for (const [type, data] of types) {
+          broadcast(type, data)
+        }
+      })
+  },
+
+  stopListening,
+
   async add(tracks) {
     const tracks$ = from(tracksModel.save(tracks)).pipe(
       mergeMap(from),
-      tap(({ current }) => broadcast('track-change', current)),
+      tap(({ current }) =>
+        messages$.next({ type: 'track-changes', data: current })
+      ),
       expand(({ current, previous }) => {
         if (!current) {
           return EMPTY
@@ -136,7 +178,7 @@ module.exports = {
   async remove(trackIds) {
     const tracks$ = from(tracksModel.removeByIds(trackIds)).pipe(
       mergeMap(from),
-      tap(track => broadcast('track-removal', track.id)),
+      tap(track => messages$.next({ type: 'track-removals', data: track.id })),
       expand(({ id, albumRef, artistRefs }) => {
         if (!artistRefs) {
           return EMPTY

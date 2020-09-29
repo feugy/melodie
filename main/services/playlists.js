@@ -21,9 +21,9 @@ module.exports = {
       removedIds
     } = await playlistsModel.save(pickData(playlist))
     if (removedIds.length) {
-      broadcast(`playlist-removal`, removedIds[0])
+      broadcast(`playlist-removals`, [removedIds[0]])
     } else {
-      broadcast(`playlist-change`, saved)
+      broadcast(`playlist-changes`, [saved])
     }
     return saved
   },
@@ -44,7 +44,7 @@ module.exports = {
         ...(Array.isArray(trackIds) ? trackIds : [trackIds])
       ]
     })
-    broadcast(`playlist-change`, saved)
+    broadcast(`playlist-changes`, [saved])
     return saved
   }
 }
