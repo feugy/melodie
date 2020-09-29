@@ -76,18 +76,27 @@ const current$ = new BehaviorSubject(null)
 
 const clickNextButton$ = new Subject()
 
+let subscription = null
+
 function awaitsEvent(store, criteria = () => true) {
-  const subscription = store.subscribe(async value => {
+  subscription = store.subscribe(async value => {
     if (criteria(value)) {
       await tick()
-      if (typeof subscription === 'function') {
-        subscription()
-      } else {
-        subscription.unsubscribe()
-      }
+      unsubscribe()
       next()
     }
   })
+}
+
+function unsubscribe() {
+  if (subscription) {
+    if (typeof subscription === 'function') {
+      subscription()
+    } else {
+      subscription.unsubscribe()
+    }
+    subscription = null
+  }
 }
 
 function next() {
@@ -113,6 +122,7 @@ export async function start() {
 }
 
 export async function stop() {
+  unsubscribe()
   if (current$.value !== null) {
     current$.next(null)
     allowNavigation()

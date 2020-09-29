@@ -150,14 +150,23 @@ describe('tutorial store', () => {
   it('can be started and stopped', async () => {
     start()
     await sleep()
+
+    handleNextButtonClick()
+    await sleep()
+
     expect(get(current)).toEqual(
       expect.objectContaining({
-        anchorId: 'locale',
-        messageKey: 'tutorial.chooseLocale',
-        nextButtonKey: 'alright'
+        anchorId: 'folder',
+        messageKey: 'tutorial.findMusic'
       })
     )
+
     stop()
+    // make sure tutorial is not awaiting
+    push('/album')
+    await sleep(10)
+
     expect(get(current)).toEqual(null)
+    expect(location.hash).toEqual('#/album')
   })
 })

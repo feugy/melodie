@@ -18,7 +18,7 @@
     "dev": "rollup -c -w",
     "postinstall": "electron-builder install-app-deps",
     "release:artifacts": "electron-builder",
-    "release:bump": "standard-version -prerelease alpha",
+    "release:bump": "standard-version -s -prerelease alpha",
     "release:publish": "electron-builder -p onTagOrDraft",
     "start": "electron .",
     "storybook": "start-storybook -p 6006 -s ./fixtures",

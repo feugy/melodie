@@ -12,24 +12,22 @@ There are thunsands of them in the wild. This mine is an excuse for learning [El
 
 ### features
 
-- [ ] system integration (play folder/file)
-- [ ] images from tags
-- [ ] artists' albums
-- [ ] smaller screen support (UI refactor)
-- [ ] enqueue tracks/albums by dragging to tracks queue
-- [ ] add to playlist from Album details/Playlist details/Search results pages
-- [ ] configure replay gain from settings
 - [ ] configurable simple/double click behaviour
 - [ ] configurable "play now" behaviour: either clear & add, or enqueue and jump
-- [ ] display years (artist & album details page)
+- [ ] add to playlist from Album details/Playlist details/Search results pages
+- [ ] enqueue tracks/albums by dragging to tracks queue
+- [ ] system integration (play folder/file)
+- [ ] images from tags
 - [ ] display album/artist descriptions
 - [ ] number of disk on album details page
+- [ ] display years (artist & album details page)
+- [ ] configure replay gain from settings
 - [ ] display tracks/albums/artists count in settings
 - [ ] allow reseting database from settings
+- [ ] smaller screen support (UI refactor)
 
 ### tools
 
-- [x] Automated release process with github action
 - [ ] App automated end to end tests
 - [ ] Code coverage follow-up (https://app.codacy.com/login/https://codeclimate.com/dashboard)
 - [ ] more technical documentation (install & release process notably)
@@ -57,7 +55,6 @@ There are thunsands of them in the wild. This mine is an excuse for learning [El
 
 1. startup performance isn't great
 1. now that I'm not using FLIP animations, native drag'n drop may be leaner than my mouse-event based implementation
-1. When DB has albums and playlists, tutorial enters infinite loop
 1. Undetected live changes: remove tracks and re-add them. This is a linux-only issue with chokidar
    - https://github.com/paulmillr/chokidar/issues/917
    - https://github.com/paulmillr/chokidar/issues/591
