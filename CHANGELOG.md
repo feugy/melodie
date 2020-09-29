@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0-alpha.6](https://github.com/feugy/melodie/compare/v1.0.0-alpha.5...v1.0.0-alpha.6) (2020-09-29)
+
+
+### Bug Fixes
+
+* **ui:** tutorial, when skipped at first step, resumes on navigation ([7751858](https://github.com/feugy/melodie/commit/7751858c57219bf6c1a67be3bb32797fb01ec06e))
+
 ## [1.0.0-alpha.5](https://github.com/feugy/melodie/compare/v1.0.0-alpha.4...v1.0.0-alpha.5) (2020-09-27)
 
 
