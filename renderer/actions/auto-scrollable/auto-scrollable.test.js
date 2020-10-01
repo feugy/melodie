@@ -10,12 +10,20 @@ describe('autoScrollable action', () => {
   let clientHeight
   let scrollHeight
   let scrollTop
+  let clientY
 
   beforeAll(() => {
     Object.defineProperties(window.HTMLOListElement.prototype, {
       clientHeight: { get: () => clientHeight },
       scrollHeight: { get: () => scrollHeight },
       scrollTop: { get: () => scrollTop }
+    })
+    // JSDom does not support DragEvent, and falls back to Event instead
+    Object.defineProperty(Event.prototype, 'clientY', {
+      enumerable: true,
+      get() {
+        return clientY
+      }
     })
   })
 
@@ -32,12 +40,12 @@ describe('autoScrollable action', () => {
     const list = items[0].closest('ol')
     list.scrollBy = jest.fn()
 
-    await fireEvent.mouseEnter(list)
-    await fireEvent.mouseMove(items[10], { clientY: clientHeight - 15 })
-    await fireEvent.mouseLeave(list)
+    clientY = clientHeight - 15
+    fireEvent.drag(items[10])
+    fireEvent.dragEnd(list)
     await sleep()
 
-    expect(list.scrollBy).toHaveBeenCalledWith({ top: 40 })
+    expect(list.scrollBy).toHaveBeenCalledWith({ top: 24 })
   })
 
   it('does not scrolls down when already at the bottom', async () => {
@@ -47,9 +55,9 @@ describe('autoScrollable action', () => {
     const list = items[0].closest('ol')
     list.scrollBy = jest.fn()
 
-    await fireEvent.mouseEnter(list)
-    await fireEvent.mouseMove(items[20], { clientY: clientHeight - 15 })
-    await fireEvent.mouseLeave(list)
+    clientY = clientHeight - 15
+    fireEvent.drag(items[20])
+    fireEvent.dragEnd(list)
     await sleep()
 
     expect(list.scrollBy).not.toHaveBeenCalled()
@@ -62,12 +70,12 @@ describe('autoScrollable action', () => {
     const list = items[0].closest('ol')
     list.scrollBy = jest.fn()
 
-    await fireEvent.mouseEnter(list)
-    await fireEvent.mouseMove(items[10], { clientY: 15 })
-    await fireEvent.mouseLeave(list)
+    clientY = 15
+    fireEvent.drag(items[10])
+    fireEvent.dragEnd(list)
     await sleep()
 
-    expect(list.scrollBy).toHaveBeenCalledWith({ top: -40 })
+    expect(list.scrollBy).toHaveBeenCalledWith({ top: -24 })
   })
 
   it('does not scrolls up when already at the top', async () => {
@@ -76,9 +84,9 @@ describe('autoScrollable action', () => {
     const list = items[0].closest('ol')
     list.scrollBy = jest.fn()
 
-    await fireEvent.mouseEnter(list)
-    await fireEvent.mouseMove(items[0], { clientY: 15 })
-    await fireEvent.mouseLeave(list)
+    clientY = 15
+    fireEvent.drag(items[0])
+    fireEvent.dragEnd(list)
     await sleep()
 
     expect(list.scrollBy).not.toHaveBeenCalled()
@@ -91,10 +99,11 @@ describe('autoScrollable action', () => {
     const list = items[0].closest('ol')
     list.scrollBy = jest.fn()
 
-    await fireEvent.mouseEnter(list)
-    await fireEvent.mouseMove(items[0], { clientY: 15 })
-    await fireEvent.mouseMove(items[29], { clientY: clientHeight - 15 })
-    await fireEvent.mouseLeave(list)
+    clientY = 15
+    fireEvent.drag(items[0])
+    clientY = clientHeight - 15
+    fireEvent.drag(items[29])
+    fireEvent.dragEnd(list)
     await sleep()
 
     expect(list.scrollBy).not.toHaveBeenCalled()
@@ -106,25 +115,9 @@ describe('autoScrollable action', () => {
     const list = items[0].closest('ol')
     list.scrollBy = jest.fn()
 
-    await fireEvent.mouseEnter(list)
-    await fireEvent.mouseMove(items[5], { clientY: itemHeight * 5 })
-    await fireEvent.mouseLeave(list)
-    await sleep()
-
-    expect(list.scrollBy).not.toHaveBeenCalled()
-  })
-
-  it('does not scroll when disabled', async () => {
-    scrollTop = 10 * itemHeight
-    render(html`<${Scrollable} enabled=${false} />`)
-    const items = screen.queryAllByRole('listitem')
-    const list = items[0].closest('ol')
-    list.scrollBy = jest.fn()
-
-    await fireEvent.mouseEnter(list)
-    await fireEvent.mouseMove(items[10], { clientY: 15 })
-    await fireEvent.mouseMove(items[20], { clientY: clientHeight - 15 })
-    await fireEvent.mouseLeave(list)
+    clientY = itemHeight * 5
+    fireEvent.drag(items[5])
+    fireEvent.dragEnd(list)
     await sleep()
 
     expect(list.scrollBy).not.toHaveBeenCalled()

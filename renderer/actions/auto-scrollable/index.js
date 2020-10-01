@@ -3,26 +3,19 @@
 export function autoScrollable(node, params = {}) {
   let borderDetection
   let maxScroll
-  let enabled
   let scrollBy
   let timeout
 
   function destroy() {
-    node.removeEventListener('mousemove', handleMouseMove)
-    node.removeEventListener('mouseleave', handleMouseLeave)
+    node.removeEventListener('drag', handleMouseMove)
+    node.removeEventListener('dragend', handleMouseLeave)
   }
 
   function update(params = {}) {
     borderDetection = params.borderDetection | 75
-    maxScroll = params.maxScroll || 50
-    enabled = params.enabled !== undefined ? params.enabled : true
-    if (enabled) {
-      node.addEventListener('mousemove', handleMouseMove)
-      node.addEventListener('mouseleave', handleMouseLeave)
-    } else {
-      handleMouseLeave()
-      destroy()
-    }
+    maxScroll = params.maxScroll || 30
+    node.addEventListener('drag', handleMouseMove)
+    node.addEventListener('dragend', handleMouseLeave)
   }
 
   update(params)
@@ -34,7 +27,7 @@ export function autoScrollable(node, params = {}) {
 
   function handleMouseMove({ clientY }) {
     const { scrollTop, scrollHeight, clientHeight } = node
-    if (scrollHeight <= clientHeight) {
+    if (scrollHeight <= clientHeight || clientY === 0) {
       return
     }
     cancelAnimationFrame(timeout)
@@ -46,7 +39,8 @@ export function autoScrollable(node, params = {}) {
       scrollTop < scrollHeight - clientHeight
     ) {
       scrollBy =
-        ((clientY - clientHeight + borderDetection) * maxScroll) /
+        ((Math.min(clientY, clientHeight) - clientHeight + borderDetection) *
+          maxScroll) /
         borderDetection
     }
     if (scrollBy) {

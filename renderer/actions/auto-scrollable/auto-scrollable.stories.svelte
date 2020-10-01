@@ -54,10 +54,14 @@
   }
 </style>
 
+<p class="p-4 font-bold">
+  Caution: does not work on Firefox (DragEvent always have 0 clientY)
+</p>
+
 <ol
   use:autoScrollable={$$restProps}
   style="--padding:{$$restProps.borderDetection}px; --margin:{-$$restProps.borderDetection}px;">
   {#each texts as text}
-    <li>{text}</li>
+    <li draggable="true">{text}</li>
   {/each}
 </ol>

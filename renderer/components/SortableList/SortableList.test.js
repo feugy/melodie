@@ -1,10 +1,8 @@
 'use strict'
 
 import { screen, render, fireEvent } from '@testing-library/svelte'
-import { get } from 'svelte/store'
 import html from 'svelte-htm'
 import faker from 'faker'
-import { isMoveInProgress } from './SortableList.svelte'
 import SortableList from './SortableList.stories.svelte'
 import { addRefs } from '../../tests'
 
@@ -79,6 +77,18 @@ describe('SortableList component', () => {
     ].map(addRefs)
 
     const onMove = jest.fn()
+    const dataTransfer = { setDragImage: jest.fn() }
+    let pageY
+
+    beforeAll(() => {
+      // JSDom does not support setting pageY, we have do do it ourselve
+      Object.defineProperty(Event.prototype, 'pageY', {
+        enumerable: true,
+        get() {
+          return pageY
+        }
+      })
+    })
 
     beforeEach(async () => {
       render(
@@ -89,58 +99,48 @@ describe('SortableList component', () => {
     })
 
     it('drags track forward in the list', async () => {
-      expect(get(isMoveInProgress)).toBe(false)
       const dragged = screen.queryByText(items[1].tags.title)
       const hovered = screen.queryByText(items[2].tags.title)
       const dropped = screen.queryByText(items[3].tags.title)
 
-      await fireEvent.mouseDown(dragged)
-      await fireEvent.mouseMove(dragged)
-      expect(get(isMoveInProgress)).toBe(true)
-      await fireEvent.mouseEnter(hovered.closest('li'))
-      await fireEvent.mouseEnter(dropped.closest('li'))
-      await fireEvent.mouseUp(dropped)
+      fireEvent.dragStart(dragged, { dataTransfer })
+      fireEvent.dragEnter(dragged, { dataTransfer })
+      fireEvent.dragEnter(hovered.closest('li'), { dataTransfer })
+      fireEvent.dragEnter(dropped.closest('li'), { dataTransfer })
+      fireEvent.dragEnd(dropped, { dataTransfer })
 
-      expect(get(isMoveInProgress)).toBe(false)
       expect(onMove).toHaveBeenCalledWith(
-        expect.objectContaining({ detail: { from: 1, to: 2 } })
+        expect.objectContaining({ detail: { from: 1, to: 3 } })
       )
       expect(onMove).toHaveBeenCalledTimes(1)
     })
 
     it('drags track backward in the list', async () => {
-      expect(get(isMoveInProgress)).toBe(false)
       const dragged = screen.queryByText(items[3].tags.title)
       const hovered = screen.queryByText(items[2].tags.title)
       const dropped = screen.queryByText(items[1].tags.title)
 
-      await fireEvent.mouseDown(dragged)
-      await fireEvent.mouseMove(dragged)
-      expect(get(isMoveInProgress)).toBe(true)
-      await fireEvent.mouseEnter(hovered.closest('li'))
-      await fireEvent.mouseEnter(dropped.closest('li'))
-      await fireEvent.mouseUp(dropped)
+      fireEvent.dragStart(dragged, { dataTransfer })
+      fireEvent.dragEnter(dragged, { dataTransfer })
+      fireEvent.dragEnter(hovered.closest('li'), { dataTransfer })
+      fireEvent.dragEnter(dropped.closest('li'), { dataTransfer })
+      fireEvent.dragEnd(dropped, { dataTransfer })
 
-      expect(get(isMoveInProgress)).toBe(false)
       expect(onMove).toHaveBeenCalledWith(
-        expect.objectContaining({ detail: { from: 3, to: 1 } })
+        expect.objectContaining({ detail: { from: 3, to: 2 } })
       )
       expect(onMove).toHaveBeenCalledTimes(1)
     })
 
     it('drags track at the very end', async () => {
-      expect(get(isMoveInProgress)).toBe(false)
       const dragged = screen.queryByText(items[0].tags.title)
       const hovered = screen.queryByText(items[4].tags.title)
 
-      await fireEvent.mouseDown(dragged)
-      await fireEvent.mouseMove(dragged)
-      expect(get(isMoveInProgress)).toBe(true)
-      await fireEvent.mouseEnter(hovered.closest('li'))
-      await fireEvent.mouseLeave(hovered.closest('ol'))
-      await fireEvent.mouseUp(dragged)
+      fireEvent.dragStart(dragged, { dataTransfer })
+      fireEvent.dragEnter(dragged, { dataTransfer })
+      fireEvent.dragEnter(hovered.closest('li'), { dataTransfer })
+      fireEvent.dragEnd(dragged, { dataTransfer })
 
-      expect(get(isMoveInProgress)).toBe(false)
       expect(onMove).toHaveBeenCalledWith(
         expect.objectContaining({ detail: { from: 0, to: 4 } })
       )
@@ -148,18 +148,17 @@ describe('SortableList component', () => {
     })
 
     it('drags track at the very beginning', async () => {
-      expect(get(isMoveInProgress)).toBe(false)
       const dragged = screen.queryByText(items[1].tags.title)
       const hovered = screen.queryByText(items[0].tags.title)
 
-      await fireEvent.mouseDown(dragged)
-      await fireEvent.mouseMove(dragged)
-      expect(get(isMoveInProgress)).toBe(true)
-      await fireEvent.mouseEnter(hovered.closest('li'))
-      await fireEvent.mouseLeave(hovered.closest('ol'))
-      await fireEvent.mouseUp(dragged)
+      pageY = 10
+      fireEvent.dragStart(dragged, { dataTransfer })
+      pageY = 10
+      fireEvent.dragEnter(dragged, { dataTransfer })
+      pageY = 0
+      fireEvent.dragEnter(hovered.closest('li'), { dataTransfer })
+      fireEvent.dragEnd(dragged, { dataTransfer })
 
-      expect(get(isMoveInProgress)).toBe(false)
       expect(onMove).toHaveBeenCalledWith(
         expect.objectContaining({ detail: { from: 1, to: 0 } })
       )
@@ -167,28 +166,23 @@ describe('SortableList component', () => {
     })
 
     it(`does not move track on cancelled drag'n drop`, async () => {
-      expect(get(isMoveInProgress)).toBe(false)
       const dropped = screen.queryByTestId('paragraph')
       const dragged = screen.queryByText(items[2].tags.title)
 
-      await fireEvent.mouseDown(dragged)
-      await fireEvent.mouseMove(dragged)
-      expect(get(isMoveInProgress)).toBe(true)
-      await fireEvent.mouseEnter(dropped)
-      await fireEvent.mouseUp(dropped)
+      fireEvent.dragStart(dragged, { dataTransfer })
+      fireEvent.dragEnter(dragged, { dataTransfer })
+      fireEvent.dragEnter(dropped, { dataTransfer })
+      fireEvent.dragEnd(dropped, { dataTransfer })
 
-      expect(get(isMoveInProgress)).toBe(false)
       expect(onMove).not.toHaveBeenCalled()
     })
 
     it(`does not move track on click`, async () => {
       const dragged = screen.queryByText(items[2].tags.title)
 
-      await fireEvent.mouseDown(dragged)
-      expect(get(isMoveInProgress)).toBe(false)
-      await fireEvent.mouseUp(dragged)
+      fireEvent.mouseDown(dragged)
+      fireEvent.mouseUp(dragged)
 
-      expect(get(isMoveInProgress)).toBe(false)
       expect(onMove).not.toHaveBeenCalled()
     })
   })

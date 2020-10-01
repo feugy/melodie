@@ -1,14 +1,6 @@
-<script context="module">
-  import { BehaviorSubject } from 'rxjs'
-
-  const isMoveInProgress$ = new BehaviorSubject(false)
-  export const isMoveInProgress = isMoveInProgress$.asObservable()
-</script>
-
 <script>
   import { createEventDispatcher } from 'svelte'
   import { slide } from 'svelte/transition'
-  import { _ } from 'svelte-intl'
 
   export let items = []
 
@@ -16,7 +8,10 @@
   let dragged = null
   let target = null
   let keyedItems = []
-  let possibleDrag = null
+  let previousY = null
+  // there is a bug in Chrome: when drag operation starts, dragenter is always fired on the first target
+  // which makes an ugly "jump" to the beginning of the list
+  let skipFirstEnter = true
 
   $: {
     // ensure items have unique keys: same item could appear multiple times in the list
@@ -29,104 +24,46 @@
     }
   }
 
-  function findPositionned(node) {
-    return !node
-      ? null
-      : node.offsetParent &&
-        getComputedStyle(node.offsetParent).position !== 'static'
-      ? node.offsetParent
-      : findPositionned(node.offsetParent)
-  }
-
-  function handleDrag(evt, key, idx) {
+  function handleDragStart(evt, key, idx) {
     const item = evt.target.closest('li')
-    const bounds = item.parentNode.getBoundingClientRect()
-    const { height, width, left, top } = item.getBoundingClientRect()
-    possibleDrag = {
+    dragged = {
       item,
       key,
-      idx,
-      offset: top - evt.clientY,
-      height,
-      width,
-      left,
-      min: bounds.top,
-      max: bounds.bottom - height,
-      positionned: findPositionned(item)
+      from: idx,
+      indicator: document.createElement('span')
     }
-    if (possibleDrag.positionned) {
-      const { left, top } = possibleDrag.positionned.getBoundingClientRect()
-      possibleDrag.left -= left
-      possibleDrag.offset -= top
-    }
+    skipFirstEnter = true
+    previousY = evt.pageY
+    // this disabled the drag indicator
+    evt.dataTransfer.setDragImage(dragged.indicator, 0, 0)
   }
 
-  function handleOver(evt, key, idx) {
-    if (dragged) {
-      if (target) {
-        target.item.style.marginTop = null
-        target.item.style.marginBottom = null
+  function handleEnter(evt, key) {
+    if (dragged && dragged.key !== key && !skipFirstEnter) {
+      target = { item: evt.target.closest('li'), key }
+      if (previousY > evt.pageY) {
+        target.item.before(dragged.item)
+      } else {
+        target.item.after(dragged.item)
       }
-      target = { item: evt.target.closest('li'), key, idx }
-      target.item.before(dragged.item)
-      target.item.style.marginTop = `${dragged.height}px`
+      previousY = evt.pageY
     }
-  }
-
-  function handleOut() {
-    if (
-      dragged &&
-      target &&
-      target.key === keyedItems[keyedItems.length - 1].key
-    ) {
-      target.idx++
-      target.item.after(dragged.item)
-      target.item.style.marginTop = null
-      target.item.style.marginBottom = `${dragged.height}px`
-    }
-  }
-
-  function handleMove(evt) {
-    if (possibleDrag) {
-      dragged = possibleDrag
-      dragged.item.style.left = `${dragged.left}px`
-      dragged.item.style.height = `${dragged.height}px`
-      dragged.item.style.width = `${dragged.width}px`
-      possibleDrag = null
-      handleOver(evt, dragged.key, dragged.idx)
-      isMoveInProgress$.next(true)
-    }
-    if (dragged) {
-      const value =
-        evt.clientY +
-        dragged.offset +
-        (dragged.positionned ? dragged.positionned.scrollTop : 0)
-      dragged.item.style.top = `${
-        value < dragged.min
-          ? dragged.min
-          : value > dragged.max
-          ? dragged.max
-          : value
-      }px`
-    }
+    skipFirstEnter = false
   }
 
   function handleDrop() {
-    if (target) {
-      target.item.style.marginTop = null
-      target.item.style.marginBottom = null
-    }
     if (dragged && target) {
-      const from = dragged.idx
-      const to = target.idx - (from < target.idx ? 1 : 0)
+      const { from, item } = dragged
+      const to = Array.from(item.parentElement.children).indexOf(item)
       if (from !== to) {
         dispatch('move', { from, to })
       }
     }
-    possibleDrag = null
+    if (dragged) {
+      dragged.indicator.remove()
+    }
     dragged = null
     target = null
-    isMoveInProgress$.next(false)
   }
 
   function slideOnRemove(...args) {
@@ -137,28 +74,32 @@
 <style type="postcss">
   li {
     transition: margin-top 150ms linear, margin-bottom 150ms linear;
+
+    &.dragged {
+      background-color: var(--hover-bg-color);
+    }
   }
 
-  li.dragged {
-    @apply absolute inline-block pointer-events-none;
-    background: var(--hover-bg-color);
-    transition: top 150ms linear;
-  }
+  /* 
+  During DnD, the first li is always hover, and we need to disable the rule
+  But at the end of DnD, the item at the index of dragged element will be hovered, 
+  until the mouse moved. There is no workaround.
 
-  ol.dragged {
-    @apply cursor-move;
-  }
+  ol:not(.dragged) > li:hover {
+    background-color: var(--hover-primary-color);
+  } 
+  */
 </style>
 
-<svelte:body on:mousemove={handleMove} on:mouseup={handleDrop} />
-<ol on:mouseleave={handleOut} class:dragged>
+<ol class:dragged>
   {#each keyedItems as item, i (item.key)}
     <li
-      out:slideOnRemove|local={{ duration: 250 }}
+      draggable="true"
       class:dragged={dragged && dragged.key === item.key}
-      class:target={target && target.key === item.key}
-      on:mousedown={evt => handleDrag(evt, item.key, i)}
-      on:mouseenter={evt => handleOver(evt, item.key, i)}>
+      out:slideOnRemove|local={{ duration: 250 }}
+      on:dragstart={evt => handleDragStart(evt, item.key, i)}
+      on:dragenter={evt => handleEnter(evt, item.key)}
+      on:dragend={handleDrop}>
       <slot name="item" {item} {i} />
     </li>
   {/each}

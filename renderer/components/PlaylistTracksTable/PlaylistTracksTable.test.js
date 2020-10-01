@@ -127,7 +127,7 @@ describe('PlaylistTracksTable component', () => {
     const track = faker.random.arrayElement(playlist.tracks)
     render(html`<${PlaylistTracksTable} playlist=${playlist} />`)
 
-    await fireEvent.click(screen.getByText(track.tags.title))
+    fireEvent.click(screen.getByText(track.tags.title))
     await sleep(300)
 
     expect(add).toHaveBeenCalledWith({ ...track, key: `${track.id}-1` })
@@ -155,15 +155,16 @@ describe('PlaylistTracksTable component', () => {
     const dragged = screen.queryByText(playlist.tracks[0].tags.title)
     const hovered = screen.queryByText(playlist.tracks[2].tags.title)
     const dropped = screen.queryByText(playlist.tracks[3].tags.title)
+    const dataTransfer = { setDragImage: jest.fn() }
 
-    await fireEvent.mouseDown(dragged)
-    await fireEvent.mouseMove(dragged)
-    await fireEvent.mouseEnter(hovered.closest('li'))
-    await fireEvent.mouseEnter(dropped.closest('li'))
-    await fireEvent.mouseUp(dropped)
+    fireEvent.dragStart(dragged, { dataTransfer })
+    fireEvent.dragEnter(dragged, { dataTransfer })
+    fireEvent.dragEnter(hovered.closest('li'), { dataTransfer })
+    fireEvent.dragEnter(dropped.closest('li'), { dataTransfer })
+    fireEvent.dragEnd(dropped, { dataTransfer })
     await sleep()
 
-    expect(moveTrack).toHaveBeenCalledWith(playlist, { from: 0, to: 2 })
+    expect(moveTrack).toHaveBeenCalledWith(playlist, { from: 0, to: 3 })
     expect(moveTrack).toHaveBeenCalledTimes(1)
     expect(add).not.toHaveBeenCalled()
     expect(location.hash).toEqual(`#/`)
@@ -176,13 +177,13 @@ describe('PlaylistTracksTable component', () => {
       track = faker.random.arrayElement(playlist.tracks)
       render(html`<${PlaylistTracksTable} playlist=${playlist} />`)
 
-      await fireEvent.click(
+      fireEvent.click(
         screen.getByText(track.tags.title).closest('tr').querySelector('button')
       )
     })
 
     it('removes track from playlist with dropdown', async () => {
-      await fireEvent.click(screen.getByText(translate('remove from playlist')))
+      fireEvent.click(screen.getByText(translate('remove from playlist')))
       await sleep()
 
       expect(removeTrack).toHaveBeenCalledWith(
@@ -196,7 +197,7 @@ describe('PlaylistTracksTable component', () => {
     })
 
     it('plays track with dropdown', async () => {
-      await fireEvent.click(screen.getByText('play_arrow'))
+      fireEvent.click(screen.getByText('play_arrow'))
       await sleep()
 
       expect(add).toHaveBeenCalledWith({ ...track, key: `${track.id}-1` }, true)
@@ -207,7 +208,7 @@ describe('PlaylistTracksTable component', () => {
     })
 
     it('enqueues track with dropdown', async () => {
-      await fireEvent.click(screen.getByText('playlist_add'))
+      fireEvent.click(screen.getByText('playlist_add'))
       await sleep()
 
       expect(add).toHaveBeenCalledWith({ ...track, key: `${track.id}-1` })
@@ -218,7 +219,7 @@ describe('PlaylistTracksTable component', () => {
     })
 
     it('opens parent folder', async () => {
-      await fireEvent.click(screen.getByText('launch'))
+      fireEvent.click(screen.getByText('launch'))
       await sleep()
 
       expect(electron.shell.showItemInFolder).toHaveBeenCalledWith(track.path)
@@ -229,7 +230,7 @@ describe('PlaylistTracksTable component', () => {
     })
 
     it('opens track details dialogue', async () => {
-      await fireEvent.click(screen.getByText('local_offer'))
+      fireEvent.click(screen.getByText('local_offer'))
       await sleep()
 
       expect(screen.getByText(translate('track details'))).toBeVisible()

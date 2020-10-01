@@ -5,12 +5,10 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
   class="storybook-snapshot-container"
 >
   <div>
-     
-    <ol
-      class="svelte-c121nq"
-    >
+    <ol>
       <li
-        class="svelte-c121nq"
+        class="svelte-w3rzzq"
+        draggable="true"
       >
         <div
           class="svelte-1hrmi6p"
@@ -76,7 +74,8 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
          
       </li>
       <li
-        class="svelte-c121nq"
+        class="svelte-w3rzzq"
+        draggable="true"
       >
         <div
           class="svelte-1hrmi6p"
@@ -142,7 +141,8 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
          
       </li>
       <li
-        class="svelte-c121nq"
+        class="svelte-w3rzzq"
+        draggable="true"
       >
         <div
           class="svelte-1hrmi6p"
@@ -208,7 +208,8 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
          
       </li>
       <li
-        class="svelte-c121nq"
+        class="svelte-w3rzzq"
+        draggable="true"
       >
         <div
           class="svelte-1hrmi6p"
@@ -274,7 +275,8 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
          
       </li>
       <li
-        class="svelte-c121nq"
+        class="svelte-w3rzzq"
+        draggable="true"
       >
         <div
           class="svelte-1hrmi6p"
@@ -340,7 +342,8 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
          
       </li>
       <li
-        class="svelte-c121nq"
+        class="svelte-w3rzzq"
+        draggable="true"
       >
         <div
           class="svelte-1hrmi6p"
@@ -406,7 +409,8 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
          
       </li>
       <li
-        class="svelte-c121nq"
+        class="svelte-w3rzzq"
+        draggable="true"
       >
         <div
           class="svelte-1hrmi6p"
@@ -472,7 +476,8 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
          
       </li>
       <li
-        class="svelte-c121nq"
+        class="svelte-w3rzzq"
+        draggable="true"
       >
         <div
           class="svelte-1hrmi6p"

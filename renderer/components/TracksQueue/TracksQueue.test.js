@@ -72,12 +72,12 @@ describe('TracksQueue component', () => {
     it('jumps to track on click', async () => {
       expect(get(index)).toEqual(0)
 
-      await fireEvent.click(screen.getByText(tracks[2].tags.title))
+      fireEvent.click(screen.getByText(tracks[2].tags.title))
       await tick()
 
       expect(get(index)).toEqual(2)
 
-      await fireEvent.click(screen.getByText(tracks[1].tags.title))
+      fireEvent.click(screen.getByText(tracks[1].tags.title))
       await tick()
 
       expect(get(index)).toEqual(1)
@@ -87,7 +87,7 @@ describe('TracksQueue component', () => {
       expectListItems(tracks)
       expect(get(current)).toEqual(tracks[0])
 
-      await fireEvent.click(screen.queryByText('delete'))
+      fireEvent.click(screen.queryByText('delete'))
       await sleep(300)
 
       expect(get(current)).not.toBeDefined()
@@ -98,7 +98,7 @@ describe('TracksQueue component', () => {
       expectListItems(tracks)
 
       const removed = tracks[1].tags.title
-      await fireEvent.click(
+      fireEvent.click(
         screen.getByText(removed).closest('li').querySelector('button')
       )
       await sleep(300)
@@ -113,15 +113,16 @@ describe('TracksQueue component', () => {
       const dragged = screen.queryByText(tracks[0].tags.title)
       const hovered = screen.queryByText(tracks[2].tags.title)
       const dropped = screen.queryByText(tracks[3].tags.title)
+      const dataTransfer = { setDragImage: jest.fn() }
 
-      await fireEvent.mouseDown(dragged)
-      await fireEvent.mouseMove(dragged)
-      await fireEvent.mouseEnter(hovered.closest('li'))
-      await fireEvent.mouseEnter(dropped.closest('li'))
-      await fireEvent.mouseUp(dropped)
+      fireEvent.dragStart(dragged, { dataTransfer })
+      fireEvent.dragEnter(dragged, { dataTransfer })
+      fireEvent.dragEnter(hovered.closest('li'), { dataTransfer })
+      fireEvent.dragEnter(dropped.closest('li'), { dataTransfer })
+      fireEvent.dragEnd(dropped, { dataTransfer })
       await tick()
 
-      expectListItems([tracks[1], tracks[2], tracks[0], tracks[3]])
+      expectListItems([tracks[1], tracks[2], tracks[3], tracks[0]])
     })
   })
 
@@ -151,7 +152,7 @@ describe('TracksQueue component', () => {
       expectListItems(tracks.slice(0, 2))
       expect(get(current)).toEqual(tracks[0])
 
-      await fireEvent.click(screen.queryByText('delete'))
+      fireEvent.click(screen.queryByText('delete'))
       await sleep(300)
 
       expectListItems(tracks.slice(0, 2))
@@ -167,7 +168,7 @@ describe('TracksQueue component', () => {
       expectListItems(tracks.slice(0, 2))
       expect(get(current)).toEqual(tracks[0])
 
-      await fireEvent.click(
+      fireEvent.click(
         screen
           .getByText(tracks[0].tags.title)
           .closest('li')
@@ -178,7 +179,7 @@ describe('TracksQueue component', () => {
       expectListItems(tracks.slice(1, 2))
       expect(get(current)).toEqual(tracks[1])
 
-      await fireEvent.click(
+      fireEvent.click(
         screen
           .getByText(tracks[1].tags.title)
           .closest('li')
@@ -230,8 +231,9 @@ describe('TracksQueue component', () => {
     it('adds entire queue to existing playlist', async () => {
       const playlist = faker.random.arrayElement(playlists)
 
-      await fireEvent.click(screen.queryByText('library_add'))
-      await fireEvent.click(screen.queryByText(playlist.name))
+      fireEvent.click(screen.queryByText('library_add'))
+      await sleep()
+      fireEvent.click(screen.queryByText(playlist.name))
       await sleep(250)
 
       expectListItems(tracks)
