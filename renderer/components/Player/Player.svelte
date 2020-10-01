@@ -19,6 +19,7 @@
   export let isPlaylistOpen = false
   let isPlaying
   let player
+  let timeUpdateTimer
   let duration = 0
   let currentTime = 0
   let nextSeek = null
@@ -64,16 +65,18 @@
     if (player) {
       clearTimeout(nextSeek)
       nextSeek = setTimeout(function () {
-        currentTime = detail
+        player.currentTime = detail
       }, 100)
     }
   }
 
   function handlePlay() {
-    if (isPlaying) {
-      player.pause()
-    } else {
-      player.play()
+    if (src) {
+      if (isPlaying) {
+        player.pause()
+      } else {
+        player.play()
+      }
     }
   }
 
@@ -113,6 +116,17 @@
       unshuffle()
     } else {
       shuffle()
+    }
+  }
+
+  // Do not use svelte's `bind:currentTime` who eats too much CPU
+  // instead, poll the current time ourselves, up to 10 times per second
+  function updateTime() {
+    if (player) {
+      currentTime = player.currentTime
+      setTimeout(() => {
+        timeUpdateTimer = window.requestAnimationFrame(updateTime)
+      }, 100)
     }
   }
 </script>
@@ -172,15 +186,16 @@
   autoplay
   {src}
   on:ended={handleEnded}
-  bind:currentTime
   bind:duration
   bind:volume
   bind:muted
   on:play={() => {
     isPlaying = true
+    timeUpdateTimer = window.requestAnimationFrame(updateTime)
   }}
   on:pause={() => {
     isPlaying = false
+    window.cancelAnimationFrame(timeUpdateTimer)
   }} />
 
 <div class="flex items-center">
