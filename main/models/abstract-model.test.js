@@ -17,7 +17,9 @@ class Test extends Model {
 
 let dbFile
 let db
-const latestMigration = '001-init'
+const migrationFolder = resolve(__dirname, 'migrations')
+const allMigrations = fs.readdirSync(migrationFolder).sort()
+const latestMigration = allMigrations[allMigrations.length - 1]
 const migrationsTable = 'knex_migrations'
 
 describe('Abstract model', () => {
@@ -27,7 +29,7 @@ describe('Abstract model', () => {
       client: 'sqlite3',
       useNullAsDefault: true,
       connection: { filename: dbFile },
-      migrations: { directory: resolve(__dirname, 'migrations') },
+      migrations: { directory: migrationFolder },
       log: { warn: () => {} }
     })
   })
@@ -42,14 +44,12 @@ describe('Abstract model', () => {
 
   describe('init', () => {
     afterEach(async () => {
-      if (await db.schema.hasTable(migrationsTable)) {
-        try {
-          await db.migrate.down()
-          await db.schema.dropTable(migrationsTable)
-        } catch (err) {
-          // silent migration errors
-        }
-      }
+      await db.schema.dropTableIfExists(migrationsTable)
+      await db.schema.dropTableIfExists('settings')
+      await db.schema.dropTableIfExists('albums')
+      await db.schema.dropTableIfExists('artists')
+      await db.schema.dropTableIfExists('tracks')
+      await db.schema.dropTableIfExists('playlists')
       await Model.release()
     })
 
@@ -65,7 +65,10 @@ describe('Abstract model', () => {
       expect(await db.schema.hasTable(migrationsTable)).toBe(true)
       expect(await db(migrationsTable).select()).toEqual(
         expect.arrayContaining([
-          expect.objectContaining({ id: 1, name: `${latestMigration}.js` })
+          expect.objectContaining({
+            id: allMigrations.length,
+            name: latestMigration
+          })
         ])
       )
     })
@@ -76,11 +79,15 @@ describe('Abstract model', () => {
         table.string('name')
         table.integer('batch')
       })
-      await db(migrationsTable).insert({ id: 1, name: `${latestMigration}.js` })
+      await db(migrationsTable).insert(
+        allMigrations.map((name, id) => ({ id, name }))
+      )
 
       const tested = new Test(modelName)
       await tested.init(dbFile)
-      expect(await db(migrationsTable).count({ c: 'id' })).toEqual([{ c: 1 }])
+      expect(await db(migrationsTable).count({ c: 'id' })).toEqual([
+        { c: allMigrations.length }
+      ])
     })
   })
 

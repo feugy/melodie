@@ -51,17 +51,17 @@ exports.up = async function (db) {
       table.json('albumRef')
       table.float('mtimeMs')
     })
-  settingsModel.db = db
-  return settingsModel.save({
+  // do not use settingsModel.save(): it'll fail on further migration that may add new JSON columns
+  await db(settingsModel.name).insert({
     id: settingsModel.ID,
-    folders: [],
+    folders: JSON.stringify([]),
     openCount: 1,
-    providers: { audiodb: {}, discogs: {} }
+    providers: JSON.stringify({ audiodb: {}, discogs: {} })
   })
 }
 
 exports.down = async function ({ schema }) {
-  return schema
+  await schema
     .dropTable(tracksModel.name)
     .dropTable(playlistsModel.name)
     .dropTable(artistsModel.name)

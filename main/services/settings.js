@@ -42,30 +42,31 @@ module.exports = {
     logger.info({ folders }, `adding new folders...`)
     const settings = await this.get()
     const merged = mergeFolders(folders, settings.folders)
-    await settingsModel.save({
+    const saved = await settingsModel.save({
       ...settings,
       folders: merged
     })
     local.importTracks()
-    return merged
+    return saved
   },
 
   async removeFolder(folder) {
-    const settings = await this.get()
+    let settings = await this.get()
     const { folders } = settings
     logger.debug({ folder, folders }, 'remove watched folders from the list')
     let idx = folders.indexOf(folder)
     if (idx >= 0) {
       folders.splice(idx, 1)
-      await settingsModel.save(settings)
+      settings = await settingsModel.save(settings)
       local.importTracks()
     }
+    return settings
   },
 
   async setLocale(value) {
     const settings = await this.get()
     logger.debug({ value }, 'saving new locale value')
-    await settingsModel.save({
+    return settingsModel.save({
       ...settings,
       locale: value
     })
@@ -75,21 +76,32 @@ module.exports = {
     const settings = await this.get()
     const conf = { key }
     logger.debug(conf, 'saving new key for AudioDB provider')
-    await settingsModel.save({
+    const saved = await settingsModel.save({
       ...settings,
       providers: { ...settings.providers, audiodb: conf }
     })
     audiodb.init(conf)
+    return saved
   },
 
   async setDiscogsToken(token) {
     const settings = await this.get()
     const conf = { token }
     logger.debug(conf, 'saving new token for Discogs provider')
-    await settingsModel.save({
+    const saved = await settingsModel.save({
       ...settings,
       providers: { ...settings.providers, discogs: conf }
     })
     discogs.init(conf)
+    return saved
+  },
+
+  async setEnqueueBehaviour({ clearBefore, onClick }) {
+    const settings = await this.get()
+    logger.debug({ clearBefore, onClick }, 'saving enqueue behaviour')
+    return settingsModel.save({
+      ...settings,
+      enqueueBehaviour: { clearBefore, onClick }
+    })
   }
 }

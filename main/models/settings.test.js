@@ -34,6 +34,10 @@ describe('Settings model', () => {
       providers: {
         audiodb: {},
         discogs: {}
+      },
+      enqueueBehaviour: {
+        onClick: true,
+        clearBefore: false
       }
     })
   })
@@ -45,7 +49,15 @@ describe('Settings model', () => {
     expect(await settingsModel.get()).toEqual({
       ...settings,
       folders: JSON.parse(settings.folders),
-      providers: JSON.parse(settings.providers)
+      providers: JSON.parse(settings.providers),
+      enqueueBehaviour: JSON.parse(settings.enqueueBehaviour)
     })
+  })
+
+  it('returns modified settings on save', async () => {
+    const settings = await settingsModel.get()
+    settings.providers.deezer = { token: 'abc' }
+
+    expect(await settingsModel.save(settings)).toEqual(settings)
   })
 })

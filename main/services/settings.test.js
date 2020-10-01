@@ -59,14 +59,11 @@ describe('Settings service', () => {
     const openCount = faker.random.number({ min: 1 })
     const folders = [faker.system.fileName(), faker.system.fileName()]
     settingsModel.get.mockResolvedValueOnce({ folders, openCount })
+    const saved = { folders, locale, openCount }
+    settingsModel.save.mockResolvedValueOnce(saved)
 
-    await settingsService.setLocale(locale)
-
-    expect(settingsModel.save).toHaveBeenCalledWith({
-      folders,
-      locale,
-      openCount
-    })
+    expect(await settingsService.setLocale(locale)).toEqual(saved)
+    expect(settingsModel.save).toHaveBeenCalledWith(saved)
   })
 
   it('saves AudioDB provider key', async () => {
@@ -77,15 +74,11 @@ describe('Settings service', () => {
       discogs: { foo: faker.random.word() }
     }
     settingsModel.get.mockResolvedValueOnce({ locale, providers })
+    const saved = { locale, providers: { ...providers, audiodb: { key } } }
+    settingsModel.save.mockResolvedValueOnce(saved)
 
-    await settingsService.setAudioDBKey(key)
-    expect(settingsModel.save).toHaveBeenCalledWith({
-      locale,
-      providers: {
-        ...providers,
-        audiodb: { key }
-      }
-    })
+    expect(await settingsService.setAudioDBKey(key)).toEqual(saved)
+    expect(settingsModel.save).toHaveBeenCalledWith(saved)
     expect(settingsModel.save).toHaveBeenCalledTimes(1)
     expect(audiodb.init).toHaveBeenCalledWith({ key })
     expect(audiodb.init).toHaveBeenCalledTimes(1)
@@ -100,19 +93,40 @@ describe('Settings service', () => {
       discogs: { foo: faker.random.word() }
     }
     settingsModel.get.mockResolvedValueOnce({ locale, providers })
+    const saved = { locale, providers: { ...providers, discogs: { token } } }
+    settingsModel.save.mockResolvedValueOnce(saved)
 
-    await settingsService.setDiscogsToken(token)
-    expect(settingsModel.save).toHaveBeenCalledWith({
-      locale,
-      providers: {
-        ...providers,
-        discogs: { token }
-      }
-    })
+    expect(await settingsService.setDiscogsToken(token)).toEqual(saved)
+    expect(settingsModel.save).toHaveBeenCalledWith(saved)
     expect(settingsModel.save).toHaveBeenCalledTimes(1)
     expect(discogs.init).toHaveBeenCalledWith({ token })
     expect(discogs.init).toHaveBeenCalledTimes(1)
     expect(audiodb.init).not.toHaveBeenCalled()
+  })
+
+  it('saves enqueue behaviour', async () => {
+    const locale = faker.random.word()
+    const onClick = faker.random.boolean()
+    const clearBefore = faker.random.boolean()
+    const providers = {
+      audiodb: { foo: faker.random.word() },
+      discogs: { foo: faker.random.word() }
+    }
+    settingsModel.get.mockResolvedValueOnce({
+      locale,
+      providers,
+      enqueueBehaviour: { clearBefore, onClick }
+    })
+    const newValues = {
+      onClick: !onClick,
+      clearBefore: !clearBefore
+    }
+    const saved = { locale, providers, enqueueBehaviour: newValues }
+    settingsModel.save.mockResolvedValueOnce(saved)
+
+    expect(await settingsService.setEnqueueBehaviour(newValues)).toEqual(saved)
+    expect(settingsModel.save).toHaveBeenCalledWith(saved)
+    expect(settingsModel.save).toHaveBeenCalledTimes(1)
   })
 
   describe('init', () => {
@@ -172,15 +186,13 @@ describe('Settings service', () => {
       const filePaths = [faker.system.fileName(), faker.system.fileName()]
       electron.dialog.showOpenDialog.mockResolvedValueOnce({ filePaths })
       const finalFolders = folders.concat(filePaths)
+      const saved = { id: settingsModel.ID, folders: finalFolders, locale }
+      settingsModel.save.mockResolvedValueOnce(saved)
 
-      expect(await settingsService.addFolders()).toEqual(finalFolders)
+      expect(await settingsService.addFolders()).toEqual(saved)
 
       expect(settingsModel.get).toHaveBeenCalledTimes(1)
-      expect(settingsModel.save).toHaveBeenCalledWith({
-        id: settingsModel.ID,
-        folders: finalFolders,
-        locale
-      })
+      expect(settingsModel.save).toHaveBeenCalledWith(saved)
       expect(settingsModel.save).toHaveBeenCalledTimes(1)
       expect(local.importTracks).toHaveBeenCalledTimes(1)
       expect(electron.dialog.showOpenDialog).toHaveBeenCalledWith({
@@ -211,15 +223,13 @@ describe('Settings service', () => {
       ]
       electron.dialog.showOpenDialog.mockResolvedValueOnce({ filePaths })
       const finalFolders = folders.concat(filePaths.slice(2))
+      const saved = { id: settingsModel.ID, folders: finalFolders, locale }
+      settingsModel.save.mockResolvedValueOnce(saved)
 
-      expect(await settingsService.addFolders()).toEqual(finalFolders)
+      expect(await settingsService.addFolders()).toEqual(saved)
 
       expect(settingsModel.get).toHaveBeenCalledTimes(1)
-      expect(settingsModel.save).toHaveBeenCalledWith({
-        id: settingsModel.ID,
-        folders: finalFolders,
-        locale
-      })
+      expect(settingsModel.save).toHaveBeenCalledWith(saved)
       expect(settingsModel.save).toHaveBeenCalledTimes(1)
       expect(local.importTracks).toHaveBeenCalledTimes(1)
     })
@@ -237,15 +247,13 @@ describe('Settings service', () => {
         filePaths: [parent]
       })
       const finalFolders = [folders[1], parent]
+      const saved = { id: settingsModel.ID, folders: finalFolders, locale }
+      settingsModel.save.mockResolvedValueOnce(saved)
 
-      expect(await settingsService.addFolders()).toEqual(finalFolders)
+      expect(await settingsService.addFolders()).toEqual(saved)
 
       expect(settingsModel.get).toHaveBeenCalledTimes(1)
-      expect(settingsModel.save).toHaveBeenCalledWith({
-        id: settingsModel.ID,
-        folders: finalFolders,
-        locale
-      })
+      expect(settingsModel.save).toHaveBeenCalledWith(saved)
       expect(settingsModel.save).toHaveBeenCalledTimes(1)
       expect(local.importTracks).toHaveBeenCalledTimes(1)
     })
@@ -260,15 +268,17 @@ describe('Settings service', () => {
         faker.system.fileName()
       ]
       settingsModel.get.mockResolvedValueOnce({ folders: [...folders], locale })
-
-      expect(await settingsService.removeFolder(folders[1]))
-
-      expect(settingsModel.get).toHaveBeenCalledTimes(1)
-      expect(settingsModel.save).toHaveBeenCalledWith({
+      const saved = {
         id: settingsModel.ID,
         folders: [folders[0], folders[2]],
         locale
-      })
+      }
+      settingsModel.save.mockResolvedValueOnce(saved)
+
+      expect(await settingsService.removeFolder(folders[1])).toEqual(saved)
+
+      expect(settingsModel.get).toHaveBeenCalledTimes(1)
+      expect(settingsModel.save).toHaveBeenCalledWith(saved)
       expect(settingsModel.save).toHaveBeenCalledTimes(1)
       expect(local.importTracks).toHaveBeenCalledTimes(1)
     })
@@ -278,7 +288,9 @@ describe('Settings service', () => {
       const folders = [faker.system.fileName(), faker.system.fileName()]
       settingsModel.get.mockResolvedValueOnce({ folders, locale })
 
-      expect(await settingsService.removeFolder(faker.system.fileName()))
+      expect(
+        await settingsService.removeFolder(faker.system.fileName())
+      ).toEqual({ folders, locale })
 
       expect(settingsModel.get).toHaveBeenCalledTimes(1)
       expect(settingsModel.save).not.toHaveBeenCalled()
