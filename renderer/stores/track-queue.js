@@ -4,7 +4,8 @@ import { get } from 'svelte/store'
 import { ReplaySubject, Subject, merge, BehaviorSubject } from 'rxjs'
 import { scan, pluck, shareReplay, map } from 'rxjs/operators'
 import { knuthShuffle } from 'knuth-shuffle'
-import { fromServerChannel } from '../utils'
+import { fromServerChannel, createClickObservable } from '../utils'
+import { settings } from './settings'
 
 const actions$ = new Subject()
 
@@ -127,16 +128,33 @@ fromServerChannel(`track-removals`).subscribe(removedIds => {
 queue$.subscribe()
 clear()
 
+let playOnClick
+let clearBeforePlay = true
+
+settings.subscribe(value => {
+  if (value) {
+    playOnClick = !value.enqueueBehaviour.onClick
+    clearBeforePlay = value.enqueueBehaviour.clearBefore
+  }
+})
+
 export const tracks = tracks$
 export const current = current$.asObservable()
 export const index = index$
 export const isShuffling = isShuffling$
 
 export function add(values, play = false) {
+  const actions = [{ add: Array.isArray(values) ? values : [values] }]
   if (play) {
-    clear()
+    if (clearBeforePlay) {
+      actions.unshift({ clear: true })
+    } else {
+      actions.push({ idx: get(tracks$).length })
+    }
   }
-  actions$.next({ add: Array.isArray(values) ? values : [values] })
+  for (const action of actions) {
+    actions$.next(action)
+  }
 }
 
 export function clear() {
@@ -169,4 +187,15 @@ export function shuffle() {
 
 export function unshuffle() {
   actions$.next({ restore: true })
+}
+
+export function createClickToAddObservable() {
+  return createClickObservable(
+    function onClick(track) {
+      add(track, playOnClick)
+    },
+    function onDouble(track) {
+      add(track, !playOnClick)
+    }
+  )
 }

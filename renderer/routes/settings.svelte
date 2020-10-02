@@ -2,7 +2,6 @@
   import { VERSION } from 'svelte/compiler'
   import { onMount } from 'svelte'
   import { fade } from 'svelte/transition'
-  import { push } from 'svelte-spa-router'
   import { _, locales, locale } from 'svelte-intl'
   import {
     Heading,
@@ -11,14 +10,21 @@
     Dropdown,
     TextInput
   } from '../components'
+  import {
+    settings,
+    askToAddFolder,
+    saveEnqueueBehaviour,
+    saveDiscogsToken,
+    saveAudioDBKey,
+    removeFolder,
+    saveLocale
+  } from '../stores/settings'
   import { invoke } from '../utils'
 
   export const params = {}
   let currentLocale = $locale ? { value: $locale, label: $_($locale) } : null
-  let audiodbKey = ''
-  let discogsToken = ''
-  let settingsPromise
   let versions = []
+
   const photographers = [
     {
       href: 'https://unsplash.com/photos/6AtQNsjMoJo',
@@ -41,11 +47,47 @@
       label: 'Valentino Funghi'
     }
   ]
+  const playOptions = [
+    {
+      value: true,
+      label: $_('clears queue and plays')
+    },
+    {
+      value: false,
+      label: $_('enqueues and jumps')
+    }
+  ]
+  const clickOptions = [
+    {
+      value: true,
+      label: $_('enqueues track')
+    },
+    {
+      value: false,
+      label: $_('plays track')
+    }
+  ]
 
   $: localeOptions = $locales.map(value => ({ value, label: $_(value) }))
   $: if (currentLocale && currentLocale.value !== $locale) {
     locale.set(currentLocale.value)
-    invoke('settings.setLocale', currentLocale.value)
+    saveLocale(currentLocale.value)
+  }
+  $: play = playOptions.find(
+    ({ value }) => value === $settings.enqueueBehaviour.clearBefore
+  )
+  $: simpleClick = clickOptions.find(
+    ({ value }) => value === $settings.enqueueBehaviour.onClick
+  )
+  $: doubleClick = clickOptions.find(
+    ({ value }) => value !== $settings.enqueueBehaviour.onClick
+  )
+
+  function handleSaveEnqueueBehaviour() {
+    saveEnqueueBehaviour({
+      onClick: simpleClick.value,
+      clearBefore: play.value
+    })
   }
 
   onMount(async () => {
@@ -82,37 +124,7 @@
         src: 'images/sqlite-logo.png'
       }
     ]
-    getSettings()
   })
-
-  function getSettings() {
-    settingsPromise = invoke('settings.get')
-    settingsPromise.then(({ providers: { audiodb, discogs } }) => {
-      audiodbKey = audiodb.key || ''
-      discogsToken = discogs.token || ''
-    })
-  }
-
-  async function handleAdd() {
-    if (await invoke('settings.addFolders')) {
-      push('/album')
-    }
-  }
-
-  async function handleRemove(folder) {
-    await invoke('settings.removeFolder', folder)
-    getSettings()
-  }
-
-  async function handleSaveAudioDB(value) {
-    audiodbKey = value
-    await invoke('settings.setAudioDBKey', audiodbKey)
-  }
-
-  async function handleSaveDiscogs(value) {
-    discogsToken = value
-    await invoke('settings.setDiscogsToken', discogsToken)
-  }
 </script>
 
 <style type="postcss">
@@ -122,6 +134,15 @@
     & > div {
       @apply text-sm my-4;
     }
+
+    & > p {
+      @apply mb-4;
+    }
+  }
+
+  :global(label > .material-icons) {
+    font-size: 1em;
+    vertical-align: -0.15rem;
   }
 
   li {
@@ -134,7 +155,7 @@
   }
 
   .controlContainer {
-    @apply inline-block;
+    @apply inline-block mx-4;
   }
 
   label {
@@ -176,33 +197,47 @@
     imagePosition="center 65%" />
   <article>
     <SubHeading>{$_('watched folders')}</SubHeading>
-    {#if settingsPromise}
-      {#await settingsPromise then { folders }}
-        <ul>
-          {#each folders as folder (folder)}
-            <li>
-              <span>{folder}</span>
-              <Button
-                on:click={() => handleRemove(folder)}
-                noBorder
-                icon="close" />
-            </li>
-          {/each}
-        </ul>
-        <span class="controlContainer" id="folder"><Button
-            icon="folder"
-            on:click={handleAdd}
-            text={$_('add folders')} /></span>
-      {/await}
-    {/if}
+    <ul>
+      {#each $settings.folders as folder (folder)}
+        <li>
+          <span>{folder}</span>
+          <Button on:click={() => removeFolder(folder)} noBorder icon="close" />
+        </li>
+      {/each}
+    </ul>
+    <span class="controlContainer" id="folder"><Button
+        icon="folder"
+        on:click={askToAddFolder}
+        text={$_('add folders')} /></span>
   </article>
   <article>
-    <SubHeading>{$_('locales')}</SubHeading>
-    <label for="locale">{$_('current locale')}</label>
-    <span class="controlContainer" id="locale"><Dropdown
-        valueAsText="true"
-        bind:value={currentLocale}
-        options={localeOptions} /></span>
+    <SubHeading>{$_('interface settings')}</SubHeading>
+    <p>
+      <label for="locale">{$_('locale')}</label>
+      <span class="controlContainer" id="locale"><Dropdown
+          valueAsText="true"
+          bind:value={currentLocale}
+          options={localeOptions} /></span>
+    </p>
+    <p>
+      <label for="play-behaviour">{@html $_('play now behaviour')}</label>
+      <span class="controlContainer" id="play-behaviour"><Dropdown
+          valueAsText="true"
+          bind:value={play}
+          options={playOptions}
+          on:select={handleSaveEnqueueBehaviour} /></span>
+    </p>
+    <p>
+      <label for="click-behaviour">{$_('simple click behaviour')}</label>
+      <span class="controlContainer" id="click-behaviour"><Dropdown
+          valueAsText="true"
+          bind:value={simpleClick}
+          options={clickOptions}
+          on:select={handleSaveEnqueueBehaviour} /></span><span>{$_(
+          'double click behaviour',
+          { action: doubleClick.label }
+        )}</span>
+    </p>
   </article>
   <article>
     <SubHeading>{$_('audiodb.title')}</SubHeading>
@@ -213,8 +248,8 @@
     <span class="controlContainer" id="audiodb-key"><TextInput
         class="settings-input"
         placeholder={$_('audiodb.key placeholder')}
-        value={audiodbKey}
-        on:change={({ target: { value } }) => handleSaveAudioDB(value)} /></span>
+        value={$settings.providers.audiodb.key || ''}
+        on:change={({ target: { value } }) => saveAudioDBKey(value)} /></span>
   </article>
   <article>
     <SubHeading>{$_('discogs.title')}</SubHeading>
@@ -225,8 +260,8 @@
     <span class="controlContainer" id="discogs-token"><TextInput
         class="settings-input"
         placeholder={$_('discogs.token placeholder')}
-        value={discogsToken}
-        on:change={({ target: { value } }) => handleSaveDiscogs(value)} /></span>
+        value={$settings.providers.discogs.token || ''}
+        on:change={({ target: { value } }) => saveDiscogsToken(value)} /></span>
   </article>
   <article>
     <SubHeading>{$_('about')}</SubHeading>
@@ -246,10 +281,12 @@
         {/each}
       </p>
       <p>
-        <span>{$_('photos by')}{#each photographers as { href, label }, i}{i > 0 ? ', ' : ' '}<a
+        <span>{$_('photos by')}{#each photographers as { href, label }, i}
+            {i > 0 ? ', ' : ' '}<a
               {href}
               class="underlined whitespace-no-wrap">{label}
-              <i class="material-icons">launch</i></a>{/each}
+              <i class="material-icons">launch</i></a>
+          {/each}
           {$_('on unsplash')}</span>
       </p>
     </div>

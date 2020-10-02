@@ -11,8 +11,7 @@
   import Album from '../Album/Album.svelte'
   import Track from '../Track/Track.svelte'
   import Button from '../Button/Button.svelte'
-  import { createClickObservable } from '../../utils'
-  import { add } from '../../stores/track-queue'
+  import { createClickToAddObservable } from '../../stores/track-queue'
 
   export let items
   export let kind
@@ -22,11 +21,7 @@
   let hasWrapped = false
   let expanded = false
   let list
-  // play on double click, enqueue on simple
-  const clicks$ = createClickObservable(
-    track => add(track),
-    track => add(track, true)
-  )
+  const clicks$ = createClickToAddObservable()
 
   $: if (kind !== ARTISTS && kind !== ALBUMS && kind !== TRACKS) {
     throw new Error(

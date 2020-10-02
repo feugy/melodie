@@ -7,20 +7,26 @@ import electron from 'electron'
 import TracksTable from './TracksTable.svelte'
 import { tracksData, current$Data } from './TracksTable.stories'
 import { sleep, translate } from '../../tests'
-import { add } from '../../stores/track-queue'
+import { add, createClickToAddObservable } from '../../stores/track-queue'
 
 jest.mock('../../stores/track-queue')
-jest.mock('electron', () => ({
-  shell: {
-    showItemInFolder: jest.fn()
-  },
-  ipcRenderer: new (require('events').EventEmitter)()
-}))
+jest.mock('electron', () => {
+  const { EventEmitter } = require('events')
+  const ipcRenderer = new EventEmitter()
+  ipcRenderer.invoke = jest.fn()
+  return { shell: { showItemInFolder: jest.fn() }, ipcRenderer }
+})
 
 describe('TracksTable component', () => {
+  const clicks$ = {
+    subscribe: () => ({ unsubscribe: jest.fn() }),
+    next: jest.fn()
+  }
+
   beforeEach(() => {
     location.hash = '#/'
     jest.resetAllMocks()
+    createClickToAddObservable.mockReturnValue(clicks$)
   })
 
   it('has links to artists', async () => {
@@ -51,7 +57,7 @@ describe('TracksTable component', () => {
     expect(location.hash).toEqual(`#/album/${id}`)
   })
 
-  it('enqueues track on single click', async () => {
+  it('proxies table clicks to click track-queue store', async () => {
     const track = faker.random.arrayElement(tracksData)
     render(
       html`<${TracksTable}
@@ -61,29 +67,10 @@ describe('TracksTable component', () => {
       />`
     )
 
-    await fireEvent.click(screen.getByText(track.tags.title))
-    await sleep(300)
+    fireEvent.click(screen.getByText(track.tags.title))
 
-    expect(add).toHaveBeenCalledWith(track)
-    expect(location.hash).toEqual(`#/`)
-  })
-
-  it('plays track on double-click', async () => {
-    const track = faker.random.arrayElement(tracksData)
-    render(
-      html`<${TracksTable}
-        tracks=${tracksData}
-        current=${current$Data}
-        withAlbum
-      />`
-    )
-
-    const row = screen.getByText(track.tags.title)
-    fireEvent.click(row)
-    fireEvent.click(row)
-    await sleep(300)
-
-    expect(add).toHaveBeenCalledWith(track, true)
+    expect(clicks$.next).toHaveBeenCalledWith(track)
+    expect(clicks$.next).toHaveBeenCalledTimes(1)
     expect(location.hash).toEqual(`#/`)
   })
 
@@ -100,13 +87,13 @@ describe('TracksTable component', () => {
         />`
       )
 
-      await fireEvent.click(
+      fireEvent.click(
         screen.getByText(track.tags.title).closest('tr').querySelector('button')
       )
     })
 
     it('plays track with dropdown', async () => {
-      await fireEvent.click(screen.getByText('play_arrow'))
+      fireEvent.click(screen.getByText('play_arrow'))
       await sleep()
 
       expect(add).toHaveBeenCalledWith(track, true)
@@ -116,7 +103,7 @@ describe('TracksTable component', () => {
     })
 
     it('enqueues track with dropdown', async () => {
-      await fireEvent.click(screen.getByText('playlist_add'))
+      fireEvent.click(screen.getByText('playlist_add'))
       await sleep()
 
       expect(add).toHaveBeenCalledWith(track)
@@ -126,7 +113,7 @@ describe('TracksTable component', () => {
     })
 
     it('opens parent folder', async () => {
-      await fireEvent.click(screen.getByText('launch'))
+      fireEvent.click(screen.getByText('launch'))
       await sleep()
 
       expect(electron.shell.showItemInFolder).toHaveBeenCalledWith(track.path)
@@ -136,7 +123,7 @@ describe('TracksTable component', () => {
     })
 
     it('opens track details dialogue', async () => {
-      await fireEvent.click(screen.getByText('local_offer'))
+      fireEvent.click(screen.getByText('local_offer'))
       await sleep()
 
       expect(screen.getByText(translate('track details'))).toBeVisible()

@@ -5,22 +5,14 @@
   import SortableList from '../SortableList/SortableList.svelte'
   import Track from '../Track/Track.svelte'
   import TrackDetailsDialogue from '../TrackDetailsDialogue/TrackDetailsDialogue.svelte'
-  import {
-    wrapWithLink,
-    createClickObservable,
-    openContainingFolder
-  } from '../../utils'
-  import { add } from '../../stores/track-queue'
+  import { wrapWithLink, openContainingFolder } from '../../utils'
+  import { add, createClickToAddObservable } from '../../stores/track-queue'
   import { removeTrack, moveTrack } from '../../stores/playlists'
 
   export let playlist
   let openedTrack = null
 
-  // play on double click, enqueue on simple
-  const clicks$ = createClickObservable(
-    track => add(track),
-    track => add(track, true)
-  )
+  const clicks$ = createClickToAddObservable()
 
   onMount(() => clicks$.subscribe())
 </script>

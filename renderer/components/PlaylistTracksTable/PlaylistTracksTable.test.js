@@ -5,18 +5,18 @@ import html from 'svelte-htm'
 import faker from 'faker'
 import electron from 'electron'
 import PlaylistTracksTable from './PlaylistTracksTable.svelte'
-import { add } from '../../stores/track-queue'
+import { add, createClickToAddObservable } from '../../stores/track-queue'
 import { removeTrack, moveTrack } from '../../stores/playlists'
 import { sleep, translate } from '../../tests'
 
 jest.mock('../../stores/track-queue')
 jest.mock('../../stores/playlists')
-jest.mock('electron', () => ({
-  shell: {
-    showItemInFolder: jest.fn()
-  },
-  ipcRenderer: new (require('events').EventEmitter)()
-}))
+jest.mock('electron', () => {
+  const { EventEmitter } = require('events')
+  const ipcRenderer = new EventEmitter()
+  ipcRenderer.invoke = jest.fn()
+  return { shell: { showItemInFolder: jest.fn() }, ipcRenderer }
+})
 
 const album = 'Cowboy Bebop - NoDisc'
 const artists = ['Yoko Kanno', 'the Seatbelts']
@@ -96,9 +96,15 @@ export const playlist = {
 }
 
 describe('PlaylistTracksTable component', () => {
+  const clicks$ = {
+    subscribe: () => ({ unsubscribe: jest.fn() }),
+    next: jest.fn()
+  }
+
   beforeEach(() => {
     location.hash = '#/'
     jest.resetAllMocks()
+    createClickToAddObservable.mockReturnValue(clicks$)
   })
 
   it('has links to artists', async () => {
@@ -123,29 +129,17 @@ describe('PlaylistTracksTable component', () => {
     expect(location.hash).toEqual(`#/album/${id}`)
   })
 
-  it('enqueues track on single click', async () => {
+  it('proxies table clicks to track-queue store', async () => {
     const track = faker.random.arrayElement(playlist.tracks)
     render(html`<${PlaylistTracksTable} playlist=${playlist} />`)
 
     fireEvent.click(screen.getByText(track.tags.title))
-    await sleep(300)
 
-    expect(add).toHaveBeenCalledWith({ ...track, key: `${track.id}-1` })
-    expect(moveTrack).not.toHaveBeenCalled()
-    expect(location.hash).toEqual(`#/`)
-  })
-
-  it('plays track on double-click', async () => {
-    const track = faker.random.arrayElement(playlist.tracks)
-    render(html`<${PlaylistTracksTable} playlist=${playlist} />`)
-
-    const row = screen.getByText(track.tags.title)
-    fireEvent.click(row)
-    fireEvent.click(row)
-    await sleep(300)
-
-    expect(add).toHaveBeenCalledWith({ ...track, key: `${track.id}-1` }, true)
-    expect(moveTrack).not.toHaveBeenCalled()
+    expect(clicks$.next).toHaveBeenCalledWith({
+      ...track,
+      key: `${track.id}-1`
+    })
+    expect(clicks$.next).toHaveBeenCalledTimes(1)
     expect(location.hash).toEqual(`#/`)
   })
 

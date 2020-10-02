@@ -4,30 +4,43 @@ import { screen, render, fireEvent } from '@testing-library/svelte'
 import { locale } from 'svelte-intl'
 import html from 'svelte-htm'
 import faker from 'faker'
+import { BehaviorSubject } from 'rxjs'
 import settingsRoute from './settings.svelte'
+import {
+  settings as mockedSettings,
+  saveLocale,
+  askToAddFolder,
+  removeFolder,
+  saveAudioDBKey,
+  saveEnqueueBehaviour,
+  saveDiscogsToken
+} from '../stores/settings'
 import { translate, mockInvoke, sleep } from '../tests'
+
+jest.mock('../stores/settings')
 
 describe('settings route', () => {
   const key = faker.random.alphaNumeric(10)
   const token = faker.random.uuid()
   const providers = { audiodb: { key }, discogs: { token } }
+  const enqueueBehaviour = { onClick: true, clearBefore: false }
   const folders = [faker.system.fileName(), faker.system.fileName()]
+  const settings = new BehaviorSubject()
 
   beforeEach(() => {
     location.hash = '#/'
     jest.resetAllMocks()
+    settings.next({ folders, providers, enqueueBehaviour })
     locale.set('fr')
+    mockedSettings.subscribe = settings.subscribe.bind(settings)
+    mockInvoke.mockResolvedValue({})
   })
 
   it('displays tracked folders, current language, providers data and credits', async () => {
     const version = `${faker.random.number({ max: 10 })}.${faker.random.number({
       max: 10
     })}.${faker.random.number({ max: 10 })}`
-    mockInvoke
-      .mockResolvedValueOnce({
-        melodie: version
-      })
-      .mockResolvedValueOnce({ folders, providers })
+    mockInvoke.mockResolvedValueOnce({ melodie: version })
 
     render(html`<${settingsRoute} />`)
     await sleep()
@@ -42,76 +55,50 @@ describe('settings route', () => {
     expect(screen.getAllByRole('textbox')[0]).toHaveValue(key)
     expect(screen.getAllByRole('textbox')[1]).toHaveValue(token)
 
+    expect(
+      screen.getByText(translate('enqueues and jumps'))
+    ).toBeInTheDocument()
+    expect(screen.getByText(translate('enqueues track'))).toBeInTheDocument()
+
     expect(screen.getByText(version)).toBeInTheDocument()
-    expect(mockInvoke).toHaveBeenNthCalledWith(
-      1,
-      'remote',
-      'core',
-      'getVersions'
-    )
-    expect(mockInvoke).toHaveBeenNthCalledWith(2, 'remote', 'settings', 'get')
-    expect(mockInvoke).toHaveBeenCalledTimes(2)
+    expect(mockInvoke).toHaveBeenCalledWith('remote', 'core', 'getVersions')
+    expect(mockInvoke).toHaveBeenCalledTimes(1)
   })
 
   it('changes current language and updates labels', async () => {
-    mockInvoke
-      .mockResolvedValueOnce({})
-      .mockResolvedValueOnce({ folders: [], providers })
-
     render(html`<${settingsRoute} />`)
-    expect(screen.getByText('Langue actuelle :')).toBeInTheDocument()
+    expect(screen.getByText('Langage :')).toBeInTheDocument()
 
-    await fireEvent.click(screen.getByText(translate('fr')))
-    await fireEvent.click(screen.getByText(translate('en')))
+    fireEvent.click(screen.getByText(translate('fr')))
+    await sleep()
+    fireEvent.click(screen.getByText(translate('en')))
     await sleep(200)
 
     expect(screen.getByText(translate('en'))).toBeInTheDocument()
     expect(screen.queryByText(translate('fr'))).toBeNull()
-    expect(screen.getByText('Current language:')).toBeInTheDocument()
-    expect(mockInvoke).toHaveBeenCalledWith(
-      'remote',
-      'settings',
-      'setLocale',
-      'en'
-    )
+    expect(screen.getByText('Language:')).toBeInTheDocument()
+    expect(saveLocale).toHaveBeenCalledWith('en')
+    expect(saveLocale).toHaveBeenCalledTimes(1)
   })
 
   it('adds new folders and redirect to folders', async () => {
-    mockInvoke.mockResolvedValueOnce({}).mockResolvedValue({
+    settings.next({
       folders: [faker.random.word()],
-      providers
+      providers,
+      enqueueBehaviour
     })
 
     render(html`<${settingsRoute} />`)
     await sleep()
 
-    await fireEvent.click(screen.getByText(translate('add folders')))
-    await sleep(10)
+    fireEvent.click(screen.getByText(translate('add folders')))
+    await sleep()
 
-    expect(mockInvoke).toHaveBeenNthCalledWith(
-      1,
-      'remote',
-      'core',
-      'getVersions'
-    )
-    expect(mockInvoke).toHaveBeenNthCalledWith(2, 'remote', 'settings', 'get')
-    expect(mockInvoke).toHaveBeenNthCalledWith(
-      3,
-      'remote',
-      'settings',
-      'addFolders'
-    )
-    expect(mockInvoke).toHaveBeenCalledTimes(3)
-    expect(location.hash).toEqual('#/album')
+    expect(askToAddFolder).toHaveBeenCalled()
+    expect(askToAddFolder).toHaveBeenCalledTimes(1)
   })
 
   it('remove tracked folders', async () => {
-    mockInvoke
-      .mockResolvedValueOnce({})
-      .mockResolvedValueOnce({ folders, providers })
-      .mockResolvedValueOnce()
-      .mockResolvedValueOnce({ folders: folders.slice(0, 1), providers })
-
     render(html`<${settingsRoute} />`)
     await sleep()
 
@@ -119,90 +106,84 @@ describe('settings route', () => {
     expect(screen.queryByText(folders[1])).toBeInTheDocument()
 
     // remove second one
-    await fireEvent.click(screen.getAllByText('close')[1])
+    fireEvent.click(screen.getAllByText('close')[1])
+
+    settings.next({
+      folders: folders.slice(0, 1),
+      providers,
+      enqueueBehaviour
+    })
     await sleep()
 
-    expect(mockInvoke).toHaveBeenNthCalledWith(
-      1,
-      'remote',
-      'core',
-      'getVersions'
-    )
-    expect(mockInvoke).toHaveBeenNthCalledWith(2, 'remote', 'settings', 'get')
-    expect(mockInvoke).toHaveBeenNthCalledWith(
-      3,
-      'remote',
-      'settings',
-      'removeFolder',
-      folders[1]
-    )
-    expect(mockInvoke).toHaveBeenNthCalledWith(4, 'remote', 'settings', 'get')
-    expect(mockInvoke).toHaveBeenCalledTimes(4)
     expect(screen.queryByText(folders[0])).toBeInTheDocument()
     expect(screen.queryByText(folders[1])).toBeNull()
+    expect(removeFolder).toHaveBeenCalledWith(folders[1])
+    expect(removeFolder).toHaveBeenCalledTimes(1)
   })
 
   it('saves new key for AudioDB provider', async () => {
     const newKey = faker.random.alphaNumeric(12)
-    mockInvoke
-      .mockResolvedValueOnce({})
-      .mockResolvedValueOnce({ folders, providers })
-      .mockResolvedValueOnce()
 
     render(html`<${settingsRoute} />`)
     await sleep()
 
-    await fireEvent.change(screen.getAllByRole('textbox')[0], {
+    fireEvent.change(screen.getAllByRole('textbox')[0], {
       target: { value: newKey }
     })
     await sleep()
 
-    expect(mockInvoke).toHaveBeenNthCalledWith(
-      1,
-      'remote',
-      'core',
-      'getVersions'
-    )
-    expect(mockInvoke).toHaveBeenNthCalledWith(2, 'remote', 'settings', 'get')
-    expect(mockInvoke).toHaveBeenNthCalledWith(
-      3,
-      'remote',
-      'settings',
-      'setAudioDBKey',
-      newKey
-    )
-    expect(mockInvoke).toHaveBeenCalledTimes(3)
+    expect(saveAudioDBKey).toHaveBeenCalledWith(newKey)
+    expect(saveAudioDBKey).toHaveBeenCalledTimes(1)
   })
 
   it('saves new token for Discogs provider', async () => {
     const newToken = faker.random.uuid()
-    mockInvoke
-      .mockResolvedValueOnce({})
-      .mockResolvedValueOnce({ folders, providers })
-      .mockResolvedValueOnce()
 
     render(html`<${settingsRoute} />`)
     await sleep()
 
-    await fireEvent.change(screen.getAllByRole('textbox')[1], {
+    fireEvent.change(screen.getAllByRole('textbox')[1], {
       target: { value: newToken }
     })
     await sleep()
 
-    expect(mockInvoke).toHaveBeenNthCalledWith(
-      1,
-      'remote',
-      'core',
-      'getVersions'
-    )
-    expect(mockInvoke).toHaveBeenNthCalledWith(2, 'remote', 'settings', 'get')
-    expect(mockInvoke).toHaveBeenNthCalledWith(
-      3,
-      'remote',
-      'settings',
-      'setDiscogsToken',
-      newToken
-    )
-    expect(mockInvoke).toHaveBeenCalledTimes(3)
+    expect(saveDiscogsToken).toHaveBeenCalledWith(newToken)
+    expect(saveDiscogsToken).toHaveBeenCalledTimes(1)
+  })
+
+  it('saves new behaviour for play button', async () => {
+    render(html`<${settingsRoute} />`)
+    await sleep()
+
+    expect(
+      screen.getByText(translate('enqueues and jumps'))
+    ).toBeInTheDocument()
+
+    fireEvent.click(screen.getByText(translate('enqueues and jumps')))
+    await sleep()
+    fireEvent.click(screen.getByText(translate('clears queue and plays')))
+    await sleep(200)
+
+    expect(saveEnqueueBehaviour).toHaveBeenCalledWith({
+      ...enqueueBehaviour,
+      clearBefore: true
+    })
+  })
+
+  it('saves new behaviour for track row click', async () => {
+    render(html`<${settingsRoute} />`)
+    await sleep()
+
+    expect(screen.getByText(translate('enqueues track'))).toBeInTheDocument()
+
+    fireEvent.click(screen.getByText(translate('enqueues track')))
+    await sleep()
+    fireEvent.click(screen.getByText(translate('plays track')))
+    await sleep(200)
+
+    expect(saveEnqueueBehaviour).toHaveBeenCalledWith({
+      ...enqueueBehaviour,
+      onClick: false
+    })
   })
 })

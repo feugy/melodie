@@ -6,7 +6,7 @@ exports.up = async function ({ schema }) {
   await schema.table(settingsModel.name, table => {
     table
       .json('enqueueBehaviour')
-      .defaultTo(JSON.stringify({ clearBefore: false, onClick: true }))
+      .defaultTo(JSON.stringify({ clearBefore: true, onClick: true }))
   })
 }
 

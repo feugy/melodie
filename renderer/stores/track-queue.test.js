@@ -2,16 +2,27 @@
 
 import { tick } from 'svelte'
 import { get } from 'svelte/store'
+import { BehaviorSubject } from 'rxjs'
 import faker from 'faker'
-import * as queue from './track-queue'
-import { mockIpcRenderer } from '../tests'
+import { mockIpcRenderer, sleep } from '../tests'
+import { settings as mockedSettings } from './settings'
+
+jest.mock('./settings')
+
+let queue
+const settings = new BehaviorSubject({ enqueueBehaviour: {} })
+mockedSettings.subscribe = settings.subscribe.bind(settings)
 
 function difference(...arrays) {
   return arrays.reduce((a, b) => a.filter(c => !b.includes(c)))
 }
 
 describe('track-queue store', () => {
-  beforeEach(queue.clear)
+  beforeAll(async () => {
+    queue = await import('./track-queue')
+  })
+
+  beforeEach(() => queue.clear())
 
   it('has initial state', () => {
     const { current, index, tracks, isShuffling } = queue
@@ -21,74 +32,123 @@ describe('track-queue store', () => {
     expect(get(isShuffling)).toEqual(false)
   })
 
-  it('enqueues new tracks', async () => {
-    const { current, index, tracks, add, playNext } = queue
-    const files = [
-      { id: 1, path: faker.system.fileName() },
-      { id: 2, path: faker.system.fileName() },
-      { id: 3, path: faker.system.fileName() }
-    ]
-    add(files.slice(0, 2))
-    playNext()
-    await tick()
-    add(files.slice(2))
-    await tick()
+  describe('add', () => {
+    describe('given settings.enqueueBehaviour.clearBefore is true', () => {
+      beforeAll(() => {
+        settings.next({ enqueueBehaviour: { clearBefore: true } })
+      })
 
-    expect(get(tracks)).toEqual(files)
-    expect(get(index)).toEqual(1)
-    expect(get(current)).toEqual(files[1])
-  })
+      it('enqueues new tracks', async () => {
+        const { current, index, tracks, add, playNext } = queue
+        const files = [
+          { id: 1, path: faker.system.fileName() },
+          { id: 2, path: faker.system.fileName() },
+          { id: 3, path: faker.system.fileName() }
+        ]
+        add(files.slice(0, 2))
+        playNext()
+        await tick()
+        add(files.slice(2))
+        await tick()
 
-  it('enqueues single track', async () => {
-    const { current, index, tracks, add, playNext } = queue
-    const files = [
-      { id: 1, path: faker.system.fileName() },
-      { id: 2, path: faker.system.fileName() },
-      { id: 3, path: faker.system.fileName() }
-    ]
-    add(files.slice(0, 2))
-    playNext()
-    await tick()
-    add(files[2])
-    await tick()
+        expect(get(tracks)).toEqual(files)
+        expect(get(index)).toEqual(1)
+        expect(get(current)).toEqual(files[1])
+      })
 
-    expect(get(tracks)).toEqual(files)
-    expect(get(current)).toEqual(files[1])
-    expect(get(index)).toEqual(1)
-  })
+      it('enqueues single track', async () => {
+        const { current, index, tracks, add, playNext } = queue
+        const files = [
+          { id: 1, path: faker.system.fileName() },
+          { id: 2, path: faker.system.fileName() },
+          { id: 3, path: faker.system.fileName() }
+        ]
+        add(files.slice(0, 2))
+        playNext()
+        await tick()
+        add(files[2])
+        await tick()
 
-  it('plays new tracks', async () => {
-    const { current, index, tracks, add } = queue
-    const files = [
-      { id: 1, path: faker.system.fileName() },
-      { id: 2, path: faker.system.fileName() },
-      { id: 3, path: faker.system.fileName() }
-    ]
-    add(files.slice(0, 1))
-    await tick()
-    add(files.slice(1), true)
-    await tick()
+        expect(get(tracks)).toEqual(files)
+        expect(get(current)).toEqual(files[1])
+        expect(get(index)).toEqual(1)
+      })
 
-    expect(get(tracks)).toEqual(files.slice(1))
-    expect(get(current)).toEqual(files[1])
-    expect(get(index)).toEqual(0)
-  })
+      it('plays new tracks', async () => {
+        const { current, index, tracks, add } = queue
+        const files = [
+          { id: 1, path: faker.system.fileName() },
+          { id: 2, path: faker.system.fileName() },
+          { id: 3, path: faker.system.fileName() }
+        ]
+        add(files.slice(0, 1))
+        await tick()
+        add(files.slice(1), true)
+        await tick()
 
-  it('plays single track', async () => {
-    const { current, index, tracks, add } = queue
-    const files = [
-      { id: 1, path: faker.system.fileName() },
-      { id: 2, path: faker.system.fileName() },
-      { id: 3, path: faker.system.fileName() }
-    ]
-    add(files.slice(0, 2))
-    await tick()
-    add(files[2], true)
-    await tick()
+        expect(get(tracks)).toEqual(files.slice(1))
+        expect(get(current)).toEqual(files[1])
+        expect(get(index)).toEqual(0)
+      })
 
-    expect(get(tracks)).toEqual(files.slice(2, 3))
-    expect(get(current)).toEqual(files[2])
-    expect(get(index)).toEqual(0)
+      it('plays single track', async () => {
+        const { current, index, tracks, add } = queue
+        const files = [
+          { id: 1, path: faker.system.fileName() },
+          { id: 2, path: faker.system.fileName() },
+          { id: 3, path: faker.system.fileName() }
+        ]
+        add(files.slice(0, 2))
+        await tick()
+        add(files[2], true)
+        await tick()
+
+        expect(get(tracks)).toEqual(files.slice(2, 3))
+        expect(get(current)).toEqual(files[2])
+        expect(get(index)).toEqual(0)
+      })
+    })
+
+    describe('given settings.enqueueBehaviour.clearBefore is false', () => {
+      beforeAll(() => {
+        settings.next({ enqueueBehaviour: { clearBefore: false } })
+      })
+
+      it('enqueues new tracks', async () => {
+        const { current, index, tracks, add, playNext } = queue
+        const files = [
+          { id: 1, path: faker.system.fileName() },
+          { id: 2, path: faker.system.fileName() },
+          { id: 3, path: faker.system.fileName() }
+        ]
+        add(files.slice(0, 2))
+        playNext()
+        await tick()
+        add(files.slice(2))
+        await tick()
+
+        expect(get(tracks)).toEqual(files)
+        expect(get(index)).toEqual(1)
+        expect(get(current)).toEqual(files[1])
+      })
+
+      it('plays new tracks', async () => {
+        const { current, index, tracks, add } = queue
+        const files = [
+          { id: 1, path: faker.system.fileName() },
+          { id: 2, path: faker.system.fileName() },
+          { id: 3, path: faker.system.fileName() }
+        ]
+        add(files.slice(0, 1))
+        await tick()
+        add(files.slice(1), true)
+        await tick()
+
+        expect(get(tracks)).toEqual(files)
+        expect(get(current)).toEqual(files[1])
+        expect(get(index)).toEqual(1)
+      })
+    })
   })
 
   describe('next', () => {
@@ -786,7 +846,7 @@ describe('track-queue store', () => {
       await tick()
     })
 
-    afterEach(queue.unshuffle)
+    afterEach(() => queue.unshuffle())
 
     it('randomize the order of all tracks when turned on', async () => {
       const { current, index, isShuffling, playNext, tracks, shuffle } = queue
@@ -1168,6 +1228,85 @@ describe('track-queue store', () => {
       expect(get(current)).toEqual(currentShuffled)
       expect(get(queue.tracks)).toEqual(files)
       expect(get(isShuffling)).toEqual(false)
+    })
+  })
+
+  describe('createClickToAddObservable', () => {
+    let clicks$
+    let clicksSub
+
+    const files = [
+      { id: 1, path: faker.system.fileName() },
+      { id: 2, path: faker.system.fileName() },
+      { id: 3, path: faker.system.fileName() }
+    ]
+
+    const file = { id: 4, path: faker.system.fileName() }
+
+    beforeAll(() => {
+      clicks$ = queue.createClickToAddObservable()
+    })
+
+    beforeEach(() => {
+      queue.add(files)
+      queue.jumpTo(1)
+      clicksSub = clicks$.subscribe()
+    })
+
+    afterEach(() => clicksSub.unsubscribe())
+
+    describe('given settings.enqueueBehaviour.onClick is true', () => {
+      beforeAll(() => {
+        settings.next({
+          enqueueBehaviour: { onClick: true, clearBefore: true }
+        })
+      })
+
+      it('enqueues track on single click', async () => {
+        clicks$.next(file)
+        await sleep(300)
+
+        expect(get(queue.tracks)).toEqual([...files, file])
+        expect(get(queue.current)).toEqual(files[1])
+        expect(get(queue.index)).toEqual(1)
+      })
+
+      it('plays track on double click', async () => {
+        clicks$.next(file)
+        clicks$.next(file)
+        await sleep(300)
+
+        expect(get(queue.tracks)).toEqual([file])
+        expect(get(queue.current)).toEqual(file)
+        expect(get(queue.index)).toEqual(0)
+      })
+    })
+
+    describe('given settings.enqueueBehaviour.onClick is false', () => {
+      beforeAll(() => {
+        settings.next({
+          enqueueBehaviour: { onClick: false, clearBefore: true }
+        })
+      })
+
+      it('enqueues track on double click', async () => {
+        clicks$.next(file)
+        clicks$.next(file)
+        await sleep(300)
+
+        expect(get(queue.tracks)).toEqual([...files, file])
+        expect(get(queue.current)).toEqual(files[1])
+        expect(get(queue.index)).toEqual(1)
+      })
+
+      it('plays track on simple click', async () => {
+        clicks$.next(file)
+        await sleep(300)
+
+        expect(get(queue.tracks)).toEqual([file])
+        expect(get(queue.current)).toEqual(file)
+        expect(get(queue.index)).toEqual(0)
+      })
     })
   })
 })

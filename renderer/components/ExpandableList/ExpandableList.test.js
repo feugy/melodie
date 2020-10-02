@@ -11,15 +11,21 @@ import ExpandableList, {
 import { albumData } from '../Album/Album.stories'
 import { tracksData } from '../TracksTable/TracksTable.stories'
 import { sleep, translate } from '../../tests'
-import { add } from '../../stores/track-queue'
+import { createClickToAddObservable } from '../../stores/track-queue'
 import { artistData } from '../Artist/Artist.stories'
 
 jest.mock('../../stores/track-queue')
 
 describe('ExpandableList component', () => {
+  const clicks$ = {
+    subscribe: jest.fn().mockReturnValue({ unsubscribe: jest.fn() }),
+    next: jest.fn()
+  }
+
   beforeEach(() => {
     location.hash = '#/'
     jest.resetAllMocks()
+    createClickToAddObservable.mockReturnValue(clicks$)
   })
 
   it('does not allow unknown type', async () => {
@@ -66,11 +72,12 @@ describe('ExpandableList component', () => {
       />`
     )
 
-    await fireEvent.click(screen.getByRole('img'))
+    fireEvent.click(screen.getByRole('img'))
     await sleep()
 
     expect(location.hash).toEqual(`#/album/${albumData.id}`)
-    expect(add).not.toHaveBeenCalled()
+    expect(clicks$.next).toHaveBeenCalled()
+    expect(clicks$.subscribe).not.toHaveBeenCalled()
   })
 
   it('does not intercept single clicks on artists', async () => {
@@ -81,11 +88,12 @@ describe('ExpandableList component', () => {
       />`
     )
 
-    await fireEvent.click(screen.getByRole('img'))
+    fireEvent.click(screen.getByRole('img'))
     await sleep()
 
     expect(location.hash).toEqual(`#/artist/${artistData.id}`)
-    expect(add).not.toHaveBeenCalled()
+    expect(clicks$.next).toHaveBeenCalled()
+    expect(clicks$.subscribe).not.toHaveBeenCalled()
   })
 
   describe('given a long list of tracks', () => {
@@ -170,24 +178,12 @@ describe('ExpandableList component', () => {
       expect(screen.getByText(translate('show all'))).toBeVisible()
     })
 
-    it('plays tracks on double clicks', async () => {
+    it('proxies tracks clicks to track-queue store', async () => {
       const track = tracks[1]
       fireEvent.click(screen.getByText(track.tags.title))
-      fireEvent.click(screen.getByText(track.tags.title))
-      await sleep(300)
 
-      expect(add).toHaveBeenCalledWith(track, true)
-      expect(add).toHaveBeenCalledTimes(1)
-      expect(location.hash).toEqual(`#/`)
-    })
-
-    it('enqueues tracks on single clicks', async () => {
-      const track = tracks[1]
-      fireEvent.click(screen.getByText(track.tags.title))
-      await sleep(300)
-
-      expect(add).toHaveBeenCalledWith(track)
-      expect(add).toHaveBeenCalledTimes(1)
+      expect(clicks$.next).toHaveBeenCalledWith(track)
+      expect(clicks$.subscribe).toHaveBeenCalled()
       expect(location.hash).toEqual(`#/`)
     })
   })

@@ -27,21 +27,25 @@ check parameters: You should check your music folders in <a class="underlined" h
 choose avatar: Choose a picture
 choose cover: Choose a cover
 clear: Clear
+clears queue and plays: clears queue and plays track
 close queue: Close queue
 confirm playlist _ delection: Do you really want to delete playlist {name}?
-current locale: 'Current language:'
 delete playlist: Delete
 disk _: 'Disk #{num}'
+double click behaviour: ', double click {action}'
 duration: Duration
 en: English
 enqueue all: Enqueue all
 enqueue: Add to the queue
+enqueues and jumps: enqueues and jumps to track
+enqueues track: enqueues track
 fr: Français
 how to create playlist: To create new playlist, enqueue some tracks and clic on <i class="material-icons">library_add</i>.
 let's go: Let's go!
 i will figure out: I'll figure out
 id: Id
-locales: Interface language
+interface settings: Interface settings
+locale: 'Language:'
 Mélodie: Mélodie
 new playlist: new playlist...
 no: No
@@ -52,9 +56,11 @@ open folder: Open containing folder
 open queue: Open queue
 play all: Play all
 play now: Play now
+play now behaviour: 'Button <i class="material-icons">play_arrow</i>:'
 playlist deletion: Playlist deletion
 playlist renamal: Playlist new name
 playlists: Playlists
+plays track: plays track
 photos by: 'Photos by:'
 provider (_ x _): '{value} ({width} x {height})'
 queue: Queue
@@ -64,6 +70,7 @@ results for _: Results for "{searched}"
 save: Save
 settings: Settings
 separator: ' • '
+simple click behaviour: 'Simple click:'
 show all: Show all
 show details: Show track details
 show less: Show less
@@ -132,7 +139,7 @@ tutorial:
   awaitFirstAlbum: >
     <p>Your albums are progressively loaded, and will appear shortly.</p>
   playOrEnqueue: >
-    <p>Hover this album: you can enqueue it at the end with <i class="material-icons">play_arrow</i>, or play it now with <i class="material-icons">playlist_add</i></p>
+    <p>Hover this album: you can enqueue it at the end with <i class="material-icons">playlist_add</i>, or play it now with <i class="material-icons">play_arrow</i></p>
   makePlaylist: >
     <p>Drag and drop tracks to organize the queue.</p>
     <p>Once done, save your first playlist with <i class="material-icons">library_add</i>.</p>

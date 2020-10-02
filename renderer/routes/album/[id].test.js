@@ -18,6 +18,9 @@ import { translate, sleep, addRefs } from '../../tests'
 jest.mock('svelte-spa-router')
 jest.mock('../../stores/track-queue', () => ({
   add: jest.fn(),
+  createClickToAddObservable() {
+    return { subscribe: () => ({ unsubscribe: jest.fn() }), next: jest.fn() }
+  },
   current: {
     subscribe: () => ({ unsubscribe: () => {} })
   }

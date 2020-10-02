@@ -3,13 +3,8 @@
   import { _ } from 'svelte-intl'
   import Dropdown from '../Dropdown/Dropdown.svelte'
   import TrackDetailsDialogue from '../TrackDetailsDialogue/TrackDetailsDialogue.svelte'
-  import {
-    formatTime,
-    wrapWithLink,
-    createClickObservable,
-    openContainingFolder
-  } from '../../utils'
-  import { add } from '../../stores/track-queue'
+  import { formatTime, wrapWithLink, openContainingFolder } from '../../utils'
+  import { add, createClickToAddObservable } from '../../stores/track-queue'
 
   export let tracks
   export let current
@@ -26,11 +21,7 @@
         )
     : []
 
-  // play on double click, enqueue on simple
-  const clicks$ = createClickObservable(
-    track => add(track),
-    track => add(track, true)
-  )
+  const clicks$ = createClickToAddObservable()
 
   onMount(() => clicks$.subscribe())
 </script>

@@ -37,7 +37,7 @@ describe('Settings model', () => {
       },
       enqueueBehaviour: {
         onClick: true,
-        clearBefore: false
+        clearBefore: true
       }
     })
   })

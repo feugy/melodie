@@ -12,8 +12,6 @@ There are thunsands of them in the wild. This mine is an excuse for learning [El
 
 ### features
 
-- [ ] configurable simple/double click behaviour
-- [ ] configurable "play now" behaviour: either clear & add, or enqueue and jump
 - [ ] add to playlist from Album details/Playlist details/Search results pages
 - [ ] enqueue tracks/albums by dragging to tracks queue
 - [ ] system integration (play folder/file)
@@ -65,6 +63,12 @@ There are thunsands of them in the wild. This mine is an excuse for learning [El
 1. Page navigation: use:link doesn't work in tests and raise Svelte warning. a.href is fine
 1. Disklist/TrackTable dropdown does not consider scroll position (in storybook only)
 1. Testing input: fireEvent.change, input or keyUp does not trigger svelte's bind:value on input
+1. The test suite is becoming brittle
+   1. main/services/media.test.js:
+      ```
+      > 839 |       expect(await fs.readFile(savedAlbums[0].media, 'utf8')).toEqual(
+          |                                                               ^
+      ```
 
 ## Configuring logs
 

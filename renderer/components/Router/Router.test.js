@@ -57,6 +57,18 @@ jest.mock('../../stores/search', () => {
     artists: new BehaviorSubject([])
   }
 })
+jest.mock('../../stores/settings', () => {
+  const { BehaviorSubject } = require('rxjs')
+  return {
+    settings: new BehaviorSubject({
+      locale: 'en',
+      folders: [],
+      providers: { audiodb: {}, discogs: {} },
+      enqueueBehaviour: { clearBefore: false, onClick: true }
+    }),
+    saveLocale: jest.fn()
+  }
+})
 
 describe('Router component', () => {
   const scrollable = {}
@@ -130,10 +142,7 @@ describe('Router component', () => {
   })
 
   it('renders settings', async () => {
-    mockInvoke.mockResolvedValue({
-      folders: [],
-      providers: { audiodb: {}, discogs: {} }
-    })
+    mockInvoke.mockResolvedValue({})
     location.hash = `#/settings`
     render(html`<${Router} scrollable=${scrollable} />`)
     expect(screen.queryByText(translate('settings'))).toBeVisible()
