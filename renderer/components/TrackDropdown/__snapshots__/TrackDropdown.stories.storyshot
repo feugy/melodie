@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Components/Track Dropdown Default 1`] = `
+<section
+  class="storybook-snapshot-container"
+>
+  <span
+    class="wrapper svelte-1dsb53o"
+  >
+    <button
+      class="svelte-2vu076 iconOnly noBorder"
+    >
+      <i
+        class="material-icons svelte-2vu076"
+      >
+        more_vert
+      </i>
+       
+       
+      
+       
+    </button>
+  </span>
+   
+</section>
+`;

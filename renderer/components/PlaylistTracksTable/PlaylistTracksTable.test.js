@@ -3,20 +3,13 @@
 import { screen, render, fireEvent } from '@testing-library/svelte'
 import html from 'svelte-htm'
 import faker from 'faker'
-import electron from 'electron'
 import PlaylistTracksTable from './PlaylistTracksTable.svelte'
-import { add, createClickToAddObservable } from '../../stores/track-queue'
+import { createClickToAddObservable } from '../../stores/track-queue'
 import { removeTrack, moveTrack } from '../../stores/playlists'
 import { sleep, translate } from '../../tests'
 
 jest.mock('../../stores/track-queue')
 jest.mock('../../stores/playlists')
-jest.mock('electron', () => {
-  const { EventEmitter } = require('events')
-  const ipcRenderer = new EventEmitter()
-  ipcRenderer.invoke = jest.fn()
-  return { shell: { showItemInFolder: jest.fn() }, ipcRenderer }
-})
 
 const album = 'Cowboy Bebop - NoDisc'
 const artists = ['Yoko Kanno', 'the Seatbelts']
@@ -160,7 +153,6 @@ describe('PlaylistTracksTable component', () => {
 
     expect(moveTrack).toHaveBeenCalledWith(playlist, { from: 0, to: 3 })
     expect(moveTrack).toHaveBeenCalledTimes(1)
-    expect(add).not.toHaveBeenCalled()
     expect(location.hash).toEqual(`#/`)
   })
 
@@ -178,59 +170,20 @@ describe('PlaylistTracksTable component', () => {
 
     it('removes track from playlist with dropdown', async () => {
       fireEvent.click(screen.getByText(translate('remove from playlist')))
-      await sleep()
 
       expect(removeTrack).toHaveBeenCalledWith(
         playlist,
         playlist.tracks.indexOf(track)
       )
-      expect(add).not.toHaveBeenCalled()
-      expect(electron.shell.showItemInFolder).not.toHaveBeenCalled()
-      expect(screen.getByText(translate('track details'))).not.toBeVisible()
-      expect(location.hash).toEqual(`#/`)
-    })
-
-    it('plays track with dropdown', async () => {
-      fireEvent.click(screen.getByText('play_arrow'))
-      await sleep()
-
-      expect(add).toHaveBeenCalledWith({ ...track, key: `${track.id}-1` }, true)
-      expect(removeTrack).not.toHaveBeenCalled()
-      expect(electron.shell.showItemInFolder).not.toHaveBeenCalled()
-      expect(screen.getByText(translate('track details'))).not.toBeVisible()
-      expect(location.hash).toEqual(`#/`)
-    })
-
-    it('enqueues track with dropdown', async () => {
-      fireEvent.click(screen.getByText('playlist_add'))
-      await sleep()
-
-      expect(add).toHaveBeenCalledWith({ ...track, key: `${track.id}-1` })
-      expect(removeTrack).not.toHaveBeenCalled()
-      expect(electron.shell.showItemInFolder).not.toHaveBeenCalled()
-      expect(screen.getByText(translate('track details'))).not.toBeVisible()
-      expect(location.hash).toEqual(`#/`)
-    })
-
-    it('opens parent folder', async () => {
-      fireEvent.click(screen.getByText('launch'))
-      await sleep()
-
-      expect(electron.shell.showItemInFolder).toHaveBeenCalledWith(track.path)
-      expect(add).not.toHaveBeenCalled()
-      expect(removeTrack).not.toHaveBeenCalled()
       expect(screen.getByText(translate('track details'))).not.toBeVisible()
       expect(location.hash).toEqual(`#/`)
     })
 
     it('opens track details dialogue', async () => {
-      fireEvent.click(screen.getByText('local_offer'))
-      await sleep()
+      await fireEvent.click(screen.getByText('local_offer'))
 
       expect(screen.getByText(translate('track details'))).toBeVisible()
-      expect(add).not.toHaveBeenCalled()
       expect(removeTrack).not.toHaveBeenCalled()
-      expect(electron.shell.showItemInFolder).not.toHaveBeenCalled()
       expect(location.hash).toEqual(`#/`)
     })
   })
