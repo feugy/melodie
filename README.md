@@ -12,7 +12,6 @@ There are thunsands of them in the wild. This mine is an excuse for learning [El
 
 ### features
 
-- [ ] add to playlist from Album details/Playlist details/Search results pages
 - [ ] enqueue tracks/albums by dragging to tracks queue
 - [ ] system integration (play folder/file)
 - [ ] images from tags
@@ -64,11 +63,13 @@ There are thunsands of them in the wild. This mine is an excuse for learning [El
 1. Disklist/TrackTable dropdown does not consider scroll position (in storybook only)
 1. Testing input: fireEvent.change, input or keyUp does not trigger svelte's bind:value on input
 1. The test suite is becoming brittle
-   1. main/services/media.test.js:
-      ```
+   1. `Media service › triggerAlbumsEnrichment › saves first returned cover for album`
+      ```shell
       > 839 |       expect(await fs.readFile(savedAlbums[0].media, 'utf8')).toEqual(
           |                                                               ^
       ```
+   1. `Media service › triggerAlbumsEnrichment › retries album with no cover but at least one restriced provided`
+      Is a 1ms difference in expected `processedEpoch`
 
 ## Configuring logs
 

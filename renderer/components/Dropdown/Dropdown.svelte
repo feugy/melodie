@@ -9,9 +9,9 @@
   export let valueAsText = true
   export let withArrow = true
   export let text = null
+  export let open = false
 
   const dispatch = createEventDispatcher()
-  let open = false
   let menu
   let button
 
@@ -27,7 +27,7 @@
     const parent = element.parentElement
     return !parent
       ? false
-      : parent === menu || parent === button
+      : parent === menu || parent === button || parent.dataset.isMenu
       ? true
       : isInComponent(parent)
   }
@@ -141,7 +141,11 @@
 </span>
 <Portal>
   {#if open}
-    <ul transition:slide on:introstart={handleMenuVisible} bind:this={menu}>
+    <ul
+      data-is-menu="true"
+      transition:slide
+      on:introstart={handleMenuVisible}
+      bind:this={menu}>
       {#each options as option}
         <li
           on:click={evt => {
@@ -155,6 +159,7 @@
             <svelte:component
               this={option.Component}
               {...option.props}
+              on:close={() => dispatch('select', option)}
               on:close={handleInteraction} />
           {:else}
             {#if option.icon}<i class="material-icons">{option.icon}</i>{/if}

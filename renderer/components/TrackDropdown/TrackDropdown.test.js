@@ -4,8 +4,14 @@ import { screen, render, fireEvent } from '@testing-library/svelte'
 import html from 'svelte-htm'
 import faker from 'faker'
 import electron from 'electron'
+import { BehaviorSubject } from 'rxjs'
 import TrackDropdown from './TrackDropdown.svelte'
 import { add } from '../../stores/track-queue'
+import {
+  playlists as mockedPlaylists,
+  appendTracks
+} from '../../stores/playlists'
+import { translate, sleep } from '../../tests'
 
 jest.mock('../../stores/playlists')
 jest.mock('../../stores/track-queue')
@@ -23,6 +29,20 @@ describe('TrackDropdown component', () => {
     const option = { label: 'Custom item', icon: 'close', act: jest.fn() }
     const track = { id: faker.random.number(), path: faker.system.fileName() }
     const handleShowDetails = jest.fn()
+    const playlists = [
+      {
+        id: faker.random.number(),
+        name: faker.commerce.productName(),
+        trackIds: [faker.random.number(), faker.random.number()]
+      },
+      {
+        id: faker.random.number(),
+        name: faker.commerce.productName(),
+        trackIds: [faker.random.number(), faker.random.number()]
+      }
+    ]
+    const store = new BehaviorSubject(playlists)
+    mockedPlaylists.subscribe = store.subscribe.bind(store)
 
     beforeEach(async () => {
       render(
@@ -44,6 +64,7 @@ describe('TrackDropdown component', () => {
       expect(add).not.toHaveBeenCalled()
       expect(electron.shell.showItemInFolder).not.toHaveBeenCalled()
       expect(handleShowDetails).not.toHaveBeenCalled()
+      expect(appendTracks).not.toHaveBeenCalled()
     })
 
     it('plays track with dropdown', async () => {
@@ -54,6 +75,7 @@ describe('TrackDropdown component', () => {
       expect(electron.shell.showItemInFolder).not.toHaveBeenCalled()
       expect(handleShowDetails).not.toHaveBeenCalled()
       expect(option.act).not.toHaveBeenCalled()
+      expect(appendTracks).not.toHaveBeenCalled()
     })
 
     it('enqueues track with dropdown', async () => {
@@ -64,6 +86,7 @@ describe('TrackDropdown component', () => {
       expect(electron.shell.showItemInFolder).not.toHaveBeenCalled()
       expect(handleShowDetails).not.toHaveBeenCalled()
       expect(option.act).not.toHaveBeenCalled()
+      expect(appendTracks).not.toHaveBeenCalled()
     })
 
     it('opens parent folder', async () => {
@@ -73,6 +96,7 @@ describe('TrackDropdown component', () => {
       expect(handleShowDetails).not.toHaveBeenCalled()
       expect(add).not.toHaveBeenCalled()
       expect(option.act).not.toHaveBeenCalled()
+      expect(appendTracks).not.toHaveBeenCalled()
     })
 
     it('dispatches event when opening track details', async () => {
@@ -85,6 +109,23 @@ describe('TrackDropdown component', () => {
       expect(add).not.toHaveBeenCalled()
       expect(electron.shell.showItemInFolder).not.toHaveBeenCalled()
       expect(option.act).not.toHaveBeenCalled()
+      expect(appendTracks).not.toHaveBeenCalled()
+    })
+
+    it('adds track to an existing playlist', async () => {
+      await fireEvent.click(screen.getByText(translate('add to playlist')))
+      fireEvent.click(screen.getByText(playlists[1].name))
+      await sleep(350)
+
+      expect(appendTracks).toHaveBeenCalledWith({
+        id: playlists[1].id,
+        tracks: [track]
+      })
+      expect(handleShowDetails).not.toHaveBeenCalled()
+      expect(add).not.toHaveBeenCalled()
+      expect(electron.shell.showItemInFolder).not.toHaveBeenCalled()
+      expect(option.act).not.toHaveBeenCalled()
+      expect(screen.queryAllByRole('listitem')).toHaveLength(0)
     })
   })
 })

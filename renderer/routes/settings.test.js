@@ -72,7 +72,7 @@ describe('settings route', () => {
     fireEvent.click(screen.getByText(translate('fr')))
     await sleep()
     fireEvent.click(screen.getByText(translate('en')))
-    await sleep(200)
+    await sleep(300)
 
     expect(screen.getByText(translate('en'))).toBeInTheDocument()
     expect(screen.queryByText(translate('fr'))).toBeNull()
@@ -162,7 +162,7 @@ describe('settings route', () => {
     fireEvent.click(screen.getByText(translate('enqueues and jumps')))
     await sleep()
     fireEvent.click(screen.getByText(translate('clears queue and plays')))
-    await sleep(200)
+    await sleep(300)
 
     expect(saveEnqueueBehaviour).toHaveBeenCalledWith({
       ...enqueueBehaviour,
@@ -179,7 +179,7 @@ describe('settings route', () => {
     fireEvent.click(screen.getByText(translate('enqueues track')))
     await sleep()
     fireEvent.click(screen.getByText(translate('plays track')))
-    await sleep(200)
+    await sleep(300)
 
     expect(saveEnqueueBehaviour).toHaveBeenCalledWith({
       ...enqueueBehaviour,

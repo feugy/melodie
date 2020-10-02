@@ -4,7 +4,8 @@
   import {
     Heading,
     ExpandableList,
-    ExpandableListConstants
+    ExpandableListConstants,
+    TrackDetailsDialogue
   } from '../../components'
   import {
     artists,
@@ -17,6 +18,7 @@
 
   export let params
   let searched
+  let openedTrack = null
 
   $: if (params.searched) {
     searched = decodeURIComponent(params.searched)
@@ -36,6 +38,11 @@
   }
 </style>
 
+<TrackDetailsDialogue
+  src={openedTrack}
+  open={openedTrack !== null}
+  on:close={() => (openedTrack = null)} />
+
 <div in:fade={{ duration: 200 }}>
   <Heading
     title={$_('results for _', { searched })}
@@ -45,7 +52,10 @@
     <section class="noResults">{$_('no results')}</section>
   {/if}
   <section>
-    <ExpandableList kind={ExpandableListConstants.TRACKS} items={tracks} />
+    <ExpandableList
+      kind={ExpandableListConstants.TRACKS}
+      items={tracks}
+      on:showDetails={({ detail: track }) => (openedTrack = track)} />
   </section>
   <section>
     <ExpandableList kind={ExpandableListConstants.ARTISTS} items={artists} />

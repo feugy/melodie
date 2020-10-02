@@ -33,3 +33,11 @@ export const WithDetails = () => ({
     details: true
   }
 })
+
+export const WithMenu = () => ({
+  Component: Track,
+  props: {
+    src: trackData,
+    withMenu: true
+  }
+})

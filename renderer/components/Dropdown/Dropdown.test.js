@@ -14,30 +14,43 @@ import { sleep } from '../../tests'
 
 describe('Dropdown component', () => {
   const { options } = dropdownData
+  const handleSelect = jest.fn()
 
   beforeEach(() => jest.clearAllMocks())
 
   it('selects a different options in the dropdown menu', async () => {
     const currentValue = writable()
-    render(html`<${Dropdown} options=${options} bind:value=${currentValue} />`)
+    render(html`<${Dropdown}
+      options=${options}
+      bind:value=${currentValue}
+      on:select=${handleSelect}
+    />`)
     expect(get(currentValue)).toEqual(options[0])
     expect(screen.queryByText(options[0].label)).toBeInTheDocument()
     expect(screen.queryByText(options[1].label)).toBeNull()
 
     await fireEvent.click(screen.getByText(options[0].label))
-    await fireEvent.click(screen.getByText(options[2].label))
+    await fireEvent.click(screen.getByText(options[1].label))
     await sleep(350)
 
-    expect(get(currentValue)).toEqual(options[2])
-    expect(screen.queryByText(options[2].label)).toBeInTheDocument()
+    expect(get(currentValue)).toEqual(options[1])
+    expect(screen.queryByText(options[1].label)).toBeInTheDocument()
     expect(screen.queryByText(options[0].label)).toBeNull()
+    expect(handleSelect).toHaveBeenCalledWith(
+      expect.objectContaining({ detail: options[1] })
+    )
+    expect(handleSelect).toHaveBeenCalledTimes(1)
   })
 
   it('discards selection when clicking outside of the dropdown menu', async () => {
     const currentValue = writable()
     render(
       html`<p data-testid="paragraph">lorem ipsum</p>
-        <${Dropdown} options=${options} bind:value=${currentValue} />`
+        <${Dropdown}
+          options=${options}
+          bind:value=${currentValue}
+          on:select=${handleSelect}
+        />`
     )
     expect(get(currentValue)).toEqual(options[0])
     expect(screen.queryByText(options[1].label)).toBeNull()
@@ -50,21 +63,35 @@ describe('Dropdown component', () => {
 
     expect(get(currentValue)).toEqual(options[0])
     expect(screen.queryByText(options[1].label)).toBeNull()
+    expect(handleSelect).not.toHaveBeenCalled()
   })
 
   it('allows initial value', async () => {
     const currentValue = writable()
     currentValue.update(() => options[3])
-    render(html`<${Dropdown} options=${options} bind:value=${currentValue} />`)
+    render(
+      html`<${Dropdown}
+        options=${options}
+        bind:value=${currentValue}
+        on:select=${handleSelect}
+      />`
+    )
 
     expect(get(currentValue)).toEqual(options[3])
     expect(screen.queryByText(options[3].label)).toBeInTheDocument()
+    expect(handleSelect).not.toHaveBeenCalled()
   })
 
   it('allows simple array', async () => {
     const { options } = dropdownSimpleData
     const currentValue = writable()
-    render(html`<${Dropdown} options=${options} bind:value=${currentValue} />`)
+    render(
+      html`<${Dropdown}
+        options=${options}
+        bind:value=${currentValue}
+        on:select=${handleSelect}
+      />`
+    )
     expect(get(currentValue)).toEqual(options[0])
     expect(screen.queryByText(options[0])).toBeInTheDocument()
     expect(screen.queryByText(options[1])).toBeNull()
@@ -76,13 +103,23 @@ describe('Dropdown component', () => {
     expect(get(currentValue)).toEqual(options[2])
     expect(screen.queryByText(options[2])).toBeInTheDocument()
     expect(screen.queryByText(options[0])).toBeNull()
+    expect(handleSelect).toHaveBeenCalledWith(
+      expect.objectContaining({ detail: options[2] })
+    )
+    expect(handleSelect).toHaveBeenCalledTimes(1)
   })
 
   it('closes on custom option closure', async () => {
     const { options } = dropdownCustomData
     options[2].props.onValueSet = jest.fn()
     const currentValue = writable()
-    render(html`<${Dropdown} options=${options} bind:value=${currentValue} />`)
+    render(
+      html`<${Dropdown}
+        options=${options}
+        bind:value=${currentValue}
+        on:select=${handleSelect}
+      />`
+    )
     expect(get(currentValue)).toEqual(options[0])
     expect(screen.queryByText(options[0].label)).toBeInTheDocument()
     expect(screen.queryByText(options[2].props.text)).toBeNull()
@@ -101,16 +138,27 @@ describe('Dropdown component', () => {
     expect(screen.queryByText(options[0].label)).toBeInTheDocument()
     expect(options[2].props.onValueSet).toHaveBeenCalledWith(input)
     expect(options[2].props.onValueSet).toHaveBeenCalledTimes(1)
+    expect(handleSelect).toHaveBeenCalledWith(
+      expect.objectContaining({ detail: options[2] })
+    )
+    expect(handleSelect).toHaveBeenCalledTimes(1)
   })
 
   it('supports no options', async () => {
     const options = []
     const currentValue = writable()
-    render(html`<${Dropdown} options=${options} bind:value=${currentValue} />`)
+    render(
+      html`<${Dropdown}
+        options=${options}
+        bind:value=${currentValue}
+        on:select=${handleSelect}
+      />`
+    )
     expect(get(currentValue)).toBeUndefined()
 
     await fireEvent.click(screen.getByRole('button'))
     expect(screen.queryByRole('list')).toBeInTheDocument()
     expect(screen.queryAllByRole('listitem')).toHaveLength(0)
+    expect(handleSelect).not.toHaveBeenCalled()
   })
 })

@@ -13,7 +13,13 @@
       options = [
         {
           Component: CreatePlaylist,
-          props: { onNameSet: name => appendTracks({ name, tracks }) }
+          props: {
+            onNameSet: name => {
+              if (name && name.trim().length > 0) {
+                appendTracks({ name, tracks })
+              }
+            }
+          }
         },
         ...playlists.map(({ id, name }) => ({ label: name, id }))
       ]
@@ -28,4 +34,9 @@
   withArrow={false}
   valueAsText={false}
   {options}
-  on:select={({ detail: { id } }) => appendTracks({ id, tracks })} />
+  on:select
+  on:select={({ detail: { id } }) => {
+    if (id) {
+      appendTracks({ id, tracks })
+    }
+  }} />

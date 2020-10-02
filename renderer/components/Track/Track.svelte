@@ -1,10 +1,12 @@
 <script>
   import { _ } from 'svelte-intl'
   import Image from '../Image/Image.svelte'
+  import TrackDropdown from '../TrackDropdown/TrackDropdown.svelte'
   import { formatTime, linkTo, wrapWithLink } from '../../utils'
 
   export let src
   export let details = false
+  export let withMenu = false
   $: tags = (src && src.tags) || {}
   $: artistRef = src && src.artistRefs[0]
 </script>
@@ -41,5 +43,8 @@
   </div>
   {#if details}
     <div class="duration">{formatTime(tags.duration)}</div>
+  {/if}
+  {#if withMenu}
+    <TrackDropdown track={src} on:showDetails />
   {/if}
 </div>

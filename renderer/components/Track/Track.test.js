@@ -30,4 +30,23 @@ describe('Track component', () => {
 
     expect(location.hash).toEqual(`#/album/${id}`)
   })
+
+  it('dispatches track dropdown showDetails event', async () => {
+    const handleShowDetails = jest.fn()
+    render(
+      html`<${Track}
+        src=${trackData}
+        withMenu="true"
+        on:showDetails=${handleShowDetails}
+      />`
+    )
+
+    await fireEvent.click(screen.getByRole('button'))
+    fireEvent.click(screen.getByText('local_offer'))
+
+    expect(handleShowDetails).toHaveBeenCalledWith(
+      expect.objectContaining({ detail: trackData })
+    )
+    expect(handleShowDetails).toHaveBeenCalledTimes(1)
+  })
 })

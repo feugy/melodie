@@ -1,7 +1,7 @@
 'use strict'
 
 import { tick } from 'svelte'
-import { render, screen } from '@testing-library/svelte'
+import { render, screen, fireEvent } from '@testing-library/svelte'
 import html from 'svelte-htm'
 import { BehaviorSubject } from 'rxjs'
 import faker from 'faker'
@@ -152,6 +152,20 @@ describe('search results route', () => {
       } of tracksData) {
         expect(screen.queryByText(title)).not.toBeNull()
       }
+
+      expect(screen.getByText(translate('track details'))).not.toBeVisible()
+    })
+
+    it('displays track details', async () => {
+      await fireEvent.click(
+        screen
+          .queryByText(tracksData[0].tags.title)
+          .closest('.root')
+          .querySelector('button')
+      )
+      await fireEvent.click(screen.queryByText('local_offer'))
+
+      expect(screen.getByText(translate('track details'))).toBeVisible()
     })
   })
 })

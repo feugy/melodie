@@ -30,6 +30,7 @@
   }
   $: isOne = $items && $items.length === 1
   $: Component = kind === ARTISTS ? Artist : kind === ALBUMS ? Album : Track
+  $: componentProps = kind === TRACKS ? { withMenu: true } : {}
   $: title =
     kind === ARTISTS
       ? isOne
@@ -98,7 +99,11 @@
     <ul bind:this={list} class:expanded>
       {#each $items as src (src.id)}
         <li on:click={() => clicks$.next(src)}>
-          <svelte:component this={Component} {src} />
+          <svelte:component
+            this={Component}
+            {src}
+            {...componentProps}
+            on:showDetails />
         </li>
       {/each}
     </ul>
