@@ -53,6 +53,7 @@ no: No
 no clear during tutorial: It is not possible to clear the queue during this tutorial
 no results: Nothing at all !
 on unsplash: on Unsplash.
+open: Open
 open folder: Open containing folder
 open queue: Open queue
 play all: Play all
@@ -60,6 +61,7 @@ play now: Play now
 play now behaviour: 'Button <i class="material-icons">play_arrow</i>:'
 playlist deletion: Playlist deletion
 playlist renamal: Playlist new name
+playlist _ updated: Playlist "{ name }" updated!
 playlists: Playlists
 plays track: plays track
 photos by: 'Photos by:'

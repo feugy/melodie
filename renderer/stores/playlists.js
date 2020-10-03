@@ -1,6 +1,9 @@
 'use strict'
 
+import { push } from 'svelte-spa-router'
+import { showSnack } from './snackbars'
 import { createListStore, invoke } from '../utils'
+import * as intl from 'svelte-intl'
 
 const store = createListStore('playlist')
 
@@ -12,6 +15,9 @@ export const changes = store.changes
 export const removals = store.removals
 export const isListing = store.isListing
 
+let translate
+intl.translate.subscribe(_ => (translate = _))
+
 export async function remove({ id }) {
   return save({ id, trackIds: [] })
 }
@@ -21,9 +27,17 @@ export async function appendTracks({ id, name, tracks }) {
   if (!trackIds.length) {
     return null
   }
-  return id
+  const playlist = await (id
     ? invoke('playlists.append', id, trackIds)
-    : save({ name, trackIds })
+    : save({ name, trackIds }))
+  showSnack({
+    message: translate('playlist _ updated', playlist),
+    button: translate('open'),
+    action() {
+      push(`/playlist/${playlist.id}`)
+    }
+  })
+  return playlist
 }
 
 export async function removeTrack(playlist, index) {

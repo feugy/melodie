@@ -11,10 +11,14 @@ import {
   moveTrack,
   isListing
 } from './playlists'
-import { mockInvoke, sleep } from '../tests'
+import { clear, current } from './snackbars'
+import { mockInvoke, sleep, translate } from '../tests'
 
 describe('playlists store', () => {
-  beforeEach(jest.clearAllMocks)
+  beforeEach(() => {
+    jest.clearAllMocks()
+    clear()
+  })
 
   it('lists all playlists', async () => {
     const total = 13
@@ -51,6 +55,7 @@ describe('playlists store', () => {
       const id = faker.random.number()
       expect(await appendTracks({ id, tracks: [] })).toEqual(null)
       expect(mockInvoke).not.toHaveBeenCalled()
+      expect(get(current)).toBeNil()
     })
 
     it('appends tracks to existing playlist', async () => {
@@ -73,6 +78,12 @@ describe('playlists store', () => {
         trackIds
       )
       expect(mockInvoke).toHaveBeenCalledTimes(1)
+      await sleep()
+      expect(get(current)).toEqual({
+        message: translate('playlist _ updated', playlist),
+        action: expect.any(Function),
+        button: translate('open')
+      })
     })
 
     it('creates new playlist with tracks', async () => {
@@ -92,6 +103,12 @@ describe('playlists store', () => {
         trackIds
       })
       expect(mockInvoke).toHaveBeenCalledTimes(1)
+      await sleep()
+      expect(get(current)).toEqual({
+        message: translate('playlist _ updated', playlist),
+        action: expect.any(Function),
+        button: translate('open')
+      })
     })
   })
 
@@ -118,6 +135,7 @@ describe('playlists store', () => {
         ]
       })
       expect(mockInvoke).toHaveBeenCalledTimes(1)
+      expect(get(current)).toBeNil()
     })
 
     it('ignores invalid indices', async () => {
@@ -169,6 +187,7 @@ describe('playlists store', () => {
         trackIds: [2, 3, 1, 4]
       })
       expect(mockInvoke).toHaveBeenCalledTimes(1)
+      expect(get(current)).toBeNil()
     })
 
     it('move tracks backward', async () => {
@@ -188,6 +207,7 @@ describe('playlists store', () => {
         { ...playlist, trackIds: [1, 4, 2, 3] }
       )
       expect(mockInvoke).toHaveBeenCalledTimes(1)
+      expect(get(current)).toBeNil()
     })
 
     it('ignores invalid indices', async () => {
@@ -252,6 +272,7 @@ describe('playlists store', () => {
         trackIds: []
       })
       expect(mockInvoke).toHaveBeenCalledTimes(1)
+      expect(get(current)).toBeNil()
     })
   })
 })

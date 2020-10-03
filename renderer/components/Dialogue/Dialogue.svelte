@@ -48,7 +48,7 @@
   }
 
   article {
-    @apply flex flex-col;
+    @apply flex flex-col text-center;
     width: 50%;
     max-height: 80%;
   }

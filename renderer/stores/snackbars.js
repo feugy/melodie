@@ -1,7 +1,7 @@
 'use strict'
 
 import { Subject } from 'rxjs'
-import { map, scan } from 'rxjs/operators'
+import { map, scan, shareReplay } from 'rxjs/operators'
 
 const queue$ = new Subject()
 const head$ = new Subject()
@@ -41,7 +41,8 @@ export const current = head$.pipe(
       setTimeout(() => head$.next({ data }), 0)
     }
     return null
-  })
+  }),
+  shareReplay()
 )
 
 export function showSnack(data, duration = 5000) {

@@ -12,11 +12,9 @@ There are thunsands of them in the wild. This mine is an excuse for learning [El
 
 ### features
 
-- [ ] feedback when adding to playlist
 - [ ] images from tags
 - [ ] system integration (play folder/file)
 - [ ] display album/artist descriptions
-- [ ] enqueue tracks/albums by dragging to tracks queue
 - [ ] configure replay gain from settings
 - [ ] display tracks/albums/artists count in settings
 - [ ] allow reseting database from settings
