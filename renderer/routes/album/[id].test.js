@@ -53,7 +53,8 @@ describe('album details route', () => {
           title: faker.commerce.productName(),
           artists: [faker.name.findName()],
           album: faker.lorem.words(),
-          duration: 265
+          duration: 265,
+          year: faker.random.number({ min: 1970, max: 2030 })
         }
       },
       {
@@ -109,7 +110,7 @@ describe('album details route', () => {
       await sleep()
     })
 
-    it('displays album title, image, artists and total duration', async () => {
+    it('displays album title, image, artists, total duration and year', async () => {
       expect(screen.queryByText(album.name)).toBeInTheDocument()
       const image = screen.queryAllByRole('img')
       expect(
@@ -125,6 +126,11 @@ describe('album details route', () => {
 
       expect(
         screen.queryByText(translate('total duration _', { total: '13:36' }))
+      ).toBeInTheDocument()
+      expect(
+        screen.queryByText(
+          translate('year _', { year: album.tracks[0].tags.year })
+        )
       ).toBeInTheDocument()
 
       expect(load).toHaveBeenCalledWith(album.id)

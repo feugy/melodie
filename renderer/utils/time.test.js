@@ -2,7 +2,7 @@
 
 import { tick } from 'svelte'
 import { locale } from 'svelte-intl'
-import { formatTime, formatTimeLong, sumDurations } from './time'
+import { formatTime, formatTimeLong, sumDurations, getYears } from './time'
 
 describe('time utilities', () => {
   describe('formatTime()', () => {
@@ -65,6 +65,108 @@ describe('time utilities', () => {
 
     it('handles missing trakcs ', () => {
       expect(sumDurations()).toEqual(0)
+    })
+  })
+
+  describe('getYears()', () => {
+    it('returns year range', () => {
+      expect(
+        getYears([
+          {
+            tags: { year: 2010 }
+          },
+          {
+            tags: { year: 2009 }
+          },
+          {
+            tags: { year: 2012 }
+          },
+          {
+            tags: { year: 2010 }
+          }
+        ])
+      ).toEqual('2009~2012')
+    })
+
+    it('returns year', () => {
+      expect(
+        getYears([
+          {
+            tags: { year: 2010 }
+          },
+          {
+            tags: { year: 2010 }
+          },
+          {
+            tags: { year: 2010 }
+          },
+          {
+            tags: { year: 2010 }
+          }
+        ])
+      ).toEqual('2010')
+    })
+
+    it('returns year range with missing years', () => {
+      expect(
+        getYears([
+          {
+            tags: { year: null }
+          },
+          {
+            tags: { year: 2008 }
+          },
+          {
+            tags: { year: 2015 }
+          },
+          {
+            tags: { year: 2010 }
+          },
+          {
+            tags: {}
+          }
+        ])
+      ).toEqual('2008~2015')
+    })
+
+    it('returns year with missing years', () => {
+      expect(
+        getYears([
+          {
+            tags: { year: 2010 }
+          },
+          {
+            tags: { year: null }
+          },
+          {
+            tags: { year: 2010 }
+          },
+          {
+            tags: {}
+          }
+        ])
+      ).toEqual('2010')
+    })
+
+    it('returns null for missing years', () => {
+      expect(
+        getYears([
+          {
+            tags: { year: null }
+          },
+          {
+            tags: {}
+          }
+        ])
+      ).toEqual(null)
+    })
+
+    it('returns null for empty track list', () => {
+      expect(getYears([])).toEqual(null)
+    })
+
+    it('returns null for no track list', () => {
+      expect(getYears()).toEqual(null)
     })
   })
 })

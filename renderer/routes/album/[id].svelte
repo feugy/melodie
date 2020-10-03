@@ -13,7 +13,12 @@
   } from '../../components'
   import { load, changes, removals } from '../../stores/albums'
   import { add, current } from '../../stores/track-queue'
-  import { formatTime, sumDurations, wrapWithLinks } from '../../utils'
+  import {
+    formatTime,
+    getYears,
+    sumDurations,
+    wrapWithLinks
+  } from '../../utils'
 
   export let params
   let album
@@ -23,6 +28,7 @@
   $: if (!album || album.id !== albumId) {
     loadAlbum()
   }
+  $: year = getYears(album && album.tracks)
 
   async function loadAlbum() {
     album = await load(albumId)
@@ -79,8 +85,8 @@
     @apply mb-2 text-2xl;
   }
 
-  .totalDuration {
-    @apply flex-grow mb-4;
+  .actions {
+    @apply flex items-end flex-grow;
   }
 </style>
 
@@ -104,11 +110,12 @@
             artist: wrapWithLinks('artist', album.refs).join(', ')
           })}
         </h3>
-        <span class="totalDuration">
+        <span>
           {$_('total duration _', {
             total: formatTime(sumDurations(album.tracks))
           })}
         </span>
+        {#if year}<span> {$_('year _', { year })} </span>{/if}
         <span class="actions">
           <Button
             on:click={track => add(album.tracks, true)}

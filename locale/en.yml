@@ -81,6 +81,7 @@ track details: Track details
 track: Track
 unknown: Unknown
 watched folders: Music folders
+year _: 'Year: {year}'
 yes: Yes
 audiodb:
   description: >

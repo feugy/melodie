@@ -66,6 +66,7 @@ track details: Détails du morceau
 track: Piste
 unknown: Inconnu
 watched folders: Répertoires de musique
+year _: 'Année : {year}'
 yes: Oui
 tags:
   albumartist: Artiste de l'album

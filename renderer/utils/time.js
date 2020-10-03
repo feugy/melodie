@@ -50,3 +50,14 @@ export function sumDurations(tracks) {
     0
   )
 }
+
+export function getYears(tracks) {
+  const { min, max } = (tracks || []).reduce(
+    ({ min, max }, { tags: { year } }) =>
+      year
+        ? { min: Math.min(min, year), max: Math.max(max, year) }
+        : { min, max },
+    { min: Infinity, max: 0 }
+  )
+  return !max ? null : min === max ? `${min}` : `${min}~${max}`
+}
