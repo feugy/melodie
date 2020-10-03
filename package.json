@@ -19,7 +19,7 @@
     "postinstall": "electron-builder install-app-deps",
     "release:artifacts": "electron-builder",
     "release:bump": "standard-version -s -prerelease alpha",
-    "release:publish": "electron-builder -p onTagOrDraft",
+    "release:publish": "electron-builder -p",
     "start": "electron .",
     "storybook": "start-storybook -p 6006 -s ./fixtures",
     "test": "jest --coverage",

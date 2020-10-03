@@ -12,12 +12,13 @@ There are thunsands of them in the wild. This mine is an excuse for learning [El
 
 ### features
 
-- [ ] enqueue tracks/albums by dragging to tracks queue
-- [ ] system integration (play folder/file)
-- [ ] images from tags
-- [ ] display album/artist descriptions
+- [ ] feedback when adding to playlist
 - [ ] number of disk on album details page
 - [ ] display years (artist & album details page)
+- [ ] images from tags
+- [ ] system integration (play folder/file)
+- [ ] display album/artist descriptions
+- [ ] enqueue tracks/albums by dragging to tracks queue
 - [ ] configure replay gain from settings
 - [ ] display tracks/albums/artists count in settings
 - [ ] allow reseting database from settings

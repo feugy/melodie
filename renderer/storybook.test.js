@@ -10,6 +10,9 @@ beforeAll(() => {
   originalRandom = Math.random
   Math.random = () => 0.1
   window.electron = electron
+
+  // JSDom does not support scrollIntoView as it doesn't do layout
+  Element.prototype.scrollIntoView = jest.fn()
 })
 
 afterAll(() => {

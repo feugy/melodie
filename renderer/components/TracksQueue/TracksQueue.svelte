@@ -1,4 +1,5 @@
 <script>
+  import { onMount, tick } from 'svelte'
   import { _ } from 'svelte-intl'
   import Button from '../Button/Button.svelte'
   import Heading from '../Heading/Heading.svelte'
@@ -17,6 +18,8 @@
   import { current } from '../../stores/tutorial'
   import { formatTime, sumDurations } from '../../utils'
 
+  let list
+
   function handleRemove(i) {
     if ($current !== null && $tracks.length === 1) {
       showSnack({ message: $_('no clear during tutorial') })
@@ -32,6 +35,18 @@
     }
     clear()
   }
+
+  onMount(() =>
+    index.subscribe(async () => {
+      await tick()
+      if (list) {
+        const current = list.querySelector('.current')
+        if (current) {
+          current.scrollIntoView({ behavior: 'smooth', block: 'center' })
+        }
+      }
+    })
+  )
 </script>
 
 <style type="postcss">
@@ -71,7 +86,7 @@
     <Button icon="delete" class="mx-4" on:click={handleClear} />
   {/if}
 </header>
-<div>
+<div bind:this={list}>
   <SortableList
     items={$tracks}
     on:move={({ detail: { from, to } }) => move(from, to)}>

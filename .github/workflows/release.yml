@@ -18,7 +18,7 @@ jobs:
         with:
           node-version: 14.x
       - run: npm ci
-      - run: npm run release:publish -- -l
+      - run: npm run release:publish -- onTagOrDraft -l
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
@@ -32,20 +32,20 @@ jobs:
         with:
           node-version: 14.x
       - run: npm ci
-      - run: npm run release:publish -- -w
+      - run: npm run release:publish -- onTagOrDraft -w
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
-#  release-macos:
-#    if: ${{ github.event.workflow_run.conclusion == 'success' }}
-#    runs-on: macos-latest
-#
-#    steps:
-#      - uses: actions/checkout@v2
-#      - uses: actions/setup-node@v1
-#        with:
-#          node-version: 14.x
-#      - run: npm ci
-#      - run: npm run release:publish -- -m
-#        env:
-#          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+ release-macos:
+   if: ${{ github.event.workflow_run.conclusion == 'success' }}
+   runs-on: macos-latest
+
+   steps:
+     - uses: actions/checkout@v2
+     - uses: actions/setup-node@v1
+       with:
+         node-version: 14.x
+     - run: npm ci
+     - run: npm run release:publish -- onTagOrDraft -m
+       env:
+         GH_TOKEN: ${{ secrets.GH_TOKEN }}

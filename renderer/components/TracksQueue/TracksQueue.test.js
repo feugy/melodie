@@ -13,6 +13,11 @@ import * as snackbars from '../../stores/snackbars'
 import { addRefs, mockInvoke, sleep, translate } from '../../tests'
 
 describe('TracksQueue component', () => {
+  beforeAll(() => {
+    // JSDom does not support scrollIntoView as it doesn't do layout
+    Element.prototype.scrollIntoView = jest.fn()
+  })
+
   beforeEach(() => {
     jest.resetAllMocks()
     clear()
@@ -76,11 +81,17 @@ describe('TracksQueue component', () => {
       await tick()
 
       expect(get(index)).toEqual(2)
+      expect(
+        screen.getByText(tracks[2].tags.title).closest('.row').scrollIntoView
+      ).toHaveBeenCalled()
 
       fireEvent.click(screen.getByText(tracks[1].tags.title))
       await tick()
 
       expect(get(index)).toEqual(1)
+      expect(
+        screen.getByText(tracks[1].tags.title).closest('.row').scrollIntoView
+      ).toHaveBeenCalled()
     })
 
     it('clears tracks queue', async () => {
