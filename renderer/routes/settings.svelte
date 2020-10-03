@@ -289,6 +289,9 @@
           {/each}
           {$_('on unsplash')}</span>
       </p>
+      <p>
+        <span>{@html $_('using material design icons')}</span>
+      </p>
     </div>
   </article>
 </section>

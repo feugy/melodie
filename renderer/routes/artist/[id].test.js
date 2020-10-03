@@ -70,7 +70,8 @@ describe('artist details route', () => {
           title: faker.commerce.productName(),
           artists: [artistName],
           album: album1.name,
-          duration: 265
+          duration: 265,
+          year: faker.random.number({ min: 1970, max: 2030 })
         },
         albumRef: [album1.id, album1.name],
         artistRefs
@@ -126,7 +127,7 @@ describe('artist details route', () => {
       await sleep()
     })
 
-    it('displays artist name, image and all albums', async () => {
+    it('displays artist name, image and all albums with their years', async () => {
       expect(screen.queryByText(artist.name)).toBeInTheDocument()
       const images = Array.from(
         screen.queryAllByRole('img').filter(node => node.hasAttribute('src'))
@@ -142,6 +143,9 @@ describe('artist details route', () => {
         images.find(node => node.getAttribute('src').includes(album2.media))
       ).toBeInTheDocument()
       expect(images).toHaveLength(3)
+      expect(
+        screen.queryByText(`${artist.tracks[0].tags.year}`)
+      ).toBeInTheDocument()
 
       expect(load).toHaveBeenCalledWith(artist.id)
     })

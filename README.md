@@ -13,8 +13,6 @@ There are thunsands of them in the wild. This mine is an excuse for learning [El
 ### features
 
 - [ ] feedback when adding to playlist
-- [ ] number of disk on album details page
-- [ ] display years (artist & album details page)
 - [ ] images from tags
 - [ ] system integration (play folder/file)
 - [ ] display album/artist descriptions
@@ -71,6 +69,10 @@ There are thunsands of them in the wild. This mine is an excuse for learning [El
       ```
    1. `Media service › triggerAlbumsEnrichment › retries album with no cover but at least one restriced provided`
       Is a 1ms difference in expected `processedEpoch`
+   1. `TracksQueue component › given a list of tracks › clears tracks queue`
+      The list items are still visible after clear (probably because of the animation)
+   1. `AddToPlaylist component › given some playlists › saves new playlist with all tracks`
+      The dropdown menu is still visible (probably because of the animation)
 
 ## Configuring logs
 

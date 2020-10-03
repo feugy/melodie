@@ -80,6 +80,7 @@ total duration _: 'Duration: {total}'
 track details: Track details
 track: Track
 unknown: Unknown
+using material design icons: Using <a class="underlined" href="https://material.io/resources/icons">Material Design Icons <i class="material-icons">launch</i></a>.
 watched folders: Music folders
 year _: 'Year: {year}'
 yes: Yes

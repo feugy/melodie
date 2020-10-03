@@ -81,6 +81,7 @@ exports[`Storyshots Components/Album Default 1`] = `
             The Innocent Criminals
           </a>
         </h4>
+         
       </header>
     </a>
   </div>
@@ -184,6 +185,7 @@ exports[`Storyshots Components/Album Many Artists 1`] = `
             Avenged Sevenfold
           </a>
         </h4>
+         
       </header>
     </a>
   </div>
@@ -250,6 +252,7 @@ exports[`Storyshots Components/Album No Artist 1`] = `
         <h3>
           Diamonds on the inside
         </h3>
+         
          
       </header>
     </a>
@@ -338,6 +341,7 @@ exports[`Storyshots Components/Album Unknown 1`] = `
             The Innocent Criminals
           </a>
         </h4>
+         
       </header>
     </a>
   </div>

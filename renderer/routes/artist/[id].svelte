@@ -13,6 +13,7 @@
   } from '../../components'
   import { load, changes, removals } from '../../stores/artists'
   import { add } from '../../stores/track-queue'
+  import { getYears } from '../../utils'
 
   export let params
   let albums = []
@@ -68,13 +69,17 @@
           name: album,
           media,
           refs: [],
-          year: year || -Infinity,
           tracks: []
         })
       }
       map.get(id).tracks.push(track)
     }
-    return Array.from(map.values()).sort((a, b) => a.year - b.year)
+    const albums = []
+    for (const [, album] of map) {
+      album.year = getYears(album.tracks)
+      albums.push(album)
+    }
+    return albums.sort((a, b) => a.year - b.year)
   }
 
   onDestroy(() => {
@@ -141,7 +146,9 @@
     <div class="albums">
       {#each albums as src (src.id)}
         <a href={`#/album/${src.id}`} class="p-4">
-          <Album {src} />
+          <Album {src}>
+            {#if src.year}{src.year}{/if}
+          </Album>
         </a>
       {/each}
     </div>

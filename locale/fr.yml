@@ -1,10 +1,10 @@
 _ artists: '{total} artistes'
 _ hours: '{value} heures'
-_ tracks: '{total} pistes'
+_ tracks: '{total} morceaux'
 '#': N°
 'artist: _': 'Artiste : {value}'
 'title: _': 'Titre : {value}'
-a track: 1 piste
+a track: 1 morceau
 about: A propos
 add folders: Ajouter des dossiers
 add to playlist: Ajouter à la playlist
@@ -63,8 +63,9 @@ show less: Voir moins
 start loading some tracks: Commencez par charger quelques morceaux
 total duration _: 'Durée : {total}'
 track details: Détails du morceau
-track: Piste
+track: Morceau
 unknown: Inconnu
+using material design icons: Avec les icônes <a class="underlined" href="https://material.io/resources/icons">Material Design <i class="material-icons">launch</i></a>.
 watched folders: Répertoires de musique
 year _: 'Année : {year}'
 yes: Oui
@@ -88,7 +89,7 @@ tags:
   remixer: Remixeur
   subtitle: Sous titre
   title: Titre
-  track: Piste
+  track: Morceau
   website: Site web
   writer: Auteur
   year: Année

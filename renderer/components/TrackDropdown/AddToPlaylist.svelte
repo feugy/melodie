@@ -33,7 +33,7 @@
 <div on:click={() => (open = true)}>
   <i
     class="material-icons">library_add</i><span>{$_('add to playlist')}</span><i
-    class="material-icons">arrow_drop_down</i>
+    class="material-icons">arrow_right</i>
 </div>
 <span class="button">
   <AddToPlaylist
