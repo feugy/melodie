@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0-beta.0](https://github.com/feugy/melodie/compare/v1.0.0-alpha.6...v1.0.0-beta.0) (2020-10-04)
+
+
+### Features
+
+* **core:** settings for enqueue behaviour ([5b0ab82](https://github.com/feugy/melodie/commit/5b0ab8259eb53ae683df0028b88f8c08ebd80dbe))
+* **ui:** add to playlist from Album details/Playlist details/Search results pages ([4bc5065](https://github.com/feugy/melodie/commit/4bc5065ad8c54634f81c2083e50b0e0ef25f8c7e))
+* **ui:** auto-scroll track queue to current track ([c9936e8](https://github.com/feugy/melodie/commit/c9936e8ac18963c396ea441c9c7c23df982a1d2e))
+* **ui:** configurable simple/double click behaviour (play or enqueue) ([0cb6bc0](https://github.com/feugy/melodie/commit/0cb6bc0210f8f9ebcacc1ab81e3e0b4845c72601))
+* **ui:** display album years in artist and album details ([0d94f39](https://github.com/feugy/melodie/commit/0d94f39971032b11715970a52346a064bf3567e2))
+* **ui:** display albums' year ([cadcf70](https://github.com/feugy/melodie/commit/cadcf703d35a907b0046d17c585a25d9141307b3))
+* **ui:** feedback when adding to playlist ([c32d68a](https://github.com/feugy/melodie/commit/c32d68ae19bec514615d6893e175a778a4c709f1))
+* **ui:** fetch and display artist bio ([fc6e524](https://github.com/feugy/melodie/commit/fc6e52401c4f801489a371b15b3a60ebf78772dd))
+* **ui:** more efficient sortable list component with drag'n drop events ([f98684d](https://github.com/feugy/melodie/commit/f98684df36a79b6774f3c5627d4f2649c1e61c9a))
+* **ui:** new logo ([0c992a0](https://github.com/feugy/melodie/commit/0c992a0e808b7ef1eb3186e6bea7829feeb87c33))
+
+
+### Bug Fixes
+
+* **ui:** click on Play button without any track still changes icon ([03c21ca](https://github.com/feugy/melodie/commit/03c21ca673b61825b34f3daa09c8a90b9a394b81))
+
 ## [1.0.0-alpha.6](https://github.com/feugy/melodie/compare/v1.0.0-alpha.5...v1.0.0-alpha.6) (2020-09-29)
 
 
