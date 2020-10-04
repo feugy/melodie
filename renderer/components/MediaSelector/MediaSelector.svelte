@@ -10,7 +10,14 @@
   export let open
   export let src
   export let forArtist = true
-  $: modelName = forArtist ? 'Artist' : 'Album'
+  let modelName = 'Album'
+  let title = $_('choose cover')
+  let attribute = 'cover'
+  $: if (forArtist) {
+    modelName = 'Artist'
+    title = $_('choose avatar')
+    attribute = 'artwork'
+  }
   let uploaded = null
   let proposals = []
   let findPromise
@@ -38,29 +45,28 @@
   }
 </style>
 
-<Dialogue
-  title={$_(forArtist ? 'choose avatar' : 'choose cover')}
-  bind:open
-  on:open={handleOpen}>
+<Dialogue {title} bind:open on:open={handleOpen}>
   <div slot="content">
     {#await findPromise}
       <Progress />
     {/await}
     <div class="image-container">
       {#each proposals as image}
-        <div class="m-2">
-          <Image
-            src={image.full}
-            class="w-48 h-48 actionable"
-            on:click={() => handleSelect(image.full)}
-            bind:dimension={image.dimension} />
-          <span>
-            {image.dimension ? $_('provider (_ x _)', {
-                  value: image.provider,
-                  ...image.dimension
-                }) : image.provider}
-          </span>
-        </div>
+        {#if attribute in image}
+          <div class="m-2">
+            <Image
+              src={image[attribute]}
+              class="w-48 h-48 actionable"
+              on:click={() => handleSelect(image[attribute])}
+              bind:dimension={image.dimension} />
+            <span>
+              {image.dimension ? $_('provider (_ x _)', {
+                    value: image.provider,
+                    ...image.dimension
+                  }) : image.provider}
+            </span>
+          </div>
+        {/if}
       {/each}
       <ImageUploader
         class="w-48 h-48 m-2"

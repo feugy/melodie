@@ -62,7 +62,7 @@ module.exports = {
         from(provider.findArtistArtwork(artist.name)).pipe(
           mergeMap(results =>
             results.length
-              ? this.saveForArtist(artist.id, results[0].full)
+              ? this.saveForArtist(artist.id, results[0].artwork)
               : of(artist)
           ),
           catchError(err => {
@@ -116,6 +116,27 @@ module.exports = {
       .subscribe()
   },
 
+  async triggerArtistEnrichment(id) {
+    const artist = await artistsModel.getById(id)
+    if (!artist || (artist.media && artist.bio)) {
+      return
+    }
+    const results = await this.findForArtist(artist.name)
+    let url
+    let bios = {}
+    for (const { artwork, bio } of results) {
+      if (artwork && !url) {
+        url = artwork
+      }
+      if (bio) {
+        bios = { ...bio, ...bios }
+      }
+    }
+    if (url || Object.keys(bios).length) {
+      await this.saveForArtist(artist.id, url, bios)
+    }
+  },
+
   triggerAlbumsEnrichment(perMinute = 20) {
     if (subscription && !subscription.isClosed) {
       subscription.unsubscribe()
@@ -127,7 +148,7 @@ module.exports = {
         from(provider.findAlbumCover(album.name)).pipe(
           mergeMap(results =>
             results.length
-              ? this.saveForAlbum(album.id, results[0].full)
+              ? this.saveForAlbum(album.id, results[0].cover)
               : of(album)
           ),
           catchError(err => {
@@ -212,36 +233,43 @@ module.exports = {
     )
   },
 
-  async saveForArtist(id, url) {
+  async saveForArtist(id, url, bio) {
     const artist = await artistsModel.getById(id)
     if (!artist) {
       logger.warn({ id, url }, `unknown artist ${id}: skipping artwork update`)
       return
     }
-    let media = getMediaPath(id)
-    await fs.ensureFile(`${media}.tmp`)
+    let hasChanged = false
 
-    let written = false
-    try {
-      media = await downloadAndSave(media, url)
-      written = true
-      logger.debug(
-        { id, url, media },
-        `media successfully downloaded for artist ${artist.name}`
-      )
-    } catch (err) {
-      logger.info(
-        { err, id, url },
-        `failed to download media for artist ${artist.name}: ${err.message}`
-      )
+    if (url) {
+      let path = getMediaPath(id)
+      await fs.ensureFile(`${path}.tmp`)
+      try {
+        const media = await downloadAndSave(path, url)
+        logger.debug(
+          { id, url, media },
+          `media successfully downloaded for artist ${artist.name}`
+        )
+        artist.media = media
+        hasChanged = true
+      } catch (err) {
+        logger.info(
+          { err, id, url },
+          `failed to download media for artist ${artist.name}: ${err.message}`
+        )
+      }
+    }
+    if (bio && Object.keys(bio).length) {
+      artist.bio = bio
+      hasChanged = true
     }
 
-    if (written) {
-      const { saved } = await artistsModel.save({ ...artist, media })
+    if (hasChanged) {
+      const { saved } = await artistsModel.save(artist)
       // broadcast 2 changes so UI would detect changes event when the media path is the same
       broadcast('artist-changes', [{ ...artist, media: null }, saved[0]])
       logger.debug(
-        { id, url, media },
+        { id, url, media: artist.media },
         `media successfully saved into artist ${artist.name}`
       )
     }

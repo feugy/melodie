@@ -114,7 +114,7 @@ describe('Cover finder', () => {
         await findForAlbum({
           trackIds: files.map(file => hash(file))
         })
-      ).toEqual(covers.map(full => ({ full, provider: 'Local' })))
+      ).toEqual(covers.map(cover => ({ cover, provider: 'Local' })))
       expect(tracksModel.getById).toHaveBeenCalledWith(hash(files[0]))
       expect(tracksModel.getById).toHaveBeenCalledTimes(1)
     })

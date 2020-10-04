@@ -2,23 +2,23 @@
   {
     "scope": "https://www.theaudiodb.com:443",
     "method": "GET",
-    "path": "/api/v1/json/1/search.php?s=katie+lombardi",
+    "path": "/api/v1/json/1/search.php?s=a+common+ground",
     "body": "",
     "status": 200,
-    "response": {
-      "artists": null
-    },
+    "response": [
+      "31241000205bb655b54c6acc3b515b0382644f72e8ffc135f5995f0fed231a2472bab62e8ad2d9b070a2b335d7a5b8750e3d8818c866bf7f203c469f7d286e7e80bad45f421112997c229b82305cb2c7a82e852af6f1b0143aea30455ae2cb843d741ca3a1181a2dccd67fa1771acaba429a3b360375d5887df9cde895111e14210e385216a8d1a256151baddcaba2ef9a76530e26fcb91b10360c79e62656b0d5b37600e9b556948ac2567a307d21b3999bfef076adaf9dc6e7566bd273ebe307acf4c1d6146c0fc1f10cac4dfa0f75f79fd80cf6bbfd9b3382fd41ff9696ae61e11b0768dafc4c64b64e5f0ccf3573bc0fba51b1dab544fcdd4f2fc1434a139ce35d7bb695af9cdbd92d3cee672c501b5d7beb820611ac4192849e42cadd145015bdc047554e5f7ffcb6aa5084d329a54c4aeb483259d091b4cc652352254dc4e8848cc77322a3e285953fed0a9febbdcac5341f89316c5be0fb0913f5adba9520a0fbabf7bffb370003"
+    ],
     "rawHeaders": [
       "Date",
-      "Tue, 22 Sep 2020 05:50:35 GMT",
+      "Sun, 04 Oct 2020 08:44:01 GMT",
       "Content-Type",
       "application/json",
-      "Content-Length",
-      "16",
+      "Transfer-Encoding",
+      "chunked",
       "Connection",
       "close",
       "Set-Cookie",
-      "__cfduid=d0c1dfc39873f375c6ffa9b411c52b6991600753835; expires=Thu, 22-Oct-20 05:50:35 GMT; path=/; domain=.theaudiodb.com; HttpOnly; SameSite=Lax; Secure",
+      "__cfduid=daf738b7d7044c4ddeec4e0a706dd4f3a1601801041; expires=Tue, 03-Nov-20 08:44:01 GMT; path=/; domain=.theaudiodb.com; HttpOnly; SameSite=Lax; Secure",
       "X-Powered-By",
       "PHP/7.4.1",
       "Access-Control-Allow-Origin",
@@ -26,13 +26,19 @@
       "CF-Cache-Status",
       "DYNAMIC",
       "cf-request-id",
-      "0555f636430000bbfa4da44200000001",
+      "0594614f2500000493d8092200000001",
       "Expect-CT",
       "max-age=604800, report-uri=\"https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct\"",
+      "Report-To",
+      "{\"endpoints\":[{\"url\":\"https:\\/\\/a.nel.cloudflare.com\\/report?lkg-colo=19&lkg-time=1601801042\"}],\"group\":\"cf-nel\",\"max_age\":604800}",
+      "NEL",
+      "{\"report_to\":\"cf-nel\",\"max_age\":604800}",
       "Server",
       "cloudflare",
       "CF-RAY",
-      "5d69bfd06eb3bbfa-LHR"
+      "5dcd9e5ead690493-CDG",
+      "Content-Encoding",
+      "br"
     ],
     "responseIsBinary": false
   }

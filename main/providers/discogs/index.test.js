@@ -23,8 +23,12 @@ describe('Discogs provider', () => {
     withNockIt('returns artwork', async () => {
       expect(await provider.findArtistArtwork('coldplay')).toEqual([
         {
-          full:
+          artwork:
             'https://img.discogs.com/RLkA5Qmo6_eNpWGjioaI4bJZUB4=/600x600/smart/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/A-29735-1591800654-2186.jpeg.jpg',
+          bio: {
+            en:
+              "Coldplay is an English rock band from London, England. They've been a band since January 16, 1998 when they lost a demotape competition on XFM in London. Philip Christopher Harvey is the band's manager.\r\n\r\n[b][u]Line-up:[/u][/b]\r\nJonny Buckland (Jonathan Mark Buckland) - Guitar\r\nWill Champion (William Champion) - Drums\r\nGuy Berryman (Guy Rupert Berryman) - Bass\r\nChris Martin (Christopher Anthony John Martin) - Vocals"
+          },
           provider: provider.name
         }
       ])
@@ -76,18 +80,18 @@ describe('Discogs provider', () => {
     withNockIt('returns cover', async () => {
       expect(await provider.findAlbumCover('Parachutes')).toEqual([
         {
-          full:
+          cover:
+            'https://img.discogs.com/MOShX8l25aDTILF-5Xk8cPm2B0s=/fit-in/600x596/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-2317835-1276526391.jpeg.jpg',
+          provider: provider.name
+        },
+        {
+          cover:
+            'https://img.discogs.com/QpNOv7TPg9VIkdbCYKqEtNbCN04=/fit-in/600x595/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-2898241-1306263310.jpeg.jpg',
+          provider: provider.name
+        },
+        {
+          cover:
             'https://img.discogs.com/LXxOjvGFYExbXFWSPgkfdqqe33M=/fit-in/600x579/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-3673614-1458060187-6793.jpeg.jpg',
-          provider: provider.name
-        },
-        {
-          full:
-            'https://img.discogs.com/eTfvDOHIvDIHuMFHv28H6_MG-b0=/fit-in/500x505/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-3069838-1466508617-4579.jpeg.jpg',
-          provider: provider.name
-        },
-        {
-          full:
-            'https://img.discogs.com/QbarN9yIJGVkyIwse7B9qmh1iZw=/fit-in/360x315/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-1376973-1214264136.jpeg.jpg',
           provider: provider.name
         }
       ])

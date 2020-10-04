@@ -126,10 +126,10 @@ class Local extends AbstractProvider {
     const prefix = getMediaPath(hash(searched))
     const results = []
     for (const ext of ['jpeg', 'gif', 'png', 'jpg']) {
-      const full = `${prefix}.${ext}`
+      const artwork = `${prefix}.${ext}`
       try {
-        await fs.access(full, fs.constants.R_OK)
-        results.push({ full, provider: this.name })
+        await fs.access(artwork, fs.constants.R_OK)
+        results.push({ artwork, provider: this.name })
       } catch {
         // ignore missing file
       }

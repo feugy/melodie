@@ -2,6 +2,10 @@
 
 const got = require('got')
 const AbstractProvider = require('../abstract-provider')
+const descByLocales = {
+  en: 'strBiographyEN',
+  fr: 'strBiographyFR'
+}
 
 class AudioDB extends AbstractProvider {
   constructor() {
@@ -30,24 +34,27 @@ class AudioDB extends AbstractProvider {
         `got results for ${searched}`
       )
 
-      return (artists || []).reduce(
-        (results, { strArtistThumb, strArtistFanart }) => {
-          if (strArtistThumb) {
-            results.push({
-              full: strArtistThumb,
-              provider: this.name
-            })
+      return (artists || []).reduce((results, data) => {
+        const result = { bio: {}, provider: this.name }
+        let hasBio = false
+        for (const locale in descByLocales) {
+          const description = data[descByLocales[locale]]
+          if (description) {
+            hasBio = true
+            result.bio[locale] = description
           }
-          if (strArtistFanart) {
-            results.push({
-              full: strArtistFanart,
-              provider: this.name
-            })
-          }
-          return results
-        },
-        []
-      )
+        }
+        if (data.strArtistThumb) {
+          results.push({ ...result, artwork: data.strArtistThumb })
+        }
+        if (data.strArtistFanart) {
+          results.push({ ...result, artwork: data.strArtistFanart })
+        }
+        if (!data.strArtistThumb && !data.strArtistFanart && hasBio) {
+          results.push(result)
+        }
+        return results
+      }, [])
     } catch (err) {
       this.logger.error(
         { err, searched },
@@ -74,10 +81,10 @@ class AudioDB extends AbstractProvider {
         `got results for ${searched}`
       )
 
-      return (album || []).reduce((results, { strAlbumThumb: full }) => {
-        if (full) {
+      return (album || []).reduce((results, { strAlbumThumb: cover }) => {
+        if (cover) {
           results.push({
-            full,
+            cover,
             provider: this.name
           })
         }

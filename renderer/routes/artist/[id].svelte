@@ -1,7 +1,7 @@
 <script>
   import { onDestroy } from 'svelte'
   import { fade } from 'svelte/transition'
-  import { _ } from 'svelte-intl'
+  import { _, locale } from 'svelte-intl'
   import { replace } from 'svelte-spa-router'
   import { filter, distinct, map } from 'rxjs/operators'
   import {
@@ -13,7 +13,7 @@
   } from '../../components'
   import { load, changes, removals } from '../../stores/artists'
   import { add } from '../../stores/track-queue'
-  import { getYears } from '../../utils'
+  import { getYears, invoke } from '../../utils'
 
   export let params
   let albums = []
@@ -24,12 +24,17 @@
   $: if (!artist || artist.id !== artistId) {
     loadArtist()
   }
+  $: bio =
+    artist &&
+    artist.bio &&
+    ($locale in artist.bio ? artist.bio[$locale] : artist.bio.en)
 
   async function loadArtist() {
     artist = await load(artistId)
     if (!artist) {
       return replace('/artist')
     }
+    invoke(`media.triggerArtistEnrichment`, artistId)
     albums = groupByAlbum(artist.tracks)
   }
 
@@ -98,6 +103,14 @@
     @apply flex flex-col items-start px-4 self-stretch text-left;
   }
 
+  .bio {
+    @apply overflow-y-auto mb-4;
+  }
+
+  .actions {
+    @apply flex items-end flex-grow;
+  }
+
   .image-container {
     @apply flex-shrink-0 w-full h-full cursor-pointer;
     height: 300px;
@@ -130,14 +143,15 @@
           src={artist.media} />
       </span>
       <div>
+        {#if bio}<span class="bio">{bio}</span>{/if}
         <span class="actions">
           <Button
-            on:click={track => add(artist.tracks, true)}
+            on:click={() => add(artist.tracks, true)}
             icon="play_arrow"
             text={$_('play all')} />
           <Button
             class="ml-4"
-            on:click={track => add(artist.tracks)}
+            on:click={() => add(artist.tracks)}
             icon="playlist_add"
             text={$_('enqueue all')} />
         </span>

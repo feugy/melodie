@@ -60,7 +60,7 @@ module.exports = {
         }),
         pluck('path'),
         reduce(
-          (results, path) => [...results, { full: path, provider: 'Local' }],
+          (results, path) => [...results, { cover: path, provider: 'Local' }],
           []
         )
       )

@@ -62,11 +62,11 @@ describe('Local provider', () => {
 
       expect(await provider.findArtistArtwork(searched)).toEqual([
         {
-          full: files[1],
+          artwork: files[1],
           provider: provider.name
         },
         {
-          full: files[0],
+          artwork: files[0],
           provider: provider.name
         }
       ])
@@ -95,7 +95,7 @@ describe('Local provider', () => {
         join(folder, 'cover.jpeg'),
         join(folder2, 'Folder.png'),
         join(folder2, 'cover.jpeg')
-      ].map(full => ({ full, provider: provider.name }))
+      ].map(cover => ({ cover, provider: provider.name }))
 
       albumsModel.getByName.mockResolvedValueOnce(albums)
       covers.findForAlbum.mockResolvedValueOnce(results.slice(0, 3))

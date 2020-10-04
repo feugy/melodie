@@ -36,12 +36,29 @@ class Discogs extends AbstractProvider {
         `got results for ${searched}`
       )
 
-      return results.reduce((results, { cover_image: full }) => {
-        if (full && basename(full) !== 'spacer.gif') {
-          results.push({ full, provider: this.name })
-        }
-        return results
-      }, [])
+      const requests = await Promise.allSettled(
+        results.map(async ({ id, cover_image: image }) => {
+          const { profile } = await got(`artists/${id}`, {
+            prefixUrl: this.prefixUrl,
+            headers: { 'user-agent': this.userAgent }
+          }).json()
+
+          const artwork =
+            image && basename(image) !== 'spacer.gif' ? image : undefined
+          const result = { provider: this.name }
+          if (profile) {
+            result.bio = { en: profile }
+          }
+          if (artwork) {
+            result.artwork = artwork
+          }
+          return profile || artwork ? result : null
+        })
+      )
+      return requests.reduce(
+        (results, { value }) => (value ? [...results, value] : results),
+        []
+      )
     } catch (err) {
       this.logger.error(
         { err, searched },
@@ -73,9 +90,9 @@ class Discogs extends AbstractProvider {
         `got results for ${searched}`
       )
 
-      return results.reduce((results, { cover_image: full }) => {
-        if (full && basename(full) !== 'spacer.gif') {
-          results.push({ full, provider: this.name })
+      return results.reduce((results, { cover_image: cover }) => {
+        if (cover && basename(cover) !== 'spacer.gif') {
+          results.push({ cover, provider: this.name })
         }
         return results
       }, [])

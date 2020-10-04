@@ -14,7 +14,6 @@ There are thunsands of them in the wild. This mine is an excuse for learning [El
 
 - [ ] images from tags
 - [ ] system integration (play folder/file)
-- [ ] display album/artist descriptions
 - [ ] configure replay gain from settings
 - [ ] display tracks/albums/artists count in settings
 - [ ] allow reseting database from settings

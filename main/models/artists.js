@@ -6,7 +6,7 @@ const { uniqRef, parseRawRef } = require('../utils')
 
 class ArtistsModel extends TrackList {
   constructor() {
-    super({ name: 'artists', searchCol: 'name' })
+    super({ name: 'artists', searchCol: 'name', jsonColumns: ['bio'] })
   }
 
   async computeRefs(trx, trackIds) {

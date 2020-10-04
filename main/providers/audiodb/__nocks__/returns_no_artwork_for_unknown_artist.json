@@ -10,7 +10,7 @@
     },
     "rawHeaders": [
       "Date",
-      "Tue, 22 Sep 2020 05:50:35 GMT",
+      "Sun, 04 Oct 2020 08:44:01 GMT",
       "Content-Type",
       "application/json",
       "Content-Length",
@@ -18,7 +18,7 @@
       "Connection",
       "close",
       "Set-Cookie",
-      "__cfduid=d924b3d7032021f1b1db0d8bb887dd3381600753835; expires=Thu, 22-Oct-20 05:50:35 GMT; path=/; domain=.theaudiodb.com; HttpOnly; SameSite=Lax; Secure",
+      "__cfduid=d5650ab76719fbad40193e709bcf1fa6c1601801041; expires=Tue, 03-Nov-20 08:44:01 GMT; path=/; domain=.theaudiodb.com; HttpOnly; SameSite=Lax; Secure",
       "X-Powered-By",
       "PHP/7.4.1",
       "Access-Control-Allow-Origin",
@@ -26,13 +26,17 @@
       "CF-Cache-Status",
       "DYNAMIC",
       "cf-request-id",
-      "0555f636d100000656ce83c200000001",
+      "0594614fbb0000ee7df49dd200000001",
       "Expect-CT",
       "max-age=604800, report-uri=\"https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct\"",
+      "Report-To",
+      "{\"endpoints\":[{\"url\":\"https:\\/\\/a.nel.cloudflare.com\\/report?lkg-colo=19&lkg-time=1601801042\"}],\"group\":\"cf-nel\",\"max_age\":604800}",
+      "NEL",
+      "{\"report_to\":\"cf-nel\",\"max_age\":604800}",
       "Server",
       "cloudflare",
       "CF-RAY",
-      "5d69bfd148860656-LHR"
+      "5dcd9e5f986bee7d-CDG"
     ],
     "responseIsBinary": false
   }

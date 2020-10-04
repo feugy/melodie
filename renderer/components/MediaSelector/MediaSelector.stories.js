@@ -10,60 +10,66 @@ export default {
   excludeStories: /.*Data$/,
   decorators: [
     ipcRendererMock(method => {
-      if (method === 'findForArtist' || method === 'findForAlbum') {
-        return suggestionsData
+      if (method === 'findForArtist') {
+        return artistSuggestionsData
+      } else if (method === 'findForAlbum') {
+        return albumSuggestionsData
       }
     })
   ]
 }
 
-export const suggestionsData = [
+export const artistSuggestionsData = [
   {
-    full:
+    artwork:
       'https://www.theaudiodb.com/images/media/artist/thumb/vuvqxr1352453964.jpg',
     provider: 'AudioDB'
   },
   {
-    full:
+    artwork:
       'https://www.theaudiodb.com/images/media/artist/fanart/tvpvrv1340621795.jpg',
     provider: 'AudioDB'
   },
   {
-    full:
+    artwork:
       'https://www.theaudiodb.com/images/media/artist/fanart/vtvsww1340621807.jpg',
     provider: 'Discogs'
   },
   {
-    full:
+    artwork:
       'https://www.theaudiodb.com/images/media/artist/thumb/vuvqxr1352453964.jpg',
     provider: 'AudioDB'
   },
   {
-    full:
+    artwork:
       'https://www.theaudiodb.com/images/media/artist/fanart/tvpvrv1340621795.jpg',
     provider: 'AudioDB'
   },
   {
-    full:
+    artwork:
       'https://www.theaudiodb.com/images/media/artist/fanart/vtvsww1340621807.jpg',
     provider: 'Discogs'
   },
   {
-    full:
+    artwork:
       'https://www.theaudiodb.com/images/media/artist/thumb/vuvqxr1352453964.jpg',
     provider: 'AudioDB'
   },
   {
-    full:
+    artwork:
       'https://www.theaudiodb.com/images/media/artist/fanart/tvpvrv1340621795.jpg',
     provider: 'AudioDB'
   },
   {
-    full:
+    artwork:
       'https://www.theaudiodb.com/images/media/artist/fanart/vtvsww1340621807.jpg',
     provider: 'Discogs'
   }
 ]
+
+export const albumSuggestionsData = artistSuggestionsData.map(
+  ({ artwork, provider }) => ({ cover: artwork, provider })
+)
 
 export const Default = () => ({
   Component: MediaSelector,

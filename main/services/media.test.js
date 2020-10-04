@@ -32,15 +32,15 @@ describe('Media service', () => {
     it('returns artwork for artist', async () => {
       const artworks = [
         {
-          full:
+          artwork:
             'https://www.theaudiodb.com/images/media/artist/thumb/uxrqxy1347913147.jpg'
         },
         {
-          full:
+          artwork:
             'https://www.theaudiodb.com/images/media/artist/fanart/spvryu1347980801.jpg'
         },
         {
-          full:
+          artwork:
             'https://img.discogs.com/RLkA5Qmo6_eNpWGjioaI4bJZUB4=/600x600/smart/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/A-29735-1591800654-2186.jpeg.jpg'
         }
       ]
@@ -54,11 +54,11 @@ describe('Media service', () => {
     it('does not fail error', async () => {
       const artworks = [
         {
-          full:
+          artwork:
             'https://www.theaudiodb.com/images/media/artist/thumb/uxrqxy1347913147.jpg'
         },
         {
-          full: resolve(__dirname, '..', '..', 'fixtures', 'cover.jpg')
+          artwork: resolve(__dirname, '..', '..', 'fixtures', 'cover.jpg')
         }
       ]
       audiodb.findArtistArtwork.mockResolvedValueOnce(artworks.slice(0, 1))
@@ -81,23 +81,23 @@ describe('Media service', () => {
     })
   })
 
-  describe('findArtistArtwork', () => {
+  describe('findAlbumCover', () => {
     it('returns cover for album', async () => {
       const covers = [
         {
-          full:
+          cover:
             'https://www.theaudiodb.com/images/media/album/thumb/swxywp1367234202.jpg'
         },
         {
-          full:
+          cover:
             'https://img.discogs.com/eTfvDOHIvDIHuMFHv28H6_MG-b0=/fit-in/500x505/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-3069838-1466508617-4579.jpeg.jpg'
         },
         {
-          full:
+          cover:
             'https://img.discogs.com/hp9V11cwfD4e4lWid6zV5j8P-g8=/fit-in/557x559/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-5589468-1397410589-8616.jpeg.jpg'
         },
         {
-          full:
+          cover:
             'https://img.discogs.com/QpNOv7TPg9VIkdbCYKqEtNbCN04=/fit-in/600x595/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-2898241-1306263310.jpeg.jpg'
         }
       ]
@@ -111,11 +111,11 @@ describe('Media service', () => {
     it('does not fail on error', async () => {
       const covers = [
         {
-          full:
+          cover:
             'https://img.discogs.com/eTfvDOHIvDIHuMFHv28H6_MG-b0=/fit-in/500x505/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-3069838-1466508617-4579.jpeg.jpg'
         },
         {
-          full: resolve(__dirname, '..', '..', 'fixtures', 'cover.jpg')
+          cover: resolve(__dirname, '..', '..', 'fixtures', 'cover.jpg')
         }
       ]
       audiodb.findAlbumCover.mockRejectedValueOnce(new TooManyRequestsError())
@@ -337,7 +337,7 @@ describe('Media service', () => {
         expect(artistsModel.save).toHaveBeenCalledTimes(1)
         expect(await fs.access(media, constants.R_OK))
         expect(broadcast).toHaveBeenCalledWith('artist-changes', [
-          artist,
+          { ...artist, media: null },
           savedArtist
         ])
         expect(broadcast).toHaveBeenCalledTimes(1)
@@ -360,7 +360,7 @@ describe('Media service', () => {
         expect(content).not.toEqual(oldContent)
         expect(content).toBeDefined()
         expect(broadcast).toHaveBeenCalledWith('artist-changes', [
-          artist,
+          { ...artist, media: null },
           savedArtist
         ])
         expect(broadcast).toHaveBeenCalledTimes(1)
@@ -448,11 +448,17 @@ describe('Media service', () => {
         searched === artists[0].name
           ? [
               {
-                full: media,
+                artwork: media,
                 provider: local.name
               },
               {
-                full: resolve(__dirname, '..', '..', 'fixtures', 'avatar.jpg'),
+                artwork: resolve(
+                  __dirname,
+                  '..',
+                  '..',
+                  'fixtures',
+                  'avatar.jpg'
+                ),
                 provider: local.name
               }
             ]
@@ -462,7 +468,7 @@ describe('Media service', () => {
         searched === artists[1].name
           ? [
               {
-                full:
+                artwork:
                   'https://www.theaudiodb.com/images/media/artist/thumb/uxrqxy1347913147.jpg',
                 provider: audiodb.name
               }
@@ -551,7 +557,7 @@ describe('Media service', () => {
       expect(broadcast).not.toHaveBeenCalled()
     })
 
-    it('retries artist with no artwork but at least one restriced provided', async () => {
+    it('retries artist with no artwork but at least one restricted provided', async () => {
       const artists = [
         {
           id: faker.random.number({ min: 9999 }),
@@ -635,7 +641,7 @@ describe('Media service', () => {
       }))
       local.findArtistArtwork.mockResolvedValue([
         {
-          full: resolve(__dirname, '..', '..', 'fixtures', 'cover.jpg'),
+          artwork: resolve(__dirname, '..', '..', 'fixtures', 'cover.jpg'),
           provider: local.name
         }
       ])
@@ -699,7 +705,7 @@ describe('Media service', () => {
       }))
       local.findArtistArtwork.mockResolvedValue([
         {
-          full: resolve(__dirname, '..', '..', 'fixtures', 'cover.jpg'),
+          artwork: resolve(__dirname, '..', '..', 'fixtures', 'cover.jpg'),
           provider: local.name
         }
       ])
@@ -741,6 +747,227 @@ describe('Media service', () => {
         savedArtists[0]
       ])
       expect(broadcast).toHaveBeenCalledTimes(1)
+    })
+  })
+
+  describe('triggerArtistEnrichment', () => {
+    beforeEach(async () => {
+      electron.app.getPath.mockReturnValue(os.tmpdir())
+      await fs.ensureDir(resolve(os.tmpdir(), 'melodie-media'))
+    })
+
+    it('saves first returned artwork', async () => {
+      const artist = {
+        id: faker.random.number({ min: 9999 }),
+        name: faker.name.findName(),
+        media: null,
+        trackIds: []
+      }
+      const savedArtist = {
+        ...artist,
+        media: resolve(os.tmpdir(), 'melodie-media', `${artist.id}.jpeg`)
+      }
+      artistsModel.getById.mockResolvedValue(artist)
+      artistsModel.save.mockResolvedValueOnce({ saved: [savedArtist] })
+      local.findArtistArtwork.mockResolvedValueOnce([])
+      audiodb.findArtistArtwork.mockResolvedValueOnce([
+        {
+          artwork:
+            'https://www.theaudiodb.com/images/media/artist/thumb/uxrqxy1347913147.jpg',
+          provider: audiodb.name
+        }
+      ])
+      discogs.findArtistArtwork.mockResolvedValueOnce([])
+
+      await mediaService.triggerArtistEnrichment(artist.id)
+
+      await expect(
+        fs.access(savedArtist.media, constants.R_OK)
+      ).resolves.toBeNil()
+
+      expect(local.findArtistArtwork).toHaveBeenCalledWith(artist.name)
+      expect(local.findArtistArtwork).toHaveBeenCalledTimes(1)
+      expect(audiodb.findArtistArtwork).toHaveBeenCalledWith(artist.name)
+      expect(audiodb.findArtistArtwork).toHaveBeenCalledTimes(1)
+      expect(discogs.findArtistArtwork).toHaveBeenCalledWith(artist.name)
+      expect(discogs.findArtistArtwork).toHaveBeenCalledTimes(1)
+      expect(artistsModel.save).toHaveBeenCalledWith(savedArtist)
+      expect(artistsModel.save).toHaveBeenCalledTimes(1)
+      expect(broadcast).toHaveBeenCalledWith('artist-changes', [
+        {
+          ...savedArtist,
+          media: null
+        },
+        savedArtist
+      ])
+      expect(broadcast).toHaveBeenCalledTimes(1)
+    })
+
+    it('merges returned bios', async () => {
+      const artist = {
+        id: faker.random.number({ min: 9999 }),
+        name: faker.name.findName(),
+        media: null,
+        trackIds: []
+      }
+      const bio1 = {
+        en: `English 1 ${faker.lorem.words()}`
+      }
+      const bio2 = {
+        en: `English 2 ${faker.lorem.words()}`,
+        fr: `Français 2 ${faker.lorem.words()}`
+      }
+      const savedArtist = {
+        ...artist,
+        bio: {
+          en: bio1.en,
+          fr: bio2.fr
+        }
+      }
+      artistsModel.getById.mockResolvedValue(artist)
+      artistsModel.save.mockResolvedValueOnce({ saved: [savedArtist] })
+      local.findArtistArtwork.mockResolvedValueOnce([])
+      audiodb.findArtistArtwork.mockResolvedValueOnce([
+        {
+          bio: bio1,
+          provider: audiodb.name
+        }
+      ])
+      discogs.findArtistArtwork.mockResolvedValueOnce([
+        {
+          bio: bio2,
+          provider: discogs.name
+        }
+      ])
+
+      await mediaService.triggerArtistEnrichment(artist.id)
+
+      expect(local.findArtistArtwork).toHaveBeenCalledWith(artist.name)
+      expect(local.findArtistArtwork).toHaveBeenCalledTimes(1)
+      expect(audiodb.findArtistArtwork).toHaveBeenCalledWith(artist.name)
+      expect(audiodb.findArtistArtwork).toHaveBeenCalledTimes(1)
+      expect(discogs.findArtistArtwork).toHaveBeenCalledWith(artist.name)
+      expect(discogs.findArtistArtwork).toHaveBeenCalledTimes(1)
+      expect(artistsModel.save).toHaveBeenCalledWith(savedArtist)
+      expect(artistsModel.save).toHaveBeenCalledTimes(1)
+      expect(broadcast).toHaveBeenCalledWith('artist-changes', [
+        {
+          ...savedArtist,
+          media: null
+        },
+        savedArtist
+      ])
+      expect(broadcast).toHaveBeenCalledTimes(1)
+    })
+
+    it('saved both bio and artwork', async () => {
+      const artist = {
+        id: faker.random.number({ min: 9999 }),
+        name: faker.name.findName(),
+        media: null,
+        trackIds: []
+      }
+      const bio = {
+        en: `English ${faker.lorem.words()}`,
+        fr: `Français ${faker.lorem.words()}`
+      }
+      const savedArtist = {
+        ...artist,
+        bio,
+        media: resolve(os.tmpdir(), 'melodie-media', `${artist.id}.jpeg`)
+      }
+      artistsModel.getById.mockResolvedValue(artist)
+      artistsModel.save.mockResolvedValueOnce({ saved: [savedArtist] })
+      local.findArtistArtwork.mockResolvedValueOnce([])
+      audiodb.findArtistArtwork.mockResolvedValueOnce([
+        {
+          artwork:
+            'https://www.theaudiodb.com/images/media/artist/thumb/uxrqxy1347913147.jpg',
+          bio,
+          provider: audiodb.name
+        }
+      ])
+      discogs.findArtistArtwork.mockResolvedValueOnce([])
+
+      await mediaService.triggerArtistEnrichment(artist.id)
+
+      await expect(
+        fs.access(savedArtist.media, constants.R_OK)
+      ).resolves.toBeNil()
+
+      expect(local.findArtistArtwork).toHaveBeenCalledWith(artist.name)
+      expect(local.findArtistArtwork).toHaveBeenCalledTimes(1)
+      expect(audiodb.findArtistArtwork).toHaveBeenCalledWith(artist.name)
+      expect(audiodb.findArtistArtwork).toHaveBeenCalledTimes(1)
+      expect(discogs.findArtistArtwork).toHaveBeenCalledWith(artist.name)
+      expect(discogs.findArtistArtwork).toHaveBeenCalledTimes(1)
+      expect(artistsModel.save).toHaveBeenCalledWith(savedArtist)
+      expect(artistsModel.save).toHaveBeenCalledTimes(1)
+      expect(broadcast).toHaveBeenCalledWith('artist-changes', [
+        {
+          ...savedArtist,
+          media: null
+        },
+        savedArtist
+      ])
+      expect(broadcast).toHaveBeenCalledTimes(1)
+    })
+
+    it('stops no artist with artwork and bio', async () => {
+      const id = faker.random.number({ min: 9999 })
+      const artist = {
+        id,
+        name: faker.name.findName(),
+        media: resolve(os.tmpdir(), 'melodie-media', `${id}.jpg`),
+        bio: { en: faker.lorem.words() },
+        trackIds: []
+      }
+      artistsModel.getById.mockResolvedValue(artist)
+
+      await mediaService.triggerArtistEnrichment(id)
+
+      expect(local.findArtistArtwork).not.toHaveBeenCalled()
+      expect(audiodb.findArtistArtwork).not.toHaveBeenCalled()
+      expect(discogs.findArtistArtwork).not.toHaveBeenCalled()
+      expect(artistsModel.save).not.toHaveBeenCalled()
+      expect(broadcast).not.toHaveBeenCalled()
+    })
+
+    it('stops on missing results', async () => {
+      const id = faker.random.number({ min: 9999 })
+      const artist = {
+        id,
+        name: faker.name.findName(),
+        media: null,
+        trackIds: []
+      }
+      artistsModel.getById.mockResolvedValue(artist)
+      local.findArtistArtwork.mockResolvedValueOnce([])
+      audiodb.findArtistArtwork.mockResolvedValueOnce([])
+      discogs.findArtistArtwork.mockResolvedValueOnce([])
+
+      await mediaService.triggerArtistEnrichment(id)
+
+      expect(local.findArtistArtwork).toHaveBeenCalledWith(artist.name)
+      expect(local.findArtistArtwork).toHaveBeenCalledTimes(1)
+      expect(audiodb.findArtistArtwork).toHaveBeenCalledWith(artist.name)
+      expect(audiodb.findArtistArtwork).toHaveBeenCalledTimes(1)
+      expect(discogs.findArtistArtwork).toHaveBeenCalledWith(artist.name)
+      expect(discogs.findArtistArtwork).toHaveBeenCalledTimes(1)
+      expect(artistsModel.save).not.toHaveBeenCalled()
+      expect(broadcast).not.toHaveBeenCalled()
+    })
+
+    it('stops on unknown artist', async () => {
+      artistsModel.getById.mockResolvedValue(null)
+
+      await mediaService.triggerArtistEnrichment(faker.random.number())
+
+      expect(local.findArtistArtwork).not.toHaveBeenCalled()
+      expect(audiodb.findArtistArtwork).not.toHaveBeenCalled()
+      expect(discogs.findArtistArtwork).not.toHaveBeenCalled()
+      expect(artistsModel.save).not.toHaveBeenCalled()
+      expect(broadcast).not.toHaveBeenCalled()
     })
   })
 
@@ -792,11 +1019,11 @@ describe('Media service', () => {
         searched === albums[0].name
           ? [
               {
-                full: media,
+                cover: media,
                 provider: local.name
               },
               {
-                full: resolve(__dirname, '..', '..', 'fixtures', 'avatar.jpg'),
+                cover: resolve(__dirname, '..', '..', 'fixtures', 'avatar.jpg'),
                 provider: local.name
               }
             ]
@@ -806,7 +1033,7 @@ describe('Media service', () => {
         searched === albums[1].name
           ? [
               {
-                full:
+                cover:
                   'https://www.theaudiodb.com/images/media/album/thumb/swxywp1367234202.jpg',
                 provider: audiodb.name
               }
@@ -929,7 +1156,7 @@ describe('Media service', () => {
       expect(broadcast).not.toHaveBeenCalled()
     })
 
-    it('retries album with no cover but at least one restriced provided', async () => {
+    it('retries album with no cover but at least one restricted provided', async () => {
       const tracks = [
         {
           id: faker.random.number({ min: 9999 }),
@@ -1034,7 +1261,7 @@ describe('Media service', () => {
       )
       local.findAlbumCover.mockResolvedValue([
         {
-          full: resolve(__dirname, '..', '..', 'fixtures', 'cover.jpg'),
+          cover: resolve(__dirname, '..', '..', 'fixtures', 'cover.jpg'),
           provider: local.name
         }
       ])
@@ -1118,7 +1345,7 @@ describe('Media service', () => {
       )
       local.findAlbumCover.mockResolvedValue([
         {
-          full: resolve(__dirname, '..', '..', 'fixtures', 'cover.jpg'),
+          cover: resolve(__dirname, '..', '..', 'fixtures', 'cover.jpg'),
           provider: local.name
         }
       ])

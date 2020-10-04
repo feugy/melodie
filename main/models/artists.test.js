@@ -52,7 +52,8 @@ describe('Artist model', () => {
       media: faker.image.image(),
       processedEpoch: null,
       name: faker.commerce.productName(),
-      trackIds: [tracks[0].id, tracks[3].id]
+      trackIds: [tracks[0].id, tracks[3].id],
+      bio: null
     }
 
     await artistsModel.save(artist)
@@ -70,7 +71,8 @@ describe('Artist model', () => {
       media: faker.image.image(),
       processedEpoch: null,
       name: faker.commerce.productName(),
-      trackIds: [tracks[0].id, tracks[3].id]
+      trackIds: [tracks[0].id, tracks[3].id],
+      bio: { en: faker.lorem.words() }
     }
 
     expect((await artistsModel.save(artist)).saved).toEqual([

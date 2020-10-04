@@ -2,6 +2,7 @@
 
 import { screen, render, fireEvent } from '@testing-library/svelte'
 import html from 'svelte-htm'
+import { locale } from 'svelte-intl'
 import { BehaviorSubject } from 'rxjs'
 import { replace } from 'svelte-spa-router'
 import faker from 'faker'
@@ -13,7 +14,7 @@ import {
   load
 } from '../../stores/artists'
 import { add } from '../../stores/track-queue'
-import { translate, sleep } from '../../tests'
+import { translate, sleep, mockInvoke } from '../../tests'
 
 jest.mock('svelte-spa-router')
 jest.mock('../../stores/track-queue', () => ({
@@ -117,6 +118,7 @@ describe('artist details route', () => {
 
     expect(load).toHaveBeenCalledWith(artist.id)
     expect(replace).toHaveBeenCalledWith('/artist')
+    expect(mockInvoke).not.toHaveBeenCalled()
   })
 
   describe('given an artist', () => {
@@ -148,24 +150,31 @@ describe('artist details route', () => {
       ).toBeInTheDocument()
 
       expect(load).toHaveBeenCalledWith(artist.id)
+      expect(mockInvoke).toHaveBeenCalledWith(
+        'remote',
+        'media',
+        'triggerArtistEnrichment',
+        artist.id
+      )
+      expect(mockInvoke).toHaveBeenCalledTimes(1)
     })
 
     it('enqueues all tracks', async () => {
-      await fireEvent.click(screen.getByText(translate('enqueue all')))
+      fireEvent.click(screen.getByText(translate('enqueue all')))
 
       expect(add).toHaveBeenCalledWith(artist.tracks)
       expect(add).toHaveBeenCalledTimes(1)
     })
 
     it('plays all tracks', async () => {
-      await fireEvent.click(screen.getByText(translate('play all')))
+      fireEvent.click(screen.getByText(translate('play all')))
 
       expect(add).toHaveBeenCalledWith(artist.tracks, true)
       expect(add).toHaveBeenCalledTimes(1)
     })
 
     it('navigates to album details page', async () => {
-      await fireEvent.click(screen.getByText(album2.name))
+      fireEvent.click(screen.getByText(album2.name))
       await sleep(250)
 
       expect(add).not.toHaveBeenCalled()
@@ -271,9 +280,56 @@ describe('artist details route', () => {
           node.getAttribute('src').includes(artist.media)
       )
 
-      await fireEvent.click(artistImage)
+      fireEvent.click(artistImage)
 
       expect(await screen.findByText(translate('choose avatar'))).toBeVisible()
+    })
+  })
+
+  describe('given an artist with several bio', () => {
+    const bio = {
+      en: `English: ${faker.lorem.words()}`,
+      fr: `Français: ${faker.lorem.words()}`
+    }
+
+    const artist = {
+      id,
+      name: artistName,
+      refs: [],
+      media: faker.image.avatar(),
+      tracks: []
+    }
+
+    beforeEach(async () => {
+      location.hash = `#/artist/${artist.id}`
+      locale.set('fr')
+    })
+
+    it('displays artist bio of current language', async () => {
+      load.mockResolvedValueOnce({ ...artist, bio })
+      render(html`<${artistRoute} params=${{ id: artist.id }} />`)
+      await sleep()
+
+      expect(screen.queryByText(bio.fr)).toBeInTheDocument()
+      expect(screen.queryByText(bio.en)).not.toBeInTheDocument()
+    })
+
+    it('falls back to English bio', async () => {
+      load.mockResolvedValueOnce({ ...artist, bio: { en: bio.en } })
+      render(html`<${artistRoute} params=${{ id: artist.id }} />`)
+      await sleep()
+
+      expect(screen.queryByText(bio.en)).toBeInTheDocument()
+      expect(screen.queryByText(bio.fr)).not.toBeInTheDocument()
+    })
+
+    it('displays nothing when no bio is availebl', async () => {
+      load.mockResolvedValueOnce({ ...artist, bio: {} })
+      render(html`<${artistRoute} params=${{ id: artist.id }} />`)
+      await sleep()
+
+      expect(screen.queryByText(bio.en)).not.toBeInTheDocument()
+      expect(screen.queryByText(bio.fr)).not.toBeInTheDocument()
     })
   })
 })
