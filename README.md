@@ -37,7 +37,6 @@ Notes:
 ### tools
 
 - [ ] App automated end to end tests
-- [ ] Code coverage follow-up (https://app.codacy.com/login/https://codeclimate.com/dashboard)
 - [ ] more technical documentation (install & release process notably)
 
 ### release

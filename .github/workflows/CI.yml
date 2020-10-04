@@ -20,3 +20,9 @@ jobs:
       - run: npm test
         env:
           AUDIODB_KEY: ${{ secrets.AUDIODB_KEY }}
+
+      - name: Send coverage to Codacy
+        uses: codacy/codacy-coverage-reporter-action@master
+        with:
+          project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
+          coverage-reports: coverage/clover.xml
