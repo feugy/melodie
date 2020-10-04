@@ -80,7 +80,7 @@
 
 <style type="postcss">
   section {
-    @apply flex flex-row text-left m-6 mt-0;
+    @apply flex flex-row text-left m-4 mt-0;
   }
 
   .meta {

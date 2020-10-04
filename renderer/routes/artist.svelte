@@ -21,7 +21,7 @@
 
 <style type="postcss">
   section {
-    @apply flex flex-col items-stretch w-full mb-12 overflow-hidden;
+    @apply flex flex-col items-stretch w-full overflow-hidden;
     min-height: 16rem;
   }
 
@@ -30,7 +30,7 @@
   }
 
   span {
-    @apply p-4;
+    @apply p-2;
   }
 
   p {

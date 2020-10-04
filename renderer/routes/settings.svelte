@@ -129,7 +129,7 @@
 
 <style type="postcss">
   article {
-    @apply text-left mx-8 mb-8;
+    @apply text-left m-4 mt-0;
 
     & > div {
       @apply text-sm my-4;

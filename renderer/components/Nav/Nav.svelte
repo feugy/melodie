@@ -91,23 +91,12 @@
   .material-icons {
     @apply align-text-bottom;
   }
-
-  h1 {
-    @apply m-0 mr-2;
-  }
 </style>
 
 <div class="wrapper">
   <span bind:this={sentinel} class="sentinel" />
   <nav class={$$restProps.class} class:floating>
     <ul>
-      <li>
-        <h1>{$_('Mélodie')}</h1>
-      </li>
-      <li>
-        <Button on:click={handleBack} icon="navigate_before" noBorder />
-        <Button on:click={handleForward} icon="navigate_next" noBorder />
-      </li>
       <li>
         <Button
           on:click={() => router.push('/album')}
@@ -125,6 +114,10 @@
           on:click={() => router.push('/playlist')}
           text={$_('playlists')}
           icon="library_music" />
+      </li>
+      <li>
+        <Button on:click={handleBack} icon="navigate_before" noBorder />
+        <Button on:click={handleForward} icon="navigate_next" noBorder />
       </li>
       <li class="expand">
         <TextInput

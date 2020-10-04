@@ -1,12 +1,27 @@
+<div style="display:flex; justify-content: center;"><img src="./public/icon.png" width="200px"/></div>
+
 # Mélodie
 
+[![GitHub All Releases](https://img.shields.io/github/downloads/feugy/melodie/total)][releases]
+![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/feugy/melodie?include_prereleases)
+[![GitHub](https://img.shields.io/github/license/feugy/melodie)][license]
 [![CI](https://github.com/feugy/melodie/workflows/CI/badge.svg)](https://github.com/feugy/melodie/actions?query=workflow%3ACI)
-
-**_...work in progress..._**
 
 Melodie is a portable, simple-as-pie music player.
 
-There are thunsands of them in the wild. This mine is an excuse for learning [Electron](https://www.electronjs.org), [Svelte](https://svelte.dev) and [reactive programming](https://www.learnrxjs.io).
+There are thunsands of them in the wild. This mine is an excuse for learning [Electron][], [Svelte][] and [reactive programming][rxjs].
+
+## Installation
+
+You will find installers on the [releases][] page.
+
+Notes:
+
+> Windows installers are not signed. Windows will warn you that the source is insecure (it is not!). Simply confirm your choice to install or run Mélodie.
+
+> AppImage for linux, Snap and NSIS installer will automatically update to the latest available version.
+>
+> If you run Mélodie from a zip or using Windows portable version, you will have to download updates by yourself
 
 ## TODOs
 
@@ -27,9 +42,6 @@ There are thunsands of them in the wild. This mine is an excuse for learning [El
 
 ### release
 
-- [ ] new name
-- [ ] logo/icons
-- [x] auto updater
 - [ ] packages
   - [x] Linux snap
   - [-] Linux AppImage: no desktop menu icon (need AppImageLauncher)
@@ -73,7 +85,7 @@ There are thunsands of them in the wild. This mine is an excuse for learning [El
 
 ## Configuring logs
 
-Log level file is `.levels` in the [application `userData` folder](https://www.electronjs.org/docs/api/app#appgetpathname).
+Log level file is `.levels` in the [application `userData` folder][getpathname].
 Its syntax is:
 
 ```shell
@@ -170,9 +182,9 @@ Once a Github release is published, users who installed an auto-updatable packag
    ```shell
    git push --follow-tags
    ```
-1. Finally, go to [github releases](https://github.com/feugy/melodie/releases), and edit the newest one:
+1. Finally, go to github [releases][], and edit the newest one:
    1. give it a code name
-   1. copy the latest section of the [changelog](https://github.com/feugy/melodie/blob/master/CHANGELOG.md) in the release body
+   1. copy the latest section of the [changelog][] in the release body
    1. don't forget to select "is a prerelease" checkbox in case it is one
    1. publish your release
    1. go and slack off!
@@ -202,7 +214,7 @@ Once a Github release is published, users who installed an auto-updatable packag
   watch-pack is using chokidar and the next version isn't ready
 
 - wiring jest, storybook, svelte and tailwind was really painfull. Too many configuration files now :(
-  To make storyshots working, I had to downgrade Jest because of an annoying bug [reference](https://github.com/storybookjs/storybook/issues/10351#issuecomment-644667392)
+  To make storyshots working, I had to downgrade Jest because of an annoying bug ([reference](https://github.com/storybookjs/storybook/issues/10351#issuecomment-644667392)).
 
 - I considered Sapper for its nice conventional router, but given all the unsued feature (service workers, SSR) I chose a simpler router.
   It is based on hash handling, as electron urls are using file:// protocol which makes it difficult to use with history-based routers.
@@ -262,3 +274,11 @@ Once a Github release is published, users who installed an auto-updatable packag
      1. save first result as artwork/cover, stop
      1. on no results, but at least on provider returned rate limitation, enqueue artist/album
      1. on no results, save date on artist/album
+
+[releases]: https://github.com/feugy/melodie/releases
+[changelog]: https://github.com/feugy/melodie/blob/master/CHANGELOG.md
+[license]: https://github.com/feugy/melodie/blob/master/LICENSE
+[electron]: https://www.electronjs.org
+[svelte]: https://svelte.dev
+[rxjs]: https://www.learnrxjs.io
+[getpathname]: https://www.electronjs.org/docs/api/app#appgetpathname

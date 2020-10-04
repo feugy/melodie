@@ -30,7 +30,7 @@
 
 <style type="postcss">
   section {
-    @apply z-0 mx-8 mb-8;
+    @apply z-0 m-4 mt-0;
   }
 
   .noResults {

@@ -47,7 +47,7 @@
   }
 
   section {
-    @apply text-center w-full overflow-auto pb-10;
+    @apply text-center w-full overflow-auto;
   }
 
   aside {

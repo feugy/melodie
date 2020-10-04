@@ -156,11 +156,11 @@ describe('Nav component', () => {
     await sleep()
 
     expect(location.hash).toEqual(`#/artist`)
-    fireEvent.click(screen.getAllByRole('button')[0])
+    fireEvent.click(screen.getByText('navigate_before'))
     await sleep(100)
 
     expect(location.hash).toEqual(`#/`)
-    fireEvent.click(screen.getAllByRole('button')[1])
+    fireEvent.click(screen.getByText('navigate_next'))
     await sleep(100)
 
     expect(location.hash).toEqual(`#/artist`)

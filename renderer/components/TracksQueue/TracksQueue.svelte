@@ -51,7 +51,7 @@
 
 <style type="postcss">
   header {
-    @apply flex flex-row text-left px-8;
+    @apply flex flex-row text-left px-4;
   }
 
   div {
@@ -63,7 +63,7 @@
   }
 
   .row {
-    @apply py-1 px-8 flex flex-row items-center cursor-pointer;
+    @apply py-1 px-2 flex flex-row items-center cursor-pointer;
 
     &.current {
       background-color: var(--outline-color);
@@ -83,7 +83,7 @@
   {#if $tracks.length}
     <AddToPlaylist class="mx-4" tracks={$tracks} />
     <span class="totalDuration">{formatTime(sumDurations($tracks))}</span>
-    <Button icon="delete" class="mx-4" on:click={handleClear} />
+    <Button icon="delete" class="ml-2" on:click={handleClear} />
   {/if}
 </header>
 <div bind:this={list}>
@@ -96,7 +96,7 @@
         <Button
           icon="close"
           noBorder
-          class="mx-4"
+          class="mx-2"
           on:click={() => handleRemove(i)} />
       </span>
     </span>
