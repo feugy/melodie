@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0-beta.1](https://github.com/feugy/melodie/compare/v1.0.0-beta.0...v1.0.0-beta.1) (2020-10-05)
+
+
+### Bug Fixes
+
+* **core:** autoUpdater is crashing the app ([b2ed6e9](https://github.com/feugy/melodie/commit/b2ed6e940f665491d06d71c0bb013793c350de67))
+
 ## [1.0.0-beta.0](https://github.com/feugy/melodie/compare/v1.0.0-alpha.6...v1.0.0-beta.0) (2020-10-04)
 
 
