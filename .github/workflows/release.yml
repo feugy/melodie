@@ -8,9 +8,21 @@ on:
       - completed
 
 jobs:
-  release-linux:
+  release:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
-    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        include:
+          - os: ubuntu-latest
+            flags: l
+          - os: windows-latest
+            flags: w
+          - os: macos-latest
+            flags: m
+
+    runs-on: ${{ matrix.os }}
 
     steps:
       - uses: actions/checkout@v2
@@ -18,34 +30,7 @@ jobs:
         with:
           node-version: 14.x
       - run: npm ci
-      - run: npm run release:publish -- onTagOrDraft -l
-        env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
-
-  release-windows:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
-    runs-on: windows-latest
-
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 14.x
-      - run: npm ci
-      - run: npm run release:publish -- onTagOrDraft -w
-        env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
-
-  release-macos:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
-    runs-on: macos-latest
-
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 14.x
-      - run: npm ci
-      - run: npm run release:publish -- onTagOrDraft -m
+      - run: npm run build:svelte
+      - run: npm run release:publish -- onTagOrDraft -${{ matrix.flags}}
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
