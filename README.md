@@ -277,6 +277,8 @@ Once a Github release is published, users who installed an auto-updatable packag
 
 - Snap packaging was hairy to figure out. It is clearly the best option on Linux, as it has great desktop integration (which AppImage lacks) and a renowed app store. However, getting the MediaMetadata to work with snap confinement took two days of try-and-fail research. The full journey is available in this [PR on electron-builnder](https://github.com/electron-userland/electron-builder/pull/5313). Besides, the way snapd is creating different folders for each new version forced me to move artist albums outside of electron's data folders: snapd ensure that files are copied from old to new version, but can not update the media full paths store inside SQLite DB.
 
+- MacOS builder was constantly failing with the same error: 7zip couldn't find any file to compress in the final archive. It turns out it is because the production name as an accent (Mélodie), and the mac flavor of 7zip can not handle it...
+
 #### How watch & diff works
 
 - on app load, trigger diff

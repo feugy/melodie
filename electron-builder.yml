@@ -58,5 +58,6 @@ portable:
   artifactName: ${os} - ${productName} ${version} - Portable.${ext}
 
 mac:
+  target: [dmg]
   identity: null
   category: public.app-category.music
