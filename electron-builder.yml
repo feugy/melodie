@@ -23,6 +23,8 @@ files:
   - '!**/{appveyor.yml,.travis.yml,circle.yml}'
   - '!**/{npm-debug.log,yarn.lock,.yarn-integrity,.yarn-metadata.json}'
 
+artifactName: ${os} - ${productName} ${version}.${ext}
+
 directories:
   buildResources: ./public
 
@@ -48,6 +50,12 @@ snap:
 
 win:
   target: [nsis, portable, zip]
+
+nsis:
+  license: LICENSE
+
+portable:
+  artifactName: ${os} - ${productName} ${version} - Portable.${ext}
 
 mac:
   identity: null

@@ -1,4 +1,4 @@
-<div style="display:flex; justify-content: center;"><img src="./public/icon.png" width="200px"/></div>
+<div style="display:flex; justify-content: center;"><img src="https://github.com/feugy/melodie/raw/master/public/icons/icon-512x512.png" width="200px"/></div>
 
 # Mélodie
 
@@ -6,6 +6,8 @@
 ![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/feugy/melodie?include_prereleases)
 [![GitHub](https://img.shields.io/github/license/feugy/melodie)][license]
 [![CI](https://github.com/feugy/melodie/workflows/CI/badge.svg)](https://github.com/feugy/melodie/actions?query=workflow%3ACI)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/5ba7a3296e3046fdaba771e809e71b91)](https://www.codacy.com/gh/feugy/melodie/dashboard)
+[![Codacy Badge](https://app.codacy.com/project/badge/Coverage/5ba7a3296e3046fdaba771e809e71b91)](https://www.codacy.com/gh/feugy/melodie/dashboard)
 
 Melodie is a portable, simple-as-pie music player.
 
@@ -15,13 +17,32 @@ There are thunsands of them in the wild. This mine is an excuse for learning [El
 
 You will find installers on the [releases][] page.
 
-Notes:
+Please note that AppImage Snap, DMG and NSIS installer will automatically update to the latest available version.
 
-> Windows installers are not signed. Windows will warn you that the source is insecure (it is not!). Simply confirm your choice to install or run Mélodie.
+If you run Mélodie from a zip or using Windows portable version, you will have to download updates by yourself.
 
-> AppImage for linux, Snap and NSIS installer will automatically update to the latest available version.
->
-> If you run Mélodie from a zip or using Windows portable version, you will have to download updates by yourself
+### Note for Windows users
+
+**Windows installers are not signed.**
+
+When you will run the .exe files, Windows will warn you that the source is insecure (it is not!).
+It is possible to bypass the warning by confirming your choice to install or run Mélodie.
+
+### Note for MacOS users
+
+**DMG image is not signed.**
+
+After you will have downloaded the .dmg file, open it and drag the Mélodie icon to the Application Icon.
+Then, MacOS will prevent you from opening Mélodie as I haven't paid for an app deployment certificate.
+
+Once you will have closed the annoying warning, open you `Security` panel in settings, and go to `General` tab.
+There, you should see the list of recently blocked application: Mélodie should be there.
+
+You can add it as an exception, and then run it
+(see: [How to open an app that hasn’t been notarized or is from an unidentified developer](https://support.apple.com/en-euro/HT202491)).
+
+Another option is to open it with Control-click: it'll immediately register the app as an exception
+(see: [Open a Mac app from an unidentified developer](https://support.apple.com/guide/mac-help/open-a-mac-app-from-an-unidentified-developer-mh40616/mac)).
 
 ## TODOs
 
@@ -41,13 +62,6 @@ Notes:
 
 ### release
 
-- [ ] packages
-  - [x] Linux snap
-  - [-] Linux AppImage: no desktop menu icon (need AppImageLauncher)
-  - [-] Windows Nsis: not signed, the executable is flaged as insecure
-  - [-] Windows Portable: not signed, and does not update automatically
-  - [-] MacOS DMG
-  - [ ] MacOS zip
 - [ ] github page
 - [ ] usage statistics
 - [ ] references
@@ -166,6 +180,29 @@ Working with snaps locally isn't really easy.
    snap revert melodie
    ```
 
+### Checking AppImage
+
+To check that generated AppImage works:
+
+1. Install [AppImageLauncher][] if not done yet
+
+1. Download [AppImageLint][]
+
+1. Package application for linux
+
+   ```shell
+   npm run release:artifacts -- -l
+   ```
+
+1. Lint your AppImage:
+
+   ```shell
+   appimagelint dist/Mélodie.AppImage
+   ```
+
+1. Double click on `./dist/Mélodie.AppImage` and integrate it to your system.
+   Please check that the app starts, it can access to local files, its name and icon are correct in the launcher
+
 ## Releasing
 
 Release process is fairly automated: it will generate changelog, bump version, and build melodie for different platform, creating several artifacts which are either packages (snap, AppImage, Nsis) or plain files (zip).
@@ -281,3 +318,5 @@ Once a Github release is published, users who installed an auto-updatable packag
 [svelte]: https://svelte.dev
 [rxjs]: https://www.learnrxjs.io
 [getpathname]: https://www.electronjs.org/docs/api/app#appgetpathname
+[appimagelauncher]: https://github.com/TheAssassin/AppImageLauncher
+[appimagelint]: https://github.com/TheAssassin/appimagelint

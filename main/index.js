@@ -63,7 +63,7 @@ exports.main = async () => {
       webPreferences: {
         nodeIntegration: true
       },
-      icon: `${join(publicFolder, 'icon.png')}`
+      icon: `${join(publicFolder, 'icons', 'icon-512x512.png')}`
     })
     manageState(win)
 
@@ -122,16 +122,30 @@ exports.main = async () => {
   await models.init(getStoragePath('db.sqlite3'))
   settings.init()
   tracks.listen()
-  autoUpdater.logger = getLogger('updater')
+  // autoUpdater is using logger functions detached from their instance
+  const updaterLogger = getLogger('updater')
+  autoUpdater.logger = {
+    info: updaterLogger.info.bind(updaterLogger),
+    warn: updaterLogger.warn.bind(updaterLogger),
+    error: updaterLogger.error.bind(updaterLogger),
+    debug: updaterLogger.debug.bind(updaterLogger)
+  }
   if (!process.env.PORTABLE_EXECUTABLE_DIR) {
-    // portable app can not automatically update
-    autoUpdater.checkForUpdatesAndNotify()
-    // https://github.com/electron-userland/electron-builder/issues/4046#issuecomment-670367840
-    autoUpdater.on('update-downloaded', () => {
-      if (process.env.DESKTOPINTEGRATION === 'AppImageLauncher') {
-        process.env.APPIMAGE = process.env.ARGV0
-      }
-    })
+    try {
+      // https://github.com/electron-userland/electron-builder/issues/4046#issuecomment-670367840
+      autoUpdater.on('update-downloaded', () => {
+        if (process.env.DESKTOPINTEGRATION === 'AppImageLauncher') {
+          process.env.APPIMAGE = process.env.ARGV0
+        }
+      })
+      // portable app can not automatically update
+      await autoUpdater.checkForUpdatesAndNotify()
+    } catch (error) {
+      updaterLogger.error(
+        { error },
+        `failed to run auto-updater: ${error.message}`
+      )
+    }
   }
 }
 
