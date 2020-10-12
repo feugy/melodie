@@ -71,7 +71,6 @@ Another option is to open it with Control-click: it'll immediately register the 
 
 ### Bugs and known issues
 
-1. Given some tracks in queue, and queue scrolled down, playing new tracks immediately does not scrolls the queue up
 1. Opening Melodie several times should not open different instances
 1. Undetected live changes: remove tracks and re-add them. This is a linux-only issue with chokidar
    - https://github.com/paulmillr/chokidar/issues/917
