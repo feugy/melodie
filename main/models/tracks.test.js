@@ -13,15 +13,17 @@ let db
 
 describe('Tracks model', () => {
   const title = faker.commerce.productName()
+  const folder1 = faker.system.directoryPath()
+  const folder2 = faker.system.directoryPath()
 
   const models = [
     {
-      path: faker.system.fileName(),
+      path: join(folder1, faker.system.fileName()),
       tags: JSON.stringify({}),
       mtimeMs: 1590479078019.59
     },
     {
-      path: faker.system.fileName(),
+      path: join(folder1, faker.random.word(), faker.system.fileName()),
       tags: JSON.stringify({
         title,
         artists: [faker.name.findName()],
@@ -30,7 +32,7 @@ describe('Tracks model', () => {
       mtimeMs: 1591821991051.59
     },
     {
-      path: faker.system.fileName(),
+      path: join(folder2, faker.system.fileName()),
       tags: JSON.stringify({
         title: `${faker.commerce.productAdjective()} ${title}`,
         artists: [faker.name.findName()]
@@ -38,7 +40,7 @@ describe('Tracks model', () => {
       mtimeMs: 1459069600000.0
     },
     {
-      path: faker.system.fileName(),
+      path: join(faker.system.directoryPath(), faker.system.fileName()),
       tags: JSON.stringify({
         title: faker.commerce.productName(),
         artists: [],
@@ -258,6 +260,42 @@ describe('Tracks model', () => {
       expect(size).toEqual(2)
       expect(from).toEqual(1)
       expect(sort).toEqual('+title.value')
+    })
+  })
+
+  describe('getByPath', () => {
+    it('return direct children and descendants', async () => {
+      const results = await tracksModel.getByPaths([folder1])
+      expect(results).toEqual(
+        expect.arrayContaining(
+          [models[0], models[1]].map(model => ({
+            ...model,
+            media: null,
+            tags: JSON.parse(model.tags)
+          }))
+        )
+      )
+      expect(results).toHaveLength(2)
+    })
+
+    it('returns models from different folders', async () => {
+      const results = await tracksModel.getByPaths([folder1, folder2])
+      expect(results).toEqual(
+        expect.arrayContaining(
+          [models[0], models[1], models[2]].map(model => ({
+            ...model,
+            media: null,
+            tags: JSON.parse(model.tags)
+          }))
+        )
+      )
+      expect(results).toHaveLength(3)
+    })
+
+    it('can return an empty list', async () => {
+      expect(
+        await tracksModel.getByPaths([faker.system.directoryPath()])
+      ).toEqual([])
     })
   })
 })

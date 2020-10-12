@@ -223,16 +223,20 @@ class Local extends AbstractProvider {
       .toPromise()
   }
 
-  async importTracks() {
-    const { folders } = await settingsModel.get()
+  async importTracks(folders) {
+    const { folders: allFolders } = await settingsModel.get()
+    if (!Array.isArray(folders)) {
+      folders = allFolders
+    }
     const startMs = Date.now()
     broadcast('tracking', {
       inProgress: true,
       op: 'importTracks',
       provider: this.name
     })
+    // unwatch and re-watch all folders
     this.unwatchAll()
-    watch(folders, this.logger)
+    watch(allFolders, this.logger)
     return of(...(folders || []))
       .pipe(
         mergeMap(

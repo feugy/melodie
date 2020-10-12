@@ -1,14 +1,17 @@
 'use strict'
 
+const { join, dirname, resolve } = require('path')
 const faker = require('faker')
 const { artistsModel } = require('../models/artists')
 const { albumsModel } = require('../models/albums')
 const { tracksModel } = require('../models/tracks')
 const { playlistsModel } = require('../models/playlists')
+const settingsService = require('./settings')
 const tracksService = require('./tracks')
 const { hash, broadcast } = require('../utils')
 const { sleep, addRefs, addId } = require('../tests')
 
+jest.mock('./settings')
 jest.mock('../models/artists')
 jest.mock('../models/albums')
 jest.mock('../models/tracks')
@@ -1107,5 +1110,205 @@ describe('fetchWithTracks', () => {
         from
       })
     })
+  })
+})
+
+describe('play', () => {
+  const folders = [
+    join('user', 'music', 'classical'),
+    join('user', 'music', 'disco')
+  ]
+
+  beforeEach(() => {
+    jest.resetAllMocks()
+    settingsService.get.mockResolvedValueOnce({ folders })
+  })
+
+  it('does not play empty entries', async () => {
+    expect(await tracksService.play([])).toEqual([])
+    expect(tracksModel.getByIds).not.toHaveBeenCalled()
+    expect(tracksModel.getByPaths).not.toHaveBeenCalled()
+    expect(settingsService.addFolders).not.toHaveBeenCalled()
+    expect(broadcast).not.toHaveBeenCalled()
+  })
+
+  it('sends tracked files to UI for playing', async () => {
+    const album1 = faker.commerce.productName()
+    const album2 = faker.commerce.productName()
+    const entries = [
+      join(folders[0], album1, faker.system.fileName()),
+      join(folders[0], album1, faker.system.fileName()),
+      join(folders[0], album2, faker.system.fileName())
+    ]
+
+    const tracks = entries.map(path => ({
+      id: hash(path),
+      path,
+      tags: { artists: [] }
+    }))
+    tracksModel.getByIds.mockResolvedValueOnce(tracks)
+
+    expect(await tracksService.play(entries)).toEqual(tracks)
+
+    expect(tracksModel.getByIds).toHaveBeenCalledWith(entries.map(hash))
+    expect(tracksModel.getByIds).toHaveBeenCalledTimes(1)
+    expect(tracksModel.getByPaths).not.toHaveBeenCalled()
+    expect(settingsService.addFolders).not.toHaveBeenCalled()
+    expect(broadcast).toHaveBeenCalledWith('play-tracks', tracks)
+    expect(broadcast).toHaveBeenCalledTimes(1)
+  })
+
+  it('sends tracked folders to UI for playing', async () => {
+    const album1 = faker.commerce.productName()
+    const album2 = faker.commerce.productName()
+    const folder = join(folders[1], album2)
+    const entries = [join(folders[0], album1, faker.system.fileName()), folder]
+    const folderTracks = [
+      join(folder, faker.system.fileName()),
+      join(folder, faker.system.fileName()),
+      join(folder, faker.lorem.word(), faker.system.fileName()),
+      join(folder, faker.lorem.word(), faker.system.fileName())
+    ].map(path => ({
+      id: hash(path),
+      path,
+      tags: { artists: [] }
+    }))
+
+    const tracks = [
+      {
+        id: hash(entries[0]),
+        path: entries[0],
+        tags: { artists: [] }
+      },
+      ...folderTracks
+    ]
+    tracksModel.getByIds.mockResolvedValueOnce(tracks.slice(0, 1))
+    tracksModel.getByPaths.mockResolvedValueOnce(folderTracks)
+
+    expect(await tracksService.play(entries)).toEqual(tracks)
+
+    expect(tracksModel.getByIds).toHaveBeenCalledWith(
+      entries.slice(0, 1).map(hash)
+    )
+    expect(tracksModel.getByIds).toHaveBeenCalledTimes(1)
+    expect(tracksModel.getByPaths).toHaveBeenCalledWith([resolve(folder)])
+    expect(tracksModel.getByPaths).toHaveBeenCalledTimes(1)
+    expect(settingsService.addFolders).not.toHaveBeenCalled()
+    expect(broadcast).toHaveBeenCalledWith('play-tracks', tracks)
+    expect(broadcast).toHaveBeenCalledTimes(1)
+  })
+
+  it('tracks unknown folders', async () => {
+    const album1 = faker.commerce.productName()
+    const album2 = faker.commerce.productName()
+    const entries = [
+      join(folders[0], album1, faker.system.fileName()),
+      faker.system.filePath(),
+      join(folders[0], album2, faker.system.fileName()),
+      faker.system.filePath()
+    ]
+
+    const tracks = entries.map(path => ({
+      id: hash(path),
+      path,
+      tags: { artists: [] }
+    }))
+    tracksModel.getByIds.mockResolvedValueOnce(tracks)
+    settingsService.addFolders.mockImplementation(async (added, done) =>
+      done([])
+    )
+
+    expect(await tracksService.play(entries)).toEqual(tracks)
+
+    expect(tracksModel.getByIds).toHaveBeenCalledWith(entries.map(hash))
+    expect(tracksModel.getByIds).toHaveBeenCalledTimes(1)
+    expect(tracksModel.getByPaths).not.toHaveBeenCalled()
+    expect(settingsService.addFolders).toHaveBeenCalledWith(
+      [dirname(entries[1]), dirname(entries[3])],
+      expect.any(Function)
+    )
+    expect(settingsService.addFolders).toHaveBeenCalledTimes(1)
+    expect(broadcast).toHaveBeenCalledAfter(settingsService.addFolders)
+    expect(broadcast).toHaveBeenCalledWith('play-tracks', tracks)
+    expect(broadcast).toHaveBeenCalledTimes(1)
+  })
+
+  it('consider all tracks inside unknown folder', async () => {
+    const album1 = faker.commerce.productName()
+    const added = faker.system.directoryPath()
+
+    const entries = [join(folders[0], album1, faker.system.fileName()), added]
+
+    const files = [
+      join(added, faker.system.fileName()),
+      join(added, faker.system.fileName()),
+      join(added, faker.lorem.word(), faker.system.fileName()),
+      join(added, faker.lorem.word(), faker.system.fileName())
+    ]
+    const addedTracks = files.map(path => ({
+      id: hash(path),
+      path,
+      tags: { artists: [] }
+    }))
+
+    const tracks = [
+      {
+        id: hash(entries[0]),
+        path: entries[0],
+        tags: { artists: [] }
+      },
+      ...addedTracks
+    ]
+
+    tracksModel.getByIds.mockResolvedValueOnce(tracks.slice(0, 1))
+    tracksModel.getByPaths.mockResolvedValueOnce(addedTracks)
+    settingsService.addFolders.mockImplementation(async (added, done) =>
+      done(tracks.slice(1))
+    )
+
+    expect(await tracksService.play(entries)).toEqual(tracks)
+
+    expect(tracksModel.getByIds).toHaveBeenCalledWith([hash(entries[0])])
+    expect(tracksModel.getByIds).toHaveBeenCalledTimes(1)
+    expect(tracksModel.getByPaths).toHaveBeenCalledWith([added])
+    expect(tracksModel.getByPaths).toHaveBeenCalledTimes(1)
+    expect(settingsService.addFolders).toHaveBeenCalledWith(
+      entries.slice(1),
+      expect.any(Function)
+    )
+    expect(settingsService.addFolders).toHaveBeenCalledTimes(1)
+    expect(broadcast).toHaveBeenCalledAfter(settingsService.addFolders)
+    expect(broadcast).toHaveBeenCalledWith('play-tracks', tracks)
+    expect(broadcast).toHaveBeenCalledTimes(1)
+  })
+
+  it('omit untracked files from played files', async () => {
+    const album1 = faker.commerce.productName()
+    const album2 = faker.commerce.productName()
+    const entries = [
+      join(folders[0], album1, faker.system.fileName()),
+      join(folders[0], album1, faker.system.fileName()),
+      join(folders[1], album2, faker.system.fileName()),
+      join(folders[1], album2, faker.system.fileName())
+    ]
+
+    const tracks = [entries[0], entries[2]].map(path => ({
+      id: hash(path),
+      path,
+      tags: { artists: [] }
+    }))
+    tracksModel.getByIds.mockResolvedValueOnce(tracks)
+    settingsService.addFolders.mockImplementation(async (added, done) =>
+      done([])
+    )
+
+    expect(await tracksService.play(entries)).toEqual(tracks)
+
+    expect(tracksModel.getByIds).toHaveBeenCalledWith(entries.map(hash))
+    expect(tracksModel.getByIds).toHaveBeenCalledTimes(1)
+    expect(tracksModel.getByPaths).not.toHaveBeenCalled()
+    expect(settingsService.addFolders).not.toHaveBeenCalled()
+    expect(broadcast).toHaveBeenCalledWith('play-tracks', tracks)
+    expect(broadcast).toHaveBeenCalledTimes(1)
   })
 })

@@ -154,6 +154,7 @@ describe('Local provider', () => {
       }
       expect(covers.findInFolder).toHaveBeenCalledTimes(files.length)
       expect(tag.read).toHaveBeenCalledTimes(files.length)
+      expect(settingsModel.get).toHaveBeenCalledTimes(1)
     })
 
     it('process tracks in batches', async () => {
@@ -172,6 +173,7 @@ describe('Local provider', () => {
       expect(tracksService.remove).toHaveBeenCalledTimes(0)
       expect(covers.findInFolder).toHaveBeenCalledTimes(files.length)
       expect(tag.read).toHaveBeenCalledTimes(files.length)
+      expect(settingsModel.get).toHaveBeenCalledTimes(1)
     })
 
     it('handles multiple folders', async () => {
@@ -197,6 +199,36 @@ describe('Local provider', () => {
       expect(tag.read).toHaveBeenCalledTimes(tracks.length)
       expect(tracksService.add).toHaveBeenCalledTimes(1)
       expect(tracksService.remove).toHaveBeenCalledTimes(0)
+      expect(settingsModel.get).toHaveBeenCalledTimes(1)
+    })
+
+    it('imports specified folders', async () => {
+      const { folder, files } = await makeFolder({ depth: 3, fileNb: 10 })
+      settingsModel.get.mockResolvedValueOnce({ folders: [folder] })
+
+      const tracks = await provider.importTracks([folder])
+      expect(tracks).toEqual(
+        expect.arrayContaining(
+          files.map(({ path, stats }) => ({
+            id: hash(path),
+            path: path,
+            media: null,
+            tags: {},
+            mtimeMs: stats.mtimeMs
+          }))
+        )
+      )
+      expect(tracks).toHaveLength(files.length)
+      expect(tracksService.add).toHaveBeenCalledWith(tracks)
+      expect(tracksService.add).toHaveBeenCalledTimes(1)
+      expect(tracksService.remove).toHaveBeenCalledTimes(0)
+      for (const { path } of files) {
+        expect(covers.findInFolder).toHaveBeenCalledWith(path)
+        expect(tag.read).toHaveBeenCalledWith(path)
+      }
+      expect(covers.findInFolder).toHaveBeenCalledTimes(files.length)
+      expect(tag.read).toHaveBeenCalledTimes(files.length)
+      expect(settingsModel.get).toHaveBeenCalledTimes(1)
     })
   })
 

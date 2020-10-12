@@ -124,6 +124,10 @@ fromServerChannel(`track-removals`).subscribe(removedIds => {
   }
 })
 
+fromServerChannel(`play-tracks`).subscribe(tracks => {
+  add(tracks, true)
+})
+
 // first init
 queue$.subscribe()
 clear()

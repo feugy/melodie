@@ -18,7 +18,7 @@ const {
 } = require('./utils')
 const { version, name } = require('../package')
 
-exports.main = async () => {
+exports.main = async argv => {
   config()
   const { app, BrowserWindow, Menu } = electron
   const isDev = process.env.ROLLUP_WATCH
@@ -27,8 +27,19 @@ exports.main = async () => {
 
   const logger = getLogger()
 
+  if (!app.isPackaged) {
+    // when package, argv does not include the usual "node" first parameter
+    argv.shift()
+  }
+  // list of all files/folders from the OS
+  const fileEntries = argv.slice(1)
+
   logger.info(
-    { levelFile: process.env.LOG_LEVEL_FILE || '.levels', pid: process.pid },
+    {
+      levelFile: process.env.LOG_LEVEL_FILE || '.levels',
+      pid: process.pid,
+      fileEntries
+    },
     `starting... To change log levels, edit the level file and run \`kill -USR2 ${process.pid}\``
   )
 
@@ -63,7 +74,8 @@ exports.main = async () => {
       webPreferences: {
         nodeIntegration: true
       },
-      icon: `${join(publicFolder, 'icons', 'icon-512x512.png')}`
+      icon: `${join(publicFolder, 'icons', 'icon-512x512.png')}`,
+      show: false
     })
     manageState(win)
 
@@ -98,7 +110,8 @@ exports.main = async () => {
       media,
       ...electron
     })
-    win.loadURL(`file://${join(publicFolder, 'index.html')}`)
+    win.once('ready-to-show', () => win.show())
+    await win.loadURL(`file://${join(publicFolder, 'index.html')}`)
   }
 
   // Quit when all windows are closed, except on macOS.
@@ -116,12 +129,15 @@ exports.main = async () => {
     }
   })
 
+  await models.init(getStoragePath('db.sqlite3'))
+  await settings.init()
+  tracks.listen()
+
   await app.whenReady()
   await createWindow()
+  // add relevant files to track queue
+  tracks.play(fileEntries)
 
-  await models.init(getStoragePath('db.sqlite3'))
-  settings.init()
-  tracks.listen()
   // autoUpdater is using logger functions detached from their instance
   const updaterLogger = getLogger('updater')
   autoUpdater.logger = {
@@ -150,5 +166,5 @@ exports.main = async () => {
 }
 
 if (require.main === module) {
-  exports.main()
+  exports.main(process.argv)
 }

@@ -7,6 +7,7 @@ const osLocale = require('os-locale')
 const settingsService = require('./settings')
 const { local, audiodb, discogs } = require('../providers')
 const { settingsModel } = require('../models/settings')
+const { broadcast } = require('../utils')
 
 jest.mock('os-locale')
 jest.mock('electron', () => ({
@@ -22,6 +23,7 @@ jest.mock('../models/settings')
 jest.mock('../providers/local')
 jest.mock('../providers/discogs')
 jest.mock('../providers/audiodb')
+jest.mock('../utils/electron-remote')
 
 describe('Settings service', () => {
   beforeEach(() => {
@@ -188,6 +190,7 @@ describe('Settings service', () => {
       const finalFolders = folders.concat(filePaths)
       const saved = { id: settingsModel.ID, folders: finalFolders, locale }
       settingsModel.save.mockResolvedValueOnce(saved)
+      local.importTracks.mockResolvedValueOnce()
 
       expect(await settingsService.addFolders()).toEqual(saved)
 
@@ -198,6 +201,8 @@ describe('Settings service', () => {
       expect(electron.dialog.showOpenDialog).toHaveBeenCalledWith({
         properties: ['openDirectory', 'multiSelections']
       })
+      expect(broadcast).toHaveBeenCalledWith('watching-folders', filePaths)
+      expect(broadcast).toHaveBeenCalledTimes(1)
     })
 
     it('does not saves empty selection', async () => {
@@ -208,9 +213,34 @@ describe('Settings service', () => {
       expect(settingsModel.get).not.toHaveBeenCalled()
       expect(settingsModel.save).not.toHaveBeenCalled()
       expect(local.importTracks).not.toHaveBeenCalled()
+      expect(broadcast).not.toHaveBeenCalled()
     })
 
-    it('merges nested added folder into its tracked parent', async () => {
+    it('saves specified folders to settings and invoke done callback', async () => {
+      const locale = faker.random.word()
+      const folders = [faker.system.fileName()]
+      settingsModel.get.mockResolvedValueOnce({ folders, locale })
+      const added = [faker.system.fileName(), faker.system.fileName()]
+      const finalFolders = folders.concat(added)
+      const saved = { id: settingsModel.ID, folders: finalFolders, locale }
+      settingsModel.save.mockResolvedValueOnce(saved)
+      local.importTracks.mockResolvedValueOnce()
+
+      const onDone = jest.fn()
+
+      expect(await settingsService.addFolders(added, onDone)).toEqual(saved)
+
+      expect(settingsModel.get).toHaveBeenCalledTimes(1)
+      expect(settingsModel.save).toHaveBeenCalledWith(saved)
+      expect(settingsModel.save).toHaveBeenCalledTimes(1)
+      expect(local.importTracks).toHaveBeenCalledTimes(1)
+      expect(electron.dialog.showOpenDialog).not.toHaveBeenCalled()
+      expect(onDone).toHaveBeenCalledAfter(broadcast)
+      expect(broadcast).toHaveBeenCalledWith('watching-folders', added)
+      expect(broadcast).toHaveBeenCalledTimes(1)
+    })
+
+    it('merges nested added folders into its tracked parent', async () => {
       const locale = faker.random.word()
       const parent1 = join(faker.lorem.word(), faker.lorem.word())
       const parent2 = join(faker.lorem.word(), faker.lorem.word())
@@ -225,6 +255,7 @@ describe('Settings service', () => {
       const finalFolders = folders.concat(filePaths.slice(2))
       const saved = { id: settingsModel.ID, folders: finalFolders, locale }
       settingsModel.save.mockResolvedValueOnce(saved)
+      local.importTracks.mockResolvedValueOnce()
 
       expect(await settingsService.addFolders()).toEqual(saved)
 
@@ -232,6 +263,11 @@ describe('Settings service', () => {
       expect(settingsModel.save).toHaveBeenCalledWith(saved)
       expect(settingsModel.save).toHaveBeenCalledTimes(1)
       expect(local.importTracks).toHaveBeenCalledTimes(1)
+      expect(broadcast).toHaveBeenCalledWith(
+        'watching-folders',
+        filePaths.slice(2)
+      )
+      expect(broadcast).toHaveBeenCalledTimes(1)
     })
 
     it('removes nested folders when adding a common parent', async () => {
@@ -249,6 +285,7 @@ describe('Settings service', () => {
       const finalFolders = [folders[1], parent]
       const saved = { id: settingsModel.ID, folders: finalFolders, locale }
       settingsModel.save.mockResolvedValueOnce(saved)
+      local.importTracks.mockResolvedValueOnce()
 
       expect(await settingsService.addFolders()).toEqual(saved)
 
@@ -256,6 +293,29 @@ describe('Settings service', () => {
       expect(settingsModel.save).toHaveBeenCalledWith(saved)
       expect(settingsModel.save).toHaveBeenCalledTimes(1)
       expect(local.importTracks).toHaveBeenCalledTimes(1)
+      expect(broadcast).toHaveBeenCalledWith('watching-folders', [parent])
+      expect(broadcast).toHaveBeenCalledTimes(1)
+    })
+
+    it('does not import already-watched folders', async () => {
+      const locale = faker.random.word()
+      const parent1 = join(faker.lorem.word(), faker.lorem.word())
+      const parent2 = join(faker.lorem.word(), faker.lorem.word())
+      const folders = [parent1, parent2]
+      settingsModel.get.mockResolvedValueOnce({ folders, locale })
+      electron.dialog.showOpenDialog.mockResolvedValueOnce({
+        filePaths: [
+          join(parent1, faker.lorem.word()),
+          join(parent2, faker.lorem.word())
+        ]
+      })
+
+      expect(await settingsService.addFolders()).toEqual({ folders, locale })
+
+      expect(settingsModel.get).toHaveBeenCalledTimes(1)
+      expect(settingsModel.save).not.toHaveBeenCalled()
+      expect(local.importTracks).not.toHaveBeenCalled()
+      expect(broadcast).not.toHaveBeenCalled()
     })
   })
 
