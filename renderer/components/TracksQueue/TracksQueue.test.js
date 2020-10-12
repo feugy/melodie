@@ -78,7 +78,7 @@ describe('TracksQueue component', () => {
       expect(get(index)).toEqual(0)
 
       fireEvent.click(screen.getByText(tracks[2].tags.title))
-      await tick()
+      await sleep(310)
 
       expect(get(index)).toEqual(2)
       expect(
@@ -86,7 +86,7 @@ describe('TracksQueue component', () => {
       ).toHaveBeenCalled()
 
       fireEvent.click(screen.getByText(tracks[1].tags.title))
-      await tick()
+      await sleep(310)
 
       expect(get(index)).toEqual(1)
       expect(

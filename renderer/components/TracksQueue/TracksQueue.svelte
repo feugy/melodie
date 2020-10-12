@@ -38,7 +38,8 @@
 
   onMount(() =>
     index.subscribe(async () => {
-      await tick()
+      // we need to await until SortableList animations are over
+      await new Promise(r => setTimeout(r, 300))
       if (list) {
         const current = list.querySelector('.current')
         if (current) {
