@@ -2,12 +2,22 @@
 
 const { dialog } = require('electron')
 const { settingsModel } = require('../models')
-const { getLogger, mergeFolders, getSystemLocale } = require('../utils')
+const {
+  broadcast,
+  getLogger,
+  mergePaths,
+  getSystemLocale
+} = require('../utils')
 const { local, audiodb, discogs, allProviders } = require('../providers')
 
 const logger = getLogger('services/settings')
 
 module.exports = {
+  /**
+   * Returns settings, guessing locale if not set
+   * @async
+   * @returns {SettingsModel} current settings
+   */
   async get() {
     const settings = await settingsModel.get()
     if (!settings.locale) {
@@ -16,6 +26,13 @@ module.exports = {
     return settings
   },
 
+  /**
+   * Initialize the settings service:
+   * - increments the number of times the application was opened
+   * - initializes AudioDB & Discogs providers with keys and tokens
+   * - triggers track comparison on all providers
+   * @async
+   */
   async init() {
     const settings = await this.get()
     await settingsModel.save({
@@ -31,25 +48,50 @@ module.exports = {
     }
   },
 
-  async addFolders() {
-    logger.debug('picking new folders')
-    const { filePaths: folders } = await dialog.showOpenDialog({
-      properties: ['openDirectory', 'multiSelections']
-    })
-    if (!folders.length) {
-      return null
+  /**
+   * Monitors new folders, importing their tracks.
+   * Broadcasts `watching-folders` message when new folders are fully imported
+   * @async
+   * @param {array<string>} folders - list of added folders. If not set, opens a system dialogue for users to select
+   *                                  folder(s) on their drive.
+   * @param {function} importDone   - optional callback invoked when track import is over
+   * @returns {SettingsModel} updates settings
+   */
+  async addFolders(folders, importDone = () => {}) {
+    if (!Array.isArray(folders)) {
+      logger.debug('picking new folders')
+      folders = (
+        await dialog.showOpenDialog({
+          properties: ['openDirectory', 'multiSelections']
+        })
+      ).filePaths
+      if (!folders.length) {
+        return null
+      }
     }
     logger.info({ folders }, `adding new folders...`)
     const settings = await this.get()
-    const merged = mergeFolders(folders, settings.folders)
+    const { merged, added } = mergePaths(folders, settings.folders)
+    if (!added.length) {
+      return settings
+    }
     const saved = await settingsModel.save({
       ...settings,
       folders: merged
     })
-    local.importTracks()
+    local.importTracks(added).then(imported => {
+      broadcast('watching-folders', added)
+      importDone(imported)
+    })
     return saved
   },
 
+  /**
+   * Removes a folder from the list of monitored folders.
+   * @async
+   * @param {string} folder - removed folder.
+   * @returns {SettingsModel} updates settings
+   */
   async removeFolder(folder) {
     let settings = await this.get()
     const { folders } = settings
@@ -63,6 +105,12 @@ module.exports = {
     return settings
   },
 
+  /**
+   * Change locale in settings
+   * @async
+   * @param {string} value - new locale
+   * @returns {SettingsModel} updates settings
+   */
   async setLocale(value) {
     const settings = await this.get()
     logger.debug({ value }, 'saving new locale value')
@@ -72,6 +120,12 @@ module.exports = {
     })
   },
 
+  /**
+   * Change AudioDB provider's key in settings, and initializes the provider.
+   * @async
+   * @param {string} key - new key
+   * @returns {SettingsModel} updates settings
+   */
   async setAudioDBKey(key) {
     const settings = await this.get()
     const conf = { key }
@@ -84,6 +138,12 @@ module.exports = {
     return saved
   },
 
+  /**
+   * Change Discogs provider's key in settings, and initializes the provider.
+   * @async
+   * @param {string} key - new key
+   * @returns {SettingsModel} updates settings
+   */
   async setDiscogsToken(token) {
     const settings = await this.get()
     const conf = { token }
@@ -96,6 +156,14 @@ module.exports = {
     return saved
   },
 
+  /**
+   * Change the UI behaviour when enqueing tracks.
+   * @async
+   * @param {object} behaviour            - new behaviour, including:
+   * @param {boolean} behaviour.clearBefore - whether the tracks queue should be cleared when adding and immediately playing new tracks
+   * @param {boolean} behaviour.onClick     - whether playing immediately or enqueuing tracks on simple click
+   * @returns {SettingsModel} updates settings
+   */
   async setEnqueueBehaviour({ clearBefore, onClick }) {
     const settings = await this.get()
     logger.debug({ clearBefore, onClick }, 'saving enqueue behaviour')

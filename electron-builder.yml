@@ -28,6 +28,23 @@ artifactName: ${os} - ${productName} ${version}.${ext}
 directories:
   buildResources: ./public
 
+fileAssociations:
+  - ext: flac
+    mimeType: audio/flac
+    role: Viewer
+  - ext: opus
+    mimeType: audio/opus
+    role: Viewer
+  - ext: ogg
+    mimeType: audio/ogg
+    role: Viewer
+  - ext: mp3
+    mimeType: audio/mpeg
+    role: Viewer
+  - ext: webm
+    mimeType: audio/webm
+    role: Viewer
+
 publish:
   - provider: github
     owner: feugy
@@ -36,6 +53,8 @@ publish:
 linux:
   target: [snap, AppImage, tar.gz]
   category: Audio
+  mimeTypes:
+    - inode/directory
 
 snap:
   plugs:
@@ -47,6 +66,10 @@ snap:
     # - mpris:
     #     name: chromium
     - mpris
+
+appImage:
+  desktop:
+    X-AppImage-Version: ''
 
 win:
   target: [nsis, portable, zip]

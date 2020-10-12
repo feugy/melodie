@@ -24,6 +24,16 @@ class TracksModel extends Model {
     return result
   }
 
+  async getByPaths(paths) {
+    const query = this.db(this.name)
+    for (const path of paths) {
+      query.orWhere('path', 'like', `${path}%`)
+    }
+    const results = (await query.select()).map(this.makeDeserializer())
+    this.logger.debug({ paths, hitCount: results.length }, `fetch by paths`)
+    return results
+  }
+
   async save(data) {
     if (!Array.isArray(data)) {
       data = [data]

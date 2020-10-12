@@ -1309,4 +1309,45 @@ describe('track-queue store', () => {
       })
     })
   })
+
+  describe('given incoming tracks from Main process', () => {
+    const played = [
+      { id: 1, path: faker.system.fileName() },
+      { id: 2, path: faker.system.fileName() },
+      { id: 3, path: faker.system.fileName() }
+    ]
+
+    beforeAll(() => {
+      settings.next({
+        enqueueBehaviour: { onClick: false, clearBefore: false }
+      })
+    })
+
+    beforeEach(() => queue.clear())
+
+    it('immediately plays received tracks', async () => {
+      mockIpcRenderer.emit('play-tracks', null, played)
+      await tick()
+
+      expect(get(queue.tracks)).toEqual(played)
+      expect(get(queue.current)).toEqual(played[0])
+      expect(get(queue.index)).toEqual(0)
+    })
+
+    it('adds received tracks to the queue and play them', async () => {
+      const files = [
+        { id: 4, path: faker.system.fileName() },
+        { id: 5, path: faker.system.fileName() },
+        { id: 6, path: faker.system.fileName() }
+      ]
+      queue.add(files)
+
+      mockIpcRenderer.emit('play-tracks', null, played)
+      await tick()
+
+      expect(get(queue.tracks)).toEqual([...files, ...played])
+      expect(get(queue.current)).toEqual(played[0])
+      expect(get(queue.index)).toEqual(files.length)
+    })
+  })
 })

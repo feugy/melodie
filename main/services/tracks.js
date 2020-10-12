@@ -1,5 +1,6 @@
 'use strict'
 
+const { extname, resolve } = require('path')
 const { of, from, concat, merge, EMPTY, Subject } = require('rxjs')
 const {
   reduce,
@@ -11,7 +12,14 @@ const {
   tap,
   bufferTime
 } = require('rxjs/operators')
-const { broadcast, getLogger, differenceRef } = require('../utils')
+const {
+  broadcast,
+  differenceRef,
+  dirPaths,
+  getLogger,
+  hash,
+  mergePaths
+} = require('../utils')
 const {
   albumsModel,
   tracksModel,
@@ -21,19 +29,51 @@ const {
 
 const logger = getLogger('services/tracks')
 
+// Because synchronizing folders may broadcast a lot of messages to the UI,
+// this queue is a buffer to only broadcast once every second (see listen())
 const messages$ = new Subject()
 
 const sorters = {
+  /**
+   * Sort tracks by their track number (in tags): consider disk number, then track number
+   * @param {AbstractTrackList} list      - the list containing these tracks
+   * @param {array<TracksModel>} results  - the tracks
+   * @returns {array<TracksModel>} sorted tracks
+   */
   trackNo: (list, results) =>
     results.sort((t1, t2) =>
       t1.tags.disk.no !== t2.tags.disk.no
         ? (t1.tags.disk.no || Infinity) - (t2.tags.disk.no || Infinity)
         : (t1.tags.track.no || Infinity) - (t2.tags.track.no || Infinity)
     ),
+  /**
+   * Sort tracks by their rank in the list
+   * @param {AbstractTrackList} list      - the list containing these tracks
+   * @param {array<TracksModel>} results  - the tracks
+   * @returns {array<TracksModel>} sorted tracks
+   */
   rank: (list, results) =>
     list.trackIds.map(id => results.find(track => track.id === id))
 }
 
+/**
+ * Builds a pipeline for processing track.
+ * An record cav contain properties:
+ * - `${property}Ref`: a reference to a model. If property is "album", consider as an album ref.
+ *                     This record will be added to the relevant model, if not the cased already.
+ * - `prev-${property}Ref`: a reference to the old model. If property is "album", consider as an album ref.
+ *                          This record will be removed from the relevant model.
+ * - media: media of the track. If present, will be used as the referenced model.
+ * - id: track id.
+ * All other properties will be ignored.
+ *
+ * The generated pipeline will,
+ * - collect all records that reference the same model, and save that model.
+ * - collect all previous reference to the same model, and save that model (which could remove it).
+ * @param {string} property - model name, lower cased
+ * @param {constructor} model - the model class
+ * @returns {array<Function>} array of reactive functions to be piped to an observable
+ */
 function makeListPipeline(property, model) {
   return [
     filter(data => data[`${property}Ref`] || data[`prev-${property}Ref`]),
@@ -89,6 +129,9 @@ function makeListPipeline(property, model) {
 
 let subscription
 
+/**
+ * Stops the active subscription to message$ observable, if any.
+ */
 function stopListening() {
   if (subscription) {
     subscription.unsubscribe()
@@ -96,6 +139,11 @@ function stopListening() {
 }
 
 module.exports = {
+  /**
+   * Starts buffering and broadcasting messages to the UI thread:
+   * it stops previous subscription (if any) and subscribes to message$
+   * observable.
+   */
   listen() {
     stopListening()
     subscription = messages$
@@ -121,6 +169,19 @@ module.exports = {
 
   stopListening,
 
+  /**
+   * Starts monitoring new or existing tracks.
+   * It first saves them into the database, then it computes new references to Albums and Artists, and updates
+   * database accordingly.
+   * It broadcasts messages:
+   * - `track-changes` for any added track
+   * - `album-changes` for any album models created or updated due to references
+   * - `artist-changes` for any artist models created or updated due to references
+   * - `album-removals` for any existing album removed because no track are referencing them
+   * - `artist-removals` for any existing artist removed because no track are referencing them
+   * @async
+   * @param {array<TracksModel>} tracks - list of added track models
+   */
   async add(tracks) {
     const tracks$ = from(tracksModel.save(tracks)).pipe(
       mergeMap(from),
@@ -175,6 +236,17 @@ module.exports = {
     await tracks$.toPromise()
   },
 
+  /**
+   * Stops monitoring existing tracks.
+   * It removes tracks from database, then it computes new references to Albums and Artists, and updates
+   * database accordingly.
+   * It broadcasts messages:
+   * - `track-removal` for any removed track
+   * - `album-removals` for any existing album removed because no track are referencing them
+   * - `artist-removals` for any existing artist removed because no track are referencing them
+   * @async
+   * @param {array<number>} trackIds - list of removed track model ids
+   */
   async remove(trackIds) {
     const tracks$ = from(tracksModel.removeByIds(trackIds)).pipe(
       mergeMap(from),
@@ -196,6 +268,26 @@ module.exports = {
     await tracks$.toPromise()
   },
 
+  /**
+   * @typedef {"artist" | "album" | "playlist"} ModelName
+   */
+
+  /**
+   * @typedef {object} Page
+   * @property {number} total - total number of models
+   * @property {number} size  - 0-based rank of the first model returned
+   * @property {number} from  - maximum number of models per page
+   * @property {string} sort  - sorting criteria used: direction (+ or -) then property (name, rank...)
+   * @property {array<ArtistsModel|AlbumsModel|PlaylistsModel|TracksModel>} results - returned models
+   */
+
+  /**
+   * Paginated list of artists, albums or playlists, sorted by name
+   * @async
+   * @param {ModelName} modelName - listed models
+   * @param {object} criteria - pagination criteria: see the corresponding AbstractModel.list() method
+   * @returns {Page} a page of models
+   */
   async list(modelName, criteria) {
     logger.debug({ modelName, criteria }, `list ${modelName}s`)
     return (modelName === 'artist'
@@ -206,6 +298,18 @@ module.exports = {
     ).list({ sort: 'name', ...criteria })
   },
 
+  /**
+   * @typedef {"trackNo" | "rank"} TrackSortBy
+   */
+
+  /**
+   * Find a given artist, album or playlist with their tracks
+   * @async
+   * @param {ModelName} modelName - fetched model
+   * @param {number} id           - id or the retrieved model
+   * @param {TrackSortBy} sortBy  - criteria for sorting returned tracks
+   * @returns {AbstractModel|null} the retrieved model, if any
+   */
   async fetchWithTracks(modelName, id, sortBy = 'trackNo') {
     logger.debug({ modelName, id, sortBy }, `fetch ${modelName} with tracks`)
     const list = await (modelName === 'artist'
@@ -221,6 +325,31 @@ module.exports = {
     return list
   },
 
+  /**
+   * @typedef {object} SearchResult
+   * @property {number} size          - 0-based rank of the first model returned
+   * @property {number} from          - maximum number of models per page
+   * @property {number} totalSum      - total number of results (all models)
+   * @property {object} totals        - number of maching models:
+   * @property {number} totals.albums   - total number of matching albums
+   * @property {number} totals.artists  - total number of matching artists
+   * @property {number} totals.tracks - total number of matching tracks
+   * @property {Page} albums          - a page of matching albums
+   * @property {Page} artists         - a page of matching artists
+   * @property {Page} tracks          - a page of matching tracks
+   */
+
+  /**
+   * Paginated list of artists, albums and tracks containing a given text.
+   * See each model for to know which model properties will be considered.
+   * *Note:* Playlist are not supported yet.
+   * @async
+   * @param {string} searched     - the searched text
+   * @param {object} criteria     - pagination criteria:
+   * @param {number} criteria.from  - 0-based rank of the first model returned
+   * @param {number} criteria.size  - maximum number of models per page
+   * @returns {SearchResult} a page of results
+   */
   async search(searched, { size, from } = {}) {
     logger.debug({ searched }, `search for "${searched}"`)
     const [albums, artists, tracks] = await Promise.all([
@@ -249,5 +378,59 @@ module.exports = {
       artists: artists.results,
       tracks: tracks.results
     }
+  },
+
+  /**
+   * From an array of files and folders:
+   * - extract parent folders, and add them to the list of monitored folders if needed
+   * - get all tracks contained in asked folders
+   * - get all tracks associated to asked files
+   * - path them to the UI for playing
+   * @async
+   * @param {array<string>} entries - list of desired files and folders
+   * @returns {array<TracksModel} the list of played models (could be empty)
+   */
+  async play(entries) {
+    if (!entries.length) {
+      return []
+    }
+    // breaks a circular dependency
+    const settingsService = require('./settings')
+    logger.debug({ entries }, `trying to play file entries`)
+    const parents = dirPaths(entries)
+    const settings = await settingsService.get()
+    const { added } = mergePaths(parents, settings.folders)
+    const files = []
+    const folders = []
+    const tracks = []
+    for (const entry of entries) {
+      if (extname(entry) === '') {
+        folders.push(resolve(entry))
+      } else {
+        files.push(entry)
+      }
+    }
+    // add new folders to monitored list
+    if (added.length) {
+      logger.debug({ added }, `adding untracked folders`)
+      await new Promise(resolve => settingsService.addFolders(added, resolve))
+    }
+    // find all tracks from their path name
+    if (files.length) {
+      tracks.push(
+        ...(await tracksModel.getByIds(files.map(path => hash(path))))
+      )
+    }
+    // find all tracks within specify folders
+    if (folders.length) {
+      tracks.push(...(await tracksModel.getByPaths(folders)))
+    }
+    broadcast('play-tracks', tracks)
+
+    logger.debug(
+      { tracks: tracks.map(({ path, id }) => ({ id, path })) },
+      `playing tracks`
+    )
+    return tracks
   }
 }
