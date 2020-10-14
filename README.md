@@ -48,7 +48,6 @@ Another option is to open it with Control-click: it'll immediately register the 
 
 ### features
 
-- [ ] splash screen or loading icon (instead of the ugly white page)
 - [ ] images from tags
 - [ ] configure replay gain from settings
 - [ ] display tracks/albums/artists count in settings
@@ -71,7 +70,6 @@ Another option is to open it with Control-click: it'll immediately register the 
 
 ### Bugs and known issues
 
-1. Opening Melodie several times should not open different instances
 1. Undetected live changes: remove tracks and re-add them. This is a linux-only issue with chokidar
    - https://github.com/paulmillr/chokidar/issues/917
    - https://github.com/paulmillr/chokidar/issues/591
