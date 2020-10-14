@@ -2,13 +2,18 @@
 
 const { EventEmitter } = require('events')
 const { resolve } = require('path')
+const os = require('os')
 const electron = require('electron')
 const { autoUpdater } = require('electron-updater')
 const faker = require('faker')
-const { main } = require('.')
 const models = require('./models')
 const services = require('./services')
 const { configureExternalLinks } = require('./utils')
+const { sleep } = require('./tests')
+
+let platformSpy = jest.spyOn(os, 'platform')
+const { main } = require('.')
+const { app } = require('electron')
 
 jest.mock('electron', () => {
   const { EventEmitter } = require('events')
@@ -45,12 +50,15 @@ describe('Application test', () => {
   let win
 
   beforeEach(() => {
-    jest.resetModules()
     jest.clearAllMocks()
     win = new EventEmitter()
     win.loadURL = jest.fn()
     electron.BrowserWindow.mockReturnValue(win)
     electron.app.removeAllListeners()
+  })
+
+  afterEach(() => {
+    app.emit('window-all-closed')
   })
 
   it('initialize models, tracks service and loads renderer', async () => {
@@ -60,8 +68,6 @@ describe('Application test', () => {
     expect(models.init).toHaveBeenCalledTimes(1)
     expect(services.settings.init).toHaveBeenCalledTimes(1)
     expect(services.tracks.listen).toHaveBeenCalledTimes(1)
-    expect(services.tracks.play).toHaveBeenCalledWith([])
-    expect(services.tracks.play).toHaveBeenCalledTimes(1)
     expect(win.loadURL).toHaveBeenCalledWith(
       `file://${resolve(__dirname, '..', 'public')}/index.html`
     )
@@ -69,6 +75,9 @@ describe('Application test', () => {
     expect(configureExternalLinks).toHaveBeenCalledWith(win)
     expect(configureExternalLinks).toHaveBeenCalledTimes(1)
     expect(autoUpdater.checkForUpdatesAndNotify).toHaveBeenCalledTimes(1)
+
+    await sleep(300)
+    expect(services.tracks.play).not.toHaveBeenCalled()
   })
 
   it('quits when closing window', async () => {
@@ -78,22 +87,58 @@ describe('Application test', () => {
     expect(electron.app.quit).toHaveBeenCalledTimes(1)
   })
 
-  describe('given some parameters from CLI', () => {
-    const file1 = faker.system.filePath()
-    const file2 = faker.system.filePath()
+  describe('given some files to open', () => {
+    const files = []
 
-    it('tries to plays them when packed', async () => {
-      electron.app.isPackaged = true
-      await main(['asar-location', file1, file2])
-      expect(services.tracks.play).toHaveBeenCalledWith([file1, file2])
-      expect(services.tracks.play).toHaveBeenCalledTimes(1)
+    beforeEach(() => {
+      files.splice(
+        0,
+        files.length,
+        faker.system.filePath(),
+        faker.system.filePath()
+      )
     })
 
-    it('tries to plays them when unpacked', async () => {
-      electron.app.isPackaged = false
-      await main(['electron', '.', file1, file2])
-      expect(services.tracks.play).toHaveBeenCalledWith([file1, file2])
-      expect(services.tracks.play).toHaveBeenCalledTimes(1)
+    describe('given a linux or windows machine', () => {
+      beforeAll(() => {
+        platformSpy.mockImplementation(() => 'linux')
+      })
+
+      it('plays them when packed', async () => {
+        electron.app.isPackaged = true
+        await main(['asar-location', ...files])
+
+        await sleep(300)
+        expect(services.tracks.play).toHaveBeenCalledWith(files)
+        expect(services.tracks.play).toHaveBeenCalledTimes(1)
+      })
+
+      it('plays them when unpacked', async () => {
+        electron.app.isPackaged = false
+        await main(['electron', '.', ...files])
+
+        await sleep(300)
+        expect(services.tracks.play).toHaveBeenCalledWith(files)
+        expect(services.tracks.play).toHaveBeenCalledTimes(1)
+      })
+    })
+
+    describe('given an OSX machine', () => {
+      beforeAll(() => {
+        platformSpy.mockImplementation(() => 'darwin')
+      })
+
+      it('plays them', async () => {
+        const promise = main(['asar-location', ...files])
+        for (const file of files) {
+          app.emit('open-file', {}, file)
+        }
+        await promise
+
+        await sleep(300)
+        expect(services.tracks.play).toHaveBeenCalledWith(files)
+        expect(services.tracks.play).toHaveBeenCalledTimes(1)
+      })
     })
   })
 })

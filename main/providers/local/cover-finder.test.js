@@ -53,7 +53,10 @@ describe('Cover finder', () => {
     it('finds capitalized', async () => {
       const jpeg = join(path, 'Cover.jpeg')
       await fs.ensureFile(jpeg)
-      expect(await findInFolder(join(path, 'file.mp3'))).toEqual(jpeg)
+
+      expect(await findInFolder(join(path, 'file.mp3'))).toEqual(
+        join(path, `${os.platform() === 'linux' ? 'Cover' : 'cover'}.jpeg`)
+      )
     })
 
     describe('given cover.jpg', () => {
