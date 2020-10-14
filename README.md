@@ -1,4 +1,4 @@
-<div style="display:flex; justify-content: center;"><img src="https://github.com/feugy/melodie/raw/master/public/icons/icon-512x512.png" width="200px"/></div>
+<div style="display:flex; justify-content: center;"><img src="public/icons/icon-512x512.png?raw=true" width="200px"/></div>
 
 # Mélodie
 
