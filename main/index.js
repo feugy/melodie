@@ -26,7 +26,10 @@ exports.main = async argv => {
   const { app, BrowserWindow, Menu } = electron
   const isDev = process.env.ROLLUP_WATCH
   const publicFolder = join(__dirname, '..', 'public')
-  let unsubscribe
+
+  if (!app.requestSingleInstanceLock()) {
+    return app.quit()
+  }
 
   const logger = getLogger()
   // Because macOS use events for opened files, and even before the app is ready, we need to buffer them to open them at once
@@ -86,6 +89,7 @@ exports.main = async argv => {
         nodeIntegration: true
       },
       icon: `${join(publicFolder, 'icons', 'icon-512x512.png')}`,
+      backgroundColor: '#2e3141',
       show: false
     })
     manageState(win)
@@ -135,17 +139,22 @@ exports.main = async argv => {
         tracks.play(fileEntries)
       })
 
-    unsubscribe = () => {
+    app.on('second-instance', () => {
+      if (win.isMinimized()) {
+        win.restore()
+      }
+      win.focus()
+    })
+
+    return () => {
       unsubscribeRemote()
       openSubscription.unsubscribe()
     }
   }
 
-  // Quit when all windows are closed
-  app.on('window-all-closed', () => {
-    // TODO on macOS, we should let the music play
-    app.quit()
+  app.once('window-all-closed', () => {
     unsubscribe()
+    app.quit()
   })
 
   await models.init(getStoragePath('db.sqlite3'))
@@ -153,7 +162,7 @@ exports.main = async argv => {
   tracks.listen()
 
   await app.whenReady()
-  await createWindow()
+  const unsubscribe = await createWindow()
 
   // autoUpdater is using logger functions detached from their instance
   const updaterLogger = getLogger('updater')
