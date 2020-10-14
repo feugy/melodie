@@ -2,9 +2,12 @@
 
 const { config } = require('dotenv')
 const { join } = require('path')
+const { platform } = require('os')
 const electron = require('electron')
 const shortcut = require('electron-localshortcut')
 const { autoUpdater } = require('electron-updater')
+const { ReplaySubject } = require('rxjs')
+const { bufferWhen, debounceTime, filter } = require('rxjs/operators')
 const models = require('./models')
 const { tracks, media, settings, playlists } = require('./services')
 const {
@@ -26,19 +29,27 @@ exports.main = async argv => {
   let unsubscribe
 
   const logger = getLogger()
+  // Because macOS use events for opened files, and even before the app is ready, we need to buffer them to open them at once
+  const openFiles$ = new ReplaySubject()
 
-  if (!app.isPackaged) {
-    // when package, argv does not include the usual "node" first parameter
-    argv.shift()
+  if (platform() === 'darwin') {
+    // on macOS, open files will be passed with events
+    app.on('open-file', (evt, entry) => openFiles$.next(entry))
+  } else {
+    if (!app.isPackaged) {
+      // when package, argv does not include the usual "node" first parameter
+      argv.shift()
+    }
+    // other OS will pass opened files/folders as arguments
+    for (const entry of argv.slice(1)) {
+      openFiles$.next(entry)
+    }
   }
-  // list of all files/folders from the OS
-  const fileEntries = argv.slice(1)
 
   logger.info(
     {
       levelFile: process.env.LOG_LEVEL_FILE || '.levels',
-      pid: process.pid,
-      fileEntries
+      pid: process.pid
     },
     `starting... To change log levels, edit the level file and run \`kill -USR2 ${process.pid}\``
   )
@@ -96,7 +107,7 @@ exports.main = async argv => {
     registerRenderer(win)
     configureExternalLinks(win)
 
-    unsubscribe = subscribeRemote({
+    const unsubscribeRemote = subscribeRemote({
       core: {
         focusWindow: () => focusOnNotification(win),
         getVersions: () => ({
@@ -110,23 +121,31 @@ exports.main = async argv => {
       media,
       ...electron
     })
+
     win.once('ready-to-show', () => win.show())
     await win.loadURL(`file://${join(publicFolder, 'index.html')}`)
+    const openSubscription = openFiles$
+      .pipe(
+        bufferWhen(() => openFiles$.pipe(debounceTime(200))),
+        filter(entries => entries.length > 0)
+      )
+      .subscribe(fileEntries => {
+        logger.info({ fileEntries }, `opening files`)
+        // add relevant files to track queue
+        tracks.play(fileEntries)
+      })
+
+    unsubscribe = () => {
+      unsubscribeRemote()
+      openSubscription.unsubscribe()
+    }
   }
 
-  // Quit when all windows are closed, except on macOS.
+  // Quit when all windows are closed
   app.on('window-all-closed', () => {
-    if (process.platform !== 'darwin') {
-      app.quit()
-      unsubscribe()
-    }
-  })
-
-  app.on('activate', () => {
-    // macOS dock support
-    if (BrowserWindow.getAllWindows().length === 0) {
-      createWindow()
-    }
+    // TODO on macOS, we should let the music play
+    app.quit()
+    unsubscribe()
   })
 
   await models.init(getStoragePath('db.sqlite3'))
@@ -135,8 +154,6 @@ exports.main = async argv => {
 
   await app.whenReady()
   await createWindow()
-  // add relevant files to track queue
-  tracks.play(fileEntries)
 
   // autoUpdater is using logger functions detached from their instance
   const updaterLogger = getLogger('updater')
