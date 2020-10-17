@@ -1,33 +1,56 @@
 'use strict'
 
-const { join } = require('path')
+const { basename, dirname, extname, join } = require('path')
 const os = require('os')
 const fs = require('fs-extra')
 const faker = require('faker')
 const electron = require('electron')
 const provider = require('.')
-const tag = require('./tag-reader')
+const tagReader = require('./tag-reader')
+const playlistUtils = require('./playlist')
 const covers = require('./cover-finder')
 const tracksService = require('../../services/tracks')
+const playlistsService = require('../../services/playlists')
 const { albumsModel, tracksModel, settingsModel } = require('../../models')
 const { hash, broadcast } = require('../../utils')
-const { makeFolder, sleep } = require('../../tests')
+const { makeFolder, makePlaylists, sleep } = require('../../tests')
 
 jest.mock('../../models/tracks')
 jest.mock('../../models/albums')
 jest.mock('../../models/settings')
 jest.mock('../../services/tracks')
+jest.mock('../../services/playlists')
 jest.mock('../../utils/electron-remote')
 jest.mock('./cover-finder')
-jest.mock('./tag-reader')
+jest.mock('./tag-reader', () => ({
+  formats: ['.mp3', '.ogg', '.flac'],
+  read: jest.fn()
+}))
+jest.mock('./playlist', () => {
+  const { extname } = require('path')
+  const formats = ['.m3u', '.m3u8']
+  return {
+    formats,
+    isPlaylistFile(file) {
+      return formats.includes(extname(file))
+    },
+    read: jest.fn()
+  }
+})
 
 describe('Local provider', () => {
   beforeEach(() => {
     jest.resetAllMocks()
     covers.findInFolder.mockResolvedValue(null)
-    tag.read.mockResolvedValue({})
+    tagReader.read.mockResolvedValue({})
     tracksService.add.mockResolvedValue()
     tracksService.remove.mockImplementation(async n => n)
+    playlistsService.save.mockImplementation(async n => n)
+    playlistUtils.read.mockImplementation(async path => ({
+      id: hash(path),
+      name: basename(path).replace(extname(path), ''),
+      trackIds: []
+    }))
   })
 
   afterEach(() => provider.unwatchAll())
@@ -147,14 +170,139 @@ describe('Local provider', () => {
       expect(tracks).toHaveLength(files.length)
       expect(tracksService.add).toHaveBeenCalledWith(tracks)
       expect(tracksService.add).toHaveBeenCalledTimes(1)
-      expect(tracksService.remove).toHaveBeenCalledTimes(0)
+      expect(tracksService.remove).not.toHaveBeenCalled()
       for (const { path } of files) {
         expect(covers.findInFolder).toHaveBeenCalledWith(path)
-        expect(tag.read).toHaveBeenCalledWith(path)
+        expect(tagReader.read).toHaveBeenCalledWith(path)
       }
       expect(covers.findInFolder).toHaveBeenCalledTimes(files.length)
-      expect(tag.read).toHaveBeenCalledTimes(files.length)
+      expect(tagReader.read).toHaveBeenCalledTimes(files.length)
       expect(settingsModel.get).toHaveBeenCalledTimes(1)
+      expect(playlistsService.checkIntegrity).toHaveBeenCalledTimes(1)
+    })
+
+    it('reads playlists', async () => {
+      const { folder, files } = await makeFolder({ depth: 3, fileNb: 10 })
+      const { playlists } = await makePlaylists({ files, playlistNb: 3 })
+
+      settingsModel.get.mockResolvedValueOnce({ folders: [folder] })
+
+      const trackModels = []
+      const playlistModels = []
+      for (const track of await provider.importTracks()) {
+        ;(track.tags ? trackModels : playlistModels).push(track)
+      }
+      expect(trackModels).toEqual(
+        expect.arrayContaining(
+          files.map(({ path, stats }) => ({
+            id: hash(path),
+            path: path,
+            media: null,
+            tags: {},
+            mtimeMs: stats.mtimeMs
+          }))
+        )
+      )
+      expect(trackModels).toHaveLength(files.length)
+      expect(playlistModels).toEqual(
+        expect.arrayContaining(
+          playlists.map(path => ({
+            id: hash(path),
+            name: basename(path).replace(extname(path), ''),
+            trackIds: []
+          }))
+        )
+      )
+      expect(playlistModels).toHaveLength(playlists.length)
+
+      expect(tracksService.add).toHaveBeenCalledWith(trackModels)
+      expect(tracksService.add).toHaveBeenCalledTimes(1)
+      expect(tracksService.remove).not.toHaveBeenCalled()
+      for (const { path } of files) {
+        expect(covers.findInFolder).toHaveBeenCalledWith(path)
+        expect(tagReader.read).toHaveBeenCalledWith(path)
+      }
+      expect(covers.findInFolder).toHaveBeenCalledTimes(files.length)
+      expect(tagReader.read).toHaveBeenCalledTimes(files.length)
+
+      for (const model of playlistModels) {
+        expect(playlistsService.save).toHaveBeenCalledWith(model, true)
+      }
+      expect(playlistsService.save).toHaveBeenCalledTimes(playlistModels.length)
+      for (const path of playlists) {
+        expect(playlistUtils.read).toHaveBeenCalledWith(path)
+      }
+      expect(playlistUtils.read).toHaveBeenCalledTimes(playlists.length)
+
+      expect(settingsModel.get).toHaveBeenCalledTimes(1)
+      expect(playlistsService.checkIntegrity).toHaveBeenCalledTimes(1)
+    })
+
+    it('ignores unparseable playlists', async () => {
+      const { folder, files } = await makeFolder({ depth: 3, fileNb: 10 })
+      const { playlists } = await makePlaylists({ files, playlistNb: 4 })
+      // first 2 playlists are not readable
+      playlistUtils.read.mockImplementation(async path =>
+        +basename(path)[0] < 2
+          ? null
+          : {
+              id: hash(path),
+              name: basename(path).replace(extname(path), ''),
+              trackIds: []
+            }
+      )
+
+      settingsModel.get.mockResolvedValueOnce({ folders: [folder] })
+
+      const trackModels = []
+      const playlistModels = []
+      for (const track of await provider.importTracks()) {
+        ;(track.tags ? trackModels : playlistModels).push(track)
+      }
+      expect(trackModels).toEqual(
+        expect.arrayContaining(
+          files.map(({ path, stats }) => ({
+            id: hash(path),
+            path: path,
+            media: null,
+            tags: {},
+            mtimeMs: stats.mtimeMs
+          }))
+        )
+      )
+      expect(trackModels).toHaveLength(files.length)
+      expect(playlistModels).toEqual(
+        expect.arrayContaining(
+          playlists.slice(2).map(path => ({
+            id: hash(path),
+            name: basename(path).replace(extname(path), ''),
+            trackIds: []
+          }))
+        )
+      )
+      expect(playlistModels).toHaveLength(2)
+
+      expect(tracksService.add).toHaveBeenCalledWith(trackModels)
+      expect(tracksService.add).toHaveBeenCalledTimes(1)
+      expect(tracksService.remove).not.toHaveBeenCalled()
+      for (const { path } of files) {
+        expect(covers.findInFolder).toHaveBeenCalledWith(path)
+        expect(tagReader.read).toHaveBeenCalledWith(path)
+      }
+      expect(covers.findInFolder).toHaveBeenCalledTimes(files.length)
+      expect(tagReader.read).toHaveBeenCalledTimes(files.length)
+
+      for (const model of playlistModels) {
+        expect(playlistsService.save).toHaveBeenCalledWith(model, true)
+      }
+      expect(playlistsService.save).toHaveBeenCalledTimes(playlistModels.length)
+      for (const path of playlists) {
+        expect(playlistUtils.read).toHaveBeenCalledWith(path)
+      }
+      expect(playlistUtils.read).toHaveBeenCalledTimes(playlists.length)
+
+      expect(settingsModel.get).toHaveBeenCalledTimes(1)
+      expect(playlistsService.checkIntegrity).toHaveBeenCalledTimes(1)
     })
 
     it('process tracks in batches', async () => {
@@ -170,10 +318,11 @@ describe('Local provider', () => {
       const tracks = await provider.importTracks()
       expect(tracks).toHaveLength(files.length)
       expect(tracksService.add).toHaveBeenCalledTimes(6)
-      expect(tracksService.remove).toHaveBeenCalledTimes(0)
+      expect(tracksService.remove).not.toHaveBeenCalled()
       expect(covers.findInFolder).toHaveBeenCalledTimes(files.length)
-      expect(tag.read).toHaveBeenCalledTimes(files.length)
+      expect(tagReader.read).toHaveBeenCalledTimes(files.length)
       expect(settingsModel.get).toHaveBeenCalledTimes(1)
+      expect(playlistsService.checkIntegrity).toHaveBeenCalledTimes(1)
     })
 
     it('handles multiple folders', async () => {
@@ -196,10 +345,11 @@ describe('Local provider', () => {
       )
       expect(tracks).toHaveLength(tree1.files.length + tree2.files.length)
       expect(covers.findInFolder).toHaveBeenCalledTimes(tracks.length)
-      expect(tag.read).toHaveBeenCalledTimes(tracks.length)
+      expect(tagReader.read).toHaveBeenCalledTimes(tracks.length)
       expect(tracksService.add).toHaveBeenCalledTimes(1)
-      expect(tracksService.remove).toHaveBeenCalledTimes(0)
+      expect(tracksService.remove).not.toHaveBeenCalled()
       expect(settingsModel.get).toHaveBeenCalledTimes(1)
+      expect(playlistsService.checkIntegrity).toHaveBeenCalledTimes(1)
     })
 
     it('imports specified folders', async () => {
@@ -221,24 +371,27 @@ describe('Local provider', () => {
       expect(tracks).toHaveLength(files.length)
       expect(tracksService.add).toHaveBeenCalledWith(tracks)
       expect(tracksService.add).toHaveBeenCalledTimes(1)
-      expect(tracksService.remove).toHaveBeenCalledTimes(0)
+      expect(tracksService.remove).not.toHaveBeenCalled()
       for (const { path } of files) {
         expect(covers.findInFolder).toHaveBeenCalledWith(path)
-        expect(tag.read).toHaveBeenCalledWith(path)
+        expect(tagReader.read).toHaveBeenCalledWith(path)
       }
       expect(covers.findInFolder).toHaveBeenCalledTimes(files.length)
-      expect(tag.read).toHaveBeenCalledTimes(files.length)
+      expect(tagReader.read).toHaveBeenCalledTimes(files.length)
       expect(settingsModel.get).toHaveBeenCalledTimes(1)
+      expect(playlistsService.checkIntegrity).toHaveBeenCalledTimes(1)
     })
   })
 
   describe('compareTracks', () => {
     let tree
+    let playlists
     const existing = new Map()
 
     beforeEach(async () => {
       existing.clear()
       tree = await makeFolder({ depth: 3, fileNb: 15 })
+      playlists = (await makePlaylists({ ...tree, playlistNb: 4 })).playlists
       for (const file of tree.files) {
         existing.set(hash(file.path), file.stats.mtimeMs)
       }
@@ -246,258 +399,361 @@ describe('Local provider', () => {
       settingsModel.get.mockResolvedValueOnce({ folders: [tree.folder] })
     })
 
-    it('finds new files and save them', async () => {
-      const newFiles = tree.files.slice(2, 6)
-      for (const { path } of newFiles) {
-        existing.delete(hash(path))
-      }
-
-      const { saved, removedIds } = await provider.compareTracks()
-
-      const tracks = newFiles.map(({ path, stats: { mtimeMs } }) => ({
-        id: hash(path),
-        path,
-        media: null,
-        tags: {},
-        mtimeMs
-      }))
-      expect(removedIds).toEqual([])
-      expect(saved).toEqual(tracks)
-      expect(tracksService.add).toHaveBeenCalledWith(tracks)
-      expect(tracksService.add).toHaveBeenCalledTimes(1)
-      expect(tracksService.remove).toHaveBeenCalledTimes(0)
-      for (const { path } of newFiles) {
-        expect(covers.findInFolder).toHaveBeenCalledWith(path)
-        expect(tag.read).toHaveBeenCalledWith(path)
-      }
-      expect(covers.findInFolder).toHaveBeenCalledTimes(newFiles.length)
-      expect(tag.read).toHaveBeenCalledTimes(newFiles.length)
-    })
-
-    it('finds modified files and save them', async () => {
-      const modified = tree.files.slice(4, 10)
-      for (const { path } of modified) {
-        existing.set(hash(path), Date.now() - 5e3)
-      }
-
-      const { saved, removedIds } = await provider.compareTracks()
-
-      const tracks = modified.map(({ path, stats: { mtimeMs } }) => ({
-        id: hash(path),
-        path,
-        media: null,
-        tags: {},
-        mtimeMs
-      }))
-      expect(removedIds).toEqual([])
-      expect(saved).toEqual(tracks)
-      expect(tracksService.add).toHaveBeenCalledWith(tracks)
-      expect(tracksService.add).toHaveBeenCalledTimes(1)
-      expect(tracksService.remove).toHaveBeenCalledTimes(0)
-      for (const { path } of modified) {
-        expect(covers.findInFolder).toHaveBeenCalledWith(path)
-        expect(tag.read).toHaveBeenCalledWith(path)
-      }
-      expect(covers.findInFolder).toHaveBeenCalledTimes(modified.length)
-      expect(tag.read).toHaveBeenCalledTimes(modified.length)
-    })
-
-    it('finds missing files and removed them', async () => {
-      const missing = [
-        {
-          path: join(tree.folder, `${faker.lorem.word()}.mp3`)
-        },
-        {
-          path: join(tree.folder, `${faker.lorem.word()}.ogg`)
-        },
-        {
-          path: join(tree.folder, `${faker.lorem.word()}.flac`)
+    describe('given modifications before watching', () => {
+      it('finds new files and save them', async () => {
+        const newFiles = tree.files.slice(2, 6)
+        for (const { path } of newFiles) {
+          existing.delete(hash(path))
         }
-      ]
-      for (const { path } of missing) {
-        existing.set(hash(path), Date.now())
-      }
 
-      const { saved, removedIds } = await provider.compareTracks()
+        const { saved, removedIds } = await provider.compareTracks()
 
-      expect(removedIds).toEqual(missing.map(({ path }) => hash(path)))
-      expect(saved).toEqual([])
-      expect(tracksService.add).toHaveBeenCalledTimes(0)
-      expect(tracksService.remove).toHaveBeenCalledWith(removedIds)
-      expect(tracksService.remove).toHaveBeenCalledTimes(1)
-      expect(covers.findInFolder).toHaveBeenCalledTimes(0)
-      expect(tag.read).toHaveBeenCalledTimes(0)
-    })
-
-    it('handles no modifications', async () => {
-      const { saved, removedIds } = await provider.compareTracks()
-
-      expect(removedIds).toEqual([])
-      expect(saved).toEqual([])
-      expect(tracksService.add).toHaveBeenCalledTimes(0)
-      expect(tracksService.remove).toHaveBeenCalledTimes(0)
-      expect(covers.findInFolder).toHaveBeenCalledTimes(0)
-      expect(tag.read).toHaveBeenCalledTimes(0)
-    })
-
-    it('can handle all changes', async () => {
-      const newFiles = tree.files.slice(2, 6)
-      for (const { path } of newFiles) {
-        existing.delete(hash(path))
-      }
-      const modified = tree.files.slice(8, 10)
-      for (const { path } of modified) {
-        existing.set(hash(path), Date.now() - 5e3)
-      }
-      const newAndModified = newFiles.concat(modified)
-      const missing = [
-        {
-          path: join(tree.folder, `${faker.lorem.word()}.mp3`)
-        },
-        {
-          path: join(tree.folder, `${faker.lorem.word()}.ogg`)
+        const tracks = newFiles.map(({ path, stats: { mtimeMs } }) => ({
+          id: hash(path),
+          path,
+          media: null,
+          tags: {},
+          mtimeMs
+        }))
+        expect(removedIds).toEqual([])
+        expect(saved).toEqual(tracks)
+        expect(tracksService.add).toHaveBeenCalledWith(tracks)
+        expect(tracksService.add).toHaveBeenCalledTimes(1)
+        expect(tracksService.remove).not.toHaveBeenCalled()
+        expect(playlistsService.save).not.toHaveBeenCalled()
+        for (const { path } of newFiles) {
+          expect(covers.findInFolder).toHaveBeenCalledWith(path)
+          expect(tagReader.read).toHaveBeenCalledWith(path)
         }
-      ]
-      for (const { path } of missing) {
-        existing.set(hash(path), Date.now())
-      }
-
-      const { saved, removedIds } = await provider.compareTracks()
-
-      const tracks = newAndModified.map(({ path, stats: { mtimeMs } }) => ({
-        id: hash(path),
-        path,
-        media: null,
-        tags: {},
-        mtimeMs
-      }))
-      expect(removedIds).toEqual(missing.map(({ path }) => hash(path)))
-      expect(saved).toEqual(tracks)
-      expect(tracksService.add).toHaveBeenCalledWith(tracks)
-      expect(tracksService.add).toHaveBeenCalledTimes(1)
-      expect(tracksService.remove).toHaveBeenCalledWith(removedIds)
-      expect(tracksService.remove).toHaveBeenCalledTimes(1)
-      for (const { path } of newAndModified) {
-        expect(covers.findInFolder).toHaveBeenCalledWith(path)
-        expect(tag.read).toHaveBeenCalledWith(path)
-      }
-      expect(covers.findInFolder).toHaveBeenCalledTimes(newAndModified.length)
-      expect(tag.read).toHaveBeenCalledTimes(newAndModified.length)
-      expect(broadcast).toHaveBeenNthCalledWith(1, 'tracking', {
-        inProgress: true,
-        op: 'compareTracks',
-        provider: 'Local'
+        expect(covers.findInFolder).toHaveBeenCalledTimes(newFiles.length)
+        expect(tagReader.read).toHaveBeenCalledTimes(newFiles.length)
+        expect(playlistUtils.read).not.toHaveBeenCalled()
+        expect(playlistsService.checkIntegrity).toHaveBeenCalledTimes(1)
       })
-      expect(broadcast).toHaveBeenNthCalledWith(2, 'tracking', {
-        inProgress: false,
-        op: 'compareTracks',
-        provider: 'Local'
+
+      it('finds modified files and save them', async () => {
+        const modified = tree.files.slice(4, 10)
+        for (const { path } of modified) {
+          existing.set(hash(path), Date.now() - 5e3)
+        }
+
+        const { saved, removedIds } = await provider.compareTracks()
+
+        const tracks = modified.map(({ path, stats: { mtimeMs } }) => ({
+          id: hash(path),
+          path,
+          media: null,
+          tags: {},
+          mtimeMs
+        }))
+        expect(removedIds).toEqual([])
+        expect(saved).toEqual(tracks)
+        expect(tracksService.add).toHaveBeenCalledWith(tracks)
+        expect(tracksService.add).toHaveBeenCalledTimes(1)
+        expect(tracksService.remove).not.toHaveBeenCalled()
+        expect(playlistsService.save).not.toHaveBeenCalled()
+        for (const { path } of modified) {
+          expect(covers.findInFolder).toHaveBeenCalledWith(path)
+          expect(tagReader.read).toHaveBeenCalledWith(path)
+        }
+        expect(covers.findInFolder).toHaveBeenCalledTimes(modified.length)
+        expect(tagReader.read).toHaveBeenCalledTimes(modified.length)
+        expect(playlistUtils.read).not.toHaveBeenCalled()
+        expect(playlistsService.checkIntegrity).toHaveBeenCalledTimes(1)
+      })
+
+      it('finds missing files and removed them', async () => {
+        const missing = [
+          {
+            path: join(tree.folder, `${faker.lorem.word()}.mp3`)
+          },
+          {
+            path: join(tree.folder, `${faker.lorem.word()}.ogg`)
+          },
+          {
+            path: join(tree.folder, `${faker.lorem.word()}.flac`)
+          }
+        ]
+        for (const { path } of missing) {
+          existing.set(hash(path), Date.now())
+        }
+
+        const { saved, removedIds } = await provider.compareTracks()
+
+        expect(removedIds).toEqual(missing.map(({ path }) => hash(path)))
+        expect(saved).toEqual([])
+        expect(tracksService.add).not.toHaveBeenCalled()
+        expect(tracksService.remove).toHaveBeenCalledWith(removedIds)
+        expect(tracksService.remove).toHaveBeenCalledTimes(1)
+        expect(playlistsService.save).not.toHaveBeenCalled()
+        expect(covers.findInFolder).not.toHaveBeenCalled()
+        expect(tagReader.read).not.toHaveBeenCalled()
+        expect(playlistUtils.read).not.toHaveBeenCalled()
+        expect(playlistsService.checkIntegrity).not.toHaveBeenCalled()
+      })
+
+      it('ignores modifications, deletions and additiong of playlist files', async () => {
+        await fs.unlink(playlists[0])
+        await fs.writeFile(playlists[1], '#EXTM3U\ntest.mp3', 'latin1')
+        await fs.writeFile(
+          join(dirname(playlists[1]), 'new.m3u'),
+          '#EXTM3U\ntest.mp3',
+          'latin1'
+        )
+
+        const { saved, removedIds } = await provider.compareTracks()
+
+        expect(removedIds).toEqual([])
+        expect(saved).toEqual([])
+        expect(tracksService.add).not.toHaveBeenCalled()
+        expect(tracksService.remove).not.toHaveBeenCalled()
+        expect(playlistsService.save).not.toHaveBeenCalled()
+        expect(covers.findInFolder).not.toHaveBeenCalled()
+        expect(tagReader.read).not.toHaveBeenCalled()
+        expect(playlistUtils.read).not.toHaveBeenCalled()
+        expect(playlistsService.checkIntegrity).not.toHaveBeenCalled()
       })
     })
 
-    it('finds new files and save them', async () => {
-      await provider.compareTracks()
-      jest.clearAllMocks()
+    describe('given watching in progress', () => {
+      it('handles no modifications', async () => {
+        const { saved, removedIds } = await provider.compareTracks()
 
-      await sleep(200)
+        expect(removedIds).toEqual([])
+        expect(saved).toEqual([])
+        expect(tracksService.add).not.toHaveBeenCalled()
+        expect(tracksService.remove).not.toHaveBeenCalled()
+        expect(playlistsService.save).not.toHaveBeenCalled()
+        expect(covers.findInFolder).not.toHaveBeenCalled()
+        expect(tagReader.read).not.toHaveBeenCalled()
+        expect(playlistUtils.read).not.toHaveBeenCalled()
+        expect(playlistsService.checkIntegrity).not.toHaveBeenCalled()
+      })
 
-      const first = join(tree.folder, 'first.mp3')
-      const second = join(tree.folder, 'second.ogg')
-      const third = join(tree.folder, 'third.flac')
+      it('can handle all changes', async () => {
+        const newFiles = tree.files.slice(2, 6)
+        for (const { path } of newFiles) {
+          existing.delete(hash(path))
+        }
+        const modified = tree.files.slice(8, 10)
+        for (const { path } of modified) {
+          existing.set(hash(path), Date.now() - 5e3)
+        }
+        const newAndModified = newFiles.concat(modified)
+        const missing = [
+          {
+            path: join(tree.folder, `${faker.lorem.word()}.mp3`)
+          },
+          {
+            path: join(tree.folder, `${faker.lorem.word()}.ogg`)
+          }
+        ]
+        for (const { path } of missing) {
+          existing.set(hash(path), Date.now())
+        }
 
-      fs.writeFile(first, faker.lorem.word())
-      fs.writeFile(join(tree.folder, 'ignored.png'), faker.lorem.word())
-      fs.writeFile(second, faker.lorem.word())
-      fs.writeFile(join(tree.folder, 'ignored.jpg'), faker.lorem.word())
-      fs.writeFile(third, faker.lorem.word())
+        const { saved, removedIds } = await provider.compareTracks()
 
-      await sleep(500)
+        const tracks = newAndModified.map(({ path, stats: { mtimeMs } }) => ({
+          id: hash(path),
+          path,
+          media: null,
+          tags: {},
+          mtimeMs
+        }))
+        expect(removedIds).toEqual(missing.map(({ path }) => hash(path)))
+        expect(saved).toEqual(tracks)
+        expect(tracksService.add).toHaveBeenCalledWith(tracks)
+        expect(tracksService.add).toHaveBeenCalledTimes(1)
+        expect(tracksService.remove).toHaveBeenCalledWith(removedIds)
+        expect(tracksService.remove).toHaveBeenCalledTimes(1)
+        expect(playlistsService.save).not.toHaveBeenCalled()
+        for (const { path } of newAndModified) {
+          expect(covers.findInFolder).toHaveBeenCalledWith(path)
+          expect(tagReader.read).toHaveBeenCalledWith(path)
+        }
+        expect(covers.findInFolder).toHaveBeenCalledTimes(newAndModified.length)
+        expect(tagReader.read).toHaveBeenCalledTimes(newAndModified.length)
+        expect(playlistUtils.read).not.toHaveBeenCalled()
+        expect(broadcast).toHaveBeenNthCalledWith(1, 'tracking', {
+          inProgress: true,
+          op: 'compareTracks',
+          provider: 'Local'
+        })
+        expect(broadcast).toHaveBeenNthCalledWith(2, 'tracking', {
+          inProgress: false,
+          op: 'compareTracks',
+          provider: 'Local'
+        })
+        expect(playlistsService.checkIntegrity).toHaveBeenCalledTimes(1)
+      })
 
-      const tracks = [first, second, third].map(path => ({
-        id: hash(path),
-        path,
-        media: null,
-        tags: {},
-        mtimeMs: expect.any(Number)
-      }))
+      it('finds new files and save them', async () => {
+        await provider.compareTracks()
+        jest.clearAllMocks()
 
-      expect(tracksService.remove).toHaveBeenCalledTimes(0)
-      for (const obj of tracks) {
-        expect(tracksService.add).toHaveBeenCalledWith([obj])
-        expect(covers.findInFolder).toHaveBeenCalledWith(obj.path)
-        expect(tag.read).toHaveBeenCalledWith(obj.path)
-      }
-      expect(tracksService.add).toHaveBeenCalledTimes(tracks.length)
-      expect(covers.findInFolder).toHaveBeenCalledTimes(tracks.length)
-      expect(tag.read).toHaveBeenCalledTimes(tracks.length)
-    })
+        await sleep(200)
 
-    it('finds modified files and save them', async () => {
-      await provider.compareTracks()
-      jest.clearAllMocks()
+        const first = join(tree.folder, 'first.mp3')
+        const second = join(tree.folder, 'second.ogg')
+        const third = join(tree.folder, 'third.flac')
 
-      await sleep(200)
+        fs.writeFile(first, faker.lorem.word())
+        fs.writeFile(join(tree.folder, 'ignored.png'), faker.lorem.word())
+        fs.writeFile(second, faker.lorem.word())
+        fs.writeFile(join(tree.folder, 'ignored.jpg'), faker.lorem.word())
+        fs.writeFile(third, faker.lorem.word())
 
-      fs.writeFile(join(tree.folder, 'unsupported.png'), faker.lorem.word())
+        await sleep(500)
 
-      const modified = tree.files.slice(2, 6)
-      for (const { path } of modified) {
-        fs.writeFile(path, faker.lorem.word())
-      }
+        const tracks = [first, second, third].map(path => ({
+          id: hash(path),
+          path,
+          media: null,
+          tags: {},
+          mtimeMs: expect.any(Number)
+        }))
 
-      await sleep(500)
+        expect(tracksService.remove).not.toHaveBeenCalled()
+        for (const obj of tracks) {
+          expect(tracksService.add).toHaveBeenCalledWith([obj])
+          expect(covers.findInFolder).toHaveBeenCalledWith(obj.path)
+          expect(tagReader.read).toHaveBeenCalledWith(obj.path)
+        }
+        expect(tracksService.add).toHaveBeenCalledTimes(tracks.length)
+        expect(playlistsService.save).not.toHaveBeenCalled()
+        expect(covers.findInFolder).toHaveBeenCalledTimes(tracks.length)
+        expect(tagReader.read).toHaveBeenCalledTimes(tracks.length)
+        expect(playlistUtils.read).not.toHaveBeenCalled()
+        expect(playlistsService.checkIntegrity).toHaveBeenCalledTimes(
+          tracks.length
+        )
+      })
 
-      const tracks = modified.map(({ path }) => ({
-        id: hash(path),
-        path,
-        media: null,
-        tags: {},
-        mtimeMs: expect.any(Number)
-      }))
+      it('finds modified files and save them', async () => {
+        await provider.compareTracks()
+        jest.clearAllMocks()
 
-      expect(tracksService.remove).toHaveBeenCalledTimes(0)
-      for (const obj of tracks) {
-        expect(tracksService.add).toHaveBeenCalledWith([obj])
-        expect(covers.findInFolder).toHaveBeenCalledWith(obj.path)
-        expect(tag.read).toHaveBeenCalledWith(obj.path)
-      }
-      expect(tracksService.add).toHaveBeenCalledTimes(tracks.length)
-      expect(covers.findInFolder).toHaveBeenCalledTimes(tracks.length)
-      expect(tag.read).toHaveBeenCalledTimes(tracks.length)
-    })
+        await sleep(200)
 
-    it('finds delete files and removes them', async () => {
-      const unsupported = join(tree.folder, 'unsupported.png')
-      fs.writeFile(unsupported, faker.lorem.word())
+        fs.writeFile(join(tree.folder, 'unsupported.png'), faker.lorem.word())
 
-      await provider.compareTracks()
-      jest.clearAllMocks()
+        const modified = tree.files.slice(2, 6)
+        for (const { path } of modified) {
+          fs.writeFile(path, faker.lorem.word())
+        }
 
-      await sleep(200)
+        await sleep(500)
 
-      const removed = tree.files.slice(3, 7)
-      for (const { path } of removed) {
-        fs.unlink(path)
-      }
-      fs.unlink(unsupported)
+        const tracks = modified.map(({ path }) => ({
+          id: hash(path),
+          path,
+          media: null,
+          tags: {},
+          mtimeMs: expect.any(Number)
+        }))
 
-      await sleep(500)
+        expect(tracksService.remove).not.toHaveBeenCalled()
+        for (const obj of tracks) {
+          expect(tracksService.add).toHaveBeenCalledWith([obj])
+          expect(covers.findInFolder).toHaveBeenCalledWith(obj.path)
+          expect(tagReader.read).toHaveBeenCalledWith(obj.path)
+        }
+        expect(tracksService.add).toHaveBeenCalledTimes(tracks.length)
+        expect(playlistsService.save).not.toHaveBeenCalled()
+        expect(covers.findInFolder).toHaveBeenCalledTimes(tracks.length)
+        expect(tagReader.read).toHaveBeenCalledTimes(tracks.length)
+        expect(playlistUtils.read).not.toHaveBeenCalled()
+        expect(playlistsService.checkIntegrity).toHaveBeenCalledTimes(
+          tracks.length
+        )
+      })
 
-      const tracks = removed.map(({ path }) => ({
-        id: hash(path),
-        path,
-        media: null,
-        tags: {},
-        mtimeMs: expect.any(Number)
-      }))
+      it('finds delete files and removes them', async () => {
+        const unsupported = join(tree.folder, 'unsupported.png')
+        fs.writeFile(unsupported, faker.lorem.word())
 
-      for (const obj of tracks) {
-        expect(tracksService.remove).toHaveBeenCalledWith([obj.id])
-      }
-      expect(tracksService.remove).toHaveBeenCalledTimes(tracks.length)
-      expect(tracksService.add).toHaveBeenCalledTimes(0)
-      expect(covers.findInFolder).toHaveBeenCalledTimes(0)
-      expect(tag.read).toHaveBeenCalledTimes(0)
+        await provider.compareTracks()
+        jest.clearAllMocks()
+
+        await sleep(200)
+
+        const removed = tree.files.slice(3, 7)
+        for (const { path } of removed) {
+          fs.unlink(path)
+        }
+        fs.unlink(unsupported)
+
+        await sleep(500)
+
+        const tracks = removed.map(({ path }) => ({
+          id: hash(path),
+          path,
+          media: null,
+          tags: {},
+          mtimeMs: expect.any(Number)
+        }))
+
+        for (const obj of tracks) {
+          expect(tracksService.remove).toHaveBeenCalledWith([obj.id])
+        }
+        expect(tracksService.remove).toHaveBeenCalledTimes(tracks.length)
+        expect(tracksService.add).not.toHaveBeenCalled()
+        expect(playlistsService.save).not.toHaveBeenCalled()
+        expect(covers.findInFolder).not.toHaveBeenCalled()
+        expect(tagReader.read).not.toHaveBeenCalled()
+        expect(playlistUtils.read).not.toHaveBeenCalled()
+        expect(playlistsService.checkIntegrity).not.toHaveBeenCalled()
+      })
+
+      it('finds additions off playlist files', async () => {
+        await provider.compareTracks()
+        jest.clearAllMocks()
+
+        await sleep(200)
+
+        const path = join(dirname(playlists[2]), 'new.m3u')
+        fs.writeFile(path, '#EXTM3U\ntest.mp3', 'latin1')
+
+        await sleep(500)
+
+        expect(tracksService.add).not.toHaveBeenCalled()
+        expect(tracksService.remove).not.toHaveBeenCalled()
+        expect(playlistsService.save).toHaveBeenCalledWith(
+          {
+            id: hash(path),
+            name: basename(path).replace('.m3u', ''),
+            trackIds: []
+          },
+          true
+        )
+        expect(playlistsService.save).toHaveBeenCalledTimes(1)
+        expect(covers.findInFolder).not.toHaveBeenCalled()
+        expect(tagReader.read).not.toHaveBeenCalled()
+        expect(playlistUtils.read).toHaveBeenCalledWith(path)
+        expect(playlistUtils.read).toHaveBeenCalledTimes(1)
+        expect(playlistsService.checkIntegrity).toHaveBeenCalledTimes(1)
+      })
+
+      it('ignores modifications, deletions and additiong of playlist files', async () => {
+        await provider.compareTracks()
+        jest.clearAllMocks()
+
+        await sleep(200)
+
+        fs.writeFile(playlists[2], '#EXTM3U\ntest.mp3', 'latin1')
+        fs.unlink(playlists[3])
+
+        await sleep(500)
+
+        expect(tracksService.add).not.toHaveBeenCalled()
+        expect(tracksService.remove).not.toHaveBeenCalled()
+        expect(playlistsService.save).not.toHaveBeenCalled()
+        expect(covers.findInFolder).not.toHaveBeenCalled()
+        expect(tagReader.read).not.toHaveBeenCalled()
+        expect(playlistUtils.read).not.toHaveBeenCalled()
+        expect(playlistsService.checkIntegrity).not.toHaveBeenCalled()
+      })
     })
 
     it('stops watching previous folder', async () => {
@@ -515,6 +771,7 @@ describe('Local provider', () => {
       await sleep(500)
       expect(tracksService.remove).not.toHaveBeenCalled()
       expect(tracksService.add).not.toHaveBeenCalled()
+      expect(playlistsService.checkIntegrity).not.toHaveBeenCalled()
     })
   })
 })
