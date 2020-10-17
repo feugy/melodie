@@ -31,6 +31,14 @@ const {
 const pipeline = promisify(stream.pipeline)
 const logger = getLogger('services/media')
 
+/**
+ * Downloads content from an url and save it on local drive as `media`.
+ * The final extension will come from the downloaded mime type.
+ * @async
+ * @param {string} media  - path to the saved media, with no extension
+ * @param {string} url    - url of the new content (could be a local file)
+ * @returns {string} the saved media path, with extension
+ */
 async function downloadAndSave(media, url) {
   const { protocol } = parse(url)
   const isRemote = protocol && protocol.startsWith('http')
@@ -51,6 +59,16 @@ async function downloadAndSave(media, url) {
 let subscription
 
 module.exports = {
+  /**
+   * Triggers enrichement of all artists: will fetch artwork from (in order):
+   * - local
+   * - AudioDB
+   * - Discogs
+   * First matching artwork will be saved, and if no results are found, the current epoch is
+   * saved to avoid reprocessing it until tomorrow.
+   * It will stops any existing enrichement.
+   * @param {number} [perMinute = 20] - maximum artist processed per minute
+   */
   triggerArtistsEnrichment(perMinute = 20) {
     if (subscription && !subscription.isClosed) {
       subscription.unsubscribe()
@@ -116,6 +134,13 @@ module.exports = {
       .subscribe()
   },
 
+  /**
+   * Enriches a single artist with artwork and bio from all providers.
+   * Bios will be merged together, but first artwork is used.
+   * Does nothing if no artist matches specified id, or if the artist already has an avatar and bios.
+   * @async
+   * @param {number} id - the artist id
+   */
   async triggerArtistEnrichment(id) {
     const artist = await artistsModel.getById(id)
     if (!artist || (artist.media && artist.bio)) {
@@ -137,6 +162,16 @@ module.exports = {
     }
   },
 
+  /**
+   * Triggers enrichement of all albums: will fetch cover from (in order):
+   * - local
+   * - AudioDB
+   * - Discogs
+   * First matching cover will be saved, and if no results are found, the current epoch is
+   * saved to avoid reprocessing it until tomorrow.
+   * It will stops any existing enrichement.
+   * @param {number} [perMinute = 20] - maximum albums processed per minute
+   */
   triggerAlbumsEnrichment(perMinute = 20) {
     if (subscription && !subscription.isClosed) {
       subscription.unsubscribe()
@@ -200,6 +235,9 @@ module.exports = {
       .subscribe()
   },
 
+  /**
+   * Stops enriching albums or artists.
+   */
   stopEnrichment() {
     if (subscription) {
       subscription.unsubscribe()
@@ -207,6 +245,12 @@ module.exports = {
     }
   },
 
+  /**
+   * Finds potential artworks an all providers for a given artist
+   * @async
+   * @param {string} name - name of that artist
+   * @returns {array<Artwork>} a list (may be empty) of possible artworks
+   */
   async findForArtist(name) {
     if (!name) {
       return []
@@ -220,6 +264,12 @@ module.exports = {
     )
   },
 
+  /**
+   * Finds potential cover an all providers for a given album
+   * @async
+   * @param {string} name - name of that album
+   * @returns {array<Cover>} a list (may be empty) of possible covers
+   */
   async findForAlbum(name) {
     if (!name) {
       return []
@@ -233,7 +283,17 @@ module.exports = {
     )
   },
 
-  async saveForArtist(id, url, bio) {
+  /**
+   * Save an artist's artwork and bios.
+   * Downloads content from the given url, and use it as artwork.
+   * If bios are passed, they will erase existing ones.
+   * Broadcasts two `artist-changes` events so UI could detect change even when the media path is the same.
+   * @async
+   * @param {number} id           - artist's id
+   * @param {string} url          - artwork url (could be a local file)
+   * @param {object} [bio = null] - artist's bio, keys being the language code
+   */
+  async saveForArtist(id, url, bio = null) {
     const artist = await artistsModel.getById(id)
     if (!artist) {
       logger.warn({ id, url }, `unknown artist ${id}: skipping artwork update`)
@@ -266,7 +326,6 @@ module.exports = {
 
     if (hasChanged) {
       const { saved } = await artistsModel.save(artist)
-      // broadcast 2 changes so UI would detect changes event when the media path is the same
       broadcast('artist-changes', [{ ...artist, media: null }, saved[0]])
       logger.debug(
         { id, url, media: artist.media },
@@ -275,6 +334,15 @@ module.exports = {
     }
   },
 
+  /**
+   * Save an album's cover.
+   * Downloads content from the given url, and use it as cover.
+   * Broadcasts two `album-changes` events so UI could detect change even when the media path is the same.
+   * Also updates the cover off all contained tracks, broadcasting two `track-changes` event with them.
+   * @async
+   * @param {number} id   - album's id
+   * @param {string} url  - cover url (could be a local file)
+   */
   async saveForAlbum(id, url) {
     const album = await albumsModel.getById(id)
     if (!album) {

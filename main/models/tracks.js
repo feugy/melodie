@@ -3,6 +3,11 @@
 const Model = require('./abstract-model')
 const { hash } = require('../utils')
 
+/**
+ * @class TracksModel
+ * Manager for Tracks model. The seached column is tags.title.
+ * Has references to artists and albums.
+ */
 class TracksModel extends Model {
   constructor() {
     super({
@@ -12,6 +17,11 @@ class TracksModel extends Model {
     })
   }
 
+  /**
+   * Lists model ids and modification time, for comparison purposes, without pagination.
+   * @async
+   * @returns {array<object>} array of objects with `id` and `mtimeMs` properties
+   */
   async listWithTime() {
     const result = new Map()
     for (const { id, mtimeMs } of await this.db(this.name).select(
@@ -24,6 +34,13 @@ class TracksModel extends Model {
     return result
   }
 
+  /**
+   * Returns models by their paths.
+   * It uses like operator so we can list tracks by their containing folder.
+   * @async
+   * @param {array<string>} paths - searched paths
+   * @returns {array<TracksModel>} a list (possibly empty) of matching tracks
+   */
   async getByPaths(paths) {
     const query = this.db(this.name)
     for (const path of paths) {
@@ -34,6 +51,21 @@ class TracksModel extends Model {
     return results
   }
 
+  /**
+   * @typedef {object} TrackSaveResult
+   * @property {TracksModel} current  - current saved values
+   * @property {TracksModel} previous - previous values
+   */
+
+  /**
+   * Saves given track model to database.
+   * It creates new record when needed, and updates existing ones (based on provided id).
+   * Partial update is supported: incoming data is merged with previous.
+   * Returns previous and current state for each model, to allow spotting changes in tags.
+   * @async
+   * @param {object|array<object>} data - single or array of saved (partial) tracks
+   * @returns {array<TrackSaveResult>} saved models with their current and previous state
+   */
   async save(data) {
     if (!Array.isArray(data)) {
       data = [data]
@@ -78,6 +110,13 @@ class TracksModel extends Model {
     })
   }
 
+  /**
+   * Implementes search with tags' titles
+   * @protected
+   * @param {QueryBuilder} query - Knex query builder to customize
+   * @param {string} searched - searched text
+   * @returns {QueryBuilder} customized Knex query builder
+   */
   enrichForSearch(query, searched) {
     return query
       .select(`${this.name}.*`)

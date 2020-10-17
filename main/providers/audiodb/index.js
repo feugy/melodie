@@ -7,16 +7,36 @@ const descByLocales = {
   fr: 'strBiographyFR'
 }
 
+/**
+ * @class AudioDB
+ * Searches on AudioDB for:
+ * - artworks
+ * - bios
+ * - covers
+ * Requires a key, only delivered to patreons.
+ * @see https://www.theaudiodb.com/api_apply.php
+ */
 class AudioDB extends AbstractProvider {
   constructor() {
     super('AudioDB', 25)
   }
 
+  /**
+   * Initialization function, to configure the key used.
+   */
   init({ key } = {}) {
     this.key = key || null
     this.prefixUrl = `https://www.theaudiodb.com/api/v1/json/${this.key}`
   }
 
+  /**
+   * Finds artwork and bios for a given artist.
+   * Searches by artist name, retrieving their strArtistThumb, strArtistFanart and strBiographyXY.
+   * @async
+   * @param {string} searched - artist's name
+   * @returns {array<Artwork>} list (may be empty) of artworks
+   * @see https://www.theaudiodb.com/api_guide.php
+   */
   async findArtistArtwork(searched) {
     this.logger.debug({ searched }, `search artist artwork for ${searched}`)
     if (!this.key) {
@@ -64,6 +84,14 @@ class AudioDB extends AbstractProvider {
     }
   }
 
+  /**
+   * Finds covers for a given album.
+   * Searches by album name, retrieving their strAlbumThumb.
+   * @async
+   * @param {string} searched - album's name
+   * @returns {array<Cover>} list (may be empty) of covers
+   * @see https://www.theaudiodb.com/api_guide.php
+   */
   async findAlbumCover(searched) {
     this.logger.debug({ searched }, `search album cover for ${searched}`)
     if (!this.key) {

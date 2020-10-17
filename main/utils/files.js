@@ -54,7 +54,7 @@ exports.walk = function (path) {
 }
 
 /**
- * @typedef MergeResult
+ * @typedef {object} MergeResult
  * @property {array<string>} merged - list of unique result paths
  * @property {array<string>} added - list of distinct added path
  */

@@ -4,16 +4,37 @@ const got = require('got')
 const { basename } = require('path')
 const AbstractProvider = require('../abstract-provider')
 
+/**
+ * @class Discogs
+ * Searches on Discogs for:
+ * - artworks
+ * - bios
+ * - covers
+ * Requires an access token: a developer account at Discogs is needed, then generate a personal access token.
+ * @see https://www.discogs.com/settings/developers
+ */
 class Discogs extends AbstractProvider {
   constructor() {
     super('Discogs', 25)
   }
 
+  /**
+   * Initialization function, to configure the token used.
+   */
   init({ token } = {}) {
     this.token = token || null
     this.prefixUrl = `https://api.discogs.com`
   }
 
+  /**
+   * Finds artwork and bios for a given artist.
+   * Searches by artist name, looking for 3 results at most, then retrieving their cover_image and profile.
+   * @async
+   * @param {string} searched - artist's name
+   * @returns {array<Artwork>} list (may be empty) of artworks
+   * @see https://www.discogs.com/developers/#page:database,header:database-search
+   * @see https://www.discogs.com/developers/#page:database,header:database-artist
+   */
   async findArtistArtwork(searched) {
     this.logger.debug({ searched }, `search artist artwork for ${searched}`)
     if (!this.token) {
@@ -68,6 +89,14 @@ class Discogs extends AbstractProvider {
     }
   }
 
+  /**
+   * Finds covers for a given album.
+   * Searches by release name, looking for 3 results at most, then retrieving their cover_image.
+   * @async
+   * @param {string} searched - album's name
+   * @returns {array<Cover>} list (may be empty) of covers
+   * @see https://www.discogs.com/developers/#page:database,header:database-search
+   */
   async findAlbumCover(searched) {
     this.logger.debug({ searched }, `search album cover for ${searched}`)
     if (!this.token) {

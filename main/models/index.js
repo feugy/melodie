@@ -8,6 +8,11 @@ const exported = {
   ...require('./tracks')
 }
 
+/**
+ * Initialize all model classes.
+ * @async
+ * @param  {...any} args - passed the model's init functions
+ */
 exported.init = async function (...args) {
   await exported.settingsModel.init(...args)
   await exported.albumsModel.init(...args)
