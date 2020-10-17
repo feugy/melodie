@@ -1,7 +1,7 @@
 'use strict'
 
 const os = require('os')
-const { join } = require('path')
+const { dirname, join } = require('path')
 const fs = require('fs-extra')
 const faker = require('faker')
 
@@ -37,3 +37,22 @@ async function makeFolder({
 }
 
 exports.makeFolder = makeFolder
+
+async function makePlaylists({
+  files,
+  playlistNb = faker.random.number({ min: 2, max: 5 })
+}) {
+  const playlists = []
+  for (let n = 0; n < playlistNb; n++) {
+    const folder = dirname(faker.random.arrayElement(files).path)
+    const path = join(
+      folder,
+      `${n}.${faker.random.arrayElement(['m3u', 'm3u8'])}`
+    )
+    await fs.createFile(path)
+    playlists.push(path)
+  }
+  return { playlists }
+}
+
+exports.makePlaylists = makePlaylists
