@@ -21,6 +21,11 @@ const {
 } = require('./utils')
 const { version, name } = require('../package')
 
+/**
+ * Configures and starts Mélodie!
+ * @async
+ * @param {array<string>} argv - command line arguments
+ */
 exports.main = async argv => {
   config()
   const { app, BrowserWindow, Menu } = electron

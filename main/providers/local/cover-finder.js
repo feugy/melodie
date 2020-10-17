@@ -27,6 +27,18 @@ const coverFiles = [
 ]
 
 module.exports = {
+  /**
+   * Finds a cover image in a folder, by checkcking the existence of candidate files:
+   * - cover.{ext}
+   * - Cover.{ext}
+   * - folder.{ext}
+   * - Folder.{ext}
+   *
+   * possible extensions are: .jpeg, .jpg, .png, .gif (all lowercase)
+   * @async
+   * @param {string} path - folder path on drive
+   * @returns {string} the first existing cover image path, or null
+   */
   async findInFolder(path) {
     // path could either be a folder or a file
     const folder = extname(path) ? dirname(path) : path
@@ -42,6 +54,14 @@ module.exports = {
     return null
   },
 
+  /**
+   * Finds cover images for a given album:
+   * - uses the containing folder of the album first track
+   * - returns all images within it (jpeg/png/gif/bmp)
+   * @async
+   * @param {AlbumModel} album - album to search images for
+   * @returns {array<Cover>} list (may be empty) of covers
+   */
   async findForAlbum(album) {
     const { path } = await tracksModel.getById(album.trackIds[0])
     return walk(dirname(path))

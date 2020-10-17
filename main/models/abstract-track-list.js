@@ -3,12 +3,45 @@
 const Model = require('./abstract-model')
 const { uniq, difference } = require('../utils')
 
+/**
+ * @class AbstractTrackList
+ * Base class for all models containing references to tracks: Albums, Artists, Playlists.
+ * Computes references automatically, and ensures reference integrity.
+ */
 module.exports = class AbstractTrackList extends Model {
+  /**
+   * Builds a tracklist model manager, that can handle records with references to tracks
+   * @param {object} args                         - arguments, including:
+   * @param {boolean} [args.mergeTrackIds = true]   - true to merge newly saved with existing tracks
+   * @param {array<string>} [args.jsonColumns = []] - array of column names storing JSON content
+   * @returns {AbstractTrackList} a model manager
+   */
   constructor({ mergeTrackIds = true, jsonColumns = [], ...rest }) {
     super({ jsonColumns: [...jsonColumns, 'trackIds', 'refs'], ...rest })
     this.mergeTrackIds = mergeTrackIds
   }
 
+  /**
+   * @typedef {object} TrackListSaveResult
+   * @property {array<AbstractTrackList>} saved - list (possibly empty) of saved models
+   * @property {array<number>} removedIds       - list (possibly empty) of removed model ids
+   */
+
+  /**
+   * Saves given tracklist model to database.
+   * It creates new record when needed, and updates existing ones (based on provided id).
+   * Partial update is supported: incoming data is merged with previous.
+   * Tracks can be added (in `trackIds`) and removed (in `removedTrackIds`).
+   * Given `mergeTrackIds` property, incoming track will be merged with existing tracks (unicity is guaranted),
+   * or will override them (duplicates are allowed).
+   *
+   * A model with no tracks will be automatically removed.
+   *
+   * References to other models are automatically computed, with computeRefs() method.
+   * @async
+   * @param {object|array<object>} data - single or array of saved (partial) models
+   * @returns {TrackListSaveResult} saved models and removed model ids
+   */
   async save(data) {
     if (!Array.isArray(data)) {
       data = [data]
@@ -88,6 +121,13 @@ module.exports = class AbstractTrackList extends Model {
     })
   }
 
+  /**
+   * Lists models without media, and that where not processed since a given date.
+   * Models which `processedEpoch` is after the provided date will be ignored.
+   * @async
+   * @param {number} when - epoch before which models could be retrieved.
+   * @returns {array<AbstractModel>} array of models
+   */
   async listMedialess(when) {
     const results = (
       await this.db

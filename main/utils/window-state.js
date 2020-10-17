@@ -8,7 +8,13 @@ const { getLogger } = require('./logger')
 
 const logger = getLogger('utils/window-state')
 
-function save({ id }) {
+/**
+ * Makes a function to save window state into `state-{id}.json` file, within Electron's storage folder.
+ * @param {BrowserWindow} window - that will be saved
+ * @returns {function} an asynchronous function that will take the state as single parameter (object) and save it
+ * into the json file.
+ */
+function makeSaver({ id }) {
   const file = getStoragePath(`state-${id}.json`)
   return async state => {
     try {
@@ -19,18 +25,22 @@ function save({ id }) {
   }
 }
 
-function restore(win) {
-  const file = getStoragePath(`state-${win.id}.json`)
+/**
+ * Restores window state from `state-{id}.json` file.
+ * @param {BrowserWindow} window - that will be restored
+ */
+function restore(window) {
+  const file = getStoragePath(`state-${window.id}.json`)
   try {
     // synchronous read, to avoid flashing the window
     const state = JSON.parse(fs.readFileSync(file, 'utf8'))
-    win.setBounds(state)
+    window.setBounds(state)
     if (state.isMaximized) {
-      win.maximize()
+      window.maximize()
     } else if (state.isMinimized) {
-      win.minimize()
+      window.minimize()
     } else {
-      win.setFullScreen(state.isFullScreen)
+      window.setFullScreen(state.isFullScreen)
     }
   } catch (err) {
     if (err.code !== 'ENOENT') {
@@ -42,45 +52,63 @@ function restore(win) {
   }
 }
 
-function makePositionObservable(win) {
+/**
+ * Makes an observable that listen to the window events and emits a state object store in file.
+ * @param {BrowserWindow} window - that will be monitored
+ * @returns {Observable} the observable monitoring and saving state
+ */
+function makePositionObservable(window) {
   return merge(
-    fromEvent(win, 'minimize'),
-    fromEvent(win, 'restore'),
-    fromEvent(win, 'maximize'),
-    fromEvent(win, 'unmaximize'),
-    fromEvent(win, 'resize'),
-    fromEvent(win, 'move')
+    fromEvent(window, 'minimize'),
+    fromEvent(window, 'restore'),
+    fromEvent(window, 'maximize'),
+    fromEvent(window, 'unmaximize'),
+    fromEvent(window, 'resize'),
+    fromEvent(window, 'move')
   ).pipe(
     debounceTime(250),
     map(() => ({
-      ...win.getBounds(),
-      isMaximized: win.isMaximized(),
-      isMinimized: win.isMinimized(),
-      isFullScreen: win.isFullScreen()
+      ...window.getBounds(),
+      isMaximized: window.isMaximized(),
+      isMinimized: window.isMinimized(),
+      isFullScreen: window.isFullScreen()
     })),
-    mergeMap(save(win))
+    mergeMap(makeSaver(window))
   )
 }
 
 const subscriptions = new Map()
 
 module.exports = {
-  manageState(win) {
-    restore(win)
-    subscriptions.set(win.id, makePositionObservable(win).subscribe())
+  /**
+   * Starts monitoring the state (minimized, maximized, position and fullscreen) of a given window.
+   * Its state is persisted so it could be restored.
+   * @param {BrowserWindow} window - to start monitoring
+   */
+  manageState(window) {
+    restore(window)
+    subscriptions.set(window.id, makePositionObservable(window).subscribe())
   },
 
-  unmanageState(win) {
-    const subscription = subscriptions.get(win.id)
+  /**
+   * Stops monitoring this window state.
+   * @param {BrowserWindow} window - to stop monitoring
+   */
+  unmanageState(window) {
+    const subscription = subscriptions.get(window.id)
     if (subscription) {
       subscription.unsubscribe()
     }
   },
 
-  focusOnNotification(win) {
-    if (win.isMinimized()) {
-      win.restore()
+  /**
+   * Focus a given window, restoring it if it is minimized
+   * @param {BrowserWindow} window - to be focused
+   */
+  focusOnNotification(window) {
+    if (window.isMinimized()) {
+      window.restore()
     }
-    win.focus()
+    window.focus()
   }
 }
