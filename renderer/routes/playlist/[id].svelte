@@ -13,7 +13,7 @@
   } from '../../components'
   import { load, changes, removals, remove, save } from '../../stores/playlists'
   import { add } from '../../stores/track-queue'
-  import { formatTimeLong, sumDurations } from '../../utils'
+  import { formatTimeLong, sumDurations, invoke } from '../../utils'
 
   export let params
   let playlist
@@ -131,6 +131,11 @@
         }}
         icon="edit"
         text={$_('rename playlist')} />
+      <Button
+        class="ml-4"
+        on:click={() => invoke(`playlists.export`, playlist.id)}
+        icon="save_alt"
+        text={$_('export playlist')} />
       <Button
         class="ml-4"
         on:click={() => {

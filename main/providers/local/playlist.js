@@ -1,6 +1,13 @@
 'use strict'
 
-const { basename, dirname, extname, isAbsolute, resolve } = require('path')
+const {
+  basename,
+  dirname,
+  extname,
+  isAbsolute,
+  resolve,
+  relative
+} = require('path')
 const fs = require('fs-extra')
 const { getLogger, hash } = require('../../utils')
 const tag = require('./tag-reader')
@@ -26,7 +33,7 @@ module.exports = {
 
   /**
    * Parses playlist files into Playlist models.
-   * Supported formats: m3u & m3u8
+   * Supported formats: m3u & m3u8.
    * Handles:
    * - absolute path to file
    * - relative path to file (relative to the playlist file path)
@@ -79,6 +86,36 @@ module.exports = {
     } catch (error) {
       logger.warn({ error, path }, `failed to read playlist`)
       return null
+    }
+  },
+
+  /**
+   * Writes a playlist file in m3u or m3u8 format with relative path (based on given path)
+   * If a relative path starts with a folder which first character is '#', use absolute path
+   * @async
+   * @param {string} path                       - path of the file to write
+   * @param {PlaylistModel} playlist            - playlist to serialize, containing
+   * @param {array<TrackModel>} playlist.tracks   - array of track models
+   */
+  async write(path, playlist) {
+    if (playlist.tracks.length) {
+      const isM3u = extname(path).toLowerCase() === '.m3u'
+      await fs.ensureFile(path)
+      const root = dirname(path)
+      const content = ['#EXTM3U', `#PLAYLIST:${playlist.name}`]
+      for (const {
+        path,
+        tags: { title, duration }
+      } of playlist.tracks) {
+        const relativePath = relative(root, path)
+        content.push(
+          `#EXTINF:${Math.round(duration || 0)},${title}`,
+          relativePath.startsWith('#') ? path : relativePath
+        )
+      }
+      await fs.writeFile(path, content.join(isM3u ? '\r\n' : '\n'), {
+        encoding: isM3u ? 'latin1' : 'utf8'
+      })
     }
   }
 }

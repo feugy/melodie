@@ -1,11 +1,18 @@
 'use strict'
 
-const { resolve, join, sep } = require('path')
+const { join, relative, resolve, sep } = require('path')
 const { tmpdir } = require('os')
-const { mkdtemp, writeFile } = require('fs-extra')
+const {
+  access,
+  constants,
+  ensureFile,
+  mkdtemp,
+  readFile,
+  writeFile
+} = require('fs-extra')
 const faker = require('faker')
 const { hash } = require('../../utils')
-const { read, isPlaylistFile } = require('./playlist')
+const { isPlaylistFile, read, write } = require('./playlist')
 
 const fixtures = resolve(__dirname, '..', '..', '..', 'fixtures')
 const album =
@@ -200,6 +207,133 @@ https://example.com/track.ogg
 
     it('handles unknown file', async () => {
       expect(await read(resolve(__dirname, `unknown.${ext}`))).toBeNull()
+    })
+  })
+
+  describe.each([
+    ['m3u', 'latin1'],
+    ['m3u8', 'utf8']
+  ])('given a playlist', (ext, encoding) => {
+    const tracks = []
+
+    beforeAll(async () => {
+      const path1 = resolve(album, "01 - Norah Jones - Don't Know Why.ogg")
+      const path2 = resolve(fixtures, 'file.flac')
+      const path3 = resolve(folder, 'file.ogg')
+      const path4 = resolve(
+        folder,
+        '..',
+        '..',
+        faker.random.words(),
+        'file.mp3'
+      )
+      const path5 = resolve(folder, '# movies', 'file.ogg')
+
+      tracks.splice(
+        0,
+        tracks.length,
+        {
+          id: hash(path1),
+          path: path1,
+          tags: {
+            title: faker.lorem.words(),
+            duration: faker.random.number({ max: 500 })
+          }
+        },
+        {
+          id: hash(path2),
+          path: path2,
+          tags: {
+            title: faker.lorem.words(),
+            duration: faker.random.number({ max: 500 })
+          }
+        },
+        {
+          id: hash(path3),
+          path: path3,
+          tags: {
+            title: faker.lorem.words(),
+            duration: faker.random.number({ max: 500 })
+          }
+        },
+        {
+          id: hash(path4),
+          path: path4,
+          tags: {
+            title: faker.lorem.words(),
+            duration: faker.random.number({ max: 500 })
+          }
+        },
+        {
+          id: hash(path5),
+          path: path5,
+          tags: {
+            title: faker.lorem.words(),
+            duration: faker.random.number({ max: 500 })
+          }
+        }
+      )
+    })
+
+    it(`writes a new ${ext} file using relative paths`, async () => {
+      const path = join(folder, `playlist.${ext}`)
+      const playlist = {
+        id: hash(path),
+        name: faker.commerce.productName(),
+        trackIds: tracks.map(({ id }) => id),
+        tracks
+      }
+
+      await write(path, playlist)
+      expect(await readFile(path, encoding)).toEqual(
+        [
+          '#EXTM3U',
+          `#PLAYLIST:${playlist.name}`,
+          `#EXTINF:${tracks[0].tags.duration},${tracks[0].tags.title}`,
+          relative(folder, tracks[0].path),
+          `#EXTINF:${tracks[1].tags.duration},${tracks[1].tags.title}`,
+          relative(folder, tracks[1].path),
+          `#EXTINF:${tracks[2].tags.duration},${tracks[2].tags.title}`,
+          relative(folder, tracks[2].path),
+          `#EXTINF:${tracks[3].tags.duration},${tracks[3].tags.title}`,
+          relative(folder, tracks[3].path),
+          `#EXTINF:${tracks[4].tags.duration},${tracks[4].tags.title}`,
+          tracks[4].path
+        ].join(encoding === 'utf8' ? '\n' : '\r\n')
+      )
+    })
+
+    it(`overwrites an existing ${ext} file`, async () => {
+      const path = join(folder, `existing.${ext}`)
+      await ensureFile(path)
+
+      const playlist = {
+        id: hash(path),
+        name: faker.commerce.productName(),
+        trackIds: [tracks[4].id],
+        tracks: tracks.slice(4)
+      }
+
+      await write(path, playlist)
+      expect(await readFile(path, encoding)).toEqual(
+        [
+          '#EXTM3U',
+          `#PLAYLIST:${playlist.name}`,
+          `#EXTINF:${tracks[4].tags.duration},${tracks[4].tags.title}`,
+          tracks[4].path
+        ].join(encoding === 'utf8' ? '\n' : '\r\n')
+      )
+    })
+
+    it(`does not create ${ext} file for an empty playlist`, async () => {
+      const path = join(folder, `no-tracks.${ext}`)
+      await write(path, {
+        id: hash(path),
+        name: faker.commerce.productName(),
+        trackIds: [],
+        tracks: []
+      })
+      await expect(access(path, constants.R_OK)).rejects.toThrow('ENOENT')
     })
   })
 })

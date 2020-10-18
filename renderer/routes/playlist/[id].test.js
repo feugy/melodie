@@ -15,7 +15,7 @@ import {
   save
 } from '../../stores/playlists'
 import { add } from '../../stores/track-queue'
-import { translate, sleep, addRefs } from '../../tests'
+import { translate, sleep, addRefs, mockInvoke } from '../../tests'
 
 jest.mock('svelte-spa-router')
 jest.mock('../../stores/track-queue', () => ({
@@ -188,7 +188,7 @@ describe('playlist details route', () => {
       expect(save).not.toHaveBeenCalled()
     })
 
-    it('rename playlist', async () => {
+    it('renames playlist', async () => {
       const name = faker.commerce.productName()
       await fireEvent.click(screen.queryByText('edit'))
 
@@ -200,6 +200,18 @@ describe('playlist details route', () => {
       await sleep()
 
       expect(save).toHaveBeenCalledWith({ ...playlist, name })
+    })
+
+    it('exports playlist', async () => {
+      await fireEvent.click(screen.queryByText('save_alt'))
+
+      expect(mockInvoke).toHaveBeenCalledWith(
+        'remote',
+        'playlists',
+        'export',
+        playlist.id
+      )
+      expect(mockInvoke).toHaveBeenCalledTimes(1)
     })
 
     it('ignores entered, empty names', async () => {

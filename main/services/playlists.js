@@ -1,7 +1,10 @@
 'use strict'
 
+const { dialog } = require('electron')
 const { playlistsModel, tracksModel } = require('../models')
 const { getLogger, broadcast, hash, difference } = require('../utils')
+const tracksService = require('../services/tracks')
+const { write, formats } = require('../providers/local/playlist')
 
 const logger = getLogger('services/playlists')
 
@@ -116,5 +119,31 @@ module.exports = {
       }
       toCheck.splice(0, toCheck.length)
     }
+  },
+
+  /**
+   * Exports a given playlist into a playlist file: opens system explorer so users could select a file,
+   * then serialize the playlist in it.
+   * @async
+   * @param {number} id - the serialized playlist id
+   * @returns {string|null} the written file path
+   */
+  async export(id) {
+    const playlist = await tracksService.fetchWithTracks('playlist', id, 'rank')
+    if (!playlist) {
+      return null
+    }
+
+    const { filePath } = await dialog.showSaveDialog({
+      defaultPath: `${playlist.name}.m3u8`,
+      filters: [{ extensions: formats }],
+      properties: ['createDirectory']
+    })
+    if (!filePath) {
+      return null
+    }
+
+    await write(filePath, playlist)
+    return filePath
   }
 }

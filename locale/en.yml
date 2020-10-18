@@ -40,6 +40,7 @@ enqueue all: Enqueue all
 enqueue: Add to the queue
 enqueues and jumps: enqueues and jumps to track
 enqueues track: enqueues track
+export playlist: Export
 fr: Français
 how to create playlist: To create new playlist, enqueue some tracks and clic on <i class="material-icons">library_add</i>.
 let's go: Let's go!
