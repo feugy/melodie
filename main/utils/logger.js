@@ -35,7 +35,7 @@ function readLevels() {
       throw new Error(`failed to read level file ${levelFile}: ${err.message}`)
     }
   }
-  return null
+  return []
 }
 
 /**
