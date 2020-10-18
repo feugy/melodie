@@ -31,6 +31,7 @@ enqueue all: Ajouter tout
 enqueues and jumps: ajoute le morceau à la liste et le lit
 enqueues track: ajoute le morceau à la liste
 enqueue: Ajouter à la liste
+export playlist: Exporter
 how to create playlist: Pour créer une playlist, ajouter des morceaux à la liste de lecture et cliquez sur <i class="material-icons">library_add</i>.
 let's go: C'est parti !
 i will figure out: Je me débrouillerai
