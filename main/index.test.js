@@ -81,7 +81,7 @@ describe('Application test', () => {
     expect(services.settings.init).toHaveBeenCalledTimes(1)
     expect(services.tracks.listen).toHaveBeenCalledTimes(1)
     expect(win.loadURL).toHaveBeenCalledWith(
-      `file://${resolve(__dirname, '..', 'public')}/index.html`
+      `file://${resolve(__dirname, '..', 'public', 'index.html')}`
     )
     expect(electron.app.quit).not.toHaveBeenCalled()
     expect(configureExternalLinks).toHaveBeenCalledWith(win)
