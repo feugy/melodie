@@ -96,7 +96,7 @@ describe('window state management utilities', () => {
 
     expect(logger.warn).toHaveBeenCalledWith(
       expect.any(Object),
-      `failed to save state: EACCES: permission denied, open '${file}'`
+      expect.stringContaining('failed to save state') // linux throws EACCESS, windows EPERM
     )
   })
 

@@ -4,7 +4,7 @@ const faker = require('faker')
 const knex = require('knex')
 const fs = require('fs-extra')
 const os = require('os')
-const { join } = require('path')
+const { join, resolve } = require('path')
 const { tracksModel } = require('./tracks')
 const { hash } = require('../utils')
 
@@ -13,8 +13,8 @@ let db
 
 describe('Tracks model', () => {
   const title = faker.commerce.productName()
-  const folder1 = faker.system.directoryPath()
-  const folder2 = faker.system.directoryPath()
+  const folder1 = resolve(faker.system.directoryPath())
+  const folder2 = resolve(faker.system.directoryPath())
 
   const models = [
     {
