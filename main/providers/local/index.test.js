@@ -599,9 +599,8 @@ describe('Local provider', () => {
 
       it('finds new files and save them', async () => {
         await provider.compareTracks()
+        await sleep(700)
         jest.clearAllMocks()
-
-        await sleep(200)
 
         const first = join(tree.folder, 'first.mp3')
         const second = join(tree.folder, 'second.ogg')
@@ -642,9 +641,8 @@ describe('Local provider', () => {
 
       it('finds modified files and save them', async () => {
         await provider.compareTracks()
+        await sleep(700)
         jest.clearAllMocks()
-
-        await sleep(200)
 
         fs.writeFile(join(tree.folder, 'unsupported.png'), faker.lorem.word())
 
@@ -682,9 +680,8 @@ describe('Local provider', () => {
 
       it('handles file rename', async () => {
         await provider.compareTracks()
+        await sleep(700)
         jest.clearAllMocks()
-
-        await sleep(200)
 
         const { path } = tree.files[0]
         const { ino } = await fs.stat(path)
@@ -716,9 +713,8 @@ describe('Local provider', () => {
 
       it('handles folder rename', async () => {
         await provider.compareTracks()
+        await sleep(700)
         jest.clearAllMocks()
-
-        await sleep(200)
 
         const folder = dirname(tree.files[12].path)
         const newPath = folder.replace(basename(folder), 'renamed')
@@ -766,9 +762,8 @@ describe('Local provider', () => {
         fs.writeFile(unsupported, faker.lorem.word())
 
         await provider.compareTracks()
+        await sleep(700)
         jest.clearAllMocks()
-
-        await sleep(200)
 
         const removed = tree.files.slice(3, 7)
         for (const { path } of removed) {
@@ -808,9 +803,8 @@ describe('Local provider', () => {
 
       it('finds additions of playlist files', async () => {
         await provider.compareTracks()
+        await sleep(700)
         jest.clearAllMocks()
-
-        await sleep(200)
 
         const path = join(dirname(playlists[2]), 'new.m3u')
         fs.writeFile(path, '#EXTM3U\ntest.mp3', 'latin1')
@@ -837,9 +831,8 @@ describe('Local provider', () => {
 
       it('ignores modifications, deletions and additiong of playlist files', async () => {
         await provider.compareTracks()
+        await sleep(700)
         jest.clearAllMocks()
-
-        await sleep(200)
 
         fs.writeFile(playlists[2], '#EXTM3U\ntest.mp3', 'latin1')
         const path = playlists[3]
@@ -866,7 +859,7 @@ describe('Local provider', () => {
       settingsModel.get.mockResolvedValueOnce({ folders: [] })
 
       await provider.compareTracks()
-      await sleep(200)
+      await sleep(700)
 
       fs.writeFile(join(tree.folder, 'first.mp3'), faker.lorem.word())
 

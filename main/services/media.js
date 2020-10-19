@@ -42,7 +42,9 @@ const logger = getLogger('services/media')
 async function downloadAndSave(media, url) {
   const { protocol } = parse(url)
   const isRemote = protocol && protocol.startsWith('http')
-  const source = isRemote ? got.stream(url) : fs.createReadStream(url)
+  const source = isRemote
+    ? got.stream(url, { timeout: 3000 })
+    : fs.createReadStream(url)
   let ext = extname(url)
   if (isRemote) {
     source.once(
