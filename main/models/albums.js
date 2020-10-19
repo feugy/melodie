@@ -8,6 +8,14 @@ const { uniqRef, parseRawRefArray } = require('../utils')
  * @class AlbumsModel
  * Manager for Album models. The seached column is name.
  * Has references to artists.
+ *
+ * Model properties:
+ * - {number} id                  - primary key (integer)
+ * - {string} name                - album's name
+ * - {string|null} media          - full path to the cover file for this album
+ * - {array<number>} trackIds     - ids of the album's tracks
+ * - {array<Reference>} refs      - references to the album's artists
+ * - {number|null} processedEpoch - epoch of the last automatic media retrieval
  */
 class AlbumsModel extends TrackList {
   constructor() {

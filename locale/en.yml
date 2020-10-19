@@ -57,6 +57,7 @@ on unsplash: on Unsplash.
 open: Open
 open folder: Open containing folder
 open queue: Open queue
+path: Path
 play all: Play all
 play now: Play now
 play now behaviour: 'Button <i class="material-icons">play_arrow</i>:'

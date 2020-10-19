@@ -5,6 +5,13 @@ const Model = require('./abstract-model')
 /**
  * @class SettingsModel
  * Manager for Settings. There must only be a single model of settings.
+ * Model properties:
+ * - {number} id                - primary key (integer)
+ * - {array<string>} folders    - list of monitored folders
+ * - {object} providers         - providers settings: each property is the provider name
+ * - {string} locale            - current locale used
+ * - {number} openCount         - how many times Mélodie was opened (positive integer)
+ * - {object} enqueueBehaviour  - `clearBefore` & `onClick` booleans to control how tracks are enqueued
  */
 class SettingsModel extends Model {
   constructor() {

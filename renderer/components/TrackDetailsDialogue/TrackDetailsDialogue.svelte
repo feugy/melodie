@@ -55,7 +55,10 @@
         values.push({ key, label: $_(`tags.${key}`), value })
       }
     }
-    values.push({ key: 'id', label: $_('id'), value: src.id })
+    values.push(
+      { key: 'id', label: $_('id'), value: src.id },
+      { key: 'path', label: $_('path'), value: src.path }
+    )
     values.sort((a, b) => collator.compare(a.label, b.label))
   }
 </script>

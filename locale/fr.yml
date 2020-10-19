@@ -45,6 +45,7 @@ on unsplash: sur Unsplash.
 open: Ouvrir
 open folder: Ouvrir le dossier parent
 open queue: Liste de lecture
+path: Chemin
 play all: Lire tout
 play now: Lire maintenant
 play now behaviour: 'Le bouton <i class="material-icons">play_arrow</i> :'

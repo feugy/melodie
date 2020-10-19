@@ -7,6 +7,15 @@ const { hash } = require('../utils')
  * @class TracksModel
  * Manager for Tracks model. The seached column is tags.title.
  * Has references to artists and albums.
+ * Model properties:
+ * - {number} id                    - primary key (integer)
+ * - {string} path                  - full path to the track file
+ * - {string|null} media            - full path to the media file for this track
+ * - {Tags} tags                    - media metadatas
+ * - {array<Reference>} artistRefs  - references to the track's artists
+ * - {Reference} albumRef           - reference to the track's album
+ * - {number} mtimeMs               - epoch of the last modification
+ * - {number} ino                   - inode of the track file
  */
 class TracksModel extends Model {
   constructor() {

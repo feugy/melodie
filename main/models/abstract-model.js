@@ -101,6 +101,15 @@ module.exports = class AbstractModel {
   }
 
   /**
+   * @typedef {object} Page
+   * @property {number} total - total number of models
+   * @property {number} size  - 0-based rank of the first model returned
+   * @property {number} from  - maximum number of models per page
+   * @property {string} sort  - sorting criteria used: direction (+ or -) then property (name, rank...)
+   * @property {array<ArtistsModel|AlbumsModel|PlaylistsModel|TracksModel>} results - returned models
+   */
+
+  /**
    * Lists models within table, with pagination and sort.
    * Also supports searches, when the searched text is provided
    * @async
@@ -110,7 +119,7 @@ module.exports = class AbstractModel {
    * @param {string} [args.sort = 'id'] - column used for sorting.
    *                                      Use + for ascending order (default) or - for descending
    * @param {string} args.searched      - text used when searching (optional)
-   * @returns {array<AbstractModel>} array of models
+   * @returns {Page} a given page of models
    */
   async list({ from = 0, size = 10, sort = 'id', searched } = {}) {
     const [, rawDir, rawSort] = searched
