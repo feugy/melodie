@@ -1,30 +1,29 @@
 'use strict'
 
-const { extname, resolve } = require('path')
-const { of, from, concat, merge, EMPTY, Subject } = require('rxjs')
+const { resolve } = require('path')
+const { concat, EMPTY, from, merge, of, Subject } = require('rxjs')
 const {
-  reduce,
-  mergeMap,
-  shareReplay,
+  bufferTime,
+  delay,
   expand,
   filter,
-  delay,
-  tap,
-  bufferTime
+  mergeMap,
+  reduce,
+  shareReplay,
+  tap
 } = require('rxjs/operators')
 const {
   broadcast,
   differenceRef,
   dirPaths,
   getLogger,
-  hash,
   mergePaths
 } = require('../utils')
 const {
   albumsModel,
-  tracksModel,
   artistsModel,
-  playlistsModel
+  playlistsModel,
+  tracksModel
 } = require('../models')
 
 const logger = getLogger('services/tracks')
@@ -184,7 +183,7 @@ module.exports = {
    */
   async add(tracks) {
     const tracks$ = from(tracksModel.save(tracks)).pipe(
-      mergeMap(from),
+      mergeMap(tracks => from(tracks)),
       tap(({ current }) =>
         messages$.next({ type: 'track-changes', data: current })
       ),
@@ -249,7 +248,7 @@ module.exports = {
    */
   async remove(trackIds) {
     const tracks$ = from(tracksModel.removeByIds(trackIds)).pipe(
-      mergeMap(from),
+      mergeMap(tracks => from(tracks)),
       tap(track => messages$.next({ type: 'track-removals', data: track.id })),
       expand(({ id, albumRef, artistRefs }) => {
         if (!artistRefs) {
@@ -270,15 +269,6 @@ module.exports = {
 
   /**
    * @typedef {"artist" | "album" | "playlist"} ModelName
-   */
-
-  /**
-   * @typedef {object} Page
-   * @property {number} total - total number of models
-   * @property {number} size  - 0-based rank of the first model returned
-   * @property {number} from  - maximum number of models per page
-   * @property {string} sort  - sorting criteria used: direction (+ or -) then property (name, rank...)
-   * @property {array<ArtistsModel|AlbumsModel|PlaylistsModel|TracksModel>} results - returned models
    */
 
   /**
@@ -400,31 +390,14 @@ module.exports = {
     const parents = dirPaths(entries)
     const settings = await settingsService.get()
     const { added } = mergePaths(parents, settings.folders)
-    const files = []
-    const folders = []
-    const tracks = []
-    for (const entry of entries) {
-      if (extname(entry) === '') {
-        folders.push(resolve(entry))
-      } else {
-        files.push(entry)
-      }
-    }
     // add new folders to monitored list
     if (added.length) {
       logger.debug({ added }, `adding untracked folders`)
       await new Promise(resolve => settingsService.addFolders(added, resolve))
     }
-    // find all tracks from their path name
-    if (files.length) {
-      tracks.push(
-        ...(await tracksModel.getByIds(files.map(path => hash(path))))
-      )
-    }
-    // find all tracks within specify folders
-    if (folders.length) {
-      tracks.push(...(await tracksModel.getByPaths(folders)))
-    }
+    const tracks = await tracksModel.getByPaths(
+      entries.map(path => resolve(path))
+    )
     broadcast('play-tracks', tracks)
 
     logger.debug(

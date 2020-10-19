@@ -71,7 +71,8 @@ Another option is to open it with Control-click: it'll immediately register the 
 
 ### Bugs and known issues
 
-1. Playlist are not updated on tracks removal/changes
+1. Playlist models are not updated on tracks removal/changes
+1. Playlist details page is not updated on track changes (new path not visible on track details dialogue)
 1. Undetected live changes: remove tracks and re-add them. This is a linux-only issue with chokidar
    - https://github.com/paulmillr/chokidar/issues/917
    - https://github.com/paulmillr/chokidar/issues/591

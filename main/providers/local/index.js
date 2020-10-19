@@ -2,15 +2,7 @@
 
 const { extname } = require('path')
 const fs = require('fs-extra')
-const {
-  of,
-  Observable,
-  forkJoin,
-  from,
-  merge,
-  EMPTY,
-  partition
-} = require('rxjs')
+const { of, Observable, forkJoin, from, EMPTY } = require('rxjs')
 const {
   mergeMap,
   filter,
@@ -18,6 +10,8 @@ const {
   bufferCount,
   map,
   tap,
+  bufferWhen,
+  debounceTime,
   share
 } = require('rxjs/operators')
 const chokidar = require('chokidar')
@@ -82,18 +76,19 @@ function makeEnrichAndSavePipeline(
 ) {
   const pipeline = [
     mergeMap(
-      ({ path, stats: { mtimeMs } }) =>
+      ({ path, id, stats: { mtimeMs, ino } }) =>
         playlistUtils.isPlaylistFile(path)
           ? from(playlistUtils.read(path)).pipe(
               filter(model => model),
               mergeMap(model => playlists.save(model, true))
             )
           : forkJoin({
-              id: of(hash(path)),
+              id: of(id || hash(path)),
               path: of(path),
               tags: from(tagReader.read(path)),
               media: from(findInFolder(path)),
-              mtimeMs: of(mtimeMs)
+              mtimeMs: of(mtimeMs),
+              ino: of(ino)
             }),
       readConcurrency
     ),
@@ -125,57 +120,98 @@ function makeEnrichAndSavePipeline(
  */
 function watch(folders, logger) {
   for (const folder of Array.isArray(folders) ? folders : [folders]) {
-    const [additions, removals] = partition(
-      new Observable(function (observer) {
-        logger.info({ folder }, `starting watch`)
-        const watcher = chokidar
-          .watch(folder, {
-            ignoreInitial: true,
-            disableGlobbing: true,
-            awaitWriteFinish: {
-              stabilityThreshold: 200,
-              pollInterval: 100
-            }
-          })
-          .on('add', path => {
-            logger.debug({ path }, 'file addition watched')
-            observer.next({ isSave: true, isNew: true, path })
-          })
-          .on('change', path => {
-            logger.debug({ path }, 'file change watched')
-            observer.next({ isSave: true, path })
-          })
-          .on('unlink', path => {
-            logger.debug({ path }, 'file deletion watched')
-            observer.next({ isSave: false, path })
-          })
-          .on('error', observer.error.bind(observer))
-        return {
-          unsubscribe: () => {
-            watcher.close()
-            logger.info({ folder }, `watcher stopped`)
+    const watchEvents$ = new Observable(function (observer) {
+      logger.info({ folder }, `starting watch`)
+      const watcher = chokidar
+        .watch(folder, {
+          ignoreInitial: true,
+          disableGlobbing: true,
+          awaitWriteFinish: {
+            stabilityThreshold: 200,
+            pollInterval: 100
           }
+        })
+        .on('add', (path, stats) =>
+          observer.next({ kind: 'addition', path, stats })
+        )
+        .on('change', (path, stats) =>
+          observer.next({ kind: 'change', path, stats })
+        )
+        .on('unlink', path => observer.next({ kind: 'deletion', path }))
+        .on('error', observer.error.bind(observer))
+      return {
+        unsubscribe: () => {
+          watcher.close()
+          logger.info({ folder }, `watcher stopped`)
         }
-      }).pipe(share()),
-      ({ isSave }) => isSave
+      }
+    }).pipe(
+      mergeMap(event =>
+        event.kind === 'deletion'
+          ? from(tracksModel.getByPaths([event.path])).pipe(
+              map(results =>
+                results.length
+                  ? {
+                      ...event,
+                      id: results[0].id,
+                      stats: { ino: results[0].ino }
+                    }
+                  : null
+              )
+            )
+          : of(event)
+      ),
+      filter(n => n),
+      tap(({ kind, path, stats }) =>
+        logger.debug({ path, ino: stats.ino }, `file ${kind} watched`)
+      ),
+      share()
     )
 
     subscriptions.set(
       folder,
-      merge(
-        additions.pipe(
-          mergeMap(({ path, isNew }) =>
-            from(fs.stat(path)).pipe(map(stats => ({ path, stats, isNew })))
-          ),
-          filter(onlySupported(true)),
-          ...makeEnrichAndSavePipeline(1, false),
-          tap(playlists.checkIntegrity)
-        ),
-        removals.pipe(
-          filter(onlySupported(true)),
-          mergeMap(({ path }) => from(tracks.remove([hash(path)])))
+      watchEvents$
+        .pipe(
+          bufferWhen(() => watchEvents$.pipe(debounceTime(250))),
+          map(events => {
+            const perIno = new Map()
+            for (const event of events) {
+              const {
+                stats: { ino },
+                kind
+              } = event
+              let existing = perIno.get(ino)
+              // in case we already have an event for this inode, only keeps the addition one, but also keeps
+              // the id from deletion event
+              if (existing && existing.kind !== kind) {
+                const renameEvent = {
+                  ...(kind === 'addition' ? event : existing),
+                  id: event.id || existing.id
+                }
+                const { path, id } = renameEvent
+                const { path: oldPath } = kind === 'addition' ? existing : event
+                perIno.set(ino, renameEvent)
+                logger.debug(
+                  { path, oldPath, id, ino },
+                  `file renamed (id ${id})`
+                )
+              } else {
+                perIno.set(ino, event)
+              }
+            }
+            return [...perIno.values()]
+          }),
+          mergeMap(events => from(events)),
+          mergeMap(({ kind, path, id, stats }) =>
+            kind === 'deletion'
+              ? from(tracks.remove([id]))
+              : of({ isNew: kind === 'addition', path, stats, id }).pipe(
+                  filter(onlySupported(true)),
+                  ...makeEnrichAndSavePipeline(1, false)
+                )
+          )
         )
-      ).subscribe()
+        .subscribe(() => playlists.checkIntegrity())
     )
   }
 }

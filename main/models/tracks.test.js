@@ -20,7 +20,8 @@ describe('Tracks model', () => {
     {
       path: join(folder1, faker.system.fileName()),
       tags: JSON.stringify({}),
-      mtimeMs: 1590479078019.59
+      mtimeMs: 1590479078019.59,
+      ino: 2634312
     },
     {
       path: join(folder1, faker.random.word(), faker.system.fileName()),
@@ -29,7 +30,8 @@ describe('Tracks model', () => {
         artists: [faker.name.findName()],
         album: faker.commerce.productName()
       }),
-      mtimeMs: 1591821991051.59
+      mtimeMs: 1591821991051.59,
+      ino: 2674312
     },
     {
       path: join(folder2, faker.system.fileName()),
@@ -37,7 +39,8 @@ describe('Tracks model', () => {
         title: `${faker.commerce.productAdjective()} ${title}`,
         artists: [faker.name.findName()]
       }),
-      mtimeMs: 1459069600000.0
+      mtimeMs: 1459069600000.0,
+      ino: 2639112
     },
     {
       path: join(faker.system.directoryPath(), faker.system.fileName()),
@@ -46,7 +49,8 @@ describe('Tracks model', () => {
         artists: [],
         album: faker.commerce.productName()
       }),
-      mtimeMs: 1472480286000.0
+      mtimeMs: 1472480286000.0,
+      ino: 4139112
     }
   ].map(track => ({
     ...track,
@@ -89,7 +93,8 @@ describe('Tracks model', () => {
         path,
         media: faker.image.image(),
         mtimeMs: Date.now(),
-        tags: { album, artists }
+        tags: { album, artists },
+        ino: 2639762
       }
 
       const [{ current, previous }] = await tracksModel.save(track)
@@ -109,7 +114,8 @@ describe('Tracks model', () => {
         path,
         media: faker.image.image(),
         mtimeMs: Date.now(),
-        tags: {}
+        tags: {},
+        ino: 2639362
       }
 
       const [{ current, previous }] = await tracksModel.save(track)
@@ -132,14 +138,16 @@ describe('Tracks model', () => {
         path: path1,
         media: faker.image.image(),
         mtimeMs: Date.now(),
-        tags: { album, artists: artists.slice(0, 1), albumartist: artists[0] }
+        tags: { album, artists: artists.slice(0, 1), albumartist: artists[0] },
+        ino: 2459112
       }
       const track2 = {
         id: hash(path2),
         path: path2,
         media: faker.image.image(),
         mtimeMs: Date.now(),
-        tags: { album, artists: artists.slice(1), albumartist: artists[1] }
+        tags: { album, artists: artists.slice(1), albumartist: artists[1] },
+        ino: 3439112
       }
 
       const results = await tracksModel.save([track1, track2])
@@ -165,7 +173,8 @@ describe('Tracks model', () => {
         ...models[1],
         media: faker.image.image(),
         mtimeMs: Date.now(),
-        tags: { album, artists }
+        tags: { album, artists },
+        ino: 3439196
       }
 
       const [{ previous, current }] = await tracksModel.save([track])

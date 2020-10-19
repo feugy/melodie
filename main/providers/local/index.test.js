@@ -163,7 +163,8 @@ describe('Local provider', () => {
             path: path,
             media: null,
             tags: {},
-            mtimeMs: stats.mtimeMs
+            mtimeMs: stats.mtimeMs,
+            ino: stats.ino
           }))
         )
       )
@@ -199,7 +200,8 @@ describe('Local provider', () => {
             path: path,
             media: null,
             tags: {},
-            mtimeMs: stats.mtimeMs
+            mtimeMs: stats.mtimeMs,
+            ino: stats.ino
           }))
         )
       )
@@ -266,7 +268,8 @@ describe('Local provider', () => {
             path: path,
             media: null,
             tags: {},
-            mtimeMs: stats.mtimeMs
+            mtimeMs: stats.mtimeMs,
+            ino: stats.ino
           }))
         )
       )
@@ -364,7 +367,8 @@ describe('Local provider', () => {
             path: path,
             media: null,
             tags: {},
-            mtimeMs: stats.mtimeMs
+            mtimeMs: stats.mtimeMs,
+            ino: stats.ino
           }))
         )
       )
@@ -408,12 +412,13 @@ describe('Local provider', () => {
 
         const { saved, removedIds } = await provider.compareTracks()
 
-        const tracks = newFiles.map(({ path, stats: { mtimeMs } }) => ({
+        const tracks = newFiles.map(({ path, stats: { mtimeMs, ino } }) => ({
           id: hash(path),
           path,
           media: null,
           tags: {},
-          mtimeMs
+          mtimeMs,
+          ino
         }))
         expect(removedIds).toEqual([])
         expect(saved).toEqual(tracks)
@@ -439,12 +444,13 @@ describe('Local provider', () => {
 
         const { saved, removedIds } = await provider.compareTracks()
 
-        const tracks = modified.map(({ path, stats: { mtimeMs } }) => ({
+        const tracks = modified.map(({ path, stats: { mtimeMs, ino } }) => ({
           id: hash(path),
           path,
           media: null,
           tags: {},
-          mtimeMs
+          mtimeMs,
+          ino
         }))
         expect(removedIds).toEqual([])
         expect(saved).toEqual(tracks)
@@ -554,13 +560,16 @@ describe('Local provider', () => {
 
         const { saved, removedIds } = await provider.compareTracks()
 
-        const tracks = newAndModified.map(({ path, stats: { mtimeMs } }) => ({
-          id: hash(path),
-          path,
-          media: null,
-          tags: {},
-          mtimeMs
-        }))
+        const tracks = newAndModified.map(
+          ({ path, stats: { mtimeMs, ino } }) => ({
+            id: hash(path),
+            path,
+            media: null,
+            tags: {},
+            mtimeMs,
+            ino
+          })
+        )
         expect(removedIds).toEqual(missing.map(({ path }) => hash(path)))
         expect(saved).toEqual(tracks)
         expect(tracksService.add).toHaveBeenCalledWith(tracks)
@@ -604,14 +613,15 @@ describe('Local provider', () => {
         fs.writeFile(join(tree.folder, 'ignored.jpg'), faker.lorem.word())
         fs.writeFile(third, faker.lorem.word())
 
-        await sleep(500)
+        await sleep(700)
 
         const tracks = [first, second, third].map(path => ({
           id: hash(path),
           path,
           media: null,
           tags: {},
-          mtimeMs: expect.any(Number)
+          mtimeMs: expect.any(Number),
+          ino: expect.any(Number)
         }))
 
         expect(tracksService.remove).not.toHaveBeenCalled()
@@ -643,14 +653,15 @@ describe('Local provider', () => {
           fs.writeFile(path, faker.lorem.word())
         }
 
-        await sleep(500)
+        await sleep(700)
 
         const tracks = modified.map(({ path }) => ({
           id: hash(path),
           path,
           media: null,
           tags: {},
-          mtimeMs: expect.any(Number)
+          mtimeMs: expect.any(Number),
+          ino: expect.any(Number)
         }))
 
         expect(tracksService.remove).not.toHaveBeenCalled()
@@ -669,6 +680,87 @@ describe('Local provider', () => {
         )
       })
 
+      it('handles file rename', async () => {
+        await provider.compareTracks()
+        jest.clearAllMocks()
+
+        await sleep(200)
+
+        const { path } = tree.files[0]
+        const { ino } = await fs.stat(path)
+        tracksModel.getByPaths.mockResolvedValueOnce([{ id: hash(path), ino }])
+        const name = basename(path)
+        const newPath = path.replace(name, `renamed${extname(name)}`)
+        fs.rename(path, newPath)
+
+        await sleep(700)
+
+        expect(tracksService.remove).not.toHaveBeenCalled()
+        expect(tracksService.add).toHaveBeenCalledWith([
+          {
+            id: hash(path),
+            path: newPath,
+            media: null,
+            tags: {},
+            mtimeMs: expect.any(Number),
+            ino: expect.any(Number)
+          }
+        ])
+        expect(tracksService.add).toHaveBeenCalledTimes(1)
+        expect(playlistsService.save).not.toHaveBeenCalled()
+        expect(covers.findInFolder).toHaveBeenCalledTimes(1)
+        expect(tagReader.read).toHaveBeenCalledTimes(1)
+        expect(playlistUtils.read).not.toHaveBeenCalled()
+        expect(playlistsService.checkIntegrity).toHaveBeenCalledTimes(1)
+      })
+
+      it('handles folder rename', async () => {
+        await provider.compareTracks()
+        jest.clearAllMocks()
+
+        await sleep(200)
+
+        const folder = dirname(tree.files[12].path)
+        const newPath = folder.replace(basename(folder), 'renamed')
+        const modified = tree.files.filter(({ path }) =>
+          path.startsWith(folder)
+        )
+
+        const inodes = new Map()
+        for (const { path } of modified) {
+          inodes.set(path, (await fs.stat(path)).ino)
+        }
+        tracksModel.getByPaths.mockImplementation(async paths =>
+          paths.map(path => ({
+            id: hash(path),
+            ino: inodes.get(path)
+          }))
+        )
+        await fs.move(folder, newPath)
+
+        await sleep(700)
+
+        const tracks = modified.map(({ path }) => ({
+          id: hash(path),
+          path: path.replace(folder, newPath),
+          media: null,
+          tags: {},
+          mtimeMs: expect.any(Number),
+          ino: expect.any(Number)
+        }))
+
+        for (const obj of tracks) {
+          expect(tracksService.add).toHaveBeenCalledWith([obj])
+          expect(covers.findInFolder).toHaveBeenCalledWith(obj.path)
+          expect(tagReader.read).toHaveBeenCalledWith(obj.path)
+        }
+        expect(tracksService.add).toHaveBeenCalledTimes(tracks.length)
+        expect(covers.findInFolder).toHaveBeenCalledTimes(tracks.length)
+        expect(tagReader.read).toHaveBeenCalledTimes(tracks.length)
+        // tracksService.remove, playlistService.save & playlistUtils.read may
+        // be called if the random renamed folder contains a playlist file
+      })
+
       it('finds delete files and removes them', async () => {
         const unsupported = join(tree.folder, 'unsupported.png')
         fs.writeFile(unsupported, faker.lorem.word())
@@ -680,18 +772,24 @@ describe('Local provider', () => {
 
         const removed = tree.files.slice(3, 7)
         for (const { path } of removed) {
+          const { ino } = await fs.stat(path)
+          tracksModel.getByPaths.mockResolvedValueOnce([
+            { id: hash(path), ino }
+          ])
           fs.unlink(path)
         }
+        tracksModel.getByPaths.mockResolvedValueOnce([])
         fs.unlink(unsupported)
 
-        await sleep(500)
+        await sleep(700)
 
         const tracks = removed.map(({ path }) => ({
           id: hash(path),
           path,
           media: null,
           tags: {},
-          mtimeMs: expect.any(Number)
+          mtimeMs: expect.any(Number),
+          ino: expect.any(Number)
         }))
 
         for (const obj of tracks) {
@@ -703,10 +801,12 @@ describe('Local provider', () => {
         expect(covers.findInFolder).not.toHaveBeenCalled()
         expect(tagReader.read).not.toHaveBeenCalled()
         expect(playlistUtils.read).not.toHaveBeenCalled()
-        expect(playlistsService.checkIntegrity).not.toHaveBeenCalled()
+        expect(playlistsService.checkIntegrity).toHaveBeenCalledTimes(
+          tracks.length
+        )
       })
 
-      it('finds additions off playlist files', async () => {
+      it('finds additions of playlist files', async () => {
         await provider.compareTracks()
         jest.clearAllMocks()
 
@@ -715,7 +815,7 @@ describe('Local provider', () => {
         const path = join(dirname(playlists[2]), 'new.m3u')
         fs.writeFile(path, '#EXTM3U\ntest.mp3', 'latin1')
 
-        await sleep(500)
+        await sleep(700)
 
         expect(tracksService.add).not.toHaveBeenCalled()
         expect(tracksService.remove).not.toHaveBeenCalled()
@@ -742,9 +842,11 @@ describe('Local provider', () => {
         await sleep(200)
 
         fs.writeFile(playlists[2], '#EXTM3U\ntest.mp3', 'latin1')
-        fs.unlink(playlists[3])
+        const path = playlists[3]
+        tracksModel.getByPaths.mockResolvedValueOnce([])
+        fs.unlink(path)
 
-        await sleep(500)
+        await sleep(700)
 
         expect(tracksService.add).not.toHaveBeenCalled()
         expect(tracksService.remove).not.toHaveBeenCalled()
@@ -768,7 +870,7 @@ describe('Local provider', () => {
 
       fs.writeFile(join(tree.folder, 'first.mp3'), faker.lorem.word())
 
-      await sleep(500)
+      await sleep(700)
       expect(tracksService.remove).not.toHaveBeenCalled()
       expect(tracksService.add).not.toHaveBeenCalled()
       expect(playlistsService.checkIntegrity).not.toHaveBeenCalled()

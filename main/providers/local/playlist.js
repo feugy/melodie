@@ -40,6 +40,11 @@ module.exports = {
    * - file:// protocol
    * - #PLAYLIST directive
    * Web urls, nested folders and playlists are not supported.
+   *
+   * It assumes that track's id are hash of their path, which will not work for tracks that were moved.
+   * It is an acceptable caveat, given loading tracks by path is likely to fail during the first import
+   * of a folder, and given loading playlist makes most sense during this initial import.
+   *
    * @async
    * @param {string} path - path of the file to parse
    * @returns {PlaylistModel} parsed playlist, or null in case of error

@@ -1126,7 +1126,6 @@ describe('play', () => {
 
   it('does not play empty entries', async () => {
     expect(await tracksService.play([])).toEqual([])
-    expect(tracksModel.getByIds).not.toHaveBeenCalled()
     expect(tracksModel.getByPaths).not.toHaveBeenCalled()
     expect(settingsService.addFolders).not.toHaveBeenCalled()
     expect(broadcast).not.toHaveBeenCalled()
@@ -1146,13 +1145,14 @@ describe('play', () => {
       path,
       tags: { artists: [] }
     }))
-    tracksModel.getByIds.mockResolvedValueOnce(tracks)
+    tracksModel.getByPaths.mockResolvedValueOnce(tracks)
 
     expect(await tracksService.play(entries)).toEqual(tracks)
 
-    expect(tracksModel.getByIds).toHaveBeenCalledWith(entries.map(hash))
-    expect(tracksModel.getByIds).toHaveBeenCalledTimes(1)
-    expect(tracksModel.getByPaths).not.toHaveBeenCalled()
+    expect(tracksModel.getByPaths).toHaveBeenCalledWith(
+      entries.map(path => resolve(path))
+    )
+    expect(tracksModel.getByPaths).toHaveBeenCalledTimes(1)
     expect(settingsService.addFolders).not.toHaveBeenCalled()
     expect(broadcast).toHaveBeenCalledWith('play-tracks', tracks)
     expect(broadcast).toHaveBeenCalledTimes(1)
@@ -1182,16 +1182,13 @@ describe('play', () => {
       },
       ...folderTracks
     ]
-    tracksModel.getByIds.mockResolvedValueOnce(tracks.slice(0, 1))
-    tracksModel.getByPaths.mockResolvedValueOnce(folderTracks)
+    tracksModel.getByPaths.mockResolvedValueOnce(tracks)
 
     expect(await tracksService.play(entries)).toEqual(tracks)
 
-    expect(tracksModel.getByIds).toHaveBeenCalledWith(
-      entries.slice(0, 1).map(hash)
+    expect(tracksModel.getByPaths).toHaveBeenCalledWith(
+      entries.map(path => resolve(path))
     )
-    expect(tracksModel.getByIds).toHaveBeenCalledTimes(1)
-    expect(tracksModel.getByPaths).toHaveBeenCalledWith([resolve(folder)])
     expect(tracksModel.getByPaths).toHaveBeenCalledTimes(1)
     expect(settingsService.addFolders).not.toHaveBeenCalled()
     expect(broadcast).toHaveBeenCalledWith('play-tracks', tracks)
@@ -1213,16 +1210,17 @@ describe('play', () => {
       path,
       tags: { artists: [] }
     }))
-    tracksModel.getByIds.mockResolvedValueOnce(tracks)
+    tracksModel.getByPaths.mockResolvedValueOnce(tracks)
     settingsService.addFolders.mockImplementation(async (added, done) =>
       done([])
     )
 
     expect(await tracksService.play(entries)).toEqual(tracks)
 
-    expect(tracksModel.getByIds).toHaveBeenCalledWith(entries.map(hash))
-    expect(tracksModel.getByIds).toHaveBeenCalledTimes(1)
-    expect(tracksModel.getByPaths).not.toHaveBeenCalled()
+    expect(tracksModel.getByPaths).toHaveBeenCalledWith(
+      entries.map(path => resolve(path))
+    )
+    expect(tracksModel.getByPaths).toHaveBeenCalledTimes(1)
     expect(settingsService.addFolders).toHaveBeenCalledWith(
       [dirname(entries[1]), dirname(entries[3])],
       expect.any(Function)
@@ -1260,17 +1258,16 @@ describe('play', () => {
       ...addedTracks
     ]
 
-    tracksModel.getByIds.mockResolvedValueOnce(tracks.slice(0, 1))
-    tracksModel.getByPaths.mockResolvedValueOnce(addedTracks)
+    tracksModel.getByPaths.mockResolvedValueOnce(tracks)
     settingsService.addFolders.mockImplementation(async (added, done) =>
       done(tracks.slice(1))
     )
 
     expect(await tracksService.play(entries)).toEqual(tracks)
 
-    expect(tracksModel.getByIds).toHaveBeenCalledWith([hash(entries[0])])
-    expect(tracksModel.getByIds).toHaveBeenCalledTimes(1)
-    expect(tracksModel.getByPaths).toHaveBeenCalledWith([added])
+    expect(tracksModel.getByPaths).toHaveBeenCalledWith(
+      entries.map(path => resolve(path))
+    )
     expect(tracksModel.getByPaths).toHaveBeenCalledTimes(1)
     expect(settingsService.addFolders).toHaveBeenCalledWith(
       entries.slice(1),
@@ -1297,16 +1294,17 @@ describe('play', () => {
       path,
       tags: { artists: [] }
     }))
-    tracksModel.getByIds.mockResolvedValueOnce(tracks)
+    tracksModel.getByPaths.mockResolvedValueOnce(tracks)
     settingsService.addFolders.mockImplementation(async (added, done) =>
       done([])
     )
 
     expect(await tracksService.play(entries)).toEqual(tracks)
 
-    expect(tracksModel.getByIds).toHaveBeenCalledWith(entries.map(hash))
-    expect(tracksModel.getByIds).toHaveBeenCalledTimes(1)
-    expect(tracksModel.getByPaths).not.toHaveBeenCalled()
+    expect(tracksModel.getByPaths).toHaveBeenCalledWith(
+      entries.map(path => resolve(path))
+    )
+    expect(tracksModel.getByPaths).toHaveBeenCalledTimes(1)
     expect(settingsService.addFolders).not.toHaveBeenCalled()
     expect(broadcast).toHaveBeenCalledWith('play-tracks', tracks)
     expect(broadcast).toHaveBeenCalledTimes(1)
