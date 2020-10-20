@@ -71,13 +71,10 @@ Another option is to open it with Control-click: it'll immediately register the 
 
 ### Bugs and known issues
 
-1. Playlist models are not updated on tracks removal/changes
-1. Playlist details page is not updated on track changes (new path not visible on track details dialogue)
+1. Playlist models are not updated on tracks removal
 1. Undetected live changes: remove tracks and re-add them. This is a linux-only issue with chokidar
    - https://github.com/paulmillr/chokidar/issues/917
    - https://github.com/paulmillr/chokidar/issues/591
-1. Files renamed or moved to other watched folders are removed and re-added. This is a limitation with chokidar
-   - https://github.com/paulmillr/chokidar/issues/303
 1. When loading new folders, enqueuing or going to album details will give incomplete results. Going back and forth won't load new data
 1. Security: clean html in artist/album names (wrapWithRefs returns injectable markup)
 1. AppImage, when used with AppImageLauncher, fail to auto update: https://github.com/electron-userland/electron-builder/issues/4046#issuecomment-670367840
@@ -97,6 +94,7 @@ Another option is to open it with Control-click: it'll immediately register the 
       The list items are still visible after clear (probably because of the animation)
    1. `AddToPlaylist component › given some playlists › saves new playlist with all tracks`
       The dropdown menu is still visible (probably because of the animation)
+1. The Media test do not pass on Windows: nock is not giving recorded bodies
 
 ## Configuring logs
 
@@ -280,6 +278,8 @@ Once a Github release is published, users who installed an auto-updatable packag
 - Snap packaging was hairy to figure out. It is clearly the best option on Linux, as it has great desktop integration (which AppImage lacks) and a renowed app store. However, getting the MediaMetadata to work with snap confinement took two days of try-and-fail research. The full journey is available in this [PR on electron-builnder](https://github.com/electron-userland/electron-builder/pull/5313). Besides, the way snapd is creating different folders for each new version forced me to move artist albums outside of electron's data folders: snapd ensure that files are copied from old to new version, but can not update the media full paths store inside SQLite DB.
 
 - MacOS builder was constantly failing with the same error: 7zip couldn't find any file to compress in the final archive. It turns out it is because the production name as an accent (Mélodie), and the mac flavor of 7zip can not handle it...
+
+- Chokidar has a "limitation" and [triggers for each renamed or moved file an 'unlink' and an 'add' event](https://github.com/paulmillr/chokidar/issues/303). The implication on Mélodie were high: moved/renamed files would disappear from playlists. Ty bypass the issue, Mélodie stores file inodes and buffer chokidar events: when a file is removed, Mélodie will wait 250ms more, and if another file is added with the same inode during that time, will consider it as a rename/move.
 
 #### How watch & diff works
 

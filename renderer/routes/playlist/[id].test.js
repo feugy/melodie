@@ -15,7 +15,13 @@ import {
   save
 } from '../../stores/playlists'
 import { add } from '../../stores/track-queue'
-import { translate, sleep, addRefs, mockInvoke } from '../../tests'
+import {
+  addRefs,
+  mockInvoke,
+  mockIpcRenderer,
+  sleep,
+  translate
+} from '../../tests'
 
 jest.mock('svelte-spa-router')
 jest.mock('../../stores/track-queue', () => ({
@@ -285,6 +291,21 @@ describe('playlist details route', () => {
       removals.next([faker.random.number()])
 
       expect(replace).not.toHaveBeenCalled()
+    })
+
+    it(`updates on playlist's track change`, async () => {
+      load.mockReset()
+      mockIpcRenderer.emit('track-changes', null, [playlist.tracks[1]])
+      expect(load).toHaveBeenCalledTimes(1)
+    })
+
+    it('ignores changes on other tracks', async () => {
+      load.mockReset()
+      mockIpcRenderer.emit('track-changes', null, [
+        { id: faker.random.number() }
+      ])
+      await sleep()
+      expect(load).not.toHaveBeenCalled()
     })
   })
 })

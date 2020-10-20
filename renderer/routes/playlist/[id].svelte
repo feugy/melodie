@@ -1,5 +1,5 @@
 <script>
-  import { onDestroy } from 'svelte'
+  import { onDestroy, onMount } from 'svelte'
   import { fade } from 'svelte/transition'
   import { _ } from 'svelte-intl'
   import { replace } from 'svelte-spa-router'
@@ -13,7 +13,12 @@
   } from '../../components'
   import { load, changes, removals, remove, save } from '../../stores/playlists'
   import { add } from '../../stores/track-queue'
-  import { formatTimeLong, sumDurations, invoke } from '../../utils'
+  import {
+    invoke,
+    formatTimeLong,
+    fromServerChannel,
+    sumDurations
+  } from '../../utils'
 
   export let params
   let playlist
@@ -52,29 +57,41 @@
     }
   }
 
-  const changeSub = changes
-    .pipe(
-      map(changed => changed.find(({ id }) => id === playlistId)),
-      filter(n => n),
-      distinct()
-    )
-    .subscribe(async changed => {
-      if (!changed.tracks) {
-        // then load tracks if not yet available
-        playlist = await load(playlist.id)
-      } else {
-        // update now in case of media change
-        playlist = changed
+  onMount(() => {
+    const changeSub = changes
+      .pipe(
+        map(changed => changed.find(({ id }) => id === playlistId)),
+        filter(n => n),
+        distinct()
+      )
+      .subscribe(async changed => {
+        if (!changed.tracks) {
+          // then load tracks if not yet available
+          playlist = await load(playlist.id)
+        } else {
+          // update now in case of media change
+          playlist = changed
+        }
+      })
+
+    const removalSub = removals
+      .pipe(filter(ids => ids.includes(playlistId)))
+      .subscribe(() => replace('/playlist'))
+
+    const trackSub = fromServerChannel(`track-changes`).subscribe(changed => {
+      if (
+        playlist &&
+        changed.some(({ id }) => playlist.trackIds.includes(id))
+      ) {
+        loadPlaylist()
       }
     })
 
-  const removalSub = removals
-    .pipe(filter(ids => ids.includes(playlistId)))
-    .subscribe(() => replace('/playlist'))
-
-  onDestroy(() => {
-    changeSub.unsubscribe()
-    removalSub.unsubscribe()
+    return () => {
+      changeSub.unsubscribe()
+      removalSub.unsubscribe()
+      trackSub.unsubscribe()
+    }
   })
 </script>
 
