@@ -25,11 +25,11 @@ exports[`Storyshots Components/Album Default 1`] = `
           class="controls svelte-nl1lpu"
         >
           <button
-            class="svelte-2vu076 primary iconOnly large"
+            class="svelte-n2zup4 primary iconOnly large"
             data-testid="play"
           >
             <i
-              class="material-icons svelte-2vu076"
+              class="material-icons svelte-n2zup4"
             >
               play_arrow
             </i>
@@ -39,11 +39,11 @@ exports[`Storyshots Components/Album Default 1`] = `
           </button>
            
           <button
-            class="svelte-2vu076 primary iconOnly large"
+            class="svelte-n2zup4 primary iconOnly large"
             data-testid="enqueue"
           >
             <i
-              class="material-icons svelte-2vu076"
+              class="material-icons svelte-n2zup4"
             >
               playlist_add
             </i>
@@ -113,11 +113,11 @@ exports[`Storyshots Components/Album Many Artists 1`] = `
           class="controls svelte-nl1lpu"
         >
           <button
-            class="svelte-2vu076 primary iconOnly large"
+            class="svelte-n2zup4 primary iconOnly large"
             data-testid="play"
           >
             <i
-              class="material-icons svelte-2vu076"
+              class="material-icons svelte-n2zup4"
             >
               play_arrow
             </i>
@@ -127,11 +127,11 @@ exports[`Storyshots Components/Album Many Artists 1`] = `
           </button>
            
           <button
-            class="svelte-2vu076 primary iconOnly large"
+            class="svelte-n2zup4 primary iconOnly large"
             data-testid="enqueue"
           >
             <i
-              class="material-icons svelte-2vu076"
+              class="material-icons svelte-n2zup4"
             >
               playlist_add
             </i>
@@ -217,11 +217,11 @@ exports[`Storyshots Components/Album No Artist 1`] = `
           class="controls svelte-nl1lpu"
         >
           <button
-            class="svelte-2vu076 primary iconOnly large"
+            class="svelte-n2zup4 primary iconOnly large"
             data-testid="play"
           >
             <i
-              class="material-icons svelte-2vu076"
+              class="material-icons svelte-n2zup4"
             >
               play_arrow
             </i>
@@ -231,11 +231,11 @@ exports[`Storyshots Components/Album No Artist 1`] = `
           </button>
            
           <button
-            class="svelte-2vu076 primary iconOnly large"
+            class="svelte-n2zup4 primary iconOnly large"
             data-testid="enqueue"
           >
             <i
-              class="material-icons svelte-2vu076"
+              class="material-icons svelte-n2zup4"
             >
               playlist_add
             </i>
@@ -285,11 +285,11 @@ exports[`Storyshots Components/Album Unknown 1`] = `
           class="controls svelte-nl1lpu"
         >
           <button
-            class="svelte-2vu076 primary iconOnly large"
+            class="svelte-n2zup4 primary iconOnly large"
             data-testid="play"
           >
             <i
-              class="material-icons svelte-2vu076"
+              class="material-icons svelte-n2zup4"
             >
               play_arrow
             </i>
@@ -299,11 +299,11 @@ exports[`Storyshots Components/Album Unknown 1`] = `
           </button>
            
           <button
-            class="svelte-2vu076 primary iconOnly large"
+            class="svelte-n2zup4 primary iconOnly large"
             data-testid="enqueue"
           >
             <i
-              class="material-icons svelte-2vu076"
+              class="material-icons svelte-n2zup4"
             >
               playlist_add
             </i>
