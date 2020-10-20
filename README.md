@@ -95,6 +95,7 @@ Another option is to open it with Control-click: it'll immediately register the 
    1. `AddToPlaylist component › given some playlists › saves new playlist with all tracks`
       The dropdown menu is still visible (probably because of the animation)
 1. The Media test do not pass on Windows: nock is not giving recorded bodies
+1. Rxjs is pretty big on core side, as there is no treeshaking
 
 ## Configuring logs
 

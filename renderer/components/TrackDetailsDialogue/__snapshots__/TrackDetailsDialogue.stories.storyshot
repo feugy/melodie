@@ -7,7 +7,7 @@ exports[`Storyshots Components/Track details dialogue Default 1`] = `
    
    
   <button
-    class="svelte-2vu076"
+    class="svelte-n2zup4"
   >
      
     <span>
@@ -26,7 +26,7 @@ exports[`Storyshots Components/Track details dialogue With Music Brainz 1`] = `
    
    
   <button
-    class="svelte-2vu076"
+    class="svelte-n2zup4"
   >
      
     <span>
@@ -45,7 +45,7 @@ exports[`Storyshots Components/Track details dialogue With Partial 1`] = `
    
    
   <button
-    class="svelte-2vu076"
+    class="svelte-n2zup4"
   >
      
     <span>
@@ -64,7 +64,7 @@ exports[`Storyshots Components/Track details dialogue With Replay Gain 1`] = `
    
    
   <button
-    class="svelte-2vu076"
+    class="svelte-n2zup4"
   >
      
     <span>

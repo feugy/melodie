@@ -61,10 +61,10 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
         class="wrapper svelte-1dsb53o"
       >
         <button
-          class="mx-4 svelte-2vu076 iconOnly"
+          class="mx-4 svelte-n2zup4 iconOnly"
         >
           <i
-            class="material-icons svelte-2vu076"
+            class="material-icons svelte-n2zup4"
           >
             library_add
           </i>
@@ -83,10 +83,10 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
       </span>
        
       <button
-        class="ml-2 svelte-2vu076 iconOnly"
+        class="ml-2 svelte-n2zup4 iconOnly"
       >
         <i
-          class="material-icons svelte-2vu076"
+          class="material-icons svelte-n2zup4"
         >
           delete
         </i>
@@ -154,10 +154,10 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
               </div>
                
               <button
-                class="mx-2 svelte-2vu076 iconOnly noBorder"
+                class="mx-2 svelte-n2zup4 iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-2vu076"
+                  class="material-icons svelte-n2zup4"
                 >
                   close
                 </i>
@@ -223,10 +223,10 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
               </div>
                
               <button
-                class="mx-2 svelte-2vu076 iconOnly noBorder"
+                class="mx-2 svelte-n2zup4 iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-2vu076"
+                  class="material-icons svelte-n2zup4"
                 >
                   close
                 </i>
@@ -292,10 +292,10 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
               </div>
                
               <button
-                class="mx-2 svelte-2vu076 iconOnly noBorder"
+                class="mx-2 svelte-n2zup4 iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-2vu076"
+                  class="material-icons svelte-n2zup4"
                 >
                   close
                 </i>
@@ -361,10 +361,10 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
               </div>
                
               <button
-                class="mx-2 svelte-2vu076 iconOnly noBorder"
+                class="mx-2 svelte-n2zup4 iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-2vu076"
+                  class="material-icons svelte-n2zup4"
                 >
                   close
                 </i>
@@ -430,10 +430,10 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
               </div>
                
               <button
-                class="mx-2 svelte-2vu076 iconOnly noBorder"
+                class="mx-2 svelte-n2zup4 iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-2vu076"
+                  class="material-icons svelte-n2zup4"
                 >
                   close
                 </i>
@@ -499,10 +499,10 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
               </div>
                
               <button
-                class="mx-2 svelte-2vu076 iconOnly noBorder"
+                class="mx-2 svelte-n2zup4 iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-2vu076"
+                  class="material-icons svelte-n2zup4"
                 >
                   close
                 </i>
@@ -568,10 +568,10 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
               </div>
                
               <button
-                class="mx-2 svelte-2vu076 iconOnly noBorder"
+                class="mx-2 svelte-n2zup4 iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-2vu076"
+                  class="material-icons svelte-n2zup4"
                 >
                   close
                 </i>
@@ -637,10 +637,10 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
               </div>
                
               <button
-                class="mx-2 svelte-2vu076 iconOnly noBorder"
+                class="mx-2 svelte-n2zup4 iconOnly noBorder"
               >
                 <i
-                  class="material-icons svelte-2vu076"
+                  class="material-icons svelte-n2zup4"
                 >
                   close
                 </i>
