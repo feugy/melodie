@@ -1,16 +1,17 @@
 <script context="module">
-  import { fromEvent } from 'rxjs'
-
   // because svelte-spa-router is listening to hashchange in a module script
   // we have to do the same so we could intersept hash change before the new
-  // route is applied
-  const hashChanged$ = fromEvent(window, 'hashchange', evt => evt.oldURL)
+  // route is applied. We can not use fromEvent, which is somehow delayed
+  // compare to svelte-spa-router
+  const hashChanged$ = new Subject()
+  window.addEventListener('hashchange', hashChanged$.next.bind(hashChanged$))
 </script>
 
 <script>
-  import Router, { wrap, replace } from 'svelte-spa-router'
+  import Router, { replace } from 'svelte-spa-router'
+  import { wrap } from 'svelte-spa-router/wrap'
   import { Subject } from 'rxjs'
-  import { withLatestFrom, map, scan } from 'rxjs/operators'
+  import { withLatestFrom, map, scan, pluck } from 'rxjs/operators'
   import Albums from '../../routes/album.svelte'
   import AlbumDetails from '../../routes/album/[id].svelte'
   import Artists from '../../routes/artist.svelte'
@@ -31,21 +32,27 @@
     '/playlist/:id': PlaylistDetails,
     '/search/:searched': SearchResults,
     '/settings': Settings,
-    '*': wrap(Albums, null, () => {
-      replace('/album')
-      return true
+    '*': wrap({
+      component: Albums,
+      conditions: [
+        () => {
+          replace('/album')
+          return true
+        }
+      ]
     })
   }
 
   const routeLoaded$ = new Subject()
 
   const scrollPositions$ = hashChanged$.pipe(
+    pluck('oldURL'),
     map(url => ({
       location: new URL(url || 'file://').hash.slice(1),
       scrollTop: scrollable.scrollTop
     })),
-    scan((memory, position) => {
-      memory.set(position.location, position.scrollTop)
+    scan((memory, { location, scrollTop }) => {
+      memory.set(location, scrollTop)
       return memory
     }, new Map())
   )

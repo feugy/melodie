@@ -86,6 +86,7 @@ describe('Router component', () => {
   it('renders album list', async () => {
     location.hash = '#/album'
     render(html`<${Router} scrollable=${scrollable} />`)
+    await sleep()
     expect(
       screen.queryByText(translate('_ albums', { total: 0 }))
     ).toBeVisible()
@@ -102,6 +103,7 @@ describe('Router component', () => {
   it('renders artist list', async () => {
     location.hash = '#/artist'
     render(html`<${Router} scrollable=${scrollable} />`)
+    await sleep()
     expect(
       screen.queryByText(translate('_ artists', { total: 0 }))
     ).toBeVisible()
@@ -118,6 +120,7 @@ describe('Router component', () => {
   it('renders playlist list', async () => {
     location.hash = '#/playlist'
     render(html`<${Router} scrollable=${scrollable} />`)
+    await sleep()
     expect(
       screen.queryByText(translate('_ playlists', { total: 0 }))
     ).toBeVisible()
@@ -136,6 +139,7 @@ describe('Router component', () => {
     search.current.next(searched)
     location.hash = `#/search/${searched}`
     render(html`<${Router} scrollable=${scrollable} />`)
+    await sleep()
     expect(
       screen.queryByText(translate('results for _', { searched }))
     ).toBeVisible()
@@ -145,12 +149,14 @@ describe('Router component', () => {
     mockInvoke.mockResolvedValue({})
     location.hash = `#/settings`
     render(html`<${Router} scrollable=${scrollable} />`)
+    await sleep()
     expect(screen.queryByText(translate('settings'))).toBeVisible()
   })
 
   it('defaults to album list', async () => {
     location.hash = '#/unsupported'
     render(html`<${Router} scrollable=${scrollable} />`)
+    await sleep()
     expect(
       screen.queryByText(translate('_ albums', { total: 0 }))
     ).toBeVisible()

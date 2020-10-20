@@ -107,7 +107,7 @@
     "svelte-loader": "^2.13.6",
     "svelte-portal": "^1.0.0",
     "svelte-preprocess": "^4.3.0",
-    "svelte-spa-router": "^2.2.0",
+    "svelte-spa-router": "^3.0.3",
     "tailwindcss": "^1.8.10",
     "yaml-loader": "^0.6.0"
   },

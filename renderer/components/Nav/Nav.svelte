@@ -1,18 +1,24 @@
 <script>
   import { onMount, tick } from 'svelte'
   import { _ } from 'svelte-intl'
+  // don't use destructuring to ease mocking
   import * as router from 'svelte-spa-router'
   import { Subject } from 'rxjs'
   import { debounceTime, filter } from 'rxjs/operators'
   import Button from '../Button/Button.svelte'
   import TextInput from '../TextInput/TextInput.svelte'
 
+  const { location, push } = router
   let sentinel
   let floating = false
-  let searched = ''
+  // searched text is the 3rd part: /search/text
+  $: searched = $location.startsWith('/search')
+    ? decodeURIComponent($location.split('/')[2])
+    : ''
+
   let search$ = new Subject().pipe(
-    filter(n => n.trim().length >= 2),
-    debounceTime(250)
+    debounceTime(250),
+    filter(n => n.trim().length >= 2)
   )
 
   onMount(() => {
@@ -22,7 +28,7 @@
 
     const sub = search$.subscribe(text => {
       searched = text
-      router.push(`/search/${searched}`)
+      push(`/search/${searched}`)
     })
 
     observer.observe(sentinel)
@@ -99,19 +105,19 @@
     <ul>
       <li>
         <Button
-          on:click={() => router.push('/album')}
+          on:click={() => push('/album')}
           text={$_('albums')}
           icon="album" />
       </li>
       <li>
         <Button
-          on:click={() => router.push('/artist')}
+          on:click={() => push('/artist')}
           text={$_('artists')}
           icon="person" />
       </li>
       <li id="to-playlists">
         <Button
-          on:click={() => router.push('/playlist')}
+          on:click={() => push('/playlist')}
           text={$_('playlists')}
           icon="library_music" />
       </li>
@@ -130,10 +136,7 @@
           on:iconClick={handleSearchClick} />
       </li>
       <li>
-        <Button
-          on:click={() => router.push('/settings')}
-          icon="settings"
-          noBorder />
+        <Button on:click={() => push('/settings')} icon="settings" noBorder />
       </li>
       <li />
     </ul>
