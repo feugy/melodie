@@ -28,6 +28,7 @@ jobs:
           AUDIODB_KEY: ${{ secrets.AUDIODB_KEY }}
 
       - name: Send coverage to Codacy
+        if: always()
         uses: codacy/codacy-coverage-reporter-action@master
         with:
           project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
