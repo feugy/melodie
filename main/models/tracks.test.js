@@ -13,8 +13,8 @@ let db
 
 describe('Tracks model', () => {
   const title = faker.commerce.productName()
-  const folder1 = resolve(faker.system.directoryPath())
-  const folder2 = resolve(faker.system.directoryPath())
+  const folder1 = resolve('home', 'user', 'my-music')
+  const folder2 = resolve('home', 'user', 'desktop')
 
   const models = [
     {
@@ -43,7 +43,7 @@ describe('Tracks model', () => {
       ino: 2639112
     },
     {
-      path: join(faker.system.directoryPath(), faker.system.fileName()),
+      path: join('home', 'user', 'library', faker.system.fileName()),
       tags: JSON.stringify({
         title: faker.commerce.productName(),
         artists: [],
