@@ -110,7 +110,7 @@ Another option is to open it with Control-click: it'll immediately register the 
 
       ```shell
       > 839 |       expect(await fs.readFile(savedAlbums[0].media, 'utf8')).toEqual(
-          |                                                               ^
+            |                                                               ^
       ```
 
    1. `Media service › triggerAlbumsEnrichment › retries album with no cover but at least one restriced provided`
@@ -121,6 +121,16 @@ Another option is to open it with Control-click: it'll immediately register the 
 
    1. `AddToPlaylist component › given some playlists › saves new playlist with all tracks`
       The dropdown menu is still visible (probably because of the animation)
+
+   1. `snackbars store > showSnack > uses the specified duration when enqueuing slacks`
+
+      ```shell
+      - Expected  - 3 
+      + Received  + 0
+
+      > 96 |       expect(snackbarCalls).toEqual([
+           |                             ^
+      ```
 
 1. The Media test do not pass on Windows: nock is not giving recorded bodies
 
@@ -168,6 +178,10 @@ npm run build
 ```
 
 ## Testing
+
+The test suite works fine Linux, MacOS and Windows.
+
+Please not that got requires node 14.9+ on Windows.
 
 ### Core services network mocks (nocks)
 
