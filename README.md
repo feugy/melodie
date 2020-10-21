@@ -49,52 +49,81 @@ Another option is to open it with Control-click: it'll immediately register the 
 ### features
 
 - [ ] images from tags
+
 - [ ] indicates when track is in playlist
+
 - [ ] configure replay gain from settings
+
 - [ ] display tracks/albums/artists count in settings
+
 - [ ] allow reseting database from settings
+
 - [ ] smaller screen support (UI refactor)
 
 ### tools
 
 - [ ] App automated end to end tests
+
 - [ ] more technical documentation (install & release process notably)
 
 ### release
 
 - [ ] github page
+
 - [ ] usage statistics
+
 - [ ] references
+
   - [ ] Electron's [app list](https://www.electronjs.org/apps)
+
   - [ ] Svelte's [showcase](https://svelte-community.netlify.app/showcase)
+
   - [ ] [Snap store](https://snapcraft.io/)
 
 ### Bugs and known issues
 
 1. Playlist models are not updated on tracks removal
+
 1. Undetected live changes: remove tracks and re-add them. This is a linux-only issue with chokidar
-   - https://github.com/paulmillr/chokidar/issues/917
-   - https://github.com/paulmillr/chokidar/issues/591
+
+   - [Issue #917](https://github.com/paulmillr/chokidar/issues/917)
+
+   - [Issue #591](https://github.com/paulmillr/chokidar/issues/591)
+
 1. When loading new folders, enqueuing or going to album details will give incomplete results. Going back and forth won't load new data
+
 1. Security: clean html in artist/album names (wrapWithRefs returns injectable markup)
-1. AppImage, when used with AppImageLauncher, fail to auto update: https://github.com/electron-userland/electron-builder/issues/4046#issuecomment-670367840
+
+1. AppImage, when used with AppImageLauncher, [fail to auto update](https://github.com/electron-userland/electron-builder/issues/4046#issuecomment-670367840)
+
 1. If we knew current position in browser history, then we could disabled navigation button accordingly
+
 1. Page navigation: use:link doesn't work in tests and raise Svelte warning. a.href is fine
+
 1. Disklist/TrackTable dropdown does not consider scroll position (in storybook only)
+
 1. Testing input: fireEvent.change, input or keyUp does not trigger svelte's bind:value on input
+
 1. The test suite is becoming brittle
+
    1. `Media service › triggerAlbumsEnrichment › saves first returned cover for album`
+
       ```shell
       > 839 |       expect(await fs.readFile(savedAlbums[0].media, 'utf8')).toEqual(
           |                                                               ^
       ```
+
    1. `Media service › triggerAlbumsEnrichment › retries album with no cover but at least one restriced provided`
       Is a 1ms difference in expected `processedEpoch`
+
    1. `TracksQueue component › given a list of tracks › clears tracks queue`
       The list items are still visible after clear (probably because of the animation)
+
    1. `AddToPlaylist component › given some playlists › saves new playlist with all tracks`
       The dropdown menu is still visible (probably because of the animation)
+
 1. The Media test do not pass on Windows: nock is not giving recorded bodies
+
 1. Rxjs is pretty big on core side, as there is no treeshaking
 
 ## Configuring logs
@@ -111,10 +140,15 @@ wildcard*=level
 logger names are:
 
 - `core`
+
 - `renderer`
+
 - `updater`
+
 - `services/`_<serviceName>_ where _<serviceName>_ is `tracks`, `playlists`, `media`, `settings`
+
 - `providers/`_<providerName>_ where _<providerName>_ is `local`, `audiodb`, `discogs`
+
 - `models/`_<modelName>_ where _<modelName>_ is `tracks`, `albums`, `artists`, `playlists`, `settings`
 
 and levels are (in order): `trace` (most verbose), `debug`, `info`, `warn`, `error`, `fatal`, `silent` (no logs)
@@ -156,14 +190,19 @@ AUDIODB_KEY=1
 Working with snaps locally isn't really easy.
 
 1. install the real app from the store:
+
    ```shell
    snap install melodie
    ```
+
 1. then package your app in debug mode, to access the unpacked snap:
+
    ```shell
    DEBUG=electron-builder npm run release:artifacts -- -l
    ```
+
 1. copy missing files to the unpacked snap, and keep your latest changes:
+
    ```shell
    mkdir dist/__snap-amd64/tmp
    mv dist/__snap-amd64/* dist/__snap-amd64/tmp
@@ -171,11 +210,14 @@ Working with snaps locally isn't really easy.
    cp -r dist/linux-unpacked/* dist/__snap-amd64/
    mv dist/__snap-amd64/tmp/* dist/__snap-amd64/*
    ```
+
 1. now use your development code:
+
    ```shell
    snap try dist/__snap-amd64
    melodie
    ```
+
 1. and revert when you're done:
    ```shell
    snap revert melodie
@@ -212,18 +254,27 @@ Theses artifacts will be either published on their respective store (snapcraft..
 Once a Github release is published, users who installed an auto-updatable package (snap, AppImage, Nsis) will get the new version auto-magically.
 
 1. When ready, bump the version on local machine:
+
    ```shell
    npm run release:bump
    ```
+
 1. Then push tags to github, as it'll trigger the artifact creation:
+
    ```shell
    git push --follow-tags
    ```
+
 1. Finally, go to github [releases][], and edit the newest one:
+
    1. give it a code name
+
    1. copy the latest section of the [changelog][] in the release body
+
    1. don't forget to select "is a prerelease" checkbox in case it is one
+
    1. publish your release
+
    1. go and slack off!
 
 ## Notable facts
@@ -231,19 +282,25 @@ Once a Github release is published, users who installed an auto-updatable packag
 - Started with a search engine (FlexSearch) to store tracks, and serialized JS lists for albums & artists.
   Altough very performant (50s to index the whole music library), the memory footprint is heavy (700Mo) since
   FlexSearch is loading entire indices in memory
+
 - Moved to sqlite3 denormalized tables (drawback: no streaming supported)
+
 - Dropped the idea to query tracks of a given albums/artists/genre/playlist by using SQL queries.
   Sqlite has a very poor json support, compared to Postgres. There is only one way to query json field: `json_extract`.
   It is possible to create indexes on expressions, and this makes retrieving tracks of a given album very efficient:
+
   ```
   create index track_album on tracks (trim(lower(json_extract(tags, '$.album'))))
   select id, tags from tracks where trim(lower(json_extract(tags, '$.album'))) = lower('Le grand bleu')
   ```
+
   However, it doesn't work on artists or genres, because they are modeled with arrays, and operator used do not leverage any index:
+
   ```
   select id, tags from tracks where instr(lower(json_extract(tags, '$.artists')), 'eric serra')
   select id, tags from tracks where json_extract(tags, '$.artists') like '%eric serra%'
   ```
+
 - chokidar is the best of breed watch tool, but has this annoying linux-only big when moving folders outside of the watched paths
   Watchman is a C program that'll be hard to bundle.
   node-watch does not send file event when removing/renaming folders
@@ -285,35 +342,61 @@ Once a Github release is published, users who installed an auto-updatable packag
 #### How watch & diff works
 
 - on app load, trigger diff
+
   1. get followed folders from store
+
   1. crawl followed folders, return array of paths + hashs + last changed
+
   1. get array of tracks with hash + last changed from DB
+
   1. compare to find new & changed hashes
+
      1. enrich with tags & media
+
      1. save
+
   1. compare to isolate deleted hashes
+
      1. remove corresponding tracks
+
 - while app is running
+
   1. watch new & changed paths
+
      1. compute hash, enrich with tags & media
+
      1. save
+
   1. watch deleted paths
+
      1. compute hash
+
      1. remove corresponding tracks
+
 - when adding new followed folder
+
   1. save in store
+
   1. crawl new folder, return array of paths
+
   1. compute hash, enrich with tags & media
+
   1. save
 
 ### How missing artworks/covers retrieval works
 
 - on UI demand trigger process
+
   1. push all artists/albums without artwork/cover, and not process since N in a queue
+
   1. apply rate limit (to avoid flooding disks/providers)
+
   1. call providers one by one
+
      1. save first result as artwork/cover, stop
+
      1. on no results, but at least on provider returned rate limitation, enqueue artist/album
+
      1. on no results, save date on artist/album
 
 [releases]: https://github.com/feugy/melodie/releases
