@@ -43,7 +43,7 @@ async function downloadAndSave(media, url) {
   const { protocol } = parse(url)
   const isRemote = protocol && protocol.startsWith('http')
   const source = isRemote
-    ? got.stream(url, { timeout: 3000 })
+    ? got.stream(url, { timeout: { send: 3e3, response: 3e3, lookup: 500 } })
     : fs.createReadStream(url)
   let ext = extname(url)
   if (isRemote) {
