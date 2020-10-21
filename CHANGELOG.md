@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0-beta.2](https://github.com/feugy/melodie/compare/v1.0.0-beta.1...v1.0.0-beta.2) (2020-10-21)
+
+
+### Features
+
+* **core:** allow to open (and track) files & folders ([5d9dc58](https://github.com/feugy/melodie/commit/5d9dc58f7d9efaf400a65b2a67c9b459481484c5))
+* **core:** creates playlists from m3u/m3u8 files ([1866ae1](https://github.com/feugy/melodie/commit/1866ae19ff2a3990997c9145ca5a45e1f5e79450))
+* **core:** detect file renamals ([d236b6a](https://github.com/feugy/melodie/commit/d236b6aa39f447ed8c60414b6dc877b13f46872a))
+* **core:** enforce single instance ([7ea2966](https://github.com/feugy/melodie/commit/7ea29667ff6062875e8f7d71a71c7e81fe28b966))
+* **core:** open files on Mac (it does not use argv) ([424cb88](https://github.com/feugy/melodie/commit/424cb888076392d7e4d91b4bea126bbe374b3079))
+* **ui:** export playlists as m3u(8) files ([85785de](https://github.com/feugy/melodie/commit/85785defffc640b71375d862f287bef126d0ad8f))
+
+
+### Bug Fixes
+
+* **ui:** given some tracks in queue, and queue scrolled down, playing new tracks immediately does not scrolls the queue up ([1ce2494](https://github.com/feugy/melodie/commit/1ce24941a6d88c9b07d2a120e42475a80efd083c))
+* **ui:** playlist details page is not updated on track changes ([d049b6b](https://github.com/feugy/melodie/commit/d049b6bd00ebbc9b186e4fd07339a47bb3e8962b))
+
 ## [1.0.0-beta.1](https://github.com/feugy/melodie/compare/v1.0.0-beta.0...v1.0.0-beta.1) (2020-10-05)
 
 
