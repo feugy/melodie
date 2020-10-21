@@ -49,6 +49,7 @@ class AudioDB extends AbstractProvider {
         headers: { 'user-agent': this.userAgent },
         searchParams: { s: searched.toLowerCase().trim() }
       }).json()
+
       this.logger.debug(
         { length: artists ? artists.length : 0, searched },
         `got results for ${searched}`

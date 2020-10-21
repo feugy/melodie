@@ -188,10 +188,13 @@ describe('logger', () => {
     expect(setters[name2]).toHaveBeenCalledWith(newLevel)
   })
 
-  it('throws error on unparseable logger levels file', async () => {
-    await fs.chmod(logFile, 0o200)
-    expect(() => getLogger()).toThrow(/EACCES/)
-  })
+  if (process.platform !== 'win32') {
+    // Windows does not support permission ;P
+    it('throws error on unparseable logger levels file', async () => {
+      await fs.chmod(logFile, fs.constants.S_IWUSR)
+      expect(() => getLogger()).toThrow(/EACCES/)
+    })
+  }
 
   it('throws error on unknown logger levels', async () => {
     await fs.writeFile(logFile, `core=unknown`)
