@@ -1,11 +1,11 @@
 'use strict'
 
-const autoPreprocess = require('svelte-preprocess')
+const sveltePreprocess = require('svelte-preprocess')
 
 const production = !process.env.ROLLUP_WATCH
 
 module.exports = {
-  preprocess: autoPreprocess({
+  preprocess: sveltePreprocess({
     postcss: true,
     replace: [
       [

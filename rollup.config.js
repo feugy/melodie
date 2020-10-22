@@ -6,7 +6,6 @@ import yaml from '@rollup/plugin-yaml'
 import svelte from 'rollup-plugin-svelte'
 import livereload from 'rollup-plugin-livereload'
 import { terser } from 'rollup-plugin-terser'
-import postcss from 'rollup-plugin-postcss'
 import replace from '@rollup/plugin-replace'
 import { config } from 'dotenv'
 const { dependencies } = require('./package-lock')
@@ -30,12 +29,6 @@ export default {
     }),
 
     svelte(svelteConfig),
-
-    postcss({
-      config: {
-        path: './postcss.config.js'
-      }
-    }),
 
     // If you have external dependencies installed from
     // npm, you'll most likely need these plugins. In
