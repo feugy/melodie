@@ -21,7 +21,7 @@ module.exports = {
           { preprocess: true, rootMode: 'upward' }
         ],
         '^.+\\.ya?ml$': 'jest-yaml-transform',
-        '^.+\\.p?css$': 'jest-css-modules-transform'
+        '^.+\\.css$': 'jest-css-modules-transform'
       },
       transformIgnorePatterns: ['node_modules/(?!(svelte-spa-router))/'],
       moduleFileExtensions: ['js', 'svelte', 'json', 'yml'],
@@ -51,11 +51,13 @@ module.exports = {
   collectCoverageFrom: [
     '**/*.js',
     '**/*.svelte',
-    '!**/__mocks__/**',
+    '!**/__nocks__/**',
     '!**/tests/**',
     '!**/*.test.js',
     '!**/*.stories.*',
     '!**/node_modules/**',
-    '!**/public/build/**'
+    '!**/public/build/**',
+    '!**/tailwind.svelte',
+    '!site/**'
   ]
 }

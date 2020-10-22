@@ -3,7 +3,7 @@
 import { translations } from 'svelte-intl'
 import en from '../locale/en.yml'
 import fr from '../locale/fr.yml'
-import './style.pcss'
+import './style.svelte'
 
 function defaultDeep(source, defaults) {
   const keys = Object.keys(defaults)

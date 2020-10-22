@@ -1,7 +1,8 @@
 'use strict'
 
-import App from './App.svelte'
+import './tailwind.svelte'
 import './common'
+import App from './App.svelte'
 
 const electron = require('electron')
 

@@ -36,7 +36,7 @@
   })
 </script>
 
-<style class="postcss">
+<style type="postcss">
   div {
     @apply flex flex-col h-full max-h-full;
   }

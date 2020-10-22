@@ -48,6 +48,8 @@ Another option is to open it with Control-click: it'll immediately register the 
 
 ### features
 
+- [ ] sticky header for track queue
+
 - [ ] images from tags
 
 - [ ] indicates when track is in playlist
