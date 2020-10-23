@@ -34,3 +34,20 @@ jobs:
       - run: npm run release:publish -- onTagOrDraft -${{ matrix.flags}}
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
+
+  release-site:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+      - run: npm ci
+      - run: npm run site:build
+      - uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./site/__sapper__/export

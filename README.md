@@ -48,8 +48,6 @@ Another option is to open it with Control-click: it'll immediately register the 
 
 ### features
 
-- [ ] sticky header for track queue
-
 - [ ] images from tags
 
 - [ ] indicates when track is in playlist
@@ -70,8 +68,6 @@ Another option is to open it with Control-click: it'll immediately register the 
 
 ### release
 
-- [ ] github page
-
 - [ ] usage statistics
 
 - [ ] references
@@ -83,6 +79,10 @@ Another option is to open it with Control-click: it'll immediately register the 
   - [ ] [Snap store](https://snapcraft.io/)
 
 ### Bugs and known issues
+
+1. Removing items in tracks queue automatically scrolls to current track
+
+1. Clearing track queue with more than 50 tracks is slow
 
 1. Playlist models are not updated on tracks removal
 
@@ -127,7 +127,7 @@ Another option is to open it with Control-click: it'll immediately register the 
    1. `snackbars store > showSnack > uses the specified duration when enqueuing slacks`
 
       ```shell
-      - Expected  - 3 
+      - Expected  - 3
       + Received  + 0
 
       > 96 |       expect(snackbarCalls).toEqual([

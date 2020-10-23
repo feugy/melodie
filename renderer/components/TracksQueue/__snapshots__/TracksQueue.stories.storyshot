@@ -5,6 +5,27 @@ exports[`Storyshots Components/Tracks queue Empty 1`] = `
   class="storybook-snapshot-container"
 >
   <div>
+    <div
+      class="wrapper svelte-k06t7b"
+    >
+      <span
+        class="sentinel svelte-k06t7b"
+      />
+       
+      <nav
+        class="svelte-k06t7b"
+      >
+        <header
+          class="svelte-k3lfdp"
+        >
+          <h3>
+            0 tracks
+          </h3>
+           
+        </header>
+      </nav>
+    </div>
+     
     <header
       class=" svelte-5q08mx"
       style="--image: url(../images/jason-rosewell-ASKeuOZqhYU-unsplash.jpg); --shade-color: rgba(0, 0, 0, 0.7); --bgPosition: center;"
@@ -16,17 +37,8 @@ exports[`Storyshots Components/Tracks queue Empty 1`] = `
       </h1>
     </header>
      
-    <header
-      class="svelte-1q9zfhj"
-    >
-      <h3>
-        0 tracks
-      </h3>
-       
-    </header>
-     
     <div
-      class="svelte-1q9zfhj"
+      class="svelte-k3lfdp"
     >
       <ol />
     </div>
@@ -39,6 +51,64 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
   class="storybook-snapshot-container"
 >
   <div>
+    <div
+      class="wrapper svelte-k06t7b"
+    >
+      <span
+        class="sentinel svelte-k06t7b"
+      />
+       
+      <nav
+        class="svelte-k06t7b"
+      >
+        <header
+          class="svelte-k3lfdp"
+        >
+          <h3>
+            8 tracks
+          </h3>
+           
+          <span
+            class="wrapper svelte-1dsb53o"
+          >
+            <button
+              class="mx-4 svelte-n2zup4 iconOnly"
+            >
+              <i
+                class="material-icons svelte-n2zup4"
+              >
+                library_add
+              </i>
+               
+               
+              
+               
+            </button>
+          </span>
+           
+           
+          <span
+            class="totalDuration svelte-k3lfdp"
+          >
+            7:34
+          </span>
+           
+          <button
+            class="ml-2 svelte-n2zup4 iconOnly"
+          >
+            <i
+              class="material-icons svelte-n2zup4"
+            >
+              delete
+            </i>
+             
+             
+             
+          </button>
+        </header>
+      </nav>
+    </div>
+     
     <header
       class=" svelte-5q08mx"
       style="--image: url(../images/jason-rosewell-ASKeuOZqhYU-unsplash.jpg); --shade-color: rgba(0, 0, 0, 0.7); --bgPosition: center;"
@@ -50,54 +120,8 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
       </h1>
     </header>
      
-    <header
-      class="svelte-1q9zfhj"
-    >
-      <h3>
-        8 tracks
-      </h3>
-       
-      <span
-        class="wrapper svelte-1dsb53o"
-      >
-        <button
-          class="mx-4 svelte-n2zup4 iconOnly"
-        >
-          <i
-            class="material-icons svelte-n2zup4"
-          >
-            library_add
-          </i>
-           
-           
-          
-           
-        </button>
-      </span>
-       
-       
-      <span
-        class="totalDuration svelte-1q9zfhj"
-      >
-        7:34
-      </span>
-       
-      <button
-        class="ml-2 svelte-n2zup4 iconOnly"
-      >
-        <i
-          class="material-icons svelte-n2zup4"
-        >
-          delete
-        </i>
-         
-         
-         
-      </button>
-    </header>
-     
     <div
-      class="svelte-1q9zfhj"
+      class="svelte-k3lfdp"
     >
       <ol>
         <li
@@ -108,7 +132,7 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
             slot="item"
           >
             <span
-              class="row svelte-1q9zfhj current"
+              class="row svelte-k3lfdp current"
             >
               <div
                 class="flex-auto root svelte-whrgz7"
@@ -177,7 +201,7 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
             slot="item"
           >
             <span
-              class="row svelte-1q9zfhj"
+              class="row svelte-k3lfdp"
             >
               <div
                 class="flex-auto root svelte-whrgz7"
@@ -246,7 +270,7 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
             slot="item"
           >
             <span
-              class="row svelte-1q9zfhj"
+              class="row svelte-k3lfdp"
             >
               <div
                 class="flex-auto root svelte-whrgz7"
@@ -315,7 +339,7 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
             slot="item"
           >
             <span
-              class="row svelte-1q9zfhj"
+              class="row svelte-k3lfdp"
             >
               <div
                 class="flex-auto root svelte-whrgz7"
@@ -384,7 +408,7 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
             slot="item"
           >
             <span
-              class="row svelte-1q9zfhj"
+              class="row svelte-k3lfdp"
             >
               <div
                 class="flex-auto root svelte-whrgz7"
@@ -453,7 +477,7 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
             slot="item"
           >
             <span
-              class="row svelte-1q9zfhj"
+              class="row svelte-k3lfdp"
             >
               <div
                 class="flex-auto root svelte-whrgz7"
@@ -522,7 +546,7 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
             slot="item"
           >
             <span
-              class="row svelte-1q9zfhj"
+              class="row svelte-k3lfdp"
             >
               <div
                 class="flex-auto root svelte-whrgz7"
@@ -591,7 +615,7 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
             slot="item"
           >
             <span
-              class="row svelte-1q9zfhj"
+              class="row svelte-k3lfdp"
             >
               <div
                 class="flex-auto root svelte-whrgz7"

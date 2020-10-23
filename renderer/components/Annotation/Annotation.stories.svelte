@@ -1,23 +1,9 @@
 <script>
   import Annotation from './Annotation.svelte'
+  import { texts } from '../../tests/lorem'
 
   export let slot = 0
   let anchors = []
-
-  const texts = [
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    'Ut enim ad minim veniam, quis nostrud exercitation ullamco.',
-    'Laboris nisi ut aliquip ex ea commodo consequat.',
-    'Duis aute irure dolor in reprehenderit in voluptate velit esse.',
-    'Cillum dolore eu fugiat nulla pariatur.',
-    'Mauris pellentesque pulvinar pellentesque habitant morbi tristique.',
-    'Volutpat diam ut venenatis tellus in metus vulputate eu scelerisque.',
-    'Cras semper auctor neque vitae tempus quam pellentesque nec.',
-    'Excepteur sint occaecat cupidatat non proident.',
-    'Sunt in culpa qui officia deserunt mollit anim id est laborum.',
-    'Reprehenderit excepteur sint nostrud aliquip voluptate amet.'
-  ]
 </script>
 
 <style type="postcss">
@@ -34,7 +20,7 @@
   Look! This text looks very interesting
 </Annotation>
 <div class="grid">
-  {#each texts as text, i}
+  {#each texts.slice(0, 12) as text, i}
     <div bind:this={anchors[i]}>{text}</div>
   {/each}
 </div>

@@ -5,12 +5,11 @@
   import * as router from 'svelte-spa-router'
   import { Subject } from 'rxjs'
   import { debounceTime, filter } from 'rxjs/operators'
+  import Sticky from '../Sticky/Sticky.svelte'
   import Button from '../Button/Button.svelte'
   import TextInput from '../TextInput/TextInput.svelte'
 
   const { location, push } = router
-  let sentinel
-  let floating = false
   // searched text is the 3rd part: /search/text
   $: searched = $location.startsWith('/search')
     ? decodeURIComponent($location.split('/')[2])
@@ -22,20 +21,12 @@
   )
 
   onMount(() => {
-    const observer = new IntersectionObserver(entries => {
-      floating = !entries[0].isIntersecting
-    })
-
     const sub = search$.subscribe(text => {
       searched = text
       push(`/search/${searched}`)
     })
 
-    observer.observe(sentinel)
-    return () => {
-      observer.unobserve(sentinel)
-      sub.unsubscribe()
-    }
+    return sub.unsubscribe.bind(sub)
   })
 
   function handleSearchKeyup({ key }) {
@@ -62,28 +53,8 @@
 </script>
 
 <style type="postcss">
-  .wrapper {
-    @apply inline;
-  }
-
-  .sentinel {
-    @apply block w-full h-0 relative;
-    top: 3rem;
-  }
-
-  .floating {
-    transition: background ease-in-out 200ms;
-    background: var(--nav-bg-color);
-  }
-
-  nav {
-    @apply p-2 sticky w-full top-0;
-    z-index: 1;
-    margin-bottom: -60px;
-  }
-
   ul {
-    @apply w-full flex flex-row items-center;
+    @apply w-full flex flex-row items-center p-2 py-4;
   }
 
   li {
@@ -99,46 +70,42 @@
   }
 </style>
 
-<div class="wrapper">
-  <span bind:this={sentinel} class="sentinel" />
-  <nav class={$$restProps.class} class:floating>
-    <ul>
-      <li>
-        <Button
-          on:click={() => push('/album')}
-          text={$_('albums')}
-          icon="album" />
-      </li>
-      <li>
-        <Button
-          on:click={() => push('/artist')}
-          text={$_('artists')}
-          icon="person" />
-      </li>
-      <li id="to-playlists">
-        <Button
-          on:click={() => push('/playlist')}
-          text={$_('playlists')}
-          icon="library_music" />
-      </li>
-      <li>
-        <Button on:click={handleBack} icon="navigate_before" noBorder />
-        <Button on:click={handleForward} icon="navigate_next" noBorder />
-      </li>
-      <li class="expand">
-        <TextInput
-          class="w-48 inline-block"
-          type="search"
-          icon={searched ? 'close' : 'search'}
-          value={searched}
-          on:input={({ target: { value } }) => search$.next(value)}
-          on:keyup={handleSearchKeyup}
-          on:iconClick={handleSearchClick} />
-      </li>
-      <li>
-        <Button on:click={() => push('/settings')} icon="settings" noBorder />
-      </li>
-      <li />
-    </ul>
-  </nav>
-</div>
+<Sticky>
+  <ul class={$$restProps.class}>
+    <li>
+      <Button
+        on:click={() => push('/album')}
+        text={$_('albums')}
+        icon="album" />
+    </li>
+    <li>
+      <Button
+        on:click={() => push('/artist')}
+        text={$_('artists')}
+        icon="person" />
+    </li>
+    <li id="to-playlists">
+      <Button
+        on:click={() => push('/playlist')}
+        text={$_('playlists')}
+        icon="library_music" />
+    </li>
+    <li>
+      <Button on:click={handleBack} icon="navigate_before" noBorder />
+      <Button on:click={handleForward} icon="navigate_next" noBorder />
+    </li>
+    <li class="expand">
+      <TextInput
+        class="w-48 inline-block"
+        type="search"
+        icon={searched ? 'close' : 'search'}
+        value={searched}
+        on:input={({ target: { value } }) => search$.next(value)}
+        on:keyup={handleSearchKeyup}
+        on:iconClick={handleSearchClick} />
+    </li>
+    <li>
+      <Button on:click={() => push('/settings')} icon="settings" noBorder />
+    </li>
+  </ul>
+</Sticky>

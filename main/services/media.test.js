@@ -6,7 +6,12 @@ const os = require('os')
 const fs = require('fs-extra')
 const { constants } = require('fs')
 const { resolve } = require('path')
-const { artistsModel, albumsModel, tracksModel } = require('../models')
+const {
+  artistsModel,
+  albumsModel,
+  tracksModel,
+  settingsModel
+} = require('../models')
 const { broadcast, dayMs } = require('../utils')
 const { sleep } = require('../tests')
 const mediaService = require('./media')
@@ -23,6 +28,7 @@ jest.mock('../providers/local')
 jest.mock('../models/artists')
 jest.mock('../models/albums')
 jest.mock('../models/tracks')
+jest.mock('../models/settings')
 jest.mock('../utils/electron-remote')
 
 describe('Media service', () => {
@@ -753,6 +759,7 @@ describe('Media service', () => {
   describe('triggerArtistEnrichment', () => {
     beforeEach(async () => {
       electron.app.getPath.mockReturnValue(os.tmpdir())
+      settingsModel.get.mockResolvedValue({ locale: 'en' })
       await fs.ensureDir(resolve(os.tmpdir(), 'melodie-media'))
     })
 
@@ -913,7 +920,7 @@ describe('Media service', () => {
       expect(broadcast).toHaveBeenCalledTimes(1)
     })
 
-    it('stops no artist with artwork and bio', async () => {
+    it('stops on artist with artwork and bio for current locale', async () => {
       const id = faker.random.number({ min: 9999 })
       const artist = {
         id,

@@ -2,6 +2,8 @@
 /public/build/
 /coverage/
 /dist/
+/site/__sapper__
+/site/src/node_modules/@sapper
 .levels
 .env
 logs.txt

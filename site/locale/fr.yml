@@ -1,0 +1,36 @@
+intuitive portable and open source: Intuitif, portable et open source!
+install: Installer
+it stays tuned: Elle est toujours à la page
+js powered: Fait en JS
+for geeks: Pour les Geeks
+Mélodie is a music player: Mélodie est un lecteur de musique
+no frills just the basics: Pas de fioritures, juste les fondamentaux
+organized: Organisée
+organized so you do not have to: Organisée, pour que vous n'ayez pas à l'être
+photo by _: Photo par {name}
+works on your machine: Pour tous
+description:
+  basics: >
+    <p>Lit les fichiers Mp3, Ogg Vorbis et Flac. Les contrôles parlent d'eux-mêmes. </p>
+    <p>Ce que vous ne voyez pas encore ? Lecture en continue, ReplayGain, notifications système et support des touches de média.</p>
+  open source: >
+    <p>Le code source de Mélodie est <a class="underlined" target="_blank" href="https://github.com/feugy/melodie">ouvert <i class="material-icons">launch</i></a>.</p>
+    <p>L'application est gratuite, et sans aucune publicités.</p>
+  organized: >
+    <p>Mélodie lit les méta-données de vos morceaux, et crée automatiquement votre librairie d'albums et d'artistes.</p>
+    <p>Vous n'avez pas besoin de changer la manières dont vos fichiers sont organisés sur le disque dur.</p>
+  portable: >
+    <p>Que votre système d'exploitation préféré soit macOS, Windows ou Linux, profitez de la même expérience utilisateur.</p>
+  technologies: >
+    <p>Avec beaucoup d'amour et Electron, Svelte, RxJS, TailwindCSS, SQLite, Music-Metadata, Svelte SPA router...<p>
+  tuned: >
+    <p>Grâce à <a class="underlined" target="_blank" href="https://www.theaudiodb.com">AudioDB <i class="material-icons">launch</i></a> et <a class="underlined" target="_blank" href="https://www.discogs.com/en">Discogs <i class="material-icons">launch</i></a>, Mélodie enrichira votre librairie libraries avec des couvertures, avatars et biographies (nécessite des clés d'accès).</p>
+    <p>Ajoutez ou supprimez des fichiers sur le disque, changez leurs méta-données : votre librairie le détectera immédiatement.</p>
+    <p>Une nouvelle version ? Elle sera automatiquement installée lors du prochain redémarrage.</p>
+download:
+  exe: Installeur
+  portable exe: Version portable
+  portable zip: Fichier zip
+  app image: App Image
+  portable tar: Fichier tar.gz
+  dmg: Installeur

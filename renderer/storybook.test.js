@@ -20,7 +20,11 @@ afterAll(() => {
 })
 
 initStoryshots({
-  storyKindRegex: /^((?!Nav|Sheet|Media|Expandable|System).)*$/,
+  // Sticky & Nav because jsdom does not support IntersectionObserver API
+  // System Notifier because it does not support MediaMetadata
+  // ExpandableList because it mocks getBoundingClientRect
+  // MediaSelector & Sheet because the story imlies user action
+  storyKindRegex: /^((?!Nav|Sticky|System|Expandable|Sheet|Media).)*$/,
   asyncJest: true,
   test: async ({
     done,

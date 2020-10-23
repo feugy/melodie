@@ -19,6 +19,20 @@ navigator.mediaSession = {
 }
 window.fetch = jest.fn()
 
+window.IntersectionObserver = function () {
+  return {
+    observe: jest.fn(),
+    unobserve: jest.fn()
+  }
+}
+
+window.ResizeObserver = function () {
+  return {
+    observe: jest.fn(),
+    unobserve: jest.fn()
+  }
+}
+
 jest.mock('electron', () => ({
   ipcRenderer: mockIpcRenderer
 }))
