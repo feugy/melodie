@@ -6,6 +6,7 @@
   import SortableList from '../SortableList/SortableList.svelte'
   import Track from '../Track/Track.svelte'
   import AddToPlaylist from '../AddToPlaylist/AddToPlaylist.svelte'
+  import Sticky from '../Sticky/Sticky.svelte'
   import {
     tracks,
     index,
@@ -52,7 +53,8 @@
 
 <style type="postcss">
   header {
-    @apply flex flex-row text-left px-4;
+    @apply flex flex-row text-left;
+    padding: 1.2rem;
   }
 
   div {
@@ -72,21 +74,23 @@
   }
 </style>
 
+<Sticky>
+  <header>
+    <h3>
+      {$_($tracks.length === 1 ? 'a track' : '_ tracks', {
+        total: $tracks.length
+      })}
+    </h3>
+    {#if $tracks.length}
+      <AddToPlaylist class="mx-4" tracks={$tracks} />
+      <span class="totalDuration">{formatTime(sumDurations($tracks))}</span>
+      <Button icon="delete" class="ml-2" on:click={handleClear} />
+    {/if}
+  </header>
+</Sticky>
 <Heading
   title={$_('queue')}
   image={'../images/jason-rosewell-ASKeuOZqhYU-unsplash.jpg'} />
-<header>
-  <h3>
-    {$_($tracks.length === 1 ? 'a track' : '_ tracks', {
-      total: $tracks.length
-    })}
-  </h3>
-  {#if $tracks.length}
-    <AddToPlaylist class="mx-4" tracks={$tracks} />
-    <span class="totalDuration">{formatTime(sumDurations($tracks))}</span>
-    <Button icon="delete" class="ml-2" on:click={handleClear} />
-  {/if}
-</header>
 <div bind:this={list}>
   <SortableList
     items={$tracks}

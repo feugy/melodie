@@ -1,11 +1,10 @@
 <script>
-  import faker from 'faker'
   import Sheet from './Sheet.svelte'
   import Button from '../Button/Button.svelte'
 
   export let content = 'This is some content'
   let open = false
-  const paragraphs = Array.from({ length: 10 }, () => faker.lorem.paragraph())
+  import { texts } from '../../tests/lorem'
 </script>
 
 <style type="postcss">
@@ -26,8 +25,8 @@
   <Sheet {...$$props} bind:open>
     <section slot="main">
       <Button on:click={() => (open = !open)} text={open ? 'close' : 'open'} />
-      {#each paragraphs as paragraph}
-        <p class="py-2">{paragraph}</p>
+      {#each texts as text}
+        <p class="py-2">{text}</p>
       {/each}
     </section>
     <aside slot="aside">

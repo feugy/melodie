@@ -2,8 +2,8 @@
 
 import { screen, render, fireEvent } from '@testing-library/svelte'
 import html from 'svelte-htm'
-import Scrollable, { texts } from './auto-scrollable.stories.svelte'
-import { sleep } from '../../tests'
+import Scrollable from './auto-scrollable.stories.svelte'
+import { sleep, texts } from '../../tests'
 
 describe('autoScrollable action', () => {
   const itemHeight = 30

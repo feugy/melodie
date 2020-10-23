@@ -18,7 +18,12 @@ const {
   tap,
   reduce
 } = require('rxjs/operators')
-const { artistsModel, albumsModel, tracksModel } = require('../models')
+const {
+  artistsModel,
+  albumsModel,
+  tracksModel,
+  settingsModel
+} = require('../models')
 const { getLogger, getMediaPath, broadcast, dayMs } = require('../utils')
 const {
   audiodb,
@@ -145,7 +150,8 @@ module.exports = {
    */
   async triggerArtistEnrichment(id) {
     const artist = await artistsModel.getById(id)
-    if (!artist || (artist.media && artist.bio)) {
+    const { locale } = await settingsModel.get()
+    if (!artist || (artist.media && locale in artist.bio)) {
       return
     }
     const results = await this.findForArtist(artist.name)

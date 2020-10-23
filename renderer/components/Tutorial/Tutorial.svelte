@@ -10,7 +10,12 @@
   let annotation
   const observer = new MutationObserver(updateAnchor)
 
-  onMount(() => location.subscribe(updateAnchor))
+  onMount(() =>
+    location.subscribe(async () => {
+      await new Promise(r => setTimeout(r, 0))
+      updateAnchor()
+    })
+  )
   afterUpdate(updateAnchor)
 
   function updateAnchor() {

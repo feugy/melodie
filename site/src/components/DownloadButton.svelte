@@ -1,0 +1,74 @@
+<script>
+  import { _ } from 'svelte-intl'
+  import Dropdown from '../../../renderer/components/Dropdown/Dropdown.svelte'
+  import DownloadButtonItem from './DownloadButtonItem.svelte'
+
+  const version = '1.0.0-beta.2'
+  const baseUrl = `https://github.com/feugy/melodie/releases/download/v${version}`
+
+  const options = [
+    {
+      Component: DownloadButtonItem,
+      props: {
+        label: $_('download.exe'),
+        os: 'windows',
+        baseUrl,
+        file: `melodie-setup-${version}.exe`
+      }
+    },
+    {
+      Component: DownloadButtonItem,
+      props: {
+        label: $_('download.portable exe'),
+        os: 'windows',
+        baseUrl,
+        file: `melodie-${version}.exe`
+      }
+    },
+    {
+      Component: DownloadButtonItem,
+      props: {
+        label: $_('download.portable zip'),
+        os: 'windows',
+        baseUrl,
+        file: `melodie-${version}-win.zip`
+      }
+    },
+    {
+      Component: DownloadButtonItem,
+      props: {
+        label: $_('download.app image'),
+        os: 'linux',
+        baseUrl,
+        file: `melodie-${version}-x86_64.AppImage`
+      }
+    },
+    {
+      Component: DownloadButtonItem,
+      props: {
+        label: $_('download.portable tar'),
+        os: 'linux',
+        baseUrl,
+        file: `melodie-${version}.tar.gz`
+      }
+    },
+    {
+      Component: DownloadButtonItem,
+      props: {
+        label: $_('download.dmg'),
+        os: 'macOS',
+        baseUrl,
+        file: `melodie-${version}.dmg`
+      }
+    }
+  ]
+</script>
+
+<Dropdown
+  class="text-white"
+  icon="get_app"
+  text={$_('install')}
+  primary
+  large
+  {options}
+  valueAsText={false} />
