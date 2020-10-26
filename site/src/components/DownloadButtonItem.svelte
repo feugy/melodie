@@ -24,5 +24,5 @@
 </style>
 
 <div on:click={handleClick}>
-  <img src="./logos/{os}.png" alt={os} /><span>{label}</span>
+  <img src="logos/{os}.png" alt={os} /><span>{label}</span>
 </div>
