@@ -116,9 +116,6 @@ Another option is to open it with Control-click: it'll immediately register the 
    1. `Media service › triggerAlbumsEnrichment › retries album with no cover but at least one restriced provided`
       Is a 1ms difference in expected `processedEpoch`
 
-   1. `TracksQueue component › given a list of tracks › clears tracks queue`
-      The list items are still visible after clear (probably because of the animation)
-
    1. `AddToPlaylist component › given some playlists › saves new playlist with all tracks`
       The dropdown menu is still visible (probably because of the animation)
 

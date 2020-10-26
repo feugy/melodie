@@ -6,7 +6,13 @@ import { screen, render, fireEvent } from '@testing-library/svelte'
 import html from 'svelte-htm'
 import faker from 'faker'
 import TracksQueue from './TracksQueue.svelte'
-import { add, clear, index, current } from '../../stores/track-queue'
+import {
+  add,
+  clear,
+  index,
+  current,
+  tracks as trackQueue
+} from '../../stores/track-queue'
 import * as playlistStore from '../../stores/playlists'
 import * as tutorial from '../../stores/tutorial'
 import * as snackbars from '../../stores/snackbars'
@@ -97,11 +103,13 @@ describe('TracksQueue component', () => {
     it('clears tracks queue', async () => {
       expectListItems(tracks)
       expect(get(current)).toEqual(tracks[0])
+      expect(get(trackQueue)).toEqual(tracks)
 
       fireEvent.click(screen.queryByText('delete'))
-      await sleep(310)
+      await sleep(400)
 
       expect(get(current)).not.toBeDefined()
+      expect(get(trackQueue)).toEqual([])
       expect(screen.queryAllByRole('listitem')).toHaveLength(0)
     })
 
