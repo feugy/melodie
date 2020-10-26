@@ -4,8 +4,8 @@ import sirv from 'sirv'
 import polka from 'polka'
 import * as sapper from '@sapper/server'
 
-const { PORT, NODE_ENV } = process.env
-const baseUrl = NODE_ENV === 'development' ? '/' : 'melodie'
-console.log('>> coucou', NODE_ENV)
+const { PORT, BASE_PATH } = process.env
 
-polka().use(baseUrl, sirv('static'), sapper.middleware()).listen(PORT)
+polka()
+  .use(BASE_PATH || '/', sirv('static'), sapper.middleware())
+  .listen(PORT)
