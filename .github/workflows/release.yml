@@ -46,7 +46,7 @@ jobs:
         with:
           node-version: 14.x
       - run: npm ci
-      - run: npm run site:build
+      - run: BASE_PATH=melodie npm run site:build
       - uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
