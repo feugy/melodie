@@ -67,7 +67,8 @@
   }
 
   function slideOnRemove(...args) {
-    return dragged ? {} : slide(...args)
+    // do not slide when dragging element or when clearing the list
+    return dragged || keyedItems.length === 0 ? {} : slide(...args)
   }
 </script>
 

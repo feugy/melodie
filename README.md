@@ -82,10 +82,6 @@ Another option is to open it with Control-click: it'll immediately register the 
 
 ### Bugs and known issues
 
-1. Removing items in tracks queue automatically scrolls to current track
-
-1. Clearing track queue with more than 50 tracks is slow
-
 1. Playlist models are not updated on tracks removal
 
 1. Undetected live changes: remove tracks and re-add them. This is a linux-only issue with chokidar

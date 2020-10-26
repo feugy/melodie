@@ -20,6 +20,7 @@
   import { formatTime, sumDurations } from '../../utils'
 
   let list
+  let previousCurrent
 
   function handleRemove(i) {
     if ($current !== null && $tracks.length === 1) {
@@ -43,8 +44,9 @@
       await new Promise(r => setTimeout(r, 300))
       if (list) {
         const current = list.querySelector('.current')
-        if (current) {
+        if (current && current !== previousCurrent) {
           current.scrollIntoView({ behavior: 'smooth', block: 'center' })
+          previousCurrent = current
         }
       }
     })

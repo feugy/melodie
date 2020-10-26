@@ -99,7 +99,7 @@ describe('TracksQueue component', () => {
       expect(get(current)).toEqual(tracks[0])
 
       fireEvent.click(screen.queryByText('delete'))
-      await sleep(300)
+      await sleep(310)
 
       expect(get(current)).not.toBeDefined()
       expect(screen.queryAllByRole('listitem')).toHaveLength(0)
@@ -112,7 +112,7 @@ describe('TracksQueue component', () => {
       fireEvent.click(
         screen.getByText(removed).closest('li').querySelector('button')
       )
-      await sleep(300)
+      await sleep(310)
 
       expectListItems([tracks[0], ...tracks.slice(2)])
       expect(screen.queryByText(removed)).not.toBeInTheDocument()
@@ -134,6 +134,32 @@ describe('TracksQueue component', () => {
       await tick()
 
       expectListItems([tracks[1], tracks[2], tracks[3], tracks[0]])
+    })
+
+    it('does not scroll to current track on track removal', async () => {
+      const secondTrack = screen.getByText(tracks[2].tags.title)
+
+      expectListItems(tracks)
+      expect(get(current)).toEqual(tracks[0])
+
+      fireEvent.click(secondTrack)
+      await sleep(310)
+
+      expect(get(index)).toEqual(2)
+      expect(secondTrack.closest('.row').scrollIntoView).toHaveBeenCalled()
+
+      jest.clearAllMocks()
+
+      fireEvent.click(
+        screen
+          .getByText(tracks[3].tags.title)
+          .closest('li')
+          .querySelector('button')
+      )
+      await sleep(310)
+
+      expect(get(index)).toEqual(2)
+      expect(secondTrack.closest('.row').scrollIntoView).not.toHaveBeenCalled()
     })
   })
 
@@ -164,7 +190,7 @@ describe('TracksQueue component', () => {
       expect(get(current)).toEqual(tracks[0])
 
       fireEvent.click(screen.queryByText('delete'))
-      await sleep(300)
+      await sleep(310)
 
       expectListItems(tracks.slice(0, 2))
       expect(get(current)).toEqual(tracks[0])
@@ -185,7 +211,7 @@ describe('TracksQueue component', () => {
           .closest('li')
           .querySelector('button')
       )
-      await sleep(300)
+      await sleep(310)
 
       expectListItems(tracks.slice(1, 2))
       expect(get(current)).toEqual(tracks[1])
@@ -196,7 +222,7 @@ describe('TracksQueue component', () => {
           .closest('li')
           .querySelector('button')
       )
-      await sleep(300)
+      await sleep(310)
 
       expectListItems(tracks.slice(1, 2))
       expect(get(current)).toEqual(tracks[1])
