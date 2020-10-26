@@ -3168,7 +3168,7 @@ const ignore = [];
 
 const components = [
 	{
-		js: () => Promise.all([import('./index.f6814930.js'), __inject_styles(["client-26d758fe.css","index-389e76af.css"])]).then(function(x) { return x[0]; })
+		js: () => Promise.all([import('./index.42f4f994.js'), __inject_styles(["client-26d758fe.css","index-389e76af.css"])]).then(function(x) { return x[0]; })
 	}
 ];
 
