@@ -23,6 +23,6 @@
   }
 </style>
 
-<div style="--height: {height}; --src:url('{src}');">
+<div style="--height: {height}; --src:url('../{src}');">
   <img {...$$restProps} alt="" {src} />
 </div>
