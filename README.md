@@ -13,6 +13,8 @@ Melodie is a portable, simple-as-pie music player.
 
 There are thunsands of them in the wild. This mine is an excuse for learning [Electron][], [Svelte][] and [reactive programming][rxjs].
 
+![preview](site/static/images/screenshot-ui-en.png)
+
 ## Installation
 
 You will find installers on the [releases][] page.
