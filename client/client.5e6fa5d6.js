@@ -2651,7 +2651,7 @@ const CONTEXT_KEY = {};
 const get_default_slot_changes = dirty => ({ segment: dirty & /*segment*/ 1 });
 const get_default_slot_context = ctx => ({ segment: /*segment*/ ctx[0] });
 
-// (34:0) {#if $locale}
+// (7:0) {#if $locale}
 function create_if_block(ctx) {
 	let main;
 	let current;
@@ -3168,7 +3168,7 @@ const ignore = [];
 
 const components = [
 	{
-		js: () => Promise.all([import('./index.80afd2d9.js'), __inject_styles(["client-26d758fe.css","index-389e76af.css"])]).then(function(x) { return x[0]; })
+		js: () => Promise.all([import('./index.0ce5c606.js'), __inject_styles(["client-26d758fe.css","index-389e76af.css"])]).then(function(x) { return x[0]; })
 	}
 ];
 
@@ -3704,7 +3704,7 @@ function hydrate_target(dest) {
 var data = { footer:"2020 - Damien Simonin Feugas",
   intuitive:"Intuitive",
   "intuitive portable and open source":"It is intuitive, portable and open source!",
-  install:"Install",
+  "install _":"Install v{version}",
   "it stays tuned":"It stays tuned",
   "js powered":"Powered by JS",
   "for geeks":"For geeks",
@@ -3717,6 +3717,7 @@ var data = { footer:"2020 - Damien Simonin Feugas",
   "photo by _":"Photo by {name}",
   reactive:"Reactive",
   "works on your machine":"Works on your machine",
+  alt:{ home:"Mélodie logo - link to the page top" },
   description:{ basics:"<p>Plays Mp3, Ogg Vorbis and Flac files. Controls speak for themselves. </p> <p>What you don't see yet? Gap-less playback, ReplayGain, system notifications and media keys support.</p>\n",
     "open source":"<p>Mélodie's source code is <a class=\"underlined\" target=\"_blank\" href=\"https://github.com/feugy/melodie\">open <i class=\"material-icons\">launch</i></a>.</p> <p>This application is free to use, and free or any adds.</p>\n",
     organized:"<p>Mélodie reads tracks music metadata, and automatically creates your album and artist library.</p> <p>You don't need to change how you the actual files are organized on your hard drive.</p>\n",
@@ -3728,10 +3729,10 @@ var data = { footer:"2020 - Damien Simonin Feugas",
     "portable zip":"Zip file",
     "app image":"App Image",
     "portable tar":"Tar.gz file",
-    dmg:"Setup" } };
+    dmg:"Image Disk" } };
 
 var data$1 = { "intuitive portable and open source":"Intuitif, portable et open source!",
-  install:"Installer",
+  "install _":"Installer v{version}",
   "it stays tuned":"Elle est toujours à la page",
   "js powered":"Fait en JS",
   "for geeks":"Pour les Geeks",
@@ -3741,6 +3742,7 @@ var data$1 = { "intuitive portable and open source":"Intuitif, portable et open 
   "organized so you do not have to":"Organisée, pour que vous n'ayez pas à l'être",
   "photo by _":"Photo par {name}",
   "works on your machine":"Pour tous",
+  alt:{ home:"Logo Mélodie - lien vers le haut de la page" },
   description:{ basics:"<p>Lit les fichiers Mp3, Ogg Vorbis et Flac. Les contrôles parlent d'eux-mêmes. </p> <p>Ce que vous ne voyez pas encore ? Lecture en continue, ReplayGain, notifications système et support des touches de média.</p>\n",
     "open source":"<p>Le code source de Mélodie est <a class=\"underlined\" target=\"_blank\" href=\"https://github.com/feugy/melodie\">ouvert <i class=\"material-icons\">launch</i></a>.</p> <p>L'application est gratuite, et sans aucune publicités.</p>\n",
     organized:"<p>Mélodie lit les méta-données de vos morceaux, et crée automatiquement votre librairie d'albums et d'artistes.</p> <p>Vous n'avez pas besoin de changer la manières dont vos fichiers sont organisés sur le disque dur.</p>\n",
@@ -3752,7 +3754,7 @@ var data$1 = { "intuitive portable and open source":"Intuitif, portable et open 
     "portable zip":"Fichier zip",
     "app image":"App Image",
     "portable tar":"Fichier tar.gz",
-    dmg:"Installeur" } };
+    dmg:"Image disque" } };
 
 function defaultDeep(source, defaults) {
   const keys = Object.keys(defaults);
@@ -3801,6 +3803,6 @@ start$1({
   target: document.querySelector('#sapper')
 });
 
-export { locale as $, prevent_default as A, compute_rest_props as B, assign as C, exclude_internal_props as D, bubble as E, create_component as F, claim_component as G, mount_component as H, get_spread_update as I, get_spread_object as J, destroy_component as K, run_all as L, createEventDispatcher as M, globals as N, group_outros as O, check_outros as P, add_render_callback as Q, create_bidirectional_transition as R, SvelteComponent as S, destroy_each as T, empty as U, noop as V, component_subscribe as W, set_style as X, set_attributes as Y, query_selector_all as Z, _, attr as a, goto as a0, HtmlTag as a1, insert as b, claim_element as c, detach as d, element as e, create_slot as f, space as g, children as h, init as i, claim_space as j, claim_text as k, append as l, set_data as m, transition_in as n, transition_out as o, onMount as p, binding_callbacks as q, action_destroyer as r, safe_not_equal as s, text as t, update_slot as u, is_function as v, null_to_empty as w, toggle_class as x, listen as y, stop_propagation as z };
+export { locale as $, prevent_default as A, compute_rest_props as B, assign as C, exclude_internal_props as D, bubble as E, create_component as F, claim_component as G, mount_component as H, get_spread_update as I, get_spread_object as J, destroy_component as K, run_all as L, createEventDispatcher as M, globals as N, group_outros as O, check_outros as P, add_render_callback as Q, create_bidirectional_transition as R, SvelteComponent as S, destroy_each as T, empty as U, noop as V, component_subscribe as W, set_style as X, set_attributes as Y, query_selector_all as Z, _, attr as a, HtmlTag as a0, insert as b, claim_element as c, detach as d, element as e, create_slot as f, space as g, children as h, init as i, claim_space as j, claim_text as k, append as l, set_data as m, transition_in as n, transition_out as o, onMount as p, binding_callbacks as q, action_destroyer as r, safe_not_equal as s, text as t, update_slot as u, is_function as v, null_to_empty as w, toggle_class as x, listen as y, stop_propagation as z };
 
 import __inject_styles from './inject_styles.5607aec6.js';
