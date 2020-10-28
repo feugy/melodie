@@ -21,9 +21,9 @@ There are thunsands of them in the wild. This mine is an excuse for learning [El
 
 You will find installers on the [releases][] page.
 
-Please note that AppImage Snap, DMG and NSIS installer will automatically update to the latest available version.
+Please note that AppImage Snap and NSIS installer will automatically update to the latest available version.
 
-If you run Mélodie from a zip or using Windows portable version, you will have to download updates by yourself.
+If you run Mélodie from a zip or using DMG/Windows portable version, you will have to download updates by yourself.
 
 ### Note for Windows users
 
@@ -83,6 +83,8 @@ Another option is to open it with Control-click: it'll immediately register the 
   - [ ] [Snap store](https://snapcraft.io/)
 
 ### Bugs and known issues
+
+1. DMG package does not download updates: [it requires zip](https://github.com/electron-userland/electron-builder/issues/2199), and we cannot build zip because of [the accent in product name](https://github.com/electron-userland/electron-builder/issues/4306#issuecomment-717232761)...
 
 1. Playlist models are not updated on tracks removal
 

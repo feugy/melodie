@@ -35,6 +35,7 @@ jobs:
 
       - name: Send coverage to Codacy
         if: always()
+        continue-on-error: true
         uses: codacy/codacy-coverage-reporter-action@master
         with:
           project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
