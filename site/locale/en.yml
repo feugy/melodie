@@ -1,7 +1,7 @@
 footer: 2020 - Damien Simonin Feugas
 intuitive: Intuitive
 intuitive portable and open source: It is intuitive, portable and open source!
-install: Install
+install _: Install v{version}
 it stays tuned: It stays tuned
 js powered: Powered by JS
 for geeks: For geeks

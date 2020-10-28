@@ -3,7 +3,7 @@
   import Dropdown from '../../../../renderer/components/Dropdown/Dropdown.svelte'
   import DownloadButtonItem from './DownloadButtonItem.svelte'
 
-  const version = '1.0.0-beta.2'
+  const version = MELODIE_VERSION
   const baseUrl = `https://github.com/feugy/melodie/releases/download/v${version}`
 
   const options = [
@@ -67,7 +67,7 @@
 <Dropdown
   class="text-white"
   icon="get_app"
-  text={$_('install')}
+  text={$_('install _', { version })}
   primary
   large
   {options}
