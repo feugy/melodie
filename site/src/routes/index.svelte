@@ -1,5 +1,4 @@
 <script>
-  import { goto } from '@sapper/app'
   import { _, locale } from 'svelte-intl'
   import {
     Card,
@@ -95,9 +94,9 @@
   <nav>
     <img
       src="favicon.png"
-      alt=""
+      alt={$_('alt.home')}
       on:click={() => {
-        goto('/')
+        window.location.hash = ''
         document.body.scrollTo(0, 0)
       }} />
     <a href="#intuitive"><i

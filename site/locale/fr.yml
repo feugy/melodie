@@ -9,6 +9,8 @@ organized: Organisée
 organized so you do not have to: Organisée, pour que vous n'ayez pas à l'être
 photo by _: Photo par {name}
 works on your machine: Pour tous
+alt:
+  home: Logo Mélodie - lien vers le haut de la page
 description:
   basics: >
     <p>Lit les fichiers Mp3, Ogg Vorbis et Flac. Les contrôles parlent d'eux-mêmes. </p>
@@ -33,4 +35,4 @@ download:
   portable zip: Fichier zip
   app image: App Image
   portable tar: Fichier tar.gz
-  dmg: Installeur
+  dmg: Image disque

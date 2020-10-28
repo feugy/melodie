@@ -3,6 +3,7 @@
 import { locale } from 'svelte-intl'
 import '../../renderer/tailwind.svelte'
 import '../../renderer/style.svelte'
+import './style.svelte'
 // order is important: app must be imported after tailwind and style definitions
 import * as sapper from '@sapper/app'
 

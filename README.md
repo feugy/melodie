@@ -1,4 +1,4 @@
-<div style="display:flex; justify-content: center;"><img src="public/icons/icon-512x512.png?raw=true" width="200px"/></div>
+<div align="center"><img src="public/icons/icon-512x512.png?raw=true" width="200px"/>
 
 # Mélodie
 
@@ -11,9 +11,11 @@
 
 Melodie is a portable, simple-as-pie music player.
 
-There are thunsands of them in the wild. This mine is an excuse for learning [Electron][], [Svelte][] and [reactive programming][rxjs].
-
 ![preview](site/static/images/screenshot-ui-en.png)
+
+</div>
+
+There are thunsands of them in the wild. This mine is an excuse for learning [Electron][], [Svelte][] and [reactive programming][rxjs].
 
 ## Installation
 

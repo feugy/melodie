@@ -1,6 +1,6 @@
 <script>
   import { _ } from 'svelte-intl'
-  import Dropdown from '../../../renderer/components/Dropdown/Dropdown.svelte'
+  import Dropdown from '../../../../renderer/components/Dropdown/Dropdown.svelte'
   import DownloadButtonItem from './DownloadButtonItem.svelte'
 
   const version = '1.0.0-beta.2'

@@ -14,6 +14,8 @@ open source: Open Source
 photo by _: Photo by {name}
 reactive: Reactive
 works on your machine: Works on your machine
+alt:
+  home: Mélodie logo - link to the page top
 description:
   basics: >
     <p>Plays Mp3, Ogg Vorbis and Flac files. Controls speak for themselves. </p>
@@ -38,4 +40,4 @@ download:
   portable zip: Zip file
   app image: App Image
   portable tar: Tar.gz file
-  dmg: Setup
+  dmg: Image Disk
