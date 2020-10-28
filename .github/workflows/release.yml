@@ -25,13 +25,22 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - name: Check code out
+        uses: actions/checkout@v2
+
+      - name: Set Node.js up
+        uses: actions/setup-node@v1
         with:
           node-version: 14.x
-      - run: npm ci
-      - run: npm run build:svelte
-      - run: npm run release:publish -- onTagOrDraft -${{ matrix.flags}}
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build application
+        run: npm run build:svelte
+
+      - name: Release application
+        run: npm run release:publish -- onTagOrDraft -${{ matrix.flags}}
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
@@ -41,13 +50,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - name: Check code out
+        uses: actions/checkout@v2
+
+      - name: Set Node.js up
+        uses: actions/setup-node@v1
         with:
           node-version: 14.x
-      - run: npm ci
-      - run: BASE_PATH=melodie npm run site:build
-      - uses: peaceiris/actions-gh-pages@v3
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build site
+        run: BASE_PATH=melodie npm run site:build
+
+      - name: Publish site
+        uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./site/__sapper__/export/melodie
