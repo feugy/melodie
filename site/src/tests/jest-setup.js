@@ -6,6 +6,7 @@ import {
   addTranslations,
   defaultKey
 } from '../../../renderer/utils/translations'
+import { version } from '../../../package.json'
 
 const bundles = new Map()
 bundles.set(defaultKey, en)
@@ -29,3 +30,5 @@ window.ResizeObserver = function () {
 }
 
 Element.prototype.scrollTo = jest.fn()
+
+global.MELODIE_VERSION = version
