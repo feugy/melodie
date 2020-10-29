@@ -1,8 +1,10 @@
 'use strict'
 
+import { get } from 'svelte/store'
 import faker from 'faker'
-import { invoke } from './invoke'
+import { invoke, lastInvokation } from './invoke'
 import electron from 'electron'
+import { sleep } from '../tests'
 
 jest.mock('electron', () => ({
   ipcRenderer: {
@@ -29,5 +31,10 @@ describe('invoke', () => {
       arg2
     )
     expect(electron.ipcRenderer.invoke).toHaveBeenCalledTimes(1)
+    await sleep()
+    expect(get(lastInvokation)).toEqual({
+      invoked: 'dialog.showOpenDialog',
+      args: [arg1, arg2]
+    })
   })
 })

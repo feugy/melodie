@@ -101,13 +101,7 @@ describe('tutorial store', () => {
   })
 
   it('goes to sixth step when creating a playlist', async () => {
-    mockInvoke.mockResolvedValueOnce({
-      results: [{}],
-      total: 1,
-      size: 1,
-      from: 0
-    })
-    playlists.list()
+    playlists.save({ name: 'my playlist', trackIds: [123456] })
     await sleep()
     expect(get(current)).toEqual(
       expect.objectContaining({
