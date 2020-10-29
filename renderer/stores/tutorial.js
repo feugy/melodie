@@ -1,11 +1,11 @@
 'use strict'
 
+import { tick } from 'svelte'
 import { BehaviorSubject, Subject } from 'rxjs'
 import { location, replace } from 'svelte-spa-router'
 import { albums } from './albums'
-import { playlists } from './playlists'
 import { tracks } from './track-queue'
-import { tick } from 'svelte'
+import { lastInvokation } from '../utils'
 
 const steps = [
   {
@@ -40,7 +40,8 @@ const steps = [
     annotation: {
       left: '15%'
     },
-    listen: () => awaitsEvent(playlists, playlists => playlists.length > 0)
+    listen: () =>
+      awaitsEvent(lastInvokation, ({ invoked }) => invoked === 'playlists.save')
   },
   {
     anchorId: 'to-playlists',
