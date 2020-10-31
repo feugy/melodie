@@ -1,6 +1,6 @@
 {
   "name": "melodie",
-  "version": "1.0.0-beta.2",
+  "version": "1.0.0",
   "description": "Melodie is a portable, simple-as-pie music player",
   "author": {
     "name": "Damien Simonin Feugas",
@@ -18,7 +18,7 @@
     "dev": "rollup -c -w",
     "postinstall": "electron-builder install-app-deps",
     "release:artifacts": "electron-builder",
-    "release:bump": "standard-version -s --prerelease beta",
+    "release:bump": "standard-version -s",
     "release:publish": "electron-builder -p",
     "site:dev": "cd site && sapper dev",
     "site:build": "if test $BASE_PATH; then sapper export --cwd site --basepath $BASE_PATH; else sapper export --cwd site; fi",

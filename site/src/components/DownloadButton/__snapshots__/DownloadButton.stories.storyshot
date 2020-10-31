@@ -17,7 +17,7 @@ exports[`Storyshots Site components/Download button Default 1`] = `
       </i>
        
       <span>
-        Install v1.0.0-beta.2
+        Install v1.0.0
       </span>
        
       <i

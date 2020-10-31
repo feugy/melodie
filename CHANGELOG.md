@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0](https://github.com/feugy/melodie/compare/v1.0.0-beta.2...v1.0.0) (2020-10-31)
+
+
+### Features
+
+* **ui:** sticky header for track queue ([2218285](https://github.com/feugy/melodie/commit/2218285f576af5b8aa56d58e53b6deebb2828c66))
+
+
+### Bug Fixes
+
+* **ui:** importing playlist during tutorial will skip latest steps ([f38a78b](https://github.com/feugy/melodie/commit/f38a78bc373c71cf72068f5be9ea442d76d5b26b))
+* **ui:** removing items in tracks queue automatically scrolls to current track ([7a0d15c](https://github.com/feugy/melodie/commit/7a0d15c9529e98a4d6f09bc2de79cdf26387c71c))
+* stylistic issues ([ec42c23](https://github.com/feugy/melodie/commit/ec42c23b5f1d0bc60d090cb2ca4d9dc2a1794c34))
+
 ## [1.0.0-beta.2](https://github.com/feugy/melodie/compare/v1.0.0-beta.1...v1.0.0-beta.2) (2020-10-21)
 
 
