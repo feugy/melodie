@@ -263,10 +263,13 @@ To check that generated AppImage works:
 
 ## Releasing
 
-Release process is fairly automated: it will generate changelog, bump version, and build melodie for different platform, creating several artifacts which are either packages (snap, AppImage, Nsis) or plain files (zip).
+Release process is fairly automated: it will generate changelog, bump version, and build melodie for different platform, creating several artifacts which are either packages (snap, AppImage, Nsis, appx) or plain files (zip).
 
-Theses artifacts will be either published on their respective store (snapcraft...) or uploaded to github as a release.
-Once a Github release is published, users who installed an auto-updatable package (snap, AppImage, Nsis) will get the new version auto-magically.
+Theses artifacts will be either published on their respective store (snapcraft, windows app store...) or uploaded to github as a release.
+Once a Github release is published, users who installed an auto-updatable package (snap, AppImage, Nsis, appx) will get the new version auto-magically.
+
+Windows app store release can not be automated: Github CI will build the appx package, but it must be manually submitted to the [windows app store][].
+
 
 1. When ready, bump the version on local machine:
 
@@ -287,6 +290,10 @@ Once a Github release is published, users who installed an auto-updatable packag
    1. copy the latest section of the [changelog][] in the release body
 
    1. don't forget to select "is a prerelease" checkbox in case it is one
+
+   1. manually submit the new `appx` package to the [windows app store][]
+
+   1. remove the `appx` package from artifact list: as it is unsigned, users can not install it from here
 
    1. publish your release
 
@@ -423,3 +430,4 @@ Once a Github release is published, users who installed an auto-updatable packag
 [getpathname]: https://www.electronjs.org/docs/api/app#appgetpathname
 [appimagelauncher]: https://github.com/TheAssassin/AppImageLauncher
 [appimagelint]: https://github.com/TheAssassin/appimagelint
+[windows app store]: https://partner.microsoft.com/en-us/dashboard/products/9N41VK2C5VC2/overview

@@ -6,12 +6,15 @@ files:
   - LICENSE
   - CHANGELOG.md
   - README.md
+  - PRIVACY POLICY.md
   - main/**/*
   - package.json
   - public/**/*
   - '!**/tests/**/*'
   - '!**/*.test.js'
   - '!**/__nocks__/**/*'
+  - '!**/public/appx/**/*'
+  - '!**/site/**/*'
   - '!**/.*'
   - '!**/node_modules/*/{CHANGELOG.md,README.md,README,readme.md,readme}'
   - '!**/node_modules/*/{test,__tests__,tests,powered-test,example,examples}'
@@ -71,8 +74,17 @@ appImage:
   desktop:
     X-AppImage-Version: ''
 
+appx:
+  applicationId: Melodie
+  identityName: 58049Feugy.Mlodie
+  publisher: CN=E1C3D83B-BC47-421C-870B-6699072C88DB
+  publisherDisplayName: Feugy
+  languages:
+    - en-GB
+    - fr-FR
+  
 win:
-  target: [nsis, portable, zip]
+  target: [appx, nsis, portable, zip]
 
 nsis:
   license: LICENSE
