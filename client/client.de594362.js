@@ -3194,7 +3194,7 @@ const ignore = [];
 
 const components = [
 	{
-		js: () => Promise.all([import('./index.d7c2c0e7.js'), __inject_styles(["client-26d758fe.css","index-389e76af.css"])]).then(function(x) { return x[0]; })
+		js: () => Promise.all([import('./index.b3306267.js'), __inject_styles(["client-26d758fe.css","index-389e76af.css"])]).then(function(x) { return x[0]; })
 	}
 ];
 
@@ -3769,8 +3769,8 @@ var data$1 = { "intuitive portable and open source":"Intuitif, portable et open 
   "photo by _":"Photo par {name}",
   "works on your machine":"Pour tous",
   alt:{ home:"Logo Mélodie - lien vers le haut de la page" },
-  description:{ basics:"<p>Lit les fichiers Mp3, Ogg Vorbis et Flac. Les contrôles parlent d'eux-mêmes. </p> <p>Ce que vous ne voyez pas encore ? Lecture en continue, ReplayGain, notifications système et support des touches de média.</p>\n",
-    "open source":"<p>Le code source de Mélodie est <a class=\"underlined\" target=\"_blank\" href=\"https://github.com/feugy/melodie\">ouvert <i class=\"material-icons\">launch</i></a>.</p> <p>L'application est gratuite, et sans aucune publicités.</p>\n",
+  description:{ basics:"<p>Lit les fichiers Mp3, Ogg Vorbis et Flac. Les contrôles parlent d'eux-mêmes. </p> <p>Ce que vous ne voyez pas encore ? Lecture en continue, ReplayGain, notifications système et support des touches média.</p>\n",
+    "open source":"<p>Le code source de Mélodie est <a class=\"underlined\" target=\"_blank\" href=\"https://github.com/feugy/melodie\">ouvert <i class=\"material-icons\">launch</i></a>.</p> <p>L'application est gratuite, et sans aucunes publicités.</p>\n",
     organized:"<p>Mélodie lit les méta-données de vos morceaux, et crée automatiquement votre librairie d'albums et d'artistes.</p> <p>Vous n'avez pas besoin de changer la manières dont vos fichiers sont organisés sur le disque dur.</p>\n",
     portable:"<p>Que votre système d'exploitation préféré soit macOS, Windows ou Linux, profitez de la même expérience utilisateur.</p>\n",
     technologies:"<p>Avec beaucoup d'amour et Electron, Svelte, RxJS, TailwindCSS, SQLite, Music-Metadata, Svelte SPA router...<p>\n",
