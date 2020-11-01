@@ -1,6 +1,6 @@
 'use strict'
 
-import { locale } from 'svelte-intl'
+import { locale, getBrowserLocale } from 'svelte-intl'
 import '../../renderer/tailwind.svelte'
 import '../../renderer/style.svelte'
 import './style.svelte'
@@ -17,7 +17,7 @@ bundles.set('en', en)
 bundles.set('fr', fr)
 
 addTranslations(bundles)
-locale.set(navigator.language.slice(0, 2))
+locale.set(getBrowserLocale('en'))
 
 sapper.start({
   target: document.querySelector('#sapper')
