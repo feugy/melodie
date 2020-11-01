@@ -13,6 +13,8 @@ Melodie is a portable, simple-as-pie music player.
 
 ![preview](site/static/images/screenshot-ui-en.png)
 
+<!--a href='//www.microsoft.com/store/apps/9N41VK2C5VC2?cid=storebadge&ocid=badge'><img src='https://developer.microsoft.com/en-us/store/badges/images/English_get-it-from-MS.png' alt='English badge' style='width: 127px; height: 52px;'/></a-->
+
 </div>
 
 There are thunsands of them in the wild. This mine is an excuse for learning [Electron][], [Svelte][] and [reactive programming][rxjs].
@@ -30,7 +32,10 @@ If you run Mélodie from a zip or using DMG/Windows portable version, you will h
 **Windows installers are not signed.**
 
 When you will run the .exe files, Windows will warn you that the source is insecure (it is not!).
-It is possible to bypass the warning by confirming your choice to install or run Mélodie.
+<img src="https://user-images.githubusercontent.com/186268/97808649-69ac2d00-1c68-11eb-8117-baa700b479fd.png" height="200px" /> 
+
+It is possible to bypass the warning by clicking on the "More information" link, then on the Install button
+<img src="https://user-images.githubusercontent.com/186268/97808651-6b75f080-1c68-11eb-9363-f0a966261660.png" height="200px" /> 
 
 ### Note for MacOS users
 
