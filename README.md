@@ -32,10 +32,10 @@ If you run Mélodie from a zip or using DMG/Windows portable version, you will h
 **Windows installers are not signed.**
 
 When you will run the .exe files, Windows will warn you that the source is insecure (it is not!).
-<img src="https://user-images.githubusercontent.com/186268/97808649-69ac2d00-1c68-11eb-8117-baa700b479fd.png" height="200px" /> 
+<img src="https://user-images.githubusercontent.com/186268/97808649-69ac2d00-1c68-11eb-8117-baa700b479fd.png" height="200px" />
 
 It is possible to bypass the warning by clicking on the "More information" link, then on the Install button
-<img src="https://user-images.githubusercontent.com/186268/97808651-6b75f080-1c68-11eb-9363-f0a966261660.png" height="200px" /> 
+<img src="https://user-images.githubusercontent.com/186268/97808651-6b75f080-1c68-11eb-9363-f0a966261660.png" height="200px" />
 
 ### Note for MacOS users
 
@@ -77,15 +77,17 @@ Another option is to open it with Control-click: it'll immediately register the 
 
 ### release
 
-- [ ] usage statistics
-
 - [ ] references
 
-  - [ ] Electron's [app list](https://www.electronjs.org/apps)
+  - [x] Electron's [app list](https://www.electronjs.org/apps) ([PR](https://github.com/electron/apps/pull/1566))
 
-  - [ ] Svelte's [showcase](https://svelte-community.netlify.app/showcase)
+  - [x] Svelte's [showcase](https://svelte-community.netlify.app/showcase) ([PR](https://github.com/sveltejs/community/pull/329))
 
-  - [ ] [Snap store](https://snapcraft.io/)
+  - [ ] [Snap store](https://snapcraft.io/) ([app page](https://snapcraft.io/melodie/listing))
+
+  - [x] [AppImage hub](https://appimage.github.io/) ([PR](https://github.com/AppImage/appimage.github.io/pull/2383))
+
+  - [x] [Windows App store](https://www.microsoft.com/store) ([app page](https://www.microsoft.com/store/apps/9N41VK2C5VC2)
 
 ### Bugs and known issues
 
@@ -270,17 +272,28 @@ To check that generated AppImage works:
 
 Release process is fairly automated: it will generate changelog, bump version, and build melodie for different platform, creating several artifacts which are either packages (snap, AppImage, Nsis, appx) or plain files (zip).
 
-Theses artifacts will be either published on their respective store (snapcraft, windows app store...) or uploaded to github as a release.
+Theses artifacts will be either published on their respective store (snapcraft, Windows App store...) or uploaded to github as a release.
 Once a Github release is published, users who installed an auto-updatable package (snap, AppImage, Nsis, appx) will get the new version auto-magically.
 
-Windows app store release can not be automated: Github CI will build the appx package, but it must be manually submitted to the [windows app store][].
-
+Windows App store release can not be automated: Github CI will build the appx package, but it must be manually submitted to the [Windows App store][].
 
 1. When ready, bump the version on local machine:
 
    ```shell
    npm run release:bump
+   git
    ```
+
+1. **Don't forget to update snapshots**: the presentation site test depend on the version number.
+
+   ```shell
+   npm t -- -u
+   git commit -a --amend --no-edit
+   TAG=$(git describe --tags)
+   git tag -f $TAG
+   ```
+
+   You shoud see 2 snapshots updated
 
 1. Then push tags to github, as it'll trigger the artifact creation:
 
@@ -294,15 +307,53 @@ Windows app store release can not be automated: Github CI will build the appx pa
 
    1. copy the latest section of the [changelog][] in the release body
 
-   1. don't forget to select "is a prerelease" checkbox in case it is one
+   1. save it as draft
 
-   1. manually submit the new `appx` package to the [windows app store][]
+   1. **Wait until the artifacts are published on your draft**
+
+   1. manually submit the new `appx` package to the [Windows App store][]
 
    1. remove the `appx` package from artifact list: as it is unsigned, users can not install it from here
 
    1. publish your release
 
    1. go and slack off!
+
+### Manual snap release
+
+Until [this PR](https://github.com/electron-userland/electron-builder/pull/5313) lands on electron-builder, we need to manually release on snap.
+
+1. Clean up distribution, build snap file and extract it:
+
+   ```shell
+   rm -rf dist/
+   npm run release:artifacts -- -l snap
+   cd dist/
+   rm -rf linux-unpacked builder-effective-config.yaml
+   file-roller -f *.snap .
+   ```
+
+   Then select the dist folder as target folder
+
+1. Amend the `snap.yaml` descriptor. **At root level**, add:
+
+   ```yaml
+   slots:
+     mpris:
+       interface: mpris
+       name: chromium
+   ```
+
+   Save the file
+
+1. Re-create snap file and publish it on snapcraft:
+
+   ```shell
+   rm -r *.snap
+   snapcraft pack . --output 'linux - Mélodie.snap'
+   snapcraft login
+   snapcraft upload --release=stable 'linux - Mélodie.snap'
+   ```
 
 ## Notable facts
 
