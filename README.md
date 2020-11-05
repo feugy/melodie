@@ -202,7 +202,7 @@ When using real services, update the mocks by defining `UPDATE_NOCKS` environmen
 
 Some providers need access keys during tests. Just make a `.env` file in the root folder, with the appropriate values:
 
-```
+```shell
 DISCOGS_TOKEN=XYZ
 AUDIODB_KEY=1
 ```
