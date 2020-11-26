@@ -18,6 +18,7 @@
   import ArtistDetails from '../../routes/artist/[id].svelte'
   import Playlists from '../../routes/playlist.svelte'
   import PlaylistDetails from '../../routes/playlist/[id].svelte'
+  import Recent from '../../routes/recent.svelte'
   import SearchResults from '../../routes/search/[searched].svelte'
   import Settings from '../../routes/settings.svelte'
 
@@ -30,6 +31,7 @@
     '/artist/:id': ArtistDetails,
     '/playlist': Playlists,
     '/playlist/:id': PlaylistDetails,
+    '/recent': Recent,
     '/search/:searched': SearchResults,
     '/settings': Settings,
     '*': wrap({

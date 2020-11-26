@@ -95,6 +95,39 @@ module.exports = {
   },
 
   /**
+   * Appends some track ids to an existing playlist.
+   * Does nothing when no playlist is matching the passed id.
+   * @async
+   * @param {string} id                     - the playlist id
+   * @param {string} trackId - single prepended track id
+   * @returns {PlaylistModel} saved playlist, or null
+   */
+  async prependSingleMerge(id, trackId) {
+    const playlist = await playlistsModel.getById(id)
+    if (!playlist) {
+      logger.debug({ id, trackId }, `attempt to add to an unknown playlist`)
+      return null
+    }
+    logger.debug({ playlist, trackId }, `prepend to playlist`)
+
+    // remove existing occurrence of same track id
+    const trackIndex = playlist.trackIds.indexOf(trackId)
+
+    if (trackIndex !== -1) {
+      playlist.trackIds.splice(trackIndex, 1)
+    }
+
+    const {
+      saved: [saved]
+    } = await playlistsModel.save({
+      ...playlist,
+      trackIds: [trackId, ...playlist.trackIds]
+    })
+    broadcast(`playlist-changes`, [saved])
+    return saved
+  },
+
+  /**
    * For all playlist marked for checking, trimout all track ids that do not refer to actual tracks.
    * Does nothing unless some playlist were marked for checking.
    */

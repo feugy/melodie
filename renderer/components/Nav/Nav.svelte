@@ -90,6 +90,12 @@
         text={$_('playlists')}
         icon="library_music" />
     </li>
+    <li id="to-recent">
+      <Button
+        on:click={() => push('/recent')}
+        text={$_('recent')}
+        icon="history" />
+    </li>
     <li>
       <Button on:click={handleBack} icon="navigate_before" noBorder />
       <Button on:click={handleForward} icon="navigate_next" noBorder />
