@@ -13,15 +13,16 @@ Melodie is a portable, simple-as-pie music player.
 
 ![preview](site/static/images/screenshot-ui-en.png)
 
-<!--a href='//www.microsoft.com/store/apps/9N41VK2C5VC2?cid=storebadge&ocid=badge'><img src='https://developer.microsoft.com/en-us/store/badges/images/English_get-it-from-MS.png' alt='English badge' style='width: 127px; height: 52px;'/></a-->
-
 </div>
 
 There are thunsands of them in the wild. This mine is an excuse for learning [Electron][], [Svelte][] and [reactive programming][rxjs].
 
 ## Installation
 
-You will find installers on the [releases][] page.
+[![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/melodie)
+<a href='https://www.microsoft.com/store/apps/9N41VK2C5VC2?cid=storebadge&ocid=badge'><img src='https://developer.microsoft.com/en-us/store/badges/images/English_get-it-from-MS.png' alt='English badge' style='height: 56px;'/></a>
+
+You will find other installers on the [releases][] page.
 
 Please note that AppImage Snap and NSIS installer will automatically update to the latest available version.
 
@@ -36,6 +37,8 @@ When you will run the .exe files, Windows will warn you that the source is insec
 
 It is possible to bypass the warning by clicking on the "More information" link, then on the Install button
 <img src="https://user-images.githubusercontent.com/186268/97808651-6b75f080-1c68-11eb-9363-f0a966261660.png" height="200px" />
+
+If you install the app through the [Windows App Store](https://www.microsoft.com/store/apps/9N41VK2C5VC2), you'll get no warning, since the store team reviewed and approved it.
 
 ### Note for MacOS users
 
@@ -57,37 +60,25 @@ Another option is to open it with Control-click: it'll immediately register the 
 
 ### features
 
-- [ ] images from tags
+- memorized last track list on stop
 
-- [ ] indicates when track is in playlist
+- images from tags
 
-- [ ] configure replay gain from settings
+- indicates when track is in playlist
 
-- [ ] display tracks/albums/artists count in settings
+- configure replay gain from settings
 
-- [ ] allow reseting database from settings
+- display tracks/albums/artists count in settings
 
-- [ ] smaller screen support (UI refactor)
+- allow reseting database from settings
+
+- smaller screen support (UI refactor)
 
 ### tools
 
-- [ ] App automated end to end tests
+- automated end-to-end tests
 
-- [ ] more technical documentation (install & release process notably)
-
-### release
-
-- [ ] references
-
-  - [x] Electron's [app list](https://www.electronjs.org/apps) ([PR](https://github.com/electron/apps/pull/1566))
-
-  - [x] Svelte's [showcase](https://svelte-community.netlify.app/showcase) ([PR](https://github.com/sveltejs/community/pull/329))
-
-  - [ ] [Snap store](https://snapcraft.io/) ([app page](https://snapcraft.io/melodie/listing))
-
-  - [x] [AppImage hub](https://appimage.github.io/) ([PR](https://github.com/AppImage/appimage.github.io/pull/2383))
-
-  - [x] [Windows App store](https://www.microsoft.com/store) ([app page](https://www.microsoft.com/store/apps/9N41VK2C5VC2)
+- more technical documentation (install & release process notably)
 
 ### Bugs and known issues
 
@@ -354,6 +345,20 @@ Until [this PR](https://github.com/electron-userland/electron-builder/pull/5313)
    snapcraft login
    snapcraft upload --release=stable 'linux - Mélodie.snap'
    ```
+
+### Publicise
+
+Mélodie is referenced on these stores and hubs:
+
+- Electron's [app list](https://www.electronjs.org/apps/melodie) ([PR](https://github.com/electron/apps/pull/1566))
+
+- Svelte's [showcase](https://svelte-community.netlify.app/showcase) ([PR](https://github.com/sveltejs/community/pull/329))
+
+- [Snap store](https://snapcraft.io/melodie) ([app page](https://snapcraft.io/melodie/listing))
+
+- [AppImage hub](https://appimage.github.io/) ([PR](https://github.com/AppImage/appimage.github.io/pull/2383))
+
+- [Windows App store](https://www.microsoft.com/store/apps/9N41VK2C5VC2) ([app page][windows app store])
 
 ## Notable facts
 

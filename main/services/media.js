@@ -82,7 +82,7 @@ module.exports = {
     }
 
     const enrichWithProvider = provider => [
-      filter(artist => artist && artist.id),
+      filter(artist => artist && artist.id && artist.name),
       mergeMap(artist =>
         from(provider.findArtistArtwork(artist.name)).pipe(
           mergeMap(results =>
@@ -144,21 +144,22 @@ module.exports = {
   /**
    * Enriches a single artist with artwork and bio from all providers.
    * Bios will be merged together, but first artwork is used.
-   * Does nothing if no artist matches specified id, or if the artist already has an avatar and bios.
+   * Does nothing if no artist matches specified id, or if the artist already has artwork and bios.
+   * Does not override local artwork with online results.
    * @async
    * @param {number} id - the artist id
    */
   async triggerArtistEnrichment(id) {
     const artist = await artistsModel.getById(id)
     const { locale } = await settingsModel.get()
-    if (!artist || (artist.media && locale in artist.bio)) {
+    if (!artist || (artist.media && artist.bio && locale in artist.bio)) {
       return
     }
     const results = await this.findForArtist(artist.name)
     let url
     let bios = {}
-    for (const { artwork, bio } of results) {
-      if (artwork && !url) {
+    for (const { artwork, bio, provider } of results) {
+      if (artwork && !url && provider !== local.name) {
         url = artwork
       }
       if (bio) {
@@ -166,7 +167,7 @@ module.exports = {
       }
     }
     if (url || Object.keys(bios).length) {
-      await this.saveForArtist(artist.id, url, bios)
+      await this.saveForArtist(artist.id, artist.media ? null : url, bios)
     }
   },
 
@@ -186,7 +187,7 @@ module.exports = {
     }
 
     const enrichWithProvider = provider => [
-      filter(album => album && album.id),
+      filter(album => album && album.id && album.name),
       mergeMap(album =>
         from(provider.findAlbumCover(album.name)).pipe(
           mergeMap(results =>
@@ -254,7 +255,7 @@ module.exports = {
   },
 
   /**
-   * Finds potential artworks an all providers for a given artist
+   * Finds potential artworks and bios on all providers for a given artist
    * @async
    * @param {string} name - name of that artist
    * @returns {array<Artwork>} a list (may be empty) of possible artworks
