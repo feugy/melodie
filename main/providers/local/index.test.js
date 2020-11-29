@@ -1,6 +1,6 @@
 'use strict'
 
-const { basename, dirname, extname, join } = require('path')
+const { basename, dirname, extname, join, resolve } = require('path')
 const os = require('os')
 const fs = require('fs-extra')
 const faker = require('faker')
@@ -180,6 +180,87 @@ describe('Local provider', () => {
       expect(tagReader.read).toHaveBeenCalledTimes(files.length)
       expect(settingsModel.get).toHaveBeenCalledTimes(1)
       expect(playlistsService.checkIntegrity).toHaveBeenCalledTimes(1)
+    })
+
+    it('saves cover from track tags as album media', async () => {
+      const { folder, files } = await makeFolder({ depth: 1, fileNb: 4 })
+      settingsModel.get.mockResolvedValueOnce({ folders: [folder] })
+      tagReader.read.mockResolvedValue({
+        cover: {
+          format: 'image/jpeg',
+          data: await fs.readFile(
+            resolve(__dirname, '..', '..', '..', 'fixtures', 'cover.jpg')
+          )
+        }
+      })
+      const media = resolve(folder, 'cover.jpeg')
+
+      const tracks = await provider.importTracks()
+      expect(tracks).toEqual(
+        expect.arrayContaining(
+          files.map(({ path, stats }) => ({
+            id: hash(path),
+            path: path,
+            media,
+            tags: {},
+            mtimeMs: stats.mtimeMs,
+            ino: stats.ino
+          }))
+        )
+      )
+      expect(tracks).toHaveLength(files.length)
+      expect(tracksService.add).toHaveBeenCalledWith(tracks)
+      expect(tracksService.add).toHaveBeenCalledTimes(1)
+      expect(tracksService.remove).not.toHaveBeenCalled()
+      for (const { path } of files) {
+        expect(covers.findInFolder).toHaveBeenCalledWith(path)
+        expect(tagReader.read).toHaveBeenCalledWith(path)
+      }
+      expect(covers.findInFolder).toHaveBeenCalledTimes(files.length)
+      expect(tagReader.read).toHaveBeenCalledTimes(files.length)
+      expect(settingsModel.get).toHaveBeenCalledTimes(1)
+      expect(playlistsService.checkIntegrity).toHaveBeenCalledTimes(1)
+      await expect(fs.access(media, fs.constants.R_OK)).resolves.toBeNil()
+    })
+
+    it('handles error when saving cover from track tags as album media', async () => {
+      const { folder, files } = await makeFolder({ depth: 1, fileNb: 4 })
+      settingsModel.get.mockResolvedValueOnce({ folders: [folder] })
+      tagReader.read.mockResolvedValue({
+        cover: {
+          format: 'image/png'
+          // the lack of data should break fs.writeFile()
+        }
+      })
+
+      const tracks = await provider.importTracks()
+      expect(tracks).toEqual(
+        expect.arrayContaining(
+          files.map(({ path, stats }) => ({
+            id: hash(path),
+            path: path,
+            media: null,
+            tags: {},
+            mtimeMs: stats.mtimeMs,
+            ino: stats.ino
+          }))
+        )
+      )
+      expect(tracks).toHaveLength(files.length)
+      expect(tracksService.add).toHaveBeenCalledWith(tracks)
+      expect(tracksService.add).toHaveBeenCalledTimes(1)
+      expect(tracksService.remove).not.toHaveBeenCalled()
+      for (const { path } of files) {
+        expect(covers.findInFolder).toHaveBeenCalledWith(path)
+        expect(tagReader.read).toHaveBeenCalledWith(path)
+      }
+      expect(covers.findInFolder).toHaveBeenCalledTimes(files.length)
+      expect(tagReader.read).toHaveBeenCalledTimes(files.length)
+      expect(settingsModel.get).toHaveBeenCalledTimes(1)
+      expect(playlistsService.checkIntegrity).toHaveBeenCalledTimes(1)
+      await expect(
+        fs.access(resolve(folder, 'cover.png'), fs.constants.R_OK)
+      ).rejects.toThrow('ENOENT')
     })
 
     it('reads playlists', async () => {

@@ -1,6 +1,6 @@
 'use strict'
 
-const { extname } = require('path')
+const { dirname, extname, resolve } = require('path')
 const fs = require('fs-extra')
 const { of, Observable, forkJoin, from, EMPTY } = require('rxjs')
 const {
@@ -15,6 +15,7 @@ const {
   share
 } = require('rxjs/operators')
 const chokidar = require('chokidar')
+const mime = require('mime-types')
 const AbstractProvider = require('../abstract-provider')
 const { albumsModel, settingsModel, tracksModel } = require('../../models')
 // do not import ../../services to avoid circular dep
@@ -55,6 +56,43 @@ function onlySupported(tracksOnly = false) {
 }
 
 /**
+ * Generates a function that will save `cover` picture found in track's `tags` as an album `media`.
+ * If the track already has a `media` property, it does nothing but deleting `tags.cover`.
+ * The resulting file name will be `cover.{ext}`, the extension depends on the picture's MIME type.
+ * It'll be store in the same folder as the track itself.
+ * @param {object} logger - logger instance
+ * @returns {function} asynchronous function that takes a track object as parameter, and returns
+ * that same track object without any `cover` property in its `tags`
+ */
+function makeCoverExtractor(logger) {
+  return async track => {
+    const trackNoCover = {
+      ...track,
+      tags: { ...track.tags, cover: undefined }
+    }
+    if (track.media || !track.tags.cover) {
+      return trackNoCover
+    }
+    // save cover from tags as album cover unless we already have media
+    const { format, data } = track.tags.cover
+    try {
+      const media = resolve(
+        dirname(track.path),
+        `cover.${mime.extension(format)}`
+      )
+      await fs.writeFile(media, data)
+      trackNoCover.media = media
+    } catch (err) {
+      logger.error(
+        { track, err },
+        `failed to save cover from track's tags as album cover: ${err.message}`
+      )
+    }
+    return trackNoCover
+  }
+}
+
+/**
  * Creates a pipeline for observable that will:
  * - read music tags from track files and build a TrackModel
  * - read playlist file content and build a PlaylistModel
@@ -66,11 +104,13 @@ function onlySupported(tracksOnly = false) {
  * - {string} path - the absolute path of a file
  * - {object} stats - FS stats for this file (only modification timestamp is used)
  *
+ * @param {object} logger             - logger instance
  * @param {number} [bufferSize = 50]  - number of models buffered before save
  * @param {boolean} [isFinite = true] - whether the observable will complete or not
  * @returns {array<function>} an array of reactive operators
  */
 function makeEnrichAndSavePipeline(
+  logger,
   bufferSize = saveThreshold,
   isFinite = true
 ) {
@@ -89,7 +129,7 @@ function makeEnrichAndSavePipeline(
               media: from(findInFolder(path)),
               mtimeMs: of(mtimeMs),
               ino: of(ino)
-            }),
+            }).pipe(mergeMap(makeCoverExtractor(logger))),
       readConcurrency
     ),
     bufferCount(bufferSize),
@@ -207,7 +247,7 @@ function watch(folders, logger) {
               ? from(tracks.remove([id]))
               : of({ isNew: kind === 'addition', path, stats, id }).pipe(
                   filter(onlySupported(true)),
-                  ...makeEnrichAndSavePipeline(1, false)
+                  ...makeEnrichAndSavePipeline(logger, 1, false)
                 )
           )
         )
@@ -327,7 +367,7 @@ class Local extends AbstractProvider {
           }
           return false
         }),
-        ...makeEnrichAndSavePipeline(),
+        ...makeEnrichAndSavePipeline(this.logger),
         mergeMap(saved => {
           const removedIds = Array.from(existingIds.keys())
           return (removedIds.length
@@ -389,7 +429,7 @@ class Local extends AbstractProvider {
         )
       )
       .pipe(
-        ...makeEnrichAndSavePipeline(),
+        ...makeEnrichAndSavePipeline(this.logger),
         tap(tracks => {
           if (tracks.length) {
             playlists.checkIntegrity()
