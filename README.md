@@ -60,25 +60,25 @@ Another option is to open it with Control-click: it'll immediately register the 
 
 ### features
 
-- [ ] memorized last track list on stop
+- memorized last track list on stop
 
-- [ ] images from tags
+- images from tags
 
-- [ ] indicates when track is in playlist
+- indicates when track is in playlist
 
-- [ ] configure replay gain from settings
+- configure replay gain from settings
 
-- [ ] display tracks/albums/artists count in settings
+- display tracks/albums/artists count in settings
 
-- [ ] allow reseting database from settings
+- allow reseting database from settings
 
-- [ ] smaller screen support (UI refactor)
+- smaller screen support (UI refactor)
 
 ### tools
 
-- [ ] App automated end to end tests
+- automated end-to-end tests
 
-- [ ] more technical documentation (install & release process notably)
+- more technical documentation (install & release process notably)
 
 ### Bugs and known issues
 
@@ -347,8 +347,6 @@ Until [this PR](https://github.com/electron-userland/electron-builder/pull/5313)
    ```
 
 ### Publicise
-
-### release
 
 Mélodie is referenced on these stores and hubs:
 
