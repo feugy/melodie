@@ -29,6 +29,12 @@ describe('Tag reader', () => {
         of: 12
       },
       year: 2010,
+      cover: {
+        data: expect.any(Buffer),
+        format: 'image/jpeg',
+        description: 'cover.jpg',
+        type: 'Cover (front)'
+      },
       movementIndex: {}
     })
   })
@@ -52,6 +58,16 @@ describe('Tag reader', () => {
         of: null
       },
       year: 1995,
+      cover: {
+        data: expect.any(Buffer),
+        format: 'image/jpeg',
+        description: 'cover.jpg',
+        height: 700,
+        width: 700,
+        type: 'Cover (front)',
+        indexed_color: 0,
+        colour_depth: 0
+      },
       movementIndex: {}
     })
   })
@@ -75,6 +91,7 @@ describe('Tag reader', () => {
         of: null
       },
       year: 1990,
+      cover: null,
       movementIndex: {}
     })
   })
@@ -110,6 +127,7 @@ describe('Tag reader', () => {
         of: 16
       },
       year: 2002,
+      cover: null,
       movementIndex: {}
     })
   })
@@ -123,7 +141,8 @@ describe('Tag reader', () => {
       duration: 0,
       genre: [],
       title: null,
-      year: null
+      year: null,
+      cover: null
     })
   })
 
@@ -136,7 +155,8 @@ describe('Tag reader', () => {
       duration: 0,
       genre: [],
       title: null,
-      year: null
+      year: null,
+      cover: null
     })
   })
 })

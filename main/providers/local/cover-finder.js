@@ -8,18 +8,18 @@ const { tracksModel } = require('../../models')
 const { walk } = require('../../utils')
 
 const coverFiles = [
-  'cover.jpeg',
-  'Cover.jpeg',
   'cover.jpg',
   'Cover.jpg',
+  'cover.jpeg',
+  'Cover.jpeg',
   'cover.png',
   'Cover.png',
   'cover.gif',
   'Cover.gif',
-  'folder.jpeg',
-  'Folder.jpeg',
   'folder.jpg',
   'Folder.jpg',
+  'folder.jpeg',
+  'Folder.jpeg',
   'folder.png',
   'Folder.png',
   'folder.gif',

@@ -1,6 +1,6 @@
 'use strict'
 
-const { parseFile } = require('music-metadata')
+const { parseFile, selectCover } = require('music-metadata')
 const { getLogger } = require('../../utils')
 
 const logger = getLogger('providers/local')
@@ -21,12 +21,16 @@ module.exports = {
    * @property {string} title           - track's title
    * @property {number} year            - track's release year
    * @property {number} duration        - track's duration in seconds
+   * @property {IPicture} [cover]       - album's cover picture, when set
+   * @property {string} cover.format      - cover's MIME type
+   * @property {Buffer} cover.data        - cover's binary data
    * There may be other fields, @see https://github.com/Borewit/music-metadata/blob/master/doc/common_metadata.md
+   * @see https://github.com/borewit/music-metadata#access-cover-art
    */
 
   /**
    * Reads music metadata from file.
-   * _Note_: picture are intentionally removed.
+   * _Note_: pictures are intentionally removed, but cover is returned when present, as an IPicture object
    * @async
    * @param {string} path - path of the file to parse
    * @returns {Tags} parsed metadata
@@ -40,7 +44,11 @@ module.exports = {
           await parseFile(path, { duration: true })
         ).format.duration
       }
-      tags = { ...common, duration: format.duration }
+      tags = {
+        ...common,
+        cover: selectCover(common.picture),
+        duration: format.duration
+      }
     } catch (error) {
       logger.warn({ error, path }, `failed to read tags`)
     }
@@ -53,8 +61,9 @@ module.exports = {
       title: null,
       year: null,
       duration: 0,
+      cover: null,
       ...tags,
-      picture: undefined // TODO for now, don't store pictures
+      picture: undefined // don't returns embedded pictures
     }
   }
 }

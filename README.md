@@ -60,9 +60,9 @@ Another option is to open it with Control-click: it'll immediately register the 
 
 ### features
 
-- memorized last track list on stop
+- in playlist dropdown, display at most 10 results, and allow search
 
-- images from tags
+- memorized last track list on stop
 
 - indicates when track is in playlist
 
@@ -73,6 +73,8 @@ Another option is to open it with Control-click: it'll immediately register the 
 - allow reseting database from settings
 
 - smaller screen support (UI refactor)
+
+- list images from track tags when collecting candidate covers for an album
 
 ### tools
 
