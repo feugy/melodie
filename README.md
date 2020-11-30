@@ -20,7 +20,7 @@ There are thunsands of them in the wild. This mine is an excuse for learning [El
 ## Installation
 
 [![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/melodie)
-<a href='https://www.microsoft.com/store/apps/9N41VK2C5VC2?cid=storebadge&ocid=badge'><img src='https://developer.microsoft.com/en-us/store/badges/images/English_get-it-from-MS.png' alt='English badge' style='height: 56px;'/></a>
+<a href='https://www.microsoft.com/store/apps/9N41VK2C5VC2?cid=storebadge&ocid=badge'><img src='https://developer.microsoft.com/en-us/store/badges/images/English_get-it-from-MS.png' alt='English badge' height='56px'/></a>
 
 You will find other installers on the [releases][] page.
 
