@@ -5,7 +5,7 @@ import { action } from '@storybook/addon-actions'
 const invokeAction = action('invoke')
 
 export default function (mock = () => null) {
-  return storyFn => {
+  return story => {
     if (!window.electron) {
       window.electron = {}
     }
@@ -17,6 +17,6 @@ export default function (mock = () => null) {
         return mock(method, ...args) || {}
       }
     }
-    return storyFn()
+    return story()
   }
 }

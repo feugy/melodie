@@ -2,6 +2,7 @@ _ albums: '{total} albums'
 _ artists: '{total} artists'
 _ hours: '{value} hours'
 _ minutes: '{value} minutes'
+_ more results: '{value} more results'
 _ playlists: '{total} playlists'
 _ tracks: '{total} tracks'
 '#': '#'
@@ -73,6 +74,7 @@ remove from playlist: Remove
 rename playlist: Rename
 results for _: Results for "{searched}"
 save: Save
+search over: search over...
 settings: Settings
 separator: ' • '
 simple click behaviour: 'Simple click:'

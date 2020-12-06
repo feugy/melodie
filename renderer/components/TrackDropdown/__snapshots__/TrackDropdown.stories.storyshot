@@ -5,13 +5,15 @@ exports[`Storyshots Components/Track Dropdown Default 1`] = `
   class="storybook-snapshot-container"
 >
   <span
-    class="wrapper svelte-1dsb53o"
+    aria-expanded="false"
+    aria-haspopup="menu"
+    class="wrapper svelte-350du5"
   >
     <button
-      class="svelte-n2zup4 iconOnly noBorder"
+      class="svelte-bb1epg iconOnly noBorder"
     >
       <i
-        class="material-icons svelte-n2zup4"
+        class="material-icons svelte-bb1epg"
       >
         more_vert
       </i>

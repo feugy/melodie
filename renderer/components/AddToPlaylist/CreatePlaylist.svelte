@@ -5,6 +5,7 @@
   import Button from '../Button/Button.svelte'
 
   export let onNameSet
+  export let focus = false
   let name
   const dispatch = createEventDispatcher()
 
@@ -21,5 +22,5 @@
   }
 </script>
 
-<TextInput on:keyup={handleKeyup} placeholder={$_('new playlist')} />
-<Button icon="add_box" class="ml-2 -mr-2" noBorder on:click={handleSave} />
+<TextInput on:keyup={handleKeyup} placeholder={$_('new playlist')} {focus} />
+<Button icon="add_box" class="ml-1 -mr-1" noBorder on:click={handleSave} />

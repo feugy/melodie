@@ -2,9 +2,9 @@
 
 import HRefSink from './HRefSink.svelte'
 
-export const hrefSinkDecorator = storyFn => ({
+export const hrefSinkDecorator = story => ({
   Component: HRefSink,
-  props: { ...storyFn() }
+  props: { ...story() }
 })
 
 export { default as ipcRendererMock } from './ipcRendererMock'
