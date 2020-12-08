@@ -17,19 +17,29 @@ function difference(...arrays) {
   return arrays.reduce((a, b) => a.filter(c => !b.includes(c)))
 }
 
+function expectStoredList(queue) {
+  expect(localStorage.getItem(queue.storageKey)).toEqual(
+    JSON.stringify({
+      list: get(queue.tracks),
+      idx: get(queue.index)
+    })
+  )
+}
+
 describe('track-queue store', () => {
   beforeAll(async () => {
     queue = await import('./track-queue')
   })
 
-  beforeEach(() => queue.clear())
+  afterEach(() => queue.clear())
 
-  it('has initial state', () => {
+  it('has initial, empty state', () => {
     const { current, index, tracks, isShuffling } = queue
     expect(get(tracks)).toEqual([])
     expect(get(current)).not.toBeDefined()
     expect(get(index)).toEqual(0)
     expect(get(isShuffling)).toEqual(false)
+    expectStoredList(queue)
   })
 
   describe('add', () => {
@@ -54,6 +64,7 @@ describe('track-queue store', () => {
         expect(get(tracks)).toEqual(files)
         expect(get(index)).toEqual(1)
         expect(get(current)).toEqual(files[1])
+        expectStoredList(queue)
       })
 
       it('enqueues single track', async () => {
@@ -72,6 +83,7 @@ describe('track-queue store', () => {
         expect(get(tracks)).toEqual(files)
         expect(get(current)).toEqual(files[1])
         expect(get(index)).toEqual(1)
+        expectStoredList(queue)
       })
 
       it('plays new tracks', async () => {
@@ -89,6 +101,7 @@ describe('track-queue store', () => {
         expect(get(tracks)).toEqual(files.slice(1))
         expect(get(current)).toEqual(files[1])
         expect(get(index)).toEqual(0)
+        expectStoredList(queue)
       })
 
       it('plays single track', async () => {
@@ -106,6 +119,7 @@ describe('track-queue store', () => {
         expect(get(tracks)).toEqual(files.slice(2, 3))
         expect(get(current)).toEqual(files[2])
         expect(get(index)).toEqual(0)
+        expectStoredList(queue)
       })
     })
 
@@ -130,6 +144,7 @@ describe('track-queue store', () => {
         expect(get(tracks)).toEqual(files)
         expect(get(index)).toEqual(1)
         expect(get(current)).toEqual(files[1])
+        expectStoredList(queue)
       })
 
       it('plays new tracks', async () => {
@@ -147,6 +162,7 @@ describe('track-queue store', () => {
         expect(get(tracks)).toEqual(files)
         expect(get(current)).toEqual(files[1])
         expect(get(index)).toEqual(1)
+        expectStoredList(queue)
       })
     })
   })
@@ -193,6 +209,7 @@ describe('track-queue store', () => {
       await tick()
       expect(get(queue.current)).toEqual(files[1])
       expect(get(queue.index)).toEqual(1)
+      expectStoredList(queue)
     })
 
     it('supports duplicates', async () => {
@@ -272,6 +289,7 @@ describe('track-queue store', () => {
       await tick()
       expect(get(current)).toEqual(files[2])
       expect(get(index)).toEqual(2)
+      expectStoredList(queue)
     })
   })
 
@@ -307,6 +325,7 @@ describe('track-queue store', () => {
       await tick()
       expect(get(current)).toEqual(files[0])
       expect(get(index)).toEqual(0)
+      expectStoredList(queue)
     })
 
     it('ignores out of bound index', async () => {
@@ -394,6 +413,7 @@ describe('track-queue store', () => {
       expect(get(tracks)).toEqual([files[3], files[0], files[1], files[2]])
       expect(get(current)).toEqual(files[2])
       expect(get(index)).toEqual(3)
+      expectStoredList(queue)
     })
 
     it('moves track backward, after current', async () => {
@@ -407,6 +427,7 @@ describe('track-queue store', () => {
       expect(get(tracks)).toEqual([files[0], files[2], files[1], files[3]])
       expect(get(current)).toEqual(files[0])
       expect(get(index)).toEqual(0)
+      expectStoredList(queue)
     })
 
     it('moves track forward, after current', async () => {
@@ -420,6 +441,7 @@ describe('track-queue store', () => {
       expect(get(tracks)).toEqual([files[0], files[2], files[3], files[1]])
       expect(get(current)).toEqual(files[0])
       expect(get(index)).toEqual(0)
+      expectStoredList(queue)
     })
 
     it('moves track backward, before current', async () => {
@@ -435,6 +457,7 @@ describe('track-queue store', () => {
       expect(get(tracks)).toEqual([files[1], files[0], files[2], files[3]])
       expect(get(current)).toEqual(files[2])
       expect(get(index)).toEqual(2)
+      expectStoredList(queue)
     })
 
     it('moves track forward, after current', async () => {
@@ -450,6 +473,7 @@ describe('track-queue store', () => {
       expect(get(tracks)).toEqual([files[1], files[0], files[2], files[3]])
       expect(get(current)).toEqual(files[2])
       expect(get(index)).toEqual(2)
+      expectStoredList(queue)
     })
 
     it('moves track after current one', async () => {
@@ -466,6 +490,7 @@ describe('track-queue store', () => {
       expect(get(tracks)).toEqual([files[1], files[2], files[3], files[0]])
       expect(get(current)).toEqual(files[2])
       expect(get(index)).toEqual(1)
+      expectStoredList(queue)
     })
 
     it('ignores invalid boundaries', async () => {
@@ -497,6 +522,7 @@ describe('track-queue store', () => {
       expect(get(current)).toEqual(files[0])
       expect(get(index)).toEqual(0)
       expect(get(tracks)).toEqual(files)
+      expectStoredList(queue)
     })
   })
 
@@ -528,6 +554,7 @@ describe('track-queue store', () => {
       expect(get(tracks)).toEqual(files.slice(0, 2))
       expect(get(index)).toEqual(0)
       expect(get(current)).toEqual(files[0])
+      expectStoredList(queue)
     })
 
     it('removes current track', async () => {
@@ -548,6 +575,7 @@ describe('track-queue store', () => {
       expect(get(tracks)).toEqual([...files.slice(0, 1), ...files.slice(2)])
       expect(get(index)).toEqual(1)
       expect(get(current)).toEqual(files[2])
+      expectStoredList(queue)
     })
 
     it('removes last current track', async () => {
@@ -568,6 +596,7 @@ describe('track-queue store', () => {
       expect(get(tracks)).toEqual([...files.slice(0, 2)])
       expect(get(index)).toEqual(0)
       expect(get(current)).toEqual(files[0])
+      expectStoredList(queue)
     })
 
     it('removes past track', async () => {
@@ -588,6 +617,7 @@ describe('track-queue store', () => {
       expect(get(tracks)).toEqual([...files.slice(0, 1), ...files.slice(2)])
       expect(get(index)).toEqual(1)
       expect(get(current)).toEqual(files[2])
+      expectStoredList(queue)
     })
 
     it('ignores out of bound index', async () => {
@@ -668,6 +698,7 @@ describe('track-queue store', () => {
       expect(get(tracks)).toEqual(files)
       expect(get(index)).toEqual(0)
       expect(get(current)).toEqual(files[0])
+      expectStoredList(queue)
     })
 
     it('updates all occurences of changed track', async () => {
@@ -690,6 +721,7 @@ describe('track-queue store', () => {
       expect(get(tracks)).toEqual([changed, files[1], changed, files[3]])
       expect(get(index)).toEqual(0)
       expect(get(current)).toEqual(changed)
+      expectStoredList(queue)
     })
 
     it('updates all occurences of changed track in shuffled list', async () => {
@@ -722,6 +754,7 @@ describe('track-queue store', () => {
       expect(get(tracks)).toEqual([changed, files[1], changed, files[3]])
       expect(get(index)).toEqual(0)
       expect(get(current)).toEqual(changed)
+      expectStoredList(queue)
     })
   })
 
@@ -750,6 +783,7 @@ describe('track-queue store', () => {
       expect(get(tracks)).toEqual(files)
       expect(get(index)).toEqual(0)
       expect(get(current)).toEqual(files[0])
+      expectStoredList(queue)
     })
 
     it('removes single occurences of removed track', async () => {
@@ -773,6 +807,7 @@ describe('track-queue store', () => {
       expect(get(tracks)).toEqual([files[0], files[2]])
       expect(get(index)).toEqual(1)
       expect(get(current)).toEqual(files[2])
+      expectStoredList(queue)
     })
 
     it('removes all occurences of removed track', async () => {
@@ -796,6 +831,7 @@ describe('track-queue store', () => {
       expect(get(tracks)).toEqual([files[0], files[3]])
       expect(get(index)).toEqual(1)
       expect(get(current)).toEqual(files[3])
+      expectStoredList(queue)
     })
 
     it('removes all occurences of removed track in shuffled list', async () => {
@@ -824,6 +860,7 @@ describe('track-queue store', () => {
       await tick()
 
       expect(get(tracks)).toEqual([files[0], files[3]])
+      expectStoredList(queue)
     })
   })
 
@@ -867,6 +904,7 @@ describe('track-queue store', () => {
       expect(get(index)).toEqual(0)
       expect(get(isShuffling)).toEqual(true)
       expect(get(tracks).map(({ id }) => id)).not.toEqual(order)
+      expectStoredList(queue)
     })
 
     it('revert to original order when turned off, and keep current track', async () => {
@@ -902,6 +940,7 @@ describe('track-queue store', () => {
       expect(get(current)).toEqual(currentShuffled)
       expect(get(index)).toEqual(files.indexOf(currentShuffled))
       expect(get(isShuffling)).toEqual(false)
+      expectStoredList(queue)
     })
 
     it('does not retain removed tracks when turned off', async () => {
@@ -948,6 +987,7 @@ describe('track-queue store', () => {
       expect(get(current)).toEqual(currentShuffled)
       expect(get(index)).toEqual(remainingFiles.indexOf(currentShuffled))
       expect(get(isShuffling)).toEqual(false)
+      expectStoredList(queue)
     })
 
     it('ignores subsequent shuffles', async () => {
@@ -1114,6 +1154,7 @@ describe('track-queue store', () => {
         expect(content.indexOf(track) > 3).toBe(true)
       }
       expect(get(isShuffling)).toEqual(true)
+      expectStoredList(queue)
     })
 
     it('keeps added tracks at the end when turned off', async () => {
@@ -1145,6 +1186,7 @@ describe('track-queue store', () => {
       expect(content).toHaveLength(files.length + added.length)
       expect(content).toEqual([...files, ...added])
       expect(get(isShuffling)).toEqual(false)
+      expectStoredList(queue)
     })
 
     it('add randomized tracks to empty shuffled list', async () => {
@@ -1185,6 +1227,7 @@ describe('track-queue store', () => {
       await tick()
       expect(get(tracks)).toEqual(added)
       expect(get(isShuffling)).toEqual(false)
+      expectStoredList(queue)
     })
 
     it('restores moved track to their original place when turned off', async () => {
@@ -1228,6 +1271,7 @@ describe('track-queue store', () => {
       expect(get(current)).toEqual(currentShuffled)
       expect(get(queue.tracks)).toEqual(files)
       expect(get(isShuffling)).toEqual(false)
+      expectStoredList(queue)
     })
   })
 
@@ -1348,6 +1392,34 @@ describe('track-queue store', () => {
       expect(get(queue.tracks)).toEqual([...files, ...played])
       expect(get(queue.current)).toEqual(played[0])
       expect(get(queue.index)).toEqual(files.length)
+    })
+  })
+
+  describe('given previously stored list', () => {
+    const files = [
+      { id: 1, path: faker.system.fileName() },
+      { id: 2, path: faker.system.fileName() },
+      { id: 3, path: faker.system.fileName() }
+    ]
+
+    beforeAll(async () => {
+      localStorage.setItem(
+        queue.storageKey,
+        JSON.stringify({ list: files, idx: 1 })
+      )
+      jest.resetModules()
+      queue = await import('./track-queue')
+    })
+
+    afterAll(() => queue.clear())
+
+    it('has initial state', async () => {
+      const { current, index, tracks, isShuffling } = queue
+      expect(get(tracks)).toEqual(files)
+      expect(get(current)).toEqual(files[1])
+      expect(get(index)).toEqual(1)
+      expect(get(isShuffling)).toEqual(false)
+      expectStoredList(queue)
     })
   })
 })

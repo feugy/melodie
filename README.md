@@ -60,8 +60,6 @@ Another option is to open it with Control-click: it'll immediately register the 
 
 ### features
 
-- memorized last track list on stop
-
 - indicates when track is in playlist
 
 - configure replay gain from settings

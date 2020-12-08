@@ -4,10 +4,13 @@ import { get } from 'svelte/store'
 import { ReplaySubject, Subject, merge, BehaviorSubject } from 'rxjs'
 import { scan, pluck, shareReplay, map } from 'rxjs/operators'
 import { knuthShuffle } from 'knuth-shuffle'
+import parse from 'fast-json-parse'
 import { fromServerChannel, createClickObservable } from '../utils'
 import { settings } from './settings'
 
 const actions$ = new Subject()
+
+export const storageKey = 'track-list'
 
 const queue$ = merge(actions$, new ReplaySubject()).pipe(
   scan(
@@ -93,6 +96,7 @@ const queue$ = merge(actions$, new ReplaySubject()).pipe(
           }
         }
       }
+      localStorage.setItem(storageKey, JSON.stringify({ list, idx }))
       current$.next(list[idx])
       return { list, idx, backup }
     },
@@ -129,8 +133,13 @@ fromServerChannel(`play-tracks`).subscribe(tracks => {
 })
 
 // first init
+const initialState = parse(localStorage.getItem(storageKey)).value
 queue$.subscribe()
 clear()
+if (initialState) {
+  add(initialState.list)
+  jumpTo(initialState.idx)
+}
 
 let playOnClick
 let clearBeforePlay = true
