@@ -23,10 +23,6 @@
     /* hack to avoid setting relative on button (makes it harder to position in Dialogue) and still allow badge */
     transform: scale(1);
 
-    &:focus {
-      @apply outline-none;
-    }
-
     &.noBorder,
     &.noBorder:hover,
     &.noBorder:active {
@@ -46,7 +42,9 @@
       font-size: 150%;
     }
 
-    &:hover {
+    &:hover,
+    &:focus {
+      @apply outline-none;
       background-color: var(--hover-bg-color);
       transform: scale(1.03);
     }

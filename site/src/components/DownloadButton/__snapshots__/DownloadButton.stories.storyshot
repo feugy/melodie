@@ -5,13 +5,15 @@ exports[`Storyshots Site components/Download button Default 1`] = `
   class="storybook-snapshot-container"
 >
   <span
-    class="wrapper svelte-1dsb53o"
+    aria-expanded="false"
+    aria-haspopup="menu"
+    class="wrapper svelte-350du5"
   >
     <button
-      class="text-white svelte-n2zup4 primary large"
+      class="text-white svelte-bb1epg primary large"
     >
       <i
-        class="material-icons svelte-n2zup4"
+        class="material-icons svelte-bb1epg"
       >
         get_app
       </i>
@@ -21,7 +23,7 @@ exports[`Storyshots Site components/Download button Default 1`] = `
       </span>
        
       <i
-        class="material-icons arrow svelte-1dsb53o"
+        class="material-icons arrow svelte-350du5"
       >
         arrow_drop_down
       </i>

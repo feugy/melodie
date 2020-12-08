@@ -7,11 +7,11 @@
 </script>
 
 <style type="postcss">
-  .grid {
+  .test-grid {
     @apply absolute w-full h-full inset-0 grid grid-flow-row grid-cols-4 grid-rows-3 gap-4;
   }
 
-  .grid > div {
+  .test-grid > div {
     @apply flex flex-col items-center justify-center p-4;
   }
 </style>
@@ -19,7 +19,7 @@
 <Annotation anchor={anchors[slot]} {...$$restProps}>
   Look! This text looks very interesting
 </Annotation>
-<div class="grid">
+<div class="test-grid">
   {#each texts.slice(0, 12) as text, i}
     <div bind:this={anchors[i]}>{text}</div>
   {/each}

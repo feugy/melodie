@@ -4,7 +4,7 @@
   import AddToPlaylist from '../AddToPlaylist/AddToPlaylist.svelte'
 
   export let track
-  let open = false
+  export let open = false
   const dispatch = createEventDispatcher()
 </script>
 
@@ -30,7 +30,7 @@
   }
 </style>
 
-<div on:click={() => (open = true)}>
+<div role="menuitem" aria-haspopup="menu" aria-expanded={open}>
   <i
     class="material-icons">library_add</i><span>{$_('add to playlist')}</span><i
     class="material-icons">arrow_right</i>
@@ -39,8 +39,6 @@
   <AddToPlaylist
     tracks={[track]}
     {open}
-    on:select={() => {
-      open = false
-      dispatch('close')
-    }} />
+    on:close
+    on:select={() => dispatch('close')} />
 </span>

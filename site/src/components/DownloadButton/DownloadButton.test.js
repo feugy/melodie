@@ -22,7 +22,7 @@ describe('DownloadButton component', () => {
 
     await fireEvent.click(screen.getByRole('button'))
 
-    const options = screen.queryAllByRole('listitem')
+    const options = screen.queryAllByRole('menuitem')
     expect(options).toHaveLength(6)
     expect(screen.getByText(translate('download.exe'))).toBeInTheDocument()
     expect(
@@ -42,7 +42,7 @@ describe('DownloadButton component', () => {
     fireEvent.click(screen.getByTestId('paragraph'))
     await sleep(350)
 
-    expect(screen.queryAllByRole('listitem')).toHaveLength(0)
+    expect(screen.queryAllByRole('menuitem')).toHaveLength(0)
     expect(openSpy).not.toHaveBeenCalled()
   })
 

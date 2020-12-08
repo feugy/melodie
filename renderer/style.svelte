@@ -18,6 +18,7 @@
   :root {
     --bg-color: #2e3141;
     --font-color: #ffffff;
+    --disabled-color: #bbbbbb;
     --nav-bg-color: rgba(10, 10, 10, 0.95);
     --bg-primary-color: #272933;
     --outline-color: rgba(255, 255, 255, 0.25);

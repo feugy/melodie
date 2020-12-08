@@ -14,13 +14,15 @@ exports[`Storyshots Components/Dropdown Custom Button Options 1`] = `
     style="position: inherited"
   >
     <span
-      class="wrapper svelte-1dsb53o"
+      aria-expanded="false"
+      aria-haspopup="menu"
+      class="wrapper svelte-350du5"
     >
       <button
-        class="svelte-n2zup4 primary"
+        class="svelte-bb1epg primary"
       >
         <i
-          class="material-icons svelte-n2zup4"
+          class="material-icons svelte-bb1epg"
         >
           person
         </i>
@@ -30,7 +32,7 @@ exports[`Storyshots Components/Dropdown Custom Button Options 1`] = `
         </span>
          
         <i
-          class="material-icons arrow svelte-1dsb53o"
+          class="material-icons arrow svelte-350du5"
         >
           arrow_drop_down
         </i>
@@ -123,10 +125,12 @@ exports[`Storyshots Components/Dropdown Custom Options 1`] = `
     style="position: inherited"
   >
     <span
-      class="wrapper svelte-1dsb53o"
+      aria-expanded="false"
+      aria-haspopup="menu"
+      class="wrapper svelte-350du5"
     >
       <button
-        class="svelte-n2zup4"
+        class="svelte-bb1epg"
       >
          
         <span>
@@ -134,7 +138,7 @@ exports[`Storyshots Components/Dropdown Custom Options 1`] = `
         </span>
          
         <i
-          class="material-icons arrow svelte-1dsb53o"
+          class="material-icons arrow svelte-350du5"
         >
           arrow_drop_down
         </i>
@@ -227,10 +231,12 @@ exports[`Storyshots Components/Dropdown Default 1`] = `
     style="position: inherited"
   >
     <span
-      class="wrapper svelte-1dsb53o"
+      aria-expanded="false"
+      aria-haspopup="menu"
+      class="wrapper svelte-350du5"
     >
       <button
-        class="svelte-n2zup4"
+        class="svelte-bb1epg"
       >
          
         <span>
@@ -238,7 +244,7 @@ exports[`Storyshots Components/Dropdown Default 1`] = `
         </span>
          
         <i
-          class="material-icons arrow svelte-1dsb53o"
+          class="material-icons arrow svelte-350du5"
         >
           arrow_drop_down
         </i>
@@ -331,13 +337,15 @@ exports[`Storyshots Components/Dropdown Icon Only With Relative Parent 1`] = `
     style="position: relative"
   >
     <span
-      class="wrapper svelte-1dsb53o"
+      aria-expanded="false"
+      aria-haspopup="menu"
+      class="wrapper svelte-350du5"
     >
       <button
-        class="svelte-n2zup4 iconOnly"
+        class="svelte-bb1epg iconOnly"
       >
         <i
-          class="material-icons svelte-n2zup4"
+          class="material-icons svelte-bb1epg"
         >
           more_vert
         </i>
@@ -432,13 +440,15 @@ exports[`Storyshots Components/Dropdown Independent Text And Icon 1`] = `
     style="position: inherited"
   >
     <span
-      class="wrapper svelte-1dsb53o"
+      aria-expanded="false"
+      aria-haspopup="menu"
+      class="wrapper svelte-350du5"
     >
       <button
-        class="svelte-n2zup4"
+        class="svelte-bb1epg"
       >
         <i
-          class="material-icons svelte-n2zup4"
+          class="material-icons svelte-bb1epg"
         >
           settings
         </i>
@@ -448,7 +458,7 @@ exports[`Storyshots Components/Dropdown Independent Text And Icon 1`] = `
         </span>
          
         <i
-          class="material-icons arrow svelte-1dsb53o"
+          class="material-icons arrow svelte-350du5"
         >
           arrow_drop_down
         </i>
@@ -541,10 +551,12 @@ exports[`Storyshots Components/Dropdown Simple Array 1`] = `
     style="position: inherited"
   >
     <span
-      class="wrapper svelte-1dsb53o"
+      aria-expanded="false"
+      aria-haspopup="menu"
+      class="wrapper svelte-350du5"
     >
       <button
-        class="svelte-n2zup4"
+        class="svelte-bb1epg"
       >
          
         <span>
@@ -552,7 +564,7 @@ exports[`Storyshots Components/Dropdown Simple Array 1`] = `
         </span>
          
         <i
-          class="material-icons arrow svelte-1dsb53o"
+          class="material-icons arrow svelte-350du5"
         >
           arrow_drop_down
         </i>

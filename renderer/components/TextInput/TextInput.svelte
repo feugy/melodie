@@ -5,7 +5,13 @@
   export let value = ''
   export let icon = undefined
   export let placeholder = ''
+  export let focus = false
+  let input
   let dispatch = createEventDispatcher()
+
+  $: if (focus && input) {
+    input.focus()
+  }
 </script>
 
 <style type="postcss">
@@ -43,5 +49,13 @@
       {icon}
     </i>
   {/if}
-  <input {type} on:input on:keyup on:keydown on:change {placeholder} {value} />
+  <input
+    {type}
+    bind:this={input}
+    on:input
+    on:keyup
+    on:keydown
+    on:change
+    {placeholder}
+    {value} />
 </span>

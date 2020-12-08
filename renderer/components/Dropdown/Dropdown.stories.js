@@ -13,7 +13,7 @@ export default {
 export const dropdownData = {
   options: [
     { label: 'one' },
-    { label: 'two' },
+    { label: 'two (disabled)', disabled: true },
     { label: 'three', icon: 'add' },
     { label: 'four', icon: 'people' },
     { label: `this is a very long label that doesn't wrap`, icon: 'play_arrow' }

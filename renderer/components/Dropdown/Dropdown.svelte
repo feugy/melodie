@@ -24,29 +24,33 @@
   }
 
   function isInComponent(element) {
-    const parent = element.parentElement
-    return !parent
+    return !element
       ? false
-      : parent === menu || parent === button || parent.dataset.isMenu
+      : element === menu ||
+        element.getAttribute('role') === 'menu' ||
+        element === button
       ? true
-      : isInComponent(parent)
+      : isInComponent(element.parentElement)
   }
 
-  function handleSelect(selected) {
-    value = selected
-    open = false
+  function select(option) {
+    value = option
+    handleButtonClick()
     dispatch('select', value)
   }
 
   function handleInteraction(evt) {
-    if (evt.target && isInComponent(evt.target)) {
+    if ((evt.target && isInComponent(evt.target)) || !open) {
       return
     }
-    open = false
+    handleButtonClick()
   }
 
   function handleButtonClick() {
     open = !open
+    if (!open) {
+      dispatch('close')
+    }
   }
 
   async function handleMenuVisible() {
@@ -90,6 +94,45 @@
       bottom: bottom !== null ? `${bottom}px` : '',
       minWidth: `${minWidth}px`
     })
+    if (menu.firstElementChild) {
+      menu.firstElementChild.focus()
+    }
+  }
+
+  function handleMenuKeyDown(evt) {
+    const current = document.activeElement.closest('[role="menuitem"]')
+    if (!current) {
+      return
+    }
+    let focusable
+    switch (evt.key) {
+      case 'ArrowDown':
+        focusable = current.nextElementSibling
+        while (focusable && focusable.hasAttribute('aria-disabled')) {
+          focusable = focusable.nextElementSibling
+        }
+        break
+      case 'ArrowUp':
+        focusable = current.previousElementSibling
+        while (focusable && focusable.hasAttribute('aria-disabled')) {
+          focusable = focusable.previousElementSibling
+        }
+        break
+      case 'Home':
+        focusable = menu.firstElementChild
+        break
+      case 'End':
+        focusable = menu.lastElementChild
+        break
+      case 'Escape':
+      case 'Tab':
+        handleButtonClick()
+        break
+    }
+    if (focusable) {
+      focusable.focus()
+      evt.preventDefault()
+    }
   }
 </script>
 
@@ -113,11 +156,19 @@
   }
 
   li {
-    @apply px-4 py-2 cursor-pointer whitespace-no-wrap flex items-center;
+    @apply p-2 whitespace-no-wrap flex items-center;
 
-    &:hover {
-      color: var(--hover-color);
-      background-color: var(--hover-bg-color);
+    &:not(.disabled) {
+      &:hover,
+      &:focus {
+        @apply cursor-pointer outline-none;
+        color: var(--hover-color);
+        background-color: var(--hover-bg-color);
+      }
+    }
+
+    &.disabled {
+      color: var(--disabled-color);
     }
 
     & > i {
@@ -130,7 +181,11 @@
   on:click|capture={handleInteraction}
   on:scroll|capture={handleInteraction} />
 
-<span class="wrapper" bind:this={button}>
+<span
+  class="wrapper"
+  bind:this={button}
+  aria-haspopup="menu"
+  aria-expanded={open}>
   <Button {...$$restProps} {text} on:click={handleButtonClick}>
     {#if withArrow}
       <i class:iconOnly class="material-icons arrow">
@@ -142,24 +197,45 @@
 <Portal>
   {#if open}
     <ul
-      data-is-menu="true"
+      role="menu"
       transition:slide
       on:introstart={handleMenuVisible}
+      on:keydown={handleMenuKeyDown}
       bind:this={menu}>
       {#each options as option}
         <li
+          role="menuitem"
+          aria-disabled={option.disabled}
+          class:disabled={option.disabled}
+          tabindex={option.disabled ? undefined : -1}
           on:click={evt => {
             if (option.Component) {
+              option.props.open = true
               evt.stopPropagation()
             } else {
-              handleSelect(option)
+              select(option)
             }
-          }}>
+          }}
+          on:keydown={evt => {
+            if (evt.key === 'Enter' || evt.key === ' ' || evt.key === 'ArrowRight') {
+              if (option.Component) {
+                option.props.open = true
+                evt.stopPropagation()
+              } else {
+                select(option)
+              }
+            }
+          }}
+          on:focus={() => (option.props ? (option.props.focus = true) : null)}
+          on:blur={() => (option.props ? (option.props.focus = false) : null)}>
           {#if option.Component}
             <svelte:component
               this={option.Component}
               {...option.props}
-              on:close={() => dispatch('select', option)}
+              on:close={() => {
+                option.props.open = false
+                dispatch('select', option)
+              }}
               on:close={handleInteraction} />
           {:else}
             {#if option.icon}<i class="material-icons">{option.icon}</i>{/if}

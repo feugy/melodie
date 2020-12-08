@@ -1,5 +1,6 @@
 _ artists: '{total} artistes'
 _ hours: '{value} heures'
+_ more results: '{value} résultats supplémentaires'
 _ tracks: '{total} morceaux'
 '#': N°
 'artist: _': 'Artiste : {value}'
@@ -59,6 +60,7 @@ remove from playlist: Retirer
 rename playlist: Renommer
 results for _: Resultats pour "{searched}"
 save: Enregistrer
+search over: chercher parmi...
 settings: Paramètres
 simple click behaviour: 'Le simple clic :'
 show all: Voir tout
