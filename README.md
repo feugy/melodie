@@ -168,10 +168,10 @@ You can edit the file, and trigger logger level refresh by sending SIGUSR2 to th
 ## Running locally
 
 ```shell
+npm i -g lerna
 git clone git@github.com:feugy/melodie.git
 cd melodie
-npm i
-npm run build
+lerna bootstrap
 ```
 
 ## Testing
@@ -419,6 +419,11 @@ Mélodie is referenced on these stores and hubs:
 - MacOS builder was constantly failing with the same error: 7zip couldn't find any file to compress in the final archive. It turns out it is because the production name as an accent (Mélodie), and the mac flavor of 7zip can not handle it...
 
 - Chokidar has a "limitation" and [triggers for each renamed or moved file an 'unlink' and an 'add' event](https://github.com/paulmillr/chokidar/issues/303). The implication on Mélodie were high: moved/renamed files would disappear from playlists. Ty bypass the issue, Mélodie stores file inodes and buffer chokidar events: when a file is removed, Mélodie will wait 250ms more, and if another file is added with the same inode during that time, will consider it as a rename/move.
+
+- The mono-repo endeavour. My goal was to split code in various reusable packages: a UI and core that would not depend on Electron, and could be used in both Web and Desktop context, and two apps: an Electron-based desktop application and the Github-page site. As developer I would expect the ability to hoist as many modules
+  - runing jest with pnpm does not work at all.
+  - lerna is a pain when it comes to hoisting deps.
+  - npm@7 must install peer deps in legacy mode and does not offer any sugar for multi-package commands. As
 
 #### How watch & diff works
 

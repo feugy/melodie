@@ -1,0 +1,29 @@
+{
+  "name": "@melodie/desktop",
+  "version": "1.0.0",
+  "description": "Mélodie desktop application, powered by Electron",
+  "main": "main.js",
+  "scripts": {
+    "dev": "NODE_ENV=test electron .",
+    "release:artifacts": "electron-builder",
+    "release:publish": "electron-builder -p",
+    "start": "electron .",
+    "test": "jest --coverage --colors",
+    "test:dev": "jest --watch"
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "electron-localshortcut": "^3.2.1",
+    "electron-updater": "^4.3.5",
+    "rxjs": "^6.6.3"
+  },
+  "devDependencies": {
+    "electron": "^11.1.0",
+    "electron-builder": "^22.9.1",
+    "electron-reload": "^1.5.0",
+    "faker": "^5.1.0",
+    "jest": "^26.6.3",
+    "jest-extended": "^0.11.5",
+    "jest-watch-typeahead": "^0.6.1"
+  }
+}

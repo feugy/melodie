@@ -3,7 +3,4 @@ build/
 coverage/
 dist/
 __sapper__/
-.levels
-.env
-logs.txt
-winehq.key
+!.storybook/
