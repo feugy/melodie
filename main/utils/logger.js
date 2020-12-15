@@ -10,6 +10,12 @@ const loggers = new Map()
 const supportedLevels = Object.keys(pino.levels.values)
 supportedLevels.push('silent')
 
+function computeDestination() {
+  const { ROLLUP_WATCH } = process.env
+
+  return ROLLUP_WATCH ? undefined : pino.destination(getLogPath())
+}
+
 /**
  * An array containing logger name and its level
  * @typedef {array<string>} LevelEntry
@@ -122,7 +128,7 @@ exports.getLogger = (name = 'core', lvl) => {
             errorProps: '*'
           }
         },
-        pino.destination(getLogPath())
+        computeDestination()
       )
     }
     logger = name === 'core' ? root : root.child({ name, level })

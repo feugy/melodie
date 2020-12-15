@@ -79,22 +79,18 @@ module.exports = class AbstractTrackList extends Model {
                 )
               : trackList.trackIds || []
           }
-          if (savedList.trackIds.length) {
-            // one can not update with sparse data: we have to get previous columns
-            for (const col of Object.keys(trackList)) {
-              if (
-                col !== 'trackIds' &&
-                col !== 'removedTrackIds' &&
-                col !== 'refs' &&
-                trackList[col] !== undefined
-              ) {
-                savedList[col] = trackList[col]
-              }
+          // one can not update with sparse data: we have to get previous columns
+          for (const col of Object.keys(trackList)) {
+            if (
+              col !== 'trackIds' &&
+              col !== 'removedTrackIds' &&
+              col !== 'refs' &&
+              trackList[col] !== undefined
+            ) {
+              savedList[col] = trackList[col]
             }
-            saved.push(savedList)
-          } else {
-            removedIds.push(trackList.id)
           }
+          saved.push(savedList)
           return { saved, removedIds }
         },
         { saved: [], removedIds: [] }
@@ -112,10 +108,6 @@ module.exports = class AbstractTrackList extends Model {
             .join(', ')}`,
           [trx(this.name).insert(saved.map(serialize))]
         )
-      }
-      if (removedIds.length) {
-        this.logger.debug({ ids: removedIds }, `removing`)
-        await trx(this.name).whereIn('id', removedIds).delete()
       }
       return { saved, removedIds }
     })

@@ -5,7 +5,7 @@
   import Track from '../Track/Track.svelte'
   import Slider from '../Slider/Slider.svelte'
   import AddToPlaylist from '../AddToPlaylist/AddToPlaylist.svelte'
-  import { toDOMSrc, formatTime } from '../../utils'
+  import { toDOMSrc, formatTime, invoke } from '../../utils'
   import {
     playNext,
     playPrevious,
@@ -15,6 +15,7 @@
     unshuffle,
     shuffle
   } from '../../stores/track-queue'
+  import { appendTracks } from '../../stores/playlists'
 
   export let isPlaylistOpen = false
   let isPlaying
@@ -48,6 +49,7 @@
           player.load()
         }
       } else {
+        invoke('playlists.prependSingleMerge', 151120, current.id)
         src = toDOMSrc(current.path)
         const {
           replaygain_track_gain: trackGain,
