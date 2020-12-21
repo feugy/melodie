@@ -24,10 +24,6 @@
   <p>Caveats:</p>
   <ul>
     <li>
-      It works best on Chrome/Chromium. Firefox does not yet share its
-      mediaSession with your OS.
-    </li>
-    <li>
       On Ubuntu, controls are not display for short audio files (&lt; 5s).
     </li>
     <li>On Ubuntu, Chrome/Chromium does not set artwork yet.</li>

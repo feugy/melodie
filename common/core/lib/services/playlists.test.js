@@ -2,7 +2,6 @@
 
 const { extname } = require('path')
 const faker = require('faker')
-const electron = require('electron')
 const { playlistsModel } = require('../models/playlists')
 const { tracksModel } = require('../models/tracks')
 const playlistsService = require('./playlists')
@@ -11,16 +10,8 @@ const { broadcast } = require('../utils')
 
 jest.mock('../models/playlists')
 jest.mock('../models/tracks')
-jest.mock('../utils/electron-remote')
+jest.mock('../utils/connection')
 jest.mock('../providers/local/playlist')
-jest.mock('electron', () => ({
-  dialog: {
-    showSaveDialog: jest.fn()
-  },
-  app: {
-    getPath: jest.fn().mockReturnValue('')
-  }
-}))
 
 describe('Playlists service', () => {
   beforeEach(jest.resetAllMocks)
@@ -295,15 +286,16 @@ describe('Playlists service', () => {
 
   describe('export', () => {
     it('does nothing on unexisting playlist', async () => {
+      const selectPath = jest.fn()
       const id = faker.random.number()
       playlistsModel.getById.mockResolvedValueOnce(null)
 
-      await playlistsService.export(id)
+      await playlistsService.export(id, selectPath)
 
       expect(playlistsModel.getById).toHaveBeenCalledWith(id)
       expect(playlistsModel.getById).toHaveBeenCalledTimes(1)
       expect(tracksModel.getByIds).not.toHaveBeenCalled()
-      expect(electron.dialog.showSaveDialog).not.toHaveBeenCalled()
+      expect(selectPath).not.toHaveBeenCalled()
       expect(playlistsUtils.write).not.toHaveBeenCalled()
     })
 
@@ -321,24 +313,20 @@ describe('Playlists service', () => {
       }
       playlistsModel.getById.mockResolvedValueOnce(playlist)
       tracksModel.getByIds.mockResolvedValueOnce(tracks)
-      electron.dialog.showSaveDialog.mockResolvedValueOnce({ canceled: true })
+      const selectPath = jest.fn().mockResolvedValueOnce()
 
-      await playlistsService.export(playlist.id)
+      await playlistsService.export(playlist.id, selectPath)
 
       expect(playlistsModel.getById).toHaveBeenCalledWith(playlist.id)
       expect(playlistsModel.getById).toHaveBeenCalledTimes(1)
       expect(tracksModel.getByIds).toHaveBeenCalledWith(playlist.trackIds)
       expect(tracksModel.getByIds).toHaveBeenCalledTimes(1)
-      expect(electron.dialog.showSaveDialog).toHaveBeenCalledWith({
-        defaultPath: `${playlist.name}.m3u8`,
-        properties: ['createDirectory'],
-        filters: [{ extensions: playlistsUtils.formats }]
-      })
-      expect(electron.dialog.showSaveDialog).toHaveBeenCalledTimes(1)
+      expect(selectPath).toHaveBeenCalledWith(playlist, playlistsUtils.formats)
+      expect(selectPath).toHaveBeenCalledTimes(1)
       expect(playlistsUtils.write).not.toHaveBeenCalled()
     })
 
-    it('saves nothing on unexisting playlist', async () => {
+    it('saves playlist to selected path', async () => {
       const tracks = [
         {
           id: faker.random.number(),
@@ -354,20 +342,16 @@ describe('Playlists service', () => {
       tracksModel.getByIds.mockResolvedValueOnce(tracks)
       let filePath = faker.system.filePath()
       filePath = filePath.replace(extname(filePath), '.m3u8')
-      electron.dialog.showSaveDialog.mockResolvedValueOnce({ filePath })
+      const selectPath = jest.fn().mockResolvedValueOnce(filePath)
 
-      await playlistsService.export(playlist.id)
+      await playlistsService.export(playlist.id, selectPath)
 
       expect(playlistsModel.getById).toHaveBeenCalledWith(playlist.id)
       expect(playlistsModel.getById).toHaveBeenCalledTimes(1)
       expect(tracksModel.getByIds).toHaveBeenCalledWith(playlist.trackIds)
       expect(tracksModel.getByIds).toHaveBeenCalledTimes(1)
-      expect(electron.dialog.showSaveDialog).toHaveBeenCalledWith({
-        defaultPath: `${playlist.name}.m3u8`,
-        properties: ['createDirectory'],
-        filters: [{ extensions: playlistsUtils.formats }]
-      })
-      expect(electron.dialog.showSaveDialog).toHaveBeenCalledTimes(1)
+      expect(selectPath).toHaveBeenCalledWith(playlist, playlistsUtils.formats)
+      expect(selectPath).toHaveBeenCalledTimes(1)
       expect(playlistsUtils.write).toHaveBeenCalledWith(filePath, {
         ...playlist,
         tracks

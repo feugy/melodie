@@ -22,7 +22,8 @@ export default {
   plugins: [
     replace({
       RXJS_VERSION: JSON.stringify(dependencies.rxjs.version),
-      TAILWINDCSS_VERSION: JSON.stringify(dependencies.rxjs.version)
+      TAILWINDCSS_VERSION: JSON.stringify(dependencies.rxjs.version),
+      'process.env.NODE_ENV': JSON.stringify(production ? 'production' : 'dev')
     }),
 
     svelte(svelteConfig),

@@ -11,7 +11,8 @@ import {
   list,
   appendTracks
 } from '../../stores/playlists'
-import { sleep, mockInvoke, translate } from '../../tests'
+import { invoke } from '../../utils'
+import { sleep, translate } from '../../tests'
 import { playlistsData } from './AddToPlaylist.stories'
 
 jest.mock('../../stores/playlists')
@@ -32,7 +33,7 @@ describe('AddToPlaylist component', () => {
       { id: faker.random.number() }
     )
     jest.resetAllMocks()
-    mockInvoke.mockResolvedValueOnce({})
+    invoke.mockResolvedValueOnce({})
   })
 
   it('displays only new list option, and fetch playlist list', async () => {

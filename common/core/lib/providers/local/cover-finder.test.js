@@ -9,14 +9,6 @@ const { tracksModel } = require('../../models')
 const { hash } = require('../../utils')
 
 jest.mock('../../models/tracks')
-jest.mock('electron', () => ({
-  dialog: {
-    showOpenDialog: jest.fn()
-  },
-  app: {
-    getPath: jest.fn().mockReturnValue('')
-  }
-}))
 
 describe('Cover finder', () => {
   beforeEach(jest.resetAllMocks)

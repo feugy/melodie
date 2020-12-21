@@ -1,36 +1,16 @@
 'use strict'
 
-const { app } = require('electron')
 const { join, extname, dirname } = require('path')
 const { Observable } = require('rxjs')
 const klaw = require('klaw')
 
 /**
- * Logs are stored in a file, withing the application's own folders.
- * The file name is logs.txt
- * @returns {string} full path to the log file, according to Electron
- */
-exports.getLogPath = function () {
-  return join(app.getPath('logs') || '', `logs.txt`)
-}
-
-/**
- * Computes full path to a file the application can write into, inside user data folders.
- * @param {string} file - name of the desired file.
- * @returns {string} full path to that file
- */
-exports.getStoragePath = function (file) {
-  return join(app.getPath('userData'), `${file}`)
-}
-
-/**
- * Computes full path to the file storing a model's media, inside user pictures.
- * The file name is the model id (no extension) within a `melodie-media` folder
+ * Computes full path to a model's artwork file, according to ARTWORK_DESTINATION environment variable.
  * @param {number} id - model's id.
  * @returns {string} full path to that media (without extension)
  */
-exports.getMediaPath = function (id) {
-  return join(app.getPath('pictures'), 'melodie-media', `${id}`)
+exports.getArtworkFile = function (id) {
+  return join(process.env.ARTWORK_DESTINATION, `${id}`)
 }
 
 /**

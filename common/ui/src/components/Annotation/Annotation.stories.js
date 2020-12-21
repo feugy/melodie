@@ -4,7 +4,8 @@ import Annotation from './Annotation.stories.svelte'
 
 export default {
   title: 'Components/Annotation',
-  excludeStories: /.*Data$/
+  excludeStories: /.*Data$/,
+  parameters: { layout: null }
 }
 
 // Note: snapshots will all look the same as JSDom does has a mocked implementation of getBoundingClientRect()

@@ -21,7 +21,7 @@ const { albumsModel, settingsModel, tracksModel } = require('../../models')
 // do not import ../../services to avoid circular dep
 const tracks = require('../../services/tracks')
 const playlists = require('../../services/playlists')
-const { hash, broadcast, walk, getMediaPath } = require('../../utils')
+const { hash, broadcast, walk, getArtworkFile } = require('../../utils')
 const { findInFolder, findForAlbum } = require('./cover-finder')
 const tagReader = require('./tag-reader')
 const playlistUtils = require('./playlist')
@@ -271,14 +271,14 @@ class Local extends AbstractProvider {
 
   /**
    * Finds artwork for a given artist.
-   * Searches into the artwork local folder (getMediaPath()) for image files named with the artist name hash.
+   * Searches into the artwork local folder for image files named with the artist name hash.
    * @async
    * @param {string} searched - artist's name
    * @returns {array<Artwork>} list (may be empty) of artworks
    */
   async findArtistArtwork(searched) {
     this.logger.debug({ searched }, `search artist artwork for ${searched}`)
-    const prefix = getMediaPath(hash(searched))
+    const prefix = getArtworkFile(hash(searched))
     const results = []
     for (const ext of ['jpeg', 'gif', 'png', 'jpg']) {
       const artwork = `${prefix}.${ext}`

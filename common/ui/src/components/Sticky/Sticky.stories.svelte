@@ -4,12 +4,6 @@
   import { texts } from '../../tests/lorem'
 </script>
 
-<style>
-  :global(body) {
-    padding: 0 !important;
-  }
-</style>
-
 <Sticky {...$$props}>
   <div class="flex flex-row items-center gap-4 p-2">
     <Button large primary text="Hello!" />
@@ -17,7 +11,7 @@
   </div>
 </Sticky>
 
-<main class="text-left p-4">
+<main class="text-left p-4 mt-16">
   {#each texts as text}
     <p class="py-2">{text}</p>
   {/each}

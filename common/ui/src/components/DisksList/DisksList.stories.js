@@ -2,15 +2,23 @@
 
 import DisksList from './DisksList.svelte'
 import { current$Data } from '../TracksTable/TracksTable.stories'
-import {
-  hrefSinkDecorator,
-  ipcRendererMock
-} from '../../../.storybook/decorators'
+import { playlistsData } from '../AddToPlaylist/AddToPlaylist.stories'
+import { hrefSinkDecorator } from '../../../.storybook/decorators'
+import { websocketResponse } from '../../../.storybook/loaders'
 
 export default {
   title: 'Components/Disks list',
   excludeStories: /.*Data$/,
-  decorators: [hrefSinkDecorator, ipcRendererMock()]
+  decorators: [hrefSinkDecorator],
+  loaders: [
+    websocketResponse(() => ({
+      total: playlistsData.length,
+      size: playlistsData.length,
+      from: 0,
+      results: playlistsData
+    }))
+  ],
+  parameters: { layout: 'padded' }
 }
 
 const album = 'Cowboy Bebop - NoDisc'

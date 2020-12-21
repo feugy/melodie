@@ -2,7 +2,6 @@
 
 const { join } = require('path')
 const faker = require('faker')
-const electron = require('electron')
 const osLocale = require('os-locale')
 const settingsService = require('./settings')
 const { local, audiodb, discogs } = require('../providers')
@@ -10,20 +9,12 @@ const { settingsModel } = require('../models/settings')
 const { broadcast } = require('../utils')
 
 jest.mock('os-locale')
-jest.mock('electron', () => ({
-  dialog: {
-    showOpenDialog: jest.fn()
-  },
-  app: {
-    getPath: jest.fn().mockReturnValue('')
-  }
-}))
 jest.mock('../services')
 jest.mock('../models/settings')
 jest.mock('../providers/local')
 jest.mock('../providers/discogs')
 jest.mock('../providers/audiodb')
-jest.mock('../utils/electron-remote')
+jest.mock('../utils/connection')
 
 describe('Settings service', () => {
   beforeEach(() => {
@@ -181,41 +172,6 @@ describe('Settings service', () => {
   })
 
   describe('addFolders', () => {
-    it('saves selected folders to settings', async () => {
-      const locale = faker.random.word()
-      const folders = [faker.system.fileName()]
-      settingsModel.get.mockResolvedValueOnce({ folders, locale })
-      const filePaths = [faker.system.fileName(), faker.system.fileName()]
-      electron.dialog.showOpenDialog.mockResolvedValueOnce({ filePaths })
-      const finalFolders = folders.concat(filePaths)
-      const saved = { id: settingsModel.ID, folders: finalFolders, locale }
-      settingsModel.save.mockResolvedValueOnce(saved)
-      local.importTracks.mockResolvedValueOnce()
-
-      expect(await settingsService.addFolders()).toEqual(saved)
-
-      expect(settingsModel.get).toHaveBeenCalledTimes(1)
-      expect(settingsModel.save).toHaveBeenCalledWith(saved)
-      expect(settingsModel.save).toHaveBeenCalledTimes(1)
-      expect(local.importTracks).toHaveBeenCalledTimes(1)
-      expect(electron.dialog.showOpenDialog).toHaveBeenCalledWith({
-        properties: ['openDirectory', 'multiSelections']
-      })
-      expect(broadcast).toHaveBeenCalledWith('watching-folders', filePaths)
-      expect(broadcast).toHaveBeenCalledTimes(1)
-    })
-
-    it('does not saves empty selection', async () => {
-      electron.dialog.showOpenDialog.mockResolvedValueOnce({ filePaths: [] })
-
-      expect(await settingsService.addFolders()).toEqual(null)
-
-      expect(settingsModel.get).not.toHaveBeenCalled()
-      expect(settingsModel.save).not.toHaveBeenCalled()
-      expect(local.importTracks).not.toHaveBeenCalled()
-      expect(broadcast).not.toHaveBeenCalled()
-    })
-
     it('saves specified folders to settings and invoke done callback', async () => {
       const locale = faker.random.word()
       const folders = [faker.system.fileName()]
@@ -234,7 +190,6 @@ describe('Settings service', () => {
       expect(settingsModel.save).toHaveBeenCalledWith(saved)
       expect(settingsModel.save).toHaveBeenCalledTimes(1)
       expect(local.importTracks).toHaveBeenCalledTimes(1)
-      expect(electron.dialog.showOpenDialog).not.toHaveBeenCalled()
       expect(onDone).toHaveBeenCalledAfter(broadcast)
       expect(broadcast).toHaveBeenCalledWith('watching-folders', added)
       expect(broadcast).toHaveBeenCalledTimes(1)
@@ -251,13 +206,12 @@ describe('Settings service', () => {
         join(parent2, faker.system.fileName()),
         faker.system.fileName()
       ]
-      electron.dialog.showOpenDialog.mockResolvedValueOnce({ filePaths })
       const finalFolders = folders.concat(filePaths.slice(2))
       const saved = { id: settingsModel.ID, folders: finalFolders, locale }
       settingsModel.save.mockResolvedValueOnce(saved)
       local.importTracks.mockResolvedValueOnce()
 
-      expect(await settingsService.addFolders()).toEqual(saved)
+      expect(await settingsService.addFolders(filePaths)).toEqual(saved)
 
       expect(settingsModel.get).toHaveBeenCalledTimes(1)
       expect(settingsModel.save).toHaveBeenCalledWith(saved)
@@ -279,15 +233,12 @@ describe('Settings service', () => {
         join(parent, faker.system.fileName())
       ]
       settingsModel.get.mockResolvedValueOnce({ folders, locale })
-      electron.dialog.showOpenDialog.mockResolvedValueOnce({
-        filePaths: [parent]
-      })
       const finalFolders = [folders[1], parent]
       const saved = { id: settingsModel.ID, folders: finalFolders, locale }
       settingsModel.save.mockResolvedValueOnce(saved)
       local.importTracks.mockResolvedValueOnce()
 
-      expect(await settingsService.addFolders()).toEqual(saved)
+      expect(await settingsService.addFolders([parent])).toEqual(saved)
 
       expect(settingsModel.get).toHaveBeenCalledTimes(1)
       expect(settingsModel.save).toHaveBeenCalledWith(saved)
@@ -303,14 +254,13 @@ describe('Settings service', () => {
       const parent2 = join(faker.lorem.word(), faker.lorem.word())
       const folders = [parent1, parent2]
       settingsModel.get.mockResolvedValueOnce({ folders, locale })
-      electron.dialog.showOpenDialog.mockResolvedValueOnce({
-        filePaths: [
+
+      expect(
+        await settingsService.addFolders([
           join(parent1, faker.lorem.word()),
           join(parent2, faker.lorem.word())
-        ]
-      })
-
-      expect(await settingsService.addFolders()).toEqual({ folders, locale })
+        ])
+      ).toEqual({ folders, locale })
 
       expect(settingsModel.get).toHaveBeenCalledTimes(1)
       expect(settingsModel.save).not.toHaveBeenCalled()

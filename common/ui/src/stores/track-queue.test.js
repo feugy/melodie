@@ -4,8 +4,9 @@ import { tick } from 'svelte'
 import { get } from 'svelte/store'
 import { BehaviorSubject } from 'rxjs'
 import faker from 'faker'
-import { mockIpcRenderer, sleep } from '../tests'
 import { settings as mockedSettings } from './settings'
+import { serverEmitter } from '../utils'
+import { sleep } from '../tests'
 
 jest.mock('./settings')
 
@@ -666,12 +667,15 @@ describe('track-queue store', () => {
   describe('given incoming changes', () => {
     it('does not change empty queue', async () => {
       const { current, index, tracks } = queue
-      mockIpcRenderer.emit('track-changes', null, [
-        {
-          id: 1,
-          path: faker.system.fileName()
-        }
-      ])
+      serverEmitter.next({
+        event: 'track-changes',
+        args: [
+          {
+            id: 1,
+            path: faker.system.fileName()
+          }
+        ]
+      })
       await tick()
 
       expect(get(tracks)).toEqual([])
@@ -687,12 +691,15 @@ describe('track-queue store', () => {
       ]
       add(files)
 
-      mockIpcRenderer.emit('track-changes', null, [
-        {
-          id: 3,
-          path: faker.system.fileName()
-        }
-      ])
+      serverEmitter.next({
+        event: 'track-changes',
+        args: [
+          {
+            id: 3,
+            path: faker.system.fileName()
+          }
+        ]
+      })
       await tick()
 
       expect(get(tracks)).toEqual(files)
@@ -715,7 +722,7 @@ describe('track-queue store', () => {
       expect(get(current)).toEqual(files[0])
 
       const changed = { id: 1, path: faker.system.fileName() }
-      mockIpcRenderer.emit('track-changes', null, [changed])
+      serverEmitter.next({ event: 'track-changes', args: [changed] })
       await tick()
 
       expect(get(tracks)).toEqual([changed, files[1], changed, files[3]])
@@ -738,7 +745,7 @@ describe('track-queue store', () => {
       expect(get(current)).toEqual(files[0])
 
       const changed = { id: 1, path: faker.system.fileName() }
-      mockIpcRenderer.emit('track-changes', null, [changed])
+      serverEmitter.next({ event: 'track-changes', args: [changed] })
       await tick()
 
       expect(get(tracks)).toEqual(
@@ -760,7 +767,7 @@ describe('track-queue store', () => {
 
   describe('given incoming removal', () => {
     it('does not change empty queue', async () => {
-      mockIpcRenderer.emit('track-removals', null, [1])
+      serverEmitter.next({ event: 'track-removals', args: [1] })
       const { current, index, tracks } = queue
       await tick()
 
@@ -777,7 +784,7 @@ describe('track-queue store', () => {
       ]
       add(files)
 
-      mockIpcRenderer.emit('track-removals', null, [3])
+      serverEmitter.next({ event: 'track-removals', args: [3] })
       await tick()
 
       expect(get(tracks)).toEqual(files)
@@ -801,7 +808,7 @@ describe('track-queue store', () => {
       expect(get(index)).toEqual(1)
       expect(get(current)).toEqual(files[1])
 
-      mockIpcRenderer.emit('track-removals', null, [files[1].id])
+      serverEmitter.next({ event: 'track-removals', args: [files[1].id] })
       await tick()
 
       expect(get(tracks)).toEqual([files[0], files[2]])
@@ -825,7 +832,7 @@ describe('track-queue store', () => {
       expect(get(index)).toEqual(1)
       expect(get(current)).toEqual(files[1])
 
-      mockIpcRenderer.emit('track-removals', null, [files[1].id])
+      serverEmitter.next({ event: 'track-removals', args: [files[1].id] })
       await tick()
 
       expect(get(tracks)).toEqual([files[0], files[3]])
@@ -849,7 +856,7 @@ describe('track-queue store', () => {
       expect(get(index)).toEqual(0)
       expect(get(current)).toEqual(files[1])
 
-      mockIpcRenderer.emit('track-removals', null, [files[1].id])
+      serverEmitter.next({ event: 'track-removals', args: [files[1].id] })
       await tick()
 
       expect(get(tracks)).toEqual(expect.arrayContaining([files[0], files[3]]))
@@ -1370,7 +1377,7 @@ describe('track-queue store', () => {
     beforeEach(() => queue.clear())
 
     it('immediately plays received tracks', async () => {
-      mockIpcRenderer.emit('play-tracks', null, played)
+      serverEmitter.next({ event: 'play-tracks', args: played })
       await tick()
 
       expect(get(queue.tracks)).toEqual(played)
@@ -1386,7 +1393,7 @@ describe('track-queue store', () => {
       ]
       queue.add(files)
 
-      mockIpcRenderer.emit('play-tracks', null, played)
+      serverEmitter.next({ event: 'play-tracks', args: played })
       await tick()
 
       expect(get(queue.tracks)).toEqual([...files, ...played])

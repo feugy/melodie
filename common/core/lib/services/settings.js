@@ -1,6 +1,5 @@
 'use strict'
 
-const { dialog } = require('electron')
 const { settingsModel } = require('../models')
 const {
   broadcast,
@@ -52,23 +51,11 @@ module.exports = {
    * Monitors new folders, importing their tracks.
    * Broadcasts `watching-folders` message when new folders are fully imported
    * @async
-   * @param {array<string>} folders - list of added folders. If not set, opens a system dialogue for users to select
-   *                                  folder(s) on their drive.
+   * @param {array<string>} folders - list of added folders.
    * @param {function} importDone   - optional callback invoked when track import is over
-   * @returns {SettingsModel} updates settings
+   * @returns {SettingsModel} updated settings
    */
   async addFolders(folders, importDone = () => {}) {
-    if (!Array.isArray(folders)) {
-      logger.debug('picking new folders')
-      folders = (
-        await dialog.showOpenDialog({
-          properties: ['openDirectory', 'multiSelections']
-        })
-      ).filePaths
-      if (!folders.length) {
-        return null
-      }
-    }
     logger.info({ folders }, `adding new folders...`)
     const settings = await this.get()
     const { merged, added } = mergePaths(folders, settings.folders)
@@ -90,7 +77,7 @@ module.exports = {
    * Removes a folder from the list of monitored folders.
    * @async
    * @param {string} folder - removed folder.
-   * @returns {SettingsModel} updates settings
+   * @returns {SettingsModel} updated settings
    */
   async removeFolder(folder) {
     let settings = await this.get()
@@ -109,7 +96,7 @@ module.exports = {
    * Change locale in settings
    * @async
    * @param {string} value - new locale
-   * @returns {SettingsModel} updates settings
+   * @returns {SettingsModel} updated settings
    */
   async setLocale(value) {
     const settings = await this.get()
@@ -124,7 +111,7 @@ module.exports = {
    * Change AudioDB provider's key in settings, and initializes the provider.
    * @async
    * @param {string} key - new key
-   * @returns {SettingsModel} updates settings
+   * @returns {SettingsModel} updated settings
    */
   async setAudioDBKey(key) {
     const settings = await this.get()
@@ -142,7 +129,7 @@ module.exports = {
    * Change Discogs provider's key in settings, and initializes the provider.
    * @async
    * @param {string} key - new key
-   * @returns {SettingsModel} updates settings
+   * @returns {SettingsModel} updated settings
    */
   async setDiscogsToken(token) {
     const settings = await this.get()
@@ -162,7 +149,7 @@ module.exports = {
    * @param {object} behaviour            - new behaviour, including:
    * @param {boolean} behaviour.clearBefore - whether the tracks queue should be cleared when adding and immediately playing new tracks
    * @param {boolean} behaviour.onClick     - whether playing immediately or enqueuing tracks on simple click
-   * @returns {SettingsModel} updates settings
+   * @returns {SettingsModel} updated settings
    */
   async setEnqueueBehaviour({ clearBefore, onClick }) {
     const settings = await this.get()

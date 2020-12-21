@@ -3,7 +3,8 @@
 import Nav from './Nav.stories.svelte'
 
 export default {
-  title: 'Components/Nav'
+  title: 'Components/Nav',
+  parameters: { layout: null }
 }
 
 export const Default = () => ({

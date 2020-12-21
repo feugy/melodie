@@ -5,17 +5,15 @@ const os = require('os')
 const faker = require('faker')
 const pino = require('pino')
 const fs = require('fs-extra')
-const { getLogPath, getStoragePath } = require('./files')
 
 let getLogger
 let refreshLogLevels
 
 jest.mock('pino')
-jest.mock('./files')
 
 describe('logger', () => {
   const envSave = Object.assign({}, process.env)
-  const logFile = join(os.tmpdir(), '.levels-test')
+  const levelFile = join(os.tmpdir(), '.levels-test')
   let loggers = {}
   let setters = {}
 
@@ -34,8 +32,8 @@ describe('logger', () => {
     })
     process.env = {}
     Object.assign(process.env, envSave)
-    getStoragePath.mockReturnValue(logFile)
-    await fs.writeFile(logFile, '')
+    process.env.LOG_LEVEL_FILE = levelFile
+    await fs.writeFile(levelFile, '')
     loggers = {}
     setters = {}
     pino.mockReturnValue(
@@ -44,12 +42,12 @@ describe('logger', () => {
       })
     )
     // use pino.destination(1)
-    getLogPath.mockReturnValue(1)
+    process.env.LOG_DESTINATION = 1
   })
 
   afterEach(async () => {
     try {
-      await fs.unlink(logFile)
+      await fs.unlink(levelFile)
     } catch {
       // no error on missing file
     }
@@ -137,7 +135,7 @@ describe('logger', () => {
     const level1 = 'trace'
     const level2 = 'trace'
     const name = 'child'
-    await fs.writeFile(logFile, `core=${level1}\nchild=${level2}`)
+    await fs.writeFile(levelFile, `core=${level1}\nchild=${level2}`)
 
     getLogger()
     expect(pino).toHaveBeenCalledWith(
@@ -161,7 +159,7 @@ describe('logger', () => {
 
     const newLevel = faker.random.arrayElement(['trace', 'error', 'warn'])
 
-    await fs.writeFile(logFile, `${name1}=${newLevel}`)
+    await fs.writeFile(levelFile, `${name1}=${newLevel}`)
     process.emit('SIGUSR2')
 
     await new Promise(r => setTimeout(r, 200))
@@ -180,7 +178,7 @@ describe('logger', () => {
 
     const newLevel = faker.random.arrayElement(['trace', 'error', 'warn'])
 
-    await fs.writeFile(logFile, `models/*=${newLevel}`)
+    await fs.writeFile(levelFile, `models/*=${newLevel}`)
     refreshLogLevels()
 
     expect(setters.core).not.toHaveBeenCalled()
@@ -191,13 +189,13 @@ describe('logger', () => {
   if (process.platform !== 'win32') {
     // Windows does not support permission ;P
     it('throws error on unparseable logger levels file', async () => {
-      await fs.chmod(logFile, fs.constants.S_IWUSR)
+      await fs.chmod(levelFile, fs.constants.S_IWUSR)
       expect(() => getLogger()).toThrow(/EACCES/)
     })
   }
 
   it('throws error on unknown logger levels', async () => {
-    await fs.writeFile(logFile, `core=unknown`)
+    await fs.writeFile(levelFile, `core=unknown`)
     expect(() => getLogger()).toThrow(/unsupported log level/)
   })
 })

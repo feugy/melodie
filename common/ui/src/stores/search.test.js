@@ -3,7 +3,8 @@
 import { get } from 'svelte/store'
 import faker from 'faker'
 import { search, albums, artists, tracks, total, current } from './search'
-import { mockInvoke, sleep } from '../tests'
+import { invoke } from '../utils'
+import { sleep } from '../tests'
 
 describe('search store', () => {
   it('triggers search and enqueue results', async () => {
@@ -25,7 +26,7 @@ describe('search store', () => {
       path,
       tags: {}
     }))
-    mockInvoke
+    invoke
       .mockResolvedValueOnce({
         totals,
         totalSum,
@@ -66,31 +67,16 @@ describe('search store', () => {
     expect(get(albums)).toEqual(albumData)
     expect(get(artists)).toEqual(artistData)
     expect(get(tracks)).toEqual(trackData)
-    expect(mockInvoke).toHaveBeenCalledTimes(3)
-    expect(mockInvoke).toHaveBeenNthCalledWith(
-      1,
-      'remote',
-      'tracks',
-      'search',
-      text,
-      { size }
-    )
-    expect(mockInvoke).toHaveBeenNthCalledWith(
-      2,
-      'remote',
-      'tracks',
-      'search',
-      text,
-      { size, from: size }
-    )
-    expect(mockInvoke).toHaveBeenNthCalledWith(
-      3,
-      'remote',
-      'tracks',
-      'search',
-      text,
-      { size, from: size * 2 }
-    )
+    expect(invoke).toHaveBeenCalledTimes(3)
+    expect(invoke).toHaveBeenNthCalledWith(1, 'tracks.search', text, { size })
+    expect(invoke).toHaveBeenNthCalledWith(2, 'tracks.search', text, {
+      size,
+      from: size
+    })
+    expect(invoke).toHaveBeenNthCalledWith(3, 'tracks.search', text, {
+      size,
+      from: size * 2
+    })
     expect(get(total)).toEqual(totalSum)
     expect(get(current)).toEqual(text)
   })

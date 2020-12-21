@@ -13,7 +13,7 @@
   }
 
   section {
-    @apply overflow-auto p-4 text-left;
+    @apply p-4 text-left;
   }
 
   aside {

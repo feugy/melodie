@@ -1,5 +1,6 @@
 {
   "name": "@melodie/desktop",
+  "productName": "melodie",
   "version": "1.0.0",
   "description": "Mélodie desktop application, powered by Electron",
   "main": "main.js",
@@ -13,8 +14,10 @@
   },
   "dependencies": {
     "dotenv": "^8.2.0",
+    "ejs": "^3.1.5",
     "electron-localshortcut": "^3.2.1",
     "electron-updater": "^4.3.5",
+    "fs-extra": "^9.0.1",
     "rxjs": "^6.6.3"
   },
   "devDependencies": {

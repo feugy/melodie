@@ -6,7 +6,8 @@ import { hrefSinkDecorator } from '../../../.storybook/decorators'
 export default {
   title: 'Components/Track',
   excludeStories: /.*Data$/,
-  decorators: [hrefSinkDecorator]
+  decorators: [hrefSinkDecorator],
+  parameters: { layout: 'padded' }
 }
 
 const album = 'Diamonds on the inside'

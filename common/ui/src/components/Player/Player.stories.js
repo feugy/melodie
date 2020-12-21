@@ -2,12 +2,13 @@
 
 import Player from './Player.svelte'
 import * as queue from '../../stores/track-queue'
-import { ipcRendererMock } from '../../../.storybook/decorators'
+import { websocketResponse } from '../../../.storybook/loaders'
 
 export default {
   title: 'Components/Player',
   excludeStories: /.*Data$/,
-  decorators: [ipcRendererMock(() => ({ totals: 0, results: [] }))]
+  loaders: [websocketResponse(() => ({ totals: 0, results: [] }))],
+  parameters: { layout: 'padded' }
 }
 
 const album = 'An album'

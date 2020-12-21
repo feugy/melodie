@@ -8,7 +8,8 @@ import { action } from '@storybook/addon-actions'
 export default {
   title: 'Components/Sortable list',
   excludeStories: /.*Data$/,
-  decorators: [hrefSinkDecorator]
+  decorators: [hrefSinkDecorator],
+  parameters: { layout: null }
 }
 
 export const actionsData = {

@@ -2,7 +2,6 @@
 
 const pino = require('pino')
 const fs = require('fs-extra')
-const { getLogPath, getStoragePath } = require('./files')
 
 let root
 let levelSpecs
@@ -27,7 +26,7 @@ supportedLevels.push('silent')
  * @returns {LevelSpec} the level specification
  */
 function readLevels() {
-  const levelFile = getStoragePath('.levels') || '.levels'
+  const levelFile = process.env.LOG_LEVEL_FILE
   try {
     return buildLevels(fs.readFileSync(levelFile, 'utf8'))
   } catch (err) {
@@ -95,9 +94,9 @@ function computeDefaultLevel() {
 /**
  * Builds (or returns a built) a Pino logger instance for a given name.
  * Built loggers are stored in memory so they could be quickly retrieved.
- * The logger is configured to write to the log file (log.txt), with pretty print.
- * If not specified, the level will be computed from configuration file (.level) and depends on
- * environement values ('debug' or 'info').
+ * The logger is configured to write according to LOG_DESTINATION env variable, with pretty print.
+ * If not specified, the level will be computed from configuration file (LOG_LEVEL_PATH env variable)
+ * with a default level set to 'info' ('debug' in dev mode, 'silent' in tests).
  * @param {string} [name = 'core']  - logger name
  * @param {string} [lvl = 'info']   - logger level
  * @returns {Pino} a logger instance
@@ -122,7 +121,7 @@ exports.getLogger = (name = 'core', lvl) => {
             errorProps: '*'
           }
         },
-        pino.destination(getLogPath())
+        pino.destination(process.env.LOG_DESTINATION)
       )
     }
     logger = name === 'core' ? root : root.child({ name, level })

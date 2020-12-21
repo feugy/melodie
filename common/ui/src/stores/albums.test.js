@@ -1,7 +1,8 @@
 'use strict'
 import { get } from 'svelte/store'
 import { albums, list, isListing } from './albums'
-import { mockInvoke, sleep } from '../tests'
+import { invoke } from '../utils'
+import { sleep } from '../tests'
 
 describe('albums store', () => {
   it('lists all albums', async () => {
@@ -10,19 +11,18 @@ describe('albums store', () => {
       id: i,
       name: `${i}0`
     }))
-    mockInvoke.mockImplementation(
-      async (channel, service, method, type, params) =>
-        params
-          ? {
-              total,
-              size: params.size,
-              from: params.from || 0,
-              results: data.slice(
-                params.from || 0,
-                (params.from || 0) + params.size
-              )
-            }
-          : null
+    invoke.mockImplementation(async (invoked, type, params) =>
+      params
+        ? {
+            total,
+            size: params.size,
+            from: params.from || 0,
+            results: data.slice(
+              params.from || 0,
+              (params.from || 0) + params.size
+            )
+          }
+        : null
     )
     expect(get(albums)).toEqual([])
     expect(get(isListing)).toBe(false)
@@ -31,28 +31,14 @@ describe('albums store', () => {
     await sleep(100)
     expect(get(isListing)).toBe(false)
     expect(get(albums)).toEqual(data)
-    expect(mockInvoke).toHaveBeenNthCalledWith(
-      1,
-      'remote',
-      'media',
-      'triggerAlbumsEnrichment'
-    )
-    expect(mockInvoke).toHaveBeenNthCalledWith(
-      2,
-      'remote',
-      'tracks',
-      'list',
-      'album',
-      { size: 10 }
-    )
-    expect(mockInvoke).toHaveBeenNthCalledWith(
-      3,
-      'remote',
-      'tracks',
-      'list',
-      'album',
-      { size: 10, from: 10 }
-    )
-    expect(mockInvoke).toHaveBeenCalledTimes(3)
+    expect(invoke).toHaveBeenNthCalledWith(1, 'media.triggerAlbumsEnrichment')
+    expect(invoke).toHaveBeenNthCalledWith(2, 'tracks.list', 'album', {
+      size: 10
+    })
+    expect(invoke).toHaveBeenNthCalledWith(3, 'tracks.list', 'album', {
+      size: 10,
+      from: 10
+    })
+    expect(invoke).toHaveBeenCalledTimes(3)
   })
 })

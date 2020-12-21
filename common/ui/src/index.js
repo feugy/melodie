@@ -3,19 +3,21 @@
 import './tailwind.svelte'
 import './common'
 import App from './App.svelte'
+import { initConnection, send } from './utils'
+import { init } from './stores/settings'
 
-const electron = require('electron')
+async function startApp() {
+  await initConnection(window.serverUrl)
+  await init()
 
-window.addEventListener('error', ({ error, message, filename, colno, lineo }) =>
-  electron.ipcRenderer.send('error', { error, message, filename, colno, lineo })
-)
-window.addEventListener('unhandledrejection', ({ reason }) =>
-  electron.ipcRenderer.send('error', reason)
-)
+  window.addEventListener('error', send)
+  window.addEventListener('unhandledrejection', ({ reason }) =>
+    send({ error: reason })
+  )
 
-const app = new App({
-  target: document.body,
-  props: {}
-})
-
-export default app
+  return new App({
+    target: document.body,
+    props: {}
+  })
+}
+startApp()

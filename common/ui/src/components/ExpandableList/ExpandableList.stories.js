@@ -9,15 +9,15 @@ import ExpandableList, {
 import { artistData } from '../Artist/Artist.stories'
 import { albumData } from '../Album/Album.stories'
 import { trackData } from '../Track/Track.stories'
-import {
-  hrefSinkDecorator,
-  ipcRendererMock
-} from '../../../.storybook/decorators'
+import { playlistsData } from '../AddToPlaylist/AddToPlaylist.stories'
+import { hrefSinkDecorator } from '../../../.storybook/decorators'
+import { websocketResponse } from '../../../.storybook/loaders'
 
 export default {
   title: 'Components/Expandable list',
   excludeStories: /.*Data$/,
-  decorators: [hrefSinkDecorator, ipcRendererMock()]
+  decorators: [hrefSinkDecorator],
+  parameters: { layout: 'padded' }
 }
 
 export const Artists = () => ({
@@ -29,6 +29,7 @@ export const Artists = () => ({
     )
   }
 })
+Artists.loaders = [websocketResponse(() => artistData)]
 
 export const Albums = () => ({
   Component: ExpandableList,
@@ -39,6 +40,7 @@ export const Albums = () => ({
     )
   }
 })
+Albums.loaders = [websocketResponse(() => albumData)]
 
 export const Tracks = () => ({
   Component: ExpandableList,
@@ -49,3 +51,11 @@ export const Tracks = () => ({
     )
   }
 })
+Tracks.loaders = [
+  websocketResponse(() => ({
+    total: playlistsData.length,
+    size: playlistsData.length,
+    from: 0,
+    results: playlistsData
+  }))
+]

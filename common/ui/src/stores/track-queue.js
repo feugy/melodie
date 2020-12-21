@@ -5,7 +5,7 @@ import { ReplaySubject, Subject, merge, BehaviorSubject } from 'rxjs'
 import { scan, pluck, shareReplay, map } from 'rxjs/operators'
 import { knuthShuffle } from 'knuth-shuffle'
 import parse from 'fast-json-parse'
-import { fromServerChannel, createClickObservable } from '../utils'
+import { fromServerEvent, createClickObservable } from '../utils'
 import { settings } from './settings'
 
 const actions$ = new Subject()
@@ -113,11 +113,11 @@ const tracks$ = queue$.pipe(pluck('list'))
 
 const isShuffling$ = queue$.pipe(map(({ backup }) => Array.isArray(backup)))
 
-fromServerChannel(`track-changes`).subscribe(changed =>
+fromServerEvent(`track-changes`).subscribe(changed =>
   actions$.next({ changed })
 )
 
-fromServerChannel(`track-removals`).subscribe(removedIds => {
+fromServerEvent(`track-removals`).subscribe(removedIds => {
   for (const removed of removedIds) {
     let idx = 0
     while (idx !== -1) {
@@ -128,7 +128,7 @@ fromServerChannel(`track-removals`).subscribe(removedIds => {
   }
 })
 
-fromServerChannel(`play-tracks`).subscribe(tracks => {
+fromServerEvent(`play-tracks`).subscribe(tracks => {
   add(tracks, true)
 })
 

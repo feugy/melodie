@@ -7,18 +7,13 @@ const electron = require('electron')
 const { autoUpdater } = require('electron-updater')
 const faker = require('faker')
 const {
-  models,
-  services,
-  utils: { configureExternalLinks }
+  utils: { getLogger }
 } = require('@melodie/core')
+const { sleep } = require('./lib/tests')
+const services = require('./lib/services')
+const { configureExternalLinks } = require('./lib/utils')
 
 let platformSpy = jest.spyOn(os, 'platform')
-const { main } = require('./main')
-const { app } = require('electron')
-
-function sleep(ms = 0) {
-  return new Promise(resolve => setTimeout(resolve, ms))
-}
 
 jest.mock('electron', () => {
   let instanceCount = 0
@@ -26,7 +21,7 @@ jest.mock('electron', () => {
   const app = new EventEmitter()
   app.whenReady = jest.fn().mockResolvedValue()
   app.getPath = jest.fn().mockReturnValue('')
-  app.getAppPath = jest.fn()
+  app.getAppPath = jest.fn().mockReturnValue('')
   app.quit = jest.fn().mockImplementation(() => {
     instanceCount--
   })
@@ -56,12 +51,18 @@ jest.mock('electron-updater', () => {
   return { autoUpdater }
 })
 jest.mock('electron-reload')
-jest.mock('@melodie/core/lib/models')
-jest.mock('@melodie/core/lib/services')
-jest.mock('@melodie/core/lib/utils/links')
+jest.mock('@melodie/core')
+jest.mock('./lib/services')
+jest.mock('./lib/utils/links')
 
 describe('Application test', () => {
   let win
+  let main
+
+  beforeAll(() => {
+    // defer so we could mock electron
+    main = require('./main').main
+  })
 
   beforeEach(() => {
     jest.clearAllMocks()
@@ -73,20 +74,19 @@ describe('Application test', () => {
     electron.BrowserWindow.mockReturnValue(win)
     electron.app.removeAllListeners()
     process.env.NODE_ENV = ''
+    getLogger.mockReturnValue({ info() {}, debug() {}, warn() {}, error() {} })
+    services.start.mockReturnValue(jest.fn())
   })
 
   afterEach(() => {
-    app.emit('window-all-closed')
+    electron.app.emit('window-all-closed')
     process.env.NODE_ENV = 'test'
   })
 
   it('initialize models, tracks service and loads renderer', async () => {
     await main(['asar-location'])
 
-    expect(models.init).toHaveBeenCalledWith('db.sqlite3')
-    expect(models.init).toHaveBeenCalledTimes(1)
-    expect(services.settings.init).toHaveBeenCalledTimes(1)
-    expect(services.tracks.listen).toHaveBeenCalledTimes(1)
+    expect(services.start).toHaveBeenCalledTimes(1)
     expect(win.loadURL).toHaveBeenCalledWith(
       `file://${join(
         dirname(require.resolve('@melodie/ui')),
@@ -100,7 +100,7 @@ describe('Application test', () => {
     expect(autoUpdater.checkForUpdatesAndNotify).toHaveBeenCalledTimes(1)
 
     await sleep(300)
-    expect(services.tracks.play).not.toHaveBeenCalled()
+    expect(services.playFiles).not.toHaveBeenCalled()
   })
 
   it('quits when closing window', async () => {
@@ -113,14 +113,13 @@ describe('Application test', () => {
   it('enforces single instance and focus existing one', async () => {
     await main(['asar-location'])
     expect(electron.app.quit).not.toHaveBeenCalled()
-    expect(models.init).toHaveBeenCalledWith('db.sqlite3')
-    expect(models.init).toHaveBeenCalledTimes(1)
+    expect(services.start).toHaveBeenCalledTimes(1)
     expect(win.isMinimized).not.toHaveBeenCalled()
     expect(win.focus).not.toHaveBeenCalled()
 
     await main(['asar-location'])
     expect(electron.app.quit).toHaveBeenCalledTimes(1)
-    expect(models.init).toHaveBeenCalledTimes(1)
+    expect(services.start).toHaveBeenCalledTimes(1)
     expect(win.isMinimized).toHaveBeenCalledTimes(1)
     expect(win.focus).toHaveBeenCalledTimes(1)
 
@@ -133,14 +132,13 @@ describe('Application test', () => {
 
     await main(['asar-location'])
     expect(electron.app.quit).not.toHaveBeenCalled()
-    expect(models.init).toHaveBeenCalledWith('db.sqlite3')
-    expect(models.init).toHaveBeenCalledTimes(1)
+    expect(services.start).toHaveBeenCalledTimes(1)
     expect(win.isMinimized).not.toHaveBeenCalled()
     expect(win.focus).not.toHaveBeenCalled()
 
     await main(['asar-location'])
     expect(electron.app.quit).toHaveBeenCalledTimes(1)
-    expect(models.init).toHaveBeenCalledTimes(1)
+    expect(services.start).toHaveBeenCalledTimes(1)
     expect(win.isMinimized).toHaveBeenCalledTimes(1)
     expect(win.restore).toHaveBeenCalledTimes(1)
     expect(win.focus).toHaveBeenCalledAfter(win.restore)
@@ -171,8 +169,8 @@ describe('Application test', () => {
         await main(['asar-location', ...files])
 
         await sleep(300)
-        expect(services.tracks.play).toHaveBeenCalledWith(files)
-        expect(services.tracks.play).toHaveBeenCalledTimes(1)
+        expect(services.playFiles).toHaveBeenCalledWith(files)
+        expect(services.playFiles).toHaveBeenCalledTimes(1)
       })
 
       it('plays them when unpacked', async () => {
@@ -180,8 +178,8 @@ describe('Application test', () => {
         await main(['electron', '.', ...files])
 
         await sleep(300)
-        expect(services.tracks.play).toHaveBeenCalledWith(files)
-        expect(services.tracks.play).toHaveBeenCalledTimes(1)
+        expect(services.playFiles).toHaveBeenCalledWith(files)
+        expect(services.playFiles).toHaveBeenCalledTimes(1)
       })
     })
 
@@ -191,15 +189,15 @@ describe('Application test', () => {
       })
 
       it('plays them', async () => {
-        const promise = main(['asar-location', ...files])
+        const promise = main(['asar-location'])
         for (const file of files) {
-          app.emit('open-file', {}, file)
+          electron.app.emit('open-file', {}, file)
         }
         await promise
 
         await sleep(300)
-        expect(services.tracks.play).toHaveBeenCalledWith(files)
-        expect(services.tracks.play).toHaveBeenCalledTimes(1)
+        expect(services.playFiles).toHaveBeenCalledWith(files)
+        expect(services.playFiles).toHaveBeenCalledTimes(1)
       })
     })
   })

@@ -14,7 +14,8 @@ import {
   load
 } from '../../stores/artists'
 import { add } from '../../stores/track-queue'
-import { translate, sleep, mockInvoke } from '../../tests'
+import { invoke } from '../../utils'
+import { translate, sleep } from '../../tests'
 
 jest.mock('svelte-spa-router')
 jest.mock('../../stores/track-queue', () => ({
@@ -118,7 +119,7 @@ describe('artist details route', () => {
 
     expect(load).toHaveBeenCalledWith(artist.id)
     expect(replace).toHaveBeenCalledWith('/artist')
-    expect(mockInvoke).not.toHaveBeenCalled()
+    expect(invoke).not.toHaveBeenCalled()
   })
 
   describe('given an artist', () => {
@@ -150,13 +151,11 @@ describe('artist details route', () => {
       ).toBeInTheDocument()
 
       expect(load).toHaveBeenCalledWith(artist.id)
-      expect(mockInvoke).toHaveBeenCalledWith(
-        'remote',
-        'media',
-        'triggerArtistEnrichment',
+      expect(invoke).toHaveBeenCalledWith(
+        'media.triggerArtistEnrichment',
         artist.id
       )
-      expect(mockInvoke).toHaveBeenCalledTimes(1)
+      expect(invoke).toHaveBeenCalledTimes(1)
     })
 
     it('enqueues all tracks', async () => {

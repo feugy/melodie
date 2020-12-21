@@ -4,7 +4,7 @@
   import AddToPlaylist from './AddToPlaylist.svelte'
   import Dropdown from '../Dropdown/Dropdown.svelte'
   import { add } from '../../stores/track-queue'
-  import { openContainingFolder } from '../../utils'
+  import { invoke } from '../../utils'
 
   export let track
   export let additionalOptions = []
@@ -27,7 +27,7 @@
     {
       label: $_('open folder'),
       icon: 'launch',
-      act: () => openContainingFolder(track)
+      act: () => invoke('tracks.openContainingFolder', track)
     }
   ]
 </script>

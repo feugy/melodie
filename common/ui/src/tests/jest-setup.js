@@ -1,11 +1,6 @@
 'use strict'
 
-const EventEmitter = require('events')
 import '../common'
-
-export const mockInvoke = jest.fn()
-export const mockIpcRenderer = new EventEmitter()
-mockIpcRenderer.invoke = mockInvoke
 
 // jsdom does not support loading and playback operations
 window.HTMLMediaElement.prototype.load = jest.fn()
@@ -33,9 +28,32 @@ window.ResizeObserver = function () {
   }
 }
 
-jest.mock('electron', () => ({
-  ipcRenderer: mockIpcRenderer
-}))
+jest.mock('../utils/connection', () => {
+  const { Subject } = require('rxjs')
+  const { filter, pluck } = require('rxjs/operators')
+  const serverEmitter = new Subject()
+  const lastInvokation = new Subject()
+  const observables = new Map()
+  return {
+    invoke: jest.fn(),
+    // same implementation as real, except the source
+    fromServerEvent(name) {
+      if (!observables.has(name)) {
+        observables.set(
+          name,
+          serverEmitter.pipe(
+            filter(msg => msg.event === name),
+            pluck('args')
+          )
+        )
+      }
+      return observables.get(name)
+    },
+    lastInvokation,
+    // usefull for simulating server events
+    serverEmitter
+  }
+})
 
 global.RXJS_VERSION = 'a.b.c'
 global.TAILWINDCSS_VERSION = 'x.y.z'

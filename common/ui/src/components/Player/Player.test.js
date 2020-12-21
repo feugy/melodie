@@ -15,7 +15,8 @@ import {
   playNext
 } from '../../stores/track-queue'
 import * as playlistStore from '../../stores/playlists'
-import { sleep, mockInvoke } from '../../tests'
+import { invoke } from '../../utils'
+import { sleep } from '../../tests'
 
 const { play, pause } = HTMLMediaElement.prototype
 
@@ -54,7 +55,7 @@ describe('Player component', () => {
       this.dispatchEvent(new Event('pause'))
     })
     clear()
-    mockInvoke.mockResolvedValueOnce({ total: 0, results: [] })
+    invoke.mockResolvedValueOnce({ total: 0, results: [] })
   })
 
   afterEach(() => {
@@ -302,7 +303,7 @@ describe('Player component', () => {
     beforeEach(async () => {
       jest.resetAllMocks()
       playlistStore.reset()
-      mockInvoke.mockResolvedValue({
+      invoke.mockResolvedValue({
         total: playlists.length,
         size: playlists.length,
         from: 0,
@@ -328,23 +329,19 @@ describe('Player component', () => {
       await fireEvent.click(screen.queryByText('library_add'))
       await fireEvent.click(screen.queryByText(playlist.name))
 
-      expect(mockInvoke).toHaveBeenNthCalledWith(
+      expect(invoke).toHaveBeenNthCalledWith(
         1,
-        'remote',
-        'playlists',
-        'append',
+        'playlists.append',
         playlist.id,
         [trackListData[3].id]
       )
-      expect(mockInvoke).toHaveBeenNthCalledWith(
+      expect(invoke).toHaveBeenNthCalledWith(
         2,
-        'remote',
-        'playlists',
-        'append',
+        'playlists.append',
         playlist.id,
         [trackListData[0].id]
       )
-      expect(mockInvoke).toHaveBeenCalledTimes(2)
+      expect(invoke).toHaveBeenCalledTimes(2)
     })
   })
 })

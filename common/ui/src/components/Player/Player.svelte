@@ -32,6 +32,7 @@
 
   onMount(() => {
     let gainNode
+    // TODO seems to break on Chrome
     if ('AudioContext' in window) {
       const context = new AudioContext()
       const sourceNode = context.createMediaElementSource(player)

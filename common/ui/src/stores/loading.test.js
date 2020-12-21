@@ -4,7 +4,8 @@ import { isLoading } from './loading'
 import * as albums from './albums'
 import * as artists from './artists'
 import * as playlists from './playlists'
-import { mockIpcRenderer, mockInvoke, sleep } from '../tests'
+import { invoke, serverEmitter } from '../utils'
+import { sleep } from '../tests'
 
 describe('loading store', () => {
   let subscription
@@ -16,7 +17,7 @@ describe('loading store', () => {
     subscription = isLoading.subscribe(isLoading => {
       status = isLoading
     })
-    mockIpcRenderer.emit('tracking')
+    serverEmitter.next({ event: 'tracking' })
   })
 
   afterEach(() => {
@@ -28,7 +29,7 @@ describe('loading store', () => {
   })
 
   it('is loading until at least one observable is', async () => {
-    mockInvoke.mockImplementation(async (channel, service, method, type) => {
+    invoke.mockImplementation(async (invoked, type) => {
       await sleep(type !== 'artist' ? 10 : 100)
       return {
         total: 0,
@@ -38,11 +39,11 @@ describe('loading store', () => {
       }
     })
     expect(status).toBe(false)
-    mockIpcRenderer.emit('tracking', null, { inProgress: true })
+    serverEmitter.next({ event: 'tracking', args: { inProgress: true } })
     // tracking started
     expect(status).toBe(true)
     albums.list()
-    mockIpcRenderer.emit('tracking', null, { inProgress: false })
+    serverEmitter.next({ event: 'tracking', args: { inProgress: false } })
     await sleep(5)
     // albums started
     expect(status).toBe(true)

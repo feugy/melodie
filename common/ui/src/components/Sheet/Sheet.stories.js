@@ -4,7 +4,8 @@ import Sheet from './Sheet.stories.svelte'
 
 export default {
   title: 'Components/Sheet',
-  excludeStories: /.*Data$/
+  excludeStories: /.*Data$/,
+  parameters: { layout: null }
 }
 
 export const Default = () => ({

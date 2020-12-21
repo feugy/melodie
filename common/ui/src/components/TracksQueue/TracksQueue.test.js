@@ -16,7 +16,8 @@ import {
 import * as playlistStore from '../../stores/playlists'
 import * as tutorial from '../../stores/tutorial'
 import * as snackbars from '../../stores/snackbars'
-import { addRefs, mockInvoke, sleep, translate } from '../../tests'
+import { invoke } from '../../utils'
+import { addRefs, sleep, translate } from '../../tests'
 
 describe('TracksQueue component', () => {
   beforeAll(() => {
@@ -75,7 +76,7 @@ describe('TracksQueue component', () => {
   describe('given a list of tracks', () => {
     beforeEach(async () => {
       add(tracks)
-      mockInvoke.mockResolvedValueOnce({ total: 0, results: [] })
+      invoke.mockResolvedValueOnce({ total: 0, results: [] })
       render(html`<${TracksQueue} />`)
       await tick()
     })
@@ -181,7 +182,7 @@ describe('TracksQueue component', () => {
         data => (snackbar = data)
       )
       add(tracks.slice(0, 2))
-      mockInvoke.mockResolvedValueOnce({ total: 0, results: [] })
+      invoke.mockResolvedValueOnce({ total: 0, results: [] })
       tutorial.start()
       await tick()
       render(html`<${TracksQueue} />`)
@@ -263,7 +264,7 @@ describe('TracksQueue component', () => {
     beforeEach(async () => {
       add(tracks)
       playlistStore.reset()
-      mockInvoke.mockResolvedValueOnce({
+      invoke.mockResolvedValueOnce({
         total: playlists.length,
         size: playlists.length,
         from: 0,
@@ -282,14 +283,12 @@ describe('TracksQueue component', () => {
       await sleep(250)
 
       expectListItems(tracks)
-      expect(mockInvoke).toHaveBeenCalledWith(
-        'remote',
-        'playlists',
-        'append',
+      expect(invoke).toHaveBeenCalledWith(
+        'playlists.append',
         playlist.id,
         tracks.map(({ id }) => id)
       )
-      expect(mockInvoke).toHaveBeenCalledTimes(2)
+      expect(invoke).toHaveBeenCalledTimes(2)
     })
   })
 })

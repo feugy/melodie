@@ -1,10 +1,8 @@
 'use strict'
 
-export * from './channel'
 export * from './clicks'
-export * from './invoke'
+export * from './connection'
 export * from './links'
 export * from './list-store-factory'
 export * from './path'
-export * from './shell'
 export * from './time'

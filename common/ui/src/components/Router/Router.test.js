@@ -4,7 +4,6 @@ import { screen, render } from '@testing-library/svelte'
 import faker from 'faker'
 import html from 'svelte-htm'
 import Router from './Router.svelte'
-import { translate } from '../../tests'
 import * as search from '../../stores/search'
 import * as albums from '../../stores/albums'
 import * as artists from '../../stores/artists'
@@ -12,7 +11,8 @@ import * as playlists from '../../stores/playlists'
 import { albumData } from '../Album/Album.stories'
 import { artistData } from '../Artist/Artist.stories'
 import { playlistData } from '../Playlist/Playlist.stories'
-import { sleep, mockInvoke } from '../../tests'
+import { invoke } from '../../utils'
+import { sleep, translate } from '../../tests'
 
 jest.mock('../../stores/albums', () => {
   const { Subject, BehaviorSubject } = require('rxjs')
@@ -146,7 +146,7 @@ describe('Router component', () => {
   })
 
   it('renders settings', async () => {
-    mockInvoke.mockResolvedValue({})
+    invoke.mockResolvedValue({})
     location.hash = `#/settings`
     render(html`<${Router} scrollable=${scrollable} />`)
     await sleep()

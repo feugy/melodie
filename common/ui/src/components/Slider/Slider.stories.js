@@ -5,7 +5,8 @@ import Slider from './Slider.svelte'
 
 export default {
   title: 'Components/Slider',
-  excludeStories: /.*Data$/
+  excludeStories: /.*Data$/,
+  parameters: { layout: 'padded' }
 }
 
 export const actionsData = {

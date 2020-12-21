@@ -4,6 +4,15 @@ import initStoryshots from '@storybook/addon-storyshots'
 import electron from 'electron'
 import { sleep } from './tests'
 
+jest.mock('../.storybook/loaders', () => {
+  const { invoke } = require('./utils')
+  return {
+    websocketResponse(mock) {
+      invoke.mockImplementation(async (...args) => mock(...args))
+    }
+  }
+})
+
 let originalRandom
 
 beforeAll(() => {
@@ -14,6 +23,8 @@ beforeAll(() => {
   // JSDom does not support scrollIntoView as it doesn't do layout
   Element.prototype.scrollIntoView = jest.fn()
 })
+
+beforeEach(jest.clearAllMocks)
 
 afterAll(() => {
   Math.random = originalRandom

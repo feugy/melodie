@@ -2,14 +2,14 @@
 
 import { action } from '@storybook/addon-actions'
 import TrackDropdown from './TrackDropdown.svelte'
-import { ipcRendererMock } from '../../../.storybook/decorators'
+import { websocketResponse } from '../../../.storybook/loaders'
 import { list } from '../../stores/playlists'
 
 export default {
   title: 'Components/Track Dropdown',
   excludeStories: /.*Data$/,
-  decorators: [
-    ipcRendererMock(() => ({
+  loaders: [
+    websocketResponse(() => ({
       total: playlistsData.length,
       size: playlistsData.length,
       from: 0,

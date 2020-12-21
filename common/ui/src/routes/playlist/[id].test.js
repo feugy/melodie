@@ -15,13 +15,8 @@ import {
   save
 } from '../../stores/playlists'
 import { add } from '../../stores/track-queue'
-import {
-  addRefs,
-  mockInvoke,
-  mockIpcRenderer,
-  sleep,
-  translate
-} from '../../tests'
+import { invoke, serverEmitter } from '../../utils'
+import { addRefs, sleep, translate } from '../../tests'
 
 jest.mock('svelte-spa-router')
 jest.mock('../../stores/track-queue', () => ({
@@ -211,13 +206,8 @@ describe('playlist details route', () => {
     it('exports playlist', async () => {
       await fireEvent.click(screen.queryByText('save_alt'))
 
-      expect(mockInvoke).toHaveBeenCalledWith(
-        'remote',
-        'playlists',
-        'export',
-        playlist.id
-      )
-      expect(mockInvoke).toHaveBeenCalledTimes(1)
+      expect(invoke).toHaveBeenCalledWith('playlists.export', playlist.id)
+      expect(invoke).toHaveBeenCalledTimes(1)
     })
 
     it('ignores entered, empty names', async () => {
@@ -295,15 +285,16 @@ describe('playlist details route', () => {
 
     it(`updates on playlist's track change`, async () => {
       load.mockReset()
-      mockIpcRenderer.emit('track-changes', null, [playlist.tracks[1]])
+      serverEmitter.next({ event: 'track-changes', args: [playlist.tracks[1]] })
       expect(load).toHaveBeenCalledTimes(1)
     })
 
     it('ignores changes on other tracks', async () => {
       load.mockReset()
-      mockIpcRenderer.emit('track-changes', null, [
-        { id: faker.random.number() }
-      ])
+      serverEmitter.next({
+        event: 'track-changes',
+        args: [{ id: faker.random.number() }]
+      })
       await sleep()
       expect(load).not.toHaveBeenCalled()
     })

@@ -3,7 +3,8 @@
 import Sticky from './Sticky.stories.svelte'
 
 export default {
-  title: 'Components/Sticky'
+  title: 'Components/Sticky',
+  parameters: { layout: null }
 }
 
 export const Default = () => ({

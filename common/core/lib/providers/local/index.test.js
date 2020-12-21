@@ -4,7 +4,6 @@ const { basename, dirname, extname, join, resolve } = require('path')
 const os = require('os')
 const fs = require('fs-extra')
 const faker = require('faker')
-const electron = require('electron')
 const provider = require('.')
 const tagReader = require('./tag-reader')
 const playlistUtils = require('./playlist')
@@ -20,7 +19,7 @@ jest.mock('../../models/albums')
 jest.mock('../../models/settings')
 jest.mock('../../services/tracks')
 jest.mock('../../services/playlists')
-jest.mock('../../utils/electron-remote')
+jest.mock('../../utils/connection')
 jest.mock('./cover-finder')
 jest.mock('./tag-reader', () => ({
   formats: ['.mp3', '.ogg', '.flac'],
@@ -56,17 +55,16 @@ describe('Local provider', () => {
   afterEach(() => provider.unwatchAll())
 
   describe('findArtistArtwork()', () => {
-    const folder = join(os.tmpdir(), faker.random.uuid())
+    const artworkFolder = process.env.ARTWORK_DESTINATION
 
     beforeEach(async () => {
       jest.resetAllMocks()
-      await fs.ensureDir(folder)
-      electron.app.getPath.mockReturnValue(folder)
+      await fs.ensureDir(artworkFolder)
     })
 
     afterEach(async () => {
       try {
-        await fs.remove(folder)
+        await fs.remove(artworkFolder)
       } catch (err) {
         // ignore missing files
       }
@@ -76,8 +74,8 @@ describe('Local provider', () => {
       const searched = faker.random.word()
       const id = hash(searched)
       const files = [
-        join(folder, 'melodie-media', `${id}.jpg`),
-        join(folder, 'melodie-media', `${id}.png`)
+        join(artworkFolder, `${id}.jpg`),
+        join(artworkFolder, `${id}.png`)
       ]
       for (const file of files) {
         await fs.ensureFile(file)

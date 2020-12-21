@@ -3,12 +3,23 @@
 import { BehaviorSubject } from 'rxjs'
 import TracksTable from './TracksTable.svelte'
 import { disksData } from '../DisksList/DisksList.stories'
+import { playlistsData } from '../AddToPlaylist/AddToPlaylist.stories'
 import { hrefSinkDecorator } from '../../../.storybook/decorators'
+import { websocketResponse } from '../../../.storybook/loaders'
 
 export default {
   title: 'Components/Tracks table',
   excludeStories: /.*Data$/,
-  decorators: [hrefSinkDecorator]
+  decorators: [hrefSinkDecorator],
+  loaders: [
+    websocketResponse(() => ({
+      total: playlistsData.length,
+      size: playlistsData.length,
+      from: 0,
+      results: playlistsData
+    }))
+  ],
+  parameters: { layout: null }
 }
 
 export const tracksData = disksData.map((track, i) => ({

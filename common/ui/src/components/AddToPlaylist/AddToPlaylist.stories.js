@@ -2,13 +2,13 @@
 
 import AddToPlaylist from './AddToPlaylist.svelte'
 import { tracksData } from '../TracksTable/TracksTable.stories'
-import { ipcRendererMock } from '../../../.storybook/decorators'
+import { websocketResponse } from '../../../.storybook/loaders'
 
 export default {
   title: 'Components/AddToPlaylist',
   excludeStories: /.*Data$/,
-  decorators: [
-    ipcRendererMock(() => ({
+  loaders: [
+    websocketResponse(() => ({
       total: playlistsData.length,
       size: playlistsData.length,
       from: 0,

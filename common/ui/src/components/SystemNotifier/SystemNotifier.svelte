@@ -32,6 +32,7 @@
           icon: toDOMSrc(media),
           silent: true
         })
+        // TODO: when running on the web, focus the browser
         notif.onclick = () => invoke('core.focusWindow')
       }
 

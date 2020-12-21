@@ -1,23 +1,20 @@
 'use strict'
 
-const electron = require('electron')
 const faker = require('faker')
 const os = require('os')
 const fs = require('fs-extra')
 const { join } = require('path')
 const { EventEmitter } = require('events')
 const {
+  utils: { getLogger }
+} = require('@melodie/core')
+const electron = require('electron')
+const { sleep } = require('../tests')
+const {
   manageState,
   unmanageState,
   focusOnNotification
 } = require('./window-state')
-const { sleep } = require('../tests')
-const { getLogger } = require('./logger')
-
-jest.mock('./logger', () => {
-  const logger = { warn: jest.fn() }
-  return { getLogger: () => logger }
-})
 
 function makeWin(id = faker.random.number()) {
   const win = new EventEmitter()
@@ -42,13 +39,16 @@ function makeWin(id = faker.random.number()) {
   return win
 }
 
+const tmpdir = os.tmpdir()
+
 describe('window state management utilities', () => {
   let win
-  const logger = getLogger()
+  let warn
 
   beforeEach(() => {
-    jest.resetAllMocks()
-    electron.app.getPath.mockReturnValue(os.tmpdir())
+    jest.clearAllMocks()
+    electron.app.getPath.mockReturnValue(tmpdir)
+    warn = jest.spyOn(getLogger('utils/window-state'), 'warn')
   })
 
   afterEach(() => win && unmanageState(win))
@@ -60,13 +60,13 @@ describe('window state management utilities', () => {
     expect(win.maximize).not.toHaveBeenCalled()
     expect(win.minimize).not.toHaveBeenCalled()
     expect(win.setFullScreen).not.toHaveBeenCalled()
-    expect(logger.warn).not.toHaveBeenCalled()
+    expect(warn).not.toHaveBeenCalled()
   })
 
   it('reports unparseable state file', async () => {
     win = makeWin()
 
-    await fs.writeFile(join(os.tmpdir(), `state-${win.id}.json`), 'unparseable')
+    await fs.writeFile(join(tmpdir, `state-${win.id}.json`), 'unparseable')
 
     expect(() => manageState(win)).not.toThrow()
 
@@ -76,7 +76,7 @@ describe('window state management utilities', () => {
     expect(win.maximize).not.toHaveBeenCalled()
     expect(win.minimize).not.toHaveBeenCalled()
     expect(win.setFullScreen).not.toHaveBeenCalled()
-    expect(logger.warn).toHaveBeenCalledWith(
+    expect(warn).toHaveBeenCalledWith(
       expect.any(Object),
       `failed to parse previous state: Unexpected token u in JSON at position 0`
     )
@@ -84,7 +84,7 @@ describe('window state management utilities', () => {
 
   it('reports saving errors', async () => {
     win = makeWin()
-    const file = join(os.tmpdir(), `state-${win.id}.json`)
+    const file = join(tmpdir, `state-${win.id}.json`)
 
     manageState(win)
 
@@ -94,7 +94,7 @@ describe('window state management utilities', () => {
     win.emit('move')
     await sleep(300)
 
-    expect(logger.warn).toHaveBeenCalledWith(
+    expect(warn).toHaveBeenCalledWith(
       expect.any(Object),
       expect.stringContaining('failed to save state') // linux throws EACCESS, windows EPERM
     )
@@ -103,7 +103,7 @@ describe('window state management utilities', () => {
   it('does not unmanaged unknown window', async () => {
     win = makeWin()
     expect(() => unmanageState(win)).not.toThrow()
-    expect(logger.warn).not.toHaveBeenCalled()
+    expect(warn).not.toHaveBeenCalled()
   })
 
   it('restores previously saved state', async () => {
@@ -115,7 +115,7 @@ describe('window state management utilities', () => {
       isFullScreen: false
     }
     await fs.writeFile(
-      join(os.tmpdir(), `state-${win.id}.json`),
+      join(tmpdir, `state-${win.id}.json`),
       JSON.stringify(state)
     )
 
@@ -135,7 +135,7 @@ describe('window state management utilities', () => {
       isFullScreen: true
     }
     await fs.writeFile(
-      join(os.tmpdir(), `state-${win.id}.json`),
+      join(tmpdir, `state-${win.id}.json`),
       JSON.stringify(state)
     )
 
@@ -155,7 +155,7 @@ describe('window state management utilities', () => {
       isFullScreen: false
     }
     await fs.writeFile(
-      join(os.tmpdir(), `state-${win.id}.json`),
+      join(tmpdir, `state-${win.id}.json`),
       JSON.stringify(state)
     )
 
@@ -190,7 +190,7 @@ describe('window state management utilities', () => {
 
       expect(
         JSON.parse(
-          await fs.readFile(join(os.tmpdir(), `state-${win.id}.json`), 'utf8')
+          await fs.readFile(join(tmpdir, `state-${win.id}.json`), 'utf8')
         )
       ).toEqual({
         ...bounds,
@@ -225,7 +225,7 @@ describe('window state management utilities', () => {
 
     expect(
       JSON.parse(
-        await fs.readFile(join(os.tmpdir(), `state-${win.id}.json`), 'utf8')
+        await fs.readFile(join(tmpdir, `state-${win.id}.json`), 'utf8')
       )
     ).toEqual({
       ...bounds,

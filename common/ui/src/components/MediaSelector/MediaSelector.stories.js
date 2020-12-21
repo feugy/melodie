@@ -3,16 +3,16 @@
 import MediaSelector from './MediaSelector.stories.svelte'
 import { actionsData } from '../Dialogue/Dialogue.stories'
 import { artistData } from '../Artist/Artist.stories'
-import { ipcRendererMock } from '../../../.storybook/decorators'
+import { websocketResponse } from '../../../.storybook/loaders'
 
 export default {
   title: 'Components/Media Selector',
   excludeStories: /.*Data$/,
-  decorators: [
-    ipcRendererMock(method => {
-      if (method === 'findForArtist') {
+  loaders: [
+    websocketResponse(invoked => {
+      if (invoked === 'media.findForArtist') {
         return artistSuggestionsData
-      } else if (method === 'findForAlbum') {
+      } else if (invoked === 'media.findForAlbum') {
         return albumSuggestionsData
       }
     })

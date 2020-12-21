@@ -1,8 +1,6 @@
 'use strict'
 
 const faker = require('faker')
-const electron = require('electron')
-const os = require('os')
 const fs = require('fs-extra')
 const { constants } = require('fs')
 const { resolve } = require('path')
@@ -29,9 +27,11 @@ jest.mock('../models/artists')
 jest.mock('../models/albums')
 jest.mock('../models/tracks')
 jest.mock('../models/settings')
-jest.mock('../utils/electron-remote')
+jest.mock('../utils/connection')
 
 const fixtures = resolve(__dirname, '..', '..', '..', 'fixtures')
+
+const { ARTWORK_DESTINATION } = process.env
 
 describe('Media service', () => {
   beforeEach(jest.clearAllMocks)
@@ -148,12 +148,12 @@ describe('Media service', () => {
     const name = faker.commerce.productName()
     const track1 = {
       id: faker.random.number({ min: 9999 }),
-      path: resolve(os.tmpdir(), name, faker.system.fileName()),
+      path: resolve(ARTWORK_DESTINATION, faker.system.fileName()),
       media: null
     }
     const track2 = {
       id: faker.random.number({ min: 9999 }),
-      path: resolve(os.tmpdir(), name, faker.system.fileName()),
+      path: resolve(ARTWORK_DESTINATION, faker.system.fileName()),
       media: null
     }
     const album = {
@@ -167,22 +167,22 @@ describe('Media service', () => {
       [
         'remote',
         'https://www.theaudiodb.com/images/media/album/thumb/swxywp1367234202.jpg',
-        resolve(os.tmpdir(), name, `cover.jpeg`)
+        resolve(ARTWORK_DESTINATION, `cover.jpeg`)
       ],
       [
         'local',
         resolve(fixtures, 'cover.jpg'),
-        resolve(os.tmpdir(), name, 'cover.jpg')
+        resolve(ARTWORK_DESTINATION, 'cover.jpg')
       ]
     ])('given a %s media', (unused, source, media) => {
       beforeEach(async () => {
-        electron.app.getPath.mockReturnValue(os.tmpdir())
         try {
           await fs.unlink(media)
         } catch (err) {
           // ignore missing files
         }
       })
+
       it('downloads and save album cover', async () => {
         const savedAlbum = { ...album, media }
         const savedTrack1 = { ...track1, media }
@@ -269,7 +269,7 @@ describe('Media service', () => {
     })
 
     it('handles download failure', async () => {
-      const media = resolve(os.tmpdir(), 'media', `${album.id}.jpg`)
+      const media = resolve(ARTWORK_DESTINATION, `${album.id}.jpg`)
       albumsModel.getById.mockResolvedValueOnce({ ...album, media })
       tracksModel.getByIds.mockResolvedValueOnce([track1, track2])
       const oldContent = 'old content'
@@ -289,7 +289,7 @@ describe('Media service', () => {
     }, 10e3)
 
     it('handles unknown source file', async () => {
-      const media = resolve(os.tmpdir(), 'media', `${album.id}.jpg`)
+      const media = resolve(ARTWORK_DESTINATION, `${album.id}.jpg`)
       albumsModel.getById.mockResolvedValueOnce({ ...album, media })
       tracksModel.getByIds.mockResolvedValueOnce([track1, track2])
       const oldContent = 'old content'
@@ -318,22 +318,22 @@ describe('Media service', () => {
       [
         'remote',
         'https://www.theaudiodb.com/images/media/artist/thumb/uxrqxy1347913147.jpg',
-        resolve(os.tmpdir(), 'melodie-media', `${artist.id}.jpeg`)
+        resolve(ARTWORK_DESTINATION, `${artist.id}.jpeg`)
       ],
       [
         'local',
         resolve(fixtures, 'avatar.jpg'),
-        resolve(os.tmpdir(), 'melodie-media', `${artist.id}.jpg`)
+        resolve(ARTWORK_DESTINATION, `${artist.id}.jpg`)
       ]
     ])('given a %s media', (unused, source, media) => {
       beforeEach(async () => {
-        electron.app.getPath.mockReturnValue(os.tmpdir())
         try {
           await fs.unlink(media)
         } catch (err) {
           // ignore missing files
         }
       })
+
       it('downloads and adds media artist', async () => {
         const savedArtist = { ...artist, media }
         artistsModel.getById.mockResolvedValueOnce(artist)
@@ -385,7 +385,7 @@ describe('Media service', () => {
     })
 
     it('handles download failure', async () => {
-      const media = resolve(os.tmpdir(), 'media', `${artist.id}.jpg`)
+      const media = resolve(ARTWORK_DESTINATION, `${artist.id}.jpg`)
       artistsModel.getById.mockResolvedValueOnce({ ...artist, media })
       const oldContent = 'old content'
       await fs.ensureFile(media)
@@ -403,7 +403,7 @@ describe('Media service', () => {
     }, 10e3)
 
     it('handles unknown source file', async () => {
-      const media = resolve(os.tmpdir(), 'media', `${artist.id}.jpg`)
+      const media = resolve(ARTWORK_DESTINATION, `${artist.id}.jpg`)
       artistsModel.getById.mockResolvedValueOnce({ ...artist, media })
       const oldContent = 'old content'
       await fs.ensureFile(media)
@@ -422,10 +422,7 @@ describe('Media service', () => {
   })
 
   describe('triggerArtistsEnrichment', () => {
-    beforeEach(async () => {
-      electron.app.getPath.mockReturnValue(os.tmpdir())
-      await fs.ensureDir(resolve(os.tmpdir(), 'melodie-media'))
-    })
+    beforeEach(() => fs.ensureDir(ARTWORK_DESTINATION))
 
     afterEach(() => mediaService.stopEnrichment())
 
@@ -487,8 +484,7 @@ describe('Media service', () => {
       const savedArtists = artists.map(artist => ({
         ...artist,
         media: resolve(
-          os.tmpdir(),
-          'melodie-media',
+          ARTWORK_DESTINATION,
           `${artist.id}.${artist === artists[0] ? 'jpg' : 'jpeg'}`
         )
       }))
@@ -702,7 +698,7 @@ describe('Media service', () => {
       discogs.findArtistArtwork.mockResolvedValue([])
       const savedArtists = artists.map(artist => ({
         ...artist,
-        media: resolve(os.tmpdir(), 'melodie-media', `${artist.id}.jpg`)
+        media: resolve(ARTWORK_DESTINATION, `${artist.id}.jpg`)
       }))
 
       const now = Date.now()
@@ -733,7 +729,7 @@ describe('Media service', () => {
     it('stops previous enrichment', async () => {
       const tracks = Array.from({ length: 5 }, () => ({
         id: faker.random.number({ min: 9999 }),
-        path: resolve(os.tmpdir(), 'media', faker.system.fileName())
+        path: resolve(ARTWORK_DESTINATION, faker.system.fileName())
       }))
       const albums = Array.from({ length: 5 }, (v, i) => ({
         id: faker.random.number({ min: 9999 }),
@@ -766,7 +762,7 @@ describe('Media service', () => {
       discogs.findArtistArtwork.mockResolvedValue([])
       const savedArtists = artists.map(artist => ({
         ...artist,
-        media: resolve(os.tmpdir(), 'melodie-media', `${artist.id}.jpg`)
+        media: resolve(ARTWORK_DESTINATION, `${artist.id}.jpg`)
       }))
 
       const now = Date.now()
@@ -805,9 +801,8 @@ describe('Media service', () => {
 
   describe('triggerArtistEnrichment', () => {
     beforeEach(async () => {
-      electron.app.getPath.mockReturnValue(os.tmpdir())
       settingsModel.get.mockResolvedValue({ locale: 'en' })
-      await fs.ensureDir(resolve(os.tmpdir(), 'melodie-media'))
+      await fs.ensureDir(ARTWORK_DESTINATION)
     })
 
     it('saves first returned artwork', async () => {
@@ -819,7 +814,7 @@ describe('Media service', () => {
       }
       const savedArtist = {
         ...artist,
-        media: resolve(os.tmpdir(), 'melodie-media', `${artist.id}.jpeg`)
+        media: resolve(ARTWORK_DESTINATION, `${artist.id}.jpeg`)
       }
       artistsModel.getById.mockResolvedValue(artist)
       artistsModel.save.mockResolvedValueOnce({ saved: [savedArtist] })
@@ -862,7 +857,7 @@ describe('Media service', () => {
       const artist = {
         id,
         name: faker.name.findName(),
-        media: resolve(os.tmpdir(), 'melodie-media', `${id}.jpeg`),
+        media: resolve(ARTWORK_DESTINATION, `${id}.jpeg`),
         trackIds: []
       }
       const bio1 = {
@@ -929,7 +924,7 @@ describe('Media service', () => {
       const savedArtist = {
         ...artist,
         bio,
-        media: resolve(os.tmpdir(), 'melodie-media', `${artist.id}.jpeg`)
+        media: resolve(ARTWORK_DESTINATION, `${artist.id}.jpeg`)
       }
       artistsModel.getById.mockResolvedValue(artist)
       artistsModel.save.mockResolvedValueOnce({ saved: [savedArtist] })
@@ -991,7 +986,7 @@ describe('Media service', () => {
 
     it('does not override existing media', async () => {
       const id = faker.random.number({ min: 9999 })
-      const media = resolve(os.tmpdir(), 'melodie-media', `${id}.jpeg`)
+      const media = resolve(ARTWORK_DESTINATION, `${id}.jpeg`)
       const bio = {
         en: `English ${faker.lorem.words()}`,
         fr: `Français ${faker.lorem.words()}`
@@ -1053,7 +1048,7 @@ describe('Media service', () => {
       const artist = {
         id,
         name: faker.name.findName(),
-        media: resolve(os.tmpdir(), 'melodie-media', `${id}.jpg`),
+        media: resolve(ARTWORK_DESTINATION, `${id}.jpg`),
         bio: { en: faker.lorem.words() },
         trackIds: []
       }
@@ -1107,10 +1102,7 @@ describe('Media service', () => {
   })
 
   describe('triggerAlbumsEnrichment', () => {
-    beforeEach(async () => {
-      electron.app.getPath.mockReturnValue(os.tmpdir())
-      await fs.ensureDir(resolve(os.tmpdir(), 'media'))
-    })
+    beforeEach(() => fs.ensureDir(ARTWORK_DESTINATION))
 
     afterEach(() => mediaService.stopEnrichment())
 
@@ -1118,11 +1110,11 @@ describe('Media service', () => {
       const tracks = [
         {
           id: faker.random.number({ min: 9999 }),
-          path: resolve(os.tmpdir(), 'media', faker.system.fileName())
+          path: resolve(ARTWORK_DESTINATION, faker.system.fileName())
         },
         {
           id: faker.random.number({ min: 9999 }),
-          path: resolve(os.tmpdir(), 'media', faker.system.fileName())
+          path: resolve(ARTWORK_DESTINATION, faker.system.fileName())
         }
       ]
       const albums = [
@@ -1179,16 +1171,14 @@ describe('Media service', () => {
       const savedAlbums = albums.map(album => ({
         ...album,
         media: resolve(
-          os.tmpdir(),
-          'media',
+          ARTWORK_DESTINATION,
           `cover.${album === albums[0] ? 'jpg' : 'jpeg'}`
         )
       }))
       const savedTracks = tracks.map(track => ({
         ...track,
         media: resolve(
-          os.tmpdir(),
-          'media',
+          ARTWORK_DESTINATION,
           `cover.${track === tracks[0] ? 'jpg' : 'jpeg'}`
         )
       }))
@@ -1262,11 +1252,11 @@ describe('Media service', () => {
       const tracks = [
         {
           id: faker.random.number({ min: 9999 }),
-          path: resolve(os.tmpdir(), 'media', faker.system.fileName())
+          path: resolve(ARTWORK_DESTINATION, faker.system.fileName())
         },
         {
           id: faker.random.number({ min: 9999 }),
-          path: resolve(os.tmpdir(), 'media', faker.system.fileName())
+          path: resolve(ARTWORK_DESTINATION, faker.system.fileName())
         }
       ]
       const albums = [
@@ -1350,11 +1340,11 @@ describe('Media service', () => {
       const tracks = [
         {
           id: faker.random.number({ min: 9999 }),
-          path: resolve(os.tmpdir(), 'media', faker.system.fileName())
+          path: resolve(ARTWORK_DESTINATION, faker.system.fileName())
         },
         {
           id: faker.random.number({ min: 9999 }),
-          path: resolve(os.tmpdir(), 'media', faker.system.fileName())
+          path: resolve(ARTWORK_DESTINATION, faker.system.fileName())
         }
       ]
       const albums = [
@@ -1431,7 +1421,7 @@ describe('Media service', () => {
     it('does not process more than N albums per minute', async () => {
       const tracks = Array.from({ length: 5 }, () => ({
         id: faker.random.number({ min: 9999 }),
-        path: resolve(os.tmpdir(), 'media', faker.system.fileName())
+        path: resolve(ARTWORK_DESTINATION, faker.system.fileName())
       }))
       const albums = Array.from({ length: 5 }, (v, i) => ({
         id: faker.random.number({ min: 9999 }),
@@ -1459,11 +1449,11 @@ describe('Media service', () => {
       discogs.findAlbumCover.mockResolvedValue([])
       const savedAlbums = albums.map(artist => ({
         ...artist,
-        media: resolve(os.tmpdir(), 'media', 'cover.jpg')
+        media: resolve(ARTWORK_DESTINATION, 'cover.jpg')
       }))
       const savedTracks = tracks.map(track => ({
         ...track,
-        media: resolve(os.tmpdir(), 'media', 'cover.jpg')
+        media: resolve(ARTWORK_DESTINATION, 'cover.jpg')
       }))
 
       const now = Date.now()
@@ -1515,7 +1505,7 @@ describe('Media service', () => {
 
       const tracks = Array.from({ length: 5 }, () => ({
         id: faker.random.number({ min: 9999 }),
-        path: resolve(os.tmpdir(), 'media', faker.system.fileName())
+        path: resolve(ARTWORK_DESTINATION, faker.system.fileName())
       }))
       const albums = Array.from({ length: 5 }, (v, i) => ({
         id: faker.random.number({ min: 9999 }),
@@ -1543,11 +1533,11 @@ describe('Media service', () => {
       discogs.findAlbumCover.mockResolvedValue([])
       const savedAlbums = albums.map(artist => ({
         ...artist,
-        media: resolve(os.tmpdir(), 'media', 'cover.jpg')
+        media: resolve(ARTWORK_DESTINATION, 'cover.jpg')
       }))
       const savedTracks = tracks.map(track => ({
         ...track,
-        media: resolve(os.tmpdir(), 'media', 'cover.jpg')
+        media: resolve(ARTWORK_DESTINATION, 'cover.jpg')
       }))
 
       const now = Date.now()

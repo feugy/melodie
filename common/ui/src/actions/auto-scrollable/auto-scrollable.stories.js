@@ -7,7 +7,8 @@ export default {
   argTypes: {
     borderDetection: { control: { type: 'number' } },
     maxScroll: { control: { type: 'number' } }
-  }
+  },
+  parameters: { layout: null }
 }
 
 export const Default = args => ({

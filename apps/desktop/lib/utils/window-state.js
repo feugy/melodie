@@ -3,8 +3,10 @@
 const { fromEvent, merge } = require('rxjs')
 const { debounceTime, map, mergeMap } = require('rxjs/operators')
 const fs = require('fs-extra')
+const {
+  utils: { getLogger }
+} = require('@melodie/core')
 const { getStoragePath } = require('./files')
-const { getLogger } = require('./logger')
 
 const logger = getLogger('utils/window-state')
 

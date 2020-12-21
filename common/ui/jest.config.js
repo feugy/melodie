@@ -21,7 +21,7 @@ module.exports = {
     '^.+\\.css$': 'jest-css-modules-transform'
   },
   transformIgnorePatterns: [
-    '.*\\/node_modules\\/(?!svelte-spa-router|svelte-portal|tailwindcss|@storybook)'
+    'node_modules\\/(?!svelte-spa-router|svelte-portal|tailwindcss|@storybook)'
   ],
   moduleFileExtensions: ['js', 'svelte', 'json', 'yml'],
   setupFilesAfterEnv: [

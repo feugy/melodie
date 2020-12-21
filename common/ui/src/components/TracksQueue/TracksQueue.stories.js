@@ -3,18 +3,15 @@
 import TracksQueue from './TracksQueue.svelte'
 import * as queue from '../../stores/track-queue'
 import { trackListData } from '../Player/Player.stories'
-import {
-  hrefSinkDecorator,
-  ipcRendererMock
-} from '../../../.storybook/decorators'
+import { hrefSinkDecorator } from '../../../.storybook/decorators'
+import { websocketResponse } from '../../../.storybook/loaders'
 
 export default {
   title: 'Components/Tracks queue',
   excludeStories: /.*Data$/,
-  decorators: [
-    hrefSinkDecorator,
-    ipcRendererMock(() => ({ results: [], total: 0 }))
-  ]
+  decorators: [hrefSinkDecorator],
+  loaders: [websocketResponse(() => ({ results: [], total: 0 }))],
+  parameters: { layout: null }
 }
 
 export const Empty = () => {

@@ -3,8 +3,9 @@
 import faker from 'faker'
 import { tick } from 'svelte'
 import { get } from 'svelte/store'
-import { mockInvoke, mockIpcRenderer, sleep } from '../tests'
 import { createListStore } from './list-store-factory'
+import { invoke, serverEmitter } from '../utils'
+import { sleep } from '../tests'
 
 describe('abstract list factory', () => {
   let albums
@@ -42,7 +43,7 @@ describe('abstract list factory', () => {
         id: i,
         name: `${i}0`
       }))
-      mockInvoke
+      invoke
         .mockResolvedValueOnce({
           total,
           size,
@@ -68,11 +69,9 @@ describe('abstract list factory', () => {
       await sleep(100)
       expect(get(albums)).toEqual(data)
       expect(get(isListing)).toBe(false)
-      expect(mockInvoke).toHaveBeenCalledTimes(3)
-      expect(mockInvoke).toHaveBeenCalledWith(
-        'remote',
-        'tracks',
-        'list',
+      expect(invoke).toHaveBeenCalledTimes(3)
+      expect(invoke).toHaveBeenCalledWith(
+        'tracks.list',
         'album',
         expect.any(Object)
       )
@@ -85,16 +84,15 @@ describe('abstract list factory', () => {
         id: i,
         name: `${i}0`
       }))
-      mockInvoke.mockImplementation(
-        async (channel, service, method, kind, args) =>
-          method === 'list'
-            ? {
-                total,
-                size,
-                from: args.from || 0,
-                results: data.slice(args.from || 0, (args.from || 0) + size)
-              }
-            : data.find(({ id }) => id === args)
+      invoke.mockImplementation(async (invoked, kind, args) =>
+        invoked === 'tracks.list'
+          ? {
+              total,
+              size,
+              from: args.from || 0,
+              results: data.slice(args.from || 0, (args.from || 0) + size)
+            }
+          : data.find(({ id }) => id === args)
       )
 
       // fetches first page
@@ -105,18 +103,14 @@ describe('abstract list factory', () => {
       await sleep(100)
       expect(get(albums)).toEqual(data)
       expect(get(isListing)).toBe(false)
-      expect(mockInvoke).toHaveBeenCalledTimes(6)
-      expect(mockInvoke).toHaveBeenCalledWith(
-        'remote',
-        'tracks',
-        'list',
+      expect(invoke).toHaveBeenCalledTimes(6)
+      expect(invoke).toHaveBeenCalledWith(
+        'tracks.list',
         'album',
         expect.any(Object)
       )
-      expect(mockInvoke).toHaveBeenCalledWith(
-        'remote',
-        'tracks',
-        'fetchWithTracks',
+      expect(invoke).toHaveBeenCalledWith(
+        'tracks.fetchWithTracks',
         'album',
         data[size * 2].id,
         'trackNo'
@@ -130,7 +124,7 @@ describe('abstract list factory', () => {
       })).sort((a, b) => collator.compare(a.name, b.name))
       const updated1 = { ...data[3], updated: true }
       const updated2 = { ...data[6], updated: true }
-      mockInvoke.mockResolvedValueOnce({
+      invoke.mockResolvedValueOnce({
         total: data.length,
         size: data.length,
         from: 0,
@@ -140,7 +134,7 @@ describe('abstract list factory', () => {
       await sleep(100)
       expect(get(albums)).toEqual(data)
 
-      mockIpcRenderer.emit('album-changes', null, [updated1, updated2])
+      serverEmitter.next({ event: 'album-changes', args: [updated1, updated2] })
       expect(get(albums)).toEqual([
         ...data.slice(0, 3),
         updated1,
@@ -149,7 +143,7 @@ describe('abstract list factory', () => {
         ...data.slice(7)
       ])
 
-      expect(mockInvoke).toHaveBeenCalledTimes(1)
+      expect(invoke).toHaveBeenCalledTimes(1)
     })
 
     it('applies sort on changes', async () => {
@@ -158,7 +152,7 @@ describe('abstract list factory', () => {
         name: `${i}0`
       })).sort((a, b) => collator.compare(a.name, b.name))
       const updated = { ...data[3], name: `2`, updated: true }
-      mockInvoke.mockResolvedValueOnce({
+      invoke.mockResolvedValueOnce({
         total: data.length,
         size: data.length,
         from: 0,
@@ -168,14 +162,14 @@ describe('abstract list factory', () => {
       await sleep(100)
       expect(get(albums)).toEqual(data)
 
-      mockIpcRenderer.emit('album-changes', null, [updated])
+      serverEmitter.next({ event: 'album-changes', args: [updated] })
       expect(get(albums)).toEqual([
         ...data.slice(0, 1),
         updated,
         ...data.slice(1, 3),
         ...data.slice(4)
       ])
-      expect(mockInvoke).toHaveBeenCalledTimes(1)
+      expect(invoke).toHaveBeenCalledTimes(1)
     })
 
     it('receives removal updates', async () => {
@@ -185,7 +179,7 @@ describe('abstract list factory', () => {
       })).sort((a, b) => collator.compare(a.name, b.name))
       const removed1 = data[3].id
       const removed2 = data[6].id
-      mockInvoke.mockResolvedValueOnce({
+      invoke.mockResolvedValueOnce({
         total: data.length,
         size: data.length,
         from: 0,
@@ -195,14 +189,17 @@ describe('abstract list factory', () => {
       await sleep(100)
       expect(get(albums)).toEqual(data)
 
-      mockIpcRenderer.emit('album-removals', null, [removed1, removed2])
+      serverEmitter.next({
+        event: 'album-removals',
+        args: [removed1, removed2]
+      })
       expect(get(albums)).toEqual([
         ...data.slice(0, 3),
         ...data.slice(4, 6),
         ...data.slice(7)
       ])
 
-      expect(mockInvoke).toHaveBeenCalledTimes(1)
+      expect(invoke).toHaveBeenCalledTimes(1)
     })
 
     it('cancels pending operation when called', async () => {
@@ -211,14 +208,12 @@ describe('abstract list factory', () => {
         id: i,
         name: `${i}0`
       }))
-      mockInvoke.mockImplementation(
-        async (channel, service, method, type, { size, from }) => ({
-          total,
-          size,
-          from: from || 0,
-          results: data.slice(from || 0, from + size)
-        })
-      )
+      invoke.mockImplementation(async (invoked, type, { size, from }) => ({
+        total,
+        size,
+        from: from || 0,
+        results: data.slice(from || 0, from + size)
+      }))
       expect(get(albums)).toEqual([])
       expect(get(isListing)).toBe(false)
       // will fire 2 then will be cancelled
@@ -230,11 +225,9 @@ describe('abstract list factory', () => {
       await sleep(100)
       expect(get(isListing)).toBe(false)
       expect(get(albums)).toEqual(data)
-      expect(mockInvoke).toHaveBeenCalledTimes(6)
-      expect(mockInvoke).toHaveBeenCalledWith(
-        'remote',
-        'tracks',
-        'list',
+      expect(invoke).toHaveBeenCalledTimes(6)
+      expect(invoke).toHaveBeenCalledWith(
+        'tracks.list',
         'album',
         expect.any(Object)
       )
@@ -251,7 +244,7 @@ describe('abstract list factory', () => {
           (v, i) => i
         )
       }
-      mockInvoke
+      invoke
         .mockResolvedValueOnce({
           total: 1,
           results: [{ ...album, tracks: undefined }]
@@ -262,11 +255,9 @@ describe('abstract list factory', () => {
       await load(album.id)
       await tick()
       expect(get(albums)).toEqual([album])
-      expect(mockInvoke).toHaveBeenNthCalledWith(
+      expect(invoke).toHaveBeenNthCalledWith(
         2,
-        'remote',
-        'tracks',
-        'fetchWithTracks',
+        'tracks.fetchWithTracks',
         'album',
         album.id,
         sortBy
@@ -282,15 +273,13 @@ describe('abstract list factory', () => {
           (v, i) => i
         )
       }
-      mockInvoke.mockResolvedValueOnce(album)
+      invoke.mockResolvedValueOnce(album)
 
       await load(album.id)
       await tick()
       expect(get(albums)).toEqual([album])
-      expect(mockInvoke).toHaveBeenCalledWith(
-        'remote',
-        'tracks',
-        'fetchWithTracks',
+      expect(invoke).toHaveBeenCalledWith(
+        'tracks.fetchWithTracks',
         'album',
         album.id,
         sortBy
@@ -300,15 +289,13 @@ describe('abstract list factory', () => {
 
   it('handles unknown item', async () => {
     const id = faker.random.uuid()
-    mockInvoke.mockResolvedValueOnce(null)
+    invoke.mockResolvedValueOnce(null)
 
     await load(id)
     await tick()
     expect(get(albums)).toEqual([])
-    expect(mockInvoke).toHaveBeenCalledWith(
-      'remote',
-      'tracks',
-      'fetchWithTracks',
+    expect(invoke).toHaveBeenCalledWith(
+      'tracks.fetchWithTracks',
       'album',
       id,
       sortBy
@@ -329,11 +316,12 @@ describe('abstract list factory', () => {
       const album = { id: faker.random.number() }
       subscription = changes.subscribe(listener)
 
-      mockIpcRenderer.emit('whatever-changes', null)
-      mockIpcRenderer.emit('artist-changes', null, [
-        { id: faker.random.number() }
-      ])
-      mockIpcRenderer.emit('album-changes', null, [album])
+      serverEmitter.next({ event: 'whatever-changes' })
+      serverEmitter.next({
+        event: 'artist-changes',
+        args: [{ id: faker.random.number() }]
+      })
+      serverEmitter.next({ event: 'album-changes', args: [album] })
       await sleep()
 
       expect(listener).toHaveBeenCalledWith([album])
@@ -345,9 +333,12 @@ describe('abstract list factory', () => {
       const albumId = faker.random.number()
       subscription = removals.subscribe(listener)
 
-      mockIpcRenderer.emit('whatever-removals', null)
-      mockIpcRenderer.emit('artist-removals', null, [faker.random.number()])
-      mockIpcRenderer.emit('album-removals', null, [albumId])
+      serverEmitter.next({ event: 'whatever-removals' })
+      serverEmitter.next({
+        event: 'artist-removals',
+        args: [faker.random.number()]
+      })
+      serverEmitter.next({ event: 'album-removals', args: [albumId] })
       await sleep()
 
       expect(listener).toHaveBeenCalledWith([albumId])

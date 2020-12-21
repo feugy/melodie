@@ -4,9 +4,9 @@ import { get } from 'svelte/store'
 import { push } from 'svelte-spa-router'
 import { start, stop, current, handleNextButtonClick } from './tutorial'
 import * as albums from './albums'
-import * as playlists from './playlists'
 import * as trackQueue from './track-queue'
-import { mockInvoke, sleep } from '../tests'
+import { invoke, lastInvokation } from '../utils'
+import { sleep } from '../tests'
 
 describe('tutorial store', () => {
   beforeEach(() => {
@@ -66,7 +66,7 @@ describe('tutorial store', () => {
   })
 
   it('goes to fourth step on first album retrieved', async () => {
-    mockInvoke.mockResolvedValue({
+    invoke.mockResolvedValue({
       results: [{}],
       total: 1,
       size: 1,
@@ -101,7 +101,7 @@ describe('tutorial store', () => {
   })
 
   it('goes to sixth step when creating a playlist', async () => {
-    playlists.save({ name: 'my playlist', trackIds: [123456] })
+    lastInvokation.next({ invoked: 'playlists.save' })
     await sleep()
     expect(get(current)).toEqual(
       expect.objectContaining({

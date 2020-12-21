@@ -12,7 +12,8 @@ import {
   isListing
 } from './playlists'
 import { clear, current } from './snackbars'
-import { mockInvoke, sleep, translate } from '../tests'
+import { invoke } from '../utils'
+import { sleep, translate } from '../tests'
 
 describe('playlists store', () => {
   beforeEach(() => {
@@ -26,14 +27,12 @@ describe('playlists store', () => {
       id: i,
       name: `${i}0`
     }))
-    mockInvoke.mockImplementation(
-      async (channel, service, method, type, { size, from }) => ({
-        total,
-        size,
-        from: from || 0,
-        results: data.slice(from || 0, from + size)
-      })
-    )
+    invoke.mockImplementation(async (invoked, type, { size, from }) => ({
+      total,
+      size,
+      from: from || 0,
+      results: data.slice(from || 0, from + size)
+    }))
     expect(get(playlists)).toEqual([])
     expect(get(isListing)).toBe(false)
     await list()
@@ -41,10 +40,8 @@ describe('playlists store', () => {
     await sleep(100)
     expect(get(isListing)).toBe(false)
     expect(get(playlists)).toEqual(data)
-    expect(mockInvoke).toHaveBeenCalledWith(
-      'remote',
-      'tracks',
-      'list',
+    expect(invoke).toHaveBeenCalledWith(
+      'tracks.list',
       'playlist',
       expect.any(Object)
     )
@@ -54,7 +51,7 @@ describe('playlists store', () => {
     it('does not append empty track list', async () => {
       const id = faker.random.number()
       expect(await appendTracks({ id, tracks: [] })).toEqual(null)
-      expect(mockInvoke).not.toHaveBeenCalled()
+      expect(invoke).not.toHaveBeenCalled()
       expect(get(current)).toBeNil()
     })
 
@@ -67,17 +64,11 @@ describe('playlists store', () => {
 
       const id = faker.random.number()
       const playlist = { id, trackIds }
-      mockInvoke.mockResolvedValueOnce(playlist)
+      invoke.mockResolvedValueOnce(playlist)
 
       expect(await appendTracks({ id, tracks })).toEqual(playlist)
-      expect(mockInvoke).toHaveBeenCalledWith(
-        'remote',
-        'playlists',
-        'append',
-        id,
-        trackIds
-      )
-      expect(mockInvoke).toHaveBeenCalledTimes(1)
+      expect(invoke).toHaveBeenCalledWith('playlists.append', id, trackIds)
+      expect(invoke).toHaveBeenCalledTimes(1)
       await sleep()
       expect(get(current)).toEqual({
         message: translate('playlist _ updated', playlist),
@@ -95,14 +86,14 @@ describe('playlists store', () => {
 
       const name = faker.commerce.productName()
       const playlist = { id: faker.random.number(), name, trackIds }
-      mockInvoke.mockResolvedValueOnce(playlist)
+      invoke.mockResolvedValueOnce(playlist)
 
       expect(await appendTracks({ name, tracks })).toEqual(playlist)
-      expect(mockInvoke).toHaveBeenCalledWith('remote', 'playlists', 'save', {
+      expect(invoke).toHaveBeenCalledWith('playlists.save', {
         name,
         trackIds
       })
-      expect(mockInvoke).toHaveBeenCalledTimes(1)
+      expect(invoke).toHaveBeenCalledTimes(1)
       await sleep()
       expect(get(current)).toEqual({
         message: translate('playlist _ updated', playlist),
@@ -124,17 +115,17 @@ describe('playlists store', () => {
           faker.random.number()
         ]
       }
-      mockInvoke.mockResolvedValueOnce(playlist)
+      invoke.mockResolvedValueOnce(playlist)
 
       expect(await removeTrack(playlist, 2)).toEqual(playlist)
-      expect(mockInvoke).toHaveBeenCalledWith('remote', 'playlists', 'save', {
+      expect(invoke).toHaveBeenCalledWith('playlists.save', {
         ...playlist,
         trackIds: [
           ...playlist.trackIds.slice(0, 2),
           ...playlist.trackIds.slice(2)
         ]
       })
-      expect(mockInvoke).toHaveBeenCalledTimes(1)
+      expect(invoke).toHaveBeenCalledTimes(1)
       expect(get(current)).toBeNil()
     })
 
@@ -149,26 +140,14 @@ describe('playlists store', () => {
           faker.random.number()
         ]
       }
-      mockInvoke.mockResolvedValue(playlist)
+      invoke.mockResolvedValue(playlist)
 
       expect(await removeTrack(playlist, -1)).toEqual(playlist)
-      expect(mockInvoke).toHaveBeenNthCalledWith(
-        1,
-        'remote',
-        'playlists',
-        'save',
-        playlist
-      )
+      expect(invoke).toHaveBeenNthCalledWith(1, 'playlists.save', playlist)
 
       expect(await removeTrack(playlist, 100)).toEqual(playlist)
-      expect(mockInvoke).toHaveBeenNthCalledWith(
-        2,
-        'remote',
-        'playlists',
-        'save',
-        playlist
-      )
-      expect(mockInvoke).toHaveBeenCalledTimes(2)
+      expect(invoke).toHaveBeenNthCalledWith(2, 'playlists.save', playlist)
+      expect(invoke).toHaveBeenCalledTimes(2)
     })
   })
 
@@ -179,14 +158,14 @@ describe('playlists store', () => {
         name: faker.commerce.productName(),
         trackIds: [1, 2, 3, 4]
       }
-      mockInvoke.mockResolvedValueOnce(playlist)
+      invoke.mockResolvedValueOnce(playlist)
 
       expect(await moveTrack(playlist, { from: 0, to: 2 })).toEqual(playlist)
-      expect(mockInvoke).toHaveBeenCalledWith('remote', 'playlists', 'save', {
+      expect(invoke).toHaveBeenCalledWith('playlists.save', {
         ...playlist,
         trackIds: [2, 3, 1, 4]
       })
-      expect(mockInvoke).toHaveBeenCalledTimes(1)
+      expect(invoke).toHaveBeenCalledTimes(1)
       expect(get(current)).toBeNil()
     })
 
@@ -196,17 +175,14 @@ describe('playlists store', () => {
         name: faker.commerce.productName(),
         trackIds: [1, 2, 3, 4]
       }
-      mockInvoke.mockResolvedValueOnce(playlist)
+      invoke.mockResolvedValueOnce(playlist)
 
       expect(await moveTrack(playlist, { from: 3, to: 1 })).toEqual(playlist)
-      expect(mockInvoke).toHaveBeenCalledWith(
-        'remote',
-        'playlists',
-        'save',
-
-        { ...playlist, trackIds: [1, 4, 2, 3] }
-      )
-      expect(mockInvoke).toHaveBeenCalledTimes(1)
+      expect(invoke).toHaveBeenCalledWith('playlists.save', {
+        ...playlist,
+        trackIds: [1, 4, 2, 3]
+      })
+      expect(invoke).toHaveBeenCalledTimes(1)
       expect(get(current)).toBeNil()
     })
 
@@ -216,44 +192,20 @@ describe('playlists store', () => {
         name: faker.commerce.productName(),
         trackIds: [1, 2, 3, 4]
       }
-      mockInvoke.mockResolvedValue(playlist)
+      invoke.mockResolvedValue(playlist)
 
       expect(await moveTrack(playlist, { from: -1, to: 3 })).toEqual(playlist)
-      expect(mockInvoke).toHaveBeenNthCalledWith(
-        1,
-        'remote',
-        'playlists',
-        'save',
-        playlist
-      )
+      expect(invoke).toHaveBeenNthCalledWith(1, 'playlists.save', playlist)
 
       expect(await moveTrack(playlist, { from: 200, to: 1 })).toEqual(playlist)
-      expect(mockInvoke).toHaveBeenNthCalledWith(
-        2,
-        'remote',
-        'playlists',
-        'save',
-        playlist
-      )
+      expect(invoke).toHaveBeenNthCalledWith(2, 'playlists.save', playlist)
 
       expect(await moveTrack(playlist, { from: 1, to: -3 })).toEqual(playlist)
-      expect(mockInvoke).toHaveBeenNthCalledWith(
-        3,
-        'remote',
-        'playlists',
-        'save',
-        playlist
-      )
+      expect(invoke).toHaveBeenNthCalledWith(3, 'playlists.save', playlist)
 
       expect(await moveTrack(playlist, { from: 1, to: 100 })).toEqual(playlist)
-      expect(mockInvoke).toHaveBeenNthCalledWith(
-        4,
-        'remote',
-        'playlists',
-        'save',
-        playlist
-      )
-      expect(mockInvoke).toHaveBeenCalledTimes(4)
+      expect(invoke).toHaveBeenNthCalledWith(4, 'playlists.save', playlist)
+      expect(invoke).toHaveBeenCalledTimes(4)
     })
   })
 
@@ -264,14 +216,14 @@ describe('playlists store', () => {
         name: faker.commerce.productName(),
         trackIds: [faker.random.number(), faker.random.number()]
       }
-      mockInvoke.mockResolvedValueOnce(null)
+      invoke.mockResolvedValueOnce(null)
 
       expect(await remove(playlist)).toBeNull()
-      expect(mockInvoke).toHaveBeenCalledWith('remote', 'playlists', 'save', {
+      expect(invoke).toHaveBeenCalledWith('playlists.save', {
         id: playlist.id,
         trackIds: []
       })
-      expect(mockInvoke).toHaveBeenCalledTimes(1)
+      expect(invoke).toHaveBeenCalledTimes(1)
       expect(get(current)).toBeNil()
     })
   })

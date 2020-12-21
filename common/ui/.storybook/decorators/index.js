@@ -6,5 +6,3 @@ export const hrefSinkDecorator = story => ({
   Component: HRefSink,
   props: { ...story() }
 })
-
-export { default as ipcRendererMock } from './ipcRendererMock'

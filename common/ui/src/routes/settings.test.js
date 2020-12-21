@@ -15,7 +15,8 @@ import {
   saveEnqueueBehaviour,
   saveDiscogsToken
 } from '../stores/settings'
-import { translate, mockInvoke, sleep } from '../tests'
+import { invoke } from '../utils'
+import { translate, sleep } from '../tests'
 
 jest.mock('../stores/settings')
 
@@ -33,14 +34,14 @@ describe('settings route', () => {
     settings.next({ folders, providers, enqueueBehaviour })
     locale.set('fr')
     mockedSettings.subscribe = settings.subscribe.bind(settings)
-    mockInvoke.mockResolvedValue({})
+    invoke.mockResolvedValue({})
   })
 
   it('displays tracked folders, current language, providers data and credits', async () => {
     const version = `${faker.random.number({ max: 10 })}.${faker.random.number({
       max: 10
     })}.${faker.random.number({ max: 10 })}`
-    mockInvoke.mockResolvedValueOnce({ melodie: version })
+    invoke.mockResolvedValueOnce({ melodie: version })
 
     render(html`<${settingsRoute} />`)
     await sleep()
@@ -61,8 +62,8 @@ describe('settings route', () => {
     expect(screen.getByText(translate('enqueues track'))).toBeInTheDocument()
 
     expect(screen.getByText(version)).toBeInTheDocument()
-    expect(mockInvoke).toHaveBeenCalledWith('remote', 'core', 'getVersions')
-    expect(mockInvoke).toHaveBeenCalledTimes(1)
+    expect(invoke).toHaveBeenCalledWith('core.getVersions')
+    expect(invoke).toHaveBeenCalledTimes(1)
   })
 
   it('changes current language and updates labels', async () => {

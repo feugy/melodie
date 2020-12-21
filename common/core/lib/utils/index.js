@@ -2,12 +2,10 @@
 
 module.exports = {
   ...require('./collections'),
-  ...require('./electron-remote'),
+  ...require('./connection'),
   ...require('./files'),
   ...require('./hash'),
-  ...require('./links'),
   ...require('./locale'),
   ...require('./logger'),
-  ...require('./time'),
-  ...require('./window-state')
+  ...require('./time')
 }

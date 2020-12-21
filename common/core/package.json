@@ -8,8 +8,13 @@
     "test:dev": "jest --watch"
   },
   "dependencies": {
+    "ajv": "^7.0.2",
     "chokidar": "^3.4.3",
     "electron": "^11.1.0",
+    "fastify": "^3.9.2",
+    "fastify-compress": "^3.4.0",
+    "fastify-static": "^3.3.0",
+    "fastify-websocket": "^2.0.11",
     "fs-extra": "^9.0.1",
     "got": "^11.8.0",
     "klaw": "^3.0.0",
@@ -22,6 +27,7 @@
     "pino-pretty": "^4.3.0",
     "rxjs": "^6.6.3",
     "sqlite3": "^5.0.0",
+    "ws": "^7.4.1",
     "xxhashjs": "^0.2.2"
   },
   "devDependencies": {

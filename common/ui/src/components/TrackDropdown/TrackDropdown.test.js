@@ -3,7 +3,6 @@
 import { screen, render, fireEvent } from '@testing-library/svelte'
 import html from 'svelte-htm'
 import faker from 'faker'
-import electron from 'electron'
 import { BehaviorSubject } from 'rxjs'
 import TrackDropdown from './TrackDropdown.svelte'
 import { add } from '../../stores/track-queue'
@@ -11,16 +10,11 @@ import {
   playlists as mockedPlaylists,
   appendTracks
 } from '../../stores/playlists'
+import { invoke } from '../../utils'
 import { translate, sleep } from '../../tests'
 
 jest.mock('../../stores/playlists')
 jest.mock('../../stores/track-queue')
-jest.mock('electron', () => {
-  const { EventEmitter } = require('events')
-  const ipcRenderer = new EventEmitter()
-  ipcRenderer.invoke = jest.fn()
-  return { shell: { showItemInFolder: jest.fn() }, ipcRenderer }
-})
 
 describe('TrackDropdown component', () => {
   beforeEach(jest.resetAllMocks)
@@ -62,7 +56,7 @@ describe('TrackDropdown component', () => {
       expect(option.act).toHaveBeenCalledWith(track)
       expect(option.act).toHaveBeenCalledTimes(1)
       expect(add).not.toHaveBeenCalled()
-      expect(electron.shell.showItemInFolder).not.toHaveBeenCalled()
+      expect(invoke).not.toHaveBeenCalled()
       expect(handleShowDetails).not.toHaveBeenCalled()
       expect(appendTracks).not.toHaveBeenCalled()
     })
@@ -72,7 +66,7 @@ describe('TrackDropdown component', () => {
 
       expect(add).toHaveBeenCalledWith(track, true)
       expect(add).toHaveBeenCalledTimes(1)
-      expect(electron.shell.showItemInFolder).not.toHaveBeenCalled()
+      expect(invoke).not.toHaveBeenCalled()
       expect(handleShowDetails).not.toHaveBeenCalled()
       expect(option.act).not.toHaveBeenCalled()
       expect(appendTracks).not.toHaveBeenCalled()
@@ -83,16 +77,17 @@ describe('TrackDropdown component', () => {
 
       expect(add).toHaveBeenCalledWith(track)
       expect(add).toHaveBeenCalledTimes(1)
-      expect(electron.shell.showItemInFolder).not.toHaveBeenCalled()
+      expect(invoke).not.toHaveBeenCalled()
       expect(handleShowDetails).not.toHaveBeenCalled()
       expect(option.act).not.toHaveBeenCalled()
       expect(appendTracks).not.toHaveBeenCalled()
     })
 
-    it('opens parent folder', async () => {
+    it('invokes service to open parent folder', async () => {
       fireEvent.click(screen.getByText('launch'))
 
-      expect(electron.shell.showItemInFolder).toHaveBeenCalledWith(track.path)
+      expect(invoke).toHaveBeenCalledWith('tracks.openContainingFolder', track)
+      expect(invoke).toHaveBeenCalledTimes(1)
       expect(handleShowDetails).not.toHaveBeenCalled()
       expect(add).not.toHaveBeenCalled()
       expect(option.act).not.toHaveBeenCalled()
@@ -107,7 +102,7 @@ describe('TrackDropdown component', () => {
       )
       expect(handleShowDetails).toHaveBeenCalledTimes(1)
       expect(add).not.toHaveBeenCalled()
-      expect(electron.shell.showItemInFolder).not.toHaveBeenCalled()
+      expect(invoke).not.toHaveBeenCalled()
       expect(option.act).not.toHaveBeenCalled()
       expect(appendTracks).not.toHaveBeenCalled()
     })
@@ -123,7 +118,7 @@ describe('TrackDropdown component', () => {
       })
       expect(handleShowDetails).not.toHaveBeenCalled()
       expect(add).not.toHaveBeenCalled()
-      expect(electron.shell.showItemInFolder).not.toHaveBeenCalled()
+      expect(invoke).not.toHaveBeenCalled()
       expect(option.act).not.toHaveBeenCalled()
       expect(screen.queryByRole('listitem')).not.toBeInTheDocument()
     })

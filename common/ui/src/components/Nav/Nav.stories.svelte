@@ -5,12 +5,6 @@
   import { texts } from '../../tests/lorem'
 </script>
 
-<style>
-  :global(body) {
-    padding: 0 !important;
-  }
-</style>
-
 <Nav {...$$props} />
 <Heading {...headingData} />
 <main class="text-left m-4 z-0 relative">

@@ -10,7 +10,8 @@ import {
   artistSuggestionsData,
   albumSuggestionsData
 } from '../MediaSelector/MediaSelector.stories'
-import { sleep, translate, mockInvoke } from '../../tests'
+import { invoke } from '../../utils'
+import { sleep, translate } from '../../tests'
 
 jest.mock('../../stores/track-queue')
 
@@ -21,7 +22,7 @@ describe('MediaSelector component', () => {
     const open = writable(false)
     const title = translate('choose avatar')
     render(html`<${MediaSelector} bind:open=${open} src=${artistData} />`)
-    mockInvoke.mockResolvedValueOnce(artistSuggestionsData)
+    invoke.mockResolvedValueOnce(artistSuggestionsData)
 
     expect(screen.queryByText(title)).not.toBeVisible()
     open.set(true)
@@ -29,13 +30,8 @@ describe('MediaSelector component', () => {
     await sleep()
 
     expect(screen.queryByText(title)).toBeVisible()
-    expect(mockInvoke).toHaveBeenCalledWith(
-      'remote',
-      'media',
-      'findForArtist',
-      artistData.name
-    )
-    expect(mockInvoke).toHaveBeenCalledTimes(1)
+    expect(invoke).toHaveBeenCalledWith('media.findForArtist', artistData.name)
+    expect(invoke).toHaveBeenCalledTimes(1)
     const images = screen.getAllByRole('img')
     for (const { artwork, provider } of artistSuggestionsData) {
       expect(
@@ -49,12 +45,12 @@ describe('MediaSelector component', () => {
     const open = writable(false)
     const title = translate('choose avatar')
     render(html`<${MediaSelector} bind:open=${open} src=${artistData} />`)
-    mockInvoke.mockResolvedValueOnce(artistSuggestionsData)
+    invoke.mockResolvedValueOnce(artistSuggestionsData)
     open.set(true)
     await sleep()
 
     expect(screen.queryByText(title)).toBeVisible()
-    mockInvoke.mockReset()
+    invoke.mockReset()
 
     const { artwork } = artistSuggestionsData[1]
     await fireEvent.click(
@@ -63,14 +59,12 @@ describe('MediaSelector component', () => {
         .find(node => node.getAttribute('src').includes(artwork))
     )
 
-    expect(mockInvoke).toHaveBeenCalledWith(
-      'remote',
-      'media',
-      'saveForArtist',
+    expect(invoke).toHaveBeenCalledWith(
+      'media.saveForArtist',
       artistData.id,
       artwork
     )
-    expect(mockInvoke).toHaveBeenCalledTimes(1)
+    expect(invoke).toHaveBeenCalledTimes(1)
     expect(screen.queryByText(title)).not.toBeVisible()
   })
 
@@ -84,17 +78,12 @@ describe('MediaSelector component', () => {
         src=${artistData}
       />`
     )
-    mockInvoke.mockResolvedValueOnce(albumSuggestionsData)
+    invoke.mockResolvedValueOnce(albumSuggestionsData)
     open.set(true)
     await sleep()
 
     expect(screen.queryByText(title)).toBeVisible()
-    expect(mockInvoke).toHaveBeenCalledWith(
-      'remote',
-      'media',
-      'findForAlbum',
-      artistData.name
-    )
+    expect(invoke).toHaveBeenCalledWith('media.findForAlbum', artistData.name)
 
     const { cover } = albumSuggestionsData[1]
     await fireEvent.click(
@@ -103,15 +92,13 @@ describe('MediaSelector component', () => {
         .find(node => node.getAttribute('src').includes(cover))
     )
 
-    expect(mockInvoke).toHaveBeenCalledWith(
-      'remote',
-      'media',
-      'saveForAlbum',
+    expect(invoke).toHaveBeenCalledWith(
+      'media.saveForAlbum',
       artistData.id,
       cover
     )
 
-    expect(mockInvoke).toHaveBeenCalledTimes(2)
+    expect(invoke).toHaveBeenCalledTimes(2)
     expect(screen.queryByText(title)).not.toBeVisible()
   })
 
@@ -125,17 +112,12 @@ describe('MediaSelector component', () => {
         src=${artistData}
       />`
     )
-    mockInvoke.mockResolvedValueOnce(albumSuggestionsData)
+    invoke.mockResolvedValueOnce(albumSuggestionsData)
     open.set(true)
     await sleep()
 
     expect(screen.queryByText(title)).toBeVisible()
-    expect(mockInvoke).toHaveBeenCalledWith(
-      'remote',
-      'media',
-      'findForAlbum',
-      artistData.name
-    )
+    expect(invoke).toHaveBeenCalledWith('media.findForAlbum', artistData.name)
 
     const path = faker.system.fileName()
     const item = {
@@ -152,15 +134,13 @@ describe('MediaSelector component', () => {
         .find(node => node.getAttribute('src').includes(path))
     )
 
-    expect(mockInvoke).toHaveBeenCalledWith(
-      'remote',
-      'media',
-      'saveForAlbum',
+    expect(invoke).toHaveBeenCalledWith(
+      'media.saveForAlbum',
       artistData.id,
       path
     )
 
-    expect(mockInvoke).toHaveBeenCalledTimes(2)
+    expect(invoke).toHaveBeenCalledTimes(2)
     expect(screen.queryByText(title)).not.toBeVisible()
   })
 
@@ -168,16 +148,16 @@ describe('MediaSelector component', () => {
     const open = writable(false)
     const title = translate('choose avatar')
     render(html`<${MediaSelector} bind:open=${open} src=${artistData} />`)
-    mockInvoke.mockResolvedValueOnce(artistSuggestionsData)
+    invoke.mockResolvedValueOnce(artistSuggestionsData)
     open.set(true)
     await sleep()
 
     expect(screen.queryByText(title)).toBeVisible()
-    mockInvoke.mockReset()
+    invoke.mockReset()
 
     await fireEvent.click(screen.getByText(translate('cancel')))
 
-    expect(mockInvoke).not.toHaveBeenCalled()
+    expect(invoke).not.toHaveBeenCalled()
     expect(screen.queryByText(title)).not.toBeVisible()
   })
 })

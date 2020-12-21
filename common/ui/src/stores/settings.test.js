@@ -2,7 +2,8 @@
 
 import { get } from 'svelte/store'
 import faker from 'faker'
-import { mockInvoke, sleep } from '../tests'
+import { invoke } from '../utils'
+import { sleep } from '../tests'
 
 describe('settings store', () => {
   let settings
@@ -12,6 +13,7 @@ describe('settings store', () => {
   let saveDiscogsToken
   let saveEnqueueBehaviour
   let saveLocale
+  let init
   const locale = 'en'
   const key = faker.random.alphaNumeric(10)
   const token = faker.random.uuid()
@@ -20,13 +22,8 @@ describe('settings store', () => {
   const folders = [faker.system.fileName(), faker.system.fileName()]
 
   beforeAll(async () => {
-    mockInvoke.mockResolvedValueOnce({
-      locale,
-      folders,
-      enqueueBehaviour,
-      providers
-    })
     ;({
+      init,
       settings,
       askToAddFolder,
       removeFolder,
@@ -42,7 +39,20 @@ describe('settings store', () => {
     jest.resetAllMocks()
   })
 
-  it('has loaded settings on mount', async () => {
+  it('has loaded settings on init', async () => {
+    expect(get(settings)).toEqual({
+      enqueueBehaviour: {},
+      providers: { audiodb: {}, discogs: {} }
+    })
+
+    invoke.mockResolvedValueOnce({
+      locale,
+      folders,
+      enqueueBehaviour,
+      providers
+    })
+    await init()
+
     expect(get(settings)).toEqual({
       locale,
       folders,
@@ -52,20 +62,20 @@ describe('settings store', () => {
   })
 
   it('redirects to albums on successful folder addition', async () => {
-    mockInvoke.mockResolvedValueOnce(true)
+    invoke.mockResolvedValueOnce(true)
     await askToAddFolder()
     await sleep(10)
 
-    expect(mockInvoke).toHaveBeenCalledWith('remote', 'settings', 'addFolders')
+    expect(invoke).toHaveBeenCalledWith('settings.addFolders')
     expect(location.hash).toEqual('#/album')
   })
 
   it('does not redirect to albums on cancelled folder addition', async () => {
-    mockInvoke.mockResolvedValueOnce(false)
+    invoke.mockResolvedValueOnce(false)
     await askToAddFolder()
     await sleep(10)
 
-    expect(mockInvoke).toHaveBeenCalledWith('remote', 'settings', 'addFolders')
+    expect(invoke).toHaveBeenCalledWith('settings.addFolders')
     expect(location.hash).toEqual('#/')
   })
 
@@ -73,48 +83,28 @@ describe('settings store', () => {
     const removed = faker.random.arrayElement(folders)
     await removeFolder(removed)
 
-    expect(mockInvoke).toHaveBeenCalledWith(
-      'remote',
-      'settings',
-      'removeFolder',
-      removed
-    )
+    expect(invoke).toHaveBeenCalledWith('settings.removeFolder', removed)
   })
 
   it('can save locale', async () => {
     const locale = faker.random.arrayElement(['en', 'fr'])
     await saveLocale(locale)
 
-    expect(mockInvoke).toHaveBeenCalledWith(
-      'remote',
-      'settings',
-      'setLocale',
-      locale
-    )
+    expect(invoke).toHaveBeenCalledWith('settings.setLocale', locale)
   })
 
   it('can save AudioDB key', async () => {
     const key = faker.random.alphaNumeric(10)
     await saveAudioDBKey(key)
 
-    expect(mockInvoke).toHaveBeenCalledWith(
-      'remote',
-      'settings',
-      'setAudioDBKey',
-      key
-    )
+    expect(invoke).toHaveBeenCalledWith('settings.setAudioDBKey', key)
   })
 
   it('can save Discogs token', async () => {
     const token = faker.random.uuid()
     await saveDiscogsToken(token)
 
-    expect(mockInvoke).toHaveBeenCalledWith(
-      'remote',
-      'settings',
-      'setDiscogsToken',
-      token
-    )
+    expect(invoke).toHaveBeenCalledWith('settings.setDiscogsToken', token)
   })
 
   it('can save enqueue behaviour', async () => {
@@ -122,11 +112,9 @@ describe('settings store', () => {
     const clearBefore = faker.random.boolean()
     await saveEnqueueBehaviour({ onClick, clearBefore })
 
-    expect(mockInvoke).toHaveBeenCalledWith(
-      'remote',
-      'settings',
-      'setEnqueueBehaviour',
-      { onClick, clearBefore }
-    )
+    expect(invoke).toHaveBeenCalledWith('settings.setEnqueueBehaviour', {
+      onClick,
+      clearBefore
+    })
   })
 })

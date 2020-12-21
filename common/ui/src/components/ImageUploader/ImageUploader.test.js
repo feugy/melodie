@@ -6,8 +6,6 @@ import html from 'svelte-htm'
 import faker from 'faker'
 import ImageUploader from './ImageUploader.svelte'
 
-jest.mock('../../utils/invoke')
-
 describe('ImageUploader component', () => {
   it('loads dropped file', async () => {
     const path = faker.system.fileName()

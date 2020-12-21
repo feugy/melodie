@@ -2,15 +2,14 @@
 
 import { BehaviorSubject, ReplaySubject } from 'rxjs'
 import { mergeMap, map, scan } from 'rxjs/operators'
-import { fromServerChannel } from './channel'
-import { invoke } from './invoke'
+import { invoke, fromServerEvent } from './connection'
 
 const collator = new Intl.Collator([], { numeric: true })
 
 export function createListStore(type, sortBy = 'rank') {
-  const changes = fromServerChannel(`${type}-changes`)
+  const changes = fromServerEvent(`${type}-changes`)
 
-  const removals = fromServerChannel(`${type}-removals`)
+  const removals = fromServerEvent(`${type}-removals`)
 
   changes.subscribe(added => items$.next({ added }))
 

@@ -24,7 +24,7 @@ const {
   tracksModel,
   settingsModel
 } = require('../models')
-const { getLogger, getMediaPath, broadcast, dayMs } = require('../utils')
+const { getLogger, getArtworkFile, broadcast, dayMs } = require('../utils')
 const {
   audiodb,
   discogs,
@@ -311,7 +311,7 @@ module.exports = {
     let hasChanged = false
 
     if (url) {
-      let path = getMediaPath(id)
+      let path = getArtworkFile(id)
       await fs.ensureFile(`${path}.tmp`)
       try {
         const media = await downloadAndSave(path, url)

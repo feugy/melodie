@@ -2,26 +2,27 @@
 
 const { config } = require('dotenv')
 const { dirname, join } = require('path')
-const { platform } = require('os')
+const os = require('os')
 const electron = require('electron')
 const shortcut = require('electron-localshortcut')
 const { autoUpdater } = require('electron-updater')
 const { ReplaySubject } = require('rxjs')
 const { bufferWhen, debounceTime, filter } = require('rxjs/operators')
+const descriptor = require('./package')
+
+// initialize environment before importing any code depending on @melodie/core
+process.env.LOG_LEVEL_FILE = join(electron.app.getAppPath(), '.levels')
+process.env.LOG_DESTINATION = join(electron.app.getPath('logs'), 'logs.txt')
+process.env.ARTWORK_DESTINATION = join(
+  electron.app.getPath('pictures'),
+  'melodie-media'
+)
+
 const {
-  models,
-  services,
-  utils: {
-    getLogger,
-    getStoragePath,
-    manageState,
-    registerRenderer,
-    focusOnNotification,
-    configureExternalLinks,
-    subscribeRemote
-  }
+  utils: { getLogger }
 } = require('@melodie/core')
-const { version, name } = require('./package')
+const services = require('./lib/services')
+const { configureExternalLinks, manageState } = require('./lib/utils')
 
 /**
  * Configures and starts Mélodie!
@@ -42,7 +43,7 @@ exports.main = async argv => {
   // Because macOS use events for opened files, and even before the app is ready, we need to buffer them to open them at once
   const openFiles$ = new ReplaySubject()
 
-  if (platform() === 'darwin') {
+  if (os.platform() === 'darwin') {
     // on macOS, open files will be passed with events
     app.on('open-file', (evt, entry) => openFiles$.next(entry))
   } else {
@@ -61,7 +62,11 @@ exports.main = async argv => {
       levelFile: process.env.LOG_LEVEL_FILE || '.levels',
       pid: process.pid
     },
-    `starting... To change log levels, edit the level file and run \`kill -USR2 ${process.pid}\``
+    `
+
+
+-----------------------------------------------------------------------------------
+starting... To change log levels, edit the level file and run \`kill -USR2 ${process.pid}\``
   )
 
   process.on('uncaughtException', error => {
@@ -93,7 +98,8 @@ exports.main = async argv => {
       height: 800,
       minHeight: 300,
       webPreferences: {
-        nodeIntegration: true
+        nodeIntegration: false,
+        contextIsolation: true
       },
       icon: `${join(publicFolder, 'icons', 'icon-512x512.png')}`,
       backgroundColor: '#2e3141',
@@ -115,20 +121,9 @@ exports.main = async argv => {
       })
     }
 
-    registerRenderer(win)
     configureExternalLinks(win)
 
-    const unsubscribeRemote = subscribeRemote({
-      core: {
-        focusWindow: () => focusOnNotification(win),
-        getVersions: () => ({
-          ...process.versions,
-          [name]: version
-        })
-      },
-      ...services,
-      ...electron
-    })
+    const stopServices = await services.start(publicFolder, win, descriptor)
 
     win.once('ready-to-show', () => win.show())
     await win.loadURL(`file://${join(publicFolder, 'index.html')}`)
@@ -139,8 +134,7 @@ exports.main = async argv => {
       )
       .subscribe(fileEntries => {
         logger.info({ fileEntries }, `opening files`)
-        // add relevant files to track queue
-        services.tracks.play(fileEntries)
+        services.playFiles(fileEntries)
       })
 
     app.on('second-instance', () => {
@@ -151,7 +145,7 @@ exports.main = async argv => {
     })
 
     return () => {
-      unsubscribeRemote()
+      stopServices()
       openSubscription.unsubscribe()
     }
   }
@@ -160,10 +154,6 @@ exports.main = async argv => {
     unsubscribe()
     app.quit()
   })
-
-  await models.init(getStoragePath('db.sqlite3'))
-  await services.settings.init()
-  services.tracks.listen()
 
   await app.whenReady()
   const unsubscribe = await createWindow()

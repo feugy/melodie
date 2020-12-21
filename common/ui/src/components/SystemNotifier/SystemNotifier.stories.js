@@ -6,7 +6,8 @@ import { add, clear } from '../../stores/track-queue'
 
 export default {
   title: 'Components/System Notifier',
-  excludeStories: /.*Data$/
+  excludeStories: /.*Data$/,
+  parameters: { layout: 'padded' }
 }
 
 export const Default = () => {

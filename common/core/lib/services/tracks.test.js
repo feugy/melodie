@@ -16,7 +16,7 @@ jest.mock('../models/artists')
 jest.mock('../models/albums')
 jest.mock('../models/tracks')
 jest.mock('../models/playlists')
-jest.mock('../utils/electron-remote')
+jest.mock('../utils/connection')
 
 describe('Tracks service', () => {
   beforeEach(() => {

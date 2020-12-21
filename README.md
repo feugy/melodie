@@ -135,7 +135,9 @@ Another option is to open it with Control-click: it'll immediately register the 
 
 ## Configuring logs
 
-Log level file is `.levels` in the [application `userData` folder][getpathname].
+Log are written to a file, which location is set by `LOG_DESTINATION` env variable.
+
+Log levels are configured in a file defined by `LOG_LEVEL_FILE` env variable.
 Its syntax is:
 
 ```shell
@@ -421,9 +423,13 @@ Mélodie is referenced on these stores and hubs:
 - Chokidar has a "limitation" and [triggers for each renamed or moved file an 'unlink' and an 'add' event](https://github.com/paulmillr/chokidar/issues/303). The implication on Mélodie were high: moved/renamed files would disappear from playlists. Ty bypass the issue, Mélodie stores file inodes and buffer chokidar events: when a file is removed, Mélodie will wait 250ms more, and if another file is added with the same inode during that time, will consider it as a rename/move.
 
 - The mono-repo endeavour. My goal was to split code in various reusable packages: a UI and core that would not depend on Electron, and could be used in both Web and Desktop context, and two apps: an Electron-based desktop application and the Github-page site. As developer I would expect the ability to hoist as many modules
+
   - runing jest with pnpm does not work at all.
   - lerna is a pain when it comes to hoisting deps.
-  - npm@7 must install peer deps in legacy mode and does not offer any sugar for multi-package commands. As
+  - npm@7 must install peer deps in legacy mode and does not offer any sugar for multi-package commands. All deps must be manually added to package.json, because install command MUST be run at root level
+
+- svelte-spa-router, and its dependency on regexparam, has been bother me for a very long time. When ran with jest, svelte-spa-router files must be transpiled by Svelte compiler, but they import regexparam as esm, and this lib doesn't expose such binding. One must replace the import with require, and this must only be done during test, because rollup will handle it properly.
+  When receiving errors from svelte-jester, don't forget to clean jest cache with --cleanCache CLI option.
 
 #### How watch & diff works
 
@@ -491,7 +497,6 @@ Mélodie is referenced on these stores and hubs:
 [electron]: https://www.electronjs.org
 [svelte]: https://svelte.dev
 [rxjs]: https://www.learnrxjs.io
-[getpathname]: https://www.electronjs.org/docs/api/app#appgetpathname
 [appimagelauncher]: https://github.com/TheAssassin/AppImageLauncher
 [appimagelint]: https://github.com/TheAssassin/appimagelint
 [windows app store]: https://partner.microsoft.com/en-us/dashboard/products/9N41VK2C5VC2/overview

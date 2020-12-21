@@ -16,7 +16,7 @@
   import {
     invoke,
     formatTimeLong,
-    fromServerChannel,
+    fromServerEvent,
     sumDurations
   } from '../../utils'
 
@@ -78,7 +78,7 @@
       .pipe(filter(ids => ids.includes(playlistId)))
       .subscribe(() => replace('/playlist'))
 
-    const trackSub = fromServerChannel(`track-changes`).subscribe(changed => {
+    const trackSub = fromServerEvent(`track-changes`).subscribe(changed => {
       if (
         playlist &&
         changed.some(({ id }) => playlist.trackIds.includes(id))

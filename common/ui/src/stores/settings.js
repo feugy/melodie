@@ -9,8 +9,9 @@ const settings$ = new BehaviorSubject({
   enqueueBehaviour: {}
 })
 
-// initial loading
-invoke('settings.get').then(value => settings$.next(value))
+export async function init() {
+  settings$.next(await invoke('settings.get'))
+}
 
 export const settings = settings$.asObservable()
 

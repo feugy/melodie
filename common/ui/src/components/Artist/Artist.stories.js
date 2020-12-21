@@ -2,18 +2,14 @@
 
 import Artist from './Artist.svelte'
 import { tracksData } from '../TracksTable/TracksTable.stories'
-import {
-  hrefSinkDecorator,
-  ipcRendererMock
-} from '../../../.storybook/decorators'
+import { hrefSinkDecorator } from '../../../.storybook/decorators'
+import { websocketResponse } from '../../../.storybook/loaders'
 
 export default {
   title: 'Components/Artist',
   excludeStories: /.*Data$/,
-  decorators: [
-    hrefSinkDecorator,
-    ipcRendererMock(() => ({ ...artistData, tracks: tracksData }))
-  ]
+  decorators: [hrefSinkDecorator],
+  loaders: [websocketResponse(() => ({ ...artistData, tracks: tracksData }))]
 }
 
 export const artistData = {
