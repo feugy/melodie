@@ -1,6 +1,6 @@
 'use strict'
 
-import { resolve } from 'path'
+import { dirname, resolve } from 'path'
 import fastify from 'fastify'
 import staticPlugin from 'fastify-static'
 import * as sapper from '@sapper/server'
@@ -14,6 +14,12 @@ fastify()
     root: resolve('static'),
     prefix: BASE_PATH || '/',
     wildcard: false
+  })
+  .register(staticPlugin, {
+    root: resolve(dirname(require.resolve('@melodie/ui')), 'public', 'fonts'),
+    prefix: `${BASE_PATH || ''}/fonts`,
+    wildcard: false,
+    decorateReply: false
   })
   // freely inspired from https://github.com/thgh/sapper-fastify-socket/blob/master/src/server.js
   .route({
