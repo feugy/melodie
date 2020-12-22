@@ -9,7 +9,7 @@ import svelte from 'rollup-plugin-svelte'
 import { terser } from 'rollup-plugin-terser'
 import yaml from '@rollup/plugin-yaml'
 import config from 'sapper/config/rollup.js'
-import { version } from '../../package.json'
+import { version } from './package.json'
 
 const mode = process.env.NODE_ENV
 const dev = mode === 'development'

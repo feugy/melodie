@@ -1,7 +1,7 @@
 'use strict'
 
 const sveltePreprocess = require('svelte-preprocess')
-const { version } = require('../../package.json')
+const { version } = require('./package.json')
 
 const production = !process.env.ROLLUP_WATCH
 

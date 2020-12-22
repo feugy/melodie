@@ -426,8 +426,11 @@ Mélodie is referenced on these stores and hubs:
 
   - runing jest with pnpm does not work at all.
   - lerna is a pain when it comes to hoisting deps.
+  - I wasn't convinced by yarn, but can't remember why :D
   - npm@7 must install peer deps in legacy mode and does not offer any sugar for multi-package commands. All deps must be manually added to package.json, because install command MUST be run at root level
     Electron-builder does not like monorepo either: author, description and other metadata must be copied from root package.json to apps/desktop/package.json. The Electron version must be fixed because node_modules are hoisted. The package.json name MUST be `melodie` :(
+    Caveats: always run `npm i --legacy-peer-deps` AT ROOT level. Running npm or npx command inside packages would re-create `node_modules`
+    Ensuring the same version in all packages and dependencies similarities must be done manually
 
 - svelte-spa-router, and its dependency on regexparam, has been bother me for a very long time. When ran with jest, svelte-spa-router files must be transpiled by Svelte compiler, but they import regexparam as esm, and this lib doesn't expose such binding. One must replace the import with require, and this must only be done during test, because rollup will handle it properly.
   When receiving errors from svelte-jester, don't forget to clean jest cache with --cleanCache CLI option.

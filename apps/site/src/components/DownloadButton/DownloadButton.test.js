@@ -4,7 +4,7 @@ import { screen, render, fireEvent } from '@testing-library/svelte'
 import html from 'svelte-htm'
 import { sleep, translate } from '../../tests/utils'
 import DownloadButton from './DownloadButton.svelte'
-const { version } = require('../../../../../package.json')
+const { version } = require('../../../package.json')
 
 describe('DownloadButton component', () => {
   let openSpy
