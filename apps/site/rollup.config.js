@@ -82,7 +82,12 @@ export default {
 
       yaml()
     ],
-    external: ['sapper', ...require('module').builtinModules],
+    external: [
+      'sapper',
+      'fastify',
+      'fastify-static',
+      ...require('module').builtinModules
+    ],
 
     preserveEntrySignatures: 'strict',
     onwarn
