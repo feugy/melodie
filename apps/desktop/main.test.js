@@ -84,6 +84,7 @@ describe('Application test', () => {
   })
 
   it('initialize models, tracks service and loads renderer', async () => {
+    const port = 8080
     await main(['asar-location'])
 
     expect(services.start).toHaveBeenCalledTimes(1)
@@ -92,7 +93,7 @@ describe('Application test', () => {
         dirname(require.resolve('@melodie/ui')),
         'public',
         'index.html'
-      )}`
+      )}?port=${port}`
     )
     expect(electron.app.quit).not.toHaveBeenCalled()
     expect(configureExternalLinks).toHaveBeenCalledWith(win)

@@ -12,8 +12,8 @@ export function websocketResponse(mock = () => null) {
     if (close) {
       close()
     }
-    window.WebSocket = function() {
-      this.send = (rawData) => {
+    window.WebSocket = function () {
+      this.send = rawData => {
         const { invoked, args, id } = JSON.parse(rawData)
         invokeAction(invoked, ...args)
         const result = mock(invoked, ...args)
@@ -23,7 +23,6 @@ export function websocketResponse(mock = () => null) {
       setTimeout(() => this.onopen(), 0)
       return this
     }
-
     ;({ close } = await initConnection('unused'))
     return {}
   }

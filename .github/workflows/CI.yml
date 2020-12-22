@@ -14,7 +14,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [14.x]
+        node-version: [15.x]
 
     steps:
       - name: Check code out
@@ -26,7 +26,10 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: Install dependencies
-        run: npm ci
+        run: npm ci --legacy-peer-deps
+
+      - name: Lint code
+        run: npm run lint
 
       - name: Run tests
         run: npm test
@@ -39,4 +42,4 @@ jobs:
         uses: codacy/codacy-coverage-reporter-action@master
         with:
           project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
-          coverage-reports: coverage/clover.xml
+          coverage-reports: apps/desktop/coverage/clover.xml,apps/site/coverage/clover.xml,common/core/coverage/clover.xml,common/ui/coverage/clover.xml

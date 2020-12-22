@@ -1,8 +1,6 @@
 'use strict'
 
-const { tmpdir } = require('os')
 const { join } = require('path')
-const { writeFile, readFile, remove } = require('fs-extra')
 const electron = require('electron')
 const faker = require('faker')
 const {
@@ -18,33 +16,24 @@ describe('Services', () => {
   beforeEach(jest.resetAllMocks)
 
   describe('start()', () => {
-    it('updates HTML template, starts core service, initializes models and settings', async () => {
-      const publicFolder = tmpdir()
-      await writeFile(
-        join(publicFolder, 'index.ejs'),
-        `<html>window.serverUrl = 'ws://localhost:<%= port %>'</html>`
-      )
-      await remove(join(publicFolder, 'index.html'))
-
-      const port = 8080
+    it('starts core service, initializes models and settings', async () => {
+      const publicFolder = faker.system.filePath()
+      const port = faker.random.number()
       const path = faker.system.filePath()
       electron.app.getPath.mockReturnValue(path)
       const close = jest.fn()
       initConnection.mockResolvedValue({ close })
-      expect(await start(publicFolder, {}, {})).toEqual(close)
+      expect(await start(port, publicFolder, {}, {})).toEqual(close)
 
       expect(models.init).toHaveBeenCalledWith(join(path, 'db.sqlite3'))
       expect(models.init).toHaveBeenCalledTimes(1)
       expect(initConnection).toHaveBeenCalledWith(
-        expect.any(Object),
+        expect.any(Object), // TODO
         publicFolder,
         port
       )
       expect(services.settings.init).toHaveBeenCalledTimes(1)
       expect(services.tracks.listen).toHaveBeenCalledTimes(1)
-      expect(await readFile(join(publicFolder, 'index.html'), 'utf8')).toEqual(
-        `<html>window.serverUrl = 'ws://localhost:${port}'</html>`
-      )
       expect(close).not.toHaveBeenCalled()
     })
   })

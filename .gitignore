@@ -1,6 +1,5 @@
 node_modules/
 build/
-common/ui/public/index.html
 coverage/
 dist/
 __sapper__/

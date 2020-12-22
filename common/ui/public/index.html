@@ -12,8 +12,10 @@
     <link rel="stylesheet" href="./build/bundle.css" />
 
     <script type="application/javascript">
-      const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-      window.serverUrl = protocol + '//' + (window.location.host || 'localhost:' + <%= port %>);
+      const match = /port=(\d+)/.exec(window.location.search)
+      window.serverUrl = match
+        ? `ws://localhost:${match[1]}`
+        : `${window.location.protocol.replace('http', 'ws')}//${window.location.host}`
     </script>
   </head>
 

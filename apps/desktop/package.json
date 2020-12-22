@@ -1,8 +1,15 @@
 {
-  "name": "@melodie/desktop",
-  "productName": "melodie",
-  "version": "1.0.0",
-  "description": "Mélodie desktop application, powered by Electron",
+  "name": "melodie",
+  "version": "2.0.0-alpha.1",
+  "description": "Mélodie is a portable, simple-as-pie music player",
+  "author": {
+    "name": "Damien Simonin Feugas",
+    "email": "damien.simoninfeugas@gmail.com"
+  },
+  "license": "MIT",
+  "repository": {
+    "url": "https://github.com/feugy/melodie"
+  },
   "main": "main.js",
   "scripts": {
     "dev": "NODE_ENV=test electron .",
@@ -14,14 +21,17 @@
   },
   "dependencies": {
     "dotenv": "^8.2.0",
-    "ejs": "^3.1.5",
     "electron-localshortcut": "^3.2.1",
     "electron-updater": "^4.3.5",
     "fs-extra": "^9.0.1",
     "rxjs": "^6.6.3"
   },
+  "optionalDependencies": {
+    "@melodie/core": "2.0.0-alpha.1",
+    "@melodie/ui": "2.0.0-alpha.1"
+  },
   "devDependencies": {
-    "electron": "^11.1.0",
+    "electron": "11.1.0",
     "electron-builder": "^22.9.1",
     "electron-reload": "^1.5.0",
     "faker": "^5.1.0",

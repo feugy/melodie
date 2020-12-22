@@ -34,6 +34,7 @@ exports.main = async argv => {
   const { app, BrowserWindow, Menu } = electron
   const isDev = process.env.NODE_ENV === 'test'
   const publicFolder = join(dirname(require.resolve('@melodie/ui')), 'public')
+  const port = 8080
 
   if (!isDev && !app.requestSingleInstanceLock()) {
     return app.quit()
@@ -123,10 +124,15 @@ starting... To change log levels, edit the level file and run \`kill -USR2 ${pro
 
     configureExternalLinks(win)
 
-    const stopServices = await services.start(publicFolder, win, descriptor)
+    const stopServices = await services.start(
+      port,
+      publicFolder,
+      win,
+      descriptor
+    )
 
     win.once('ready-to-show', () => win.show())
-    await win.loadURL(`file://${join(publicFolder, 'index.html')}`)
+    await win.loadURL(`file://${join(publicFolder, 'index.html')}?port=${port}`)
     const openSubscription = openFiles$
       .pipe(
         bufferWhen(() => openFiles$.pipe(debounceTime(200))),
