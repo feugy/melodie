@@ -4,10 +4,9 @@
   import { texts } from '../../tests/lorem'
 
   export let open
-  export let title
 </script>
 
-<Dialogue {title} bind:open on:close on:open>
+<Dialogue {...$$restProps} bind:open on:close on:open>
   <div slot="content">
     Here is an important message, that you absolutely need to be aware of.
   </div>

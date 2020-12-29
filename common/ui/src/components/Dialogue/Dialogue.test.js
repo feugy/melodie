@@ -53,7 +53,7 @@ describe('Dialogue component', () => {
     expect(handleOpen).not.toHaveBeenCalled()
     expect(handleClose).not.toHaveBeenCalled()
 
-    await fireEvent.click(screen.queryByRole('button').closest('div'))
+    await fireEvent.click(screen.getByRole('dialog').parentElement)
 
     expect(screen.queryByText(title)).not.toBeVisible()
     expect(handleClose).toHaveBeenCalled()
@@ -113,5 +113,53 @@ describe('Dialogue component', () => {
     expect(screen.queryByText(title)).not.toBeVisible()
     expect(handleClose).toHaveBeenCalled()
     expect(get(open)).toBe(false)
+  })
+
+  it('does not display close button nor closes on backdrop click with noClose option', async () => {
+    const open = writable(true)
+    const title = faker.lorem.words()
+    const handleClose = jest.fn()
+    render(
+      html`<${Dialogue}
+        noClose
+        on:close=${handleClose}
+        bind:open=${open}
+        title=${title}
+      />`
+    )
+    await tick()
+
+    expect(screen.queryByText(title)).toBeVisible()
+    expect(screen.queryByRole('button')).not.toBeInTheDocument()
+    await fireEvent.click(screen.getByRole('dialog').parentElement)
+
+    expect(screen.queryByText(title)).toBeVisible()
+    expect(handleClose).not.toHaveBeenCalled()
+    expect(get(open)).toBe(true)
+  })
+
+  it('does not close on esc key with noClose option', async () => {
+    const open = writable(true)
+    const title = faker.lorem.words()
+    const handleClose = jest.fn()
+    render(
+      html`<p data-testid="paragraph" />
+        <${Dialogue}
+          noClose
+          on:close=${handleClose}
+          bind:open=${open}
+          title=${title}
+        />`
+    )
+    await tick()
+
+    expect(screen.queryByText(title)).toBeVisible()
+    await fireEvent.keyUp(screen.getByTestId('paragraph'), {
+      key: 'Escape'
+    })
+
+    expect(screen.queryByText(title)).toBeVisible()
+    expect(handleClose).not.toHaveBeenCalled()
+    expect(get(open)).toBe(true)
   })
 })

@@ -5,6 +5,7 @@
 
   export let open
   export let title
+  export let noClose = false
 
   const dispatch = createEventDispatcher()
   let previous = null
@@ -18,9 +19,15 @@
     }
   })
 
+  function close() {
+    if (!noClose) {
+      open = false
+    }
+  }
+
   function handleKeyup({ key }) {
     if (key === 'Escape') {
-      open = false
+      close()
     }
   }
 </script>
@@ -70,12 +77,14 @@
 <svelte:body on:keyup={handleKeyup} />
 <Portal>
   <div class="filter" class:open />
-  <div class="backdrop" class:open on:click={() => (open = false)}>
-    <Button
-      icon={'close'}
-      class="absolute top-0 right-0 m-4"
-      on:click={() => (open = false)} />
-    <article on:click|stopPropagation>
+  <div class="backdrop" class:open on:click={close}>
+    {#if !noClose}
+      <Button
+        icon={'close'}
+        class="absolute top-0 right-0 m-4"
+        on:click={close} />
+    {/if}
+    <article role="dialog" on:click|stopPropagation>
       <header>{title}</header>
       <div class="content">
         <slot name="content" />

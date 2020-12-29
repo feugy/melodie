@@ -5,12 +5,12 @@ import Dialogue from './Dialogue.stories.svelte'
 
 export default {
   title: 'Components/Dialogue',
-  excludeStories: /.*Data$/
-}
-
-export const dialogueData = {
-  title: 'This is a title',
-  open: true
+  excludeStories: /.*Data$/,
+  argTypes: {
+    title: { control: { type: 'text' }, defaultValue: 'This is a title' },
+    open: { control: { type: 'boolean' }, defaultValue: true },
+    noClose: { control: { type: 'boolean' }, defaultValue: false }
+  }
 }
 
 export const actionsData = {
@@ -18,8 +18,8 @@ export const actionsData = {
   open: action('on dialogue open')
 }
 
-export const Default = () => ({
+export const Default = args => ({
   Component: Dialogue,
-  props: dialogueData,
+  props: args,
   on: actionsData
 })

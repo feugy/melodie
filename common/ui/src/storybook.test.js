@@ -31,11 +31,12 @@ afterAll(() => {
 })
 
 initStoryshots({
+  // Dialogue because portal display is always deffered
   // Sticky & Nav because jsdom does not support IntersectionObserver API
   // System Notifier because it does not support MediaMetadata
   // ExpandableList because it mocks getBoundingClientRect
   // MediaSelector & Sheet because the story imlies user action
-  storyKindRegex: /^((?!Nav|Sticky|System|Expandable|Sheet|Media).)*$/,
+  storyKindRegex: /^((?!Dialogue|Nav|Sticky|System|Expandable|Sheet|Media).)*$/i,
   asyncJest: true,
   test: async ({
     done,
