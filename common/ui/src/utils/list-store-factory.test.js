@@ -203,7 +203,7 @@ describe('abstract list factory', () => {
     })
 
     it('cancels pending operation when called', async () => {
-      const total = 38
+      const total = 68
       const data = Array.from({ length: total }, (v, i) => ({
         id: i,
         name: `${i}0`

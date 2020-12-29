@@ -6,7 +6,7 @@ import { sleep } from '../tests'
 
 describe('artists store', () => {
   it('lists all artists', async () => {
-    const total = 13
+    const total = 25
     const data = Array.from({ length: total }, (v, i) => ({
       id: i,
       name: `${i}0`
@@ -33,11 +33,11 @@ describe('artists store', () => {
     expect(get(artists)).toEqual(data)
     expect(invoke).toHaveBeenNthCalledWith(1, 'media.triggerArtistsEnrichment')
     expect(invoke).toHaveBeenNthCalledWith(2, 'tracks.list', 'artist', {
-      size: 10
+      size: 20
     })
     expect(invoke).toHaveBeenNthCalledWith(3, 'tracks.list', 'artist', {
-      size: 10,
-      from: 10
+      size: 20,
+      from: 20
     })
     expect(invoke).toHaveBeenCalledTimes(3)
   })

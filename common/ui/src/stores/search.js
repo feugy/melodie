@@ -69,7 +69,7 @@ export function clear() {
   current$.next(null)
 }
 
-export function search(text, size = 10) {
+export function search(text, size = 20) {
   if (searchSubscription) {
     searchSubscription.unsubscribe()
   }

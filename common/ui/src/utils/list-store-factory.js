@@ -66,7 +66,7 @@ export function createListStore(type, sortBy = 'rank') {
       isListing$.next(true)
       items$.next({ clear: true })
 
-      const request$ = new BehaviorSubject({ size: 10 })
+      const request$ = new BehaviorSubject({ size: 20 })
 
       listSubscription = request$
         .pipe(
