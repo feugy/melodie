@@ -1,6 +1,11 @@
 'use strict'
 
-import { screen, render, fireEvent } from '@testing-library/svelte'
+import {
+  screen,
+  render,
+  fireEvent,
+  waitForElementToBeRemoved
+} from '@testing-library/svelte'
 import html from 'svelte-htm'
 import faker from 'faker'
 import PlaylistTracksTable from './PlaylistTracksTable.svelte'
@@ -168,8 +173,12 @@ describe('PlaylistTracksTable component', () => {
       )
     })
 
+    afterEach(async () =>
+      waitForElementToBeRemoved(screen.queryByText('local_offer'))
+    )
+
     it('removes track from playlist with dropdown', async () => {
-      fireEvent.click(screen.getByText(translate('remove from playlist')))
+      await fireEvent.click(screen.getByText(translate('remove from playlist')))
 
       expect(removeTrack).toHaveBeenCalledWith(
         playlist,

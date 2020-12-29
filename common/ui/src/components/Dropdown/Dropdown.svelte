@@ -194,8 +194,8 @@
     {/if}
   </Button>
 </span>
-<Portal>
-  {#if open}
+{#if open}
+  <Portal>
     <ul
       role="menu"
       transition:slide
@@ -244,5 +244,5 @@
         </li>
       {/each}
     </ul>
-  {/if}
-</Portal>
+  </Portal>
+{/if}
