@@ -12,10 +12,12 @@
   } from '../components'
   import {
     settings,
+    isDesktop,
     askToAddFolder,
     saveEnqueueBehaviour,
     saveDiscogsToken,
     saveAudioDBKey,
+    saveBroadcastPort,
     removeFolder,
     saveLocale
   } from '../stores/settings'
@@ -131,7 +133,7 @@
   article {
     @apply text-left m-4 mt-0;
 
-    & > div {
+    & .instructions {
       @apply text-sm my-4;
     }
 
@@ -205,10 +207,12 @@
         </li>
       {/each}
     </ul>
-    <span class="controlContainer" id="folder"><Button
-        icon="folder"
-        on:click={askToAddFolder}
-        text={$_('add folders')} /></span>
+    {#if $isDesktop}
+      <span class="controlContainer" id="folder"><Button
+          icon="folder"
+          on:click={askToAddFolder}
+          text={$_('add folders')} /></span>
+    {/if}
   </article>
   <article>
     <SubHeading>{$_('interface settings')}</SubHeading>
@@ -241,7 +245,7 @@
   </article>
   <article>
     <SubHeading>{$_('audiodb.title')}</SubHeading>
-    <div>
+    <div class="instructions">
       {@html $_('audiodb.description')}
     </div>
     <label for="audiodb-key">{$_('audiodb.key')}</label>
@@ -253,7 +257,7 @@
   </article>
   <article>
     <SubHeading>{$_('discogs.title')}</SubHeading>
-    <div>
+    <div class="instructions">
       {@html $_('discogs.description')}
     </div>
     <label for="discogs-token">{$_('discogs.token')}</label>
@@ -263,9 +267,22 @@
         value={$settings.providers.discogs.token || ''}
         on:change={({ target: { value } }) => saveDiscogsToken(value)} /></span>
   </article>
+  {#if $isDesktop}
+    <article>
+      <SubHeading>{$_('broadcasting')}</SubHeading>
+      <label for="broadcast-port">{$_('broadcast port')}</label>
+      <span class="controlContainer" id="broadcast-port"><TextInput
+          class="settings-input"
+          placeholder={$_('broadcast port placeholder')}
+          value={$settings.broadcastPort}
+          type="number"
+          on:change={({ target: { value } }) => saveBroadcastPort(value || null)} /></span>
+      <span class="instructions">{$_('restart to apply')}</span>
+    </article>
+  {/if}
   <article>
     <SubHeading>{$_('about')}</SubHeading>
-    <div>
+    <div class="instructions">
       <p>
         {@html $_('build with love by')}
       </p>

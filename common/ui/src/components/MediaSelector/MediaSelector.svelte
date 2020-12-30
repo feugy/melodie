@@ -6,6 +6,7 @@
   import ImageUploader from '../ImageUploader/ImageUploader.svelte'
   import Progress from '../Progress/Progress.svelte'
   import { invoke } from '../../utils'
+  import { isDesktop } from '../../stores/settings'
 
   export let open
   export let src
@@ -68,10 +69,12 @@
           </div>
         {/if}
       {/each}
-      <ImageUploader
-        class="w-48 h-48 m-2"
-        bind:value={uploaded}
-        on:select={() => handleSelect(uploaded)} />
+      {#if $isDesktop}
+        <ImageUploader
+          class="w-48 h-48 m-2"
+          bind:value={uploaded}
+          on:select={() => handleSelect(uploaded)} />
+      {/if}
     </div>
   </div>
   <span slot="buttons">

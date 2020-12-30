@@ -6,7 +6,7 @@ const osLocale = require('os-locale')
 const settingsService = require('./settings')
 const { local, audiodb, discogs } = require('../providers')
 const { settingsModel } = require('../models/settings')
-const { broadcast } = require('../utils')
+const { broadcast, messageBus } = require('../utils')
 
 jest.mock('os-locale')
 jest.mock('../services')
@@ -14,12 +14,22 @@ jest.mock('../models/settings')
 jest.mock('../providers/local')
 jest.mock('../providers/discogs')
 jest.mock('../providers/audiodb')
-jest.mock('../utils/connection')
+jest.mock('../utils/connection', () => {
+  const { EventEmitter } = require('events')
+  return { messageBus: new EventEmitter(), broadcast: jest.fn() }
+})
 
 describe('Settings service', () => {
   beforeEach(() => {
     jest.clearAllMocks()
     settingsModel.get.mockResolvedValue({})
+  })
+
+  it('listens to ui-address event', () => {
+    const address = faker.internet.url()
+    expect(settingsService.getUIAddress()).toBeNull()
+    messageBus.emit('ui-address-set', address)
+    expect(settingsService.getUIAddress()).toEqual(address)
   })
 
   it('returns settings', async () => {
@@ -118,6 +128,44 @@ describe('Settings service', () => {
     settingsModel.save.mockResolvedValueOnce(saved)
 
     expect(await settingsService.setEnqueueBehaviour(newValues)).toEqual(saved)
+    expect(settingsModel.save).toHaveBeenCalledWith(saved)
+    expect(settingsModel.save).toHaveBeenCalledTimes(1)
+  })
+
+  it('toggles broadcast on and off', async () => {
+    const locale = faker.random.word()
+    settingsModel.get
+      .mockResolvedValueOnce({ locale, isBroadcasting: false })
+      .mockResolvedValueOnce({ locale, isBroadcasting: true })
+    settingsModel.save.mockImplementation(async settings => settings)
+
+    expect(await settingsService.toggleBroadcast()).toEqual({
+      locale,
+      isBroadcasting: true
+    })
+    expect(await settingsService.toggleBroadcast()).toEqual({
+      locale,
+      isBroadcasting: false
+    })
+    expect(settingsModel.save).toHaveBeenNthCalledWith(1, {
+      locale,
+      isBroadcasting: true
+    })
+    expect(settingsModel.save).toHaveBeenNthCalledWith(2, {
+      locale,
+      isBroadcasting: false
+    })
+    expect(settingsModel.save).toHaveBeenCalledTimes(2)
+  })
+
+  it('sets broadcast port', async () => {
+    const locale = faker.random.word()
+    const broadcastPort = faker.random.number()
+    settingsModel.get.mockResolvedValueOnce({ locale })
+    const saved = { locale, broadcastPort }
+    settingsModel.save.mockResolvedValueOnce(saved)
+
+    expect(await settingsService.setBroadcastPort(broadcastPort)).toEqual(saved)
     expect(settingsModel.save).toHaveBeenCalledWith(saved)
     expect(settingsModel.save).toHaveBeenCalledTimes(1)
   })

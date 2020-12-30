@@ -8,9 +8,11 @@
   import { _ } from 'svelte-intl'
   import { invoke, toDOMSrc } from '../../utils'
   import { current, playPrevious, playNext } from '../../stores/track-queue'
+  import { isDesktop } from '../../stores/settings'
 
   let trackId = null
   let isFocused = false
+  $: isInDesktop = $isDesktop
 
   onMount(() => {
     const sub = current.subscribe(async track => {
@@ -32,8 +34,9 @@
           icon: toDOMSrc(media),
           silent: true
         })
-        // TODO: when running on the web, focus the browser
-        notif.onclick = () => invoke('core.focusWindow')
+        if (isInDesktop) {
+          notif.onclick = () => invoke('core.focusWindow')
+        }
       }
 
       if (mediaSession) {

@@ -4,15 +4,18 @@ import { first, timeout } from 'rxjs/operators'
 import faker from 'faker'
 import WebSocket from 'ws'
 import { sleep } from '../tests'
-const { initConnection, invoke, fromServerEvent } = jest.requireActual(
-  './connection'
-)
+const {
+  initConnection,
+  closeConnection,
+  invoke,
+  fromServerEvent
+} = jest.requireActual('./connection')
 
 describe('connection utilities', () => {
   let server
   let serverUrl
-  let close
   let errorSpy
+  let handleLostConnection
 
   function setServerResponse(handleMessage) {
     server.on('connection', client => {
@@ -28,6 +31,7 @@ describe('connection utilities', () => {
   beforeEach(async () => {
     jest.resetAllMocks()
     errorSpy = jest.spyOn(console, 'error').mockImplementation(() => {})
+    handleLostConnection = jest.fn()
     server = new WebSocket.Server({ port: 0 })
     await new Promise((resolve, reject) => {
       server.on('error', reject)
@@ -37,37 +41,38 @@ describe('connection utilities', () => {
   })
 
   afterEach(done => {
-    if (close) {
-      close()
-    }
+    closeConnection()
     server.close(done)
   })
 
   it('connects to WebSocket server and can disconnect', async () => {
     const connection = new Promise(resolve => server.on('connection', resolve))
-    close = await initConnection(serverUrl)
+    await initConnection(serverUrl, handleLostConnection)
     const client = await connection
 
     const closure = new Promise(resolve => client.on('close', resolve))
-    close()
+    closeConnection()
     await closure
     expect(errorSpy).not.toHaveBeenCalled()
+    expect(handleLostConnection).not.toHaveBeenCalled()
   })
 
   it('throws when initializing connection twice', async () => {
-    close = await initConnection(serverUrl)
-    await expect(initConnection(serverUrl)).rejects.toThrow(
-      /connection already established, close it first/
-    )
+    await initConnection(serverUrl, handleLostConnection)
+    await expect(
+      initConnection(serverUrl, handleLostConnection)
+    ).rejects.toThrow(/connection already established, close it first/)
     expect(errorSpy).not.toHaveBeenCalled()
+    expect(handleLostConnection).not.toHaveBeenCalled()
   })
 
   it('throws when server is not available', async () => {
     server.close()
-    await expect(initConnection(serverUrl)).rejects.toThrow(
-      /failed to establish connection/
-    )
+    await expect(
+      initConnection(serverUrl, handleLostConnection)
+    ).rejects.toThrow(/failed to establish connection/)
     expect(errorSpy).not.toHaveBeenCalled()
+    expect(handleLostConnection).not.toHaveBeenCalled()
   })
 
   it('can invoke a service function', async () => {
@@ -77,7 +82,7 @@ describe('connection utilities', () => {
 
     const invoked = 'media.triggerArtistsEnrichment'
     const args = faker.random.arrayElements()
-    close = await initConnection(serverUrl)
+    await initConnection(serverUrl, handleLostConnection)
     expect(await invoke(invoked, ...args)).toEqual(result)
     expect(handleMessage).toHaveBeenCalledWith({
       invoked,
@@ -86,6 +91,7 @@ describe('connection utilities', () => {
     })
     expect(handleMessage).toHaveBeenCalledTimes(1)
     expect(errorSpy).not.toHaveBeenCalled()
+    expect(handleLostConnection).not.toHaveBeenCalled()
   })
 
   it('supports a service function with no results', async () => {
@@ -94,7 +100,7 @@ describe('connection utilities', () => {
 
     const invoked = 'media.triggerArtistsEnrichment'
     const args = faker.random.arrayElements()
-    close = await initConnection(serverUrl)
+    await initConnection(serverUrl, handleLostConnection)
     expect(await invoke(invoked, ...args)).toBeUndefined()
     expect(handleMessage).toHaveBeenCalledWith({
       invoked,
@@ -103,6 +109,7 @@ describe('connection utilities', () => {
     })
     expect(handleMessage).toHaveBeenCalledTimes(1)
     expect(errorSpy).not.toHaveBeenCalled()
+    expect(handleLostConnection).not.toHaveBeenCalled()
   })
 
   it('supports a service function throwing error', async () => {
@@ -112,7 +119,7 @@ describe('connection utilities', () => {
 
     const invoked = 'media.triggerArtistsEnrichment'
     const args = faker.random.arrayElements()
-    close = await initConnection(serverUrl)
+    await initConnection(serverUrl, handleLostConnection)
     await expect(invoke(invoked, ...args)).rejects.toThrow(error)
     expect(handleMessage).toHaveBeenCalledWith({
       invoked,
@@ -121,6 +128,7 @@ describe('connection utilities', () => {
     })
     expect(handleMessage).toHaveBeenCalledTimes(1)
     expect(errorSpy).not.toHaveBeenCalled()
+    expect(handleLostConnection).not.toHaveBeenCalled()
   })
 
   it('does not mix parallel calls', async () => {
@@ -140,7 +148,7 @@ describe('connection utilities', () => {
     setServerResponse(handleMessage)
 
     const invoked = 'media.triggerArtistsEnrichment'
-    close = await initConnection(serverUrl)
+    await initConnection(serverUrl, handleLostConnection)
 
     const call1 = invoke(invoked, ...args1)
     const call2 = invoke(invoked, ...args2)
@@ -157,6 +165,7 @@ describe('connection utilities', () => {
     })
     expect(handleMessage).toHaveBeenCalledTimes(2)
     expect(errorSpy).not.toHaveBeenCalled()
+    expect(handleLostConnection).not.toHaveBeenCalled()
   })
 
   it('throws an error when invoking function without connection', async () => {
@@ -164,6 +173,7 @@ describe('connection utilities', () => {
       'unestablished connection, call initConnection() first'
     )
     expect(errorSpy).not.toHaveBeenCalled()
+    expect(handleLostConnection).not.toHaveBeenCalled()
   })
 
   it('can receive server events', async () => {
@@ -175,7 +185,7 @@ describe('connection utilities', () => {
     server.on('connection', client => {
       ws = client
     })
-    close = await initConnection(serverUrl)
+    await initConnection(serverUrl, handleLostConnection)
 
     const fromEvent1 = fromServerEvent(event1)
       .pipe(first(), timeout(delay))
@@ -192,6 +202,7 @@ describe('connection utilities', () => {
     expect(await Promise.all([fromEvent1, fromEvent12])).toEqual([args, args])
     await expect(fromEvent2).rejects.toThrow(/Timeout has occurred/)
     expect(errorSpy).not.toHaveBeenCalled()
+    expect(handleLostConnection).not.toHaveBeenCalled()
   })
 
   it('warns unsupported message from server', async () => {
@@ -204,7 +215,7 @@ describe('connection utilities', () => {
       ws = client
     })
 
-    close = await initConnection(serverUrl)
+    await initConnection(serverUrl, handleLostConnection)
     const fromEvent = fromServerEvent(event)
       .pipe(first(), timeout(delay))
       .toPromise()
@@ -217,5 +228,18 @@ describe('connection utilities', () => {
       expect.any(Error),
       data
     )
+    expect(handleLostConnection).not.toHaveBeenCalled()
+  })
+
+  it('closes and invokes callback on connection lost', async () => {
+    const connection = new Promise(resolve => server.on('connection', resolve))
+    await initConnection(serverUrl, handleLostConnection)
+    await connection
+    expect(handleLostConnection).not.toHaveBeenCalled()
+
+    await server.close()
+    await sleep(10)
+    expect(handleLostConnection).toHaveBeenCalled()
+    expect(errorSpy).not.toHaveBeenCalled()
   })
 })

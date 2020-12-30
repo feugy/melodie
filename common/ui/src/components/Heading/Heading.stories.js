@@ -5,7 +5,7 @@ import Heading from './Heading.stories.svelte'
 export default {
   title: 'Components/Heading',
   excludeStories: /.*Data$/,
-  parameters: { layout: null }
+  parameters: { layout: 'none' }
 }
 
 export const headingData = {

@@ -4,10 +4,14 @@ import MediaSelector from './MediaSelector.stories.svelte'
 import { actionsData } from '../Dialogue/Dialogue.stories'
 import { artistData } from '../Artist/Artist.stories'
 import { websocketResponse } from '../../../.storybook/loaders'
+import { isDesktop } from '../../stores/settings'
 
 export default {
   title: 'Components/Media Selector',
   excludeStories: /.*Data$/,
+  argTypes: {
+    isDesktop: { control: { type: 'boolean' }, defaultValue: true }
+  },
   loaders: [
     websocketResponse(invoked => {
       if (invoked === 'media.findForArtist') {
@@ -71,19 +75,20 @@ export const albumSuggestionsData = artistSuggestionsData.map(
   ({ artwork, provider }) => ({ cover: artwork, provider })
 )
 
-export const Default = () => ({
-  Component: MediaSelector,
-  props: {
-    src: artistData
-  },
-  on: actionsData
-})
+export const Default = args => {
+  isDesktop.next(args.isDesktop)
+  return {
+    Component: MediaSelector,
+    props: { src: artistData },
+    on: actionsData
+  }
+}
 
-export const ForAlbum = () => ({
-  Component: MediaSelector,
-  props: {
-    forArtist: false,
-    src: artistData
-  },
-  on: actionsData
-})
+export const ForAlbum = args => {
+  isDesktop.next(args.isDesktop)
+  return {
+    Component: MediaSelector,
+    props: { src: artistData, forArtist: false },
+    on: actionsData
+  }
+}

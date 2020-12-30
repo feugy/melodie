@@ -10,6 +10,7 @@ import {
   playlists as mockedPlaylists,
   appendTracks
 } from '../../stores/playlists'
+import { isDesktop } from '../../stores/settings'
 import { invoke } from '../../utils'
 import { translate, sleep } from '../../tests'
 
@@ -18,6 +19,8 @@ jest.mock('../../stores/track-queue')
 
 describe('TrackDropdown component', () => {
   beforeEach(jest.resetAllMocks)
+
+  afterEach(() => isDesktop.next(true))
 
   describe('given an opened dropdown', () => {
     const option = { label: 'Custom item', icon: 'close', act: jest.fn() }
@@ -83,7 +86,7 @@ describe('TrackDropdown component', () => {
       expect(appendTracks).not.toHaveBeenCalled()
     })
 
-    it('invokes service to open parent folder', async () => {
+    it('invokes service to open parent folder, on desktop', async () => {
       fireEvent.click(screen.getByText('launch'))
 
       expect(invoke).toHaveBeenCalledWith('tracks.openContainingFolder', track)
@@ -92,6 +95,10 @@ describe('TrackDropdown component', () => {
       expect(add).not.toHaveBeenCalled()
       expect(option.act).not.toHaveBeenCalled()
       expect(appendTracks).not.toHaveBeenCalled()
+
+      isDesktop.next(false)
+      await sleep(100)
+      expect(screen.queryByText('launch')).not.toBeInTheDocument()
     })
 
     it('dispatches event when opening track details', async () => {

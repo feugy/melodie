@@ -22,6 +22,8 @@ an artist: 1 artist
 an hour: 1 hour
 artist: Artist
 artists: Artists
+broadcasting: Broadcasting
+broadcast port: 'Broadcasting port: '
 build with love by: Built with love by <a href="http://feugy.github.io" class="underlined">Damien Simonin Feugas</a>
 by _: 'by {artist}'
 cancel: Cancel
@@ -31,6 +33,7 @@ choose cover: Choose a cover
 clear: Clear
 clears queue and plays: clears queue and plays track
 close queue: Close queue
+connection lost: Connection lost!
 confirm playlist _ delection: Do you really want to delete playlist {name}?
 delete playlist: Delete
 disk _: 'Disk #{num}'
@@ -72,8 +75,10 @@ provider (_ x _): '{value} ({width} x {height})'
 queue: Queue
 remove from playlist: Remove
 rename playlist: Rename
+restart to apply: (please restart to apply change)
 results for _: Results for "{searched}"
 save: Save
+scan or click the code to open Mélodie in your browser: Scan or click the code to open Mélodie in your browser
 search over: search over...
 settings: Settings
 separator: ' • '
@@ -90,6 +95,9 @@ using material design icons: Using <a class="underlined" href="https://material.
 watched folders: Music folders
 year _: 'Year: {year}'
 yes: Yes
+you are disconnected: >
+  <p>You're disconnected... Mélodie will keep trying to connecting, but please please check your internet.</p>
+  <p>If you purposingly stopped broadcasting, or have no network, please close Mélodie.</p>
 audiodb:
   description: >
     <p>TheAudioDB is a community Database of audio artwork and data with a JSON API. Mélodie can use it for album covers and artist artwork, but it needs an API key.</p>

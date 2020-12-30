@@ -39,6 +39,7 @@ module.exports = {
     '**/*.svelte',
     '!**/*.test.js',
     '!**/*.stories.*',
+    '!**/tests/**',
     '!**/tailwind.svelte'
   ]
 }

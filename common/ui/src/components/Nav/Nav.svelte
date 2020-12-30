@@ -7,13 +7,25 @@
   import { debounceTime, filter } from 'rxjs/operators'
   import Sticky from '../Sticky/Sticky.svelte'
   import Button from '../Button/Button.svelte'
+  import BroadcastButton from '../BroadcastButton/BroadcastButton.svelte'
   import TextInput from '../TextInput/TextInput.svelte'
+  import Dialogue from '../Dialogue/Dialogue.svelte'
+  import {
+    address,
+    connected,
+    isDesktop,
+    settings,
+    toggleBroadcast
+  } from '../../stores/settings'
 
   const { location, push } = router
+
   // searched text is the 3rd part: /search/text
   $: searched = $location.startsWith('/search')
     ? decodeURIComponent($location.split('/')[2])
     : ''
+
+  $: isBroadcasting = $settings && $settings.isBroadcasting
 
   let search$ = new Subject().pipe(
     debounceTime(250),
@@ -103,6 +115,20 @@
         on:input={({ target: { value } }) => search$.next(value)}
         on:keyup={handleSearchKeyup}
         on:iconClick={handleSearchClick} />
+    </li>
+    <li>
+      {#if $isDesktop}
+        <BroadcastButton
+          {isBroadcasting}
+          address={$address}
+          on:click={toggleBroadcast} />
+      {:else if !$connected}
+        <Dialogue title={$_('connection lost')} open noClose>
+          <div slot="content">
+            {@html $_('you are disconnected')}
+          </div>
+        </Dialogue>
+      {/if}
     </li>
     <li>
       <Button on:click={() => push('/settings')} icon="settings" noBorder />

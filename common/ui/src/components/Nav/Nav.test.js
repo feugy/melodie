@@ -3,12 +3,27 @@
 import { render, screen, fireEvent } from '@testing-library/svelte'
 import html from 'svelte-htm'
 import * as router from 'svelte-spa-router'
+import { BehaviorSubject } from 'rxjs'
 import faker from 'faker'
 import Nav from './Nav.svelte'
+import {
+  isDesktop,
+  connected,
+  settings,
+  address,
+  toggleBroadcast
+} from '../../stores/settings'
 import { sleep, translate } from '../../tests'
+
+jest.mock('../../stores/settings')
+jest.mock('qrcode', () => ({ default: { toCanvas: jest.fn() } }))
 
 describe('Nav component', () => {
   const observer = {}
+  const isDesktopStore = new BehaviorSubject(true)
+  const connectedStore = new BehaviorSubject(true)
+  const settingsStore = new BehaviorSubject({ isBroadcasting: false })
+  const addressStore = new BehaviorSubject(faker.internet.url())
 
   beforeEach(() => {
     location.hash = '#/'
@@ -16,6 +31,10 @@ describe('Nav component', () => {
     observer.observe = jest.fn()
     observer.unobserve = jest.fn()
     window.IntersectionObserver = jest.fn().mockReturnValue(observer)
+    isDesktop.subscribe = isDesktopStore.subscribe.bind(isDesktopStore)
+    connected.subscribe = connectedStore.subscribe.bind(connectedStore)
+    settings.subscribe = settingsStore.subscribe.bind(settingsStore)
+    address.subscribe = addressStore.subscribe.bind(addressStore)
   })
 
   it('observes its sentinel', async () => {
@@ -162,5 +181,32 @@ describe('Nav component', () => {
     await sleep(100)
 
     expect(location.hash).toEqual(`#/artist`)
+  })
+
+  it('can toggle broadcasting on desktop', async () => {
+    isDesktopStore.next(true)
+    toggleBroadcast.mockImplementation(async () => {
+      settingsStore.next({ isBroadcasting: true })
+    })
+
+    render(html`<${Nav} />`)
+    expect(screen.queryByText('wifi')).not.toBeInTheDocument()
+
+    await fireEvent.click(screen.queryByText('wifi_off'))
+
+    expect(screen.queryByText('wifi_off')).not.toBeInTheDocument()
+    expect(screen.queryByText('wifi')).toBeInTheDocument()
+
+    expect(toggleBroadcast).toHaveBeenCalledTimes(1)
+  })
+
+  it('shows connection lost dialogue on disconnected browser', async () => {
+    isDesktopStore.next(false)
+    connectedStore.next(false)
+    render(html`<${Nav} />`)
+
+    expect(screen.queryByText('wifi')).not.toBeInTheDocument()
+    expect(screen.queryByText('wifi_off')).not.toBeInTheDocument()
+    expect(screen.queryByText(translate('connection lost'))).toBeVisible()
   })
 })

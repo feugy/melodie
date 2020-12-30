@@ -11,19 +11,21 @@ const messages$ = new BehaviorSubject({})
  * Connects to the server's Websocket.
  * Does nothing if connection is already live.
  * @async
- * @param {string} serverUrl - WebService url to connect to
- * @returns {function} a function to close the connection
+ * @param {string} address            - WebService url to connect to
+ * @param {function} onConnectionLost - function called when connection is lost
  * @throws {err} if connection can not been established
  */
-export async function initConnection(serverUrl) {
+export async function initConnection(address, onConnectionLost) {
   if (ws && [WebSocket.CONNECTING, WebSocket.OPEN].includes(ws.readyState)) {
     throw new Error(`connection already established, close it first`)
   }
+
   ws = await new Promise((resolve, reject) => {
-    const socket = new WebSocket(serverUrl)
+    const socket = new WebSocket(address)
     socket.onopen = () => {
       socket.onopen = null
       socket.onerror = null
+      console.log(`Connected to ${address}`)
       resolve(socket)
     }
     socket.onerror = err => {
@@ -40,16 +42,25 @@ export async function initConnection(serverUrl) {
       console.error(`Failed to read server message: ${err.message}`, err, data)
     }
   }
-  ws.onerror = err => {
-    console.error(`Server connection error: ${err.message}`, err)
-  }
 
-  return () => {
-    if (ws) {
-      ws.close()
-    }
-    ws = null
+  ws.onclose = () => {
+    console.log(`Connection to ${address} lost`)
+    closeConnection()
+    onConnectionLost()
   }
+}
+
+/**
+ * Disconnects from the server's Websocket.
+ * Does nothing if no connection is established
+ */
+export function closeConnection() {
+  if (ws) {
+    console.log(`Disconnected`)
+    ws.onclose = null
+    ws.close()
+  }
+  ws = null
 }
 
 /**

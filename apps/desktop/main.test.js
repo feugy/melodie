@@ -1,7 +1,7 @@
 'use strict'
 
 const { EventEmitter } = require('events')
-const { dirname, join } = require('path')
+const { dirname, join, resolve } = require('path')
 const os = require('os')
 const electron = require('electron')
 const { autoUpdater } = require('electron-updater')
@@ -12,6 +12,8 @@ const {
 const { sleep } = require('./lib/tests')
 const services = require('./lib/services')
 const { configureExternalLinks } = require('./lib/utils')
+const descriptor = require('./package')
+const publicFolder = resolve(__dirname, '..', '..', 'common', 'ui', 'public')
 
 let platformSpy = jest.spyOn(os, 'platform')
 
@@ -58,6 +60,7 @@ jest.mock('./lib/utils/links')
 describe('Application test', () => {
   let win
   let main
+  const port = faker.random.number({ min: 1024, max: 20000 })
 
   beforeAll(() => {
     // defer so we could mock electron
@@ -75,7 +78,12 @@ describe('Application test', () => {
     electron.app.removeAllListeners()
     process.env.NODE_ENV = ''
     getLogger.mockReturnValue({ info() {}, debug() {}, warn() {}, error() {} })
-    services.start.mockReturnValue(jest.fn())
+    services.start.mockImplementation(
+      async (folder, win, desc, desiredPort) => ({
+        port: desiredPort || port,
+        close: jest.fn()
+      })
+    )
   })
 
   afterEach(() => {
@@ -84,9 +92,14 @@ describe('Application test', () => {
   })
 
   it('initialize models, tracks service and loads renderer', async () => {
-    const port = 8080
     await main(['asar-location'])
 
+    expect(services.start).toHaveBeenCalledWith(
+      publicFolder,
+      expect.any(Object),
+      descriptor,
+      undefined
+    )
     expect(services.start).toHaveBeenCalledTimes(1)
     expect(win.loadURL).toHaveBeenCalledWith(
       `file://${join(
@@ -102,6 +115,49 @@ describe('Application test', () => {
 
     await sleep(300)
     expect(services.playFiles).not.toHaveBeenCalled()
+  })
+
+  it.each([
+    [['asar-location', '--port', 8080], { desiredPort: 8080, entries: [] }],
+    [['.', '-p', 9090], { desiredPort: 9090, entries: [] }],
+    [['.', '-p=7070'], { desiredPort: 7070, entries: [] }],
+    [['asar-location', '--port=6060'], { desiredPort: 6060, entries: [] }],
+    [['asar-location', 'file1', 'file 2'], { entries: ['file1', 'file 2'] }],
+    [
+      ['.', '-p', 5050, 'file1', 'file 2'],
+      { desiredPort: 5050, entries: ['file1', 'file 2'] }
+    ],
+    [
+      ['.', 'file1', 'file 2', '--port=4040'],
+      { desiredPort: 4040, entries: ['file1', 'file 2'] }
+    ],
+    [['.', 'file1', 'file 2', '--port'], { entries: ['file1', 'file 2'] }],
+    [['.', '-p='], { entries: [] }]
+  ])('parse %j CLI arguments', async (argv, { desiredPort, entries }) => {
+    await main(argv)
+
+    expect(services.start).toHaveBeenCalledWith(
+      publicFolder,
+      expect.any(Object),
+      descriptor,
+      desiredPort
+    )
+    expect(services.start).toHaveBeenCalledTimes(1)
+    expect(win.loadURL).toHaveBeenCalledWith(
+      `file://${join(
+        dirname(require.resolve('@melodie/ui')),
+        'public',
+        'index.html'
+      )}?port=${desiredPort || port}`
+    )
+
+    await sleep(300)
+    if (entries.length) {
+      expect(services.playFiles).toHaveBeenCalledWith(entries)
+      expect(services.playFiles).toHaveBeenCalledTimes(1)
+    } else {
+      expect(services.playFiles).not.toHaveBeenCalled()
+    }
   })
 
   it('quits when closing window', async () => {

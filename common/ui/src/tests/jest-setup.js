@@ -51,7 +51,9 @@ jest.mock('../utils/connection', () => {
     },
     lastInvokation,
     // usefull for simulating server events
-    serverEmitter
+    serverEmitter,
+    initConnection: jest.fn(),
+    closeConnection: jest.fn()
   }
 })
 

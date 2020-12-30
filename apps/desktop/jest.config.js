@@ -7,5 +7,12 @@ module.exports = {
   watchPlugins: [
     'jest-watch-typeahead/filename',
     'jest-watch-typeahead/testname'
+  ],
+  collectCoverageFrom: [
+    'main.js',
+    'lib/**/*.js',
+    '!**/*.test.js',
+    '!**/node_modules/**',
+    '!**/lib/tests/**'
   ]
 }

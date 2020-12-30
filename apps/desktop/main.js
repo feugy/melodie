@@ -8,6 +8,7 @@ const shortcut = require('electron-localshortcut')
 const { autoUpdater } = require('electron-updater')
 const { ReplaySubject } = require('rxjs')
 const { bufferWhen, debounceTime, filter } = require('rxjs/operators')
+const parseArgs = require('minimist')
 const descriptor = require('./package')
 
 // initialize environment before importing any code depending on @melodie/core
@@ -34,7 +35,6 @@ exports.main = async argv => {
   const { app, BrowserWindow, Menu } = electron
   const isDev = process.env.NODE_ENV === 'test'
   const publicFolder = join(dirname(require.resolve('@melodie/ui')), 'public')
-  const port = 8080
 
   if (!isDev && !app.requestSingleInstanceLock()) {
     return app.quit()
@@ -44,16 +44,23 @@ exports.main = async argv => {
   // Because macOS use events for opened files, and even before the app is ready, we need to buffer them to open them at once
   const openFiles$ = new ReplaySubject()
 
+  if (os.platform() !== 'darwin' && !app.isPackaged) {
+    // when packaged, argv does not include the usual "node" first parameter
+    argv.shift()
+  }
+  const { port, _: entries } = parseArgs(argv, {
+    alias: { p: 'port' }
+  })
+  // first is always the archive or folder
+  entries.splice(0, 1)
+  const desiredPort = parseInt(port, 10) || undefined
+
   if (os.platform() === 'darwin') {
     // on macOS, open files will be passed with events
     app.on('open-file', (evt, entry) => openFiles$.next(entry))
   } else {
-    if (!app.isPackaged) {
-      // when package, argv does not include the usual "node" first parameter
-      argv.shift()
-    }
     // other OS will pass opened files/folders as arguments
-    for (const entry of argv.slice(1)) {
+    for (const entry of entries) {
       openFiles$.next(entry)
     }
   }
@@ -61,7 +68,9 @@ exports.main = async argv => {
   logger.info(
     {
       levelFile: process.env.LOG_LEVEL_FILE || '.levels',
-      pid: process.pid
+      pid: process.pid,
+      desiredPort,
+      entries
     },
     `
 
@@ -79,10 +88,11 @@ starting... To change log levels, edit the level file and run \`kill -USR2 ${pro
 
   if (isDev) {
     logger.info('enabling reloading')
+    const reloadOnChange = require('electron-reload')
     // soft reset for renderer process changes
-    require('electron-reload')(publicFolder)
+    reloadOnChange(publicFolder)
     // hard reset for main process changes
-    require('electron-reload')(__dirname, {
+    reloadOnChange([__dirname, dirname(require.resolve('@melodie/core'))], {
       electron: join(__dirname, 'node_modules', '.bin', 'electron'),
       hardResetMethod: 'exit',
       forceHardReset: true,
@@ -124,15 +134,17 @@ starting... To change log levels, edit the level file and run \`kill -USR2 ${pro
 
     configureExternalLinks(win)
 
-    const stopServices = await services.start(
-      port,
+    const { close: stopServices, port: realPort } = await services.start(
       publicFolder,
       win,
-      descriptor
+      descriptor,
+      desiredPort
     )
 
     win.once('ready-to-show', () => win.show())
-    await win.loadURL(`file://${join(publicFolder, 'index.html')}?port=${port}`)
+    await win.loadURL(
+      `file://${join(publicFolder, 'index.html')}?port=${realPort}`
+    )
     const openSubscription = openFiles$
       .pipe(
         bufferWhen(() => openFiles$.pipe(debounceTime(200))),

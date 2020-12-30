@@ -268,7 +268,9 @@ module.exports = class AbstractModel {
     return data => {
       const saved = { ...data }
       for (const column of this.jsonColumns) {
-        saved[column] = JSON.stringify(saved[column] || null)
+        saved[column] = JSON.stringify(
+          saved[column] === undefined ? null : saved[column]
+        )
       }
       return saved
     }

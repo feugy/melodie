@@ -19,7 +19,7 @@ export default {
       results: playlistsData
     }))
   ],
-  parameters: { layout: null }
+  parameters: { layout: 'none' }
 }
 
 export const tracksData = disksData.map((track, i) => ({

@@ -15,7 +15,6 @@ module.exports = {
     '**/*.js',
     '!**/__nocks__/**',
     '!**/*.test.js',
-    '!**/node_modules/**',
-    '!**/lib/tests/**'
+    '!**/tests/**'
   ]
 }

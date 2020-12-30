@@ -4,10 +4,13 @@ const knex = require('knex')
 const fs = require('fs-extra')
 const os = require('os')
 const { join } = require('path')
+const { broadcast } = require('../utils')
 const { settingsModel } = require('./settings')
 
 let dbFile
 let db
+
+jest.mock('../utils/connection')
 
 describe('Settings model', () => {
   beforeAll(async () => {
@@ -38,8 +41,11 @@ describe('Settings model', () => {
       enqueueBehaviour: {
         onClick: true,
         clearBefore: true
-      }
+      },
+      broadcastPort: null,
+      isBroadcasting: false
     })
+    expect(broadcast).not.toHaveBeenCalled()
   })
 
   it('returns settings', async () => {
@@ -50,14 +56,19 @@ describe('Settings model', () => {
       ...settings,
       folders: JSON.parse(settings.folders),
       providers: JSON.parse(settings.providers),
-      enqueueBehaviour: JSON.parse(settings.enqueueBehaviour)
+      enqueueBehaviour: JSON.parse(settings.enqueueBehaviour),
+      isBroadcasting: JSON.parse(settings.isBroadcasting)
     })
+    expect(broadcast).not.toHaveBeenCalled()
   })
 
   it('returns modified settings on save', async () => {
     const settings = await settingsModel.get()
     settings.providers.deezer = { token: 'abc' }
+    settings.isBroadcasting = true
 
     expect(await settingsModel.save(settings)).toEqual(settings)
+    expect(broadcast).toHaveBeenCalledWith('settings-saved', settings)
+    expect(broadcast).toHaveBeenCalledTimes(1)
   })
 })

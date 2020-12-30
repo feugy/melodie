@@ -4,10 +4,14 @@ import { action } from '@storybook/addon-actions'
 import TrackDropdown from './TrackDropdown.svelte'
 import { websocketResponse } from '../../../.storybook/loaders'
 import { list } from '../../stores/playlists'
+import { isDesktop } from '../../stores/settings'
 
 export default {
   title: 'Components/Track Dropdown',
   excludeStories: /.*Data$/,
+  argTypes: {
+    isDesktop: { control: { type: 'boolean' }, defaultValue: true }
+  },
   loaders: [
     websocketResponse(() => ({
       total: playlistsData.length,
@@ -36,7 +40,8 @@ export const playlistsData = [
   }
 ]
 
-export const Default = () => {
+export const Default = args => {
+  isDesktop.next(args.isDesktop)
   list()
   return {
     Component: TrackDropdown,

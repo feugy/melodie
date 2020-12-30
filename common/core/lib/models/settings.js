@@ -1,6 +1,7 @@
 'use strict'
 
 const Model = require('./abstract-model')
+const { broadcast } = require('../utils')
 
 /**
  * @class SettingsModel
@@ -12,12 +13,19 @@ const Model = require('./abstract-model')
  * - {string} locale            - current locale used
  * - {number} openCount         - how many times Mélodie was opened (positive integer)
  * - {object} enqueueBehaviour  - `clearBefore` & `onClick` booleans to control how tracks are enqueued
+ * - {boolean} isBroadcasting   - true when the UI is served over the broadcast port
+ * - {number} broadcastPort     - broadcast port set by user (optional)
  */
 class SettingsModel extends Model {
   constructor() {
     super({
       name: 'settings',
-      jsonColumns: ['folders', 'providers', 'enqueueBehaviour']
+      jsonColumns: [
+        'folders',
+        'providers',
+        'enqueueBehaviour',
+        'isBroadcasting'
+      ]
     })
   }
 
@@ -38,14 +46,16 @@ class SettingsModel extends Model {
   }
 
   /**
-   * Saves the singleton model
+   * Saves the singleton model and broadcasts "settings-saved" event with saved settings
    * @async
    * @param {object} data - new settings
    * @returns {SettingsModel} saved settings
    */
   async save(data) {
     await super.save(data)
-    return this.get()
+    const saved = await this.get()
+    broadcast('settings-saved', saved)
+    return saved
   }
 }
 

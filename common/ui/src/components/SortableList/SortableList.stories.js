@@ -9,7 +9,7 @@ export default {
   title: 'Components/Sortable list',
   excludeStories: /.*Data$/,
   decorators: [hrefSinkDecorator],
-  parameters: { layout: null }
+  parameters: { layout: 'none' }
 }
 
 export const actionsData = {

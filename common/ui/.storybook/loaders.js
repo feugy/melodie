@@ -1,18 +1,23 @@
 'use strict'
 
 import { action } from '@storybook/addon-actions'
-import { initConnection } from '../src/utils'
+import { initConnection, closeConnection } from '../src/utils'
 
 const invokeAction = action('invoke')
 
-let close
+let connection
+let disconnected = false
 
-export function websocketResponse(mock = () => null) {
+export function websocketResponse(mock = () => null, autoconnect = true) {
   return async () => {
-    if (close) {
-      close()
-    }
+    closeConnection()
+    disconnected = false
     window.WebSocket = function () {
+      connection = this
+      if (disconnected) {
+        setTimeout(() => this.onerror(new Error('Forced disconnection')), 0)
+        return this 
+      }
       this.send = rawData => {
         const { invoked, args, id } = JSON.parse(rawData)
         invokeAction(invoked, ...args)
@@ -23,7 +28,16 @@ export function websocketResponse(mock = () => null) {
       setTimeout(() => this.onopen(), 0)
       return this
     }
-    ;({ close } = await initConnection('unused'))
+    if (autoconnect) {
+      await initConnection('unused', () => {})
+    }
     return {}
+  }
+}
+
+export function disconnectWebsocket() {
+  disconnected = true
+  if (connection) {
+    connection.onclose()
   }
 }

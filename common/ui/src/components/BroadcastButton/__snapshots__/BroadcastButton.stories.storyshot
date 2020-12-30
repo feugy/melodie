@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Components/Broadcast button Default 1`] = `
+<section
+  class="storybook-snapshot-container"
+>
+  <span
+    class="button svelte-2fbbqs"
+  >
+    <button
+      class="svelte-bb1epg iconOnly noBorder"
+    >
+      <i
+        class="material-icons svelte-bb1epg"
+      >
+        wifi_off
+      </i>
+       
+       
+       
+    </button>
+     
+  </span>
+</section>
+`;

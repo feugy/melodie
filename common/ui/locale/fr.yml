@@ -14,6 +14,8 @@ an artist: 1 artiste
 an hour: 1 heure
 artist: Artiste
 artists: Artistes
+broadcasting: Diffusion
+broadcast port: 'Port de diffusion : '
 build with love by: Fait avec amour par <a href="http://feugy.github.io" class="underlined">Damien Simonin Feugas</a>
 by _: 'par {artist}'
 cancel: Annuler
@@ -23,6 +25,7 @@ choose cover: Choisissez une couverture
 clear: Vider
 clears queue and plays: vide la liste et lit le morceau
 close queue: Fermer la liste
+connection lost: Connexion perdue !
 confirm playlist _ delection: Voulez-vous vraiment supprimer la playlist {name} ?
 delete playlist: Supprimer
 disk _: 'Disque N°{num}'
@@ -58,8 +61,10 @@ photos by: 'Photos par :'
 queue: Liste de lecture
 remove from playlist: Retirer
 rename playlist: Renommer
+restart to apply: (veuillez redémarrer pour appliquer le changement)
 results for _: Resultats pour "{searched}"
 save: Enregistrer
+scan or click the code to open Mélodie in your browser: Scannez ou clicker le code pour ouvrir Mélodie dans votre navigateur
 search over: chercher parmi...
 settings: Paramètres
 simple click behaviour: 'Le simple clic :'
@@ -75,6 +80,9 @@ using material design icons: Avec les icônes <a class="underlined" href="https:
 watched folders: Répertoires de musique
 year _: 'Année : {year}'
 yes: Oui
+you are disconnected: >
+  <p>Vous êtes déconnecté(e)... Mélodie essaie the se reconnecter, merci de vérifier votre connexion Internet.</p>
+  <p>Si vous avez stoppé la diffusion vous même, you n'avez plus de réseau, veuillez fermer Mélodie.</p>
 tags:
   albumartist: Artiste de l'album
   arranger: Arranger

@@ -6,6 +6,7 @@ import html from 'svelte-htm'
 import SystemNotifier from './SystemNotifier.svelte'
 import { toDOMSrc, invoke } from '../../utils'
 import { clear, add, playNext } from '../../stores/track-queue'
+import { isDesktop } from '../../stores/settings'
 import { trackListData } from '../Player/Player.stories'
 import { sleep, translate } from '../../tests'
 
@@ -33,10 +34,13 @@ describe('SystemNotifier Component', () => {
   beforeEach(async () => {
     clear()
     jest.resetAllMocks()
+    isDesktop.next(true)
     window.MediaMetadata = jest.fn().mockImplementation(arg => arg)
     window.Notification = jest.fn().mockImplementation((title, opts) => opts)
     navigator.mediaSession.metadata = null
   })
+
+  afterEach(() => isDesktop.next(true))
 
   it('handles unfetchable meda media', async () => {
     console.error = jest.fn()
@@ -240,7 +244,7 @@ describe('SystemNotifier Component', () => {
       expect(invoke).not.toHaveBeenCalled()
     })
 
-    it('focuses the application on notification click', async () => {
+    it('focuses the application on notification click, in ', async () => {
       render(html`<${SystemNotifier} />`)
       add(trackListData)
       await sleep()
@@ -251,6 +255,14 @@ describe('SystemNotifier Component', () => {
       Notification.mock.calls[0][1].onclick()
       expect(invoke).toHaveBeenCalledWith('core.focusWindow')
       expect(invoke).toHaveBeenCalledTimes(1)
+
+      isDesktop.next(false)
+      render(html`<${SystemNotifier} />`)
+      add(trackListData)
+      await sleep()
+
+      expect(Notification).toHaveBeenCalledTimes(2)
+      expect(Notification.mock.calls[1][1].onclick).not.toBeDefined()
     })
   })
 })

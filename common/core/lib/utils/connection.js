@@ -1,11 +1,13 @@
 'use strict'
 
 const { resolve, dirname, basename } = require('path')
+const { EventEmitter } = require('events')
 const fastify = require('fastify')
 const compressPlugin = require('fastify-compress')
 const staticPlugin = require('fastify-static')
 const websocketPlugin = require('fastify-websocket')
 const Ajv = require('ajv').default
+const publicIp = require('public-ip')
 const { getLogger } = require('./logger')
 
 const logger = getLogger('connection')
@@ -35,6 +37,12 @@ const validate = ajv.compile({
 })
 
 /**
+ * Message bus to receive events internally.
+ */
+exports.messageBus = new EventEmitter()
+exports.messageBus.setMaxListeners(10000)
+
+/**
  * Exposes services and their functions through a WebSocket connection, and serve static content
  * Connection clients can invoke any service function by:
  * 1. sending a request message with 'invoked' (service and function names), 'args' (array of parameters) and 'id'
@@ -43,18 +51,42 @@ const validate = ajv.compile({
  * Since data goes over the wire, the invoked function args and result must be serializable as strings.
  * Clients can also send their errors for logging. Error message must contain (at least) an 'error' string property
  *
- * All files from public folder will be served by an http server, as well as any file present in tracked folders
+ * If `settings.isBroadcasting` is true, all files from public folder will be served by an http server,
+ * as well as any file present in tracked folders. Addded tracked folders will automatically be served, or removed accordingly.
+ * Changing `isBroadcasting` flag is settings will restart the server to stop or start broadcasting.
+ *
+ * If the listening port isn't explicitly specified, `settings.broadcastPort` will be used, or if not set, the first available
+ * port.
+ *
+ * Finally it emit `ui-address-set` event with the public URL hosting the UI.
  * @async
  * @param {object} services     - services exposed: their properties are expected to be objects, and the nested keys are functions.
  * @param {string} publicFolder - relative or absolute path to the public folder served.
- * @param {number} port         - port accepting WS and http connections.
+ * @param {number} [port = 0]   - port this server will listening to (by default uses broadcastPort from settings, or gets the first available port)
  * @returns {object} result object with `address` property and `close` function a function to stop the connection
  * @throws {error} when connection has already been started
  */
-exports.initConnection = async function (services, publicFolder, port) {
+exports.initConnection = async function (services, publicFolder, port = 0) {
   if (server) {
     throw new Error(`connection already started, stop it first`)
   }
+
+  let settings = await services.settings.get()
+  let realPort = null
+
+  const handleSavedSettings = savedSettings => {
+    const needRestart = settings.isBroadcasting !== savedSettings.isBroadcasting
+    settings = savedSettings
+    if (needRestart) {
+      // delay restart so UI could get new values
+      setTimeout(() => {
+        server.close()
+        startServer()
+      }, 100)
+    }
+  }
+
+  exports.messageBus.on('settings-saved', handleSavedSettings)
 
   function handleConnection(client) {
     client.socket.on('message', async function handleMessage(rawData) {
@@ -89,34 +121,46 @@ exports.initConnection = async function (services, publicFolder, port) {
     })
   }
 
-  server = fastify({ logger, disableRequestLogging: true })
-  server.register(websocketPlugin, { handle: handleConnection })
-  const { folders } = await services.settings.get()
-  // TODO should depends on settings, and be dynamic
-  server.register(compressPlugin)
-  server.register(staticPlugin, { root: publicFolder, wildcard: false })
-  server.setNotFoundHandler(async function handleFile({ url }, reply) {
-    const absolutePath = resolve(decodeURIComponent(url))
-    const isAllowed = folders.some(folder => absolutePath.startsWith(folder))
-    if (isAllowed) {
-      logger.debug({ absolutePath }, `serve file`)
-      return reply.sendFile(basename(absolutePath), dirname(absolutePath))
+  async function startServer() {
+    server = fastify({ logger, disableRequestLogging: true })
+    server.register(websocketPlugin, { handle: handleConnection })
+    if (settings.isBroadcasting) {
+      server.register(compressPlugin)
+      server.register(staticPlugin, { root: publicFolder, wildcard: false })
+      server.setNotFoundHandler(async function handleFile({ url }, reply) {
+        const absolutePath = resolve(decodeURIComponent(url))
+        const isAllowed = settings.folders.some(folder =>
+          absolutePath.startsWith(folder)
+        )
+        if (isAllowed) {
+          logger.debug({ absolutePath }, `serve file`)
+          return reply.sendFile(basename(absolutePath), dirname(absolutePath))
+        }
+        return reply.code(404).send()
+      })
     }
-  })
-
-  const address = await server.listen(port, '0.0.0.0')
-
-  return {
-    address,
-    close() {
-      server?.close()
-      server = null
-    }
+    const address = await server.listen(
+      realPort || port || settings.broadcastPort,
+      settings.isBroadcasting ? '0.0.0.0' : 'localhost'
+    )
+    realPort = +address.split(':')[2]
+    exports.messageBus.emit(
+      'ui-address-set',
+      `http://${await publicIp.v4()}:${realPort}`
+    )
+    return address
   }
+
+  function close() {
+    exports.messageBus.removeListener('settings-saved', handleSavedSettings)
+    server?.close()
+    server = null
+  }
+  return { address: await startServer(), close }
 }
 
 /**
- * Sends an event to all registered clients
+ * Sends an event to all registered clients, and on the message bus
  * @param {string} event  - event name
  * @param {any} args      - optional arguments
  * @throws {error} when connection has not been started
@@ -125,10 +169,13 @@ exports.broadcast = function (event, args) {
   if (!server) {
     throw new Error(`unstarted connection, call subscribeRemote() first`)
   }
-  for (const client of server.websocketServer.clients) {
-    // 1 is OPEN
-    if (client.readyState === 1) {
-      client.send(JSON.stringify({ event, args }))
+  exports.messageBus.emit(event, args)
+  if (server.websocketServer?.clients) {
+    for (const client of server.websocketServer.clients) {
+      // 1 is OPEN
+      if (client.readyState === 1) {
+        client.send(JSON.stringify({ event, args }))
+      }
     }
   }
 }

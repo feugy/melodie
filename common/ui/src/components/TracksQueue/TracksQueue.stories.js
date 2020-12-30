@@ -11,7 +11,7 @@ export default {
   excludeStories: /.*Data$/,
   decorators: [hrefSinkDecorator],
   loaders: [websocketResponse(() => ({ results: [], total: 0 }))],
-  parameters: { layout: null }
+  parameters: { layout: 'none' }
 }
 
 export const Empty = () => {

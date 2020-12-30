@@ -218,6 +218,26 @@ describe('Abstract model', () => {
           )
         )
       })
+
+      it.each([
+        [undefined, 'null'],
+        [null, 'null'],
+        [false, 'false'],
+        [0, 0],
+        ['', '""'],
+        [[], '[]'],
+        [{}, '{}'],
+        [true, 'true'],
+        [10, 10],
+        [['a', 'b'], '["a","b"]'],
+        [{ foo: 'bar', baz: [1, 2] }, '{"foo":"bar","baz":[1,2]}']
+      ])('serializes %j as JSON data', async (tags, expected) => {
+        const id = faker.random.number()
+        await tested.save([{ id, tags }])
+        expect(await db(modelName).where({ id }).select()).toEqual([
+          { id, name: null, tags: expected }
+        ])
+      })
     })
 
     describe('list', () => {

@@ -4,7 +4,7 @@ import Sticky from './Sticky.stories.svelte'
 
 export default {
   title: 'Components/Sticky',
-  parameters: { layout: null }
+  parameters: { layout: 'none' }
 }
 
 export const Default = () => ({

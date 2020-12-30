@@ -11,12 +11,15 @@ import {
   albumSuggestionsData
 } from '../MediaSelector/MediaSelector.stories'
 import { invoke } from '../../utils'
+import { isDesktop } from '../../stores/settings'
 import { sleep, translate } from '../../tests'
 
 jest.mock('../../stores/track-queue')
 
 describe('MediaSelector component', () => {
   beforeEach(() => jest.resetAllMocks())
+
+  afterEach(() => isDesktop.next(true))
 
   it('fetches artwork suggestion and display them on open', async () => {
     const open = writable(false)
@@ -124,7 +127,7 @@ describe('MediaSelector component', () => {
       kind: 'file',
       getAsFile: () => ({ path })
     }
-    await fireEvent.drop(screen.queryAllByRole('img').pop().closest('span'), {
+    await fireEvent.drop(screen.queryByText('add_box'), {
       dataTransfer: { items: [item] }
     })
 
@@ -142,6 +145,26 @@ describe('MediaSelector component', () => {
 
     expect(invoke).toHaveBeenCalledTimes(2)
     expect(screen.queryByText(title)).not.toBeVisible()
+  })
+
+  it('allows uploading files on desktop', async () => {
+    isDesktop.next(false)
+    const open = writable(false)
+    const title = translate('choose cover')
+    render(
+      html`<${MediaSelector}
+        bind:open=${open}
+        forArtist=${false}
+        src=${artistData}
+      />`
+    )
+    invoke.mockResolvedValueOnce(albumSuggestionsData)
+    open.set(true)
+    await sleep()
+
+    expect(screen.queryByText(title)).toBeVisible()
+    expect(screen.queryByText('add_box')).not.toBeInTheDocument()
+    expect(invoke).toHaveBeenCalledWith('media.findForAlbum', artistData.name)
   })
 
   it('closes on cancelation', async () => {

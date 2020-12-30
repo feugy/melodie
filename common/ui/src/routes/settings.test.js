@@ -8,12 +8,14 @@ import { BehaviorSubject } from 'rxjs'
 import settingsRoute from './settings.svelte'
 import {
   settings as mockedSettings,
+  isDesktop as mockedIsDesktop,
   saveLocale,
   askToAddFolder,
   removeFolder,
   saveAudioDBKey,
   saveEnqueueBehaviour,
-  saveDiscogsToken
+  saveDiscogsToken,
+  saveBroadcastPort
 } from '../stores/settings'
 import { invoke } from '../utils'
 import { translate, sleep } from '../tests'
@@ -23,61 +25,84 @@ jest.mock('../stores/settings')
 describe('settings route', () => {
   const key = faker.random.alphaNumeric(10)
   const token = faker.random.uuid()
+  const broadcastPort = faker.random.number()
   const providers = { audiodb: { key }, discogs: { token } }
   const enqueueBehaviour = { onClick: true, clearBefore: false }
   const folders = [faker.system.fileName(), faker.system.fileName()]
   const settings = new BehaviorSubject()
+  const isDesktop = new BehaviorSubject()
+  const version = `${faker.random.number({ max: 10 })}.${faker.random.number({
+    max: 10
+  })}.${faker.random.number({ max: 10 })}`
 
   beforeEach(() => {
     location.hash = '#/'
     jest.resetAllMocks()
-    settings.next({ folders, providers, enqueueBehaviour })
+    settings.next({ folders, providers, enqueueBehaviour, broadcastPort })
+    isDesktop.next(true)
     locale.set('fr')
     mockedSettings.subscribe = settings.subscribe.bind(settings)
+    mockedIsDesktop.subscribe = isDesktop.subscribe.bind(isDesktop)
     invoke.mockResolvedValue({})
   })
 
-  it('displays tracked folders, current language, providers data and credits', async () => {
-    const version = `${faker.random.number({ max: 10 })}.${faker.random.number({
-      max: 10
-    })}.${faker.random.number({ max: 10 })}`
+  it('displays tracked folders, current language, providers data, broadcast port and credits', async () => {
     invoke.mockResolvedValueOnce({ melodie: version })
 
     render(html`<${settingsRoute} />`)
     await sleep()
 
     for (const folder of folders) {
-      expect(screen.getByText(folder)).toBeInTheDocument()
+      expect(screen.queryByText(folder)).toBeInTheDocument()
     }
-    expect(screen.getByText(translate('add folders'))).toBeInTheDocument()
+    expect(screen.queryByText(translate('add folders'))).toBeInTheDocument()
 
-    expect(screen.getByText(translate('fr'))).toBeInTheDocument()
+    expect(screen.queryByText(translate('fr'))).toBeInTheDocument()
 
-    expect(screen.getAllByRole('textbox')[0]).toHaveValue(key)
-    expect(screen.getAllByRole('textbox')[1]).toHaveValue(token)
+    const textboxes = screen.getAllByRole('textbox')
+    expect(textboxes[0]).toHaveValue(key)
+    expect(textboxes[1]).toHaveValue(token)
+    expect(screen.queryByRole('spinbutton')).toHaveValue(broadcastPort)
 
     expect(
-      screen.getByText(translate('enqueues and jumps'))
+      screen.queryByText(translate('enqueues and jumps'))
     ).toBeInTheDocument()
-    expect(screen.getByText(translate('enqueues track'))).toBeInTheDocument()
+    expect(screen.queryByText(translate('enqueues track'))).toBeInTheDocument()
 
-    expect(screen.getByText(version)).toBeInTheDocument()
+    expect(screen.queryByText(version)).toBeInTheDocument()
+    expect(invoke).toHaveBeenCalledWith('core.getVersions')
+    expect(invoke).toHaveBeenCalledTimes(1)
+  })
+
+  it('does not display button to add folder nor broadcast port unless in desktop', async () => {
+    isDesktop.next(false)
+
+    render(html`<${settingsRoute} />`)
+    await sleep()
+
+    for (const folder of folders) {
+      expect(screen.queryByText(folder)).toBeInTheDocument()
+    }
+    expect(screen.queryByText(translate('add folders'))).not.toBeInTheDocument()
+    expect(
+      screen.queryByText(translate('broadcasting'))
+    ).not.toBeInTheDocument()
     expect(invoke).toHaveBeenCalledWith('core.getVersions')
     expect(invoke).toHaveBeenCalledTimes(1)
   })
 
   it('changes current language and updates labels', async () => {
     render(html`<${settingsRoute} />`)
-    expect(screen.getByText('Langage :')).toBeInTheDocument()
+    expect(screen.queryByText('Langage :')).toBeInTheDocument()
 
-    fireEvent.click(screen.getByText(translate('fr')))
+    fireEvent.click(screen.queryByText(translate('fr')))
     await sleep()
-    fireEvent.click(screen.getByText(translate('en')))
+    fireEvent.click(screen.queryByText(translate('en')))
     await sleep(300)
 
-    expect(screen.getByText(translate('en'))).toBeInTheDocument()
+    expect(screen.queryByText(translate('en'))).toBeInTheDocument()
     expect(screen.queryByText(translate('fr'))).not.toBeInTheDocument()
-    expect(screen.getByText('Language:')).toBeInTheDocument()
+    expect(screen.queryByText('Language:')).toBeInTheDocument()
     expect(saveLocale).toHaveBeenCalledWith('en')
     expect(saveLocale).toHaveBeenCalledTimes(1)
   })
@@ -92,7 +117,7 @@ describe('settings route', () => {
     render(html`<${settingsRoute} />`)
     await sleep()
 
-    fireEvent.click(screen.getByText(translate('add folders')))
+    fireEvent.click(screen.queryByText(translate('add folders')))
     await sleep()
 
     expect(askToAddFolder).toHaveBeenCalled()
@@ -157,12 +182,12 @@ describe('settings route', () => {
     await sleep()
 
     expect(
-      screen.getByText(translate('enqueues and jumps'))
+      screen.queryByText(translate('enqueues and jumps'))
     ).toBeInTheDocument()
 
-    fireEvent.click(screen.getByText(translate('enqueues and jumps')))
+    fireEvent.click(screen.queryByText(translate('enqueues and jumps')))
     await sleep()
-    fireEvent.click(screen.getByText(translate('clears queue and plays')))
+    fireEvent.click(screen.queryByText(translate('clears queue and plays')))
     await sleep(300)
 
     expect(saveEnqueueBehaviour).toHaveBeenCalledWith({
@@ -175,16 +200,31 @@ describe('settings route', () => {
     render(html`<${settingsRoute} />`)
     await sleep()
 
-    expect(screen.getByText(translate('enqueues track'))).toBeInTheDocument()
+    expect(screen.queryByText(translate('enqueues track'))).toBeInTheDocument()
 
-    fireEvent.click(screen.getByText(translate('enqueues track')))
+    fireEvent.click(screen.queryByText(translate('enqueues track')))
     await sleep()
-    fireEvent.click(screen.getByText(translate('plays track')))
+    fireEvent.click(screen.queryByText(translate('plays track')))
     await sleep(300)
 
     expect(saveEnqueueBehaviour).toHaveBeenCalledWith({
       ...enqueueBehaviour,
       onClick: false
     })
+  })
+
+  it('sets new broadcast port', async () => {
+    const newPort = faker.random.number()
+
+    render(html`<${settingsRoute} />`)
+    await sleep()
+
+    fireEvent.change(screen.queryByRole('spinbutton'), {
+      target: { value: newPort }
+    })
+    await sleep()
+
+    expect(saveBroadcastPort).toHaveBeenCalledWith(newPort.toString())
+    expect(saveBroadcastPort).toHaveBeenCalledTimes(1)
   })
 })

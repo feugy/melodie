@@ -5,11 +5,17 @@ const {
   broadcast,
   getLogger,
   mergePaths,
-  getSystemLocale
+  getSystemLocale,
+  messageBus
 } = require('../utils')
 const { local, audiodb, discogs, allProviders } = require('../providers')
 
 const logger = getLogger('services/settings')
+
+let uiAddress = null
+messageBus.on('ui-address-set', value => {
+  uiAddress = value
+})
 
 module.exports = {
   /**
@@ -26,11 +32,20 @@ module.exports = {
   },
 
   /**
+   * Returns the public address hosting the UI
+   * @returns {string} UI public url
+   */
+  getUIAddress() {
+    return uiAddress
+  },
+
+  /**
    * Initialize the settings service:
    * - increments the number of times the application was opened
    * - initializes AudioDB & Discogs providers with keys and tokens
    * - triggers track comparison on all providers
    * @async
+   * @returns {SettingsModel} updated settings
    */
   async init() {
     const settings = await this.get()
@@ -45,6 +60,7 @@ module.exports = {
     for (const provider of allProviders) {
       provider.compareTracks()
     }
+    return settings
   },
 
   /**
@@ -93,7 +109,7 @@ module.exports = {
   },
 
   /**
-   * Change locale in settings
+   * Changes locale in settings
    * @async
    * @param {string} value - new locale
    * @returns {SettingsModel} updated settings
@@ -108,7 +124,7 @@ module.exports = {
   },
 
   /**
-   * Change AudioDB provider's key in settings, and initializes the provider.
+   * Changes AudioDB provider's key in settings, and initializes the provider.
    * @async
    * @param {string} key - new key
    * @returns {SettingsModel} updated settings
@@ -126,7 +142,7 @@ module.exports = {
   },
 
   /**
-   * Change Discogs provider's key in settings, and initializes the provider.
+   * Changes Discogs provider's key in settings, and initializes the provider.
    * @async
    * @param {string} key - new key
    * @returns {SettingsModel} updated settings
@@ -144,7 +160,7 @@ module.exports = {
   },
 
   /**
-   * Change the UI behaviour when enqueing tracks.
+   * Changes the UI behaviour when enqueing tracks.
    * @async
    * @param {object} behaviour            - new behaviour, including:
    * @param {boolean} behaviour.clearBefore - whether the tracks queue should be cleared when adding and immediately playing new tracks
@@ -158,5 +174,35 @@ module.exports = {
       ...settings,
       enqueueBehaviour: { clearBefore, onClick }
     })
+  },
+
+  /**
+   * Sets or unsets broadcasting.
+   * @async
+   * @returns {SettingsModel} updated settings
+   */
+  async toggleBroadcast() {
+    const settings = await this.get()
+    const { isBroadcasting } = settings
+    logger.info(
+      { previous: isBroadcasting },
+      `${isBroadcasting ? 'stops' : 'starts'} broadcasting`
+    )
+    return settingsModel.save({ ...settings, isBroadcasting: !isBroadcasting })
+  },
+
+  /**
+   * Sets broadcast port
+   * @async
+   * @param {number} port - new port for broadcast. Can be null
+   * @returns {SettingsModel} updated settings
+   */
+  async setBroadcastPort(port) {
+    const settings = await this.get()
+    logger.info(
+      { previous: settings.setBroadcastPort, port },
+      `new broadcast port: ${port}`
+    )
+    return settingsModel.save({ ...settings, broadcastPort: port })
   }
 }

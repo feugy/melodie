@@ -2,119 +2,277 @@
 
 import { get } from 'svelte/store'
 import faker from 'faker'
-import { invoke } from '../utils'
+import {
+  invoke,
+  initConnection,
+  closeConnection,
+  serverEmitter
+} from '../utils'
 import { sleep } from '../tests'
+import { saveBroadcastPort } from './settings'
 
 describe('settings store', () => {
   let settings
+  let address
+  let connected
   let askToAddFolder
   let removeFolder
   let saveAudioDBKey
   let saveDiscogsToken
   let saveEnqueueBehaviour
   let saveLocale
+  let toggleBroadcast
   let init
+  let isDesktop
   const locale = 'en'
   const key = faker.random.alphaNumeric(10)
   const token = faker.random.uuid()
   const providers = { audiodb: { key }, discogs: { token } }
   const enqueueBehaviour = { onClick: true, clearBefore: false }
   const folders = [faker.system.fileName(), faker.system.fileName()]
+  const ip = faker.internet.ip()
+  const port = faker.random.number({ min: 2000, max: 10000 })
+  const uiAddress = `http://${ip}:${port}`
 
   beforeAll(async () => {
     ;({
       init,
       settings,
+      address,
+      connected,
       askToAddFolder,
       removeFolder,
       saveAudioDBKey,
       saveDiscogsToken,
       saveEnqueueBehaviour,
-      saveLocale
+      saveLocale,
+      toggleBroadcast,
+      isDesktop
     } = await import('./settings'))
   })
 
   beforeEach(() => {
     location.hash = `#/`
     jest.resetAllMocks()
+    // for testing, force desktop
+    isDesktop.next(true)
   })
 
-  it('has loaded settings on init', async () => {
-    expect(get(settings)).toEqual({
-      enqueueBehaviour: {},
-      providers: { audiodb: {}, discogs: {} }
+  describe('init()', () => {
+    it('handles connection failure, loads settings on success, and retries on lost connection', async () => {
+      // default state
+      expect(get(isDesktop)).toBeTrue()
+      expect(get(settings)).toEqual({
+        enqueueBehaviour: {},
+        isBroadcasting: false,
+        providers: { audiodb: {}, discogs: {} }
+      })
+      expect(get(connected)).toEqual(false)
+      expect(get(address)).toBeNull()
+
+      const url = faker.internet.url()
+      const values = {
+        locale,
+        folders,
+        enqueueBehaviour,
+        providers
+      }
+      invoke.mockImplementation(async invoked =>
+        invoked === 'settings.get' ? values : uiAddress
+      )
+      const err = new Error('Connection error')
+
+      // failure
+      initConnection.mockRejectedValueOnce(err)
+      await init(url)
+
+      expect(get(connected)).toEqual(false)
+      expect(get(settings)).toEqual({
+        enqueueBehaviour: {},
+        isBroadcasting: false,
+        providers: { audiodb: {}, discogs: {} }
+      })
+      expect(initConnection).toHaveBeenCalledWith(url, expect.any(Function))
+      expect(initConnection).toHaveBeenCalledTimes(1)
+      expect(invoke).not.toHaveBeenCalled()
+      expect(get(address)).toBeNull()
+
+      // success
+      initConnection.mockResolvedValueOnce()
+      await init(url)
+
+      expect(get(connected)).toEqual(true)
+      expect(get(settings)).toEqual(values)
+      expect(initConnection).toHaveBeenCalledWith(url, expect.any(Function))
+      expect(initConnection).toHaveBeenCalledTimes(2)
+      expect(invoke).toHaveBeenCalledTimes(2)
+      expect(get(address)).toEqual(uiAddress)
+
+      // run the connection lost callback
+      initConnection
+        .mockRejectedValueOnce(err)
+        .mockRejectedValueOnce(err)
+        .mockResolvedValueOnce()
+        .mock.calls[1][1]()
+
+      await sleep(50)
+      expect(get(connected)).toEqual(false)
+
+      await sleep(300)
+      expect(get(connected)).toEqual(true)
+      expect(get(settings)).toEqual(values)
+      expect(get(address)).toEqual(uiAddress)
+      expect(initConnection).toHaveBeenCalledTimes(5)
+    })
+  })
+
+  describe('given initialization', () => {
+    it('redirects to albums on successful folder addition', async () => {
+      invoke.mockResolvedValueOnce(true)
+      await askToAddFolder()
+      await sleep(10)
+
+      expect(invoke).toHaveBeenCalledWith('settings.addFolders')
+      expect(location.hash).toEqual('#/album')
     })
 
-    invoke.mockResolvedValueOnce({
-      locale,
-      folders,
-      enqueueBehaviour,
-      providers
+    it('does not redirect to albums on cancelled folder addition', async () => {
+      invoke.mockResolvedValueOnce(false)
+      await askToAddFolder()
+      await sleep(10)
+
+      expect(invoke).toHaveBeenCalledWith('settings.addFolders')
+      expect(location.hash).toEqual('#/')
     })
-    await init()
 
-    expect(get(settings)).toEqual({
-      locale,
-      folders,
-      enqueueBehaviour,
-      providers
+    it('can not add folders on browser', async () => {
+      isDesktop.next(false)
+      await expect(askToAddFolder()).rejects.toThrow(/not supported/)
+      expect(invoke).not.toHaveBeenCalled()
     })
-  })
 
-  it('redirects to albums on successful folder addition', async () => {
-    invoke.mockResolvedValueOnce(true)
-    await askToAddFolder()
-    await sleep(10)
+    it('updates settings on server event', async () => {
+      const newValues = {
+        locale,
+        folders,
+        enqueueBehaviour,
+        providers,
+        isBroadcasting: true
+      }
+      expect(get(settings)).not.toEqual(newValues)
 
-    expect(invoke).toHaveBeenCalledWith('settings.addFolders')
-    expect(location.hash).toEqual('#/album')
-  })
+      serverEmitter.next({ event: 'settings-saved', args: newValues })
+      expect(get(settings)).toEqual(newValues)
+      expect(invoke).not.toHaveBeenCalled()
+    })
 
-  it('does not redirect to albums on cancelled folder addition', async () => {
-    invoke.mockResolvedValueOnce(false)
-    await askToAddFolder()
-    await sleep(10)
+    it('can remove folders', async () => {
+      const removed = faker.random.arrayElement(folders)
+      await removeFolder(removed)
 
-    expect(invoke).toHaveBeenCalledWith('settings.addFolders')
-    expect(location.hash).toEqual('#/')
-  })
+      expect(invoke).toHaveBeenCalledWith('settings.removeFolder', removed)
+    })
 
-  it('can remove folders', async () => {
-    const removed = faker.random.arrayElement(folders)
-    await removeFolder(removed)
+    it('can save locale', async () => {
+      const locale = faker.random.arrayElement(['en', 'fr'])
+      await saveLocale(locale)
 
-    expect(invoke).toHaveBeenCalledWith('settings.removeFolder', removed)
-  })
+      expect(invoke).toHaveBeenCalledWith('settings.setLocale', locale)
+    })
 
-  it('can save locale', async () => {
-    const locale = faker.random.arrayElement(['en', 'fr'])
-    await saveLocale(locale)
+    it('can save AudioDB key', async () => {
+      const key = faker.random.alphaNumeric(10)
+      await saveAudioDBKey(key)
 
-    expect(invoke).toHaveBeenCalledWith('settings.setLocale', locale)
-  })
+      expect(invoke).toHaveBeenCalledWith('settings.setAudioDBKey', key)
+    })
 
-  it('can save AudioDB key', async () => {
-    const key = faker.random.alphaNumeric(10)
-    await saveAudioDBKey(key)
+    it('can save Discogs token', async () => {
+      const token = faker.random.uuid()
+      await saveDiscogsToken(token)
 
-    expect(invoke).toHaveBeenCalledWith('settings.setAudioDBKey', key)
-  })
+      expect(invoke).toHaveBeenCalledWith('settings.setDiscogsToken', token)
+    })
 
-  it('can save Discogs token', async () => {
-    const token = faker.random.uuid()
-    await saveDiscogsToken(token)
+    it('can save enqueue behaviour', async () => {
+      const onClick = faker.random.boolean()
+      const clearBefore = faker.random.boolean()
+      await saveEnqueueBehaviour({ onClick, clearBefore })
 
-    expect(invoke).toHaveBeenCalledWith('settings.setDiscogsToken', token)
-  })
+      expect(invoke).toHaveBeenCalledWith('settings.setEnqueueBehaviour', {
+        onClick,
+        clearBefore
+      })
+    })
 
-  it('can save enqueue behaviour', async () => {
-    const onClick = faker.random.boolean()
-    const clearBefore = faker.random.boolean()
-    await saveEnqueueBehaviour({ onClick, clearBefore })
+    it('can set broadcast port', async () => {
+      const port = faker.random.number()
+      await saveBroadcastPort(port)
 
-    expect(invoke).toHaveBeenCalledWith('settings.setEnqueueBehaviour', {
-      onClick,
-      clearBefore
+      expect(invoke).toHaveBeenCalledWith('settings.setBroadcastPort', port)
+    })
+
+    it('can toggle broadcast on and connect to the new address, unless on browser', async () => {
+      const values = {
+        locale,
+        folders,
+        enqueueBehaviour,
+        providers
+      }
+      initConnection.mockResolvedValueOnce()
+      invoke.mockResolvedValueOnce(values)
+
+      toggleBroadcast()
+      await sleep(50)
+
+      expect(get(connected)).toEqual(true)
+      expect(get(settings)).toEqual(values)
+
+      expect(invoke).toHaveBeenCalledWith('settings.toggleBroadcast')
+      expect(closeConnection).toHaveBeenCalledTimes(1)
+      expect(initConnection).toHaveBeenCalledWith(
+        `ws://localhost:${port}`,
+        expect.any(Function)
+      )
+      expect(initConnection).toHaveBeenCalledTimes(1)
+
+      isDesktop.next(false)
+      await expect(toggleBroadcast()).rejects.toThrow(/not supported/)
+      expect(invoke).toHaveBeenCalledTimes(1)
+    })
+
+    it('retries connecting to new address when toggling broadcast', async () => {
+      const err = new Error('Connection error')
+      const values = {
+        locale,
+        folders,
+        enqueueBehaviour,
+        providers
+      }
+      initConnection
+        .mockRejectedValueOnce(err)
+        .mockRejectedValueOnce(err)
+        .mockResolvedValueOnce()
+      invoke.mockResolvedValueOnce(values)
+
+      toggleBroadcast()
+      await sleep(50)
+
+      // will first fail, then retries
+      expect(get(connected)).toEqual(false)
+
+      expect(invoke).toHaveBeenCalledWith('settings.toggleBroadcast')
+      expect(invoke).toHaveBeenCalledTimes(1)
+      expect(closeConnection).toHaveBeenCalledTimes(1)
+      expect(initConnection).toHaveBeenCalledWith(
+        `ws://localhost:${port}`,
+        expect.any(Function)
+      )
+      expect(initConnection).toHaveBeenCalledTimes(1)
+
+      await sleep(300)
+      expect(get(connected)).toEqual(true)
+      expect(initConnection).toHaveBeenCalledTimes(3)
     })
   })
 })
