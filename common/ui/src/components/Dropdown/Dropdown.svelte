@@ -159,6 +159,7 @@
     @apply p-2 whitespace-no-wrap flex items-center;
 
     &:not(.disabled) {
+      /* TODO mobile? */
       &:hover,
       &:focus {
         @apply cursor-pointer outline-none;
@@ -179,7 +180,8 @@
 
 <svelte:window
   on:click|capture={handleInteraction}
-  on:scroll|capture={handleInteraction} />
+  on:scroll|capture={handleInteraction}
+/>
 
 <span
   class="wrapper"
@@ -201,7 +203,8 @@
       transition:slide
       on:introstart={handleMenuVisible}
       on:keydown={handleMenuKeyDown}
-      bind:this={menu}>
+      bind:this={menu}
+    >
       {#each options as option}
         <li
           role="menuitem"
@@ -217,7 +220,11 @@
             }
           }}
           on:keydown={evt => {
-            if (evt.key === 'Enter' || evt.key === ' ' || evt.key === 'ArrowRight') {
+            if (
+              evt.key === 'Enter' ||
+              evt.key === ' ' ||
+              evt.key === 'ArrowRight'
+            ) {
               if (option.Component) {
                 option.props.open = true
                 evt.stopPropagation()
@@ -227,7 +234,8 @@
             }
           }}
           on:focus={() => (option.props ? (option.props.focus = true) : null)}
-          on:blur={() => (option.props ? (option.props.focus = false) : null)}>
+          on:blur={() => (option.props ? (option.props.focus = false) : null)}
+        >
           {#if option.Component}
             <svelte:component
               this={option.Component}
@@ -236,7 +244,8 @@
                 option.props.open = false
                 dispatch('select', option)
               }}
-              on:close={handleInteraction} />
+              on:close={handleInteraction}
+            />
           {:else}
             {#if option.icon}<i class="material-icons">{option.icon}</i>{/if}
             {option.label || option}

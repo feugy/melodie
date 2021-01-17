@@ -1,51 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Storyshots Components/Tracks queue Empty 1`] = `
-<section
-  class="storybook-snapshot-container"
->
-  <div>
-    <div
-      class="wrapper svelte-k06t7b"
-    >
-      <span
-        class="sentinel svelte-k06t7b"
-      />
-       
-      <nav
-        class="svelte-k06t7b"
-      >
-        <header
-          class="svelte-k3lfdp"
-        >
-          <h3>
-            0 tracks
-          </h3>
-           
-        </header>
-      </nav>
-    </div>
-     
-    <header
-      class=" svelte-5q08mx"
-      style="--image: url(../images/jason-rosewell-ASKeuOZqhYU-unsplash.jpg); --shade-color: rgba(0, 0, 0, 0.7); --bgPosition: center;"
-    >
-      <h1
-        class="svelte-5q08mx"
-      >
-        Queue
-      </h1>
-    </header>
-     
-    <div
-      class="svelte-k3lfdp"
-    >
-      <ol />
-    </div>
-  </div>
-</section>
-`;
-
 exports[`Storyshots Components/Tracks queue With Track List 1`] = `
 <section
   class="storybook-snapshot-container"
@@ -62,7 +16,7 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
         class="svelte-k06t7b"
       >
         <header
-          class="svelte-k3lfdp"
+          class="svelte-1fgzmnl"
         >
           <h3>
             8 tracks
@@ -71,13 +25,13 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-350du5"
+            class="wrapper svelte-dvv38h"
           >
             <button
-              class="mx-4 svelte-bb1epg iconOnly"
+              class="iconOnly noBorder svelte-9liv1b"
             >
               <i
-                class="material-icons svelte-bb1epg"
+                class="material-icons svelte-9liv1b"
               >
                 library_add
               </i>
@@ -91,16 +45,16 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
           
            
           <span
-            class="totalDuration svelte-k3lfdp"
+            class="totalDuration svelte-1fgzmnl"
           >
             7:34
           </span>
            
           <button
-            class="ml-2 svelte-bb1epg iconOnly"
+            class="iconOnly svelte-9liv1b"
           >
             <i
-              class="material-icons svelte-bb1epg"
+              class="material-icons svelte-9liv1b"
             >
               delete
             </i>
@@ -108,6 +62,7 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
              
              
           </button>
+           
         </header>
       </nav>
     </div>
@@ -124,7 +79,7 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
     </header>
      
     <div
-      class="svelte-k3lfdp"
+      class="svelte-1fgzmnl"
     >
       <ol>
         <li
@@ -135,7 +90,7 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
             slot="item"
           >
             <span
-              class="row svelte-k3lfdp current"
+              class="row svelte-1fgzmnl current"
             >
               <div
                 class="flex-auto root svelte-whrgz7"
@@ -181,10 +136,10 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
               </div>
                
               <button
-                class="mx-2 svelte-bb1epg iconOnly noBorder"
+                class="mx-2 iconOnly noBorder svelte-9liv1b"
               >
                 <i
-                  class="material-icons svelte-bb1epg"
+                  class="material-icons svelte-9liv1b"
                 >
                   close
                 </i>
@@ -204,7 +159,7 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
             slot="item"
           >
             <span
-              class="row svelte-k3lfdp"
+              class="row svelte-1fgzmnl"
             >
               <div
                 class="flex-auto root svelte-whrgz7"
@@ -250,10 +205,10 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
               </div>
                
               <button
-                class="mx-2 svelte-bb1epg iconOnly noBorder"
+                class="mx-2 iconOnly noBorder svelte-9liv1b"
               >
                 <i
-                  class="material-icons svelte-bb1epg"
+                  class="material-icons svelte-9liv1b"
                 >
                   close
                 </i>
@@ -273,7 +228,7 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
             slot="item"
           >
             <span
-              class="row svelte-k3lfdp"
+              class="row svelte-1fgzmnl"
             >
               <div
                 class="flex-auto root svelte-whrgz7"
@@ -319,10 +274,10 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
               </div>
                
               <button
-                class="mx-2 svelte-bb1epg iconOnly noBorder"
+                class="mx-2 iconOnly noBorder svelte-9liv1b"
               >
                 <i
-                  class="material-icons svelte-bb1epg"
+                  class="material-icons svelte-9liv1b"
                 >
                   close
                 </i>
@@ -342,7 +297,7 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
             slot="item"
           >
             <span
-              class="row svelte-k3lfdp"
+              class="row svelte-1fgzmnl"
             >
               <div
                 class="flex-auto root svelte-whrgz7"
@@ -388,10 +343,10 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
               </div>
                
               <button
-                class="mx-2 svelte-bb1epg iconOnly noBorder"
+                class="mx-2 iconOnly noBorder svelte-9liv1b"
               >
                 <i
-                  class="material-icons svelte-bb1epg"
+                  class="material-icons svelte-9liv1b"
                 >
                   close
                 </i>
@@ -411,7 +366,7 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
             slot="item"
           >
             <span
-              class="row svelte-k3lfdp"
+              class="row svelte-1fgzmnl"
             >
               <div
                 class="flex-auto root svelte-whrgz7"
@@ -457,10 +412,10 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
               </div>
                
               <button
-                class="mx-2 svelte-bb1epg iconOnly noBorder"
+                class="mx-2 iconOnly noBorder svelte-9liv1b"
               >
                 <i
-                  class="material-icons svelte-bb1epg"
+                  class="material-icons svelte-9liv1b"
                 >
                   close
                 </i>
@@ -480,7 +435,7 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
             slot="item"
           >
             <span
-              class="row svelte-k3lfdp"
+              class="row svelte-1fgzmnl"
             >
               <div
                 class="flex-auto root svelte-whrgz7"
@@ -526,10 +481,10 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
               </div>
                
               <button
-                class="mx-2 svelte-bb1epg iconOnly noBorder"
+                class="mx-2 iconOnly noBorder svelte-9liv1b"
               >
                 <i
-                  class="material-icons svelte-bb1epg"
+                  class="material-icons svelte-9liv1b"
                 >
                   close
                 </i>
@@ -549,7 +504,7 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
             slot="item"
           >
             <span
-              class="row svelte-k3lfdp"
+              class="row svelte-1fgzmnl"
             >
               <div
                 class="flex-auto root svelte-whrgz7"
@@ -595,10 +550,10 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
               </div>
                
               <button
-                class="mx-2 svelte-bb1epg iconOnly noBorder"
+                class="mx-2 iconOnly noBorder svelte-9liv1b"
               >
                 <i
-                  class="material-icons svelte-bb1epg"
+                  class="material-icons svelte-9liv1b"
                 >
                   close
                 </i>
@@ -618,7 +573,7 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
             slot="item"
           >
             <span
-              class="row svelte-k3lfdp"
+              class="row svelte-1fgzmnl"
             >
               <div
                 class="flex-auto root svelte-whrgz7"
@@ -664,10 +619,650 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
               </div>
                
               <button
-                class="mx-2 svelte-bb1epg iconOnly noBorder"
+                class="mx-2 iconOnly noBorder svelte-9liv1b"
               >
                 <i
-                  class="material-icons svelte-bb1epg"
+                  class="material-icons svelte-9liv1b"
+                >
+                  close
+                </i>
+                 
+                 
+                 
+              </button>
+            </span>
+          </span>
+           
+        </li>
+      </ol>
+    </div>
+  </div>
+</section>
+`;
+
+exports[`Storyshots Components/Tracks queue With Track List 2`] = `
+<section
+  class="storybook-snapshot-container"
+>
+  <div>
+    <div
+      class="wrapper svelte-k06t7b"
+    >
+      <span
+        class="sentinel svelte-k06t7b"
+      />
+       
+      <nav
+        class="svelte-k06t7b"
+      >
+        <header
+          class="svelte-1fgzmnl"
+        >
+          <h3>
+            8 tracks
+          </h3>
+           
+          <span
+            aria-expanded="false"
+            aria-haspopup="menu"
+            class="wrapper svelte-dvv38h"
+          >
+            <button
+              class="iconOnly noBorder svelte-9liv1b"
+            >
+              <i
+                class="material-icons svelte-9liv1b"
+              >
+                library_add
+              </i>
+               
+               
+              
+               
+            </button>
+          </span>
+           
+          
+           
+          <span
+            class="totalDuration svelte-1fgzmnl"
+          >
+            7:34
+          </span>
+           
+          <button
+            class="iconOnly svelte-9liv1b"
+          >
+            <i
+              class="material-icons svelte-9liv1b"
+            >
+              delete
+            </i>
+             
+             
+             
+          </button>
+           
+        </header>
+      </nav>
+    </div>
+     
+    <header
+      class=" svelte-5q08mx"
+      style="--image: url(../images/jason-rosewell-ASKeuOZqhYU-unsplash.jpg); --shade-color: rgba(0, 0, 0, 0.7); --bgPosition: center;"
+    >
+      <h1
+        class="svelte-5q08mx"
+      >
+        Queue
+      </h1>
+    </header>
+     
+    <div
+      class="svelte-1fgzmnl"
+    >
+      <ol>
+        <li
+          class="svelte-w3rzzq"
+          draggable="true"
+        >
+          <span
+            slot="item"
+          >
+            <span
+              class="row svelte-1fgzmnl current"
+            >
+              <div
+                class="flex-auto root svelte-whrgz7"
+              >
+                <a
+                  class="flex-none"
+                  href="#/album/1"
+                >
+                  <img
+                    alt="./# Films/cover.jpg"
+                    class="h-16 w-16 text-xs actionable svelte-hn7eai rounded-sm"
+                    loading="lazy"
+                    src="./%23 Films/cover.jpg#nonce=0.1"
+                  />
+                   
+                  
+                </a>
+                 
+                <div
+                  class="track svelte-whrgz7"
+                >
+                  <span
+                    class="title svelte-whrgz7"
+                  >
+                    file 1
+                  </span>
+                   
+                  <a
+                    class="text-sm underlined"
+                    href="#/artist/0"
+                    onclick="event.stopPropagation()"
+                  >
+                    Someone
+                  </a>
+                </div>
+                 
+                <div
+                  class="duration svelte-whrgz7"
+                >
+                  3:38
+                </div>
+                 
+              </div>
+               
+              <button
+                class="mx-2 iconOnly noBorder svelte-9liv1b"
+              >
+                <i
+                  class="material-icons svelte-9liv1b"
+                >
+                  close
+                </i>
+                 
+                 
+                 
+              </button>
+            </span>
+          </span>
+           
+        </li>
+        <li
+          class="svelte-w3rzzq"
+          draggable="true"
+        >
+          <span
+            slot="item"
+          >
+            <span
+              class="row svelte-1fgzmnl"
+            >
+              <div
+                class="flex-auto root svelte-whrgz7"
+              >
+                <a
+                  class="flex-none"
+                  href="#/album/1"
+                >
+                  <img
+                    alt="./# Films/cover.jpg"
+                    class="h-16 w-16 text-xs actionable svelte-hn7eai rounded-sm"
+                    loading="lazy"
+                    src="./%23 Films/cover.jpg#nonce=0.1"
+                  />
+                   
+                  
+                </a>
+                 
+                <div
+                  class="track svelte-whrgz7"
+                >
+                  <span
+                    class="title svelte-whrgz7"
+                  >
+                    file 2
+                  </span>
+                   
+                  <a
+                    class="text-sm underlined"
+                    href="#/artist/0"
+                    onclick="event.stopPropagation()"
+                  >
+                    Someone
+                  </a>
+                </div>
+                 
+                <div
+                  class="duration svelte-whrgz7"
+                >
+                  0:04
+                </div>
+                 
+              </div>
+               
+              <button
+                class="mx-2 iconOnly noBorder svelte-9liv1b"
+              >
+                <i
+                  class="material-icons svelte-9liv1b"
+                >
+                  close
+                </i>
+                 
+                 
+                 
+              </button>
+            </span>
+          </span>
+           
+        </li>
+        <li
+          class="svelte-w3rzzq"
+          draggable="true"
+        >
+          <span
+            slot="item"
+          >
+            <span
+              class="row svelte-1fgzmnl"
+            >
+              <div
+                class="flex-auto root svelte-whrgz7"
+              >
+                <a
+                  class="flex-none"
+                  href="#/album/1"
+                >
+                  <img
+                    alt="./cover.jpg"
+                    class="h-16 w-16 text-xs actionable svelte-hn7eai rounded-sm"
+                    loading="lazy"
+                    src="./cover.jpg#nonce=0.1"
+                  />
+                   
+                  
+                </a>
+                 
+                <div
+                  class="track svelte-whrgz7"
+                >
+                  <span
+                    class="title svelte-whrgz7"
+                  >
+                    file 3
+                  </span>
+                   
+                  <a
+                    class="text-sm underlined"
+                    href="#/artist/1"
+                    onclick="event.stopPropagation()"
+                  >
+                    Someone else
+                  </a>
+                </div>
+                 
+                <div
+                  class="duration svelte-whrgz7"
+                >
+                  0:02
+                </div>
+                 
+              </div>
+               
+              <button
+                class="mx-2 iconOnly noBorder svelte-9liv1b"
+              >
+                <i
+                  class="material-icons svelte-9liv1b"
+                >
+                  close
+                </i>
+                 
+                 
+                 
+              </button>
+            </span>
+          </span>
+           
+        </li>
+        <li
+          class="svelte-w3rzzq"
+          draggable="true"
+        >
+          <span
+            slot="item"
+          >
+            <span
+              class="row svelte-1fgzmnl"
+            >
+              <div
+                class="flex-auto root svelte-whrgz7"
+              >
+                <a
+                  class="flex-none"
+                  href="#/album/1"
+                >
+                  <img
+                    alt="./cover.jpg"
+                    class="h-16 w-16 text-xs actionable svelte-hn7eai rounded-sm"
+                    loading="lazy"
+                    src="./cover.jpg#nonce=0.1"
+                  />
+                   
+                  
+                </a>
+                 
+                <div
+                  class="track svelte-whrgz7"
+                >
+                  <span
+                    class="title svelte-whrgz7"
+                  >
+                    file 4
+                  </span>
+                   
+                  <a
+                    class="text-sm underlined"
+                    href="#/artist/2"
+                    onclick="event.stopPropagation()"
+                  >
+                    Another fellow
+                  </a>
+                </div>
+                 
+                <div
+                  class="duration svelte-whrgz7"
+                >
+                  0:03
+                </div>
+                 
+              </div>
+               
+              <button
+                class="mx-2 iconOnly noBorder svelte-9liv1b"
+              >
+                <i
+                  class="material-icons svelte-9liv1b"
+                >
+                  close
+                </i>
+                 
+                 
+                 
+              </button>
+            </span>
+          </span>
+           
+        </li>
+        <li
+          class="svelte-w3rzzq"
+          draggable="true"
+        >
+          <span
+            slot="item"
+          >
+            <span
+              class="row svelte-1fgzmnl"
+            >
+              <div
+                class="flex-auto root svelte-whrgz7"
+              >
+                <a
+                  class="flex-none"
+                  href="#/album/1"
+                >
+                  <img
+                    alt="./# Films/cover.jpg"
+                    class="h-16 w-16 text-xs actionable svelte-hn7eai rounded-sm"
+                    loading="lazy"
+                    src="./%23 Films/cover.jpg#nonce=0.1"
+                  />
+                   
+                  
+                </a>
+                 
+                <div
+                  class="track svelte-whrgz7"
+                >
+                  <span
+                    class="title svelte-whrgz7"
+                  >
+                    file 1
+                  </span>
+                   
+                  <a
+                    class="text-sm underlined"
+                    href="#/artist/0"
+                    onclick="event.stopPropagation()"
+                  >
+                    Someone
+                  </a>
+                </div>
+                 
+                <div
+                  class="duration svelte-whrgz7"
+                >
+                  3:38
+                </div>
+                 
+              </div>
+               
+              <button
+                class="mx-2 iconOnly noBorder svelte-9liv1b"
+              >
+                <i
+                  class="material-icons svelte-9liv1b"
+                >
+                  close
+                </i>
+                 
+                 
+                 
+              </button>
+            </span>
+          </span>
+           
+        </li>
+        <li
+          class="svelte-w3rzzq"
+          draggable="true"
+        >
+          <span
+            slot="item"
+          >
+            <span
+              class="row svelte-1fgzmnl"
+            >
+              <div
+                class="flex-auto root svelte-whrgz7"
+              >
+                <a
+                  class="flex-none"
+                  href="#/album/1"
+                >
+                  <img
+                    alt="./# Films/cover.jpg"
+                    class="h-16 w-16 text-xs actionable svelte-hn7eai rounded-sm"
+                    loading="lazy"
+                    src="./%23 Films/cover.jpg#nonce=0.1"
+                  />
+                   
+                  
+                </a>
+                 
+                <div
+                  class="track svelte-whrgz7"
+                >
+                  <span
+                    class="title svelte-whrgz7"
+                  >
+                    file 2
+                  </span>
+                   
+                  <a
+                    class="text-sm underlined"
+                    href="#/artist/0"
+                    onclick="event.stopPropagation()"
+                  >
+                    Someone
+                  </a>
+                </div>
+                 
+                <div
+                  class="duration svelte-whrgz7"
+                >
+                  0:04
+                </div>
+                 
+              </div>
+               
+              <button
+                class="mx-2 iconOnly noBorder svelte-9liv1b"
+              >
+                <i
+                  class="material-icons svelte-9liv1b"
+                >
+                  close
+                </i>
+                 
+                 
+                 
+              </button>
+            </span>
+          </span>
+           
+        </li>
+        <li
+          class="svelte-w3rzzq"
+          draggable="true"
+        >
+          <span
+            slot="item"
+          >
+            <span
+              class="row svelte-1fgzmnl"
+            >
+              <div
+                class="flex-auto root svelte-whrgz7"
+              >
+                <a
+                  class="flex-none"
+                  href="#/album/1"
+                >
+                  <img
+                    alt="./cover.jpg"
+                    class="h-16 w-16 text-xs actionable svelte-hn7eai rounded-sm"
+                    loading="lazy"
+                    src="./cover.jpg#nonce=0.1"
+                  />
+                   
+                  
+                </a>
+                 
+                <div
+                  class="track svelte-whrgz7"
+                >
+                  <span
+                    class="title svelte-whrgz7"
+                  >
+                    file 3
+                  </span>
+                   
+                  <a
+                    class="text-sm underlined"
+                    href="#/artist/1"
+                    onclick="event.stopPropagation()"
+                  >
+                    Someone else
+                  </a>
+                </div>
+                 
+                <div
+                  class="duration svelte-whrgz7"
+                >
+                  0:02
+                </div>
+                 
+              </div>
+               
+              <button
+                class="mx-2 iconOnly noBorder svelte-9liv1b"
+              >
+                <i
+                  class="material-icons svelte-9liv1b"
+                >
+                  close
+                </i>
+                 
+                 
+                 
+              </button>
+            </span>
+          </span>
+           
+        </li>
+        <li
+          class="svelte-w3rzzq"
+          draggable="true"
+        >
+          <span
+            slot="item"
+          >
+            <span
+              class="row svelte-1fgzmnl"
+            >
+              <div
+                class="flex-auto root svelte-whrgz7"
+              >
+                <a
+                  class="flex-none"
+                  href="#/album/1"
+                >
+                  <img
+                    alt="./cover.jpg"
+                    class="h-16 w-16 text-xs actionable svelte-hn7eai rounded-sm"
+                    loading="lazy"
+                    src="./cover.jpg#nonce=0.1"
+                  />
+                   
+                  
+                </a>
+                 
+                <div
+                  class="track svelte-whrgz7"
+                >
+                  <span
+                    class="title svelte-whrgz7"
+                  >
+                    file 4
+                  </span>
+                   
+                  <a
+                    class="text-sm underlined"
+                    href="#/artist/2"
+                    onclick="event.stopPropagation()"
+                  >
+                    Another fellow
+                  </a>
+                </div>
+                 
+                <div
+                  class="duration svelte-whrgz7"
+                >
+                  0:03
+                </div>
+                 
+              </div>
+               
+              <button
+                class="mx-2 iconOnly noBorder svelte-9liv1b"
+              >
+                <i
+                  class="material-icons svelte-9liv1b"
                 >
                   close
                 </i>

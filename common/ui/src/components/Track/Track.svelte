@@ -13,8 +13,7 @@
 
 <style type="postcss">
   .root {
-    @apply flex m-2 items-center text-left;
-    min-width: 200px;
+    @apply flex m-2 items-start text-left;
   }
 
   .track {
@@ -27,6 +26,12 @@
 
   .duration {
     @apply text-lg;
+  }
+
+  @screen md {
+    .root {
+      min-width: 200px;
+    }
   }
 </style>
 

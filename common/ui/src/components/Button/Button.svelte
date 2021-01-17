@@ -13,13 +13,13 @@
 
 <style type="postcss">
   button {
-    @apply inline-flex border-none cursor-pointer px-6 uppercase text-sm
+    @apply inline-flex border-none cursor-pointer px-6 uppercase text-base
   font-semibold bg-transparent flex-row items-center rounded whitespace-no-wrap;
-    letter-spacing: 0.1rem;
-    line-height: 2.8rem;
+    letter-spacing: 0.05rem;
+    line-height: 2.3rem;
     transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out,
       color 0.2s ease-in-out, transform 0.1s linear;
-    box-shadow: inset 0 0 0 2px var(--outline-color);
+    box-shadow: inset 0 0 0 1px var(--outline-color);
     /* hack to avoid setting relative on button (makes it harder to position in Dialogue) and still allow badge */
     transform: scale(1);
 
@@ -29,21 +29,24 @@
       @apply shadow-none;
     }
 
+    & > i {
+      font-size: 1.5rem;
+    }
+
     &.large {
       @apply text-lg;
-      line-height: 4rem;
+      line-height: 3.5rem;
 
       &:not(.iconOnly) {
         @apply px-8;
       }
     }
 
-    & > i {
-      font-size: 150%;
+    &:focus {
+      @apply outline-none;
     }
 
-    &:hover,
-    &:focus {
+    &:hover {
       @apply outline-none;
       background-color: var(--hover-bg-color);
       transform: scale(1.03);
@@ -62,12 +65,26 @@
       &:active {
         transform: scale(0.95);
       }
+      & .badge {
+        font-size: 0.6rem;
+        line-height: 0.6rem;
+        min-width: 1.2rem;
+        top: -0.25rem;
+      }
+
+      & > i {
+        font-size: 1.6rem;
+      }
+      &.large > i {
+        font-size: 2rem;
+      }
     }
 
     &.primary {
       @apply shadow-none;
       background-color: var(--primary-color);
 
+      /* TODO mobile? */
       &:hover,
       &:active {
         background-color: var(--hover-primary-color);
@@ -77,6 +94,12 @@
     &:not(.iconOnly) > i {
       margin-left: -0.3em;
       margin-right: 0.3em;
+    }
+
+    @screen md {
+      & > i {
+        font-size: 1rem;
+      }
     }
   }
 
@@ -121,8 +144,7 @@
   class:iconOnly
   class:large
   class:noBorder
-  data-testid={$$restProps['data-testid']}
-  class={$$restProps.class}
+  {...$$restProps}
   on:click|preventDefault|stopPropagation>
   {#if icon}<i class="material-icons">{icon}</i>{/if}
   {#if text}<span>{text}</span>{/if}

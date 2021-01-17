@@ -49,7 +49,8 @@
     class={$$restProps.class}
     class:floating
     bind:this={nav}
-    style="margin-bottom: -{height}px">
-    <slot />
+    style="margin-bottom: -{height}px"
+  >
+    <slot {floating} />
   </nav>
 </div>

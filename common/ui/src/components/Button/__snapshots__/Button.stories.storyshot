@@ -5,7 +5,7 @@ exports[`Storyshots Components/Button Default 1`] = `
   class="storybook-snapshot-container"
 >
   <button
-    class="svelte-bb1epg"
+    class="svelte-9liv1b"
   >
      
     <span>
@@ -22,10 +22,10 @@ exports[`Storyshots Components/Button Large Icon 1`] = `
   class="storybook-snapshot-container"
 >
   <button
-    class="svelte-bb1epg iconOnly large"
+    class="iconOnly large svelte-9liv1b"
   >
     <i
-      class="material-icons svelte-bb1epg"
+      class="material-icons svelte-9liv1b"
     >
       play_arrow
     </i>
@@ -41,10 +41,10 @@ exports[`Storyshots Components/Button Large Text And Icon 1`] = `
   class="storybook-snapshot-container"
 >
   <button
-    class="svelte-bb1epg large"
+    class="large svelte-9liv1b"
   >
     <i
-      class="material-icons svelte-bb1epg"
+      class="material-icons svelte-9liv1b"
     >
       person
     </i>
@@ -63,7 +63,7 @@ exports[`Storyshots Components/Button Primary 1`] = `
   class="storybook-snapshot-container"
 >
   <button
-    class="svelte-bb1epg primary"
+    class="primary svelte-9liv1b"
   >
      
     <span>
@@ -80,10 +80,10 @@ exports[`Storyshots Components/Button Primary Icon 1`] = `
   class="storybook-snapshot-container"
 >
   <button
-    class="svelte-bb1epg primary iconOnly"
+    class="primary iconOnly svelte-9liv1b"
   >
     <i
-      class="material-icons svelte-bb1epg"
+      class="material-icons svelte-9liv1b"
     >
       volume_up
     </i>
@@ -99,10 +99,10 @@ exports[`Storyshots Components/Button Primary With Badge 1`] = `
   class="storybook-snapshot-container"
 >
   <button
-    class="svelte-bb1epg primary"
+    class="primary svelte-9liv1b"
   >
     <i
-      class="material-icons svelte-bb1epg"
+      class="material-icons svelte-9liv1b"
     >
       face
     </i>
@@ -113,7 +113,7 @@ exports[`Storyshots Components/Button Primary With Badge 1`] = `
      
      
     <div
-      class="badge svelte-bb1epg halo"
+      class="badge svelte-9liv1b halo"
     >
       5
     </div>
@@ -126,10 +126,10 @@ exports[`Storyshots Components/Button Text And Icon 1`] = `
   class="storybook-snapshot-container"
 >
   <button
-    class="svelte-bb1epg"
+    class="svelte-9liv1b"
   >
     <i
-      class="material-icons svelte-bb1epg"
+      class="material-icons svelte-9liv1b"
     >
       face
     </i>
@@ -148,10 +148,10 @@ exports[`Storyshots Components/Button With Badge 1`] = `
   class="storybook-snapshot-container"
 >
   <button
-    class="svelte-bb1epg"
+    class="svelte-9liv1b"
   >
     <i
-      class="material-icons svelte-bb1epg"
+      class="material-icons svelte-9liv1b"
     >
       face
     </i>
@@ -162,7 +162,7 @@ exports[`Storyshots Components/Button With Badge 1`] = `
      
      
     <div
-      class="badge svelte-bb1epg halo"
+      class="badge svelte-9liv1b halo"
     >
       23
     </div>
@@ -175,10 +175,10 @@ exports[`Storyshots Components/Button With Badge Limit 1`] = `
   class="storybook-snapshot-container"
 >
   <button
-    class="svelte-bb1epg"
+    class="svelte-9liv1b"
   >
     <i
-      class="material-icons svelte-bb1epg"
+      class="material-icons svelte-9liv1b"
     >
       warning
     </i>
@@ -189,7 +189,7 @@ exports[`Storyshots Components/Button With Badge Limit 1`] = `
      
      
     <div
-      class="badge svelte-bb1epg halo"
+      class="badge svelte-9liv1b halo"
     >
       999+
     </div>

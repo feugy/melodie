@@ -63,7 +63,8 @@
   <Button
     on:click
     icon={isBroadcasting ? 'wifi' : 'wifi_off'}
-    noBorder={true} />
+    noBorder={true}
+  />
   {#if open}
     <div class="menu" role="menu" transition:slide>
       <a href={address}><canvas bind:this={codeCanvas} /></a>

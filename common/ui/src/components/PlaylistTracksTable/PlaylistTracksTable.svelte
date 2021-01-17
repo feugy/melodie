@@ -28,7 +28,12 @@
   }
 
   table {
-    @apply w-full mt-4;
+    @apply w-full mt-4 overflow-x-auto;
+  }
+
+  tbody,
+  thead {
+    min-width: 600px;
   }
 
   tr {
@@ -66,7 +71,8 @@
 <TrackDetailsDialogue
   src={openedTrack}
   open={openedTrack !== null}
-  on:close={() => (openedTrack = null)} />
+  on:close={() => (openedTrack = null)}
+/>
 
 {#if playlist && playlist.tracks}
   <table>
@@ -82,7 +88,8 @@
     <tbody>
       <SortableList
         items={playlist.tracks}
-        on:move={({ detail }) => moveTrack(playlist, detail)}>
+        on:move={({ detail }) => moveTrack(playlist, detail)}
+      >
         <tr slot="item" let:item let:i on:click={() => clicks$.next(item)}>
           <td>{i + 1}</td>
           <td class="col-span-6">
@@ -94,8 +101,15 @@
           <td on:click|stopPropagation>
             <TrackDropdown
               track={item}
-              additionalOptions={[{ label: $_('remove from playlist'), icon: 'close', act: () => removeTrack(playlist, i) }]}
-              on:showDetails={() => (openedTrack = item)} />
+              additionalOptions={[
+                {
+                  label: $_('remove from playlist'),
+                  icon: 'close',
+                  act: () => removeTrack(playlist, i)
+                }
+              ]}
+              on:showDetails={() => (openedTrack = item)}
+            />
           </td>
         </tr>
       </SortableList>

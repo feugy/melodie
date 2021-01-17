@@ -71,4 +71,5 @@
   primary
   large
   {options}
-  valueAsText={false} />
+  valueAsText={false}
+/>

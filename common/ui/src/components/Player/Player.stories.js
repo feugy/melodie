@@ -8,7 +8,7 @@ export default {
   title: 'Components/Player',
   excludeStories: /.*Data$/,
   loaders: [websocketResponse(() => ({ totals: 0, results: [] }))],
-  parameters: { layout: 'padded' }
+  parameters: { layout: 'none' }
 }
 
 const album = 'An album'

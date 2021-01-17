@@ -16,7 +16,7 @@
 
 <style type="postcss">
   span {
-    @apply relative;
+    @apply inline-flex items-center;
 
     &.icon input {
       @apply pl-10;
@@ -25,7 +25,7 @@
 
   input {
     @apply px-2 py-1 outline-none rounded w-full;
-    border: solid 2px var(--hover-bg-color);
+    border: solid 1px var(--hover-bg-color);
     background: var(--input-bg-color);
     transition: border-color 0.2s ease-in-out;
 
@@ -35,9 +35,9 @@
   }
 
   i {
-    @apply cursor-pointer z-0 relative;
-    margin-right: -2.5rem;
-    vertical-align: -0.25rem;
+    @apply cursor-pointer z-10;
+    margin-right: -2rem;
+    margin-left: 0.5rem;
   }
 </style>
 
@@ -57,5 +57,6 @@
     on:keydown
     on:change
     {placeholder}
-    {value} />
+    {value}
+  />
 </span>

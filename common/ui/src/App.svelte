@@ -1,3 +1,5 @@
+<svelte:options immutable={true} />
+
 <script>
   import { onMount, tick } from 'svelte'
   import { _, locale } from 'svelte-intl'
@@ -15,13 +17,19 @@
   import * as queue from './stores/track-queue'
   import * as tutorial from './stores/tutorial'
   import { isLoading } from './stores/loading'
+  import { screenSize, SM } from './stores/window'
   import { invoke } from './utils'
   import { autoScrollable } from './actions'
   import Router from './components/Router'
 
-  let isPlaylistOpen = true
+  let isPlaylistOpen = null
   let ready = false
   let scrollable
+
+  $: withClose = $screenSize === SM
+  $: if (isPlaylistOpen === null && $screenSize) {
+    isPlaylistOpen = !withClose
+  }
 
   onMount(async () => {
     const settings = await invoke('settings.get')
@@ -34,6 +42,12 @@
       tutorial.start()
     }
   })
+
+  function handleNav() {
+    if (isPlaylistOpen && withClose) {
+      isPlaylistOpen = false
+    }
+  }
 </script>
 
 <style type="postcss">
@@ -56,7 +70,6 @@
   }
 
   footer {
-    @apply p-4;
     background: var(--nav-bg-color);
     border-top: solid 2px var(--outline-color);
   }
@@ -65,8 +78,6 @@
     @apply absolute inset-x-0 top-0 z-10;
   }
 </style>
-
-<svelte:options immutable={true} />
 
 <svelte:head>
   <title>{$_('Mélodie')}</title>
@@ -81,18 +92,18 @@
 {#if ready}
   <div>
     <main>
-      <Sheet bind:open={isPlaylistOpen}>
+      <Sheet bind:open={isPlaylistOpen} width={withClose ? '100%' : '30%'}>
         <section slot="main" bind:this={scrollable} use:autoScrollable>
-          <Nav />
-          <Router {scrollable} />
+          <Nav bind:isPlaylistOpen />
+          <Router {scrollable} on:routeLoaded={handleNav} />
         </section>
         <aside slot="aside" id="queue" use:autoScrollable>
-          <TracksQueue />
+          <TracksQueue on:close={() => (isPlaylistOpen = false)} {withClose} />
         </aside>
       </Sheet>
     </main>
     <footer>
-      <Player trackList={queue} bind:isPlaylistOpen />
+      <Player trackList={queue} />
     </footer>
   </div>
   <Tutorial />

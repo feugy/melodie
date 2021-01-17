@@ -64,7 +64,7 @@
 
 <style type="postcss">
   section {
-    @apply flex flex-row items-start z-0 m-4 mt-0;
+    @apply flex flex-wrap items-center z-0 m-4 mt-0 gap-4;
   }
 
   .disks {
@@ -72,13 +72,15 @@
   }
 
   .image-container {
-    @apply flex-shrink-0 w-full h-full cursor-pointer;
-    height: 300px;
+    @apply flex-shrink-0 flex-grow cursor-pointer;
     width: 300px;
+    height: 300px;
+    max-width: 300px;
+    max-height: 300px;
   }
 
   section > div {
-    @apply flex flex-col items-start px-4 self-stretch text-left;
+    @apply flex flex-col items-start self-stretch text-left;
   }
 
   h3 {
@@ -86,7 +88,22 @@
   }
 
   .actions {
-    @apply flex items-end flex-grow;
+    @apply flex flex-wrap mb-4 gap-4 items-start;
+  }
+
+  @screen md {
+    section {
+      @apply items-start flex-no-wrap;
+    }
+  }
+
+  @screen lg {
+    .image-container {
+      width: 400px;
+      height: 400px;
+      max-width: 400px;
+      max-height: 400px;
+    }
   }
 </style>
 
@@ -96,15 +113,31 @@
   {#if album}
     <Heading
       title={album.name}
-      image={'../images/dark-rider-JmVaNyemtN8-unsplash.jpg'} />
+      image={'../images/dark-rider-JmVaNyemtN8-unsplash.jpg'}
+    />
     <section>
       <span class="image-container">
         <Image
+          on:click={() => (openMediaSelector = true)}
           class="h-full w-full text-3xl actionable"
+          width="400"
+          height="400"
           src={album.media}
-          on:click={() => (openMediaSelector = true)} />
+        />
       </span>
       <div>
+        <span class="actions">
+          <Button
+            on:click={track => add(album.tracks, true)}
+            icon="play_arrow"
+            text={$_('play all')}
+          />
+          <Button
+            on:click={track => add(album.tracks)}
+            icon="playlist_add"
+            text={$_('enqueue all')}
+          />
+        </span>
         <h3>
           {@html $_('by _', {
             artist: wrapWithLinks('artist', album.refs).join(', ')
@@ -116,17 +149,6 @@
           })}
         </span>
         {#if year}<span> {$_('year _', { year })} </span>{/if}
-        <span class="actions">
-          <Button
-            on:click={track => add(album.tracks, true)}
-            icon="play_arrow"
-            text={$_('play all')} />
-          <Button
-            class="ml-4"
-            on:click={track => add(album.tracks)}
-            icon="playlist_add"
-            text={$_('enqueue all')} />
-        </span>
       </div>
     </section>
     <div class="disks">
@@ -135,7 +157,8 @@
         {current}
         withAlbum={false}
         on:play={({ detail }) => add(detail, true)}
-        on:enqueue={({ detail }) => add(detail)} />
+        on:enqueue={({ detail }) => add(detail)}
+      />
     </div>
   {/if}
 </div>

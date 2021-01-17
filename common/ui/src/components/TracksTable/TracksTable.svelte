@@ -37,7 +37,11 @@
   }
 
   table {
-    @apply w-full mt-4;
+    @apply w-full mt-4 overflow-x-auto;
+  }
+  tbody,
+  thead {
+    min-width: 600px;
   }
 
   tr {
@@ -51,7 +55,7 @@
 
   th,
   td {
-    @apply p-3 text-left;
+    @apply p-2 text-left;
   }
 
   th {
@@ -68,6 +72,7 @@
       background-color: var(--hover-bg-color);
     }
 
+    /* TODO mobile? */
     &:hover {
       @apply cursor-pointer;
       background-color: var(--hover-primary-color);
@@ -82,7 +87,8 @@
 <TrackDetailsDialogue
   src={openedTrack}
   open={openedTrack !== null}
-  on:close={() => (openedTrack = null)} />
+  on:close={() => (openedTrack = null)}
+/>
 
 {#if tracks}
   <table class={$$restProps.class}>
@@ -117,7 +123,8 @@
           <td on:click|stopPropagation>
             <TrackDropdown
               {track}
-              on:showDetails={() => (openedTrack = track)} />
+              on:showDetails={() => (openedTrack = track)}
+            />
           </td>
         </tr>
       {/each}

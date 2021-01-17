@@ -1,5 +1,5 @@
 <script>
-  import { onMount, tick } from 'svelte'
+  import { onMount, createEventDispatcher } from 'svelte'
   import { _ } from 'svelte-intl'
   import Button from '../Button/Button.svelte'
   import Heading from '../Heading/Heading.svelte'
@@ -19,8 +19,11 @@
   import { current } from '../../stores/tutorial'
   import { formatTime, sumDurations } from '../../utils'
 
+  export let withClose = false
+
   let list
   let previousCurrent
+  const dispatch = createEventDispatcher()
 
   function handleRemove(i) {
     if ($current !== null && $tracks.length === 1) {
@@ -55,8 +58,8 @@
 
 <style type="postcss">
   header {
-    @apply flex flex-row text-left;
-    padding: 1.2rem;
+    @apply w-full flex flex-row items-center p-2 gap-2;
+    line-height: 1.8rem;
   }
 
   div {
@@ -84,19 +87,24 @@
       })}
     </h3>
     {#if $tracks.length}
-      <AddToPlaylist class="mx-4" tracks={$tracks} />
+      <AddToPlaylist tracks={$tracks} noBorder />
       <span class="totalDuration">{formatTime(sumDurations($tracks))}</span>
-      <Button icon="delete" class="ml-2" on:click={handleClear} />
+      <Button icon="delete" on:click={handleClear} />
+    {:else}<span class="totalDuration" />{/if}
+    {#if withClose}
+      <Button icon="close" primary on:click={() => dispatch('close')} />
     {/if}
   </header>
 </Sticky>
 <Heading
   title={$_('queue')}
-  image={'../images/jason-rosewell-ASKeuOZqhYU-unsplash.jpg'} />
+  image={'../images/jason-rosewell-ASKeuOZqhYU-unsplash.jpg'}
+/>
 <div bind:this={list}>
   <SortableList
     items={$tracks}
-    on:move={({ detail: { from, to } }) => move(from, to)}>
+    on:move={({ detail: { from, to } }) => move(from, to)}
+  >
     <span slot="item" let:item let:i>
       <span class="row" class:current={$index === i} on:click={() => jumpTo(i)}>
         <Track src={item} details class="flex-auto" />
@@ -104,7 +112,8 @@
           icon="close"
           noBorder
           class="mx-2"
-          on:click={() => handleRemove(i)} />
+          on:click={() => handleRemove(i)}
+        />
       </span>
     </span>
   </SortableList>

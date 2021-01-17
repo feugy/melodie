@@ -41,13 +41,15 @@
 <TrackDetailsDialogue
   src={openedTrack}
   open={openedTrack !== null}
-  on:close={() => (openedTrack = null)} />
+  on:close={() => (openedTrack = null)}
+/>
 
 <div in:fade={{ duration: 200 }}>
   <Heading
     title={$_('results for _', { searched })}
     image={'../images/anthony-martino-6AtQNsjMoJo-unsplash.jpg'}
-    imagePosition="bottom center" />
+    imagePosition="bottom center"
+  />
   {#if $total === 0}
     <section class="noResults">{$_('no results')}</section>
   {/if}
@@ -55,7 +57,8 @@
     <ExpandableList
       kind={ExpandableListConstants.TRACKS}
       items={tracks}
-      on:showDetails={({ detail: track }) => (openedTrack = track)} />
+      on:showDetails={({ detail: track }) => (openedTrack = track)}
+    />
   </section>
   <section>
     <ExpandableList kind={ExpandableListConstants.ARTISTS} items={artists} />

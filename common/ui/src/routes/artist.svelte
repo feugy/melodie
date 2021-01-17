@@ -43,7 +43,8 @@
     title={$_($artists.length === 1 ? 'an artist' : '_ artists', {
       total: $artists.length
     })}
-    image={'../images/larisa-birta-slbOcNlWNHA-unsplash.jpg'} />
+    image={'../images/larisa-birta-slbOcNlWNHA-unsplash.jpg'}
+  />
   <div>
     {#each $artists as src (src.id)}
       <span>

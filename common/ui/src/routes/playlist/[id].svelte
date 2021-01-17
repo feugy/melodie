@@ -1,5 +1,5 @@
 <script>
-  import { onDestroy, onMount } from 'svelte'
+  import { onMount } from 'svelte'
   import { fade } from 'svelte/transition'
   import { _ } from 'svelte-intl'
   import { replace } from 'svelte-spa-router'
@@ -97,11 +97,15 @@
 
 <style type="postcss">
   section {
-    @apply flex flex-row text-left m-4 mt-0;
+    @apply flex flex-wrap items-center text-left m-4 mt-0 gap-4;
   }
 
   .meta {
-    @apply flex-grow text-xl text-right;
+    @apply text-xl;
+  }
+
+  .divider {
+    @apply flex-grow;
   }
 
   .tracks {
@@ -115,7 +119,8 @@
     title={$_(isDeleting ? 'playlist deletion' : 'playlist renamal')}
     confirmText={isDeleting ? 'yes' : 'save'}
     cancelText={isDeleting ? 'no' : 'cancel'}
-    on:close={handleConfirmation}>
+    on:close={handleConfirmation}
+  >
     {#if isDeleting}
       <p>{$_('confirm playlist _ delection', playlist)}</p>
     {:else}
@@ -129,38 +134,41 @@
     <Heading
       title={playlist.name}
       image={'../images/bantersnaps-nE1K_qO2z38-unsplash.jpg'}
-      imagePosition="center 60%" />
+      imagePosition="center 60%"
+    />
     <section>
       <Button
         on:click={track => add(playlist.tracks, true)}
         icon="play_arrow"
-        text={$_('play all')} />
+        text={$_('play all')}
+      />
       <Button
-        class="ml-4"
         on:click={track => add(playlist.tracks)}
         icon="playlist_add"
-        text={$_('enqueue all')} />
+        text={$_('enqueue all')}
+      />
       <Button
-        class="ml-4"
         on:click={() => {
           newName = playlist.name
           openDialogue = true
         }}
         icon="edit"
-        text={$_('rename playlist')} />
+        text={$_('rename playlist')}
+      />
       <Button
-        class="ml-4"
         on:click={() => invoke(`playlists.export`, playlist.id)}
         icon="save_alt"
-        text={$_('export playlist')} />
+        text={$_('export playlist')}
+      />
       <Button
-        class="ml-4"
         on:click={() => {
           isDeleting = true
           openDialogue = true
         }}
         icon="delete"
-        text={$_('delete playlist')} />
+        text={$_('delete playlist')}
+      />
+      <div class="divider" />
       <div class="meta">
         {$_(total === 1 ? 'a track' : '_ tracks', { total })}
         {$_('separator')}

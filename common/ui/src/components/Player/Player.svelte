@@ -1,38 +1,34 @@
 <script>
   import { onMount } from 'svelte'
+  import { slide } from 'svelte/transition'
   import { _ } from 'svelte-intl'
   import Button from '../Button/Button.svelte'
   import Track from '../Track/Track.svelte'
-  import Slider from '../Slider/Slider.svelte'
-  import AddToPlaylist from '../AddToPlaylist/AddToPlaylist.svelte'
-  import { toDOMSrc, formatTime } from '../../utils'
-  import {
-    playNext,
-    playPrevious,
-    current,
-    tracks,
-    isShuffling,
-    unshuffle,
-    shuffle
-  } from '../../stores/track-queue'
+  import Time from './Time.svelte'
+  import AddToPlaylist from './AddToPlaylist.svelte'
+  import Controls from './Controls.svelte'
+  import Volume from './Volume.svelte'
+  import Shuffle from './Shuffle.svelte'
+  import Repeat from './Repeat.svelte'
+  import { toDOMSrc } from '../../utils'
+  import { current, tracks } from '../../stores/track-queue'
+  import { playNext } from '../../stores/track-queue'
+  import { screenSize, MD } from '../../stores/window'
 
-  export let isPlaylistOpen = false
   let isPlaying
   let player
   let timeUpdateTimer
   let duration = 0
   let currentTime = 0
-  let nextSeek = null
   let src = null
   let muted = false
   let repeatOne = false
   let repeatAll = false
   let volume = 1
-  $: volumePct = volume * 100
+  let expanded = false
+  let gainNode
 
   onMount(() => {
-    let gainNode
-    // TODO seems to break on Chrome
     if ('AudioContext' in window) {
       const context = new AudioContext()
       const sourceNode = context.createMediaElementSource(player)
@@ -62,61 +58,19 @@
     })
   })
 
-  function handleSeek({ detail }) {
-    if (player) {
-      clearTimeout(nextSeek)
-      nextSeek = setTimeout(function () {
-        player.currentTime = detail
-      }, 100)
-    }
-  }
-
-  function handlePlay() {
-    if (src) {
-      if (isPlaying) {
-        player.pause()
-      } else {
-        player.play()
-      }
-    }
-  }
-
-  function handleNext() {
-    player.pause()
-    playNext()
-  }
-
-  function handlePrevious() {
-    player.pause()
-    playPrevious()
-  }
-
-  function handleRepeat() {
-    if (repeatAll) {
-      repeatAll = false
-      repeatOne = true
-    } else if (repeatOne) {
-      repeatAll = false
-      repeatOne = false
-    } else {
-      repeatAll = true
-    }
+  function handleCanPlay() {
+    // Chrome will block playing songs until user interact with the page, and will
+    // issue an error on console
+    player.play()
   }
 
   function handleEnded() {
     isPlaying = false
     if (repeatOne) {
-      handlePlay()
+      player.play()
     } else if (repeatAll || $tracks[$tracks.length - 1] !== $current) {
-      handleNext()
-    }
-  }
-
-  function handleShuffle() {
-    if ($isShuffling) {
-      unshuffle()
-    } else {
-      shuffle()
+      player.pause()
+      playNext()
     }
   }
 
@@ -133,143 +87,130 @@
 </script>
 
 <style type="postcss">
+  .root {
+    /* get rid of whitespaces introduced by conditionals */
+    font-size: 0px;
+  }
+
+  .content {
+    @apply flex items-center justify-center;
+  }
+
   .player {
-    @apply flex-grow flex-col;
+    @apply flex-col;
   }
 
   .controls {
-    @apply flex items-center justify-center;
-    & > * {
-      @apply mx-2;
-    }
-  }
-
-  .time > span {
-    @apply text-sm;
+    @apply flex items-center justify-center gap-2 px-1;
   }
 
   .current {
-    @apply w-1/4;
+    @apply flex-grow;
   }
 
-  .playlist,
-  .volume {
-    @apply flex flex-row items-center justify-end;
+  .expansion {
+    @apply p-2;
   }
 
-  .playlist {
-    @apply w-1/4;
+  .handle {
+    @apply inline-block w-full cursor-pointer text-center;
+    background: var(--outline-color);
   }
 
-  .volume {
-    @apply pr-2;
-  }
+  @screen md {
+    .content {
+      @apply p-2;
+    }
 
-  .volume-slider {
-    @apply opacity-0 pr-2 inline-block;
-    transition: opacity ease-in-out 150ms;
-    width: 100px;
-  }
+    .player {
+      @apply flex-grow;
+    }
 
-  .playlist:hover .volume-slider {
-    @apply opacity-100;
-  }
+    .current {
+      @apply w-1/4 flex-grow-0;
+    }
 
-  .isActive {
-    color: var(--hover-color);
+    .volume {
+      @apply w-1/4;
+    }
   }
 </style>
 
-<!-- svelte-ignore a11y-media-has-caption -->
-<audio
-  data-testid="audio"
-  bind:this={player}
-  autoplay
-  {src}
-  on:ended={handleEnded}
-  bind:duration
-  bind:volume
-  bind:muted
-  on:play={() => {
-    isPlaying = true
-    timeUpdateTimer = window.requestAnimationFrame(updateTime)
-  }}
-  on:pause={() => {
-    isPlaying = false
-    window.cancelAnimationFrame(timeUpdateTimer)
-  }} />
-
-<div class="flex items-center">
-  <span class="current">
-    {#if $current}
-      <Track src={$current} />
-    {/if}
-  </span>
-  <div class="player">
-    <span class="controls">
-      {#if $current}
-        <AddToPlaylist tracks={[$current]} noBorder />
-      {/if}
-      <span class:isActive={$isShuffling}>
-        <Button on:click={handleShuffle} icon="shuffle" noBorder />
+<div class="root">
+  <!-- svelte-ignore a11y-media-has-caption -->
+  <audio
+    data-testid="audio"
+    bind:this={player}
+    {src}
+    bind:duration
+    bind:volume
+    bind:muted
+    on:canplay={handleCanPlay}
+    on:ended={handleEnded}
+    on:play={() => {
+      if (gainNode) {
+        // required on Chrome
+        gainNode.context.resume()
+      }
+      isPlaying = true
+      timeUpdateTimer = window.requestAnimationFrame(updateTime)
+    }}
+    on:pause={() => {
+      isPlaying = false
+      window.cancelAnimationFrame(timeUpdateTimer)
+    }}
+  />{#if $screenSize >= MD}
+    <div class="content">
+      <span class="current">
+        {#if $current}
+          <Track src={$current} />
+        {/if}
       </span>
-      <Button
-        class="ml-2 mr-1"
-        on:click={handlePrevious}
-        icon="skip_previous"
-        noBorder />
-      <Button
-        class="mx-1"
-        on:click={handlePlay}
-        icon={isPlaying ? 'pause' : 'play_arrow'}
-        large />
-      <Button
-        class="ml-1 mr-2"
-        on:click={handleNext}
-        icon="skip_next"
-        noBorder />
-      <span class:isActive={repeatOne || repeatAll}>
-        <Button
-          on:click={handleRepeat}
-          icon={repeatOne ? 'repeat_one' : 'repeat'}
-          noBorder />
+      <div class="player">
+        <span class="controls">
+          <AddToPlaylist />
+          <Shuffle />
+          <Controls {player} {isPlaying} />
+          <Repeat bind:repeatAll bind:repeatOne />
+          {#if $current}
+            <Button icon="favorite_border" noBorder class="invisible" />
+          {/if}
+        </span>
+        <Time {player} {currentTime} {duration} />
+      </div>
+      <span class="volume">
+        <Volume bind:volume bind:muted />
       </span>
-      {#if $current}
-        <Button icon="favorite_border" noBorder class="invisible" />
-      {/if}
-    </span>
-    <span class="controls time">
-      <span>{formatTime(currentTime)}</span>
-      <Slider
-        class="w-full"
-        current={currentTime}
-        max={duration}
-        on:input={handleSeek} />
-      <span>{formatTime(duration)}</span>
-    </span>
-  </div>
-  <span class="playlist">
-    <div class="volume">
-      <span class="volume-slider">
-        <Slider
-          current={volumePct}
-          max={100}
-          on:input={({ detail: v }) => {
-            if (v != null) {
-              volume = v / 100
-            }
-          }} />
-      </span>
-      <Button
-        on:click={() => (muted = !muted)}
-        icon={muted ? 'volume_off' : 'volume_up'}
-        noBorder />
     </div>
-    <Button
-      on:click={() => (isPlaylistOpen = !isPlaylistOpen)}
-      icon="queue_music"
-      text={$_(isPlaylistOpen ? 'close queue' : 'open queue')}
-      primary={!isPlaylistOpen}
-      badge={$tracks.length || null} />
-  </span>
+  {:else}
+    <div class="content">
+      {#if $current}
+        <div class="current">
+          <Track src={$current} />
+        </div>
+      {/if}
+      <div class="player">
+        <span class="controls">
+          <Controls {player} {isPlaying} />
+        </span>
+      </div>
+    </div>
+    <i class="material-icons handle" on:click={() => (expanded = !expanded)}
+      >{expanded ? 'expand_more' : 'expand_less'}</i
+    >{#if expanded}
+      <ul class="expansion" transition:slide>
+        <li>
+          <Time {player} {currentTime} {duration} />
+        </li>
+        <li>
+          <div class="controls">
+            <AddToPlaylist />
+            <Shuffle />
+            <Repeat bind:repeatAll bind:repeatOne />
+            <Volume bind:volume bind:muted />
+          </div>
+        </li>
+      </ul>
+    {/if}
+  {/if}
 </div>

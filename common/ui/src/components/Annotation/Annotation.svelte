@@ -151,11 +151,15 @@
 
 <div
   class="backdrop"
-  style={clip ? `--top:${clip.top}px; --right:${clip.right}px; --bottom:${clip.bottom}px; --left:${clip.left}px;` : ''}>
+  style={clip
+    ? `--top:${clip.top}px; --right:${clip.right}px; --bottom:${clip.bottom}px; --left:${clip.left}px;`
+    : ''}
+>
   {#if connector}
     <svg class="connector">
       <path
-        d="M {connector.startX} {connector.startY} Q {curve.x} {curve.y} {connector.endX} {connector.endY}" />
+        d="M {connector.startX} {connector.startY} Q {curve.x} {curve.y} {connector.endX} {connector.endY}"
+      />
     </svg>
   {/if}
   <article style="top: {top}; left: {left};" bind:this={article}>

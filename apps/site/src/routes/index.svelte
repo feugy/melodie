@@ -98,17 +98,20 @@
       on:click={() => {
         window.location.hash = ''
         document.body.scrollTo(0, 0)
-      }} />
-    <a href="#intuitive"><i
-        class="material-icons">all_inclusive</i>{$_('intuitive')}</a>
+      }}
+    />
+    <a href="#intuitive"
+      ><i class="material-icons">all_inclusive</i>{$_('intuitive')}</a
+    >
     <a href="#organized"><i class="material-icons">apps</i>{$_('organized')}</a>
     <a href="#reactive"><i class="material-icons">cached</i>{$_('reactive')}</a>
-    <a href="#for-geeks"><i
-        class="material-icons">more_vert</i>{$_('for geeks')}</a>
+    <a href="#for-geeks"
+      ><i class="material-icons">more_vert</i>{$_('for geeks')}</a
+    >
     <span class="flex-grow" />
-    <a target="_blank" href="https://github.com/feugy/melodie"><img
-        src="./logos/github.png"
-        alt="" /></a>
+    <a target="_blank" href="https://github.com/feugy/melodie"
+      ><img src="./logos/github.png" alt="" /></a
+    >
   </nav>
 </Sticky>
 
@@ -123,7 +126,8 @@
       <div class="image-wrapper">
         <ReflectedImage
           src="images/screenshot-ui-{$locale}.png"
-          height="350px" />
+          height="350px"
+        />
       </div>
     </div>
   </Trapezium>
@@ -141,7 +145,8 @@
       <div class="image-wrapper">
         <ReflectedImage
           src="images/screenshot-player-{$locale}.png"
-          height="100px" />
+          height="100px"
+        />
       </div>
     </div>
   </Trapezium>
@@ -159,7 +164,8 @@
       <div class="image-wrapper">
         <ReflectedImage
           src="images/screenshot-artists-{$locale}.png"
-          height="275px" />
+          height="275px"
+        />
       </div>
     </div>
   </Trapezium>
@@ -177,7 +183,8 @@
       <div class="image-wrapper">
         <ReflectedImage
           src="images/screenshot-artist-details-{$locale}.png"
-          height="250px" />
+          height="250px"
+        />
       </div>
     </div>
   </Trapezium>
@@ -202,11 +209,15 @@
 <footer class="inverted-colors">
   <div class="content">
     <span>{$_('footer')}</span>
-    <span><a
+    <span
+      ><a
         class="underlined"
         target="_blank"
-        href="https://unsplash.com/photos/slbOcNlWNHA">{$_('photo by _', {
+        href="https://unsplash.com/photos/slbOcNlWNHA"
+        >{$_('photo by _', {
           name: 'Larisa Birta'
-        })}</a></span>
+        })}</a
+      ></span
+    >
   </div>
 </footer>

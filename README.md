@@ -80,6 +80,8 @@ Another option is to open it with Control-click: it'll immediately register the 
 
 ### Bugs and known issues
 
+1. Opening containing folder of `/home/damien/Musique/# Films/The Lord Of The Rings - The Fellowship Of The Ring/17 - The Lord Of The Rings - The Fellowship Of The Ring - Howard Shore - The Breaking Of The Fellowship.flac` does not work.
+
 1. DMG package does not download updates: [it requires zip](https://github.com/electron-userland/electron-builder/issues/2199), and we cannot build zip because of [the accent in product name](https://github.com/electron-userland/electron-builder/issues/4306#issuecomment-717232761)...
 
 1. Playlist models are not updated on tracks removal
@@ -130,8 +132,6 @@ Another option is to open it with Control-click: it'll immediately register the 
       ```
 
 1. The Media test do not pass on Windows: nock is not giving recorded bodies
-
-1. Rxjs is pretty big on core side, as there is no treeshaking
 
 ## Configuring logs
 
@@ -426,7 +426,8 @@ Mélodie is referenced on these stores and hubs:
 
   - runing jest with pnpm does not work at all.
   - lerna is a pain when it comes to hoisting deps.
-  - I wasn't convinced by yarn, but can't remember why :D
+  - svelte-jester and preprocess absolutely don't work with yarn@2
+  - yarn@1 works fine but brings very little commands (just a little more than npm@7)
   - npm@7 must install peer deps in legacy mode and does not offer any sugar for multi-package commands. All deps must be manually added to package.json, because install command MUST be run at root level
     Electron-builder does not like monorepo either: author, description and other metadata must be copied from root package.json to apps/desktop/package.json. The Electron version must be fixed because node_modules are hoisted. The package.json name MUST be `melodie` :(
     Caveats: always run `npm i --legacy-peer-deps` AT ROOT level. Running npm or npx command inside packages would re-create `node_modules`

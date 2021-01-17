@@ -141,13 +141,13 @@ exports[`Storyshots Components/Track With Menu 1`] = `
       <span
         aria-expanded="false"
         aria-haspopup="menu"
-        class="wrapper svelte-350du5"
+        class="wrapper svelte-dvv38h"
       >
         <button
-          class="svelte-bb1epg iconOnly noBorder"
+          class="iconOnly noBorder svelte-9liv1b"
         >
           <i
-            class="material-icons svelte-bb1epg"
+            class="material-icons svelte-9liv1b"
           >
             more_vert
           </i>

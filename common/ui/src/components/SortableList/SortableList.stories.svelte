@@ -16,9 +16,12 @@
 <SortableList {...$$restProps} on:move>
   <div slot="item" let:item let:i on:click={() => dispatch('click', item)}>
     <Track src={item} details class="col-span-11" />
-    <span><Button
+    <span
+      ><Button
         icon="close"
         noBorder
-        on:click={() => dispatch('remove', i)} /></span>
+        on:click={() => dispatch('remove', i)}
+      /></span
+    >
   </div>
 </SortableList>

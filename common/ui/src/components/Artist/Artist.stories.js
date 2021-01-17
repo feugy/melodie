@@ -44,6 +44,7 @@ export const Unknown = () => ({
   props: {
     src: {
       ...artistData,
+      media: null,
       name: null
     }
   }

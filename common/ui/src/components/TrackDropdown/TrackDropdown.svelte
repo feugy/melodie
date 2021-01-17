@@ -62,4 +62,5 @@
   noBorder={true}
   withArrow={false}
   valueAsText={false}
-  {options} />
+  {options}
+/>

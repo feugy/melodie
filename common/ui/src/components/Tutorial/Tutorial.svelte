@@ -53,14 +53,16 @@
         text={$_($current.nextButtonKey)}
         icon={$_($current.nextIcon || 'navigate_next')}
         on:click={handleNextButtonClick}
-        primary="true" />
+        primary="true"
+      />
     {/if}
     <span class="skip">
       <Button
         text={$_('i will figure out')}
         icon="close"
         noBorder
-        on:click={stop} />
+        on:click={stop}
+      />
     </span>
   </Annotation>
 {/if}

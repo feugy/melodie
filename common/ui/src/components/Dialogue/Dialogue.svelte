@@ -55,9 +55,7 @@
   }
 
   article {
-    @apply flex flex-col text-center;
-    width: 50%;
-    max-height: 80%;
+    @apply flex flex-col text-center w-full max-h-full;
   }
 
   .content {
@@ -72,6 +70,25 @@
   footer {
     @apply mt-4;
   }
+
+  @screen md {
+    article {
+      width: 80%;
+      max-height: 80%;
+    }
+  }
+
+  @screen lg {
+    article {
+      width: 70%;
+    }
+  }
+
+  @screen xl {
+    article {
+      width: 50%;
+    }
+  }
 </style>
 
 <svelte:body on:keyup={handleKeyup} />
@@ -82,7 +99,8 @@
       <Button
         icon={'close'}
         class="absolute top-0 right-0 m-4"
-        on:click={close} />
+        on:click={close}
+      />
     {/if}
     <article role="dialog" on:click|stopPropagation>
       <header>{title}</header>

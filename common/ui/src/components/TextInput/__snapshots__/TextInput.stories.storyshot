@@ -8,11 +8,11 @@ exports[`Storyshots Components/TextInput Default 1`] = `
     class="inline-block w-64"
   >
     <span
-      class="svelte-1gs1cgl"
+      class="svelte-g0pe7x"
     >
        
       <input
-        class="svelte-1gs1cgl"
+        class="svelte-g0pe7x"
         placeholder=""
         type="text"
       />
@@ -29,16 +29,16 @@ exports[`Storyshots Components/TextInput With Icon And Placeholder 1`] = `
     class="inline-block w-64"
   >
     <span
-      class="svelte-1gs1cgl icon"
+      class="svelte-g0pe7x icon"
     >
       <i
-        class="material-icons svelte-1gs1cgl"
+        class="material-icons svelte-g0pe7x"
       >
         search
       </i>
        
       <input
-        class="svelte-1gs1cgl"
+        class="svelte-g0pe7x"
         placeholder="search..."
         type="search"
       />
@@ -55,16 +55,16 @@ exports[`Storyshots Components/TextInput With Value 1`] = `
     class="inline-block w-64"
   >
     <span
-      class="svelte-1gs1cgl icon"
+      class="svelte-g0pe7x icon"
     >
       <i
-        class="material-icons svelte-1gs1cgl"
+        class="material-icons svelte-g0pe7x"
       >
         person
       </i>
        
       <input
-        class="svelte-1gs1cgl"
+        class="svelte-g0pe7x"
         placeholder=""
         type="text"
       />

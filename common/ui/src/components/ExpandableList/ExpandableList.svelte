@@ -67,25 +67,29 @@
 
 <style type="postcss">
   span {
-    @apply inline-flex flex-col items-start text-left w-full overflow-x-hidden p-4;
+    @apply inline-flex flex-col items-center text-left w-full overflow-x-hidden p-4;
   }
 
   h3 {
-    @apply text-3xl font-semibold mb-4;
+    @apply text-3xl font-semibold mb-4 self-start;
   }
 
   ul {
-    @apply flex flex-row list-none overflow-x-hidden;
+    @apply flex list-none overflow-x-hidden w-full;
   }
 
   ul.expanded {
     @apply flex-wrap;
   }
 
-  li {
-    @apply m-4 cursor-pointer;
-    flex: 1 1 0px;
+  .tracks li {
+    @apply cursor-pointer;
     min-width: 250px;
+  }
+
+  li {
+    @apply m-4 text-center;
+    flex: 1 1 0px;
   }
 
   :global(ul:not(.expanded) > li.wrapped) {
@@ -94,7 +98,7 @@
 </style>
 
 {#if $items && $items.length}
-  <span class={$$restProps.class} bind:clientWidth={_width}>
+  <span class={$$restProps.class + ` ${kind}`} bind:clientWidth={_width}>
     <h3>{$_(title, { total: $items.length })}</h3>
     <ul bind:this={list} class:expanded>
       {#each $items as src (src.id)}
@@ -103,7 +107,8 @@
             this={Component}
             {src}
             {...componentProps}
-            on:showDetails />
+            on:showDetails
+          />
         </li>
       {/each}
     </ul>
@@ -111,12 +116,14 @@
       <Button
         text={$_('show less')}
         noBorder
-        on:click={() => (expanded = false)} />
+        on:click={() => (expanded = false)}
+      />
     {:else if hasWrapped}
       <Button
         text={$_('show all')}
         noBorder
-        on:click={() => (expanded = true)} />
+        on:click={() => (expanded = true)}
+      />
     {/if}
   </span>
 {/if}

@@ -196,7 +196,8 @@
   <Heading
     title={$_('settings')}
     image={'../images/rima-kruciene-gpKe3hmIawg-unsplash.jpg'}
-    imagePosition="center 65%" />
+    imagePosition="center 65%"
+  />
   <article>
     <SubHeading>{$_('watched folders')}</SubHeading>
     <ul>
@@ -208,39 +209,49 @@
       {/each}
     </ul>
     {#if $isDesktop}
-      <span class="controlContainer" id="folder"><Button
+      <span class="controlContainer" id="folder"
+        ><Button
           icon="folder"
           on:click={askToAddFolder}
-          text={$_('add folders')} /></span>
+          text={$_('add folders')}
+        /></span
+      >
     {/if}
   </article>
   <article>
     <SubHeading>{$_('interface settings')}</SubHeading>
     <p>
       <label for="locale">{$_('locale')}</label>
-      <span class="controlContainer" id="locale"><Dropdown
+      <span class="controlContainer" id="locale"
+        ><Dropdown
           valueAsText="true"
           bind:value={currentLocale}
-          options={localeOptions} /></span>
+          options={localeOptions}
+        /></span
+      >
     </p>
     <p>
       <label for="play-behaviour">{@html $_('play now behaviour')}</label>
-      <span class="controlContainer" id="play-behaviour"><Dropdown
+      <span class="controlContainer" id="play-behaviour"
+        ><Dropdown
           valueAsText="true"
           bind:value={play}
           options={playOptions}
-          on:select={handleSaveEnqueueBehaviour} /></span>
+          on:select={handleSaveEnqueueBehaviour}
+        /></span
+      >
     </p>
     <p>
       <label for="click-behaviour">{$_('simple click behaviour')}</label>
-      <span class="controlContainer" id="click-behaviour"><Dropdown
+      <span class="controlContainer" id="click-behaviour"
+        ><Dropdown
           valueAsText="true"
           bind:value={simpleClick}
           options={clickOptions}
-          on:select={handleSaveEnqueueBehaviour} /></span><span>{$_(
-          'double click behaviour',
-          { action: doubleClick.label }
-        )}</span>
+          on:select={handleSaveEnqueueBehaviour}
+        /></span
+      ><span>{$_('double click behaviour', { action: doubleClick.label })}</span
+      >
     </p>
   </article>
   <article>
@@ -249,11 +260,14 @@
       {@html $_('audiodb.description')}
     </div>
     <label for="audiodb-key">{$_('audiodb.key')}</label>
-    <span class="controlContainer" id="audiodb-key"><TextInput
+    <span class="controlContainer" id="audiodb-key"
+      ><TextInput
         class="settings-input"
         placeholder={$_('audiodb.key placeholder')}
         value={$settings.providers.audiodb.key || ''}
-        on:change={({ target: { value } }) => saveAudioDBKey(value)} /></span>
+        on:change={({ target: { value } }) => saveAudioDBKey(value)}
+      /></span
+    >
   </article>
   <article>
     <SubHeading>{$_('discogs.title')}</SubHeading>
@@ -261,22 +275,29 @@
       {@html $_('discogs.description')}
     </div>
     <label for="discogs-token">{$_('discogs.token')}</label>
-    <span class="controlContainer" id="discogs-token"><TextInput
+    <span class="controlContainer" id="discogs-token"
+      ><TextInput
         class="settings-input"
         placeholder={$_('discogs.token placeholder')}
         value={$settings.providers.discogs.token || ''}
-        on:change={({ target: { value } }) => saveDiscogsToken(value)} /></span>
+        on:change={({ target: { value } }) => saveDiscogsToken(value)}
+      /></span
+    >
   </article>
   {#if $isDesktop}
     <article>
       <SubHeading>{$_('broadcasting')}</SubHeading>
       <label for="broadcast-port">{$_('broadcast port')}</label>
-      <span class="controlContainer" id="broadcast-port"><TextInput
+      <span class="controlContainer" id="broadcast-port"
+        ><TextInput
           class="settings-input"
           placeholder={$_('broadcast port placeholder')}
           value={$settings.broadcastPort}
           type="number"
-          on:change={({ target: { value } }) => saveBroadcastPort(value || null)} /></span>
+          on:change={({ target: { value } }) =>
+            saveBroadcastPort(value || null)}
+        /></span
+      >
       <span class="instructions">{$_('restart to apply')}</span>
     </article>
   {/if}
@@ -298,13 +319,15 @@
         {/each}
       </p>
       <p>
-        <span>{$_('photos by')}{#each photographers as { href, label }, i}
-            {i > 0 ? ', ' : ' '}<a
-              {href}
-              class="underlined whitespace-no-wrap">{label}
-              <i class="material-icons">launch</i></a>
+        <span
+          >{$_('photos by')}{#each photographers as { href, label }, i}
+            {i > 0 ? ', ' : ' '}<a {href} class="underlined whitespace-no-wrap"
+              >{label}
+              <i class="material-icons">launch</i></a
+            >
           {/each}
-          {$_('on unsplash')}</span>
+          {$_('on unsplash')}</span
+        >
       </p>
       <p>
         <span>{@html $_('using material design icons')}</span>

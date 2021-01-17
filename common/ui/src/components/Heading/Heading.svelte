@@ -30,6 +30,7 @@
 
 <header
   class={$$restProps.class}
-  style="--image:url({image}); --shade-color:{shadeColor}; --bgPosition:{imagePosition}">
+  style="--image:url({image}); --shade-color:{shadeColor}; --bgPosition:{imagePosition}"
+>
   <h1>{title}</h1>
 </header>

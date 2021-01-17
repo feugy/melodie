@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Views/Playlist Default 1`] = `
+<section
+  class="storybook-snapshot-container"
+>
+  <section
+    class="svelte-8hyguo"
+  >
+    <header
+      class=" svelte-5q08mx"
+      style="--image: url(../images/david-villasana-YNJGB-_Vlgw-unsplash.jpg); --shade-color: rgba(0, 0, 0, 0.7); --bgPosition: center 46%;"
+    >
+      <h1
+        class="svelte-5q08mx"
+      >
+        0 playlists
+      </h1>
+    </header>
+     
+    <div
+      class="svelte-8hyguo"
+    >
+      <p
+        class="svelte-8hyguo"
+      >
+        To create new playlist, enqueue some tracks and clic on 
+        <i
+          class="material-icons"
+        >
+          library_add
+        </i>
+        .
+         
+      </p>
+    </div>
+  </section>
+</section>
+`;

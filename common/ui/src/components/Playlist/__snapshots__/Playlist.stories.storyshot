@@ -1,115 +1,179 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Storyshots Components/Playlist Default 1`] = `
-<section
-  class="storybook-snapshot-container"
->
-  <div>
-    <a
-      class="undefined actionable svelte-1lsew7w"
-      href="#/playlist/1"
-    >
-      <header>
-        <h3>
-          My favourites
-        </h3>
-         
-        <h4
-          class="svelte-1lsew7w"
-        >
-          3 tracks
-        </h4>
-      </header>
-       
-      <p
-        class="controls svelte-1lsew7w"
-      >
-        <button
-          class="svelte-bb1epg primary iconOnly large"
-          data-testid="play"
-        >
-          <i
-            class="material-icons svelte-bb1epg"
-          >
-            play_arrow
-          </i>
-           
-           
-           
-        </button>
-         
-        <button
-          class="svelte-bb1epg primary iconOnly large"
-          data-testid="enqueue"
-        >
-          <i
-            class="material-icons svelte-bb1epg"
-          >
-            playlist_add
-          </i>
-           
-           
-           
-        </button>
-      </p>
-    </a>
-  </div>
-</section>
-`;
-
 exports[`Storyshots Components/Playlist Single Track 1`] = `
 <section
   class="storybook-snapshot-container"
 >
   <div>
-    <a
-      class="undefined actionable svelte-1lsew7w"
-      href="#/playlist/1"
+     
+    <span
+      class="svelte-1m58e9b overlay"
     >
-      <header>
-        <h3>
+      <div
+        class="content svelte-1m58e9b"
+      >
+        <span
+          class="artwork svelte-1m58e9b"
+        >
+          <span
+            class="svelte-1ovzze"
+          />
+           
+        </span>
+         
+        <p
+          class="controls svelte-1m58e9b"
+        >
+          <button
+            class="primary iconOnly large svelte-9liv1b"
+            data-testid="open"
+          >
+            <i
+              class="material-icons svelte-9liv1b"
+            >
+              open_in_full
+            </i>
+             
+             
+             
+          </button>
+           
+          <button
+            class="primary iconOnly large svelte-9liv1b"
+            data-testid="play"
+          >
+            <i
+              class="material-icons svelte-9liv1b"
+            >
+              play_arrow
+            </i>
+             
+             
+             
+          </button>
+           
+          <button
+            class="primary iconOnly large svelte-9liv1b"
+            data-testid="enqueue"
+          >
+            <i
+              class="material-icons svelte-9liv1b"
+            >
+              playlist_add
+            </i>
+             
+             
+             
+          </button>
+        </p>
+      </div>
+       
+      <header
+        class="svelte-1m58e9b"
+      >
+        <h3
+          class="svelte-1m58e9b"
+        >
           My favourites
         </h3>
          
         <h4
-          class="svelte-1lsew7w"
+          class="svelte-1ovzze"
+          slot="details"
+        >
+          3 tracks
+        </h4>
+      </header>
+    </span>
+  </div>
+</section>
+`;
+
+exports[`Storyshots Components/Playlist Single Track 2`] = `
+<section
+  class="storybook-snapshot-container"
+>
+  <div>
+     
+    <span
+      class="svelte-1m58e9b overlay"
+    >
+      <div
+        class="content svelte-1m58e9b"
+      >
+        <span
+          class="artwork svelte-1m58e9b"
+        >
+          <span
+            class="svelte-1ovzze"
+          />
+           
+        </span>
+         
+        <p
+          class="controls svelte-1m58e9b"
+        >
+          <button
+            class="primary iconOnly large svelte-9liv1b"
+            data-testid="open"
+          >
+            <i
+              class="material-icons svelte-9liv1b"
+            >
+              open_in_full
+            </i>
+             
+             
+             
+          </button>
+           
+          <button
+            class="primary iconOnly large svelte-9liv1b"
+            data-testid="play"
+          >
+            <i
+              class="material-icons svelte-9liv1b"
+            >
+              play_arrow
+            </i>
+             
+             
+             
+          </button>
+           
+          <button
+            class="primary iconOnly large svelte-9liv1b"
+            data-testid="enqueue"
+          >
+            <i
+              class="material-icons svelte-9liv1b"
+            >
+              playlist_add
+            </i>
+             
+             
+             
+          </button>
+        </p>
+      </div>
+       
+      <header
+        class="svelte-1m58e9b"
+      >
+        <h3
+          class="svelte-1m58e9b"
+        >
+          My favourites
+        </h3>
+         
+        <h4
+          class="svelte-1ovzze"
+          slot="details"
         >
           1 track
         </h4>
       </header>
-       
-      <p
-        class="controls svelte-1lsew7w"
-      >
-        <button
-          class="svelte-bb1epg primary iconOnly large"
-          data-testid="play"
-        >
-          <i
-            class="material-icons svelte-bb1epg"
-          >
-            play_arrow
-          </i>
-           
-           
-           
-        </button>
-         
-        <button
-          class="svelte-bb1epg primary iconOnly large"
-          data-testid="enqueue"
-        >
-          <i
-            class="material-icons svelte-bb1epg"
-          >
-            playlist_add
-          </i>
-           
-           
-           
-        </button>
-      </p>
-    </a>
+    </span>
   </div>
 </section>
 `;

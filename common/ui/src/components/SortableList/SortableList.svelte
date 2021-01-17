@@ -100,7 +100,8 @@
       out:slideOnRemove|local={{ duration: 250 }}
       on:dragstart={evt => handleDragStart(evt, item.key, i)}
       on:dragenter={evt => handleEnter(evt, item.key)}
-      on:dragend={handleDrop}>
+      on:dragend={handleDrop}
+    >
       <slot name="item" {item} {i} />
     </li>
   {/each}

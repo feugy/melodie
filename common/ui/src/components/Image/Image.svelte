@@ -8,6 +8,8 @@
   export let src
   export let rounded = false
   export let fallback = rounded ? 'person' : 'music_note'
+  export let width = 256
+  export let height = 256
   // exposed dimension
   export let dimension = null
 
@@ -47,13 +49,18 @@
   on:click
   on:error={handleError}
   on:load={handleLoad}
-  class={$$restProps.class}
+  {width}
+  {height}
+  {...$$restProps}
   class:rounded-full={rounded}
   class:rounded-sm={!rounded}
   class:hidden
   loading="lazy"
-  src={src && !broken.has(src) ? `${toDOMSrc(src)}#nonce=${Math.random()}` : null}
-  alt={src} />
+  src={src && !broken.has(src)
+    ? `${toDOMSrc(src)}#nonce=${Math.random()}`
+    : null}
+  alt={src}
+/>
 {#if hidden}
   <span
     on:click

@@ -14,6 +14,7 @@
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
       U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212,
       U+2215, U+FEFF, U+FFFD;
+    font-display: swap;
   }
 
   @font-face {
@@ -24,6 +25,7 @@
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
       U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212,
       U+2215, U+FEFF, U+FFFD;
+    font-display: swap;
   }
 
   @font-face {
@@ -34,6 +36,7 @@
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
       U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212,
       U+2215, U+FEFF, U+FFFD;
+    font-display: swap;
   }
 
   @font-face {
@@ -44,6 +47,7 @@
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
       U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212,
       U+2215, U+FEFF, U+FFFD;
+    font-display: swap;
   }
 
   @font-face {
@@ -54,6 +58,7 @@
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
       U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212,
       U+2215, U+FEFF, U+FFFD;
+    font-display: swap;
   }
 
   @font-face {
@@ -64,6 +69,7 @@
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
       U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212,
       U+2215, U+FEFF, U+FFFD;
+    font-display: swap;
   }
 
   @font-face {
@@ -75,13 +81,14 @@
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
       U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212,
       U+2215, U+FEFF, U+FFFD;
+    font-display: swap;
   }
 
   .material-icons {
     font-family: 'Material Icons';
     font-weight: normal;
     font-style: normal;
-    font-size: 24px;
+    font-size: 1.5rem;
     line-height: 1;
     letter-spacing: normal;
     text-transform: none;
@@ -119,7 +126,7 @@
     box-sizing: border-box;
     color: var(--font-color);
     font-family: 'Source Sans Pro';
-    font-size: 15pt;
+    font-size: 14px;
     font-weight: 300;
     letter-spacing: 0.025em;
     line-height: 1.65;
@@ -137,6 +144,7 @@
 
   a.underlined {
     @apply relative;
+    color: var(--hover-color);
 
     &:before {
       @apply opacity-0 absolute left-0;
@@ -152,30 +160,36 @@
       left: 100%;
     }
 
-    &:hover {
-      @apply no-underline border-none outline-none;
-      color: var(--hover-color);
-
-      &:before {
-        @apply opacity-100;
-        right: 0%;
-      }
-    }
-
     & > .material-icons {
       font-size: 1em;
       vertical-align: -0.15rem;
     }
   }
 
+  @media (hover: hover) {
+    a.underlined {
+      color: inherit;
+
+      &:hover {
+        @apply no-underline border-none outline-none;
+        color: var(--hover-color);
+
+        &:before {
+          @apply opacity-100;
+          right: 0%;
+        }
+      }
+    }
+
+    .actionable:hover,
+    a:hover .actionable {
+      box-shadow: 0 0 0 2px var(--hover-color);
+    }
+  }
+
   .actionable {
     @apply cursor-pointer;
     transition: box-shadow 0.1s linear;
-  }
-
-  .actionable:hover,
-  a:hover .actionable {
-    box-shadow: 0 0 0 2px var(--hover-color);
   }
 
   input,

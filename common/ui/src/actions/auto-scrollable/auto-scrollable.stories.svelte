@@ -28,7 +28,8 @@
 
 <ol
   use:autoScrollable={$$restProps}
-  style="--padding:{$$restProps.borderDetection}px; --margin:{-$$restProps.borderDetection}px;">
+  style="--padding:{$$restProps.borderDetection}px; --margin:{-$$restProps.borderDetection}px;"
+>
   {#each texts as text}
     <li draggable="true">{text}</li>
   {/each}

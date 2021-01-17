@@ -63,6 +63,7 @@ export const Unknown = () => ({
   props: {
     src: {
       ...albumData,
+      media: null,
       name: null
     }
   }

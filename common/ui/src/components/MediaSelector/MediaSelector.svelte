@@ -59,12 +59,15 @@
               src={image[attribute]}
               class="w-48 h-48 actionable"
               on:click={() => handleSelect(image[attribute])}
-              bind:dimension={image.dimension} />
+              bind:dimension={image.dimension}
+            />
             <span>
-              {image.dimension ? $_('provider (_ x _)', {
+              {image.dimension
+                ? $_('provider (_ x _)', {
                     value: image.provider,
                     ...image.dimension
-                  }) : image.provider}
+                  })
+                : image.provider}
             </span>
           </div>
         {/if}
@@ -73,7 +76,8 @@
         <ImageUploader
           class="w-48 h-48 m-2"
           bind:value={uploaded}
-          on:select={() => handleSelect(uploaded)} />
+          on:select={() => handleSelect(uploaded)}
+        />
       {/if}
     </div>
   </div>
@@ -81,6 +85,7 @@
     <Button
       on:click={() => (open = false)}
       text={$_('cancel')}
-      icon={'close'} />
+      icon={'close'}
+    />
   </span>
 </Dialogue>

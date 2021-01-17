@@ -61,11 +61,7 @@
   function groupByAlbum() {
     const map = new Map()
     for (const track of artist.tracks) {
-      const {
-        media,
-        tags: { year },
-        albumRef
-      } = track
+      const { media, albumRef } = track
 
       const [id, album] = albumRef
       if (!map.has(id)) {
@@ -95,8 +91,7 @@
 
 <style type="postcss">
   section {
-    @apply flex flex-row items-start z-0 m-4 mt-0;
-    max-height: 300px;
+    @apply flex flex-wrap items-center z-0 m-4 mt-0 gap-4;
   }
 
   section > div {
@@ -107,22 +102,40 @@
     @apply overflow-y-auto mb-4;
   }
 
-  .actions {
-    @apply flex items-end flex-grow;
-  }
-
-  .image-container {
-    @apply flex-shrink-0 w-full h-full cursor-pointer;
-    height: 300px;
-    width: 300px;
-  }
-
   .albums {
     @apply flex flex-row items-start flex-wrap justify-around;
   }
 
   .albums > * {
     @apply m-4;
+  }
+
+  .image-container {
+    @apply flex-shrink-0 flex-grow cursor-pointer;
+    width: 300px;
+    height: 300px;
+    max-width: 300px;
+    max-height: 300px;
+  }
+
+  .actions {
+    @apply flex flex-wrap mb-4 gap-4 items-start;
+  }
+
+  @screen md {
+    section {
+      @apply items-start flex-no-wrap;
+      max-height: 400px;
+    }
+  }
+
+  @screen lg {
+    .image-container {
+      width: 400px;
+      height: 400px;
+      max-width: 400px;
+      max-height: 400px;
+    }
   }
 </style>
 
@@ -133,28 +146,33 @@
     <Heading
       title={artist.name}
       image={'../images/harry-swales-Vfvf3H-5OHc-unsplash.jpg'}
-      imagePosition="center 40%" />
+      imagePosition="center 40%"
+    />
     <section>
       <span class="image-container">
         <Image
           on:click={() => (openMediaSelector = true)}
           class="h-full w-full text-3xl actionable"
+          width="400"
+          height="400"
           rounded
-          src={artist.media} />
+          src={artist.media}
+        />
       </span>
       <div>
-        {#if bio}<span class="bio">{bio}</span>{/if}
         <span class="actions">
           <Button
             on:click={() => add(artist.tracks, true)}
             icon="play_arrow"
-            text={$_('play all')} />
+            text={$_('play all')}
+          />
           <Button
-            class="ml-4"
             on:click={() => add(artist.tracks)}
             icon="playlist_add"
-            text={$_('enqueue all')} />
+            text={$_('enqueue all')}
+          />
         </span>
+        {#if bio}<span class="bio">{bio}</span>{/if}
       </div>
     </section>
     <div class="albums">

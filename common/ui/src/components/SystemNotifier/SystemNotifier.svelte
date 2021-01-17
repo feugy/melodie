@@ -77,4 +77,5 @@
 
 <svelte:window
   on:focus={() => (isFocused = true)}
-  on:blur={() => (isFocused = false)} />
+  on:blur={() => (isFocused = false)}
+/>

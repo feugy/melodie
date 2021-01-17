@@ -31,14 +31,14 @@
 </style>
 
 <div role="menuitem" aria-haspopup="menu" aria-expanded={open}>
-  <i
-    class="material-icons">library_add</i><span>{$_('add to playlist')}</span><i
-    class="material-icons">arrow_right</i>
+  <i class="material-icons">library_add</i><span>{$_('add to playlist')}</span
+  ><i class="material-icons">arrow_right</i>
 </div>
 <span class="button">
   <AddToPlaylist
     tracks={[track]}
     {open}
     on:close
-    on:select={() => dispatch('close')} />
+    on:select={() => dispatch('close')}
+  />
 </span>

@@ -16,6 +16,7 @@
 <style type="postcss">
   .wrapper {
     @apply relative inline-block;
+    font-size: 1.2rem;
   }
 
   .sliderTrack {
@@ -45,6 +46,7 @@
     }
   }
 
+  /* TODO mobile? */
   .wrapper:hover .progress::after {
     background: var(--font-color);
     border-color: var(--bg-color);
@@ -80,7 +82,8 @@
     min={0}
     value={current}
     {max}
-    on:input={handleInput} />
+    on:input={handleInput}
+  />
   <div class={'sliderTrack'}>
     <span class="progress" style={`right:${right}%`} />
   </div>

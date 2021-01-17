@@ -44,7 +44,8 @@
       total: $albums.length
     })}
     image={'../images/valentino-funghi-MEcxLZ8ENV8-unsplash.jpg'}
-    imagePosition="center 25%" />
+    imagePosition="center 25%"
+  />
   <div>
     {#each $albums as src, i (src.id)}
       <span id={i === 0 ? 'firstAlbum' : null}>

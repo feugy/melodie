@@ -5,31 +5,50 @@ exports[`Storyshots Components/Artist Default 1`] = `
   class="storybook-snapshot-container"
 >
   <div>
-    <a
-      class=" svelte-s3ihqj"
-      href="#/artist/1"
+     
+    <span
+      class="svelte-1m58e9b"
     >
       <div
-        class="content svelte-s3ihqj"
+        class="content svelte-1m58e9b"
       >
-        <img
-          alt="./avatar.jpg"
-          class="w-64 h-64 text-3xl actionable svelte-hn7eai rounded-full"
-          loading="lazy"
-          src="./avatar.jpg#nonce=0.1"
-        />
-         
-        
+        <span
+          class="artwork svelte-1m58e9b"
+        >
+          <img
+            alt="./avatar.jpg"
+            class="h-full w-full svelte-hn7eai rounded-full"
+            loading="lazy"
+            src="./avatar.jpg#nonce=0.1"
+          />
+           
+          
+           
+        </span>
          
         <p
-          class="controls svelte-s3ihqj"
+          class="controls svelte-1m58e9b"
         >
           <button
-            class="svelte-bb1epg primary iconOnly large"
+            class="primary iconOnly large svelte-9liv1b"
+            data-testid="open"
+          >
+            <i
+              class="material-icons svelte-9liv1b"
+            >
+              open_in_full
+            </i>
+             
+             
+             
+          </button>
+           
+          <button
+            class="primary iconOnly large svelte-9liv1b"
             data-testid="play"
           >
             <i
-              class="material-icons svelte-bb1epg"
+              class="material-icons svelte-9liv1b"
             >
               play_arrow
             </i>
@@ -39,11 +58,11 @@ exports[`Storyshots Components/Artist Default 1`] = `
           </button>
            
           <button
-            class="svelte-bb1epg primary iconOnly large"
+            class="primary iconOnly large svelte-9liv1b"
             data-testid="enqueue"
           >
             <i
-              class="material-icons svelte-bb1epg"
+              class="material-icons svelte-9liv1b"
             >
               playlist_add
             </i>
@@ -55,19 +74,22 @@ exports[`Storyshots Components/Artist Default 1`] = `
       </div>
        
       <header
-        class="svelte-s3ihqj"
+        class="svelte-1m58e9b"
       >
-        <h3>
+        <h3
+          class="svelte-1m58e9b"
+        >
           Foo Fighters
         </h3>
          
         <h4
-          class="svelte-s3ihqj"
+          class="svelte-1fiafx9"
+          slot="details"
         >
           2 albums
         </h4>
       </header>
-    </a>
+    </span>
   </div>
 </section>
 `;
@@ -77,31 +99,50 @@ exports[`Storyshots Components/Artist No Albums 1`] = `
   class="storybook-snapshot-container"
 >
   <div>
-    <a
-      class=" svelte-s3ihqj"
-      href="#/artist/1"
+     
+    <span
+      class="svelte-1m58e9b"
     >
       <div
-        class="content svelte-s3ihqj"
+        class="content svelte-1m58e9b"
       >
-        <img
-          alt="./avatar.jpg"
-          class="w-64 h-64 text-3xl actionable svelte-hn7eai rounded-full"
-          loading="lazy"
-          src="./avatar.jpg#nonce=0.1"
-        />
-         
-        
+        <span
+          class="artwork svelte-1m58e9b"
+        >
+          <img
+            alt="./avatar.jpg"
+            class="h-full w-full svelte-hn7eai rounded-full"
+            loading="lazy"
+            src="./avatar.jpg#nonce=0.1"
+          />
+           
+          
+           
+        </span>
          
         <p
-          class="controls svelte-s3ihqj"
+          class="controls svelte-1m58e9b"
         >
           <button
-            class="svelte-bb1epg primary iconOnly large"
+            class="primary iconOnly large svelte-9liv1b"
+            data-testid="open"
+          >
+            <i
+              class="material-icons svelte-9liv1b"
+            >
+              open_in_full
+            </i>
+             
+             
+             
+          </button>
+           
+          <button
+            class="primary iconOnly large svelte-9liv1b"
             data-testid="play"
           >
             <i
-              class="material-icons svelte-bb1epg"
+              class="material-icons svelte-9liv1b"
             >
               play_arrow
             </i>
@@ -111,11 +152,11 @@ exports[`Storyshots Components/Artist No Albums 1`] = `
           </button>
            
           <button
-            class="svelte-bb1epg primary iconOnly large"
+            class="primary iconOnly large svelte-9liv1b"
             data-testid="enqueue"
           >
             <i
-              class="material-icons svelte-bb1epg"
+              class="material-icons svelte-9liv1b"
             >
               playlist_add
             </i>
@@ -127,14 +168,20 @@ exports[`Storyshots Components/Artist No Albums 1`] = `
       </div>
        
       <header
-        class="svelte-s3ihqj"
+        class="svelte-1m58e9b"
       >
-        <h3>
+        <h3
+          class="svelte-1m58e9b"
+        >
           Foo Fighters
         </h3>
          
+        <h4
+          class="svelte-1fiafx9"
+          slot="details"
+        />
       </header>
-    </a>
+    </span>
   </div>
 </section>
 `;
@@ -144,31 +191,57 @@ exports[`Storyshots Components/Artist Unknown 1`] = `
   class="storybook-snapshot-container"
 >
   <div>
-    <a
-      class=" svelte-s3ihqj"
-      href="#/artist/1"
+     
+    <span
+      class="svelte-1m58e9b"
     >
       <div
-        class="content svelte-s3ihqj"
+        class="content svelte-1m58e9b"
       >
-        <img
-          alt="./avatar.jpg"
-          class="w-64 h-64 text-3xl actionable svelte-hn7eai rounded-full"
-          loading="lazy"
-          src="./avatar.jpg#nonce=0.1"
-        />
-         
-        
+        <span
+          class="artwork svelte-1m58e9b"
+        >
+          <img
+            class="h-full w-full svelte-hn7eai rounded-full hidden"
+            loading="lazy"
+          />
+           
+          <span
+            class="h-full w-full svelte-hn7eai rounded-full"
+          >
+            <i
+              class="material-icons svelte-hn7eai"
+            >
+              person
+            </i>
+          </span>
+          
+           
+        </span>
          
         <p
-          class="controls svelte-s3ihqj"
+          class="controls svelte-1m58e9b"
         >
           <button
-            class="svelte-bb1epg primary iconOnly large"
+            class="primary iconOnly large svelte-9liv1b"
+            data-testid="open"
+          >
+            <i
+              class="material-icons svelte-9liv1b"
+            >
+              open_in_full
+            </i>
+             
+             
+             
+          </button>
+           
+          <button
+            class="primary iconOnly large svelte-9liv1b"
             data-testid="play"
           >
             <i
-              class="material-icons svelte-bb1epg"
+              class="material-icons svelte-9liv1b"
             >
               play_arrow
             </i>
@@ -178,11 +251,11 @@ exports[`Storyshots Components/Artist Unknown 1`] = `
           </button>
            
           <button
-            class="svelte-bb1epg primary iconOnly large"
+            class="primary iconOnly large svelte-9liv1b"
             data-testid="enqueue"
           >
             <i
-              class="material-icons svelte-bb1epg"
+              class="material-icons svelte-9liv1b"
             >
               playlist_add
             </i>
@@ -194,19 +267,22 @@ exports[`Storyshots Components/Artist Unknown 1`] = `
       </div>
        
       <header
-        class="svelte-s3ihqj"
+        class="svelte-1m58e9b"
       >
-        <h3>
+        <h3
+          class="svelte-1m58e9b"
+        >
           Unknown
         </h3>
          
         <h4
-          class="svelte-s3ihqj"
+          class="svelte-1fiafx9"
+          slot="details"
         >
           2 albums
         </h4>
       </header>
-    </a>
+    </span>
   </div>
 </section>
 `;

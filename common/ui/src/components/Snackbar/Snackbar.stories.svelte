@@ -48,16 +48,19 @@
 <div>
   <label for="message">Message: </label><input
     type="text"
-    bind:value={message} />
+    bind:value={message}
+  />
 </div>
 <div>
   <label for="duration">Duration: </label><input
     type="number"
-    bind:value={duration} />
+    bind:value={duration}
+  />
 </div>
 <div>
   <label for="hasButton">With action: </label><input
     type="checkbox"
-    bind:checked={hasButton} />
+    bind:checked={hasButton}
+  />
 </div>
 <Button on:click={handleClick} text={'Show snack'} />

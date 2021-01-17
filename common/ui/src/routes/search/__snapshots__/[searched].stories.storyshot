@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Views/Search Results Default 1`] = `
+<section
+  class="storybook-snapshot-container"
+>
+   
+   
+  <div>
+    <header
+      class=" svelte-5q08mx"
+      style="--image: url(../images/anthony-martino-6AtQNsjMoJo-unsplash.jpg); --shade-color: rgba(0, 0, 0, 0.7); --bgPosition: bottom center;"
+    >
+      <h1
+        class="svelte-5q08mx"
+      >
+        Results for "Final Fantasy VII"
+      </h1>
+    </header>
+     
+    <section
+      class="noResults svelte-f2zqtl"
+    >
+      Nothing at all !
+    </section>
+     
+    <section
+      class="svelte-f2zqtl"
+    >
+      
+    </section>
+     
+    <section
+      class="svelte-f2zqtl"
+    >
+      
+    </section>
+     
+    <section
+      class="svelte-f2zqtl"
+    >
+      
+    </section>
+  </div>
+</section>
+`;

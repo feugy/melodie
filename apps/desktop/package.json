@@ -20,6 +20,8 @@
     "test:dev": "jest --watch"
   },
   "dependencies": {
+    "@melodie/core": "2.0.0-alpha.1",
+    "@melodie/ui": "2.0.0-alpha.1",
     "dotenv": "^8.2.0",
     "electron-localshortcut": "^3.2.1",
     "electron-updater": "^4.3.5",

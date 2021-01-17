@@ -70,4 +70,8 @@
     .subscribe()
 </script>
 
-<Router {routes} on:routeLoaded={evt => routeLoaded$.next(evt)} />
+<Router
+  {routes}
+  on:routeLoaded={evt => routeLoaded$.next(evt)}
+  on:routeLoaded
+/>

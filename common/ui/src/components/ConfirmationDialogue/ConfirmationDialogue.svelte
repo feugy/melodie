@@ -27,7 +27,8 @@
     confirmed = false
     dispatch('open')
   }}
-  on:close={() => dispatch('close', confirmed)}>
+  on:close={() => dispatch('close', confirmed)}
+>
   <div slot="content" class="content">
     <slot />
   </div>
@@ -36,13 +37,15 @@
       class="mr-2"
       on:click={() => (open = false)}
       text={$_(cancelText)}
-      icon={cancelIcon} />
+      icon={cancelIcon}
+    />
     <Button
       on:click={() => {
         confirmed = true
         open = false
       }}
       text={$_(confirmText)}
-      icon={confirmIcon} />
+      icon={confirmIcon}
+    />
   </span>
 </Dialogue>

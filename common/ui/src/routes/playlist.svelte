@@ -44,7 +44,8 @@
       total: $playlists.length
     })}
     image={'../images/david-villasana-YNJGB-_Vlgw-unsplash.jpg'}
-    imagePosition="center 46%" />
+    imagePosition="center 46%"
+  />
   <div>
     {#each $playlists as src (src.id)}
       <span>
