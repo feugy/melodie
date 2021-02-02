@@ -14,11 +14,11 @@ const logger = getLogger('connection')
 let server
 const ajv = new Ajv({ allErrors: true })
 const validate = ajv.compile({
-  anyOf: [
+  oneOf: [
     {
       type: 'object',
       properties: {
-        error: { type: 'string' },
+        error: { oneOf: [{ type: 'string' }, { type: 'object' }] },
         additionnalProperties: true
       },
       required: ['error']
@@ -124,21 +124,36 @@ exports.initConnection = async function (services, publicFolder, port = 0) {
   async function startServer() {
     server = fastify({ logger, disableRequestLogging: true })
     server.register(websocketPlugin, { handle: handleConnection })
-    if (settings.isBroadcasting) {
-      server.register(compressPlugin)
-      server.register(staticPlugin, { root: publicFolder, wildcard: false })
-      server.setNotFoundHandler(async function handleFile({ url }, reply) {
-        const absolutePath = resolve(decodeURIComponent(url))
-        const isAllowed = settings.folders.some(folder =>
-          absolutePath.startsWith(folder)
-        )
-        if (isAllowed) {
-          logger.debug({ absolutePath }, `serve file`)
-          return reply.sendFile(basename(absolutePath), dirname(absolutePath))
-        }
-        return reply.code(404).send()
-      })
+    server.register(compressPlugin)
+    server.register(staticPlugin, {
+      root: publicFolder,
+      wildcard: false,
+      serve: settings.isBroadcasting
+    })
+    function makeMediaHandler(retriever) {
+      return async ({ params: { id, count } }, reply) => {
+        const path = await retriever(id, count && +count)
+        return path
+          ? reply.sendFile(basename(path), dirname(path))
+          : reply.code(404).send()
+      }
     }
+    server.get(
+      '/tracks/:id/data',
+      makeMediaHandler(services.media.getTrackData)
+    )
+    server.get(
+      '/tracks/:id/media/:count',
+      makeMediaHandler(services.media.getTrackMedia)
+    )
+    server.get(
+      '/artists/:id/media/:count',
+      makeMediaHandler(services.media.getArtistMedia)
+    )
+    server.get(
+      '/albums/:id/media/:count',
+      makeMediaHandler(services.media.getAlbumMedia)
+    )
     const address = await server.listen(
       realPort || port || settings.broadcastPort,
       settings.isBroadcasting ? '0.0.0.0' : 'localhost'

@@ -60,6 +60,7 @@ describe('Artist model', () => {
     expect((await artistsModel.list()).results).toEqual([
       {
         ...artist,
+        mediaCount: 1,
         refs: [makeRef(album1), [1, null]]
       }
     ])
@@ -69,6 +70,7 @@ describe('Artist model', () => {
     const artist = {
       id: faker.random.number(),
       media: faker.image.image(),
+      mediaCount: faker.random.number({ max: 10 }),
       processedEpoch: null,
       name: faker.commerce.productName(),
       trackIds: [tracks[0].id, tracks[3].id],

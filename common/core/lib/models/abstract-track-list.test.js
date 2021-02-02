@@ -34,6 +34,7 @@ describe('Abstract track list', () => {
       id: faker.random.number(),
       name: faker.name.findName(),
       media: null,
+      mediaCount: 1,
       trackIds: JSON.stringify([]),
       refs: JSON.stringify([[faker.random.number(), faker.name.findName()]]),
       processedEpoch: null
@@ -42,6 +43,7 @@ describe('Abstract track list', () => {
       id: faker.random.number(),
       name: faker.name.findName(),
       media: faker.image.image(),
+      mediaCount: faker.random.number({ min: 2, max: 10 }),
       trackIds: JSON.stringify([faker.random.number()]),
       refs: JSON.stringify([
         [faker.random.number(), faker.name.findName()],
@@ -52,6 +54,7 @@ describe('Abstract track list', () => {
       id: faker.random.number(),
       name: faker.name.findName(),
       media: faker.image.image(),
+      mediaCount: faker.random.number({ min: 2, max: 10 }),
       trackIds: JSON.stringify([faker.random.number(), faker.random.number()]),
       refs: JSON.stringify([
         [faker.random.number(), faker.name.findName()],
@@ -62,6 +65,7 @@ describe('Abstract track list', () => {
       id: faker.random.number(),
       name: faker.name.findName(),
       media: null,
+      mediaCount: 1,
       trackIds: JSON.stringify([]),
       refs: JSON.stringify([]),
       processedEpoch: lastProcessed
@@ -83,6 +87,7 @@ describe('Abstract track list', () => {
       table.integer('processedEpoch')
       table.json('trackIds')
       table.json('refs')
+      table.integer('mediaCount').defaultTo(1)
     })
   })
 
@@ -138,7 +143,13 @@ describe('Abstract track list', () => {
 
       const { saved, removedIds } = await tested.save(model)
 
-      const savedModel = { ...model, media: null, processedEpoch: null, refs }
+      const savedModel = {
+        ...model,
+        media: null,
+        mediaCount: 1,
+        processedEpoch: null,
+        refs
+      }
 
       expect(saved).toEqual([savedModel])
       expect(removedIds).toEqual([])
@@ -177,12 +188,14 @@ describe('Abstract track list', () => {
           ...models[0],
           processedEpoch: null,
           media: null,
+          mediaCount: 1,
           refs: refs1
         },
         {
           ...models[1],
           processedEpoch: null,
           media: null,
+          mediaCount: 1,
           refs: refs2
         }
       ]
@@ -216,6 +229,7 @@ describe('Abstract track list', () => {
           id: models[0].id,
           name: models[0].name,
           media: faker.image.image(),
+          mediaCount: faker.random.number({ min: 2, max: 10 }),
           processedEpoch: null,
           trackIds: [faker.random.number()]
         },
@@ -251,6 +265,7 @@ describe('Abstract track list', () => {
           ...originals[2],
           processedEpoch: null,
           media: null,
+          mediaCount: 1,
           refs
         }
       ]
@@ -388,6 +403,26 @@ describe('Abstract track list', () => {
       expect(saved).toEqual([])
       expect(removedIds).toEqual([models[1].id])
       expect(await db(modelName).where({ id: model.id })).toEqual([])
+    })
+  })
+
+  describe('serializeForUi', () => {
+    it('handles falsy data', () => {
+      expect(tested.serializeForUi(null)).toBeNull()
+      expect(tested.serializeForUi()).toBeUndefined()
+    })
+
+    it('computes media and hides mediaCount attributes', () => {
+      expect(tested.serializeForUi(models[0])).toEqual({
+        ...models[0],
+        media: null,
+        mediaCount: undefined
+      })
+      expect(tested.serializeForUi(models[1])).toEqual({
+        ...models[1],
+        media: `/${modelName}/${models[1].id}/media/${models[1].mediaCount}`,
+        mediaCount: undefined
+      })
     })
   })
 })

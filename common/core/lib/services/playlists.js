@@ -32,15 +32,16 @@ async function saveAndBroadcast(playlist, markForChecking = false) {
     saved: [saved],
     removedIds
   } = await playlistsModel.save(playlist)
+  const serialized = playlistsModel.serializeForUi(saved)
   if (removedIds.length) {
     broadcast(`playlist-removals`, [removedIds[0]])
   } else {
-    broadcast(`playlist-changes`, [saved])
+    broadcast(`playlist-changes`, [serialized])
     if (markForChecking) {
       toCheck.push(saved)
     }
   }
-  return saved
+  return serialized
 }
 
 module.exports = {
@@ -89,8 +90,9 @@ module.exports = {
         ...(Array.isArray(trackIds) ? trackIds : [trackIds])
       ]
     })
-    broadcast(`playlist-changes`, [saved])
-    return saved
+    const serialized = playlistsModel.serializeForUi(saved)
+    broadcast(`playlist-changes`, [serialized])
+    return serialized
   },
 
   /**

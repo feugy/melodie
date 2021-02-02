@@ -19,6 +19,7 @@ module.exports = class AbstractTrackList extends Model {
   constructor({ mergeTrackIds = true, jsonColumns = [], ...rest }) {
     super({ jsonColumns: [...jsonColumns, 'trackIds', 'refs'], ...rest })
     this.mergeTrackIds = mergeTrackIds
+    this.serializeForUi = this.serializeForUi.bind(this)
   }
 
   /**
@@ -64,6 +65,7 @@ module.exports = class AbstractTrackList extends Model {
             ({ id }) => id === trackList.id
           ) || {
             media: null,
+            mediaCount: 1,
             processedEpoch: null,
             trackIds: [],
             refs: []
@@ -144,5 +146,23 @@ module.exports = class AbstractTrackList extends Model {
       `list medialess since ${new Date(when).toISOString()}`
     )
     return results
+  }
+
+  /**
+   * Returns serialized model with attributes for UI:
+   * - {string} media: path to the model's media file (includes the media count)
+   * @param {AbstractTrackList} model - to be serialized
+   * @returns {object} serialized model
+   */
+  serializeForUi(model) {
+    return model
+      ? {
+          ...model,
+          mediaCount: undefined,
+          media: model.media
+            ? `/${this.name}/${model.id}/media/${model.mediaCount}`
+            : null
+        }
+      : model
   }
 }

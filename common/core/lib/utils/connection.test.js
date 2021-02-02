@@ -1,6 +1,6 @@
 'use strict'
 
-const { join } = require('path')
+const { join, resolve } = require('path')
 const { tmpdir } = require('os')
 const { ensureDir, ensureFile } = require('fs-extra')
 const WebSocket = require('ws')
@@ -79,7 +79,13 @@ describe('connection utilities', () => {
 
   const services = {
     settings: { get: jest.fn() },
-    media: { triggerArtistsEnrichment: jest.fn() }
+    media: {
+      triggerArtistsEnrichment: jest.fn(),
+      getAlbumMedia: jest.fn(),
+      getArtistMedia: jest.fn(),
+      getTrackMedia: jest.fn(),
+      getTrackData: jest.fn()
+    }
   }
 
   beforeAll(async () => {
@@ -167,14 +173,14 @@ describe('connection utilities', () => {
       folders: [folder],
       isBroadcasting: true
     })
-    await sleep(150)
+    await sleep(250)
     expect(await got(`${address}/index.html`)).toBeDefined()
 
     broadcast('settings-saved', {
       folders: [folder],
       isBroadcasting: false
     })
-    await sleep(150)
+    await sleep(250)
     await expect(got(`${address}/index.html`)).rejects.toThrow(/Not Found/)
   })
 
@@ -186,49 +192,7 @@ describe('connection utilities', () => {
     ;({ close, address } = await initConnection(services, publicFolder))
     expect(address).toInclude('0.0.0.0')
     expect(await got.get(`${address}/index.html`)).toBeDefined()
-    expect(
-      await got.get(`${address}${tracks[0].path.replace(/\\/g, '/')}`)
-    ).toBeDefined()
-    expect(
-      await got(`${address}/${tracks[1].path.replace(/\\/g, '/')}`)
-    ).toBeDefined()
     await expect(got(`${address}/unknown.js`)).rejects.toThrow(/Not Found/)
-  })
-
-  it('can serve file from newly added folder', async () => {
-    services.settings.get.mockResolvedValueOnce({
-      folders: [],
-      isBroadcasting: true
-    })
-    ;({ close, address } = await initConnection(services, publicFolder))
-    expect(await got.get(`${address}/index.html`)).toBeDefined()
-    await expect(
-      got.get(`${address}${tracks[0].path.replace(/\\/g, '/')}`)
-    ).rejects.toThrow(/Not Found/)
-
-    broadcast('settings-saved', { folders: [folder], isBroadcasting: true })
-    expect(await got.get(`${address}/index.html`)).toBeDefined()
-    expect(
-      await got(`${address}/${tracks[0].path.replace(/\\/g, '/')}`)
-    ).toBeDefined()
-  })
-
-  it('stops serving files from removed folder', async () => {
-    services.settings.get.mockResolvedValueOnce({
-      folders: [folder],
-      isBroadcasting: true
-    })
-    ;({ close, address } = await initConnection(services, publicFolder))
-    expect(await got.get(`${address}/index.html`)).toBeDefined()
-    expect(
-      await got(`${address}/${tracks[0].path.replace(/\\/g, '/')}`)
-    ).toBeDefined()
-
-    broadcast('settings-saved', { folders: [], isBroadcasting: true })
-    expect(await got.get(`${address}/index.html`)).toBeDefined()
-    await expect(
-      got.get(`${address}${tracks[0].path.replace(/\\/g, '/')}`)
-    ).rejects.toThrow(/Not Found/)
   })
 
   it('throws when initializing connection twice', async () => {
@@ -380,5 +344,138 @@ describe('connection utilities', () => {
       `unstarted connection, call subscribeRemote() first`
     )
     expect(errorSpy).not.toHaveBeenCalled()
+  })
+
+  describe('given a running server', () => {
+    beforeEach(async () => {
+      ;({ close, address } = await initConnection(services, publicFolder))
+    })
+
+    const mp3 = resolve(__dirname, '..', '..', '..', 'fixtures', 'file.mp3')
+    const cover = resolve(__dirname, '..', '..', '..', 'fixtures', 'cover.jpg')
+    const avatar = resolve(
+      __dirname,
+      '..',
+      '..',
+      '..',
+      'fixtures',
+      'avatar.jpg'
+    )
+
+    it('serve album covers', async () => {
+      const id = faker.random.number({ min: 1000 })
+      const count = faker.random.number({ min: 1, max: 10 })
+      services.media.getAlbumMedia.mockResolvedValueOnce(cover)
+      const response = await got.get(`${address}/albums/${id}/media/${count}`)
+      expect(response.statusCode).toEqual(200)
+      expect(response.headers).toEqual(
+        expect.objectContaining({
+          etag: expect.any(String),
+          'content-type': 'image/jpeg',
+          'content-length': '172447'
+        })
+      )
+      expect(services.media.getAlbumMedia).toHaveBeenCalledWith(`${id}`, count)
+      expect(services.media.getAlbumMedia).toHaveBeenCalledTimes(1)
+    })
+
+    it('returns 404 for unknown album cover', async () => {
+      const id = faker.random.number({ min: 1000 })
+      const count = faker.random.number({ min: 1, max: 10 })
+      services.media.getAlbumMedia.mockResolvedValueOnce(null)
+      await expect(
+        got.get(`${address}/albums/${id}/media/${count}`)
+      ).rejects.toThrow(/Not Found/)
+      expect(services.media.getAlbumMedia).toHaveBeenCalledWith(`${id}`, count)
+      expect(services.media.getAlbumMedia).toHaveBeenCalledTimes(1)
+    })
+
+    it('serve track data', async () => {
+      const id = faker.random.number({ min: 1000 })
+      services.media.getTrackData.mockResolvedValueOnce(mp3)
+      const response = await got.get(`${address}/tracks/${id}/data`)
+      expect(response.statusCode).toEqual(200)
+      expect(response.headers).toEqual(
+        expect.objectContaining({
+          etag: expect.any(String),
+          'content-type': 'audio/mpeg',
+          'content-length': '169984'
+        })
+      )
+      expect(services.media.getTrackData).toHaveBeenCalledWith(
+        `${id}`,
+        undefined
+      )
+      expect(services.media.getTrackData).toHaveBeenCalledTimes(1)
+    })
+
+    it('returns 404 for unknown track data', async () => {
+      const id = faker.random.number({ min: 1000 })
+      services.media.getTrackData.mockResolvedValueOnce(null)
+      await expect(got.get(`${address}/tracks/${id}/data`)).rejects.toThrow(
+        /Not Found/
+      )
+      expect(services.media.getTrackData).toHaveBeenCalledWith(
+        `${id}`,
+        undefined
+      )
+      expect(services.media.getTrackData).toHaveBeenCalledTimes(1)
+    })
+
+    it('serve track covers', async () => {
+      const id = faker.random.number({ min: 1000 })
+      const count = faker.random.number({ min: 1, max: 10 })
+      services.media.getTrackMedia.mockResolvedValueOnce(cover)
+      const response = await got.get(`${address}/tracks/${id}/media/${count}`)
+      expect(response.statusCode).toEqual(200)
+      expect(response.headers).toEqual(
+        expect.objectContaining({
+          etag: expect.any(String),
+          'content-type': 'image/jpeg',
+          'content-length': '172447'
+        })
+      )
+      expect(services.media.getTrackMedia).toHaveBeenCalledWith(`${id}`, count)
+      expect(services.media.getTrackMedia).toHaveBeenCalledTimes(1)
+    })
+
+    it('returns 404 for unknown track cover', async () => {
+      const id = faker.random.number({ min: 1000 })
+      const count = faker.random.number({ min: 1, max: 10 })
+      services.media.getTrackMedia.mockResolvedValueOnce(null)
+      await expect(
+        got.get(`${address}/tracks/${id}/media/${count}`)
+      ).rejects.toThrow(/Not Found/)
+      expect(services.media.getTrackMedia).toHaveBeenCalledWith(`${id}`, count)
+      expect(services.media.getTrackMedia).toHaveBeenCalledTimes(1)
+    })
+
+    it('serve artist artworks', async () => {
+      const id = faker.random.number({ min: 1000 })
+      const count = faker.random.number({ min: 1, max: 10 })
+      services.media.getArtistMedia.mockResolvedValueOnce(avatar)
+      const response = await got.get(`${address}/artists/${id}/media/${count}`)
+      expect(response.statusCode).toEqual(200)
+      expect(response.headers).toEqual(
+        expect.objectContaining({
+          etag: expect.any(String),
+          'content-type': 'image/jpeg',
+          'content-length': '19790'
+        })
+      )
+      expect(services.media.getArtistMedia).toHaveBeenCalledWith(`${id}`, count)
+      expect(services.media.getArtistMedia).toHaveBeenCalledTimes(1)
+    })
+
+    it('returns 404 for unknown artist artwork', async () => {
+      const id = faker.random.number({ min: 1000 })
+      const count = faker.random.number({ min: 1, max: 10 })
+      services.media.getArtistMedia.mockResolvedValueOnce(null)
+      await expect(
+        got.get(`${address}/artists/${id}/media/${count}`)
+      ).rejects.toThrow(/Not Found/)
+      expect(services.media.getArtistMedia).toHaveBeenCalledWith(`${id}`, count)
+      expect(services.media.getArtistMedia).toHaveBeenCalledTimes(1)
+    })
   })
 })

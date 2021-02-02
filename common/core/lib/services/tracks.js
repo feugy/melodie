@@ -137,6 +137,16 @@ function stopListening() {
   }
 }
 
+function getModel(name) {
+  return name === 'track'
+    ? tracksModel
+    : name === 'artist'
+    ? artistsModel
+    : name === 'album'
+    ? albumsModel
+    : playlistsModel
+}
+
 module.exports = {
   /**
    * Starts buffering and broadcasting messages to the UI thread:
@@ -161,7 +171,7 @@ module.exports = {
           messagesByType.push(data)
         }
         for (const [type, data] of types) {
-          broadcast(type, data)
+          broadcast(type, data.map(getModel(type.split('-')[0]).serializeForUi))
         }
       })
   },
@@ -280,12 +290,9 @@ module.exports = {
    */
   async list(modelName, criteria) {
     logger.debug({ modelName, criteria }, `list ${modelName}s`)
-    return (modelName === 'artist'
-      ? artistsModel
-      : modelName === 'album'
-      ? albumsModel
-      : playlistsModel
-    ).list({ sort: 'name', ...criteria })
+    const modelClass = getModel(modelName)
+    const page = await modelClass.list({ sort: 'name', ...criteria })
+    return { ...page, results: page.results.map(modelClass.serializeForUi) }
   },
 
   /**
@@ -302,17 +309,15 @@ module.exports = {
    */
   async fetchWithTracks(modelName, id, sortBy = 'trackNo') {
     logger.debug({ modelName, id, sortBy }, `fetch ${modelName} with tracks`)
-    const list = await (modelName === 'artist'
-      ? artistsModel
-      : modelName === 'album'
-      ? albumsModel
-      : playlistsModel
-    ).getById(id)
-    if (list) {
-      const tracks = await tracksModel.getByIds(list.trackIds)
-      list.tracks = sorters[sortBy](list, tracks)
+    const modelClass = getModel(modelName)
+    const model = await modelClass.getById(id)
+    if (model) {
+      const tracks = await tracksModel.getByIds(model.trackIds)
+      model.tracks = sorters[sortBy](model, tracks).map(
+        tracksModel.serializeForUi
+      )
     }
-    return list
+    return modelClass.serializeForUi(model)
   },
 
   /**
@@ -364,9 +369,9 @@ module.exports = {
       size: albums.size,
       from: albums.from,
       totals,
-      albums: albums.results,
-      artists: artists.results,
-      tracks: tracks.results
+      albums: albums.results.map(albumsModel.serializeForUi),
+      artists: artists.results.map(artistsModel.serializeForUi),
+      tracks: tracks.results.map(tracksModel.serializeForUi)
     }
   },
 
@@ -395,9 +400,9 @@ module.exports = {
       logger.debug({ added }, `adding untracked folders`)
       await new Promise(resolve => settingsService.addFolders(added, resolve))
     }
-    const tracks = await tracksModel.getByPaths(
-      entries.map(path => resolve(path))
-    )
+    const tracks = (
+      await tracksModel.getByPaths(entries.map(path => resolve(path)))
+    ).map(tracksModel.serializeForUi)
     broadcast('play-tracks', tracks)
 
     logger.debug(

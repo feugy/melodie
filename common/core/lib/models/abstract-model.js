@@ -254,6 +254,10 @@ module.exports = class AbstractModel {
           )
         }
       }
+      // SQLlist does not apply default values
+      if (data.mediaCount === null) {
+        data.mediaCount = 1
+      }
       return data
     }
   }

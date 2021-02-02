@@ -13,6 +13,7 @@ const { uniqRef, parseRawRefArray } = require('../utils')
  * - {number} id                  - primary key (integer)
  * - {string} name                - album's name
  * - {string|null} media          - full path to the cover file for this album
+ * - {number} mediaCount          - count incremented on every media change
  * - {array<number>} trackIds     - ids of the album's tracks
  * - {array<Reference>} refs      - references to the album's artists
  * - {number|null} processedEpoch - epoch of the last automatic media retrieval

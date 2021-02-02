@@ -11,6 +11,7 @@ const { hash } = require('../utils')
  * - {number} id                    - primary key (integer)
  * - {string} path                  - full path to the track file
  * - {string|null} media            - full path to the media file for this track
+ * - {number} mediaCount            - count incremented on every media change
  * - {Tags} tags                    - media metadatas
  * - {array<Reference>} artistRefs  - references to the track's artists
  * - {Reference} albumRef           - reference to the track's album
@@ -24,6 +25,7 @@ class TracksModel extends Model {
       jsonColumns: ['tags', 'artistRefs', 'albumRef'],
       searchCol: 'title.value'
     })
+    this.serializeForUi = this.serializeForUi.bind(this)
   }
 
   /**
@@ -131,6 +133,26 @@ class TracksModel extends Model {
       .select(`${this.name}.*`)
       .joinRaw(`, json_each(tags, '$.title') as title`)
       .where('title.value', 'like', `%${searched.toLowerCase()}%`)
+  }
+
+  /**
+   * Returns serialized track with attributes for UI:
+   * - {string} media: path to the track's media file (includes the media count)
+   * - {string} data: path to the track's data file
+   * @param {AbstractTrackList} model - to be serialized
+   * @returns {object} serialized model
+   */
+  serializeForUi(model) {
+    return model
+      ? {
+          ...model,
+          mediaCount: undefined,
+          media: model.media
+            ? `/tracks/${model.id}/media/${model.mediaCount}`
+            : null,
+          data: `/tracks/${model.id}/data`
+        }
+      : model
   }
 }
 

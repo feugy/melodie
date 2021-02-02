@@ -15,6 +15,7 @@ const { uniqRef, parseRawRef, parseRawRefArray } = require('../utils')
  * - {string} name                - playlist's name
  * - {string|null} desc           - playlist's description
  * - {string|null} media          - full path to the media file for this playlist
+ * - {number} mediaCount          - count incremented on every media change
  * - {array<number>} trackIds     - ordered ids of the playlist tracks
  * - {array<Reference>} refs      - references to the track's artists
  * - {number|null} processedEpoch - epoch of the last automatic media retrieval

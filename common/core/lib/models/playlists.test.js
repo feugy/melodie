@@ -62,6 +62,7 @@ describe('Playlists model', () => {
     expect((await playlistsModel.list()).results).toEqual([
       {
         ...playlist,
+        mediaCount: 1,
         refs: [makeRef(artist1), makeRef(album1), [1, null]]
       }
     ])
@@ -71,6 +72,7 @@ describe('Playlists model', () => {
     const playlist = {
       id: faker.random.number(),
       media: faker.image.image(),
+      mediaCount: faker.random.number({ max: 10 }),
       processedEpoch: null,
       name: faker.lorem.words(),
       desc: faker.lorem.paragraph(),

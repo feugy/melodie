@@ -2,9 +2,8 @@
 
 const { extname } = require('path')
 const faker = require('faker')
-const { playlistsModel } = require('../models/playlists')
-const { tracksModel } = require('../models/tracks')
-const playlistsService = require('./playlists')
+const { playlistsModel, tracksModel } = require('../models')
+const { playlists: playlistsService } = require('.')
 const playlistsUtils = require('../providers/local/playlist')
 const { broadcast } = require('../utils')
 
@@ -13,8 +12,14 @@ jest.mock('../models/tracks')
 jest.mock('../utils/connection')
 jest.mock('../providers/local/playlist')
 
+const identity = data => data
+
 describe('Playlists service', () => {
-  beforeEach(jest.resetAllMocks)
+  beforeEach(() => {
+    jest.clearAllMocks()
+    playlistsModel.serializeForUi = identity
+    tracksModel.serializeForUi = identity
+  })
 
   describe('save', () => {
     it('creates a new playlist', async () => {

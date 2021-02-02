@@ -59,6 +59,7 @@ describe('Albums model', () => {
     expect((await albumsModel.list()).results).toEqual([
       {
         ...album,
+        mediaCount: 1,
         refs: [makeRef(artist1), [1, null]]
       }
     ])
@@ -68,6 +69,7 @@ describe('Albums model', () => {
     const album = {
       id: faker.random.number(),
       media: faker.image.image(),
+      mediaCount: faker.random.number({ max: 10 }),
       processedEpoch: null,
       name: faker.commerce.productName(),
       trackIds: [tracks[0].id, tracks[3].id]
@@ -102,6 +104,7 @@ describe('Albums model', () => {
     const album1 = {
       id: faker.random.number(),
       media: faker.image.image(),
+      mediaCount: 1,
       processedEpoch: null,
       name,
       trackIds: [tracks[0].id, tracks[3].id],
@@ -110,6 +113,7 @@ describe('Albums model', () => {
     const album2 = {
       id: faker.random.number(),
       media: faker.image.image(),
+      mediaCount: 1,
       processedEpoch: null,
       name: faker.commerce.productName(),
       trackIds: [tracks[1].id],
@@ -118,6 +122,7 @@ describe('Albums model', () => {
     const album3 = {
       id: faker.random.number(),
       media: faker.image.image(),
+      mediaCount: 1,
       processedEpoch: null,
       name,
       trackIds: [tracks[2].id],

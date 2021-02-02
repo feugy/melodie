@@ -11,8 +11,8 @@ const {
   settingsModel
 } = require('../models')
 const { broadcast, dayMs } = require('../utils')
-const { sleep } = require('../tests')
-const mediaService = require('./media')
+const { waitFor } = require('../tests')
+const { media: mediaService } = require('.')
 const {
   discogs,
   audiodb,
@@ -33,8 +33,15 @@ const fixtures = resolve(__dirname, '..', '..', '..', 'fixtures')
 
 const { ARTWORK_DESTINATION } = process.env
 
+const identity = data => data
+
 describe('Media service', () => {
-  beforeEach(jest.clearAllMocks)
+  beforeEach(() => {
+    jest.clearAllMocks()
+    artistsModel.serializeForUi = identity
+    albumsModel.serializeForUi = identity
+    tracksModel.serializeForUi = identity
+  })
 
   describe('findArtistArtwork', () => {
     it('returns artwork for artist', async () => {
@@ -149,17 +156,20 @@ describe('Media service', () => {
     const track1 = {
       id: faker.random.number({ min: 9999 }),
       path: resolve(ARTWORK_DESTINATION, faker.system.fileName()),
-      media: null
+      media: null,
+      mediaCount: faker.random.number({ min: 1, max: 10 })
     }
     const track2 = {
       id: faker.random.number({ min: 9999 }),
       path: resolve(ARTWORK_DESTINATION, faker.system.fileName()),
-      media: null
+      media: null,
+      mediaCount: faker.random.number({ min: 1, max: 10 })
     }
     const album = {
       id: faker.random.number({ min: 9999 }),
       name,
       media: null,
+      mediaCount: faker.random.number({ min: 1, max: 10 }),
       trackIds: [track1.id, track2.id]
     }
 
@@ -184,9 +194,17 @@ describe('Media service', () => {
       })
 
       it('downloads and save album cover', async () => {
-        const savedAlbum = { ...album, media }
-        const savedTrack1 = { ...track1, media }
-        const savedTrack2 = { ...track2, media }
+        const savedAlbum = { ...album, media, mediaCount: album.mediaCount + 1 }
+        const savedTrack1 = {
+          ...track1,
+          media,
+          mediaCount: track1.mediaCount + 1
+        }
+        const savedTrack2 = {
+          ...track2,
+          media,
+          mediaCount: track2.mediaCount + 1
+        }
         albumsModel.getById.mockResolvedValueOnce(album)
         tracksModel.getByIds.mockResolvedValueOnce([track1, track2])
         albumsModel.save.mockResolvedValueOnce({ saved: [savedAlbum] })
@@ -205,25 +223,28 @@ describe('Media service', () => {
         expect(tracksModel.save).toHaveBeenCalledTimes(1)
         expect(await fs.access(media, constants.R_OK))
         expect(broadcast).toHaveBeenNthCalledWith(1, 'album-changes', [
-          album,
           savedAlbum
         ])
         expect(broadcast).toHaveBeenNthCalledWith(2, 'track-changes', [
-          track1,
-          track2
-        ])
-        expect(broadcast).toHaveBeenNthCalledWith(3, 'track-changes', [
           savedTrack1,
           savedTrack2
         ])
-        expect(broadcast).toHaveBeenCalledTimes(3)
+        expect(broadcast).toHaveBeenCalledTimes(2)
       })
 
       it('downloads and replace album cover', async () => {
-        const savedAlbum = { ...album, media }
-        const savedTrack1 = { ...track1, media }
-        const savedTrack2 = { ...track2, media }
-        albumsModel.getById.mockResolvedValueOnce(savedAlbum)
+        const savedAlbum = { ...album, media, mediaCount: album.mediaCount + 1 }
+        const savedTrack1 = {
+          ...track1,
+          media,
+          mediaCount: track1.mediaCount + 1
+        }
+        const savedTrack2 = {
+          ...track2,
+          media,
+          mediaCount: track2.mediaCount + 1
+        }
+        albumsModel.getById.mockResolvedValueOnce({ ...album, media })
         tracksModel.getByIds.mockResolvedValueOnce([track1, track2])
         albumsModel.save.mockResolvedValueOnce({ saved: [savedAlbum] })
         tracksModel.save.mockResolvedValueOnce({
@@ -242,18 +263,13 @@ describe('Media service', () => {
         expect(content).not.toEqual(oldContent)
         expect(content).toBeDefined()
         expect(broadcast).toHaveBeenNthCalledWith(1, 'album-changes', [
-          album,
           savedAlbum
         ])
         expect(broadcast).toHaveBeenNthCalledWith(2, 'track-changes', [
-          track1,
-          track2
-        ])
-        expect(broadcast).toHaveBeenNthCalledWith(3, 'track-changes', [
           savedTrack1,
           savedTrack2
         ])
-        expect(broadcast).toHaveBeenCalledTimes(3)
+        expect(broadcast).toHaveBeenCalledTimes(2)
       })
 
       it('ignores unknown album', async () => {
@@ -311,6 +327,7 @@ describe('Media service', () => {
       id: faker.random.number({ min: 9999 }),
       name: faker.name.findName(),
       media: null,
+      mediaCount: 1,
       trackIds: []
     }
 
@@ -335,7 +352,11 @@ describe('Media service', () => {
       })
 
       it('downloads and adds media artist', async () => {
-        const savedArtist = { ...artist, media }
+        const savedArtist = {
+          ...artist,
+          media,
+          mediaCount: artist.mediaCount + 1
+        }
         artistsModel.getById.mockResolvedValueOnce(artist)
         artistsModel.save.mockResolvedValueOnce({ saved: [savedArtist] })
 
@@ -344,16 +365,17 @@ describe('Media service', () => {
         expect(artistsModel.save).toHaveBeenCalledWith(savedArtist)
         expect(artistsModel.save).toHaveBeenCalledTimes(1)
         expect(await fs.access(media, constants.R_OK))
-        expect(broadcast).toHaveBeenCalledWith('artist-changes', [
-          { ...artist, media: null },
-          savedArtist
-        ])
+        expect(broadcast).toHaveBeenCalledWith('artist-changes', [savedArtist])
         expect(broadcast).toHaveBeenCalledTimes(1)
       })
 
       it('downloads and replace media artist', async () => {
-        const savedArtist = { ...artist, media }
-        artistsModel.getById.mockResolvedValueOnce(savedArtist)
+        const savedArtist = {
+          ...artist,
+          media,
+          mediaCount: artist.mediaCount + 1
+        }
+        artistsModel.getById.mockResolvedValueOnce({ ...artist, media })
         artistsModel.save.mockResolvedValueOnce({ saved: [savedArtist] })
         const oldContent = 'old content'
         await fs.ensureFile(media)
@@ -367,10 +389,7 @@ describe('Media service', () => {
         const content = await fs.readFile(media, 'utf8')
         expect(content).not.toEqual(oldContent)
         expect(content).toBeDefined()
-        expect(broadcast).toHaveBeenCalledWith('artist-changes', [
-          { ...artist, media: null },
-          savedArtist
-        ])
+        expect(broadcast).toHaveBeenCalledWith('artist-changes', [savedArtist])
         expect(broadcast).toHaveBeenCalledTimes(1)
       })
 
@@ -429,15 +448,17 @@ describe('Media service', () => {
     it('saves first returned artwork for artist', async () => {
       const artists = [
         {
-          id: faker.random.number({ min: 9999 }),
+          id: 101,
           name: faker.name.findName(),
           media: null,
+          mediaCount: 1,
           trackIds: []
         },
         {
-          id: faker.random.number({ min: 9999 }),
+          id: 102,
           name: faker.name.findName(),
           media: null,
+          mediaCount: faker.random.number({ min: 2, max: 10 }),
           trackIds: []
         }
       ]
@@ -486,12 +507,13 @@ describe('Media service', () => {
         media: resolve(
           ARTWORK_DESTINATION,
           `${artist.id}.${artist === artists[0] ? 'jpg' : 'jpeg'}`
-        )
+        ),
+        mediaCount: artist.mediaCount + 1
       }))
 
       const now = Date.now()
       mediaService.triggerArtistsEnrichment(6000)
-      await sleep(1000)
+      await waitFor(() => expect(artistsModel.save).toHaveBeenCalledTimes(2))
 
       expect(await fs.access(savedArtists[0].media, constants.R_OK))
       expect(await fs.readFile(savedArtists[0].media, 'utf8')).toEqual(
@@ -511,36 +533,31 @@ describe('Media service', () => {
       )
       expect(artistsModel.save).toHaveBeenCalledWith(savedArtists[0])
       expect(artistsModel.save).toHaveBeenCalledWith(savedArtists[1])
-      expect(artistsModel.save).toHaveBeenCalledTimes(2)
-      expect(broadcast).toHaveBeenCalledWith('artist-changes', [
-        {
-          ...savedArtists[0],
-          media: null
-        },
-        savedArtists[0]
-      ])
-      expect(broadcast).toHaveBeenCalledWith('artist-changes', [
-        {
-          ...savedArtists[1],
-          media: null
-        },
-        savedArtists[1]
-      ])
+      expect(broadcast).toHaveBeenCalledWith(
+        'artist-changes',
+        savedArtists.slice(0, 1)
+      )
+      expect(broadcast).toHaveBeenCalledWith(
+        'artist-changes',
+        savedArtists.slice(1)
+      )
       expect(broadcast).toHaveBeenCalledTimes(2)
     })
 
     it('skips artists with no names', async () => {
       const artists = [
         {
-          id: faker.random.number({ min: 9999 }),
+          id: 103,
           name: null,
           media: null,
+          mediaCount: 1,
           trackIds: []
         },
         {
-          id: faker.random.number({ min: 9999 }),
+          id: 104,
           name: faker.name.findName(),
           media: null,
+          mediaCount: faker.random.number({ min: 2, max: 10 }),
           trackIds: []
         }
       ]
@@ -557,7 +574,7 @@ describe('Media service', () => {
 
       const now = Date.now()
       mediaService.triggerArtistsEnrichment(6000)
-      await sleep(1000)
+      await waitFor(() => expect(artistsModel.save).toHaveBeenCalledTimes(1))
 
       expect(local.findArtistArtwork).toHaveBeenCalledWith(artists[1].name)
       expect(local.findArtistArtwork).toHaveBeenCalledTimes(1)
@@ -570,15 +587,15 @@ describe('Media service', () => {
         ...artists[1],
         processedEpoch: now
       })
-      expect(artistsModel.save).toHaveBeenCalledTimes(1)
       expect(broadcast).not.toHaveBeenCalled()
     })
 
     it('saves processing date on artist with no artwork', async () => {
       const artist = {
-        id: faker.random.number({ min: 9999 }),
+        id: 105,
         name: faker.name.findName(),
         media: null,
+        mediaCount: faker.random.number({ min: 2, max: 10 }),
         trackIds: []
       }
       artistsModel.listMedialess.mockResolvedValueOnce([artist])
@@ -591,7 +608,7 @@ describe('Media service', () => {
 
       const now = Date.now()
       mediaService.triggerArtistsEnrichment(6000)
-      await sleep(1000)
+      await waitFor(() => expect(artistsModel.save).toHaveBeenCalledTimes(1))
 
       expect(artistsModel.listMedialess).toHaveBeenCalledTimes(1)
       expect(artistsModel.listMedialess.mock.calls[0][0]).toBeWithin(
@@ -602,22 +619,23 @@ describe('Media service', () => {
         ...artist,
         processedEpoch: now
       })
-      expect(artistsModel.save).toHaveBeenCalledTimes(1)
       expect(broadcast).not.toHaveBeenCalled()
     })
 
     it('retries artist with no artwork but at least one restricted provided', async () => {
       const artists = [
         {
-          id: faker.random.number({ min: 9999 }),
+          id: 106,
           name: faker.name.findName(),
           media: null,
+          mediaCount: 1,
           trackIds: []
         },
         {
-          id: faker.random.number({ min: 9999 }),
+          id: 107,
           name: faker.name.findName(),
           media: null,
+          mediaCount: faker.random.number({ min: 2, max: 10 }),
           trackIds: []
         }
       ]
@@ -640,7 +658,7 @@ describe('Media service', () => {
 
       const now = Date.now()
       mediaService.triggerArtistsEnrichment(6000)
-      await sleep(1000)
+      await waitFor(() => expect(artistsModel.save).toHaveBeenCalledTimes(2))
 
       for (const provider of [local, audiodb, discogs]) {
         expect(provider.findArtistArtwork).toHaveBeenNthCalledWith(
@@ -670,15 +688,15 @@ describe('Media service', () => {
         ...artists[1],
         processedEpoch: now
       })
-      expect(artistsModel.save).toHaveBeenCalledTimes(2)
       expect(broadcast).not.toHaveBeenCalled()
     })
 
     it('does not process more than N artists per minute', async () => {
-      const artists = Array.from({ length: 5 }, () => ({
-        id: faker.random.number({ min: 9999 }),
+      const artists = Array.from({ length: 5 }, (v, i) => ({
+        id: 108 + i,
         name: faker.name.findName(),
         media: null,
+        mediaCount: faker.random.number({ min: 2, max: 10 }),
         trackIds: []
       }))
       artistsModel.listMedialess.mockResolvedValueOnce(artists)
@@ -698,12 +716,13 @@ describe('Media service', () => {
       discogs.findArtistArtwork.mockResolvedValue([])
       const savedArtists = artists.map(artist => ({
         ...artist,
-        media: resolve(ARTWORK_DESTINATION, `${artist.id}.jpg`)
+        media: resolve(ARTWORK_DESTINATION, `${artist.id}.jpg`),
+        mediaCount: artist.mediaCount + 1
       }))
 
       const now = Date.now()
       mediaService.triggerArtistsEnrichment(60)
-      await sleep(1500)
+      await waitFor(() => expect(artistsModel.save).toHaveBeenCalledTimes(1))
 
       expect(local.findArtistArtwork).toHaveBeenCalledWith(artists[0].name)
       expect(local.findArtistArtwork).toHaveBeenCalledTimes(1)
@@ -715,34 +734,32 @@ describe('Media service', () => {
         now - dayMs + 5
       )
       expect(artistsModel.save).toHaveBeenCalledWith(savedArtists[0])
-      expect(artistsModel.save).toHaveBeenCalledTimes(1)
-      expect(broadcast).toHaveBeenCalledWith('artist-changes', [
-        {
-          ...savedArtists[0],
-          media: null
-        },
-        savedArtists[0]
-      ])
+      expect(broadcast).toHaveBeenCalledWith(
+        'artist-changes',
+        savedArtists.slice(0, 1)
+      )
       expect(broadcast).toHaveBeenCalledTimes(1)
     })
 
     it('stops previous enrichment', async () => {
-      const tracks = Array.from({ length: 5 }, () => ({
-        id: faker.random.number({ min: 9999 }),
+      const tracks = Array.from({ length: 5 }, (v, i) => ({
+        id: 1000 + i,
         path: resolve(ARTWORK_DESTINATION, faker.system.fileName())
       }))
       const albums = Array.from({ length: 5 }, (v, i) => ({
-        id: faker.random.number({ min: 9999 }),
+        id: 500 + i,
         name: faker.commerce.productName(),
         media: null,
+        mediaCount: faker.random.number({ min: 2, max: 10 }),
         trackIds: [tracks[i].id]
       }))
       albumsModel.listMedialess.mockResolvedValueOnce(albums)
 
-      const artists = Array.from({ length: 5 }, () => ({
-        id: faker.random.number({ min: 9999 }),
+      const artists = Array.from({ length: 5 }, (v, i) => ({
+        id: 114 + i,
         name: faker.name.findName(),
         media: null,
+        mediaCount: faker.random.number({ min: 2, max: 10 }),
         trackIds: []
       }))
       artistsModel.listMedialess.mockResolvedValue(artists)
@@ -762,13 +779,14 @@ describe('Media service', () => {
       discogs.findArtistArtwork.mockResolvedValue([])
       const savedArtists = artists.map(artist => ({
         ...artist,
-        media: resolve(ARTWORK_DESTINATION, `${artist.id}.jpg`)
+        media: resolve(ARTWORK_DESTINATION, `${artist.id}.jpg`),
+        mediaCount: artist.mediaCount + 1
       }))
 
       const now = Date.now()
       mediaService.triggerAlbumsEnrichment(60)
       mediaService.triggerArtistsEnrichment(60)
-      await sleep(1500)
+      await waitFor(() => expect(artistsModel.save).toHaveBeenCalledTimes(1))
 
       expect(local.findArtistArtwork).toHaveBeenCalledWith(artists[0].name)
       expect(local.findArtistArtwork).toHaveBeenCalledTimes(1)
@@ -785,16 +803,12 @@ describe('Media service', () => {
         now - dayMs + 5
       )
       expect(artistsModel.save).toHaveBeenCalledWith(savedArtists[0])
-      expect(artistsModel.save).toHaveBeenCalledTimes(1)
       expect(albumsModel.save).not.toHaveBeenCalled()
       expect(tracksModel.save).not.toHaveBeenCalled()
-      expect(broadcast).toHaveBeenCalledWith('artist-changes', [
-        {
-          ...savedArtists[0],
-          media: null
-        },
-        savedArtists[0]
-      ])
+      expect(broadcast).toHaveBeenCalledWith(
+        'artist-changes',
+        savedArtists.slice(0, 1)
+      )
       expect(broadcast).toHaveBeenCalledTimes(1)
     })
   })
@@ -810,11 +824,13 @@ describe('Media service', () => {
         id: faker.random.number({ min: 9999 }),
         name: faker.name.findName(),
         media: null,
+        mediaCount: faker.random.number({ min: 2, max: 10 }),
         trackIds: []
       }
       const savedArtist = {
         ...artist,
-        media: resolve(ARTWORK_DESTINATION, `${artist.id}.jpeg`)
+        media: resolve(ARTWORK_DESTINATION, `${artist.id}.jpeg`),
+        mediaCount: artist.mediaCount + 1
       }
       artistsModel.getById.mockResolvedValue(artist)
       artistsModel.save.mockResolvedValueOnce({ saved: [savedArtist] })
@@ -842,13 +858,7 @@ describe('Media service', () => {
       expect(discogs.findArtistArtwork).toHaveBeenCalledTimes(1)
       expect(artistsModel.save).toHaveBeenCalledWith(savedArtist)
       expect(artistsModel.save).toHaveBeenCalledTimes(1)
-      expect(broadcast).toHaveBeenCalledWith('artist-changes', [
-        {
-          ...savedArtist,
-          media: null
-        },
-        savedArtist
-      ])
+      expect(broadcast).toHaveBeenCalledWith('artist-changes', [savedArtist])
       expect(broadcast).toHaveBeenCalledTimes(1)
     })
 
@@ -858,6 +868,7 @@ describe('Media service', () => {
         id,
         name: faker.name.findName(),
         media: resolve(ARTWORK_DESTINATION, `${id}.jpeg`),
+        mediaCount: faker.random.number({ min: 2, max: 10 }),
         trackIds: []
       }
       const bio1 = {
@@ -900,13 +911,7 @@ describe('Media service', () => {
       expect(discogs.findArtistArtwork).toHaveBeenCalledTimes(1)
       expect(artistsModel.save).toHaveBeenCalledWith(savedArtist)
       expect(artistsModel.save).toHaveBeenCalledTimes(1)
-      expect(broadcast).toHaveBeenCalledWith('artist-changes', [
-        {
-          ...savedArtist,
-          media: null
-        },
-        savedArtist
-      ])
+      expect(broadcast).toHaveBeenCalledWith('artist-changes', [savedArtist])
       expect(broadcast).toHaveBeenCalledTimes(1)
     })
 
@@ -915,6 +920,7 @@ describe('Media service', () => {
         id: faker.random.number({ min: 9999 }),
         name: faker.name.findName(),
         media: null,
+        mediaCount: faker.random.number({ min: 2, max: 10 }),
         trackIds: []
       }
       const bio = {
@@ -924,7 +930,8 @@ describe('Media service', () => {
       const savedArtist = {
         ...artist,
         bio,
-        media: resolve(ARTWORK_DESTINATION, `${artist.id}.jpeg`)
+        media: resolve(ARTWORK_DESTINATION, `${artist.id}.jpeg`),
+        mediaCount: artist.mediaCount + 1
       }
       artistsModel.getById.mockResolvedValue(artist)
       artistsModel.save.mockResolvedValueOnce({ saved: [savedArtist] })
@@ -953,13 +960,7 @@ describe('Media service', () => {
       expect(discogs.findArtistArtwork).toHaveBeenCalledTimes(1)
       expect(artistsModel.save).toHaveBeenCalledWith(savedArtist)
       expect(artistsModel.save).toHaveBeenCalledTimes(1)
-      expect(broadcast).toHaveBeenCalledWith('artist-changes', [
-        {
-          ...savedArtist,
-          media: null
-        },
-        savedArtist
-      ])
+      expect(broadcast).toHaveBeenCalledWith('artist-changes', [savedArtist])
       expect(broadcast).toHaveBeenCalledTimes(1)
     })
 
@@ -968,6 +969,7 @@ describe('Media service', () => {
         id: faker.random.number({ min: 9999 }),
         name: null,
         media: null,
+        mediaCount: faker.random.number({ min: 2, max: 10 }),
         trackIds: []
       }
       artistsModel.getById.mockResolvedValue(artist)
@@ -996,6 +998,7 @@ describe('Media service', () => {
         id,
         name: faker.name.findName(),
         media,
+        mediaCount: faker.random.number({ min: 2, max: 10 }),
         trackIds: []
       }
       const savedArtist = {
@@ -1033,13 +1036,7 @@ describe('Media service', () => {
       expect(discogs.findArtistArtwork).toHaveBeenCalledTimes(1)
       expect(artistsModel.save).toHaveBeenCalledWith(savedArtist)
       expect(artistsModel.save).toHaveBeenCalledTimes(1)
-      expect(broadcast).toHaveBeenCalledWith('artist-changes', [
-        {
-          ...savedArtist,
-          media: null
-        },
-        savedArtist
-      ])
+      expect(broadcast).toHaveBeenCalledWith('artist-changes', [savedArtist])
       expect(broadcast).toHaveBeenCalledTimes(1)
     })
 
@@ -1049,6 +1046,7 @@ describe('Media service', () => {
         id,
         name: faker.name.findName(),
         media: resolve(ARTWORK_DESTINATION, `${id}.jpg`),
+        mediaCount: faker.random.number({ min: 2, max: 10 }),
         bio: { en: faker.lorem.words() },
         trackIds: []
       }
@@ -1069,6 +1067,7 @@ describe('Media service', () => {
         id,
         name: faker.name.findName(),
         media: null,
+        mediaCount: faker.random.number({ min: 2, max: 10 }),
         trackIds: []
       }
       artistsModel.getById.mockResolvedValue(artist)
@@ -1110,24 +1109,34 @@ describe('Media service', () => {
       const tracks = [
         {
           id: faker.random.number({ min: 9999 }),
-          path: resolve(ARTWORK_DESTINATION, faker.system.fileName())
+          path: resolve(ARTWORK_DESTINATION, faker.system.fileName()),
+          mediaCount: faker.random.number({ min: 2, max: 10 })
         },
         {
           id: faker.random.number({ min: 9999 }),
-          path: resolve(ARTWORK_DESTINATION, faker.system.fileName())
+          mediaCount: faker.random.number({ min: 2, max: 10 })
         }
       ]
+      // tracks must be from different folders, or the concurrent replacment will conflict
+      await fs.ensureDir(resolve(ARTWORK_DESTINATION, tracks[1].id.toString()))
+      tracks[1].path = resolve(
+        ARTWORK_DESTINATION,
+        tracks[1].id.toString(),
+        faker.system.fileName()
+      )
       const albums = [
         {
           id: faker.random.number({ min: 9999 }),
           name: faker.commerce.productName(),
           media: null,
+          mediaCount: faker.random.number({ min: 2, max: 10 }),
           trackIds: [tracks[0].id]
         },
         {
           id: faker.random.number({ min: 9999 }),
           name: faker.commerce.productName(),
           media: null,
+          mediaCount: faker.random.number({ min: 2, max: 10 }),
           trackIds: [tracks[1].id]
         }
       ]
@@ -1137,7 +1146,8 @@ describe('Media service', () => {
         albums.find(album => album.id === id)
       )
       albumsModel.save.mockImplementation(async album => ({
-        saved: [album]
+        saved: [album],
+        removedIds: []
       }))
       tracksModel.getByIds.mockImplementation(async ids =>
         tracks.filter(({ id }) => ids.includes(id))
@@ -1170,22 +1180,35 @@ describe('Media service', () => {
       discogs.findAlbumCover.mockResolvedValue([])
       const savedAlbums = albums.map(album => ({
         ...album,
-        media: resolve(
-          ARTWORK_DESTINATION,
-          `cover.${album === albums[0] ? 'jpg' : 'jpeg'}`
-        )
+        media:
+          album === albums[0]
+            ? resolve(ARTWORK_DESTINATION, 'cover.jpg')
+            : resolve(
+                ARTWORK_DESTINATION,
+                tracks[1].id.toString(),
+                'cover.jpeg'
+              ),
+        mediaCount: album.mediaCount + 1
       }))
       const savedTracks = tracks.map(track => ({
         ...track,
-        media: resolve(
-          ARTWORK_DESTINATION,
-          `cover.${track === tracks[0] ? 'jpg' : 'jpeg'}`
-        )
+        media:
+          track === tracks[0]
+            ? resolve(ARTWORK_DESTINATION, 'cover.jpg')
+            : resolve(
+                ARTWORK_DESTINATION,
+                tracks[1].id.toString(),
+                'cover.jpeg'
+              ),
+        mediaCount: track.mediaCount + 1
       }))
 
       const now = Date.now()
       mediaService.triggerAlbumsEnrichment(6000)
-      await sleep(1000)
+      await waitFor(() => {
+        expect(albumsModel.save).toHaveBeenCalledTimes(2)
+        expect(tracksModel.save).toHaveBeenCalledTimes(2)
+      })
 
       expect(await fs.access(savedAlbums[0].media, constants.R_OK))
       expect(await fs.readFile(savedAlbums[0].media, 'utf8')).toEqual(
@@ -1205,58 +1228,42 @@ describe('Media service', () => {
       )
       expect(albumsModel.save).toHaveBeenNthCalledWith(1, savedAlbums[0])
       expect(albumsModel.save).toHaveBeenNthCalledWith(2, savedAlbums[1])
-      expect(albumsModel.save).toHaveBeenCalledTimes(2)
       expect(tracksModel.save).toHaveBeenNthCalledWith(1, [savedTracks[0]])
       expect(tracksModel.save).toHaveBeenNthCalledWith(2, [savedTracks[1]])
-      expect(tracksModel.save).toHaveBeenCalledTimes(2)
-      expect(broadcast).toHaveBeenNthCalledWith(1, 'album-changes', [
-        {
-          ...savedAlbums[0],
-          media: null
-        },
-        savedAlbums[0]
-      ])
-      expect(broadcast).toHaveBeenNthCalledWith(2, 'track-changes', [
-        {
-          ...savedTracks[0],
-          media: null
-        }
-      ])
       expect(broadcast).toHaveBeenNthCalledWith(
-        3,
+        1,
+        'album-changes',
+        savedAlbums.slice(0, 1)
+      )
+      expect(broadcast).toHaveBeenNthCalledWith(
+        2,
         'track-changes',
         savedTracks.slice(0, 1)
       )
-      expect(broadcast).toHaveBeenNthCalledWith(4, 'album-changes', [
-        {
-          ...savedAlbums[1],
-          media: null
-        },
-        savedAlbums[1]
-      ])
-      expect(broadcast).toHaveBeenNthCalledWith(5, 'track-changes', [
-        {
-          ...savedTracks[1],
-          media: null
-        }
-      ])
       expect(broadcast).toHaveBeenNthCalledWith(
-        6,
+        3,
+        'album-changes',
+        savedAlbums.slice(1)
+      )
+      expect(broadcast).toHaveBeenNthCalledWith(
+        4,
         'track-changes',
         savedTracks.slice(1)
       )
-      expect(broadcast).toHaveBeenCalledTimes(6)
+      expect(broadcast).toHaveBeenCalledTimes(4)
     })
 
     it('skips albums with no names', async () => {
       const tracks = [
         {
           id: faker.random.number({ min: 9999 }),
-          path: resolve(ARTWORK_DESTINATION, faker.system.fileName())
+          path: resolve(ARTWORK_DESTINATION, faker.system.fileName()),
+          mediaCount: faker.random.number({ min: 2, max: 10 })
         },
         {
           id: faker.random.number({ min: 9999 }),
-          path: resolve(ARTWORK_DESTINATION, faker.system.fileName())
+          path: resolve(ARTWORK_DESTINATION, faker.system.fileName()),
+          mediaCount: faker.random.number({ min: 2, max: 10 })
         }
       ]
       const albums = [
@@ -1264,12 +1271,14 @@ describe('Media service', () => {
           id: faker.random.number({ min: 9999 }),
           name: null,
           media: null,
+          mediaCount: faker.random.number({ min: 2, max: 10 }),
           trackIds: [tracks[0].id]
         },
         {
           id: faker.random.number({ min: 9999 }),
           name: faker.commerce.productName(),
           media: null,
+          mediaCount: faker.random.number({ min: 2, max: 10 }),
           trackIds: [tracks[1].id]
         }
       ]
@@ -1286,7 +1295,7 @@ describe('Media service', () => {
 
       const now = Date.now()
       mediaService.triggerAlbumsEnrichment(6000)
-      await sleep(1000)
+      await waitFor(() => expect(albumsModel.save).toHaveBeenCalledTimes(1))
 
       expect(local.findAlbumCover).toHaveBeenCalledWith(albums[1].name)
       expect(local.findAlbumCover).toHaveBeenCalledTimes(1)
@@ -1299,7 +1308,6 @@ describe('Media service', () => {
         ...albums[1],
         processedEpoch: now
       })
-      expect(albumsModel.save).toHaveBeenCalledTimes(1)
       expect(broadcast).not.toHaveBeenCalled()
     })
 
@@ -1308,6 +1316,7 @@ describe('Media service', () => {
         id: faker.random.number({ min: 9999 }),
         name: faker.commerce.productName(),
         media: null,
+        mediaCount: faker.random.number({ min: 2, max: 10 }),
         trackIds: []
       }
       albumsModel.listMedialess.mockResolvedValueOnce([album])
@@ -1320,7 +1329,7 @@ describe('Media service', () => {
 
       const now = Date.now()
       mediaService.triggerAlbumsEnrichment(6000)
-      await sleep(1000)
+      await waitFor(() => expect(albumsModel.save).toHaveBeenCalledTimes(1))
 
       expect(albumsModel.listMedialess).toHaveBeenCalledTimes(1)
       expect(albumsModel.listMedialess.mock.calls[0][0]).toBeWithin(
@@ -1331,7 +1340,6 @@ describe('Media service', () => {
         ...album,
         processedEpoch: now
       })
-      expect(albumsModel.save).toHaveBeenCalledTimes(1)
       expect(tracksModel.save).not.toHaveBeenCalled()
       expect(broadcast).not.toHaveBeenCalled()
     })
@@ -1340,11 +1348,13 @@ describe('Media service', () => {
       const tracks = [
         {
           id: faker.random.number({ min: 9999 }),
-          path: resolve(ARTWORK_DESTINATION, faker.system.fileName())
+          path: resolve(ARTWORK_DESTINATION, faker.system.fileName()),
+          mediaCount: faker.random.number({ min: 2, max: 10 })
         },
         {
           id: faker.random.number({ min: 9999 }),
-          path: resolve(ARTWORK_DESTINATION, faker.system.fileName())
+          path: resolve(ARTWORK_DESTINATION, faker.system.fileName()),
+          mediaCount: faker.random.number({ min: 2, max: 10 })
         }
       ]
       const albums = [
@@ -1352,12 +1362,14 @@ describe('Media service', () => {
           id: faker.random.number({ min: 9999 }),
           name: faker.commerce.productName(),
           media: null,
+          mediaCount: faker.random.number({ min: 2, max: 10 }),
           trackIds: [tracks[0].id]
         },
         {
           id: faker.random.number({ min: 9999 }),
           name: faker.commerce.productName(),
           media: null,
+          mediaCount: faker.random.number({ min: 2, max: 10 }),
           trackIds: [tracks[1].id]
         }
       ]
@@ -1383,7 +1395,7 @@ describe('Media service', () => {
 
       const now = Date.now()
       mediaService.triggerAlbumsEnrichment(6000)
-      await sleep(1000)
+      await waitFor(() => expect(albumsModel.save).toHaveBeenCalledTimes(2))
 
       for (const provider of [local, audiodb, discogs]) {
         expect(provider.findAlbumCover).toHaveBeenNthCalledWith(
@@ -1413,7 +1425,6 @@ describe('Media service', () => {
         ...albums[1],
         processedEpoch: now
       })
-      expect(albumsModel.save).toHaveBeenCalledTimes(2)
       expect(tracksModel.save).not.toHaveBeenCalled()
       expect(broadcast).not.toHaveBeenCalled()
     })
@@ -1421,12 +1432,14 @@ describe('Media service', () => {
     it('does not process more than N albums per minute', async () => {
       const tracks = Array.from({ length: 5 }, () => ({
         id: faker.random.number({ min: 9999 }),
-        path: resolve(ARTWORK_DESTINATION, faker.system.fileName())
+        path: resolve(ARTWORK_DESTINATION, faker.system.fileName()),
+        mediaCount: faker.random.number({ min: 2, max: 10 })
       }))
       const albums = Array.from({ length: 5 }, (v, i) => ({
         id: faker.random.number({ min: 9999 }),
         name: faker.commerce.productName(),
         media: null,
+        mediaCount: faker.random.number({ min: 2, max: 10 }),
         trackIds: [tracks[i].id]
       }))
       albumsModel.listMedialess.mockResolvedValueOnce(albums)
@@ -1447,18 +1460,23 @@ describe('Media service', () => {
       ])
       audiodb.findAlbumCover.mockResolvedValue([])
       discogs.findAlbumCover.mockResolvedValue([])
-      const savedAlbums = albums.map(artist => ({
-        ...artist,
-        media: resolve(ARTWORK_DESTINATION, 'cover.jpg')
+      const savedAlbums = albums.map(album => ({
+        ...album,
+        media: resolve(ARTWORK_DESTINATION, 'cover.jpg'),
+        mediaCount: album.mediaCount + 1
       }))
       const savedTracks = tracks.map(track => ({
         ...track,
-        media: resolve(ARTWORK_DESTINATION, 'cover.jpg')
+        media: resolve(ARTWORK_DESTINATION, 'cover.jpg'),
+        mediaCount: track.mediaCount + 1
       }))
 
       const now = Date.now()
       mediaService.triggerAlbumsEnrichment(60)
-      await sleep(1500)
+      await waitFor(() => {
+        expect(albumsModel.save).toHaveBeenCalledTimes(1)
+        expect(tracksModel.save).toHaveBeenCalledTimes(1)
+      })
 
       expect(local.findAlbumCover).toHaveBeenCalledWith(albums[0].name)
       expect(local.findAlbumCover).toHaveBeenCalledTimes(1)
@@ -1470,28 +1488,18 @@ describe('Media service', () => {
         now - dayMs + 5
       )
       expect(albumsModel.save).toHaveBeenCalledWith(savedAlbums[0])
-      expect(albumsModel.save).toHaveBeenCalledTimes(1)
       expect(tracksModel.save).toHaveBeenCalledWith([savedTracks[0]])
-      expect(tracksModel.save).toHaveBeenCalledTimes(1)
-      expect(broadcast).toHaveBeenNthCalledWith(1, 'album-changes', [
-        {
-          ...savedAlbums[0],
-          media: null
-        },
-        savedAlbums[0]
-      ])
-      expect(broadcast).toHaveBeenNthCalledWith(2, 'track-changes', [
-        {
-          ...savedTracks[0],
-          media: null
-        }
-      ])
       expect(broadcast).toHaveBeenNthCalledWith(
-        3,
+        1,
+        'album-changes',
+        savedAlbums.slice(0, 1)
+      )
+      expect(broadcast).toHaveBeenNthCalledWith(
+        2,
         'track-changes',
         savedTracks.slice(0, 1)
       )
-      expect(broadcast).toHaveBeenCalledTimes(3)
+      expect(broadcast).toHaveBeenCalledTimes(2)
     })
 
     it('stops previous enrichment', async () => {
@@ -1499,18 +1507,21 @@ describe('Media service', () => {
         id: faker.random.number({ min: 9999 }),
         name: faker.name.findName(),
         media: null,
+        mediaCount: faker.random.number({ min: 2, max: 10 }),
         trackIds: []
       }))
       artistsModel.listMedialess.mockResolvedValue(artists)
 
       const tracks = Array.from({ length: 5 }, () => ({
         id: faker.random.number({ min: 9999 }),
-        path: resolve(ARTWORK_DESTINATION, faker.system.fileName())
+        path: resolve(ARTWORK_DESTINATION, faker.system.fileName()),
+        mediaCount: faker.random.number({ min: 2, max: 10 })
       }))
       const albums = Array.from({ length: 5 }, (v, i) => ({
         id: faker.random.number({ min: 9999 }),
         name: faker.commerce.productName(),
         media: null,
+        mediaCount: faker.random.number({ min: 2, max: 10 }),
         trackIds: [tracks[i].id]
       }))
       albumsModel.listMedialess.mockResolvedValueOnce(albums)
@@ -1531,19 +1542,24 @@ describe('Media service', () => {
       ])
       audiodb.findAlbumCover.mockResolvedValue([])
       discogs.findAlbumCover.mockResolvedValue([])
-      const savedAlbums = albums.map(artist => ({
-        ...artist,
-        media: resolve(ARTWORK_DESTINATION, 'cover.jpg')
+      const savedAlbums = albums.map(album => ({
+        ...album,
+        media: resolve(ARTWORK_DESTINATION, 'cover.jpg'),
+        mediaCount: album.mediaCount + 1
       }))
       const savedTracks = tracks.map(track => ({
         ...track,
-        media: resolve(ARTWORK_DESTINATION, 'cover.jpg')
+        media: resolve(ARTWORK_DESTINATION, 'cover.jpg'),
+        mediaCount: track.mediaCount + 1
       }))
 
       const now = Date.now()
       mediaService.triggerArtistsEnrichment(60)
       mediaService.triggerAlbumsEnrichment(60)
-      await sleep(1500)
+      await waitFor(() => {
+        expect(albumsModel.save).toHaveBeenCalledTimes(1)
+        expect(tracksModel.save).toHaveBeenCalledTimes(1)
+      })
 
       expect(local.findAlbumCover).toHaveBeenCalledWith(albums[0].name)
       expect(local.findAlbumCover).toHaveBeenCalledTimes(1)
@@ -1561,28 +1577,173 @@ describe('Media service', () => {
       )
       expect(artistsModel.save).not.toHaveBeenCalled()
       expect(albumsModel.save).toHaveBeenCalledWith(savedAlbums[0])
-      expect(albumsModel.save).toHaveBeenCalledTimes(1)
       expect(tracksModel.save).toHaveBeenCalledWith([savedTracks[0]])
-      expect(tracksModel.save).toHaveBeenCalledTimes(1)
-      expect(broadcast).toHaveBeenNthCalledWith(1, 'album-changes', [
-        {
-          ...savedAlbums[0],
-          media: null
-        },
-        savedAlbums[0]
-      ])
-      expect(broadcast).toHaveBeenNthCalledWith(2, 'track-changes', [
-        {
-          ...savedTracks[0],
-          media: null
-        }
-      ])
       expect(broadcast).toHaveBeenNthCalledWith(
-        3,
+        1,
+        'album-changes',
+        savedAlbums.slice(0, 1)
+      )
+      expect(broadcast).toHaveBeenNthCalledWith(
+        2,
         'track-changes',
         savedTracks.slice(0, 1)
       )
-      expect(broadcast).toHaveBeenCalledTimes(3)
+      expect(broadcast).toHaveBeenCalledTimes(2)
+    })
+  })
+
+  describe('getTrackData', () => {
+    it(`returns track's data full path`, async () => {
+      const id = faker.random.number({ min: 9999 })
+      const path = faker.image.image()
+      tracksModel.getById.mockResolvedValueOnce({ id, path })
+
+      expect(await mediaService.getTrackData(id)).toEqual(path)
+    })
+
+    it('returns null on unknown id', async () => {
+      const id = faker.random.number({ min: 9999 })
+      tracksModel.getById.mockResolvedValueOnce(null)
+
+      expect(await mediaService.getTrackData(id)).toBeNull()
+    })
+  })
+
+  describe('getTrackMedia', () => {
+    it(`returns track's cover full path`, async () => {
+      const id = faker.random.number({ min: 9999 })
+      const media = faker.image.image()
+      const mediaCount = faker.random.number({ min: 2, max: 10 })
+      tracksModel.getById.mockResolvedValueOnce({ id, media, mediaCount })
+
+      expect(await mediaService.getTrackMedia(id, mediaCount)).toEqual(media)
+    })
+
+    it(`returns null on track without cover`, async () => {
+      const id = faker.random.number({ min: 9999 })
+      const mediaCount = faker.random.number({ min: 2, max: 10 })
+      tracksModel.getById.mockResolvedValueOnce({
+        id,
+        media: null,
+        mediaCount
+      })
+
+      expect(await mediaService.getTrackMedia(id, mediaCount)).toBeNull()
+    })
+
+    it('returns null on media count mismatch', async () => {
+      const id = faker.random.number({ min: 9999 })
+      const media = faker.image.image()
+      const mediaCount = faker.random.number({ min: 2, max: 10 })
+      tracksModel.getById.mockResolvedValueOnce({ id, media, mediaCount })
+
+      expect(
+        await mediaService.getTrackMedia(
+          id,
+          faker.random.number({ min: mediaCount + 1 })
+        )
+      ).toBeNull()
+    })
+
+    it('returns null on unknown id', async () => {
+      const id = faker.random.number({ min: 9999 })
+      tracksModel.getById.mockResolvedValueOnce(null)
+
+      expect(
+        await mediaService.getTrackMedia(id, faker.random.number({ min: 1 }))
+      ).toBeNull()
+    })
+  })
+
+  describe('getAlbumMedia', () => {
+    it(`returns album's cover full path`, async () => {
+      const id = faker.random.number({ min: 9999 })
+      const media = faker.image.image()
+      const mediaCount = faker.random.number({ min: 2, max: 10 })
+      albumsModel.getById.mockResolvedValueOnce({ id, media, mediaCount })
+
+      expect(await mediaService.getAlbumMedia(id, mediaCount)).toEqual(media)
+    })
+
+    it(`returns null on album without cover`, async () => {
+      const id = faker.random.number({ min: 9999 })
+      const mediaCount = faker.random.number({ min: 2, max: 10 })
+      albumsModel.getById.mockResolvedValueOnce({
+        id,
+        media: null,
+        mediaCount
+      })
+
+      expect(await mediaService.getAlbumMedia(id, mediaCount)).toBeNull()
+    })
+
+    it('returns null on media count mismatch', async () => {
+      const id = faker.random.number({ min: 9999 })
+      const media = faker.image.image()
+      const mediaCount = faker.random.number({ min: 2, max: 10 })
+      albumsModel.getById.mockResolvedValueOnce({ id, media, mediaCount })
+
+      expect(
+        await mediaService.getAlbumMedia(
+          id,
+          faker.random.number({ min: mediaCount + 1 })
+        )
+      ).toBeNull()
+    })
+
+    it('returns null on unknown id', async () => {
+      const id = faker.random.number({ min: 9999 })
+      albumsModel.getById.mockResolvedValueOnce(null)
+
+      expect(
+        await mediaService.getAlbumMedia(id, faker.random.number({ min: 1 }))
+      ).toBeNull()
+    })
+  })
+
+  describe('getArtistMedia', () => {
+    it(`returns artist's artwork full path`, async () => {
+      const id = faker.random.number({ min: 9999 })
+      const media = faker.image.image()
+      const mediaCount = faker.random.number({ min: 2, max: 10 })
+      artistsModel.getById.mockResolvedValueOnce({ id, media, mediaCount })
+
+      expect(await mediaService.getArtistMedia(id, mediaCount)).toEqual(media)
+    })
+
+    it(`returns null on artist without artwork`, async () => {
+      const id = faker.random.number({ min: 9999 })
+      const mediaCount = faker.random.number({ min: 2, max: 10 })
+      albumsModel.getById.mockResolvedValueOnce({
+        id,
+        media: null,
+        mediaCount
+      })
+
+      expect(await mediaService.getArtistMedia(id, mediaCount)).toBeNull()
+    })
+
+    it('returns null on media count mismatch', async () => {
+      const id = faker.random.number({ min: 9999 })
+      const media = faker.image.image()
+      const mediaCount = faker.random.number({ min: 2, max: 10 })
+      artistsModel.getById.mockResolvedValueOnce({ id, media, mediaCount })
+
+      expect(
+        await mediaService.getArtistMedia(
+          id,
+          faker.random.number({ min: mediaCount + 1 })
+        )
+      ).toBeNull()
+    })
+
+    it('returns null on unknown id', async () => {
+      const id = faker.random.number({ min: 9999 })
+      artistsModel.getById.mockResolvedValueOnce(null)
+
+      expect(
+        await mediaService.getArtistMedia(id, faker.random.number({ min: 1 }))
+      ).toBeNull()
     })
   })
 })

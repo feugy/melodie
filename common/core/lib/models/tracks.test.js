@@ -20,11 +20,15 @@ describe('Tracks model', () => {
     {
       path: join(folder1, faker.system.fileName()),
       tags: JSON.stringify({}),
+      media: faker.image.image(),
+      mediaCount: faker.random.number({ min: 2, max: 10 }),
       mtimeMs: 1590479078019.59,
       ino: 2634312
     },
     {
       path: join(folder1, faker.random.word(), faker.system.fileName()),
+      media: faker.image.image(),
+      mediaCount: faker.random.number({ min: 2, max: 10 }),
       tags: JSON.stringify({
         title,
         artists: [faker.name.findName()],
@@ -92,6 +96,7 @@ describe('Tracks model', () => {
         id: hash(path),
         path,
         media: faker.image.image(),
+        mediaCount: faker.random.number({ min: 2, max: 10 }),
         mtimeMs: Date.now(),
         tags: { album, artists },
         ino: 2639762
@@ -103,7 +108,9 @@ describe('Tracks model', () => {
         albumRef: [hash(album), album],
         artistRefs: artists.map(artist => [hash(artist), artist])
       })
-      expect(await tracksModel.getById(track.id)).toEqual(current)
+      expect(await tracksModel.getById(track.id)).toEqual({
+        ...current
+      })
       expect(previous).toBeNull()
     })
 
@@ -113,6 +120,7 @@ describe('Tracks model', () => {
         id: hash(path),
         path,
         media: faker.image.image(),
+        mediaCount: faker.random.number({ max: 10 }),
         mtimeMs: Date.now(),
         tags: {},
         ino: 2639362
@@ -137,6 +145,7 @@ describe('Tracks model', () => {
         id: hash(path1),
         path: path1,
         media: faker.image.image(),
+        mediaCount: faker.random.number({ max: 10 }),
         mtimeMs: Date.now(),
         tags: { album, artists: artists.slice(0, 1), albumartist: artists[0] },
         ino: 2459112
@@ -145,6 +154,7 @@ describe('Tracks model', () => {
         id: hash(path2),
         path: path2,
         media: faker.image.image(),
+        mediaCount: faker.random.number({ max: 10 }),
         mtimeMs: Date.now(),
         tags: { album, artists: artists.slice(1), albumartist: artists[1] },
         ino: 3439112
@@ -172,6 +182,7 @@ describe('Tracks model', () => {
       const track = {
         ...models[1],
         media: faker.image.image(),
+        mediaCount: faker.random.number({ max: 10 }),
         mtimeMs: Date.now(),
         tags: { album, artists },
         ino: 3439196
@@ -235,7 +246,8 @@ describe('Tracks model', () => {
       expect(results).toEqual(
         sorted.slice(1).map(model => ({
           ...model,
-          media: null,
+          media: model.media || null,
+          mediaCount: model.mediaCount || 1,
           tags: JSON.parse(model.tags)
         }))
       )
@@ -279,7 +291,8 @@ describe('Tracks model', () => {
         expect.arrayContaining(
           [models[0], models[1]].map(model => ({
             ...model,
-            media: null,
+            media: model.media || null,
+            mediaCount: model.mediaCount || 1,
             tags: JSON.parse(model.tags)
           }))
         )
@@ -293,7 +306,8 @@ describe('Tracks model', () => {
         expect.arrayContaining(
           [models[0], models[1], models[2]].map(model => ({
             ...model,
-            media: null,
+            media: model.media || null,
+            mediaCount: model.mediaCount || 1,
             tags: JSON.parse(model.tags)
           }))
         )
@@ -305,6 +319,28 @@ describe('Tracks model', () => {
       expect(
         await tracksModel.getByPaths([faker.system.directoryPath()])
       ).toEqual([])
+    })
+  })
+
+  describe('serializeForUi', () => {
+    it('handles falsy data', () => {
+      expect(tracksModel.serializeForUi(null)).toBeNull()
+      expect(tracksModel.serializeForUi()).toBeUndefined()
+    })
+
+    it('computes media and hides mediaCount attributes', () => {
+      expect(tracksModel.serializeForUi(models[2])).toEqual({
+        ...models[2],
+        media: null,
+        data: `/tracks/${models[2].id}/data`,
+        mediaCount: undefined
+      })
+      expect(tracksModel.serializeForUi(models[1])).toEqual({
+        ...models[1],
+        media: `/tracks/${models[1].id}/media/${models[1].mediaCount}`,
+        data: `/tracks/${models[1].id}/data`,
+        mediaCount: undefined
+      })
     })
   })
 })

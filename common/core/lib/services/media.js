@@ -65,6 +65,16 @@ async function downloadAndSave(media, url) {
 
 let subscription
 
+function makeModelFileRetriever(modelClass, forPath = false) {
+  return async (id, count) => {
+    const model = await modelClass.getById(id)
+    if (!model || (!forPath && model.mediaCount !== count)) {
+      return null
+    }
+    return forPath ? model.path : model.media
+  }
+}
+
 module.exports = {
   /**
    * Triggers enrichement of all artists: will fetch artwork from (in order):
@@ -190,16 +200,16 @@ module.exports = {
       filter(album => album && album.id && album.name),
       mergeMap(album =>
         from(provider.findAlbumCover(album.name)).pipe(
-          mergeMap(results =>
-            results.length
+          mergeMap(results => {
+            return results.length
               ? this.saveForAlbum(album.id, results[0].cover)
               : of(album)
-          ),
-          catchError(err => {
-            return err instanceof TooManyRequestsError
+          }),
+          catchError(err =>
+            err instanceof TooManyRequestsError
               ? of({ ...album, wasLimited: true })
               : EMPTY
-          })
+          )
         )
       )
     ]
@@ -232,11 +242,13 @@ module.exports = {
                     ? from(albumsModel.save({ ...album, processedEpoch: now }))
                     : of(album)
                 ),
-                reduce((remaining, album) => {
-                  return album && album.wasLimited
-                    ? [...remaining, { ...album, wasLimited: undefined }]
-                    : remaining
-                }, [])
+                reduce(
+                  (remaining, album) =>
+                    album && album.wasLimited
+                      ? [...remaining, { ...album, wasLimited: undefined }]
+                      : remaining,
+                  []
+                )
               )
             : EMPTY
         )
@@ -320,6 +332,7 @@ module.exports = {
           `media successfully downloaded for artist ${artist.name}`
         )
         artist.media = media
+        artist.mediaCount++
         hasChanged = true
       } catch (err) {
         logger.info(
@@ -335,7 +348,7 @@ module.exports = {
 
     if (hasChanged) {
       const { saved } = await artistsModel.save(artist)
-      broadcast('artist-changes', [{ ...artist, media: null }, saved[0]])
+      broadcast('artist-changes', saved.map(artistsModel.serializeForUi))
       logger.debug(
         { id, url, media: artist.media },
         `media successfully saved into artist ${artist.name}`
@@ -379,26 +392,64 @@ module.exports = {
     }
 
     if (written) {
-      const { saved } = await albumsModel.save({ ...album, media })
-      // broadcast 2 changes so UI would detect changes event when the media path is the same
-      broadcast('album-changes', [{ ...album, media: null }, saved[0]])
+      const { saved } = await albumsModel.save({
+        ...album,
+        media,
+        mediaCount: album.mediaCount + 1
+      })
+      broadcast('album-changes', saved.map(albumsModel.serializeForUi))
       logger.debug(
         { id, url, media },
         `media successfully saved into album ${album.name}`
       )
-      const savedTracks = tracks.map(track => ({ ...track, media }))
+      const savedTracks = tracks.map(track => ({
+        ...track,
+        media,
+        mediaCount: track.mediaCount + 1
+      }))
       await tracksModel.save(savedTracks)
-      const resetedTracks = []
       for (const track of savedTracks) {
-        resetedTracks.push({ ...track, media: null })
         logger.debug(
           { id: track.id, url, media },
           `media successfully saved for track ${track.path}`
         )
       }
-      // split in 2 different messages for UI to update
-      broadcast('track-changes', resetedTracks)
-      broadcast('track-changes', savedTracks)
+      broadcast('track-changes', savedTracks.map(tracksModel.serializeForUi))
     }
-  }
+  },
+
+  /**
+   * Returns actual path to a track's data file
+   * @async
+   * @param {number} id - track's id
+   * @returns {string} path to the track's file, or null if track does not exist
+   */
+  getTrackData: makeModelFileRetriever(tracksModel, true),
+
+  /**
+   * Returns actual path to a track's cover file
+   * @async
+   * @param {number} id         - track's id
+   * @param {number} mediaCount - current media count
+   * @returns {string} path to the track's cover file, or null if track does not exist or if the media count doesn't match
+   */
+  getTrackMedia: makeModelFileRetriever(tracksModel),
+
+  /**
+   * Returns actual path to a album's cover file
+   * @async
+   * @param {number} id         - album's id
+   * @param {number} mediaCount - current media count
+   * @returns {string} path to the album's cover file, or null if album does not exist or if the media count doesn't match
+   */
+  getAlbumMedia: makeModelFileRetriever(albumsModel),
+
+  /**
+   * Returns actual path to a artist's artwork file
+   * @async
+   * @param {number} id         - artist's id
+   * @param {number} mediaCount - current media count
+   * @returns {string} path to the artist's artwork file, or null if artist does not exist or if the media count doesn't match
+   */
+  getArtistMedia: makeModelFileRetriever(artistsModel)
 }
