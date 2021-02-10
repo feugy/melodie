@@ -13,8 +13,10 @@ import { playlistsData } from '../AddToPlaylist/AddToPlaylist.stories'
 import { hrefSinkDecorator } from '../../../.storybook/decorators'
 import { websocketResponse } from '../../../.storybook/loaders'
 
+const title = 'Components/Expandable list'
+
 export default {
-  title: 'Components/Expandable list',
+  title,
   excludeStories: /.*Data$/,
   decorators: [hrefSinkDecorator],
   parameters: { layout: 'padded' }
@@ -29,7 +31,7 @@ export const Artists = () => ({
     )
   }
 })
-Artists.loaders = [websocketResponse(() => artistData)]
+Artists.loaders = [websocketResponse(`${title} Artists`, () => artistData)]
 
 export const Albums = () => ({
   Component: ExpandableList,
@@ -40,7 +42,7 @@ export const Albums = () => ({
     )
   }
 })
-Albums.loaders = [websocketResponse(() => albumData)]
+Albums.loaders = [websocketResponse(`${title} Albums`, () => albumData)]
 
 export const Tracks = () => ({
   Component: ExpandableList,
@@ -52,7 +54,7 @@ export const Tracks = () => ({
   }
 })
 Tracks.loaders = [
-  websocketResponse(() => ({
+  websocketResponse(`${title} Tracks`, () => ({
     total: playlistsData.length,
     size: playlistsData.length,
     from: 0,

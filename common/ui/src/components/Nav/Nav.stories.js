@@ -13,19 +13,25 @@ const settings = {
   isBroadcasting: false
 }
 
+const title = 'Components/Nav'
+
 export default {
-  title: 'Components/Nav',
+  title,
   loaders: [
-    websocketResponse(invoked => {
-      if (invoked === 'settings.toggleBroadcast') {
-        settings.isBroadcasting = !settings.isBroadcasting
-        return settings
-      } else if (invoked === 'settings.getUIAddress') {
-        return `http://192.168.0.10:${Math.floor(Math.random() * 10000)}`
-      } else {
-        return settings
-      }
-    }, false),
+    websocketResponse(
+      title,
+      invoked => {
+        if (invoked === 'settings.toggleBroadcast') {
+          settings.isBroadcasting = !settings.isBroadcasting
+          return settings
+        } else if (invoked === 'settings.getUIAddress') {
+          return `http://192.168.0.10:${Math.floor(Math.random() * 10000)}`
+        } else {
+          return settings
+        }
+      },
+      false
+    ),
     () => init('unused', () => {})
   ],
   argTypes: {

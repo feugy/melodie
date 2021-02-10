@@ -156,7 +156,7 @@
           width="400"
           height="400"
           rounded
-          src={artist.media}
+          src={artist.media ? `${window.dlUrl}${artist.media}` : null}
         />
       </span>
       <div>

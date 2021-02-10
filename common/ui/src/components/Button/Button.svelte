@@ -30,7 +30,7 @@
     }
 
     & > i {
-      font-size: 1.5rem;
+      font-size: 'inherit';
     }
 
     &.large {
@@ -73,10 +73,10 @@
       }
 
       & > i {
-        font-size: 1.6rem;
+        font-size: 'inherit';
       }
       &.large > i {
-        font-size: 2rem;
+        font-size: 1.8rem;
       }
     }
 
@@ -98,7 +98,7 @@
 
     @screen md {
       & > i {
-        font-size: 1rem;
+        font-size: 'inherit';
       }
     }
   }
@@ -145,7 +145,8 @@
   class:large
   class:noBorder
   {...$$restProps}
-  on:click|preventDefault|stopPropagation>
+  on:click|preventDefault|stopPropagation
+>
   {#if icon}<i class="material-icons">{icon}</i>{/if}
   {#if text}<span>{text}</span>{/if}
   <slot />

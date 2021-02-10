@@ -5,11 +5,15 @@ import { tracksData } from '../TracksTable/TracksTable.stories'
 import { hrefSinkDecorator } from '../../../.storybook/decorators'
 import { websocketResponse } from '../../../.storybook/loaders'
 
+const title = 'Components/Playlist'
+
 export default {
-  title: 'Components/Playlist',
+  title,
   excludeStories: /.*Data$/,
   decorators: [hrefSinkDecorator],
-  loaders: [websocketResponse(() => ({ ...playlistData, tracks: tracksData }))]
+  loaders: [
+    websocketResponse(title, () => ({ ...playlistData, tracks: tracksData }))
+  ]
 }
 
 export const playlistData = {

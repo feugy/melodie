@@ -4,11 +4,13 @@ import AddToPlaylist from './AddToPlaylist.svelte'
 import { tracksData } from '../TracksTable/TracksTable.stories'
 import { websocketResponse } from '../../../.storybook/loaders'
 
+const title = 'Components/AddToPlaylist'
+
 export default {
-  title: 'Components/AddToPlaylist',
+  title,
   excludeStories: /.*Data$/,
   loaders: [
-    websocketResponse(() => ({
+    websocketResponse(title, () => ({
       total: playlistsData.length,
       size: playlistsData.length,
       from: 0,

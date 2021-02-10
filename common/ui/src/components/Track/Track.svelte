@@ -39,8 +39,12 @@
   <a
     on:click|stopPropagation
     href={linkTo('album', src.albumRef)}
-    class="flex-none">
-    <Image class="h-16 w-16 text-xs actionable" src={src && src.media} />
+    class="flex-none"
+  >
+    <Image
+      class="h-16 w-16 text-xs actionable"
+      src={src && src.media ? `${window.dlUrl}${src.media}` : null}
+    />
   </a>
   <div class="track">
     <span class="title">{tags.title}</span>

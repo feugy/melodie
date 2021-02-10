@@ -34,11 +34,13 @@ export const albumsData = [
   }
 ]
 
+const title = 'Views/Albums'
+
 export default {
-  title: 'Views/Albums',
+  title,
   excludeStories: /.*Data$/,
   loaders: [
-    websocketResponse(() => ({
+    websocketResponse(title, () => ({
       size: 10,
       from: 0,
       total: albumsData.length,

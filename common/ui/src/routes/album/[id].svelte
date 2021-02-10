@@ -122,7 +122,7 @@
           class="h-full w-full text-3xl actionable"
           width="400"
           height="400"
-          src={album.media}
+          src={album.media ? `${window.dlUrl}${album.media}` : null}
         />
       </span>
       <div>

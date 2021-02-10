@@ -4,11 +4,13 @@ import { EventEmitter } from 'events'
 import { render } from '@testing-library/svelte'
 import html from 'svelte-htm'
 import SystemNotifier from './SystemNotifier.svelte'
-import { toDOMSrc, invoke } from '../../utils'
+import { invoke } from '../../utils'
 import { clear, add, playNext } from '../../stores/track-queue'
 import { isDesktop } from '../../stores/settings'
 import { trackListData } from '../Player/Player.stories'
 import { sleep, translate } from '../../tests'
+
+const dlUrl = `http://some-url:${Math.round(Math.random()*1000)}`
 
 function expectMetadata(track, artwork = [{}]) {
   expect(navigator.mediaSession.metadata).toEqual({
@@ -24,19 +26,21 @@ function expectNotification(track) {
     track.tags.title,
     expect.objectContaining({
       body: `${track.artistRefs[0][1]} - ${track.albumRef[1]}`,
-      icon: toDOMSrc(track.media),
+      icon: `${dlUrl}${track.media}`,
       silent: true
     })
   )
 }
 
 describe('SystemNotifier Component', () => {
+
   beforeEach(async () => {
     clear()
     jest.resetAllMocks()
     isDesktop.next(true)
     window.MediaMetadata = jest.fn().mockImplementation(arg => arg)
     window.Notification = jest.fn().mockImplementation((title, opts) => opts)
+    window.dlUrl = dlUrl
     navigator.mediaSession.metadata = null
   })
 
@@ -54,7 +58,7 @@ describe('SystemNotifier Component', () => {
     expectNotification(track)
     expect(console.error).toHaveBeenCalledWith(
       expect.stringContaining(
-        `failed to load media ${track.media} for mediaSession`
+        `failed to load media ${dlUrl}${track.media} for mediaSession`
       )
     )
     expect(console.error).toHaveBeenCalledTimes(1)

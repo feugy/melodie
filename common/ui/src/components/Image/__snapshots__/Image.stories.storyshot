@@ -6,9 +6,11 @@ exports[`Storyshots Components/Image Broken 1`] = `
 >
   <img
     alt="./unknown.jpg"
-    class="w-64 h-64 inline-block svelte-hn7eai rounded-sm"
+    class="w-64 h-64 inline-block rounded-sm svelte-hn7eai"
+    height="256"
     loading="lazy"
-    src="./unknown.jpg#nonce=0.1"
+    src="./unknown.jpg"
+    width="256"
   />
    
   
@@ -24,8 +26,10 @@ exports[`Storyshots Components/Image Broken Rounded 1`] = `
   class="storybook-snapshot-container"
 >
   <img
-    class="w-64 h-64 inline-block svelte-hn7eai rounded-full hidden"
+    class="w-64 h-64 inline-block rounded-full hidden svelte-hn7eai"
+    height="256"
     loading="lazy"
+    width="256"
   />
    
   <span
@@ -51,9 +55,11 @@ exports[`Storyshots Components/Image Default 1`] = `
 >
   <img
     alt="./cover.jpg"
-    class="w-64 h-64 inline-block svelte-hn7eai rounded-sm"
+    class="w-64 h-64 inline-block rounded-sm svelte-hn7eai"
+    height="256"
     loading="lazy"
-    src="./cover.jpg#nonce=0.1"
+    src="./cover.jpg"
+    width="256"
   />
    
   
@@ -70,9 +76,11 @@ exports[`Storyshots Components/Image Rouded 1`] = `
 >
   <img
     alt="./avatar.jpg"
-    class="w-64 h-64 inline-block svelte-hn7eai rounded-full"
+    class="w-64 h-64 inline-block rounded-full svelte-hn7eai"
+    height="256"
     loading="lazy"
-    src="./avatar.jpg#nonce=0.1"
+    src="./avatar.jpg"
+    width="256"
   />
    
   
@@ -89,9 +97,11 @@ exports[`Storyshots Components/Image With Escaped Path 1`] = `
 >
   <img
     alt="./# Films/cover.jpg"
-    class="w-64 h-64 inline-block svelte-hn7eai rounded-sm"
+    class="w-64 h-64 inline-block rounded-sm svelte-hn7eai"
+    height="256"
     loading="lazy"
-    src="./%23 Films/cover.jpg#nonce=0.1"
+    src="./%23 Films/cover.jpg"
+    width="256"
   />
    
   

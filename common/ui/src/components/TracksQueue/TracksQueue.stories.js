@@ -6,11 +6,13 @@ import { trackListData } from '../Player/Player.stories'
 import { hrefSinkDecorator } from '../../../.storybook/decorators'
 import { websocketResponse } from '../../../.storybook/loaders'
 
+const title = 'Components/Tracks queue'
+
 export default {
-  title: 'Components/Tracks queue',
+  title,
   excludeStories: /.*Data$/,
   decorators: [hrefSinkDecorator],
-  loaders: [websocketResponse(() => ({ results: [], total: 0 }))],
+  loaders: [websocketResponse(title, () => ({ results: [], total: 0 }))],
   parameters: { layout: 'none' }
 }
 

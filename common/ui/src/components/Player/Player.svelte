@@ -4,18 +4,19 @@
   import { _ } from 'svelte-intl'
   import Button from '../Button/Button.svelte'
   import Track from '../Track/Track.svelte'
+  import Progress from '../Progress/Progress.svelte'
   import Time from './Time.svelte'
   import AddToPlaylist from './AddToPlaylist.svelte'
   import Controls from './Controls.svelte'
   import Volume from './Volume.svelte'
   import Shuffle from './Shuffle.svelte'
   import Repeat from './Repeat.svelte'
-  import { toDOMSrc } from '../../utils'
   import { current, tracks } from '../../stores/track-queue'
   import { playNext } from '../../stores/track-queue'
   import { screenSize, MD } from '../../stores/window'
 
   let isPlaying
+  let isLoading
   let player
   let timeUpdateTimer
   let duration = 0
@@ -45,7 +46,8 @@
           player.load()
         }
       } else {
-        src = toDOMSrc(current.path)
+        src = window.dlUrl + current.data
+        isLoading = true
         const {
           replaygain_track_gain: trackGain,
           replaygain_album_gain: albumGain
@@ -58,10 +60,21 @@
     })
   })
 
-  function handleCanPlay() {
+  function handleLoaded() {
     // Chrome will block playing songs until user interact with the page, and will
     // issue an error on console
+    isLoading = false
     player.play()
+  }
+
+  function handleLoading() {
+    isPlaying = false
+    isLoading = true
+  }
+
+  function handlePause() {
+    isPlaying = false
+    window.cancelAnimationFrame(timeUpdateTimer)
   }
 
   function handleEnded() {
@@ -145,7 +158,8 @@
     bind:duration
     bind:volume
     bind:muted
-    on:canplay={handleCanPlay}
+    on:loadstart={handleLoading}
+    on:loadeddata={handleLoaded}
     on:ended={handleEnded}
     on:play={() => {
       if (gainNode) {
@@ -155,10 +169,7 @@
       isPlaying = true
       timeUpdateTimer = window.requestAnimationFrame(updateTime)
     }}
-    on:pause={() => {
-      isPlaying = false
-      window.cancelAnimationFrame(timeUpdateTimer)
-    }}
+    on:pause={handlePause}
   />{#if $screenSize >= MD}
     <div class="content">
       <span class="current">
@@ -191,7 +202,10 @@
       {/if}
       <div class="player">
         <span class="controls">
-          <Controls {player} {isPlaying} />
+          {#if isLoading}<Progress />{:else}<Controls
+              {player}
+              {isPlaying}
+            />{/if}
         </span>
       </div>
     </div>

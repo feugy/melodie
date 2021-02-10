@@ -38,6 +38,7 @@
 
   table {
     @apply w-full mt-4 overflow-x-auto;
+    font-size: 1.1rem;
   }
   tbody,
   thead {
@@ -45,7 +46,7 @@
   }
 
   tr {
-    @apply grid gap-0;
+    @apply grid gap-0 items-center;
     grid-template-columns: 60px repeat(10, 1fr) 60px;
   }
 
@@ -108,7 +109,8 @@
       {#each sortedTracks as track, i (track.id)}
         <tr
           on:click={() => clicks$.next(track)}
-          class:current={$current && $current.id === track.id}>
+          class:current={$current && $current.id === track.id}
+        >
           <td>{(track.tags.track && track.tags.track.no) || '--'}</td>
           <td class={`col-span-${withAlbum ? 3 : 5}`}>{track.tags.title}</td>
           <td class={`col-span-${withAlbum ? 3 : 4}`}>

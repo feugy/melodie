@@ -6,12 +6,14 @@ import { playlistsData } from '../AddToPlaylist/AddToPlaylist.stories'
 import { hrefSinkDecorator } from '../../../.storybook/decorators'
 import { websocketResponse } from '../../../.storybook/loaders'
 
+const title = 'Components/Playlist tracks table'
+
 export default {
-  title: 'Components/Playlist tracks table',
+  title,
   excludeStories: /.*Data$/,
   decorators: [hrefSinkDecorator],
   loaders: [
-    websocketResponse(() => ({
+    websocketResponse(title, () => ({
       total: playlistsData.length,
       size: playlistsData.length,
       from: 0,

@@ -1,17 +1,14 @@
 'use strict'
 
 import Component from './settings.svelte'
-import { websocketResponse } from '../../.storybook/loaders'
-import { init } from '../stores/settings'
+import { websocketResponse, runCustom } from '../../.storybook/loaders'
+import { init, isDesktop } from '../stores/settings'
 
+const title = 'Views/Settings'
 export default {
-  title: 'Views/Settings',
+  title,
   loaders: [
-    () => {
-      global.TAILWINDCSS_VERSION = '1.9.0'
-      global.RXJS_VERSION = '6.0.0'
-    },
-    websocketResponse(invoked =>
+    websocketResponse(title, invoked =>
       invoked === 'settings.get'
         ? {
             folders: ['/home/music', '/home/movies'],
@@ -30,7 +27,12 @@ export default {
         ? 'http://localhost:10000'
         : { melodie: '2.0.0', electron: '11.0.0' }
     ),
-    init
+    runCustom(title, async () => {
+      isDesktop.next(true)
+      global.TAILWINDCSS_VERSION = '1.9.0'
+      global.RXJS_VERSION = '6.0.0'
+      await init()
+    })
   ],
   parameters: {
     layout: 'none'

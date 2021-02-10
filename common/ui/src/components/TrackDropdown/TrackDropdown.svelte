@@ -33,7 +33,7 @@
         {
           label: $_('open folder'),
           icon: 'launch',
-          act: () => invoke('tracks.openContainingFolder', track)
+          act: () => invoke('tracks.openContainingFolder', track.id)
         }
       ]
     : [

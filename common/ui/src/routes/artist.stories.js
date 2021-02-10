@@ -40,11 +40,13 @@ export const artistsData = [
   }
 ]
 
+const title = 'Views/Artists'
+
 export default {
-  title: 'Views/Artists',
+  title,
   excludeStories: /.*Data$/,
   loaders: [
-    websocketResponse(() => ({
+    websocketResponse(title, () => ({
       size: 10,
       from: 0,
       total: artistsData.length,

@@ -1,5 +1,1363 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Storyshots Components/Tracks table Default 1`] = `
+<section
+  class="storybook-snapshot-container"
+>
+  <div>
+     
+     
+    <table
+      class=" svelte-716o9v"
+    >
+      <thead
+        class="svelte-716o9v"
+      >
+        <tr
+          class="svelte-716o9v"
+        >
+          <th
+            class="svelte-716o9v"
+          >
+            #
+          </th>
+           
+          <th
+            class="col-span-3 svelte-716o9v"
+          >
+            Track
+          </th>
+           
+          <th
+            class="col-span-3 svelte-716o9v"
+          >
+            Artist
+          </th>
+           
+          <th
+            class="col-span-3 svelte-716o9v"
+          >
+            Album
+          </th>
+           
+          <th
+            class="svelte-716o9v"
+          >
+            Duration
+          </th>
+           
+          <th
+            class="svelte-716o9v"
+          />
+        </tr>
+      </thead>
+       
+      <tbody
+        class="svelte-716o9v"
+      >
+        <tr
+          class="svelte-716o9v"
+        >
+          <td
+            class="svelte-716o9v"
+          >
+            1
+          </td>
+           
+          <td
+            class="col-span-3 svelte-716o9v"
+          >
+            American Money
+          </td>
+           
+          <td
+            class="col-span-3 svelte-716o9v"
+          >
+            <a
+              class="underlined"
+              href="#/artist/0"
+              onclick="event.stopPropagation()"
+            >
+              Yoko Kanno and the Seatbelts
+            </a>
+          </td>
+           
+          <td
+            class="col-span-3 svelte-716o9v"
+          >
+            <a
+              class="underlined"
+              href="#/album/1"
+              onclick="event.stopPropagation()"
+            >
+              Cowboy Bebop - NoDisc
+            </a>
+          </td>
+           
+          <td
+            class="svelte-716o9v"
+          >
+            5:32
+          </td>
+           
+          <td
+            class="svelte-716o9v"
+          >
+            <span
+              aria-expanded="false"
+              aria-haspopup="menu"
+              class="wrapper svelte-dvv38h"
+            >
+              <button
+                class="iconOnly noBorder svelte-1lod44n"
+              >
+                <i
+                  class="material-icons svelte-1lod44n"
+                >
+                  more_vert
+                </i>
+                 
+                 
+                
+                 
+              </button>
+            </span>
+             
+            
+          </td>
+           
+        </tr>
+        <tr
+          class="svelte-716o9v"
+        >
+          <td
+            class="svelte-716o9v"
+          >
+            2
+          </td>
+           
+          <td
+            class="col-span-3 svelte-716o9v"
+          >
+            Fantaisie Sign
+          </td>
+           
+          <td
+            class="col-span-3 svelte-716o9v"
+          >
+            <a
+              class="underlined"
+              href="#/artist/0"
+              onclick="event.stopPropagation()"
+            >
+              Yoko Kanno and the Seatbelts
+            </a>
+          </td>
+           
+          <td
+            class="col-span-3 svelte-716o9v"
+          >
+            <a
+              class="underlined"
+              href="#/album/1"
+              onclick="event.stopPropagation()"
+            >
+              Cowboy Bebop - NoDisc
+            </a>
+          </td>
+           
+          <td
+            class="svelte-716o9v"
+          >
+            3:35
+          </td>
+           
+          <td
+            class="svelte-716o9v"
+          >
+            <span
+              aria-expanded="false"
+              aria-haspopup="menu"
+              class="wrapper svelte-dvv38h"
+            >
+              <button
+                class="iconOnly noBorder svelte-1lod44n"
+              >
+                <i
+                  class="material-icons svelte-1lod44n"
+                >
+                  more_vert
+                </i>
+                 
+                 
+                
+                 
+              </button>
+            </span>
+             
+            
+          </td>
+           
+        </tr>
+        <tr
+          class="svelte-716o9v"
+        >
+          <td
+            class="svelte-716o9v"
+          >
+            3
+          </td>
+           
+          <td
+            class="col-span-3 svelte-716o9v"
+          >
+            Don't Bother None
+          </td>
+           
+          <td
+            class="col-span-3 svelte-716o9v"
+          >
+            <a
+              class="underlined"
+              href="#/artist/0"
+              onclick="event.stopPropagation()"
+            >
+              Yoko Kanno and the Seatbelts
+            </a>
+          </td>
+           
+          <td
+            class="col-span-3 svelte-716o9v"
+          >
+            <a
+              class="underlined"
+              href="#/album/1"
+              onclick="event.stopPropagation()"
+            >
+              Cowboy Bebop - NoDisc
+            </a>
+          </td>
+           
+          <td
+            class="svelte-716o9v"
+          >
+            3:45
+          </td>
+           
+          <td
+            class="svelte-716o9v"
+          >
+            <span
+              aria-expanded="false"
+              aria-haspopup="menu"
+              class="wrapper svelte-dvv38h"
+            >
+              <button
+                class="iconOnly noBorder svelte-1lod44n"
+              >
+                <i
+                  class="material-icons svelte-1lod44n"
+                >
+                  more_vert
+                </i>
+                 
+                 
+                
+                 
+              </button>
+            </span>
+             
+            
+          </td>
+           
+        </tr>
+        <tr
+          class="svelte-716o9v"
+        >
+          <td
+            class="svelte-716o9v"
+          >
+            4
+          </td>
+           
+          <td
+            class="col-span-3 svelte-716o9v"
+          >
+            Vitamin A
+          </td>
+           
+          <td
+            class="col-span-3 svelte-716o9v"
+          >
+            <a
+              class="underlined"
+              href="#/artist/0"
+              onclick="event.stopPropagation()"
+            >
+              Yoko Kanno and the Seatbelts
+            </a>
+          </td>
+           
+          <td
+            class="col-span-3 svelte-716o9v"
+          >
+            <a
+              class="underlined"
+              href="#/album/1"
+              onclick="event.stopPropagation()"
+            >
+              Cowboy Bebop - NoDisc
+            </a>
+          </td>
+           
+          <td
+            class="svelte-716o9v"
+          >
+            4:41
+          </td>
+           
+          <td
+            class="svelte-716o9v"
+          >
+            <span
+              aria-expanded="false"
+              aria-haspopup="menu"
+              class="wrapper svelte-dvv38h"
+            >
+              <button
+                class="iconOnly noBorder svelte-1lod44n"
+              >
+                <i
+                  class="material-icons svelte-1lod44n"
+                >
+                  more_vert
+                </i>
+                 
+                 
+                
+                 
+              </button>
+            </span>
+             
+            
+          </td>
+           
+        </tr>
+        <tr
+          class="svelte-716o9v"
+        >
+          <td
+            class="svelte-716o9v"
+          >
+            5
+          </td>
+           
+          <td
+            class="col-span-3 svelte-716o9v"
+          >
+            LIVE in Baghdad
+          </td>
+           
+          <td
+            class="col-span-3 svelte-716o9v"
+          >
+            <a
+              class="underlined"
+              href="#/artist/0"
+              onclick="event.stopPropagation()"
+            >
+              Yoko Kanno and the Seatbelts
+            </a>
+          </td>
+           
+          <td
+            class="col-span-3 svelte-716o9v"
+          >
+            <a
+              class="underlined"
+              href="#/album/1"
+              onclick="event.stopPropagation()"
+            >
+              Cowboy Bebop - NoDisc
+            </a>
+          </td>
+           
+          <td
+            class="svelte-716o9v"
+          >
+            2:59
+          </td>
+           
+          <td
+            class="svelte-716o9v"
+          >
+            <span
+              aria-expanded="false"
+              aria-haspopup="menu"
+              class="wrapper svelte-dvv38h"
+            >
+              <button
+                class="iconOnly noBorder svelte-1lod44n"
+              >
+                <i
+                  class="material-icons svelte-1lod44n"
+                >
+                  more_vert
+                </i>
+                 
+                 
+                
+                 
+              </button>
+            </span>
+             
+            
+          </td>
+           
+        </tr>
+        <tr
+          class="svelte-716o9v"
+        >
+          <td
+            class="svelte-716o9v"
+          >
+            6
+          </td>
+           
+          <td
+            class="col-span-3 svelte-716o9v"
+          >
+            Cats on Mars
+          </td>
+           
+          <td
+            class="col-span-3 svelte-716o9v"
+          >
+            <a
+              class="underlined"
+              href="#/artist/0"
+              onclick="event.stopPropagation()"
+            >
+              Yoko Kanno and the Seatbelts
+            </a>
+          </td>
+           
+          <td
+            class="col-span-3 svelte-716o9v"
+          >
+            <a
+              class="underlined"
+              href="#/album/1"
+              onclick="event.stopPropagation()"
+            >
+              Cowboy Bebop - NoDisc
+            </a>
+          </td>
+           
+          <td
+            class="svelte-716o9v"
+          >
+            0:07
+          </td>
+           
+          <td
+            class="svelte-716o9v"
+          >
+            <span
+              aria-expanded="false"
+              aria-haspopup="menu"
+              class="wrapper svelte-dvv38h"
+            >
+              <button
+                class="iconOnly noBorder svelte-1lod44n"
+              >
+                <i
+                  class="material-icons svelte-1lod44n"
+                >
+                  more_vert
+                </i>
+                 
+                 
+                
+                 
+              </button>
+            </span>
+             
+            
+          </td>
+           
+        </tr>
+        <tr
+          class="svelte-716o9v"
+        >
+          <td
+            class="svelte-716o9v"
+          >
+            7
+          </td>
+           
+          <td
+            class="col-span-3 svelte-716o9v"
+          >
+            Want it All Back
+          </td>
+           
+          <td
+            class="col-span-3 svelte-716o9v"
+          >
+            <a
+              class="underlined"
+              href="#/artist/0"
+              onclick="event.stopPropagation()"
+            >
+              Yoko Kanno and the Seatbelts
+            </a>
+          </td>
+           
+          <td
+            class="col-span-3 svelte-716o9v"
+          >
+            <a
+              class="underlined"
+              href="#/album/1"
+              onclick="event.stopPropagation()"
+            >
+              Cowboy Bebop - NoDisc
+            </a>
+          </td>
+           
+          <td
+            class="svelte-716o9v"
+          >
+            3:51
+          </td>
+           
+          <td
+            class="svelte-716o9v"
+          >
+            <span
+              aria-expanded="false"
+              aria-haspopup="menu"
+              class="wrapper svelte-dvv38h"
+            >
+              <button
+                class="iconOnly noBorder svelte-1lod44n"
+              >
+                <i
+                  class="material-icons svelte-1lod44n"
+                >
+                  more_vert
+                </i>
+                 
+                 
+                
+                 
+              </button>
+            </span>
+             
+            
+          </td>
+           
+        </tr>
+        <tr
+          class="svelte-716o9v"
+        >
+          <td
+            class="svelte-716o9v"
+          >
+            8
+          </td>
+           
+          <td
+            class="col-span-3 svelte-716o9v"
+          >
+            Bindy
+          </td>
+           
+          <td
+            class="col-span-3 svelte-716o9v"
+          >
+            <a
+              class="underlined"
+              href="#/artist/0"
+              onclick="event.stopPropagation()"
+            >
+              Yoko Kanno and the Seatbelts
+            </a>
+          </td>
+           
+          <td
+            class="col-span-3 svelte-716o9v"
+          >
+            <a
+              class="underlined"
+              href="#/album/1"
+              onclick="event.stopPropagation()"
+            >
+              Cowboy Bebop - NoDisc
+            </a>
+          </td>
+           
+          <td
+            class="svelte-716o9v"
+          >
+            0:15
+          </td>
+           
+          <td
+            class="svelte-716o9v"
+          >
+            <span
+              aria-expanded="false"
+              aria-haspopup="menu"
+              class="wrapper svelte-dvv38h"
+            >
+              <button
+                class="iconOnly noBorder svelte-1lod44n"
+              >
+                <i
+                  class="material-icons svelte-1lod44n"
+                >
+                  more_vert
+                </i>
+                 
+                 
+                
+                 
+              </button>
+            </span>
+             
+            
+          </td>
+           
+        </tr>
+        <tr
+          class="svelte-716o9v"
+        >
+          <td
+            class="svelte-716o9v"
+          >
+            9
+          </td>
+           
+          <td
+            class="col-span-3 svelte-716o9v"
+          >
+            You Make Me Coo
+          </td>
+           
+          <td
+            class="col-span-3 svelte-716o9v"
+          >
+            <a
+              class="underlined"
+              href="#/artist/0"
+              onclick="event.stopPropagation()"
+            >
+              Yoko Kanno and the Seatbelts
+            </a>
+          </td>
+           
+          <td
+            class="col-span-3 svelte-716o9v"
+          >
+            <a
+              class="underlined"
+              href="#/album/1"
+              onclick="event.stopPropagation()"
+            >
+              Cowboy Bebop - NoDisc
+            </a>
+          </td>
+           
+          <td
+            class="svelte-716o9v"
+          >
+            3:14
+          </td>
+           
+          <td
+            class="svelte-716o9v"
+          >
+            <span
+              aria-expanded="false"
+              aria-haspopup="menu"
+              class="wrapper svelte-dvv38h"
+            >
+              <button
+                class="iconOnly noBorder svelte-1lod44n"
+              >
+                <i
+                  class="material-icons svelte-1lod44n"
+                >
+                  more_vert
+                </i>
+                 
+                 
+                
+                 
+              </button>
+            </span>
+             
+            
+          </td>
+           
+        </tr>
+        <tr
+          class="svelte-716o9v"
+        >
+          <td
+            class="svelte-716o9v"
+          >
+            10
+          </td>
+           
+          <td
+            class="col-span-3 svelte-716o9v"
+          >
+            Vitamin B
+          </td>
+           
+          <td
+            class="col-span-3 svelte-716o9v"
+          >
+            <a
+              class="underlined"
+              href="#/artist/0"
+              onclick="event.stopPropagation()"
+            >
+              Yoko Kanno and the Seatbelts
+            </a>
+          </td>
+           
+          <td
+            class="col-span-3 svelte-716o9v"
+          >
+            <a
+              class="underlined"
+              href="#/album/1"
+              onclick="event.stopPropagation()"
+            >
+              Cowboy Bebop - NoDisc
+            </a>
+          </td>
+           
+          <td
+            class="svelte-716o9v"
+          >
+            4:06
+          </td>
+           
+          <td
+            class="svelte-716o9v"
+          >
+            <span
+              aria-expanded="false"
+              aria-haspopup="menu"
+              class="wrapper svelte-dvv38h"
+            >
+              <button
+                class="iconOnly noBorder svelte-1lod44n"
+              >
+                <i
+                  class="material-icons svelte-1lod44n"
+                >
+                  more_vert
+                </i>
+                 
+                 
+                
+                 
+              </button>
+            </span>
+             
+            
+          </td>
+           
+        </tr>
+        <tr
+          class="svelte-716o9v"
+        >
+          <td
+            class="svelte-716o9v"
+          >
+            11
+          </td>
+           
+          <td
+            class="col-span-3 svelte-716o9v"
+          >
+            Green Bird
+          </td>
+           
+          <td
+            class="col-span-3 svelte-716o9v"
+          >
+            <a
+              class="underlined"
+              href="#/artist/0"
+              onclick="event.stopPropagation()"
+            >
+              Yoko Kanno and the Seatbelts
+            </a>
+          </td>
+           
+          <td
+            class="col-span-3 svelte-716o9v"
+          >
+            <a
+              class="underlined"
+              href="#/album/1"
+              onclick="event.stopPropagation()"
+            >
+              Cowboy Bebop - NoDisc
+            </a>
+          </td>
+           
+          <td
+            class="svelte-716o9v"
+          >
+            2:33
+          </td>
+           
+          <td
+            class="svelte-716o9v"
+          >
+            <span
+              aria-expanded="false"
+              aria-haspopup="menu"
+              class="wrapper svelte-dvv38h"
+            >
+              <button
+                class="iconOnly noBorder svelte-1lod44n"
+              >
+                <i
+                  class="material-icons svelte-1lod44n"
+                >
+                  more_vert
+                </i>
+                 
+                 
+                
+                 
+              </button>
+            </span>
+             
+            
+          </td>
+           
+        </tr>
+        <tr
+          class="svelte-716o9v"
+        >
+          <td
+            class="svelte-716o9v"
+          >
+            12
+          </td>
+           
+          <td
+            class="col-span-3 svelte-716o9v"
+          >
+            ELM
+          </td>
+           
+          <td
+            class="col-span-3 svelte-716o9v"
+          >
+            <a
+              class="underlined"
+              href="#/artist/0"
+              onclick="event.stopPropagation()"
+            >
+              Yoko Kanno and the Seatbelts
+            </a>
+          </td>
+           
+          <td
+            class="col-span-3 svelte-716o9v"
+          >
+            <a
+              class="underlined"
+              href="#/album/1"
+              onclick="event.stopPropagation()"
+            >
+              Cowboy Bebop - NoDisc
+            </a>
+          </td>
+           
+          <td
+            class="svelte-716o9v"
+          >
+            6:55
+          </td>
+           
+          <td
+            class="svelte-716o9v"
+          >
+            <span
+              aria-expanded="false"
+              aria-haspopup="menu"
+              class="wrapper svelte-dvv38h"
+            >
+              <button
+                class="iconOnly noBorder svelte-1lod44n"
+              >
+                <i
+                  class="material-icons svelte-1lod44n"
+                >
+                  more_vert
+                </i>
+                 
+                 
+                
+                 
+              </button>
+            </span>
+             
+            
+          </td>
+           
+        </tr>
+        <tr
+          class="svelte-716o9v"
+        >
+          <td
+            class="svelte-716o9v"
+          >
+            13
+          </td>
+           
+          <td
+            class="col-span-3 svelte-716o9v"
+          >
+            Vitamin C
+          </td>
+           
+          <td
+            class="col-span-3 svelte-716o9v"
+          >
+            <a
+              class="underlined"
+              href="#/artist/0"
+              onclick="event.stopPropagation()"
+            >
+              Yoko Kanno and the Seatbelts
+            </a>
+          </td>
+           
+          <td
+            class="col-span-3 svelte-716o9v"
+          >
+            <a
+              class="underlined"
+              href="#/album/1"
+              onclick="event.stopPropagation()"
+            >
+              Cowboy Bebop - NoDisc
+            </a>
+          </td>
+           
+          <td
+            class="svelte-716o9v"
+          >
+            5:24
+          </td>
+           
+          <td
+            class="svelte-716o9v"
+          >
+            <span
+              aria-expanded="false"
+              aria-haspopup="menu"
+              class="wrapper svelte-dvv38h"
+            >
+              <button
+                class="iconOnly noBorder svelte-1lod44n"
+              >
+                <i
+                  class="material-icons svelte-1lod44n"
+                >
+                  more_vert
+                </i>
+                 
+                 
+                
+                 
+              </button>
+            </span>
+             
+            
+          </td>
+           
+        </tr>
+        <tr
+          class="svelte-716o9v"
+        >
+          <td
+            class="svelte-716o9v"
+          >
+            14
+          </td>
+           
+          <td
+            class="col-span-3 svelte-716o9v"
+          >
+            Gateway
+          </td>
+           
+          <td
+            class="col-span-3 svelte-716o9v"
+          >
+            <a
+              class="underlined"
+              href="#/artist/0"
+              onclick="event.stopPropagation()"
+            >
+              Yoko Kanno and the Seatbelts
+            </a>
+          </td>
+           
+          <td
+            class="col-span-3 svelte-716o9v"
+          >
+            <a
+              class="underlined"
+              href="#/album/1"
+              onclick="event.stopPropagation()"
+            >
+              Cowboy Bebop - NoDisc
+            </a>
+          </td>
+           
+          <td
+            class="svelte-716o9v"
+          >
+            0:16
+          </td>
+           
+          <td
+            class="svelte-716o9v"
+          >
+            <span
+              aria-expanded="false"
+              aria-haspopup="menu"
+              class="wrapper svelte-dvv38h"
+            >
+              <button
+                class="iconOnly noBorder svelte-1lod44n"
+              >
+                <i
+                  class="material-icons svelte-1lod44n"
+                >
+                  more_vert
+                </i>
+                 
+                 
+                
+                 
+              </button>
+            </span>
+             
+            
+          </td>
+           
+        </tr>
+        <tr
+          class="svelte-716o9v"
+        >
+          <td
+            class="svelte-716o9v"
+          >
+            15
+          </td>
+           
+          <td
+            class="col-span-3 svelte-716o9v"
+          >
+            The Singing Sea
+          </td>
+           
+          <td
+            class="col-span-3 svelte-716o9v"
+          >
+            <a
+              class="underlined"
+              href="#/artist/0"
+              onclick="event.stopPropagation()"
+            >
+              Yoko Kanno and the Seatbelts
+            </a>
+          </td>
+           
+          <td
+            class="col-span-3 svelte-716o9v"
+          >
+            <a
+              class="underlined"
+              href="#/album/1"
+              onclick="event.stopPropagation()"
+            >
+              Cowboy Bebop - NoDisc
+            </a>
+          </td>
+           
+          <td
+            class="svelte-716o9v"
+          >
+            6:41
+          </td>
+           
+          <td
+            class="svelte-716o9v"
+          >
+            <span
+              aria-expanded="false"
+              aria-haspopup="menu"
+              class="wrapper svelte-dvv38h"
+            >
+              <button
+                class="iconOnly noBorder svelte-1lod44n"
+              >
+                <i
+                  class="material-icons svelte-1lod44n"
+                >
+                  more_vert
+                </i>
+                 
+                 
+                
+                 
+              </button>
+            </span>
+             
+            
+          </td>
+           
+        </tr>
+        <tr
+          class="svelte-716o9v"
+        >
+          <td
+            class="svelte-716o9v"
+          >
+            16
+          </td>
+           
+          <td
+            class="col-span-3 svelte-716o9v"
+          >
+            The Egg and You!
+          </td>
+           
+          <td
+            class="col-span-3 svelte-716o9v"
+          >
+            <a
+              class="underlined"
+              href="#/artist/0"
+              onclick="event.stopPropagation()"
+            >
+              Yoko Kanno and the Seatbelts
+            </a>
+          </td>
+           
+          <td
+            class="col-span-3 svelte-716o9v"
+          >
+            <a
+              class="underlined"
+              href="#/album/1"
+              onclick="event.stopPropagation()"
+            >
+              Cowboy Bebop - NoDisc
+            </a>
+          </td>
+           
+          <td
+            class="svelte-716o9v"
+          >
+            4:47
+          </td>
+           
+          <td
+            class="svelte-716o9v"
+          >
+            <span
+              aria-expanded="false"
+              aria-haspopup="menu"
+              class="wrapper svelte-dvv38h"
+            >
+              <button
+                class="iconOnly noBorder svelte-1lod44n"
+              >
+                <i
+                  class="material-icons svelte-1lod44n"
+                >
+                  more_vert
+                </i>
+                 
+                 
+                
+                 
+              </button>
+            </span>
+             
+            
+          </td>
+           
+        </tr>
+        <tr
+          class="svelte-716o9v"
+        >
+          <td
+            class="svelte-716o9v"
+          >
+            17
+          </td>
+           
+          <td
+            class="col-span-3 svelte-716o9v"
+          >
+            Forever Broke
+          </td>
+           
+          <td
+            class="col-span-3 svelte-716o9v"
+          >
+            <a
+              class="underlined"
+              href="#/artist/0"
+              onclick="event.stopPropagation()"
+            >
+              Yoko Kanno and the Seatbelts
+            </a>
+          </td>
+           
+          <td
+            class="col-span-3 svelte-716o9v"
+          >
+            <a
+              class="underlined"
+              href="#/album/1"
+              onclick="event.stopPropagation()"
+            >
+              Cowboy Bebop - NoDisc
+            </a>
+          </td>
+           
+          <td
+            class="svelte-716o9v"
+          >
+            1:36
+          </td>
+           
+          <td
+            class="svelte-716o9v"
+          >
+            <span
+              aria-expanded="false"
+              aria-haspopup="menu"
+              class="wrapper svelte-dvv38h"
+            >
+              <button
+                class="iconOnly noBorder svelte-1lod44n"
+              >
+                <i
+                  class="material-icons svelte-1lod44n"
+                >
+                  more_vert
+                </i>
+                 
+                 
+                
+                 
+              </button>
+            </span>
+             
+            
+          </td>
+           
+        </tr>
+        <tr
+          class="svelte-716o9v"
+        >
+          <td
+            class="svelte-716o9v"
+          >
+            18
+          </td>
+           
+          <td
+            class="col-span-3 svelte-716o9v"
+          >
+            Power of Kungfu Remix
+          </td>
+           
+          <td
+            class="col-span-3 svelte-716o9v"
+          >
+            <a
+              class="underlined"
+              href="#/artist/0"
+              onclick="event.stopPropagation()"
+            >
+              Yoko Kanno and the Seatbelts
+            </a>
+          </td>
+           
+          <td
+            class="col-span-3 svelte-716o9v"
+          >
+            <a
+              class="underlined"
+              href="#/album/1"
+              onclick="event.stopPropagation()"
+            >
+              Cowboy Bebop - NoDisc
+            </a>
+          </td>
+           
+          <td
+            class="svelte-716o9v"
+          >
+            2:22
+          </td>
+           
+          <td
+            class="svelte-716o9v"
+          >
+            <span
+              aria-expanded="false"
+              aria-haspopup="menu"
+              class="wrapper svelte-dvv38h"
+            >
+              <button
+                class="iconOnly noBorder svelte-1lod44n"
+              >
+                <i
+                  class="material-icons svelte-1lod44n"
+                >
+                  more_vert
+                </i>
+                 
+                 
+                
+                 
+              </button>
+            </span>
+             
+            
+          </td>
+           
+        </tr>
+      </tbody>
+    </table>
+    
+  </div>
+</section>
+`;
+
 exports[`Storyshots Components/Tracks table With Current 1`] = `
 <section
   class="storybook-snapshot-container"
@@ -8,70 +1366,70 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
      
      
     <table
-      class=" svelte-15c3ump"
+      class=" svelte-716o9v"
     >
       <thead
-        class="svelte-15c3ump"
+        class="svelte-716o9v"
       >
         <tr
-          class="svelte-15c3ump"
+          class="svelte-716o9v"
         >
           <th
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             #
           </th>
            
           <th
-            class="col-span-3 svelte-15c3ump"
+            class="col-span-3 svelte-716o9v"
           >
             Track
           </th>
            
           <th
-            class="col-span-3 svelte-15c3ump"
+            class="col-span-3 svelte-716o9v"
           >
             Artist
           </th>
            
           <th
-            class="col-span-3 svelte-15c3ump"
+            class="col-span-3 svelte-716o9v"
           >
             Album
           </th>
            
           <th
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             Duration
           </th>
            
           <th
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           />
         </tr>
       </thead>
        
       <tbody
-        class="svelte-15c3ump"
+        class="svelte-716o9v"
       >
         <tr
-          class="svelte-15c3ump"
+          class="svelte-716o9v"
         >
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             1
           </td>
            
           <td
-            class="col-span-3 svelte-15c3ump"
+            class="col-span-3 svelte-716o9v"
           >
             American Money
           </td>
            
           <td
-            class="col-span-3 svelte-15c3ump"
+            class="col-span-3 svelte-716o9v"
           >
             <a
               class="underlined"
@@ -83,7 +1441,7 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="col-span-3 svelte-15c3ump"
+            class="col-span-3 svelte-716o9v"
           >
             <a
               class="underlined"
@@ -95,13 +1453,13 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             5:32
           </td>
            
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             <span
               aria-expanded="false"
@@ -109,10 +1467,10 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
               class="wrapper svelte-dvv38h"
             >
               <button
-                class="iconOnly noBorder svelte-9liv1b"
+                class="iconOnly noBorder svelte-1lod44n"
               >
                 <i
-                  class="material-icons svelte-9liv1b"
+                  class="material-icons svelte-1lod44n"
                 >
                   more_vert
                 </i>
@@ -128,22 +1486,22 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
            
         </tr>
         <tr
-          class="svelte-15c3ump"
+          class="svelte-716o9v"
         >
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             2
           </td>
            
           <td
-            class="col-span-3 svelte-15c3ump"
+            class="col-span-3 svelte-716o9v"
           >
             Fantaisie Sign
           </td>
            
           <td
-            class="col-span-3 svelte-15c3ump"
+            class="col-span-3 svelte-716o9v"
           >
             <a
               class="underlined"
@@ -155,7 +1513,7 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="col-span-3 svelte-15c3ump"
+            class="col-span-3 svelte-716o9v"
           >
             <a
               class="underlined"
@@ -167,13 +1525,13 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             3:35
           </td>
            
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             <span
               aria-expanded="false"
@@ -181,10 +1539,10 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
               class="wrapper svelte-dvv38h"
             >
               <button
-                class="iconOnly noBorder svelte-9liv1b"
+                class="iconOnly noBorder svelte-1lod44n"
               >
                 <i
-                  class="material-icons svelte-9liv1b"
+                  class="material-icons svelte-1lod44n"
                 >
                   more_vert
                 </i>
@@ -200,22 +1558,22 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
            
         </tr>
         <tr
-          class="svelte-15c3ump"
+          class="svelte-716o9v"
         >
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             3
           </td>
            
           <td
-            class="col-span-3 svelte-15c3ump"
+            class="col-span-3 svelte-716o9v"
           >
             Don't Bother None
           </td>
            
           <td
-            class="col-span-3 svelte-15c3ump"
+            class="col-span-3 svelte-716o9v"
           >
             <a
               class="underlined"
@@ -227,7 +1585,7 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="col-span-3 svelte-15c3ump"
+            class="col-span-3 svelte-716o9v"
           >
             <a
               class="underlined"
@@ -239,13 +1597,13 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             3:45
           </td>
            
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             <span
               aria-expanded="false"
@@ -253,10 +1611,10 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
               class="wrapper svelte-dvv38h"
             >
               <button
-                class="iconOnly noBorder svelte-9liv1b"
+                class="iconOnly noBorder svelte-1lod44n"
               >
                 <i
-                  class="material-icons svelte-9liv1b"
+                  class="material-icons svelte-1lod44n"
                 >
                   more_vert
                 </i>
@@ -272,22 +1630,22 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
            
         </tr>
         <tr
-          class="svelte-15c3ump current"
+          class="svelte-716o9v current"
         >
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             4
           </td>
            
           <td
-            class="col-span-3 svelte-15c3ump"
+            class="col-span-3 svelte-716o9v"
           >
             Vitamin A
           </td>
            
           <td
-            class="col-span-3 svelte-15c3ump"
+            class="col-span-3 svelte-716o9v"
           >
             <a
               class="underlined"
@@ -299,7 +1657,7 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="col-span-3 svelte-15c3ump"
+            class="col-span-3 svelte-716o9v"
           >
             <a
               class="underlined"
@@ -311,13 +1669,13 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             4:41
           </td>
            
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             <span
               aria-expanded="false"
@@ -325,10 +1683,10 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
               class="wrapper svelte-dvv38h"
             >
               <button
-                class="iconOnly noBorder svelte-9liv1b"
+                class="iconOnly noBorder svelte-1lod44n"
               >
                 <i
-                  class="material-icons svelte-9liv1b"
+                  class="material-icons svelte-1lod44n"
                 >
                   more_vert
                 </i>
@@ -344,22 +1702,22 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
            
         </tr>
         <tr
-          class="svelte-15c3ump"
+          class="svelte-716o9v"
         >
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             5
           </td>
            
           <td
-            class="col-span-3 svelte-15c3ump"
+            class="col-span-3 svelte-716o9v"
           >
             LIVE in Baghdad
           </td>
            
           <td
-            class="col-span-3 svelte-15c3ump"
+            class="col-span-3 svelte-716o9v"
           >
             <a
               class="underlined"
@@ -371,7 +1729,7 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="col-span-3 svelte-15c3ump"
+            class="col-span-3 svelte-716o9v"
           >
             <a
               class="underlined"
@@ -383,13 +1741,13 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             2:59
           </td>
            
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             <span
               aria-expanded="false"
@@ -397,10 +1755,10 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
               class="wrapper svelte-dvv38h"
             >
               <button
-                class="iconOnly noBorder svelte-9liv1b"
+                class="iconOnly noBorder svelte-1lod44n"
               >
                 <i
-                  class="material-icons svelte-9liv1b"
+                  class="material-icons svelte-1lod44n"
                 >
                   more_vert
                 </i>
@@ -416,22 +1774,22 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
            
         </tr>
         <tr
-          class="svelte-15c3ump"
+          class="svelte-716o9v"
         >
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             6
           </td>
            
           <td
-            class="col-span-3 svelte-15c3ump"
+            class="col-span-3 svelte-716o9v"
           >
             Cats on Mars
           </td>
            
           <td
-            class="col-span-3 svelte-15c3ump"
+            class="col-span-3 svelte-716o9v"
           >
             <a
               class="underlined"
@@ -443,7 +1801,7 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="col-span-3 svelte-15c3ump"
+            class="col-span-3 svelte-716o9v"
           >
             <a
               class="underlined"
@@ -455,13 +1813,13 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             0:07
           </td>
            
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             <span
               aria-expanded="false"
@@ -469,10 +1827,10 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
               class="wrapper svelte-dvv38h"
             >
               <button
-                class="iconOnly noBorder svelte-9liv1b"
+                class="iconOnly noBorder svelte-1lod44n"
               >
                 <i
-                  class="material-icons svelte-9liv1b"
+                  class="material-icons svelte-1lod44n"
                 >
                   more_vert
                 </i>
@@ -488,22 +1846,22 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
            
         </tr>
         <tr
-          class="svelte-15c3ump"
+          class="svelte-716o9v"
         >
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             7
           </td>
            
           <td
-            class="col-span-3 svelte-15c3ump"
+            class="col-span-3 svelte-716o9v"
           >
             Want it All Back
           </td>
            
           <td
-            class="col-span-3 svelte-15c3ump"
+            class="col-span-3 svelte-716o9v"
           >
             <a
               class="underlined"
@@ -515,7 +1873,7 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="col-span-3 svelte-15c3ump"
+            class="col-span-3 svelte-716o9v"
           >
             <a
               class="underlined"
@@ -527,13 +1885,13 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             3:51
           </td>
            
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             <span
               aria-expanded="false"
@@ -541,10 +1899,10 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
               class="wrapper svelte-dvv38h"
             >
               <button
-                class="iconOnly noBorder svelte-9liv1b"
+                class="iconOnly noBorder svelte-1lod44n"
               >
                 <i
-                  class="material-icons svelte-9liv1b"
+                  class="material-icons svelte-1lod44n"
                 >
                   more_vert
                 </i>
@@ -560,22 +1918,22 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
            
         </tr>
         <tr
-          class="svelte-15c3ump"
+          class="svelte-716o9v"
         >
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             8
           </td>
            
           <td
-            class="col-span-3 svelte-15c3ump"
+            class="col-span-3 svelte-716o9v"
           >
             Bindy
           </td>
            
           <td
-            class="col-span-3 svelte-15c3ump"
+            class="col-span-3 svelte-716o9v"
           >
             <a
               class="underlined"
@@ -587,7 +1945,7 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="col-span-3 svelte-15c3ump"
+            class="col-span-3 svelte-716o9v"
           >
             <a
               class="underlined"
@@ -599,13 +1957,13 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             0:15
           </td>
            
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             <span
               aria-expanded="false"
@@ -613,10 +1971,10 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
               class="wrapper svelte-dvv38h"
             >
               <button
-                class="iconOnly noBorder svelte-9liv1b"
+                class="iconOnly noBorder svelte-1lod44n"
               >
                 <i
-                  class="material-icons svelte-9liv1b"
+                  class="material-icons svelte-1lod44n"
                 >
                   more_vert
                 </i>
@@ -632,22 +1990,22 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
            
         </tr>
         <tr
-          class="svelte-15c3ump"
+          class="svelte-716o9v"
         >
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             9
           </td>
            
           <td
-            class="col-span-3 svelte-15c3ump"
+            class="col-span-3 svelte-716o9v"
           >
             You Make Me Coo
           </td>
            
           <td
-            class="col-span-3 svelte-15c3ump"
+            class="col-span-3 svelte-716o9v"
           >
             <a
               class="underlined"
@@ -659,7 +2017,7 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="col-span-3 svelte-15c3ump"
+            class="col-span-3 svelte-716o9v"
           >
             <a
               class="underlined"
@@ -671,13 +2029,13 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             3:14
           </td>
            
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             <span
               aria-expanded="false"
@@ -685,10 +2043,10 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
               class="wrapper svelte-dvv38h"
             >
               <button
-                class="iconOnly noBorder svelte-9liv1b"
+                class="iconOnly noBorder svelte-1lod44n"
               >
                 <i
-                  class="material-icons svelte-9liv1b"
+                  class="material-icons svelte-1lod44n"
                 >
                   more_vert
                 </i>
@@ -704,22 +2062,22 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
            
         </tr>
         <tr
-          class="svelte-15c3ump"
+          class="svelte-716o9v"
         >
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             10
           </td>
            
           <td
-            class="col-span-3 svelte-15c3ump"
+            class="col-span-3 svelte-716o9v"
           >
             Vitamin B
           </td>
            
           <td
-            class="col-span-3 svelte-15c3ump"
+            class="col-span-3 svelte-716o9v"
           >
             <a
               class="underlined"
@@ -731,7 +2089,7 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="col-span-3 svelte-15c3ump"
+            class="col-span-3 svelte-716o9v"
           >
             <a
               class="underlined"
@@ -743,13 +2101,13 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             4:06
           </td>
            
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             <span
               aria-expanded="false"
@@ -757,10 +2115,10 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
               class="wrapper svelte-dvv38h"
             >
               <button
-                class="iconOnly noBorder svelte-9liv1b"
+                class="iconOnly noBorder svelte-1lod44n"
               >
                 <i
-                  class="material-icons svelte-9liv1b"
+                  class="material-icons svelte-1lod44n"
                 >
                   more_vert
                 </i>
@@ -776,22 +2134,22 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
            
         </tr>
         <tr
-          class="svelte-15c3ump"
+          class="svelte-716o9v"
         >
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             11
           </td>
            
           <td
-            class="col-span-3 svelte-15c3ump"
+            class="col-span-3 svelte-716o9v"
           >
             Green Bird
           </td>
            
           <td
-            class="col-span-3 svelte-15c3ump"
+            class="col-span-3 svelte-716o9v"
           >
             <a
               class="underlined"
@@ -803,7 +2161,7 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="col-span-3 svelte-15c3ump"
+            class="col-span-3 svelte-716o9v"
           >
             <a
               class="underlined"
@@ -815,13 +2173,13 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             2:33
           </td>
            
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             <span
               aria-expanded="false"
@@ -829,10 +2187,10 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
               class="wrapper svelte-dvv38h"
             >
               <button
-                class="iconOnly noBorder svelte-9liv1b"
+                class="iconOnly noBorder svelte-1lod44n"
               >
                 <i
-                  class="material-icons svelte-9liv1b"
+                  class="material-icons svelte-1lod44n"
                 >
                   more_vert
                 </i>
@@ -848,22 +2206,22 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
            
         </tr>
         <tr
-          class="svelte-15c3ump"
+          class="svelte-716o9v"
         >
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             12
           </td>
            
           <td
-            class="col-span-3 svelte-15c3ump"
+            class="col-span-3 svelte-716o9v"
           >
             ELM
           </td>
            
           <td
-            class="col-span-3 svelte-15c3ump"
+            class="col-span-3 svelte-716o9v"
           >
             <a
               class="underlined"
@@ -875,7 +2233,7 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="col-span-3 svelte-15c3ump"
+            class="col-span-3 svelte-716o9v"
           >
             <a
               class="underlined"
@@ -887,13 +2245,13 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             6:55
           </td>
            
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             <span
               aria-expanded="false"
@@ -901,10 +2259,10 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
               class="wrapper svelte-dvv38h"
             >
               <button
-                class="iconOnly noBorder svelte-9liv1b"
+                class="iconOnly noBorder svelte-1lod44n"
               >
                 <i
-                  class="material-icons svelte-9liv1b"
+                  class="material-icons svelte-1lod44n"
                 >
                   more_vert
                 </i>
@@ -920,22 +2278,22 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
            
         </tr>
         <tr
-          class="svelte-15c3ump"
+          class="svelte-716o9v"
         >
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             13
           </td>
            
           <td
-            class="col-span-3 svelte-15c3ump"
+            class="col-span-3 svelte-716o9v"
           >
             Vitamin C
           </td>
            
           <td
-            class="col-span-3 svelte-15c3ump"
+            class="col-span-3 svelte-716o9v"
           >
             <a
               class="underlined"
@@ -947,7 +2305,7 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="col-span-3 svelte-15c3ump"
+            class="col-span-3 svelte-716o9v"
           >
             <a
               class="underlined"
@@ -959,13 +2317,13 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             5:24
           </td>
            
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             <span
               aria-expanded="false"
@@ -973,10 +2331,10 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
               class="wrapper svelte-dvv38h"
             >
               <button
-                class="iconOnly noBorder svelte-9liv1b"
+                class="iconOnly noBorder svelte-1lod44n"
               >
                 <i
-                  class="material-icons svelte-9liv1b"
+                  class="material-icons svelte-1lod44n"
                 >
                   more_vert
                 </i>
@@ -992,22 +2350,22 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
            
         </tr>
         <tr
-          class="svelte-15c3ump"
+          class="svelte-716o9v"
         >
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             14
           </td>
            
           <td
-            class="col-span-3 svelte-15c3ump"
+            class="col-span-3 svelte-716o9v"
           >
             Gateway
           </td>
            
           <td
-            class="col-span-3 svelte-15c3ump"
+            class="col-span-3 svelte-716o9v"
           >
             <a
               class="underlined"
@@ -1019,7 +2377,7 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="col-span-3 svelte-15c3ump"
+            class="col-span-3 svelte-716o9v"
           >
             <a
               class="underlined"
@@ -1031,13 +2389,13 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             0:16
           </td>
            
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             <span
               aria-expanded="false"
@@ -1045,10 +2403,10 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
               class="wrapper svelte-dvv38h"
             >
               <button
-                class="iconOnly noBorder svelte-9liv1b"
+                class="iconOnly noBorder svelte-1lod44n"
               >
                 <i
-                  class="material-icons svelte-9liv1b"
+                  class="material-icons svelte-1lod44n"
                 >
                   more_vert
                 </i>
@@ -1064,22 +2422,22 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
            
         </tr>
         <tr
-          class="svelte-15c3ump"
+          class="svelte-716o9v"
         >
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             15
           </td>
            
           <td
-            class="col-span-3 svelte-15c3ump"
+            class="col-span-3 svelte-716o9v"
           >
             The Singing Sea
           </td>
            
           <td
-            class="col-span-3 svelte-15c3ump"
+            class="col-span-3 svelte-716o9v"
           >
             <a
               class="underlined"
@@ -1091,7 +2449,7 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="col-span-3 svelte-15c3ump"
+            class="col-span-3 svelte-716o9v"
           >
             <a
               class="underlined"
@@ -1103,13 +2461,13 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             6:41
           </td>
            
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             <span
               aria-expanded="false"
@@ -1117,10 +2475,10 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
               class="wrapper svelte-dvv38h"
             >
               <button
-                class="iconOnly noBorder svelte-9liv1b"
+                class="iconOnly noBorder svelte-1lod44n"
               >
                 <i
-                  class="material-icons svelte-9liv1b"
+                  class="material-icons svelte-1lod44n"
                 >
                   more_vert
                 </i>
@@ -1136,22 +2494,22 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
            
         </tr>
         <tr
-          class="svelte-15c3ump"
+          class="svelte-716o9v"
         >
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             16
           </td>
            
           <td
-            class="col-span-3 svelte-15c3ump"
+            class="col-span-3 svelte-716o9v"
           >
             The Egg and You!
           </td>
            
           <td
-            class="col-span-3 svelte-15c3ump"
+            class="col-span-3 svelte-716o9v"
           >
             <a
               class="underlined"
@@ -1163,7 +2521,7 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="col-span-3 svelte-15c3ump"
+            class="col-span-3 svelte-716o9v"
           >
             <a
               class="underlined"
@@ -1175,13 +2533,13 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             4:47
           </td>
            
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             <span
               aria-expanded="false"
@@ -1189,10 +2547,10 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
               class="wrapper svelte-dvv38h"
             >
               <button
-                class="iconOnly noBorder svelte-9liv1b"
+                class="iconOnly noBorder svelte-1lod44n"
               >
                 <i
-                  class="material-icons svelte-9liv1b"
+                  class="material-icons svelte-1lod44n"
                 >
                   more_vert
                 </i>
@@ -1208,22 +2566,22 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
            
         </tr>
         <tr
-          class="svelte-15c3ump"
+          class="svelte-716o9v"
         >
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             17
           </td>
            
           <td
-            class="col-span-3 svelte-15c3ump"
+            class="col-span-3 svelte-716o9v"
           >
             Forever Broke
           </td>
            
           <td
-            class="col-span-3 svelte-15c3ump"
+            class="col-span-3 svelte-716o9v"
           >
             <a
               class="underlined"
@@ -1235,7 +2593,7 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="col-span-3 svelte-15c3ump"
+            class="col-span-3 svelte-716o9v"
           >
             <a
               class="underlined"
@@ -1247,13 +2605,13 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             1:36
           </td>
            
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             <span
               aria-expanded="false"
@@ -1261,10 +2619,10 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
               class="wrapper svelte-dvv38h"
             >
               <button
-                class="iconOnly noBorder svelte-9liv1b"
+                class="iconOnly noBorder svelte-1lod44n"
               >
                 <i
-                  class="material-icons svelte-9liv1b"
+                  class="material-icons svelte-1lod44n"
                 >
                   more_vert
                 </i>
@@ -1280,22 +2638,22 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
            
         </tr>
         <tr
-          class="svelte-15c3ump"
+          class="svelte-716o9v"
         >
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             18
           </td>
            
           <td
-            class="col-span-3 svelte-15c3ump"
+            class="col-span-3 svelte-716o9v"
           >
             Power of Kungfu Remix
           </td>
            
           <td
-            class="col-span-3 svelte-15c3ump"
+            class="col-span-3 svelte-716o9v"
           >
             <a
               class="underlined"
@@ -1307,7 +2665,7 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="col-span-3 svelte-15c3ump"
+            class="col-span-3 svelte-716o9v"
           >
             <a
               class="underlined"
@@ -1319,13 +2677,13 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
           </td>
            
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             2:22
           </td>
            
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             <span
               aria-expanded="false"
@@ -1333,10 +2691,10 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
               class="wrapper svelte-dvv38h"
             >
               <button
-                class="iconOnly noBorder svelte-9liv1b"
+                class="iconOnly noBorder svelte-1lod44n"
               >
                 <i
-                  class="material-icons svelte-9liv1b"
+                  class="material-icons svelte-1lod44n"
                 >
                   more_vert
                 </i>
@@ -1366,1423 +2724,65 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
      
      
     <table
-      class=" svelte-15c3ump"
+      class=" svelte-716o9v"
     >
       <thead
-        class="svelte-15c3ump"
+        class="svelte-716o9v"
       >
         <tr
-          class="svelte-15c3ump"
+          class="svelte-716o9v"
         >
           <th
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             #
           </th>
            
           <th
-            class="col-span-3 svelte-15c3ump"
+            class="col-span-5 svelte-716o9v"
           >
             Track
           </th>
            
           <th
-            class="col-span-3 svelte-15c3ump"
-          >
-            Artist
-          </th>
-           
-          <th
-            class="col-span-3 svelte-15c3ump"
-          >
-            Album
-          </th>
-           
-          <th
-            class="svelte-15c3ump"
-          >
-            Duration
-          </th>
-           
-          <th
-            class="svelte-15c3ump"
-          />
-        </tr>
-      </thead>
-       
-      <tbody
-        class="svelte-15c3ump"
-      >
-        <tr
-          class="svelte-15c3ump"
-        >
-          <td
-            class="svelte-15c3ump"
-          >
-            1
-          </td>
-           
-          <td
-            class="col-span-3 svelte-15c3ump"
-          >
-            American Money
-          </td>
-           
-          <td
-            class="col-span-3 svelte-15c3ump"
-          >
-            <a
-              class="underlined"
-              href="#/artist/0"
-              onclick="event.stopPropagation()"
-            >
-              Yoko Kanno and the Seatbelts
-            </a>
-          </td>
-           
-          <td
-            class="col-span-3 svelte-15c3ump"
-          >
-            <a
-              class="underlined"
-              href="#/album/1"
-              onclick="event.stopPropagation()"
-            >
-              Cowboy Bebop - NoDisc
-            </a>
-          </td>
-           
-          <td
-            class="svelte-15c3ump"
-          >
-            5:32
-          </td>
-           
-          <td
-            class="svelte-15c3ump"
-          >
-            <span
-              aria-expanded="false"
-              aria-haspopup="menu"
-              class="wrapper svelte-dvv38h"
-            >
-              <button
-                class="iconOnly noBorder svelte-9liv1b"
-              >
-                <i
-                  class="material-icons svelte-9liv1b"
-                >
-                  more_vert
-                </i>
-                 
-                 
-                
-                 
-              </button>
-            </span>
-             
-            
-          </td>
-           
-        </tr>
-        <tr
-          class="svelte-15c3ump"
-        >
-          <td
-            class="svelte-15c3ump"
-          >
-            2
-          </td>
-           
-          <td
-            class="col-span-3 svelte-15c3ump"
-          >
-            Fantaisie Sign
-          </td>
-           
-          <td
-            class="col-span-3 svelte-15c3ump"
-          >
-            <a
-              class="underlined"
-              href="#/artist/0"
-              onclick="event.stopPropagation()"
-            >
-              Yoko Kanno and the Seatbelts
-            </a>
-          </td>
-           
-          <td
-            class="col-span-3 svelte-15c3ump"
-          >
-            <a
-              class="underlined"
-              href="#/album/1"
-              onclick="event.stopPropagation()"
-            >
-              Cowboy Bebop - NoDisc
-            </a>
-          </td>
-           
-          <td
-            class="svelte-15c3ump"
-          >
-            3:35
-          </td>
-           
-          <td
-            class="svelte-15c3ump"
-          >
-            <span
-              aria-expanded="false"
-              aria-haspopup="menu"
-              class="wrapper svelte-dvv38h"
-            >
-              <button
-                class="iconOnly noBorder svelte-9liv1b"
-              >
-                <i
-                  class="material-icons svelte-9liv1b"
-                >
-                  more_vert
-                </i>
-                 
-                 
-                
-                 
-              </button>
-            </span>
-             
-            
-          </td>
-           
-        </tr>
-        <tr
-          class="svelte-15c3ump"
-        >
-          <td
-            class="svelte-15c3ump"
-          >
-            3
-          </td>
-           
-          <td
-            class="col-span-3 svelte-15c3ump"
-          >
-            Don't Bother None
-          </td>
-           
-          <td
-            class="col-span-3 svelte-15c3ump"
-          >
-            <a
-              class="underlined"
-              href="#/artist/0"
-              onclick="event.stopPropagation()"
-            >
-              Yoko Kanno and the Seatbelts
-            </a>
-          </td>
-           
-          <td
-            class="col-span-3 svelte-15c3ump"
-          >
-            <a
-              class="underlined"
-              href="#/album/1"
-              onclick="event.stopPropagation()"
-            >
-              Cowboy Bebop - NoDisc
-            </a>
-          </td>
-           
-          <td
-            class="svelte-15c3ump"
-          >
-            3:45
-          </td>
-           
-          <td
-            class="svelte-15c3ump"
-          >
-            <span
-              aria-expanded="false"
-              aria-haspopup="menu"
-              class="wrapper svelte-dvv38h"
-            >
-              <button
-                class="iconOnly noBorder svelte-9liv1b"
-              >
-                <i
-                  class="material-icons svelte-9liv1b"
-                >
-                  more_vert
-                </i>
-                 
-                 
-                
-                 
-              </button>
-            </span>
-             
-            
-          </td>
-           
-        </tr>
-        <tr
-          class="svelte-15c3ump"
-        >
-          <td
-            class="svelte-15c3ump"
-          >
-            4
-          </td>
-           
-          <td
-            class="col-span-3 svelte-15c3ump"
-          >
-            Vitamin A
-          </td>
-           
-          <td
-            class="col-span-3 svelte-15c3ump"
-          >
-            <a
-              class="underlined"
-              href="#/artist/0"
-              onclick="event.stopPropagation()"
-            >
-              Yoko Kanno and the Seatbelts
-            </a>
-          </td>
-           
-          <td
-            class="col-span-3 svelte-15c3ump"
-          >
-            <a
-              class="underlined"
-              href="#/album/1"
-              onclick="event.stopPropagation()"
-            >
-              Cowboy Bebop - NoDisc
-            </a>
-          </td>
-           
-          <td
-            class="svelte-15c3ump"
-          >
-            4:41
-          </td>
-           
-          <td
-            class="svelte-15c3ump"
-          >
-            <span
-              aria-expanded="false"
-              aria-haspopup="menu"
-              class="wrapper svelte-dvv38h"
-            >
-              <button
-                class="iconOnly noBorder svelte-9liv1b"
-              >
-                <i
-                  class="material-icons svelte-9liv1b"
-                >
-                  more_vert
-                </i>
-                 
-                 
-                
-                 
-              </button>
-            </span>
-             
-            
-          </td>
-           
-        </tr>
-        <tr
-          class="svelte-15c3ump"
-        >
-          <td
-            class="svelte-15c3ump"
-          >
-            5
-          </td>
-           
-          <td
-            class="col-span-3 svelte-15c3ump"
-          >
-            LIVE in Baghdad
-          </td>
-           
-          <td
-            class="col-span-3 svelte-15c3ump"
-          >
-            <a
-              class="underlined"
-              href="#/artist/0"
-              onclick="event.stopPropagation()"
-            >
-              Yoko Kanno and the Seatbelts
-            </a>
-          </td>
-           
-          <td
-            class="col-span-3 svelte-15c3ump"
-          >
-            <a
-              class="underlined"
-              href="#/album/1"
-              onclick="event.stopPropagation()"
-            >
-              Cowboy Bebop - NoDisc
-            </a>
-          </td>
-           
-          <td
-            class="svelte-15c3ump"
-          >
-            2:59
-          </td>
-           
-          <td
-            class="svelte-15c3ump"
-          >
-            <span
-              aria-expanded="false"
-              aria-haspopup="menu"
-              class="wrapper svelte-dvv38h"
-            >
-              <button
-                class="iconOnly noBorder svelte-9liv1b"
-              >
-                <i
-                  class="material-icons svelte-9liv1b"
-                >
-                  more_vert
-                </i>
-                 
-                 
-                
-                 
-              </button>
-            </span>
-             
-            
-          </td>
-           
-        </tr>
-        <tr
-          class="svelte-15c3ump"
-        >
-          <td
-            class="svelte-15c3ump"
-          >
-            6
-          </td>
-           
-          <td
-            class="col-span-3 svelte-15c3ump"
-          >
-            Cats on Mars
-          </td>
-           
-          <td
-            class="col-span-3 svelte-15c3ump"
-          >
-            <a
-              class="underlined"
-              href="#/artist/0"
-              onclick="event.stopPropagation()"
-            >
-              Yoko Kanno and the Seatbelts
-            </a>
-          </td>
-           
-          <td
-            class="col-span-3 svelte-15c3ump"
-          >
-            <a
-              class="underlined"
-              href="#/album/1"
-              onclick="event.stopPropagation()"
-            >
-              Cowboy Bebop - NoDisc
-            </a>
-          </td>
-           
-          <td
-            class="svelte-15c3ump"
-          >
-            0:07
-          </td>
-           
-          <td
-            class="svelte-15c3ump"
-          >
-            <span
-              aria-expanded="false"
-              aria-haspopup="menu"
-              class="wrapper svelte-dvv38h"
-            >
-              <button
-                class="iconOnly noBorder svelte-9liv1b"
-              >
-                <i
-                  class="material-icons svelte-9liv1b"
-                >
-                  more_vert
-                </i>
-                 
-                 
-                
-                 
-              </button>
-            </span>
-             
-            
-          </td>
-           
-        </tr>
-        <tr
-          class="svelte-15c3ump"
-        >
-          <td
-            class="svelte-15c3ump"
-          >
-            7
-          </td>
-           
-          <td
-            class="col-span-3 svelte-15c3ump"
-          >
-            Want it All Back
-          </td>
-           
-          <td
-            class="col-span-3 svelte-15c3ump"
-          >
-            <a
-              class="underlined"
-              href="#/artist/0"
-              onclick="event.stopPropagation()"
-            >
-              Yoko Kanno and the Seatbelts
-            </a>
-          </td>
-           
-          <td
-            class="col-span-3 svelte-15c3ump"
-          >
-            <a
-              class="underlined"
-              href="#/album/1"
-              onclick="event.stopPropagation()"
-            >
-              Cowboy Bebop - NoDisc
-            </a>
-          </td>
-           
-          <td
-            class="svelte-15c3ump"
-          >
-            3:51
-          </td>
-           
-          <td
-            class="svelte-15c3ump"
-          >
-            <span
-              aria-expanded="false"
-              aria-haspopup="menu"
-              class="wrapper svelte-dvv38h"
-            >
-              <button
-                class="iconOnly noBorder svelte-9liv1b"
-              >
-                <i
-                  class="material-icons svelte-9liv1b"
-                >
-                  more_vert
-                </i>
-                 
-                 
-                
-                 
-              </button>
-            </span>
-             
-            
-          </td>
-           
-        </tr>
-        <tr
-          class="svelte-15c3ump"
-        >
-          <td
-            class="svelte-15c3ump"
-          >
-            8
-          </td>
-           
-          <td
-            class="col-span-3 svelte-15c3ump"
-          >
-            Bindy
-          </td>
-           
-          <td
-            class="col-span-3 svelte-15c3ump"
-          >
-            <a
-              class="underlined"
-              href="#/artist/0"
-              onclick="event.stopPropagation()"
-            >
-              Yoko Kanno and the Seatbelts
-            </a>
-          </td>
-           
-          <td
-            class="col-span-3 svelte-15c3ump"
-          >
-            <a
-              class="underlined"
-              href="#/album/1"
-              onclick="event.stopPropagation()"
-            >
-              Cowboy Bebop - NoDisc
-            </a>
-          </td>
-           
-          <td
-            class="svelte-15c3ump"
-          >
-            0:15
-          </td>
-           
-          <td
-            class="svelte-15c3ump"
-          >
-            <span
-              aria-expanded="false"
-              aria-haspopup="menu"
-              class="wrapper svelte-dvv38h"
-            >
-              <button
-                class="iconOnly noBorder svelte-9liv1b"
-              >
-                <i
-                  class="material-icons svelte-9liv1b"
-                >
-                  more_vert
-                </i>
-                 
-                 
-                
-                 
-              </button>
-            </span>
-             
-            
-          </td>
-           
-        </tr>
-        <tr
-          class="svelte-15c3ump"
-        >
-          <td
-            class="svelte-15c3ump"
-          >
-            9
-          </td>
-           
-          <td
-            class="col-span-3 svelte-15c3ump"
-          >
-            You Make Me Coo
-          </td>
-           
-          <td
-            class="col-span-3 svelte-15c3ump"
-          >
-            <a
-              class="underlined"
-              href="#/artist/0"
-              onclick="event.stopPropagation()"
-            >
-              Yoko Kanno and the Seatbelts
-            </a>
-          </td>
-           
-          <td
-            class="col-span-3 svelte-15c3ump"
-          >
-            <a
-              class="underlined"
-              href="#/album/1"
-              onclick="event.stopPropagation()"
-            >
-              Cowboy Bebop - NoDisc
-            </a>
-          </td>
-           
-          <td
-            class="svelte-15c3ump"
-          >
-            3:14
-          </td>
-           
-          <td
-            class="svelte-15c3ump"
-          >
-            <span
-              aria-expanded="false"
-              aria-haspopup="menu"
-              class="wrapper svelte-dvv38h"
-            >
-              <button
-                class="iconOnly noBorder svelte-9liv1b"
-              >
-                <i
-                  class="material-icons svelte-9liv1b"
-                >
-                  more_vert
-                </i>
-                 
-                 
-                
-                 
-              </button>
-            </span>
-             
-            
-          </td>
-           
-        </tr>
-        <tr
-          class="svelte-15c3ump"
-        >
-          <td
-            class="svelte-15c3ump"
-          >
-            10
-          </td>
-           
-          <td
-            class="col-span-3 svelte-15c3ump"
-          >
-            Vitamin B
-          </td>
-           
-          <td
-            class="col-span-3 svelte-15c3ump"
-          >
-            <a
-              class="underlined"
-              href="#/artist/0"
-              onclick="event.stopPropagation()"
-            >
-              Yoko Kanno and the Seatbelts
-            </a>
-          </td>
-           
-          <td
-            class="col-span-3 svelte-15c3ump"
-          >
-            <a
-              class="underlined"
-              href="#/album/1"
-              onclick="event.stopPropagation()"
-            >
-              Cowboy Bebop - NoDisc
-            </a>
-          </td>
-           
-          <td
-            class="svelte-15c3ump"
-          >
-            4:06
-          </td>
-           
-          <td
-            class="svelte-15c3ump"
-          >
-            <span
-              aria-expanded="false"
-              aria-haspopup="menu"
-              class="wrapper svelte-dvv38h"
-            >
-              <button
-                class="iconOnly noBorder svelte-9liv1b"
-              >
-                <i
-                  class="material-icons svelte-9liv1b"
-                >
-                  more_vert
-                </i>
-                 
-                 
-                
-                 
-              </button>
-            </span>
-             
-            
-          </td>
-           
-        </tr>
-        <tr
-          class="svelte-15c3ump"
-        >
-          <td
-            class="svelte-15c3ump"
-          >
-            11
-          </td>
-           
-          <td
-            class="col-span-3 svelte-15c3ump"
-          >
-            Green Bird
-          </td>
-           
-          <td
-            class="col-span-3 svelte-15c3ump"
-          >
-            <a
-              class="underlined"
-              href="#/artist/0"
-              onclick="event.stopPropagation()"
-            >
-              Yoko Kanno and the Seatbelts
-            </a>
-          </td>
-           
-          <td
-            class="col-span-3 svelte-15c3ump"
-          >
-            <a
-              class="underlined"
-              href="#/album/1"
-              onclick="event.stopPropagation()"
-            >
-              Cowboy Bebop - NoDisc
-            </a>
-          </td>
-           
-          <td
-            class="svelte-15c3ump"
-          >
-            2:33
-          </td>
-           
-          <td
-            class="svelte-15c3ump"
-          >
-            <span
-              aria-expanded="false"
-              aria-haspopup="menu"
-              class="wrapper svelte-dvv38h"
-            >
-              <button
-                class="iconOnly noBorder svelte-9liv1b"
-              >
-                <i
-                  class="material-icons svelte-9liv1b"
-                >
-                  more_vert
-                </i>
-                 
-                 
-                
-                 
-              </button>
-            </span>
-             
-            
-          </td>
-           
-        </tr>
-        <tr
-          class="svelte-15c3ump"
-        >
-          <td
-            class="svelte-15c3ump"
-          >
-            12
-          </td>
-           
-          <td
-            class="col-span-3 svelte-15c3ump"
-          >
-            ELM
-          </td>
-           
-          <td
-            class="col-span-3 svelte-15c3ump"
-          >
-            <a
-              class="underlined"
-              href="#/artist/0"
-              onclick="event.stopPropagation()"
-            >
-              Yoko Kanno and the Seatbelts
-            </a>
-          </td>
-           
-          <td
-            class="col-span-3 svelte-15c3ump"
-          >
-            <a
-              class="underlined"
-              href="#/album/1"
-              onclick="event.stopPropagation()"
-            >
-              Cowboy Bebop - NoDisc
-            </a>
-          </td>
-           
-          <td
-            class="svelte-15c3ump"
-          >
-            6:55
-          </td>
-           
-          <td
-            class="svelte-15c3ump"
-          >
-            <span
-              aria-expanded="false"
-              aria-haspopup="menu"
-              class="wrapper svelte-dvv38h"
-            >
-              <button
-                class="iconOnly noBorder svelte-9liv1b"
-              >
-                <i
-                  class="material-icons svelte-9liv1b"
-                >
-                  more_vert
-                </i>
-                 
-                 
-                
-                 
-              </button>
-            </span>
-             
-            
-          </td>
-           
-        </tr>
-        <tr
-          class="svelte-15c3ump"
-        >
-          <td
-            class="svelte-15c3ump"
-          >
-            13
-          </td>
-           
-          <td
-            class="col-span-3 svelte-15c3ump"
-          >
-            Vitamin C
-          </td>
-           
-          <td
-            class="col-span-3 svelte-15c3ump"
-          >
-            <a
-              class="underlined"
-              href="#/artist/0"
-              onclick="event.stopPropagation()"
-            >
-              Yoko Kanno and the Seatbelts
-            </a>
-          </td>
-           
-          <td
-            class="col-span-3 svelte-15c3ump"
-          >
-            <a
-              class="underlined"
-              href="#/album/1"
-              onclick="event.stopPropagation()"
-            >
-              Cowboy Bebop - NoDisc
-            </a>
-          </td>
-           
-          <td
-            class="svelte-15c3ump"
-          >
-            5:24
-          </td>
-           
-          <td
-            class="svelte-15c3ump"
-          >
-            <span
-              aria-expanded="false"
-              aria-haspopup="menu"
-              class="wrapper svelte-dvv38h"
-            >
-              <button
-                class="iconOnly noBorder svelte-9liv1b"
-              >
-                <i
-                  class="material-icons svelte-9liv1b"
-                >
-                  more_vert
-                </i>
-                 
-                 
-                
-                 
-              </button>
-            </span>
-             
-            
-          </td>
-           
-        </tr>
-        <tr
-          class="svelte-15c3ump"
-        >
-          <td
-            class="svelte-15c3ump"
-          >
-            14
-          </td>
-           
-          <td
-            class="col-span-3 svelte-15c3ump"
-          >
-            Gateway
-          </td>
-           
-          <td
-            class="col-span-3 svelte-15c3ump"
-          >
-            <a
-              class="underlined"
-              href="#/artist/0"
-              onclick="event.stopPropagation()"
-            >
-              Yoko Kanno and the Seatbelts
-            </a>
-          </td>
-           
-          <td
-            class="col-span-3 svelte-15c3ump"
-          >
-            <a
-              class="underlined"
-              href="#/album/1"
-              onclick="event.stopPropagation()"
-            >
-              Cowboy Bebop - NoDisc
-            </a>
-          </td>
-           
-          <td
-            class="svelte-15c3ump"
-          >
-            0:16
-          </td>
-           
-          <td
-            class="svelte-15c3ump"
-          >
-            <span
-              aria-expanded="false"
-              aria-haspopup="menu"
-              class="wrapper svelte-dvv38h"
-            >
-              <button
-                class="iconOnly noBorder svelte-9liv1b"
-              >
-                <i
-                  class="material-icons svelte-9liv1b"
-                >
-                  more_vert
-                </i>
-                 
-                 
-                
-                 
-              </button>
-            </span>
-             
-            
-          </td>
-           
-        </tr>
-        <tr
-          class="svelte-15c3ump"
-        >
-          <td
-            class="svelte-15c3ump"
-          >
-            15
-          </td>
-           
-          <td
-            class="col-span-3 svelte-15c3ump"
-          >
-            The Singing Sea
-          </td>
-           
-          <td
-            class="col-span-3 svelte-15c3ump"
-          >
-            <a
-              class="underlined"
-              href="#/artist/0"
-              onclick="event.stopPropagation()"
-            >
-              Yoko Kanno and the Seatbelts
-            </a>
-          </td>
-           
-          <td
-            class="col-span-3 svelte-15c3ump"
-          >
-            <a
-              class="underlined"
-              href="#/album/1"
-              onclick="event.stopPropagation()"
-            >
-              Cowboy Bebop - NoDisc
-            </a>
-          </td>
-           
-          <td
-            class="svelte-15c3ump"
-          >
-            6:41
-          </td>
-           
-          <td
-            class="svelte-15c3ump"
-          >
-            <span
-              aria-expanded="false"
-              aria-haspopup="menu"
-              class="wrapper svelte-dvv38h"
-            >
-              <button
-                class="iconOnly noBorder svelte-9liv1b"
-              >
-                <i
-                  class="material-icons svelte-9liv1b"
-                >
-                  more_vert
-                </i>
-                 
-                 
-                
-                 
-              </button>
-            </span>
-             
-            
-          </td>
-           
-        </tr>
-        <tr
-          class="svelte-15c3ump"
-        >
-          <td
-            class="svelte-15c3ump"
-          >
-            16
-          </td>
-           
-          <td
-            class="col-span-3 svelte-15c3ump"
-          >
-            The Egg and You!
-          </td>
-           
-          <td
-            class="col-span-3 svelte-15c3ump"
-          >
-            <a
-              class="underlined"
-              href="#/artist/0"
-              onclick="event.stopPropagation()"
-            >
-              Yoko Kanno and the Seatbelts
-            </a>
-          </td>
-           
-          <td
-            class="col-span-3 svelte-15c3ump"
-          >
-            <a
-              class="underlined"
-              href="#/album/1"
-              onclick="event.stopPropagation()"
-            >
-              Cowboy Bebop - NoDisc
-            </a>
-          </td>
-           
-          <td
-            class="svelte-15c3ump"
-          >
-            4:47
-          </td>
-           
-          <td
-            class="svelte-15c3ump"
-          >
-            <span
-              aria-expanded="false"
-              aria-haspopup="menu"
-              class="wrapper svelte-dvv38h"
-            >
-              <button
-                class="iconOnly noBorder svelte-9liv1b"
-              >
-                <i
-                  class="material-icons svelte-9liv1b"
-                >
-                  more_vert
-                </i>
-                 
-                 
-                
-                 
-              </button>
-            </span>
-             
-            
-          </td>
-           
-        </tr>
-        <tr
-          class="svelte-15c3ump"
-        >
-          <td
-            class="svelte-15c3ump"
-          >
-            17
-          </td>
-           
-          <td
-            class="col-span-3 svelte-15c3ump"
-          >
-            Forever Broke
-          </td>
-           
-          <td
-            class="col-span-3 svelte-15c3ump"
-          >
-            <a
-              class="underlined"
-              href="#/artist/0"
-              onclick="event.stopPropagation()"
-            >
-              Yoko Kanno and the Seatbelts
-            </a>
-          </td>
-           
-          <td
-            class="col-span-3 svelte-15c3ump"
-          >
-            <a
-              class="underlined"
-              href="#/album/1"
-              onclick="event.stopPropagation()"
-            >
-              Cowboy Bebop - NoDisc
-            </a>
-          </td>
-           
-          <td
-            class="svelte-15c3ump"
-          >
-            1:36
-          </td>
-           
-          <td
-            class="svelte-15c3ump"
-          >
-            <span
-              aria-expanded="false"
-              aria-haspopup="menu"
-              class="wrapper svelte-dvv38h"
-            >
-              <button
-                class="iconOnly noBorder svelte-9liv1b"
-              >
-                <i
-                  class="material-icons svelte-9liv1b"
-                >
-                  more_vert
-                </i>
-                 
-                 
-                
-                 
-              </button>
-            </span>
-             
-            
-          </td>
-           
-        </tr>
-        <tr
-          class="svelte-15c3ump"
-        >
-          <td
-            class="svelte-15c3ump"
-          >
-            18
-          </td>
-           
-          <td
-            class="col-span-3 svelte-15c3ump"
-          >
-            Power of Kungfu Remix
-          </td>
-           
-          <td
-            class="col-span-3 svelte-15c3ump"
-          >
-            <a
-              class="underlined"
-              href="#/artist/0"
-              onclick="event.stopPropagation()"
-            >
-              Yoko Kanno and the Seatbelts
-            </a>
-          </td>
-           
-          <td
-            class="col-span-3 svelte-15c3ump"
-          >
-            <a
-              class="underlined"
-              href="#/album/1"
-              onclick="event.stopPropagation()"
-            >
-              Cowboy Bebop - NoDisc
-            </a>
-          </td>
-           
-          <td
-            class="svelte-15c3ump"
-          >
-            2:22
-          </td>
-           
-          <td
-            class="svelte-15c3ump"
-          >
-            <span
-              aria-expanded="false"
-              aria-haspopup="menu"
-              class="wrapper svelte-dvv38h"
-            >
-              <button
-                class="iconOnly noBorder svelte-9liv1b"
-              >
-                <i
-                  class="material-icons svelte-9liv1b"
-                >
-                  more_vert
-                </i>
-                 
-                 
-                
-                 
-              </button>
-            </span>
-             
-            
-          </td>
-           
-        </tr>
-      </tbody>
-    </table>
-    
-  </div>
-</section>
-`;
-
-exports[`Storyshots Components/Tracks table Without Album 2`] = `
-<section
-  class="storybook-snapshot-container"
->
-  <div>
-     
-     
-    <table
-      class=" svelte-15c3ump"
-    >
-      <thead
-        class="svelte-15c3ump"
-      >
-        <tr
-          class="svelte-15c3ump"
-        >
-          <th
-            class="svelte-15c3ump"
-          >
-            #
-          </th>
-           
-          <th
-            class="col-span-5 svelte-15c3ump"
-          >
-            Track
-          </th>
-           
-          <th
-            class="col-span-4 svelte-15c3ump"
+            class="col-span-4 svelte-716o9v"
           >
             Artist
           </th>
            
            
           <th
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             Duration
           </th>
            
           <th
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           />
         </tr>
       </thead>
        
       <tbody
-        class="svelte-15c3ump"
+        class="svelte-716o9v"
       >
         <tr
-          class="svelte-15c3ump"
+          class="svelte-716o9v"
         >
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             1
           </td>
            
           <td
-            class="col-span-5 svelte-15c3ump"
+            class="col-span-5 svelte-716o9v"
           >
             American Money
           </td>
            
           <td
-            class="col-span-4 svelte-15c3ump"
+            class="col-span-4 svelte-716o9v"
           >
             <a
               class="underlined"
@@ -2795,13 +2795,13 @@ exports[`Storyshots Components/Tracks table Without Album 2`] = `
            
            
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             5:32
           </td>
            
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             <span
               aria-expanded="false"
@@ -2809,10 +2809,10 @@ exports[`Storyshots Components/Tracks table Without Album 2`] = `
               class="wrapper svelte-dvv38h"
             >
               <button
-                class="iconOnly noBorder svelte-9liv1b"
+                class="iconOnly noBorder svelte-1lod44n"
               >
                 <i
-                  class="material-icons svelte-9liv1b"
+                  class="material-icons svelte-1lod44n"
                 >
                   more_vert
                 </i>
@@ -2828,22 +2828,22 @@ exports[`Storyshots Components/Tracks table Without Album 2`] = `
            
         </tr>
         <tr
-          class="svelte-15c3ump"
+          class="svelte-716o9v"
         >
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             2
           </td>
            
           <td
-            class="col-span-5 svelte-15c3ump"
+            class="col-span-5 svelte-716o9v"
           >
             Fantaisie Sign
           </td>
            
           <td
-            class="col-span-4 svelte-15c3ump"
+            class="col-span-4 svelte-716o9v"
           >
             <a
               class="underlined"
@@ -2856,13 +2856,13 @@ exports[`Storyshots Components/Tracks table Without Album 2`] = `
            
            
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             3:35
           </td>
            
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             <span
               aria-expanded="false"
@@ -2870,10 +2870,10 @@ exports[`Storyshots Components/Tracks table Without Album 2`] = `
               class="wrapper svelte-dvv38h"
             >
               <button
-                class="iconOnly noBorder svelte-9liv1b"
+                class="iconOnly noBorder svelte-1lod44n"
               >
                 <i
-                  class="material-icons svelte-9liv1b"
+                  class="material-icons svelte-1lod44n"
                 >
                   more_vert
                 </i>
@@ -2889,22 +2889,22 @@ exports[`Storyshots Components/Tracks table Without Album 2`] = `
            
         </tr>
         <tr
-          class="svelte-15c3ump"
+          class="svelte-716o9v"
         >
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             3
           </td>
            
           <td
-            class="col-span-5 svelte-15c3ump"
+            class="col-span-5 svelte-716o9v"
           >
             Don't Bother None
           </td>
            
           <td
-            class="col-span-4 svelte-15c3ump"
+            class="col-span-4 svelte-716o9v"
           >
             <a
               class="underlined"
@@ -2917,13 +2917,13 @@ exports[`Storyshots Components/Tracks table Without Album 2`] = `
            
            
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             3:45
           </td>
            
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             <span
               aria-expanded="false"
@@ -2931,10 +2931,10 @@ exports[`Storyshots Components/Tracks table Without Album 2`] = `
               class="wrapper svelte-dvv38h"
             >
               <button
-                class="iconOnly noBorder svelte-9liv1b"
+                class="iconOnly noBorder svelte-1lod44n"
               >
                 <i
-                  class="material-icons svelte-9liv1b"
+                  class="material-icons svelte-1lod44n"
                 >
                   more_vert
                 </i>
@@ -2950,22 +2950,22 @@ exports[`Storyshots Components/Tracks table Without Album 2`] = `
            
         </tr>
         <tr
-          class="svelte-15c3ump"
+          class="svelte-716o9v"
         >
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             4
           </td>
            
           <td
-            class="col-span-5 svelte-15c3ump"
+            class="col-span-5 svelte-716o9v"
           >
             Vitamin A
           </td>
            
           <td
-            class="col-span-4 svelte-15c3ump"
+            class="col-span-4 svelte-716o9v"
           >
             <a
               class="underlined"
@@ -2978,13 +2978,13 @@ exports[`Storyshots Components/Tracks table Without Album 2`] = `
            
            
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             4:41
           </td>
            
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             <span
               aria-expanded="false"
@@ -2992,10 +2992,10 @@ exports[`Storyshots Components/Tracks table Without Album 2`] = `
               class="wrapper svelte-dvv38h"
             >
               <button
-                class="iconOnly noBorder svelte-9liv1b"
+                class="iconOnly noBorder svelte-1lod44n"
               >
                 <i
-                  class="material-icons svelte-9liv1b"
+                  class="material-icons svelte-1lod44n"
                 >
                   more_vert
                 </i>
@@ -3011,22 +3011,22 @@ exports[`Storyshots Components/Tracks table Without Album 2`] = `
            
         </tr>
         <tr
-          class="svelte-15c3ump"
+          class="svelte-716o9v"
         >
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             5
           </td>
            
           <td
-            class="col-span-5 svelte-15c3ump"
+            class="col-span-5 svelte-716o9v"
           >
             LIVE in Baghdad
           </td>
            
           <td
-            class="col-span-4 svelte-15c3ump"
+            class="col-span-4 svelte-716o9v"
           >
             <a
               class="underlined"
@@ -3039,13 +3039,13 @@ exports[`Storyshots Components/Tracks table Without Album 2`] = `
            
            
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             2:59
           </td>
            
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             <span
               aria-expanded="false"
@@ -3053,10 +3053,10 @@ exports[`Storyshots Components/Tracks table Without Album 2`] = `
               class="wrapper svelte-dvv38h"
             >
               <button
-                class="iconOnly noBorder svelte-9liv1b"
+                class="iconOnly noBorder svelte-1lod44n"
               >
                 <i
-                  class="material-icons svelte-9liv1b"
+                  class="material-icons svelte-1lod44n"
                 >
                   more_vert
                 </i>
@@ -3072,22 +3072,22 @@ exports[`Storyshots Components/Tracks table Without Album 2`] = `
            
         </tr>
         <tr
-          class="svelte-15c3ump"
+          class="svelte-716o9v"
         >
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             6
           </td>
            
           <td
-            class="col-span-5 svelte-15c3ump"
+            class="col-span-5 svelte-716o9v"
           >
             Cats on Mars
           </td>
            
           <td
-            class="col-span-4 svelte-15c3ump"
+            class="col-span-4 svelte-716o9v"
           >
             <a
               class="underlined"
@@ -3100,13 +3100,13 @@ exports[`Storyshots Components/Tracks table Without Album 2`] = `
            
            
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             0:07
           </td>
            
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             <span
               aria-expanded="false"
@@ -3114,10 +3114,10 @@ exports[`Storyshots Components/Tracks table Without Album 2`] = `
               class="wrapper svelte-dvv38h"
             >
               <button
-                class="iconOnly noBorder svelte-9liv1b"
+                class="iconOnly noBorder svelte-1lod44n"
               >
                 <i
-                  class="material-icons svelte-9liv1b"
+                  class="material-icons svelte-1lod44n"
                 >
                   more_vert
                 </i>
@@ -3133,22 +3133,22 @@ exports[`Storyshots Components/Tracks table Without Album 2`] = `
            
         </tr>
         <tr
-          class="svelte-15c3ump"
+          class="svelte-716o9v"
         >
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             7
           </td>
            
           <td
-            class="col-span-5 svelte-15c3ump"
+            class="col-span-5 svelte-716o9v"
           >
             Want it All Back
           </td>
            
           <td
-            class="col-span-4 svelte-15c3ump"
+            class="col-span-4 svelte-716o9v"
           >
             <a
               class="underlined"
@@ -3161,13 +3161,13 @@ exports[`Storyshots Components/Tracks table Without Album 2`] = `
            
            
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             3:51
           </td>
            
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             <span
               aria-expanded="false"
@@ -3175,10 +3175,10 @@ exports[`Storyshots Components/Tracks table Without Album 2`] = `
               class="wrapper svelte-dvv38h"
             >
               <button
-                class="iconOnly noBorder svelte-9liv1b"
+                class="iconOnly noBorder svelte-1lod44n"
               >
                 <i
-                  class="material-icons svelte-9liv1b"
+                  class="material-icons svelte-1lod44n"
                 >
                   more_vert
                 </i>
@@ -3194,22 +3194,22 @@ exports[`Storyshots Components/Tracks table Without Album 2`] = `
            
         </tr>
         <tr
-          class="svelte-15c3ump"
+          class="svelte-716o9v"
         >
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             8
           </td>
            
           <td
-            class="col-span-5 svelte-15c3ump"
+            class="col-span-5 svelte-716o9v"
           >
             Bindy
           </td>
            
           <td
-            class="col-span-4 svelte-15c3ump"
+            class="col-span-4 svelte-716o9v"
           >
             <a
               class="underlined"
@@ -3222,13 +3222,13 @@ exports[`Storyshots Components/Tracks table Without Album 2`] = `
            
            
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             0:15
           </td>
            
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             <span
               aria-expanded="false"
@@ -3236,10 +3236,10 @@ exports[`Storyshots Components/Tracks table Without Album 2`] = `
               class="wrapper svelte-dvv38h"
             >
               <button
-                class="iconOnly noBorder svelte-9liv1b"
+                class="iconOnly noBorder svelte-1lod44n"
               >
                 <i
-                  class="material-icons svelte-9liv1b"
+                  class="material-icons svelte-1lod44n"
                 >
                   more_vert
                 </i>
@@ -3255,22 +3255,22 @@ exports[`Storyshots Components/Tracks table Without Album 2`] = `
            
         </tr>
         <tr
-          class="svelte-15c3ump"
+          class="svelte-716o9v"
         >
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             9
           </td>
            
           <td
-            class="col-span-5 svelte-15c3ump"
+            class="col-span-5 svelte-716o9v"
           >
             You Make Me Coo
           </td>
            
           <td
-            class="col-span-4 svelte-15c3ump"
+            class="col-span-4 svelte-716o9v"
           >
             <a
               class="underlined"
@@ -3283,13 +3283,13 @@ exports[`Storyshots Components/Tracks table Without Album 2`] = `
            
            
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             3:14
           </td>
            
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             <span
               aria-expanded="false"
@@ -3297,10 +3297,10 @@ exports[`Storyshots Components/Tracks table Without Album 2`] = `
               class="wrapper svelte-dvv38h"
             >
               <button
-                class="iconOnly noBorder svelte-9liv1b"
+                class="iconOnly noBorder svelte-1lod44n"
               >
                 <i
-                  class="material-icons svelte-9liv1b"
+                  class="material-icons svelte-1lod44n"
                 >
                   more_vert
                 </i>
@@ -3316,22 +3316,22 @@ exports[`Storyshots Components/Tracks table Without Album 2`] = `
            
         </tr>
         <tr
-          class="svelte-15c3ump"
+          class="svelte-716o9v"
         >
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             10
           </td>
            
           <td
-            class="col-span-5 svelte-15c3ump"
+            class="col-span-5 svelte-716o9v"
           >
             Vitamin B
           </td>
            
           <td
-            class="col-span-4 svelte-15c3ump"
+            class="col-span-4 svelte-716o9v"
           >
             <a
               class="underlined"
@@ -3344,13 +3344,13 @@ exports[`Storyshots Components/Tracks table Without Album 2`] = `
            
            
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             4:06
           </td>
            
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             <span
               aria-expanded="false"
@@ -3358,10 +3358,10 @@ exports[`Storyshots Components/Tracks table Without Album 2`] = `
               class="wrapper svelte-dvv38h"
             >
               <button
-                class="iconOnly noBorder svelte-9liv1b"
+                class="iconOnly noBorder svelte-1lod44n"
               >
                 <i
-                  class="material-icons svelte-9liv1b"
+                  class="material-icons svelte-1lod44n"
                 >
                   more_vert
                 </i>
@@ -3377,22 +3377,22 @@ exports[`Storyshots Components/Tracks table Without Album 2`] = `
            
         </tr>
         <tr
-          class="svelte-15c3ump"
+          class="svelte-716o9v"
         >
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             11
           </td>
            
           <td
-            class="col-span-5 svelte-15c3ump"
+            class="col-span-5 svelte-716o9v"
           >
             Green Bird
           </td>
            
           <td
-            class="col-span-4 svelte-15c3ump"
+            class="col-span-4 svelte-716o9v"
           >
             <a
               class="underlined"
@@ -3405,13 +3405,13 @@ exports[`Storyshots Components/Tracks table Without Album 2`] = `
            
            
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             2:33
           </td>
            
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             <span
               aria-expanded="false"
@@ -3419,10 +3419,10 @@ exports[`Storyshots Components/Tracks table Without Album 2`] = `
               class="wrapper svelte-dvv38h"
             >
               <button
-                class="iconOnly noBorder svelte-9liv1b"
+                class="iconOnly noBorder svelte-1lod44n"
               >
                 <i
-                  class="material-icons svelte-9liv1b"
+                  class="material-icons svelte-1lod44n"
                 >
                   more_vert
                 </i>
@@ -3438,22 +3438,22 @@ exports[`Storyshots Components/Tracks table Without Album 2`] = `
            
         </tr>
         <tr
-          class="svelte-15c3ump"
+          class="svelte-716o9v"
         >
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             12
           </td>
            
           <td
-            class="col-span-5 svelte-15c3ump"
+            class="col-span-5 svelte-716o9v"
           >
             ELM
           </td>
            
           <td
-            class="col-span-4 svelte-15c3ump"
+            class="col-span-4 svelte-716o9v"
           >
             <a
               class="underlined"
@@ -3466,13 +3466,13 @@ exports[`Storyshots Components/Tracks table Without Album 2`] = `
            
            
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             6:55
           </td>
            
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             <span
               aria-expanded="false"
@@ -3480,10 +3480,10 @@ exports[`Storyshots Components/Tracks table Without Album 2`] = `
               class="wrapper svelte-dvv38h"
             >
               <button
-                class="iconOnly noBorder svelte-9liv1b"
+                class="iconOnly noBorder svelte-1lod44n"
               >
                 <i
-                  class="material-icons svelte-9liv1b"
+                  class="material-icons svelte-1lod44n"
                 >
                   more_vert
                 </i>
@@ -3499,22 +3499,22 @@ exports[`Storyshots Components/Tracks table Without Album 2`] = `
            
         </tr>
         <tr
-          class="svelte-15c3ump"
+          class="svelte-716o9v"
         >
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             13
           </td>
            
           <td
-            class="col-span-5 svelte-15c3ump"
+            class="col-span-5 svelte-716o9v"
           >
             Vitamin C
           </td>
            
           <td
-            class="col-span-4 svelte-15c3ump"
+            class="col-span-4 svelte-716o9v"
           >
             <a
               class="underlined"
@@ -3527,13 +3527,13 @@ exports[`Storyshots Components/Tracks table Without Album 2`] = `
            
            
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             5:24
           </td>
            
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             <span
               aria-expanded="false"
@@ -3541,10 +3541,10 @@ exports[`Storyshots Components/Tracks table Without Album 2`] = `
               class="wrapper svelte-dvv38h"
             >
               <button
-                class="iconOnly noBorder svelte-9liv1b"
+                class="iconOnly noBorder svelte-1lod44n"
               >
                 <i
-                  class="material-icons svelte-9liv1b"
+                  class="material-icons svelte-1lod44n"
                 >
                   more_vert
                 </i>
@@ -3560,22 +3560,22 @@ exports[`Storyshots Components/Tracks table Without Album 2`] = `
            
         </tr>
         <tr
-          class="svelte-15c3ump"
+          class="svelte-716o9v"
         >
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             14
           </td>
            
           <td
-            class="col-span-5 svelte-15c3ump"
+            class="col-span-5 svelte-716o9v"
           >
             Gateway
           </td>
            
           <td
-            class="col-span-4 svelte-15c3ump"
+            class="col-span-4 svelte-716o9v"
           >
             <a
               class="underlined"
@@ -3588,13 +3588,13 @@ exports[`Storyshots Components/Tracks table Without Album 2`] = `
            
            
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             0:16
           </td>
            
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             <span
               aria-expanded="false"
@@ -3602,10 +3602,10 @@ exports[`Storyshots Components/Tracks table Without Album 2`] = `
               class="wrapper svelte-dvv38h"
             >
               <button
-                class="iconOnly noBorder svelte-9liv1b"
+                class="iconOnly noBorder svelte-1lod44n"
               >
                 <i
-                  class="material-icons svelte-9liv1b"
+                  class="material-icons svelte-1lod44n"
                 >
                   more_vert
                 </i>
@@ -3621,22 +3621,22 @@ exports[`Storyshots Components/Tracks table Without Album 2`] = `
            
         </tr>
         <tr
-          class="svelte-15c3ump"
+          class="svelte-716o9v"
         >
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             15
           </td>
            
           <td
-            class="col-span-5 svelte-15c3ump"
+            class="col-span-5 svelte-716o9v"
           >
             The Singing Sea
           </td>
            
           <td
-            class="col-span-4 svelte-15c3ump"
+            class="col-span-4 svelte-716o9v"
           >
             <a
               class="underlined"
@@ -3649,13 +3649,13 @@ exports[`Storyshots Components/Tracks table Without Album 2`] = `
            
            
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             6:41
           </td>
            
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             <span
               aria-expanded="false"
@@ -3663,10 +3663,10 @@ exports[`Storyshots Components/Tracks table Without Album 2`] = `
               class="wrapper svelte-dvv38h"
             >
               <button
-                class="iconOnly noBorder svelte-9liv1b"
+                class="iconOnly noBorder svelte-1lod44n"
               >
                 <i
-                  class="material-icons svelte-9liv1b"
+                  class="material-icons svelte-1lod44n"
                 >
                   more_vert
                 </i>
@@ -3682,22 +3682,22 @@ exports[`Storyshots Components/Tracks table Without Album 2`] = `
            
         </tr>
         <tr
-          class="svelte-15c3ump"
+          class="svelte-716o9v"
         >
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             16
           </td>
            
           <td
-            class="col-span-5 svelte-15c3ump"
+            class="col-span-5 svelte-716o9v"
           >
             The Egg and You!
           </td>
            
           <td
-            class="col-span-4 svelte-15c3ump"
+            class="col-span-4 svelte-716o9v"
           >
             <a
               class="underlined"
@@ -3710,13 +3710,13 @@ exports[`Storyshots Components/Tracks table Without Album 2`] = `
            
            
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             4:47
           </td>
            
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             <span
               aria-expanded="false"
@@ -3724,10 +3724,10 @@ exports[`Storyshots Components/Tracks table Without Album 2`] = `
               class="wrapper svelte-dvv38h"
             >
               <button
-                class="iconOnly noBorder svelte-9liv1b"
+                class="iconOnly noBorder svelte-1lod44n"
               >
                 <i
-                  class="material-icons svelte-9liv1b"
+                  class="material-icons svelte-1lod44n"
                 >
                   more_vert
                 </i>
@@ -3743,22 +3743,22 @@ exports[`Storyshots Components/Tracks table Without Album 2`] = `
            
         </tr>
         <tr
-          class="svelte-15c3ump"
+          class="svelte-716o9v"
         >
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             17
           </td>
            
           <td
-            class="col-span-5 svelte-15c3ump"
+            class="col-span-5 svelte-716o9v"
           >
             Forever Broke
           </td>
            
           <td
-            class="col-span-4 svelte-15c3ump"
+            class="col-span-4 svelte-716o9v"
           >
             <a
               class="underlined"
@@ -3771,13 +3771,13 @@ exports[`Storyshots Components/Tracks table Without Album 2`] = `
            
            
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             1:36
           </td>
            
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             <span
               aria-expanded="false"
@@ -3785,10 +3785,10 @@ exports[`Storyshots Components/Tracks table Without Album 2`] = `
               class="wrapper svelte-dvv38h"
             >
               <button
-                class="iconOnly noBorder svelte-9liv1b"
+                class="iconOnly noBorder svelte-1lod44n"
               >
                 <i
-                  class="material-icons svelte-9liv1b"
+                  class="material-icons svelte-1lod44n"
                 >
                   more_vert
                 </i>
@@ -3804,22 +3804,22 @@ exports[`Storyshots Components/Tracks table Without Album 2`] = `
            
         </tr>
         <tr
-          class="svelte-15c3ump"
+          class="svelte-716o9v"
         >
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             18
           </td>
            
           <td
-            class="col-span-5 svelte-15c3ump"
+            class="col-span-5 svelte-716o9v"
           >
             Power of Kungfu Remix
           </td>
            
           <td
-            class="col-span-4 svelte-15c3ump"
+            class="col-span-4 svelte-716o9v"
           >
             <a
               class="underlined"
@@ -3832,13 +3832,13 @@ exports[`Storyshots Components/Tracks table Without Album 2`] = `
            
            
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             2:22
           </td>
            
           <td
-            class="svelte-15c3ump"
+            class="svelte-716o9v"
           >
             <span
               aria-expanded="false"
@@ -3846,10 +3846,10 @@ exports[`Storyshots Components/Tracks table Without Album 2`] = `
               class="wrapper svelte-dvv38h"
             >
               <button
-                class="iconOnly noBorder svelte-9liv1b"
+                class="iconOnly noBorder svelte-1lod44n"
               >
                 <i
-                  class="material-icons svelte-9liv1b"
+                  class="material-icons svelte-1lod44n"
                 >
                   more_vert
                 </i>

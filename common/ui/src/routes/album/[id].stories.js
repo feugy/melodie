@@ -16,9 +16,11 @@ const album = {
   media: 'cover.jpg'
 }
 
+const title = 'Views/Album Details'
+
 export default {
-  title: 'Views/Album Details',
-  loaders: [websocketResponse(() => album)],
+  title,
+  loaders: [websocketResponse(title, () => album)],
   parameters: {
     layout: 'none'
   }

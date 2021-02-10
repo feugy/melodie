@@ -121,13 +121,13 @@ exports[`Storyshots Site Page/Index Default 1`] = `
               <span
                 aria-expanded="false"
                 aria-haspopup="menu"
-                class="wrapper svelte-350du5"
+                class="wrapper svelte-dvv38h"
               >
                 <button
-                  class="text-white svelte-bb1epg primary large"
+                  class="text-white primary large svelte-1lod44n"
                 >
                   <i
-                    class="material-icons svelte-bb1epg"
+                    class="material-icons svelte-1lod44n"
                   >
                     get_app
                   </i>
@@ -137,7 +137,7 @@ exports[`Storyshots Site Page/Index Default 1`] = `
                   </span>
                    
                   <i
-                    class="material-icons arrow svelte-350du5"
+                    class="material-icons arrow svelte-dvv38h"
                   >
                     arrow_drop_down
                   </i>

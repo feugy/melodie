@@ -12,7 +12,7 @@ import { add } from '../../stores/track-queue'
 jest.mock('../../stores/track-queue')
 jest.mock('../../stores/playlists')
 
-describe('Album component', () => {
+describe('Playlist component', () => {
   beforeEach(() => {
     location.hash = '#/'
     jest.clearAllMocks()

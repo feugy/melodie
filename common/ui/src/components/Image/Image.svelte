@@ -3,13 +3,12 @@
 </script>
 
 <script>
-  import { toDOMSrc } from '../../utils'
-
   export let src
   export let rounded = false
   export let fallback = rounded ? 'person' : 'music_note'
   export let width = 256
   export let height = 256
+  export let withNonce = false
   // exposed dimension
   export let dimension = null
 
@@ -24,6 +23,10 @@
 
   function handleLoad() {
     dimension = { width: this.naturalWidth, height: this.naturalHeight }
+  }
+
+  function toDOMSrc(path) {
+    return path && path.replace(/#/g, '%23')
   }
 </script>
 
@@ -57,7 +60,9 @@
   class:hidden
   loading="lazy"
   src={src && !broken.has(src)
-    ? `${toDOMSrc(src)}#nonce=${Math.random()}`
+    ? withNonce
+      ? `${toDOMSrc(src)}#nonce=${Math.random()}`
+      : toDOMSrc(src)
     : null}
   alt={src}
 />
@@ -66,7 +71,8 @@
     on:click
     class={$$restProps.class}
     class:rounded-full={rounded}
-    class:rounded-sm={!rounded}>
+    class:rounded-sm={!rounded}
+  >
     <i class="material-icons">{fallback}</i>
   </span>
 {/if}

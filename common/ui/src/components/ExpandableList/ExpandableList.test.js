@@ -1,6 +1,6 @@
 'use strict'
 
-import { render, screen, fireEvent } from '@testing-library/svelte'
+import { render, screen, fireEvent, within } from '@testing-library/svelte'
 import html from 'svelte-htm'
 import { BehaviorSubject } from 'rxjs'
 import ExpandableList, {
@@ -57,10 +57,7 @@ describe('ExpandableList component', () => {
     const items = screen.getAllByRole('listitem')
     expect(items).toHaveLength(albums.length)
     for (const [i, album] of albums.entries()) {
-      expect(items[i].querySelector('a[href]')).toHaveAttribute(
-        'href',
-        `#/album/${album.id}`
-      )
+      expect(within(items[i]).queryByText(album.name)).toBeInTheDocument()
     }
   })
 

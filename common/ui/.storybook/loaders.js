@@ -8,7 +8,7 @@ const invokeAction = action('invoke')
 let connection
 let disconnected = false
 
-export function websocketResponse(mock = () => null, autoconnect = true) {
+export function websocketResponse(storyTitle, mock = () => null, autoconnect = true) {
   return async () => {
     closeConnection()
     disconnected = false
@@ -40,4 +40,8 @@ export function disconnectWebsocket() {
   if (connection) {
     connection.onclose()
   }
+}
+
+export function runCustom(storyTitle, fn) {
+  return () => fn()
 }

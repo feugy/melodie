@@ -89,7 +89,7 @@ describe('TrackDropdown component', () => {
     it('invokes service to open parent folder, on desktop', async () => {
       fireEvent.click(screen.getByText('launch'))
 
-      expect(invoke).toHaveBeenCalledWith('tracks.openContainingFolder', track)
+      expect(invoke).toHaveBeenCalledWith('tracks.openContainingFolder', track.id)
       expect(invoke).toHaveBeenCalledTimes(1)
       expect(handleShowDetails).not.toHaveBeenCalled()
       expect(add).not.toHaveBeenCalled()

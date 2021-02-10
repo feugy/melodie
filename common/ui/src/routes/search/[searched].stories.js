@@ -6,10 +6,12 @@ import { artistsData } from '../artist.stories'
 import { albumsData } from '../album.stories'
 import { disksData } from '../../components/DisksList/DisksList.stories'
 
+const title = 'Views/Search Results'
+
 export default {
-  title: 'Views/Search Results',
+  title,
   loaders: [
-    websocketResponse(() => ({
+    websocketResponse(title, () => ({
       totals: {
         albums: albumsData.length,
         artists: artistsData.length,

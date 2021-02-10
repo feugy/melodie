@@ -1,19 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Storyshots Components/Playlist Single Track 1`] = `
+exports[`Storyshots Components/Playlist Default 1`] = `
 <section
   class="storybook-snapshot-container"
 >
   <div>
      
     <span
-      class="svelte-1m58e9b overlay"
+      class="svelte-ybovyg overlay"
     >
       <div
-        class="content svelte-1m58e9b"
+        class="content svelte-ybovyg"
       >
         <span
-          class="artwork svelte-1m58e9b"
+          class="artwork svelte-ybovyg"
         >
           <span
             class="svelte-1ovzze"
@@ -22,28 +22,15 @@ exports[`Storyshots Components/Playlist Single Track 1`] = `
         </span>
          
         <p
-          class="controls svelte-1m58e9b"
+          class="controls svelte-ybovyg"
         >
-          <button
-            class="primary iconOnly large svelte-9liv1b"
-            data-testid="open"
-          >
-            <i
-              class="material-icons svelte-9liv1b"
-            >
-              open_in_full
-            </i>
-             
-             
-             
-          </button>
            
           <button
-            class="primary iconOnly large svelte-9liv1b"
+            class="primary iconOnly large svelte-1lod44n"
             data-testid="play"
           >
             <i
-              class="material-icons svelte-9liv1b"
+              class="material-icons svelte-1lod44n"
             >
               play_arrow
             </i>
@@ -53,11 +40,11 @@ exports[`Storyshots Components/Playlist Single Track 1`] = `
           </button>
            
           <button
-            class="primary iconOnly large svelte-9liv1b"
+            class="primary iconOnly large svelte-1lod44n"
             data-testid="enqueue"
           >
             <i
-              class="material-icons svelte-9liv1b"
+              class="material-icons svelte-1lod44n"
             >
               playlist_add
             </i>
@@ -69,10 +56,10 @@ exports[`Storyshots Components/Playlist Single Track 1`] = `
       </div>
        
       <header
-        class="svelte-1m58e9b"
+        class="svelte-ybovyg"
       >
         <h3
-          class="svelte-1m58e9b"
+          class="svelte-ybovyg"
         >
           My favourites
         </h3>
@@ -89,20 +76,20 @@ exports[`Storyshots Components/Playlist Single Track 1`] = `
 </section>
 `;
 
-exports[`Storyshots Components/Playlist Single Track 2`] = `
+exports[`Storyshots Components/Playlist Single Track 1`] = `
 <section
   class="storybook-snapshot-container"
 >
   <div>
      
     <span
-      class="svelte-1m58e9b overlay"
+      class="svelte-ybovyg overlay"
     >
       <div
-        class="content svelte-1m58e9b"
+        class="content svelte-ybovyg"
       >
         <span
-          class="artwork svelte-1m58e9b"
+          class="artwork svelte-ybovyg"
         >
           <span
             class="svelte-1ovzze"
@@ -111,28 +98,15 @@ exports[`Storyshots Components/Playlist Single Track 2`] = `
         </span>
          
         <p
-          class="controls svelte-1m58e9b"
+          class="controls svelte-ybovyg"
         >
-          <button
-            class="primary iconOnly large svelte-9liv1b"
-            data-testid="open"
-          >
-            <i
-              class="material-icons svelte-9liv1b"
-            >
-              open_in_full
-            </i>
-             
-             
-             
-          </button>
            
           <button
-            class="primary iconOnly large svelte-9liv1b"
+            class="primary iconOnly large svelte-1lod44n"
             data-testid="play"
           >
             <i
-              class="material-icons svelte-9liv1b"
+              class="material-icons svelte-1lod44n"
             >
               play_arrow
             </i>
@@ -142,11 +116,11 @@ exports[`Storyshots Components/Playlist Single Track 2`] = `
           </button>
            
           <button
-            class="primary iconOnly large svelte-9liv1b"
+            class="primary iconOnly large svelte-1lod44n"
             data-testid="enqueue"
           >
             <i
-              class="material-icons svelte-9liv1b"
+              class="material-icons svelte-1lod44n"
             >
               playlist_add
             </i>
@@ -158,10 +132,10 @@ exports[`Storyshots Components/Playlist Single Track 2`] = `
       </div>
        
       <header
-        class="svelte-1m58e9b"
+        class="svelte-ybovyg"
       >
         <h3
-          class="svelte-1m58e9b"
+          class="svelte-ybovyg"
         >
           My favourites
         </h3>

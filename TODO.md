@@ -17,9 +17,12 @@ TODO responsiveness:
 
 TODO improvements/bugs
 
+- merge components/Album|Artist|Playlist tests for GridItem + hover behaviour (desktop only)
+- delay local provider sync after last fetch
+- UI Address fetched asynchronously
+- Catch startup errors
 - tests for stores/windows
 - bug scroll dropdown (Firefox only)
-- album/artist/playlist: open on click (desktop), show actions on tap
 - swipe on mobile: up/down for player, left/right for track list
 
 Future work
@@ -27,11 +30,10 @@ Future work
 - progressive webapp
 - Consider yarn2, once svelte-preprocess is fixed
 - search tooling to find deps version mismatch, and maintain package.json same version
-- stream music instead of download files
-- use nonce in media names instead of hash parameter
 - Postcss (jest-css-modules-transform@4.1+ needs postcss8, which requires webpack@5, which storybook does not support yet)
 - compare ajv serialization with stringify
-- accessibility: ImageUploader file input, Loading input, and Nav search box have no label,
+- accessibility: ImageUploader file input, Loading input, and Nav search box have no label
+- download files and cache them in browser
 
 Browser support
 

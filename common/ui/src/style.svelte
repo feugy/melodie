@@ -88,7 +88,7 @@
     font-family: 'Material Icons';
     font-weight: normal;
     font-style: normal;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     line-height: 1;
     letter-spacing: normal;
     text-transform: none;
@@ -126,7 +126,7 @@
     box-sizing: border-box;
     color: var(--font-color);
     font-family: 'Source Sans Pro';
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 300;
     letter-spacing: 0.025em;
     line-height: 1.65;

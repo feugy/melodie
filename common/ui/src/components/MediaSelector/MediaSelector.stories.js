@@ -6,14 +6,16 @@ import { artistData } from '../Artist/Artist.stories'
 import { websocketResponse } from '../../../.storybook/loaders'
 import { isDesktop } from '../../stores/settings'
 
+const title = 'Components/Media Selector'
+
 export default {
-  title: 'Components/Media Selector',
+  title,
   excludeStories: /.*Data$/,
   argTypes: {
     isDesktop: { control: { type: 'boolean' }, defaultValue: true }
   },
   loaders: [
-    websocketResponse(invoked => {
+    websocketResponse(title, invoked => {
       if (invoked === 'media.findForArtist') {
         return artistSuggestionsData
       } else if (invoked === 'media.findForAlbum') {

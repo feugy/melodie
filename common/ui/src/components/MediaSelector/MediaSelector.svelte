@@ -57,6 +57,7 @@
           <div class="m-2">
             <Image
               src={image[attribute]}
+              withNonce
               class="w-48 h-48 actionable"
               on:click={() => handleSelect(image[attribute])}
               bind:dimension={image.dimension}

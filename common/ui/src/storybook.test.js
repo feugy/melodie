@@ -3,15 +3,20 @@
 import initStoryshots from '@storybook/addon-storyshots'
 import electron from 'electron'
 import { sleep } from './tests'
+import { invoke } from './utils'
 
-jest.mock('../.storybook/loaders', () => {
-  const { invoke } = require('./utils')
-  return {
-    websocketResponse(mock) {
-      invoke.mockImplementation(async (...args) => mock(...args))
-    }
+const mockedWSResponses = new Map()
+const mockedCustomLoaders = new Map()
+
+// emulate ws loader as they are not supported by storyshot yet https://github.com/storybookjs/storybook/issues/12703
+jest.mock('../.storybook/loaders', () => ({
+  websocketResponse(title, mock) {
+    mockedWSResponses.set(title, mock)
+  },
+  runCustom(title, customLoader) {
+    mockedCustomLoaders.set(title, customLoader)
   }
-})
+}))
 
 let originalRandom
 
@@ -47,6 +52,21 @@ initStoryshots({
   }) => {
     // store snapshot in different files
     const snapshotFileName = stories2snapsConverter.getSnapshotFileName(context)
+    const key = `${context.kind} ${context.story}`
+    const storyWSMock = mockedWSResponses.get(key)
+    const storiesWSMock = mockedWSResponses.get(context.kind)
+    if (storyWSMock || storiesWSMock) {
+      invoke.mockImplementation(async (...args) =>
+        (storyWSMock || storiesWSMock)(...args)
+      )
+    } else {
+      invoke.mockReset()
+    }
+    const storyCustom = mockedCustomLoaders.get(key)
+    const storiesCustom = mockedCustomLoaders.get(context.kind)
+    if (storyCustom || storiesCustom) {
+      await (storyCustom || storiesCustom)()
+    }
     const result = renderTree(story, context)
 
     // give it some time, for async stories

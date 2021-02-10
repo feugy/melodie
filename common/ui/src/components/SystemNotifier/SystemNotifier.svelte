@@ -6,7 +6,7 @@
 <script>
   import { onMount } from 'svelte'
   import { _ } from 'svelte-intl'
-  import { invoke, toDOMSrc } from '../../utils'
+  import { invoke } from '../../utils'
   import { current, playPrevious, playNext } from '../../stores/track-queue'
   import { isDesktop } from '../../stores/settings'
 
@@ -27,11 +27,12 @@
       const title = tags.title || unknown
       const album = tags.album || unknown
       trackId = id
+      const icon = media ? `${window.dlUrl}${media}` : null
 
       if (!isFocused) {
         const notif = new Notification(title, {
           body: `${artist} - ${album}`,
-          icon: toDOMSrc(media),
+          icon,
           silent: true
         })
         if (isInDesktop) {
@@ -41,13 +42,13 @@
 
       if (mediaSession) {
         const artwork = []
-        if (media) {
+        if (icon) {
           try {
-            const data = await fetch(toDOMSrc(media))
+            const data = await fetch(icon)
             artwork.push({ src: URL.createObjectURL(await data.blob()) })
           } catch (err) {
             console.error(
-              `failed to load media ${media} for mediaSession: ${err.message}`
+              `failed to load media ${icon} for mediaSession: ${err.message}`
             )
           }
         }

@@ -67,9 +67,11 @@ const artist = {
   tracks
 }
 
+const title = 'Views/Artist Details'
+
 export default {
-  title: 'Views/Artist Details',
-  loaders: [websocketResponse(() => artist)],
+  title,
+  loaders: [websocketResponse(title, () => artist)],
   parameters: {
     layout: 'none'
   }

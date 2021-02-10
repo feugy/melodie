@@ -1,32 +1,33 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Storyshots Views/Playlist Default 1`] = `
+exports[`Storyshots Views/Albums Default 1`] = `
 <section
   class="storybook-snapshot-container"
 >
   <section
-    class="svelte-8hyguo"
+    class="svelte-7ipczm"
   >
     <header
       class=" svelte-5q08mx"
-      style="--image: url(../images/david-villasana-YNJGB-_Vlgw-unsplash.jpg); --shade-color: rgba(0, 0, 0, 0.7); --bgPosition: center 46%;"
+      style="--image: url(../images/valentino-funghi-MEcxLZ8ENV8-unsplash.jpg); --shade-color: rgba(0, 0, 0, 0.7); --bgPosition: center 25%;"
     >
       <h1
         class="svelte-5q08mx"
       >
-        3 playlists
+        3 albums
       </h1>
     </header>
      
     <div
-      class="svelte-8hyguo"
+      class="svelte-7ipczm"
     >
       <span
-        class="svelte-8hyguo"
+        class="svelte-7ipczm"
+        id="firstAlbum"
       >
          
         <span
-          class="svelte-ybovyg overlay"
+          class="svelte-ybovyg"
         >
           <div
             class="content svelte-ybovyg"
@@ -34,9 +35,23 @@ exports[`Storyshots Views/Playlist Default 1`] = `
             <span
               class="artwork svelte-ybovyg"
             >
-              <span
-                class="svelte-1ovzze"
+              <img
+                class="h-full w-full rounded-sm hidden svelte-hn7eai"
+                height="256"
+                loading="lazy"
+                width="256"
               />
+               
+              <span
+                class="h-full w-full svelte-hn7eai rounded-sm"
+              >
+                <i
+                  class="material-icons svelte-hn7eai"
+                >
+                  music_note
+                </i>
+              </span>
+              
                
             </span>
              
@@ -80,25 +95,74 @@ exports[`Storyshots Views/Playlist Default 1`] = `
             <h3
               class="svelte-ybovyg"
             >
-              My favourites
+              100 Best Karajan
             </h3>
              
             <h4
-              class="svelte-1ovzze"
+              class="svelte-1fiafx9"
               slot="details"
             >
-              3 tracks
+              by 
+              <a
+                class="underlined"
+                href="#/artist/1"
+                onclick="event.stopPropagation()"
+              >
+                Émile Waldteufel
+              </a>
+              , 
+              <a
+                class="underlined"
+                href="#/artist/2"
+                onclick="event.stopPropagation()"
+              >
+                Johann Sebastian Bach
+              </a>
+              , 
+              <a
+                class="underlined"
+                href="#/artist/3"
+                onclick="event.stopPropagation()"
+              >
+                Wolfgang Amadeus Mozart
+              </a>
+              , 
+              <a
+                class="underlined"
+                href="#/artist/4"
+                onclick="event.stopPropagation()"
+              >
+                Ottorino Respighi
+              </a>
+              , 
+              <a
+                class="underlined"
+                href="#/artist/5"
+                onclick="event.stopPropagation()"
+              >
+                Ludwig van Beethoven
+              </a>
+              , 
+              <a
+                class="underlined"
+                href="#/artist/6"
+                onclick="event.stopPropagation()"
+              >
+                Giuseppe Verdi
+              </a>
+              
+               
             </h4>
           </header>
         </span>
          
       </span>
       <span
-        class="svelte-8hyguo"
+        class="svelte-7ipczm"
       >
          
         <span
-          class="svelte-ybovyg overlay"
+          class="svelte-ybovyg"
         >
           <div
             class="content svelte-ybovyg"
@@ -106,9 +170,16 @@ exports[`Storyshots Views/Playlist Default 1`] = `
             <span
               class="artwork svelte-ybovyg"
             >
-              <span
-                class="svelte-1ovzze"
+              <img
+                alt="cover.jpg"
+                class="h-full w-full rounded-sm svelte-hn7eai"
+                height="256"
+                loading="lazy"
+                src="cover.jpg"
+                width="256"
               />
+               
+              
                
             </span>
              
@@ -152,25 +223,34 @@ exports[`Storyshots Views/Playlist Default 1`] = `
             <h3
               class="svelte-ybovyg"
             >
-              Rock
+              Black Orpheus
             </h3>
              
             <h4
-              class="svelte-1ovzze"
+              class="svelte-1fiafx9"
               slot="details"
             >
-              1 track
+              by 
+              <a
+                class="underlined"
+                href="#/artist/7"
+                onclick="event.stopPropagation()"
+              >
+                Keziah Jones
+              </a>
+              
+               
             </h4>
           </header>
         </span>
          
       </span>
       <span
-        class="svelte-8hyguo"
+        class="svelte-7ipczm"
       >
          
         <span
-          class="svelte-ybovyg overlay"
+          class="svelte-ybovyg"
         >
           <div
             class="content svelte-ybovyg"
@@ -178,9 +258,23 @@ exports[`Storyshots Views/Playlist Default 1`] = `
             <span
               class="artwork svelte-ybovyg"
             >
-              <span
-                class="svelte-1ovzze"
+              <img
+                class="h-full w-full rounded-sm hidden svelte-hn7eai"
+                height="256"
+                loading="lazy"
+                width="256"
               />
+               
+              <span
+                class="h-full w-full svelte-hn7eai rounded-sm"
+              >
+                <i
+                  class="material-icons svelte-hn7eai"
+                >
+                  music_note
+                </i>
+              </span>
+              
                
             </span>
              
@@ -224,14 +318,23 @@ exports[`Storyshots Views/Playlist Default 1`] = `
             <h3
               class="svelte-ybovyg"
             >
-              Slows
+              Distant Worlds - Music from Final Fantasy
             </h3>
              
             <h4
-              class="svelte-1ovzze"
+              class="svelte-1fiafx9"
               slot="details"
             >
-              5 tracks
+              by 
+              <a
+                class="underlined"
+                href="#/artist/8"
+                onclick="event.stopPropagation()"
+              >
+                Nobuo Uematsu
+              </a>
+              
+               
             </h4>
           </header>
         </span>

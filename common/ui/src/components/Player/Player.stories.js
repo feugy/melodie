@@ -4,10 +4,12 @@ import Player from './Player.svelte'
 import * as queue from '../../stores/track-queue'
 import { websocketResponse } from '../../../.storybook/loaders'
 
+const title = 'Components/Player'
+
 export default {
-  title: 'Components/Player',
+  title,
   excludeStories: /.*Data$/,
-  loaders: [websocketResponse(() => ({ totals: 0, results: [] }))],
+  loaders: [websocketResponse(title, () => ({ totals: 0, results: [] }))],
   parameters: { layout: 'none' }
 }
 
@@ -73,7 +75,7 @@ export const trackListData = [
     albumRef,
     artistRefs: artistRefs.slice(2)
   }
-]
+].map(track => ({ ...track, data: track.path }))
 
 export const Empty = () => {
   queue.clear()

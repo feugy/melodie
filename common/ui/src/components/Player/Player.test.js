@@ -23,7 +23,9 @@ const { play, pause } = HTMLMediaElement.prototype
 describe('Player component', () => {
   let mediaElementSource
   let gainNode
+  let audioContext
   let observer
+  const dlUrl = faker.internet.url()
 
   function mockAutoPlay(audio) {
     observer = new MutationObserver(mutations => {
@@ -39,14 +41,17 @@ describe('Player component', () => {
   beforeEach(() => {
     location.hash = '#/'
     jest.resetAllMocks()
-    window.AudioContext = function () {
-      return {
-        createMediaElementSource: jest.fn().mockReturnValue(mediaElementSource),
-        createGain: jest.fn().mockReturnValue(gainNode)
-      }
-    }
     mediaElementSource = { connect: jest.fn() }
-    gainNode = { connect: jest.fn(), gain: { value: 1 } }
+    gainNode = { connect: jest.fn(), gain: { value: 1 }, get context() { return audioContext } }
+    audioContext = {
+      createMediaElementSource: jest.fn().mockReturnValue(mediaElementSource),
+      createGain: jest.fn().mockReturnValue(gainNode),
+      resume: jest.fn()
+    }
+    window.AudioContext = function () {
+      return audioContext
+    }
+    window.dlUrl = dlUrl
 
     play.mockImplementation(function () {
       this.dispatchEvent(new Event('play'))
@@ -59,6 +64,7 @@ describe('Player component', () => {
   })
 
   afterEach(() => {
+    delete window.dlUrl
     if (observer) {
       observer.disconnect()
     }
@@ -71,7 +77,7 @@ describe('Player component', () => {
     render(html`<${Player} />`)
 
     const audio = screen.getByTestId('audio')
-    expect(audio).toHaveAttribute('src', trackListData[0].path)
+    expect(audio).toHaveAttribute('src', `${window.dlUrl}${trackListData[0].data}`)
 
     await fireEvent.click(screen.getByText('play_arrow'))
 
@@ -118,17 +124,6 @@ describe('Player component', () => {
     await fireEvent.click(screen.getByText('skip_previous'))
 
     expect(get(current)).toEqual(trackListData[1])
-  })
-
-  it('toggles playlist open state', async () => {
-    const isPlaylistOpen = new writable(true)
-    render(html`<${Player} bind:isPlaylistOpen=${isPlaylistOpen} />`)
-
-    await fireEvent.click(screen.getByText('queue_music'))
-    expect(get(isPlaylistOpen)).toBe(false)
-
-    await fireEvent.click(screen.getByText('queue_music'))
-    expect(get(isPlaylistOpen)).toBe(true)
   })
 
   it('can change volume', async () => {
@@ -198,12 +193,13 @@ describe('Player component', () => {
     add(trackListData)
     render(html`<${Player} />`)
     const audio = screen.getByTestId('audio')
+    // fireEvent.click(screen.queryByText('play_arrow'))
     mockAutoPlay(audio)
     expect(get(current)).toEqual(trackListData[0])
 
     audio.dispatchEvent(new Event('ended'))
     expect(get(current)).toEqual(trackListData[1])
-    await sleep()
+    await sleep(10)
 
     expect(screen.queryByText('pause')).toBeInTheDocument()
     expect(screen.queryByText('play_arrow')).not.toBeInTheDocument()
@@ -301,7 +297,7 @@ describe('Player component', () => {
     ]
 
     beforeEach(async () => {
-      jest.resetAllMocks()
+      invoke.mockReset()
       playlistStore.reset()
       invoke.mockResolvedValue({
         total: playlists.length,

@@ -39,10 +39,12 @@ const playlists = [
   }
 ]
 
+const title = 'Views/Playlist'
+
 export default {
-  title: 'Views/Playlist',
+  title,
   loaders: [
-    websocketResponse(() => ({
+    websocketResponse(title, () => ({
       size: 10,
       from: 0,
       total: playlists.length,

@@ -25,6 +25,7 @@
       window.serverUrl = match
         ? `ws://localhost:${match[1]}`
         : `${window.location.protocol.replace('http', 'ws')}//${window.location.host}`
+      window.dlUrl = window.serverUrl.replace('ws', 'http')
     </script>
   </head>
 

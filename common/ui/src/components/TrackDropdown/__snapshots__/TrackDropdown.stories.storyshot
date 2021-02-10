@@ -10,10 +10,10 @@ exports[`Storyshots Components/Track Dropdown Default 1`] = `
     class="wrapper svelte-dvv38h"
   >
     <button
-      class="iconOnly noBorder svelte-9liv1b"
+      class="iconOnly noBorder svelte-1lod44n"
     >
       <i
-        class="material-icons svelte-9liv1b"
+        class="material-icons svelte-1lod44n"
       >
         more_vert
       </i>

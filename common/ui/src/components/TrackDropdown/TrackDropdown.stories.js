@@ -6,14 +6,16 @@ import { websocketResponse } from '../../../.storybook/loaders'
 import { list } from '../../stores/playlists'
 import { isDesktop } from '../../stores/settings'
 
+const title = 'Components/Track Dropdown'
+
 export default {
-  title: 'Components/Track Dropdown',
+  title,
   excludeStories: /.*Data$/,
   argTypes: {
     isDesktop: { control: { type: 'boolean' }, defaultValue: true }
   },
   loaders: [
-    websocketResponse(() => ({
+    websocketResponse(title, () => ({
       total: playlistsData.length,
       size: playlistsData.length,
       from: 0,

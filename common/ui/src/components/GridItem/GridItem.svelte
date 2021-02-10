@@ -1,9 +1,21 @@
+<script context="module">
+  import { load as loadAlbum } from '../../stores/albums'
+  import { load as loadArtist } from '../../stores/artists'
+  import { load as loadPlaylist } from '../../stores/playlists'
+
+  const load = {
+    album: loadAlbum,
+    artist: loadArtist,
+    playlist: loadPlaylist
+  }
+</script>
+
 <script>
   import { _ } from 'svelte-intl'
   import { push } from 'svelte-spa-router'
   import Button from '../Button/Button.svelte'
   import { add } from '../../stores/track-queue'
-  import { load } from '../../stores/albums'
+  import { isTouchable } from '../../stores/window'
 
   export let src
   export let kind
@@ -17,13 +29,27 @@
 
   async function handlePlay(evt, immediate = true) {
     if (!src.tracks) {
-      src = await load(src.id)
+      src = await load[kind](src.id)
     }
     add(src.tracks, immediate)
   }
 
   async function handleEnqueue(evt) {
     return handlePlay(evt, false)
+  }
+
+  function handleClick(evt) {
+    if ($isTouchable) {
+      open = !open
+    } else {
+      handleOpen()
+    }
+  }
+
+  function handleMouseEnter() {
+    if (!$isTouchable) {
+      open = true
+    }
   }
 
   function handleFocusLost() {
@@ -36,6 +62,7 @@
 <style type="postcss">
   span {
     @apply relative inline-block w-32 cursor-pointer;
+    -webkit-tap-highlight-color: transparent;
 
     &.overlay header {
       @apply absolute inset-0 z-0 p-2;
@@ -73,7 +100,7 @@
 
   @screen md {
     span {
-      @apply w-48 cursor-default;
+      @apply w-48;
 
       & .content {
         & .controls {
@@ -115,20 +142,24 @@
 <span
   class={$$restProps.class}
   class:overlay
-  on:click={() => (open = !open)}
-  on:mouseleave={handleFocusLost}>
+  on:click={handleClick}
+  on:mouseenter={handleMouseEnter}
+  on:mouseleave={handleFocusLost}
+>
   <div class="content">
     <span class="artwork">
       <slot />
     </span>
     <p class="controls" class:open>
-      <Button
-        data-testid="open"
-        primary
-        icon="open_in_full"
-        large
-        on:click={handleOpen}
-      />
+      {#if $isTouchable}
+        <Button
+          data-testid="open"
+          primary
+          icon="open_in_full"
+          large
+          on:click={handleOpen}
+        />
+      {/if}
       <Button
         data-testid="play"
         primary

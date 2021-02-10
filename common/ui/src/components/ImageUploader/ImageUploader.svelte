@@ -58,7 +58,8 @@
   class="{$$restProps.class} actionable"
   on:dragover|preventDefault|stopPropagation={handleDragOver}
   on:drop|preventDefault|stopPropagation={handleDrop}
-  on:click|capture={handleClick}>
-  <Image src={value} class="w-full h-full" fallback={'add_box'} />
+  on:click|capture={handleClick}
+>
+  <Image src={value} class="w-full h-full" fallback={'add_box'} withNonce />
   <input type="file" on:change={handleSelectFile} />
 </span>

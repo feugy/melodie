@@ -48,9 +48,7 @@ exports.main = async argv => {
     // when packaged, argv does not include the usual "node" first parameter
     argv.shift()
   }
-  const { port, _: entries } = parseArgs(argv, {
-    alias: { p: 'port' }
-  })
+  const { port, _: entries } = parseArgs(argv, { alias: { p: 'port' } })
   // first is always the archive or folder
   entries.splice(0, 1)
   const desiredPort = parseInt(port, 10) || undefined
@@ -169,12 +167,12 @@ starting... To change log levels, edit the level file and run \`kill -USR2 ${pro
   }
 
   app.once('window-all-closed', () => {
-    unsubscribe()
+    dispose()
     app.quit()
   })
 
   await app.whenReady()
-  const unsubscribe = await createWindow()
+  const dispose = await createWindow()
 
   // autoUpdater is using logger functions detached from their instance
   const updaterLogger = getLogger('updater')

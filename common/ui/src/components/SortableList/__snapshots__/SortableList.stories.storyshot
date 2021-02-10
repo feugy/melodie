@@ -15,7 +15,7 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
           slot="item"
         >
           <div
-            class="col-span-11 root svelte-whrgz7"
+            class="col-span-11 root svelte-vq6nbx"
           >
             <a
               class="flex-none"
@@ -23,19 +23,21 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
             >
               <img
                 alt="./# Films/cover.jpg"
-                class="h-16 w-16 text-xs actionable svelte-hn7eai rounded-sm"
+                class="h-16 w-16 text-xs actionable rounded-sm svelte-hn7eai"
+                height="256"
                 loading="lazy"
-                src="./%23 Films/cover.jpg#nonce=0.1"
+                src="./%23 Films/cover.jpg"
+                width="256"
               />
                
               
             </a>
              
             <div
-              class="track svelte-whrgz7"
+              class="track svelte-vq6nbx"
             >
               <span
-                class="title svelte-whrgz7"
+                class="title svelte-vq6nbx"
               >
                 file 1
               </span>
@@ -50,7 +52,7 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
             </div>
              
             <div
-              class="duration svelte-whrgz7"
+              class="duration svelte-vq6nbx"
             >
               3:38
             </div>
@@ -59,10 +61,10 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
            
           <span>
             <button
-              class="iconOnly noBorder svelte-9liv1b"
+              class="iconOnly noBorder svelte-1lod44n"
             >
               <i
-                class="material-icons svelte-9liv1b"
+                class="material-icons svelte-1lod44n"
               >
                 close
               </i>
@@ -83,7 +85,7 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
           slot="item"
         >
           <div
-            class="col-span-11 root svelte-whrgz7"
+            class="col-span-11 root svelte-vq6nbx"
           >
             <a
               class="flex-none"
@@ -91,19 +93,21 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
             >
               <img
                 alt="./# Films/cover.jpg"
-                class="h-16 w-16 text-xs actionable svelte-hn7eai rounded-sm"
+                class="h-16 w-16 text-xs actionable rounded-sm svelte-hn7eai"
+                height="256"
                 loading="lazy"
-                src="./%23 Films/cover.jpg#nonce=0.1"
+                src="./%23 Films/cover.jpg"
+                width="256"
               />
                
               
             </a>
              
             <div
-              class="track svelte-whrgz7"
+              class="track svelte-vq6nbx"
             >
               <span
-                class="title svelte-whrgz7"
+                class="title svelte-vq6nbx"
               >
                 file 2
               </span>
@@ -118,7 +122,7 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
             </div>
              
             <div
-              class="duration svelte-whrgz7"
+              class="duration svelte-vq6nbx"
             >
               0:04
             </div>
@@ -127,10 +131,10 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
            
           <span>
             <button
-              class="iconOnly noBorder svelte-9liv1b"
+              class="iconOnly noBorder svelte-1lod44n"
             >
               <i
-                class="material-icons svelte-9liv1b"
+                class="material-icons svelte-1lod44n"
               >
                 close
               </i>
@@ -151,7 +155,7 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
           slot="item"
         >
           <div
-            class="col-span-11 root svelte-whrgz7"
+            class="col-span-11 root svelte-vq6nbx"
           >
             <a
               class="flex-none"
@@ -159,19 +163,21 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
             >
               <img
                 alt="./cover.jpg"
-                class="h-16 w-16 text-xs actionable svelte-hn7eai rounded-sm"
+                class="h-16 w-16 text-xs actionable rounded-sm svelte-hn7eai"
+                height="256"
                 loading="lazy"
-                src="./cover.jpg#nonce=0.1"
+                src="./cover.jpg"
+                width="256"
               />
                
               
             </a>
              
             <div
-              class="track svelte-whrgz7"
+              class="track svelte-vq6nbx"
             >
               <span
-                class="title svelte-whrgz7"
+                class="title svelte-vq6nbx"
               >
                 file 3
               </span>
@@ -186,7 +192,7 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
             </div>
              
             <div
-              class="duration svelte-whrgz7"
+              class="duration svelte-vq6nbx"
             >
               0:02
             </div>
@@ -195,10 +201,10 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
            
           <span>
             <button
-              class="iconOnly noBorder svelte-9liv1b"
+              class="iconOnly noBorder svelte-1lod44n"
             >
               <i
-                class="material-icons svelte-9liv1b"
+                class="material-icons svelte-1lod44n"
               >
                 close
               </i>
@@ -219,7 +225,7 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
           slot="item"
         >
           <div
-            class="col-span-11 root svelte-whrgz7"
+            class="col-span-11 root svelte-vq6nbx"
           >
             <a
               class="flex-none"
@@ -227,19 +233,21 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
             >
               <img
                 alt="./cover.jpg"
-                class="h-16 w-16 text-xs actionable svelte-hn7eai rounded-sm"
+                class="h-16 w-16 text-xs actionable rounded-sm svelte-hn7eai"
+                height="256"
                 loading="lazy"
-                src="./cover.jpg#nonce=0.1"
+                src="./cover.jpg"
+                width="256"
               />
                
               
             </a>
              
             <div
-              class="track svelte-whrgz7"
+              class="track svelte-vq6nbx"
             >
               <span
-                class="title svelte-whrgz7"
+                class="title svelte-vq6nbx"
               >
                 file 4
               </span>
@@ -254,7 +262,7 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
             </div>
              
             <div
-              class="duration svelte-whrgz7"
+              class="duration svelte-vq6nbx"
             >
               0:03
             </div>
@@ -263,10 +271,10 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
            
           <span>
             <button
-              class="iconOnly noBorder svelte-9liv1b"
+              class="iconOnly noBorder svelte-1lod44n"
             >
               <i
-                class="material-icons svelte-9liv1b"
+                class="material-icons svelte-1lod44n"
               >
                 close
               </i>
@@ -287,7 +295,7 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
           slot="item"
         >
           <div
-            class="col-span-11 root svelte-whrgz7"
+            class="col-span-11 root svelte-vq6nbx"
           >
             <a
               class="flex-none"
@@ -295,19 +303,21 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
             >
               <img
                 alt="./# Films/cover.jpg"
-                class="h-16 w-16 text-xs actionable svelte-hn7eai rounded-sm"
+                class="h-16 w-16 text-xs actionable rounded-sm svelte-hn7eai"
+                height="256"
                 loading="lazy"
-                src="./%23 Films/cover.jpg#nonce=0.1"
+                src="./%23 Films/cover.jpg"
+                width="256"
               />
                
               
             </a>
              
             <div
-              class="track svelte-whrgz7"
+              class="track svelte-vq6nbx"
             >
               <span
-                class="title svelte-whrgz7"
+                class="title svelte-vq6nbx"
               >
                 file 1
               </span>
@@ -322,7 +332,7 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
             </div>
              
             <div
-              class="duration svelte-whrgz7"
+              class="duration svelte-vq6nbx"
             >
               3:38
             </div>
@@ -331,10 +341,10 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
            
           <span>
             <button
-              class="iconOnly noBorder svelte-9liv1b"
+              class="iconOnly noBorder svelte-1lod44n"
             >
               <i
-                class="material-icons svelte-9liv1b"
+                class="material-icons svelte-1lod44n"
               >
                 close
               </i>
@@ -355,7 +365,7 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
           slot="item"
         >
           <div
-            class="col-span-11 root svelte-whrgz7"
+            class="col-span-11 root svelte-vq6nbx"
           >
             <a
               class="flex-none"
@@ -363,19 +373,21 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
             >
               <img
                 alt="./# Films/cover.jpg"
-                class="h-16 w-16 text-xs actionable svelte-hn7eai rounded-sm"
+                class="h-16 w-16 text-xs actionable rounded-sm svelte-hn7eai"
+                height="256"
                 loading="lazy"
-                src="./%23 Films/cover.jpg#nonce=0.1"
+                src="./%23 Films/cover.jpg"
+                width="256"
               />
                
               
             </a>
              
             <div
-              class="track svelte-whrgz7"
+              class="track svelte-vq6nbx"
             >
               <span
-                class="title svelte-whrgz7"
+                class="title svelte-vq6nbx"
               >
                 file 2
               </span>
@@ -390,7 +402,7 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
             </div>
              
             <div
-              class="duration svelte-whrgz7"
+              class="duration svelte-vq6nbx"
             >
               0:04
             </div>
@@ -399,10 +411,10 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
            
           <span>
             <button
-              class="iconOnly noBorder svelte-9liv1b"
+              class="iconOnly noBorder svelte-1lod44n"
             >
               <i
-                class="material-icons svelte-9liv1b"
+                class="material-icons svelte-1lod44n"
               >
                 close
               </i>
@@ -423,7 +435,7 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
           slot="item"
         >
           <div
-            class="col-span-11 root svelte-whrgz7"
+            class="col-span-11 root svelte-vq6nbx"
           >
             <a
               class="flex-none"
@@ -431,19 +443,21 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
             >
               <img
                 alt="./cover.jpg"
-                class="h-16 w-16 text-xs actionable svelte-hn7eai rounded-sm"
+                class="h-16 w-16 text-xs actionable rounded-sm svelte-hn7eai"
+                height="256"
                 loading="lazy"
-                src="./cover.jpg#nonce=0.1"
+                src="./cover.jpg"
+                width="256"
               />
                
               
             </a>
              
             <div
-              class="track svelte-whrgz7"
+              class="track svelte-vq6nbx"
             >
               <span
-                class="title svelte-whrgz7"
+                class="title svelte-vq6nbx"
               >
                 file 3
               </span>
@@ -458,7 +472,7 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
             </div>
              
             <div
-              class="duration svelte-whrgz7"
+              class="duration svelte-vq6nbx"
             >
               0:02
             </div>
@@ -467,10 +481,10 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
            
           <span>
             <button
-              class="iconOnly noBorder svelte-9liv1b"
+              class="iconOnly noBorder svelte-1lod44n"
             >
               <i
-                class="material-icons svelte-9liv1b"
+                class="material-icons svelte-1lod44n"
               >
                 close
               </i>
@@ -491,7 +505,7 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
           slot="item"
         >
           <div
-            class="col-span-11 root svelte-whrgz7"
+            class="col-span-11 root svelte-vq6nbx"
           >
             <a
               class="flex-none"
@@ -499,19 +513,21 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
             >
               <img
                 alt="./cover.jpg"
-                class="h-16 w-16 text-xs actionable svelte-hn7eai rounded-sm"
+                class="h-16 w-16 text-xs actionable rounded-sm svelte-hn7eai"
+                height="256"
                 loading="lazy"
-                src="./cover.jpg#nonce=0.1"
+                src="./cover.jpg"
+                width="256"
               />
                
               
             </a>
              
             <div
-              class="track svelte-whrgz7"
+              class="track svelte-vq6nbx"
             >
               <span
-                class="title svelte-whrgz7"
+                class="title svelte-vq6nbx"
               >
                 file 4
               </span>
@@ -526,7 +542,7 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
             </div>
              
             <div
-              class="duration svelte-whrgz7"
+              class="duration svelte-vq6nbx"
             >
               0:03
             </div>
@@ -535,10 +551,10 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
            
           <span>
             <button
-              class="iconOnly noBorder svelte-9liv1b"
+              class="iconOnly noBorder svelte-1lod44n"
             >
               <i
-                class="material-icons svelte-9liv1b"
+                class="material-icons svelte-1lod44n"
               >
                 close
               </i>
