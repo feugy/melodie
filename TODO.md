@@ -20,7 +20,6 @@ TODO improvements/bugs
 - merge components/Album|Artist|Playlist tests for GridItem + hover behaviour (desktop only)
 - delay local provider sync after last fetch
 - Catch startup errors
-- tests for stores/windows
 - bug scroll dropdown (Firefox only)
 - swipe on mobile: up/down for player, left/right for track list
 
