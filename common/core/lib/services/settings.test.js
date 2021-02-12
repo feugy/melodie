@@ -3,33 +3,25 @@
 const { join } = require('path')
 const faker = require('faker')
 const osLocale = require('os-locale')
+const publicIp = require('public-ip')
 const settingsService = require('./settings')
 const { local, audiodb, discogs } = require('../providers')
 const { settingsModel } = require('../models/settings')
-const { broadcast, messageBus } = require('../utils')
+const { broadcast } = require('../utils')
 
 jest.mock('os-locale')
+jest.mock('public-ip')
 jest.mock('../services')
 jest.mock('../models/settings')
 jest.mock('../providers/local')
 jest.mock('../providers/discogs')
 jest.mock('../providers/audiodb')
-jest.mock('../utils/connection', () => {
-  const { EventEmitter } = require('events')
-  return { messageBus: new EventEmitter(), broadcast: jest.fn() }
-})
+jest.mock('../utils/connection', () => ({ broadcast: jest.fn() }))
 
 describe('Settings service', () => {
   beforeEach(() => {
     jest.clearAllMocks()
     settingsModel.get.mockResolvedValue({})
-  })
-
-  it('listens to ui-address event', () => {
-    const address = faker.internet.url()
-    expect(settingsService.getUIAddress()).toBeNull()
-    messageBus.emit('ui-address-set', address)
-    expect(settingsService.getUIAddress()).toEqual(address)
   })
 
   it('returns settings', async () => {
@@ -176,12 +168,13 @@ describe('Settings service', () => {
       discogs: { foo: faker.random.word() }
     }
     const locale = faker.random.word()
+    const port = faker.random.number({ min: 3000, max: 9999 })
 
     it('increments opening count', async () => {
       const openCount = faker.random.number({ min: 1 })
       settingsModel.get.mockResolvedValueOnce({ openCount, locale, providers })
 
-      await settingsService.init()
+      await settingsService.init(port)
       expect(settingsModel.save).toHaveBeenCalledWith({
         openCount: openCount + 1,
         locale,
@@ -197,7 +190,7 @@ describe('Settings service', () => {
         providers
       })
 
-      await settingsService.init()
+      await settingsService.init(port)
       expect(discogs.init).toHaveBeenCalledWith(providers.discogs)
       expect(discogs.init).toHaveBeenCalledTimes(1)
       expect(audiodb.init).toHaveBeenCalledWith(providers.audiodb)
@@ -211,11 +204,32 @@ describe('Settings service', () => {
         providers
       })
 
-      await settingsService.init()
+      await settingsService.init(port)
 
       expect(local.compareTracks).toHaveBeenCalledTimes(1)
       expect(audiodb.compareTracks).toHaveBeenCalledTimes(1)
       expect(discogs.compareTracks).toHaveBeenCalledTimes(1)
+    })
+
+    it('fetches public IP', async () => {
+      const ip = faker.internet.ip()
+      publicIp.v4.mockResolvedValue(ip)
+      settingsModel.get.mockResolvedValueOnce({ locale, providers })
+      await settingsService.init(port)
+
+      expect(await settingsService.getUIAddress()).toEqual(
+        `http://${ip}:${port}`
+      )
+      expect(publicIp.v4).toHaveBeenCalledTimes(1)
+    })
+
+    it('handles no network', async () => {
+      publicIp.v4.mockRejectedValue(new Error('unreachable network'))
+      settingsModel.get.mockResolvedValueOnce({ locale, providers })
+      await settingsService.init(port)
+
+      expect(await settingsService.getUIAddress()).toBeNull()
+      expect(publicIp.v4).toHaveBeenCalledTimes(1)
     })
   })
 

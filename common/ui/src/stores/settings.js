@@ -14,13 +14,13 @@ const reconnectDelay = 100
 
 let reconnectTimeout
 
+let port
+
 const settings$ = new BehaviorSubject({
   providers: { audiodb: {}, discogs: {} },
   enqueueBehaviour: {},
   isBroadcasting: false
 })
-
-const address$ = new BehaviorSubject(null)
 
 const connected$ = new BehaviorSubject(false)
 
@@ -28,14 +28,13 @@ export const settings = settings$.asObservable()
 
 export const connected = connected$.asObservable()
 
-export const address = address$.asObservable()
-
 // export the whole subject to allow testing, since it's not easy to change JSDom userAgent within Jest
 export const isDesktop = new BehaviorSubject(
   /electron/i.test(navigator.userAgent)
 )
 
 async function connect(address, bail = false) {
+  port = address.split(':')[2]
   connected$.next(false)
   clearTimeout(reconnectTimeout)
 
@@ -61,7 +60,6 @@ export async function init(address) {
       settings$.next(saved)
     })
     settings$.next(await invoke('settings.get'))
-    address$.next(await invoke('settings.getUIAddress'))
   } catch {
     // silently ignores errors
   }
@@ -105,8 +103,8 @@ export async function toggleBroadcast() {
   settings$.next(await invoke('settings.toggleBroadcast'))
   closeConnection()
   // toggling broadcast on and off is a desktop feature: url will always be localhost.
-  // connect without bail on the new address
-  connect(`ws://localhost:${get(address).split(':')[2]}`)
+  // connect without bail on the new port
+  connect(`ws://localhost:${port}`)
 }
 
 export function saveBroadcastPort(port) {

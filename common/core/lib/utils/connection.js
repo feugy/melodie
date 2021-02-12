@@ -1,13 +1,12 @@
 'use strict'
 
-const { resolve, dirname, basename } = require('path')
+const { dirname, basename } = require('path')
 const { EventEmitter } = require('events')
 const fastify = require('fastify')
 const compressPlugin = require('fastify-compress')
 const staticPlugin = require('fastify-static')
 const websocketPlugin = require('fastify-websocket')
 const Ajv = require('ajv').default
-const publicIp = require('public-ip')
 const { getLogger } = require('./logger')
 
 const logger = getLogger('connection')
@@ -57,8 +56,6 @@ exports.messageBus.setMaxListeners(10000)
  *
  * If the listening port isn't explicitly specified, `settings.broadcastPort` will be used, or if not set, the first available
  * port.
- *
- * Finally it emit `ui-address-set` event with the public URL hosting the UI.
  * @async
  * @param {object} services     - services exposed: their properties are expected to be objects, and the nested keys are functions.
  * @param {string} publicFolder - relative or absolute path to the public folder served.
@@ -72,7 +69,6 @@ exports.initConnection = async function (services, publicFolder, port = 0) {
   }
 
   let settings = await services.settings.get()
-  let realPort = null
 
   const handleSavedSettings = savedSettings => {
     const needRestart = settings.isBroadcasting !== savedSettings.isBroadcasting
@@ -155,13 +151,8 @@ exports.initConnection = async function (services, publicFolder, port = 0) {
       makeMediaHandler(services.media.getAlbumMedia)
     )
     const address = await server.listen(
-      realPort || port || settings.broadcastPort,
+      port || settings.broadcastPort,
       settings.isBroadcasting ? '0.0.0.0' : 'localhost'
-    )
-    realPort = +address.split(':')[2]
-    exports.messageBus.emit(
-      'ui-address-set',
-      `http://${await publicIp.v4()}:${realPort}`
     )
     return address
   }

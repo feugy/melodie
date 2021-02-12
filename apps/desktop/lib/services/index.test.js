@@ -50,6 +50,7 @@ describe('Services', () => {
       port1
     )
     expect(services.settings.init).toHaveBeenCalledTimes(1)
+    expect(services.settings.init).toHaveBeenCalledWith(port2)
     expect(services.tracks.listen).toHaveBeenCalledTimes(1)
     expect(close).not.toHaveBeenCalled()
   })

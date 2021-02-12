@@ -1,21 +1,18 @@
 'use strict'
 
+const publicIp = require('public-ip')
 const { settingsModel } = require('../models')
 const {
   broadcast,
   getLogger,
   mergePaths,
-  getSystemLocale,
-  messageBus
+  getSystemLocale
 } = require('../utils')
 const { local, audiodb, discogs, allProviders } = require('../providers')
 
 const logger = getLogger('services/settings')
 
-let uiAddress = null
-messageBus.on('ui-address-set', value => {
-  uiAddress = value
-})
+let serverPort = null
 
 module.exports = {
   /**
@@ -33,10 +30,15 @@ module.exports = {
 
   /**
    * Returns the public address hosting the UI
-   * @returns {string} UI public url
+   * @returns {string} UI public url, or null when network is unreachable
    */
-  getUIAddress() {
-    return uiAddress
+  async getUIAddress() {
+    try {
+      return `http://${await publicIp.v4({ timeout: 500 })}:${serverPort}`
+    } catch (err) {
+      logger.error({ err }, 'failed to read public ip')
+    }
+    return null
   },
 
   /**
@@ -45,9 +47,11 @@ module.exports = {
    * - initializes AudioDB & Discogs providers with keys and tokens
    * - triggers track comparison on all providers
    * @async
+   * @param {number} port - port our server is listening to
    * @returns {SettingsModel} updated settings
    */
-  async init() {
+  async init(port) {
+    serverPort = port
     const settings = await this.get()
     await settingsModel.save({
       ...settings,

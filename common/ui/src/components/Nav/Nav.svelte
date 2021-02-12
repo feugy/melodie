@@ -11,8 +11,8 @@
   import BroadcastButton from '../BroadcastButton/BroadcastButton.svelte'
   import TextInput from '../TextInput/TextInput.svelte'
   import Dialogue from '../Dialogue/Dialogue.svelte'
+  import { invoke } from '../../utils'
   import {
-    address,
     connected,
     isDesktop,
     settings,
@@ -26,6 +26,7 @@
   export let isPlaylistOpen = false
 
   let menuOpen = false
+  let address = null
 
   $: path = $location.split('/')[1]
 
@@ -47,6 +48,12 @@
       : `${path}s`,
     { searched }
   )
+
+  $: if ($isDesktop) {
+    invoke('settings.getUIAddress').then(uiAddress => {
+      address = uiAddress
+    })
+  }
 
   let search$ = new Subject().pipe(
     debounceTime(250),
@@ -218,10 +225,10 @@
         />
       </li>
       <li>
-        {#if $isDesktop && !isSmall}
+        {#if $isDesktop && address && !isSmall}
           <BroadcastButton
             {isBroadcasting}
-            address={$address}
+            {address}
             on:click={toggleBroadcast}
           />
         {:else if !$connected}

@@ -13,7 +13,6 @@ import { saveBroadcastPort } from './settings'
 
 describe('settings store', () => {
   let settings
-  let address
   let connected
   let askToAddFolder
   let removeFolder
@@ -30,15 +29,12 @@ describe('settings store', () => {
   const providers = { audiodb: { key }, discogs: { token } }
   const enqueueBehaviour = { onClick: true, clearBefore: false }
   const folders = [faker.system.fileName(), faker.system.fileName()]
-  const ip = faker.internet.ip()
   const port = faker.random.number({ min: 2000, max: 10000 })
-  const uiAddress = `http://${ip}:${port}`
 
   beforeAll(async () => {
     ;({
       init,
       settings,
-      address,
       connected,
       askToAddFolder,
       removeFolder,
@@ -68,18 +64,15 @@ describe('settings store', () => {
         providers: { audiodb: {}, discogs: {} }
       })
       expect(get(connected)).toEqual(false)
-      expect(get(address)).toBeNull()
 
-      const url = faker.internet.url()
+      const url = `${faker.internet.protocol()}://${faker.internet.ip()}:${port}`
       const values = {
         locale,
         folders,
         enqueueBehaviour,
         providers
       }
-      invoke.mockImplementation(async invoked =>
-        invoked === 'settings.get' ? values : uiAddress
-      )
+      invoke.mockResolvedValue(values)
       const err = new Error('Connection error')
 
       // failure
@@ -95,7 +88,6 @@ describe('settings store', () => {
       expect(initConnection).toHaveBeenCalledWith(url, expect.any(Function))
       expect(initConnection).toHaveBeenCalledTimes(1)
       expect(invoke).not.toHaveBeenCalled()
-      expect(get(address)).toBeNull()
 
       // success
       initConnection.mockResolvedValueOnce()
@@ -105,8 +97,7 @@ describe('settings store', () => {
       expect(get(settings)).toEqual(values)
       expect(initConnection).toHaveBeenCalledWith(url, expect.any(Function))
       expect(initConnection).toHaveBeenCalledTimes(2)
-      expect(invoke).toHaveBeenCalledTimes(2)
-      expect(get(address)).toEqual(uiAddress)
+      expect(invoke).toHaveBeenCalledTimes(1)
 
       // run the connection lost callback
       initConnection
@@ -121,12 +112,18 @@ describe('settings store', () => {
       await sleep(300)
       expect(get(connected)).toEqual(true)
       expect(get(settings)).toEqual(values)
-      expect(get(address)).toEqual(uiAddress)
       expect(initConnection).toHaveBeenCalledTimes(5)
     })
   })
 
   describe('given initialization', () => {
+    beforeEach(async () => {
+      await init(
+        `${faker.internet.protocol()}://${faker.internet.ip()}:${port}`
+      )
+      jest.resetAllMocks()
+    })
+
     it('redirects to albums on successful folder addition', async () => {
       invoke.mockResolvedValueOnce(true)
       await askToAddFolder()

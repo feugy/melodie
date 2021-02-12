@@ -23,15 +23,13 @@ export default {
             },
             isBroadcasting: true
           }
-        : invoked === 'settings.getUIAddress'
-        ? 'http://localhost:10000'
         : { melodie: '2.0.0', electron: '11.0.0' }
     ),
     runCustom(title, async () => {
       isDesktop.next(true)
       global.TAILWINDCSS_VERSION = '1.9.0'
       global.RXJS_VERSION = '6.0.0'
-      await init()
+      await init('http://192.168.0.10:9999')
     })
   ],
   parameters: {

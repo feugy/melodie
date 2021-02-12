@@ -32,9 +32,10 @@ async function start(publicFolder, win, descriptor, desiredPort) {
     desiredPort
   )
 
-  await settings.init()
+  const port = +address.split(':')[2]
+  await settings.init(port)
   tracks.listen()
-  return { close, port: +address.split(':')[2] }
+  return { close, port }
 }
 
 module.exports = { start, playFiles: tracks.play }

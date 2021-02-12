@@ -10,12 +10,9 @@ const got = require('got').extend({
   retry: 0,
   followRedirect: false
 })
-const publicIp = require('public-ip')
 const { initConnection, broadcast, messageBus } = require('./connection')
 const { getLogger } = require('./logger')
 const { sleep, makeFolder } = require('../tests')
-
-jest.mock('public-ip')
 
 function connectWSClient(address) {
   return new Promise((resolve, reject) => {
@@ -62,12 +59,6 @@ function callAndListen(ws, data) {
   return promise
 }
 
-function waitUIAddress() {
-  return new Promise(resolve => {
-    messageBus.once('ui-address-set', resolve)
-  })
-}
-
 describe('connection utilities', () => {
   let errorSpy
   let close
@@ -75,7 +66,6 @@ describe('connection utilities', () => {
   let folder
   let tracks
   const publicFolder = join(tmpdir(), faker.random.word())
-  const ip = faker.internet.ip()
 
   const services = {
     settings: { get: jest.fn() },
@@ -98,7 +88,6 @@ describe('connection utilities', () => {
 
   beforeEach(() => {
     jest.resetAllMocks()
-    publicIp.v4.mockResolvedValue(ip)
     errorSpy = jest
       .spyOn(getLogger('connection'), 'error')
       .mockImplementation(() => {})
@@ -111,13 +100,11 @@ describe('connection utilities', () => {
   afterEach(() => (close ? close() : null))
 
   it('starts a WebSocket server and can stop it', async () => {
-    const uiAddress = waitUIAddress()
     ;({ close, address } = await initConnection(services, publicFolder))
     expect(close).toBeInstanceOf(Function)
     expect(address).toInclude('127.0.0.1')
 
     const ws = await connectWSClient(address)
-    expect(await uiAddress).toEqual(`http://${ip}:${address.split(':')[2]}`)
 
     await expect(got(`${address}/index.html`)).rejects.toThrow(/Not Found/)
     await expect(
@@ -128,7 +115,6 @@ describe('connection utilities', () => {
     close()
     await promise
     expect(errorSpy).not.toHaveBeenCalled()
-    expect(publicIp.v4).toHaveBeenCalledTimes(1)
   })
 
   it('uses explicit port over settings', async () => {
@@ -139,35 +125,25 @@ describe('connection utilities', () => {
       isBroadcasting: false,
       broadcastPort
     })
-    let uiAddress = waitUIAddress()
-
     ;({ close, address } = await initConnection(services, publicFolder))
     expect(close).toBeInstanceOf(Function)
     expect(address).toInclude(broadcastPort)
-    expect(await uiAddress).toEqual(`http://${ip}:${broadcastPort}`)
     await close()
-
-    uiAddress = waitUIAddress()
     ;({ close, address } = await initConnection(services, publicFolder, port))
     expect(close).toBeInstanceOf(Function)
     expect(address).toInclude(port)
-    expect(await uiAddress).toEqual(`http://${ip}:${port}`)
 
     expect(errorSpy).not.toHaveBeenCalled()
-    expect(publicIp.v4).toHaveBeenCalledTimes(2)
   })
 
   it('can start and stop broadcasting', async () => {
     const port = faker.random.number({ min: 9000, max: 10000 })
-    const uiAddress = waitUIAddress()
 
     ;({ close, address } = await initConnection(services, publicFolder, port))
     expect(close).toBeInstanceOf(Function)
     expect(address).toInclude('127.0.0.1')
     expect(address).toInclude(`:${port}`)
     await expect(got(`${address}/index.html`)).rejects.toThrow(/Not Found/)
-
-    expect(await uiAddress).toEqual(`http://${ip}:${port}`)
 
     broadcast('settings-saved', {
       folders: [folder],

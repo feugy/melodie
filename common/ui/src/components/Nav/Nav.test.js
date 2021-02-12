@@ -10,9 +10,9 @@ import {
   isDesktop,
   connected,
   settings,
-  address,
   toggleBroadcast
 } from '../../stores/settings'
+import { invoke } from '../../utils'
 import { sleep, translate } from '../../tests'
 
 jest.mock('../../stores/settings')
@@ -23,7 +23,6 @@ describe('Nav component', () => {
   const isDesktopStore = new BehaviorSubject(true)
   const connectedStore = new BehaviorSubject(true)
   const settingsStore = new BehaviorSubject({ isBroadcasting: false })
-  const addressStore = new BehaviorSubject(faker.internet.url())
 
   beforeEach(() => {
     location.hash = '#/'
@@ -34,7 +33,12 @@ describe('Nav component', () => {
     isDesktop.subscribe = isDesktopStore.subscribe.bind(isDesktopStore)
     connected.subscribe = connectedStore.subscribe.bind(connectedStore)
     settings.subscribe = settingsStore.subscribe.bind(settingsStore)
-    address.subscribe = addressStore.subscribe.bind(addressStore)
+    invoke.mockResolvedValue(
+      `http://${faker.internet.ip()}:${faker.random.number({
+        min: 3000,
+        max: 9999
+      })}`
+    )
   })
 
   it('observes its sentinel', async () => {
@@ -101,7 +105,7 @@ describe('Nav component', () => {
     render(html`<${Nav} />`)
     const searchbox = screen.getByRole('searchbox')
 
-    await fireEvent.input(searchbox, { target: { value: text } })
+    fireEvent.input(searchbox, { target: { value: text } })
     await sleep(300)
 
     expect(searchbox).toHaveValue(text)
@@ -116,8 +120,8 @@ describe('Nav component', () => {
     render(html`<${Nav} />`)
     const searchbox = screen.getByRole('searchbox')
 
-    await fireEvent.input(searchbox, { target: { value: text1 } })
-    await fireEvent.input(searchbox, { target: { value: text2 } })
+    fireEvent.input(searchbox, { target: { value: text1 } })
+    fireEvent.input(searchbox, { target: { value: text2 } })
     await sleep(300)
 
     expect(searchbox).toHaveValue(text2)
@@ -132,11 +136,11 @@ describe('Nav component', () => {
     render(html`<${Nav} />`)
     const searchbox = screen.getByRole('searchbox')
 
-    await fireEvent.input(searchbox, { target: { value: text } })
+    fireEvent.input(searchbox, { target: { value: text } })
     await sleep(300)
 
-    await fireEvent.keyUp(searchbox, { key: 'Enter' })
-    await fireEvent.keyUp(searchbox, { key: 'y' })
+    fireEvent.keyUp(searchbox, { key: 'Enter' })
+    fireEvent.keyUp(searchbox, { key: 'y' })
     await sleep(300)
 
     expect(searchbox).toHaveValue(text)
@@ -152,11 +156,11 @@ describe('Nav component', () => {
     render(html`<${Nav} />`)
     const searchbox = screen.getByRole('searchbox')
 
-    await fireEvent.input(searchbox, { target: { value: text } })
+    fireEvent.input(searchbox, { target: { value: text } })
     expect(searchbox).toHaveValue(text)
     await sleep(300)
 
-    await fireEvent.click(searchbox.previousElementSibling)
+    fireEvent.click(searchbox.previousElementSibling)
     await sleep()
 
     expect(push).toHaveBeenCalledTimes(1)
@@ -191,8 +195,10 @@ describe('Nav component', () => {
 
     render(html`<${Nav} />`)
     expect(screen.queryByText('wifi')).not.toBeInTheDocument()
+    await sleep()
 
-    await fireEvent.click(screen.queryByText('wifi_off'))
+    fireEvent.click(screen.queryByText('wifi_off'))
+    await sleep()
 
     expect(screen.queryByText('wifi_off')).not.toBeInTheDocument()
     expect(screen.queryByText('wifi')).toBeInTheDocument()

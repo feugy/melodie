@@ -4,7 +4,8 @@ import Nav from './Nav.stories.svelte'
 import { isDesktop, init } from '../../stores/settings'
 import {
   websocketResponse,
-  disconnectWebsocket
+  disconnectWebsocket,
+  runCustom
 } from '../../../.storybook/loaders'
 
 const settings = {
@@ -15,24 +16,27 @@ const settings = {
 
 const title = 'Components/Nav'
 
+const url = `http://192.168.0.10:${Math.floor(Math.random() * 10000)}`
+
 export default {
   title,
   loaders: [
     websocketResponse(
       title,
       invoked => {
+        console.log('coucou', invoked)
         if (invoked === 'settings.toggleBroadcast') {
           settings.isBroadcasting = !settings.isBroadcasting
           return settings
         } else if (invoked === 'settings.getUIAddress') {
-          return `http://192.168.0.10:${Math.floor(Math.random() * 10000)}`
+          return url
         } else {
           return settings
         }
       },
       false
     ),
-    () => init('unused', () => {})
+    runCustom(title, () => init(url, () => {}))
   ],
   argTypes: {
     isDesktop: { control: { type: 'boolean' }, defaultValue: true },
