@@ -6,6 +6,7 @@ const { artistsModel } = require('../models/artists')
 const { albumsModel } = require('../models/albums')
 const { tracksModel } = require('../models/tracks')
 const { playlistsModel } = require('../models/playlists')
+const { local, audiodb, discogs } = require('../providers')
 const { tracks: tracksService, settings: settingsService } = require('.')
 const { hash, broadcast } = require('../utils')
 const { sleep, addRefs, addId } = require('../tests')
@@ -15,6 +16,9 @@ jest.mock('../models/artists')
 jest.mock('../models/albums')
 jest.mock('../models/tracks')
 jest.mock('../models/playlists')
+jest.mock('../providers/local')
+jest.mock('../providers/discogs')
+jest.mock('../providers/audiodb')
 jest.mock('../utils/connection')
 
 const identity = data => data
@@ -1352,6 +1356,16 @@ describe('Tracks service', () => {
       expect(settingsService.addFolders).not.toHaveBeenCalled()
       expect(broadcast).toHaveBeenCalledWith('play-tracks', tracks)
       expect(broadcast).toHaveBeenCalledTimes(1)
+    })
+  })
+
+  describe('compare', () => {
+    it('triggers comparison providers', async () => {
+      await tracksService.compare()
+
+      expect(local.compareTracks).toHaveBeenCalledTimes(1)
+      expect(audiodb.compareTracks).toHaveBeenCalledTimes(1)
+      expect(discogs.compareTracks).toHaveBeenCalledTimes(1)
     })
   })
 })

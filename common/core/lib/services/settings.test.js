@@ -197,20 +197,6 @@ describe('Settings service', () => {
       expect(audiodb.init).toHaveBeenCalledTimes(1)
     })
 
-    it('triggers comparison providers', async () => {
-      settingsModel.get.mockResolvedValueOnce({
-        openCount: 0,
-        locale,
-        providers
-      })
-
-      await settingsService.init(port)
-
-      expect(local.compareTracks).toHaveBeenCalledTimes(1)
-      expect(audiodb.compareTracks).toHaveBeenCalledTimes(1)
-      expect(discogs.compareTracks).toHaveBeenCalledTimes(1)
-    })
-
     it('fetches public IP', async () => {
       const ip = faker.internet.ip()
       publicIp.v4.mockResolvedValue(ip)

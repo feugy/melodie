@@ -25,7 +25,7 @@ export async function initConnection(address, onConnectionLost) {
     socket.onopen = () => {
       socket.onopen = null
       socket.onerror = null
-      console.log(`Connected to ${address}`)
+      // console.log(`Connected to ${address}`)
       resolve(socket)
     }
     socket.onerror = err => {
@@ -44,7 +44,7 @@ export async function initConnection(address, onConnectionLost) {
   }
 
   ws.onclose = () => {
-    console.log(`Connection to ${address} lost`)
+    // console.log(`Connection to ${address} lost`)
     closeConnection()
     onConnectionLost()
   }
@@ -56,7 +56,7 @@ export async function initConnection(address, onConnectionLost) {
  */
 export function closeConnection() {
   if (ws) {
-    console.log(`Disconnected`)
+    // console.log(`Disconnected`)
     ws.onclose = null
     ws.close()
   }

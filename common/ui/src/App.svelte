@@ -14,6 +14,7 @@
     TracksQueue,
     Tutorial
   } from './components'
+  import { isListing } from './stores/albums'
   import * as queue from './stores/track-queue'
   import * as tutorial from './stores/tutorial'
   import { isLoading } from './stores/loading'
@@ -25,6 +26,7 @@
   let isPlaylistOpen = null
   let ready = false
   let scrollable
+  let listingSubscription
 
   $: withClose = $screenSize === SM
   $: if (isPlaylistOpen === null && $screenSize) {
@@ -41,6 +43,12 @@
       replace('/settings')
       tutorial.start()
     }
+    listingSubscription = isListing.subscribe(inProgress => {
+      if (!inProgress && listingSubscription) {
+        invoke('tracks.compare')
+        listingSubscription.unsubscribe()
+      }
+    })
   })
 
   function handleNav() {

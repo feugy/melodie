@@ -8,7 +8,7 @@ const {
   mergePaths,
   getSystemLocale
 } = require('../utils')
-const { local, audiodb, discogs, allProviders } = require('../providers')
+const { local, audiodb, discogs } = require('../providers')
 
 const logger = getLogger('services/settings')
 
@@ -60,10 +60,6 @@ module.exports = {
     logger.info('initializing providers')
     audiodb.init(settings.providers.audiodb)
     discogs.init(settings.providers.discogs)
-    logger.info('comparing provider tracks')
-    for (const provider of allProviders) {
-      provider.compareTracks()
-    }
     return settings
   },
 

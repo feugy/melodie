@@ -410,5 +410,14 @@ module.exports = {
       `playing tracks`
     )
     return tracks
+  },
+
+  async compare() {
+    logger.info('comparing provider tracks')
+    // providers/local depends on services/tracks: use late require to avoid a circular dependency
+    for (const provider of require('../providers').allProviders) {
+      await provider.compareTracks()
+    }
+    logger.info('tracks comparison ended')
   }
 }
