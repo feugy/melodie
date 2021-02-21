@@ -26,22 +26,17 @@ exports[`Storyshots Views/Playlist Default 1`] = `
       >
          
         <span
-          class="svelte-ybovyg overlay"
+          class="svelte-1vgpzqt overlay"
         >
           <div
-            class="content svelte-ybovyg"
+            class="content svelte-1vgpzqt"
           >
             <span
-              class="artwork svelte-ybovyg"
-            >
-              <span
-                class="svelte-1ovzze"
-              />
-               
-            </span>
+              class="artwork svelte-1vgpzqt"
+            />
              
             <p
-              class="controls svelte-ybovyg"
+              class="controls svelte-1vgpzqt"
             >
                
               <button
@@ -75,16 +70,15 @@ exports[`Storyshots Views/Playlist Default 1`] = `
           </div>
            
           <header
-            class="svelte-ybovyg"
+            class="svelte-1vgpzqt"
           >
             <h3
-              class="svelte-ybovyg"
+              class="svelte-1vgpzqt"
             >
               My favourites
             </h3>
              
             <h4
-              class="svelte-1ovzze"
               slot="details"
             >
               3 tracks
@@ -98,22 +92,17 @@ exports[`Storyshots Views/Playlist Default 1`] = `
       >
          
         <span
-          class="svelte-ybovyg overlay"
+          class="svelte-1vgpzqt overlay"
         >
           <div
-            class="content svelte-ybovyg"
+            class="content svelte-1vgpzqt"
           >
             <span
-              class="artwork svelte-ybovyg"
-            >
-              <span
-                class="svelte-1ovzze"
-              />
-               
-            </span>
+              class="artwork svelte-1vgpzqt"
+            />
              
             <p
-              class="controls svelte-ybovyg"
+              class="controls svelte-1vgpzqt"
             >
                
               <button
@@ -147,16 +136,15 @@ exports[`Storyshots Views/Playlist Default 1`] = `
           </div>
            
           <header
-            class="svelte-ybovyg"
+            class="svelte-1vgpzqt"
           >
             <h3
-              class="svelte-ybovyg"
+              class="svelte-1vgpzqt"
             >
               Rock
             </h3>
              
             <h4
-              class="svelte-1ovzze"
               slot="details"
             >
               1 track
@@ -170,22 +158,17 @@ exports[`Storyshots Views/Playlist Default 1`] = `
       >
          
         <span
-          class="svelte-ybovyg overlay"
+          class="svelte-1vgpzqt overlay"
         >
           <div
-            class="content svelte-ybovyg"
+            class="content svelte-1vgpzqt"
           >
             <span
-              class="artwork svelte-ybovyg"
-            >
-              <span
-                class="svelte-1ovzze"
-              />
-               
-            </span>
+              class="artwork svelte-1vgpzqt"
+            />
              
             <p
-              class="controls svelte-ybovyg"
+              class="controls svelte-1vgpzqt"
             >
                
               <button
@@ -219,16 +202,15 @@ exports[`Storyshots Views/Playlist Default 1`] = `
           </div>
            
           <header
-            class="svelte-ybovyg"
+            class="svelte-1vgpzqt"
           >
             <h3
-              class="svelte-ybovyg"
+              class="svelte-1vgpzqt"
             >
               Slows
             </h3>
              
             <h4
-              class="svelte-1ovzze"
               slot="details"
             >
               5 tracks

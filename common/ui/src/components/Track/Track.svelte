@@ -13,7 +13,7 @@
 
 <style type="postcss">
   .root {
-    @apply flex m-2 items-start text-left;
+    @apply flex m-2 items-center text-left;
   }
 
   .track {

@@ -105,16 +105,21 @@
     items={$tracks}
     on:move={({ detail: { from, to } }) => move(from, to)}
   >
-    <span slot="item" let:item let:i>
-      <span class="row" class:current={$index === i} on:click={() => jumpTo(i)}>
-        <Track src={item} details class="flex-auto" />
-        <Button
-          icon="close"
-          noBorder
-          class="mx-2"
-          on:click={() => handleRemove(i)}
-        />
-      </span>
+    <span
+      slot="item"
+      let:item
+      let:i
+      class="row"
+      class:current={$index === i}
+      on:click={() => jumpTo(i)}
+    >
+      <Track src={item} details class="flex-auto" />
+      <Button
+        icon="close"
+        noBorder
+        class="mx-2"
+        on:click={() => handleRemove(i)}
+      />
     </span>
   </SortableList>
 </div>

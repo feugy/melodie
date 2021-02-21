@@ -17,7 +17,7 @@ exports[`Storyshots Views/Settings Default 1`] = `
     </header>
      
     <article
-      class="svelte-p171gr"
+      class="svelte-9n6jnp"
     >
       <h4
         class=" svelte-1raf6tm"
@@ -27,10 +27,10 @@ exports[`Storyshots Views/Settings Default 1`] = `
        
       <ul>
         <li
-          class="svelte-p171gr"
+          class="svelte-9n6jnp"
         >
           <span
-            class="svelte-p171gr"
+            class="svelte-9n6jnp"
           >
             /home/music
           </span>
@@ -50,10 +50,10 @@ exports[`Storyshots Views/Settings Default 1`] = `
            
         </li>
         <li
-          class="svelte-p171gr"
+          class="svelte-9n6jnp"
         >
           <span
-            class="svelte-p171gr"
+            class="svelte-9n6jnp"
           >
             /home/movies
           </span>
@@ -75,7 +75,7 @@ exports[`Storyshots Views/Settings Default 1`] = `
       </ul>
        
       <span
-        class="controlContainer svelte-p171gr"
+        class="controlContainer svelte-9n6jnp"
         id="folder"
       >
         <button
@@ -97,7 +97,7 @@ exports[`Storyshots Views/Settings Default 1`] = `
     </article>
      
     <article
-      class="svelte-p171gr"
+      class="svelte-9n6jnp"
     >
       <h4
         class=" svelte-1raf6tm"
@@ -106,17 +106,17 @@ exports[`Storyshots Views/Settings Default 1`] = `
       </h4>
        
       <p
-        class="svelte-p171gr"
+        class="svelte-9n6jnp"
       >
         <label
-          class="svelte-p171gr"
+          class="svelte-9n6jnp"
           for="locale"
         >
           Language:
         </label>
          
         <span
-          class="controlContainer svelte-p171gr"
+          class="controlContainer svelte-9n6jnp"
           id="locale"
         >
           <span
@@ -147,10 +147,10 @@ exports[`Storyshots Views/Settings Default 1`] = `
       </p>
        
       <p
-        class="svelte-p171gr"
+        class="svelte-9n6jnp"
       >
         <label
-          class="svelte-p171gr"
+          class="svelte-9n6jnp"
           for="play-behaviour"
         >
           Button 
@@ -163,7 +163,7 @@ exports[`Storyshots Views/Settings Default 1`] = `
         </label>
          
         <span
-          class="controlContainer svelte-p171gr"
+          class="controlContainer svelte-9n6jnp"
           id="play-behaviour"
         >
           <span
@@ -194,17 +194,17 @@ exports[`Storyshots Views/Settings Default 1`] = `
       </p>
        
       <p
-        class="svelte-p171gr"
+        class="svelte-9n6jnp"
       >
         <label
-          class="svelte-p171gr"
+          class="svelte-9n6jnp"
           for="click-behaviour"
         >
           Simple click:
         </label>
          
         <span
-          class="controlContainer svelte-p171gr"
+          class="controlContainer svelte-9n6jnp"
           id="click-behaviour"
         >
           <span
@@ -239,7 +239,7 @@ exports[`Storyshots Views/Settings Default 1`] = `
     </article>
      
     <article
-      class="svelte-p171gr"
+      class="svelte-9n6jnp"
     >
       <h4
         class=" svelte-1raf6tm"
@@ -248,7 +248,7 @@ exports[`Storyshots Views/Settings Default 1`] = `
       </h4>
        
       <div
-        class="instructions svelte-p171gr"
+        class="instructions svelte-9n6jnp"
       >
         <p>
           TheAudioDB is a community Database of audio artwork and data with a JSON API. Mélodie can use it for album covers and artist artwork, but it needs an API key.
@@ -276,7 +276,7 @@ exports[`Storyshots Views/Settings Default 1`] = `
       </div>
        
       <label
-        class="svelte-p171gr"
+        class="svelte-9n6jnp"
         for="audiodb-key"
       >
         Key:
@@ -284,7 +284,7 @@ exports[`Storyshots Views/Settings Default 1`] = `
       </label>
        
       <span
-        class="controlContainer svelte-p171gr"
+        class="controlContainer svelte-9n6jnp"
         id="audiodb-key"
       >
         <span
@@ -301,7 +301,7 @@ exports[`Storyshots Views/Settings Default 1`] = `
     </article>
      
     <article
-      class="svelte-p171gr"
+      class="svelte-9n6jnp"
     >
       <h4
         class=" svelte-1raf6tm"
@@ -310,7 +310,7 @@ exports[`Storyshots Views/Settings Default 1`] = `
       </h4>
        
       <div
-        class="instructions svelte-p171gr"
+        class="instructions svelte-9n6jnp"
       >
         <p>
           Discogs is on a mission to build the biggest and most comprehensive music database and marketplace. Mélodie can use it for album covers and artist artwork, but it needs an access token.
@@ -338,7 +338,7 @@ exports[`Storyshots Views/Settings Default 1`] = `
       </div>
        
       <label
-        class="svelte-p171gr"
+        class="svelte-9n6jnp"
         for="discogs-token"
       >
         Access token:
@@ -346,7 +346,7 @@ exports[`Storyshots Views/Settings Default 1`] = `
       </label>
        
       <span
-        class="controlContainer svelte-p171gr"
+        class="controlContainer svelte-9n6jnp"
         id="discogs-token"
       >
         <span
@@ -363,7 +363,7 @@ exports[`Storyshots Views/Settings Default 1`] = `
     </article>
      
     <article
-      class="svelte-p171gr"
+      class="svelte-9n6jnp"
     >
       <h4
         class=" svelte-1raf6tm"
@@ -372,14 +372,14 @@ exports[`Storyshots Views/Settings Default 1`] = `
       </h4>
        
       <label
-        class="svelte-p171gr"
+        class="svelte-9n6jnp"
         for="broadcast-port"
       >
         Broadcasting port: 
       </label>
        
       <span
-        class="controlContainer svelte-p171gr"
+        class="controlContainer svelte-9n6jnp"
         id="broadcast-port"
       >
         <span
@@ -395,14 +395,14 @@ exports[`Storyshots Views/Settings Default 1`] = `
       </span>
        
       <span
-        class="instructions svelte-p171gr"
+        class="instructions svelte-9n6jnp"
       >
         (please restart to apply change)
       </span>
     </article>
      
     <article
-      class="svelte-p171gr"
+      class="svelte-9n6jnp"
     >
       <h4
         class=" svelte-1raf6tm"
@@ -411,9 +411,11 @@ exports[`Storyshots Views/Settings Default 1`] = `
       </h4>
        
       <div
-        class="instructions svelte-p171gr"
+        class="instructions svelte-9n6jnp"
       >
-        <p>
+        <p
+          class="svelte-9n6jnp"
+        >
           Built with love by 
           <a
             class="underlined"
@@ -424,22 +426,22 @@ exports[`Storyshots Views/Settings Default 1`] = `
         </p>
          
         <p
-          class="version-container svelte-p171gr"
+          class="version-container svelte-9n6jnp"
         >
           <div
-            class="svelte-p171gr"
+            class="svelte-9n6jnp"
           >
             <header
-              class="svelte-p171gr"
+              class="svelte-9n6jnp"
             >
               <div
-                class="svelte-p171gr"
+                class="svelte-9n6jnp"
               >
                 Mélodie
               </div>
                
               <div
-                class="svelte-p171gr"
+                class="svelte-9n6jnp"
               >
                 2.0.0
               </div>
@@ -447,25 +449,25 @@ exports[`Storyshots Views/Settings Default 1`] = `
              
             <img
               alt="Mélodie"
-              class="svelte-p171gr"
+              class="svelte-9n6jnp"
               src="icons/icon-512x512.png"
             />
              
           </div>
           <div
-            class="svelte-p171gr"
+            class="svelte-9n6jnp"
           >
             <header
-              class="svelte-p171gr"
+              class="svelte-9n6jnp"
             >
               <div
-                class="svelte-p171gr"
+                class="svelte-9n6jnp"
               >
                 Electron
               </div>
                
               <div
-                class="svelte-p171gr"
+                class="svelte-9n6jnp"
               >
                 11.0.0
               </div>
@@ -473,51 +475,51 @@ exports[`Storyshots Views/Settings Default 1`] = `
              
             <img
               alt="Electron"
-              class="svelte-p171gr"
+              class="svelte-9n6jnp"
               src="images/electron-logo.png"
             />
              
           </div>
           <div
-            class="svelte-p171gr"
+            class="svelte-9n6jnp"
           >
             <header
-              class="svelte-p171gr"
+              class="svelte-9n6jnp"
             >
               <div
-                class="svelte-p171gr"
+                class="svelte-9n6jnp"
               >
                 Svelte
               </div>
                
               <div
-                class="svelte-p171gr"
+                class="svelte-9n6jnp"
               >
-                3.31.0
+                3.32.3
               </div>
             </header>
              
             <img
               alt="Svelte"
-              class="svelte-p171gr"
+              class="svelte-9n6jnp"
               src="images/svelte-logo.png"
             />
              
           </div>
           <div
-            class="svelte-p171gr"
+            class="svelte-9n6jnp"
           >
             <header
-              class="svelte-p171gr"
+              class="svelte-9n6jnp"
             >
               <div
-                class="svelte-p171gr"
+                class="svelte-9n6jnp"
               >
                 Tailwind
               </div>
                
               <div
-                class="svelte-p171gr"
+                class="svelte-9n6jnp"
               >
                 1.9.0
               </div>
@@ -525,25 +527,25 @@ exports[`Storyshots Views/Settings Default 1`] = `
              
             <img
               alt="Tailwind"
-              class="svelte-p171gr"
+              class="svelte-9n6jnp"
               src="images/tailwindcss-logo.png"
             />
              
           </div>
           <div
-            class="svelte-p171gr"
+            class="svelte-9n6jnp"
           >
             <header
-              class="svelte-p171gr"
+              class="svelte-9n6jnp"
             >
               <div
-                class="svelte-p171gr"
+                class="svelte-9n6jnp"
               >
                 RxJS
               </div>
                
               <div
-                class="svelte-p171gr"
+                class="svelte-9n6jnp"
               >
                 6.0.0
               </div>
@@ -551,25 +553,25 @@ exports[`Storyshots Views/Settings Default 1`] = `
              
             <img
               alt="RxJS"
-              class="svelte-p171gr"
+              class="svelte-9n6jnp"
               src="images/rx-logo.png"
             />
              
           </div>
           <div
-            class="svelte-p171gr"
+            class="svelte-9n6jnp"
           >
             <header
-              class="svelte-p171gr"
+              class="svelte-9n6jnp"
             >
               <div
-                class="svelte-p171gr"
+                class="svelte-9n6jnp"
               >
                 SQLite
               </div>
                
               <div
-                class="svelte-p171gr"
+                class="svelte-9n6jnp"
               >
                 3.26.0
               </div>
@@ -577,14 +579,16 @@ exports[`Storyshots Views/Settings Default 1`] = `
              
             <img
               alt="SQLite"
-              class="svelte-p171gr"
+              class="svelte-9n6jnp"
               src="images/sqlite-logo.png"
             />
              
           </div>
         </p>
          
-        <p>
+        <p
+          class="svelte-9n6jnp"
+        >
           <span>
             Photos by:
              
@@ -696,7 +700,9 @@ exports[`Storyshots Views/Settings Default 1`] = `
           </span>
         </p>
          
-        <p>
+        <p
+          class="svelte-9n6jnp"
+        >
           <span>
             Using 
             <a

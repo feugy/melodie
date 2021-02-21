@@ -60,12 +60,24 @@
 </script>
 
 <style type="postcss">
+  /* do not apply relative! makes layout very slow when displaying many grid items */
   span {
-    @apply relative inline-block w-32 cursor-pointer;
+    @apply inline-block w-32 cursor-pointer;
     -webkit-tap-highlight-color: transparent;
 
-    &.overlay header {
-      @apply absolute inset-0 z-0 p-2;
+    &.overlay {
+      & .artwork {
+        @apply hidden;
+      }
+      & > header {
+        @apply inline-flex w-full h-32 rounded-sm border-2 border-solid p-4;
+        border-color: var(--outline-color);
+        background-color: var(--hover-bg-color);
+
+        & > h3 {
+          @apply text-2xl;
+        }
+      }
     }
   }
 
@@ -102,6 +114,10 @@
     span {
       @apply w-48;
 
+      &.overlay header {
+        @apply h-48;
+      }
+
       & .content {
         & .controls {
           @apply gap-2;
@@ -117,6 +133,10 @@
   @screen lg {
     span {
       @apply w-64;
+
+      &.overlay header {
+        @apply h-64;
+      }
 
       & .content {
         & .controls {

@@ -26,13 +26,13 @@ exports[`Storyshots Views/Artists Default 1`] = `
       >
          
         <span
-          class="svelte-ybovyg"
+          class="svelte-1vgpzqt"
         >
           <div
-            class="content svelte-ybovyg"
+            class="content svelte-1vgpzqt"
           >
             <span
-              class="artwork svelte-ybovyg"
+              class="artwork svelte-1vgpzqt"
             >
               <img
                 class="h-full w-full rounded-full hidden svelte-hn7eai"
@@ -55,7 +55,7 @@ exports[`Storyshots Views/Artists Default 1`] = `
             </span>
              
             <p
-              class="controls svelte-ybovyg"
+              class="controls svelte-1vgpzqt"
             >
                
               <button
@@ -89,10 +89,10 @@ exports[`Storyshots Views/Artists Default 1`] = `
           </div>
            
           <header
-            class="svelte-ybovyg"
+            class="svelte-1vgpzqt"
           >
             <h3
-              class="svelte-ybovyg"
+              class="svelte-1vgpzqt"
             >
               Ludwig Van Beethoven
             </h3>
@@ -112,13 +112,13 @@ exports[`Storyshots Views/Artists Default 1`] = `
       >
          
         <span
-          class="svelte-ybovyg"
+          class="svelte-1vgpzqt"
         >
           <div
-            class="content svelte-ybovyg"
+            class="content svelte-1vgpzqt"
           >
             <span
-              class="artwork svelte-ybovyg"
+              class="artwork svelte-1vgpzqt"
             >
               <img
                 alt="avatar.jpg"
@@ -134,7 +134,7 @@ exports[`Storyshots Views/Artists Default 1`] = `
             </span>
              
             <p
-              class="controls svelte-ybovyg"
+              class="controls svelte-1vgpzqt"
             >
                
               <button
@@ -168,10 +168,10 @@ exports[`Storyshots Views/Artists Default 1`] = `
           </div>
            
           <header
-            class="svelte-ybovyg"
+            class="svelte-1vgpzqt"
           >
             <h3
-              class="svelte-ybovyg"
+              class="svelte-1vgpzqt"
             >
               Mademoiselle K
             </h3>
@@ -191,13 +191,13 @@ exports[`Storyshots Views/Artists Default 1`] = `
       >
          
         <span
-          class="svelte-ybovyg"
+          class="svelte-1vgpzqt"
         >
           <div
-            class="content svelte-ybovyg"
+            class="content svelte-1vgpzqt"
           >
             <span
-              class="artwork svelte-ybovyg"
+              class="artwork svelte-1vgpzqt"
             >
               <img
                 class="h-full w-full rounded-full hidden svelte-hn7eai"
@@ -220,7 +220,7 @@ exports[`Storyshots Views/Artists Default 1`] = `
             </span>
              
             <p
-              class="controls svelte-ybovyg"
+              class="controls svelte-1vgpzqt"
             >
                
               <button
@@ -254,10 +254,10 @@ exports[`Storyshots Views/Artists Default 1`] = `
           </div>
            
           <header
-            class="svelte-ybovyg"
+            class="svelte-1vgpzqt"
           >
             <h3
-              class="svelte-ybovyg"
+              class="svelte-1vgpzqt"
             >
               Yoko Kanno and the Seatbelts
             </h3>

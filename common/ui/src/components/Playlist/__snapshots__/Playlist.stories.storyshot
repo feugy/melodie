@@ -7,22 +7,17 @@ exports[`Storyshots Components/Playlist Default 1`] = `
   <div>
      
     <span
-      class="svelte-ybovyg overlay"
+      class="svelte-1vgpzqt overlay"
     >
       <div
-        class="content svelte-ybovyg"
+        class="content svelte-1vgpzqt"
       >
         <span
-          class="artwork svelte-ybovyg"
-        >
-          <span
-            class="svelte-1ovzze"
-          />
-           
-        </span>
+          class="artwork svelte-1vgpzqt"
+        />
          
         <p
-          class="controls svelte-ybovyg"
+          class="controls svelte-1vgpzqt"
         >
            
           <button
@@ -56,16 +51,15 @@ exports[`Storyshots Components/Playlist Default 1`] = `
       </div>
        
       <header
-        class="svelte-ybovyg"
+        class="svelte-1vgpzqt"
       >
         <h3
-          class="svelte-ybovyg"
+          class="svelte-1vgpzqt"
         >
           My favourites
         </h3>
          
         <h4
-          class="svelte-1ovzze"
           slot="details"
         >
           3 tracks
@@ -83,22 +77,17 @@ exports[`Storyshots Components/Playlist Single Track 1`] = `
   <div>
      
     <span
-      class="svelte-ybovyg overlay"
+      class="svelte-1vgpzqt overlay"
     >
       <div
-        class="content svelte-ybovyg"
+        class="content svelte-1vgpzqt"
       >
         <span
-          class="artwork svelte-ybovyg"
-        >
-          <span
-            class="svelte-1ovzze"
-          />
-           
-        </span>
+          class="artwork svelte-1vgpzqt"
+        />
          
         <p
-          class="controls svelte-ybovyg"
+          class="controls svelte-1vgpzqt"
         >
            
           <button
@@ -132,16 +121,15 @@ exports[`Storyshots Components/Playlist Single Track 1`] = `
       </div>
        
       <header
-        class="svelte-ybovyg"
+        class="svelte-1vgpzqt"
       >
         <h3
-          class="svelte-ybovyg"
+          class="svelte-1vgpzqt"
         >
           My favourites
         </h3>
          
         <h4
-          class="svelte-1ovzze"
           slot="details"
         >
           1 track

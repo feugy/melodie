@@ -6,7 +6,7 @@ exports[`Storyshots Components/Track Default 1`] = `
 >
   <div>
     <div
-      class="undefined root svelte-vq6nbx"
+      class="undefined root svelte-1bozxge"
     >
       <a
         class="flex-none"
@@ -25,10 +25,10 @@ exports[`Storyshots Components/Track Default 1`] = `
       </a>
        
       <div
-        class="track svelte-vq6nbx"
+        class="track svelte-1bozxge"
       >
         <span
-          class="title svelte-vq6nbx"
+          class="title svelte-1bozxge"
         >
           Mama got a girlfriend
         </span>
@@ -54,7 +54,7 @@ exports[`Storyshots Components/Track With Details 1`] = `
 >
   <div>
     <div
-      class="undefined root svelte-vq6nbx"
+      class="undefined root svelte-1bozxge"
     >
       <a
         class="flex-none"
@@ -73,10 +73,10 @@ exports[`Storyshots Components/Track With Details 1`] = `
       </a>
        
       <div
-        class="track svelte-vq6nbx"
+        class="track svelte-1bozxge"
       >
         <span
-          class="title svelte-vq6nbx"
+          class="title svelte-1bozxge"
         >
           Mama got a girlfriend
         </span>
@@ -91,7 +91,7 @@ exports[`Storyshots Components/Track With Details 1`] = `
       </div>
        
       <div
-        class="duration svelte-vq6nbx"
+        class="duration svelte-1bozxge"
       >
         2:06
       </div>
@@ -107,7 +107,7 @@ exports[`Storyshots Components/Track With Menu 1`] = `
 >
   <div>
     <div
-      class="undefined root svelte-vq6nbx"
+      class="undefined root svelte-1bozxge"
     >
       <a
         class="flex-none"
@@ -126,10 +126,10 @@ exports[`Storyshots Components/Track With Menu 1`] = `
       </a>
        
       <div
-        class="track svelte-vq6nbx"
+        class="track svelte-1bozxge"
       >
         <span
-          class="title svelte-vq6nbx"
+          class="title svelte-1bozxge"
         >
           Mama got a girlfriend
         </span>

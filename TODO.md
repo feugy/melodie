@@ -11,16 +11,10 @@ The big idea
   1.  receive notifications through WebSocket instead of electron.ipcRenderer channels
   1.  disable some features: open containing folder, set Artist/Album media (to be tested), change tracked folders
 
-TODO responsiveness:
-
-- settings
-
 TODO improvements/bugs
 
+- catch startup errors
 - merge components/Album|Artist|Playlist tests for GridItem + hover behaviour (desktop only)
-- Catch startup errors
-- bug scroll dropdown (Firefox only)
-- swipe on mobile: up/down for player, left/right for track list
 
 Future work
 
@@ -45,5 +39,20 @@ media path: app.getPath('pictures') + melodie-media
 
 desktop sets `LOG_LEVEL_FILE` `.levels` in the [application `userData` folder][getpathname], and `LOG_DESTINATION` is `logs.txt` in the [application log path][todo] app.getPath('logs')
 The folder used for artwork (`ARTWORK_DESTINATION` env variable) TODO
+
+Visible Changes:
+
+- broadcast toggle
+- add to playlist menu
+- track list button location
+- volume control
+- text wrapping (albums/artist names)
+- action buttons alignement on album thumbnails
+- smaller playlist thumbnails
+- button placement in albums/artist/playlist details
+- smaller fonts and spacing
+- responsiveness
+
+5 004-broadcast-media-count.js 4 1611437218036
 
 [getpathname]: https://www.electronjs.org/docs/api/app#appgetpathname

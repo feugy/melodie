@@ -137,7 +137,7 @@
       @apply text-sm my-4;
     }
 
-    & > p {
+    & p {
       @apply mb-4;
     }
   }
@@ -148,7 +148,8 @@
   }
 
   li {
-    @apply p-2 rounded-full mb-4 mr-4 inline-flex;
+    @apply p-2 rounded-full mb-4 mr-4 inline-flex items-center;
+    font-size: 1.3rem;
     background-color: var(--bg-primary-color);
 
     & > span {
@@ -157,17 +158,15 @@
   }
 
   .controlContainer {
-    @apply inline-block mx-4;
+    @apply inline-block;
   }
 
   label {
-    @apply text-right inline-block;
-    min-width: 180px;
+    @apply block;
   }
 
   :global(.settings-input) {
     @apply inline-block;
-    width: 400px;
   }
 
   .version-container {
@@ -188,6 +187,21 @@
       & > img {
         @apply w-full p-2;
       }
+    }
+  }
+
+  @screen md {
+    label {
+      @apply text-right inline-block;
+      min-width: 180px;
+    }
+
+    .controlContainer {
+      @apply ml-4;
+    }
+
+    :global(.settings-input) {
+      width: 400px;
     }
   }
 </style>

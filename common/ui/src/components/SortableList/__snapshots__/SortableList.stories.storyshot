@@ -15,7 +15,7 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
           slot="item"
         >
           <div
-            class="col-span-11 root svelte-vq6nbx"
+            class="col-span-11 root svelte-1bozxge"
           >
             <a
               class="flex-none"
@@ -34,10 +34,10 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
             </a>
              
             <div
-              class="track svelte-vq6nbx"
+              class="track svelte-1bozxge"
             >
               <span
-                class="title svelte-vq6nbx"
+                class="title svelte-1bozxge"
               >
                 file 1
               </span>
@@ -52,7 +52,7 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
             </div>
              
             <div
-              class="duration svelte-vq6nbx"
+              class="duration svelte-1bozxge"
             >
               3:38
             </div>
@@ -85,7 +85,7 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
           slot="item"
         >
           <div
-            class="col-span-11 root svelte-vq6nbx"
+            class="col-span-11 root svelte-1bozxge"
           >
             <a
               class="flex-none"
@@ -104,10 +104,10 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
             </a>
              
             <div
-              class="track svelte-vq6nbx"
+              class="track svelte-1bozxge"
             >
               <span
-                class="title svelte-vq6nbx"
+                class="title svelte-1bozxge"
               >
                 file 2
               </span>
@@ -122,7 +122,7 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
             </div>
              
             <div
-              class="duration svelte-vq6nbx"
+              class="duration svelte-1bozxge"
             >
               0:04
             </div>
@@ -155,7 +155,7 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
           slot="item"
         >
           <div
-            class="col-span-11 root svelte-vq6nbx"
+            class="col-span-11 root svelte-1bozxge"
           >
             <a
               class="flex-none"
@@ -174,10 +174,10 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
             </a>
              
             <div
-              class="track svelte-vq6nbx"
+              class="track svelte-1bozxge"
             >
               <span
-                class="title svelte-vq6nbx"
+                class="title svelte-1bozxge"
               >
                 file 3
               </span>
@@ -192,7 +192,7 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
             </div>
              
             <div
-              class="duration svelte-vq6nbx"
+              class="duration svelte-1bozxge"
             >
               0:02
             </div>
@@ -225,7 +225,7 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
           slot="item"
         >
           <div
-            class="col-span-11 root svelte-vq6nbx"
+            class="col-span-11 root svelte-1bozxge"
           >
             <a
               class="flex-none"
@@ -244,10 +244,10 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
             </a>
              
             <div
-              class="track svelte-vq6nbx"
+              class="track svelte-1bozxge"
             >
               <span
-                class="title svelte-vq6nbx"
+                class="title svelte-1bozxge"
               >
                 file 4
               </span>
@@ -262,7 +262,7 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
             </div>
              
             <div
-              class="duration svelte-vq6nbx"
+              class="duration svelte-1bozxge"
             >
               0:03
             </div>
@@ -295,7 +295,7 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
           slot="item"
         >
           <div
-            class="col-span-11 root svelte-vq6nbx"
+            class="col-span-11 root svelte-1bozxge"
           >
             <a
               class="flex-none"
@@ -314,10 +314,10 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
             </a>
              
             <div
-              class="track svelte-vq6nbx"
+              class="track svelte-1bozxge"
             >
               <span
-                class="title svelte-vq6nbx"
+                class="title svelte-1bozxge"
               >
                 file 1
               </span>
@@ -332,7 +332,7 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
             </div>
              
             <div
-              class="duration svelte-vq6nbx"
+              class="duration svelte-1bozxge"
             >
               3:38
             </div>
@@ -365,7 +365,7 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
           slot="item"
         >
           <div
-            class="col-span-11 root svelte-vq6nbx"
+            class="col-span-11 root svelte-1bozxge"
           >
             <a
               class="flex-none"
@@ -384,10 +384,10 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
             </a>
              
             <div
-              class="track svelte-vq6nbx"
+              class="track svelte-1bozxge"
             >
               <span
-                class="title svelte-vq6nbx"
+                class="title svelte-1bozxge"
               >
                 file 2
               </span>
@@ -402,7 +402,7 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
             </div>
              
             <div
-              class="duration svelte-vq6nbx"
+              class="duration svelte-1bozxge"
             >
               0:04
             </div>
@@ -435,7 +435,7 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
           slot="item"
         >
           <div
-            class="col-span-11 root svelte-vq6nbx"
+            class="col-span-11 root svelte-1bozxge"
           >
             <a
               class="flex-none"
@@ -454,10 +454,10 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
             </a>
              
             <div
-              class="track svelte-vq6nbx"
+              class="track svelte-1bozxge"
             >
               <span
-                class="title svelte-vq6nbx"
+                class="title svelte-1bozxge"
               >
                 file 3
               </span>
@@ -472,7 +472,7 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
             </div>
              
             <div
-              class="duration svelte-vq6nbx"
+              class="duration svelte-1bozxge"
             >
               0:02
             </div>
@@ -505,7 +505,7 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
           slot="item"
         >
           <div
-            class="col-span-11 root svelte-vq6nbx"
+            class="col-span-11 root svelte-1bozxge"
           >
             <a
               class="flex-none"
@@ -524,10 +524,10 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
             </a>
              
             <div
-              class="track svelte-vq6nbx"
+              class="track svelte-1bozxge"
             >
               <span
-                class="title svelte-vq6nbx"
+                class="title svelte-1bozxge"
               >
                 file 4
               </span>
@@ -542,7 +542,7 @@ exports[`Storyshots Components/Sortable list Default 1`] = `
             </div>
              
             <div
-              class="duration svelte-vq6nbx"
+              class="duration svelte-1bozxge"
             >
               0:03
             </div>

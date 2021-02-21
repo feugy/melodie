@@ -137,69 +137,66 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
           draggable="true"
         >
           <span
+            class="row svelte-1fgzmnl current"
             slot="item"
           >
-            <span
-              class="row svelte-1fgzmnl current"
+            <div
+              class="flex-auto root svelte-1bozxge"
             >
-              <div
-                class="flex-auto root svelte-vq6nbx"
+              <a
+                class="flex-none"
+                href="#/album/1"
               >
+                <img
+                  alt="./# Films/cover.jpg"
+                  class="h-16 w-16 text-xs actionable rounded-sm svelte-hn7eai"
+                  height="256"
+                  loading="lazy"
+                  src="./%23 Films/cover.jpg"
+                  width="256"
+                />
+                 
+                
+              </a>
+               
+              <div
+                class="track svelte-1bozxge"
+              >
+                <span
+                  class="title svelte-1bozxge"
+                >
+                  file 1
+                </span>
+                 
                 <a
-                  class="flex-none"
-                  href="#/album/1"
+                  class="text-sm underlined"
+                  href="#/artist/0"
+                  onclick="event.stopPropagation()"
                 >
-                  <img
-                    alt="./# Films/cover.jpg"
-                    class="h-16 w-16 text-xs actionable rounded-sm svelte-hn7eai"
-                    height="256"
-                    loading="lazy"
-                    src="./%23 Films/cover.jpg"
-                    width="256"
-                  />
-                   
-                  
+                  Someone
                 </a>
-                 
-                <div
-                  class="track svelte-vq6nbx"
-                >
-                  <span
-                    class="title svelte-vq6nbx"
-                  >
-                    file 1
-                  </span>
-                   
-                  <a
-                    class="text-sm underlined"
-                    href="#/artist/0"
-                    onclick="event.stopPropagation()"
-                  >
-                    Someone
-                  </a>
-                </div>
-                 
-                <div
-                  class="duration svelte-vq6nbx"
-                >
-                  3:38
-                </div>
-                 
               </div>
                
-              <button
-                class="mx-2 iconOnly noBorder svelte-1lod44n"
+              <div
+                class="duration svelte-1bozxge"
               >
-                <i
-                  class="material-icons svelte-1lod44n"
-                >
-                  close
-                </i>
-                 
-                 
-                 
-              </button>
-            </span>
+                3:38
+              </div>
+               
+            </div>
+             
+            <button
+              class="mx-2 iconOnly noBorder svelte-1lod44n"
+            >
+              <i
+                class="material-icons svelte-1lod44n"
+              >
+                close
+              </i>
+               
+               
+               
+            </button>
           </span>
            
         </li>
@@ -208,69 +205,66 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
           draggable="true"
         >
           <span
+            class="row svelte-1fgzmnl"
             slot="item"
           >
-            <span
-              class="row svelte-1fgzmnl"
+            <div
+              class="flex-auto root svelte-1bozxge"
             >
-              <div
-                class="flex-auto root svelte-vq6nbx"
+              <a
+                class="flex-none"
+                href="#/album/1"
               >
+                <img
+                  alt="./# Films/cover.jpg"
+                  class="h-16 w-16 text-xs actionable rounded-sm svelte-hn7eai"
+                  height="256"
+                  loading="lazy"
+                  src="./%23 Films/cover.jpg"
+                  width="256"
+                />
+                 
+                
+              </a>
+               
+              <div
+                class="track svelte-1bozxge"
+              >
+                <span
+                  class="title svelte-1bozxge"
+                >
+                  file 2
+                </span>
+                 
                 <a
-                  class="flex-none"
-                  href="#/album/1"
+                  class="text-sm underlined"
+                  href="#/artist/0"
+                  onclick="event.stopPropagation()"
                 >
-                  <img
-                    alt="./# Films/cover.jpg"
-                    class="h-16 w-16 text-xs actionable rounded-sm svelte-hn7eai"
-                    height="256"
-                    loading="lazy"
-                    src="./%23 Films/cover.jpg"
-                    width="256"
-                  />
-                   
-                  
+                  Someone
                 </a>
-                 
-                <div
-                  class="track svelte-vq6nbx"
-                >
-                  <span
-                    class="title svelte-vq6nbx"
-                  >
-                    file 2
-                  </span>
-                   
-                  <a
-                    class="text-sm underlined"
-                    href="#/artist/0"
-                    onclick="event.stopPropagation()"
-                  >
-                    Someone
-                  </a>
-                </div>
-                 
-                <div
-                  class="duration svelte-vq6nbx"
-                >
-                  0:04
-                </div>
-                 
               </div>
                
-              <button
-                class="mx-2 iconOnly noBorder svelte-1lod44n"
+              <div
+                class="duration svelte-1bozxge"
               >
-                <i
-                  class="material-icons svelte-1lod44n"
-                >
-                  close
-                </i>
-                 
-                 
-                 
-              </button>
-            </span>
+                0:04
+              </div>
+               
+            </div>
+             
+            <button
+              class="mx-2 iconOnly noBorder svelte-1lod44n"
+            >
+              <i
+                class="material-icons svelte-1lod44n"
+              >
+                close
+              </i>
+               
+               
+               
+            </button>
           </span>
            
         </li>
@@ -279,69 +273,66 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
           draggable="true"
         >
           <span
+            class="row svelte-1fgzmnl"
             slot="item"
           >
-            <span
-              class="row svelte-1fgzmnl"
+            <div
+              class="flex-auto root svelte-1bozxge"
             >
-              <div
-                class="flex-auto root svelte-vq6nbx"
+              <a
+                class="flex-none"
+                href="#/album/1"
               >
+                <img
+                  alt="./cover.jpg"
+                  class="h-16 w-16 text-xs actionable rounded-sm svelte-hn7eai"
+                  height="256"
+                  loading="lazy"
+                  src="./cover.jpg"
+                  width="256"
+                />
+                 
+                
+              </a>
+               
+              <div
+                class="track svelte-1bozxge"
+              >
+                <span
+                  class="title svelte-1bozxge"
+                >
+                  file 3
+                </span>
+                 
                 <a
-                  class="flex-none"
-                  href="#/album/1"
+                  class="text-sm underlined"
+                  href="#/artist/1"
+                  onclick="event.stopPropagation()"
                 >
-                  <img
-                    alt="./cover.jpg"
-                    class="h-16 w-16 text-xs actionable rounded-sm svelte-hn7eai"
-                    height="256"
-                    loading="lazy"
-                    src="./cover.jpg"
-                    width="256"
-                  />
-                   
-                  
+                  Someone else
                 </a>
-                 
-                <div
-                  class="track svelte-vq6nbx"
-                >
-                  <span
-                    class="title svelte-vq6nbx"
-                  >
-                    file 3
-                  </span>
-                   
-                  <a
-                    class="text-sm underlined"
-                    href="#/artist/1"
-                    onclick="event.stopPropagation()"
-                  >
-                    Someone else
-                  </a>
-                </div>
-                 
-                <div
-                  class="duration svelte-vq6nbx"
-                >
-                  0:02
-                </div>
-                 
               </div>
                
-              <button
-                class="mx-2 iconOnly noBorder svelte-1lod44n"
+              <div
+                class="duration svelte-1bozxge"
               >
-                <i
-                  class="material-icons svelte-1lod44n"
-                >
-                  close
-                </i>
-                 
-                 
-                 
-              </button>
-            </span>
+                0:02
+              </div>
+               
+            </div>
+             
+            <button
+              class="mx-2 iconOnly noBorder svelte-1lod44n"
+            >
+              <i
+                class="material-icons svelte-1lod44n"
+              >
+                close
+              </i>
+               
+               
+               
+            </button>
           </span>
            
         </li>
@@ -350,69 +341,66 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
           draggable="true"
         >
           <span
+            class="row svelte-1fgzmnl"
             slot="item"
           >
-            <span
-              class="row svelte-1fgzmnl"
+            <div
+              class="flex-auto root svelte-1bozxge"
             >
-              <div
-                class="flex-auto root svelte-vq6nbx"
+              <a
+                class="flex-none"
+                href="#/album/1"
               >
+                <img
+                  alt="./cover.jpg"
+                  class="h-16 w-16 text-xs actionable rounded-sm svelte-hn7eai"
+                  height="256"
+                  loading="lazy"
+                  src="./cover.jpg"
+                  width="256"
+                />
+                 
+                
+              </a>
+               
+              <div
+                class="track svelte-1bozxge"
+              >
+                <span
+                  class="title svelte-1bozxge"
+                >
+                  file 4
+                </span>
+                 
                 <a
-                  class="flex-none"
-                  href="#/album/1"
+                  class="text-sm underlined"
+                  href="#/artist/2"
+                  onclick="event.stopPropagation()"
                 >
-                  <img
-                    alt="./cover.jpg"
-                    class="h-16 w-16 text-xs actionable rounded-sm svelte-hn7eai"
-                    height="256"
-                    loading="lazy"
-                    src="./cover.jpg"
-                    width="256"
-                  />
-                   
-                  
+                  Another fellow
                 </a>
-                 
-                <div
-                  class="track svelte-vq6nbx"
-                >
-                  <span
-                    class="title svelte-vq6nbx"
-                  >
-                    file 4
-                  </span>
-                   
-                  <a
-                    class="text-sm underlined"
-                    href="#/artist/2"
-                    onclick="event.stopPropagation()"
-                  >
-                    Another fellow
-                  </a>
-                </div>
-                 
-                <div
-                  class="duration svelte-vq6nbx"
-                >
-                  0:03
-                </div>
-                 
               </div>
                
-              <button
-                class="mx-2 iconOnly noBorder svelte-1lod44n"
+              <div
+                class="duration svelte-1bozxge"
               >
-                <i
-                  class="material-icons svelte-1lod44n"
-                >
-                  close
-                </i>
-                 
-                 
-                 
-              </button>
-            </span>
+                0:03
+              </div>
+               
+            </div>
+             
+            <button
+              class="mx-2 iconOnly noBorder svelte-1lod44n"
+            >
+              <i
+                class="material-icons svelte-1lod44n"
+              >
+                close
+              </i>
+               
+               
+               
+            </button>
           </span>
            
         </li>
@@ -421,69 +409,66 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
           draggable="true"
         >
           <span
+            class="row svelte-1fgzmnl"
             slot="item"
           >
-            <span
-              class="row svelte-1fgzmnl"
+            <div
+              class="flex-auto root svelte-1bozxge"
             >
-              <div
-                class="flex-auto root svelte-vq6nbx"
+              <a
+                class="flex-none"
+                href="#/album/1"
               >
+                <img
+                  alt="./# Films/cover.jpg"
+                  class="h-16 w-16 text-xs actionable rounded-sm svelte-hn7eai"
+                  height="256"
+                  loading="lazy"
+                  src="./%23 Films/cover.jpg"
+                  width="256"
+                />
+                 
+                
+              </a>
+               
+              <div
+                class="track svelte-1bozxge"
+              >
+                <span
+                  class="title svelte-1bozxge"
+                >
+                  file 1
+                </span>
+                 
                 <a
-                  class="flex-none"
-                  href="#/album/1"
+                  class="text-sm underlined"
+                  href="#/artist/0"
+                  onclick="event.stopPropagation()"
                 >
-                  <img
-                    alt="./# Films/cover.jpg"
-                    class="h-16 w-16 text-xs actionable rounded-sm svelte-hn7eai"
-                    height="256"
-                    loading="lazy"
-                    src="./%23 Films/cover.jpg"
-                    width="256"
-                  />
-                   
-                  
+                  Someone
                 </a>
-                 
-                <div
-                  class="track svelte-vq6nbx"
-                >
-                  <span
-                    class="title svelte-vq6nbx"
-                  >
-                    file 1
-                  </span>
-                   
-                  <a
-                    class="text-sm underlined"
-                    href="#/artist/0"
-                    onclick="event.stopPropagation()"
-                  >
-                    Someone
-                  </a>
-                </div>
-                 
-                <div
-                  class="duration svelte-vq6nbx"
-                >
-                  3:38
-                </div>
-                 
               </div>
                
-              <button
-                class="mx-2 iconOnly noBorder svelte-1lod44n"
+              <div
+                class="duration svelte-1bozxge"
               >
-                <i
-                  class="material-icons svelte-1lod44n"
-                >
-                  close
-                </i>
-                 
-                 
-                 
-              </button>
-            </span>
+                3:38
+              </div>
+               
+            </div>
+             
+            <button
+              class="mx-2 iconOnly noBorder svelte-1lod44n"
+            >
+              <i
+                class="material-icons svelte-1lod44n"
+              >
+                close
+              </i>
+               
+               
+               
+            </button>
           </span>
            
         </li>
@@ -492,69 +477,66 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
           draggable="true"
         >
           <span
+            class="row svelte-1fgzmnl"
             slot="item"
           >
-            <span
-              class="row svelte-1fgzmnl"
+            <div
+              class="flex-auto root svelte-1bozxge"
             >
-              <div
-                class="flex-auto root svelte-vq6nbx"
+              <a
+                class="flex-none"
+                href="#/album/1"
               >
+                <img
+                  alt="./# Films/cover.jpg"
+                  class="h-16 w-16 text-xs actionable rounded-sm svelte-hn7eai"
+                  height="256"
+                  loading="lazy"
+                  src="./%23 Films/cover.jpg"
+                  width="256"
+                />
+                 
+                
+              </a>
+               
+              <div
+                class="track svelte-1bozxge"
+              >
+                <span
+                  class="title svelte-1bozxge"
+                >
+                  file 2
+                </span>
+                 
                 <a
-                  class="flex-none"
-                  href="#/album/1"
+                  class="text-sm underlined"
+                  href="#/artist/0"
+                  onclick="event.stopPropagation()"
                 >
-                  <img
-                    alt="./# Films/cover.jpg"
-                    class="h-16 w-16 text-xs actionable rounded-sm svelte-hn7eai"
-                    height="256"
-                    loading="lazy"
-                    src="./%23 Films/cover.jpg"
-                    width="256"
-                  />
-                   
-                  
+                  Someone
                 </a>
-                 
-                <div
-                  class="track svelte-vq6nbx"
-                >
-                  <span
-                    class="title svelte-vq6nbx"
-                  >
-                    file 2
-                  </span>
-                   
-                  <a
-                    class="text-sm underlined"
-                    href="#/artist/0"
-                    onclick="event.stopPropagation()"
-                  >
-                    Someone
-                  </a>
-                </div>
-                 
-                <div
-                  class="duration svelte-vq6nbx"
-                >
-                  0:04
-                </div>
-                 
               </div>
                
-              <button
-                class="mx-2 iconOnly noBorder svelte-1lod44n"
+              <div
+                class="duration svelte-1bozxge"
               >
-                <i
-                  class="material-icons svelte-1lod44n"
-                >
-                  close
-                </i>
-                 
-                 
-                 
-              </button>
-            </span>
+                0:04
+              </div>
+               
+            </div>
+             
+            <button
+              class="mx-2 iconOnly noBorder svelte-1lod44n"
+            >
+              <i
+                class="material-icons svelte-1lod44n"
+              >
+                close
+              </i>
+               
+               
+               
+            </button>
           </span>
            
         </li>
@@ -563,69 +545,66 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
           draggable="true"
         >
           <span
+            class="row svelte-1fgzmnl"
             slot="item"
           >
-            <span
-              class="row svelte-1fgzmnl"
+            <div
+              class="flex-auto root svelte-1bozxge"
             >
-              <div
-                class="flex-auto root svelte-vq6nbx"
+              <a
+                class="flex-none"
+                href="#/album/1"
               >
+                <img
+                  alt="./cover.jpg"
+                  class="h-16 w-16 text-xs actionable rounded-sm svelte-hn7eai"
+                  height="256"
+                  loading="lazy"
+                  src="./cover.jpg"
+                  width="256"
+                />
+                 
+                
+              </a>
+               
+              <div
+                class="track svelte-1bozxge"
+              >
+                <span
+                  class="title svelte-1bozxge"
+                >
+                  file 3
+                </span>
+                 
                 <a
-                  class="flex-none"
-                  href="#/album/1"
+                  class="text-sm underlined"
+                  href="#/artist/1"
+                  onclick="event.stopPropagation()"
                 >
-                  <img
-                    alt="./cover.jpg"
-                    class="h-16 w-16 text-xs actionable rounded-sm svelte-hn7eai"
-                    height="256"
-                    loading="lazy"
-                    src="./cover.jpg"
-                    width="256"
-                  />
-                   
-                  
+                  Someone else
                 </a>
-                 
-                <div
-                  class="track svelte-vq6nbx"
-                >
-                  <span
-                    class="title svelte-vq6nbx"
-                  >
-                    file 3
-                  </span>
-                   
-                  <a
-                    class="text-sm underlined"
-                    href="#/artist/1"
-                    onclick="event.stopPropagation()"
-                  >
-                    Someone else
-                  </a>
-                </div>
-                 
-                <div
-                  class="duration svelte-vq6nbx"
-                >
-                  0:02
-                </div>
-                 
               </div>
                
-              <button
-                class="mx-2 iconOnly noBorder svelte-1lod44n"
+              <div
+                class="duration svelte-1bozxge"
               >
-                <i
-                  class="material-icons svelte-1lod44n"
-                >
-                  close
-                </i>
-                 
-                 
-                 
-              </button>
-            </span>
+                0:02
+              </div>
+               
+            </div>
+             
+            <button
+              class="mx-2 iconOnly noBorder svelte-1lod44n"
+            >
+              <i
+                class="material-icons svelte-1lod44n"
+              >
+                close
+              </i>
+               
+               
+               
+            </button>
           </span>
            
         </li>
@@ -634,69 +613,66 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
           draggable="true"
         >
           <span
+            class="row svelte-1fgzmnl"
             slot="item"
           >
-            <span
-              class="row svelte-1fgzmnl"
+            <div
+              class="flex-auto root svelte-1bozxge"
             >
-              <div
-                class="flex-auto root svelte-vq6nbx"
+              <a
+                class="flex-none"
+                href="#/album/1"
               >
+                <img
+                  alt="./cover.jpg"
+                  class="h-16 w-16 text-xs actionable rounded-sm svelte-hn7eai"
+                  height="256"
+                  loading="lazy"
+                  src="./cover.jpg"
+                  width="256"
+                />
+                 
+                
+              </a>
+               
+              <div
+                class="track svelte-1bozxge"
+              >
+                <span
+                  class="title svelte-1bozxge"
+                >
+                  file 4
+                </span>
+                 
                 <a
-                  class="flex-none"
-                  href="#/album/1"
+                  class="text-sm underlined"
+                  href="#/artist/2"
+                  onclick="event.stopPropagation()"
                 >
-                  <img
-                    alt="./cover.jpg"
-                    class="h-16 w-16 text-xs actionable rounded-sm svelte-hn7eai"
-                    height="256"
-                    loading="lazy"
-                    src="./cover.jpg"
-                    width="256"
-                  />
-                   
-                  
+                  Another fellow
                 </a>
-                 
-                <div
-                  class="track svelte-vq6nbx"
-                >
-                  <span
-                    class="title svelte-vq6nbx"
-                  >
-                    file 4
-                  </span>
-                   
-                  <a
-                    class="text-sm underlined"
-                    href="#/artist/2"
-                    onclick="event.stopPropagation()"
-                  >
-                    Another fellow
-                  </a>
-                </div>
-                 
-                <div
-                  class="duration svelte-vq6nbx"
-                >
-                  0:03
-                </div>
-                 
               </div>
                
-              <button
-                class="mx-2 iconOnly noBorder svelte-1lod44n"
+              <div
+                class="duration svelte-1bozxge"
               >
-                <i
-                  class="material-icons svelte-1lod44n"
-                >
-                  close
-                </i>
-                 
-                 
-                 
-              </button>
-            </span>
+                0:03
+              </div>
+               
+            </div>
+             
+            <button
+              class="mx-2 iconOnly noBorder svelte-1lod44n"
+            >
+              <i
+                class="material-icons svelte-1lod44n"
+              >
+                close
+              </i>
+               
+               
+               
+            </button>
           </span>
            
         </li>

@@ -27,13 +27,13 @@ exports[`Storyshots Views/Albums Default 1`] = `
       >
          
         <span
-          class="svelte-ybovyg"
+          class="svelte-1vgpzqt"
         >
           <div
-            class="content svelte-ybovyg"
+            class="content svelte-1vgpzqt"
           >
             <span
-              class="artwork svelte-ybovyg"
+              class="artwork svelte-1vgpzqt"
             >
               <img
                 class="h-full w-full rounded-sm hidden svelte-hn7eai"
@@ -56,7 +56,7 @@ exports[`Storyshots Views/Albums Default 1`] = `
             </span>
              
             <p
-              class="controls svelte-ybovyg"
+              class="controls svelte-1vgpzqt"
             >
                
               <button
@@ -90,10 +90,10 @@ exports[`Storyshots Views/Albums Default 1`] = `
           </div>
            
           <header
-            class="svelte-ybovyg"
+            class="svelte-1vgpzqt"
           >
             <h3
-              class="svelte-ybovyg"
+              class="svelte-1vgpzqt"
             >
               100 Best Karajan
             </h3>
@@ -162,13 +162,13 @@ exports[`Storyshots Views/Albums Default 1`] = `
       >
          
         <span
-          class="svelte-ybovyg"
+          class="svelte-1vgpzqt"
         >
           <div
-            class="content svelte-ybovyg"
+            class="content svelte-1vgpzqt"
           >
             <span
-              class="artwork svelte-ybovyg"
+              class="artwork svelte-1vgpzqt"
             >
               <img
                 alt="cover.jpg"
@@ -184,7 +184,7 @@ exports[`Storyshots Views/Albums Default 1`] = `
             </span>
              
             <p
-              class="controls svelte-ybovyg"
+              class="controls svelte-1vgpzqt"
             >
                
               <button
@@ -218,10 +218,10 @@ exports[`Storyshots Views/Albums Default 1`] = `
           </div>
            
           <header
-            class="svelte-ybovyg"
+            class="svelte-1vgpzqt"
           >
             <h3
-              class="svelte-ybovyg"
+              class="svelte-1vgpzqt"
             >
               Black Orpheus
             </h3>
@@ -250,13 +250,13 @@ exports[`Storyshots Views/Albums Default 1`] = `
       >
          
         <span
-          class="svelte-ybovyg"
+          class="svelte-1vgpzqt"
         >
           <div
-            class="content svelte-ybovyg"
+            class="content svelte-1vgpzqt"
           >
             <span
-              class="artwork svelte-ybovyg"
+              class="artwork svelte-1vgpzqt"
             >
               <img
                 class="h-full w-full rounded-sm hidden svelte-hn7eai"
@@ -279,7 +279,7 @@ exports[`Storyshots Views/Albums Default 1`] = `
             </span>
              
             <p
-              class="controls svelte-ybovyg"
+              class="controls svelte-1vgpzqt"
             >
                
               <button
@@ -313,10 +313,10 @@ exports[`Storyshots Views/Albums Default 1`] = `
           </div>
            
           <header
-            class="svelte-ybovyg"
+            class="svelte-1vgpzqt"
           >
             <h3
-              class="svelte-ybovyg"
+              class="svelte-1vgpzqt"
             >
               Distant Worlds - Music from Final Fantasy
             </h3>

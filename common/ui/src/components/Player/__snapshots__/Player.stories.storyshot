@@ -204,7 +204,7 @@ exports[`Storyshots Components/Player With Track List 1`] = `
         class="current svelte-9raveo"
       >
         <div
-          class="undefined root svelte-vq6nbx"
+          class="undefined root svelte-1bozxge"
         >
           <a
             class="flex-none"
@@ -223,10 +223,10 @@ exports[`Storyshots Components/Player With Track List 1`] = `
           </a>
            
           <div
-            class="track svelte-vq6nbx"
+            class="track svelte-1bozxge"
           >
             <span
-              class="title svelte-vq6nbx"
+              class="title svelte-1bozxge"
             >
               file 1
             </span>

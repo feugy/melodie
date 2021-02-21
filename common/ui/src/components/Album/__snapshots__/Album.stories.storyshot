@@ -7,13 +7,13 @@ exports[`Storyshots Components/Album Default 1`] = `
   <div>
      
     <span
-      class="svelte-ybovyg"
+      class="svelte-1vgpzqt"
     >
       <div
-        class="content svelte-ybovyg"
+        class="content svelte-1vgpzqt"
       >
         <span
-          class="artwork svelte-ybovyg"
+          class="artwork svelte-1vgpzqt"
         >
           <img
             alt="./cover.jpg"
@@ -29,7 +29,7 @@ exports[`Storyshots Components/Album Default 1`] = `
         </span>
          
         <p
-          class="controls svelte-ybovyg"
+          class="controls svelte-1vgpzqt"
         >
            
           <button
@@ -63,10 +63,10 @@ exports[`Storyshots Components/Album Default 1`] = `
       </div>
        
       <header
-        class="svelte-ybovyg"
+        class="svelte-1vgpzqt"
       >
         <h3
-          class="svelte-ybovyg"
+          class="svelte-1vgpzqt"
         >
           Diamonds on the inside
         </h3>
@@ -107,13 +107,13 @@ exports[`Storyshots Components/Album Many Artists 1`] = `
   <div>
      
     <span
-      class="svelte-ybovyg"
+      class="svelte-1vgpzqt"
     >
       <div
-        class="content svelte-ybovyg"
+        class="content svelte-1vgpzqt"
       >
         <span
-          class="artwork svelte-ybovyg"
+          class="artwork svelte-1vgpzqt"
         >
           <img
             alt="./cover.jpg"
@@ -129,7 +129,7 @@ exports[`Storyshots Components/Album Many Artists 1`] = `
         </span>
          
         <p
-          class="controls svelte-ybovyg"
+          class="controls svelte-1vgpzqt"
         >
            
           <button
@@ -163,10 +163,10 @@ exports[`Storyshots Components/Album Many Artists 1`] = `
       </div>
        
       <header
-        class="svelte-ybovyg"
+        class="svelte-1vgpzqt"
       >
         <h3
-          class="svelte-ybovyg"
+          class="svelte-1vgpzqt"
         >
           Diamonds on the inside
         </h3>
@@ -223,13 +223,13 @@ exports[`Storyshots Components/Album No Artist 1`] = `
   <div>
      
     <span
-      class="svelte-ybovyg"
+      class="svelte-1vgpzqt"
     >
       <div
-        class="content svelte-ybovyg"
+        class="content svelte-1vgpzqt"
       >
         <span
-          class="artwork svelte-ybovyg"
+          class="artwork svelte-1vgpzqt"
         >
           <img
             alt="./cover.jpg"
@@ -245,7 +245,7 @@ exports[`Storyshots Components/Album No Artist 1`] = `
         </span>
          
         <p
-          class="controls svelte-ybovyg"
+          class="controls svelte-1vgpzqt"
         >
            
           <button
@@ -279,10 +279,10 @@ exports[`Storyshots Components/Album No Artist 1`] = `
       </div>
        
       <header
-        class="svelte-ybovyg"
+        class="svelte-1vgpzqt"
       >
         <h3
-          class="svelte-ybovyg"
+          class="svelte-1vgpzqt"
         >
           Diamonds on the inside
         </h3>
@@ -306,13 +306,13 @@ exports[`Storyshots Components/Album Unknown 1`] = `
   <div>
      
     <span
-      class="svelte-ybovyg"
+      class="svelte-1vgpzqt"
     >
       <div
-        class="content svelte-ybovyg"
+        class="content svelte-1vgpzqt"
       >
         <span
-          class="artwork svelte-ybovyg"
+          class="artwork svelte-1vgpzqt"
         >
           <img
             class="h-full w-full rounded-sm hidden svelte-hn7eai"
@@ -335,7 +335,7 @@ exports[`Storyshots Components/Album Unknown 1`] = `
         </span>
          
         <p
-          class="controls svelte-ybovyg"
+          class="controls svelte-1vgpzqt"
         >
            
           <button
@@ -369,10 +369,10 @@ exports[`Storyshots Components/Album Unknown 1`] = `
       </div>
        
       <header
-        class="svelte-ybovyg"
+        class="svelte-1vgpzqt"
       >
         <h3
-          class="svelte-ybovyg"
+          class="svelte-1vgpzqt"
         >
           Unknown
         </h3>

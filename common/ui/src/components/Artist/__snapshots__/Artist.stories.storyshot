@@ -7,13 +7,13 @@ exports[`Storyshots Components/Artist Default 1`] = `
   <div>
      
     <span
-      class="svelte-ybovyg"
+      class="svelte-1vgpzqt"
     >
       <div
-        class="content svelte-ybovyg"
+        class="content svelte-1vgpzqt"
       >
         <span
-          class="artwork svelte-ybovyg"
+          class="artwork svelte-1vgpzqt"
         >
           <img
             alt="./avatar.jpg"
@@ -29,7 +29,7 @@ exports[`Storyshots Components/Artist Default 1`] = `
         </span>
          
         <p
-          class="controls svelte-ybovyg"
+          class="controls svelte-1vgpzqt"
         >
            
           <button
@@ -63,10 +63,10 @@ exports[`Storyshots Components/Artist Default 1`] = `
       </div>
        
       <header
-        class="svelte-ybovyg"
+        class="svelte-1vgpzqt"
       >
         <h3
-          class="svelte-ybovyg"
+          class="svelte-1vgpzqt"
         >
           Foo Fighters
         </h3>
@@ -90,13 +90,13 @@ exports[`Storyshots Components/Artist No Albums 1`] = `
   <div>
      
     <span
-      class="svelte-ybovyg"
+      class="svelte-1vgpzqt"
     >
       <div
-        class="content svelte-ybovyg"
+        class="content svelte-1vgpzqt"
       >
         <span
-          class="artwork svelte-ybovyg"
+          class="artwork svelte-1vgpzqt"
         >
           <img
             alt="./avatar.jpg"
@@ -112,7 +112,7 @@ exports[`Storyshots Components/Artist No Albums 1`] = `
         </span>
          
         <p
-          class="controls svelte-ybovyg"
+          class="controls svelte-1vgpzqt"
         >
            
           <button
@@ -146,10 +146,10 @@ exports[`Storyshots Components/Artist No Albums 1`] = `
       </div>
        
       <header
-        class="svelte-ybovyg"
+        class="svelte-1vgpzqt"
       >
         <h3
-          class="svelte-ybovyg"
+          class="svelte-1vgpzqt"
         >
           Foo Fighters
         </h3>
@@ -171,13 +171,13 @@ exports[`Storyshots Components/Artist Unknown 1`] = `
   <div>
      
     <span
-      class="svelte-ybovyg"
+      class="svelte-1vgpzqt"
     >
       <div
-        class="content svelte-ybovyg"
+        class="content svelte-1vgpzqt"
       >
         <span
-          class="artwork svelte-ybovyg"
+          class="artwork svelte-1vgpzqt"
         >
           <img
             class="h-full w-full rounded-full hidden svelte-hn7eai"
@@ -200,7 +200,7 @@ exports[`Storyshots Components/Artist Unknown 1`] = `
         </span>
          
         <p
-          class="controls svelte-ybovyg"
+          class="controls svelte-1vgpzqt"
         >
            
           <button
@@ -234,10 +234,10 @@ exports[`Storyshots Components/Artist Unknown 1`] = `
       </div>
        
       <header
-        class="svelte-ybovyg"
+        class="svelte-1vgpzqt"
       >
         <h3
-          class="svelte-ybovyg"
+          class="svelte-1vgpzqt"
         >
           Unknown
         </h3>
