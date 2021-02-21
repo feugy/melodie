@@ -1,6 +1,6 @@
 'use strict'
 
-import { get, writable } from 'svelte/store'
+import { get } from 'svelte/store'
 import { screen, render, fireEvent } from '@testing-library/svelte'
 import html from 'svelte-htm'
 import faker from 'faker'
@@ -42,7 +42,13 @@ describe('Player component', () => {
     location.hash = '#/'
     jest.resetAllMocks()
     mediaElementSource = { connect: jest.fn() }
-    gainNode = { connect: jest.fn(), gain: { value: 1 }, get context() { return audioContext } }
+    gainNode = {
+      connect: jest.fn(),
+      gain: { value: 1 },
+      get context() {
+        return audioContext
+      }
+    }
     audioContext = {
       createMediaElementSource: jest.fn().mockReturnValue(mediaElementSource),
       createGain: jest.fn().mockReturnValue(gainNode),
@@ -77,7 +83,10 @@ describe('Player component', () => {
     render(html`<${Player} />`)
 
     const audio = screen.getByTestId('audio')
-    expect(audio).toHaveAttribute('src', `${window.dlUrl}${trackListData[0].data}`)
+    expect(audio).toHaveAttribute(
+      'src',
+      `${window.dlUrl}${trackListData[0].data}`
+    )
 
     await fireEvent.click(screen.getByText('play_arrow'))
 

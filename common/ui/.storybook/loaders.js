@@ -8,7 +8,11 @@ const invokeAction = action('invoke')
 let connection
 let disconnected = false
 
-export function websocketResponse(storyTitle, mock = () => null, autoconnect = true) {
+export function websocketResponse(
+  storyTitle,
+  mock = () => null,
+  autoconnect = true
+) {
   return async () => {
     closeConnection()
     disconnected = false
@@ -16,7 +20,7 @@ export function websocketResponse(storyTitle, mock = () => null, autoconnect = t
       connection = this
       if (disconnected) {
         setTimeout(() => this.onerror(new Error('Forced disconnection')), 0)
-        return this 
+        return this
       }
       this.send = rawData => {
         const { invoked, args, id } = JSON.parse(rawData)

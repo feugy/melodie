@@ -10,7 +10,7 @@ import { isDesktop } from '../../stores/settings'
 import { trackListData } from '../Player/Player.stories'
 import { sleep, translate } from '../../tests'
 
-const dlUrl = `http://some-url:${Math.round(Math.random()*1000)}`
+const dlUrl = `http://some-url:${Math.round(Math.random() * 1000)}`
 
 function expectMetadata(track, artwork = [{}]) {
   expect(navigator.mediaSession.metadata).toEqual({
@@ -33,7 +33,6 @@ function expectNotification(track) {
 }
 
 describe('SystemNotifier Component', () => {
-
   beforeEach(async () => {
     clear()
     jest.resetAllMocks()

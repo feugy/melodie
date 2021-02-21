@@ -31,10 +31,27 @@ jobs:
       - name: Lint code
         run: npm run lint
 
-      - name: Run tests
-        run: npm test
+      - name: Run UI tests
+        run: |
+          cd common/ui
+          npm test
+
+      - name: Run Core tests
+        run: |
+          cd common/core
+          npm test
         env:
           AUDIODB_KEY: ${{ secrets.AUDIODB_KEY }}
+
+      - name: Run Desktop tests
+        run: |
+          cd apps/desktop
+          npm test
+
+      - name: Run Site tests
+        run: |
+          cd apps/site
+          npm test
 
       - name: Send coverage to Codacy
         if: always()
