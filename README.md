@@ -60,6 +60,12 @@ Another option is to open it with Control-click: it'll immediately register the 
 
 ### features
 
+- catch startup errors
+
+- merge components/Album|Artist|Playlist tests for GridItem + hover behaviour (desktop only)
+
+- play all button
+
 - indicates when track is in playlist
 
 - configure replay gain from settings
@@ -72,6 +78,20 @@ Another option is to open it with Control-click: it'll immediately register the 
 
 - list images from track tags when collecting candidate covers for an album
 
+- progressive webapp
+
+- Consider yarn2, once svelte-preprocess is fixed
+
+- search tooling to find deps version mismatch, and maintain package.json same version
+
+- Postcss (jest-css-modules-transform@4.1+ needs postcss8, which requires webpack@5, which storybook does not support yet)
+
+- compare ajv serialization with stringify
+
+- accessibility: ImageUploader file input, Loading input, and Nav search box have no label
+
+- download files and cache them in browser
+
 ### tools
 
 - automated end-to-end tests
@@ -79,8 +99,6 @@ Another option is to open it with Control-click: it'll immediately register the 
 - more technical documentation (install & release process notably)
 
 ### Bugs and known issues
-
-1. Opening containing folder of `/home/damien/Musique/# Films/The Lord Of The Rings - The Fellowship Of The Ring/17 - The Lord Of The Rings - The Fellowship Of The Ring - Howard Shore - The Breaking Of The Fellowship.flac` does not work.
 
 1. DMG package does not download updates: [it requires zip](https://github.com/electron-userland/electron-builder/issues/2199), and we cannot build zip because of [the accent in product name](https://github.com/electron-userland/electron-builder/issues/4306#issuecomment-717232761)...
 
@@ -133,11 +151,21 @@ Another option is to open it with Control-click: it'll immediately register the 
 
 1. The Media test do not pass on Windows: nock is not giving recorded bodies
 
+## Data
+
+Mélodie is using SQLite3 to store settings, playlists and tracks's metadatas.
+SQLite3 stores everything in a single file, named `db.sqlite3` and located into the [application `userData` folder][getpathname].
+
+Mélodie also stores artists artwork according to the `ARTWORK_DESTINATION` environment variable, sets to [user's `pictures` folder][getpathname] in `melodie-media` folder.
+
 ## Configuring logs
 
 Log are written to a file, which location is set by `LOG_DESTINATION` env variable.
+Mélodie Desktop sets `LOG_DESTINATION` to `logs.txt` in the [application `logs` path][getpathname].
 
 Log levels are configured in a file defined by `LOG_LEVEL_FILE` env variable.
+Mélodie Desktop sets it to `.levels` in the [application `userData` folder][getpathname].
+
 Its syntax is:
 
 ```shell
@@ -211,7 +239,7 @@ Working with snaps locally isn't really easy.
 1. then package your app in debug mode, to access the unpacked snap:
 
    ```shell
-   DEBUG=electron-builder npm run release:artifacts -- -l
+   DEBUG=electron-builder npm run release:artifacts --prefix apps/desktop -- -l
    ```
 
 1. copy missing files to the unpacked snap, and keep your latest changes:
@@ -247,7 +275,7 @@ To check that generated AppImage works:
 1. Package application for linux
 
    ```shell
-   npm run release:artifacts -- -l
+   npm run release:artifacts --prefix apps/desktop -- -l
    ```
 
 1. Lint your AppImage:
@@ -271,7 +299,7 @@ Windows App store release can not be automated: Github CI will build the appx pa
 1. When ready, bump the version on local machine:
 
    ```shell
-   npm run release:bump
+   npm run release:bump --prefix apps/desktop
    git
    ```
 
@@ -318,7 +346,7 @@ Until [this PR](https://github.com/electron-userland/electron-builder/pull/5313)
 
    ```shell
    rm -rf dist/
-   npm run release:artifacts -- -l snap
+   npm run release:artifacts --prefix apps/desktop -- -l snap
    cd dist/
    rm -rf linux-unpacked builder-effective-config.yaml
    file-roller -f *.snap .
@@ -505,3 +533,4 @@ Mélodie is referenced on these stores and hubs:
 [appimagelauncher]: https://github.com/TheAssassin/AppImageLauncher
 [appimagelint]: https://github.com/TheAssassin/appimagelint
 [windows app store]: https://partner.microsoft.com/en-us/dashboard/products/9N41VK2C5VC2/overview
+[getpathname]: https://www.electronjs.org/docs/api/app#appgetpathname
