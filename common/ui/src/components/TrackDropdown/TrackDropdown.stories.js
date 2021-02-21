@@ -1,0 +1,60 @@
+'use strict'
+
+import { action } from '@storybook/addon-actions'
+import TrackDropdown from './TrackDropdown.svelte'
+import { websocketResponse } from '../../../.storybook/loaders'
+import { list } from '../../stores/playlists'
+import { isDesktop } from '../../stores/settings'
+
+const title = 'Components/Track Dropdown'
+
+export default {
+  title,
+  excludeStories: /.*Data$/,
+  argTypes: {
+    isDesktop: { control: { type: 'boolean' }, defaultValue: true }
+  },
+  loaders: [
+    websocketResponse(title, () => ({
+      total: playlistsData.length,
+      size: playlistsData.length,
+      from: 0,
+      results: playlistsData
+    }))
+  ]
+}
+
+export const playlistsData = [
+  {
+    id: 1,
+    name: 'Awesome mix, vol. 1',
+    trackIds: [10, 20]
+  },
+  {
+    id: 2,
+    name: 'Classical favourites',
+    trackIds: [10, 30]
+  },
+  {
+    id: 3,
+    name: 'Awesome mix, vol. 2',
+    trackIds: [40, 50]
+  }
+]
+
+export const Default = args => {
+  isDesktop.next(args.isDesktop)
+  list()
+  return {
+    Component: TrackDropdown,
+    props: {
+      track: { id: 1, path: 'whatever' },
+      additionalOptions: [
+        { label: 'Custom item', icon: 'close', act: action('on custom item') }
+      ]
+    },
+    on: {
+      showDetails: action('on show track details')
+    }
+  }
+}

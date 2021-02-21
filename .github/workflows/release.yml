@@ -7,6 +7,10 @@ on:
     types:
       - completed
 
+defaults:
+  run:
+    working-directory: ./
+
 jobs:
   release:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
@@ -31,16 +35,16 @@ jobs:
       - name: Set Node.js up
         uses: actions/setup-node@v1
         with:
-          node-version: 14.x
+          node-version: 15.x
 
       - name: Install dependencies
-        run: npm ci
+        run: npm ci --legacy-peer-deps
 
       - name: Build application
-        run: npm run build:svelte
+        run: npm run build --prefix common/ui
 
       - name: Release application
-        run: npm run release:publish -- onTagOrDraft -${{ matrix.flags}}
+        run: npm run release:publish --prefix apps/desktop -- onTagOrDraft -${{ matrix.flags}}
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
@@ -56,16 +60,16 @@ jobs:
       - name: Set Node.js up
         uses: actions/setup-node@v1
         with:
-          node-version: 14.x
+          node-version: 15.x
 
       - name: Install dependencies
-        run: npm ci
+        run: npm ci --legacy-peer-deps
 
       - name: Build site
-        run: BASE_PATH=melodie npm run site:build
+        run: BASE_PATH=melodie npm run build --prefix apps/site
 
       - name: Publish site
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./site/__sapper__/export/melodie
+          publish_dir: ./apps/site/__sapper__/export/melodie

@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Site components/Download button Default 1`] = `
+<section
+  class="storybook-snapshot-container"
+>
+  <span
+    aria-expanded="false"
+    aria-haspopup="menu"
+    class="wrapper svelte-dvv38h"
+  >
+    <button
+      class="text-white primary large svelte-1lod44n"
+    >
+      <i
+        class="material-icons svelte-1lod44n"
+      >
+        get_app
+      </i>
+       
+      <span>
+        Install v2.0.0-alpha.1
+      </span>
+       
+      <i
+        class="material-icons arrow svelte-dvv38h"
+      >
+        arrow_drop_down
+      </i>
+      
+       
+    </button>
+  </span>
+   
+  
+</section>
+`;

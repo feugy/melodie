@@ -1,0 +1,103 @@
+appId: org.feugy.melodie
+productName: Mélodie
+copyright: Copyright © 2021 ${author}
+
+files:
+  - LICENSE
+  - CHANGELOG.md
+  - README.md
+  - PRIVACY POLICY.md
+  - main.js
+  - lib/**/*
+  - package.json
+  - public/**/*
+  - '!**/tests/**/*'
+  - '!**/*.test.js'
+  - '!**/public/appx/**/*'
+  - '!**/site/**/*'
+  - '!**/.*'
+  - '!**/node_modules/electron/**'
+  - '!**/node_modules/**/{CHANGELOG.md,README.md,README,readme.md,readme}'
+  - '!**/node_modules/**/{test,__tests__,tests,powered-test,example,examples,__nocks__,__snapshots__,*.stories.*,docs,coverage}'
+  - '!**/node_modules/@melodie/{core,ui}/{scripts,logs.txt,*.config.js,src}'
+  - '!**/node_modules/knex/lib/dialects/{redshift,postgres,oracledb,oracle,mysql2,mysql}'
+  - '!**/node_modules/{rxjs,ajv}/**/*.map'
+  - '!**/node_modules/rxjs/{_esm5,_esm2015,src}'
+  - '!**/node_modules/**/*.d.ts'
+  - '!**/node_modules/.bin'
+  - '!**/*.{iml,o,hprof,orig,pyc,pyo,rbc,swp,csproj,sln,xproj}'
+  - '!**/{.DS_Store,.git,.hg,.svn,CVS,RCS,SCCS,.gitignore,.gitattributes}'
+  - '!**/{__pycache__,thumbs.db,.flowconfig,.idea,.vs,.nyc_output}'
+  - '!**/{appveyor.yml,.travis.yml,circle.yml}'
+  - '!**/{npm-debug.log,yarn.lock,.yarn-integrity,.yarn-metadata.json}'
+
+artifactName: ${os} - ${productName} ${version}.${ext}
+
+directories:
+  buildResources: ../../common/ui/public
+
+fileAssociations:
+  - ext: flac
+    mimeType: audio/flac
+    role: Viewer
+  - ext: opus
+    mimeType: audio/opus
+    role: Viewer
+  - ext: ogg
+    mimeType: audio/ogg
+    role: Viewer
+  - ext: mp3
+    mimeType: audio/mpeg
+    role: Viewer
+  - ext: webm
+    mimeType: audio/webm
+    role: Viewer
+
+publish:
+  - provider: github
+    owner: feugy
+    repo: melodie
+
+linux:
+  target: [snap, AppImage, tar.gz]
+  category: Audio
+  mimeTypes:
+    - inode/directory
+
+snap:
+  plugs:
+    - default
+    - audio-playback
+    - removable-media
+    - screen-inhibit-control
+  slots:
+    # - mpris:
+    #     name: chromium
+    - mpris
+
+appImage:
+  desktop:
+    X-AppImage-Version: ''
+
+appx:
+  applicationId: Melodie
+  identityName: 58049Feugy.Mlodie
+  publisher: CN=E1C3D83B-BC47-421C-870B-6699072C88DB
+  publisherDisplayName: Feugy
+  languages:
+    - en-GB
+    - fr-FR
+
+win:
+  target: [appx, nsis, portable, zip]
+
+nsis:
+  license: LICENSE
+
+portable:
+  artifactName: ${os} - ${productName} ${version} - Portable.${ext}
+
+mac:
+  target: [dmg]
+  identity: null
+  category: public.app-category.music

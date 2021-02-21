@@ -1,0 +1,137 @@
+'use strict'
+
+import { screen, render, fireEvent } from '@testing-library/svelte'
+import html from 'svelte-htm'
+import faker from 'faker'
+import QRCode from 'qrcode'
+import BroadcastButton from './BroadcastButton.svelte'
+import { sleep } from '../../tests'
+
+jest.mock('qrcode', () => ({ default: { toCanvas: jest.fn() } }))
+
+const {
+  default: { toCanvas }
+} = QRCode
+
+describe('BroadcastButton component', () => {
+  let address
+  let handleClick
+
+  beforeEach(() => {
+    jest.resetAllMocks()
+    handleClick = jest.fn()
+    address = faker.internet.url()
+  })
+
+  it('displays QR code when broadcasting', async () => {
+    const { component } = render(BroadcastButton, {
+      isBroadcasting: false,
+      address
+    })
+    component.$on('click', handleClick)
+    expect(screen.queryByRole('menu')).not.toBeInTheDocument()
+    expect(screen.queryByRole('link')).not.toBeInTheDocument()
+    expect(screen.queryByText('wifi_off')).toBeInTheDocument()
+    expect(screen.queryByText('wifi')).not.toBeInTheDocument()
+    expect(toCanvas).not.toHaveBeenCalled()
+
+    await component.$set({ isBroadcasting: true })
+    expect(screen.queryByRole('menu')).toBeInTheDocument()
+    expect(screen.queryByRole('link')).toHaveAttribute('href', address)
+    expect(screen.queryByText('wifi_off')).not.toBeInTheDocument()
+    expect(screen.queryByText('wifi')).toBeInTheDocument()
+    expect(handleClick).not.toHaveBeenCalled()
+    expect(toCanvas).toHaveBeenCalledWith(
+      expect.anything(),
+      address,
+      expect.any(Object)
+    )
+    expect(toCanvas).toHaveBeenCalledTimes(1)
+  })
+
+  it('hides QR code when stopping broadcast', async () => {
+    const { component } = render(BroadcastButton, {
+      isBroadcasting: false,
+      address
+    })
+    component.$on('click', handleClick)
+    await component.$set({ isBroadcasting: true })
+    expect(screen.queryByRole('menu')).toBeInTheDocument()
+    expect(screen.queryByRole('link')).toHaveAttribute('href', address)
+    expect(screen.queryByText('wifi_off')).not.toBeInTheDocument()
+    expect(screen.queryByText('wifi')).toBeInTheDocument()
+    expect(toCanvas).toHaveBeenCalledWith(
+      expect.anything(),
+      address,
+      expect.any(Object)
+    )
+
+    component.$set({ isBroadcasting: false })
+    await sleep(250)
+
+    expect(screen.queryByRole('menu')).not.toBeInTheDocument()
+    expect(screen.queryByRole('link')).not.toBeInTheDocument()
+    expect(screen.queryByText('wifi_off')).toBeInTheDocument()
+    expect(screen.queryByText('wifi')).not.toBeInTheDocument()
+    expect(handleClick).not.toHaveBeenCalled()
+    expect(toCanvas).toHaveBeenCalledTimes(1)
+  })
+
+  it('fires click handler', async () => {
+    render(html`<${BroadcastButton}
+      isBroadcasting=${false}
+      address=${address}
+      on:click=${handleClick}
+    />`)
+    await fireEvent.click(screen.queryByRole('button'))
+
+    expect(handleClick).toHaveBeenCalledTimes(1)
+    expect(toCanvas).not.toHaveBeenCalled()
+  })
+
+  it('opens menu on hover', async () => {
+    render(html`<${BroadcastButton}
+      isBroadcasting=${true}
+      address=${address}
+      on:click=${handleClick}
+    />`)
+    expect(screen.queryByRole('menu')).not.toBeInTheDocument()
+    await fireEvent.mouseEnter(screen.queryByRole('button').parentElement)
+
+    expect(screen.queryByRole('menu')).toBeInTheDocument()
+    expect(screen.queryByRole('link')).toHaveAttribute('href', address)
+
+    fireEvent.mouseLeave(screen.queryByRole('button').parentElement)
+    await sleep(450)
+
+    expect(screen.queryByRole('menu')).not.toBeInTheDocument()
+    expect(screen.queryByRole('link')).not.toBeInTheDocument()
+    expect(handleClick).not.toHaveBeenCalled()
+    expect(toCanvas).toHaveBeenCalledWith(
+      expect.anything(),
+      address,
+      expect.any(Object)
+    )
+    expect(toCanvas).toHaveBeenCalledTimes(1)
+  })
+
+  it('does not open menu on hover when not broadcasting', async () => {
+    render(html`<${BroadcastButton}
+      isBroadcasting=${false}
+      address=${address}
+      on:click=${handleClick}
+    />`)
+    expect(screen.queryByRole('menu')).not.toBeInTheDocument()
+    await fireEvent.mouseEnter(screen.queryByRole('button').parentElement)
+
+    expect(screen.queryByRole('menu')).not.toBeInTheDocument()
+
+    fireEvent.mouseLeave(screen.queryByRole('button').parentElement)
+    await sleep(250)
+
+    expect(screen.queryByRole('menu')).not.toBeInTheDocument()
+
+    expect(handleClick).not.toHaveBeenCalled()
+    expect(toCanvas).not.toHaveBeenCalled()
+  })
+})

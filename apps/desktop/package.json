@@ -1,0 +1,45 @@
+{
+  "name": "melodie",
+  "version": "2.0.0-alpha.1",
+  "description": "Mélodie is a portable, simple-as-pie music player",
+  "author": {
+    "name": "Damien Simonin Feugas",
+    "email": "damien.simoninfeugas@gmail.com"
+  },
+  "license": "MIT",
+  "repository": {
+    "url": "https://github.com/feugy/melodie"
+  },
+  "main": "main.js",
+  "scripts": {
+    "dev": "NODE_ENV=test electron .",
+    "release:artifacts": "electron-builder",
+    "release:publish": "electron-builder -p",
+    "start": "electron .",
+    "test": "jest --coverage --colors",
+    "test:dev": "jest --watch"
+  },
+  "dependencies": {
+    "@melodie/core": "2.0.0-alpha.1",
+    "@melodie/ui": "2.0.0-alpha.1",
+    "dotenv": "^8.2.0",
+    "electron-localshortcut": "^3.2.1",
+    "electron-updater": "^4.3.5",
+    "fs-extra": "^9.0.1",
+    "minimist": "^1.2.5",
+    "rxjs": "^6.6.3"
+  },
+  "optionalDependencies": {
+    "@melodie/core": "2.0.0-alpha.1",
+    "@melodie/ui": "2.0.0-alpha.1"
+  },
+  "devDependencies": {
+    "electron": "11.1.0",
+    "electron-builder": "^22.9.1",
+    "electron-reload": "^1.5.0",
+    "faker": "^5.1.0",
+    "jest": "^26.6.3",
+    "jest-extended": "^0.11.5",
+    "jest-watch-typeahead": "^0.6.1"
+  }
+}

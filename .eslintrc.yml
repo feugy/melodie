@@ -1,12 +1,19 @@
 extends:
   - eslint:recommended
   - prettier
+  - plugin:testing-library/recommended
+  - plugin:jest-dom/recommended
 env:
-  jest: true
   browser: true
-  node: true
   es2020: true
+  jest: true
+  node: true
+plugins:
+  - prettier
+  - testing-library
+  - jest-dom
+rules:
+  prettier/prettier: error
 parserOptions:
   ecmaVersion: 11
   sourceType: module
-rules: {}

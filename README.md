@@ -60,6 +60,12 @@ Another option is to open it with Control-click: it'll immediately register the 
 
 ### features
 
+- catch startup errors
+
+- merge components/Album|Artist|Playlist tests for GridItem + hover behaviour (desktop only)
+
+- play all button
+
 - indicates when track is in playlist
 
 - configure replay gain from settings
@@ -71,6 +77,20 @@ Another option is to open it with Control-click: it'll immediately register the 
 - smaller screen support (UI refactor)
 
 - list images from track tags when collecting candidate covers for an album
+
+- progressive webapp
+
+- Consider yarn2, once svelte-preprocess is fixed
+
+- search tooling to find deps version mismatch, and maintain package.json same version
+
+- Postcss (jest-css-modules-transform@4.1+ needs postcss8, which requires webpack@5, which storybook does not support yet)
+
+- compare ajv serialization with stringify
+
+- accessibility: ImageUploader file input, Loading input, and Nav search box have no label
+
+- download files and cache them in browser
 
 ### tools
 
@@ -131,11 +151,21 @@ Another option is to open it with Control-click: it'll immediately register the 
 
 1. The Media test do not pass on Windows: nock is not giving recorded bodies
 
-1. Rxjs is pretty big on core side, as there is no treeshaking
+## Data
+
+Mélodie is using SQLite3 to store settings, playlists and tracks's metadatas.
+SQLite3 stores everything in a single file, named `db.sqlite3` and located into the [application `userData` folder][getpathname].
+
+Mélodie also stores artists artwork according to the `ARTWORK_DESTINATION` environment variable, sets to [user's `pictures` folder][getpathname] in `melodie-media` folder.
 
 ## Configuring logs
 
-Log level file is `.levels` in the [application `userData` folder][getpathname].
+Log are written to a file, which location is set by `LOG_DESTINATION` env variable.
+Mélodie Desktop sets `LOG_DESTINATION` to `logs.txt` in the [application `logs` path][getpathname].
+
+Log levels are configured in a file defined by `LOG_LEVEL_FILE` env variable.
+Mélodie Desktop sets it to `.levels` in the [application `userData` folder][getpathname].
+
 Its syntax is:
 
 ```shell
@@ -168,10 +198,10 @@ You can edit the file, and trigger logger level refresh by sending SIGUSR2 to th
 ## Running locally
 
 ```shell
+npm i -g lerna
 git clone git@github.com:feugy/melodie.git
 cd melodie
-npm i
-npm run build
+lerna bootstrap
 ```
 
 ## Testing
@@ -209,7 +239,7 @@ Working with snaps locally isn't really easy.
 1. then package your app in debug mode, to access the unpacked snap:
 
    ```shell
-   DEBUG=electron-builder npm run release:artifacts -- -l
+   DEBUG=electron-builder npm run release:artifacts --prefix apps/desktop -- -l
    ```
 
 1. copy missing files to the unpacked snap, and keep your latest changes:
@@ -245,7 +275,7 @@ To check that generated AppImage works:
 1. Package application for linux
 
    ```shell
-   npm run release:artifacts -- -l
+   npm run release:artifacts --prefix apps/desktop -- -l
    ```
 
 1. Lint your AppImage:
@@ -269,7 +299,7 @@ Windows App store release can not be automated: Github CI will build the appx pa
 1. When ready, bump the version on local machine:
 
    ```shell
-   npm run release:bump
+   npm run release:bump --prefix apps/desktop
    git
    ```
 
@@ -316,7 +346,7 @@ Until [this PR](https://github.com/electron-userland/electron-builder/pull/5313)
 
    ```shell
    rm -rf dist/
-   npm run release:artifacts -- -l snap
+   npm run release:artifacts --prefix apps/desktop -- -l snap
    cd dist/
    rm -rf linux-unpacked builder-effective-config.yaml
    file-roller -f *.snap .
@@ -420,6 +450,20 @@ Mélodie is referenced on these stores and hubs:
 
 - Chokidar has a "limitation" and [triggers for each renamed or moved file an 'unlink' and an 'add' event](https://github.com/paulmillr/chokidar/issues/303). The implication on Mélodie were high: moved/renamed files would disappear from playlists. Ty bypass the issue, Mélodie stores file inodes and buffer chokidar events: when a file is removed, Mélodie will wait 250ms more, and if another file is added with the same inode during that time, will consider it as a rename/move.
 
+- The mono-repo endeavour. My goal was to split code in various reusable packages: a UI and core that would not depend on Electron, and could be used in both Web and Desktop context, and two apps: an Electron-based desktop application and the Github-page site. As developer I would expect the ability to hoist as many modules
+
+  - runing jest with pnpm does not work at all.
+  - lerna is a pain when it comes to hoisting deps.
+  - svelte-jester and preprocess absolutely don't work with yarn@2
+  - yarn@1 works fine but brings very little commands (just a little more than npm@7)
+  - npm@7 must install peer deps in legacy mode and does not offer any sugar for multi-package commands. All deps must be manually added to package.json, because install command MUST be run at root level
+    Electron-builder does not like monorepo either: author, description and other metadata must be copied from root package.json to apps/desktop/package.json. The Electron version must be fixed because node_modules are hoisted. The package.json name MUST be `melodie` :(
+    Caveats: always run `npm i --legacy-peer-deps` AT ROOT level. Running npm or npx command inside packages would re-create `node_modules`
+    Ensuring the same version in all packages and dependencies similarities must be done manually
+
+- svelte-spa-router, and its dependency on regexparam, has been bother me for a very long time. When ran with jest, svelte-spa-router files must be transpiled by Svelte compiler, but they import regexparam as esm, and this lib doesn't expose such binding. One must replace the import with require, and this must only be done during test, because rollup will handle it properly.
+  When receiving errors from svelte-jester, don't forget to clean jest cache with --cleanCache CLI option.
+
 #### How watch & diff works
 
 - on app load, trigger diff
@@ -486,7 +530,7 @@ Mélodie is referenced on these stores and hubs:
 [electron]: https://www.electronjs.org
 [svelte]: https://svelte.dev
 [rxjs]: https://www.learnrxjs.io
-[getpathname]: https://www.electronjs.org/docs/api/app#appgetpathname
 [appimagelauncher]: https://github.com/TheAssassin/AppImageLauncher
 [appimagelint]: https://github.com/TheAssassin/appimagelint
 [windows app store]: https://partner.microsoft.com/en-us/dashboard/products/9N41VK2C5VC2/overview
+[getpathname]: https://www.electronjs.org/docs/api/app#appgetpathname
