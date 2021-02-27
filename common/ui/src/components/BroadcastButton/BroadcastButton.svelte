@@ -2,8 +2,9 @@
   import { afterUpdate } from 'svelte'
   import { _ } from 'svelte-intl'
   import { slide } from 'svelte/transition'
-  import Button from '../Button/Button.svelte'
   import QRCode from 'qrcode'
+  import Button from '../Button/Button.svelte'
+  import { releaseWakeLock, stayAwake } from '../../utils'
 
   export let isBroadcasting
   export let address
@@ -23,6 +24,11 @@
   afterUpdate(() => {
     if (previous !== null && previous !== isBroadcasting) {
       open = isBroadcasting
+    }
+    if (open) {
+      stayAwake()
+    } else {
+      releaseWakeLock()
     }
     previous = isBroadcasting
   })
@@ -59,7 +65,8 @@
 <span
   class="button"
   on:mouseenter={handleMouseEnter}
-  on:mouseleave={handleMouseLeave}>
+  on:mouseleave={handleMouseLeave}
+>
   <Button
     on:click
     icon={isBroadcasting ? 'wifi' : 'wifi_off'}

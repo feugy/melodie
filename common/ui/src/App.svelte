@@ -19,7 +19,8 @@
   import * as tutorial from './stores/tutorial'
   import { isLoading } from './stores/loading'
   import { screenSize, SM } from './stores/window'
-  import { invoke } from './utils'
+  import { isDesktop } from './stores/settings'
+  import { invoke, stayAwake, releaseWakeLock } from './utils'
   import { autoScrollable } from './actions'
   import Router from './components/Router'
 
@@ -43,12 +44,21 @@
       replace('/settings')
       tutorial.start()
     }
-    listingSubscription = isListing.subscribe(inProgress => {
-      if (!inProgress && listingSubscription) {
-        invoke('tracks.compare')
-        listingSubscription.unsubscribe()
+    if ($isDesktop) {
+      listingSubscription = isListing.subscribe(inProgress => {
+        if (!inProgress && listingSubscription) {
+          invoke('tracks.compare')
+          listingSubscription.unsubscribe()
+        }
+      })
+    } else {
+      stayAwake()
+    }
+    return () => {
+      if (!$isDesktop) {
+        releaseWakeLock()
       }
-    })
+    }
   })
 
   function handleNav() {

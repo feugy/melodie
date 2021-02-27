@@ -6,8 +6,10 @@ import faker from 'faker'
 import QRCode from 'qrcode'
 import BroadcastButton from './BroadcastButton.svelte'
 import { sleep } from '../../tests'
+import { stayAwake, releaseWakeLock } from '../../utils'
 
 jest.mock('qrcode', () => ({ default: { toCanvas: jest.fn() } }))
+jest.mock('../../utils/wake-lock')
 
 const {
   default: { toCanvas }
@@ -21,6 +23,8 @@ describe('BroadcastButton component', () => {
     jest.resetAllMocks()
     handleClick = jest.fn()
     address = faker.internet.url()
+    stayAwake.mockResolvedValue()
+    releaseWakeLock.mockResolvedValue()
   })
 
   it('displays QR code when broadcasting', async () => {
@@ -47,6 +51,9 @@ describe('BroadcastButton component', () => {
       expect.any(Object)
     )
     expect(toCanvas).toHaveBeenCalledTimes(1)
+    expect(stayAwake).toHaveBeenCalledTimes(1)
+    expect(releaseWakeLock).toHaveBeenCalledTimes(1)
+    expect(stayAwake).toHaveBeenCalledAfter(releaseWakeLock)
   })
 
   it('hides QR code when stopping broadcast', async () => {
@@ -75,6 +82,11 @@ describe('BroadcastButton component', () => {
     expect(screen.queryByText('wifi')).not.toBeInTheDocument()
     expect(handleClick).not.toHaveBeenCalled()
     expect(toCanvas).toHaveBeenCalledTimes(1)
+    expect(stayAwake).toHaveBeenCalledTimes(1)
+    expect(releaseWakeLock).toHaveBeenCalledTimes(2)
+    expect(Math.max(...stayAwake.mock.invocationCallOrder)).toBeLessThan(
+      Math.max(...releaseWakeLock.mock.invocationCallOrder)
+    )
   })
 
   it('fires click handler', async () => {

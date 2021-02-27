@@ -7,6 +7,10 @@ import { invoke } from './utils'
 import { makeRef, sleep, translate } from './tests'
 import { init } from './stores/settings'
 import App from './App.svelte'
+import { releaseWakeLock, stayAwake } from './utils'
+import { isDesktop } from './stores/settings'
+
+jest.mock('./utils/wake-lock')
 
 describe('App component', () => {
   beforeEach(() => {
@@ -19,6 +23,8 @@ describe('App component', () => {
     Element.prototype.scrollIntoView = jest.fn()
     window.Notification = jest.fn()
     window.MediaMetadata = jest.fn()
+    stayAwake.mockResolvedValue()
+    releaseWakeLock.mockResolvedValue()
   })
 
   const albumName = faker.commerce.productName()
@@ -99,20 +105,40 @@ describe('App component', () => {
           : {}
       )
       await init('')
-      render(html`<${App} />`)
-      await sleep()
     })
 
-    it('triggers comparison once listing is over', async () => {
+    it('triggers comparison once listing is over on desktop', async () => {
+      isDesktop.next(true)
+      render(html`<${App} />`)
+      await sleep()
+
       expect(
         screen.queryByText(translate('_ albums', { total: albums.length }))
       ).toBeInTheDocument()
       expect(screen.queryByText(albums[0].name))
       expect(screen.queryByText(albums[1].name))
       expect(invoke).toHaveBeenLastCalledWith('tracks.compare')
+      expect(stayAwake).not.toHaveBeenCalled()
+    })
+
+    it('does not triggers comparison but stays awake on web', async () => {
+      isDesktop.next(false)
+      render(html`<${App} />`)
+      await sleep()
+
+      expect(
+        screen.queryByText(translate('_ albums', { total: albums.length }))
+      ).toBeInTheDocument()
+      expect(screen.queryByText(albums[0].name))
+      expect(screen.queryByText(albums[1].name))
+      expect(invoke).not.toHaveBeenLastCalledWith('tracks.compare')
+      expect(stayAwake).toHaveBeenCalledBefore(releaseWakeLock)
     })
 
     it('closes tracks queue when navigating on small displays', async () => {
+      render(html`<${App} />`)
+      await sleep()
+
       const aside = screen.queryByRole('complementary').parentElement
       const albumThumbnail = screen.queryByText(albums[0].name).parentElement
         .parentElement
