@@ -103,6 +103,10 @@
   .root {
     /* get rid of whitespaces introduced by conditionals */
     font-size: 0px;
+
+    & > audio {
+      height: 0;
+    }
   }
 
   .content {
@@ -153,6 +157,7 @@
   <!-- svelte-ignore a11y-media-has-caption -->
   <audio
     data-testid="audio"
+    autoplay
     bind:this={player}
     {src}
     bind:duration

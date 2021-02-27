@@ -5,23 +5,25 @@ exports[`Storyshots Components/Player Empty 1`] = `
   class="storybook-snapshot-container"
 >
   <div
-    class="root svelte-9raveo"
+    class="root svelte-1lrurgd"
   >
     <audio
+      autoplay=""
+      class="svelte-1lrurgd"
       data-testid="audio"
     />
     <div
-      class="content svelte-9raveo"
+      class="content svelte-1lrurgd"
     >
       <span
-        class="current svelte-9raveo"
+        class="current svelte-1lrurgd"
       />
        
       <div
-        class="player svelte-9raveo"
+        class="player svelte-1lrurgd"
       >
         <span
-          class="controls svelte-9raveo"
+          class="controls svelte-1lrurgd"
         >
           
            
@@ -138,7 +140,7 @@ exports[`Storyshots Components/Player Empty 1`] = `
       </div>
        
       <span
-        class="volume svelte-9raveo"
+        class="volume svelte-1lrurgd"
       >
         <div
           class="svelte-t4pf46"
@@ -191,17 +193,19 @@ exports[`Storyshots Components/Player With Track List 1`] = `
   class="storybook-snapshot-container"
 >
   <div
-    class="root svelte-9raveo"
+    class="root svelte-1lrurgd"
   >
     <audio
+      autoplay=""
+      class="svelte-1lrurgd"
       data-testid="audio"
       src="./no-duration.mp3"
     />
     <div
-      class="content svelte-9raveo"
+      class="content svelte-1lrurgd"
     >
       <span
-        class="current svelte-9raveo"
+        class="current svelte-1lrurgd"
       >
         <div
           class="undefined root svelte-1bozxge"
@@ -245,10 +249,10 @@ exports[`Storyshots Components/Player With Track List 1`] = `
       </span>
        
       <div
-        class="player svelte-9raveo"
+        class="player svelte-1lrurgd"
       >
         <span
-          class="controls svelte-9raveo"
+          class="controls svelte-1lrurgd"
         >
           <span>
             <span
@@ -400,7 +404,7 @@ exports[`Storyshots Components/Player With Track List 1`] = `
       </div>
        
       <span
-        class="volume svelte-9raveo"
+        class="volume svelte-1lrurgd"
       >
         <div
           class="svelte-t4pf46"
