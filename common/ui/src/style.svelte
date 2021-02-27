@@ -3,14 +3,14 @@
     font-family: 'Material Icons';
     font-style: normal;
     font-weight: 400;
-    src: url(../fonts/MaterialIcons.woff2) format('woff2');
+    src: url('../fonts/MaterialIcons.woff2') format('woff2');
   }
 
   @font-face {
     font-family: 'Raleway';
     font-style: normal;
     font-weight: 200;
-    src: url(../fonts/Raleway.woff2) format('woff2');
+    src: url('../fonts/Raleway.woff2') format('woff2');
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
       U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212,
       U+2215, U+FEFF, U+FFFD;
@@ -21,7 +21,7 @@
     font-family: 'Raleway';
     font-style: normal;
     font-weight: 700;
-    src: url(../fonts/Raleway-SemiBold.woff2) format('woff2');
+    src: url('../fonts/Raleway-SemiBold.woff2') format('woff2');
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
       U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212,
       U+2215, U+FEFF, U+FFFD;
@@ -32,7 +32,7 @@
     font-family: 'Source Sans Pro';
     font-style: italic;
     font-weight: 300;
-    src: url(../fonts/SourceSansPro-LightItalic.woff2) format('woff2');
+    src: url('../fonts/SourceSansPro-LightItalic.woff2') format('woff2');
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
       U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212,
       U+2215, U+FEFF, U+FFFD;
@@ -43,7 +43,7 @@
     font-family: 'Source Sans Pro';
     font-style: italic;
     font-weight: 600;
-    src: url(../fonts/SourceSansPro-SemiBoldItalic.woff2) format('woff2');
+    src: url('../fonts/SourceSansPro-SemiBoldItalic.woff2') format('woff2');
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
       U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212,
       U+2215, U+FEFF, U+FFFD;
@@ -54,7 +54,7 @@
     font-family: 'Source Sans Pro';
     font-style: normal;
     font-weight: 300;
-    src: url(../fonts/SourceSansPro-Light.woff2) format('woff2');
+    src: url('../fonts/SourceSansPro-Light.woff2') format('woff2');
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
       U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212,
       U+2215, U+FEFF, U+FFFD;
@@ -65,7 +65,7 @@
     font-family: 'Source Sans Pro';
     font-style: normal;
     font-weight: 600;
-    src: url(../fonts/SourceSansPro-SemiBold.woff2) format('woff2');
+    src: url('../fonts/SourceSansPro-SemiBold.woff2') format('woff2');
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
       U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212,
       U+2215, U+FEFF, U+FFFD;
@@ -77,7 +77,7 @@
     font-style: normal;
     font-weight: 400;
     font-display: swap;
-    src: url(../fonts/PermanentMarker.woff2) format('woff2');
+    src: url('../fonts/PermanentMarker.woff2') format('woff2');
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
       U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212,
       U+2215, U+FEFF, U+FFFD;
