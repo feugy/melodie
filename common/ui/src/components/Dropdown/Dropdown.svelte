@@ -180,14 +180,15 @@
 
 <svelte:window
   on:click|capture={handleInteraction}
-  on:scroll|capture={handleInteraction}
+  on:resize|capture={handleMenuVisible}
 />
 
 <span
   class="wrapper"
   bind:this={button}
   aria-haspopup="menu"
-  aria-expanded={open}>
+  aria-expanded={open}
+>
   <Button {...$$restProps} {text} on:click={handleButtonClick}>
     {#if withArrow}
       <i class:iconOnly class="material-icons arrow">

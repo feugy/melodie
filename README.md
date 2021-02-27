@@ -60,6 +60,8 @@ Another option is to open it with Control-click: it'll immediately register the 
 
 ### features
 
+- use file and folder names to complete missing tags
+
 - catch startup errors
 
 - merge components/Album|Artist|Playlist tests for GridItem + hover behaviour (desktop only)
@@ -73,8 +75,6 @@ Another option is to open it with Control-click: it'll immediately register the 
 - display tracks/albums/artists count in settings
 
 - allow reseting database from settings
-
-- smaller screen support (UI refactor)
 
 - list images from track tags when collecting candidate covers for an album
 
@@ -99,6 +99,8 @@ Another option is to open it with Control-click: it'll immediately register the 
 - more technical documentation (install & release process notably)
 
 ### Bugs and known issues
+
+1. Multiple albums with same names (The Best of) are mixed together
 
 1. DMG package does not download updates: [it requires zip](https://github.com/electron-userland/electron-builder/issues/2199), and we cannot build zip because of [the accent in product name](https://github.com/electron-userland/electron-builder/issues/4306#issuecomment-717232761)...
 
