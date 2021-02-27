@@ -26,5 +26,11 @@ module.exports = {
   // a separate file - better for performance
   css: css => {
     css.write('bundle.css')
+  },
+  onwarn(warning, handler) {
+    // https://github.com/sveltejs/svelte/issues/5954
+    if (warning.code !== 'module-script-reactive-declaration') {
+      handler(warning)
+    }
   }
 }
