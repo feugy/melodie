@@ -7,11 +7,11 @@
   import { playlists, appendTracks, list } from '../../stores/playlists'
 
   export let tracks
+  export let open = false
   let options = []
   let allPlaylists = []
   let results = null
   let hasMany = false
-  let open
 
   const limit = 5
   const createOption = { Component: CreatePlaylist, props: { onNameSet } }
