@@ -41,6 +41,9 @@ jest.mock('electron', () => {
   return {
     app,
     ipcMain,
+    dialog: {
+      showErrorBox: jest.fn()
+    },
     Menu: {
       setApplicationMenu: jest.fn()
     },
@@ -109,6 +112,7 @@ describe('Application test', () => {
       )}?port=${port}`
     )
     expect(electron.app.quit).not.toHaveBeenCalled()
+    expect(electron.dialog.showErrorBox).not.toHaveBeenCalled()
     expect(configureExternalLinks).toHaveBeenCalledWith(win)
     expect(configureExternalLinks).toHaveBeenCalledTimes(1)
     expect(autoUpdater.checkForUpdatesAndNotify).toHaveBeenCalledTimes(1)
