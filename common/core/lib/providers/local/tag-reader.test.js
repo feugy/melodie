@@ -1,6 +1,9 @@
 'use strict'
 
 const { resolve } = require('path')
+const os = require('os')
+const { copy, mkdtemp, remove } = require('fs-extra')
+const faker = require('faker')
 const { read } = require('./tag-reader')
 
 const fixtures = resolve(__dirname, '..', '..', '..', '..', 'fixtures')
@@ -8,6 +11,7 @@ const mp3 = resolve(fixtures, 'file.mp3')
 const ogg = resolve(fixtures, 'file.ogg')
 const flac = resolve(fixtures, 'file.flac')
 const noDuration = resolve(fixtures, 'no-duration.mp3')
+const untagged = resolve(fixtures, 'untagged.mp3')
 
 describe('Tag reader', () => {
   it('reads mp3 file', async () => {
@@ -17,17 +21,11 @@ describe('Tag reader', () => {
       artist: 'Agnes Obel',
       artists: ['Agnes Obel'],
       date: '2010',
-      disk: {
-        no: null,
-        of: null
-      },
+      disk: { no: null, of: null },
       duration: 0.809795918367347,
       genre: ['Folk'],
       title: 'Falling, Catching',
-      track: {
-        no: 1,
-        of: 12
-      },
+      track: { no: 1, of: 12 },
       year: 2010,
       cover: {
         data: expect.any(Buffer),
@@ -46,17 +44,11 @@ describe('Tag reader', () => {
       artist: 'Alanis Morissette',
       artists: ['Alanis Morissette'],
       date: '1995',
-      disk: {
-        no: null,
-        of: null
-      },
+      disk: { no: null, of: null },
       duration: 2.640975056689342,
       genre: ['Pop'],
       title: 'All I really want',
-      track: {
-        no: 1,
-        of: null
-      },
+      track: { no: 1, of: null },
       year: 1995,
       cover: {
         data: expect.any(Buffer),
@@ -79,17 +71,11 @@ describe('Tag reader', () => {
       artist: 'John Barry',
       artists: ['John Barry'],
       date: '1990',
-      disk: {
-        no: null,
-        of: null
-      },
+      disk: { no: null, of: null },
       duration: 2.4249433106575964,
       genre: ['Soundtrack'],
       title: 'Main Title - Looks Like A Suicide',
-      track: {
-        no: 1,
-        of: null
-      },
+      track: { no: 1, of: null },
       year: 1990,
       cover: null,
       movementIndex: {}
@@ -106,10 +92,7 @@ describe('Tag reader', () => {
       comment: [''],
       composer: [''],
       copyright: '',
-      disk: {
-        no: null,
-        of: null
-      },
+      disk: { no: null, of: null },
       duration: 218.01795918367347,
       encodedby: '',
       genre: ['Rock'],
@@ -122,10 +105,7 @@ describe('Tag reader', () => {
         }
       ],
       title: 'By The Way',
-      track: {
-        no: 1,
-        of: 16
-      },
+      track: { no: 1, of: 16 },
       year: 2002,
       cover: null,
       movementIndex: {}
@@ -134,13 +114,13 @@ describe('Tag reader', () => {
 
   it('handles unknown file', async () => {
     expect(await read(resolve(__dirname, 'unknown.file'))).toEqual({
-      album: null,
+      album: 'local',
       albumartist: null,
       artist: null,
       artists: [],
       duration: 0,
       genre: [],
-      title: null,
+      title: 'unknown',
       year: null,
       cover: null
     })
@@ -148,15 +128,199 @@ describe('Tag reader', () => {
 
   it('handles unsupported file', async () => {
     expect(await read(__filename)).toEqual({
-      album: null,
+      album: 'local',
       albumartist: null,
-      artist: null,
+      artist: 'tag',
       artists: [],
       duration: 0,
       genre: [],
-      title: null,
+      title: 'reader.test',
       year: null,
       cover: null
+    })
+  })
+
+  describe('given untagged files', () => {
+    let file
+    const folder = resolve(os.tmpdir(), 'melodie-')
+
+    beforeAll(() => mkdtemp(folder))
+
+    afterEach(async () => {
+      try {
+        await remove(file)
+      } catch {
+        // ignore
+      }
+    })
+
+    it('reads track number, artist and title from file name', async () => {
+      const title = faker.random.arrayElement([
+        'One More Time',
+        'Harder, Better, Faster, Stronger',
+        'Face To Face'
+      ])
+      const artist = faker.random.arrayElement(['Daft Punk', 'Phoenix'])
+      const trackNo = faker.random.arrayElement([1, 5, 12])
+      file = resolve(folder, `${trackNo}. ${artist} - ${title}.mp3`)
+      await copy(untagged, file)
+
+      expect(await read(file)).toEqual({
+        album: 'melodie-',
+        albumartist: null,
+        artist,
+        artists: [],
+        duration: 0.809795918367347,
+        genre: [],
+        title,
+        year: null,
+        cover: null,
+        track: { no: trackNo, of: null },
+        disk: { no: null, of: null },
+        movementIndex: {}
+      })
+    })
+
+    it('reads track number and title from file name', async () => {
+      const title = faker.random.arrayElement([
+        'One More Time',
+        'Harder, Better, Faster, Stronger',
+        'Face To Face'
+      ])
+      const trackNo = faker.random.arrayElement([1, 5, 12])
+      file = resolve(folder, `${trackNo} - ${title}.flac`)
+      await copy(untagged, file)
+
+      expect(await read(file)).toEqual({
+        album: 'melodie-',
+        albumartist: null,
+        artist: null,
+        artists: [],
+        duration: 0,
+        genre: [],
+        title,
+        year: null,
+        cover: null,
+        track: { no: trackNo, of: null }
+      })
+    })
+
+    it('reads artist and title from file name', async () => {
+      const title = faker.random.arrayElement([
+        'One More Time',
+        'Harder, Better, Faster, Stronger',
+        'Face To Face'
+      ])
+      const artist = faker.random.arrayElement(['Daft Punk', 'Phoenix'])
+      file = resolve(folder, `${artist}-${title}.ogg`)
+      await copy(untagged, file)
+
+      expect(await read(file)).toEqual({
+        album: 'melodie-',
+        albumartist: null,
+        artist,
+        artists: [],
+        duration: 0,
+        genre: [],
+        title,
+        year: null,
+        cover: null,
+        track: { no: null, of: null },
+        disk: { no: null, of: null },
+        movementIndex: {}
+      })
+    })
+
+    it('reads title from file name', async () => {
+      const title = faker.random.arrayElement([
+        'One More Time',
+        'Harder, Better, Faster, Stronger',
+        'Face To Face'
+      ])
+      file = resolve(folder, `${title}.wav`)
+      await copy(untagged, file)
+
+      expect(await read(file)).toEqual({
+        album: 'melodie-',
+        albumartist: null,
+        artist: null,
+        artists: [],
+        duration: 0,
+        genre: [],
+        title,
+        year: null,
+        cover: null,
+        track: { no: null, of: null },
+        disk: { no: null, of: null },
+        movementIndex: {}
+      })
+    })
+
+    it('reads album from parent folder', async () => {
+      const album = faker.random.arrayElement([
+        'Discovery',
+        'Home Work',
+        'Random Access Memories'
+      ])
+      const title = faker.random.arrayElement([
+        'One More Time',
+        'Harder, Better, Faster, Stronger',
+        'Face To Face'
+      ])
+      const artist = faker.random.arrayElement(['Daft Punk', 'Phoenix'])
+      const trackNo = faker.random.arrayElement([1, 5, 12])
+      file = resolve(folder, album, `${trackNo}. ${artist} - ${title}.mp3`)
+      await copy(untagged, file)
+      expect(await read(file)).toEqual({
+        album,
+        albumartist: null,
+        artist,
+        artists: [],
+        duration: 0.809795918367347,
+        genre: [],
+        title,
+        year: null,
+        cover: null,
+        track: { no: trackNo, of: null },
+        disk: { no: null, of: null },
+        movementIndex: {}
+      })
+    })
+
+    it('reads year and album from parent folder', async () => {
+      const album = faker.random.arrayElement([
+        'Discovery',
+        'Home Work',
+        'Random Access Memories'
+      ])
+      const title = faker.random.arrayElement([
+        'One More Time',
+        'Harder, Better, Faster, Stronger',
+        'Face To Face'
+      ])
+      const artist = faker.random.arrayElement(['Daft Punk', 'Phoenix'])
+      const trackNo = faker.random.arrayElement([1, 5, 12])
+      const year = faker.random.arrayElement([1999, 2009, 2005])
+      file = resolve(
+        folder,
+        `(${year}) ${album}`,
+        `${trackNo}. ${artist} - ${title}.mp3`
+      )
+      await copy(untagged, file)
+      expect(await read(file)).toEqual({
+        album,
+        albumartist: null,
+        artist: artist,
+        artists: [],
+        duration: 0.809795918367347,
+        genre: [],
+        title,
+        year,
+        cover: null,
+        track: { no: trackNo, of: null },
+        disk: { no: null, of: null },
+        movementIndex: {}
+      })
     })
   })
 })
