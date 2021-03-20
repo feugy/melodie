@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0-alpha.2](https://github.com/feugy/melodie/compare/v2.0.0-alpha.1...v2.0.0-alpha.2) (2021-03-20)
+
+### Features
+
+- final tweaks for v2 ([#25](https://github.com/feugy/melodie/issues/25)) ([2c95e19](https://github.com/feugy/melodie/commit/2c95e19e45e6e0d8352adac4a0d3a7fb8a46184e))
+- **ui:** improve play on mobile ([#24](https://github.com/feugy/melodie/issues/24)) ([85b1cd0](https://github.com/feugy/melodie/commit/85b1cd0d6b64539f2ae7831a719e080fb7a48669))
+
+## [2.0.0-alpha.1](https://github.com/feugy/melodie/compare/v1.0.0...v2.0.0-alpha.1) (2021-02-21)
+
+### Features
+
+- web broadcast ([#19](https://github.com/feugy/melodie/issues/19)) ([2c95e19](https://github.com/feugy/melodie/commit/7def2cadfb3863c00b43ffd7a3bd26c2e87a8ac9))
+
 ## [1.0.0](https://github.com/feugy/melodie/compare/v1.0.0-beta.2...v1.0.0) (2020-10-31)
 
 ### Features
