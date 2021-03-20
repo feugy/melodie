@@ -298,13 +298,13 @@ Windows App store release can not be automated: Github CI will build the appx pa
 
    ```shell
    npm run release:bump --prefix apps/desktop
-   git
    ```
 
 1. **Don't forget to update snapshots**: the presentation site test depend on the version number.
 
    ```shell
-   npm t -- -u
+   npm t --prefix apps/site -- --clearCache
+   npm t --prefix apps/site -- -u
    git commit -a --amend --no-edit
    TAG=$(git describe --tags)
    git tag -f $TAG
