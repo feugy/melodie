@@ -44,7 +44,7 @@ jobs:
         run: npm run build --prefix common/ui
 
       - name: Release application
-        run: npm run release:publish --prefix apps/desktop -- onTagOrDraft -${{ matrix.flags}}
+        run: npm run release:publish --prefix apps/desktop -- always -${{ matrix.flags}}
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
@@ -66,7 +66,7 @@ jobs:
         run: npm ci --legacy-peer-deps
 
       - name: Build site
-        run: BASE_PATH=melodie npm run build --prefix apps/site
+        run: BASE_PATH=/melodie npm run build --prefix apps/site
 
       - name: Publish site
         uses: peaceiris/actions-gh-pages@v3

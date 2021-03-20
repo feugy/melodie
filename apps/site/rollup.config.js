@@ -28,7 +28,8 @@ const resolveConf = { dedupe: ['svelte'] }
 const replaceConf = {
   'process.browser': true,
   'process.env.NODE_ENV': JSON.stringify(mode),
-  MELODIE_VERSION: JSON.stringify(version)
+  MELODIE_VERSION: JSON.stringify(version),
+  preventAssignment: true
 }
 const svelteConf = require('./svelte.config')
 

@@ -1,6 +1,6 @@
 {
   "name": "@melodie/site",
-  "version": "2.0.0-alpha.1",
+  "version": "2.0.0-alpha.2",
   "description": "Mélodie promotion site, deployed as github page",
   "scripts": {
     "build": "run-s -ncs build:sapper build:copy",
@@ -42,7 +42,7 @@
     "rollup-plugin-terser": "^7.0.2",
     "rxjs": "^6.6.3",
     "sapper": "^0.28.10",
-    "svelte": "^3.31.0",
+    "svelte": "^3.35.0",
     "svelte-htm": "^1.1.1",
     "svelte-intl": "^1.1.2",
     "svelte-jester": "^1.3.0",

@@ -1,5 +1,4 @@
 function updateDeps(package, version) {
-  package.version = version
   for (const deps of [
     package.dependencies,
     package.optionalDependencies,
@@ -12,6 +11,7 @@ function updateDeps(package, version) {
       }
     }
   }
+  return package
 }
 
 const updater = {
@@ -20,10 +20,10 @@ const updater = {
   },
   writeVersion(contents, version) {
     const file = JSON.parse(contents)
-    updateDeps(file, version)
+    updateDeps(file, version).version = version
     if (file.packages) {
       for (const name in file.packages) {
-        updateDeps(file.packages[name], version)
+        updateDeps(file.packages[name], version).version = version
       }
     }
     if (file.dependencies) {
