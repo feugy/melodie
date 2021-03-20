@@ -25,7 +25,6 @@ exports[`Storyshots Components/Artist Default 1`] = `
           />
            
           
-           
         </span>
          
         <p
@@ -108,7 +107,6 @@ exports[`Storyshots Components/Artist No Albums 1`] = `
           />
            
           
-           
         </span>
          
         <p
@@ -196,7 +194,6 @@ exports[`Storyshots Components/Artist Unknown 1`] = `
             </i>
           </span>
           
-           
         </span>
          
         <p

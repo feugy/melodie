@@ -21,16 +21,20 @@ export async function initConnection(address, onConnectionLost) {
   }
 
   ws = await new Promise((resolve, reject) => {
-    const socket = new WebSocket(address)
-    socket.onopen = () => {
-      socket.onopen = null
-      socket.onerror = null
-      // console.log(`Connected to ${address}`)
-      resolve(socket)
-    }
-    socket.onerror = err => {
-      socket.onopen = null
-      socket.onerror = null
+    try {
+      const socket = new WebSocket(address)
+      socket.onopen = () => {
+        socket.onopen = null
+        socket.onerror = null
+        // console.log(`Connected to ${address}`)
+        resolve(socket)
+      }
+      socket.onerror = err => {
+        socket.onopen = null
+        socket.onerror = null
+        reject(new Error(`failed to establish connection: ${err.message}`))
+      }
+    } catch (err) {
       reject(new Error(`failed to establish connection: ${err.message}`))
     }
   })

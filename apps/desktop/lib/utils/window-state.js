@@ -1,7 +1,7 @@
 'use strict'
 
 const { fromEvent, merge } = require('rxjs')
-const { debounceTime, map, mergeMap } = require('rxjs/operators')
+const { debounceTime, map, mergeMap, filter } = require('rxjs/operators')
 const fs = require('fs-extra')
 const {
   utils: { getLogger }
@@ -69,6 +69,7 @@ function makePositionObservable(window) {
     fromEvent(window, 'move')
   ).pipe(
     debounceTime(250),
+    filter(() => !window.isDestroyed()),
     map(() => ({
       ...window.getBounds(),
       isMaximized: window.isMaximized(),

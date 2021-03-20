@@ -25,6 +25,19 @@ const {
 const services = require('./lib/services')
 const { configureExternalLinks, manageState } = require('./lib/utils')
 
+async function stopOnError(err) {
+  await electron.dialog.showErrorBox(
+    'All our apologies...',
+    `Please report this error on github (https://github.com/feugy/melodie/issues):
+
+  ${err.message}
+
+Thanks a million!
+`
+  )
+  process.exit(-1)
+}
+
 /**
  * Configures and starts Mélodie!
  * @async
@@ -32,6 +45,7 @@ const { configureExternalLinks, manageState } = require('./lib/utils')
  */
 exports.main = async argv => {
   config()
+  let dispose
   const { app, BrowserWindow, Menu } = electron
   const isDev = process.env.NODE_ENV === 'test'
   const publicFolder = join(dirname(require.resolve('@melodie/ui')), 'public')
@@ -79,9 +93,11 @@ starting... To change log levels, edit the level file and run \`kill -USR2 ${pro
 
   process.on('uncaughtException', error => {
     logger.error(error, 'Uncaught exception')
+    stopOnError(error)
   })
   process.on('unhandledRejection', error => {
     logger.error(error, 'Unhandled promise rejection')
+    stopOnError(error)
   })
 
   if (isDev) {
@@ -167,12 +183,12 @@ starting... To change log levels, edit the level file and run \`kill -USR2 ${pro
   }
 
   app.once('window-all-closed', () => {
-    dispose()
+    dispose && dispose()
     app.quit()
   })
 
   await app.whenReady()
-  const dispose = await createWindow()
+  dispose = await createWindow()
 
   // autoUpdater is using logger functions detached from their instance
   const updaterLogger = getLogger('updater')

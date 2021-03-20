@@ -28,6 +28,8 @@ window.ResizeObserver = function () {
   }
 }
 
+window.fetch = jest.fn().mockReturnValue(new Promise(resolve => resolve()))
+
 jest.mock('../utils/connection', () => {
   const { Subject } = require('rxjs')
   const { filter, pluck } = require('rxjs/operators')

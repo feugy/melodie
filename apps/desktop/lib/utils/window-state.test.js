@@ -27,6 +27,7 @@ function makeWin(id = faker.random.number()) {
       height: faker.random.number()
     }),
     setBounds: jest.fn(),
+    isDestroyed: jest.fn().mockReturnValue(false),
     isMaximized: jest.fn().mockReturnValue(faker.random.boolean()),
     isMinimized: jest.fn().mockReturnValue(faker.random.boolean()),
     isFullScreen: jest.fn().mockReturnValue(faker.random.boolean()),

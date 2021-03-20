@@ -98,6 +98,7 @@ const queue$ = merge(actions$, new ReplaySubject()).pipe(
       }
       localStorage.setItem(storageKey, JSON.stringify({ list, idx }))
       current$.next(list[idx])
+      next$.next(idx < list.length - 1 ? list[idx + 1] : null)
       return { list, idx, backup }
     },
     { idx: 0, list: [] }
@@ -108,6 +109,8 @@ const queue$ = merge(actions$, new ReplaySubject()).pipe(
 const index$ = queue$.pipe(pluck('idx'))
 
 const current$ = new BehaviorSubject()
+
+const next$ = new BehaviorSubject()
 
 const tracks$ = queue$.pipe(pluck('list'))
 
@@ -153,6 +156,7 @@ settings.subscribe(value => {
 
 export const tracks = tracks$
 export const current = current$.asObservable()
+export const next = next$.asObservable()
 export const index = index$
 export const isShuffling = isShuffling$
 

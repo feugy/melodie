@@ -1,9 +1,13 @@
 'use strict'
 
+const { basename, dirname } = require('path')
 const { parseFile, selectCover } = require('music-metadata')
 const { getLogger } = require('../../utils')
 
 const logger = getLogger('providers/local')
+
+const titleRegex = /^(\d*)\s*[.-]?(?:([^-]+)-)?(.+)\.\w+$/i
+const albumRegex = /^(?:\((\d*)\)\s+)?(.+)$/i
 
 module.exports = {
   /**
@@ -36,7 +40,7 @@ module.exports = {
    * @returns {Tags} parsed metadata
    */
   async read(path) {
-    let tags
+    let tags = {}
     try {
       const { common, format } = await parseFile(path)
       if (!format.duration) {
@@ -52,17 +56,39 @@ module.exports = {
     } catch (error) {
       logger.warn({ error, path }, `failed to read tags`)
     }
+    if (!tags.title || !tags.artist) {
+      const match = titleRegex.exec(basename(path))
+      if (match) {
+        const [, num, artist, title] = match
+        tags.title = tags.title || title?.trim() || null
+        tags.artist = tags.artist || artist?.trim() || null
+        if (!tags?.track?.no && !!num) {
+          tags.track = { no: parseInt(num), of: tags?.track?.of || null }
+        }
+      }
+    }
+    if (!tags.album || !tags.year) {
+      const match = albumRegex.exec(basename(dirname(path)))
+      if (match) {
+        const [, year, album] = match
+        tags.album = tags.album || album?.trim() || null
+        if (!tags.year && !!year) {
+          tags.year = parseInt(year)
+        }
+      }
+    }
+    // TODO discs
     return {
       album: null,
-      albumartist: null,
       artist: null,
       artists: [],
+      albumartist: null,
       genre: [],
       title: null,
       year: null,
-      duration: 0,
       cover: null,
       ...tags,
+      duration: tags.duration || 0,
       picture: undefined // don't returns embedded pictures
     }
   }

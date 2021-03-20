@@ -1,6 +1,6 @@
 extends:
   - eslint:recommended
-  - prettier
+  - plugin:prettier/recommended
   - plugin:testing-library/recommended
   - plugin:jest-dom/recommended
 env:
