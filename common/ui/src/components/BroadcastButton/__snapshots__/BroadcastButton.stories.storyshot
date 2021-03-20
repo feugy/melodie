@@ -5,7 +5,7 @@ exports[`Storyshots Components/Broadcast button Default 1`] = `
   class="storybook-snapshot-container"
 >
   <span
-    class="button svelte-2fbbqs"
+    class="button svelte-18t8jh5"
   >
     <button
       class="iconOnly noBorder svelte-1lod44n"

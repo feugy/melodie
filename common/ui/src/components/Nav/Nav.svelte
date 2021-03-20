@@ -136,21 +136,22 @@
   }
 
   @screen md {
-    ul :nth-child(4),
-    ul :nth-child(5) {
-      order: 3;
-    }
-
     li {
       &.nav {
         order: 1;
       }
 
+      &:nth-child(4) {
+        order: 2;
+      }
       &.expand {
         @apply flex-grow text-right;
         order: 2;
       }
 
+      &:nth-child(5) {
+        order: 4;
+      }
       &.track-list {
         @apply flex-grow-0;
         order: 4;

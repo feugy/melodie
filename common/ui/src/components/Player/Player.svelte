@@ -11,7 +11,7 @@
   import Volume from './Volume.svelte'
   import Shuffle from './Shuffle.svelte'
   import Repeat from './Repeat.svelte'
-  import { current, tracks } from '../../stores/track-queue'
+  import { current, next, tracks } from '../../stores/track-queue'
   import { playNext } from '../../stores/track-queue'
   import { screenSize, MD } from '../../stores/window'
 
@@ -38,7 +38,7 @@
       gainNode.connect(context.destination)
     }
 
-    return current.subscribe(current => {
+    const currentSub = current.subscribe(current => {
       if (!current) {
         src = null
         if (player) {
@@ -58,6 +58,22 @@
         }
       }
     })
+
+    const nextSub = next.subscribe(async next => {
+      if (next) {
+        // pre-fetch
+        const nextUrl = window.dlUrl + next.data
+        try {
+          await fetch(nextUrl)
+        } catch (err) {
+          console.warn(`failed to pre-fetch file ${nextUrl}: ${err.message}`)
+        }
+      }
+    })
+    return () => {
+      currentSub.unsubscribe()
+      nextSub.unsubscribe()
+    }
   })
 
   function handleLoaded() {

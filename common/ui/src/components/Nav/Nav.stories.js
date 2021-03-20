@@ -24,7 +24,6 @@ export default {
     websocketResponse(
       title,
       invoked => {
-        console.log('coucou', invoked)
         if (invoked === 'settings.toggleBroadcast') {
           settings.isBroadcasting = !settings.isBroadcasting
           return settings

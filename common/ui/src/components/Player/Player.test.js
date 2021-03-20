@@ -76,6 +76,39 @@ describe('Player component', () => {
     }
   })
 
+  it('pre-fetches next track', async () => {
+    expect(fetch).not.toHaveBeenCalled()
+    add(trackListData)
+
+    render(html`<${Player} />`)
+
+    const audio = screen.getByTestId('audio')
+    expect(audio).toHaveAttribute(
+      'src',
+      `${window.dlUrl}${trackListData[0].data}`
+    )
+    expect(play).not.toHaveBeenCalled()
+    expect(fetch).toHaveBeenNthCalledWith(
+      1,
+      `${window.dlUrl}${trackListData[1].data}`
+    )
+    expect(fetch).toHaveBeenCalledTimes(1)
+
+    const next = screen.getByText('skip_next')
+    fireEvent.click(next)
+    expect(fetch).toHaveBeenNthCalledWith(
+      2,
+      `${window.dlUrl}${trackListData[2].data}`
+    )
+    fireEvent.click(next)
+    expect(fetch).toHaveBeenNthCalledWith(
+      3,
+      `${window.dlUrl}${trackListData[3].data}`
+    )
+    fireEvent.click(next)
+    expect(fetch).toHaveBeenCalledTimes(3)
+  })
+
   it('plays and pause track', async () => {
     add(trackListData)
     expect(play).not.toHaveBeenCalled()
