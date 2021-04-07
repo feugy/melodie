@@ -3232,7 +3232,7 @@ const ignore = [];
 
 const components = [
 	{
-		js: () => Promise.all([import('./index.1a0b01c8.js'), __inject_styles(["client-9289a3e0.css","index-1dcea9dd.css"])]).then(function(x) { return x[0]; })
+		js: () => Promise.all([import('./index.9d362fde.js'), __inject_styles(["client-9289a3e0.css","index-1dcea9dd.css"])]).then(function(x) { return x[0]; })
 	}
 ];
 
