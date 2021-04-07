@@ -24,8 +24,10 @@ fastify()
   // freely inspired from https://github.com/thgh/sapper-fastify-socket/blob/master/src/server.js
   .route({
     method: 'GET',
-    url: '/*',
+    url: `${BASE_PATH || ''}/*`,
     handler: async (request, reply) => {
+      request.baseUrl = BASE_PATH
+      request.raw.url = request.raw.url.replace(BASE_PATH, '')
       request.originalUrl = request.raw.url
       reply.setHeader = reply.header
       reply.writeHead = reply.code

@@ -4,8 +4,8 @@
   "description": "Mélodie promotion site, deployed as github page",
   "scripts": {
     "build": "run-s -ncs build:sapper build:copy",
-    "build:copy": "node -r fs-extra -e \"const { join } = require('path'); require('fs-extra').copySync(join('..', '..', 'common', 'ui', 'public', 'fonts'), join('__sapper__', 'export', 'fonts'))\"",
-    "build:sapper": "sapper export",
+    "build:copy": "node -r fs-extra -e \"const { join } = require('path'); require('fs-extra').copySync(join('..', '..', 'common', 'ui', 'public', 'fonts'), join('__sapper__', 'export', 'melodie', 'fonts'))\"",
+    "build:sapper": "BASE_PATH=/melodie sapper export --basepath melodie",
     "dev": "sapper dev",
     "storybook": "start-storybook -p 6007 -s ./static",
     "test": "jest --coverage --colors",

@@ -71,9 +71,8 @@ snap:
     - removable-media
     - screen-inhibit-control
   slots:
-    # - mpris:
-    #     name: chromium
-    - mpris
+    - mpris:
+      name: chromium
 
 appImage:
   desktop:
