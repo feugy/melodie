@@ -28,7 +28,7 @@
     "public-ip": "^4.0.3",
     "rxjs": "^6.6.3",
     "sqlite3": "^5.0.0",
-    "ws": "^7.4.1",
+    "ws": "^7.4.6",
     "xxhashjs": "^0.2.2"
   },
   "devDependencies": {

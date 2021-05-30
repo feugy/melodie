@@ -50,7 +50,7 @@
     "svelte-preprocess": "^4.6.1",
     "svelte-spa-router": "^3.1.0",
     "tailwindcss": "^1.9.5",
-    "ws": "^7.4.1",
+    "ws": "^7.4.6",
     "yaml-loader": "^0.6.0"
   }
 }
