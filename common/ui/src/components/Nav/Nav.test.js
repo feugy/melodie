@@ -1,6 +1,7 @@
 'use strict'
 
 import { render, screen, fireEvent } from '@testing-library/svelte'
+import userEvent from '@testing-library/user-event'
 import html from 'svelte-htm'
 import * as router from 'svelte-spa-router'
 import { BehaviorSubject } from 'rxjs'
@@ -66,7 +67,7 @@ describe('Nav component', () => {
   it('navigates to albums', async () => {
     render(html`<${Nav} />`)
 
-    fireEvent.click(screen.getByText(translate('albums')))
+    userEvent.click(screen.getByText(translate('albums')))
     await sleep()
 
     expect(location.hash).toEqual(`#/album`)
@@ -75,7 +76,7 @@ describe('Nav component', () => {
   it('navigates to artists', async () => {
     render(html`<${Nav} />`)
 
-    fireEvent.click(screen.getByText(translate('artists')))
+    userEvent.click(screen.getByText(translate('artists')))
     await sleep()
 
     expect(location.hash).toEqual(`#/artist`)
@@ -84,7 +85,7 @@ describe('Nav component', () => {
   it('navigates to playlists', async () => {
     render(html`<${Nav} />`)
 
-    fireEvent.click(screen.getByText(translate('playlists')))
+    userEvent.click(screen.getByText(translate('playlists')))
     await sleep()
 
     expect(location.hash).toEqual(`#/playlist`)
@@ -93,7 +94,7 @@ describe('Nav component', () => {
   it('navigates to settings', async () => {
     render(html`<${Nav} />`)
 
-    fireEvent.click(screen.getByText('settings'))
+    userEvent.click(screen.getByText('settings'))
     await sleep()
 
     expect(location.hash).toEqual(`#/settings`)
@@ -160,7 +161,7 @@ describe('Nav component', () => {
     expect(searchbox).toHaveValue(text)
     await sleep(300)
 
-    fireEvent.click(searchbox.previousElementSibling)
+    userEvent.click(searchbox.previousElementSibling)
     await sleep()
 
     expect(push).toHaveBeenCalledTimes(1)
@@ -173,15 +174,15 @@ describe('Nav component', () => {
     await sleep()
     expect(location.hash).toEqual(`#/`)
 
-    fireEvent.click(screen.getByText(translate('artists')))
+    userEvent.click(screen.getByText(translate('artists')))
     await sleep()
 
     expect(location.hash).toEqual(`#/artist`)
-    fireEvent.click(screen.getByText('navigate_before'))
+    userEvent.click(screen.getByText('navigate_before'))
     await sleep(100)
 
     expect(location.hash).toEqual(`#/`)
-    fireEvent.click(screen.getByText('navigate_next'))
+    userEvent.click(screen.getByText('navigate_next'))
     await sleep(100)
 
     expect(location.hash).toEqual(`#/artist`)
@@ -197,7 +198,7 @@ describe('Nav component', () => {
     expect(screen.queryByText('wifi')).not.toBeInTheDocument()
     await sleep()
 
-    fireEvent.click(screen.queryByText('wifi_off'))
+    userEvent.click(screen.queryByText('wifi_off'))
     await sleep()
 
     expect(screen.queryByText('wifi_off')).not.toBeInTheDocument()

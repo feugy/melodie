@@ -7,7 +7,7 @@ exports[`Storyshots Components/AddToPlaylist Default 1`] = `
   <span
     aria-expanded="false"
     aria-haspopup="menu"
-    class="wrapper svelte-dvv38h"
+    class="wrapper svelte-17zgehq"
   >
     <button
       class="iconOnly svelte-1lod44n"

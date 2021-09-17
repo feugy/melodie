@@ -1,6 +1,7 @@
 'use strict'
 
 import { screen, render, fireEvent } from '@testing-library/svelte'
+import userEvent from '@testing-library/user-event'
 import html from 'svelte-htm'
 import faker from 'faker'
 import QRCode from 'qrcode'
@@ -95,7 +96,7 @@ describe('BroadcastButton component', () => {
       address=${address}
       on:click=${handleClick}
     />`)
-    await fireEvent.click(screen.queryByRole('button'))
+    await userEvent.click(screen.queryByRole('button'))
 
     expect(handleClick).toHaveBeenCalledTimes(1)
     expect(toCanvas).not.toHaveBeenCalled()

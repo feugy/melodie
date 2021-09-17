@@ -1,6 +1,7 @@
 'use strict'
 
 import { screen, render, fireEvent } from '@testing-library/svelte'
+import userEvent from '@testing-library/user-event'
 import { locale } from 'svelte-intl'
 import html from 'svelte-htm'
 import faker from 'faker'
@@ -95,9 +96,9 @@ describe('settings route', () => {
     render(html`<${settingsRoute} />`)
     expect(screen.queryByText('Langage :')).toBeInTheDocument()
 
-    fireEvent.click(screen.queryByText(translate('fr')))
+    userEvent.click(screen.queryByText(translate('fr')))
     await sleep()
-    fireEvent.click(screen.queryByText(translate('en')))
+    userEvent.click(screen.queryByText(translate('en')))
     await sleep(300)
 
     expect(screen.queryByText(translate('en'))).toBeInTheDocument()
@@ -117,7 +118,7 @@ describe('settings route', () => {
     render(html`<${settingsRoute} />`)
     await sleep()
 
-    fireEvent.click(screen.queryByText(translate('add folders')))
+    userEvent.click(screen.queryByText(translate('add folders')))
     await sleep()
 
     expect(askToAddFolder).toHaveBeenCalled()
@@ -132,7 +133,7 @@ describe('settings route', () => {
     expect(screen.queryByText(folders[1])).toBeInTheDocument()
 
     // remove second one
-    fireEvent.click(screen.getAllByText('close')[1])
+    userEvent.click(screen.getAllByText('close')[1])
 
     settings.next({
       folders: folders.slice(0, 1),
@@ -185,9 +186,9 @@ describe('settings route', () => {
       screen.queryByText(translate('enqueues and jumps'))
     ).toBeInTheDocument()
 
-    fireEvent.click(screen.queryByText(translate('enqueues and jumps')))
+    userEvent.click(screen.queryByText(translate('enqueues and jumps')))
     await sleep()
-    fireEvent.click(screen.queryByText(translate('clears queue and plays')))
+    userEvent.click(screen.queryByText(translate('clears queue and plays')))
     await sleep(300)
 
     expect(saveEnqueueBehaviour).toHaveBeenCalledWith({
@@ -202,9 +203,9 @@ describe('settings route', () => {
 
     expect(screen.queryByText(translate('enqueues track'))).toBeInTheDocument()
 
-    fireEvent.click(screen.queryByText(translate('enqueues track')))
+    userEvent.click(screen.queryByText(translate('enqueues track')))
     await sleep()
-    fireEvent.click(screen.queryByText(translate('plays track')))
+    userEvent.click(screen.queryByText(translate('plays track')))
     await sleep(300)
 
     expect(saveEnqueueBehaviour).toHaveBeenCalledWith({

@@ -1,6 +1,7 @@
 'use strict'
 
-import { screen, render, fireEvent } from '@testing-library/svelte'
+import { screen, render } from '@testing-library/svelte'
+import userEvent from '@testing-library/user-event'
 import html from 'svelte-htm'
 import faker from 'faker'
 import Album from './Album.svelte'
@@ -20,8 +21,8 @@ describe('Album component', () => {
 
   it('navigates to album details page', async () => {
     render(html`<${Album} src=${albumData} />`)
-
-    fireEvent.click(screen.getByRole('img'))
+    await userEvent.hover(screen.getByRole('article'))
+    userEvent.click(screen.getByRole('img'))
     await sleep()
 
     expect(location.hash).toEqual(`#/album/${albumData.id}`)
@@ -40,7 +41,8 @@ describe('Album component', () => {
     })
 
     render(html`<${Album} src=${album} />`)
-    await fireEvent.click(screen.getByTestId('play'))
+    await userEvent.hover(screen.getByRole('article'))
+    userEvent.click(screen.getByTestId('play'))
     await sleep()
 
     expect(load).toHaveBeenCalledWith(album.id)
@@ -59,7 +61,8 @@ describe('Album component', () => {
     })
 
     render(html`<${Album} src=${album} />`)
-    await fireEvent.click(screen.getByTestId('enqueue'))
+    await userEvent.hover(screen.getByRole('article'))
+    userEvent.click(screen.getByTestId('enqueue'))
     await sleep()
 
     expect(load).toHaveBeenCalledWith(album.id)
@@ -74,7 +77,8 @@ describe('Album component', () => {
     const album = { ...albumData, tracks }
 
     render(html`<${Album} src=${album} />`)
-    await fireEvent.click(screen.getByTestId('play'))
+    await userEvent.hover(screen.getByRole('article'))
+    userEvent.click(screen.getByTestId('play'))
     await sleep()
 
     expect(load).not.toHaveBeenCalled()
@@ -85,8 +89,8 @@ describe('Album component', () => {
   it('has links to artists', async () => {
     const [id, name] = albumData.refs[0]
     render(html`<${Album} src=${albumData} />`)
-
-    fireEvent.click(screen.getByText(name))
+    await userEvent.hover(screen.getByRole('article'))
+    userEvent.click(screen.getByText(name))
     await sleep()
 
     expect(location.hash).toEqual(`#/artist/${id}`)

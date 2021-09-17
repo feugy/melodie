@@ -1,6 +1,7 @@
 'use strict'
 
-import { screen, render, fireEvent } from '@testing-library/svelte'
+import { screen, render } from '@testing-library/svelte'
+import userEvent from '@testing-library/user-event'
 import html from 'svelte-htm'
 import { locale } from 'svelte-intl'
 import { BehaviorSubject } from 'rxjs'
@@ -159,21 +160,21 @@ describe('artist details route', () => {
     })
 
     it('enqueues all tracks', async () => {
-      fireEvent.click(screen.getByText(translate('enqueue all')))
+      userEvent.click(screen.getByText(translate('enqueue all')))
 
       expect(add).toHaveBeenCalledWith(artist.tracks)
       expect(add).toHaveBeenCalledTimes(1)
     })
 
     it('plays all tracks', async () => {
-      fireEvent.click(screen.getByText(translate('play all')))
+      userEvent.click(screen.getByText(translate('play all')))
 
       expect(add).toHaveBeenCalledWith(artist.tracks, true)
       expect(add).toHaveBeenCalledTimes(1)
     })
 
     it('navigates to album details page', async () => {
-      fireEvent.click(screen.getByText(album2.name))
+      userEvent.click(screen.getByText(album2.name))
       await sleep(250)
 
       expect(add).not.toHaveBeenCalled()
@@ -279,7 +280,7 @@ describe('artist details route', () => {
           node.getAttribute('src').includes(artist.media)
       )
 
-      fireEvent.click(artistImage)
+      userEvent.click(artistImage)
 
       expect(await screen.findByText(translate('choose avatar'))).toBeVisible()
     })

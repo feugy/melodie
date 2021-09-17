@@ -1,7 +1,8 @@
 'use strict'
 
-import { get } from 'svelte/store'
 import { screen, render, fireEvent } from '@testing-library/svelte'
+import userEvent from '@testing-library/user-event'
+import { get } from 'svelte/store'
 import html from 'svelte-htm'
 import faker from 'faker'
 import Player from './Player.svelte'
@@ -88,12 +89,12 @@ describe('Player component', () => {
       `${window.dlUrl}${trackListData[0].data}`
     )
 
-    await fireEvent.click(screen.getByText('play_arrow'))
+    await userEvent.click(screen.getByText('play_arrow'))
 
     expect(get(current)).toEqual(trackListData[0])
     expect(play).toHaveBeenCalled()
 
-    await fireEvent.click(screen.getByText('pause'))
+    await userEvent.click(screen.getByText('pause'))
 
     expect(get(current)).toEqual(trackListData[0])
     expect(pause).toHaveBeenCalled()
@@ -106,10 +107,10 @@ describe('Player component', () => {
     const audio = screen.getByTestId('audio')
 
     expect(audio.muted).toEqual(false)
-    await fireEvent.click(screen.getByText('volume_up'))
+    await userEvent.click(screen.getByText('volume_up'))
     expect(audio.muted).toEqual(true)
 
-    await fireEvent.click(screen.getByText('volume_off'))
+    await userEvent.click(screen.getByText('volume_off'))
     expect(audio.muted).toEqual(false)
   })
 
@@ -118,7 +119,7 @@ describe('Player component', () => {
 
     render(html`<${Player} />`)
 
-    await fireEvent.click(screen.getByText('skip_next'))
+    await userEvent.click(screen.getByText('skip_next'))
 
     expect(get(current)).toEqual(trackListData[1])
   })
@@ -130,7 +131,7 @@ describe('Player component', () => {
 
     render(html`<${Player} />`)
 
-    await fireEvent.click(screen.getByText('skip_previous'))
+    await userEvent.click(screen.getByText('skip_previous'))
 
     expect(get(current)).toEqual(trackListData[1])
   })
@@ -154,7 +155,7 @@ describe('Player component', () => {
     add(trackListData)
 
     render(html`<${Player} />`)
-    await fireEvent.click(screen.getByRole('img'))
+    await userEvent.click(screen.getByRole('img'))
     await sleep()
 
     expect(location.hash).toEqual(`#/album/${trackListData[0].albumRef[0]}`)
@@ -164,7 +165,7 @@ describe('Player component', () => {
     add(trackListData)
 
     render(html`<${Player} />`)
-    await fireEvent.click(screen.getByText(trackListData[0].artistRefs[0][1]))
+    await userEvent.click(screen.getByText(trackListData[0].artistRefs[0][1]))
     await sleep()
 
     expect(location.hash).toEqual(
@@ -202,7 +203,7 @@ describe('Player component', () => {
     add(trackListData)
     render(html`<${Player} />`)
     const audio = screen.getByTestId('audio')
-    // fireEvent.click(screen.queryByText('play_arrow'))
+    // userEvent.click(screen.queryByText('play_arrow'))
     mockAutoPlay(audio)
     expect(get(current)).toEqual(trackListData[0])
 
@@ -239,7 +240,7 @@ describe('Player component', () => {
     const audio = screen.getByTestId('audio')
     mockAutoPlay(audio)
 
-    await fireEvent.click(screen.getByText('repeat'))
+    await userEvent.click(screen.getByText('repeat'))
     expect(get(current)).toEqual(trackListData[3])
 
     audio.dispatchEvent(new Event('ended'))
@@ -258,8 +259,8 @@ describe('Player component', () => {
     const audio = screen.getByTestId('audio')
     mockAutoPlay(audio)
 
-    await fireEvent.click(screen.getByText('repeat'))
-    await fireEvent.click(screen.getByText('repeat'))
+    await userEvent.click(screen.getByText('repeat'))
+    await userEvent.click(screen.getByText('repeat'))
 
     expect(get(current)).toEqual(trackListData[3])
     await sleep()
@@ -279,10 +280,10 @@ describe('Player component', () => {
   it('shuffles and unshuffles current track when repeat one is on', async () => {
     render(html`<${Player} />`)
 
-    await fireEvent.click(screen.getByText('shuffle'))
+    await userEvent.click(screen.getByText('shuffle'))
     expect(get(isShuffling)).toEqual(true)
 
-    await fireEvent.click(screen.getByText('shuffle'))
+    await userEvent.click(screen.getByText('shuffle'))
     expect(get(isShuffling)).toEqual(false)
   })
 
@@ -326,13 +327,13 @@ describe('Player component', () => {
 
       const playlist = faker.random.arrayElement(playlists)
 
-      await fireEvent.click(screen.queryByText('library_add'))
-      await fireEvent.click(screen.queryByText(playlist.name))
+      await userEvent.click(screen.queryByText('library_add'))
+      await userEvent.click(screen.queryByText(playlist.name))
 
       playNext()
 
-      await fireEvent.click(screen.queryByText('library_add'))
-      await fireEvent.click(screen.queryByText(playlist.name))
+      await userEvent.click(screen.queryByText('library_add'))
+      await userEvent.click(screen.queryByText(playlist.name))
 
       expect(invoke).toHaveBeenNthCalledWith(
         1,

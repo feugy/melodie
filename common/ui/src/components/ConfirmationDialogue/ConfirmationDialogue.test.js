@@ -1,8 +1,9 @@
 'use strict'
 
+import { screen, render } from '@testing-library/svelte'
+import userEvent from '@testing-library/user-event'
 import { tick } from 'svelte'
 import { writable, get } from 'svelte/store'
-import { screen, render, fireEvent } from '@testing-library/svelte'
 import html from 'svelte-htm'
 import faker from 'faker'
 import ConfirmationDialogue from './ConfirmationDialogue.svelte'
@@ -63,7 +64,7 @@ describe('Confirmation dialogue component', () => {
     })
 
     it('dispatches close event with confirmed on confirmation button', async () => {
-      await fireEvent.click(screen.queryByText('done'))
+      await userEvent.click(screen.queryByText('done'))
 
       expect(screen.queryByText(title)).not.toBeVisible()
       expect(handleClose).toHaveBeenCalledWith(
@@ -73,7 +74,7 @@ describe('Confirmation dialogue component', () => {
     })
 
     it('dispatches close event without confirmed on cancellation button', async () => {
-      await fireEvent.click(screen.queryByText('cancel'))
+      await userEvent.click(screen.queryByText('cancel'))
 
       expect(screen.queryByText(title)).not.toBeVisible()
       expect(handleClose).toHaveBeenCalledWith(
@@ -83,7 +84,7 @@ describe('Confirmation dialogue component', () => {
     })
 
     it('dispatches close event without confirmed on backdrop click', async () => {
-      await fireEvent.click(screen.queryByText('close').closest('div'))
+      await userEvent.click(screen.queryByText('close').closest('div'))
 
       expect(screen.queryByText(title)).not.toBeVisible()
       expect(handleClose).toHaveBeenCalledWith(
@@ -93,7 +94,7 @@ describe('Confirmation dialogue component', () => {
     })
 
     it('dispatches close event without confirmed on close button', async () => {
-      await fireEvent.click(screen.queryByText('close'))
+      await userEvent.click(screen.queryByText('close'))
 
       expect(screen.queryByText(title)).not.toBeVisible()
       expect(handleClose).toHaveBeenCalledWith(

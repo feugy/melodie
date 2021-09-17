@@ -22,7 +22,7 @@
     "@storybook/svelte": "^6.1.11",
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/svelte": "^3.0.0",
-    "@testing-library/user-event": "^12.5.0",
+    "@testing-library/user-event": "^13.2.1",
     "babel-loader": "^8.2.2",
     "faker": "^5.1.0",
     "fast-json-parse": "^1.0.3",

@@ -1,6 +1,7 @@
 'use strict'
 
-import { render, screen, fireEvent } from '@testing-library/svelte'
+import { render, screen } from '@testing-library/svelte'
+import userEvent from '@testing-library/user-event'
 import html from 'svelte-htm'
 import TextInput from './TextInput.svelte'
 
@@ -22,7 +23,7 @@ describe('TextInput component', () => {
     render(html`<${TextInput} on:iconClick=${handleIconClick} icon="search" />`)
     expect(handleIconClick).not.toHaveBeenCalled()
 
-    await fireEvent.click(screen.getByRole('textbox').previousElementSibling)
+    await userEvent.click(screen.getByRole('textbox').previousElementSibling)
 
     expect(handleIconClick).toHaveBeenCalled()
   })

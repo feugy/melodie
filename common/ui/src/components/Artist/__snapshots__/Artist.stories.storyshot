@@ -8,6 +8,7 @@ exports[`Storyshots Components/Artist Default 1`] = `
      
     <span
       class="svelte-1vgpzqt"
+      role="article"
     >
       <div
         class="content svelte-1vgpzqt"
@@ -90,6 +91,7 @@ exports[`Storyshots Components/Artist No Albums 1`] = `
      
     <span
       class="svelte-1vgpzqt"
+      role="article"
     >
       <div
         class="content svelte-1vgpzqt"
@@ -170,6 +172,7 @@ exports[`Storyshots Components/Artist Unknown 1`] = `
      
     <span
       class="svelte-1vgpzqt"
+      role="article"
     >
       <div
         class="content svelte-1vgpzqt"

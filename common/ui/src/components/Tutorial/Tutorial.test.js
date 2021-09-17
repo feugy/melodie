@@ -1,6 +1,7 @@
 'use strict'
 
-import { screen, render, fireEvent } from '@testing-library/svelte'
+import { screen, render } from '@testing-library/svelte'
+import userEvent from '@testing-library/user-event'
 import html from 'svelte-htm'
 import { BehaviorSubject } from 'rxjs'
 import faker from 'faker'
@@ -66,7 +67,7 @@ describe('TracksTable component', () => {
     const nextButton = screen.queryByText(translate(nextButtonKey))
     expect(nextButton).toBeVisible()
 
-    fireEvent.click(nextButton)
+    userEvent.click(nextButton)
     expect(tutorial.handleNextButtonClick).toHaveBeenCalledTimes(1)
     expect(tutorial.stop).not.toHaveBeenCalled()
   })
@@ -77,7 +78,7 @@ describe('TracksTable component', () => {
 
     const skipButton = screen.queryByText(translate('i will figure out'))
     expect(skipButton).toBeVisible()
-    fireEvent.click(skipButton)
+    userEvent.click(skipButton)
     expect(tutorial.stop).toHaveBeenCalledTimes(1)
   })
 })

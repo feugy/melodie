@@ -1,6 +1,7 @@
 'use strict'
 
-import { screen, render, fireEvent } from '@testing-library/svelte'
+import { screen, render } from '@testing-library/svelte'
+import userEvent from '@testing-library/user-event'
 import html from 'svelte-htm'
 import { BehaviorSubject } from 'rxjs'
 import { replace } from 'svelte-spa-router'
@@ -139,7 +140,7 @@ describe('album details route', () => {
     it('has links to artists', async () => {
       const [id, artist] = faker.random.arrayElement(album.refs)
       // first occurence is in album header, then we have tracks
-      fireEvent.click(screen.getAllByText(artist)[0])
+      userEvent.click(screen.getAllByText(artist)[0])
       await sleep()
 
       expect(add).not.toHaveBeenCalled()
@@ -153,14 +154,14 @@ describe('album details route', () => {
     })
 
     it('enqueues whole album', async () => {
-      await fireEvent.click(screen.getByText(translate('enqueue all')))
+      await userEvent.click(screen.getByText(translate('enqueue all')))
 
       expect(add).toHaveBeenCalledWith(album.tracks)
       expect(add).toHaveBeenCalledTimes(1)
     })
 
     it('plays whole album', async () => {
-      await fireEvent.click(screen.getByText(translate('play all')))
+      await userEvent.click(screen.getByText(translate('play all')))
       await sleep()
 
       expect(add).toHaveBeenCalledWith(album.tracks, true)
@@ -220,7 +221,7 @@ describe('album details route', () => {
           node.getAttribute('src').includes(album.media)
       )
 
-      await fireEvent.click(albumImage)
+      await userEvent.click(albumImage)
 
       expect(await screen.findByText(translate('choose cover'))).toBeVisible()
     })

@@ -16,7 +16,7 @@ exports[`Storyshots Components/Dropdown Custom Button Options 1`] = `
     <span
       aria-expanded="false"
       aria-haspopup="menu"
-      class="wrapper svelte-dvv38h"
+      class="wrapper svelte-17zgehq"
     >
       <button
         align="text-right"
@@ -33,7 +33,7 @@ exports[`Storyshots Components/Dropdown Custom Button Options 1`] = `
         </span>
          
         <i
-          class="material-icons arrow svelte-dvv38h"
+          class="material-icons arrow svelte-17zgehq"
         >
           arrow_drop_down
         </i>
@@ -129,7 +129,7 @@ exports[`Storyshots Components/Dropdown Custom Options 1`] = `
     <span
       aria-expanded="false"
       aria-haspopup="menu"
-      class="wrapper svelte-dvv38h"
+      class="wrapper svelte-17zgehq"
     >
       <button
         class="svelte-1lod44n"
@@ -140,7 +140,7 @@ exports[`Storyshots Components/Dropdown Custom Options 1`] = `
         </span>
          
         <i
-          class="material-icons arrow svelte-dvv38h"
+          class="material-icons arrow svelte-17zgehq"
         >
           arrow_drop_down
         </i>
@@ -236,7 +236,7 @@ exports[`Storyshots Components/Dropdown Default 1`] = `
     <span
       aria-expanded="false"
       aria-haspopup="menu"
-      class="wrapper svelte-dvv38h"
+      class="wrapper svelte-17zgehq"
     >
       <button
         class="svelte-1lod44n"
@@ -247,7 +247,7 @@ exports[`Storyshots Components/Dropdown Default 1`] = `
         </span>
          
         <i
-          class="material-icons arrow svelte-dvv38h"
+          class="material-icons arrow svelte-17zgehq"
         >
           arrow_drop_down
         </i>
@@ -343,7 +343,7 @@ exports[`Storyshots Components/Dropdown Icon Only With Relative Parent 1`] = `
     <span
       aria-expanded="false"
       aria-haspopup="menu"
-      class="wrapper svelte-dvv38h"
+      class="wrapper svelte-17zgehq"
     >
       <button
         class="iconOnly svelte-1lod44n"
@@ -448,7 +448,7 @@ exports[`Storyshots Components/Dropdown Independent Text And Icon 1`] = `
     <span
       aria-expanded="false"
       aria-haspopup="menu"
-      class="wrapper svelte-dvv38h"
+      class="wrapper svelte-17zgehq"
     >
       <button
         align="text-left"
@@ -465,7 +465,7 @@ exports[`Storyshots Components/Dropdown Independent Text And Icon 1`] = `
         </span>
          
         <i
-          class="material-icons arrow svelte-dvv38h"
+          class="material-icons arrow svelte-17zgehq"
         >
           arrow_drop_down
         </i>
@@ -561,7 +561,7 @@ exports[`Storyshots Components/Dropdown Simple Array 1`] = `
     <span
       aria-expanded="false"
       aria-haspopup="menu"
-      class="wrapper svelte-dvv38h"
+      class="wrapper svelte-17zgehq"
     >
       <button
         class="svelte-1lod44n"
@@ -572,7 +572,7 @@ exports[`Storyshots Components/Dropdown Simple Array 1`] = `
         </span>
          
         <i
-          class="material-icons arrow svelte-dvv38h"
+          class="material-icons arrow svelte-17zgehq"
         >
           arrow_drop_down
         </i>

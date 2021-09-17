@@ -1,6 +1,7 @@
 'use strict'
 
-import { screen, render, fireEvent } from '@testing-library/svelte'
+import { screen, render } from '@testing-library/svelte'
+import userEvent from '@testing-library/user-event'
 import html from 'svelte-htm'
 import Track from './Track.svelte'
 import { trackData } from './Track.stories'
@@ -15,7 +16,7 @@ describe('Track component', () => {
     const [id, artist] = trackData.artistRefs[0]
     render(html`<${Track} src=${trackData} />`)
 
-    fireEvent.click(screen.getByText(artist))
+    userEvent.click(screen.getByText(artist))
     await sleep()
 
     expect(location.hash).toEqual(`#/artist/${id}`)
@@ -25,7 +26,7 @@ describe('Track component', () => {
     const [id] = trackData.albumRef
     render(html`<${Track} src=${trackData} />`)
 
-    fireEvent.click(screen.getByRole('img'))
+    userEvent.click(screen.getByRole('img'))
     await sleep()
 
     expect(location.hash).toEqual(`#/album/${id}`)
@@ -41,8 +42,8 @@ describe('Track component', () => {
       />`
     )
 
-    await fireEvent.click(screen.getByRole('button'))
-    fireEvent.click(screen.getByText('local_offer'))
+    await userEvent.click(screen.getByRole('button'))
+    userEvent.click(screen.getByText('local_offer'))
 
     expect(handleShowDetails).toHaveBeenCalledWith(
       expect.objectContaining({ detail: trackData })
