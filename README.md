@@ -343,9 +343,9 @@ Until [this PR](https://github.com/electron-userland/electron-builder/pull/5313)
 1. Clean up distribution, build snap file and extract it:
 
    ```shell
-   rm -rf dist/
+   rm -rf apps/desktop/dist/
    npm run release:artifacts --prefix apps/desktop -- -l snap
-   cd dist/
+   cd apps/desktop/dist/
    rm -rf linux-unpacked builder-effective-config.yaml
    file-roller -f *.snap .
    ```

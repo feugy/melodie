@@ -119,6 +119,10 @@ exports.getLogger = (name = 'core', lvl) => {
             translateTime: true,
             colorize: false,
             errorProps: '*'
+          },
+          serializers: {
+            err: pino.stdSerializers.err,
+            error: pino.stdSerializers.err
           }
         },
         pino.destination(process.env.LOG_DESTINATION)

@@ -25,6 +25,14 @@ const validate = ajv.compile({
     {
       type: 'object',
       properties: {
+        warn: { type: 'string' },
+        additionnalProperties: true
+      },
+      required: ['warn']
+    },
+    {
+      type: 'object',
+      properties: {
         invoked: { type: 'string' },
         id: { type: 'string' },
         args: { type: 'array' },
@@ -34,6 +42,8 @@ const validate = ajv.compile({
     }
   ]
 })
+
+const maxAge = 1000 * 60 * 60 * 24 * 2
 
 /**
  * Message bus to receive events internally.
@@ -94,7 +104,11 @@ exports.initConnection = async function (services, publicFolder, port = 0) {
           return
         }
         if (data.error) {
-          logger.error(data, `UI error: ${data.error}`)
+          logger.error(data, `UI error: ${JSON.stringify(data.error)}`)
+          return
+        }
+        if (data.warn) {
+          logger.warn(data, `UI warning: ${JSON.stringify(data.warn)}`)
           return
         }
         const [name, op] = data.invoked.split('.')
@@ -124,7 +138,10 @@ exports.initConnection = async function (services, publicFolder, port = 0) {
     server.register(staticPlugin, {
       root: publicFolder,
       wildcard: false,
-      serve: settings.isBroadcasting
+      serve: settings.isBroadcasting,
+      maxAge: maxAge,
+      immutable: true,
+      cacheControl: true
     })
     function makeMediaHandler(retriever) {
       return async ({ params: { id, count } }, reply) => {

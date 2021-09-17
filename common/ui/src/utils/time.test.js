@@ -66,6 +66,21 @@ describe('time utilities', () => {
     it('handles missing trakcs ', () => {
       expect(sumDurations()).toEqual(0)
     })
+
+    it('handles null or undefined trakcs ', () => {
+      expect(
+        sumDurations([
+          undefined,
+          {
+            tags: { duration: 52 }
+          },
+          null,
+          {
+            tags: { duration: 18 }
+          }
+        ])
+      ).toEqual(70)
+    })
   })
 
   describe('getYears()', () => {

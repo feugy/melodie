@@ -5,10 +5,11 @@ import faker from 'faker'
 import WebSocket from 'ws'
 import { sleep } from '../tests'
 const {
-  initConnection,
   closeConnection,
+  fromServerEvent,
+  initConnection,
   invoke,
-  fromServerEvent
+  send
 } = jest.requireActual('./connection')
 
 describe('connection utilities', () => {
@@ -229,6 +230,16 @@ describe('connection utilities', () => {
       data
     )
     expect(handleLostConnection).not.toHaveBeenCalled()
+  })
+
+  it('throws error when sending data without a connection', async () => {
+    expect(() => send('test')).toThrowError(
+      new Error(`unestablished connection, call initConnection() first`)
+    )
+  })
+
+  it('can skip throwing error when sending data without a connection', async () => {
+    expect(() => send('test', false)).not.toThrow()
   })
 
   it('closes and invokes callback on connection lost', async () => {

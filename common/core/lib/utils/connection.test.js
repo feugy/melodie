@@ -290,7 +290,7 @@ describe('connection utilities', () => {
 
     call(ws, data)
     await sleep(10)
-    expect(errorSpy).toHaveBeenCalledWith(data, `UI error: ${data.error}`)
+    expect(errorSpy).toHaveBeenCalledWith(data, `UI error: "${data.error}"`)
   })
 
   it('broadcast external and internal messages', async () => {

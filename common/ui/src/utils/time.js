@@ -46,7 +46,7 @@ export function formatTimeLong(seconds) {
 
 export function sumDurations(tracks) {
   return (tracks || []).reduce(
-    (sum, { tags: { duration } }) => sum + duration,
+    (sum, track) => sum + (track?.tags?.duration || 0),
     0
   )
 }

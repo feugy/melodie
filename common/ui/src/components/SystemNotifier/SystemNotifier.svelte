@@ -12,6 +12,7 @@
 
   let trackId = null
   let isFocused = false
+  let supportsNotification = true
   $: isInDesktop = $isDesktop
 
   onMount(() => {
@@ -29,14 +30,24 @@
       trackId = id
       const icon = media ? `${window.dlUrl}${media}` : null
 
-      if (!isFocused) {
-        const notif = new Notification(title, {
-          body: `${artist} - ${album}`,
-          icon,
-          silent: true
-        })
-        if (isInDesktop) {
-          notif.onclick = () => invoke('core.focusWindow')
+      if (!isFocused && supportsNotification) {
+        try {
+          const notif = new Notification(title, {
+            body: `${artist} - ${album}`,
+            icon,
+            silent: true
+          })
+          if (isInDesktop) {
+            notif.onclick = () => invoke('core.focusWindow')
+          }
+        } catch (err) {
+          if (err instanceof TypeError) {
+            // on Android, we get the following error:
+            // Failed to construct 'Notification': Illegal constructor. Use ServiceWorkerRegistration.showNotification() instead.
+            supportsNotification = false
+          } else {
+            throw err
+          }
         }
       }
 

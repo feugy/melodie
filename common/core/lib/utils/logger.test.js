@@ -66,6 +66,10 @@ describe('logger', () => {
           translateTime: true,
           colorize: false,
           errorProps: '*'
+        },
+        serializers: {
+          err: pino.stdSerializers.err,
+          error: pino.stdSerializers.err
         }
       },
       pino.destination(1)
