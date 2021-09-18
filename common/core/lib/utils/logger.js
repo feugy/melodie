@@ -109,26 +109,27 @@ exports.getLogger = (name = 'core', lvl) => {
     }
     const level = lvl || computeLevel(name, levelSpecs) || computeDefaultLevel()
     if (!root) {
-      root = pino(
-        {
-          name: 'core',
-          // don't set as parameter default value
-          level,
-          base: false,
-          prettyPrint: {
+      root = pino({
+        name: 'core',
+        // don't set as parameter default value
+        level,
+        base: false,
+        transport: {
+          target: 'pino-pretty',
+          options: {
+            destination: process.env.LOG_DESTINATION,
             translateTime: true,
             colorize: false,
             errorProps: '*'
-          },
-          serializers: {
-            err: pino.stdSerializers.err,
-            error: pino.stdSerializers.err
           }
         },
-        pino.destination(process.env.LOG_DESTINATION)
-      )
+        serializers: {
+          err: pino.stdSerializers.err,
+          error: pino.stdSerializers.err
+        }
+      })
     }
-    logger = name === 'core' ? root : root.child({ name, level })
+    logger = name === 'core' ? root : root.child({ name }, { level })
     loggers.set(name, logger)
   }
   return logger
@@ -140,8 +141,8 @@ exports.getLogger = (name = 'core', lvl) => {
  */
 exports.refreshLogLevels = () => {
   levelSpecs = readLevels()
-  for (const [, logger] of loggers) {
-    const level = computeLevel(logger.bindings().name, levelSpecs)
+  for (const [name, logger] of loggers) {
+    const level = computeLevel(name, levelSpecs)
     if (level) {
       logger.level = level
     }

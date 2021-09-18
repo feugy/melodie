@@ -3,14 +3,14 @@
 const fs = require('fs-extra')
 const { resolve, dirname } = require('path')
 const nock = require('nock')
-const callerPath = require('caller-path')
+const stackTrace = require('stack-trace')
 
 const isMocked = !('REAL_NETWORK' in process.env)
 const updateMocks = 'UPDATE_NOCKS' in process.env
 
 exports.withNockIt = (name, test) => {
   const mockFile = resolve(
-    dirname(callerPath()),
+    dirname(stackTrace.get()[1].getFileName()),
     '__nocks__',
     `${name.replace(/[\s'\\/"]/g, '_')}.json`
   )
