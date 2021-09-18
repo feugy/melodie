@@ -1026,15 +1026,8 @@ describe('track-queue store', () => {
     })
 
     it('can shuffle and unshuffle empty list', async () => {
-      const {
-        clear,
-        current,
-        index,
-        isShuffling,
-        tracks,
-        shuffle,
-        unshuffle
-      } = queue
+      const { clear, current, index, isShuffling, tracks, shuffle, unshuffle } =
+        queue
 
       clear()
       await tick()
@@ -1130,15 +1123,8 @@ describe('track-queue store', () => {
         { id: 11, path: faker.system.fileName() },
         { id: 12, path: faker.system.fileName() }
       ]
-      const {
-        current,
-        index,
-        isShuffling,
-        tracks,
-        shuffle,
-        add,
-        jumpTo
-      } = queue
+      const { current, index, isShuffling, tracks, shuffle, add, jumpTo } =
+        queue
 
       shuffle()
       jumpTo(3)
@@ -1171,15 +1157,8 @@ describe('track-queue store', () => {
         { id: 11, path: faker.system.fileName() },
         { id: 12, path: faker.system.fileName() }
       ]
-      const {
-        current,
-        index,
-        isShuffling,
-        tracks,
-        shuffle,
-        add,
-        unshuffle
-      } = queue
+      const { current, index, isShuffling, tracks, shuffle, add, unshuffle } =
+        queue
 
       shuffle()
       add(added)
@@ -1403,29 +1382,33 @@ describe('track-queue store', () => {
   })
 
   describe('given previously stored list', () => {
-    const files = [
-      { id: 1, path: faker.system.fileName() },
-      { id: 2, path: faker.system.fileName() },
-      { id: 3, path: faker.system.fileName() }
-    ]
+    beforeEach(jest.resetModules)
 
-    beforeAll(async () => {
+    it('restores initial state', async () => {
+      const files = [
+        { id: 1, path: faker.system.fileName() },
+        { id: 2, path: faker.system.fileName() },
+        { id: 3, path: faker.system.fileName() }
+      ]
       localStorage.setItem(
         queue.storageKey,
         JSON.stringify({ list: files, idx: 1 })
       )
-      jest.resetModules()
       queue = await import('./track-queue')
+      expect(get(queue.tracks)).toEqual(files)
+      expect(get(queue.current)).toEqual(files[1])
+      expect(get(queue.index)).toEqual(1)
+      expect(get(queue.isShuffling)).toEqual(false)
+      expectStoredList(queue)
     })
 
-    afterAll(() => queue.clear())
-
-    it('has initial state', async () => {
-      const { current, index, tracks, isShuffling } = queue
-      expect(get(tracks)).toEqual(files)
-      expect(get(current)).toEqual(files[1])
-      expect(get(index)).toEqual(1)
-      expect(get(isShuffling)).toEqual(false)
+    it('ignores invalid stored initial state', async () => {
+      localStorage.setItem(queue.storageKey, 'unparseable')
+      queue = await import('./track-queue')
+      expect(get(queue.tracks)).toEqual([])
+      expect(get(queue.current)).toBeUndefined()
+      expect(get(queue.index)).toEqual(0)
+      expect(get(queue.isShuffling)).toEqual(false)
       expectStoredList(queue)
     })
   })

@@ -6,14 +6,14 @@ exports[`Storyshots Components/Tracks queue Empty 1`] = `
 >
   <div>
     <div
-      class="wrapper svelte-k06t7b"
+      class="wrapper svelte-38m0uk"
     >
       <span
-        class="sentinel svelte-k06t7b"
+        class="sentinel svelte-38m0uk"
       />
        
       <nav
-        class="svelte-k06t7b"
+        class="svelte-38m0uk"
       >
         <header
           class="svelte-1fgzmnl"
@@ -56,14 +56,14 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
 >
   <div>
     <div
-      class="wrapper svelte-k06t7b"
+      class="wrapper svelte-38m0uk"
     >
       <span
-        class="sentinel svelte-k06t7b"
+        class="sentinel svelte-38m0uk"
       />
        
       <nav
-        class="svelte-k06t7b"
+        class="svelte-38m0uk"
       >
         <header
           class="svelte-1fgzmnl"

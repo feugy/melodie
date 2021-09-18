@@ -19,15 +19,8 @@ describe('abstract list factory', () => {
   const collator = new Intl.Collator([], { numeric: true })
 
   beforeAll(() => {
-    ;({
-      albums,
-      list,
-      load,
-      reset,
-      changes,
-      removals,
-      isListing
-    } = createListStore('album', sortBy))
+    ;({ albums, list, load, reset, changes, removals, isListing } =
+      createListStore('album', sortBy))
   })
 
   beforeEach(() => {

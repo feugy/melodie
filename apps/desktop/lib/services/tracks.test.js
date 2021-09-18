@@ -26,8 +26,7 @@ describe('Tracks service', () => {
 
     it(`handles model with special characters in pathr`, async () => {
       const model = {
-        path:
-          '/home/damien/Musique/# Films/(2001) The Lord Of The Rings - The Fellowship Of The Ring/1 - Howard Shore - The Prophecy.flac'
+        path: '/home/damien/Musique/# Films/(2001) The Lord Of The Rings - The Fellowship Of The Ring/1 - Howard Shore - The Prophecy.flac'
       }
       models.tracksModel.getById.mockResolvedValueOnce(model)
       const id = faker.random.number()

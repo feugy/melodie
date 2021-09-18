@@ -82,6 +82,7 @@ exports[`Storyshots Components/Player Empty 1`] = `
              
              
           </button>
+          
            
           <span
             class="svelte-1y2tggl"
@@ -296,44 +297,19 @@ exports[`Storyshots Components/Player With Track List 1`] = `
             </button>
           </span>
            
-          <button
-            class="iconOnly noBorder svelte-1lod44n"
+          <div
+            class="wrapper svelte-ow7w5o"
+            role="progressbar"
           >
-            <i
-              class="material-icons svelte-1lod44n"
-            >
-              skip_previous
-            </i>
+            <div
+              class="inc svelte-ow7w5o"
+            />
              
-             
-             
-          </button>
-           
-          <button
-            class="iconOnly large svelte-1lod44n"
-          >
-            <i
-              class="material-icons svelte-1lod44n"
-            >
-              play_arrow
-            </i>
-             
-             
-             
-          </button>
-           
-          <button
-            class="iconOnly noBorder svelte-1lod44n"
-          >
-            <i
-              class="material-icons svelte-1lod44n"
-            >
-              skip_next
-            </i>
-             
-             
-             
-          </button>
+            <div
+              class="dec svelte-ow7w5o"
+            />
+          </div>
+          
            
           <span
             class="svelte-1y2tggl"

@@ -41,7 +41,8 @@ initStoryshots({
   // System Notifier because it does not support MediaMetadata
   // ExpandableList because it mocks getBoundingClientRect
   // MediaSelector & Sheet because the story imlies user action
-  storyKindRegex: /^((?!Dialogue|Nav|Sticky|System|Expandable|Sheet|Media).)*$/i,
+  storyKindRegex:
+    /^((?!Dialogue|Nav|Sticky|System|Expandable|Sheet|Media).)*$/i,
   asyncJest: true,
   test: async ({
     done,

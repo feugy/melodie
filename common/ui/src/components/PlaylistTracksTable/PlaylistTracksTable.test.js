@@ -107,9 +107,8 @@ describe('PlaylistTracksTable component', () => {
   })
 
   it('has links to artists', async () => {
-    const [id, artist] = faker.random.arrayElement(
-      playlist.tracks
-    ).artistRefs[0]
+    const [id, artist] = faker.random.arrayElement(playlist.tracks)
+      .artistRefs[0]
     render(html`<${PlaylistTracksTable} playlist=${playlist} />`)
 
     userEvent.click(faker.random.arrayElement(screen.queryAllByText(artist)))

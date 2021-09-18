@@ -4,7 +4,6 @@
   import { _ } from 'svelte-intl'
   import Button from '../Button/Button.svelte'
   import Track from '../Track/Track.svelte'
-  import Progress from '../Progress/Progress.svelte'
   import Time from './Time.svelte'
   import AddToPlaylist from './AddToPlaylist.svelte'
   import Controls from './Controls.svelte'
@@ -87,6 +86,14 @@
     }
   }
 
+  function handleError() {
+    isPlaying = false
+    isLoading = true
+    const save = src
+    src = null
+    setTimeout(() => (src = save), 100)
+  }
+
   // Do not use svelte's `bind:currentTime` who eats too much CPU
   // instead, poll the current time ourselves, up to 10 times per second
   function updateTime() {
@@ -165,6 +172,7 @@
     bind:muted
     on:loadstart={handleLoading}
     on:loadeddata={handleLoaded}
+    on:error={handleError}
     on:ended={handleEnded}
     on:play={() => {
       if (gainNode) {
@@ -186,7 +194,7 @@
         <span class="controls">
           <AddToPlaylist />
           <Shuffle />
-          <Controls {player} {isPlaying} />
+          <Controls {player} {isPlaying} disabled={isLoading} />
           <Repeat bind:repeatAll bind:repeatOne />
           {#if $current}
             <Button icon="favorite_border" noBorder class="invisible" />
@@ -207,10 +215,7 @@
       {/if}
       <div class="player">
         <span class="controls">
-          {#if isLoading}<Progress />{:else}<Controls
-              {player}
-              {isPlaying}
-            />{/if}
+          <Controls {player} {isPlaying} disabled={isLoading} />
         </span>
       </div>
     </div>

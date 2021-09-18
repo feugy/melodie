@@ -310,9 +310,9 @@ class Local extends AbstractProvider {
       if (!albums.length) {
         return []
       }
-      const results = (
-        await Promise.all(albums.map(findForAlbum))
-      ).reduce((all, items) => all.concat(items))
+      const results = (await Promise.all(albums.map(findForAlbum))).reduce(
+        (all, items) => all.concat(items)
+      )
       this.logger.debug(
         { length: results.length, searched },
         `got results for ${searched}`
@@ -370,9 +370,8 @@ class Local extends AbstractProvider {
         ...makeEnrichAndSavePipeline(this.logger),
         mergeMap(saved => {
           const removedIds = Array.from(existingIds.keys())
-          return (removedIds.length
-            ? from(tracks.remove(removedIds))
-            : EMPTY
+          return (
+            removedIds.length ? from(tracks.remove(removedIds)) : EMPTY
           ).pipe(reduce(r => r, { saved, removedIds }))
         }),
         tap(({ saved, removedIds }) => {

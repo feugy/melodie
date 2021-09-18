@@ -4,13 +4,8 @@ import { first, timeout } from 'rxjs/operators'
 import faker from 'faker'
 import WebSocket from 'ws'
 import { sleep } from '../tests'
-const {
-  closeConnection,
-  fromServerEvent,
-  initConnection,
-  invoke,
-  send
-} = jest.requireActual('./connection')
+const { closeConnection, fromServerEvent, initConnection, invoke, send } =
+  jest.requireActual('./connection')
 
 describe('connection utilities', () => {
   let server

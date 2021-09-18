@@ -240,7 +240,7 @@ describe('playlist details route', () => {
       changes.next([{ ...playlist, name: newName }])
       await sleep()
 
-      expect(screen.queryByText(playlist.name)).toBeFalsy()
+      expect(screen.queryByText(playlist.name)).not.toBeInTheDocument()
       expect(screen.getByText(newName)).toBeInTheDocument()
       expect(load).not.toHaveBeenCalled()
     })

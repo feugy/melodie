@@ -22,7 +22,7 @@ describe('TracksTable component', () => {
   it('displays nothing on disabled tutorial', async () => {
     render(html`<${Tutorial} />`)
 
-    expect(screen.queryByRole('document')).toEqual(null)
+    expect(screen.queryByRole('document')).not.toBeInTheDocument()
   })
 
   it('displays current tutorial message', async () => {

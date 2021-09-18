@@ -7,7 +7,7 @@ exports[`Storyshots Site components/Download button Default 1`] = `
   <span
     aria-expanded="false"
     aria-haspopup="menu"
-    class="wrapper svelte-dvv38h"
+    class="wrapper svelte-17zgehq"
   >
     <button
       class="text-white primary large svelte-1lod44n"
@@ -23,7 +23,7 @@ exports[`Storyshots Site components/Download button Default 1`] = `
       </span>
        
       <i
-        class="material-icons arrow svelte-dvv38h"
+        class="material-icons arrow svelte-17zgehq"
       >
         arrow_drop_down
       </i>

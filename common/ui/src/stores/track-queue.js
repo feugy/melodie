@@ -96,7 +96,14 @@ const queue$ = merge(actions$, new ReplaySubject()).pipe(
           }
         }
       }
-      localStorage.setItem(storageKey, JSON.stringify({ list, idx }))
+      try {
+        localStorage.setItem(storageKey, JSON.stringify({ list, idx }))
+      } catch (error) {
+        console.warn(
+          { error },
+          `failed to write track queue in local storage: ${error.message}`
+        )
+      }
       current$.next(list[idx])
       next$.next(idx < list.length - 1 ? list[idx + 1] : null)
       return { list, idx, backup }
@@ -136,10 +143,19 @@ fromServerEvent(`play-tracks`).subscribe(tracks => {
 })
 
 // first init
-const initialState = parse(localStorage.getItem(storageKey)).value
+let initialState
+try {
+  initialState = parse(localStorage.getItem(storageKey)).value
+} catch (error) {
+  console.warn(
+    { error },
+    `failed to read track queue in local storage: ${error.message}`
+  )
+  localStorage.clearItem(storageKey)
+}
 queue$.subscribe()
 clear()
-if (initialState) {
+if (initialState && Array.isArray(initialState.list) && 'idx' in initialState) {
   add(initialState.list)
   jumpTo(initialState.idx)
 }

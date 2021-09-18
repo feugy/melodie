@@ -7,14 +7,14 @@ exports[`Storyshots Site Page/Index Default 1`] = `
   <main>
      
     <div
-      class="wrapper svelte-k06t7b"
+      class="wrapper svelte-38m0uk"
     >
       <span
-        class="sentinel svelte-k06t7b"
+        class="sentinel svelte-38m0uk"
       />
        
       <nav
-        class="svelte-k06t7b"
+        class="svelte-38m0uk"
       >
         <nav
           class="svelte-m7n09p"
@@ -121,7 +121,7 @@ exports[`Storyshots Site Page/Index Default 1`] = `
               <span
                 aria-expanded="false"
                 aria-haspopup="menu"
-                class="wrapper svelte-dvv38h"
+                class="wrapper svelte-17zgehq"
               >
                 <button
                   class="text-white primary large svelte-1lod44n"
@@ -137,7 +137,7 @@ exports[`Storyshots Site Page/Index Default 1`] = `
                   </span>
                    
                   <i
-                    class="material-icons arrow svelte-dvv38h"
+                    class="material-icons arrow svelte-17zgehq"
                   >
                     arrow_drop_down
                   </i>

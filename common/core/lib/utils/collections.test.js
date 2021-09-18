@@ -25,8 +25,7 @@ describe('collection utilities', () => {
 
     it('removes undefined', () => {
       expect(difference([1, null, 3, undefined, 5], [5, null, 2])).toEqual([
-        1,
-        3
+        1, 3
       ])
     })
   })

@@ -28,15 +28,23 @@ describe('Player component', () => {
   let observer
   const dlUrl = faker.internet.url()
 
-  function mockAutoPlay(audio) {
+  async function renderPlayer() {
+    render(html`<${Player} />`)
+    const audio = screen.getByTestId('audio')
+    // simulate audio events
     observer = new MutationObserver(mutations => {
       for (const { attributeName } of mutations) {
-        if (attributeName === 'src') {
-          audio.play()
+        if (attributeName === 'src' && audio.src) {
+          audio.dispatchEvent(new Event('loadeddata'))
         }
       }
     })
     observer.observe(audio, { attributes: true })
+    if (audio.src) {
+      audio.dispatchEvent(new Event('loadeddata'))
+    }
+    await sleep()
+    return audio
   }
 
   beforeEach(() => {
@@ -81,31 +89,30 @@ describe('Player component', () => {
     add(trackListData)
     expect(play).not.toHaveBeenCalled()
 
-    render(html`<${Player} />`)
-
-    const audio = screen.getByTestId('audio')
+    const audio = await renderPlayer()
     expect(audio).toHaveAttribute(
       'src',
       `${window.dlUrl}${trackListData[0].data}`
     )
 
-    await userEvent.click(screen.getByText('play_arrow'))
-
     expect(get(current)).toEqual(trackListData[0])
-    expect(play).toHaveBeenCalled()
+    expect(play).toHaveBeenCalledTimes(1)
 
     await userEvent.click(screen.getByText('pause'))
 
     expect(get(current)).toEqual(trackListData[0])
-    expect(pause).toHaveBeenCalled()
+    expect(play).toHaveBeenCalledTimes(1)
+
+    await userEvent.click(screen.getByText('play_arrow'))
+
+    expect(get(current)).toEqual(trackListData[0])
+    expect(play).toHaveBeenCalledTimes(2)
   })
 
   it('mutes and unmute volume', async () => {
     add(trackListData)
 
-    render(html`<${Player} />`)
-    const audio = screen.getByTestId('audio')
-
+    const audio = await renderPlayer()
     expect(audio.muted).toEqual(false)
     await userEvent.click(screen.getByText('volume_up'))
     expect(audio.muted).toEqual(true)
@@ -117,8 +124,7 @@ describe('Player component', () => {
   it('goes to next track', async () => {
     add(trackListData)
 
-    render(html`<${Player} />`)
-
+    await renderPlayer()
     await userEvent.click(screen.getByText('skip_next'))
 
     expect(get(current)).toEqual(trackListData[1])
@@ -129,8 +135,7 @@ describe('Player component', () => {
     jumpTo(2)
     expect(get(current)).toEqual(trackListData[2])
 
-    render(html`<${Player} />`)
-
+    await renderPlayer()
     await userEvent.click(screen.getByText('skip_previous'))
 
     expect(get(current)).toEqual(trackListData[1])
@@ -139,9 +144,7 @@ describe('Player component', () => {
   it('can change volume', async () => {
     add(trackListData)
 
-    render(html`<${Player} />`)
-    const audio = screen.getByTestId('audio')
-
+    const audio = await renderPlayer()
     const slider = screen.queryAllByRole('slider')[1]
     await fireEvent.input(slider, { target: { value: '50' } })
 
@@ -154,7 +157,7 @@ describe('Player component', () => {
   it(`navigates to current track's album`, async () => {
     add(trackListData)
 
-    render(html`<${Player} />`)
+    await renderPlayer()
     await userEvent.click(screen.getByRole('img'))
     await sleep()
 
@@ -164,7 +167,7 @@ describe('Player component', () => {
   it(`navigates to current track's artist`, async () => {
     add(trackListData)
 
-    render(html`<${Player} />`)
+    await renderPlayer()
     await userEvent.click(screen.getByText(trackListData[0].artistRefs[0][1]))
     await sleep()
 
@@ -176,8 +179,7 @@ describe('Player component', () => {
   it('applies track and album ReplayGain when available', async () => {
     add(trackListData)
 
-    render(html`<${Player} />`)
-
+    await renderPlayer()
     expect(gainNode.gain).toEqual({ value: 1 })
 
     jumpTo(1)
@@ -201,10 +203,7 @@ describe('Player component', () => {
 
   it('goes to next track on track end', async () => {
     add(trackListData)
-    render(html`<${Player} />`)
-    const audio = screen.getByTestId('audio')
-    // userEvent.click(screen.queryByText('play_arrow'))
-    mockAutoPlay(audio)
+    const audio = await renderPlayer()
     expect(get(current)).toEqual(trackListData[0])
 
     audio.dispatchEvent(new Event('ended'))
@@ -219,9 +218,7 @@ describe('Player component', () => {
     add(trackListData)
     jumpTo(3)
 
-    render(html`<${Player} />`)
-    const audio = screen.getByTestId('audio')
-    mockAutoPlay(audio)
+    const audio = await renderPlayer()
     expect(get(current)).toEqual(trackListData[3])
 
     audio.dispatchEvent(new Event('ended'))
@@ -236,10 +233,7 @@ describe('Player component', () => {
     add(trackListData)
     jumpTo(3)
 
-    render(html`<${Player} />`)
-    const audio = screen.getByTestId('audio')
-    mockAutoPlay(audio)
-
+    const audio = await renderPlayer()
     await userEvent.click(screen.getByText('repeat'))
     expect(get(current)).toEqual(trackListData[3])
 
@@ -255,10 +249,7 @@ describe('Player component', () => {
     add(trackListData)
     jumpTo(3)
 
-    render(html`<${Player} />`)
-    const audio = screen.getByTestId('audio')
-    mockAutoPlay(audio)
-
+    const audio = await renderPlayer()
     await userEvent.click(screen.getByText('repeat'))
     await userEvent.click(screen.getByText('repeat'))
 
@@ -277,9 +268,20 @@ describe('Player component', () => {
     expect(screen.queryByText('play_arrow')).not.toBeInTheDocument()
   })
 
-  it('shuffles and unshuffles current track when repeat one is on', async () => {
-    render(html`<${Player} />`)
+  it('retries downloading data on network error', async () => {
+    const audio = await renderPlayer()
+    await audio.dispatchEvent(new Event('error'))
 
+    expect(screen.queryByText('pause')).not.toBeInTheDocument()
+    expect(screen.queryByRole('button', { name: 'play_arrow' })).toBeDisabled()
+    expect(get(current)).toBeUndefined()
+
+    await audio.dispatchEvent(new Event('loadeddata'))
+    expect(screen.queryByRole('button', { name: 'pause' })).toBeEnabled()
+  })
+
+  it('shuffles and unshuffles current track when repeat one is on', async () => {
+    await renderPlayer()
     await userEvent.click(screen.getByText('shuffle'))
     expect(get(isShuffling)).toEqual(true)
 
@@ -321,7 +323,7 @@ describe('Player component', () => {
       add(trackListData)
       jumpTo(3)
 
-      render(html`<${Player} />`)
+      await renderPlayer()
       await sleep()
       jest.resetAllMocks()
 

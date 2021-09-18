@@ -176,7 +176,7 @@ describe('album details route', () => {
       changes.next([{ ...album, name: newName }])
       await sleep()
 
-      expect(screen.queryByText(album.name)).toBeFalsy()
+      expect(screen.queryByText(album.name)).not.toBeInTheDocument()
       expect(screen.getByText(newName)).toBeInTheDocument()
       expect(load).not.toHaveBeenCalled()
     })

@@ -208,7 +208,7 @@ describe('artist details route', () => {
       ])
       await sleep()
 
-      expect(screen.queryByText(artist.name)).toBeFalsy()
+      expect(screen.queryByText(artist.name)).not.toBeInTheDocument()
       expect(screen.getByText(newName)).toBeInTheDocument()
 
       const images = Array.from(
