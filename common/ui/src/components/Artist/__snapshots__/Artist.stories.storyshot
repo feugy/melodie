@@ -80,6 +80,8 @@ exports[`Storyshots Components/Artist Default 1`] = `
       </header>
     </span>
   </div>
+  
+  
 </section>
 `;
 
@@ -161,6 +163,8 @@ exports[`Storyshots Components/Artist No Albums 1`] = `
       </header>
     </span>
   </div>
+  
+  
 </section>
 `;
 
@@ -251,5 +255,7 @@ exports[`Storyshots Components/Artist Unknown 1`] = `
       </header>
     </span>
   </div>
+  
+  
 </section>
 `;

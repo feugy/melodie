@@ -68,6 +68,8 @@ exports[`Storyshots Components/Playlist Default 1`] = `
       </header>
     </span>
   </div>
+  
+  
 </section>
 `;
 
@@ -139,5 +141,7 @@ exports[`Storyshots Components/Playlist Single Track 1`] = `
       </header>
     </span>
   </div>
+  
+  
 </section>
 `;

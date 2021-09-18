@@ -1355,6 +1355,8 @@ exports[`Storyshots Components/Tracks table Default 1`] = `
     </table>
     
   </div>
+  
+  
 </section>
 `;
 
@@ -2713,6 +2715,8 @@ exports[`Storyshots Components/Tracks table With Current 1`] = `
     </table>
     
   </div>
+  
+  
 </section>
 `;
 
@@ -3868,5 +3872,7 @@ exports[`Storyshots Components/Tracks table Without Album 1`] = `
     </table>
     
   </div>
+  
+  
 </section>
 `;

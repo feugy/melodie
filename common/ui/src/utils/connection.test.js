@@ -36,9 +36,11 @@ describe('connection utilities', () => {
     serverUrl = `ws://localhost:${server.address().port}`
   })
 
-  afterEach(done => {
+  afterEach(() => {
     closeConnection()
-    server.close(done)
+    for (const ws of server.clients) {
+      ws.terminate()
+    }
   })
 
   it('connects to WebSocket server and can disconnect', async () => {
@@ -238,12 +240,12 @@ describe('connection utilities', () => {
   })
 
   it('closes and invokes callback on connection lost', async () => {
-    const connection = new Promise(resolve => server.on('connection', resolve))
     await initConnection(serverUrl, handleLostConnection)
-    await connection
     expect(handleLostConnection).not.toHaveBeenCalled()
 
-    await server.close()
+    for (const ws of server.clients) {
+      ws.terminate()
+    }
     await sleep(10)
     expect(handleLostConnection).toHaveBeenCalled()
     expect(errorSpy).not.toHaveBeenCalled()

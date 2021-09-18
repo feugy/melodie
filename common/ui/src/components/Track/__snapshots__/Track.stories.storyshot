@@ -45,6 +45,8 @@ exports[`Storyshots Components/Track Default 1`] = `
        
     </div>
   </div>
+  
+  
 </section>
 `;
 
@@ -98,6 +100,8 @@ exports[`Storyshots Components/Track With Details 1`] = `
        
     </div>
   </div>
+  
+  
 </section>
 `;
 
@@ -167,5 +171,7 @@ exports[`Storyshots Components/Track With Menu 1`] = `
       
     </div>
   </div>
+  
+  
 </section>
 `;
