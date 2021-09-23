@@ -27,7 +27,7 @@ describe('Settings service', () => {
   it('returns settings', async () => {
     const folders = [faker.system.fileName(), faker.system.fileName()]
     const locale = faker.random.word()
-    const openCount = faker.random.number({ min: 1 })
+    const openCount = faker.datatype.number({ min: 1 })
     settingsModel.get.mockResolvedValueOnce({ folders, locale, openCount })
     osLocale.mockResolvedValueOnce('fr-FR')
 
@@ -37,7 +37,7 @@ describe('Settings service', () => {
 
   it('returns system locale when locale not set', async () => {
     const folders = [faker.system.fileName(), faker.system.fileName()]
-    const openCount = faker.random.number({ min: 1 })
+    const openCount = faker.datatype.number({ min: 1 })
     settingsModel.get.mockResolvedValueOnce({ openCount, folders })
     osLocale.mockResolvedValueOnce('fr-FR')
 
@@ -51,7 +51,7 @@ describe('Settings service', () => {
 
   it('can set locale', async () => {
     const locale = faker.random.word()
-    const openCount = faker.random.number({ min: 1 })
+    const openCount = faker.datatype.number({ min: 1 })
     const folders = [faker.system.fileName(), faker.system.fileName()]
     settingsModel.get.mockResolvedValueOnce({ folders, openCount })
     const saved = { folders, locale, openCount }
@@ -63,7 +63,7 @@ describe('Settings service', () => {
 
   it('saves AudioDB provider key', async () => {
     const locale = faker.random.word()
-    const key = faker.random.uuid()
+    const key = faker.datatype.uuid()
     const providers = {
       audiodb: { foo: faker.random.word() },
       discogs: { foo: faker.random.word() }
@@ -82,7 +82,7 @@ describe('Settings service', () => {
 
   it('saves Discogs provider token', async () => {
     const locale = faker.random.word()
-    const token = faker.random.uuid()
+    const token = faker.datatype.uuid()
     const providers = {
       audiodb: { foo: faker.random.word() },
       discogs: { foo: faker.random.word() }
@@ -101,8 +101,8 @@ describe('Settings service', () => {
 
   it('saves enqueue behaviour', async () => {
     const locale = faker.random.word()
-    const onClick = faker.random.boolean()
-    const clearBefore = faker.random.boolean()
+    const onClick = faker.datatype.boolean()
+    const clearBefore = faker.datatype.boolean()
     const providers = {
       audiodb: { foo: faker.random.word() },
       discogs: { foo: faker.random.word() }
@@ -152,7 +152,7 @@ describe('Settings service', () => {
 
   it('sets broadcast port', async () => {
     const locale = faker.random.word()
-    const broadcastPort = faker.random.number()
+    const broadcastPort = faker.datatype.number()
     settingsModel.get.mockResolvedValueOnce({ locale })
     const saved = { locale, broadcastPort }
     settingsModel.save.mockResolvedValueOnce(saved)
@@ -168,10 +168,10 @@ describe('Settings service', () => {
       discogs: { foo: faker.random.word() }
     }
     const locale = faker.random.word()
-    const port = faker.random.number({ min: 3000, max: 9999 })
+    const port = faker.datatype.number({ min: 3000, max: 9999 })
 
     it('increments opening count', async () => {
-      const openCount = faker.random.number({ min: 1 })
+      const openCount = faker.datatype.number({ min: 1 })
       settingsModel.get.mockResolvedValueOnce({ openCount, locale, providers })
 
       await settingsService.init(port)

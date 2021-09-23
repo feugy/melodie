@@ -101,8 +101,8 @@ describe('Local provider', () => {
   })
 
   describe('findAlbumCover()', () => {
-    const folder = join(os.tmpdir(), 'melodie', faker.random.uuid())
-    const folder2 = join(os.tmpdir(), 'melodie', faker.random.uuid())
+    const folder = join(os.tmpdir(), 'melodie', faker.datatype.uuid())
+    const folder2 = join(os.tmpdir(), 'melodie', faker.datatype.uuid())
 
     it('returns images from multiple folders', async () => {
       const searched = faker.random.word()
@@ -392,7 +392,7 @@ describe('Local provider', () => {
       tracksService.add.mockImplementation(
         () =>
           new Promise(r =>
-            setTimeout(r, faker.random.number({ min: 100, max: 200 }))
+            setTimeout(r, faker.datatype.number({ min: 100, max: 200 }))
           )
       )
       settingsModel.get.mockResolvedValueOnce({ folders: [folder] })

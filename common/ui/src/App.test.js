@@ -33,7 +33,7 @@ describe('App component', () => {
 
   const albums = [
     {
-      id: faker.random.number(),
+      id: faker.datatype.number(),
       name: albumName,
       media: faker.image.avatar(),
       refs: artists.map(makeRef),
@@ -50,7 +50,7 @@ describe('App component', () => {
       ]
     },
     {
-      id: faker.random.number(),
+      id: faker.datatype.number(),
       name: faker.commerce.productName(),
       media: faker.image.avatar(),
       refs: [makeRef(faker.name.findName())]

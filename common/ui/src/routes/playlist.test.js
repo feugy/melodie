@@ -43,26 +43,26 @@ describe('playlist route', () => {
         0,
         playlists.length,
         {
-          id: faker.random.uuid(),
+          id: faker.datatype.uuid(),
           name: faker.commerce.productName(),
           media: faker.image.avatar(),
           trackIds: [
-            faker.random.number(),
-            faker.random.number(),
-            faker.random.number()
+            faker.datatype.number(),
+            faker.datatype.number(),
+            faker.datatype.number()
           ],
           refs: [faker.name.findName(), faker.name.findName()].map(makeRef)
         },
         {
-          id: faker.random.uuid(),
+          id: faker.datatype.uuid(),
           name: faker.commerce.productName(),
           media: faker.image.avatar(),
           trackIds: [
-            faker.random.number(),
-            faker.random.number(),
-            faker.random.number(),
-            faker.random.number(),
-            faker.random.number()
+            faker.datatype.number(),
+            faker.datatype.number(),
+            faker.datatype.number(),
+            faker.datatype.number(),
+            faker.datatype.number()
           ],
           refs: [makeRef(faker.name.findName())]
         }

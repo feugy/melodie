@@ -48,7 +48,7 @@ describe('Albums model', () => {
 
   it('adds new album', async () => {
     const album = {
-      id: faker.random.number(),
+      id: faker.datatype.number(),
       media: faker.image.image(),
       processedEpoch: null,
       name: faker.commerce.productName(),
@@ -67,9 +67,9 @@ describe('Albums model', () => {
 
   it('updates existing album with refs', async () => {
     const album = {
-      id: faker.random.number(),
+      id: faker.datatype.number(),
       media: faker.image.image(),
-      mediaCount: faker.random.number({ max: 10 }),
+      mediaCount: faker.datatype.number({ max: 10 }),
       processedEpoch: null,
       name: faker.commerce.productName(),
       trackIds: [tracks[0].id, tracks[3].id]
@@ -102,7 +102,7 @@ describe('Albums model', () => {
     const name = faker.commerce.productName()
 
     const album1 = {
-      id: faker.random.number(),
+      id: faker.datatype.number(),
       media: faker.image.image(),
       mediaCount: 1,
       processedEpoch: null,
@@ -111,7 +111,7 @@ describe('Albums model', () => {
       refs: [makeRef(artist1), [1, null]]
     }
     const album2 = {
-      id: faker.random.number(),
+      id: faker.datatype.number(),
       media: faker.image.image(),
       mediaCount: 1,
       processedEpoch: null,
@@ -120,7 +120,7 @@ describe('Albums model', () => {
       refs: [makeRef(artist1), makeRef(artist2)]
     }
     const album3 = {
-      id: faker.random.number(),
+      id: faker.datatype.number(),
       media: faker.image.image(),
       mediaCount: 1,
       processedEpoch: null,

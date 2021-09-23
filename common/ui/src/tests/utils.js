@@ -13,7 +13,7 @@ export function translate(...args) {
 }
 
 export function makeRef(value) {
-  return [faker.random.number(), value]
+  return [faker.datatype.number(), value]
 }
 
 export function addRefs(track) {

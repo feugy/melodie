@@ -49,7 +49,7 @@ describe('playlists store', () => {
 
   describe('appendTracks', () => {
     it('does not append empty track list', async () => {
-      const id = faker.random.number()
+      const id = faker.datatype.number()
       expect(await appendTracks({ id, tracks: [] })).toEqual(null)
       expect(invoke).not.toHaveBeenCalled()
       expect(get(current)).toBeNil()
@@ -62,7 +62,7 @@ describe('playlists store', () => {
       ]
       const trackIds = tracks.map(({ id }) => id)
 
-      const id = faker.random.number()
+      const id = faker.datatype.number()
       const playlist = { id, trackIds }
       invoke.mockResolvedValueOnce(playlist)
 
@@ -85,7 +85,7 @@ describe('playlists store', () => {
       const trackIds = tracks.map(({ id }) => id)
 
       const name = faker.commerce.productName()
-      const playlist = { id: faker.random.number(), name, trackIds }
+      const playlist = { id: faker.datatype.number(), name, trackIds }
       invoke.mockResolvedValueOnce(playlist)
 
       expect(await appendTracks({ name, tracks })).toEqual(playlist)
@@ -106,13 +106,13 @@ describe('playlists store', () => {
   describe('removeTrack', () => {
     it('removes track by index', async () => {
       const playlist = {
-        id: faker.random.number(),
+        id: faker.datatype.number(),
         name: faker.commerce.productName(),
         trackIds: [
-          faker.random.number(),
-          faker.random.number(),
-          faker.random.number(),
-          faker.random.number()
+          faker.datatype.number(),
+          faker.datatype.number(),
+          faker.datatype.number(),
+          faker.datatype.number()
         ]
       }
       invoke.mockResolvedValueOnce(playlist)
@@ -131,13 +131,13 @@ describe('playlists store', () => {
 
     it('ignores invalid indices', async () => {
       const playlist = {
-        id: faker.random.number(),
+        id: faker.datatype.number(),
         name: faker.commerce.productName(),
         trackIds: [
-          faker.random.number(),
-          faker.random.number(),
-          faker.random.number(),
-          faker.random.number()
+          faker.datatype.number(),
+          faker.datatype.number(),
+          faker.datatype.number(),
+          faker.datatype.number()
         ]
       }
       invoke.mockResolvedValue(playlist)
@@ -154,7 +154,7 @@ describe('playlists store', () => {
   describe('moveTrack', () => {
     it('move tracks forward', async () => {
       const playlist = {
-        id: faker.random.number(),
+        id: faker.datatype.number(),
         name: faker.commerce.productName(),
         trackIds: [1, 2, 3, 4]
       }
@@ -171,7 +171,7 @@ describe('playlists store', () => {
 
     it('move tracks backward', async () => {
       const playlist = {
-        id: faker.random.number(),
+        id: faker.datatype.number(),
         name: faker.commerce.productName(),
         trackIds: [1, 2, 3, 4]
       }
@@ -188,7 +188,7 @@ describe('playlists store', () => {
 
     it('ignores invalid indices', async () => {
       const playlist = {
-        id: faker.random.number(),
+        id: faker.datatype.number(),
         name: faker.commerce.productName(),
         trackIds: [1, 2, 3, 4]
       }
@@ -212,9 +212,9 @@ describe('playlists store', () => {
   describe('remove', () => {
     it('removes playlist', async () => {
       const playlist = {
-        id: faker.random.number(),
+        id: faker.datatype.number(),
         name: faker.commerce.productName(),
-        trackIds: [faker.random.number(), faker.random.number()]
+        trackIds: [faker.datatype.number(), faker.datatype.number()]
       }
       invoke.mockResolvedValueOnce(null)
 

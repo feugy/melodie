@@ -230,10 +230,10 @@ describe('abstract list factory', () => {
   describe('load', () => {
     it('load items with all tracks', async () => {
       const album = {
-        id: faker.random.uuid(),
+        id: faker.datatype.uuid(),
         name: faker.commerce.productName(),
         tracks: Array.from(
-          { length: faker.random.number({ min: 10, max: 30 }) },
+          { length: faker.datatype.number({ min: 10, max: 30 }) },
           (v, i) => i
         )
       }
@@ -259,10 +259,10 @@ describe('abstract list factory', () => {
 
     it('adds new item to the list', async () => {
       const album = {
-        id: faker.random.uuid(),
+        id: faker.datatype.uuid(),
         name: faker.commerce.productName(),
         tracks: Array.from(
-          { length: faker.random.number({ min: 10, max: 30 }) },
+          { length: faker.datatype.number({ min: 10, max: 30 }) },
           (v, i) => i
         )
       }
@@ -281,7 +281,7 @@ describe('abstract list factory', () => {
   })
 
   it('handles unknown item', async () => {
-    const id = faker.random.uuid()
+    const id = faker.datatype.uuid()
     invoke.mockResolvedValueOnce(null)
 
     await load(id)
@@ -306,13 +306,13 @@ describe('abstract list factory', () => {
 
     it('only listen to relevant changes', async () => {
       const listener = jest.fn()
-      const album = { id: faker.random.number() }
+      const album = { id: faker.datatype.number() }
       subscription = changes.subscribe(listener)
 
       serverEmitter.next({ event: 'whatever-changes' })
       serverEmitter.next({
         event: 'artist-changes',
-        args: [{ id: faker.random.number() }]
+        args: [{ id: faker.datatype.number() }]
       })
       serverEmitter.next({ event: 'album-changes', args: [album] })
       await sleep()
@@ -323,13 +323,13 @@ describe('abstract list factory', () => {
 
     it('only listen to relevant removals', async () => {
       const listener = jest.fn()
-      const albumId = faker.random.number()
+      const albumId = faker.datatype.number()
       subscription = removals.subscribe(listener)
 
       serverEmitter.next({ event: 'whatever-removals' })
       serverEmitter.next({
         event: 'artist-removals',
-        args: [faker.random.number()]
+        args: [faker.datatype.number()]
       })
       serverEmitter.next({ event: 'album-removals', args: [albumId] })
       await sleep()

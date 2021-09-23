@@ -25,16 +25,18 @@ jest.mock('../stores/settings')
 
 describe('settings route', () => {
   const key = faker.random.alphaNumeric(10)
-  const token = faker.random.uuid()
-  const broadcastPort = faker.random.number()
+  const token = faker.datatype.uuid()
+  const broadcastPort = faker.datatype.number()
   const providers = { audiodb: { key }, discogs: { token } }
   const enqueueBehaviour = { onClick: true, clearBefore: false }
   const folders = [faker.system.fileName(), faker.system.fileName()]
   const settings = new BehaviorSubject()
   const isDesktop = new BehaviorSubject()
-  const version = `${faker.random.number({ max: 10 })}.${faker.random.number({
+  const version = `${faker.datatype.number({
     max: 10
-  })}.${faker.random.number({ max: 10 })}`
+  })}.${faker.datatype.number({
+    max: 10
+  })}.${faker.datatype.number({ max: 10 })}`
 
   beforeEach(() => {
     location.hash = '#/'
@@ -164,7 +166,7 @@ describe('settings route', () => {
   })
 
   it('saves new token for Discogs provider', async () => {
-    const newToken = faker.random.uuid()
+    const newToken = faker.datatype.uuid()
 
     render(html`<${settingsRoute} />`)
     await sleep()
@@ -215,7 +217,7 @@ describe('settings route', () => {
   })
 
   it('sets new broadcast port', async () => {
-    const newPort = faker.random.number()
+    const newPort = faker.datatype.number()
 
     render(html`<${settingsRoute} />`)
     await sleep()

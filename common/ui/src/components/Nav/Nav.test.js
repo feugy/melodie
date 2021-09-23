@@ -35,7 +35,7 @@ describe('Nav component', () => {
     connected.subscribe = connectedStore.subscribe.bind(connectedStore)
     settings.subscribe = settingsStore.subscribe.bind(settingsStore)
     invoke.mockResolvedValue(
-      `http://${faker.internet.ip()}:${faker.random.number({
+      `http://${faker.internet.ip()}:${faker.datatype.number({
         min: 3000,
         max: 9999
       })}`

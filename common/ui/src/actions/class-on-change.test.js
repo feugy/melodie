@@ -27,7 +27,7 @@ describe('classOnChange action', () => {
 
   it('adds class on initialization', async () => {
     const className = faker.random.word()
-    const value = faker.random.number()
+    const value = faker.datatype.number()
     classOnChange(node, { className, value, duration })
     expect(node.classList.add).toHaveBeenCalledWith(className)
     expect(node.classList.remove).not.toHaveBeenCalled()
@@ -40,7 +40,7 @@ describe('classOnChange action', () => {
 
   it('adds class on value change', async () => {
     const className = faker.random.word()
-    const value = faker.random.number()
+    const value = faker.datatype.number()
     const { update } = classOnChange(node, { className, value: null, duration })
     expect(node.classList.add).not.toHaveBeenCalled()
 
@@ -55,7 +55,7 @@ describe('classOnChange action', () => {
 
   it('does not adds class on same value', async () => {
     const className = faker.random.word()
-    const value = faker.random.number()
+    const value = faker.datatype.number()
     const { update } = classOnChange(node, { className, value, duration })
     expect(node.classList.add).toHaveBeenCalledWith(className)
 
@@ -70,7 +70,7 @@ describe('classOnChange action', () => {
 
   it('clears timeout on destruction', async () => {
     const className = faker.random.word()
-    const value = faker.random.number()
+    const value = faker.datatype.number()
     const { destroy } = classOnChange(node, { className, value, duration })
     expect(node.classList.add).toHaveBeenCalledWith(className)
     destroy()

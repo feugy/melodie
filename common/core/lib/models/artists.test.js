@@ -48,7 +48,7 @@ describe('Artist model', () => {
 
   it('adds new artist with refs', async () => {
     const artist = {
-      id: faker.random.number(),
+      id: faker.datatype.number(),
       media: faker.image.image(),
       processedEpoch: null,
       name: faker.commerce.productName(),
@@ -68,9 +68,9 @@ describe('Artist model', () => {
 
   it('updates existing artist with refs', async () => {
     const artist = {
-      id: faker.random.number(),
+      id: faker.datatype.number(),
       media: faker.image.image(),
-      mediaCount: faker.random.number({ max: 10 }),
+      mediaCount: faker.datatype.number({ max: 10 }),
       processedEpoch: null,
       name: faker.commerce.productName(),
       trackIds: [tracks[0].id, tracks[3].id],

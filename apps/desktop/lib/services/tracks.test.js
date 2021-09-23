@@ -15,7 +15,7 @@ describe('Tracks service', () => {
     it(`opens model's containing folder`, async () => {
       const model = { path: faker.system.commonFileName() }
       models.tracksModel.getById.mockResolvedValueOnce(model)
-      const id = faker.random.number()
+      const id = faker.datatype.number()
 
       await tracksService.openContainingFolder(id)
       expect(models.tracksModel.getById).toHaveBeenCalledWith(id)
@@ -29,7 +29,7 @@ describe('Tracks service', () => {
         path: '/home/damien/Musique/# Films/(2001) The Lord Of The Rings - The Fellowship Of The Ring/1 - Howard Shore - The Prophecy.flac'
       }
       models.tracksModel.getById.mockResolvedValueOnce(model)
-      const id = faker.random.number()
+      const id = faker.datatype.number()
 
       await tracksService.openContainingFolder(id)
       expect(models.tracksModel.getById).toHaveBeenCalledWith(id)
@@ -42,7 +42,7 @@ describe('Tracks service', () => {
 
     it('handles unknown model', async () => {
       models.tracksModel.getById.mockResolvedValueOnce(null)
-      const id = faker.random.number()
+      const id = faker.datatype.number()
 
       await tracksService.openContainingFolder(id)
       expect(models.tracksModel.getById).toHaveBeenCalledWith(id)

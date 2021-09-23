@@ -1,13 +1,13 @@
 'use strict'
 
 import path from 'path'
-import resolve from '@rollup/plugin-node-resolve'
-import url from '@rollup/plugin-url'
-import replace from '@rollup/plugin-replace'
 import commonjs from '@rollup/plugin-commonjs'
+import resolve from '@rollup/plugin-node-resolve'
+import replace from '@rollup/plugin-replace'
+import url from '@rollup/plugin-url'
+import yaml from '@rollup/plugin-yaml'
 import svelte from 'rollup-plugin-svelte'
 import { terser } from 'rollup-plugin-terser'
-import yaml from '@rollup/plugin-yaml'
 import config from 'sapper/config/rollup.js'
 import { version } from './package.json'
 
@@ -26,10 +26,12 @@ const urlConf = {
 }
 const resolveConf = { dedupe: ['svelte'] }
 const replaceConf = {
-  'process.browser': true,
-  'process.env.NODE_ENV': JSON.stringify(mode),
-  MELODIE_VERSION: JSON.stringify(version),
-  preventAssignment: true
+  preventAssignment: true,
+  values: {
+    'process.browser': true,
+    'process.env.NODE_ENV': JSON.stringify(mode),
+    MELODIE_VERSION: JSON.stringify(version)
+  }
 }
 const svelteConf = require('./svelte.config')
 
@@ -42,9 +44,11 @@ export default {
 
       svelte({
         ...svelteConf,
-        dev,
-        hydratable: true,
-        emitCss: true
+        compilerOptions: {
+          ...svelteConf.compilerOptions,
+          dev,
+          hydratable: true
+        }
       }),
 
       url(urlConf),
@@ -55,7 +59,7 @@ export default {
 
       yaml(),
 
-      dev && terser({ module: true })
+      !dev && terser({ module: true })
     ],
 
     preserveEntrySignatures: false,
@@ -70,9 +74,13 @@ export default {
 
       svelte({
         ...svelteConf,
-        generate: 'ssr',
-        hydratable: false,
-        dev
+        emitCss: false,
+        compilerOptions: {
+          ...svelteConf.compilerOptions,
+          generate: 'ssr',
+          hydratable: false,
+          dev
+        }
       }),
 
       url({ ...urlConf, emitFiles: false }),

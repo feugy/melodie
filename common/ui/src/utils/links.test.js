@@ -9,8 +9,8 @@ describe('link utilities', () => {
 
   it('wraps references with links of a given kind', async () => {
     const refs = [
-      [faker.random.number(), faker.name.findName()],
-      [faker.random.number(), faker.name.findName()]
+      [faker.datatype.number(), faker.name.findName()],
+      [faker.datatype.number(), faker.name.findName()]
     ]
     const kind = faker.random.arrayElement(['album', 'artist'])
     const results = wrapWithLinks(kind, refs)
@@ -25,7 +25,7 @@ describe('link utilities', () => {
   })
 
   it('handles unknown names', async () => {
-    const refs = [[faker.random.number(), null]]
+    const refs = [[faker.datatype.number(), null]]
     const kind = faker.random.arrayElement(['album', 'artist'])
     const results = wrapWithLinks(kind, refs)
     for (const [i, [id]] of refs.entries()) {
@@ -39,7 +39,7 @@ describe('link utilities', () => {
   })
 
   it('adds specific class', async () => {
-    const refs = [[faker.random.number(), faker.name.findName()]]
+    const refs = [[faker.datatype.number(), faker.name.findName()]]
     const kind = faker.random.arrayElement(['album', 'artist'])
     const className = faker.lorem.word()
 

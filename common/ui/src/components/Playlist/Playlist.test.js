@@ -33,7 +33,7 @@ describe('Playlist component', () => {
   it('loads and play all tracks', async () => {
     const playlist = { ...playlistData, tracks: undefined }
     const tracks = [
-      { id: faker.random.uuid(), path: faker.system.directoryPath() }
+      { id: faker.datatype.uuid(), path: faker.system.directoryPath() }
     ]
     load.mockImplementation(async () => {
       playlist.tracks = tracks
@@ -53,7 +53,7 @@ describe('Playlist component', () => {
   it('loads and enqueus all tracks', async () => {
     const playlist = { ...playlistData, tracks: undefined }
     const tracks = [
-      { id: faker.random.uuid(), path: faker.system.directoryPath() }
+      { id: faker.datatype.uuid(), path: faker.system.directoryPath() }
     ]
     load.mockImplementation(async () => {
       playlist.tracks = tracks
@@ -72,7 +72,7 @@ describe('Playlist component', () => {
 
   it('does not load tracks when already there', async () => {
     const tracks = [
-      { id: faker.random.uuid(), path: faker.system.directoryPath() }
+      { id: faker.datatype.uuid(), path: faker.system.directoryPath() }
     ]
     const playlist = { ...playlistData, tracks }
 

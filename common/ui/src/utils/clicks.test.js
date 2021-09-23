@@ -19,7 +19,7 @@ describe('click observer', () => {
   afterEach(() => subscription.unsubscribe())
 
   it('detects single clicks', async () => {
-    const item = faker.random.number()
+    const item = faker.datatype.number()
 
     await clicks$.next(item)
     await sleep(300)
@@ -29,7 +29,7 @@ describe('click observer', () => {
   })
 
   it('detects double clicks', async () => {
-    const item = faker.random.number()
+    const item = faker.datatype.number()
 
     await clicks$.next(item)
     await clicks$.next(item)
@@ -40,8 +40,8 @@ describe('click observer', () => {
   })
 
   it('can handles mix of double and single clicks', async () => {
-    const item1 = faker.random.number()
-    const item2 = faker.random.number()
+    const item1 = faker.datatype.number()
+    const item2 = faker.datatype.number()
 
     await clicks$.next(item1)
     await clicks$.next(item1)

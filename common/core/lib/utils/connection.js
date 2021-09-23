@@ -7,6 +7,7 @@ const compressPlugin = require('fastify-compress')
 const staticPlugin = require('fastify-static')
 const websocketPlugin = require('fastify-websocket')
 const Ajv = require('ajv').default
+const WebSocket = require('ws')
 const { getLogger } = require('./logger')
 
 const logger = getLogger('connection')
@@ -85,8 +86,8 @@ exports.initConnection = async function (services, publicFolder, port = 0) {
     settings = savedSettings
     if (needRestart) {
       // delay restart so UI could get new values
-      setTimeout(() => {
-        server.close()
+      setTimeout(async () => {
+        await server.close()
         startServer()
       }, 100)
     }
@@ -133,7 +134,7 @@ exports.initConnection = async function (services, publicFolder, port = 0) {
 
   async function startServer() {
     server = fastify({ logger, disableRequestLogging: true })
-    server.register(websocketPlugin, { handle: handleConnection })
+    server.register(websocketPlugin)
     server.register(compressPlugin)
     server.register(staticPlugin, {
       root: publicFolder,
@@ -151,6 +152,7 @@ exports.initConnection = async function (services, publicFolder, port = 0) {
           : reply.code(404).send()
       }
     }
+    server.get('/*', { websocket: true }, handleConnection)
     server.get(
       '/tracks/:id/data',
       makeMediaHandler(services.media.getTrackData)
@@ -174,9 +176,9 @@ exports.initConnection = async function (services, publicFolder, port = 0) {
     return address
   }
 
-  function close() {
+  async function close() {
     exports.messageBus.removeListener('settings-saved', handleSavedSettings)
-    server?.close()
+    await server?.close()
     server = null
   }
   return { address: await startServer(), close }
@@ -195,8 +197,7 @@ exports.broadcast = function (event, args) {
   exports.messageBus.emit(event, args)
   if (server.websocketServer?.clients) {
     for (const client of server.websocketServer.clients) {
-      // 1 is OPEN
-      if (client.readyState === 1) {
+      if (client.readyState === WebSocket.OPEN) {
         client.send(JSON.stringify({ event, args }))
       }
     }

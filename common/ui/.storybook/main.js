@@ -1,6 +1,6 @@
 'use strict'
 
-const { preprocess } = require('../svelte.config')
+const { preprocess, onwarn } = require('../svelte.config')
 
 module.exports = {
   stories: ['../src/**/*.stories.js'],
@@ -25,9 +25,11 @@ module.exports = {
         )
     )
 
-    cssRule.use[1].options.url = url => {
-      // webpack should not load fonts they'll be loaded from public/
-      return url.startsWith('../fonts') ? false : true
+    if (cssRule) {
+      cssRule.use[1].options.url = url => {
+        // webpack should not load fonts they'll be loaded from public/
+        return url.startsWith('../fonts') ? false : true
+      }
     }
 
     config.module.rules.push({

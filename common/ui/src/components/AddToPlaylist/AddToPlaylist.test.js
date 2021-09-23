@@ -27,10 +27,10 @@ describe('AddToPlaylist component', () => {
     tracks.splice(
       0,
       tracks.length,
-      { id: faker.random.number() },
-      { id: faker.random.number() },
-      { id: faker.random.number() },
-      { id: faker.random.number() }
+      { id: faker.datatype.number() },
+      { id: faker.datatype.number() },
+      { id: faker.datatype.number() },
+      { id: faker.datatype.number() }
     )
     jest.resetAllMocks()
     invoke.mockResolvedValueOnce({})
@@ -63,14 +63,14 @@ describe('AddToPlaylist component', () => {
         0,
         playlists.length,
         {
-          id: faker.random.number(),
+          id: faker.datatype.number(),
           name: faker.commerce.productName(),
-          trackIds: [faker.random.number(), faker.random.number()]
+          trackIds: [faker.datatype.number(), faker.datatype.number()]
         },
         {
-          id: faker.random.number(),
+          id: faker.datatype.number(),
           name: faker.commerce.productName(),
-          trackIds: [faker.random.number(), faker.random.number()]
+          trackIds: [faker.datatype.number(), faker.datatype.number()]
         }
       )
       store.next(playlists)

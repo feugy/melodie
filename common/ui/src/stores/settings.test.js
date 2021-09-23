@@ -25,11 +25,11 @@ describe('settings store', () => {
   let isDesktop
   const locale = 'en'
   const key = faker.random.alphaNumeric(10)
-  const token = faker.random.uuid()
+  const token = faker.datatype.uuid()
   const providers = { audiodb: { key }, discogs: { token } }
   const enqueueBehaviour = { onClick: true, clearBefore: false }
   const folders = [faker.system.fileName(), faker.system.fileName()]
-  const port = faker.random.number({ min: 2000, max: 10000 })
+  const port = faker.datatype.number({ min: 2000, max: 10000 })
 
   beforeAll(async () => {
     ;({
@@ -185,15 +185,15 @@ describe('settings store', () => {
     })
 
     it('can save Discogs token', async () => {
-      const token = faker.random.uuid()
+      const token = faker.datatype.uuid()
       await saveDiscogsToken(token)
 
       expect(invoke).toHaveBeenCalledWith('settings.setDiscogsToken', token)
     })
 
     it('can save enqueue behaviour', async () => {
-      const onClick = faker.random.boolean()
-      const clearBefore = faker.random.boolean()
+      const onClick = faker.datatype.boolean()
+      const clearBefore = faker.datatype.boolean()
       await saveEnqueueBehaviour({ onClick, clearBefore })
 
       expect(invoke).toHaveBeenCalledWith('settings.setEnqueueBehaviour', {
@@ -203,7 +203,7 @@ describe('settings store', () => {
     })
 
     it('can set broadcast port', async () => {
-      const port = faker.random.number()
+      const port = faker.datatype.number()
       await saveBroadcastPort(port)
 
       expect(invoke).toHaveBeenCalledWith('settings.setBroadcastPort', port)

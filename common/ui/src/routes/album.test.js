@@ -40,13 +40,13 @@ describe('album route', () => {
         0,
         albums.length,
         {
-          id: faker.random.uuid(),
+          id: faker.datatype.uuid(),
           name: faker.commerce.productName(),
           media: faker.image.avatar(),
           refs: [faker.name.findName(), faker.name.findName()].map(makeRef)
         },
         {
-          id: faker.random.uuid(),
+          id: faker.datatype.uuid(),
           name: faker.commerce.productName(),
           media: faker.image.avatar(),
           refs: [makeRef(faker.name.findName())]

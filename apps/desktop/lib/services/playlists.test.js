@@ -21,7 +21,7 @@ describe('Playlists service', () => {
   describe('export', () => {
     it('does not show save dialog on missing playlist', async () => {
       services.playlists.export.mockResolvedValueOnce(null)
-      const id = faker.random.number()
+      const id = faker.datatype.number()
 
       expect(await playlistsService.export(id)).toBeNull()
       expect(services.playlists.export).toHaveBeenCalledWith(
@@ -34,12 +34,12 @@ describe('Playlists service', () => {
     it('opens save dialog when requested', async () => {
       const tracks = [
         {
-          id: faker.random.number(),
+          id: faker.datatype.number(),
           path: faker.system.filePath()
         }
       ]
       const playlist = {
-        id: faker.random.number(),
+        id: faker.datatype.number(),
         name: faker.commerce.productName(),
         trackIds: tracks.map(({ id }) => id)
       }

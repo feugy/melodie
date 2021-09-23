@@ -25,18 +25,18 @@ describe('TrackDropdown component', () => {
 
   describe('given an opened dropdown', () => {
     const option = { label: 'Custom item', icon: 'close', act: jest.fn() }
-    const track = { id: faker.random.number(), path: faker.system.fileName() }
+    const track = { id: faker.datatype.number(), path: faker.system.fileName() }
     const handleShowDetails = jest.fn()
     const playlists = [
       {
-        id: faker.random.number(),
+        id: faker.datatype.number(),
         name: faker.commerce.productName(),
-        trackIds: [faker.random.number(), faker.random.number()]
+        trackIds: [faker.datatype.number(), faker.datatype.number()]
       },
       {
-        id: faker.random.number(),
+        id: faker.datatype.number(),
         name: faker.commerce.productName(),
-        trackIds: [faker.random.number(), faker.random.number()]
+        trackIds: [faker.datatype.number(), faker.datatype.number()]
       }
     ]
     const store = new BehaviorSubject(playlists)

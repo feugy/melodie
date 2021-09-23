@@ -50,7 +50,7 @@ describe('Playlists model', () => {
 
   it('adds new playlist', async () => {
     const playlist = {
-      id: faker.random.number(),
+      id: faker.datatype.number(),
       media: faker.image.image(),
       processedEpoch: null,
       name: faker.lorem.words(),
@@ -70,9 +70,9 @@ describe('Playlists model', () => {
 
   it('updates existing playlist with refs and overrides trackIds', async () => {
     const playlist = {
-      id: faker.random.number(),
+      id: faker.datatype.number(),
       media: faker.image.image(),
-      mediaCount: faker.random.number({ max: 10 }),
+      mediaCount: faker.datatype.number({ max: 10 }),
       processedEpoch: null,
       name: faker.lorem.words(),
       desc: faker.lorem.paragraph(),

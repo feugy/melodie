@@ -47,13 +47,13 @@ jest.mock('../../stores/playlists', () => {
 
 describe('playlist details route', () => {
   const playlist = {
-    id: faker.random.number(),
+    id: faker.datatype.number(),
     name: faker.commerce.productName(),
     refs: [],
     media: null,
     tracks: [
       {
-        id: faker.random.uuid(),
+        id: faker.datatype.uuid(),
         tags: {
           title: faker.commerce.productName(),
           artists: [faker.name.findName()],
@@ -62,7 +62,7 @@ describe('playlist details route', () => {
         }
       },
       {
-        id: faker.random.uuid(),
+        id: faker.datatype.uuid(),
         tags: {
           title: faker.commerce.productName(),
           artists: [faker.name.findName()],
@@ -71,7 +71,7 @@ describe('playlist details route', () => {
         }
       },
       {
-        id: faker.random.uuid(),
+        id: faker.datatype.uuid(),
         tags: {
           title: faker.commerce.productName(),
           artists: [faker.name.findName()],
@@ -251,7 +251,7 @@ describe('playlist details route', () => {
       changes.next([
         {
           ...playlist,
-          id: faker.random.number(),
+          id: faker.datatype.number(),
           tracks: undefined
         }
       ])
@@ -279,7 +279,7 @@ describe('playlist details route', () => {
     })
 
     it('ignores other playlist removals', async () => {
-      removals.next([faker.random.number()])
+      removals.next([faker.datatype.number()])
 
       expect(replace).not.toHaveBeenCalled()
     })
@@ -294,7 +294,7 @@ describe('playlist details route', () => {
       load.mockReset()
       serverEmitter.next({
         event: 'track-changes',
-        args: [{ id: faker.random.number() }]
+        args: [{ id: faker.datatype.number() }]
       })
       await sleep()
       expect(load).not.toHaveBeenCalled()

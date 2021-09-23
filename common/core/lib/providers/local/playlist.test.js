@@ -237,7 +237,7 @@ https://example.com/track.ogg
           path: path1,
           tags: {
             title: faker.lorem.words(),
-            duration: faker.random.number({ max: 500 })
+            duration: faker.datatype.number({ max: 500 })
           }
         },
         {
@@ -245,7 +245,7 @@ https://example.com/track.ogg
           path: path2,
           tags: {
             title: faker.lorem.words(),
-            duration: faker.random.number({ max: 500 })
+            duration: faker.datatype.number({ max: 500 })
           }
         },
         {
@@ -253,7 +253,7 @@ https://example.com/track.ogg
           path: path3,
           tags: {
             title: faker.lorem.words(),
-            duration: faker.random.number({ max: 500 })
+            duration: faker.datatype.number({ max: 500 })
           }
         },
         {
@@ -261,7 +261,7 @@ https://example.com/track.ogg
           path: path4,
           tags: {
             title: faker.lorem.words(),
-            duration: faker.random.number({ max: 500 })
+            duration: faker.datatype.number({ max: 500 })
           }
         },
         {
@@ -269,7 +269,7 @@ https://example.com/track.ogg
           path: path5,
           tags: {
             title: faker.lorem.words(),
-            duration: faker.random.number({ max: 500 })
+            duration: faker.datatype.number({ max: 500 })
           }
         }
       )

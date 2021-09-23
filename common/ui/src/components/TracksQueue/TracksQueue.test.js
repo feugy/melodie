@@ -246,19 +246,19 @@ describe('TracksQueue component', () => {
   describe('given some playlist', () => {
     const playlists = [
       {
-        id: faker.random.number(),
+        id: faker.datatype.number(),
         name: faker.commerce.productName(),
-        trackIds: [faker.random.number(), faker.random.number()]
+        trackIds: [faker.datatype.number(), faker.datatype.number()]
       },
       {
-        id: faker.random.number(),
+        id: faker.datatype.number(),
         name: faker.commerce.productName(),
-        trackIds: [faker.random.number(), faker.random.number()]
+        trackIds: [faker.datatype.number(), faker.datatype.number()]
       },
       {
-        id: faker.random.number(),
+        id: faker.datatype.number(),
         name: faker.commerce.productName(),
-        trackIds: [faker.random.number(), faker.random.number()]
+        trackIds: [faker.datatype.number(), faker.datatype.number()]
       }
     ]
 

@@ -40,26 +40,26 @@ jest.mock('../../stores/albums', () => {
 
 describe('album details route', () => {
   const album = {
-    id: faker.random.number(),
+    id: faker.datatype.number(),
     name: faker.commerce.productName(),
     refs: [
-      [faker.random.number(), faker.name.findName()],
-      [faker.random.number(), faker.name.findName()]
+      [faker.datatype.number(), faker.name.findName()],
+      [faker.datatype.number(), faker.name.findName()]
     ],
     media: faker.image.avatar(),
     tracks: [
       {
-        id: faker.random.uuid(),
+        id: faker.datatype.uuid(),
         tags: {
           title: faker.commerce.productName(),
           artists: [faker.name.findName()],
           album: faker.lorem.words(),
           duration: 265,
-          year: faker.random.number({ min: 1970, max: 2030 })
+          year: faker.datatype.number({ min: 1970, max: 2030 })
         }
       },
       {
-        id: faker.random.uuid(),
+        id: faker.datatype.uuid(),
         tags: {
           title: faker.commerce.productName(),
           artists: [faker.name.findName()],
@@ -68,7 +68,7 @@ describe('album details route', () => {
         }
       },
       {
-        id: faker.random.uuid(),
+        id: faker.datatype.uuid(),
         tags: {
           title: faker.commerce.productName(),
           artists: [faker.name.findName()],
@@ -184,7 +184,9 @@ describe('album details route', () => {
     it('ignores changes on other albums', async () => {
       load.mockReset()
 
-      changes.next([{ ...album, id: faker.random.number(), tracks: undefined }])
+      changes.next([
+        { ...album, id: faker.datatype.number(), tracks: undefined }
+      ])
       await sleep()
 
       expectDisplayedTracks()
@@ -209,7 +211,7 @@ describe('album details route', () => {
     })
 
     it('ignores other album removals', async () => {
-      removals.next([faker.random.number()])
+      removals.next([faker.datatype.number()])
 
       expect(replace).not.toHaveBeenCalledWith('/album')
     })

@@ -1,5 +1,5 @@
 <script context="module">
-  const selector = navigator.userAgent.includes("jsdom") ? 'focus' : 'focus-within'
+  const selector = typeof navigator !== 'undefined' && navigator.userAgent.includes("jsdom") ? 'focus' : 'focus-within'
 </script>
 <script>
   import { createEventDispatcher } from 'svelte'
