@@ -10,7 +10,7 @@
   import Volume from './Volume.svelte'
   import Shuffle from './Shuffle.svelte'
   import Repeat from './Repeat.svelte'
-  import { current, tracks } from '../../stores/track-queue'
+  import { current, next, tracks } from '../../stores/track-queue'
   import { playNext } from '../../stores/track-queue'
   import { screenSize, MD } from '../../stores/window'
 
@@ -21,6 +21,7 @@
   let duration = 0
   let currentTime = 0
   let src = null
+  let nextSrc = null
   let muted = false
   let repeatOne = false
   let repeatAll = false
@@ -37,7 +38,7 @@
       gainNode.connect(context.destination)
     }
 
-    return current.subscribe(current => {
+    const currentSubscription = current.subscribe(current => {
       if (!current) {
         src = null
         if (player) {
@@ -57,6 +58,15 @@
         }
       }
     })
+    const nextSubscription = next.subscribe(next => {
+      if (next) {
+        fetch(window.dlUrl + next.data)
+      }
+    })
+    return () => {
+      currentSubscription.unsubscribe()
+      nextSubscription.unsubscribe()
+    }
   })
 
   function handleLoaded() {

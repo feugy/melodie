@@ -26,6 +26,7 @@ describe('Player component', () => {
   let gainNode
   let audioContext
   let observer
+  let fetch
   const dlUrl = faker.internet.url()
 
   async function renderPlayer() {
@@ -76,6 +77,7 @@ describe('Player component', () => {
     })
     clear()
     invoke.mockResolvedValueOnce({ total: 0, results: [] })
+    fetch = jest.spyOn(window, 'fetch')
   })
 
   afterEach(() => {
@@ -97,6 +99,9 @@ describe('Player component', () => {
 
     expect(get(current)).toEqual(trackListData[0])
     expect(play).toHaveBeenCalledTimes(1)
+    expect(fetch).toHaveBeenCalledWith(
+      `${window.dlUrl}${trackListData[1].data}`
+    )
 
     await userEvent.click(screen.getByText('pause'))
 
@@ -107,6 +112,7 @@ describe('Player component', () => {
 
     expect(get(current)).toEqual(trackListData[0])
     expect(play).toHaveBeenCalledTimes(2)
+    expect(fetch).toHaveBeenCalledTimes(1)
   })
 
   it('mutes and unmute volume', async () => {
@@ -125,9 +131,18 @@ describe('Player component', () => {
     add(trackListData)
 
     await renderPlayer()
+    expect(fetch).toHaveBeenNthCalledWith(
+      1,
+      `${window.dlUrl}${trackListData[1].data}`
+    )
     await userEvent.click(screen.getByText('skip_next'))
+    expect(fetch).toHaveBeenNthCalledWith(
+      2,
+      `${window.dlUrl}${trackListData[2].data}`
+    )
 
     expect(get(current)).toEqual(trackListData[1])
+    expect(fetch).toHaveBeenCalledTimes(2)
   })
 
   it('goes to previous track', async () => {
@@ -136,9 +151,18 @@ describe('Player component', () => {
     expect(get(current)).toEqual(trackListData[2])
 
     await renderPlayer()
+    expect(fetch).toHaveBeenNthCalledWith(
+      1,
+      `${window.dlUrl}${trackListData[3].data}`
+    )
     await userEvent.click(screen.getByText('skip_previous'))
+    expect(fetch).toHaveBeenNthCalledWith(
+      2,
+      `${window.dlUrl}${trackListData[2].data}`
+    )
 
     expect(get(current)).toEqual(trackListData[1])
+    expect(fetch).toHaveBeenCalledTimes(2)
   })
 
   it('can change volume', async () => {
