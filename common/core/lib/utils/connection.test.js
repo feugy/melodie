@@ -16,7 +16,7 @@ const { sleep, makeFolder } = require('../tests')
 
 function connectWSClient(address) {
   return new Promise((resolve, reject) => {
-    const ws = new WebSocket(address.replace('http', 'ws'))
+    const ws = new WebSocket(`${address.replace('http', 'ws')}/ws`)
     ws.once('error', reject)
     ws.once('open', () => {
       ws.off('error', reject)

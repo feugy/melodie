@@ -22,7 +22,7 @@ export async function initConnection(address, onConnectionLost) {
 
   ws = await new Promise((resolve, reject) => {
     try {
-      const socket = new WebSocket(address)
+      const socket = new WebSocket(`${address}/ws`)
       socket.onopen = () => {
         socket.onopen = null
         socket.onerror = null

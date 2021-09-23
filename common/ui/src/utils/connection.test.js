@@ -33,7 +33,7 @@ describe('connection utilities', () => {
       server.on('error', reject)
       server.on('listening', resolve)
     })
-    serverUrl = `ws://localhost:${server.address().port}`
+    serverUrl = `ws://localhost:${server.address().port}/ws`
   })
 
   afterEach(() => {

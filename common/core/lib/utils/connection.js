@@ -152,7 +152,7 @@ exports.initConnection = async function (services, publicFolder, port = 0) {
           : reply.code(404).send()
       }
     }
-    server.get('/*', { websocket: true }, handleConnection)
+    server.get('/ws', { websocket: true }, handleConnection)
     server.get(
       '/tracks/:id/data',
       makeMediaHandler(services.media.getTrackData)

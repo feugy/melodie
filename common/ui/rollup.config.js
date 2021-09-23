@@ -25,7 +25,7 @@ export default {
       preventAssignment: true,
       values: {
         RXJS_VERSION: JSON.stringify(dependencies.rxjs.version),
-        TAILWINDCSS_VERSION: JSON.stringify(dependencies.rxjs.version),
+        TAILWINDCSS_VERSION: JSON.stringify(dependencies.tailwindcss.version),
         'process.env.NODE_ENV': JSON.stringify(
           production ? 'production' : 'dev'
         )

@@ -107,7 +107,7 @@ starting... To change log levels, edit the level file and run \`kill -USR2 ${pro
     reloadOnChange(publicFolder)
     // hard reset for main process changes
     reloadOnChange([__dirname, dirname(require.resolve('@melodie/core'))], {
-      electron: join(__dirname, 'node_modules', '.bin', 'electron'),
+      electron: join(__dirname, '..', '..', 'node_modules', '.bin', 'electron'),
       hardResetMethod: 'exit',
       forceHardReset: true,
       awaitWriteFinish: true
@@ -122,10 +122,7 @@ starting... To change log levels, edit the level file and run \`kill -USR2 ${pro
       minWidth: 1410,
       height: 800,
       minHeight: 300,
-      webPreferences: {
-        nodeIntegration: false,
-        contextIsolation: true
-      },
+      webPreferences: { sandbox: true },
       icon: `${join(publicFolder, 'icons', 'icon-512x512.png')}`,
       backgroundColor: '#2e3141',
       show: false
