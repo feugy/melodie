@@ -1,6 +1,6 @@
 'use strict'
 
-const { preprocess, onwarn } = require('../svelte.config')
+const { preprocess } = require('../svelte.config')
 
 module.exports = {
   stories: ['../src/**/*.stories.js'],

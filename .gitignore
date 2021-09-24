@@ -7,3 +7,4 @@ __sapper__/
 .env
 logs.txt
 winehq.key
+apps/desktop/package-lock.json
