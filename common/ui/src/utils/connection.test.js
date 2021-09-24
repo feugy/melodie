@@ -7,7 +7,7 @@ import { sleep } from '../tests'
 const { closeConnection, fromServerEvent, initConnection, invoke, send } =
   jest.requireActual('./connection')
 
-describe('connection utilities', () => {
+describe.only('connection utilities', () => {
   let server
   let serverUrl
   let errorSpy
@@ -41,6 +41,7 @@ describe('connection utilities', () => {
     for (const ws of server.clients) {
       ws.terminate()
     }
+    server.close()
   })
 
   it('connects to WebSocket server and can disconnect', async () => {
