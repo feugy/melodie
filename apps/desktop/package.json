@@ -34,7 +34,7 @@
     "@melodie/ui": "2.0.0-alpha.2"
   },
   "devDependencies": {
-    "electron": "15.0.0",
+    "electron": "13.4.0",
     "electron-builder": "^22.14.2",
     "electron-reload": "^2.0.0-alpha.1",
     "faker": "^5.5.3",
