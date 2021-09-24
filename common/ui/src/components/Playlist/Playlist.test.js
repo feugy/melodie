@@ -1,6 +1,7 @@
 'use strict'
 
-import { screen, render, fireEvent } from '@testing-library/svelte'
+import { screen, render } from '@testing-library/svelte'
+import userEvent from '@testing-library/user-event'
 import html from 'svelte-htm'
 import faker from 'faker'
 import Playlist from './Playlist.svelte'
@@ -20,8 +21,8 @@ describe('Playlist component', () => {
 
   it('navigates to playlist details page', async () => {
     render(html`<${Playlist} src=${playlistData} />`)
-
-    fireEvent.click(screen.getByText(playlistData.name))
+    userEvent.hover(screen.getByRole('article'))
+    userEvent.click(screen.getByText(playlistData.name))
     await sleep()
 
     expect(location.hash).toEqual(`#/playlist/${playlistData.id}`)
@@ -32,7 +33,7 @@ describe('Playlist component', () => {
   it('loads and play all tracks', async () => {
     const playlist = { ...playlistData, tracks: undefined }
     const tracks = [
-      { id: faker.random.uuid(), path: faker.system.directoryPath() }
+      { id: faker.datatype.uuid(), path: faker.system.directoryPath() }
     ]
     load.mockImplementation(async () => {
       playlist.tracks = tracks
@@ -40,7 +41,8 @@ describe('Playlist component', () => {
     })
 
     render(html`<${Playlist} src=${playlist} />`)
-    await fireEvent.click(screen.getByTestId('play'))
+    await userEvent.hover(screen.getByRole('article'))
+    userEvent.click(screen.getByTestId('play'))
     await sleep()
 
     expect(load).toHaveBeenCalledWith(playlist.id)
@@ -51,7 +53,7 @@ describe('Playlist component', () => {
   it('loads and enqueus all tracks', async () => {
     const playlist = { ...playlistData, tracks: undefined }
     const tracks = [
-      { id: faker.random.uuid(), path: faker.system.directoryPath() }
+      { id: faker.datatype.uuid(), path: faker.system.directoryPath() }
     ]
     load.mockImplementation(async () => {
       playlist.tracks = tracks
@@ -59,7 +61,8 @@ describe('Playlist component', () => {
     })
 
     render(html`<${Playlist} src=${playlist} />`)
-    await fireEvent.click(screen.getByTestId('enqueue'))
+    await userEvent.hover(screen.getByRole('article'))
+    userEvent.click(screen.getByTestId('enqueue'))
     await sleep()
 
     expect(load).toHaveBeenCalledWith(playlist.id)
@@ -69,12 +72,13 @@ describe('Playlist component', () => {
 
   it('does not load tracks when already there', async () => {
     const tracks = [
-      { id: faker.random.uuid(), path: faker.system.directoryPath() }
+      { id: faker.datatype.uuid(), path: faker.system.directoryPath() }
     ]
     const playlist = { ...playlistData, tracks }
 
     render(html`<${Playlist} src=${playlist} />`)
-    await fireEvent.click(screen.getByTestId('play'))
+    await userEvent.hover(screen.getByRole('article'))
+    userEvent.click(screen.getByTestId('play'))
     await sleep()
 
     expect(load).not.toHaveBeenCalled()

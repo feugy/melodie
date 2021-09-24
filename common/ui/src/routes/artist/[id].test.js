@@ -1,6 +1,7 @@
 'use strict'
 
-import { screen, render, fireEvent } from '@testing-library/svelte'
+import { screen, render } from '@testing-library/svelte'
+import userEvent from '@testing-library/user-event'
 import html from 'svelte-htm'
 import { locale } from 'svelte-intl'
 import { BehaviorSubject } from 'rxjs'
@@ -38,22 +39,22 @@ jest.mock('../../stores/artists', () => {
 
 describe('artist details route', () => {
   const album1 = {
-    id: faker.random.number(),
+    id: faker.datatype.number(),
     name: faker.commerce.productName(),
     media: faker.image.avatar()
   }
   const album2 = {
-    id: faker.random.number(),
+    id: faker.datatype.number(),
     name: faker.commerce.productName(),
     media: faker.image.avatar()
   }
   const album3 = {
-    id: faker.random.number(),
+    id: faker.datatype.number(),
     name: faker.commerce.productName(),
     media: faker.image.avatar()
   }
   const artistName = faker.name.findName()
-  const id = faker.random.number()
+  const id = faker.datatype.number()
   const artistRefs = [[id, artistName]]
 
   const artist = {
@@ -66,20 +67,20 @@ describe('artist details route', () => {
     media: faker.image.avatar(),
     tracks: [
       {
-        id: faker.random.uuid(),
+        id: faker.datatype.uuid(),
         media: album1.media,
         tags: {
           title: faker.commerce.productName(),
           artists: [artistName],
           album: album1.name,
           duration: 265,
-          year: faker.random.number({ min: 1970, max: 2030 })
+          year: faker.datatype.number({ min: 1970, max: 2030 })
         },
         albumRef: [album1.id, album1.name],
         artistRefs
       },
       {
-        id: faker.random.uuid(),
+        id: faker.datatype.uuid(),
         media: album1.media,
         tags: {
           title: faker.commerce.productName(),
@@ -91,7 +92,7 @@ describe('artist details route', () => {
         artistRefs
       },
       {
-        id: faker.random.uuid(),
+        id: faker.datatype.uuid(),
         media: album2.media,
         tags: {
           title: faker.commerce.productName(),
@@ -159,21 +160,21 @@ describe('artist details route', () => {
     })
 
     it('enqueues all tracks', async () => {
-      fireEvent.click(screen.getByText(translate('enqueue all')))
+      userEvent.click(screen.getByText(translate('enqueue all')))
 
       expect(add).toHaveBeenCalledWith(artist.tracks)
       expect(add).toHaveBeenCalledTimes(1)
     })
 
     it('plays all tracks', async () => {
-      fireEvent.click(screen.getByText(translate('play all')))
+      userEvent.click(screen.getByText(translate('play all')))
 
       expect(add).toHaveBeenCalledWith(artist.tracks, true)
       expect(add).toHaveBeenCalledTimes(1)
     })
 
     it('navigates to album details page', async () => {
-      fireEvent.click(screen.getByText(album2.name))
+      userEvent.click(screen.getByText(album2.name))
       await sleep(250)
 
       expect(add).not.toHaveBeenCalled()
@@ -191,7 +192,7 @@ describe('artist details route', () => {
           tracks: [
             ...artist.tracks,
             {
-              id: faker.random.uuid(),
+              id: faker.datatype.uuid(),
               media: album3.media,
               tags: {
                 title: faker.commerce.productName(),
@@ -207,7 +208,7 @@ describe('artist details route', () => {
       ])
       await sleep()
 
-      expect(screen.queryByText(artist.name)).toBeFalsy()
+      expect(screen.queryByText(artist.name)).not.toBeInTheDocument()
       expect(screen.getByText(newName)).toBeInTheDocument()
 
       const images = Array.from(
@@ -231,7 +232,7 @@ describe('artist details route', () => {
       load.mockReset()
 
       changes.next([
-        { ...artist, id: faker.random.number(), tracks: undefined }
+        { ...artist, id: faker.datatype.number(), tracks: undefined }
       ])
       await sleep()
 
@@ -267,7 +268,7 @@ describe('artist details route', () => {
     })
 
     it('ignores other artist removals', async () => {
-      removals.next([faker.random.number()])
+      removals.next([faker.datatype.number()])
 
       expect(replace).not.toHaveBeenCalledWith('/artist')
     })
@@ -279,7 +280,7 @@ describe('artist details route', () => {
           node.getAttribute('src').includes(artist.media)
       )
 
-      fireEvent.click(artistImage)
+      userEvent.click(artistImage)
 
       expect(await screen.findByText(translate('choose avatar'))).toBeVisible()
     })

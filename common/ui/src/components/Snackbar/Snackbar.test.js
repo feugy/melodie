@@ -1,6 +1,7 @@
 'use strict'
 
-import { screen, render, fireEvent } from '@testing-library/svelte'
+import { screen, render } from '@testing-library/svelte'
+import userEvent from '@testing-library/user-event'
 import html from 'svelte-htm'
 import faker from 'faker'
 import Snackbar from './Snackbar.svelte'
@@ -23,7 +24,7 @@ describe('Snackbar component', () => {
     expect(screen.queryByText(button)).toBeVisible()
     expect(action).not.toHaveBeenCalled()
 
-    await fireEvent.click(screen.queryByText(button))
+    await userEvent.click(screen.queryByText(button))
     expect(action).toHaveBeenCalled()
   })
 })

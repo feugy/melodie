@@ -10,8 +10,11 @@ module.exports = {
     postcss: {
       configFilePath: require.resolve('@melodie/ui/postcss.config')
     },
+    // only used while running tests
     replace: [['MELODIE_VERSION', JSON.stringify(version)]]
   }),
-  // enable run-time checks when not in production
-  dev: !production
+  compilerOptions: {
+    // enable run-time checks when not in production
+    dev: !production
+  }
 }

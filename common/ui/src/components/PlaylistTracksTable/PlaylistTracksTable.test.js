@@ -6,6 +6,7 @@ import {
   fireEvent,
   waitForElementToBeRemoved
 } from '@testing-library/svelte'
+import userEvent from '@testing-library/user-event'
 import html from 'svelte-htm'
 import faker from 'faker'
 import PlaylistTracksTable from './PlaylistTracksTable.svelte'
@@ -106,12 +107,11 @@ describe('PlaylistTracksTable component', () => {
   })
 
   it('has links to artists', async () => {
-    const [id, artist] = faker.random.arrayElement(
-      playlist.tracks
-    ).artistRefs[0]
+    const [id, artist] = faker.random.arrayElement(playlist.tracks)
+      .artistRefs[0]
     render(html`<${PlaylistTracksTable} playlist=${playlist} />`)
 
-    fireEvent.click(faker.random.arrayElement(screen.queryAllByText(artist)))
+    userEvent.click(faker.random.arrayElement(screen.queryAllByText(artist)))
     await sleep()
 
     expect(location.hash).toEqual(`#/artist/${id}`)
@@ -121,7 +121,7 @@ describe('PlaylistTracksTable component', () => {
     const [id, album] = faker.random.arrayElement(playlist.tracks).albumRef
     render(html`<${PlaylistTracksTable} playlist=${playlist} />`)
 
-    fireEvent.click(faker.random.arrayElement(screen.queryAllByText(album)))
+    userEvent.click(faker.random.arrayElement(screen.queryAllByText(album)))
     await sleep()
 
     expect(location.hash).toEqual(`#/album/${id}`)
@@ -131,7 +131,7 @@ describe('PlaylistTracksTable component', () => {
     const track = faker.random.arrayElement(playlist.tracks)
     render(html`<${PlaylistTracksTable} playlist=${playlist} />`)
 
-    fireEvent.click(screen.getByText(track.tags.title))
+    userEvent.click(screen.getByText(track.tags.title))
 
     expect(clicks$.next).toHaveBeenCalledWith({
       ...track,
@@ -168,7 +168,7 @@ describe('PlaylistTracksTable component', () => {
       track = faker.random.arrayElement(playlist.tracks)
       render(html`<${PlaylistTracksTable} playlist=${playlist} />`)
 
-      fireEvent.click(
+      userEvent.click(
         screen.getByText(track.tags.title).closest('tr').querySelector('button')
       )
     })
@@ -178,7 +178,7 @@ describe('PlaylistTracksTable component', () => {
     )
 
     it('removes track from playlist with dropdown', async () => {
-      await fireEvent.click(screen.getByText(translate('remove from playlist')))
+      await userEvent.click(screen.getByText(translate('remove from playlist')))
 
       expect(removeTrack).toHaveBeenCalledWith(
         playlist,
@@ -189,7 +189,7 @@ describe('PlaylistTracksTable component', () => {
     })
 
     it('opens track details dialogue', async () => {
-      await fireEvent.click(screen.getByText('local_offer'))
+      await userEvent.click(screen.getByText('local_offer'))
 
       expect(screen.getByText(translate('track details'))).toBeVisible()
       expect(removeTrack).not.toHaveBeenCalled()

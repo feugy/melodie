@@ -4,14 +4,10 @@ import { first, timeout } from 'rxjs/operators'
 import faker from 'faker'
 import WebSocket from 'ws'
 import { sleep } from '../tests'
-const {
-  initConnection,
-  closeConnection,
-  invoke,
-  fromServerEvent
-} = jest.requireActual('./connection')
+const { closeConnection, fromServerEvent, initConnection, invoke, send } =
+  jest.requireActual('./connection')
 
-describe('connection utilities', () => {
+describe.only('connection utilities', () => {
   let server
   let serverUrl
   let errorSpy
@@ -37,12 +33,15 @@ describe('connection utilities', () => {
       server.on('error', reject)
       server.on('listening', resolve)
     })
-    serverUrl = `ws://localhost:${server.address().port}`
+    serverUrl = `ws://localhost:${server.address().port}/ws`
   })
 
-  afterEach(done => {
+  afterEach(() => {
     closeConnection()
-    server.close(done)
+    for (const ws of server.clients) {
+      ws.terminate()
+    }
+    server.close()
   })
 
   it('connects to WebSocket server and can disconnect', async () => {
@@ -231,13 +230,23 @@ describe('connection utilities', () => {
     expect(handleLostConnection).not.toHaveBeenCalled()
   })
 
+  it('throws error when sending data without a connection', async () => {
+    expect(() => send('test')).toThrowError(
+      new Error(`unestablished connection, call initConnection() first`)
+    )
+  })
+
+  it('can skip throwing error when sending data without a connection', async () => {
+    expect(() => send('test', false)).not.toThrow()
+  })
+
   it('closes and invokes callback on connection lost', async () => {
-    const connection = new Promise(resolve => server.on('connection', resolve))
     await initConnection(serverUrl, handleLostConnection)
-    await connection
     expect(handleLostConnection).not.toHaveBeenCalled()
 
-    await server.close()
+    for (const ws of server.clients) {
+      ws.terminate()
+    }
     await sleep(10)
     expect(handleLostConnection).toHaveBeenCalled()
     expect(errorSpy).not.toHaveBeenCalled()

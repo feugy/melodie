@@ -25,7 +25,7 @@ describe('Playlists service', () => {
     it('creates a new playlist', async () => {
       const name = faker.commerce.productName()
       const desc = faker.lorem.paragraph()
-      const trackIds = [faker.random.number(), faker.random.number()]
+      const trackIds = [faker.datatype.number(), faker.datatype.number()]
       playlistsModel.save.mockImplementation(async playlist => ({
         saved: [playlist],
         removedIds: []
@@ -44,10 +44,10 @@ describe('Playlists service', () => {
     })
 
     it('saves an existing playlist', async () => {
-      const id = faker.random.number()
+      const id = faker.datatype.number()
       const name = faker.commerce.productName()
       const desc = faker.lorem.paragraph()
-      const trackIds = [faker.random.number(), faker.random.number()]
+      const trackIds = [faker.datatype.number(), faker.datatype.number()]
       const playlist = { id, name, desc, trackIds }
       playlistsModel.save.mockResolvedValueOnce({
         saved: [playlist],
@@ -66,7 +66,7 @@ describe('Playlists service', () => {
     })
 
     it('removes empty existing playlist', async () => {
-      const id = faker.random.number()
+      const id = faker.datatype.number()
       playlistsModel.save.mockResolvedValueOnce({ saved: [], removedIds: [id] })
 
       await playlistsService.save({ id, trackIds: [] })
@@ -83,14 +83,14 @@ describe('Playlists service', () => {
 
   describe('append', () => {
     it('appends tracks to an existing playlist', async () => {
-      const id = faker.random.number()
+      const id = faker.datatype.number()
       const name = faker.commerce.productName()
       const desc = faker.lorem.paragraph()
-      const trackIds = [faker.random.number(), faker.random.number()]
+      const trackIds = [faker.datatype.number(), faker.datatype.number()]
       const playlist = { id, name, desc, trackIds }
       playlistsModel.getById.mockResolvedValueOnce(playlist)
 
-      const added = [faker.random.number(), faker.random.number()]
+      const added = [faker.datatype.number(), faker.datatype.number()]
       const saved = { ...playlist, trackIds: [...trackIds, ...added] }
       playlistsModel.save.mockResolvedValueOnce({
         saved: [saved],
@@ -111,14 +111,14 @@ describe('Playlists service', () => {
     })
 
     it('appends single track to an existing playlist', async () => {
-      const id = faker.random.number()
+      const id = faker.datatype.number()
       const name = faker.commerce.productName()
       const desc = faker.lorem.paragraph()
-      const trackIds = [faker.random.number(), faker.random.number()]
+      const trackIds = [faker.datatype.number(), faker.datatype.number()]
       const playlist = { id, name, desc, trackIds }
       playlistsModel.getById.mockResolvedValueOnce(playlist)
 
-      const added = faker.random.number()
+      const added = faker.datatype.number()
       const saved = { ...playlist, trackIds: [...trackIds, added] }
       playlistsModel.save.mockResolvedValueOnce({
         saved: [saved],
@@ -139,12 +139,12 @@ describe('Playlists service', () => {
     })
 
     it('ignores unknown playlist', async () => {
-      const id = faker.random.number()
+      const id = faker.datatype.number()
       playlistsModel.getById.mockResolvedValueOnce(null)
 
       await playlistsService.append(id, [
-        faker.random.number(),
-        faker.random.number()
+        faker.datatype.number(),
+        faker.datatype.number()
       ])
 
       expect(playlistsModel.getById).toHaveBeenCalledWith(id)
@@ -165,14 +165,14 @@ describe('Playlists service', () => {
     it('checks and ignores valid playlists', async () => {
       const playlists = [
         {
-          id: faker.random.number(),
+          id: faker.datatype.number(),
           name: faker.commerce.productName(),
-          trackIds: [faker.random.number(), faker.random.number()]
+          trackIds: [faker.datatype.number(), faker.datatype.number()]
         },
         {
-          id: faker.random.number(),
+          id: faker.datatype.number(),
           name: faker.commerce.productName(),
-          trackIds: [faker.random.number(), faker.random.number()]
+          trackIds: [faker.datatype.number(), faker.datatype.number()]
         }
       ]
       playlistsModel.save.mockImplementation(async playlist => ({
@@ -202,19 +202,19 @@ describe('Playlists service', () => {
     it('checks and saves invalid playlists', async () => {
       const playlists = [
         {
-          id: faker.random.number(),
+          id: faker.datatype.number(),
           name: faker.commerce.productName(),
-          trackIds: [faker.random.number(), faker.random.number()]
+          trackIds: [faker.datatype.number(), faker.datatype.number()]
         },
         {
-          id: faker.random.number(),
+          id: faker.datatype.number(),
           name: faker.commerce.productName(),
-          trackIds: [faker.random.number(), faker.random.number()]
+          trackIds: [faker.datatype.number(), faker.datatype.number()]
         },
         {
-          id: faker.random.number(),
+          id: faker.datatype.number(),
           name: faker.commerce.productName(),
-          trackIds: [faker.random.number(), faker.random.number()]
+          trackIds: [faker.datatype.number(), faker.datatype.number()]
         }
       ]
       playlistsModel.save.mockImplementation(async playlist =>
@@ -260,9 +260,9 @@ describe('Playlists service', () => {
 
     it('clears the list of playlists marked for checking', async () => {
       const playlist = {
-        id: faker.random.number(),
+        id: faker.datatype.number(),
         name: faker.commerce.productName(),
-        trackIds: [faker.random.number(), faker.random.number()]
+        trackIds: [faker.datatype.number(), faker.datatype.number()]
       }
       playlistsModel.save.mockResolvedValueOnce({
         saved: [playlist],
@@ -292,7 +292,7 @@ describe('Playlists service', () => {
   describe('export', () => {
     it('does nothing on unexisting playlist', async () => {
       const selectPath = jest.fn()
-      const id = faker.random.number()
+      const id = faker.datatype.number()
       playlistsModel.getById.mockResolvedValueOnce(null)
 
       await playlistsService.export(id, selectPath)
@@ -307,12 +307,12 @@ describe('Playlists service', () => {
     it('does not write file without selected file path', async () => {
       const tracks = [
         {
-          id: faker.random.number(),
+          id: faker.datatype.number(),
           path: faker.system.filePath()
         }
       ]
       const playlist = {
-        id: faker.random.number(),
+        id: faker.datatype.number(),
         name: faker.commerce.productName(),
         trackIds: tracks.map(({ id }) => id)
       }
@@ -334,12 +334,12 @@ describe('Playlists service', () => {
     it('saves playlist to selected path', async () => {
       const tracks = [
         {
-          id: faker.random.number(),
+          id: faker.datatype.number(),
           path: faker.system.filePath()
         }
       ]
       const playlist = {
-        id: faker.random.number(),
+        id: faker.datatype.number(),
         name: faker.commerce.productName(),
         trackIds: tracks.map(({ id }) => id)
       }

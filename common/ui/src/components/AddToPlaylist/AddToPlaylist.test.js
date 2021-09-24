@@ -1,6 +1,6 @@
 'use strict'
 
-import { screen, render, fireEvent } from '@testing-library/svelte'
+import { screen, render } from '@testing-library/svelte'
 import userEvent from '@testing-library/user-event'
 import html from 'svelte-htm'
 import faker from 'faker'
@@ -27,10 +27,10 @@ describe('AddToPlaylist component', () => {
     tracks.splice(
       0,
       tracks.length,
-      { id: faker.random.number() },
-      { id: faker.random.number() },
-      { id: faker.random.number() },
-      { id: faker.random.number() }
+      { id: faker.datatype.number() },
+      { id: faker.datatype.number() },
+      { id: faker.datatype.number() },
+      { id: faker.datatype.number() }
     )
     jest.resetAllMocks()
     invoke.mockResolvedValueOnce({})
@@ -42,12 +42,12 @@ describe('AddToPlaylist component', () => {
         <${AddToPlaylist} tracks=${tracks} />`
     )
 
-    await fireEvent.click(screen.getByRole('button'))
+    await userEvent.click(screen.getByRole('button'))
 
     expect(screen.getByRole('textbox')).toBeInTheDocument()
     expect(screen.queryByRole('menuitem')).toBeInTheDocument()
 
-    fireEvent.click(screen.getByTestId('paragraph'))
+    userEvent.click(screen.getByTestId('paragraph'))
     await sleep(350)
 
     expect(screen.queryByRole('menuitem')).not.toBeInTheDocument()
@@ -63,14 +63,14 @@ describe('AddToPlaylist component', () => {
         0,
         playlists.length,
         {
-          id: faker.random.number(),
+          id: faker.datatype.number(),
           name: faker.commerce.productName(),
-          trackIds: [faker.random.number(), faker.random.number()]
+          trackIds: [faker.datatype.number(), faker.datatype.number()]
         },
         {
-          id: faker.random.number(),
+          id: faker.datatype.number(),
           name: faker.commerce.productName(),
-          trackIds: [faker.random.number(), faker.random.number()]
+          trackIds: [faker.datatype.number(), faker.datatype.number()]
         }
       )
       store.next(playlists)
@@ -81,7 +81,7 @@ describe('AddToPlaylist component', () => {
         html`<${AddToPlaylist} tracks=${tracks} on:select=${handleSelect} />`
       )
 
-      await fireEvent.click(screen.getByRole('button'))
+      await userEvent.click(screen.getByRole('button'))
 
       expect(screen.getByRole('textbox')).toBeInTheDocument()
       for (const { name } of playlists) {
@@ -100,8 +100,8 @@ describe('AddToPlaylist component', () => {
         html`<${AddToPlaylist} tracks=${tracks} on:select=${handleSelect} />`
       )
 
-      await fireEvent.click(screen.getByRole('button'))
-      fireEvent.click(screen.getByText(playlist.name))
+      await userEvent.click(screen.getByRole('button'))
+      userEvent.click(screen.getByText(playlist.name))
       await sleep(350)
 
       expect(appendTracks).toHaveBeenCalledWith({ id: playlist.id, tracks })
@@ -124,9 +124,9 @@ describe('AddToPlaylist component', () => {
 
       const name = faker.commerce.productName()
 
-      await fireEvent.click(screen.getByRole('button'))
-      userEvent.type(screen.getByRole('textbox'), name)
-      fireEvent.click(screen.getByText('add_box'))
+      await userEvent.click(screen.getByRole('button'))
+      await userEvent.type(screen.getByRole('textbox'), name)
+      userEvent.click(screen.getByText('add_box'))
       await sleep(350)
 
       expect(appendTracks).toHaveBeenCalledWith({ name, tracks: tracks })
@@ -149,7 +149,7 @@ describe('AddToPlaylist component', () => {
 
       const name = faker.commerce.productName()
 
-      await fireEvent.click(screen.getByRole('button'))
+      await userEvent.click(screen.getByRole('button'))
       userEvent.type(screen.getByRole('textbox'), name + '{enter}')
       await sleep(350)
 
@@ -171,7 +171,7 @@ describe('AddToPlaylist component', () => {
         html`<${AddToPlaylist} tracks=${tracks} on:select=${handleSelect} />`
       )
 
-      await fireEvent.click(screen.getByRole('button'))
+      await userEvent.click(screen.getByRole('button'))
       userEvent.type(screen.getByRole('textbox'), '  {enter}')
       await sleep(350)
 
@@ -192,7 +192,7 @@ describe('AddToPlaylist component', () => {
         html`<${AddToPlaylist} tracks=${tracks} on:select=${handleSelect} />`
       )
 
-      await fireEvent.click(screen.getByRole('button'))
+      await userEvent.click(screen.getByRole('button'))
       userEvent.type(screen.getByRole('textbox'), '{enter}')
       await sleep(350)
 
@@ -223,7 +223,7 @@ describe('AddToPlaylist component', () => {
         html`<${AddToPlaylist} tracks=${tracks} on:select=${handleSelect} />`
       )
 
-      await fireEvent.click(screen.getByRole('button'))
+      await userEvent.click(screen.getByRole('button'))
       const menu = screen.queryByRole('menu')
 
       expect(menu.childElementCount).toEqual(3)
@@ -241,7 +241,7 @@ describe('AddToPlaylist component', () => {
         html`<${AddToPlaylist} tracks=${tracks} on:select=${handleSelect} />`
       )
 
-      await fireEvent.click(screen.getByRole('button'))
+      await userEvent.click(screen.getByRole('button'))
       const menu = screen.queryByRole('menu')
 
       await userEvent.type(screen.getAllByRole('textbox')[0], 'a')
@@ -271,7 +271,7 @@ describe('AddToPlaylist component', () => {
         html`<${AddToPlaylist} tracks=${tracks} on:select=${handleSelect} />`
       )
 
-      await fireEvent.click(screen.getByRole('button'))
+      await userEvent.click(screen.getByRole('button'))
       const menu = screen.queryByRole('menu')
 
       await userEvent.type(screen.getAllByRole('textbox')[0], 'whatever')

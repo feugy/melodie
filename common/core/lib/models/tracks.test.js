@@ -21,14 +21,14 @@ describe('Tracks model', () => {
       path: join(folder1, faker.system.fileName()),
       tags: JSON.stringify({}),
       media: faker.image.image(),
-      mediaCount: faker.random.number({ min: 2, max: 10 }),
+      mediaCount: faker.datatype.number({ min: 2, max: 10 }),
       mtimeMs: 1590479078019.59,
       ino: 2634312
     },
     {
       path: join(folder1, faker.random.word(), faker.system.fileName()),
       media: faker.image.image(),
-      mediaCount: faker.random.number({ min: 2, max: 10 }),
+      mediaCount: faker.datatype.number({ min: 2, max: 10 }),
       tags: JSON.stringify({
         title,
         artists: [faker.name.findName()],
@@ -96,7 +96,7 @@ describe('Tracks model', () => {
         id: hash(path),
         path,
         media: faker.image.image(),
-        mediaCount: faker.random.number({ min: 2, max: 10 }),
+        mediaCount: faker.datatype.number({ min: 2, max: 10 }),
         mtimeMs: Date.now(),
         tags: { album, artists },
         ino: 2639762
@@ -120,7 +120,7 @@ describe('Tracks model', () => {
         id: hash(path),
         path,
         media: faker.image.image(),
-        mediaCount: faker.random.number({ max: 10 }),
+        mediaCount: faker.datatype.number({ max: 10 }),
         mtimeMs: Date.now(),
         tags: {},
         ino: 2639362
@@ -145,7 +145,7 @@ describe('Tracks model', () => {
         id: hash(path1),
         path: path1,
         media: faker.image.image(),
-        mediaCount: faker.random.number({ max: 10 }),
+        mediaCount: faker.datatype.number({ max: 10 }),
         mtimeMs: Date.now(),
         tags: { album, artists: artists.slice(0, 1), albumartist: artists[0] },
         ino: 2459112
@@ -154,7 +154,7 @@ describe('Tracks model', () => {
         id: hash(path2),
         path: path2,
         media: faker.image.image(),
-        mediaCount: faker.random.number({ max: 10 }),
+        mediaCount: faker.datatype.number({ max: 10 }),
         mtimeMs: Date.now(),
         tags: { album, artists: artists.slice(1), albumartist: artists[1] },
         ino: 3439112
@@ -182,7 +182,7 @@ describe('Tracks model', () => {
       const track = {
         ...models[1],
         media: faker.image.image(),
-        mediaCount: faker.random.number({ max: 10 }),
+        mediaCount: faker.datatype.number({ max: 10 }),
         mtimeMs: Date.now(),
         tags: { album, artists },
         ino: 3439196

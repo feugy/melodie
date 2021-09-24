@@ -1,6 +1,7 @@
 'use strict'
 
-import { screen, render, fireEvent } from '@testing-library/svelte'
+import { screen, render } from '@testing-library/svelte'
+import userEvent from '@testing-library/user-event'
 import html from 'svelte-htm'
 import { BehaviorSubject } from 'rxjs'
 import { replace } from 'svelte-spa-router'
@@ -39,26 +40,26 @@ jest.mock('../../stores/albums', () => {
 
 describe('album details route', () => {
   const album = {
-    id: faker.random.number(),
+    id: faker.datatype.number(),
     name: faker.commerce.productName(),
     refs: [
-      [faker.random.number(), faker.name.findName()],
-      [faker.random.number(), faker.name.findName()]
+      [faker.datatype.number(), faker.name.findName()],
+      [faker.datatype.number(), faker.name.findName()]
     ],
     media: faker.image.avatar(),
     tracks: [
       {
-        id: faker.random.uuid(),
+        id: faker.datatype.uuid(),
         tags: {
           title: faker.commerce.productName(),
           artists: [faker.name.findName()],
           album: faker.lorem.words(),
           duration: 265,
-          year: faker.random.number({ min: 1970, max: 2030 })
+          year: faker.datatype.number({ min: 1970, max: 2030 })
         }
       },
       {
-        id: faker.random.uuid(),
+        id: faker.datatype.uuid(),
         tags: {
           title: faker.commerce.productName(),
           artists: [faker.name.findName()],
@@ -67,7 +68,7 @@ describe('album details route', () => {
         }
       },
       {
-        id: faker.random.uuid(),
+        id: faker.datatype.uuid(),
         tags: {
           title: faker.commerce.productName(),
           artists: [faker.name.findName()],
@@ -139,7 +140,7 @@ describe('album details route', () => {
     it('has links to artists', async () => {
       const [id, artist] = faker.random.arrayElement(album.refs)
       // first occurence is in album header, then we have tracks
-      fireEvent.click(screen.getAllByText(artist)[0])
+      userEvent.click(screen.getAllByText(artist)[0])
       await sleep()
 
       expect(add).not.toHaveBeenCalled()
@@ -153,14 +154,14 @@ describe('album details route', () => {
     })
 
     it('enqueues whole album', async () => {
-      await fireEvent.click(screen.getByText(translate('enqueue all')))
+      await userEvent.click(screen.getByText(translate('enqueue all')))
 
       expect(add).toHaveBeenCalledWith(album.tracks)
       expect(add).toHaveBeenCalledTimes(1)
     })
 
     it('plays whole album', async () => {
-      await fireEvent.click(screen.getByText(translate('play all')))
+      await userEvent.click(screen.getByText(translate('play all')))
       await sleep()
 
       expect(add).toHaveBeenCalledWith(album.tracks, true)
@@ -175,7 +176,7 @@ describe('album details route', () => {
       changes.next([{ ...album, name: newName }])
       await sleep()
 
-      expect(screen.queryByText(album.name)).toBeFalsy()
+      expect(screen.queryByText(album.name)).not.toBeInTheDocument()
       expect(screen.getByText(newName)).toBeInTheDocument()
       expect(load).not.toHaveBeenCalled()
     })
@@ -183,7 +184,9 @@ describe('album details route', () => {
     it('ignores changes on other albums', async () => {
       load.mockReset()
 
-      changes.next([{ ...album, id: faker.random.number(), tracks: undefined }])
+      changes.next([
+        { ...album, id: faker.datatype.number(), tracks: undefined }
+      ])
       await sleep()
 
       expectDisplayedTracks()
@@ -208,7 +211,7 @@ describe('album details route', () => {
     })
 
     it('ignores other album removals', async () => {
-      removals.next([faker.random.number()])
+      removals.next([faker.datatype.number()])
 
       expect(replace).not.toHaveBeenCalledWith('/album')
     })
@@ -220,7 +223,7 @@ describe('album details route', () => {
           node.getAttribute('src').includes(album.media)
       )
 
-      await fireEvent.click(albumImage)
+      await userEvent.click(albumImage)
 
       expect(await screen.findByText(translate('choose cover'))).toBeVisible()
     })

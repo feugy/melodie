@@ -1,6 +1,7 @@
 'use strict'
 
-import { screen, render, fireEvent, within } from '@testing-library/svelte'
+import { screen, render, within } from '@testing-library/svelte'
+import userEvent from '@testing-library/user-event'
 import html from 'svelte-htm'
 import faker from 'faker'
 import { invoke } from './utils'
@@ -32,7 +33,7 @@ describe('App component', () => {
 
   const albums = [
     {
-      id: faker.random.number(),
+      id: faker.datatype.number(),
       name: albumName,
       media: faker.image.avatar(),
       refs: artists.map(makeRef),
@@ -49,7 +50,7 @@ describe('App component', () => {
       ]
     },
     {
-      id: faker.random.number(),
+      id: faker.datatype.number(),
       name: faker.commerce.productName(),
       media: faker.image.avatar(),
       refs: [makeRef(faker.name.findName())]
@@ -142,7 +143,8 @@ describe('App component', () => {
       const aside = screen.queryByRole('complementary').parentElement
       const albumThumbnail = screen.queryByText(albums[0].name).parentElement
         .parentElement
-      fireEvent.click(within(albumThumbnail).queryByText('play_arrow'))
+      await userEvent.hover(albumThumbnail)
+      userEvent.click(within(albumThumbnail).queryByText('play_arrow'))
 
       expect(screen.queryByText(translate('queue'))).toBeInTheDocument()
       expect(
@@ -161,7 +163,9 @@ describe('App component', () => {
         })
       ).toBeInTheDocument()
 
-      fireEvent.click(screen.queryAllByText(albumName)[0])
+      const [album] = screen.queryAllByText(albumName)
+      await userEvent.hover(album)
+      userEvent.click(album)
       await sleep(500)
       expect(screen.queryByRole('complementary')).not.toBeInTheDocument()
     })

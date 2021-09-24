@@ -888,6 +888,38 @@ describe('Tracks service', () => {
       expect(artistsModel.getById).not.toHaveBeenCalled()
     })
 
+    it('handles missing data when ordering by list rank', async () => {
+      const track1 = {
+        path: faker.system.fileName(),
+        tags: { track: { no: 3 }, disk: { no: 2 } }
+      }
+      track1.id = hash(track1.path)
+      const track2 = {
+        path: faker.system.fileName(),
+        tags: { track: { no: 1 }, disk: { no: 1 } }
+      }
+      track2.id = hash(track2.path)
+      const id3 = hash(faker.system.fileName())
+      const id4 = hash(faker.system.fileName())
+
+      const name = faker.commerce.productName()
+      const artist = {
+        id: hash(name),
+        name,
+        trackIds: [track2.id, id4, track1.id, id3]
+      }
+
+      artistsModel.getById.mockResolvedValueOnce(artist)
+      tracksModel.getByIds.mockResolvedValueOnce([track1, track2])
+      expect(
+        await tracksService.fetchWithTracks('artist', artist.id, 'rank')
+      ).toEqual({
+        ...artist,
+        tracks: [track2, track1]
+      })
+      expect(albumsModel.getById).not.toHaveBeenCalled()
+    })
+
     it('returns artists with tracks', async () => {
       const track1 = {
         path: faker.system.fileName(),

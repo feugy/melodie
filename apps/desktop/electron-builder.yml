@@ -2,6 +2,9 @@ appId: org.feugy.melodie
 productName: Mélodie
 copyright: Copyright © 2021 ${author}
 
+# because pino's thread-stream loads a worker, which can not work in asar
+asar: false
+
 files:
   - LICENSE
   - CHANGELOG.md
@@ -21,8 +24,8 @@ files:
   - '!**/node_modules/**/{test,__tests__,tests,powered-test,example,examples,__nocks__,__snapshots__,*.stories.*,docs,coverage}'
   - '!**/node_modules/@melodie/{core,ui}/{scripts,logs.txt,*.config.js,src}'
   - '!**/node_modules/knex/lib/dialects/{redshift,postgres,oracledb,oracle,mysql2,mysql}'
-  - '!**/node_modules/{rxjs,ajv}/**/*.map'
-  - '!**/node_modules/rxjs/{_esm5,_esm2015,src}'
+  - '!**/node_modules/**/*.map'
+  - '!**/node_modules/rxjs/**/{esm,esm5,src,bundles}'
   - '!**/node_modules/**/*.d.ts'
   - '!**/node_modules/.bin'
   - '!**/*.{iml,o,hprof,orig,pyc,pyo,rbc,swp,csproj,sln,xproj}'

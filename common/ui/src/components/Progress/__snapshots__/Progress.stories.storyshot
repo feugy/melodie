@@ -6,6 +6,7 @@ exports[`Storyshots Components/Progress Default 1`] = `
 >
   <div
     class="wrapper svelte-ow7w5o"
+    role="progressbar"
   >
     <div
       class="inc svelte-ow7w5o"

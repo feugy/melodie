@@ -1,7 +1,8 @@
 'use strict'
 
-import { writable, get } from 'svelte/store'
 import { screen, render, fireEvent } from '@testing-library/svelte'
+import userEvent from '@testing-library/user-event'
+import { writable, get } from 'svelte/store'
 import html from 'svelte-htm'
 import faker from 'faker'
 import ImageUploader from './ImageUploader.svelte'
@@ -153,7 +154,7 @@ describe('ImageUploader component', () => {
 
     expect(get(value)).toEqual(path)
 
-    await fireEvent.click(screen.getByRole('img'))
+    await userEvent.click(screen.getByRole('img'))
 
     expect(handleSelect).toHaveBeenCalledTimes(1)
   })
@@ -165,7 +166,7 @@ describe('ImageUploader component', () => {
       html`<${ImageUploader} bind:value=${value} on:select=${handleSelect} />`
     )
 
-    await fireEvent.click(screen.getByRole('img'))
+    await userEvent.click(screen.getByRole('img'))
 
     expect(handleSelect).not.toHaveBeenCalled()
   })

@@ -1,6 +1,7 @@
 'use strict'
 
 import { screen, render, fireEvent } from '@testing-library/svelte'
+import userEvent from '@testing-library/user-event'
 import html from 'svelte-htm'
 import { BehaviorSubject } from 'rxjs'
 import { replace } from 'svelte-spa-router'
@@ -46,13 +47,13 @@ jest.mock('../../stores/playlists', () => {
 
 describe('playlist details route', () => {
   const playlist = {
-    id: faker.random.number(),
+    id: faker.datatype.number(),
     name: faker.commerce.productName(),
     refs: [],
     media: null,
     tracks: [
       {
-        id: faker.random.uuid(),
+        id: faker.datatype.uuid(),
         tags: {
           title: faker.commerce.productName(),
           artists: [faker.name.findName()],
@@ -61,7 +62,7 @@ describe('playlist details route', () => {
         }
       },
       {
-        id: faker.random.uuid(),
+        id: faker.datatype.uuid(),
         tags: {
           title: faker.commerce.productName(),
           artists: [faker.name.findName()],
@@ -70,7 +71,7 @@ describe('playlist details route', () => {
         }
       },
       {
-        id: faker.random.uuid(),
+        id: faker.datatype.uuid(),
         tags: {
           title: faker.commerce.productName(),
           artists: [faker.name.findName()],
@@ -136,7 +137,7 @@ describe('playlist details route', () => {
     })
 
     it('enqueues whole playlist', async () => {
-      await fireEvent.click(screen.getByText(translate('enqueue all')))
+      await userEvent.click(screen.getByText(translate('enqueue all')))
       await sleep()
 
       expect(add).toHaveBeenCalledWith(playlist.tracks)
@@ -145,7 +146,7 @@ describe('playlist details route', () => {
     })
 
     it('plays whole playlist', async () => {
-      await fireEvent.click(screen.getByText(translate('play all')))
+      await userEvent.click(screen.getByText(translate('play all')))
       await sleep()
 
       expect(add).toHaveBeenCalledWith(playlist.tracks, true)
@@ -154,10 +155,10 @@ describe('playlist details route', () => {
     })
 
     it('can cancel playlist deletion', async () => {
-      await fireEvent.click(screen.queryByText(translate('delete playlist')))
+      await userEvent.click(screen.queryByText(translate('delete playlist')))
 
       expect(screen.queryByText(translate('playlist deletion'))).toBeVisible()
-      await fireEvent.click(screen.queryByText('cancel'))
+      await userEvent.click(screen.queryByText('cancel'))
       await sleep()
 
       expect(
@@ -167,20 +168,20 @@ describe('playlist details route', () => {
     })
 
     it('deletes the whole playlist', async () => {
-      await fireEvent.click(screen.queryByText(translate('delete playlist')))
+      await userEvent.click(screen.queryByText(translate('delete playlist')))
 
       expect(screen.queryByText(translate('playlist deletion'))).toBeVisible()
-      await fireEvent.click(screen.queryByText('done'))
+      await userEvent.click(screen.queryByText('done'))
       await sleep()
 
       expect(remove).toHaveBeenCalledWith(playlist)
     })
 
     it('can cancel playlist renamal', async () => {
-      await fireEvent.click(screen.queryByText('edit'))
+      await userEvent.click(screen.queryByText('edit'))
 
       expect(screen.queryByText(translate('playlist renamal'))).toBeVisible()
-      await fireEvent.click(screen.queryByText('cancel'))
+      await userEvent.click(screen.queryByText('cancel'))
       await sleep()
 
       expect(
@@ -191,42 +192,42 @@ describe('playlist details route', () => {
 
     it('renames playlist', async () => {
       const name = faker.commerce.productName()
-      await fireEvent.click(screen.queryByText('edit'))
+      await userEvent.click(screen.queryByText('edit'))
 
       expect(screen.queryByText(translate('playlist renamal'))).toBeVisible()
       await fireEvent.input(screen.getByRole('textbox'), {
         target: { value: name }
       })
-      await fireEvent.click(screen.queryByText('done'))
+      await userEvent.click(screen.queryByText('done'))
       await sleep()
 
       expect(save).toHaveBeenCalledWith({ ...playlist, name })
     })
 
     it('exports playlist', async () => {
-      await fireEvent.click(screen.queryByText('save_alt'))
+      await userEvent.click(screen.queryByText('save_alt'))
 
       expect(invoke).toHaveBeenCalledWith('playlists.export', playlist.id)
       expect(invoke).toHaveBeenCalledTimes(1)
     })
 
     it('ignores entered, empty names', async () => {
-      await fireEvent.click(screen.queryByText('edit'))
+      await userEvent.click(screen.queryByText('edit'))
 
       expect(screen.queryByText(translate('playlist renamal'))).toBeVisible()
       await fireEvent.input(screen.getByRole('textbox'), {
         target: { value: '' }
       })
-      await fireEvent.click(screen.queryByText('done'))
+      await userEvent.click(screen.queryByText('done'))
       await sleep()
 
       expect(save).not.toHaveBeenCalled()
 
-      await fireEvent.click(screen.queryByText('edit'))
+      await userEvent.click(screen.queryByText('edit'))
       await fireEvent.input(screen.getByRole('textbox'), {
         target: { value: '   ' }
       })
-      await fireEvent.click(screen.queryByText('done'))
+      await userEvent.click(screen.queryByText('done'))
       await sleep()
 
       expect(save).not.toHaveBeenCalled()
@@ -239,7 +240,7 @@ describe('playlist details route', () => {
       changes.next([{ ...playlist, name: newName }])
       await sleep()
 
-      expect(screen.queryByText(playlist.name)).toBeFalsy()
+      expect(screen.queryByText(playlist.name)).not.toBeInTheDocument()
       expect(screen.getByText(newName)).toBeInTheDocument()
       expect(load).not.toHaveBeenCalled()
     })
@@ -250,7 +251,7 @@ describe('playlist details route', () => {
       changes.next([
         {
           ...playlist,
-          id: faker.random.number(),
+          id: faker.datatype.number(),
           tracks: undefined
         }
       ])
@@ -278,7 +279,7 @@ describe('playlist details route', () => {
     })
 
     it('ignores other playlist removals', async () => {
-      removals.next([faker.random.number()])
+      removals.next([faker.datatype.number()])
 
       expect(replace).not.toHaveBeenCalled()
     })
@@ -293,7 +294,7 @@ describe('playlist details route', () => {
       load.mockReset()
       serverEmitter.next({
         event: 'track-changes',
-        args: [{ id: faker.random.number() }]
+        args: [{ id: faker.datatype.number() }]
       })
       await sleep()
       expect(load).not.toHaveBeenCalled()

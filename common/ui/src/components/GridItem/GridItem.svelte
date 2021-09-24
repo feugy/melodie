@@ -160,6 +160,7 @@
 <svelte:body on:click|capture={handleFocusLost} />
 
 <span
+  role="article"
   class={$$restProps.class}
   class:overlay
   on:click={handleClick}

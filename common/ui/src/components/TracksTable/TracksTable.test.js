@@ -1,6 +1,7 @@
 'use strict'
 
-import { screen, render, fireEvent } from '@testing-library/svelte'
+import { screen, render } from '@testing-library/svelte'
+import userEvent from '@testing-library/user-event'
 import html from 'svelte-htm'
 import faker from 'faker'
 import TracksTable from './TracksTable.svelte'
@@ -28,7 +29,7 @@ describe('TracksTable component', () => {
       html`<${TracksTable} tracks=${tracksData} current=${current$Data} />`
     )
 
-    fireEvent.click(faker.random.arrayElement(screen.getAllByText(artist)))
+    userEvent.click(faker.random.arrayElement(screen.getAllByText(artist)))
     await sleep()
 
     expect(location.hash).toEqual(`#/artist/${id}`)
@@ -44,7 +45,7 @@ describe('TracksTable component', () => {
       />`
     )
 
-    fireEvent.click(faker.random.arrayElement(screen.getAllByText(album)))
+    userEvent.click(faker.random.arrayElement(screen.getAllByText(album)))
     await sleep()
 
     expect(location.hash).toEqual(`#/album/${id}`)
@@ -60,7 +61,7 @@ describe('TracksTable component', () => {
       />`
     )
 
-    fireEvent.click(screen.getByText(track.tags.title))
+    userEvent.click(screen.getByText(track.tags.title))
 
     expect(clicks$.next).toHaveBeenCalledWith(track)
     expect(clicks$.next).toHaveBeenCalledTimes(1)
@@ -77,10 +78,10 @@ describe('TracksTable component', () => {
       />`
     )
 
-    await fireEvent.click(
+    await userEvent.click(
       screen.getByText(track.tags.title).closest('tr').querySelector('button')
     )
-    await fireEvent.click(screen.getByText('local_offer'))
+    await userEvent.click(screen.getByText('local_offer'))
 
     expect(screen.getByText(translate('track details'))).toBeVisible()
     expect(location.hash).toEqual(`#/`)

@@ -1,8 +1,9 @@
 'use strict'
 
+import { screen, render, fireEvent } from '@testing-library/svelte'
+import userEvent from '@testing-library/user-event'
 import { tick } from 'svelte'
 import { get } from 'svelte/store'
-import { screen, render, fireEvent } from '@testing-library/svelte'
 import html from 'svelte-htm'
 import faker from 'faker'
 import TracksQueue from './TracksQueue.svelte'
@@ -84,7 +85,7 @@ describe('TracksQueue component', () => {
     it('jumps to track on click', async () => {
       expect(get(index)).toEqual(0)
 
-      fireEvent.click(screen.getByText(tracks[2].tags.title))
+      userEvent.click(screen.getByText(tracks[2].tags.title))
       await sleep(310)
 
       expect(get(index)).toEqual(2)
@@ -92,7 +93,7 @@ describe('TracksQueue component', () => {
         screen.getByText(tracks[2].tags.title).closest('.row').scrollIntoView
       ).toHaveBeenCalled()
 
-      fireEvent.click(screen.getByText(tracks[1].tags.title))
+      userEvent.click(screen.getByText(tracks[1].tags.title))
       await sleep(310)
 
       expect(get(index)).toEqual(1)
@@ -106,7 +107,7 @@ describe('TracksQueue component', () => {
       expect(get(current)).toEqual(tracks[0])
       expect(get(trackQueue)).toEqual(tracks)
 
-      fireEvent.click(screen.queryByText('delete'))
+      userEvent.click(screen.queryByText('delete'))
       await sleep(400)
 
       expect(get(current)).not.toBeDefined()
@@ -118,7 +119,7 @@ describe('TracksQueue component', () => {
       expectListItems(tracks)
 
       const removed = tracks[1].tags.title
-      fireEvent.click(
+      userEvent.click(
         screen.getByText(removed).closest('li').querySelector('button')
       )
       await sleep(310)
@@ -151,7 +152,7 @@ describe('TracksQueue component', () => {
       expectListItems(tracks)
       expect(get(current)).toEqual(tracks[0])
 
-      fireEvent.click(secondTrack)
+      userEvent.click(secondTrack)
       await sleep(310)
 
       expect(get(index)).toEqual(2)
@@ -159,7 +160,7 @@ describe('TracksQueue component', () => {
 
       jest.clearAllMocks()
 
-      fireEvent.click(
+      userEvent.click(
         screen
           .getByText(tracks[3].tags.title)
           .closest('li')
@@ -198,7 +199,7 @@ describe('TracksQueue component', () => {
       expectListItems(tracks.slice(0, 2))
       expect(get(current)).toEqual(tracks[0])
 
-      fireEvent.click(screen.queryByText('delete'))
+      userEvent.click(screen.queryByText('delete'))
       await sleep(310)
 
       expectListItems(tracks.slice(0, 2))
@@ -214,7 +215,7 @@ describe('TracksQueue component', () => {
       expectListItems(tracks.slice(0, 2))
       expect(get(current)).toEqual(tracks[0])
 
-      fireEvent.click(
+      userEvent.click(
         screen
           .getByText(tracks[0].tags.title)
           .closest('li')
@@ -225,7 +226,7 @@ describe('TracksQueue component', () => {
       expectListItems(tracks.slice(1, 2))
       expect(get(current)).toEqual(tracks[1])
 
-      fireEvent.click(
+      userEvent.click(
         screen
           .getByText(tracks[1].tags.title)
           .closest('li')
@@ -245,19 +246,19 @@ describe('TracksQueue component', () => {
   describe('given some playlist', () => {
     const playlists = [
       {
-        id: faker.random.number(),
+        id: faker.datatype.number(),
         name: faker.commerce.productName(),
-        trackIds: [faker.random.number(), faker.random.number()]
+        trackIds: [faker.datatype.number(), faker.datatype.number()]
       },
       {
-        id: faker.random.number(),
+        id: faker.datatype.number(),
         name: faker.commerce.productName(),
-        trackIds: [faker.random.number(), faker.random.number()]
+        trackIds: [faker.datatype.number(), faker.datatype.number()]
       },
       {
-        id: faker.random.number(),
+        id: faker.datatype.number(),
         name: faker.commerce.productName(),
-        trackIds: [faker.random.number(), faker.random.number()]
+        trackIds: [faker.datatype.number(), faker.datatype.number()]
       }
     ]
 
@@ -277,9 +278,9 @@ describe('TracksQueue component', () => {
     it('adds entire queue to existing playlist', async () => {
       const playlist = faker.random.arrayElement(playlists)
 
-      fireEvent.click(screen.queryByText('library_add'))
+      userEvent.click(screen.queryByText('library_add'))
       await sleep()
-      fireEvent.click(screen.queryByText(playlist.name))
+      userEvent.click(screen.queryByText(playlist.name))
       await sleep(250)
 
       expectListItems(tracks)

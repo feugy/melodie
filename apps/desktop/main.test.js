@@ -63,7 +63,7 @@ jest.mock('./lib/utils/links')
 describe('Application test', () => {
   let win
   let main
-  const port = faker.random.number({ min: 1024, max: 20000 })
+  const port = faker.datatype.number({ min: 1024, max: 20000 })
 
   beforeAll(() => {
     // defer so we could mock electron

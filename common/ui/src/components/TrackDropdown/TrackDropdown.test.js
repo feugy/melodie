@@ -1,6 +1,7 @@
 'use strict'
 
-import { screen, render, fireEvent } from '@testing-library/svelte'
+import { screen, render } from '@testing-library/svelte'
+import userEvent from '@testing-library/user-event'
 import html from 'svelte-htm'
 import faker from 'faker'
 import { BehaviorSubject } from 'rxjs'
@@ -24,18 +25,18 @@ describe('TrackDropdown component', () => {
 
   describe('given an opened dropdown', () => {
     const option = { label: 'Custom item', icon: 'close', act: jest.fn() }
-    const track = { id: faker.random.number(), path: faker.system.fileName() }
+    const track = { id: faker.datatype.number(), path: faker.system.fileName() }
     const handleShowDetails = jest.fn()
     const playlists = [
       {
-        id: faker.random.number(),
+        id: faker.datatype.number(),
         name: faker.commerce.productName(),
-        trackIds: [faker.random.number(), faker.random.number()]
+        trackIds: [faker.datatype.number(), faker.datatype.number()]
       },
       {
-        id: faker.random.number(),
+        id: faker.datatype.number(),
         name: faker.commerce.productName(),
-        trackIds: [faker.random.number(), faker.random.number()]
+        trackIds: [faker.datatype.number(), faker.datatype.number()]
       }
     ]
     const store = new BehaviorSubject(playlists)
@@ -50,11 +51,11 @@ describe('TrackDropdown component', () => {
         />`
       )
 
-      await fireEvent.click(screen.getByText('more_vert'))
+      await userEvent.click(screen.getByText('more_vert'))
     })
 
     it('removes track from playlist with dropdown', async () => {
-      fireEvent.click(screen.getByText(option.label))
+      userEvent.click(screen.getByText(option.label))
 
       expect(option.act).toHaveBeenCalledWith(track)
       expect(option.act).toHaveBeenCalledTimes(1)
@@ -65,7 +66,7 @@ describe('TrackDropdown component', () => {
     })
 
     it('plays track with dropdown', async () => {
-      fireEvent.click(screen.getByText('play_arrow'))
+      userEvent.click(screen.getByText('play_arrow'))
 
       expect(add).toHaveBeenCalledWith(track, true)
       expect(add).toHaveBeenCalledTimes(1)
@@ -76,7 +77,7 @@ describe('TrackDropdown component', () => {
     })
 
     it('enqueues track with dropdown', async () => {
-      fireEvent.click(screen.getByText('playlist_add'))
+      userEvent.click(screen.getByText('playlist_add'))
 
       expect(add).toHaveBeenCalledWith(track)
       expect(add).toHaveBeenCalledTimes(1)
@@ -87,7 +88,7 @@ describe('TrackDropdown component', () => {
     })
 
     it('invokes service to open parent folder, on desktop', async () => {
-      fireEvent.click(screen.getByText('launch'))
+      userEvent.click(screen.getByText('launch'))
 
       expect(invoke).toHaveBeenCalledWith(
         'tracks.openContainingFolder',
@@ -105,7 +106,7 @@ describe('TrackDropdown component', () => {
     })
 
     it('dispatches event when opening track details', async () => {
-      fireEvent.click(screen.getByText('local_offer'))
+      userEvent.click(screen.getByText('local_offer'))
 
       expect(handleShowDetails).toHaveBeenCalledWith(
         expect.objectContaining({ detail: track })
@@ -118,8 +119,9 @@ describe('TrackDropdown component', () => {
     })
 
     it('adds track to an existing playlist', async () => {
-      await fireEvent.click(screen.getByText(translate('add to playlist')))
-      fireEvent.click(screen.getByText(playlists[1].name))
+      userEvent.click(screen.getByText(translate('add to playlist')))
+      await sleep(350)
+      userEvent.click(screen.getByText(playlists[1].name))
       await sleep(350)
 
       expect(appendTracks).toHaveBeenCalledWith({

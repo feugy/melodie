@@ -7,13 +7,15 @@ const faker = require('faker')
 
 async function makeFolder({
   folder = join(os.tmpdir(), 'melodie-'),
-  fileNb = faker.random.number({ min: 2, max: 10 }),
+  fileNb = faker.datatype.number({ min: 2, max: 10 }),
   depth = 1
 } = {}) {
   const files = []
   folder = await fs.mkdtemp(folder)
   const directFilesNb =
-    depth === 1 ? fileNb : faker.random.number({ min: 1, max: fileNb - depth })
+    depth === 1
+      ? fileNb
+      : faker.datatype.number({ min: 1, max: fileNb - depth })
   for (const n of Array.from({ length: directFilesNb }, (v, i) => i)) {
     const path = join(
       folder,
@@ -40,7 +42,7 @@ exports.makeFolder = makeFolder
 
 async function makePlaylists({
   files,
-  playlistNb = faker.random.number({ min: 2, max: 5 })
+  playlistNb = faker.datatype.number({ min: 2, max: 5 })
 }) {
   const playlists = []
   for (let n = 0; n < playlistNb; n++) {

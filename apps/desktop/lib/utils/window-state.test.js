@@ -16,21 +16,21 @@ const {
   focusOnNotification
 } = require('./window-state')
 
-function makeWin(id = faker.random.number()) {
+function makeWin(id = faker.datatype.number()) {
   const win = new EventEmitter()
   Object.assign(win, {
     id,
     getBounds: jest.fn().mockReturnValue({
-      x: faker.random.number(),
-      y: faker.random.number(),
-      width: faker.random.number(),
-      height: faker.random.number()
+      x: faker.datatype.number(),
+      y: faker.datatype.number(),
+      width: faker.datatype.number(),
+      height: faker.datatype.number()
     }),
     setBounds: jest.fn(),
     isDestroyed: jest.fn().mockReturnValue(false),
-    isMaximized: jest.fn().mockReturnValue(faker.random.boolean()),
-    isMinimized: jest.fn().mockReturnValue(faker.random.boolean()),
-    isFullScreen: jest.fn().mockReturnValue(faker.random.boolean()),
+    isMaximized: jest.fn().mockReturnValue(faker.datatype.boolean()),
+    isMinimized: jest.fn().mockReturnValue(faker.datatype.boolean()),
+    isFullScreen: jest.fn().mockReturnValue(faker.datatype.boolean()),
     maximize: jest.fn(),
     minimize: jest.fn(),
     restore: jest.fn(),
@@ -205,10 +205,10 @@ describe('window state management utilities', () => {
   it('only care about last event', async () => {
     win = makeWin()
     const bounds = {
-      x: faker.random.number(),
-      y: faker.random.number(),
-      width: faker.random.number(),
-      height: faker.random.number()
+      x: faker.datatype.number(),
+      y: faker.datatype.number(),
+      width: faker.datatype.number(),
+      height: faker.datatype.number()
     }
     win.getBounds.mockReturnValueOnce(bounds)
     win.isMinimized.mockReturnValueOnce(true)

@@ -31,38 +31,41 @@ describe('Abstract track list', () => {
   const lastProcessed = Date.now() - dayMs
   const models = [
     {
-      id: faker.random.number(),
+      id: faker.datatype.number(),
       name: faker.name.findName(),
       media: null,
       mediaCount: 1,
       trackIds: JSON.stringify([]),
-      refs: JSON.stringify([[faker.random.number(), faker.name.findName()]]),
+      refs: JSON.stringify([[faker.datatype.number(), faker.name.findName()]]),
       processedEpoch: null
     },
     {
-      id: faker.random.number(),
+      id: faker.datatype.number(),
       name: faker.name.findName(),
       media: faker.image.image(),
-      mediaCount: faker.random.number({ min: 2, max: 10 }),
-      trackIds: JSON.stringify([faker.random.number()]),
+      mediaCount: faker.datatype.number({ min: 2, max: 10 }),
+      trackIds: JSON.stringify([faker.datatype.number()]),
       refs: JSON.stringify([
-        [faker.random.number(), faker.name.findName()],
-        [faker.random.number(), faker.name.findName()]
+        [faker.datatype.number(), faker.name.findName()],
+        [faker.datatype.number(), faker.name.findName()]
       ])
     },
     {
-      id: faker.random.number(),
+      id: faker.datatype.number(),
       name: faker.name.findName(),
       media: faker.image.image(),
-      mediaCount: faker.random.number({ min: 2, max: 10 }),
-      trackIds: JSON.stringify([faker.random.number(), faker.random.number()]),
+      mediaCount: faker.datatype.number({ min: 2, max: 10 }),
+      trackIds: JSON.stringify([
+        faker.datatype.number(),
+        faker.datatype.number()
+      ]),
       refs: JSON.stringify([
-        [faker.random.number(), faker.name.findName()],
-        [faker.random.number(), faker.name.findName()]
+        [faker.datatype.number(), faker.name.findName()],
+        [faker.datatype.number(), faker.name.findName()]
       ])
     },
     {
-      id: faker.random.number(),
+      id: faker.datatype.number(),
       name: faker.name.findName(),
       media: null,
       mediaCount: 1,
@@ -133,12 +136,12 @@ describe('Abstract track list', () => {
 
   describe('save', () => {
     it('adds new model', async () => {
-      const refs = [[faker.random.number(), faker.name.findName()]]
+      const refs = [[faker.datatype.number(), faker.name.findName()]]
       computeRefs.mockResolvedValueOnce(refs)
       const model = {
-        id: faker.random.number(),
+        id: faker.datatype.number(),
         name: faker.name.findName(),
-        trackIds: [faker.random.number()]
+        trackIds: [faker.datatype.number()]
       }
 
       const { saved, removedIds } = await tested.save(model)
@@ -165,19 +168,19 @@ describe('Abstract track list', () => {
     })
 
     it('saves multipe models', async () => {
-      const refs1 = [[faker.random.number(), faker.name.findName()]]
-      const refs2 = [[faker.random.number(), faker.name.findName()]]
+      const refs1 = [[faker.datatype.number(), faker.name.findName()]]
+      const refs2 = [[faker.datatype.number(), faker.name.findName()]]
       computeRefs.mockResolvedValueOnce(refs1).mockResolvedValueOnce(refs2)
       const models = [
         {
-          id: faker.random.number(),
+          id: faker.datatype.number(),
           name: faker.name.findName(),
-          trackIds: [faker.random.number()]
+          trackIds: [faker.datatype.number()]
         },
         {
-          id: faker.random.number(),
+          id: faker.datatype.number(),
           name: faker.name.findName(),
-          trackIds: [faker.random.number()]
+          trackIds: [faker.datatype.number()]
         }
       ]
 
@@ -222,26 +225,26 @@ describe('Abstract track list', () => {
     })
 
     it('updates multipe models with sparse data', async () => {
-      const refs = [[faker.random.number(), faker.name.findName()]]
+      const refs = [[faker.datatype.number(), faker.name.findName()]]
       computeRefs.mockResolvedValue(refs)
       const originals = [
         {
           id: models[0].id,
           name: models[0].name,
           media: faker.image.image(),
-          mediaCount: faker.random.number({ min: 2, max: 10 }),
+          mediaCount: faker.datatype.number({ min: 2, max: 10 }),
           processedEpoch: null,
-          trackIds: [faker.random.number()]
+          trackIds: [faker.datatype.number()]
         },
         {
           id: models[1].id,
           name: models[1].name,
-          removedTrackIds: [faker.random.number()]
+          removedTrackIds: [faker.datatype.number()]
         },
         {
-          id: faker.random.number(),
+          id: faker.datatype.number(),
           name: faker.name.findName(),
-          trackIds: [faker.random.number()]
+          trackIds: [faker.datatype.number()]
         }
       ]
 
@@ -301,11 +304,11 @@ describe('Abstract track list', () => {
 
     it('updates existing model and appends track ids and refs', async () => {
       const model = merge(models[1], {})
-      model.trackIds = [faker.random.number(), faker.random.number()]
+      model.trackIds = [faker.datatype.number(), faker.datatype.number()]
       delete model.refs
       const refs = [
-        [faker.random.number(), faker.name.findName()],
-        [faker.random.number(), faker.name.findName()]
+        [faker.datatype.number(), faker.name.findName()],
+        [faker.datatype.number(), faker.name.findName()]
       ]
       computeRefs.mockResolvedValueOnce(refs)
 
@@ -335,8 +338,8 @@ describe('Abstract track list', () => {
       const model = merge(models[2], {})
       delete model.refs
       model.removedTrackIds = JSON.parse(model.trackIds).slice(1, 2)
-      model.trackIds = [faker.random.number()]
-      const refs = [[faker.random.number(), faker.name.findName()]]
+      model.trackIds = [faker.datatype.number()]
+      const refs = [[faker.datatype.number(), faker.name.findName()]]
       computeRefs.mockResolvedValueOnce(refs)
 
       const { saved, removedIds } = await tested.save(model)

@@ -3,9 +3,9 @@
 const { join } = require('path')
 const os = require('os')
 const faker = require('faker')
-const pino = require('pino')
 const fs = require('fs-extra')
 
+let pino
 let getLogger
 let refreshLogLevels
 
@@ -19,30 +19,28 @@ describe('logger', () => {
 
   function setupLogger(name, proto = {}) {
     loggers[name] = proto
-    loggers[name].bindings = jest.fn().mockReturnValue({ name })
     setters[name] = jest.fn()
     Object.defineProperty(loggers[name], 'level', { set: setters[name] })
     return loggers[name]
   }
 
   beforeEach(async () => {
-    jest.clearAllMocks()
-    jest.isolateModules(() => {
-      ;({ getLogger, refreshLogLevels } = require('./logger'))
-    })
+    jest.resetModules()
+    jest.resetAllMocks()
     process.env = {}
     Object.assign(process.env, envSave)
     process.env.LOG_LEVEL_FILE = levelFile
     await fs.writeFile(levelFile, '')
     loggers = {}
     setters = {}
+    pino = require('pino')
     pino.mockReturnValue(
       setupLogger('core', {
         child: jest.fn().mockImplementation(({ name }) => setupLogger(name))
       })
     )
-    // use pino.destination(1)
     process.env.LOG_DESTINATION = 1
+    ;({ getLogger, refreshLogLevels } = require('./logger'))
   })
 
   afterEach(async () => {
@@ -57,19 +55,24 @@ describe('logger', () => {
     const logger = getLogger()
 
     expect(logger).toBe(loggers.core)
-    expect(pino).toHaveBeenCalledWith(
-      {
-        name: 'core',
-        level: 'silent',
-        base: false,
-        prettyPrint: {
+    expect(pino).toHaveBeenCalledWith({
+      name: 'core',
+      level: 'silent',
+      base: false,
+      transport: {
+        target: 'pino-pretty',
+        options: {
+          destination: process.env.LOG_DESTINATION,
           translateTime: true,
           colorize: false,
           errorProps: '*'
         }
       },
-      pino.destination(1)
-    )
+      serializers: {
+        err: pino.stdSerializers.err,
+        error: pino.stdSerializers.err
+      }
+    })
     expect(pino).toHaveBeenCalledTimes(1)
     pino.mockClear()
 
@@ -85,7 +88,7 @@ describe('logger', () => {
     const logger = getLogger(name, level)
 
     expect(logger).toBe(loggers[name])
-    expect(loggers.core.child).toHaveBeenCalledWith({ name, level })
+    expect(loggers.core.child).toHaveBeenCalledWith({ name }, { level })
     expect(loggers.core.child).toHaveBeenCalledTimes(1)
     expect(pino).toHaveBeenCalledTimes(1)
     pino.mockClear()
@@ -107,12 +110,14 @@ describe('logger', () => {
       expect.objectContaining({
         name: 'core',
         level: 'debug'
-      }),
-      pino.destination(1)
+      })
     )
 
     getLogger(name)
-    expect(loggers.core.child).toHaveBeenCalledWith({ name, level: 'debug' })
+    expect(loggers.core.child).toHaveBeenCalledWith(
+      { name },
+      { level: 'debug' }
+    )
   })
 
   it('set level when run without jest or rollup', async () => {
@@ -123,12 +128,11 @@ describe('logger', () => {
       expect.objectContaining({
         name: 'core',
         level: 'info'
-      }),
-      pino.destination(1)
+      })
     )
 
     getLogger(name)
-    expect(loggers.core.child).toHaveBeenCalledWith({ name, level: 'info' })
+    expect(loggers.core.child).toHaveBeenCalledWith({ name }, { level: 'info' })
   })
 
   it('uses level spec when creating loggers', async () => {
@@ -142,12 +146,11 @@ describe('logger', () => {
       expect.objectContaining({
         name: 'core',
         level: level1
-      }),
-      pino.destination(1)
+      })
     )
 
     getLogger(name)
-    expect(loggers.core.child).toHaveBeenCalledWith({ name, level: level2 })
+    expect(loggers.core.child).toHaveBeenCalledWith({ name }, { level: level2 })
   })
 
   it('changes specific logger level on SIGUSR2', async () => {

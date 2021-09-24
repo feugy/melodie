@@ -154,22 +154,22 @@ describe('Media service', () => {
   describe('saveForAlbum()', () => {
     const name = faker.commerce.productName()
     const track1 = {
-      id: faker.random.number({ min: 9999 }),
+      id: faker.datatype.number({ min: 9999 }),
       path: resolve(ARTWORK_DESTINATION, faker.system.fileName()),
       media: null,
-      mediaCount: faker.random.number({ min: 1, max: 10 })
+      mediaCount: faker.datatype.number({ min: 1, max: 10 })
     }
     const track2 = {
-      id: faker.random.number({ min: 9999 }),
+      id: faker.datatype.number({ min: 9999 }),
       path: resolve(ARTWORK_DESTINATION, faker.system.fileName()),
       media: null,
-      mediaCount: faker.random.number({ min: 1, max: 10 })
+      mediaCount: faker.datatype.number({ min: 1, max: 10 })
     }
     const album = {
-      id: faker.random.number({ min: 9999 }),
+      id: faker.datatype.number({ min: 9999 }),
       name,
       media: null,
-      mediaCount: faker.random.number({ min: 1, max: 10 }),
+      mediaCount: faker.datatype.number({ min: 1, max: 10 }),
       trackIds: [track1.id, track2.id]
     }
 
@@ -324,7 +324,7 @@ describe('Media service', () => {
 
   describe('saveForArtist()', () => {
     const artist = {
-      id: faker.random.number({ min: 9999 }),
+      id: faker.datatype.number({ min: 9999 }),
       name: faker.name.findName(),
       media: null,
       mediaCount: 1,
@@ -458,7 +458,7 @@ describe('Media service', () => {
           id: 102,
           name: faker.name.findName(),
           media: null,
-          mediaCount: faker.random.number({ min: 2, max: 10 }),
+          mediaCount: faker.datatype.number({ min: 2, max: 10 }),
           trackIds: []
         }
       ]
@@ -557,7 +557,7 @@ describe('Media service', () => {
           id: 104,
           name: faker.name.findName(),
           media: null,
-          mediaCount: faker.random.number({ min: 2, max: 10 }),
+          mediaCount: faker.datatype.number({ min: 2, max: 10 }),
           trackIds: []
         }
       ]
@@ -595,7 +595,7 @@ describe('Media service', () => {
         id: 105,
         name: faker.name.findName(),
         media: null,
-        mediaCount: faker.random.number({ min: 2, max: 10 }),
+        mediaCount: faker.datatype.number({ min: 2, max: 10 }),
         trackIds: []
       }
       artistsModel.listMedialess.mockResolvedValueOnce([artist])
@@ -635,7 +635,7 @@ describe('Media service', () => {
           id: 107,
           name: faker.name.findName(),
           media: null,
-          mediaCount: faker.random.number({ min: 2, max: 10 }),
+          mediaCount: faker.datatype.number({ min: 2, max: 10 }),
           trackIds: []
         }
       ]
@@ -696,7 +696,7 @@ describe('Media service', () => {
         id: 108 + i,
         name: faker.name.findName(),
         media: null,
-        mediaCount: faker.random.number({ min: 2, max: 10 }),
+        mediaCount: faker.datatype.number({ min: 2, max: 10 }),
         trackIds: []
       }))
       artistsModel.listMedialess.mockResolvedValueOnce(artists)
@@ -750,7 +750,7 @@ describe('Media service', () => {
         id: 500 + i,
         name: faker.commerce.productName(),
         media: null,
-        mediaCount: faker.random.number({ min: 2, max: 10 }),
+        mediaCount: faker.datatype.number({ min: 2, max: 10 }),
         trackIds: [tracks[i].id]
       }))
       albumsModel.listMedialess.mockResolvedValueOnce(albums)
@@ -759,7 +759,7 @@ describe('Media service', () => {
         id: 114 + i,
         name: faker.name.findName(),
         media: null,
-        mediaCount: faker.random.number({ min: 2, max: 10 }),
+        mediaCount: faker.datatype.number({ min: 2, max: 10 }),
         trackIds: []
       }))
       artistsModel.listMedialess.mockResolvedValue(artists)
@@ -821,10 +821,10 @@ describe('Media service', () => {
 
     it('saves first returned artwork', async () => {
       const artist = {
-        id: faker.random.number({ min: 9999 }),
+        id: faker.datatype.number({ min: 9999 }),
         name: faker.name.findName(),
         media: null,
-        mediaCount: faker.random.number({ min: 2, max: 10 }),
+        mediaCount: faker.datatype.number({ min: 2, max: 10 }),
         trackIds: []
       }
       const savedArtist = {
@@ -863,12 +863,12 @@ describe('Media service', () => {
     })
 
     it('merges returned bios', async () => {
-      const id = faker.random.number({ min: 9999 })
+      const id = faker.datatype.number({ min: 9999 })
       const artist = {
         id,
         name: faker.name.findName(),
         media: resolve(ARTWORK_DESTINATION, `${id}.jpeg`),
-        mediaCount: faker.random.number({ min: 2, max: 10 }),
+        mediaCount: faker.datatype.number({ min: 2, max: 10 }),
         trackIds: []
       }
       const bio1 = {
@@ -917,10 +917,10 @@ describe('Media service', () => {
 
     it('saved both bio and artwork', async () => {
       const artist = {
-        id: faker.random.number({ min: 9999 }),
+        id: faker.datatype.number({ min: 9999 }),
         name: faker.name.findName(),
         media: null,
-        mediaCount: faker.random.number({ min: 2, max: 10 }),
+        mediaCount: faker.datatype.number({ min: 2, max: 10 }),
         trackIds: []
       }
       const bio = {
@@ -966,10 +966,10 @@ describe('Media service', () => {
 
     it('skips artist with no name', async () => {
       const artist = {
-        id: faker.random.number({ min: 9999 }),
+        id: faker.datatype.number({ min: 9999 }),
         name: null,
         media: null,
-        mediaCount: faker.random.number({ min: 2, max: 10 }),
+        mediaCount: faker.datatype.number({ min: 2, max: 10 }),
         trackIds: []
       }
       artistsModel.getById.mockResolvedValue(artist)
@@ -987,7 +987,7 @@ describe('Media service', () => {
     })
 
     it('does not override existing media', async () => {
-      const id = faker.random.number({ min: 9999 })
+      const id = faker.datatype.number({ min: 9999 })
       const media = resolve(ARTWORK_DESTINATION, `${id}.jpeg`)
       const bio = {
         en: `English ${faker.lorem.words()}`,
@@ -998,7 +998,7 @@ describe('Media service', () => {
         id,
         name: faker.name.findName(),
         media,
-        mediaCount: faker.random.number({ min: 2, max: 10 }),
+        mediaCount: faker.datatype.number({ min: 2, max: 10 }),
         trackIds: []
       }
       const savedArtist = {
@@ -1041,12 +1041,12 @@ describe('Media service', () => {
     })
 
     it('stops on artist with artwork and bio for current locale', async () => {
-      const id = faker.random.number({ min: 9999 })
+      const id = faker.datatype.number({ min: 9999 })
       const artist = {
         id,
         name: faker.name.findName(),
         media: resolve(ARTWORK_DESTINATION, `${id}.jpg`),
-        mediaCount: faker.random.number({ min: 2, max: 10 }),
+        mediaCount: faker.datatype.number({ min: 2, max: 10 }),
         bio: { en: faker.lorem.words() },
         trackIds: []
       }
@@ -1062,12 +1062,12 @@ describe('Media service', () => {
     })
 
     it('stops on missing results', async () => {
-      const id = faker.random.number({ min: 9999 })
+      const id = faker.datatype.number({ min: 9999 })
       const artist = {
         id,
         name: faker.name.findName(),
         media: null,
-        mediaCount: faker.random.number({ min: 2, max: 10 }),
+        mediaCount: faker.datatype.number({ min: 2, max: 10 }),
         trackIds: []
       }
       artistsModel.getById.mockResolvedValue(artist)
@@ -1090,7 +1090,7 @@ describe('Media service', () => {
     it('stops on unknown artist', async () => {
       artistsModel.getById.mockResolvedValue(null)
 
-      await mediaService.triggerArtistEnrichment(faker.random.number())
+      await mediaService.triggerArtistEnrichment(faker.datatype.number())
 
       expect(local.findArtistArtwork).not.toHaveBeenCalled()
       expect(audiodb.findArtistArtwork).not.toHaveBeenCalled()
@@ -1108,13 +1108,13 @@ describe('Media service', () => {
     it('saves first returned cover for album', async () => {
       const tracks = [
         {
-          id: faker.random.number({ min: 9999 }),
+          id: faker.datatype.number({ min: 9999 }),
           path: resolve(ARTWORK_DESTINATION, faker.system.fileName()),
-          mediaCount: faker.random.number({ min: 2, max: 10 })
+          mediaCount: faker.datatype.number({ min: 2, max: 10 })
         },
         {
-          id: faker.random.number({ min: 9999 }),
-          mediaCount: faker.random.number({ min: 2, max: 10 })
+          id: faker.datatype.number({ min: 9999 }),
+          mediaCount: faker.datatype.number({ min: 2, max: 10 })
         }
       ]
       // tracks must be from different folders, or the concurrent replacment will conflict
@@ -1126,17 +1126,17 @@ describe('Media service', () => {
       )
       const albums = [
         {
-          id: faker.random.number({ min: 9999 }),
+          id: faker.datatype.number({ min: 9999 }),
           name: faker.commerce.productName(),
           media: null,
-          mediaCount: faker.random.number({ min: 2, max: 10 }),
+          mediaCount: faker.datatype.number({ min: 2, max: 10 }),
           trackIds: [tracks[0].id]
         },
         {
-          id: faker.random.number({ min: 9999 }),
+          id: faker.datatype.number({ min: 9999 }),
           name: faker.commerce.productName(),
           media: null,
-          mediaCount: faker.random.number({ min: 2, max: 10 }),
+          mediaCount: faker.datatype.number({ min: 2, max: 10 }),
           trackIds: [tracks[1].id]
         }
       ]
@@ -1256,29 +1256,29 @@ describe('Media service', () => {
     it('skips albums with no names', async () => {
       const tracks = [
         {
-          id: faker.random.number({ min: 9999 }),
+          id: faker.datatype.number({ min: 9999 }),
           path: resolve(ARTWORK_DESTINATION, faker.system.fileName()),
-          mediaCount: faker.random.number({ min: 2, max: 10 })
+          mediaCount: faker.datatype.number({ min: 2, max: 10 })
         },
         {
-          id: faker.random.number({ min: 9999 }),
+          id: faker.datatype.number({ min: 9999 }),
           path: resolve(ARTWORK_DESTINATION, faker.system.fileName()),
-          mediaCount: faker.random.number({ min: 2, max: 10 })
+          mediaCount: faker.datatype.number({ min: 2, max: 10 })
         }
       ]
       const albums = [
         {
-          id: faker.random.number({ min: 9999 }),
+          id: faker.datatype.number({ min: 9999 }),
           name: null,
           media: null,
-          mediaCount: faker.random.number({ min: 2, max: 10 }),
+          mediaCount: faker.datatype.number({ min: 2, max: 10 }),
           trackIds: [tracks[0].id]
         },
         {
-          id: faker.random.number({ min: 9999 }),
+          id: faker.datatype.number({ min: 9999 }),
           name: faker.commerce.productName(),
           media: null,
-          mediaCount: faker.random.number({ min: 2, max: 10 }),
+          mediaCount: faker.datatype.number({ min: 2, max: 10 }),
           trackIds: [tracks[1].id]
         }
       ]
@@ -1313,10 +1313,10 @@ describe('Media service', () => {
 
     it('saves processing date on album with no cover', async () => {
       const album = {
-        id: faker.random.number({ min: 9999 }),
+        id: faker.datatype.number({ min: 9999 }),
         name: faker.commerce.productName(),
         media: null,
-        mediaCount: faker.random.number({ min: 2, max: 10 }),
+        mediaCount: faker.datatype.number({ min: 2, max: 10 }),
         trackIds: []
       }
       albumsModel.listMedialess.mockResolvedValueOnce([album])
@@ -1347,29 +1347,29 @@ describe('Media service', () => {
     it('retries album with no cover but at least one restricted provided', async () => {
       const tracks = [
         {
-          id: faker.random.number({ min: 9999 }),
+          id: faker.datatype.number({ min: 9999 }),
           path: resolve(ARTWORK_DESTINATION, faker.system.fileName()),
-          mediaCount: faker.random.number({ min: 2, max: 10 })
+          mediaCount: faker.datatype.number({ min: 2, max: 10 })
         },
         {
-          id: faker.random.number({ min: 9999 }),
+          id: faker.datatype.number({ min: 9999 }),
           path: resolve(ARTWORK_DESTINATION, faker.system.fileName()),
-          mediaCount: faker.random.number({ min: 2, max: 10 })
+          mediaCount: faker.datatype.number({ min: 2, max: 10 })
         }
       ]
       const albums = [
         {
-          id: faker.random.number({ min: 9999 }),
+          id: faker.datatype.number({ min: 9999 }),
           name: faker.commerce.productName(),
           media: null,
-          mediaCount: faker.random.number({ min: 2, max: 10 }),
+          mediaCount: faker.datatype.number({ min: 2, max: 10 }),
           trackIds: [tracks[0].id]
         },
         {
-          id: faker.random.number({ min: 9999 }),
+          id: faker.datatype.number({ min: 9999 }),
           name: faker.commerce.productName(),
           media: null,
-          mediaCount: faker.random.number({ min: 2, max: 10 }),
+          mediaCount: faker.datatype.number({ min: 2, max: 10 }),
           trackIds: [tracks[1].id]
         }
       ]
@@ -1431,15 +1431,15 @@ describe('Media service', () => {
 
     it('does not process more than N albums per minute', async () => {
       const tracks = Array.from({ length: 5 }, () => ({
-        id: faker.random.number({ min: 9999 }),
+        id: faker.datatype.number({ min: 9999 }),
         path: resolve(ARTWORK_DESTINATION, faker.system.fileName()),
-        mediaCount: faker.random.number({ min: 2, max: 10 })
+        mediaCount: faker.datatype.number({ min: 2, max: 10 })
       }))
       const albums = Array.from({ length: 5 }, (v, i) => ({
-        id: faker.random.number({ min: 9999 }),
+        id: faker.datatype.number({ min: 9999 }),
         name: faker.commerce.productName(),
         media: null,
-        mediaCount: faker.random.number({ min: 2, max: 10 }),
+        mediaCount: faker.datatype.number({ min: 2, max: 10 }),
         trackIds: [tracks[i].id]
       }))
       albumsModel.listMedialess.mockResolvedValueOnce(albums)
@@ -1504,24 +1504,24 @@ describe('Media service', () => {
 
     it('stops previous enrichment', async () => {
       const artists = Array.from({ length: 5 }, () => ({
-        id: faker.random.number({ min: 9999 }),
+        id: faker.datatype.number({ min: 9999 }),
         name: faker.name.findName(),
         media: null,
-        mediaCount: faker.random.number({ min: 2, max: 10 }),
+        mediaCount: faker.datatype.number({ min: 2, max: 10 }),
         trackIds: []
       }))
       artistsModel.listMedialess.mockResolvedValue(artists)
 
       const tracks = Array.from({ length: 5 }, () => ({
-        id: faker.random.number({ min: 9999 }),
+        id: faker.datatype.number({ min: 9999 }),
         path: resolve(ARTWORK_DESTINATION, faker.system.fileName()),
-        mediaCount: faker.random.number({ min: 2, max: 10 })
+        mediaCount: faker.datatype.number({ min: 2, max: 10 })
       }))
       const albums = Array.from({ length: 5 }, (v, i) => ({
-        id: faker.random.number({ min: 9999 }),
+        id: faker.datatype.number({ min: 9999 }),
         name: faker.commerce.productName(),
         media: null,
-        mediaCount: faker.random.number({ min: 2, max: 10 }),
+        mediaCount: faker.datatype.number({ min: 2, max: 10 }),
         trackIds: [tracks[i].id]
       }))
       albumsModel.listMedialess.mockResolvedValueOnce(albums)
@@ -1594,7 +1594,7 @@ describe('Media service', () => {
 
   describe('getTrackData', () => {
     it(`returns track's data full path`, async () => {
-      const id = faker.random.number({ min: 9999 })
+      const id = faker.datatype.number({ min: 9999 })
       const path = faker.image.image()
       tracksModel.getById.mockResolvedValueOnce({ id, path })
 
@@ -1602,7 +1602,7 @@ describe('Media service', () => {
     })
 
     it('returns null on unknown id', async () => {
-      const id = faker.random.number({ min: 9999 })
+      const id = faker.datatype.number({ min: 9999 })
       tracksModel.getById.mockResolvedValueOnce(null)
 
       expect(await mediaService.getTrackData(id)).toBeNull()
@@ -1611,17 +1611,17 @@ describe('Media service', () => {
 
   describe('getTrackMedia', () => {
     it(`returns track's cover full path`, async () => {
-      const id = faker.random.number({ min: 9999 })
+      const id = faker.datatype.number({ min: 9999 })
       const media = faker.image.image()
-      const mediaCount = faker.random.number({ min: 2, max: 10 })
+      const mediaCount = faker.datatype.number({ min: 2, max: 10 })
       tracksModel.getById.mockResolvedValueOnce({ id, media, mediaCount })
 
       expect(await mediaService.getTrackMedia(id, mediaCount)).toEqual(media)
     })
 
     it(`returns null on track without cover`, async () => {
-      const id = faker.random.number({ min: 9999 })
-      const mediaCount = faker.random.number({ min: 2, max: 10 })
+      const id = faker.datatype.number({ min: 9999 })
+      const mediaCount = faker.datatype.number({ min: 2, max: 10 })
       tracksModel.getById.mockResolvedValueOnce({
         id,
         media: null,
@@ -1632,42 +1632,42 @@ describe('Media service', () => {
     })
 
     it('returns null on media count mismatch', async () => {
-      const id = faker.random.number({ min: 9999 })
+      const id = faker.datatype.number({ min: 9999 })
       const media = faker.image.image()
-      const mediaCount = faker.random.number({ min: 2, max: 10 })
+      const mediaCount = faker.datatype.number({ min: 2, max: 10 })
       tracksModel.getById.mockResolvedValueOnce({ id, media, mediaCount })
 
       expect(
         await mediaService.getTrackMedia(
           id,
-          faker.random.number({ min: mediaCount + 1 })
+          faker.datatype.number({ min: mediaCount + 1 })
         )
       ).toBeNull()
     })
 
     it('returns null on unknown id', async () => {
-      const id = faker.random.number({ min: 9999 })
+      const id = faker.datatype.number({ min: 9999 })
       tracksModel.getById.mockResolvedValueOnce(null)
 
       expect(
-        await mediaService.getTrackMedia(id, faker.random.number({ min: 1 }))
+        await mediaService.getTrackMedia(id, faker.datatype.number({ min: 1 }))
       ).toBeNull()
     })
   })
 
   describe('getAlbumMedia', () => {
     it(`returns album's cover full path`, async () => {
-      const id = faker.random.number({ min: 9999 })
+      const id = faker.datatype.number({ min: 9999 })
       const media = faker.image.image()
-      const mediaCount = faker.random.number({ min: 2, max: 10 })
+      const mediaCount = faker.datatype.number({ min: 2, max: 10 })
       albumsModel.getById.mockResolvedValueOnce({ id, media, mediaCount })
 
       expect(await mediaService.getAlbumMedia(id, mediaCount)).toEqual(media)
     })
 
     it(`returns null on album without cover`, async () => {
-      const id = faker.random.number({ min: 9999 })
-      const mediaCount = faker.random.number({ min: 2, max: 10 })
+      const id = faker.datatype.number({ min: 9999 })
+      const mediaCount = faker.datatype.number({ min: 2, max: 10 })
       albumsModel.getById.mockResolvedValueOnce({
         id,
         media: null,
@@ -1678,42 +1678,42 @@ describe('Media service', () => {
     })
 
     it('returns null on media count mismatch', async () => {
-      const id = faker.random.number({ min: 9999 })
+      const id = faker.datatype.number({ min: 9999 })
       const media = faker.image.image()
-      const mediaCount = faker.random.number({ min: 2, max: 10 })
+      const mediaCount = faker.datatype.number({ min: 2, max: 10 })
       albumsModel.getById.mockResolvedValueOnce({ id, media, mediaCount })
 
       expect(
         await mediaService.getAlbumMedia(
           id,
-          faker.random.number({ min: mediaCount + 1 })
+          faker.datatype.number({ min: mediaCount + 1 })
         )
       ).toBeNull()
     })
 
     it('returns null on unknown id', async () => {
-      const id = faker.random.number({ min: 9999 })
+      const id = faker.datatype.number({ min: 9999 })
       albumsModel.getById.mockResolvedValueOnce(null)
 
       expect(
-        await mediaService.getAlbumMedia(id, faker.random.number({ min: 1 }))
+        await mediaService.getAlbumMedia(id, faker.datatype.number({ min: 1 }))
       ).toBeNull()
     })
   })
 
   describe('getArtistMedia', () => {
     it(`returns artist's artwork full path`, async () => {
-      const id = faker.random.number({ min: 9999 })
+      const id = faker.datatype.number({ min: 9999 })
       const media = faker.image.image()
-      const mediaCount = faker.random.number({ min: 2, max: 10 })
+      const mediaCount = faker.datatype.number({ min: 2, max: 10 })
       artistsModel.getById.mockResolvedValueOnce({ id, media, mediaCount })
 
       expect(await mediaService.getArtistMedia(id, mediaCount)).toEqual(media)
     })
 
     it(`returns null on artist without artwork`, async () => {
-      const id = faker.random.number({ min: 9999 })
-      const mediaCount = faker.random.number({ min: 2, max: 10 })
+      const id = faker.datatype.number({ min: 9999 })
+      const mediaCount = faker.datatype.number({ min: 2, max: 10 })
       albumsModel.getById.mockResolvedValueOnce({
         id,
         media: null,
@@ -1724,25 +1724,25 @@ describe('Media service', () => {
     })
 
     it('returns null on media count mismatch', async () => {
-      const id = faker.random.number({ min: 9999 })
+      const id = faker.datatype.number({ min: 9999 })
       const media = faker.image.image()
-      const mediaCount = faker.random.number({ min: 2, max: 10 })
+      const mediaCount = faker.datatype.number({ min: 2, max: 10 })
       artistsModel.getById.mockResolvedValueOnce({ id, media, mediaCount })
 
       expect(
         await mediaService.getArtistMedia(
           id,
-          faker.random.number({ min: mediaCount + 1 })
+          faker.datatype.number({ min: mediaCount + 1 })
         )
       ).toBeNull()
     })
 
     it('returns null on unknown id', async () => {
-      const id = faker.random.number({ min: 9999 })
+      const id = faker.datatype.number({ min: 9999 })
       artistsModel.getById.mockResolvedValueOnce(null)
 
       expect(
-        await mediaService.getArtistMedia(id, faker.random.number({ min: 1 }))
+        await mediaService.getArtistMedia(id, faker.datatype.number({ min: 1 }))
       ).toBeNull()
     })
   })

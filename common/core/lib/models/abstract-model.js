@@ -2,7 +2,6 @@
 
 const { resolve } = require('path')
 const knex = require('knex')
-const { FsMigrations } = require('knex/lib/migrate/sources/fs-migrations')
 const fs = require('fs-extra')
 const { getLogger } = require('../utils')
 
@@ -28,9 +27,7 @@ async function connect(filename, logger) {
       useNullAsDefault: true,
       connection: { filename },
       migrations: {
-        // settings directory option works, but generates many warnings in logs
-        // https://github.com/knex/knex/issues/3921
-        migrationSource: new FsMigrations(resolve(__dirname, 'migrations'))
+        directory: resolve(__dirname, 'migrations')
       },
       log: {
         deprecated: logger.info.bind(logger),

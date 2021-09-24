@@ -10,8 +10,7 @@ export default {
 
 export const regularTagsData = {
   id: 4977489,
-  path:
-    "/home/damien/Musique/Tram des Balkans/(2007) Shtirip' Tour/10 - Tram des Balkans - Grande Mere.ogg",
+  path: "/home/damien/Musique/Tram des Balkans/(2007) Shtirip' Tour/10 - Tram des Balkans - Grande Mere.ogg",
   tags: {
     album: "Shtirip' Tour",
     albumartist: null,
@@ -30,8 +29,7 @@ export const regularTagsData = {
 
 export const fullTagsData = {
   id: 17569353,
-  path:
-    '/home/damien/Musique/# Films/Distant Worlds II - More Music From Final Fantasy/07 - Nobuo Uematsu - Victory Theme (Final Fantasy Series).mp3',
+  path: '/home/damien/Musique/# Films/Distant Worlds II - More Music From Final Fantasy/07 - Nobuo Uematsu - Victory Theme (Final Fantasy Series).mp3',
   tags: {
     album: 'Distant Worlds II - More music from Final Fantasy',
     albumartist: 'Nobuo Uematsu',
@@ -50,8 +48,7 @@ export const fullTagsData = {
 
 export const musicbrainzData = {
   id: 53564179,
-  path:
-    '/home/damien/Musique/Blonde Readhead/(2004) Misery Is A Butterfly/04 - Blonde Redhead - Doll Is Mine.mp3',
+  path: '/home/damien/Musique/Blonde Readhead/(2004) Misery Is A Butterfly/04 - Blonde Redhead - Doll Is Mine.mp3',
   tags: {
     album: 'Misery Is a Butterfly',
     albumartist: 'Blonde Redhead',
@@ -81,8 +78,7 @@ export const musicbrainzData = {
 
 export const replaygainData = {
   id: 2871780,
-  path:
-    '/home/damien/Musique/Queen/(1991) Greatest Hits II/16 - Queen - The Show Must Go On.mp3',
+  path: '/home/damien/Musique/Queen/(1991) Greatest Hits II/16 - Queen - The Show Must Go On.mp3',
   tags: {
     album: 'Greatest Hits II',
     albumartist: 'Queen',

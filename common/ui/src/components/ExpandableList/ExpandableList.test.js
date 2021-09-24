@@ -1,6 +1,7 @@
 'use strict'
 
-import { render, screen, fireEvent, within } from '@testing-library/svelte'
+import { render, screen, within } from '@testing-library/svelte'
+import userEvent from '@testing-library/user-event'
 import html from 'svelte-htm'
 import { BehaviorSubject } from 'rxjs'
 import ExpandableList, {
@@ -69,7 +70,7 @@ describe('ExpandableList component', () => {
       />`
     )
 
-    fireEvent.click(screen.getByRole('img'))
+    userEvent.click(screen.getByRole('img'))
     await sleep()
 
     expect(location.hash).toEqual(`#/album/${albumData.id}`)
@@ -85,7 +86,7 @@ describe('ExpandableList component', () => {
       />`
     )
 
-    fireEvent.click(screen.getByRole('img'))
+    userEvent.click(screen.getByRole('img'))
     await sleep()
 
     expect(location.hash).toEqual(`#/artist/${artistData.id}`)
@@ -127,7 +128,7 @@ describe('ExpandableList component', () => {
         }
       }
 
-      await fireEvent.click(button)
+      await userEvent.click(button)
 
       expect(screen.getByText(translate('show less'))).toBeVisible()
       for (const {
@@ -139,14 +140,14 @@ describe('ExpandableList component', () => {
     })
 
     it('shows only the first line when collapsed', async () => {
-      await fireEvent.click(screen.getByText(translate('show all')))
+      await userEvent.click(screen.getByText(translate('show all')))
       for (const {
         tags: { title }
       } of tracks) {
         expect(screen.getByText(title)).toBeVisible()
       }
 
-      await fireEvent.click(screen.getByText(translate('show less')))
+      await userEvent.click(screen.getByText(translate('show less')))
       for (const [
         i,
         {
@@ -165,7 +166,7 @@ describe('ExpandableList component', () => {
     })
 
     it('resets state when receiving new list', async () => {
-      await fireEvent.click(screen.getByText(translate('show all')))
+      await userEvent.click(screen.getByText(translate('show all')))
 
       expect(screen.getByText(translate('show less'))).toBeVisible()
 
@@ -177,7 +178,7 @@ describe('ExpandableList component', () => {
 
     it('proxies tracks clicks to track-queue store', async () => {
       const track = tracks[1]
-      fireEvent.click(screen.getByText(track.tags.title))
+      userEvent.click(screen.getByText(track.tags.title))
 
       expect(clicks$.next).toHaveBeenCalledWith(track)
       expect(clicks$.subscribe).toHaveBeenCalled()

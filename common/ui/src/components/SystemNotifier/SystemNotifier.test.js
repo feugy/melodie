@@ -38,234 +38,258 @@ describe('SystemNotifier Component', () => {
     jest.resetAllMocks()
     isDesktop.next(true)
     window.MediaMetadata = jest.fn().mockImplementation(arg => arg)
-    window.Notification = jest.fn().mockImplementation((title, opts) => opts)
     window.dlUrl = dlUrl
     navigator.mediaSession.metadata = null
   })
 
-  afterEach(() => isDesktop.next(true))
-
-  it('handles unfetchable meda media', async () => {
-    console.error = jest.fn()
+  it('handles Notification-less platform', async () => {
+    window.Notification = jest.fn().mockImplementation(() => {
+      throw new TypeError(
+        `Failed to construct 'Notification': Illegal constructor. Use ServiceWorkerRegistration.showNotification() instead.`
+      )
+    })
+    window.fetch.mockResolvedValue({
+      blob: jest.fn().mockResolvedValue({})
+    })
+    URL.createObjectURL = jest.fn()
 
     render(html`<${SystemNotifier} />`)
     add(trackListData)
     await sleep()
 
-    const track = trackListData[0]
-    expectMetadata(track, [])
-    expectNotification(track)
-    expect(console.error).toHaveBeenCalledWith(
-      expect.stringContaining(
-        `failed to load media ${dlUrl}${track.media} for mediaSession`
-      )
-    )
-    expect(console.error).toHaveBeenCalledTimes(1)
+    add(trackListData)
+    expect(Notification).toHaveBeenCalledTimes(1)
   })
 
-  describe('given valid media', () => {
-    const emitter = new EventEmitter()
-
-    beforeEach(() => {
-      // make sure fetched data will properly translate to blob URL
-      window.fetch.mockResolvedValue({
-        blob: jest.fn().mockResolvedValue({})
-      })
-      URL.createObjectURL = jest.fn()
-
-      emitter.removeAllListeners()
-      navigator.mediaSession.setActionHandler.mockImplementation(
-        (evt, handler) => {
-          if (handler) {
-            emitter.on(evt, handler)
-          }
-        }
-      )
+  describe('given a supporting platform', () => {
+    beforeEach(async () => {
+      window.Notification = jest.fn().mockImplementation((title, opts) => opts)
     })
 
-    it('updates media session metadatas for played track', async () => {
+    afterEach(() => isDesktop.next(true))
+
+    it('handles unfetchable meda media', async () => {
+      console.error = jest.fn()
+
       render(html`<${SystemNotifier} />`)
       add(trackListData)
       await sleep()
 
-      expectMetadata(trackListData[0])
-      expectNotification(trackListData[0])
-      expect(Notification).toHaveBeenCalledTimes(1)
-      expect(invoke).not.toHaveBeenCalled()
+      const track = trackListData[0]
+      expectMetadata(track, [])
+      expectNotification(track)
+      expect(console.error).toHaveBeenCalledWith(
+        expect.stringContaining(
+          `failed to load media ${dlUrl}${track.media} for mediaSession`
+        )
+      )
+      expect(console.error).toHaveBeenCalledTimes(1)
     })
 
-    it('handles missing tags', async () => {
-      render(html`<${SystemNotifier} />`)
-      add([
-        {
-          id: 1,
-          tags: {
-            title: null,
-            album: null,
-            artists: [],
-            duration: 218.42
-          },
-          media: null,
-          path: './no-duration.mp3',
-          albumRef: null,
-          artistRefs: []
-        }
-      ])
-      await sleep()
+    describe('given valid media', () => {
+      const emitter = new EventEmitter()
 
-      const unknown = translate('unknown')
-      expect(navigator.mediaSession.metadata).toEqual({
-        album: unknown,
-        artist: unknown,
-        artwork: [],
-        title: unknown
-      })
-      expect(Notification).toHaveBeenCalledWith(
-        unknown,
-        expect.objectContaining({
-          body: `${unknown} - ${unknown}`,
-          icon: null,
-          silent: true
+      beforeEach(() => {
+        // make sure fetched data will properly translate to blob URL
+        window.fetch.mockResolvedValue({
+          blob: jest.fn().mockResolvedValue({})
         })
-      )
-      expect(Notification).toHaveBeenCalledTimes(1)
-      expect(invoke).not.toHaveBeenCalled()
-    })
+        URL.createObjectURL = jest.fn()
 
-    it('updates media session metadatas when receiving different track', async () => {
-      render(html`<${SystemNotifier} />`)
-      add(trackListData)
-      await sleep()
+        emitter.removeAllListeners()
+        navigator.mediaSession.setActionHandler.mockImplementation(
+          (evt, handler) => {
+            if (handler) {
+              emitter.on(evt, handler)
+            }
+          }
+        )
+      })
 
-      expectMetadata(trackListData[0])
-      expectNotification(trackListData[0])
+      it('updates media session metadatas for played track', async () => {
+        render(html`<${SystemNotifier} />`)
+        add(trackListData)
+        await sleep()
 
-      playNext()
-      await sleep()
+        expectMetadata(trackListData[0])
+        expectNotification(trackListData[0])
+        expect(Notification).toHaveBeenCalledTimes(1)
+        expect(invoke).not.toHaveBeenCalled()
+      })
 
-      expectMetadata(trackListData[1])
-      expectNotification(trackListData[1])
-      expect(Notification).toHaveBeenCalledTimes(2)
-      expect(invoke).not.toHaveBeenCalled()
-    })
+      it('handles missing tags', async () => {
+        render(html`<${SystemNotifier} />`)
+        add([
+          {
+            id: 1,
+            tags: {
+              title: null,
+              album: null,
+              artists: [],
+              duration: 218.42
+            },
+            media: null,
+            path: './no-duration.mp3',
+            albumRef: null,
+            artistRefs: []
+          }
+        ])
+        await sleep()
 
-    it('does not update media session metadata when receiving the same track', async () => {
-      render(html`<${SystemNotifier} />`)
-      add(trackListData.slice(0, 1))
-      await sleep()
+        const unknown = translate('unknown')
+        expect(navigator.mediaSession.metadata).toEqual({
+          album: unknown,
+          artist: unknown,
+          artwork: [],
+          title: unknown
+        })
+        expect(Notification).toHaveBeenCalledWith(
+          unknown,
+          expect.objectContaining({
+            body: `${unknown} - ${unknown}`,
+            icon: null,
+            silent: true
+          })
+        )
+        expect(Notification).toHaveBeenCalledTimes(1)
+        expect(invoke).not.toHaveBeenCalled()
+      })
 
-      expectMetadata(trackListData[0])
-      expectNotification(trackListData[0])
-      expect(Notification).toHaveBeenCalledTimes(1)
-      Notification.mockReset()
+      it('updates media session metadatas when receiving different track', async () => {
+        render(html`<${SystemNotifier} />`)
+        add(trackListData)
+        await sleep()
 
-      playNext()
-      await sleep()
+        expectMetadata(trackListData[0])
+        expectNotification(trackListData[0])
 
-      expectMetadata(trackListData[0])
-      expect(Notification).not.toHaveBeenCalled()
-      expect(invoke).not.toHaveBeenCalled()
-    })
+        playNext()
+        await sleep()
 
-    it('does not update media session metadata when receiving null', async () => {
-      render(html`<${SystemNotifier} />`)
-      await sleep()
+        expectMetadata(trackListData[1])
+        expectNotification(trackListData[1])
+        expect(Notification).toHaveBeenCalledTimes(2)
+        expect(invoke).not.toHaveBeenCalled()
+      })
 
-      expect(navigator.mediaSession.metadata).toBeNull()
-      expect(Notification).not.toHaveBeenCalled()
+      it('does not update media session metadata when receiving the same track', async () => {
+        render(html`<${SystemNotifier} />`)
+        add(trackListData.slice(0, 1))
+        await sleep()
 
-      clear()
-      await sleep()
+        expectMetadata(trackListData[0])
+        expectNotification(trackListData[0])
+        expect(Notification).toHaveBeenCalledTimes(1)
+        Notification.mockReset()
 
-      expect(navigator.mediaSession.metadata).toBeNull()
-      expect(Notification).not.toHaveBeenCalled()
-      expect(invoke).not.toHaveBeenCalled()
-    })
+        playNext()
+        await sleep()
 
-    it('does not trigger notification when app is focused', async () => {
-      render(html`<${SystemNotifier} />`)
-      window.dispatchEvent(new Event('focus'))
-      await sleep()
+        expectMetadata(trackListData[0])
+        expect(Notification).not.toHaveBeenCalled()
+        expect(invoke).not.toHaveBeenCalled()
+      })
 
-      add(trackListData)
-      await sleep()
+      it('does not update media session metadata when receiving null', async () => {
+        render(html`<${SystemNotifier} />`)
+        await sleep()
 
-      expectMetadata(trackListData[0])
-      expect(Notification).not.toHaveBeenCalled()
+        expect(navigator.mediaSession.metadata).toBeNull()
+        expect(Notification).not.toHaveBeenCalled()
 
-      playNext()
-      await sleep()
+        clear()
+        await sleep()
 
-      expectMetadata(trackListData[1])
-      expect(Notification).not.toHaveBeenCalled()
+        expect(navigator.mediaSession.metadata).toBeNull()
+        expect(Notification).not.toHaveBeenCalled()
+        expect(invoke).not.toHaveBeenCalled()
+      })
 
-      window.dispatchEvent(new Event('blur'))
-      playNext()
-      await sleep()
+      it('does not trigger notification when app is focused', async () => {
+        render(html`<${SystemNotifier} />`)
+        window.dispatchEvent(new Event('focus'))
+        await sleep()
 
-      expectMetadata(trackListData[2])
-      expectNotification(trackListData[2])
-      expect(Notification).toHaveBeenCalledTimes(1)
-      expect(invoke).not.toHaveBeenCalled()
-    })
+        add(trackListData)
+        await sleep()
 
-    it('plays next track from media session', async () => {
-      render(html`<${SystemNotifier} />`)
-      add(trackListData)
-      await sleep()
+        expectMetadata(trackListData[0])
+        expect(Notification).not.toHaveBeenCalled()
 
-      expectMetadata(trackListData[0])
-      expectNotification(trackListData[0])
-      expect(Notification).toHaveBeenCalledTimes(1)
-      Notification.mockReset()
+        playNext()
+        await sleep()
 
-      emitter.emit('nexttrack')
-      await sleep()
+        expectMetadata(trackListData[1])
+        expect(Notification).not.toHaveBeenCalled()
 
-      expectMetadata(trackListData[1])
-      expectNotification(trackListData[1])
-      expect(Notification).toHaveBeenCalledTimes(1)
-      expect(invoke).not.toHaveBeenCalled()
-    })
+        window.dispatchEvent(new Event('blur'))
+        playNext()
+        await sleep()
 
-    it('plays previous track from media session', async () => {
-      render(html`<${SystemNotifier} />`)
-      add(trackListData)
-      await sleep()
+        expectMetadata(trackListData[2])
+        expectNotification(trackListData[2])
+        expect(Notification).toHaveBeenCalledTimes(1)
+        expect(invoke).not.toHaveBeenCalled()
+      })
 
-      expectMetadata(trackListData[0])
-      expectNotification(trackListData[0])
-      expect(Notification).toHaveBeenCalledTimes(1)
-      Notification.mockReset()
+      it('plays next track from media session', async () => {
+        render(html`<${SystemNotifier} />`)
+        add(trackListData)
+        await sleep()
 
-      emitter.emit('previoustrack')
-      await sleep()
+        expectMetadata(trackListData[0])
+        expectNotification(trackListData[0])
+        expect(Notification).toHaveBeenCalledTimes(1)
+        Notification.mockReset()
 
-      expectMetadata(trackListData[trackListData.length - 1])
-      expectNotification(trackListData[trackListData.length - 1])
-      expect(Notification).toHaveBeenCalledTimes(1)
-      expect(invoke).not.toHaveBeenCalled()
-    })
+        emitter.emit('nexttrack')
+        await sleep()
 
-    it('focuses the application on notification click, in ', async () => {
-      render(html`<${SystemNotifier} />`)
-      add(trackListData)
-      await sleep()
+        expectMetadata(trackListData[1])
+        expectNotification(trackListData[1])
+        expect(Notification).toHaveBeenCalledTimes(1)
+        expect(invoke).not.toHaveBeenCalled()
+      })
 
-      expectNotification(trackListData[0])
-      expect(Notification).toHaveBeenCalledTimes(1)
+      it('plays previous track from media session', async () => {
+        render(html`<${SystemNotifier} />`)
+        add(trackListData)
+        await sleep()
 
-      Notification.mock.calls[0][1].onclick()
-      expect(invoke).toHaveBeenCalledWith('core.focusWindow')
-      expect(invoke).toHaveBeenCalledTimes(1)
+        expectMetadata(trackListData[0])
+        expectNotification(trackListData[0])
+        expect(Notification).toHaveBeenCalledTimes(1)
+        Notification.mockReset()
 
-      isDesktop.next(false)
-      render(html`<${SystemNotifier} />`)
-      add(trackListData)
-      await sleep()
+        emitter.emit('previoustrack')
+        await sleep()
 
-      expect(Notification).toHaveBeenCalledTimes(2)
-      expect(Notification.mock.calls[1][1].onclick).not.toBeDefined()
+        expectMetadata(trackListData[trackListData.length - 1])
+        expectNotification(trackListData[trackListData.length - 1])
+        expect(Notification).toHaveBeenCalledTimes(1)
+        expect(invoke).not.toHaveBeenCalled()
+      })
+
+      it('focuses the application on notification click, in ', async () => {
+        render(html`<${SystemNotifier} />`)
+        add(trackListData)
+        await sleep()
+
+        expectNotification(trackListData[0])
+        expect(Notification).toHaveBeenCalledTimes(1)
+
+        Notification.mock.calls[0][1].onclick()
+        expect(invoke).toHaveBeenCalledWith('core.focusWindow')
+        expect(invoke).toHaveBeenCalledTimes(1)
+
+        isDesktop.next(false)
+        render(html`<${SystemNotifier} />`)
+        add(trackListData)
+        await sleep()
+
+        expect(Notification).toHaveBeenCalledTimes(2)
+        expect(Notification.mock.calls[1][1].onclick).not.toBeDefined()
+      })
     })
   })
 })

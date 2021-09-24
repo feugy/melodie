@@ -22,11 +22,10 @@ export async function initConnection(address, onConnectionLost) {
 
   ws = await new Promise((resolve, reject) => {
     try {
-      const socket = new WebSocket(address)
+      const socket = new WebSocket(`${address}/ws`)
       socket.onopen = () => {
         socket.onopen = null
         socket.onerror = null
-        // console.log(`Connected to ${address}`)
         resolve(socket)
       }
       socket.onerror = err => {
@@ -48,7 +47,6 @@ export async function initConnection(address, onConnectionLost) {
   }
 
   ws.onclose = () => {
-    // console.log(`Connection to ${address} lost`)
     closeConnection()
     onConnectionLost()
   }
@@ -60,7 +58,6 @@ export async function initConnection(address, onConnectionLost) {
  */
 export function closeConnection() {
   if (ws) {
-    // console.log(`Disconnected`)
     ws.onclose = null
     ws.close()
   }
@@ -70,14 +67,24 @@ export function closeConnection() {
 /**
  * Sends an individual message to the server.
  * Useful to send errors.
- * @param {any} data - stringifiable data sent to server
+ * @param {object} data - stringifiable data sent to server
+ * @param {boolean} failOnError - false to not throw errors on missing connection. Usefull when reporting errors while being offline
  * @throws {err} when connection has not been initialized yet
  */
-export function send(data) {
+export function send(data, failOnError = true) {
   if (!ws) {
-    throw new Error(`unestablished connection, call initConnection() first`)
+    if (failOnError) {
+      throw new Error(`unestablished connection, call initConnection() first`)
+    }
+  } else {
+    ws.send(
+      JSON.stringify(
+        data.error
+          ? { error: { message: data.error.message, stack: data.error.stack } }
+          : data
+      )
+    ) // TODO use safe-stringify
   }
-  ws.send(JSON.stringify(data)) // TODO use safe-stringify,
 }
 
 const lastInvokation$ = new BehaviorSubject()

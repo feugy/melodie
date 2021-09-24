@@ -69,7 +69,7 @@ describe('Cover finder', () => {
   })
 
   describe('findAlbumCover()', () => {
-    const folder = join(os.tmpdir(), 'melodie', faker.random.uuid())
+    const folder = join(os.tmpdir(), 'melodie', faker.datatype.uuid())
     const files = [
       join(folder, 'track1.mp3'),
       join(folder, 'track2.mp3'),

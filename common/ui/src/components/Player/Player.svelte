@@ -4,7 +4,6 @@
   import { _ } from 'svelte-intl'
   import Button from '../Button/Button.svelte'
   import Track from '../Track/Track.svelte'
-  import Progress from '../Progress/Progress.svelte'
   import Time from './Time.svelte'
   import AddToPlaylist from './AddToPlaylist.svelte'
   import Controls from './Controls.svelte'
@@ -22,6 +21,7 @@
   let duration = 0
   let currentTime = 0
   let src = null
+  let nextSrc = null
   let muted = false
   let repeatOne = false
   let repeatAll = false
@@ -38,7 +38,7 @@
       gainNode.connect(context.destination)
     }
 
-    const currentSub = current.subscribe(current => {
+    const currentSubscription = current.subscribe(current => {
       if (!current) {
         src = null
         if (player) {
@@ -58,21 +58,14 @@
         }
       }
     })
-
-    const nextSub = next.subscribe(async next => {
+    const nextSubscription = next.subscribe(next => {
       if (next) {
-        // pre-fetch
-        const nextUrl = window.dlUrl + next.data
-        try {
-          await fetch(nextUrl)
-        } catch (err) {
-          console.warn(`failed to pre-fetch file ${nextUrl}: ${err.message}`)
-        }
+        fetch(window.dlUrl + next.data)
       }
     })
     return () => {
-      currentSub.unsubscribe()
-      nextSub.unsubscribe()
+      currentSubscription.unsubscribe()
+      nextSubscription.unsubscribe()
     }
   })
 
@@ -101,6 +94,14 @@
       player.pause()
       playNext()
     }
+  }
+
+  function handleError() {
+    isPlaying = false
+    isLoading = true
+    const save = src
+    src = null
+    setTimeout(() => (src = save), 100)
   }
 
   // Do not use svelte's `bind:currentTime` who eats too much CPU
@@ -181,6 +182,7 @@
     bind:muted
     on:loadstart={handleLoading}
     on:loadeddata={handleLoaded}
+    on:error={handleError}
     on:ended={handleEnded}
     on:play={() => {
       if (gainNode) {
@@ -202,7 +204,7 @@
         <span class="controls">
           <AddToPlaylist />
           <Shuffle />
-          <Controls {player} {isPlaying} />
+          <Controls {player} {isPlaying} disabled={isLoading} />
           <Repeat bind:repeatAll bind:repeatOne />
           {#if $current}
             <Button icon="favorite_border" noBorder class="invisible" />
@@ -223,10 +225,7 @@
       {/if}
       <div class="player">
         <span class="controls">
-          {#if isLoading}<Progress />{:else}<Controls
-              {player}
-              {isPlaying}
-            />{/if}
+          <Controls {player} {isPlaying} disabled={isLoading} />
         </span>
       </div>
     </div>

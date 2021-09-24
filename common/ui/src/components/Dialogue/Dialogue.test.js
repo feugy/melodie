@@ -1,8 +1,9 @@
 'use strict'
 
+import { screen, render, fireEvent } from '@testing-library/svelte'
+import userEvent from '@testing-library/user-event'
 import { tick } from 'svelte'
 import { writable, get } from 'svelte/store'
-import { screen, render, fireEvent } from '@testing-library/svelte'
 import html from 'svelte-htm'
 import faker from 'faker'
 import Dialogue from './Dialogue.svelte'
@@ -53,7 +54,7 @@ describe('Dialogue component', () => {
     expect(handleOpen).not.toHaveBeenCalled()
     expect(handleClose).not.toHaveBeenCalled()
 
-    await fireEvent.click(screen.getByRole('dialog').parentElement)
+    await userEvent.click(screen.getByRole('dialog').parentElement)
 
     expect(screen.queryByText(title)).not.toBeVisible()
     expect(handleClose).toHaveBeenCalled()
@@ -79,7 +80,7 @@ describe('Dialogue component', () => {
     expect(handleOpen).not.toHaveBeenCalled()
     expect(handleClose).not.toHaveBeenCalled()
 
-    await fireEvent.click(screen.queryByRole('button'))
+    await userEvent.click(screen.queryByRole('button'))
 
     expect(screen.queryByText(title)).not.toBeVisible()
     expect(handleClose).toHaveBeenCalled()
@@ -131,7 +132,7 @@ describe('Dialogue component', () => {
 
     expect(screen.queryByText(title)).toBeVisible()
     expect(screen.queryByRole('button')).not.toBeInTheDocument()
-    await fireEvent.click(screen.getByRole('dialog').parentElement)
+    await userEvent.click(screen.getByRole('dialog').parentElement)
 
     expect(screen.queryByText(title)).toBeVisible()
     expect(handleClose).not.toHaveBeenCalled()

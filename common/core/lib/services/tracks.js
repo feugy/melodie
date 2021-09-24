@@ -52,7 +52,9 @@ const sorters = {
    * @returns {array<TracksModel>} sorted tracks
    */
   rank: (list, results) =>
-    list.trackIds.map(id => results.find(track => track.id === id))
+    list.trackIds
+      .map(id => results.find(track => track.id === id))
+      .filter(Boolean)
 }
 
 /**

@@ -7,6 +7,7 @@ const compressPlugin = require('fastify-compress')
 const staticPlugin = require('fastify-static')
 const websocketPlugin = require('fastify-websocket')
 const Ajv = require('ajv').default
+const WebSocket = require('ws')
 const { getLogger } = require('./logger')
 
 const logger = getLogger('connection')
@@ -25,6 +26,14 @@ const validate = ajv.compile({
     {
       type: 'object',
       properties: {
+        warn: { type: 'string' },
+        additionnalProperties: true
+      },
+      required: ['warn']
+    },
+    {
+      type: 'object',
+      properties: {
         invoked: { type: 'string' },
         id: { type: 'string' },
         args: { type: 'array' },
@@ -34,6 +43,8 @@ const validate = ajv.compile({
     }
   ]
 })
+
+const maxAge = 1000 * 60 * 60 * 24 * 2
 
 /**
  * Message bus to receive events internally.
@@ -75,8 +86,8 @@ exports.initConnection = async function (services, publicFolder, port = 0) {
     settings = savedSettings
     if (needRestart) {
       // delay restart so UI could get new values
-      setTimeout(() => {
-        server.close()
+      setTimeout(async () => {
+        await server.close()
         startServer()
       }, 100)
     }
@@ -94,7 +105,11 @@ exports.initConnection = async function (services, publicFolder, port = 0) {
           return
         }
         if (data.error) {
-          logger.error(data, `UI error: ${data.error}`)
+          logger.error(data, `UI error: ${JSON.stringify(data.error)}`)
+          return
+        }
+        if (data.warn) {
+          logger.warn(data, `UI warning: ${JSON.stringify(data.warn)}`)
           return
         }
         const [name, op] = data.invoked.split('.')
@@ -119,12 +134,15 @@ exports.initConnection = async function (services, publicFolder, port = 0) {
 
   async function startServer() {
     server = fastify({ logger, disableRequestLogging: true })
-    server.register(websocketPlugin, { handle: handleConnection })
+    server.register(websocketPlugin)
     server.register(compressPlugin)
     server.register(staticPlugin, {
       root: publicFolder,
       wildcard: false,
-      serve: settings.isBroadcasting
+      serve: settings.isBroadcasting,
+      maxAge: maxAge,
+      immutable: true,
+      cacheControl: true
     })
     function makeMediaHandler(retriever) {
       return async ({ params: { id, count } }, reply) => {
@@ -134,6 +152,7 @@ exports.initConnection = async function (services, publicFolder, port = 0) {
           : reply.code(404).send()
       }
     }
+    server.get('/ws', { websocket: true }, handleConnection)
     server.get(
       '/tracks/:id/data',
       makeMediaHandler(services.media.getTrackData)
@@ -157,9 +176,9 @@ exports.initConnection = async function (services, publicFolder, port = 0) {
     return address
   }
 
-  function close() {
+  async function close() {
     exports.messageBus.removeListener('settings-saved', handleSavedSettings)
-    server?.close()
+    await server?.close()
     server = null
   }
   return { address: await startServer(), close }
@@ -178,8 +197,7 @@ exports.broadcast = function (event, args) {
   exports.messageBus.emit(event, args)
   if (server.websocketServer?.clients) {
     for (const client of server.websocketServer.clients) {
-      // 1 is OPEN
-      if (client.readyState === 1) {
+      if (client.readyState === WebSocket.OPEN) {
         client.send(JSON.stringify({ event, args }))
       }
     }

@@ -95,14 +95,14 @@ describe('Abstract model', () => {
     const tested = new Test()
     const name = faker.name.findName()
     const models = [
-      { id: faker.random.number(), name, tags: '{}' },
-      { id: faker.random.number(), name: faker.name.findName(), tags: '{}' },
+      { id: faker.datatype.number(), name, tags: '{}' },
+      { id: faker.datatype.number(), name: faker.name.findName(), tags: '{}' },
       {
-        id: faker.random.number(),
+        id: faker.datatype.number(),
         name: `${name} ${faker.name.findName()}`,
         tags: '{}'
       },
-      { id: faker.random.number(), name: faker.name.findName(), tags: '{}' }
+      { id: faker.datatype.number(), name: faker.name.findName(), tags: '{}' }
     ]
 
     beforeEach(async () => {
@@ -135,7 +135,7 @@ describe('Abstract model', () => {
     describe('save', () => {
       it('adds single model', async () => {
         const model = {
-          id: faker.random.number(),
+          id: faker.datatype.number(),
           name: faker.name.findName(),
           tags: {}
         }
@@ -151,8 +151,12 @@ describe('Abstract model', () => {
 
       it('adds multiple models', async () => {
         const models = [
-          { id: faker.random.number(), name: faker.name.findName(), tags: {} },
-          { id: faker.random.number(), name: faker.name.findName(), tags: {} }
+          {
+            id: faker.datatype.number(),
+            name: faker.name.findName(),
+            tags: {}
+          },
+          { id: faker.datatype.number(), name: faker.name.findName(), tags: {} }
         ]
 
         await tested.save(models)
@@ -176,12 +180,12 @@ describe('Abstract model', () => {
       it('update existing models', async () => {
         const originals = [
           {
-            id: faker.random.number(),
+            id: faker.datatype.number(),
             name: faker.name.findName(),
             tags: { old: true }
           },
           {
-            id: faker.random.number(),
+            id: faker.datatype.number(),
             name: faker.name.findName(),
             tags: { n: 10 }
           }
@@ -232,7 +236,7 @@ describe('Abstract model', () => {
         [['a', 'b'], '["a","b"]'],
         [{ foo: 'bar', baz: [1, 2] }, '{"foo":"bar","baz":[1,2]}']
       ])('serializes %j as JSON data', async (tags, expected) => {
-        const id = faker.random.number()
+        const id = faker.datatype.number()
         await tested.save([{ id, tags }])
         expect(await db(modelName).where({ id }).select()).toEqual([
           { id, name: null, tags: expected }
@@ -371,14 +375,14 @@ describe('Abstract model', () => {
 
     describe('getById', () => {
       it('returns null when getting unknown model by id', async () => {
-        expect(await tested.getById(faker.random.number())).toBe(null)
+        expect(await tested.getById(faker.datatype.number())).toBe(null)
       })
 
       it('gets models by ids', async () => {
         const results = await tested.getByIds([
           models[0].id,
           models[3].id,
-          faker.random.number()
+          faker.datatype.number()
         ])
         expect(results).toEqual(
           expect.arrayContaining(
@@ -392,7 +396,7 @@ describe('Abstract model', () => {
       })
 
       it('throws meaningful error on deserialization error', async () => {
-        const id = faker.random.number()
+        const id = faker.datatype.number()
         await db(modelName).insert({ id, name, tags: '{' })
         expect(tested.getByIds([id])).rejects.toThrow(
           /failed to deserialize value "{" for col tags: Unexpected end of JSON input/
@@ -405,7 +409,7 @@ describe('Abstract model', () => {
         const removed = await tested.removeByIds([
           models[0].id,
           models[3].id,
-          faker.random.number()
+          faker.datatype.number()
         ])
 
         expect(removed).toEqual(

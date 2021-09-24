@@ -38,7 +38,7 @@
   }
 </style>
 
-<div class="wrapper">
+<div class="wrapper" role="progressbar">
   <div class="inc" />
   <div class="dec" />
 </div>

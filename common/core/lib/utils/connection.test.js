@@ -16,22 +16,22 @@ const { sleep, makeFolder } = require('../tests')
 
 function connectWSClient(address) {
   return new Promise((resolve, reject) => {
-    const ws = new WebSocket(address.replace('http', 'ws'))
-    ws.on('open', () => {
-      ws.removeAllListeners('error')
+    const ws = new WebSocket(`${address.replace('http', 'ws')}/ws`)
+    ws.once('error', reject)
+    ws.once('open', () => {
+      ws.off('error', reject)
       resolve(ws)
     })
-    ws.on('error', reject)
   })
 }
 
 function waitWSClosure(ws) {
   return new Promise((resolve, reject) => {
-    ws.on('close', () => {
-      ws.removeAllListeners('error')
+    ws.once('error', reject)
+    ws.once('close', () => {
+      ws.off('error', reject)
       resolve()
     })
-    ws.on('error', reject)
   })
 }
 
@@ -41,9 +41,9 @@ function call(ws, data) {
 
 function listen(ws) {
   return new Promise((resolve, reject) => {
-    ws.on('error', reject)
-    ws.on('message', data => {
-      ws.removeAllListeners('error')
+    ws.once('error', reject)
+    ws.once('message', data => {
+      ws.off('error', reject)
       try {
         resolve(JSON.parse(data))
       } catch (err) {
@@ -118,8 +118,8 @@ describe('connection utilities', () => {
   })
 
   it('uses explicit port over settings', async () => {
-    const broadcastPort = faker.random.number({ min: 2000, max: 4000 })
-    const port = faker.random.number({ min: 5000, max: 8000 })
+    const broadcastPort = faker.datatype.number({ min: 2000, max: 4000 })
+    const port = faker.datatype.number({ min: 5000, max: 8000 })
     services.settings.get.mockResolvedValueOnce({
       folders: [folder],
       isBroadcasting: false,
@@ -137,7 +137,7 @@ describe('connection utilities', () => {
   })
 
   it('can start and stop broadcasting', async () => {
-    const port = faker.random.number({ min: 9000, max: 10000 })
+    const port = faker.datatype.number({ min: 9000, max: 10000 })
 
     ;({ close, address } = await initConnection(services, publicFolder, port))
     expect(close).toBeInstanceOf(Function)
@@ -185,7 +185,7 @@ describe('connection utilities', () => {
     const ws = await connectWSClient(address)
     const invoked = 'media.triggerArtistsEnrichment'
     const args = faker.random.arrayElements()
-    const id = faker.random.uuid()
+    const id = faker.datatype.uuid()
 
     expect(await callAndListen(ws, { invoked, args, id })).toEqual({
       id,
@@ -205,7 +205,7 @@ describe('connection utilities', () => {
     const fn = 'triggerArtistsEnrichment'
     const invoked = `${name}.${fn}`
     const args = faker.random.arrayElements()
-    const id = faker.random.uuid()
+    const id = faker.datatype.uuid()
 
     expect(await callAndListen(ws, { invoked, args, id })).toEqual({
       id,
@@ -224,7 +224,7 @@ describe('connection utilities', () => {
     const fn = 'whatever'
     const invoked = `${name}.${fn}`
     const args = faker.random.arrayElements()
-    const id = faker.random.uuid()
+    const id = faker.datatype.uuid()
 
     expect(await callAndListen(ws, { invoked, args, id })).toEqual({
       id,
@@ -243,7 +243,7 @@ describe('connection utilities', () => {
     const ws = await connectWSClient(address)
     const invoked = `media.triggerArtistsEnrichment`
     const args = faker.random.arrayElements()
-    const id = faker.random.uuid()
+    const id = faker.datatype.uuid()
 
     expect(await callAndListen(ws, { invoked, args, id })).toEqual({
       id,
@@ -278,7 +278,7 @@ describe('connection utilities', () => {
     await sleep(10)
 
     expect(errorSpy).toHaveBeenCalledWith(
-      { rawData },
+      { rawData: Buffer.from(rawData) },
       `unparseable message: Unexpected token d in JSON at position 0`
     )
   })
@@ -290,7 +290,7 @@ describe('connection utilities', () => {
 
     call(ws, data)
     await sleep(10)
-    expect(errorSpy).toHaveBeenCalledWith(data, `UI error: ${data.error}`)
+    expect(errorSpy).toHaveBeenCalledWith(data, `UI error: "${data.error}"`)
   })
 
   it('broadcast external and internal messages', async () => {
@@ -339,8 +339,8 @@ describe('connection utilities', () => {
     )
 
     it('serve album covers', async () => {
-      const id = faker.random.number({ min: 1000 })
-      const count = faker.random.number({ min: 1, max: 10 })
+      const id = faker.datatype.number({ min: 1000 })
+      const count = faker.datatype.number({ min: 1, max: 10 })
       services.media.getAlbumMedia.mockResolvedValueOnce(cover)
       const response = await got.get(`${address}/albums/${id}/media/${count}`)
       expect(response.statusCode).toEqual(200)
@@ -356,8 +356,8 @@ describe('connection utilities', () => {
     })
 
     it('returns 404 for unknown album cover', async () => {
-      const id = faker.random.number({ min: 1000 })
-      const count = faker.random.number({ min: 1, max: 10 })
+      const id = faker.datatype.number({ min: 1000 })
+      const count = faker.datatype.number({ min: 1, max: 10 })
       services.media.getAlbumMedia.mockResolvedValueOnce(null)
       await expect(
         got.get(`${address}/albums/${id}/media/${count}`)
@@ -367,7 +367,7 @@ describe('connection utilities', () => {
     })
 
     it('serve track data', async () => {
-      const id = faker.random.number({ min: 1000 })
+      const id = faker.datatype.number({ min: 1000 })
       services.media.getTrackData.mockResolvedValueOnce(mp3)
       const response = await got.get(`${address}/tracks/${id}/data`)
       expect(response.statusCode).toEqual(200)
@@ -386,7 +386,7 @@ describe('connection utilities', () => {
     })
 
     it('returns 404 for unknown track data', async () => {
-      const id = faker.random.number({ min: 1000 })
+      const id = faker.datatype.number({ min: 1000 })
       services.media.getTrackData.mockResolvedValueOnce(null)
       await expect(got.get(`${address}/tracks/${id}/data`)).rejects.toThrow(
         /Not Found/
@@ -399,8 +399,8 @@ describe('connection utilities', () => {
     })
 
     it('serve track covers', async () => {
-      const id = faker.random.number({ min: 1000 })
-      const count = faker.random.number({ min: 1, max: 10 })
+      const id = faker.datatype.number({ min: 1000 })
+      const count = faker.datatype.number({ min: 1, max: 10 })
       services.media.getTrackMedia.mockResolvedValueOnce(cover)
       const response = await got.get(`${address}/tracks/${id}/media/${count}`)
       expect(response.statusCode).toEqual(200)
@@ -416,8 +416,8 @@ describe('connection utilities', () => {
     })
 
     it('returns 404 for unknown track cover', async () => {
-      const id = faker.random.number({ min: 1000 })
-      const count = faker.random.number({ min: 1, max: 10 })
+      const id = faker.datatype.number({ min: 1000 })
+      const count = faker.datatype.number({ min: 1, max: 10 })
       services.media.getTrackMedia.mockResolvedValueOnce(null)
       await expect(
         got.get(`${address}/tracks/${id}/media/${count}`)
@@ -427,8 +427,8 @@ describe('connection utilities', () => {
     })
 
     it('serve artist artworks', async () => {
-      const id = faker.random.number({ min: 1000 })
-      const count = faker.random.number({ min: 1, max: 10 })
+      const id = faker.datatype.number({ min: 1000 })
+      const count = faker.datatype.number({ min: 1, max: 10 })
       services.media.getArtistMedia.mockResolvedValueOnce(avatar)
       const response = await got.get(`${address}/artists/${id}/media/${count}`)
       expect(response.statusCode).toEqual(200)
@@ -444,8 +444,8 @@ describe('connection utilities', () => {
     })
 
     it('returns 404 for unknown artist artwork', async () => {
-      const id = faker.random.number({ min: 1000 })
-      const count = faker.random.number({ min: 1, max: 10 })
+      const id = faker.datatype.number({ min: 1000 })
+      const count = faker.datatype.number({ min: 1, max: 10 })
       services.media.getArtistMedia.mockResolvedValueOnce(null)
       await expect(
         got.get(`${address}/artists/${id}/media/${count}`)

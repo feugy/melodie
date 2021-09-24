@@ -237,7 +237,7 @@ Working with snaps locally isn't really easy.
 1. then package your app in debug mode, to access the unpacked snap:
 
    ```shell
-   DEBUG=electron-builder npm run release:artifacts --prefix apps/desktop -- -l
+   DEBUG=electron-builder npm run release:artifacts --workspace apps/desktop -- -l
    ```
 
 1. copy missing files to the unpacked snap, and keep your latest changes:
@@ -273,7 +273,7 @@ To check that generated AppImage works:
 1. Package application for linux
 
    ```shell
-   npm run release:artifacts --prefix apps/desktop -- -l
+   npm run release:artifacts --workspace apps/desktop -- -l
    ```
 
 1. Lint your AppImage:
@@ -297,14 +297,14 @@ Windows App store release can not be automated: Github CI will build the appx pa
 1. When ready, bump the version on local machine:
 
    ```shell
-   npm run release:bump --prefix apps/desktop
+   npm run release:bump --workspace apps/desktop
    ```
 
 1. **Don't forget to update snapshots**: the presentation site test depend on the version number.
 
    ```shell
-   npm t --prefix apps/site -- --clearCache
-   npm t --prefix apps/site -- -u
+   npm t --workspace apps/site -- --clearCache
+   npm t --workspace apps/site -- -u
    git commit -a --amend --no-edit
    TAG=$(git describe --tags)
    git tag -f $TAG
@@ -343,9 +343,9 @@ Until [this PR](https://github.com/electron-userland/electron-builder/pull/5313)
 1. Clean up distribution, build snap file and extract it:
 
    ```shell
-   rm -rf dist/
-   npm run release:artifacts --prefix apps/desktop -- -l snap
-   cd dist/
+   rm -rf apps/desktop/dist/
+   npm run release:artifacts --workspace apps/desktop -- -l snap
+   cd apps/desktop/dist/
    rm -rf linux-unpacked builder-effective-config.yaml
    file-roller -f *.snap .
    ```
@@ -454,13 +454,16 @@ Mélodie is referenced on these stores and hubs:
   - lerna is a pain when it comes to hoisting deps.
   - svelte-jester and preprocess absolutely don't work with yarn@2
   - yarn@1 works fine but brings very little commands (just a little more than npm@7)
-  - npm@7 must install peer deps in legacy mode and does not offer any sugar for multi-package commands. All deps must be manually added to package.json, because install command MUST be run at root level
+  - npm@7 < 7.24 must install peer deps in legacy mode and does not offer any sugar for multi-package commands. All deps must be manually added to package.json, because install command MUST be run at root level
     Electron-builder does not like monorepo either: author, description and other metadata must be copied from root package.json to apps/desktop/package.json. The Electron version must be fixed because node_modules are hoisted. The package.json name MUST be `melodie` :(
     Caveats: always run `npm i --legacy-peer-deps` AT ROOT level. Running npm or npx command inside packages would re-create `node_modules`
     Ensuring the same version in all packages and dependencies similarities must be done manually
 
 - svelte-spa-router, and its dependency on regexparam, has been bother me for a very long time. When ran with jest, svelte-spa-router files must be transpiled by Svelte compiler, but they import regexparam as esm, and this lib doesn't expose such binding. One must replace the import with require, and this must only be done during test, because rollup will handle it properly.
   When receiving errors from svelte-jester, don't forget to clean jest cache with --cleanCache CLI option.
+
+- pino@7+ has a new concepts of transports, which run in a worker. Unfortunately, this does not play well when bundled in an [asar archive](https://github.com/electron/electron/issues/22446).
+  And because electron-builder's [asarUnpack](https://www.electron.build/configuration/configuration) does not remove the modules from the asar (it unpacks them in addition to embed them), I had to completely disable asar.
 
 #### How watch & diff works
 

@@ -1,7 +1,8 @@
 'use strict'
 
+import { screen, render, fireEvent, waitFor } from '@testing-library/svelte'
+import userEvent from '@testing-library/user-event'
 import { writable } from 'svelte/store'
-import { screen, render, fireEvent } from '@testing-library/svelte'
 import html from 'svelte-htm'
 import faker from 'faker'
 import MediaSelector from './MediaSelector.svelte'
@@ -17,9 +18,12 @@ import { sleep, translate } from '../../tests'
 jest.mock('../../stores/track-queue')
 
 describe('MediaSelector component', () => {
-  beforeEach(() => jest.resetAllMocks())
+  beforeEach(() => {
+    jest.resetAllMocks()
+    isDesktop.next(true)
+  })
 
-  afterEach(() => isDesktop.next(true))
+  afterAll(() => isDesktop.next(true))
 
   it('fetches artwork suggestion and display them on open', async () => {
     const open = writable(false)
@@ -56,7 +60,7 @@ describe('MediaSelector component', () => {
     invoke.mockReset()
 
     const { artwork } = artistSuggestionsData[1]
-    await fireEvent.click(
+    await userEvent.click(
       screen
         .getAllByRole('img')
         .find(node => node.getAttribute('src').includes(artwork))
@@ -68,7 +72,7 @@ describe('MediaSelector component', () => {
       artwork
     )
     expect(invoke).toHaveBeenCalledTimes(1)
-    expect(screen.queryByText(title)).not.toBeVisible()
+    await waitFor(() => expect(screen.queryByText(title)).not.toBeVisible())
   })
 
   it('invokes media manager with appropriate model name', async () => {
@@ -89,7 +93,7 @@ describe('MediaSelector component', () => {
     expect(invoke).toHaveBeenCalledWith('media.findForAlbum', artistData.name)
 
     const { cover } = albumSuggestionsData[1]
-    await fireEvent.click(
+    await userEvent.click(
       screen
         .getAllByRole('img')
         .find(node => node.getAttribute('src').includes(cover))
@@ -102,7 +106,7 @@ describe('MediaSelector component', () => {
     )
 
     expect(invoke).toHaveBeenCalledTimes(2)
-    expect(screen.queryByText(title)).not.toBeVisible()
+    await waitFor(() => expect(screen.queryByText(title)).not.toBeVisible())
   })
 
   it('invokes media manager with dropped file', async () => {
@@ -144,7 +148,7 @@ describe('MediaSelector component', () => {
     )
 
     expect(invoke).toHaveBeenCalledTimes(2)
-    expect(screen.queryByText(title)).not.toBeVisible()
+    await waitFor(() => expect(screen.queryByText(title)).not.toBeVisible())
   })
 
   it('allows uploading files on desktop', async () => {
@@ -178,7 +182,7 @@ describe('MediaSelector component', () => {
     expect(screen.queryByText(title)).toBeVisible()
     invoke.mockReset()
 
-    await fireEvent.click(screen.getByText(translate('cancel')))
+    await userEvent.click(screen.getByText(translate('cancel')))
 
     expect(invoke).not.toHaveBeenCalled()
     expect(screen.queryByText(title)).not.toBeVisible()

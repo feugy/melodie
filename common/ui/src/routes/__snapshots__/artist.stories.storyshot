@@ -27,6 +27,7 @@ exports[`Storyshots Views/Artists Default 1`] = `
          
         <span
           class="svelte-1vgpzqt"
+          role="article"
         >
           <div
             class="content svelte-1vgpzqt"
@@ -112,6 +113,7 @@ exports[`Storyshots Views/Artists Default 1`] = `
          
         <span
           class="svelte-1vgpzqt"
+          role="article"
         >
           <div
             class="content svelte-1vgpzqt"
@@ -190,6 +192,7 @@ exports[`Storyshots Views/Artists Default 1`] = `
          
         <span
           class="svelte-1vgpzqt"
+          role="article"
         >
           <div
             class="content svelte-1vgpzqt"

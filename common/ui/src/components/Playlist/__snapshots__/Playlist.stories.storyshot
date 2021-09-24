@@ -8,6 +8,7 @@ exports[`Storyshots Components/Playlist Default 1`] = `
      
     <span
       class="svelte-1vgpzqt overlay"
+      role="article"
     >
       <div
         class="content svelte-1vgpzqt"
@@ -67,6 +68,8 @@ exports[`Storyshots Components/Playlist Default 1`] = `
       </header>
     </span>
   </div>
+  
+  
 </section>
 `;
 
@@ -78,6 +81,7 @@ exports[`Storyshots Components/Playlist Single Track 1`] = `
      
     <span
       class="svelte-1vgpzqt overlay"
+      role="article"
     >
       <div
         class="content svelte-1vgpzqt"
@@ -137,5 +141,7 @@ exports[`Storyshots Components/Playlist Single Track 1`] = `
       </header>
     </span>
   </div>
+  
+  
 </section>
 `;

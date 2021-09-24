@@ -22,8 +22,8 @@ describe('Services', () => {
 
   it('starts core service, initializes models and settings', async () => {
     const publicFolder = faker.system.filePath()
-    const port1 = faker.random.number()
-    const port2 = faker.random.number()
+    const port1 = faker.datatype.number()
+    const port2 = faker.datatype.number()
     const path = faker.system.filePath()
     electron.app.getPath.mockReturnValue(path)
     const close = jest.fn()
