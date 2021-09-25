@@ -1,6 +1,6 @@
 {
   "name": "@melodie/site",
-  "version": "2.0.0-alpha.2",
+  "version": "2.0.0-beta.1",
   "description": "Mélodie promotion site, deployed as github page",
   "scripts": {
     "build": "run-s -ncs build:sapper build:copy",

@@ -1,6 +1,6 @@
 {
   "name": "melodie",
-  "version": "2.0.0-alpha.2",
+  "version": "2.0.0-beta.1",
   "description": "Mélodie is a portable, simple-as-pie music player",
   "author": {
     "name": "Damien Simonin Feugas",
@@ -20,8 +20,8 @@
     "test:dev": "jest --watch"
   },
   "dependencies": {
-    "@melodie/core": "2.0.0-alpha.2",
-    "@melodie/ui": "2.0.0-alpha.2",
+    "@melodie/core": "2.0.0-beta.1",
+    "@melodie/ui": "2.0.0-beta.1",
     "dotenv": "^10.0.0",
     "electron-localshortcut": "^3.2.1",
     "electron-updater": "^4.3.9",
@@ -30,8 +30,8 @@
     "rxjs": "^7.3.0"
   },
   "optionalDependencies": {
-    "@melodie/core": "2.0.0-alpha.2",
-    "@melodie/ui": "2.0.0-alpha.2"
+    "@melodie/core": "2.0.0-beta.1",
+    "@melodie/ui": "2.0.0-beta.1"
   },
   "devDependencies": {
     "electron": "13.4.0",
