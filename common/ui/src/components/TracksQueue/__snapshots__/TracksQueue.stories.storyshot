@@ -170,13 +170,15 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
                   file 1
                 </span>
                  
-                <a
-                  class="text-sm underlined"
-                  href="#/artist/0"
-                  onclick="event.stopPropagation()"
-                >
-                  Someone
-                </a>
+                <span>
+                  <a
+                    class="text-sm underlined"
+                    href="#/artist/0"
+                    onclick="event.stopPropagation()"
+                  >
+                    Someone
+                  </a>
+                </span>
               </div>
                
               <div
@@ -238,13 +240,15 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
                   file 2
                 </span>
                  
-                <a
-                  class="text-sm underlined"
-                  href="#/artist/0"
-                  onclick="event.stopPropagation()"
-                >
-                  Someone
-                </a>
+                <span>
+                  <a
+                    class="text-sm underlined"
+                    href="#/artist/0"
+                    onclick="event.stopPropagation()"
+                  >
+                    Someone
+                  </a>
+                </span>
               </div>
                
               <div
@@ -306,13 +310,15 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
                   file 3
                 </span>
                  
-                <a
-                  class="text-sm underlined"
-                  href="#/artist/1"
-                  onclick="event.stopPropagation()"
-                >
-                  Someone else
-                </a>
+                <span>
+                  <a
+                    class="text-sm underlined"
+                    href="#/artist/1"
+                    onclick="event.stopPropagation()"
+                  >
+                    Someone else
+                  </a>
+                </span>
               </div>
                
               <div
@@ -374,13 +380,15 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
                   file 4
                 </span>
                  
-                <a
-                  class="text-sm underlined"
-                  href="#/artist/2"
-                  onclick="event.stopPropagation()"
-                >
-                  Another fellow
-                </a>
+                <span>
+                  <a
+                    class="text-sm underlined"
+                    href="#/artist/2"
+                    onclick="event.stopPropagation()"
+                  >
+                    Another fellow
+                  </a>
+                </span>
               </div>
                
               <div
@@ -442,13 +450,15 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
                   file 1
                 </span>
                  
-                <a
-                  class="text-sm underlined"
-                  href="#/artist/0"
-                  onclick="event.stopPropagation()"
-                >
-                  Someone
-                </a>
+                <span>
+                  <a
+                    class="text-sm underlined"
+                    href="#/artist/0"
+                    onclick="event.stopPropagation()"
+                  >
+                    Someone
+                  </a>
+                </span>
               </div>
                
               <div
@@ -510,13 +520,15 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
                   file 2
                 </span>
                  
-                <a
-                  class="text-sm underlined"
-                  href="#/artist/0"
-                  onclick="event.stopPropagation()"
-                >
-                  Someone
-                </a>
+                <span>
+                  <a
+                    class="text-sm underlined"
+                    href="#/artist/0"
+                    onclick="event.stopPropagation()"
+                  >
+                    Someone
+                  </a>
+                </span>
               </div>
                
               <div
@@ -578,13 +590,15 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
                   file 3
                 </span>
                  
-                <a
-                  class="text-sm underlined"
-                  href="#/artist/1"
-                  onclick="event.stopPropagation()"
-                >
-                  Someone else
-                </a>
+                <span>
+                  <a
+                    class="text-sm underlined"
+                    href="#/artist/1"
+                    onclick="event.stopPropagation()"
+                  >
+                    Someone else
+                  </a>
+                </span>
               </div>
                
               <div
@@ -646,13 +660,15 @@ exports[`Storyshots Components/Tracks queue With Track List 1`] = `
                   file 4
                 </span>
                  
-                <a
-                  class="text-sm underlined"
-                  href="#/artist/2"
-                  onclick="event.stopPropagation()"
-                >
-                  Another fellow
-                </a>
+                <span>
+                  <a
+                    class="text-sm underlined"
+                    href="#/artist/2"
+                    onclick="event.stopPropagation()"
+                  >
+                    Another fellow
+                  </a>
+                </span>
               </div>
                
               <div

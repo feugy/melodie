@@ -102,13 +102,23 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
                       American Money
                     </span>
                      
-                    <a
-                      class="text-sm underlined"
-                      href="#/artist/0"
-                      onclick="event.stopPropagation()"
-                    >
-                      Yoko Kanno and the Seatbelts
-                    </a>
+                    <span>
+                      <a
+                        class="text-sm underlined"
+                        href="#/artist/0"
+                        onclick="event.stopPropagation()"
+                      >
+                        Yoko Kanno
+                      </a>
+                      , 
+                      <a
+                        class="text-sm underlined"
+                        href="#/artist/1"
+                        onclick="event.stopPropagation()"
+                      >
+                        the Seatbelts
+                      </a>
+                    </span>
                   </div>
                    
                   <div
@@ -212,13 +222,23 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
                       Fantaisie Sign
                     </span>
                      
-                    <a
-                      class="text-sm underlined"
-                      href="#/artist/0"
-                      onclick="event.stopPropagation()"
-                    >
-                      Yoko Kanno and the Seatbelts
-                    </a>
+                    <span>
+                      <a
+                        class="text-sm underlined"
+                        href="#/artist/0"
+                        onclick="event.stopPropagation()"
+                      >
+                        Yoko Kanno
+                      </a>
+                      , 
+                      <a
+                        class="text-sm underlined"
+                        href="#/artist/1"
+                        onclick="event.stopPropagation()"
+                      >
+                        the Seatbelts
+                      </a>
+                    </span>
                   </div>
                    
                   <div
@@ -322,13 +342,23 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
                       Don't Bother None
                     </span>
                      
-                    <a
-                      class="text-sm underlined"
-                      href="#/artist/0"
-                      onclick="event.stopPropagation()"
-                    >
-                      Yoko Kanno and the Seatbelts
-                    </a>
+                    <span>
+                      <a
+                        class="text-sm underlined"
+                        href="#/artist/0"
+                        onclick="event.stopPropagation()"
+                      >
+                        Yoko Kanno
+                      </a>
+                      , 
+                      <a
+                        class="text-sm underlined"
+                        href="#/artist/1"
+                        onclick="event.stopPropagation()"
+                      >
+                        the Seatbelts
+                      </a>
+                    </span>
                   </div>
                    
                   <div
@@ -432,13 +462,23 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
                       Vitamin A
                     </span>
                      
-                    <a
-                      class="text-sm underlined"
-                      href="#/artist/0"
-                      onclick="event.stopPropagation()"
-                    >
-                      Yoko Kanno and the Seatbelts
-                    </a>
+                    <span>
+                      <a
+                        class="text-sm underlined"
+                        href="#/artist/0"
+                        onclick="event.stopPropagation()"
+                      >
+                        Yoko Kanno
+                      </a>
+                      , 
+                      <a
+                        class="text-sm underlined"
+                        href="#/artist/1"
+                        onclick="event.stopPropagation()"
+                      >
+                        the Seatbelts
+                      </a>
+                    </span>
                   </div>
                    
                   <div
@@ -542,13 +582,23 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
                       LIVE in Baghdad
                     </span>
                      
-                    <a
-                      class="text-sm underlined"
-                      href="#/artist/0"
-                      onclick="event.stopPropagation()"
-                    >
-                      Yoko Kanno and the Seatbelts
-                    </a>
+                    <span>
+                      <a
+                        class="text-sm underlined"
+                        href="#/artist/0"
+                        onclick="event.stopPropagation()"
+                      >
+                        Yoko Kanno
+                      </a>
+                      , 
+                      <a
+                        class="text-sm underlined"
+                        href="#/artist/1"
+                        onclick="event.stopPropagation()"
+                      >
+                        the Seatbelts
+                      </a>
+                    </span>
                   </div>
                    
                   <div
@@ -652,13 +702,23 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
                       Cats on Mars
                     </span>
                      
-                    <a
-                      class="text-sm underlined"
-                      href="#/artist/0"
-                      onclick="event.stopPropagation()"
-                    >
-                      Yoko Kanno and the Seatbelts
-                    </a>
+                    <span>
+                      <a
+                        class="text-sm underlined"
+                        href="#/artist/0"
+                        onclick="event.stopPropagation()"
+                      >
+                        Yoko Kanno
+                      </a>
+                      , 
+                      <a
+                        class="text-sm underlined"
+                        href="#/artist/1"
+                        onclick="event.stopPropagation()"
+                      >
+                        the Seatbelts
+                      </a>
+                    </span>
                   </div>
                    
                   <div
@@ -762,13 +822,23 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
                       Want it All Back
                     </span>
                      
-                    <a
-                      class="text-sm underlined"
-                      href="#/artist/0"
-                      onclick="event.stopPropagation()"
-                    >
-                      Yoko Kanno and the Seatbelts
-                    </a>
+                    <span>
+                      <a
+                        class="text-sm underlined"
+                        href="#/artist/0"
+                        onclick="event.stopPropagation()"
+                      >
+                        Yoko Kanno
+                      </a>
+                      , 
+                      <a
+                        class="text-sm underlined"
+                        href="#/artist/1"
+                        onclick="event.stopPropagation()"
+                      >
+                        the Seatbelts
+                      </a>
+                    </span>
                   </div>
                    
                   <div
@@ -872,13 +942,23 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
                       Bindy
                     </span>
                      
-                    <a
-                      class="text-sm underlined"
-                      href="#/artist/0"
-                      onclick="event.stopPropagation()"
-                    >
-                      Yoko Kanno and the Seatbelts
-                    </a>
+                    <span>
+                      <a
+                        class="text-sm underlined"
+                        href="#/artist/0"
+                        onclick="event.stopPropagation()"
+                      >
+                        Yoko Kanno
+                      </a>
+                      , 
+                      <a
+                        class="text-sm underlined"
+                        href="#/artist/1"
+                        onclick="event.stopPropagation()"
+                      >
+                        the Seatbelts
+                      </a>
+                    </span>
                   </div>
                    
                   <div
@@ -982,13 +1062,23 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
                       You Make Me Coo
                     </span>
                      
-                    <a
-                      class="text-sm underlined"
-                      href="#/artist/0"
-                      onclick="event.stopPropagation()"
-                    >
-                      Yoko Kanno and the Seatbelts
-                    </a>
+                    <span>
+                      <a
+                        class="text-sm underlined"
+                        href="#/artist/0"
+                        onclick="event.stopPropagation()"
+                      >
+                        Yoko Kanno
+                      </a>
+                      , 
+                      <a
+                        class="text-sm underlined"
+                        href="#/artist/1"
+                        onclick="event.stopPropagation()"
+                      >
+                        the Seatbelts
+                      </a>
+                    </span>
                   </div>
                    
                   <div
@@ -1092,13 +1182,23 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
                       Vitamin B
                     </span>
                      
-                    <a
-                      class="text-sm underlined"
-                      href="#/artist/0"
-                      onclick="event.stopPropagation()"
-                    >
-                      Yoko Kanno and the Seatbelts
-                    </a>
+                    <span>
+                      <a
+                        class="text-sm underlined"
+                        href="#/artist/0"
+                        onclick="event.stopPropagation()"
+                      >
+                        Yoko Kanno
+                      </a>
+                      , 
+                      <a
+                        class="text-sm underlined"
+                        href="#/artist/1"
+                        onclick="event.stopPropagation()"
+                      >
+                        the Seatbelts
+                      </a>
+                    </span>
                   </div>
                    
                   <div
@@ -1202,13 +1302,23 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
                       Green Bird
                     </span>
                      
-                    <a
-                      class="text-sm underlined"
-                      href="#/artist/0"
-                      onclick="event.stopPropagation()"
-                    >
-                      Yoko Kanno and the Seatbelts
-                    </a>
+                    <span>
+                      <a
+                        class="text-sm underlined"
+                        href="#/artist/0"
+                        onclick="event.stopPropagation()"
+                      >
+                        Yoko Kanno
+                      </a>
+                      , 
+                      <a
+                        class="text-sm underlined"
+                        href="#/artist/1"
+                        onclick="event.stopPropagation()"
+                      >
+                        the Seatbelts
+                      </a>
+                    </span>
                   </div>
                    
                   <div
@@ -1312,13 +1422,23 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
                       ELM
                     </span>
                      
-                    <a
-                      class="text-sm underlined"
-                      href="#/artist/0"
-                      onclick="event.stopPropagation()"
-                    >
-                      Yoko Kanno and the Seatbelts
-                    </a>
+                    <span>
+                      <a
+                        class="text-sm underlined"
+                        href="#/artist/0"
+                        onclick="event.stopPropagation()"
+                      >
+                        Yoko Kanno
+                      </a>
+                      , 
+                      <a
+                        class="text-sm underlined"
+                        href="#/artist/1"
+                        onclick="event.stopPropagation()"
+                      >
+                        the Seatbelts
+                      </a>
+                    </span>
                   </div>
                    
                   <div
@@ -1422,13 +1542,23 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
                       Vitamin C
                     </span>
                      
-                    <a
-                      class="text-sm underlined"
-                      href="#/artist/0"
-                      onclick="event.stopPropagation()"
-                    >
-                      Yoko Kanno and the Seatbelts
-                    </a>
+                    <span>
+                      <a
+                        class="text-sm underlined"
+                        href="#/artist/0"
+                        onclick="event.stopPropagation()"
+                      >
+                        Yoko Kanno
+                      </a>
+                      , 
+                      <a
+                        class="text-sm underlined"
+                        href="#/artist/1"
+                        onclick="event.stopPropagation()"
+                      >
+                        the Seatbelts
+                      </a>
+                    </span>
                   </div>
                    
                   <div
@@ -1532,13 +1662,23 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
                       Gateway
                     </span>
                      
-                    <a
-                      class="text-sm underlined"
-                      href="#/artist/0"
-                      onclick="event.stopPropagation()"
-                    >
-                      Yoko Kanno and the Seatbelts
-                    </a>
+                    <span>
+                      <a
+                        class="text-sm underlined"
+                        href="#/artist/0"
+                        onclick="event.stopPropagation()"
+                      >
+                        Yoko Kanno
+                      </a>
+                      , 
+                      <a
+                        class="text-sm underlined"
+                        href="#/artist/1"
+                        onclick="event.stopPropagation()"
+                      >
+                        the Seatbelts
+                      </a>
+                    </span>
                   </div>
                    
                   <div
@@ -1642,13 +1782,23 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
                       The Singing Sea
                     </span>
                      
-                    <a
-                      class="text-sm underlined"
-                      href="#/artist/0"
-                      onclick="event.stopPropagation()"
-                    >
-                      Yoko Kanno and the Seatbelts
-                    </a>
+                    <span>
+                      <a
+                        class="text-sm underlined"
+                        href="#/artist/0"
+                        onclick="event.stopPropagation()"
+                      >
+                        Yoko Kanno
+                      </a>
+                      , 
+                      <a
+                        class="text-sm underlined"
+                        href="#/artist/1"
+                        onclick="event.stopPropagation()"
+                      >
+                        the Seatbelts
+                      </a>
+                    </span>
                   </div>
                    
                   <div
@@ -1752,13 +1902,23 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
                       The Egg and You!
                     </span>
                      
-                    <a
-                      class="text-sm underlined"
-                      href="#/artist/0"
-                      onclick="event.stopPropagation()"
-                    >
-                      Yoko Kanno and the Seatbelts
-                    </a>
+                    <span>
+                      <a
+                        class="text-sm underlined"
+                        href="#/artist/0"
+                        onclick="event.stopPropagation()"
+                      >
+                        Yoko Kanno
+                      </a>
+                      , 
+                      <a
+                        class="text-sm underlined"
+                        href="#/artist/1"
+                        onclick="event.stopPropagation()"
+                      >
+                        the Seatbelts
+                      </a>
+                    </span>
                   </div>
                    
                   <div
@@ -1862,13 +2022,23 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
                       Forever Broke
                     </span>
                      
-                    <a
-                      class="text-sm underlined"
-                      href="#/artist/0"
-                      onclick="event.stopPropagation()"
-                    >
-                      Yoko Kanno and the Seatbelts
-                    </a>
+                    <span>
+                      <a
+                        class="text-sm underlined"
+                        href="#/artist/0"
+                        onclick="event.stopPropagation()"
+                      >
+                        Yoko Kanno
+                      </a>
+                      , 
+                      <a
+                        class="text-sm underlined"
+                        href="#/artist/1"
+                        onclick="event.stopPropagation()"
+                      >
+                        the Seatbelts
+                      </a>
+                    </span>
                   </div>
                    
                   <div
@@ -1972,13 +2142,23 @@ exports[`Storyshots Components/Playlist tracks table Default 1`] = `
                       Power of Kungfu Remix
                     </span>
                      
-                    <a
-                      class="text-sm underlined"
-                      href="#/artist/0"
-                      onclick="event.stopPropagation()"
-                    >
-                      Yoko Kanno and the Seatbelts
-                    </a>
+                    <span>
+                      <a
+                        class="text-sm underlined"
+                        href="#/artist/0"
+                        onclick="event.stopPropagation()"
+                      >
+                        Yoko Kanno
+                      </a>
+                      , 
+                      <a
+                        class="text-sm underlined"
+                        href="#/artist/1"
+                        onclick="event.stopPropagation()"
+                      >
+                        the Seatbelts
+                      </a>
+                    </span>
                   </div>
                    
                   <div

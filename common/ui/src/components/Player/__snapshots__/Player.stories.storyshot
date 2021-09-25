@@ -235,13 +235,15 @@ exports[`Storyshots Components/Player With Track List 1`] = `
               file 1
             </span>
              
-            <a
-              class="text-sm underlined"
-              href="#/artist/0"
-              onclick="event.stopPropagation()"
-            >
-              Someone
-            </a>
+            <span>
+              <a
+                class="text-sm underlined"
+                href="#/artist/0"
+                onclick="event.stopPropagation()"
+              >
+                Someone
+              </a>
+            </span>
           </div>
            
            

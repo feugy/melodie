@@ -176,7 +176,15 @@ exports[`Storyshots Views/Album Details Default 1`] = `
                 href="#/artist/0"
                 onclick="event.stopPropagation()"
               >
-                Yoko Kanno and the Seatbelts
+                Yoko Kanno
+              </a>
+              , 
+              <a
+                class="underlined"
+                href="#/artist/1"
+                onclick="event.stopPropagation()"
+              >
+                the Seatbelts
               </a>
             </td>
              
@@ -237,7 +245,15 @@ exports[`Storyshots Views/Album Details Default 1`] = `
                 href="#/artist/0"
                 onclick="event.stopPropagation()"
               >
-                Yoko Kanno and the Seatbelts
+                Yoko Kanno
+              </a>
+              , 
+              <a
+                class="underlined"
+                href="#/artist/1"
+                onclick="event.stopPropagation()"
+              >
+                the Seatbelts
               </a>
             </td>
              
@@ -353,7 +369,15 @@ exports[`Storyshots Views/Album Details Default 1`] = `
                 href="#/artist/0"
                 onclick="event.stopPropagation()"
               >
-                Yoko Kanno and the Seatbelts
+                Yoko Kanno
+              </a>
+              , 
+              <a
+                class="underlined"
+                href="#/artist/1"
+                onclick="event.stopPropagation()"
+              >
+                the Seatbelts
               </a>
             </td>
              
@@ -414,7 +438,15 @@ exports[`Storyshots Views/Album Details Default 1`] = `
                 href="#/artist/0"
                 onclick="event.stopPropagation()"
               >
-                Yoko Kanno and the Seatbelts
+                Yoko Kanno
+              </a>
+              , 
+              <a
+                class="underlined"
+                href="#/artist/1"
+                onclick="event.stopPropagation()"
+              >
+                the Seatbelts
               </a>
             </td>
              
@@ -475,7 +507,15 @@ exports[`Storyshots Views/Album Details Default 1`] = `
                 href="#/artist/0"
                 onclick="event.stopPropagation()"
               >
-                Yoko Kanno and the Seatbelts
+                Yoko Kanno
+              </a>
+              , 
+              <a
+                class="underlined"
+                href="#/artist/1"
+                onclick="event.stopPropagation()"
+              >
+                the Seatbelts
               </a>
             </td>
              
@@ -536,7 +576,15 @@ exports[`Storyshots Views/Album Details Default 1`] = `
                 href="#/artist/0"
                 onclick="event.stopPropagation()"
               >
-                Yoko Kanno and the Seatbelts
+                Yoko Kanno
+              </a>
+              , 
+              <a
+                class="underlined"
+                href="#/artist/1"
+                onclick="event.stopPropagation()"
+              >
+                the Seatbelts
               </a>
             </td>
              
@@ -597,7 +645,15 @@ exports[`Storyshots Views/Album Details Default 1`] = `
                 href="#/artist/0"
                 onclick="event.stopPropagation()"
               >
-                Yoko Kanno and the Seatbelts
+                Yoko Kanno
+              </a>
+              , 
+              <a
+                class="underlined"
+                href="#/artist/1"
+                onclick="event.stopPropagation()"
+              >
+                the Seatbelts
               </a>
             </td>
              
@@ -658,7 +714,15 @@ exports[`Storyshots Views/Album Details Default 1`] = `
                 href="#/artist/0"
                 onclick="event.stopPropagation()"
               >
-                Yoko Kanno and the Seatbelts
+                Yoko Kanno
+              </a>
+              , 
+              <a
+                class="underlined"
+                href="#/artist/1"
+                onclick="event.stopPropagation()"
+              >
+                the Seatbelts
               </a>
             </td>
              
@@ -719,7 +783,15 @@ exports[`Storyshots Views/Album Details Default 1`] = `
                 href="#/artist/0"
                 onclick="event.stopPropagation()"
               >
-                Yoko Kanno and the Seatbelts
+                Yoko Kanno
+              </a>
+              , 
+              <a
+                class="underlined"
+                href="#/artist/1"
+                onclick="event.stopPropagation()"
+              >
+                the Seatbelts
               </a>
             </td>
              
@@ -780,7 +852,15 @@ exports[`Storyshots Views/Album Details Default 1`] = `
                 href="#/artist/0"
                 onclick="event.stopPropagation()"
               >
-                Yoko Kanno and the Seatbelts
+                Yoko Kanno
+              </a>
+              , 
+              <a
+                class="underlined"
+                href="#/artist/1"
+                onclick="event.stopPropagation()"
+              >
+                the Seatbelts
               </a>
             </td>
              
@@ -896,7 +976,15 @@ exports[`Storyshots Views/Album Details Default 1`] = `
                 href="#/artist/0"
                 onclick="event.stopPropagation()"
               >
-                Yoko Kanno and the Seatbelts
+                Yoko Kanno
+              </a>
+              , 
+              <a
+                class="underlined"
+                href="#/artist/1"
+                onclick="event.stopPropagation()"
+              >
+                the Seatbelts
               </a>
             </td>
              
@@ -957,7 +1045,15 @@ exports[`Storyshots Views/Album Details Default 1`] = `
                 href="#/artist/0"
                 onclick="event.stopPropagation()"
               >
-                Yoko Kanno and the Seatbelts
+                Yoko Kanno
+              </a>
+              , 
+              <a
+                class="underlined"
+                href="#/artist/1"
+                onclick="event.stopPropagation()"
+              >
+                the Seatbelts
               </a>
             </td>
              
@@ -1018,7 +1114,15 @@ exports[`Storyshots Views/Album Details Default 1`] = `
                 href="#/artist/0"
                 onclick="event.stopPropagation()"
               >
-                Yoko Kanno and the Seatbelts
+                Yoko Kanno
+              </a>
+              , 
+              <a
+                class="underlined"
+                href="#/artist/1"
+                onclick="event.stopPropagation()"
+              >
+                the Seatbelts
               </a>
             </td>
              
@@ -1079,7 +1183,15 @@ exports[`Storyshots Views/Album Details Default 1`] = `
                 href="#/artist/0"
                 onclick="event.stopPropagation()"
               >
-                Yoko Kanno and the Seatbelts
+                Yoko Kanno
+              </a>
+              , 
+              <a
+                class="underlined"
+                href="#/artist/1"
+                onclick="event.stopPropagation()"
+              >
+                the Seatbelts
               </a>
             </td>
              
@@ -1140,7 +1252,15 @@ exports[`Storyshots Views/Album Details Default 1`] = `
                 href="#/artist/0"
                 onclick="event.stopPropagation()"
               >
-                Yoko Kanno and the Seatbelts
+                Yoko Kanno
+              </a>
+              , 
+              <a
+                class="underlined"
+                href="#/artist/1"
+                onclick="event.stopPropagation()"
+              >
+                the Seatbelts
               </a>
             </td>
              
@@ -1201,7 +1321,15 @@ exports[`Storyshots Views/Album Details Default 1`] = `
                 href="#/artist/0"
                 onclick="event.stopPropagation()"
               >
-                Yoko Kanno and the Seatbelts
+                Yoko Kanno
+              </a>
+              , 
+              <a
+                class="underlined"
+                href="#/artist/1"
+                onclick="event.stopPropagation()"
+              >
+                the Seatbelts
               </a>
             </td>
              
@@ -1262,7 +1390,15 @@ exports[`Storyshots Views/Album Details Default 1`] = `
                 href="#/artist/0"
                 onclick="event.stopPropagation()"
               >
-                Yoko Kanno and the Seatbelts
+                Yoko Kanno
+              </a>
+              , 
+              <a
+                class="underlined"
+                href="#/artist/1"
+                onclick="event.stopPropagation()"
+              >
+                the Seatbelts
               </a>
             </td>
              
@@ -1323,7 +1459,15 @@ exports[`Storyshots Views/Album Details Default 1`] = `
                 href="#/artist/0"
                 onclick="event.stopPropagation()"
               >
-                Yoko Kanno and the Seatbelts
+                Yoko Kanno
+              </a>
+              , 
+              <a
+                class="underlined"
+                href="#/artist/1"
+                onclick="event.stopPropagation()"
+              >
+                the Seatbelts
               </a>
             </td>
              

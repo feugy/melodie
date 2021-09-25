@@ -136,7 +136,7 @@ describe('Tracks model', () => {
       expect(previous).toBeNull()
     })
 
-    it('distinguished tracks with same album name but different album artist', async () => {
+    it('distinguishes tracks with same album name but different album artist', async () => {
       const path1 = faker.system.fileName()
       const path2 = faker.system.fileName()
       const album = faker.commerce.productName()
@@ -173,6 +173,72 @@ describe('Tracks model', () => {
         ...track2,
         albumRef: [hash(`${album} --- ${artists[1]}`), album],
         artistRefs: [[hash(artists[1]), artists[1]]]
+      })
+    })
+
+    it('creates refs for artists and album artists', async () => {
+      const album = faker.commerce.productName()
+      const artists = [faker.name.findName(), faker.name.findName()]
+      const albumartist = faker.name.findName()
+      const track = {
+        ...models[1],
+        media: faker.image.image(),
+        mediaCount: faker.datatype.number({ max: 10 }),
+        mtimeMs: Date.now(),
+        tags: { album, artists, albumartist },
+        ino: 3439196
+      }
+
+      const [{ previous, current }] = await tracksModel.save([track])
+      expect(current).toEqual({
+        ...track,
+        albumRef: [hash(`${album} --- ${albumartist}`), album],
+        artistRefs: [albumartist, ...artists].map(artist => [
+          hash(artist),
+          artist
+        ])
+      })
+      expect(await tracksModel.getById(track.id)).toEqual(current)
+      expect(previous).toEqual({
+        id: track.id,
+        tags: JSON.parse(models[1].tags),
+        artistRefs: JSON.parse(models[1].artistRefs),
+        albumRef: JSON.parse(models[1].albumRef)
+      })
+    })
+
+    it('removes duplicated (album) artists from refs', async () => {
+      const album = faker.commerce.productName()
+      const artists = [
+        faker.name.findName(),
+        faker.name.findName(),
+        faker.name.findName()
+      ]
+      const track = {
+        ...models[1],
+        media: faker.image.image(),
+        mediaCount: faker.datatype.number({ max: 10 }),
+        mtimeMs: Date.now(),
+        tags: {
+          album,
+          artists: [artists[0], artists[1], artists[0], artists[2]],
+          albumartist: artists[0]
+        },
+        ino: 3439196
+      }
+
+      const [{ previous, current }] = await tracksModel.save([track])
+      expect(current).toEqual({
+        ...track,
+        albumRef: [hash(`${album} --- ${artists[0]}`), album],
+        artistRefs: artists.map(artist => [hash(artist), artist])
+      })
+      expect(await tracksModel.getById(track.id)).toEqual(current)
+      expect(previous).toEqual({
+        id: track.id,
+        tags: JSON.parse(models[1].tags),
+        artistRefs: JSON.parse(models[1].artistRefs),
+        albumRef: JSON.parse(models[1].albumRef)
       })
     })
 

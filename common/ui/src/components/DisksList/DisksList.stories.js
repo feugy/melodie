@@ -24,7 +24,7 @@ export default {
 }
 
 const album = 'Cowboy Bebop - NoDisc'
-const artists = ['Yoko Kanno and the Seatbelts']
+const artists = ['Yoko Kanno', 'the Seatbelts']
 const albumRef = [1, album]
 const artistRefs = artists.map((artist, id) => [id, artist])
 

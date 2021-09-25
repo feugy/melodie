@@ -33,13 +33,15 @@ exports[`Storyshots Components/Track Default 1`] = `
           Mama got a girlfriend
         </span>
          
-        <a
-          class="text-sm underlined"
-          href="#/artist/0"
-          onclick="event.stopPropagation()"
-        >
-          Ben Harper
-        </a>
+        <span>
+          <a
+            class="text-sm underlined"
+            href="#/artist/0"
+            onclick="event.stopPropagation()"
+          >
+            Ben Harper
+          </a>
+        </span>
       </div>
        
        
@@ -83,13 +85,15 @@ exports[`Storyshots Components/Track With Details 1`] = `
           Mama got a girlfriend
         </span>
          
-        <a
-          class="text-sm underlined"
-          href="#/artist/0"
-          onclick="event.stopPropagation()"
-        >
-          Ben Harper
-        </a>
+        <span>
+          <a
+            class="text-sm underlined"
+            href="#/artist/0"
+            onclick="event.stopPropagation()"
+          >
+            Ben Harper
+          </a>
+        </span>
       </div>
        
       <div
@@ -138,13 +142,15 @@ exports[`Storyshots Components/Track With Menu 1`] = `
           Mama got a girlfriend
         </span>
          
-        <a
-          class="text-sm underlined"
-          href="#/artist/0"
-          onclick="event.stopPropagation()"
-        >
-          Ben Harper
-        </a>
+        <span>
+          <a
+            class="text-sm underlined"
+            href="#/artist/0"
+            onclick="event.stopPropagation()"
+          >
+            Ben Harper
+          </a>
+        </span>
       </div>
        
        
