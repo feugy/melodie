@@ -1,6 +1,6 @@
 {
   "name": "@melodie/core",
-  "version": "2.0.0-alpha.2",
+  "version": "2.0.0-beta.1",
   "description": "Mélodie core, to manage music tracks",
   "main": "lib/index.js",
   "scripts": {
