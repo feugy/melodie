@@ -1,13 +1,25 @@
+function isMelodieDep(name) {
+  return name?.startsWith('@melodie') || name?.startsWith('melodie')
+}
+
 function updateDeps(package, version) {
+  if (isMelodieDep(package.name)) {
+    package.version = version
+  }
   for (const deps of [
-    package.dependencies,
-    package.optionalDependencies,
-    package.devDependencies,
-    package.requires
-  ].filter(Boolean)) {
-    for (const dep in deps) {
-      if (dep.startsWith('@melodie')) {
-        deps[dep] = version
+    'dependencies',
+    'optionalDependencies',
+    'devDependencies',
+    'packages',
+    'requires'
+  ].filter(name => typeof package[name] === 'object')) {
+    for (const dep in package[deps]) {
+      if (deps === 'packages' || isMelodieDep(dep)) {
+        if (typeof package[deps][dep] === 'object') {
+          updateDeps(package[deps][dep], version)
+        } else {
+          package[deps][dep] = version
+        }
       }
     }
   }
@@ -19,19 +31,7 @@ const updater = {
     return JSON.parse(contents).version
   },
   writeVersion(contents, version) {
-    const file = JSON.parse(contents)
-    updateDeps(file, version).version = version
-    if (file.packages) {
-      for (const name in file.packages) {
-        updateDeps(file.packages[name], version).version = version
-      }
-    }
-    if (file.dependencies) {
-      for (const name in file.dependencies) {
-        updateDeps(file.dependencies[name], version)
-      }
-    }
-    return JSON.stringify(file)
+    return JSON.stringify(updateDeps(JSON.parse(contents), version))
   }
 }
 

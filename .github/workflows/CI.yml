@@ -26,32 +26,24 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: Install dependencies
-        run: npm ci --legacy-peer-deps
+        run: npm ci
 
       - name: Lint code
         run: npm run lint
 
-      - name: Run UI tests
-        run: |
-          cd common/ui
-          npm test
-
       - name: Run Core tests
-        run: |
-          cd common/core
-          npm test
+        run: npm run test:core
         env:
           AUDIODB_KEY: ${{ secrets.AUDIODB_KEY }}
 
+      - name: Run UI tests
+        run: npm run test:ui
+
       - name: Run Desktop tests
-        run: |
-          cd apps/desktop
-          npm test
+        run: npm run test:desktop
 
       - name: Run Site tests
-        run: |
-          cd apps/site
-          npm test
+        run: npm run test:site
 
       - name: Send coverage to Codacy
         if: always()

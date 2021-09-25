@@ -16,8 +16,8 @@
   ],
   "scripts": {
     "dev": "run-p -ncs dev:**",
-    "dev:desktop": "npm run --prefix apps/desktop dev",
-    "dev:ui": "npm run --prefix common/ui dev",
+    "dev:desktop": "npm run --workspace apps/desktop dev",
+    "dev:ui": "npm run --workspace common/ui dev",
     "lint": "run-s -ncs lint:**",
     "lint:core": "npx eslint common/core/lib",
     "lint:desktop": "npx eslint apps/desktop/lib",
@@ -26,10 +26,10 @@
     "release:bump": "standard-version -s",
     "start": "run-p -n dev:**",
     "test": "run-s -ncs test:**",
-    "test:core": "npm run --prefix common/core test",
-    "test:desktop": "npm run --prefix apps/desktop test",
-    "test:site": "npm run --prefix apps/site test",
-    "test:ui": "npm run --prefix common/ui test"
+    "test:core": "npm run --workspace common/core test",
+    "test:desktop": "npm run --workspace apps/desktop test",
+    "test:site": "npm run --workspace apps/site test",
+    "test:ui": "npm run --workspace common/ui test"
   },
   "devDependencies": {
     "eslint": "^7.32.0",
