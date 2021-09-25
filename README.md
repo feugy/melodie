@@ -11,7 +11,7 @@
 
 Melodie is a portable, simple-as-pie music player.
 
-![preview](site/static/images/screenshot-ui-en.png)
+![preview](apps/site/static/images/screenshot-ui-en.png)
 
 </div>
 
@@ -195,18 +195,22 @@ You can edit the file, and trigger logger level refresh by sending SIGUSR2 to th
 
 ## Running locally
 
+You'll need npm@7+ and node@16+
+
 ```shell
-npm i -g lerna
 git clone git@github.com:feugy/melodie.git
 cd melodie
-lerna bootstrap
+npm i
+npm start
 ```
 
 ## Testing
 
 The test suite works fine Linux, MacOS and Windows.
 
-Please not that got requires node 14.9+ on Windows.
+```shell
+npm t
+```
 
 ### Core services network mocks (nocks)
 
@@ -297,8 +301,10 @@ Windows App store release can not be automated: Github CI will build the appx pa
 1. When ready, bump the version on local machine:
 
    ```shell
-   npm run release:bump --workspace apps/desktop
+   npm run release:bump
    ```
+
+   (if you wish to get a pre-release, append `-- --prerelease beta|alpha` to the command line)
 
 1. **Don't forget to update snapshots**: the presentation site test depend on the version number.
 
