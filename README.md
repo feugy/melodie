@@ -358,7 +358,7 @@ Until [this PR](https://github.com/electron-userland/electron-builder/pull/5313)
 
    Then select the dist folder as target folder
 
-1. Amend the `snap.yaml` descriptor. **At root level**, add:
+1. Amend the `meta/snap.yaml` descriptor. **At root level**, replaces `slots` with:
 
    ```yaml
    slots:
@@ -366,6 +366,8 @@ Until [this PR](https://github.com/electron-userland/electron-builder/pull/5313)
        interface: mpris
        name: chromium
    ```
+
+   Then within `app.melodie.slots`, **remove** `- name`
 
    Save the file
 
@@ -470,6 +472,8 @@ Mélodie is referenced on these stores and hubs:
 
 - pino@7+ has a new concepts of transports, which run in a worker. Unfortunately, this does not play well when bundled in an [asar archive](https://github.com/electron/electron/issues/22446).
   And because electron-builder's [asarUnpack](https://www.electron.build/configuration/configuration) does not remove the modules from the asar (it unpacks them in addition to embed them), I had to completely disable asar.
+
+- since v22.11.1, electron-builder fails to build the app on [Github worker](https://github.com/electron-userland/electron-builder/issues/6124). Fixing the version to 22.10.5 for the time being.
 
 #### How watch & diff works
 
