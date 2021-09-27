@@ -13,7 +13,7 @@ import {
 } from '../../stores/playlists'
 import { invoke } from '../../utils'
 import { sleep, translate } from '../../tests'
-import { playlistsData } from './AddToPlaylist.stories'
+import { playlistsData } from './AddToPlaylist.testdata'
 
 jest.mock('../../stores/playlists')
 

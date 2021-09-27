@@ -15,7 +15,3 @@ bundles.set('en', en)
 bundles.set('fr', fr)
 
 addTranslations(bundles, translations)
-
-export const parameters = {
-  controls: { hideNoControlsWarning: true }
-}

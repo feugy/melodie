@@ -1,9 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Storyshots Site components/Download button Default 1`] = `
-<section
-  class="storybook-snapshot-container"
->
+exports[`Toolshot components/DownloadButton/DownloadButton.tools.svelte 1`] = `
+<span>
   <span
     aria-expanded="false"
     aria-haspopup="menu"
@@ -33,5 +31,5 @@ exports[`Storyshots Site components/Download button Default 1`] = `
   </span>
    
   
-</section>
+</span>
 `;

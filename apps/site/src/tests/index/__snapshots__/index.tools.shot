@@ -1,0 +1,517 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Toolshot tests/index/index.tools.svelte 1`] = `
+<main>
+   
+  <div
+    class="wrapper svelte-38m0uk"
+  >
+    <span
+      class="sentinel svelte-38m0uk"
+    />
+     
+    <nav
+      class="svelte-38m0uk"
+    >
+      <nav
+        class="svelte-m7n09p"
+      >
+        <img
+          alt="Mélodie logo - link to the page top"
+          class="svelte-m7n09p"
+          src="favicon.png"
+        />
+         
+        <a
+          class="svelte-m7n09p"
+          href="#intuitive"
+        >
+          <i
+            class="material-icons"
+          >
+            all_inclusive
+          </i>
+          Intuitive
+        </a>
+         
+        <a
+          class="svelte-m7n09p"
+          href="#organized"
+        >
+          <i
+            class="material-icons"
+          >
+            apps
+          </i>
+          Organized
+        </a>
+         
+        <a
+          class="svelte-m7n09p"
+          href="#reactive"
+        >
+          <i
+            class="material-icons"
+          >
+            cached
+          </i>
+          Reactive
+        </a>
+         
+        <a
+          class="svelte-m7n09p"
+          href="#for-geeks"
+        >
+          <i
+            class="material-icons"
+          >
+            more_vert
+          </i>
+          For geeks
+        </a>
+         
+        <span
+          class="flex-grow"
+        />
+         
+        <a
+          class="svelte-m7n09p"
+          href="https://github.com/feugy/melodie"
+          target="_blank"
+        >
+          <img
+            alt=""
+            class="svelte-m7n09p"
+            src="./logos/github.png"
+          />
+        </a>
+      </nav>
+    </nav>
+  </div>
+   
+  <header
+    class="inverted-colors svelte-m7n09p"
+  >
+    <section
+      class="svelte-i2y9a2"
+      style="--color: transparent; --clip-path: polygon(0% 0%, 100% 7rem, 100% calc(100% - 7rem), 0 100%);"
+    >
+      <div>
+        <div
+          class="content svelte-m7n09p"
+        >
+          <span
+            class="svelte-m7n09p"
+          >
+            <h1
+              class="svelte-m7n09p"
+            >
+              Mélodie is a music player
+            </h1>
+             
+            <h2
+              class="svelte-m7n09p"
+            >
+              It is intuitive, portable and open source!
+            </h2>
+             
+            <span
+              aria-expanded="false"
+              aria-haspopup="menu"
+              class="wrapper svelte-17zgehq"
+            >
+              <button
+                class="text-white primary large svelte-1lod44n"
+              >
+                <i
+                  class="material-icons svelte-1lod44n"
+                >
+                  get_app
+                </i>
+                 
+                <span>
+                  Install v2.0.0-beta.1
+                </span>
+                 
+                <i
+                  class="material-icons arrow svelte-17zgehq"
+                >
+                  arrow_drop_down
+                </i>
+                
+                 
+              </button>
+            </span>
+             
+            
+          </span>
+           
+          <div
+            class="image-wrapper svelte-m7n09p"
+          >
+            <div
+              class="svelte-1azjigb"
+              style="--height: 350px; --src: url('../images/screenshot-ui-en.png');"
+            >
+              <img
+                alt=""
+                class="svelte-1azjigb"
+                src="images/screenshot-ui-en.png"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </header>
+   
+  <section
+    class="svelte-m7n09p"
+    id="intuitive"
+  >
+    <section
+      class="svelte-i2y9a2"
+      style="--color: #4c5c96; --clip-path: polygon(0% 7rem, 100% 0%, 100% 100%, 0 calc(100% - 7rem));"
+    >
+      <div>
+        <div
+          class="content svelte-m7n09p"
+        >
+          <span
+            class="svelte-m7n09p"
+          >
+            <h3
+              class="svelte-m7n09p"
+            >
+              No frills, just the basics
+            </h3>
+             
+            <p
+              class="svelte-m7n09p"
+            >
+              <p>
+                Plays Mp3, Ogg Vorbis and Flac files. Controls speak for themselves. 
+              </p>
+               
+              <p>
+                What you don't see yet? Gap-less playback, ReplayGain, system notifications and media keys support.
+              </p>
+              
+
+            </p>
+          </span>
+           
+          <div
+            class="image-wrapper svelte-m7n09p"
+          >
+            <div
+              class="svelte-1azjigb"
+              style="--height: 100px; --src: url('../images/screenshot-player-en.png');"
+            >
+              <img
+                alt=""
+                class="svelte-1azjigb"
+                src="images/screenshot-player-en.png"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
+   
+  <section
+    class="svelte-m7n09p"
+    id="organized"
+  >
+    <section
+      class="svelte-i2y9a2"
+      style="--color: #43527f; --clip-path: polygon(0% 0%, 100% 7rem, 100% calc(100% - 7rem), 0 100%);"
+    >
+      <div>
+        <div
+          class="content svelte-m7n09p"
+        >
+          <span
+            class="svelte-m7n09p"
+          >
+            <h3
+              class="svelte-m7n09p"
+            >
+              Organized, so you don't have to
+            </h3>
+             
+            <p
+              class="svelte-m7n09p"
+            >
+              <p>
+                Mélodie reads tracks music metadata, and automatically creates your album and artist library.
+              </p>
+               
+              <p>
+                You don't need to change how you the actual files are organized on your hard drive.
+              </p>
+              
+
+            </p>
+          </span>
+           
+          <div
+            class="image-wrapper svelte-m7n09p"
+          >
+            <div
+              class="svelte-1azjigb"
+              style="--height: 275px; --src: url('../images/screenshot-artists-en.png');"
+            >
+              <img
+                alt=""
+                class="svelte-1azjigb"
+                src="images/screenshot-artists-en.png"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
+   
+  <section
+    class="svelte-m7n09p"
+    id="reactive"
+  >
+    <section
+      class="svelte-i2y9a2"
+      style="--color: #353849; --clip-path: polygon(0% 7rem, 100% 0%, 100% 100%, 0 calc(100% - 7rem));"
+    >
+      <div>
+        <div
+          class="content svelte-m7n09p"
+        >
+          <span
+            class="svelte-m7n09p"
+          >
+            <h3
+              class="svelte-m7n09p"
+            >
+              It stays tuned
+            </h3>
+             
+            <p
+              class="svelte-m7n09p"
+            >
+              <p>
+                Thanks to 
+                <a
+                  class="underlined"
+                  href="https://www.theaudiodb.com"
+                  target="_blank"
+                >
+                  AudioDB 
+                  <i
+                    class="material-icons"
+                  >
+                    launch
+                  </i>
+                </a>
+                 and 
+                <a
+                  class="underlined"
+                  href="https://www.discogs.com/en"
+                  target="_blank"
+                >
+                  Discogs 
+                  <i
+                    class="material-icons"
+                  >
+                    launch
+                  </i>
+                </a>
+                , Mélodie will enrich your libraries with covers, avatars and biographies (requires access keys).
+              </p>
+               
+              <p>
+                Add or remove files on your drive, change their metadata: your library will immediately update.
+              </p>
+               
+              <p>
+                A software update? It'll automatically apply next time you'll open it.
+              </p>
+              
+
+            </p>
+          </span>
+           
+          <div
+            class="image-wrapper svelte-m7n09p"
+          >
+            <div
+              class="svelte-1azjigb"
+              style="--height: 250px; --src: url('../images/screenshot-artist-details-en.png');"
+            >
+              <img
+                alt=""
+                class="svelte-1azjigb"
+                src="images/screenshot-artist-details-en.png"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
+   
+  <section
+    class="svelte-m7n09p"
+    id="for-geeks"
+  >
+    <section
+      class="svelte-i2y9a2"
+      style="--color: #2e3141; --clip-path: polygon(0% 0%, 100% 7rem, 100% calc(100% - 7rem), 0 100%);"
+    >
+      <div>
+        <div
+          class="content flex-wrap svelte-m7n09p"
+        >
+          <article
+            class="svelte-hnttiv"
+          >
+            <img
+              alt=""
+              class="svelte-hnttiv"
+              src="logos/os.png"
+            />
+             
+            <div
+              class="svelte-hnttiv"
+            >
+              <h4
+                class="svelte-hnttiv"
+              >
+                Works on your machine
+              </h4>
+               
+              <p
+                class="svelte-hnttiv"
+              >
+                <p>
+                  May your favorite operating system be macOS, Windows or Linux, you will get the same user experience.
+                </p>
+                
+
+                
+              </p>
+            </div>
+          </article>
+           
+          <article
+            class="svelte-hnttiv"
+          >
+            <img
+              alt=""
+              class="svelte-hnttiv"
+              src="logos/open-source.png"
+            />
+             
+            <div
+              class="svelte-hnttiv"
+            >
+              <h4
+                class="svelte-hnttiv"
+              >
+                Open Source
+              </h4>
+               
+              <p
+                class="svelte-hnttiv"
+              >
+                <p>
+                  Mélodie's source code is 
+                  <a
+                    class="underlined"
+                    href="https://github.com/feugy/melodie"
+                    target="_blank"
+                  >
+                    open 
+                    <i
+                      class="material-icons"
+                    >
+                      launch
+                    </i>
+                  </a>
+                  .
+                </p>
+                 
+                <p>
+                  This application is free to use, and free or any adds.
+                </p>
+                
+
+                
+              </p>
+            </div>
+          </article>
+           
+          <article
+            class="svelte-hnttiv"
+          >
+            <img
+              alt=""
+              class="svelte-hnttiv"
+              src="logos/js.png"
+            />
+             
+            <div
+              class="svelte-hnttiv"
+            >
+              <h4
+                class="svelte-hnttiv"
+              >
+                Powered by JS
+              </h4>
+               
+              <p
+                class="svelte-hnttiv"
+              >
+                <p>
+                  With a lot of love and Electron, Svelte, RxJS, TailwindCSS, SQLite, Music-Metadata, Svelte SPA router...
+                </p>
+                <p>
+                  
+
+                </p>
+                
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </section>
+   
+  <footer
+    class="inverted-colors svelte-m7n09p"
+  >
+    <div
+      class="content svelte-m7n09p"
+    >
+      <span
+        class="svelte-m7n09p"
+      >
+        Copyright (c) 2020-2021 Damien Simonin Feugas
+      </span>
+       
+      <span
+        class="svelte-m7n09p"
+      >
+        <a
+          class="underlined svelte-m7n09p"
+          href="https://unsplash.com/photos/slbOcNlWNHA"
+          target="_blank"
+        >
+          Photo by Larisa Birta
+        </a>
+      </span>
+    </div>
+  </footer>
+</main>
+`;

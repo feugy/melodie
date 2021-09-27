@@ -1,10 +1,12 @@
 'use strict'
 
 import { tick } from 'svelte'
+import html from 'svelte-htm'
 import { locale } from 'svelte-intl'
 import { screen, render, fireEvent } from '@testing-library/svelte'
 import { sleep, translate } from '../utils'
-import Page from './index.stories.svelte'
+import Page from '../../routes/index.svelte'
+import Layout from '../../routes/_layout.svelte'
 
 describe('Index page', () => {
   beforeEach(() => {
@@ -12,7 +14,9 @@ describe('Index page', () => {
   })
 
   it('can change locale', async () => {
-    render(Page)
+    render(html`<${Layout} segment="">
+      <${Page} />
+    </${Layout}>`)
     expect(screen.getByText('Mélodie is a music player')).toBeInTheDocument()
 
     locale.set('fr')
@@ -24,7 +28,9 @@ describe('Index page', () => {
   })
 
   it('navigates between sections', async () => {
-    render(Page)
+    render(html`<${Layout} segment="">
+      <${Page} />
+    </${Layout}>`)
     expect(location.hash).toEqual('')
 
     await fireEvent.click(screen.getByText(translate('reactive')))
