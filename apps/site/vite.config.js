@@ -12,7 +12,7 @@ export default defineConfig({
     atelier({
       url: '/',
       path: resolve(__dirname, 'src'),
-      setupPath: resolve(__dirname, 'src', 'atelier-setup'),
+      setupPath: resolve(__dirname, 'src', 'atelier', 'setup'),
       publicDir: ['static', join('..', '..', 'common', 'ui', 'public')]
     })
   ]

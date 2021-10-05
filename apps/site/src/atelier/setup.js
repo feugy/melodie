@@ -1,13 +1,13 @@
 'use strict'
 
 import { translations } from 'svelte-intl'
-import '../../../node_modules/tailwindcss/tailwind.css'
+import '../../../../node_modules/tailwindcss/tailwind.css'
 import { addTranslations, defaultKey } from '@melodie/ui/src/utils/translations'
 import '@melodie/ui/src/tailwind.svelte'
-import '@melodie/ui/src/style.svelte'
-import '../src/style.svelte'
-import en from '../locale/en.yml'
-import fr from '../locale/fr.yml'
+import '@melodie/ui/src/style.css'
+import '../style.css'
+import en from '../../locale/en.yml'
+import fr from '../../locale/fr.yml'
 
 const bundles = new Map()
 bundles.set(defaultKey, en)

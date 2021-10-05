@@ -4,14 +4,14 @@ exports[`Toolshot tests/index/index.tools.svelte: Site Page/Index 1`] = `
 <main>
    
   <div
-    class="wrapper svelte-38m0uk"
+    class="wrapper svelte-ec7ah5"
   >
     <span
-      class="sentinel svelte-38m0uk"
+      class="sentinel svelte-ec7ah5"
     />
      
     <nav
-      class="svelte-38m0uk"
+      class="svelte-ec7ah5"
     >
       <nav
         class="svelte-m7n09p"
