@@ -82,8 +82,6 @@ Another option is to open it with Control-click: it'll immediately register the 
 
 - search tooling to find deps version mismatch, and maintain package.json same version
 
-- Postcss (jest-css-modules-transform@4.1+ needs postcss8, which requires webpack@5, which storybook does not support yet)
-
 - compare ajv serialization with stringify
 
 - accessibility: ImageUploader file input, Loading input, and Nav search box have no label

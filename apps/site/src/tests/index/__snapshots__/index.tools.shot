@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Toolshot tests/index/index.tools.svelte 1`] = `
+exports[`Toolshot tests/index/index.tools.svelte: Site Page/Index 1`] = `
 <main>
    
   <div

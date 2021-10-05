@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Toolshot components/Card/Card.tools.svelte 1`] = `
+exports[`Toolshot components/Card/Card.tools.svelte: Site components/Card 1`] = `
 <article
   class="svelte-hnttiv"
 >

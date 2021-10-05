@@ -1,4 +1,5 @@
 <script>
+  import { afterUpdate } from 'svelte'
   import { _ } from 'svelte-intl'
   import Dialogue from '../Dialogue/Dialogue.svelte'
   import Button from '../Button/Button.svelte'
@@ -22,11 +23,7 @@
   let uploaded = null
   let proposals = []
   let findPromise
-  async function handleOpen() {
-    uploaded = null
-    findPromise = invoke(`media.findFor${modelName}`, src.name)
-    proposals = (await findPromise) || []
-  }
+  let wasOpen
 
   async function handleSelect(url) {
     // clear broken images so Image could try reloading the same url
@@ -34,6 +31,15 @@
     await invoke(`media.saveFor${modelName}`, src.id, url)
     open = false
   }
+
+  afterUpdate(async () => {
+    if (!wasOpen && open) {
+      uploaded = null
+      findPromise = invoke(`media.findFor${modelName}`, src.name)
+      proposals = (await findPromise) || []
+    }
+    wasOpen = open
+  })
 </script>
 
 <style type="postcss">
@@ -46,7 +52,7 @@
   }
 </style>
 
-<Dialogue {title} bind:open on:open={handleOpen}>
+<Dialogue {title} bind:open on:open on:close>
   <div slot="content">
     {#await findPromise}
       <Progress />

@@ -7,7 +7,7 @@ import SystemNotifier from './SystemNotifier.svelte'
 import { invoke } from '../../utils'
 import { clear, add, playNext } from '../../stores/track-queue'
 import { isDesktop } from '../../stores/settings'
-import { trackListData } from '../Player/Player.stories'
+import { trackListData } from '../Player/Player.testdata'
 import { sleep, translate } from '../../tests'
 
 const dlUrl = `http://some-url:${Math.round(Math.random() * 1000)}`

@@ -8,9 +8,9 @@ import { BehaviorSubject } from 'rxjs'
 import faker from 'faker'
 import searchRoute from './[searched].svelte'
 import { artists, albums, tracks, search, current } from '../../stores/search'
-import { artistData } from '../../components/Artist/Artist.stories'
-import { albumData } from '../../components/Album/Album.stories'
-import { tracksData } from '../../components/TracksTable/TracksTable.stories'
+import { artistData } from '../../components/Artist/Artist.testdata'
+import { albumData } from '../../components/Album/Album.testdata'
+import { tracksData } from '../../components/TracksTable/TracksTable.testdata'
 import { translate, sleep } from '../../tests'
 
 jest.mock('svelte-spa-router')

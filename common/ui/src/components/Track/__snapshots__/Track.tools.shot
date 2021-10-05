@@ -1,0 +1,165 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Toolshot components/Track/Track.tools.svelte: Default 1`] = `
+<div>
+  <div
+    class="undefined root svelte-1bozxge"
+  >
+    <a
+      class="flex-none"
+      href="#/album/1"
+    >
+      <img
+        alt="./cover.jpg"
+        class="h-16 w-16 text-xs actionable rounded-sm svelte-hn7eai"
+        height="256"
+        loading="lazy"
+        src="./cover.jpg"
+        width="256"
+      />
+       
+      
+    </a>
+     
+    <div
+      class="track svelte-1bozxge"
+    >
+      <span
+        class="title svelte-1bozxge"
+      >
+        Mama got a girlfriend
+      </span>
+       
+      <span>
+        <a
+          class="text-sm underlined"
+          href="#/artist/0"
+          onclick="event.stopPropagation()"
+        >
+          Ben Harper
+        </a>
+      </span>
+    </div>
+     
+     
+  </div>
+</div>
+`;
+
+exports[`Toolshot components/Track/Track.tools.svelte: With details 1`] = `
+<div>
+  <div
+    class="undefined root svelte-1bozxge"
+  >
+    <a
+      class="flex-none"
+      href="#/album/1"
+    >
+      <img
+        alt="./cover.jpg"
+        class="h-16 w-16 text-xs actionable rounded-sm svelte-hn7eai"
+        height="256"
+        loading="lazy"
+        src="./cover.jpg"
+        width="256"
+      />
+       
+      
+    </a>
+     
+    <div
+      class="track svelte-1bozxge"
+    >
+      <span
+        class="title svelte-1bozxge"
+      >
+        Mama got a girlfriend
+      </span>
+       
+      <span>
+        <a
+          class="text-sm underlined"
+          href="#/artist/0"
+          onclick="event.stopPropagation()"
+        >
+          Ben Harper
+        </a>
+      </span>
+    </div>
+     
+    <div
+      class="duration svelte-1bozxge"
+    >
+      2:06
+    </div>
+     
+  </div>
+</div>
+`;
+
+exports[`Toolshot components/Track/Track.tools.svelte: With menu 1`] = `
+<div>
+  <div
+    class="undefined root svelte-1bozxge"
+  >
+    <a
+      class="flex-none"
+      href="#/album/1"
+    >
+      <img
+        alt="./cover.jpg"
+        class="h-16 w-16 text-xs actionable rounded-sm svelte-hn7eai"
+        height="256"
+        loading="lazy"
+        src="./cover.jpg"
+        width="256"
+      />
+       
+      
+    </a>
+     
+    <div
+      class="track svelte-1bozxge"
+    >
+      <span
+        class="title svelte-1bozxge"
+      >
+        Mama got a girlfriend
+      </span>
+       
+      <span>
+        <a
+          class="text-sm underlined"
+          href="#/artist/0"
+          onclick="event.stopPropagation()"
+        >
+          Ben Harper
+        </a>
+      </span>
+    </div>
+     
+     
+    <span
+      aria-expanded="false"
+      aria-haspopup="menu"
+      class="wrapper svelte-17zgehq"
+    >
+      <button
+        class="iconOnly noBorder svelte-1lod44n"
+      >
+        <i
+          class="material-icons svelte-1lod44n"
+        >
+          more_vert
+        </i>
+         
+         
+        
+         
+      </button>
+    </span>
+     
+    
+  </div>
+</div>
+`;

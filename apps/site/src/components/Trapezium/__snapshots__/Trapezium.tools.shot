@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Toolshot components/Trapezium/Trapezium.tools.svelte 1`] = `
+exports[`Toolshot components/Trapezium/Trapezium.tools.svelte: Site components/Trapezium 1`] = `
 <section
   class="svelte-i2y9a2"
   style="--color: #353849; --clip-path: polygon(0% 7rem, 100% 0%, 100% 100%, 0 calc(100% - 7rem));"

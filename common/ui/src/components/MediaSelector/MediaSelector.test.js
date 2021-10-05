@@ -6,11 +6,11 @@ import { writable } from 'svelte/store'
 import html from 'svelte-htm'
 import faker from 'faker'
 import MediaSelector from './MediaSelector.svelte'
-import { artistData } from '../Artist/Artist.stories'
+import { artistData } from '../Artist/Artist.testdata'
 import {
   artistSuggestionsData,
   albumSuggestionsData
-} from '../MediaSelector/MediaSelector.stories'
+} from './MediaSelector.testdata'
 import { invoke } from '../../utils'
 import { isDesktop } from '../../stores/settings'
 import { sleep, translate } from '../../tests'

@@ -37,7 +37,7 @@
   }
 
   nav {
-    @apply sticky w-full top-0;
+    @apply fixed w-full top-0;
     transition: background ease-in-out 200ms;
     z-index: 1;
   }

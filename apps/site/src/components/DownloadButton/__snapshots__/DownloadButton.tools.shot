@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Toolshot components/DownloadButton/DownloadButton.tools.svelte 1`] = `
+exports[`Toolshot components/DownloadButton/DownloadButton.tools.svelte: Site components/Download button 1`] = `
 <span>
   <span
     aria-expanded="false"

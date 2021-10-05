@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Toolshot components/Slider/Slider.tools.svelte: Components/Slider 1`] = `
+<span>
+  <div
+    class="wrapper w-1/2 svelte-10ahnd8"
+  >
+    <input
+      class="w-1/2 svelte-10ahnd8"
+      max="100"
+      min="0"
+      type="range"
+    />
+     
+    <div
+      class="sliderTrack svelte-10ahnd8"
+    >
+      <span
+        class="progress svelte-10ahnd8"
+        style="right:90%"
+      />
+    </div>
+  </div>
+</span>
+`;

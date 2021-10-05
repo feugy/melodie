@@ -1,0 +1,135 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Toolshot components/Playlist/Playlist.tools.svelte: Default 1`] = `
+<div>
+   
+  <span
+    class="svelte-1vgpzqt overlay"
+    role="article"
+  >
+    <div
+      class="content svelte-1vgpzqt"
+    >
+      <span
+        class="artwork svelte-1vgpzqt"
+      />
+       
+      <p
+        class="controls svelte-1vgpzqt"
+      >
+         
+        <button
+          class="primary iconOnly large svelte-1lod44n"
+          data-testid="play"
+        >
+          <i
+            class="material-icons svelte-1lod44n"
+          >
+            play_arrow
+          </i>
+           
+           
+           
+        </button>
+         
+        <button
+          class="primary iconOnly large svelte-1lod44n"
+          data-testid="enqueue"
+        >
+          <i
+            class="material-icons svelte-1lod44n"
+          >
+            playlist_add
+          </i>
+           
+           
+           
+        </button>
+      </p>
+    </div>
+     
+    <header
+      class="svelte-1vgpzqt"
+    >
+      <h3
+        class="svelte-1vgpzqt"
+      >
+        My favourites
+      </h3>
+       
+      <h4
+        slot="details"
+      >
+        3 tracks
+      </h4>
+    </header>
+  </span>
+</div>
+`;
+
+exports[`Toolshot components/Playlist/Playlist.tools.svelte: Single track 1`] = `
+<div>
+   
+  <span
+    class="svelte-1vgpzqt overlay"
+    role="article"
+  >
+    <div
+      class="content svelte-1vgpzqt"
+    >
+      <span
+        class="artwork svelte-1vgpzqt"
+      />
+       
+      <p
+        class="controls svelte-1vgpzqt"
+      >
+         
+        <button
+          class="primary iconOnly large svelte-1lod44n"
+          data-testid="play"
+        >
+          <i
+            class="material-icons svelte-1lod44n"
+          >
+            play_arrow
+          </i>
+           
+           
+           
+        </button>
+         
+        <button
+          class="primary iconOnly large svelte-1lod44n"
+          data-testid="enqueue"
+        >
+          <i
+            class="material-icons svelte-1lod44n"
+          >
+            playlist_add
+          </i>
+           
+           
+           
+        </button>
+      </p>
+    </div>
+     
+    <header
+      class="svelte-1vgpzqt"
+    >
+      <h3
+        class="svelte-1vgpzqt"
+      >
+        My favourites
+      </h3>
+       
+      <h4
+        slot="details"
+      >
+        1 track
+      </h4>
+    </header>
+  </span>
+</div>
+`;

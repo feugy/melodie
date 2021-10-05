@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Toolshot components/Progress/Progress.tools.svelte: Components/Progress 1`] = `
+<span>
+  <div
+    class="wrapper svelte-ow7w5o"
+    role="progressbar"
+  >
+    <div
+      class="inc svelte-ow7w5o"
+    />
+     
+    <div
+      class="dec svelte-ow7w5o"
+    />
+  </div>
+</span>
+`;

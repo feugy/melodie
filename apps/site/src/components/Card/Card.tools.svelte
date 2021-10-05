@@ -3,12 +3,12 @@
   import Card from './Card.svelte'
 </script>
 
-<Tool 
-  name="Site components/Card" 
+<Tool
+  name="Site components/Card"
   props={{
     title: 'Portable',
     image: 'logos/os.png'
-  }} 
+  }}
   let:props
 >
   <Card {...props}>
@@ -18,4 +18,3 @@
     </p>
   </Card>
 </Tool>
-

@@ -1,5 +1,4 @@
 <script>
-  import { _ } from 'svelte-intl'
   import Image from '../Image/Image.svelte'
   import TrackDropdown from '../TrackDropdown/TrackDropdown.svelte'
   import { formatTime, linkTo, wrapWithLink } from '../../utils'
@@ -47,7 +46,11 @@
   </a>
   <div class="track">
     <span class="title">{tags.title}</span>
-    <span>{@html src?.artistRefs.map(artist => wrapWithLink('artist', artist, 'text-sm')).join(', ')}</span>
+    <span
+      >{@html src?.artistRefs
+        .map(artist => wrapWithLink('artist', artist, 'text-sm'))
+        .join(', ')}</span
+    >
   </div>
   {#if details}
     <div class="duration">{formatTime(tags.duration)}</div>

@@ -8,7 +8,7 @@
 </script>
 
 <Tool name="Site Page/Index">
-<Layout segment="">
-  <Page />
-</Layout>
+  <Layout segment="">
+    <Page />
+  </Layout>
 </Tool>

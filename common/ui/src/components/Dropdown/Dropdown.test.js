@@ -10,7 +10,7 @@ import {
   dropdownData,
   dropdownCustomData,
   dropdownSimpleData
-} from './Dropdown.stories'
+} from './Dropdown.testdata'
 import { sleep } from '../../tests'
 
 describe('Dropdown component', () => {

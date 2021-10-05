@@ -36,6 +36,6 @@ module.exports = {
     '**/*.svelte',
     '!atelier-setup.js',
     '!**/*.test.js',
-    '!**/*.stories.*'
+    '!**/*.tools.svelte'
   ]
 }

@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Toolshot components/TextInput/TextInput.tools.svelte: Default 1`] = `
+<span
+  class="inline-block w-64"
+>
+  <span
+    class="svelte-g0pe7x"
+  >
+     
+    <input
+      class="svelte-g0pe7x"
+      placeholder=""
+      type="text"
+    />
+  </span>
+</span>
+`;
+
+exports[`Toolshot components/TextInput/TextInput.tools.svelte: With icon and placeholder 1`] = `
+<span
+  class="inline-block w-64"
+>
+  <span
+    class="svelte-g0pe7x icon"
+  >
+    <i
+      class="material-icons svelte-g0pe7x"
+    >
+      search
+    </i>
+     
+    <input
+      class="svelte-g0pe7x"
+      placeholder="search..."
+      type="search"
+    />
+  </span>
+</span>
+`;
+
+exports[`Toolshot components/TextInput/TextInput.tools.svelte: With value 1`] = `
+<span
+  class="inline-block w-64"
+>
+  <span
+    class="svelte-g0pe7x icon"
+  >
+    <i
+      class="material-icons svelte-g0pe7x"
+    >
+      person
+    </i>
+     
+    <input
+      class="svelte-g0pe7x"
+      placeholder=""
+      type="text"
+    />
+  </span>
+</span>
+`;

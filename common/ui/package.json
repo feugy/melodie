@@ -5,21 +5,20 @@
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -cw",
-    "storybook": "start-storybook -p 6006 -s ../fixtures,public",
+    "atelier": "vite",
     "test": "jest --coverage --colors",
     "test:dev": "jest --watch"
   },
   "devDependencies": {
+    "@atelier-wb/svelte": "^0.4.1",
+    "@atelier-wb/toolshot": "^0.4.1",
+    "@atelier-wb/vite-plugin-svelte": "^0.4.1",
     "@babel/core": "^7.15.5",
     "@babel/preset-env": "^7.15.6",
     "@rollup/plugin-commonjs": "^20.0.0",
     "@rollup/plugin-node-resolve": "^13.0.4",
     "@rollup/plugin-replace": "^3.0.0",
     "@rollup/plugin-yaml": "^3.1.0",
-    "@storybook/addon-a11y": "^6.3.8",
-    "@storybook/addon-essentials": "^6.3.8",
-    "@storybook/addon-storyshots": "^6.3.8",
-    "@storybook/svelte": "^6.3.8",
     "@testing-library/dom": "^8.6.0",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/svelte": "^3.0.3",
@@ -53,7 +52,6 @@
     "svelte-preprocess": "^4.9.5",
     "svelte-spa-router": "^3.2.0",
     "tailwindcss": "^1.9.5",
-    "ws": "^8.2.2",
-    "yaml-loader": "^0.6.0"
+    "ws": "^8.2.2"
   }
 }

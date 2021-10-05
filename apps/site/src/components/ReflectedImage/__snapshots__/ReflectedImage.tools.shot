@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Toolshot components/ReflectedImage/ReflectedImage.tools.svelte 1`] = `
+exports[`Toolshot components/ReflectedImage/ReflectedImage.tools.svelte: Site components/Reflected image 1`] = `
 <div
   class="flex"
 >

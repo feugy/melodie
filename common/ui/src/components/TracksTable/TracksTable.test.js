@@ -5,7 +5,7 @@ import userEvent from '@testing-library/user-event'
 import html from 'svelte-htm'
 import faker from 'faker'
 import TracksTable from './TracksTable.svelte'
-import { tracksData, current$Data } from './TracksTable.stories'
+import { tracksData, current$Data } from './TracksTable.testdata'
 import { sleep, translate } from '../../tests'
 import { createClickToAddObservable } from '../../stores/track-queue'
 

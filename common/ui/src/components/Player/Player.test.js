@@ -6,7 +6,7 @@ import { get } from 'svelte/store'
 import html from 'svelte-htm'
 import faker from 'faker'
 import Player from './Player.svelte'
-import { trackListData } from './Player.stories'
+import { trackListData } from './Player.testdata'
 import {
   add,
   clear,

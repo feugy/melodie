@@ -10,9 +10,6 @@ module.exports = {
         presets: [['@babel/preset-env', { targets: { node: 'current' } }]]
       }
     ],
-    '^.+\\.stories\\.js$': require.resolve(
-      '@storybook/addon-storyshots/injectFileName'
-    ),
     '^.+\\.svelte$': [
       'svelte-jester',
       { preprocess: require.resolve('./svelte.config') }
@@ -21,7 +18,7 @@ module.exports = {
     '^.+\\.css$': 'jest-css-modules-transform'
   },
   transformIgnorePatterns: [
-    'node_modules\\/(?!svelte-spa-router|svelte-portal|tailwindcss|@storybook)'
+    'node_modules\\/(?!svelte-spa-router|svelte-portal|tailwindcss|@atelier-wb)'
   ],
   moduleFileExtensions: ['js', 'svelte', 'json', 'yml'],
   setupFilesAfterEnv: [
@@ -37,8 +34,9 @@ module.exports = {
   collectCoverageFrom: [
     '**/*.js',
     '**/*.svelte',
+    '!**/atelier/**',
     '!**/*.test.js',
-    '!**/*.stories.*',
+    '!**/*.tools.svelte',
     '!**/tests/**',
     '!**/tailwind.svelte'
   ]

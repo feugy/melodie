@@ -59,5 +59,7 @@ jest.mock('../utils/connection', () => {
   }
 })
 
+window.dlUrl = ''
+
 global.RXJS_VERSION = 'a.b.c'
 global.TAILWINDCSS_VERSION = 'x.y.z'

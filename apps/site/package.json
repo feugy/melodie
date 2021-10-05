@@ -12,9 +12,9 @@
     "test:dev": "jest --watch"
   },
   "devDependencies": {
-    "@atelier-wb/svelte": "^0.2.1",
-    "@atelier-wb/toolshot": "^0.2.1",
-    "@atelier-wb/vite-plugin-svelte": "^0.2.1",
+    "@atelier-wb/svelte": "^0.4.1",
+    "@atelier-wb/toolshot": "^0.4.1",
+    "@atelier-wb/vite-plugin-svelte": "^0.4.1",
     "@babel/core": "^7.15.5",
     "@babel/preset-env": "^7.15.6",
     "@rollup/plugin-commonjs": "^20.0.0",
