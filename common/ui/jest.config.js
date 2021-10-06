@@ -37,7 +37,6 @@ module.exports = {
     '!**/atelier/**',
     '!**/*.test.js',
     '!**/*.tools.svelte',
-    '!**/tests/**',
-    '!**/tailwind.svelte'
+    '!**/tests/**'
   ]
 }
