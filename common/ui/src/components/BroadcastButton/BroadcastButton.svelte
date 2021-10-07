@@ -52,7 +52,7 @@
     @apply relative;
   }
   .menu {
-    @apply absolute my-3 rounded z-20 text-sm p-4 whitespace-no-wrap flex flex-col items-center;
+    @apply absolute my-3 rounded z-20 text-sm p-4 whitespace-nowrap flex flex-col items-center;
     background-color: var(--bg-primary-color);
     border: 1px solid var(--outline-color);
 

@@ -93,7 +93,7 @@
 
   @screen md {
     section {
-      @apply items-start flex-no-wrap;
+      @apply items-start flex-nowrap;
     }
   }
 

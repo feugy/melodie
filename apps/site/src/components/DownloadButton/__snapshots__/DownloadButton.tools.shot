@@ -5,13 +5,13 @@ exports[`Toolshot components/DownloadButton/DownloadButton.tools.svelte: Site co
   <span
     aria-expanded="false"
     aria-haspopup="menu"
-    class="wrapper svelte-17zgehq"
+    class="wrapper svelte-11prmkk"
   >
     <button
-      class="text-white primary large svelte-1lod44n"
+      class="text-white primary large svelte-1e4q28k"
     >
       <i
-        class="material-icons svelte-1lod44n"
+        class="material-icons svelte-1e4q28k"
       >
         get_app
       </i>
@@ -21,7 +21,7 @@ exports[`Toolshot components/DownloadButton/DownloadButton.tools.svelte: Site co
       </span>
        
       <i
-        class="material-icons arrow svelte-17zgehq"
+        class="material-icons arrow svelte-11prmkk"
       >
         arrow_drop_down
       </i>

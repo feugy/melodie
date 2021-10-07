@@ -5,13 +5,13 @@ exports[`Toolshot components/AddToPlaylist/AddToPlaylist.tools.svelte: Component
   <span
     aria-expanded="false"
     aria-haspopup="menu"
-    class="wrapper svelte-17zgehq"
+    class="wrapper svelte-11prmkk"
   >
     <button
-      class="iconOnly svelte-1lod44n"
+      class="iconOnly svelte-1e4q28k"
     >
       <i
-        class="material-icons svelte-1lod44n"
+        class="material-icons svelte-1e4q28k"
       >
         library_add
       </i>

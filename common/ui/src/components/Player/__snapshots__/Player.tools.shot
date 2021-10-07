@@ -3,25 +3,25 @@
 exports[`Toolshot components/Player/Player.tools.svelte: Empty 1`] = `
 <span>
   <div
-    class="root svelte-1lrurgd"
+    class="root svelte-14oe44p"
   >
     <audio
       autoplay=""
-      class="svelte-1lrurgd"
+      class="svelte-14oe44p"
       data-testid="audio"
     />
     <div
-      class="content svelte-1lrurgd"
+      class="content svelte-14oe44p"
     >
       <span
-        class="current svelte-1lrurgd"
+        class="current svelte-14oe44p"
       />
        
       <div
-        class="player svelte-1lrurgd"
+        class="player svelte-14oe44p"
       >
         <span
-          class="controls svelte-1lrurgd"
+          class="controls svelte-14oe44p"
         >
           
            
@@ -29,10 +29,10 @@ exports[`Toolshot components/Player/Player.tools.svelte: Empty 1`] = `
             class="svelte-1y2tggl"
           >
             <button
-              class="iconOnly noBorder svelte-1lod44n"
+              class="iconOnly noBorder svelte-1e4q28k"
             >
               <i
-                class="material-icons svelte-1lod44n"
+                class="material-icons svelte-1e4q28k"
               >
                 shuffle
               </i>
@@ -43,10 +43,10 @@ exports[`Toolshot components/Player/Player.tools.svelte: Empty 1`] = `
           </span>
            
           <button
-            class="iconOnly noBorder svelte-1lod44n"
+            class="iconOnly noBorder svelte-1e4q28k"
           >
             <i
-              class="material-icons svelte-1lod44n"
+              class="material-icons svelte-1e4q28k"
             >
               skip_previous
             </i>
@@ -56,10 +56,10 @@ exports[`Toolshot components/Player/Player.tools.svelte: Empty 1`] = `
           </button>
            
           <button
-            class="iconOnly large svelte-1lod44n"
+            class="iconOnly large svelte-1e4q28k"
           >
             <i
-              class="material-icons svelte-1lod44n"
+              class="material-icons svelte-1e4q28k"
             >
               play_arrow
             </i>
@@ -69,10 +69,10 @@ exports[`Toolshot components/Player/Player.tools.svelte: Empty 1`] = `
           </button>
            
           <button
-            class="iconOnly noBorder svelte-1lod44n"
+            class="iconOnly noBorder svelte-1e4q28k"
           >
             <i
-              class="material-icons svelte-1lod44n"
+              class="material-icons svelte-1e4q28k"
             >
               skip_next
             </i>
@@ -85,10 +85,10 @@ exports[`Toolshot components/Player/Player.tools.svelte: Empty 1`] = `
             class="svelte-1y2tggl"
           >
             <button
-              class="iconOnly noBorder svelte-1lod44n"
+              class="iconOnly noBorder svelte-1e4q28k"
             >
               <i
-                class="material-icons svelte-1lod44n"
+                class="material-icons svelte-1e4q28k"
               >
                 repeat
               </i>
@@ -101,36 +101,36 @@ exports[`Toolshot components/Player/Player.tools.svelte: Empty 1`] = `
         </span>
          
         <div
-          class="svelte-1tahbl8"
+          class="svelte-1k6r2xh"
         >
           <span
-            class="svelte-1tahbl8"
+            class="svelte-1k6r2xh"
           >
             0:00
           </span>
            
           <div
-            class="wrapper w-full svelte-10ahnd8"
+            class="wrapper w-full svelte-flvs0m"
           >
             <input
-              class="w-full svelte-10ahnd8"
+              class="w-full svelte-flvs0m"
               max="0"
               min="0"
               type="range"
             />
              
             <div
-              class="sliderTrack svelte-10ahnd8"
+              class="sliderTrack svelte-flvs0m"
             >
               <span
-                class="progress svelte-10ahnd8"
+                class="progress svelte-flvs0m"
                 style="right:100%"
               />
             </div>
           </div>
            
           <span
-            class="svelte-1tahbl8"
+            class="svelte-1k6r2xh"
           >
             0:00
           </span>
@@ -138,29 +138,29 @@ exports[`Toolshot components/Player/Player.tools.svelte: Empty 1`] = `
       </div>
        
       <span
-        class="volume svelte-1lrurgd"
+        class="volume svelte-14oe44p"
       >
         <div
-          class="svelte-t4pf46"
+          class="svelte-1edewqm"
         >
           <span
-            class="volume-slider svelte-t4pf46"
+            class="volume-slider svelte-1edewqm"
           >
             <div
-              class="wrapper w-full svelte-10ahnd8"
+              class="wrapper w-full svelte-flvs0m"
             >
               <input
-                class="w-full svelte-10ahnd8"
+                class="w-full svelte-flvs0m"
                 max="100"
                 min="0"
                 type="range"
               />
                
               <div
-                class="sliderTrack svelte-10ahnd8"
+                class="sliderTrack svelte-flvs0m"
               >
                 <span
-                  class="progress svelte-10ahnd8"
+                  class="progress svelte-flvs0m"
                   style="right:0%"
                 />
               </div>
@@ -168,10 +168,10 @@ exports[`Toolshot components/Player/Player.tools.svelte: Empty 1`] = `
           </span>
            
           <button
-            class="iconOnly noBorder svelte-1lod44n"
+            class="iconOnly noBorder svelte-1e4q28k"
           >
             <i
-              class="material-icons svelte-1lod44n"
+              class="material-icons svelte-1e4q28k"
             >
               volume_up
             </i>
@@ -189,22 +189,22 @@ exports[`Toolshot components/Player/Player.tools.svelte: Empty 1`] = `
 exports[`Toolshot components/Player/Player.tools.svelte: With track list 1`] = `
 <span>
   <div
-    class="root svelte-1lrurgd"
+    class="root svelte-14oe44p"
   >
     <audio
       autoplay=""
-      class="svelte-1lrurgd"
+      class="svelte-14oe44p"
       data-testid="audio"
       src="./no-duration.mp3"
     />
     <div
-      class="content svelte-1lrurgd"
+      class="content svelte-14oe44p"
     >
       <span
-        class="current svelte-1lrurgd"
+        class="current svelte-14oe44p"
       >
         <div
-          class="undefined root svelte-1bozxge"
+          class="undefined root svelte-30dtyc"
         >
           <a
             class="flex-none"
@@ -212,7 +212,7 @@ exports[`Toolshot components/Player/Player.tools.svelte: With track list 1`] = `
           >
             <img
               alt="./# Films/cover.jpg"
-              class="h-16 w-16 text-xs actionable rounded-sm svelte-hn7eai"
+              class="h-16 w-16 text-xs actionable rounded-sm svelte-1psk6yi"
               height="256"
               loading="lazy"
               src="./%23 Films/cover.jpg"
@@ -223,10 +223,10 @@ exports[`Toolshot components/Player/Player.tools.svelte: With track list 1`] = `
           </a>
            
           <div
-            class="track svelte-1bozxge"
+            class="track svelte-30dtyc"
           >
             <span
-              class="title svelte-1bozxge"
+              class="title svelte-30dtyc"
             >
               file 1
             </span>
@@ -247,22 +247,22 @@ exports[`Toolshot components/Player/Player.tools.svelte: With track list 1`] = `
       </span>
        
       <div
-        class="player svelte-1lrurgd"
+        class="player svelte-14oe44p"
       >
         <span
-          class="controls svelte-1lrurgd"
+          class="controls svelte-14oe44p"
         >
           <span>
             <span
               aria-expanded="false"
               aria-haspopup="menu"
-              class="wrapper svelte-17zgehq"
+              class="wrapper svelte-11prmkk"
             >
               <button
-                class="iconOnly noBorder svelte-1lod44n"
+                class="iconOnly noBorder svelte-1e4q28k"
               >
                 <i
-                  class="material-icons svelte-1lod44n"
+                  class="material-icons svelte-1e4q28k"
                 >
                   library_add
                 </i>
@@ -281,10 +281,10 @@ exports[`Toolshot components/Player/Player.tools.svelte: With track list 1`] = `
             class="svelte-1y2tggl"
           >
             <button
-              class="iconOnly noBorder svelte-1lod44n"
+              class="iconOnly noBorder svelte-1e4q28k"
             >
               <i
-                class="material-icons svelte-1lod44n"
+                class="material-icons svelte-1e4q28k"
               >
                 shuffle
               </i>
@@ -295,11 +295,11 @@ exports[`Toolshot components/Player/Player.tools.svelte: With track list 1`] = `
           </span>
            
           <button
-            class="iconOnly noBorder svelte-1lod44n"
+            class="iconOnly noBorder svelte-1e4q28k"
             disabled=""
           >
             <i
-              class="material-icons svelte-1lod44n"
+              class="material-icons svelte-1e4q28k"
             >
               skip_previous
             </i>
@@ -309,11 +309,11 @@ exports[`Toolshot components/Player/Player.tools.svelte: With track list 1`] = `
           </button>
            
           <button
-            class="iconOnly large svelte-1lod44n"
+            class="iconOnly large svelte-1e4q28k"
             disabled=""
           >
             <i
-              class="material-icons svelte-1lod44n"
+              class="material-icons svelte-1e4q28k"
             >
               play_arrow
             </i>
@@ -323,11 +323,11 @@ exports[`Toolshot components/Player/Player.tools.svelte: With track list 1`] = `
           </button>
            
           <button
-            class="iconOnly noBorder svelte-1lod44n"
+            class="iconOnly noBorder svelte-1e4q28k"
             disabled=""
           >
             <i
-              class="material-icons svelte-1lod44n"
+              class="material-icons svelte-1e4q28k"
             >
               skip_next
             </i>
@@ -340,10 +340,10 @@ exports[`Toolshot components/Player/Player.tools.svelte: With track list 1`] = `
             class="svelte-1y2tggl"
           >
             <button
-              class="iconOnly noBorder svelte-1lod44n"
+              class="iconOnly noBorder svelte-1e4q28k"
             >
               <i
-                class="material-icons svelte-1lod44n"
+                class="material-icons svelte-1e4q28k"
               >
                 repeat
               </i>
@@ -354,10 +354,10 @@ exports[`Toolshot components/Player/Player.tools.svelte: With track list 1`] = `
           </span>
            
           <button
-            class="invisible iconOnly noBorder svelte-1lod44n"
+            class="invisible iconOnly noBorder svelte-1e4q28k"
           >
             <i
-              class="material-icons svelte-1lod44n"
+              class="material-icons svelte-1e4q28k"
             >
               favorite_border
             </i>
@@ -368,36 +368,36 @@ exports[`Toolshot components/Player/Player.tools.svelte: With track list 1`] = `
         </span>
          
         <div
-          class="svelte-1tahbl8"
+          class="svelte-1k6r2xh"
         >
           <span
-            class="svelte-1tahbl8"
+            class="svelte-1k6r2xh"
           >
             0:00
           </span>
            
           <div
-            class="wrapper w-full svelte-10ahnd8"
+            class="wrapper w-full svelte-flvs0m"
           >
             <input
-              class="w-full svelte-10ahnd8"
+              class="w-full svelte-flvs0m"
               max="0"
               min="0"
               type="range"
             />
              
             <div
-              class="sliderTrack svelte-10ahnd8"
+              class="sliderTrack svelte-flvs0m"
             >
               <span
-                class="progress svelte-10ahnd8"
+                class="progress svelte-flvs0m"
                 style="right:100%"
               />
             </div>
           </div>
            
           <span
-            class="svelte-1tahbl8"
+            class="svelte-1k6r2xh"
           >
             0:00
           </span>
@@ -405,29 +405,29 @@ exports[`Toolshot components/Player/Player.tools.svelte: With track list 1`] = `
       </div>
        
       <span
-        class="volume svelte-1lrurgd"
+        class="volume svelte-14oe44p"
       >
         <div
-          class="svelte-t4pf46"
+          class="svelte-1edewqm"
         >
           <span
-            class="volume-slider svelte-t4pf46"
+            class="volume-slider svelte-1edewqm"
           >
             <div
-              class="wrapper w-full svelte-10ahnd8"
+              class="wrapper w-full svelte-flvs0m"
             >
               <input
-                class="w-full svelte-10ahnd8"
+                class="w-full svelte-flvs0m"
                 max="100"
                 min="0"
                 type="range"
               />
                
               <div
-                class="sliderTrack svelte-10ahnd8"
+                class="sliderTrack svelte-flvs0m"
               >
                 <span
-                  class="progress svelte-10ahnd8"
+                  class="progress svelte-flvs0m"
                   style="right:0%"
                 />
               </div>
@@ -435,10 +435,10 @@ exports[`Toolshot components/Player/Player.tools.svelte: With track list 1`] = `
           </span>
            
           <button
-            class="iconOnly noBorder svelte-1lod44n"
+            class="iconOnly noBorder svelte-1e4q28k"
           >
             <i
-              class="material-icons svelte-1lod44n"
+              class="material-icons svelte-1e4q28k"
             >
               volume_up
             </i>

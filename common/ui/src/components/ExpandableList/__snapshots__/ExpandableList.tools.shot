@@ -3,34 +3,34 @@
 exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Albums 1`] = `
 <div>
   <span
-    class="undefined albums svelte-qfbqtm"
+    class="undefined albums svelte-1kobtom"
   >
     <h3
-      class="svelte-qfbqtm"
+      class="svelte-1kobtom"
     >
       5 albums
     </h3>
      
     <ul
-      class="svelte-qfbqtm"
+      class="svelte-1kobtom"
     >
       <li
-        class="svelte-qfbqtm"
+        class="svelte-1kobtom"
       >
          
         <span
-          class="svelte-1vgpzqt"
+          class="svelte-4r86n"
           role="article"
         >
           <div
-            class="content svelte-1vgpzqt"
+            class="content svelte-4r86n"
           >
             <span
-              class="artwork svelte-1vgpzqt"
+              class="artwork svelte-4r86n"
             >
               <img
                 alt="./cover.jpg"
-                class="h-full w-full rounded-sm svelte-hn7eai"
+                class="h-full w-full rounded-sm svelte-1psk6yi"
                 height="256"
                 loading="lazy"
                 src="./cover.jpg"
@@ -41,15 +41,15 @@ exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Albums 
             </span>
              
             <p
-              class="controls svelte-1vgpzqt"
+              class="controls svelte-4r86n"
             >
                
               <button
-                class="primary iconOnly large svelte-1lod44n"
+                class="primary iconOnly large svelte-1e4q28k"
                 data-testid="play"
               >
                 <i
-                  class="material-icons svelte-1lod44n"
+                  class="material-icons svelte-1e4q28k"
                 >
                   play_arrow
                 </i>
@@ -59,11 +59,11 @@ exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Albums 
               </button>
                
               <button
-                class="primary iconOnly large svelte-1lod44n"
+                class="primary iconOnly large svelte-1e4q28k"
                 data-testid="enqueue"
               >
                 <i
-                  class="material-icons svelte-1lod44n"
+                  class="material-icons svelte-1e4q28k"
                 >
                   playlist_add
                 </i>
@@ -75,16 +75,16 @@ exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Albums 
           </div>
            
           <header
-            class="svelte-1vgpzqt"
+            class="svelte-4r86n"
           >
             <h3
-              class="svelte-1vgpzqt"
+              class="svelte-4r86n"
             >
               Diamonds on the inside
             </h3>
              
             <h4
-              class="svelte-1fiafx9"
+              class="svelte-rw2hde"
               slot="details"
             >
               by 
@@ -111,22 +111,22 @@ exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Albums 
          
       </li>
       <li
-        class="svelte-qfbqtm"
+        class="svelte-1kobtom"
       >
          
         <span
-          class="svelte-1vgpzqt"
+          class="svelte-4r86n"
           role="article"
         >
           <div
-            class="content svelte-1vgpzqt"
+            class="content svelte-4r86n"
           >
             <span
-              class="artwork svelte-1vgpzqt"
+              class="artwork svelte-4r86n"
             >
               <img
                 alt="./cover.jpg"
-                class="h-full w-full rounded-sm svelte-hn7eai"
+                class="h-full w-full rounded-sm svelte-1psk6yi"
                 height="256"
                 loading="lazy"
                 src="./cover.jpg"
@@ -137,15 +137,15 @@ exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Albums 
             </span>
              
             <p
-              class="controls svelte-1vgpzqt"
+              class="controls svelte-4r86n"
             >
                
               <button
-                class="primary iconOnly large svelte-1lod44n"
+                class="primary iconOnly large svelte-1e4q28k"
                 data-testid="play"
               >
                 <i
-                  class="material-icons svelte-1lod44n"
+                  class="material-icons svelte-1e4q28k"
                 >
                   play_arrow
                 </i>
@@ -155,11 +155,11 @@ exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Albums 
               </button>
                
               <button
-                class="primary iconOnly large svelte-1lod44n"
+                class="primary iconOnly large svelte-1e4q28k"
                 data-testid="enqueue"
               >
                 <i
-                  class="material-icons svelte-1lod44n"
+                  class="material-icons svelte-1e4q28k"
                 >
                   playlist_add
                 </i>
@@ -171,16 +171,16 @@ exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Albums 
           </div>
            
           <header
-            class="svelte-1vgpzqt"
+            class="svelte-4r86n"
           >
             <h3
-              class="svelte-1vgpzqt"
+              class="svelte-4r86n"
             >
               Diamonds on the inside
             </h3>
              
             <h4
-              class="svelte-1fiafx9"
+              class="svelte-rw2hde"
               slot="details"
             >
               by 
@@ -207,22 +207,22 @@ exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Albums 
          
       </li>
       <li
-        class="svelte-qfbqtm"
+        class="svelte-1kobtom"
       >
          
         <span
-          class="svelte-1vgpzqt"
+          class="svelte-4r86n"
           role="article"
         >
           <div
-            class="content svelte-1vgpzqt"
+            class="content svelte-4r86n"
           >
             <span
-              class="artwork svelte-1vgpzqt"
+              class="artwork svelte-4r86n"
             >
               <img
                 alt="./cover.jpg"
-                class="h-full w-full rounded-sm svelte-hn7eai"
+                class="h-full w-full rounded-sm svelte-1psk6yi"
                 height="256"
                 loading="lazy"
                 src="./cover.jpg"
@@ -233,15 +233,15 @@ exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Albums 
             </span>
              
             <p
-              class="controls svelte-1vgpzqt"
+              class="controls svelte-4r86n"
             >
                
               <button
-                class="primary iconOnly large svelte-1lod44n"
+                class="primary iconOnly large svelte-1e4q28k"
                 data-testid="play"
               >
                 <i
-                  class="material-icons svelte-1lod44n"
+                  class="material-icons svelte-1e4q28k"
                 >
                   play_arrow
                 </i>
@@ -251,11 +251,11 @@ exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Albums 
               </button>
                
               <button
-                class="primary iconOnly large svelte-1lod44n"
+                class="primary iconOnly large svelte-1e4q28k"
                 data-testid="enqueue"
               >
                 <i
-                  class="material-icons svelte-1lod44n"
+                  class="material-icons svelte-1e4q28k"
                 >
                   playlist_add
                 </i>
@@ -267,16 +267,16 @@ exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Albums 
           </div>
            
           <header
-            class="svelte-1vgpzqt"
+            class="svelte-4r86n"
           >
             <h3
-              class="svelte-1vgpzqt"
+              class="svelte-4r86n"
             >
               Diamonds on the inside
             </h3>
              
             <h4
-              class="svelte-1fiafx9"
+              class="svelte-rw2hde"
               slot="details"
             >
               by 
@@ -303,22 +303,22 @@ exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Albums 
          
       </li>
       <li
-        class="svelte-qfbqtm"
+        class="svelte-1kobtom"
       >
          
         <span
-          class="svelte-1vgpzqt"
+          class="svelte-4r86n"
           role="article"
         >
           <div
-            class="content svelte-1vgpzqt"
+            class="content svelte-4r86n"
           >
             <span
-              class="artwork svelte-1vgpzqt"
+              class="artwork svelte-4r86n"
             >
               <img
                 alt="./cover.jpg"
-                class="h-full w-full rounded-sm svelte-hn7eai"
+                class="h-full w-full rounded-sm svelte-1psk6yi"
                 height="256"
                 loading="lazy"
                 src="./cover.jpg"
@@ -329,15 +329,15 @@ exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Albums 
             </span>
              
             <p
-              class="controls svelte-1vgpzqt"
+              class="controls svelte-4r86n"
             >
                
               <button
-                class="primary iconOnly large svelte-1lod44n"
+                class="primary iconOnly large svelte-1e4q28k"
                 data-testid="play"
               >
                 <i
-                  class="material-icons svelte-1lod44n"
+                  class="material-icons svelte-1e4q28k"
                 >
                   play_arrow
                 </i>
@@ -347,11 +347,11 @@ exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Albums 
               </button>
                
               <button
-                class="primary iconOnly large svelte-1lod44n"
+                class="primary iconOnly large svelte-1e4q28k"
                 data-testid="enqueue"
               >
                 <i
-                  class="material-icons svelte-1lod44n"
+                  class="material-icons svelte-1e4q28k"
                 >
                   playlist_add
                 </i>
@@ -363,16 +363,16 @@ exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Albums 
           </div>
            
           <header
-            class="svelte-1vgpzqt"
+            class="svelte-4r86n"
           >
             <h3
-              class="svelte-1vgpzqt"
+              class="svelte-4r86n"
             >
               Diamonds on the inside
             </h3>
              
             <h4
-              class="svelte-1fiafx9"
+              class="svelte-rw2hde"
               slot="details"
             >
               by 
@@ -399,22 +399,22 @@ exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Albums 
          
       </li>
       <li
-        class="svelte-qfbqtm"
+        class="svelte-1kobtom"
       >
          
         <span
-          class="svelte-1vgpzqt"
+          class="svelte-4r86n"
           role="article"
         >
           <div
-            class="content svelte-1vgpzqt"
+            class="content svelte-4r86n"
           >
             <span
-              class="artwork svelte-1vgpzqt"
+              class="artwork svelte-4r86n"
             >
               <img
                 alt="./cover.jpg"
-                class="h-full w-full rounded-sm svelte-hn7eai"
+                class="h-full w-full rounded-sm svelte-1psk6yi"
                 height="256"
                 loading="lazy"
                 src="./cover.jpg"
@@ -425,15 +425,15 @@ exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Albums 
             </span>
              
             <p
-              class="controls svelte-1vgpzqt"
+              class="controls svelte-4r86n"
             >
                
               <button
-                class="primary iconOnly large svelte-1lod44n"
+                class="primary iconOnly large svelte-1e4q28k"
                 data-testid="play"
               >
                 <i
-                  class="material-icons svelte-1lod44n"
+                  class="material-icons svelte-1e4q28k"
                 >
                   play_arrow
                 </i>
@@ -443,11 +443,11 @@ exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Albums 
               </button>
                
               <button
-                class="primary iconOnly large svelte-1lod44n"
+                class="primary iconOnly large svelte-1e4q28k"
                 data-testid="enqueue"
               >
                 <i
-                  class="material-icons svelte-1lod44n"
+                  class="material-icons svelte-1e4q28k"
                 >
                   playlist_add
                 </i>
@@ -459,16 +459,16 @@ exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Albums 
           </div>
            
           <header
-            class="svelte-1vgpzqt"
+            class="svelte-4r86n"
           >
             <h3
-              class="svelte-1vgpzqt"
+              class="svelte-4r86n"
             >
               Diamonds on the inside
             </h3>
              
             <h4
-              class="svelte-1fiafx9"
+              class="svelte-rw2hde"
               slot="details"
             >
               by 
@@ -510,34 +510,34 @@ exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Albums 
 exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Artists 1`] = `
 <div>
   <span
-    class="undefined artists svelte-qfbqtm"
+    class="undefined artists svelte-1kobtom"
   >
     <h3
-      class="svelte-qfbqtm"
+      class="svelte-1kobtom"
     >
       5 artists
     </h3>
      
     <ul
-      class="svelte-qfbqtm"
+      class="svelte-1kobtom"
     >
       <li
-        class="svelte-qfbqtm"
+        class="svelte-1kobtom"
       >
          
         <span
-          class="svelte-1vgpzqt"
+          class="svelte-4r86n"
           role="article"
         >
           <div
-            class="content svelte-1vgpzqt"
+            class="content svelte-4r86n"
           >
             <span
-              class="artwork svelte-1vgpzqt"
+              class="artwork svelte-4r86n"
             >
               <img
                 alt="./avatar.jpg"
-                class="h-full w-full rounded-full svelte-hn7eai"
+                class="h-full w-full rounded-full svelte-1psk6yi"
                 height="256"
                 loading="lazy"
                 src="./avatar.jpg"
@@ -548,15 +548,15 @@ exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Artists
             </span>
              
             <p
-              class="controls svelte-1vgpzqt"
+              class="controls svelte-4r86n"
             >
                
               <button
-                class="primary iconOnly large svelte-1lod44n"
+                class="primary iconOnly large svelte-1e4q28k"
                 data-testid="play"
               >
                 <i
-                  class="material-icons svelte-1lod44n"
+                  class="material-icons svelte-1e4q28k"
                 >
                   play_arrow
                 </i>
@@ -566,11 +566,11 @@ exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Artists
               </button>
                
               <button
-                class="primary iconOnly large svelte-1lod44n"
+                class="primary iconOnly large svelte-1e4q28k"
                 data-testid="enqueue"
               >
                 <i
-                  class="material-icons svelte-1lod44n"
+                  class="material-icons svelte-1e4q28k"
                 >
                   playlist_add
                 </i>
@@ -582,16 +582,16 @@ exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Artists
           </div>
            
           <header
-            class="svelte-1vgpzqt"
+            class="svelte-4r86n"
           >
             <h3
-              class="svelte-1vgpzqt"
+              class="svelte-4r86n"
             >
               Foo Fighters
             </h3>
              
             <h4
-              class="svelte-1fiafx9"
+              class="svelte-rw2hde"
               slot="details"
             >
               2 albums
@@ -601,22 +601,22 @@ exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Artists
          
       </li>
       <li
-        class="svelte-qfbqtm"
+        class="svelte-1kobtom"
       >
          
         <span
-          class="svelte-1vgpzqt"
+          class="svelte-4r86n"
           role="article"
         >
           <div
-            class="content svelte-1vgpzqt"
+            class="content svelte-4r86n"
           >
             <span
-              class="artwork svelte-1vgpzqt"
+              class="artwork svelte-4r86n"
             >
               <img
                 alt="./avatar.jpg"
-                class="h-full w-full rounded-full svelte-hn7eai"
+                class="h-full w-full rounded-full svelte-1psk6yi"
                 height="256"
                 loading="lazy"
                 src="./avatar.jpg"
@@ -627,15 +627,15 @@ exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Artists
             </span>
              
             <p
-              class="controls svelte-1vgpzqt"
+              class="controls svelte-4r86n"
             >
                
               <button
-                class="primary iconOnly large svelte-1lod44n"
+                class="primary iconOnly large svelte-1e4q28k"
                 data-testid="play"
               >
                 <i
-                  class="material-icons svelte-1lod44n"
+                  class="material-icons svelte-1e4q28k"
                 >
                   play_arrow
                 </i>
@@ -645,11 +645,11 @@ exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Artists
               </button>
                
               <button
-                class="primary iconOnly large svelte-1lod44n"
+                class="primary iconOnly large svelte-1e4q28k"
                 data-testid="enqueue"
               >
                 <i
-                  class="material-icons svelte-1lod44n"
+                  class="material-icons svelte-1e4q28k"
                 >
                   playlist_add
                 </i>
@@ -661,16 +661,16 @@ exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Artists
           </div>
            
           <header
-            class="svelte-1vgpzqt"
+            class="svelte-4r86n"
           >
             <h3
-              class="svelte-1vgpzqt"
+              class="svelte-4r86n"
             >
               Foo Fighters
             </h3>
              
             <h4
-              class="svelte-1fiafx9"
+              class="svelte-rw2hde"
               slot="details"
             >
               2 albums
@@ -680,22 +680,22 @@ exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Artists
          
       </li>
       <li
-        class="svelte-qfbqtm"
+        class="svelte-1kobtom"
       >
          
         <span
-          class="svelte-1vgpzqt"
+          class="svelte-4r86n"
           role="article"
         >
           <div
-            class="content svelte-1vgpzqt"
+            class="content svelte-4r86n"
           >
             <span
-              class="artwork svelte-1vgpzqt"
+              class="artwork svelte-4r86n"
             >
               <img
                 alt="./avatar.jpg"
-                class="h-full w-full rounded-full svelte-hn7eai"
+                class="h-full w-full rounded-full svelte-1psk6yi"
                 height="256"
                 loading="lazy"
                 src="./avatar.jpg"
@@ -706,15 +706,15 @@ exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Artists
             </span>
              
             <p
-              class="controls svelte-1vgpzqt"
+              class="controls svelte-4r86n"
             >
                
               <button
-                class="primary iconOnly large svelte-1lod44n"
+                class="primary iconOnly large svelte-1e4q28k"
                 data-testid="play"
               >
                 <i
-                  class="material-icons svelte-1lod44n"
+                  class="material-icons svelte-1e4q28k"
                 >
                   play_arrow
                 </i>
@@ -724,11 +724,11 @@ exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Artists
               </button>
                
               <button
-                class="primary iconOnly large svelte-1lod44n"
+                class="primary iconOnly large svelte-1e4q28k"
                 data-testid="enqueue"
               >
                 <i
-                  class="material-icons svelte-1lod44n"
+                  class="material-icons svelte-1e4q28k"
                 >
                   playlist_add
                 </i>
@@ -740,16 +740,16 @@ exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Artists
           </div>
            
           <header
-            class="svelte-1vgpzqt"
+            class="svelte-4r86n"
           >
             <h3
-              class="svelte-1vgpzqt"
+              class="svelte-4r86n"
             >
               Foo Fighters
             </h3>
              
             <h4
-              class="svelte-1fiafx9"
+              class="svelte-rw2hde"
               slot="details"
             >
               2 albums
@@ -759,22 +759,22 @@ exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Artists
          
       </li>
       <li
-        class="svelte-qfbqtm"
+        class="svelte-1kobtom"
       >
          
         <span
-          class="svelte-1vgpzqt"
+          class="svelte-4r86n"
           role="article"
         >
           <div
-            class="content svelte-1vgpzqt"
+            class="content svelte-4r86n"
           >
             <span
-              class="artwork svelte-1vgpzqt"
+              class="artwork svelte-4r86n"
             >
               <img
                 alt="./avatar.jpg"
-                class="h-full w-full rounded-full svelte-hn7eai"
+                class="h-full w-full rounded-full svelte-1psk6yi"
                 height="256"
                 loading="lazy"
                 src="./avatar.jpg"
@@ -785,15 +785,15 @@ exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Artists
             </span>
              
             <p
-              class="controls svelte-1vgpzqt"
+              class="controls svelte-4r86n"
             >
                
               <button
-                class="primary iconOnly large svelte-1lod44n"
+                class="primary iconOnly large svelte-1e4q28k"
                 data-testid="play"
               >
                 <i
-                  class="material-icons svelte-1lod44n"
+                  class="material-icons svelte-1e4q28k"
                 >
                   play_arrow
                 </i>
@@ -803,11 +803,11 @@ exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Artists
               </button>
                
               <button
-                class="primary iconOnly large svelte-1lod44n"
+                class="primary iconOnly large svelte-1e4q28k"
                 data-testid="enqueue"
               >
                 <i
-                  class="material-icons svelte-1lod44n"
+                  class="material-icons svelte-1e4q28k"
                 >
                   playlist_add
                 </i>
@@ -819,16 +819,16 @@ exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Artists
           </div>
            
           <header
-            class="svelte-1vgpzqt"
+            class="svelte-4r86n"
           >
             <h3
-              class="svelte-1vgpzqt"
+              class="svelte-4r86n"
             >
               Foo Fighters
             </h3>
              
             <h4
-              class="svelte-1fiafx9"
+              class="svelte-rw2hde"
               slot="details"
             >
               2 albums
@@ -838,22 +838,22 @@ exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Artists
          
       </li>
       <li
-        class="svelte-qfbqtm"
+        class="svelte-1kobtom"
       >
          
         <span
-          class="svelte-1vgpzqt"
+          class="svelte-4r86n"
           role="article"
         >
           <div
-            class="content svelte-1vgpzqt"
+            class="content svelte-4r86n"
           >
             <span
-              class="artwork svelte-1vgpzqt"
+              class="artwork svelte-4r86n"
             >
               <img
                 alt="./avatar.jpg"
-                class="h-full w-full rounded-full svelte-hn7eai"
+                class="h-full w-full rounded-full svelte-1psk6yi"
                 height="256"
                 loading="lazy"
                 src="./avatar.jpg"
@@ -864,15 +864,15 @@ exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Artists
             </span>
              
             <p
-              class="controls svelte-1vgpzqt"
+              class="controls svelte-4r86n"
             >
                
               <button
-                class="primary iconOnly large svelte-1lod44n"
+                class="primary iconOnly large svelte-1e4q28k"
                 data-testid="play"
               >
                 <i
-                  class="material-icons svelte-1lod44n"
+                  class="material-icons svelte-1e4q28k"
                 >
                   play_arrow
                 </i>
@@ -882,11 +882,11 @@ exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Artists
               </button>
                
               <button
-                class="primary iconOnly large svelte-1lod44n"
+                class="primary iconOnly large svelte-1e4q28k"
                 data-testid="enqueue"
               >
                 <i
-                  class="material-icons svelte-1lod44n"
+                  class="material-icons svelte-1e4q28k"
                 >
                   playlist_add
                 </i>
@@ -898,16 +898,16 @@ exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Artists
           </div>
            
           <header
-            class="svelte-1vgpzqt"
+            class="svelte-4r86n"
           >
             <h3
-              class="svelte-1vgpzqt"
+              class="svelte-4r86n"
             >
               Foo Fighters
             </h3>
              
             <h4
-              class="svelte-1fiafx9"
+              class="svelte-rw2hde"
               slot="details"
             >
               2 albums
@@ -932,22 +932,22 @@ exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Artists
 exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Tracks 1`] = `
 <div>
   <span
-    class="undefined tracks svelte-qfbqtm"
+    class="undefined tracks svelte-1kobtom"
   >
     <h3
-      class="svelte-qfbqtm"
+      class="svelte-1kobtom"
     >
       5 tracks
     </h3>
      
     <ul
-      class="svelte-qfbqtm"
+      class="svelte-1kobtom"
     >
       <li
-        class="svelte-qfbqtm"
+        class="svelte-1kobtom"
       >
         <div
-          class="undefined root svelte-1bozxge"
+          class="undefined root svelte-30dtyc"
         >
           <a
             class="flex-none"
@@ -955,7 +955,7 @@ exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Tracks 
           >
             <img
               alt="./cover.jpg"
-              class="h-16 w-16 text-xs actionable rounded-sm svelte-hn7eai"
+              class="h-16 w-16 text-xs actionable rounded-sm svelte-1psk6yi"
               height="256"
               loading="lazy"
               src="./cover.jpg"
@@ -966,10 +966,10 @@ exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Tracks 
           </a>
            
           <div
-            class="track svelte-1bozxge"
+            class="track svelte-30dtyc"
           >
             <span
-              class="title svelte-1bozxge"
+              class="title svelte-30dtyc"
             >
               Mama got a girlfriend
             </span>
@@ -989,13 +989,13 @@ exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Tracks 
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-17zgehq"
+            class="wrapper svelte-11prmkk"
           >
             <button
-              class="iconOnly noBorder svelte-1lod44n"
+              class="iconOnly noBorder svelte-1e4q28k"
             >
               <i
-                class="material-icons svelte-1lod44n"
+                class="material-icons svelte-1e4q28k"
               >
                 more_vert
               </i>
@@ -1011,10 +1011,10 @@ exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Tracks 
          
       </li>
       <li
-        class="svelte-qfbqtm"
+        class="svelte-1kobtom"
       >
         <div
-          class="undefined root svelte-1bozxge"
+          class="undefined root svelte-30dtyc"
         >
           <a
             class="flex-none"
@@ -1022,7 +1022,7 @@ exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Tracks 
           >
             <img
               alt="./cover.jpg"
-              class="h-16 w-16 text-xs actionable rounded-sm svelte-hn7eai"
+              class="h-16 w-16 text-xs actionable rounded-sm svelte-1psk6yi"
               height="256"
               loading="lazy"
               src="./cover.jpg"
@@ -1033,10 +1033,10 @@ exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Tracks 
           </a>
            
           <div
-            class="track svelte-1bozxge"
+            class="track svelte-30dtyc"
           >
             <span
-              class="title svelte-1bozxge"
+              class="title svelte-30dtyc"
             >
               Mama got a girlfriend
             </span>
@@ -1056,13 +1056,13 @@ exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Tracks 
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-17zgehq"
+            class="wrapper svelte-11prmkk"
           >
             <button
-              class="iconOnly noBorder svelte-1lod44n"
+              class="iconOnly noBorder svelte-1e4q28k"
             >
               <i
-                class="material-icons svelte-1lod44n"
+                class="material-icons svelte-1e4q28k"
               >
                 more_vert
               </i>
@@ -1078,10 +1078,10 @@ exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Tracks 
          
       </li>
       <li
-        class="svelte-qfbqtm"
+        class="svelte-1kobtom"
       >
         <div
-          class="undefined root svelte-1bozxge"
+          class="undefined root svelte-30dtyc"
         >
           <a
             class="flex-none"
@@ -1089,7 +1089,7 @@ exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Tracks 
           >
             <img
               alt="./cover.jpg"
-              class="h-16 w-16 text-xs actionable rounded-sm svelte-hn7eai"
+              class="h-16 w-16 text-xs actionable rounded-sm svelte-1psk6yi"
               height="256"
               loading="lazy"
               src="./cover.jpg"
@@ -1100,10 +1100,10 @@ exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Tracks 
           </a>
            
           <div
-            class="track svelte-1bozxge"
+            class="track svelte-30dtyc"
           >
             <span
-              class="title svelte-1bozxge"
+              class="title svelte-30dtyc"
             >
               Mama got a girlfriend
             </span>
@@ -1123,13 +1123,13 @@ exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Tracks 
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-17zgehq"
+            class="wrapper svelte-11prmkk"
           >
             <button
-              class="iconOnly noBorder svelte-1lod44n"
+              class="iconOnly noBorder svelte-1e4q28k"
             >
               <i
-                class="material-icons svelte-1lod44n"
+                class="material-icons svelte-1e4q28k"
               >
                 more_vert
               </i>
@@ -1145,10 +1145,10 @@ exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Tracks 
          
       </li>
       <li
-        class="svelte-qfbqtm"
+        class="svelte-1kobtom"
       >
         <div
-          class="undefined root svelte-1bozxge"
+          class="undefined root svelte-30dtyc"
         >
           <a
             class="flex-none"
@@ -1156,7 +1156,7 @@ exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Tracks 
           >
             <img
               alt="./cover.jpg"
-              class="h-16 w-16 text-xs actionable rounded-sm svelte-hn7eai"
+              class="h-16 w-16 text-xs actionable rounded-sm svelte-1psk6yi"
               height="256"
               loading="lazy"
               src="./cover.jpg"
@@ -1167,10 +1167,10 @@ exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Tracks 
           </a>
            
           <div
-            class="track svelte-1bozxge"
+            class="track svelte-30dtyc"
           >
             <span
-              class="title svelte-1bozxge"
+              class="title svelte-30dtyc"
             >
               Mama got a girlfriend
             </span>
@@ -1190,13 +1190,13 @@ exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Tracks 
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-17zgehq"
+            class="wrapper svelte-11prmkk"
           >
             <button
-              class="iconOnly noBorder svelte-1lod44n"
+              class="iconOnly noBorder svelte-1e4q28k"
             >
               <i
-                class="material-icons svelte-1lod44n"
+                class="material-icons svelte-1e4q28k"
               >
                 more_vert
               </i>
@@ -1212,10 +1212,10 @@ exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Tracks 
          
       </li>
       <li
-        class="svelte-qfbqtm"
+        class="svelte-1kobtom"
       >
         <div
-          class="undefined root svelte-1bozxge"
+          class="undefined root svelte-30dtyc"
         >
           <a
             class="flex-none"
@@ -1223,7 +1223,7 @@ exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Tracks 
           >
             <img
               alt="./cover.jpg"
-              class="h-16 w-16 text-xs actionable rounded-sm svelte-hn7eai"
+              class="h-16 w-16 text-xs actionable rounded-sm svelte-1psk6yi"
               height="256"
               loading="lazy"
               src="./cover.jpg"
@@ -1234,10 +1234,10 @@ exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Tracks 
           </a>
            
           <div
-            class="track svelte-1bozxge"
+            class="track svelte-30dtyc"
           >
             <span
-              class="title svelte-1bozxge"
+              class="title svelte-30dtyc"
             >
               Mama got a girlfriend
             </span>
@@ -1257,13 +1257,13 @@ exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Tracks 
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-17zgehq"
+            class="wrapper svelte-11prmkk"
           >
             <button
-              class="iconOnly noBorder svelte-1lod44n"
+              class="iconOnly noBorder svelte-1e4q28k"
             >
               <i
-                class="material-icons svelte-1lod44n"
+                class="material-icons svelte-1e4q28k"
               >
                 more_vert
               </i>

@@ -2,7 +2,7 @@
 
 exports[`Toolshot components/Trapezium/Trapezium.tools.svelte: Site components/Trapezium 1`] = `
 <section
-  class="svelte-i2y9a2"
+  class="svelte-h0c516"
   style="--color: #353849; --clip-path: polygon(0% 7rem, 100% 0%, 100% 100%, 0 calc(100% - 7rem));"
 >
   <div>
@@ -26,12 +26,12 @@ exports[`Toolshot components/Trapezium/Trapezium.tools.svelte: Site components/T
         class="flex-shrink-0"
       >
         <div
-          class="svelte-1azjigb"
+          class="svelte-10pqkkt"
           style="--height: 275px; --src: url('../images/screenshot-artists-en.png');"
         >
           <img
             alt=""
-            class="svelte-1azjigb"
+            class="svelte-10pqkkt"
             src="images/screenshot-artists-en.png"
           />
         </div>

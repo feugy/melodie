@@ -5,12 +5,12 @@ exports[`Toolshot components/ReflectedImage/ReflectedImage.tools.svelte: Site co
   class="flex"
 >
   <div
-    class="svelte-1azjigb"
+    class="svelte-10pqkkt"
     style="--height: 250px; --src: url('../images/screenshot-ui-fr.png');"
   >
     <img
       alt=""
-      class="svelte-1azjigb"
+      class="svelte-10pqkkt"
       src="images/screenshot-ui-fr.png"
     />
   </div>

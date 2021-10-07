@@ -124,7 +124,7 @@
 
   @screen md {
     section {
-      @apply items-start flex-no-wrap;
+      @apply items-start flex-nowrap;
       max-height: 400px;
     }
   }

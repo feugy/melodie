@@ -3,77 +3,77 @@
 exports[`Toolshot components/Annotation/Annotation.tools.svelte: Above center left 1`] = `
 <span>
   <div
-    class="backdrop svelte-1aqttrc"
+    class="backdrop svelte-12nprlq"
     style=""
   >
      
     <article
-      class="svelte-1aqttrc"
+      class="svelte-12nprlq"
     >
       Look! This text looks very interesting
     </article>
   </div>
    
   <div
-    class="test-grid svelte-11646s2"
+    class="test-grid svelte-1wi3uh1"
   >
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       In eu mi bibendum neque egestas congue quisque egestas
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Arcu non odio euismod lacinia at quis risus sed
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Massa tempor nec feugiat nisl
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Sagittis aliquam malesuada bibendum arcu vitae elementum
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Elementum facilisis leo vel fringilla est ullamcorper eget nulla
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Bibendum arcu vitae elementum curabitur vitae nunc sed velit dignissim
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Elit sed vulputate mi sit amet mauris commodo
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Ut enim blandit volutpat maecenas volutpat blandit aliquam etiam erat
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Lorem mollis aliquam ut porttitor leo a diam sollicitudin
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Vitae proin sagittis nisl rhoncus mattis
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Ut morbi tincidunt augue interdum velit euismod in pellentesque
     </div>
@@ -88,77 +88,77 @@ exports[`Toolshot components/Annotation/Annotation.tools.svelte: Above center le
 exports[`Toolshot components/Annotation/Annotation.tools.svelte: Above center right 1`] = `
 <span>
   <div
-    class="backdrop svelte-1aqttrc"
+    class="backdrop svelte-12nprlq"
     style=""
   >
      
     <article
-      class="svelte-1aqttrc"
+      class="svelte-12nprlq"
     >
       Look! This text looks very interesting
     </article>
   </div>
    
   <div
-    class="test-grid svelte-11646s2"
+    class="test-grid svelte-1wi3uh1"
   >
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       In eu mi bibendum neque egestas congue quisque egestas
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Arcu non odio euismod lacinia at quis risus sed
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Massa tempor nec feugiat nisl
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Sagittis aliquam malesuada bibendum arcu vitae elementum
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Elementum facilisis leo vel fringilla est ullamcorper eget nulla
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Bibendum arcu vitae elementum curabitur vitae nunc sed velit dignissim
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Elit sed vulputate mi sit amet mauris commodo
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Ut enim blandit volutpat maecenas volutpat blandit aliquam etiam erat
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Lorem mollis aliquam ut porttitor leo a diam sollicitudin
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Vitae proin sagittis nisl rhoncus mattis
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Ut morbi tincidunt augue interdum velit euismod in pellentesque
     </div>
@@ -173,77 +173,77 @@ exports[`Toolshot components/Annotation/Annotation.tools.svelte: Above center ri
 exports[`Toolshot components/Annotation/Annotation.tools.svelte: Above right 1`] = `
 <span>
   <div
-    class="backdrop svelte-1aqttrc"
+    class="backdrop svelte-12nprlq"
     style=""
   >
      
     <article
-      class="svelte-1aqttrc"
+      class="svelte-12nprlq"
     >
       Look! This text looks very interesting
     </article>
   </div>
    
   <div
-    class="test-grid svelte-11646s2"
+    class="test-grid svelte-1wi3uh1"
   >
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       In eu mi bibendum neque egestas congue quisque egestas
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Arcu non odio euismod lacinia at quis risus sed
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Massa tempor nec feugiat nisl
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Sagittis aliquam malesuada bibendum arcu vitae elementum
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Elementum facilisis leo vel fringilla est ullamcorper eget nulla
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Bibendum arcu vitae elementum curabitur vitae nunc sed velit dignissim
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Elit sed vulputate mi sit amet mauris commodo
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Ut enim blandit volutpat maecenas volutpat blandit aliquam etiam erat
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Lorem mollis aliquam ut porttitor leo a diam sollicitudin
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Vitae proin sagittis nisl rhoncus mattis
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Ut morbi tincidunt augue interdum velit euismod in pellentesque
     </div>
@@ -258,77 +258,77 @@ exports[`Toolshot components/Annotation/Annotation.tools.svelte: Above right 1`]
 exports[`Toolshot components/Annotation/Annotation.tools.svelte: Anchor not found 1`] = `
 <span>
   <div
-    class="backdrop svelte-1aqttrc"
+    class="backdrop svelte-12nprlq"
     style=""
   >
      
     <article
-      class="svelte-1aqttrc"
+      class="svelte-12nprlq"
     >
       Look! This text looks very interesting
     </article>
   </div>
    
   <div
-    class="test-grid svelte-11646s2"
+    class="test-grid svelte-1wi3uh1"
   >
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       In eu mi bibendum neque egestas congue quisque egestas
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Arcu non odio euismod lacinia at quis risus sed
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Massa tempor nec feugiat nisl
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Sagittis aliquam malesuada bibendum arcu vitae elementum
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Elementum facilisis leo vel fringilla est ullamcorper eget nulla
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Bibendum arcu vitae elementum curabitur vitae nunc sed velit dignissim
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Elit sed vulputate mi sit amet mauris commodo
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Ut enim blandit volutpat maecenas volutpat blandit aliquam etiam erat
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Lorem mollis aliquam ut porttitor leo a diam sollicitudin
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Vitae proin sagittis nisl rhoncus mattis
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Ut morbi tincidunt augue interdum velit euismod in pellentesque
     </div>
@@ -343,77 +343,77 @@ exports[`Toolshot components/Annotation/Annotation.tools.svelte: Anchor not foun
 exports[`Toolshot components/Annotation/Annotation.tools.svelte: Bellow center left 1`] = `
 <span>
   <div
-    class="backdrop svelte-1aqttrc"
+    class="backdrop svelte-12nprlq"
     style=""
   >
      
     <article
-      class="svelte-1aqttrc"
+      class="svelte-12nprlq"
     >
       Look! This text looks very interesting
     </article>
   </div>
    
   <div
-    class="test-grid svelte-11646s2"
+    class="test-grid svelte-1wi3uh1"
   >
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       In eu mi bibendum neque egestas congue quisque egestas
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Arcu non odio euismod lacinia at quis risus sed
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Massa tempor nec feugiat nisl
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Sagittis aliquam malesuada bibendum arcu vitae elementum
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Elementum facilisis leo vel fringilla est ullamcorper eget nulla
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Bibendum arcu vitae elementum curabitur vitae nunc sed velit dignissim
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Elit sed vulputate mi sit amet mauris commodo
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Ut enim blandit volutpat maecenas volutpat blandit aliquam etiam erat
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Lorem mollis aliquam ut porttitor leo a diam sollicitudin
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Vitae proin sagittis nisl rhoncus mattis
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Ut morbi tincidunt augue interdum velit euismod in pellentesque
     </div>
@@ -428,77 +428,77 @@ exports[`Toolshot components/Annotation/Annotation.tools.svelte: Bellow center l
 exports[`Toolshot components/Annotation/Annotation.tools.svelte: Bellow center right 1`] = `
 <span>
   <div
-    class="backdrop svelte-1aqttrc"
+    class="backdrop svelte-12nprlq"
     style=""
   >
      
     <article
-      class="svelte-1aqttrc"
+      class="svelte-12nprlq"
     >
       Look! This text looks very interesting
     </article>
   </div>
    
   <div
-    class="test-grid svelte-11646s2"
+    class="test-grid svelte-1wi3uh1"
   >
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       In eu mi bibendum neque egestas congue quisque egestas
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Arcu non odio euismod lacinia at quis risus sed
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Massa tempor nec feugiat nisl
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Sagittis aliquam malesuada bibendum arcu vitae elementum
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Elementum facilisis leo vel fringilla est ullamcorper eget nulla
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Bibendum arcu vitae elementum curabitur vitae nunc sed velit dignissim
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Elit sed vulputate mi sit amet mauris commodo
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Ut enim blandit volutpat maecenas volutpat blandit aliquam etiam erat
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Lorem mollis aliquam ut porttitor leo a diam sollicitudin
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Vitae proin sagittis nisl rhoncus mattis
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Ut morbi tincidunt augue interdum velit euismod in pellentesque
     </div>
@@ -513,77 +513,77 @@ exports[`Toolshot components/Annotation/Annotation.tools.svelte: Bellow center r
 exports[`Toolshot components/Annotation/Annotation.tools.svelte: Bellow left 1`] = `
 <span>
   <div
-    class="backdrop svelte-1aqttrc"
+    class="backdrop svelte-12nprlq"
     style=""
   >
      
     <article
-      class="svelte-1aqttrc"
+      class="svelte-12nprlq"
     >
       Look! This text looks very interesting
     </article>
   </div>
    
   <div
-    class="test-grid svelte-11646s2"
+    class="test-grid svelte-1wi3uh1"
   >
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       In eu mi bibendum neque egestas congue quisque egestas
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Arcu non odio euismod lacinia at quis risus sed
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Massa tempor nec feugiat nisl
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Sagittis aliquam malesuada bibendum arcu vitae elementum
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Elementum facilisis leo vel fringilla est ullamcorper eget nulla
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Bibendum arcu vitae elementum curabitur vitae nunc sed velit dignissim
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Elit sed vulputate mi sit amet mauris commodo
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Ut enim blandit volutpat maecenas volutpat blandit aliquam etiam erat
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Lorem mollis aliquam ut porttitor leo a diam sollicitudin
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Vitae proin sagittis nisl rhoncus mattis
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Ut morbi tincidunt augue interdum velit euismod in pellentesque
     </div>
@@ -598,77 +598,77 @@ exports[`Toolshot components/Annotation/Annotation.tools.svelte: Bellow left 1`]
 exports[`Toolshot components/Annotation/Annotation.tools.svelte: Bellow right 1`] = `
 <span>
   <div
-    class="backdrop svelte-1aqttrc"
+    class="backdrop svelte-12nprlq"
     style=""
   >
      
     <article
-      class="svelte-1aqttrc"
+      class="svelte-12nprlq"
     >
       Look! This text looks very interesting
     </article>
   </div>
    
   <div
-    class="test-grid svelte-11646s2"
+    class="test-grid svelte-1wi3uh1"
   >
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       In eu mi bibendum neque egestas congue quisque egestas
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Arcu non odio euismod lacinia at quis risus sed
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Massa tempor nec feugiat nisl
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Sagittis aliquam malesuada bibendum arcu vitae elementum
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Elementum facilisis leo vel fringilla est ullamcorper eget nulla
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Bibendum arcu vitae elementum curabitur vitae nunc sed velit dignissim
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Elit sed vulputate mi sit amet mauris commodo
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Ut enim blandit volutpat maecenas volutpat blandit aliquam etiam erat
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Lorem mollis aliquam ut porttitor leo a diam sollicitudin
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Vitae proin sagittis nisl rhoncus mattis
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Ut morbi tincidunt augue interdum velit euismod in pellentesque
     </div>
@@ -683,77 +683,77 @@ exports[`Toolshot components/Annotation/Annotation.tools.svelte: Bellow right 1`
 exports[`Toolshot components/Annotation/Annotation.tools.svelte: Default 1`] = `
 <span>
   <div
-    class="backdrop svelte-1aqttrc"
+    class="backdrop svelte-12nprlq"
     style=""
   >
      
     <article
-      class="svelte-1aqttrc"
+      class="svelte-12nprlq"
     >
       Look! This text looks very interesting
     </article>
   </div>
    
   <div
-    class="test-grid svelte-11646s2"
+    class="test-grid svelte-1wi3uh1"
   >
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       In eu mi bibendum neque egestas congue quisque egestas
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Arcu non odio euismod lacinia at quis risus sed
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Massa tempor nec feugiat nisl
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Sagittis aliquam malesuada bibendum arcu vitae elementum
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Elementum facilisis leo vel fringilla est ullamcorper eget nulla
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Bibendum arcu vitae elementum curabitur vitae nunc sed velit dignissim
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Elit sed vulputate mi sit amet mauris commodo
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Ut enim blandit volutpat maecenas volutpat blandit aliquam etiam erat
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Lorem mollis aliquam ut porttitor leo a diam sollicitudin
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Vitae proin sagittis nisl rhoncus mattis
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Ut morbi tincidunt augue interdum velit euismod in pellentesque
     </div>
@@ -768,77 +768,77 @@ exports[`Toolshot components/Annotation/Annotation.tools.svelte: Default 1`] = `
 exports[`Toolshot components/Annotation/Annotation.tools.svelte: Hidden anchor 1`] = `
 <span>
   <div
-    class="backdrop svelte-1aqttrc"
+    class="backdrop svelte-12nprlq"
     style=""
   >
      
     <article
-      class="svelte-1aqttrc"
+      class="svelte-12nprlq"
     >
       Look! This text looks very interesting
     </article>
   </div>
    
   <div
-    class="test-grid svelte-11646s2"
+    class="test-grid svelte-1wi3uh1"
   >
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       In eu mi bibendum neque egestas congue quisque egestas
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Arcu non odio euismod lacinia at quis risus sed
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Massa tempor nec feugiat nisl
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Sagittis aliquam malesuada bibendum arcu vitae elementum
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Elementum facilisis leo vel fringilla est ullamcorper eget nulla
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Bibendum arcu vitae elementum curabitur vitae nunc sed velit dignissim
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Elit sed vulputate mi sit amet mauris commodo
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Ut enim blandit volutpat maecenas volutpat blandit aliquam etiam erat
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Lorem mollis aliquam ut porttitor leo a diam sollicitudin
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Vitae proin sagittis nisl rhoncus mattis
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Ut morbi tincidunt augue interdum velit euismod in pellentesque
     </div>
@@ -853,77 +853,77 @@ exports[`Toolshot components/Annotation/Annotation.tools.svelte: Hidden anchor 1
 exports[`Toolshot components/Annotation/Annotation.tools.svelte: Middle left 1`] = `
 <span>
   <div
-    class="backdrop svelte-1aqttrc"
+    class="backdrop svelte-12nprlq"
     style=""
   >
      
     <article
-      class="svelte-1aqttrc"
+      class="svelte-12nprlq"
     >
       Look! This text looks very interesting
     </article>
   </div>
    
   <div
-    class="test-grid svelte-11646s2"
+    class="test-grid svelte-1wi3uh1"
   >
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       In eu mi bibendum neque egestas congue quisque egestas
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Arcu non odio euismod lacinia at quis risus sed
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Massa tempor nec feugiat nisl
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Sagittis aliquam malesuada bibendum arcu vitae elementum
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Elementum facilisis leo vel fringilla est ullamcorper eget nulla
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Bibendum arcu vitae elementum curabitur vitae nunc sed velit dignissim
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Elit sed vulputate mi sit amet mauris commodo
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Ut enim blandit volutpat maecenas volutpat blandit aliquam etiam erat
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Lorem mollis aliquam ut porttitor leo a diam sollicitudin
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Vitae proin sagittis nisl rhoncus mattis
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Ut morbi tincidunt augue interdum velit euismod in pellentesque
     </div>
@@ -938,77 +938,77 @@ exports[`Toolshot components/Annotation/Annotation.tools.svelte: Middle left 1`]
 exports[`Toolshot components/Annotation/Annotation.tools.svelte: Middle right 1`] = `
 <span>
   <div
-    class="backdrop svelte-1aqttrc"
+    class="backdrop svelte-12nprlq"
     style=""
   >
      
     <article
-      class="svelte-1aqttrc"
+      class="svelte-12nprlq"
     >
       Look! This text looks very interesting
     </article>
   </div>
    
   <div
-    class="test-grid svelte-11646s2"
+    class="test-grid svelte-1wi3uh1"
   >
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       In eu mi bibendum neque egestas congue quisque egestas
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Arcu non odio euismod lacinia at quis risus sed
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Massa tempor nec feugiat nisl
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Sagittis aliquam malesuada bibendum arcu vitae elementum
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Elementum facilisis leo vel fringilla est ullamcorper eget nulla
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Bibendum arcu vitae elementum curabitur vitae nunc sed velit dignissim
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Elit sed vulputate mi sit amet mauris commodo
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Ut enim blandit volutpat maecenas volutpat blandit aliquam etiam erat
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Lorem mollis aliquam ut porttitor leo a diam sollicitudin
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Vitae proin sagittis nisl rhoncus mattis
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Ut morbi tincidunt augue interdum velit euismod in pellentesque
     </div>
@@ -1023,12 +1023,12 @@ exports[`Toolshot components/Annotation/Annotation.tools.svelte: Middle right 1`
 exports[`Toolshot components/Annotation/Annotation.tools.svelte: Positionned 1`] = `
 <span>
   <div
-    class="backdrop svelte-1aqttrc"
+    class="backdrop svelte-12nprlq"
     style=""
   >
      
     <article
-      class="svelte-1aqttrc"
+      class="svelte-12nprlq"
       style="top: 5%; left: 60%;"
     >
       Look! This text looks very interesting
@@ -1036,65 +1036,65 @@ exports[`Toolshot components/Annotation/Annotation.tools.svelte: Positionned 1`]
   </div>
    
   <div
-    class="test-grid svelte-11646s2"
+    class="test-grid svelte-1wi3uh1"
   >
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       In eu mi bibendum neque egestas congue quisque egestas
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Arcu non odio euismod lacinia at quis risus sed
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Massa tempor nec feugiat nisl
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Sagittis aliquam malesuada bibendum arcu vitae elementum
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Elementum facilisis leo vel fringilla est ullamcorper eget nulla
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Bibendum arcu vitae elementum curabitur vitae nunc sed velit dignissim
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Elit sed vulputate mi sit amet mauris commodo
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Ut enim blandit volutpat maecenas volutpat blandit aliquam etiam erat
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Lorem mollis aliquam ut porttitor leo a diam sollicitudin
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Vitae proin sagittis nisl rhoncus mattis
     </div>
     <div
-      class="svelte-11646s2"
+      class="svelte-1wi3uh1"
     >
       Ut morbi tincidunt augue interdum velit euismod in pellentesque
     </div>

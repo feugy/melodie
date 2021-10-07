@@ -109,7 +109,7 @@
 
   li {
     &.nav {
-      @apply whitespace-no-wrap;
+      @apply whitespace-nowrap;
     }
 
     &.track-list {

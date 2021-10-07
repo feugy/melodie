@@ -14,8 +14,10 @@ module.exports = {
       'svelte-jester',
       { preprocess: require.resolve('./svelte.config') }
     ],
-    '^.+\\.ya?ml$': 'jest-yaml-transform',
-    '^.+\\.css$': 'jest-css-modules-transform'
+    '^.+\\.ya?ml$': 'jest-yaml-transform'
+  },
+  moduleNameMapper: {
+    '^.+\\.css$': 'identity-obj-proxy'
   },
   transformIgnorePatterns: [
     'node_modules\\/(?!svelte|tailwindcss|@atelier-wb)'

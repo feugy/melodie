@@ -5,70 +5,70 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Default 1`] =
    
    
   <table
-    class=" svelte-716o9v"
+    class=" svelte-1uzdiz4"
   >
     <thead
-      class="svelte-716o9v"
+      class="svelte-1uzdiz4"
     >
       <tr
-        class="svelte-716o9v"
+        class="svelte-1uzdiz4"
       >
         <th
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           #
         </th>
          
         <th
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           Track
         </th>
          
         <th
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           Artist
         </th>
          
         <th
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           Album
         </th>
          
         <th
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           Duration
         </th>
          
         <th
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         />
       </tr>
     </thead>
      
     <tbody
-      class="svelte-716o9v"
+      class="svelte-1uzdiz4"
     >
       <tr
-        class="svelte-716o9v"
+        class="svelte-1uzdiz4"
       >
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           1
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           American Money
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -88,7 +88,7 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Default 1`] =
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -100,24 +100,24 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Default 1`] =
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           5:32
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-17zgehq"
+            class="wrapper svelte-11prmkk"
           >
             <button
-              class="iconOnly noBorder svelte-1lod44n"
+              class="iconOnly noBorder svelte-1e4q28k"
             >
               <i
-                class="material-icons svelte-1lod44n"
+                class="material-icons svelte-1e4q28k"
               >
                 more_vert
               </i>
@@ -133,22 +133,22 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Default 1`] =
          
       </tr>
       <tr
-        class="svelte-716o9v"
+        class="svelte-1uzdiz4"
       >
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           2
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           Fantaisie Sign
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -168,7 +168,7 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Default 1`] =
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -180,24 +180,24 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Default 1`] =
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           3:35
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-17zgehq"
+            class="wrapper svelte-11prmkk"
           >
             <button
-              class="iconOnly noBorder svelte-1lod44n"
+              class="iconOnly noBorder svelte-1e4q28k"
             >
               <i
-                class="material-icons svelte-1lod44n"
+                class="material-icons svelte-1e4q28k"
               >
                 more_vert
               </i>
@@ -213,22 +213,22 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Default 1`] =
          
       </tr>
       <tr
-        class="svelte-716o9v"
+        class="svelte-1uzdiz4"
       >
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           3
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           Don't Bother None
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -248,7 +248,7 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Default 1`] =
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -260,24 +260,24 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Default 1`] =
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           3:45
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-17zgehq"
+            class="wrapper svelte-11prmkk"
           >
             <button
-              class="iconOnly noBorder svelte-1lod44n"
+              class="iconOnly noBorder svelte-1e4q28k"
             >
               <i
-                class="material-icons svelte-1lod44n"
+                class="material-icons svelte-1e4q28k"
               >
                 more_vert
               </i>
@@ -293,22 +293,22 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Default 1`] =
          
       </tr>
       <tr
-        class="svelte-716o9v"
+        class="svelte-1uzdiz4"
       >
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           4
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           Vitamin A
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -328,7 +328,7 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Default 1`] =
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -340,24 +340,24 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Default 1`] =
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           4:41
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-17zgehq"
+            class="wrapper svelte-11prmkk"
           >
             <button
-              class="iconOnly noBorder svelte-1lod44n"
+              class="iconOnly noBorder svelte-1e4q28k"
             >
               <i
-                class="material-icons svelte-1lod44n"
+                class="material-icons svelte-1e4q28k"
               >
                 more_vert
               </i>
@@ -373,22 +373,22 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Default 1`] =
          
       </tr>
       <tr
-        class="svelte-716o9v"
+        class="svelte-1uzdiz4"
       >
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           5
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           LIVE in Baghdad
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -408,7 +408,7 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Default 1`] =
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -420,24 +420,24 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Default 1`] =
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           2:59
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-17zgehq"
+            class="wrapper svelte-11prmkk"
           >
             <button
-              class="iconOnly noBorder svelte-1lod44n"
+              class="iconOnly noBorder svelte-1e4q28k"
             >
               <i
-                class="material-icons svelte-1lod44n"
+                class="material-icons svelte-1e4q28k"
               >
                 more_vert
               </i>
@@ -453,22 +453,22 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Default 1`] =
          
       </tr>
       <tr
-        class="svelte-716o9v"
+        class="svelte-1uzdiz4"
       >
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           6
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           Cats on Mars
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -488,7 +488,7 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Default 1`] =
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -500,24 +500,24 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Default 1`] =
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           0:07
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-17zgehq"
+            class="wrapper svelte-11prmkk"
           >
             <button
-              class="iconOnly noBorder svelte-1lod44n"
+              class="iconOnly noBorder svelte-1e4q28k"
             >
               <i
-                class="material-icons svelte-1lod44n"
+                class="material-icons svelte-1e4q28k"
               >
                 more_vert
               </i>
@@ -533,22 +533,22 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Default 1`] =
          
       </tr>
       <tr
-        class="svelte-716o9v"
+        class="svelte-1uzdiz4"
       >
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           7
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           Want it All Back
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -568,7 +568,7 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Default 1`] =
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -580,24 +580,24 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Default 1`] =
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           3:51
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-17zgehq"
+            class="wrapper svelte-11prmkk"
           >
             <button
-              class="iconOnly noBorder svelte-1lod44n"
+              class="iconOnly noBorder svelte-1e4q28k"
             >
               <i
-                class="material-icons svelte-1lod44n"
+                class="material-icons svelte-1e4q28k"
               >
                 more_vert
               </i>
@@ -613,22 +613,22 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Default 1`] =
          
       </tr>
       <tr
-        class="svelte-716o9v"
+        class="svelte-1uzdiz4"
       >
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           8
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           Bindy
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -648,7 +648,7 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Default 1`] =
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -660,24 +660,24 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Default 1`] =
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           0:15
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-17zgehq"
+            class="wrapper svelte-11prmkk"
           >
             <button
-              class="iconOnly noBorder svelte-1lod44n"
+              class="iconOnly noBorder svelte-1e4q28k"
             >
               <i
-                class="material-icons svelte-1lod44n"
+                class="material-icons svelte-1e4q28k"
               >
                 more_vert
               </i>
@@ -693,22 +693,22 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Default 1`] =
          
       </tr>
       <tr
-        class="svelte-716o9v"
+        class="svelte-1uzdiz4"
       >
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           9
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           You Make Me Coo
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -728,7 +728,7 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Default 1`] =
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -740,24 +740,24 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Default 1`] =
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           3:14
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-17zgehq"
+            class="wrapper svelte-11prmkk"
           >
             <button
-              class="iconOnly noBorder svelte-1lod44n"
+              class="iconOnly noBorder svelte-1e4q28k"
             >
               <i
-                class="material-icons svelte-1lod44n"
+                class="material-icons svelte-1e4q28k"
               >
                 more_vert
               </i>
@@ -773,22 +773,22 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Default 1`] =
          
       </tr>
       <tr
-        class="svelte-716o9v"
+        class="svelte-1uzdiz4"
       >
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           10
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           Vitamin B
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -808,7 +808,7 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Default 1`] =
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -820,24 +820,24 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Default 1`] =
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           4:06
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-17zgehq"
+            class="wrapper svelte-11prmkk"
           >
             <button
-              class="iconOnly noBorder svelte-1lod44n"
+              class="iconOnly noBorder svelte-1e4q28k"
             >
               <i
-                class="material-icons svelte-1lod44n"
+                class="material-icons svelte-1e4q28k"
               >
                 more_vert
               </i>
@@ -853,22 +853,22 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Default 1`] =
          
       </tr>
       <tr
-        class="svelte-716o9v"
+        class="svelte-1uzdiz4"
       >
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           11
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           Green Bird
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -888,7 +888,7 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Default 1`] =
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -900,24 +900,24 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Default 1`] =
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           2:33
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-17zgehq"
+            class="wrapper svelte-11prmkk"
           >
             <button
-              class="iconOnly noBorder svelte-1lod44n"
+              class="iconOnly noBorder svelte-1e4q28k"
             >
               <i
-                class="material-icons svelte-1lod44n"
+                class="material-icons svelte-1e4q28k"
               >
                 more_vert
               </i>
@@ -933,22 +933,22 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Default 1`] =
          
       </tr>
       <tr
-        class="svelte-716o9v"
+        class="svelte-1uzdiz4"
       >
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           12
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           ELM
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -968,7 +968,7 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Default 1`] =
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -980,24 +980,24 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Default 1`] =
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           6:55
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-17zgehq"
+            class="wrapper svelte-11prmkk"
           >
             <button
-              class="iconOnly noBorder svelte-1lod44n"
+              class="iconOnly noBorder svelte-1e4q28k"
             >
               <i
-                class="material-icons svelte-1lod44n"
+                class="material-icons svelte-1e4q28k"
               >
                 more_vert
               </i>
@@ -1013,22 +1013,22 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Default 1`] =
          
       </tr>
       <tr
-        class="svelte-716o9v"
+        class="svelte-1uzdiz4"
       >
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           13
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           Vitamin C
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -1048,7 +1048,7 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Default 1`] =
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -1060,24 +1060,24 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Default 1`] =
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           5:24
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-17zgehq"
+            class="wrapper svelte-11prmkk"
           >
             <button
-              class="iconOnly noBorder svelte-1lod44n"
+              class="iconOnly noBorder svelte-1e4q28k"
             >
               <i
-                class="material-icons svelte-1lod44n"
+                class="material-icons svelte-1e4q28k"
               >
                 more_vert
               </i>
@@ -1093,22 +1093,22 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Default 1`] =
          
       </tr>
       <tr
-        class="svelte-716o9v"
+        class="svelte-1uzdiz4"
       >
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           14
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           Gateway
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -1128,7 +1128,7 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Default 1`] =
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -1140,24 +1140,24 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Default 1`] =
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           0:16
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-17zgehq"
+            class="wrapper svelte-11prmkk"
           >
             <button
-              class="iconOnly noBorder svelte-1lod44n"
+              class="iconOnly noBorder svelte-1e4q28k"
             >
               <i
-                class="material-icons svelte-1lod44n"
+                class="material-icons svelte-1e4q28k"
               >
                 more_vert
               </i>
@@ -1173,22 +1173,22 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Default 1`] =
          
       </tr>
       <tr
-        class="svelte-716o9v"
+        class="svelte-1uzdiz4"
       >
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           15
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           The Singing Sea
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -1208,7 +1208,7 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Default 1`] =
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -1220,24 +1220,24 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Default 1`] =
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           6:41
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-17zgehq"
+            class="wrapper svelte-11prmkk"
           >
             <button
-              class="iconOnly noBorder svelte-1lod44n"
+              class="iconOnly noBorder svelte-1e4q28k"
             >
               <i
-                class="material-icons svelte-1lod44n"
+                class="material-icons svelte-1e4q28k"
               >
                 more_vert
               </i>
@@ -1253,22 +1253,22 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Default 1`] =
          
       </tr>
       <tr
-        class="svelte-716o9v"
+        class="svelte-1uzdiz4"
       >
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           16
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           The Egg and You!
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -1288,7 +1288,7 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Default 1`] =
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -1300,24 +1300,24 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Default 1`] =
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           4:47
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-17zgehq"
+            class="wrapper svelte-11prmkk"
           >
             <button
-              class="iconOnly noBorder svelte-1lod44n"
+              class="iconOnly noBorder svelte-1e4q28k"
             >
               <i
-                class="material-icons svelte-1lod44n"
+                class="material-icons svelte-1e4q28k"
               >
                 more_vert
               </i>
@@ -1333,22 +1333,22 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Default 1`] =
          
       </tr>
       <tr
-        class="svelte-716o9v"
+        class="svelte-1uzdiz4"
       >
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           17
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           Forever Broke
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -1368,7 +1368,7 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Default 1`] =
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -1380,24 +1380,24 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Default 1`] =
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           1:36
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-17zgehq"
+            class="wrapper svelte-11prmkk"
           >
             <button
-              class="iconOnly noBorder svelte-1lod44n"
+              class="iconOnly noBorder svelte-1e4q28k"
             >
               <i
-                class="material-icons svelte-1lod44n"
+                class="material-icons svelte-1e4q28k"
               >
                 more_vert
               </i>
@@ -1413,22 +1413,22 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Default 1`] =
          
       </tr>
       <tr
-        class="svelte-716o9v"
+        class="svelte-1uzdiz4"
       >
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           18
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           Power of Kungfu Remix
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -1448,7 +1448,7 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Default 1`] =
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -1460,24 +1460,24 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Default 1`] =
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           2:22
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-17zgehq"
+            class="wrapper svelte-11prmkk"
           >
             <button
-              class="iconOnly noBorder svelte-1lod44n"
+              class="iconOnly noBorder svelte-1e4q28k"
             >
               <i
-                class="material-icons svelte-1lod44n"
+                class="material-icons svelte-1e4q28k"
               >
                 more_vert
               </i>
@@ -1503,70 +1503,70 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: With current 
    
    
   <table
-    class=" svelte-716o9v"
+    class=" svelte-1uzdiz4"
   >
     <thead
-      class="svelte-716o9v"
+      class="svelte-1uzdiz4"
     >
       <tr
-        class="svelte-716o9v"
+        class="svelte-1uzdiz4"
       >
         <th
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           #
         </th>
          
         <th
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           Track
         </th>
          
         <th
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           Artist
         </th>
          
         <th
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           Album
         </th>
          
         <th
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           Duration
         </th>
          
         <th
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         />
       </tr>
     </thead>
      
     <tbody
-      class="svelte-716o9v"
+      class="svelte-1uzdiz4"
     >
       <tr
-        class="svelte-716o9v"
+        class="svelte-1uzdiz4"
       >
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           1
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           American Money
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -1586,7 +1586,7 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: With current 
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -1598,24 +1598,24 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: With current 
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           5:32
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-17zgehq"
+            class="wrapper svelte-11prmkk"
           >
             <button
-              class="iconOnly noBorder svelte-1lod44n"
+              class="iconOnly noBorder svelte-1e4q28k"
             >
               <i
-                class="material-icons svelte-1lod44n"
+                class="material-icons svelte-1e4q28k"
               >
                 more_vert
               </i>
@@ -1631,22 +1631,22 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: With current 
          
       </tr>
       <tr
-        class="svelte-716o9v"
+        class="svelte-1uzdiz4"
       >
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           2
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           Fantaisie Sign
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -1666,7 +1666,7 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: With current 
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -1678,24 +1678,24 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: With current 
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           3:35
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-17zgehq"
+            class="wrapper svelte-11prmkk"
           >
             <button
-              class="iconOnly noBorder svelte-1lod44n"
+              class="iconOnly noBorder svelte-1e4q28k"
             >
               <i
-                class="material-icons svelte-1lod44n"
+                class="material-icons svelte-1e4q28k"
               >
                 more_vert
               </i>
@@ -1711,22 +1711,22 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: With current 
          
       </tr>
       <tr
-        class="svelte-716o9v"
+        class="svelte-1uzdiz4"
       >
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           3
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           Don't Bother None
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -1746,7 +1746,7 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: With current 
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -1758,24 +1758,24 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: With current 
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           3:45
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-17zgehq"
+            class="wrapper svelte-11prmkk"
           >
             <button
-              class="iconOnly noBorder svelte-1lod44n"
+              class="iconOnly noBorder svelte-1e4q28k"
             >
               <i
-                class="material-icons svelte-1lod44n"
+                class="material-icons svelte-1e4q28k"
               >
                 more_vert
               </i>
@@ -1791,22 +1791,22 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: With current 
          
       </tr>
       <tr
-        class="svelte-716o9v current"
+        class="svelte-1uzdiz4 current"
       >
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           4
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           Vitamin A
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -1826,7 +1826,7 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: With current 
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -1838,24 +1838,24 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: With current 
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           4:41
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-17zgehq"
+            class="wrapper svelte-11prmkk"
           >
             <button
-              class="iconOnly noBorder svelte-1lod44n"
+              class="iconOnly noBorder svelte-1e4q28k"
             >
               <i
-                class="material-icons svelte-1lod44n"
+                class="material-icons svelte-1e4q28k"
               >
                 more_vert
               </i>
@@ -1871,22 +1871,22 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: With current 
          
       </tr>
       <tr
-        class="svelte-716o9v"
+        class="svelte-1uzdiz4"
       >
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           5
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           LIVE in Baghdad
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -1906,7 +1906,7 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: With current 
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -1918,24 +1918,24 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: With current 
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           2:59
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-17zgehq"
+            class="wrapper svelte-11prmkk"
           >
             <button
-              class="iconOnly noBorder svelte-1lod44n"
+              class="iconOnly noBorder svelte-1e4q28k"
             >
               <i
-                class="material-icons svelte-1lod44n"
+                class="material-icons svelte-1e4q28k"
               >
                 more_vert
               </i>
@@ -1951,22 +1951,22 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: With current 
          
       </tr>
       <tr
-        class="svelte-716o9v"
+        class="svelte-1uzdiz4"
       >
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           6
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           Cats on Mars
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -1986,7 +1986,7 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: With current 
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -1998,24 +1998,24 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: With current 
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           0:07
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-17zgehq"
+            class="wrapper svelte-11prmkk"
           >
             <button
-              class="iconOnly noBorder svelte-1lod44n"
+              class="iconOnly noBorder svelte-1e4q28k"
             >
               <i
-                class="material-icons svelte-1lod44n"
+                class="material-icons svelte-1e4q28k"
               >
                 more_vert
               </i>
@@ -2031,22 +2031,22 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: With current 
          
       </tr>
       <tr
-        class="svelte-716o9v"
+        class="svelte-1uzdiz4"
       >
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           7
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           Want it All Back
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -2066,7 +2066,7 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: With current 
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -2078,24 +2078,24 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: With current 
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           3:51
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-17zgehq"
+            class="wrapper svelte-11prmkk"
           >
             <button
-              class="iconOnly noBorder svelte-1lod44n"
+              class="iconOnly noBorder svelte-1e4q28k"
             >
               <i
-                class="material-icons svelte-1lod44n"
+                class="material-icons svelte-1e4q28k"
               >
                 more_vert
               </i>
@@ -2111,22 +2111,22 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: With current 
          
       </tr>
       <tr
-        class="svelte-716o9v"
+        class="svelte-1uzdiz4"
       >
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           8
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           Bindy
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -2146,7 +2146,7 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: With current 
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -2158,24 +2158,24 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: With current 
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           0:15
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-17zgehq"
+            class="wrapper svelte-11prmkk"
           >
             <button
-              class="iconOnly noBorder svelte-1lod44n"
+              class="iconOnly noBorder svelte-1e4q28k"
             >
               <i
-                class="material-icons svelte-1lod44n"
+                class="material-icons svelte-1e4q28k"
               >
                 more_vert
               </i>
@@ -2191,22 +2191,22 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: With current 
          
       </tr>
       <tr
-        class="svelte-716o9v"
+        class="svelte-1uzdiz4"
       >
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           9
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           You Make Me Coo
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -2226,7 +2226,7 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: With current 
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -2238,24 +2238,24 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: With current 
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           3:14
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-17zgehq"
+            class="wrapper svelte-11prmkk"
           >
             <button
-              class="iconOnly noBorder svelte-1lod44n"
+              class="iconOnly noBorder svelte-1e4q28k"
             >
               <i
-                class="material-icons svelte-1lod44n"
+                class="material-icons svelte-1e4q28k"
               >
                 more_vert
               </i>
@@ -2271,22 +2271,22 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: With current 
          
       </tr>
       <tr
-        class="svelte-716o9v"
+        class="svelte-1uzdiz4"
       >
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           10
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           Vitamin B
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -2306,7 +2306,7 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: With current 
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -2318,24 +2318,24 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: With current 
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           4:06
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-17zgehq"
+            class="wrapper svelte-11prmkk"
           >
             <button
-              class="iconOnly noBorder svelte-1lod44n"
+              class="iconOnly noBorder svelte-1e4q28k"
             >
               <i
-                class="material-icons svelte-1lod44n"
+                class="material-icons svelte-1e4q28k"
               >
                 more_vert
               </i>
@@ -2351,22 +2351,22 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: With current 
          
       </tr>
       <tr
-        class="svelte-716o9v"
+        class="svelte-1uzdiz4"
       >
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           11
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           Green Bird
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -2386,7 +2386,7 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: With current 
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -2398,24 +2398,24 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: With current 
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           2:33
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-17zgehq"
+            class="wrapper svelte-11prmkk"
           >
             <button
-              class="iconOnly noBorder svelte-1lod44n"
+              class="iconOnly noBorder svelte-1e4q28k"
             >
               <i
-                class="material-icons svelte-1lod44n"
+                class="material-icons svelte-1e4q28k"
               >
                 more_vert
               </i>
@@ -2431,22 +2431,22 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: With current 
          
       </tr>
       <tr
-        class="svelte-716o9v"
+        class="svelte-1uzdiz4"
       >
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           12
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           ELM
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -2466,7 +2466,7 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: With current 
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -2478,24 +2478,24 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: With current 
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           6:55
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-17zgehq"
+            class="wrapper svelte-11prmkk"
           >
             <button
-              class="iconOnly noBorder svelte-1lod44n"
+              class="iconOnly noBorder svelte-1e4q28k"
             >
               <i
-                class="material-icons svelte-1lod44n"
+                class="material-icons svelte-1e4q28k"
               >
                 more_vert
               </i>
@@ -2511,22 +2511,22 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: With current 
          
       </tr>
       <tr
-        class="svelte-716o9v"
+        class="svelte-1uzdiz4"
       >
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           13
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           Vitamin C
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -2546,7 +2546,7 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: With current 
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -2558,24 +2558,24 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: With current 
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           5:24
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-17zgehq"
+            class="wrapper svelte-11prmkk"
           >
             <button
-              class="iconOnly noBorder svelte-1lod44n"
+              class="iconOnly noBorder svelte-1e4q28k"
             >
               <i
-                class="material-icons svelte-1lod44n"
+                class="material-icons svelte-1e4q28k"
               >
                 more_vert
               </i>
@@ -2591,22 +2591,22 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: With current 
          
       </tr>
       <tr
-        class="svelte-716o9v"
+        class="svelte-1uzdiz4"
       >
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           14
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           Gateway
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -2626,7 +2626,7 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: With current 
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -2638,24 +2638,24 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: With current 
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           0:16
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-17zgehq"
+            class="wrapper svelte-11prmkk"
           >
             <button
-              class="iconOnly noBorder svelte-1lod44n"
+              class="iconOnly noBorder svelte-1e4q28k"
             >
               <i
-                class="material-icons svelte-1lod44n"
+                class="material-icons svelte-1e4q28k"
               >
                 more_vert
               </i>
@@ -2671,22 +2671,22 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: With current 
          
       </tr>
       <tr
-        class="svelte-716o9v"
+        class="svelte-1uzdiz4"
       >
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           15
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           The Singing Sea
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -2706,7 +2706,7 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: With current 
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -2718,24 +2718,24 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: With current 
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           6:41
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-17zgehq"
+            class="wrapper svelte-11prmkk"
           >
             <button
-              class="iconOnly noBorder svelte-1lod44n"
+              class="iconOnly noBorder svelte-1e4q28k"
             >
               <i
-                class="material-icons svelte-1lod44n"
+                class="material-icons svelte-1e4q28k"
               >
                 more_vert
               </i>
@@ -2751,22 +2751,22 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: With current 
          
       </tr>
       <tr
-        class="svelte-716o9v"
+        class="svelte-1uzdiz4"
       >
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           16
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           The Egg and You!
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -2786,7 +2786,7 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: With current 
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -2798,24 +2798,24 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: With current 
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           4:47
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-17zgehq"
+            class="wrapper svelte-11prmkk"
           >
             <button
-              class="iconOnly noBorder svelte-1lod44n"
+              class="iconOnly noBorder svelte-1e4q28k"
             >
               <i
-                class="material-icons svelte-1lod44n"
+                class="material-icons svelte-1e4q28k"
               >
                 more_vert
               </i>
@@ -2831,22 +2831,22 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: With current 
          
       </tr>
       <tr
-        class="svelte-716o9v"
+        class="svelte-1uzdiz4"
       >
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           17
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           Forever Broke
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -2866,7 +2866,7 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: With current 
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -2878,24 +2878,24 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: With current 
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           1:36
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-17zgehq"
+            class="wrapper svelte-11prmkk"
           >
             <button
-              class="iconOnly noBorder svelte-1lod44n"
+              class="iconOnly noBorder svelte-1e4q28k"
             >
               <i
-                class="material-icons svelte-1lod44n"
+                class="material-icons svelte-1e4q28k"
               >
                 more_vert
               </i>
@@ -2911,22 +2911,22 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: With current 
          
       </tr>
       <tr
-        class="svelte-716o9v"
+        class="svelte-1uzdiz4"
       >
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           18
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           Power of Kungfu Remix
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -2946,7 +2946,7 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: With current 
         </td>
          
         <td
-          class="col-span-3 svelte-716o9v"
+          class="col-span-3 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -2958,24 +2958,24 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: With current 
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           2:22
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-17zgehq"
+            class="wrapper svelte-11prmkk"
           >
             <button
-              class="iconOnly noBorder svelte-1lod44n"
+              class="iconOnly noBorder svelte-1e4q28k"
             >
               <i
-                class="material-icons svelte-1lod44n"
+                class="material-icons svelte-1e4q28k"
               >
                 more_vert
               </i>
@@ -3001,65 +3001,65 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Without abum 
    
    
   <table
-    class=" svelte-716o9v"
+    class=" svelte-1uzdiz4"
   >
     <thead
-      class="svelte-716o9v"
+      class="svelte-1uzdiz4"
     >
       <tr
-        class="svelte-716o9v"
+        class="svelte-1uzdiz4"
       >
         <th
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           #
         </th>
          
         <th
-          class="col-span-5 svelte-716o9v"
+          class="col-span-5 svelte-1uzdiz4"
         >
           Track
         </th>
          
         <th
-          class="col-span-4 svelte-716o9v"
+          class="col-span-4 svelte-1uzdiz4"
         >
           Artist
         </th>
          
          
         <th
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           Duration
         </th>
          
         <th
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         />
       </tr>
     </thead>
      
     <tbody
-      class="svelte-716o9v"
+      class="svelte-1uzdiz4"
     >
       <tr
-        class="svelte-716o9v"
+        class="svelte-1uzdiz4"
       >
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           1
         </td>
          
         <td
-          class="col-span-5 svelte-716o9v"
+          class="col-span-5 svelte-1uzdiz4"
         >
           American Money
         </td>
          
         <td
-          class="col-span-4 svelte-716o9v"
+          class="col-span-4 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -3080,24 +3080,24 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Without abum 
          
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           5:32
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-17zgehq"
+            class="wrapper svelte-11prmkk"
           >
             <button
-              class="iconOnly noBorder svelte-1lod44n"
+              class="iconOnly noBorder svelte-1e4q28k"
             >
               <i
-                class="material-icons svelte-1lod44n"
+                class="material-icons svelte-1e4q28k"
               >
                 more_vert
               </i>
@@ -3113,22 +3113,22 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Without abum 
          
       </tr>
       <tr
-        class="svelte-716o9v"
+        class="svelte-1uzdiz4"
       >
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           2
         </td>
          
         <td
-          class="col-span-5 svelte-716o9v"
+          class="col-span-5 svelte-1uzdiz4"
         >
           Fantaisie Sign
         </td>
          
         <td
-          class="col-span-4 svelte-716o9v"
+          class="col-span-4 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -3149,24 +3149,24 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Without abum 
          
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           3:35
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-17zgehq"
+            class="wrapper svelte-11prmkk"
           >
             <button
-              class="iconOnly noBorder svelte-1lod44n"
+              class="iconOnly noBorder svelte-1e4q28k"
             >
               <i
-                class="material-icons svelte-1lod44n"
+                class="material-icons svelte-1e4q28k"
               >
                 more_vert
               </i>
@@ -3182,22 +3182,22 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Without abum 
          
       </tr>
       <tr
-        class="svelte-716o9v"
+        class="svelte-1uzdiz4"
       >
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           3
         </td>
          
         <td
-          class="col-span-5 svelte-716o9v"
+          class="col-span-5 svelte-1uzdiz4"
         >
           Don't Bother None
         </td>
          
         <td
-          class="col-span-4 svelte-716o9v"
+          class="col-span-4 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -3218,24 +3218,24 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Without abum 
          
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           3:45
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-17zgehq"
+            class="wrapper svelte-11prmkk"
           >
             <button
-              class="iconOnly noBorder svelte-1lod44n"
+              class="iconOnly noBorder svelte-1e4q28k"
             >
               <i
-                class="material-icons svelte-1lod44n"
+                class="material-icons svelte-1e4q28k"
               >
                 more_vert
               </i>
@@ -3251,22 +3251,22 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Without abum 
          
       </tr>
       <tr
-        class="svelte-716o9v"
+        class="svelte-1uzdiz4"
       >
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           4
         </td>
          
         <td
-          class="col-span-5 svelte-716o9v"
+          class="col-span-5 svelte-1uzdiz4"
         >
           Vitamin A
         </td>
          
         <td
-          class="col-span-4 svelte-716o9v"
+          class="col-span-4 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -3287,24 +3287,24 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Without abum 
          
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           4:41
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-17zgehq"
+            class="wrapper svelte-11prmkk"
           >
             <button
-              class="iconOnly noBorder svelte-1lod44n"
+              class="iconOnly noBorder svelte-1e4q28k"
             >
               <i
-                class="material-icons svelte-1lod44n"
+                class="material-icons svelte-1e4q28k"
               >
                 more_vert
               </i>
@@ -3320,22 +3320,22 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Without abum 
          
       </tr>
       <tr
-        class="svelte-716o9v"
+        class="svelte-1uzdiz4"
       >
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           5
         </td>
          
         <td
-          class="col-span-5 svelte-716o9v"
+          class="col-span-5 svelte-1uzdiz4"
         >
           LIVE in Baghdad
         </td>
          
         <td
-          class="col-span-4 svelte-716o9v"
+          class="col-span-4 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -3356,24 +3356,24 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Without abum 
          
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           2:59
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-17zgehq"
+            class="wrapper svelte-11prmkk"
           >
             <button
-              class="iconOnly noBorder svelte-1lod44n"
+              class="iconOnly noBorder svelte-1e4q28k"
             >
               <i
-                class="material-icons svelte-1lod44n"
+                class="material-icons svelte-1e4q28k"
               >
                 more_vert
               </i>
@@ -3389,22 +3389,22 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Without abum 
          
       </tr>
       <tr
-        class="svelte-716o9v"
+        class="svelte-1uzdiz4"
       >
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           6
         </td>
          
         <td
-          class="col-span-5 svelte-716o9v"
+          class="col-span-5 svelte-1uzdiz4"
         >
           Cats on Mars
         </td>
          
         <td
-          class="col-span-4 svelte-716o9v"
+          class="col-span-4 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -3425,24 +3425,24 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Without abum 
          
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           0:07
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-17zgehq"
+            class="wrapper svelte-11prmkk"
           >
             <button
-              class="iconOnly noBorder svelte-1lod44n"
+              class="iconOnly noBorder svelte-1e4q28k"
             >
               <i
-                class="material-icons svelte-1lod44n"
+                class="material-icons svelte-1e4q28k"
               >
                 more_vert
               </i>
@@ -3458,22 +3458,22 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Without abum 
          
       </tr>
       <tr
-        class="svelte-716o9v"
+        class="svelte-1uzdiz4"
       >
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           7
         </td>
          
         <td
-          class="col-span-5 svelte-716o9v"
+          class="col-span-5 svelte-1uzdiz4"
         >
           Want it All Back
         </td>
          
         <td
-          class="col-span-4 svelte-716o9v"
+          class="col-span-4 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -3494,24 +3494,24 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Without abum 
          
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           3:51
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-17zgehq"
+            class="wrapper svelte-11prmkk"
           >
             <button
-              class="iconOnly noBorder svelte-1lod44n"
+              class="iconOnly noBorder svelte-1e4q28k"
             >
               <i
-                class="material-icons svelte-1lod44n"
+                class="material-icons svelte-1e4q28k"
               >
                 more_vert
               </i>
@@ -3527,22 +3527,22 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Without abum 
          
       </tr>
       <tr
-        class="svelte-716o9v"
+        class="svelte-1uzdiz4"
       >
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           8
         </td>
          
         <td
-          class="col-span-5 svelte-716o9v"
+          class="col-span-5 svelte-1uzdiz4"
         >
           Bindy
         </td>
          
         <td
-          class="col-span-4 svelte-716o9v"
+          class="col-span-4 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -3563,24 +3563,24 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Without abum 
          
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           0:15
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-17zgehq"
+            class="wrapper svelte-11prmkk"
           >
             <button
-              class="iconOnly noBorder svelte-1lod44n"
+              class="iconOnly noBorder svelte-1e4q28k"
             >
               <i
-                class="material-icons svelte-1lod44n"
+                class="material-icons svelte-1e4q28k"
               >
                 more_vert
               </i>
@@ -3596,22 +3596,22 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Without abum 
          
       </tr>
       <tr
-        class="svelte-716o9v"
+        class="svelte-1uzdiz4"
       >
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           9
         </td>
          
         <td
-          class="col-span-5 svelte-716o9v"
+          class="col-span-5 svelte-1uzdiz4"
         >
           You Make Me Coo
         </td>
          
         <td
-          class="col-span-4 svelte-716o9v"
+          class="col-span-4 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -3632,24 +3632,24 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Without abum 
          
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           3:14
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-17zgehq"
+            class="wrapper svelte-11prmkk"
           >
             <button
-              class="iconOnly noBorder svelte-1lod44n"
+              class="iconOnly noBorder svelte-1e4q28k"
             >
               <i
-                class="material-icons svelte-1lod44n"
+                class="material-icons svelte-1e4q28k"
               >
                 more_vert
               </i>
@@ -3665,22 +3665,22 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Without abum 
          
       </tr>
       <tr
-        class="svelte-716o9v"
+        class="svelte-1uzdiz4"
       >
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           10
         </td>
          
         <td
-          class="col-span-5 svelte-716o9v"
+          class="col-span-5 svelte-1uzdiz4"
         >
           Vitamin B
         </td>
          
         <td
-          class="col-span-4 svelte-716o9v"
+          class="col-span-4 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -3701,24 +3701,24 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Without abum 
          
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           4:06
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-17zgehq"
+            class="wrapper svelte-11prmkk"
           >
             <button
-              class="iconOnly noBorder svelte-1lod44n"
+              class="iconOnly noBorder svelte-1e4q28k"
             >
               <i
-                class="material-icons svelte-1lod44n"
+                class="material-icons svelte-1e4q28k"
               >
                 more_vert
               </i>
@@ -3734,22 +3734,22 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Without abum 
          
       </tr>
       <tr
-        class="svelte-716o9v"
+        class="svelte-1uzdiz4"
       >
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           11
         </td>
          
         <td
-          class="col-span-5 svelte-716o9v"
+          class="col-span-5 svelte-1uzdiz4"
         >
           Green Bird
         </td>
          
         <td
-          class="col-span-4 svelte-716o9v"
+          class="col-span-4 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -3770,24 +3770,24 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Without abum 
          
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           2:33
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-17zgehq"
+            class="wrapper svelte-11prmkk"
           >
             <button
-              class="iconOnly noBorder svelte-1lod44n"
+              class="iconOnly noBorder svelte-1e4q28k"
             >
               <i
-                class="material-icons svelte-1lod44n"
+                class="material-icons svelte-1e4q28k"
               >
                 more_vert
               </i>
@@ -3803,22 +3803,22 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Without abum 
          
       </tr>
       <tr
-        class="svelte-716o9v"
+        class="svelte-1uzdiz4"
       >
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           12
         </td>
          
         <td
-          class="col-span-5 svelte-716o9v"
+          class="col-span-5 svelte-1uzdiz4"
         >
           ELM
         </td>
          
         <td
-          class="col-span-4 svelte-716o9v"
+          class="col-span-4 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -3839,24 +3839,24 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Without abum 
          
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           6:55
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-17zgehq"
+            class="wrapper svelte-11prmkk"
           >
             <button
-              class="iconOnly noBorder svelte-1lod44n"
+              class="iconOnly noBorder svelte-1e4q28k"
             >
               <i
-                class="material-icons svelte-1lod44n"
+                class="material-icons svelte-1e4q28k"
               >
                 more_vert
               </i>
@@ -3872,22 +3872,22 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Without abum 
          
       </tr>
       <tr
-        class="svelte-716o9v"
+        class="svelte-1uzdiz4"
       >
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           13
         </td>
          
         <td
-          class="col-span-5 svelte-716o9v"
+          class="col-span-5 svelte-1uzdiz4"
         >
           Vitamin C
         </td>
          
         <td
-          class="col-span-4 svelte-716o9v"
+          class="col-span-4 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -3908,24 +3908,24 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Without abum 
          
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           5:24
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-17zgehq"
+            class="wrapper svelte-11prmkk"
           >
             <button
-              class="iconOnly noBorder svelte-1lod44n"
+              class="iconOnly noBorder svelte-1e4q28k"
             >
               <i
-                class="material-icons svelte-1lod44n"
+                class="material-icons svelte-1e4q28k"
               >
                 more_vert
               </i>
@@ -3941,22 +3941,22 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Without abum 
          
       </tr>
       <tr
-        class="svelte-716o9v"
+        class="svelte-1uzdiz4"
       >
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           14
         </td>
          
         <td
-          class="col-span-5 svelte-716o9v"
+          class="col-span-5 svelte-1uzdiz4"
         >
           Gateway
         </td>
          
         <td
-          class="col-span-4 svelte-716o9v"
+          class="col-span-4 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -3977,24 +3977,24 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Without abum 
          
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           0:16
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-17zgehq"
+            class="wrapper svelte-11prmkk"
           >
             <button
-              class="iconOnly noBorder svelte-1lod44n"
+              class="iconOnly noBorder svelte-1e4q28k"
             >
               <i
-                class="material-icons svelte-1lod44n"
+                class="material-icons svelte-1e4q28k"
               >
                 more_vert
               </i>
@@ -4010,22 +4010,22 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Without abum 
          
       </tr>
       <tr
-        class="svelte-716o9v"
+        class="svelte-1uzdiz4"
       >
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           15
         </td>
          
         <td
-          class="col-span-5 svelte-716o9v"
+          class="col-span-5 svelte-1uzdiz4"
         >
           The Singing Sea
         </td>
          
         <td
-          class="col-span-4 svelte-716o9v"
+          class="col-span-4 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -4046,24 +4046,24 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Without abum 
          
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           6:41
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-17zgehq"
+            class="wrapper svelte-11prmkk"
           >
             <button
-              class="iconOnly noBorder svelte-1lod44n"
+              class="iconOnly noBorder svelte-1e4q28k"
             >
               <i
-                class="material-icons svelte-1lod44n"
+                class="material-icons svelte-1e4q28k"
               >
                 more_vert
               </i>
@@ -4079,22 +4079,22 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Without abum 
          
       </tr>
       <tr
-        class="svelte-716o9v"
+        class="svelte-1uzdiz4"
       >
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           16
         </td>
          
         <td
-          class="col-span-5 svelte-716o9v"
+          class="col-span-5 svelte-1uzdiz4"
         >
           The Egg and You!
         </td>
          
         <td
-          class="col-span-4 svelte-716o9v"
+          class="col-span-4 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -4115,24 +4115,24 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Without abum 
          
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           4:47
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-17zgehq"
+            class="wrapper svelte-11prmkk"
           >
             <button
-              class="iconOnly noBorder svelte-1lod44n"
+              class="iconOnly noBorder svelte-1e4q28k"
             >
               <i
-                class="material-icons svelte-1lod44n"
+                class="material-icons svelte-1e4q28k"
               >
                 more_vert
               </i>
@@ -4148,22 +4148,22 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Without abum 
          
       </tr>
       <tr
-        class="svelte-716o9v"
+        class="svelte-1uzdiz4"
       >
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           17
         </td>
          
         <td
-          class="col-span-5 svelte-716o9v"
+          class="col-span-5 svelte-1uzdiz4"
         >
           Forever Broke
         </td>
          
         <td
-          class="col-span-4 svelte-716o9v"
+          class="col-span-4 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -4184,24 +4184,24 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Without abum 
          
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           1:36
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-17zgehq"
+            class="wrapper svelte-11prmkk"
           >
             <button
-              class="iconOnly noBorder svelte-1lod44n"
+              class="iconOnly noBorder svelte-1e4q28k"
             >
               <i
-                class="material-icons svelte-1lod44n"
+                class="material-icons svelte-1e4q28k"
               >
                 more_vert
               </i>
@@ -4217,22 +4217,22 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Without abum 
          
       </tr>
       <tr
-        class="svelte-716o9v"
+        class="svelte-1uzdiz4"
       >
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           18
         </td>
          
         <td
-          class="col-span-5 svelte-716o9v"
+          class="col-span-5 svelte-1uzdiz4"
         >
           Power of Kungfu Remix
         </td>
          
         <td
-          class="col-span-4 svelte-716o9v"
+          class="col-span-4 svelte-1uzdiz4"
         >
           <a
             class="underlined"
@@ -4253,24 +4253,24 @@ exports[`Toolshot components/TracksTable/TracksTable.tools.svelte: Without abum 
          
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           2:22
         </td>
          
         <td
-          class="svelte-716o9v"
+          class="svelte-1uzdiz4"
         >
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-17zgehq"
+            class="wrapper svelte-11prmkk"
           >
             <button
-              class="iconOnly noBorder svelte-1lod44n"
+              class="iconOnly noBorder svelte-1e4q28k"
             >
               <i
-                class="material-icons svelte-1lod44n"
+                class="material-icons svelte-1e4q28k"
               >
                 more_vert
               </i>

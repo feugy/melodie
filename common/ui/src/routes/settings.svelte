@@ -173,7 +173,7 @@
     @apply flex flex-wrap justify-center gap-8 m-4;
 
     & > div {
-      @apply rounded shadow-lg w-32 whitespace-no-wrap;
+      @apply rounded shadow-lg w-32 whitespace-nowrap;
       background: var(--bg-primary-color);
 
       & > header {
@@ -335,7 +335,7 @@
       <p>
         <span
           >{$_('photos by')}{#each photographers as { href, label }, i}
-            {i > 0 ? ', ' : ' '}<a {href} class="underlined whitespace-no-wrap"
+            {i > 0 ? ', ' : ' '}<a {href} class="underlined whitespace-nowrap"
               >{label}
               <i class="material-icons">launch</i></a
             >
