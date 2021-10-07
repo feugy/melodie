@@ -1,34 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Toolshot components/Sticky/Sticky.tools.svelte: Components/Sticky 1`] = `
-<div
-  class="wrapper svelte-ec7ah5"
->
-  <span
-    class="sentinel svelte-ec7ah5"
-  />
-   
-  <nav
-    class="svelte-ec7ah5"
-  >
-    <div
-      class="flex flex-row items-center gap-4 p-2"
-    >
-      <button
-        class="primary large svelte-1lod44n"
-      >
-         
-        <span>
-          Hello!
-        </span>
-         
-         
-      </button>
-       
-      <h3>
-        This header sticks to the screen top
-      </h3>
-    </div>
-  </nav>
-</div>
+<span
+  class="sentinel svelte-1e3uwkh"
+/>
 `;

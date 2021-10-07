@@ -2,30 +2,26 @@
 
 exports[`Toolshot components/TracksQueue/TracksQueue.tools.svelte: Empty 1`] = `
 <div>
-  <div
-    class="wrapper svelte-ec7ah5"
+  <span
+    class="sentinel svelte-1e3uwkh"
+  />
+   
+  <nav
+    class="svelte-1e3uwkh"
   >
-    <span
-      class="sentinel svelte-ec7ah5"
-    />
-     
-    <nav
-      class="svelte-ec7ah5"
+    <header
+      class="svelte-1fgzmnl"
     >
-      <header
-        class="svelte-1fgzmnl"
-      >
-        <h3>
-          0 tracks
-        </h3>
-         
-        <span
-          class="totalDuration svelte-1fgzmnl"
-        />
-         
-      </header>
-    </nav>
-  </div>
+      <h3>
+        0 tracks
+      </h3>
+       
+      <span
+        class="totalDuration svelte-1fgzmnl"
+      />
+       
+    </header>
+  </nav>
    
   <header
     class=" svelte-5q08mx"
@@ -48,67 +44,63 @@ exports[`Toolshot components/TracksQueue/TracksQueue.tools.svelte: Empty 1`] = `
 
 exports[`Toolshot components/TracksQueue/TracksQueue.tools.svelte: With track list 1`] = `
 <div>
-  <div
-    class="wrapper svelte-ec7ah5"
+  <span
+    class="sentinel svelte-1e3uwkh"
+  />
+   
+  <nav
+    class="svelte-1e3uwkh"
   >
-    <span
-      class="sentinel svelte-ec7ah5"
-    />
-     
-    <nav
-      class="svelte-ec7ah5"
+    <header
+      class="svelte-1fgzmnl"
     >
-      <header
-        class="svelte-1fgzmnl"
+      <h3>
+        8 tracks
+      </h3>
+       
+      <span
+        aria-expanded="false"
+        aria-haspopup="menu"
+        class="wrapper svelte-17zgehq"
       >
-        <h3>
-          8 tracks
-        </h3>
-         
-        <span
-          aria-expanded="false"
-          aria-haspopup="menu"
-          class="wrapper svelte-17zgehq"
-        >
-          <button
-            class="iconOnly noBorder svelte-1lod44n"
-          >
-            <i
-              class="material-icons svelte-1lod44n"
-            >
-              library_add
-            </i>
-             
-             
-            
-             
-          </button>
-        </span>
-         
-        
-         
-        <span
-          class="totalDuration svelte-1fgzmnl"
-        >
-          7:34
-        </span>
-         
         <button
-          class="iconOnly svelte-1lod44n"
+          class="iconOnly noBorder svelte-1lod44n"
         >
           <i
             class="material-icons svelte-1lod44n"
           >
-            delete
+            library_add
           </i>
            
            
+          
            
         </button>
+      </span>
+       
+      
+       
+      <span
+        class="totalDuration svelte-1fgzmnl"
+      >
+        7:34
+      </span>
+       
+      <button
+        class="iconOnly svelte-1lod44n"
+      >
+        <i
+          class="material-icons svelte-1lod44n"
+        >
+          delete
+        </i>
          
-      </header>
-    </nav>
-  </div>
+         
+         
+      </button>
+       
+    </header>
+  </nav>
    
   <header
     class=" svelte-5q08mx"

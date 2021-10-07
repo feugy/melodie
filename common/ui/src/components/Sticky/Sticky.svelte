@@ -24,10 +24,6 @@
 </script>
 
 <style type="postcss">
-  .wrapper {
-    @apply inline;
-  }
-
   .sentinel {
     @apply block w-full h-0 relative top-0;
   }
@@ -37,20 +33,18 @@
   }
 
   nav {
-    @apply fixed w-full top-0;
+    @apply sticky w-full top-0;
     transition: background ease-in-out 200ms;
     z-index: 1;
   }
 </style>
 
-<div class="wrapper">
-  <span bind:this={sentinel} class="sentinel" />
-  <nav
-    class={$$restProps.class}
-    class:floating
-    bind:this={nav}
-    style="margin-bottom: -{height}px"
-  >
-    <slot {floating} />
-  </nav>
-</div>
+<span bind:this={sentinel} class="sentinel" />
+<nav
+  class={$$restProps.class}
+  class:floating
+  bind:this={nav}
+  style="margin-bottom: -{height}px"
+>
+  <slot {floating} />
+</nav>
