@@ -10,17 +10,18 @@ module.exports = {
         presets: [['@babel/preset-env', { targets: { node: 'current' } }]]
       }
     ],
-    '^.+\\.stories\\.js$': require.resolve(
-      '@storybook/addon-storyshots/injectFileName'
-    ),
     '^.+\\.svelte$': [
       'svelte-jester',
       { preprocess: require.resolve('./svelte.config') }
     ],
-    '^.+\\.ya?ml$': 'jest-yaml-transform',
-    '^.+\\.css$': 'jest-css-modules-transform'
+    '^.+\\.ya?ml$': 'jest-yaml-transform'
   },
-  transformIgnorePatterns: ['node_modules\\/(?!svelte|tailwindcss|@storybook)'],
+  moduleNameMapper: {
+    '^.+\\.css$': 'identity-obj-proxy'
+  },
+  transformIgnorePatterns: [
+    'node_modules\\/(?!svelte|tailwindcss|@atelier-wb)'
+  ],
   moduleFileExtensions: ['js', 'svelte', 'json', 'yml'],
   setupFilesAfterEnv: [
     'jest-extended',
@@ -35,7 +36,8 @@ module.exports = {
   collectCoverageFrom: [
     '**/*.js',
     '**/*.svelte',
+    '!atelier-setup.js',
     '!**/*.test.js',
-    '!**/*.stories.*'
+    '!**/*.tools.svelte'
   ]
 }

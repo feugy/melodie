@@ -93,7 +93,7 @@
 
   @screen md {
     section {
-      @apply items-start flex-no-wrap;
+      @apply items-start flex-nowrap;
     }
   }
 
@@ -128,12 +128,12 @@
       <div>
         <span class="actions">
           <Button
-            on:click={track => add(album.tracks, true)}
+            on:click={() => add(album.tracks, true)}
             icon="play_arrow"
             text={$_('play all')}
           />
           <Button
-            on:click={track => add(album.tracks)}
+            on:click={() => add(album.tracks)}
             icon="playlist_add"
             text={$_('enqueue all')}
           />

@@ -12,17 +12,6 @@
 </script>
 
 <style type="postcss">
-  :global(body) {
-    background-image: linear-gradient(
-        to top,
-        rgb(255, 255, 255, 0.7),
-        rgb(255, 255, 255, 0.7)
-      ),
-      url('../images/larisa-birta-slbOcNlWNHA-unsplash.jpg');
-    background-size: auto, 100%;
-    background-position: center, center 50%;
-  }
-
   h2 {
     @apply border-0;
     text-transform: none;

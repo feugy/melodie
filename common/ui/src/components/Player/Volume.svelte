@@ -1,5 +1,4 @@
 <script>
-  import { _ } from 'svelte-intl'
   import Button from '../Button/Button.svelte'
   import Slider from '../Slider/Slider.svelte'
 

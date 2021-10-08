@@ -1,0 +1,277 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Toolshot routes/artist.tools.svelte: Views/Artist 1`] = `
+<div>
+  <section
+    class="svelte-ojckha"
+    style="animation: __svelte_185617033_0 200ms linear 0ms 1 both;"
+  >
+    <header
+      class=" svelte-t58ezf"
+      style="--image: url(../images/larisa-birta-slbOcNlWNHA-unsplash.jpg); --shade-color: rgba(0, 0, 0, 0.7); --bgPosition: center;"
+    >
+      <h1
+        class="svelte-t58ezf"
+      >
+        3 artists
+      </h1>
+    </header>
+     
+    <div
+      class="svelte-ojckha"
+    >
+      <span
+        class="svelte-ojckha"
+      >
+         
+        <span
+          class="svelte-4r86n"
+          role="article"
+        >
+          <div
+            class="content svelte-4r86n"
+          >
+            <span
+              class="artwork svelte-4r86n"
+            >
+              <img
+                class="h-full w-full rounded-full hidden svelte-1psk6yi"
+                height="256"
+                loading="lazy"
+                width="256"
+              />
+               
+              <span
+                class="h-full w-full svelte-1psk6yi rounded-full"
+              >
+                <i
+                  class="material-icons svelte-1psk6yi"
+                >
+                  person
+                </i>
+              </span>
+              
+            </span>
+             
+            <p
+              class="controls svelte-4r86n"
+            >
+               
+              <button
+                class="primary iconOnly large svelte-1e4q28k"
+                data-testid="play"
+              >
+                <i
+                  class="material-icons svelte-1e4q28k"
+                >
+                  play_arrow
+                </i>
+                 
+                 
+                 
+              </button>
+               
+              <button
+                class="primary iconOnly large svelte-1e4q28k"
+                data-testid="enqueue"
+              >
+                <i
+                  class="material-icons svelte-1e4q28k"
+                >
+                  playlist_add
+                </i>
+                 
+                 
+                 
+              </button>
+            </p>
+          </div>
+           
+          <header
+            class="svelte-4r86n"
+          >
+            <h3
+              class="svelte-4r86n"
+            >
+              Ludwig Van Beethoven
+            </h3>
+             
+            <h4
+              class="svelte-rw2hde"
+              slot="details"
+            >
+              1 album
+            </h4>
+          </header>
+        </span>
+         
+      </span>
+      <span
+        class="svelte-ojckha"
+      >
+         
+        <span
+          class="svelte-4r86n"
+          role="article"
+        >
+          <div
+            class="content svelte-4r86n"
+          >
+            <span
+              class="artwork svelte-4r86n"
+            >
+              <img
+                alt="avatar.jpg"
+                class="h-full w-full rounded-full svelte-1psk6yi"
+                height="256"
+                loading="lazy"
+                src="avatar.jpg"
+                width="256"
+              />
+               
+              
+            </span>
+             
+            <p
+              class="controls svelte-4r86n"
+            >
+               
+              <button
+                class="primary iconOnly large svelte-1e4q28k"
+                data-testid="play"
+              >
+                <i
+                  class="material-icons svelte-1e4q28k"
+                >
+                  play_arrow
+                </i>
+                 
+                 
+                 
+              </button>
+               
+              <button
+                class="primary iconOnly large svelte-1e4q28k"
+                data-testid="enqueue"
+              >
+                <i
+                  class="material-icons svelte-1e4q28k"
+                >
+                  playlist_add
+                </i>
+                 
+                 
+                 
+              </button>
+            </p>
+          </div>
+           
+          <header
+            class="svelte-4r86n"
+          >
+            <h3
+              class="svelte-4r86n"
+            >
+              Mademoiselle K
+            </h3>
+             
+            <h4
+              class="svelte-rw2hde"
+              slot="details"
+            >
+              2 albums
+            </h4>
+          </header>
+        </span>
+         
+      </span>
+      <span
+        class="svelte-ojckha"
+      >
+         
+        <span
+          class="svelte-4r86n"
+          role="article"
+        >
+          <div
+            class="content svelte-4r86n"
+          >
+            <span
+              class="artwork svelte-4r86n"
+            >
+              <img
+                class="h-full w-full rounded-full hidden svelte-1psk6yi"
+                height="256"
+                loading="lazy"
+                width="256"
+              />
+               
+              <span
+                class="h-full w-full svelte-1psk6yi rounded-full"
+              >
+                <i
+                  class="material-icons svelte-1psk6yi"
+                >
+                  person
+                </i>
+              </span>
+              
+            </span>
+             
+            <p
+              class="controls svelte-4r86n"
+            >
+               
+              <button
+                class="primary iconOnly large svelte-1e4q28k"
+                data-testid="play"
+              >
+                <i
+                  class="material-icons svelte-1e4q28k"
+                >
+                  play_arrow
+                </i>
+                 
+                 
+                 
+              </button>
+               
+              <button
+                class="primary iconOnly large svelte-1e4q28k"
+                data-testid="enqueue"
+              >
+                <i
+                  class="material-icons svelte-1e4q28k"
+                >
+                  playlist_add
+                </i>
+                 
+                 
+                 
+              </button>
+            </p>
+          </div>
+           
+          <header
+            class="svelte-4r86n"
+          >
+            <h3
+              class="svelte-4r86n"
+            >
+              Yoko Kanno and the Seatbelts
+            </h3>
+             
+            <h4
+              class="svelte-rw2hde"
+              slot="details"
+            >
+              9 albums
+            </h4>
+          </header>
+        </span>
+         
+      </span>
+    </div>
+  </section>
+</div>
+`;

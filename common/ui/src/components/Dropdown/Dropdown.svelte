@@ -1,6 +1,10 @@
 <script context="module">
-  const selector = typeof navigator !== 'undefined' && navigator.userAgent.includes("jsdom") ? 'focus' : 'focus-within'
+  const selector =
+    typeof navigator !== 'undefined' && navigator.userAgent.includes('jsdom')
+      ? 'focus'
+      : 'focus-within'
 </script>
+
 <script>
   import { createEventDispatcher } from 'svelte'
   import { slide } from 'svelte/transition'
@@ -67,10 +71,7 @@
     // reset styling to get final menu dimension
     ref.setAttribute('style', '')
     const anchorDim = anchor.getBoundingClientRect()
-    const {
-      width: menuWidth,
-      height: menuHeight
-    } = ref.getBoundingClientRect()
+    const { width: menuWidth, height: menuHeight } = ref.getBoundingClientRect()
     const { innerWidth, innerHeight } = window
     // restore styling to resume anumations
     ref.setAttribute('style', sav)
@@ -194,7 +195,7 @@
   }
 
   li {
-    @apply p-2 whitespace-no-wrap flex items-center;
+    @apply p-2 whitespace-nowrap flex items-center;
 
     &:not(.disabled) {
       &:hover,
@@ -204,7 +205,7 @@
         background-color: var(--hover-bg-color);
       }
       &.current {
-        color: var(--hover-color);;
+        color: var(--hover-color);
         background-color: var(--outline-color);
       }
     }

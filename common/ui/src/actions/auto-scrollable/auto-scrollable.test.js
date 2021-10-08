@@ -2,7 +2,7 @@
 
 import { screen, render, fireEvent } from '@testing-library/svelte'
 import html from 'svelte-htm'
-import Scrollable from './auto-scrollable.stories.svelte'
+import Scrollable from './auto-scrollable.test.svelte'
 import { sleep, texts } from '../../tests'
 
 describe('autoScrollable action', () => {

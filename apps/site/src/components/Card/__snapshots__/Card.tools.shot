@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Toolshot components/Card/Card.tools.svelte: Site components/Card 1`] = `
+<article
+  class="svelte-1ru4bsx"
+>
+  <img
+    alt=""
+    class="svelte-1ru4bsx"
+    src="logos/os.png"
+  />
+   
+  <div
+    class="svelte-1ru4bsx"
+  >
+    <h4
+      class="svelte-1ru4bsx"
+    >
+      Portable
+    </h4>
+     
+    <p
+      class="svelte-1ru4bsx"
+    >
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua.
+      </p>
+    </p>
+  </div>
+</article>
+`;

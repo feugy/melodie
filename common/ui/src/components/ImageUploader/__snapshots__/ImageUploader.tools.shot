@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Toolshot components/ImageUploader/ImageUploader.tools.svelte: Components/Image Uploader 1`] = `
+<span>
+  <span
+    class="h-64 w-64 inline-block actionable svelte-15abie0"
+  >
+    <img
+      class="w-full h-full rounded-sm hidden svelte-1psk6yi"
+      height="256"
+      loading="lazy"
+      width="256"
+    />
+     
+    <span
+      class="w-full h-full svelte-1psk6yi rounded-sm"
+    >
+      <i
+        class="material-icons svelte-1psk6yi"
+      >
+        add_box
+      </i>
+    </span>
+    
+     
+    <input
+      class="svelte-15abie0"
+      type="file"
+    />
+  </span>
+</span>
+`;

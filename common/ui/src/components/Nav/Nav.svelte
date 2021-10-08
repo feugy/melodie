@@ -49,7 +49,7 @@
     { searched }
   )
 
-  $: if ($isDesktop) {
+  $: if ($isDesktop && $connected) {
     invoke('settings.getUIAddress').then(uiAddress => {
       address = uiAddress
     })
@@ -109,7 +109,7 @@
 
   li {
     &.nav {
-      @apply whitespace-no-wrap;
+      @apply whitespace-nowrap;
     }
 
     &.track-list {
@@ -226,12 +226,14 @@
         />
       </li>
       <li>
-        {#if $isDesktop && address && !isSmall}
-          <BroadcastButton
-            {isBroadcasting}
-            {address}
-            on:click={toggleBroadcast}
-          />
+        {#if $isDesktop}
+          {#if address && !isSmall}
+            <BroadcastButton
+              {isBroadcasting}
+              {address}
+              on:click={toggleBroadcast}
+            />
+          {/if}
         {:else if !$connected}
           <Dialogue title={$_('connection lost')} open noClose>
             <div slot="content">

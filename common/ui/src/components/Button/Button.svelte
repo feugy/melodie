@@ -14,7 +14,7 @@
 <style type="postcss">
   button {
     @apply inline-flex border-none cursor-pointer px-6 uppercase text-base
-  font-semibold bg-transparent flex-row items-center rounded whitespace-no-wrap;
+  font-semibold bg-transparent flex-row items-center rounded whitespace-nowrap;
     letter-spacing: 0.05rem;
     line-height: 2.3rem;
     transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out,

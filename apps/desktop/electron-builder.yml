@@ -21,7 +21,7 @@ files:
   - '!**/.*'
   - '!**/node_modules/electron/**'
   - '!**/node_modules/**/{CHANGELOG.md,README.md,README,readme.md,readme}'
-  - '!**/node_modules/**/{test,__tests__,tests,powered-test,example,examples,__nocks__,__snapshots__,*.stories.*,docs,coverage}'
+  - '!**/node_modules/**/{test,__tests__,tests,powered-test,example,examples,__nocks__,__snapshots__,*.tools.*,docs,coverage}'
   - '!**/node_modules/@melodie/{core,ui}/{scripts,logs.txt,*.config.js,src}'
   - '!**/node_modules/knex/lib/dialects/{redshift,postgres,oracledb,oracle,mysql2,mysql}'
   - '!**/node_modules/**/*.map'

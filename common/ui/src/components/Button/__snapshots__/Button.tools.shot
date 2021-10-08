@@ -1,0 +1,180 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Toolshot components/Button/Button.tools.svelte: Default 1`] = `
+<span>
+  <button
+    class="svelte-1e4q28k"
+  >
+     
+    <span>
+      Default
+    </span>
+     
+     
+  </button>
+</span>
+`;
+
+exports[`Toolshot components/Button/Button.tools.svelte: Large icon 1`] = `
+<span>
+  <button
+    class="iconOnly large svelte-1e4q28k"
+  >
+    <i
+      class="material-icons svelte-1e4q28k"
+    >
+      play_arrow
+    </i>
+     
+     
+     
+  </button>
+</span>
+`;
+
+exports[`Toolshot components/Button/Button.tools.svelte: Large text and icon 1`] = `
+<span>
+  <button
+    class="large svelte-1e4q28k"
+  >
+    <i
+      class="material-icons svelte-1e4q28k"
+    >
+      person
+    </i>
+     
+    <span>
+      Hey!
+    </span>
+     
+     
+  </button>
+</span>
+`;
+
+exports[`Toolshot components/Button/Button.tools.svelte: Primary 1`] = `
+<span>
+  <button
+    class="primary svelte-1e4q28k"
+  >
+     
+    <span>
+      Primary
+    </span>
+     
+     
+  </button>
+</span>
+`;
+
+exports[`Toolshot components/Button/Button.tools.svelte: Primary icon 1`] = `
+<span>
+  <button
+    class="primary iconOnly svelte-1e4q28k"
+  >
+    <i
+      class="material-icons svelte-1e4q28k"
+    >
+      volume_up
+    </i>
+     
+     
+     
+  </button>
+</span>
+`;
+
+exports[`Toolshot components/Button/Button.tools.svelte: Primary with badge 1`] = `
+<span>
+  <button
+    class="primary svelte-1e4q28k"
+  >
+    <i
+      class="material-icons svelte-1e4q28k"
+    >
+      face
+    </i>
+     
+    <span>
+      Hello
+    </span>
+     
+     
+    <div
+      class="badge svelte-1e4q28k halo"
+    >
+      5
+    </div>
+  </button>
+</span>
+`;
+
+exports[`Toolshot components/Button/Button.tools.svelte: Text and icon 1`] = `
+<span>
+  <button
+    class="svelte-1e4q28k"
+  >
+    <i
+      class="material-icons svelte-1e4q28k"
+    >
+      face
+    </i>
+     
+    <span>
+      Hello
+    </span>
+     
+     
+  </button>
+</span>
+`;
+
+exports[`Toolshot components/Button/Button.tools.svelte: With badge 1`] = `
+<span>
+  <button
+    class="svelte-1e4q28k"
+  >
+    <i
+      class="material-icons svelte-1e4q28k"
+    >
+      face
+    </i>
+     
+    <span>
+      Hello
+    </span>
+     
+     
+    <div
+      class="badge svelte-1e4q28k halo"
+    >
+      23
+    </div>
+  </button>
+</span>
+`;
+
+exports[`Toolshot components/Button/Button.tools.svelte: With badge limit 1`] = `
+<span>
+  <button
+    class="svelte-1e4q28k"
+  >
+    <i
+      class="material-icons svelte-1e4q28k"
+    >
+      warning
+    </i>
+     
+    <span>
+      Just too much
+    </span>
+     
+     
+    <div
+      class="badge svelte-1e4q28k halo"
+    >
+      999+
+    </div>
+  </button>
+</span>
+`;

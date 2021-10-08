@@ -1,6 +1,5 @@
 'use strict'
 
-import './tailwind.svelte'
 import './common'
 import App from './App.svelte'
 import { send } from './utils'

@@ -3,7 +3,7 @@
 import { screen, render, fireEvent } from '@testing-library/svelte'
 import html from 'svelte-htm'
 import faker from 'faker'
-import SortableList from './SortableList.stories.svelte'
+import SortableList from './SortableList.test.svelte'
 import { addRefs } from '../../tests'
 
 describe('SortableList component', () => {

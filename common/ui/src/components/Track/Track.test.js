@@ -4,7 +4,7 @@ import { screen, render } from '@testing-library/svelte'
 import userEvent from '@testing-library/user-event'
 import html from 'svelte-htm'
 import Track from './Track.svelte'
-import { trackData } from './Track.stories'
+import { trackData } from './Track.testdata'
 import { sleep } from '../../tests'
 
 describe('Track component', () => {

@@ -1,0 +1,227 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Toolshot routes/playlist.tools.svelte: Views/Playlist 1`] = `
+<div>
+  <section
+    class="svelte-14jiyy0"
+    style="animation: __svelte_185617033_0 200ms linear 0ms 1 both;"
+  >
+    <header
+      class=" svelte-t58ezf"
+      style="--image: url(../images/david-villasana-YNJGB-_Vlgw-unsplash.jpg); --shade-color: rgba(0, 0, 0, 0.7); --bgPosition: center 46%;"
+    >
+      <h1
+        class="svelte-t58ezf"
+      >
+        3 playlists
+      </h1>
+    </header>
+     
+    <div
+      class="svelte-14jiyy0"
+    >
+      <span
+        class="svelte-14jiyy0"
+      >
+         
+        <span
+          class="svelte-4r86n overlay"
+          role="article"
+        >
+          <div
+            class="content svelte-4r86n"
+          >
+            <span
+              class="artwork svelte-4r86n"
+            />
+             
+            <p
+              class="controls svelte-4r86n"
+            >
+               
+              <button
+                class="primary iconOnly large svelte-1e4q28k"
+                data-testid="play"
+              >
+                <i
+                  class="material-icons svelte-1e4q28k"
+                >
+                  play_arrow
+                </i>
+                 
+                 
+                 
+              </button>
+               
+              <button
+                class="primary iconOnly large svelte-1e4q28k"
+                data-testid="enqueue"
+              >
+                <i
+                  class="material-icons svelte-1e4q28k"
+                >
+                  playlist_add
+                </i>
+                 
+                 
+                 
+              </button>
+            </p>
+          </div>
+           
+          <header
+            class="svelte-4r86n"
+          >
+            <h3
+              class="svelte-4r86n"
+            >
+              My favourites
+            </h3>
+             
+            <h4
+              slot="details"
+            >
+              3 tracks
+            </h4>
+          </header>
+        </span>
+         
+      </span>
+      <span
+        class="svelte-14jiyy0"
+      >
+         
+        <span
+          class="svelte-4r86n overlay"
+          role="article"
+        >
+          <div
+            class="content svelte-4r86n"
+          >
+            <span
+              class="artwork svelte-4r86n"
+            />
+             
+            <p
+              class="controls svelte-4r86n"
+            >
+               
+              <button
+                class="primary iconOnly large svelte-1e4q28k"
+                data-testid="play"
+              >
+                <i
+                  class="material-icons svelte-1e4q28k"
+                >
+                  play_arrow
+                </i>
+                 
+                 
+                 
+              </button>
+               
+              <button
+                class="primary iconOnly large svelte-1e4q28k"
+                data-testid="enqueue"
+              >
+                <i
+                  class="material-icons svelte-1e4q28k"
+                >
+                  playlist_add
+                </i>
+                 
+                 
+                 
+              </button>
+            </p>
+          </div>
+           
+          <header
+            class="svelte-4r86n"
+          >
+            <h3
+              class="svelte-4r86n"
+            >
+              Rock
+            </h3>
+             
+            <h4
+              slot="details"
+            >
+              1 track
+            </h4>
+          </header>
+        </span>
+         
+      </span>
+      <span
+        class="svelte-14jiyy0"
+      >
+         
+        <span
+          class="svelte-4r86n overlay"
+          role="article"
+        >
+          <div
+            class="content svelte-4r86n"
+          >
+            <span
+              class="artwork svelte-4r86n"
+            />
+             
+            <p
+              class="controls svelte-4r86n"
+            >
+               
+              <button
+                class="primary iconOnly large svelte-1e4q28k"
+                data-testid="play"
+              >
+                <i
+                  class="material-icons svelte-1e4q28k"
+                >
+                  play_arrow
+                </i>
+                 
+                 
+                 
+              </button>
+               
+              <button
+                class="primary iconOnly large svelte-1e4q28k"
+                data-testid="enqueue"
+              >
+                <i
+                  class="material-icons svelte-1e4q28k"
+                >
+                  playlist_add
+                </i>
+                 
+                 
+                 
+              </button>
+            </p>
+          </div>
+           
+          <header
+            class="svelte-4r86n"
+          >
+            <h3
+              class="svelte-4r86n"
+            >
+              Slows
+            </h3>
+             
+            <h4
+              slot="details"
+            >
+              5 tracks
+            </h4>
+          </header>
+        </span>
+         
+      </span>
+    </div>
+  </section>
+</div>
+`;

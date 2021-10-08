@@ -1,0 +1,454 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Toolshot components/Player/Player.tools.svelte: Empty 1`] = `
+<span>
+  <div
+    class="root svelte-14oe44p"
+  >
+    <audio
+      autoplay=""
+      class="svelte-14oe44p"
+      data-testid="audio"
+    />
+    <div
+      class="content svelte-14oe44p"
+    >
+      <span
+        class="current svelte-14oe44p"
+      />
+       
+      <div
+        class="player svelte-14oe44p"
+      >
+        <span
+          class="controls svelte-14oe44p"
+        >
+          
+           
+          <span
+            class="svelte-1y2tggl"
+          >
+            <button
+              class="iconOnly noBorder svelte-1e4q28k"
+            >
+              <i
+                class="material-icons svelte-1e4q28k"
+              >
+                shuffle
+              </i>
+               
+               
+               
+            </button>
+          </span>
+           
+          <button
+            class="iconOnly noBorder svelte-1e4q28k"
+          >
+            <i
+              class="material-icons svelte-1e4q28k"
+            >
+              skip_previous
+            </i>
+             
+             
+             
+          </button>
+           
+          <button
+            class="iconOnly large svelte-1e4q28k"
+          >
+            <i
+              class="material-icons svelte-1e4q28k"
+            >
+              play_arrow
+            </i>
+             
+             
+             
+          </button>
+           
+          <button
+            class="iconOnly noBorder svelte-1e4q28k"
+          >
+            <i
+              class="material-icons svelte-1e4q28k"
+            >
+              skip_next
+            </i>
+             
+             
+             
+          </button>
+           
+          <span
+            class="svelte-1y2tggl"
+          >
+            <button
+              class="iconOnly noBorder svelte-1e4q28k"
+            >
+              <i
+                class="material-icons svelte-1e4q28k"
+              >
+                repeat
+              </i>
+               
+               
+               
+            </button>
+          </span>
+           
+        </span>
+         
+        <div
+          class="svelte-1k6r2xh"
+        >
+          <span
+            class="svelte-1k6r2xh"
+          >
+            0:00
+          </span>
+           
+          <div
+            class="wrapper w-full svelte-flvs0m"
+          >
+            <input
+              class="w-full svelte-flvs0m"
+              max="0"
+              min="0"
+              type="range"
+            />
+             
+            <div
+              class="sliderTrack svelte-flvs0m"
+            >
+              <span
+                class="progress svelte-flvs0m"
+                style="right:100%"
+              />
+            </div>
+          </div>
+           
+          <span
+            class="svelte-1k6r2xh"
+          >
+            0:00
+          </span>
+        </div>
+      </div>
+       
+      <span
+        class="volume svelte-14oe44p"
+      >
+        <div
+          class="svelte-1edewqm"
+        >
+          <span
+            class="volume-slider svelte-1edewqm"
+          >
+            <div
+              class="wrapper w-full svelte-flvs0m"
+            >
+              <input
+                class="w-full svelte-flvs0m"
+                max="100"
+                min="0"
+                type="range"
+              />
+               
+              <div
+                class="sliderTrack svelte-flvs0m"
+              >
+                <span
+                  class="progress svelte-flvs0m"
+                  style="right:0%"
+                />
+              </div>
+            </div>
+          </span>
+           
+          <button
+            class="iconOnly noBorder svelte-1e4q28k"
+          >
+            <i
+              class="material-icons svelte-1e4q28k"
+            >
+              volume_up
+            </i>
+             
+             
+             
+          </button>
+        </div>
+      </span>
+    </div>
+  </div>
+</span>
+`;
+
+exports[`Toolshot components/Player/Player.tools.svelte: With track list 1`] = `
+<span>
+  <div
+    class="root svelte-14oe44p"
+  >
+    <audio
+      autoplay=""
+      class="svelte-14oe44p"
+      data-testid="audio"
+      src="./no-duration.mp3"
+    />
+    <div
+      class="content svelte-14oe44p"
+    >
+      <span
+        class="current svelte-14oe44p"
+      >
+        <div
+          class="undefined root svelte-30dtyc"
+        >
+          <a
+            class="flex-none"
+            href="#/album/1"
+          >
+            <img
+              alt="./# Films/cover.jpg"
+              class="h-16 w-16 text-xs actionable rounded-sm svelte-1psk6yi"
+              height="256"
+              loading="lazy"
+              src="./%23 Films/cover.jpg"
+              width="256"
+            />
+             
+            
+          </a>
+           
+          <div
+            class="track svelte-30dtyc"
+          >
+            <span
+              class="title svelte-30dtyc"
+            >
+              file 1
+            </span>
+             
+            <span>
+              <a
+                class="text-sm underlined"
+                href="#/artist/0"
+                onclick="event.stopPropagation()"
+              >
+                Someone
+              </a>
+            </span>
+          </div>
+           
+           
+        </div>
+      </span>
+       
+      <div
+        class="player svelte-14oe44p"
+      >
+        <span
+          class="controls svelte-14oe44p"
+        >
+          <span>
+            <span
+              aria-expanded="false"
+              aria-haspopup="menu"
+              class="wrapper svelte-11prmkk"
+            >
+              <button
+                class="iconOnly noBorder svelte-1e4q28k"
+              >
+                <i
+                  class="material-icons svelte-1e4q28k"
+                >
+                  library_add
+                </i>
+                 
+                 
+                
+                 
+              </button>
+            </span>
+             
+            
+          </span>
+          
+           
+          <span
+            class="svelte-1y2tggl"
+          >
+            <button
+              class="iconOnly noBorder svelte-1e4q28k"
+            >
+              <i
+                class="material-icons svelte-1e4q28k"
+              >
+                shuffle
+              </i>
+               
+               
+               
+            </button>
+          </span>
+           
+          <button
+            class="iconOnly noBorder svelte-1e4q28k"
+            disabled=""
+          >
+            <i
+              class="material-icons svelte-1e4q28k"
+            >
+              skip_previous
+            </i>
+             
+             
+             
+          </button>
+           
+          <button
+            class="iconOnly large svelte-1e4q28k"
+            disabled=""
+          >
+            <i
+              class="material-icons svelte-1e4q28k"
+            >
+              play_arrow
+            </i>
+             
+             
+             
+          </button>
+           
+          <button
+            class="iconOnly noBorder svelte-1e4q28k"
+            disabled=""
+          >
+            <i
+              class="material-icons svelte-1e4q28k"
+            >
+              skip_next
+            </i>
+             
+             
+             
+          </button>
+           
+          <span
+            class="svelte-1y2tggl"
+          >
+            <button
+              class="iconOnly noBorder svelte-1e4q28k"
+            >
+              <i
+                class="material-icons svelte-1e4q28k"
+              >
+                repeat
+              </i>
+               
+               
+               
+            </button>
+          </span>
+           
+          <button
+            class="invisible iconOnly noBorder svelte-1e4q28k"
+          >
+            <i
+              class="material-icons svelte-1e4q28k"
+            >
+              favorite_border
+            </i>
+             
+             
+             
+          </button>
+        </span>
+         
+        <div
+          class="svelte-1k6r2xh"
+        >
+          <span
+            class="svelte-1k6r2xh"
+          >
+            0:00
+          </span>
+           
+          <div
+            class="wrapper w-full svelte-flvs0m"
+          >
+            <input
+              class="w-full svelte-flvs0m"
+              max="0"
+              min="0"
+              type="range"
+            />
+             
+            <div
+              class="sliderTrack svelte-flvs0m"
+            >
+              <span
+                class="progress svelte-flvs0m"
+                style="right:100%"
+              />
+            </div>
+          </div>
+           
+          <span
+            class="svelte-1k6r2xh"
+          >
+            0:00
+          </span>
+        </div>
+      </div>
+       
+      <span
+        class="volume svelte-14oe44p"
+      >
+        <div
+          class="svelte-1edewqm"
+        >
+          <span
+            class="volume-slider svelte-1edewqm"
+          >
+            <div
+              class="wrapper w-full svelte-flvs0m"
+            >
+              <input
+                class="w-full svelte-flvs0m"
+                max="100"
+                min="0"
+                type="range"
+              />
+               
+              <div
+                class="sliderTrack svelte-flvs0m"
+              >
+                <span
+                  class="progress svelte-flvs0m"
+                  style="right:0%"
+                />
+              </div>
+            </div>
+          </span>
+           
+          <button
+            class="iconOnly noBorder svelte-1e4q28k"
+          >
+            <i
+              class="material-icons svelte-1e4q28k"
+            >
+              volume_up
+            </i>
+             
+             
+             
+          </button>
+        </div>
+      </span>
+    </div>
+  </div>
+</span>
+`;

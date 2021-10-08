@@ -1,10 +1,10 @@
 'use strict'
 
-import css from 'rollup-plugin-css-only'
 import commonjs from '@rollup/plugin-commonjs'
 import resolve from '@rollup/plugin-node-resolve'
 import replace from '@rollup/plugin-replace'
 import yaml from '@rollup/plugin-yaml'
+import postcss from 'rollup-plugin-postcss'
 import svelte from 'rollup-plugin-svelte'
 import { terser } from 'rollup-plugin-terser'
 const { dependencies } = require('../../package-lock')
@@ -34,8 +34,10 @@ export default {
 
     svelte(svelteConfig),
 
-    css({
-      output: 'bundle.css'
+    postcss({
+      extract: 'bundle.css',
+      minimize: production,
+      sourceMap: !production
     }),
 
     resolve({ browser: true, dedupe: ['svelte'], preferBuiltins: false }),

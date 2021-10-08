@@ -1,0 +1,391 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Toolshot components/Album/Album.tools.svelte: Default 1`] = `
+<div>
+   
+  <span
+    class="svelte-4r86n"
+    role="article"
+  >
+    <div
+      class="content svelte-4r86n"
+    >
+      <span
+        class="artwork svelte-4r86n"
+      >
+        <img
+          alt="./cover.jpg"
+          class="h-full w-full rounded-sm svelte-1psk6yi"
+          height="256"
+          loading="lazy"
+          src="./cover.jpg"
+          width="256"
+        />
+         
+        
+      </span>
+       
+      <p
+        class="controls svelte-4r86n"
+      >
+         
+        <button
+          class="primary iconOnly large svelte-1e4q28k"
+          data-testid="play"
+        >
+          <i
+            class="material-icons svelte-1e4q28k"
+          >
+            play_arrow
+          </i>
+           
+           
+           
+        </button>
+         
+        <button
+          class="primary iconOnly large svelte-1e4q28k"
+          data-testid="enqueue"
+        >
+          <i
+            class="material-icons svelte-1e4q28k"
+          >
+            playlist_add
+          </i>
+           
+           
+           
+        </button>
+      </p>
+    </div>
+     
+    <header
+      class="svelte-4r86n"
+    >
+      <h3
+        class="svelte-4r86n"
+      >
+        Diamonds on the inside
+      </h3>
+       
+      <h4
+        class="svelte-rw2hde"
+        slot="details"
+      >
+        by 
+        <a
+          class="underlined"
+          href="#/artist/1"
+          onclick="event.stopPropagation()"
+        >
+          Ben Harper
+        </a>
+        , 
+        <a
+          class="underlined"
+          href="#/artist/2"
+          onclick="event.stopPropagation()"
+        >
+          The Innocent Criminals
+        </a>
+        
+         
+      </h4>
+    </header>
+  </span>
+</div>
+`;
+
+exports[`Toolshot components/Album/Album.tools.svelte: Many artists 1`] = `
+<div>
+   
+  <span
+    class="svelte-4r86n"
+    role="article"
+  >
+    <div
+      class="content svelte-4r86n"
+    >
+      <span
+        class="artwork svelte-4r86n"
+      >
+        <img
+          alt="./cover.jpg"
+          class="h-full w-full rounded-sm svelte-1psk6yi"
+          height="256"
+          loading="lazy"
+          src="./cover.jpg"
+          width="256"
+        />
+         
+        
+      </span>
+       
+      <p
+        class="controls svelte-4r86n"
+      >
+         
+        <button
+          class="primary iconOnly large svelte-1e4q28k"
+          data-testid="play"
+        >
+          <i
+            class="material-icons svelte-1e4q28k"
+          >
+            play_arrow
+          </i>
+           
+           
+           
+        </button>
+         
+        <button
+          class="primary iconOnly large svelte-1e4q28k"
+          data-testid="enqueue"
+        >
+          <i
+            class="material-icons svelte-1e4q28k"
+          >
+            playlist_add
+          </i>
+           
+           
+           
+        </button>
+      </p>
+    </div>
+     
+    <header
+      class="svelte-4r86n"
+    >
+      <h3
+        class="svelte-4r86n"
+      >
+        Diamonds on the inside
+      </h3>
+       
+      <h4
+        class="svelte-rw2hde"
+        slot="details"
+      >
+        by 
+        <a
+          class="underlined"
+          href="#/artist/3"
+          onclick="event.stopPropagation()"
+        >
+          Muse
+        </a>
+        , 
+        <a
+          class="underlined"
+          href="#/artist/4"
+          onclick="event.stopPropagation()"
+        >
+          Perl Jam
+        </a>
+        , 
+        <a
+          class="underlined"
+          href="#/artist/4"
+          onclick="event.stopPropagation()"
+        >
+          Joe Satriani
+        </a>
+        , 
+        <a
+          class="underlined"
+          href="#/artist/6"
+          onclick="event.stopPropagation()"
+        >
+          Avenged Sevenfold
+        </a>
+        
+         
+      </h4>
+    </header>
+  </span>
+</div>
+`;
+
+exports[`Toolshot components/Album/Album.tools.svelte: No artist 1`] = `
+<div>
+   
+  <span
+    class="svelte-4r86n"
+    role="article"
+  >
+    <div
+      class="content svelte-4r86n"
+    >
+      <span
+        class="artwork svelte-4r86n"
+      >
+        <img
+          alt="./cover.jpg"
+          class="h-full w-full rounded-sm svelte-1psk6yi"
+          height="256"
+          loading="lazy"
+          src="./cover.jpg"
+          width="256"
+        />
+         
+        
+      </span>
+       
+      <p
+        class="controls svelte-4r86n"
+      >
+         
+        <button
+          class="primary iconOnly large svelte-1e4q28k"
+          data-testid="play"
+        >
+          <i
+            class="material-icons svelte-1e4q28k"
+          >
+            play_arrow
+          </i>
+           
+           
+           
+        </button>
+         
+        <button
+          class="primary iconOnly large svelte-1e4q28k"
+          data-testid="enqueue"
+        >
+          <i
+            class="material-icons svelte-1e4q28k"
+          >
+            playlist_add
+          </i>
+           
+           
+           
+        </button>
+      </p>
+    </div>
+     
+    <header
+      class="svelte-4r86n"
+    >
+      <h3
+        class="svelte-4r86n"
+      >
+        Diamonds on the inside
+      </h3>
+       
+      <h4
+        class="svelte-rw2hde"
+        slot="details"
+      >
+         
+      </h4>
+    </header>
+  </span>
+</div>
+`;
+
+exports[`Toolshot components/Album/Album.tools.svelte: Unknown 1`] = `
+<div>
+   
+  <span
+    class="svelte-4r86n"
+    role="article"
+  >
+    <div
+      class="content svelte-4r86n"
+    >
+      <span
+        class="artwork svelte-4r86n"
+      >
+        <img
+          class="h-full w-full rounded-sm hidden svelte-1psk6yi"
+          height="256"
+          loading="lazy"
+          width="256"
+        />
+         
+        <span
+          class="h-full w-full svelte-1psk6yi rounded-sm"
+        >
+          <i
+            class="material-icons svelte-1psk6yi"
+          >
+            music_note
+          </i>
+        </span>
+        
+      </span>
+       
+      <p
+        class="controls svelte-4r86n"
+      >
+         
+        <button
+          class="primary iconOnly large svelte-1e4q28k"
+          data-testid="play"
+        >
+          <i
+            class="material-icons svelte-1e4q28k"
+          >
+            play_arrow
+          </i>
+           
+           
+           
+        </button>
+         
+        <button
+          class="primary iconOnly large svelte-1e4q28k"
+          data-testid="enqueue"
+        >
+          <i
+            class="material-icons svelte-1e4q28k"
+          >
+            playlist_add
+          </i>
+           
+           
+           
+        </button>
+      </p>
+    </div>
+     
+    <header
+      class="svelte-4r86n"
+    >
+      <h3
+        class="svelte-4r86n"
+      >
+        Unknown
+      </h3>
+       
+      <h4
+        class="svelte-rw2hde"
+        slot="details"
+      >
+        by 
+        <a
+          class="underlined"
+          href="#/artist/1"
+          onclick="event.stopPropagation()"
+        >
+          Ben Harper
+        </a>
+        , 
+        <a
+          class="underlined"
+          href="#/artist/2"
+          onclick="event.stopPropagation()"
+        >
+          The Innocent Criminals
+        </a>
+        
+         
+      </h4>
+    </header>
+  </span>
+</div>
+`;

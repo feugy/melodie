@@ -1,5 +1,4 @@
 <script>
-  import { _ } from 'svelte-intl'
   import Image from '../Image/Image.svelte'
   import TrackDropdown from '../TrackDropdown/TrackDropdown.svelte'
   import { formatTime, linkTo, wrapWithLink } from '../../utils'
@@ -8,7 +7,6 @@
   export let details = false
   export let withMenu = false
   $: tags = (src && src.tags) || {}
-  $: artistRef = src && src.artistRefs[0]
 </script>
 
 <style type="postcss">
@@ -48,7 +46,11 @@
   </a>
   <div class="track">
     <span class="title">{tags.title}</span>
-    {@html wrapWithLink('artist', artistRef, 'text-sm')}
+    <span
+      >{@html src?.artistRefs
+        .map(artist => wrapWithLink('artist', artist, 'text-sm'))
+        .join(', ')}</span
+    >
   </div>
   {#if details}
     <div class="duration">{formatTime(tags.duration)}</div>

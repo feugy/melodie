@@ -138,12 +138,12 @@
     />
     <section>
       <Button
-        on:click={track => add(playlist.tracks, true)}
+        on:click={() => add(playlist.tracks, true)}
         icon="play_arrow"
         text={$_('play all')}
       />
       <Button
-        on:click={track => add(playlist.tracks)}
+        on:click={() => add(playlist.tracks)}
         icon="playlist_add"
         text={$_('enqueue all')}
       />

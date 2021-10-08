@@ -158,10 +158,10 @@ describe('App component', () => {
 
       expect(aside).toHaveStyle({ minWidth: '100%' })
       expect(
-        within(aside.firstElementChild.firstElementChild).getByRole('button', {
+        within(aside.firstElementChild).getAllByRole('button', {
           name: 'close'
         })
-      ).toBeInTheDocument()
+      ).toHaveLength(2)
 
       const [album] = screen.queryAllByText(albumName)
       await userEvent.hover(album)

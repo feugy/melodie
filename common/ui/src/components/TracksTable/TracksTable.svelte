@@ -114,7 +114,7 @@
           <td>{(track.tags.track && track.tags.track.no) || '--'}</td>
           <td class={`col-span-${withAlbum ? 3 : 5}`}>{track.tags.title}</td>
           <td class={`col-span-${withAlbum ? 3 : 4}`}>
-            {@html wrapWithLink('artist', track.artistRefs[0])}
+            {@html track.artistRefs.map(artist => wrapWithLink('artist', artist)).join(', ')}
           </td>
           {#if withAlbum}
             <td class="col-span-3">

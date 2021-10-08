@@ -1,7 +1,6 @@
 <script>
   import { onMount } from 'svelte'
   import { slide } from 'svelte/transition'
-  import { _ } from 'svelte-intl'
   import Button from '../Button/Button.svelte'
   import Track from '../Track/Track.svelte'
   import Time from './Time.svelte'
@@ -21,7 +20,6 @@
   let duration = 0
   let currentTime = 0
   let src = null
-  let nextSrc = null
   let muted = false
   let repeatOne = false
   let repeatAll = false

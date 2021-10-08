@@ -9,11 +9,11 @@ import ExpandableList, {
   ARTISTS,
   TRACKS
 } from './ExpandableList.svelte'
-import { albumData } from '../Album/Album.stories'
-import { tracksData } from '../TracksTable/TracksTable.stories'
+import { albumData } from '../Album/Album.testdata'
+import { tracksData } from '../TracksTable/TracksTable.testdata'
 import { sleep, translate } from '../../tests'
 import { createClickToAddObservable } from '../../stores/track-queue'
-import { artistData } from '../Artist/Artist.stories'
+import { artistData } from '../Artist/Artist.testdata'
 
 jest.mock('../../stores/track-queue')
 

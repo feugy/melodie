@@ -38,7 +38,7 @@
     return handlePlay(evt, false)
   }
 
-  function handleClick(evt) {
+  function handleClick() {
     if ($isTouchable) {
       open = !open
     } else {

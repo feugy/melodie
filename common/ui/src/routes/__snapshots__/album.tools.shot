@@ -1,0 +1,345 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Toolshot routes/album.tools.svelte: Views/Albums 1`] = `
+<div>
+  <section
+    class="svelte-ojckha"
+    style="animation: __svelte_185617033_0 200ms linear 0ms 1 both;"
+  >
+    <header
+      class=" svelte-t58ezf"
+      style="--image: url(../images/valentino-funghi-MEcxLZ8ENV8-unsplash.jpg); --shade-color: rgba(0, 0, 0, 0.7); --bgPosition: center 25%;"
+    >
+      <h1
+        class="svelte-t58ezf"
+      >
+        3 albums
+      </h1>
+    </header>
+     
+    <div
+      class="svelte-ojckha"
+    >
+      <span
+        class="svelte-ojckha"
+        id="firstAlbum"
+      >
+         
+        <span
+          class="svelte-4r86n"
+          role="article"
+        >
+          <div
+            class="content svelte-4r86n"
+          >
+            <span
+              class="artwork svelte-4r86n"
+            >
+              <img
+                class="h-full w-full rounded-sm hidden svelte-1psk6yi"
+                height="256"
+                loading="lazy"
+                width="256"
+              />
+               
+              <span
+                class="h-full w-full svelte-1psk6yi rounded-sm"
+              >
+                <i
+                  class="material-icons svelte-1psk6yi"
+                >
+                  music_note
+                </i>
+              </span>
+              
+            </span>
+             
+            <p
+              class="controls svelte-4r86n"
+            >
+               
+              <button
+                class="primary iconOnly large svelte-1e4q28k"
+                data-testid="play"
+              >
+                <i
+                  class="material-icons svelte-1e4q28k"
+                >
+                  play_arrow
+                </i>
+                 
+                 
+                 
+              </button>
+               
+              <button
+                class="primary iconOnly large svelte-1e4q28k"
+                data-testid="enqueue"
+              >
+                <i
+                  class="material-icons svelte-1e4q28k"
+                >
+                  playlist_add
+                </i>
+                 
+                 
+                 
+              </button>
+            </p>
+          </div>
+           
+          <header
+            class="svelte-4r86n"
+          >
+            <h3
+              class="svelte-4r86n"
+            >
+              100 Best Karajan
+            </h3>
+             
+            <h4
+              class="svelte-rw2hde"
+              slot="details"
+            >
+              by 
+              <a
+                class="underlined"
+                href="#/artist/1"
+                onclick="event.stopPropagation()"
+              >
+                Émile Waldteufel
+              </a>
+              , 
+              <a
+                class="underlined"
+                href="#/artist/2"
+                onclick="event.stopPropagation()"
+              >
+                Johann Sebastian Bach
+              </a>
+              , 
+              <a
+                class="underlined"
+                href="#/artist/3"
+                onclick="event.stopPropagation()"
+              >
+                Wolfgang Amadeus Mozart
+              </a>
+              , 
+              <a
+                class="underlined"
+                href="#/artist/4"
+                onclick="event.stopPropagation()"
+              >
+                Ottorino Respighi
+              </a>
+              , 
+              <a
+                class="underlined"
+                href="#/artist/5"
+                onclick="event.stopPropagation()"
+              >
+                Ludwig van Beethoven
+              </a>
+              , 
+              <a
+                class="underlined"
+                href="#/artist/6"
+                onclick="event.stopPropagation()"
+              >
+                Giuseppe Verdi
+              </a>
+              
+               
+            </h4>
+          </header>
+        </span>
+         
+      </span>
+      <span
+        class="svelte-ojckha"
+      >
+         
+        <span
+          class="svelte-4r86n"
+          role="article"
+        >
+          <div
+            class="content svelte-4r86n"
+          >
+            <span
+              class="artwork svelte-4r86n"
+            >
+              <img
+                alt="cover.jpg"
+                class="h-full w-full rounded-sm svelte-1psk6yi"
+                height="256"
+                loading="lazy"
+                src="cover.jpg"
+                width="256"
+              />
+               
+              
+            </span>
+             
+            <p
+              class="controls svelte-4r86n"
+            >
+               
+              <button
+                class="primary iconOnly large svelte-1e4q28k"
+                data-testid="play"
+              >
+                <i
+                  class="material-icons svelte-1e4q28k"
+                >
+                  play_arrow
+                </i>
+                 
+                 
+                 
+              </button>
+               
+              <button
+                class="primary iconOnly large svelte-1e4q28k"
+                data-testid="enqueue"
+              >
+                <i
+                  class="material-icons svelte-1e4q28k"
+                >
+                  playlist_add
+                </i>
+                 
+                 
+                 
+              </button>
+            </p>
+          </div>
+           
+          <header
+            class="svelte-4r86n"
+          >
+            <h3
+              class="svelte-4r86n"
+            >
+              Black Orpheus
+            </h3>
+             
+            <h4
+              class="svelte-rw2hde"
+              slot="details"
+            >
+              by 
+              <a
+                class="underlined"
+                href="#/artist/7"
+                onclick="event.stopPropagation()"
+              >
+                Keziah Jones
+              </a>
+              
+               
+            </h4>
+          </header>
+        </span>
+         
+      </span>
+      <span
+        class="svelte-ojckha"
+      >
+         
+        <span
+          class="svelte-4r86n"
+          role="article"
+        >
+          <div
+            class="content svelte-4r86n"
+          >
+            <span
+              class="artwork svelte-4r86n"
+            >
+              <img
+                class="h-full w-full rounded-sm hidden svelte-1psk6yi"
+                height="256"
+                loading="lazy"
+                width="256"
+              />
+               
+              <span
+                class="h-full w-full svelte-1psk6yi rounded-sm"
+              >
+                <i
+                  class="material-icons svelte-1psk6yi"
+                >
+                  music_note
+                </i>
+              </span>
+              
+            </span>
+             
+            <p
+              class="controls svelte-4r86n"
+            >
+               
+              <button
+                class="primary iconOnly large svelte-1e4q28k"
+                data-testid="play"
+              >
+                <i
+                  class="material-icons svelte-1e4q28k"
+                >
+                  play_arrow
+                </i>
+                 
+                 
+                 
+              </button>
+               
+              <button
+                class="primary iconOnly large svelte-1e4q28k"
+                data-testid="enqueue"
+              >
+                <i
+                  class="material-icons svelte-1e4q28k"
+                >
+                  playlist_add
+                </i>
+                 
+                 
+                 
+              </button>
+            </p>
+          </div>
+           
+          <header
+            class="svelte-4r86n"
+          >
+            <h3
+              class="svelte-4r86n"
+            >
+              Distant Worlds - Music from Final Fantasy
+            </h3>
+             
+            <h4
+              class="svelte-rw2hde"
+              slot="details"
+            >
+              by 
+              <a
+                class="underlined"
+                href="#/artist/8"
+                onclick="event.stopPropagation()"
+              >
+                Nobuo Uematsu
+              </a>
+              
+               
+            </h4>
+          </header>
+        </span>
+         
+      </span>
+    </div>
+  </section>
+</div>
+`;

@@ -93,7 +93,15 @@ class TracksModel extends Model {
           : [1, null],
         artistRefs:
           artists && artists.length
-            ? artists.map(artist => [hash(artist), artist])
+            ? [albumartist, ...artists]
+                .reduce(
+                  (artists, name) =>
+                    !name || artists.includes(name)
+                      ? artists
+                      : [...artists, name],
+                  []
+                )
+                .map(artist => [hash(artist), artist])
             : [[1, null]]
       })
     })
