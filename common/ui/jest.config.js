@@ -3,6 +3,7 @@
 module.exports = {
   rootDir: 'src/',
   testEnvironment: 'jsdom',
+  testTimeout: 10e3,
   transform: {
     '^.+\\.js$': [
       'babel-jest',
