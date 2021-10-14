@@ -1,26 +1,24 @@
 name: Bug Report
-description: File a bug report
-title: "[Bug]: "
-labels: ["bug"]
+description: Oups! Something went wrong. Let's try to get it fixed.
+title: '[Bug]: '
+labels: ['bug']
 body:
   - type: textarea
+    id: description
     attributes:
       label: What happened?
       description: Please describe the step to reproduce your issue. You can also attach screenshots.
-      placeholder: |
-        - Step 1
-        - Step 2
-           > The issue.
       value: |
-        _Hello you!_
+        _Hello!_
         I really appreciate the time you're taking to fill out this bug report.
 
-        Please make sure you first searched for existing bugs. 
+        Please make sure you first searched for existing bugs.
         If you have an idea or some feedback, let's have a [discussion](https://github.com/feugy/melodie/discussions) instead.
-      render: Markdown
+      #render: markdown
     validations:
       required: true
   - type: textarea
+    id: logs
     attributes:
       label: Logs
       description: |
@@ -31,16 +29,18 @@ body:
         - `~/.config/melodie/melodie/logs` (Linux)
         - `~/Library/Logs/melodie` (OSX)
         - `%APPDATA%/melodie/logs` (Windows)
- 
+
         This will be automatically formatted into code, so no need for backticks.
       render: shell
-  - type: textarea
+  - type: input
+    id: os
     attributes:
       label: Your Operating System
-      placeholder: Example: Ubuntu 20, Windows 10...
+      placeholder: 'Example: Ubuntu 20, Windows 10...'
     validations:
       required: true
   - type: dropdown
+    id: version
     attributes:
       label: Mélodie's version
       description: You'll find it in the settings page.
@@ -50,6 +50,7 @@ body:
     validations:
       required: true
   - type: dropdown
+    id: packager
     attributes:
       label: Mélodie's packager
       description: What packager have you used?
