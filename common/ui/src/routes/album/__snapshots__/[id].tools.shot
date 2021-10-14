@@ -8,25 +8,25 @@ exports[`Toolshot routes/album/[id].tools.svelte: Views/Album Details 1`] = `
     style="animation: __svelte_185617033_0 200ms linear 0ms 1 both;"
   >
     <header
-      class=" svelte-t58ezf"
+      class=" svelte-8800qh"
       style="--image: url(../images/dark-rider-JmVaNyemtN8-unsplash.jpg); --shade-color: rgba(0, 0, 0, 0.7); --bgPosition: center;"
     >
       <h1
-        class="svelte-t58ezf"
+        class="svelte-8800qh"
       >
         Cowboy Bebop - Blue
       </h1>
     </header>
      
     <section
-      class="svelte-12yv3fj"
+      class="svelte-ne8b42"
     >
       <span
-        class="image-container svelte-12yv3fj"
+        class="image-container svelte-ne8b42"
       >
         <img
           alt="cover.jpg"
-          class="h-full w-full text-3xl actionable rounded-sm svelte-1psk6yi"
+          class="h-full w-full text-3xl actionable rounded-sm svelte-dtt58s"
           height="400"
           loading="lazy"
           src="cover.jpg"
@@ -37,16 +37,16 @@ exports[`Toolshot routes/album/[id].tools.svelte: Views/Album Details 1`] = `
       </span>
        
       <div
-        class="svelte-12yv3fj"
+        class="svelte-ne8b42"
       >
         <span
-          class="actions svelte-12yv3fj"
+          class="actions svelte-ne8b42"
         >
           <button
-            class="svelte-1e4q28k"
+            class="svelte-1vd9h50"
           >
             <i
-              class="material-icons svelte-1e4q28k"
+              class="material-icons svelte-1vd9h50"
             >
               play_arrow
             </i>
@@ -59,10 +59,10 @@ exports[`Toolshot routes/album/[id].tools.svelte: Views/Album Details 1`] = `
           </button>
            
           <button
-            class="svelte-1e4q28k"
+            class="svelte-1vd9h50"
           >
             <i
-              class="material-icons svelte-1e4q28k"
+              class="material-icons svelte-1vd9h50"
             >
               playlist_add
             </i>
@@ -76,7 +76,7 @@ exports[`Toolshot routes/album/[id].tools.svelte: Views/Album Details 1`] = `
         </span>
          
         <h3
-          class="svelte-12yv3fj"
+          class="svelte-ne8b42"
         >
           by 
           <a
@@ -104,72 +104,72 @@ exports[`Toolshot routes/album/[id].tools.svelte: Views/Album Details 1`] = `
     </section>
      
     <div
-      class="disks svelte-12yv3fj"
+      class="disks svelte-ne8b42"
     >
       
        
        
        
       <table
-        class=" svelte-1uzdiz4"
+        class=" svelte-14yn4jg"
       >
         <thead
-          class="svelte-1uzdiz4"
+          class="svelte-14yn4jg"
         >
           <tr
-            class="svelte-1uzdiz4"
+            class="svelte-14yn4jg"
           >
             <th
-              class="svelte-1uzdiz4"
+              class="svelte-14yn4jg"
             >
               #
             </th>
              
             <th
-              class="col-span-5 svelte-1uzdiz4"
+              class="col-span-5 svelte-14yn4jg"
             >
               Track
             </th>
              
             <th
-              class="col-span-4 svelte-1uzdiz4"
+              class="col-span-4 svelte-14yn4jg"
             >
               Artist
             </th>
              
              
             <th
-              class="svelte-1uzdiz4"
+              class="svelte-14yn4jg"
             >
               Duration
             </th>
              
             <th
-              class="svelte-1uzdiz4"
+              class="svelte-14yn4jg"
             />
           </tr>
         </thead>
          
         <tbody
-          class="svelte-1uzdiz4"
+          class="svelte-14yn4jg"
         >
           <tr
-            class="svelte-1uzdiz4 current"
+            class="svelte-14yn4jg current"
           >
             <td
-              class="svelte-1uzdiz4"
+              class="svelte-14yn4jg"
             >
               1
             </td>
              
             <td
-              class="col-span-5 svelte-1uzdiz4"
+              class="col-span-5 svelte-14yn4jg"
             >
               American Money
             </td>
              
             <td
-              class="col-span-4 svelte-1uzdiz4"
+              class="col-span-4 svelte-14yn4jg"
             >
               <a
                 class="underlined"
@@ -190,24 +190,24 @@ exports[`Toolshot routes/album/[id].tools.svelte: Views/Album Details 1`] = `
              
              
             <td
-              class="svelte-1uzdiz4"
+              class="svelte-14yn4jg"
             >
               5:32
             </td>
              
             <td
-              class="svelte-1uzdiz4"
+              class="svelte-14yn4jg"
             >
               <span
                 aria-expanded="false"
                 aria-haspopup="menu"
-                class="wrapper svelte-11prmkk"
+                class="wrapper svelte-1x6dshm"
               >
                 <button
-                  class="iconOnly noBorder svelte-1e4q28k"
+                  class="iconOnly noBorder svelte-1vd9h50"
                 >
                   <i
-                    class="material-icons svelte-1e4q28k"
+                    class="material-icons svelte-1vd9h50"
                   >
                     more_vert
                   </i>
@@ -223,22 +223,22 @@ exports[`Toolshot routes/album/[id].tools.svelte: Views/Album Details 1`] = `
              
           </tr>
           <tr
-            class="svelte-1uzdiz4"
+            class="svelte-14yn4jg"
           >
             <td
-              class="svelte-1uzdiz4"
+              class="svelte-14yn4jg"
             >
               2
             </td>
              
             <td
-              class="col-span-5 svelte-1uzdiz4"
+              class="col-span-5 svelte-14yn4jg"
             >
               Fantaisie Sign
             </td>
              
             <td
-              class="col-span-4 svelte-1uzdiz4"
+              class="col-span-4 svelte-14yn4jg"
             >
               <a
                 class="underlined"
@@ -259,24 +259,24 @@ exports[`Toolshot routes/album/[id].tools.svelte: Views/Album Details 1`] = `
              
              
             <td
-              class="svelte-1uzdiz4"
+              class="svelte-14yn4jg"
             >
               3:35
             </td>
              
             <td
-              class="svelte-1uzdiz4"
+              class="svelte-14yn4jg"
             >
               <span
                 aria-expanded="false"
                 aria-haspopup="menu"
-                class="wrapper svelte-11prmkk"
+                class="wrapper svelte-1x6dshm"
               >
                 <button
-                  class="iconOnly noBorder svelte-1e4q28k"
+                  class="iconOnly noBorder svelte-1vd9h50"
                 >
                   <i
-                    class="material-icons svelte-1e4q28k"
+                    class="material-icons svelte-1vd9h50"
                   >
                     more_vert
                   </i>
@@ -296,7 +296,7 @@ exports[`Toolshot routes/album/[id].tools.svelte: Views/Album Details 1`] = `
       
       
       <h3
-        class="svelte-w4sfb"
+        class="svelte-11p7ayw"
       >
         Disk #1
       </h3>
@@ -304,65 +304,65 @@ exports[`Toolshot routes/album/[id].tools.svelte: Views/Album Details 1`] = `
        
        
       <table
-        class=" svelte-1uzdiz4"
+        class=" svelte-14yn4jg"
       >
         <thead
-          class="svelte-1uzdiz4"
+          class="svelte-14yn4jg"
         >
           <tr
-            class="svelte-1uzdiz4"
+            class="svelte-14yn4jg"
           >
             <th
-              class="svelte-1uzdiz4"
+              class="svelte-14yn4jg"
             >
               #
             </th>
              
             <th
-              class="col-span-5 svelte-1uzdiz4"
+              class="col-span-5 svelte-14yn4jg"
             >
               Track
             </th>
              
             <th
-              class="col-span-4 svelte-1uzdiz4"
+              class="col-span-4 svelte-14yn4jg"
             >
               Artist
             </th>
              
              
             <th
-              class="svelte-1uzdiz4"
+              class="svelte-14yn4jg"
             >
               Duration
             </th>
              
             <th
-              class="svelte-1uzdiz4"
+              class="svelte-14yn4jg"
             />
           </tr>
         </thead>
          
         <tbody
-          class="svelte-1uzdiz4"
+          class="svelte-14yn4jg"
         >
           <tr
-            class="svelte-1uzdiz4"
+            class="svelte-14yn4jg"
           >
             <td
-              class="svelte-1uzdiz4"
+              class="svelte-14yn4jg"
             >
               2
             </td>
              
             <td
-              class="col-span-5 svelte-1uzdiz4"
+              class="col-span-5 svelte-14yn4jg"
             >
               Vitamin A
             </td>
              
             <td
-              class="col-span-4 svelte-1uzdiz4"
+              class="col-span-4 svelte-14yn4jg"
             >
               <a
                 class="underlined"
@@ -383,24 +383,24 @@ exports[`Toolshot routes/album/[id].tools.svelte: Views/Album Details 1`] = `
              
              
             <td
-              class="svelte-1uzdiz4"
+              class="svelte-14yn4jg"
             >
               4:41
             </td>
              
             <td
-              class="svelte-1uzdiz4"
+              class="svelte-14yn4jg"
             >
               <span
                 aria-expanded="false"
                 aria-haspopup="menu"
-                class="wrapper svelte-11prmkk"
+                class="wrapper svelte-1x6dshm"
               >
                 <button
-                  class="iconOnly noBorder svelte-1e4q28k"
+                  class="iconOnly noBorder svelte-1vd9h50"
                 >
                   <i
-                    class="material-icons svelte-1e4q28k"
+                    class="material-icons svelte-1vd9h50"
                   >
                     more_vert
                   </i>
@@ -416,22 +416,22 @@ exports[`Toolshot routes/album/[id].tools.svelte: Views/Album Details 1`] = `
              
           </tr>
           <tr
-            class="svelte-1uzdiz4"
+            class="svelte-14yn4jg"
           >
             <td
-              class="svelte-1uzdiz4"
+              class="svelte-14yn4jg"
             >
               3
             </td>
              
             <td
-              class="col-span-5 svelte-1uzdiz4"
+              class="col-span-5 svelte-14yn4jg"
             >
               Don't Bother None
             </td>
              
             <td
-              class="col-span-4 svelte-1uzdiz4"
+              class="col-span-4 svelte-14yn4jg"
             >
               <a
                 class="underlined"
@@ -452,24 +452,24 @@ exports[`Toolshot routes/album/[id].tools.svelte: Views/Album Details 1`] = `
              
              
             <td
-              class="svelte-1uzdiz4"
+              class="svelte-14yn4jg"
             >
               3:45
             </td>
              
             <td
-              class="svelte-1uzdiz4"
+              class="svelte-14yn4jg"
             >
               <span
                 aria-expanded="false"
                 aria-haspopup="menu"
-                class="wrapper svelte-11prmkk"
+                class="wrapper svelte-1x6dshm"
               >
                 <button
-                  class="iconOnly noBorder svelte-1e4q28k"
+                  class="iconOnly noBorder svelte-1vd9h50"
                 >
                   <i
-                    class="material-icons svelte-1e4q28k"
+                    class="material-icons svelte-1vd9h50"
                   >
                     more_vert
                   </i>
@@ -485,22 +485,22 @@ exports[`Toolshot routes/album/[id].tools.svelte: Views/Album Details 1`] = `
              
           </tr>
           <tr
-            class="svelte-1uzdiz4"
+            class="svelte-14yn4jg"
           >
             <td
-              class="svelte-1uzdiz4"
+              class="svelte-14yn4jg"
             >
               4
             </td>
              
             <td
-              class="col-span-5 svelte-1uzdiz4"
+              class="col-span-5 svelte-14yn4jg"
             >
               Want it All Back
             </td>
              
             <td
-              class="col-span-4 svelte-1uzdiz4"
+              class="col-span-4 svelte-14yn4jg"
             >
               <a
                 class="underlined"
@@ -521,24 +521,24 @@ exports[`Toolshot routes/album/[id].tools.svelte: Views/Album Details 1`] = `
              
              
             <td
-              class="svelte-1uzdiz4"
+              class="svelte-14yn4jg"
             >
               3:51
             </td>
              
             <td
-              class="svelte-1uzdiz4"
+              class="svelte-14yn4jg"
             >
               <span
                 aria-expanded="false"
                 aria-haspopup="menu"
-                class="wrapper svelte-11prmkk"
+                class="wrapper svelte-1x6dshm"
               >
                 <button
-                  class="iconOnly noBorder svelte-1e4q28k"
+                  class="iconOnly noBorder svelte-1vd9h50"
                 >
                   <i
-                    class="material-icons svelte-1e4q28k"
+                    class="material-icons svelte-1vd9h50"
                   >
                     more_vert
                   </i>
@@ -554,22 +554,22 @@ exports[`Toolshot routes/album/[id].tools.svelte: Views/Album Details 1`] = `
              
           </tr>
           <tr
-            class="svelte-1uzdiz4"
+            class="svelte-14yn4jg"
           >
             <td
-              class="svelte-1uzdiz4"
+              class="svelte-14yn4jg"
             >
               5
             </td>
              
             <td
-              class="col-span-5 svelte-1uzdiz4"
+              class="col-span-5 svelte-14yn4jg"
             >
               Bindy
             </td>
              
             <td
-              class="col-span-4 svelte-1uzdiz4"
+              class="col-span-4 svelte-14yn4jg"
             >
               <a
                 class="underlined"
@@ -590,24 +590,24 @@ exports[`Toolshot routes/album/[id].tools.svelte: Views/Album Details 1`] = `
              
              
             <td
-              class="svelte-1uzdiz4"
+              class="svelte-14yn4jg"
             >
               0:15
             </td>
              
             <td
-              class="svelte-1uzdiz4"
+              class="svelte-14yn4jg"
             >
               <span
                 aria-expanded="false"
                 aria-haspopup="menu"
-                class="wrapper svelte-11prmkk"
+                class="wrapper svelte-1x6dshm"
               >
                 <button
-                  class="iconOnly noBorder svelte-1e4q28k"
+                  class="iconOnly noBorder svelte-1vd9h50"
                 >
                   <i
-                    class="material-icons svelte-1e4q28k"
+                    class="material-icons svelte-1vd9h50"
                   >
                     more_vert
                   </i>
@@ -623,22 +623,22 @@ exports[`Toolshot routes/album/[id].tools.svelte: Views/Album Details 1`] = `
              
           </tr>
           <tr
-            class="svelte-1uzdiz4"
+            class="svelte-14yn4jg"
           >
             <td
-              class="svelte-1uzdiz4"
+              class="svelte-14yn4jg"
             >
               6
             </td>
              
             <td
-              class="col-span-5 svelte-1uzdiz4"
+              class="col-span-5 svelte-14yn4jg"
             >
               You Make Me Coo
             </td>
              
             <td
-              class="col-span-4 svelte-1uzdiz4"
+              class="col-span-4 svelte-14yn4jg"
             >
               <a
                 class="underlined"
@@ -659,24 +659,24 @@ exports[`Toolshot routes/album/[id].tools.svelte: Views/Album Details 1`] = `
              
              
             <td
-              class="svelte-1uzdiz4"
+              class="svelte-14yn4jg"
             >
               3:14
             </td>
              
             <td
-              class="svelte-1uzdiz4"
+              class="svelte-14yn4jg"
             >
               <span
                 aria-expanded="false"
                 aria-haspopup="menu"
-                class="wrapper svelte-11prmkk"
+                class="wrapper svelte-1x6dshm"
               >
                 <button
-                  class="iconOnly noBorder svelte-1e4q28k"
+                  class="iconOnly noBorder svelte-1vd9h50"
                 >
                   <i
-                    class="material-icons svelte-1e4q28k"
+                    class="material-icons svelte-1vd9h50"
                   >
                     more_vert
                   </i>
@@ -692,22 +692,22 @@ exports[`Toolshot routes/album/[id].tools.svelte: Views/Album Details 1`] = `
              
           </tr>
           <tr
-            class="svelte-1uzdiz4"
+            class="svelte-14yn4jg"
           >
             <td
-              class="svelte-1uzdiz4"
+              class="svelte-14yn4jg"
             >
               7
             </td>
              
             <td
-              class="col-span-5 svelte-1uzdiz4"
+              class="col-span-5 svelte-14yn4jg"
             >
               Vitamin C
             </td>
              
             <td
-              class="col-span-4 svelte-1uzdiz4"
+              class="col-span-4 svelte-14yn4jg"
             >
               <a
                 class="underlined"
@@ -728,24 +728,24 @@ exports[`Toolshot routes/album/[id].tools.svelte: Views/Album Details 1`] = `
              
              
             <td
-              class="svelte-1uzdiz4"
+              class="svelte-14yn4jg"
             >
               5:24
             </td>
              
             <td
-              class="svelte-1uzdiz4"
+              class="svelte-14yn4jg"
             >
               <span
                 aria-expanded="false"
                 aria-haspopup="menu"
-                class="wrapper svelte-11prmkk"
+                class="wrapper svelte-1x6dshm"
               >
                 <button
-                  class="iconOnly noBorder svelte-1e4q28k"
+                  class="iconOnly noBorder svelte-1vd9h50"
                 >
                   <i
-                    class="material-icons svelte-1e4q28k"
+                    class="material-icons svelte-1vd9h50"
                   >
                     more_vert
                   </i>
@@ -761,22 +761,22 @@ exports[`Toolshot routes/album/[id].tools.svelte: Views/Album Details 1`] = `
              
           </tr>
           <tr
-            class="svelte-1uzdiz4"
+            class="svelte-14yn4jg"
           >
             <td
-              class="svelte-1uzdiz4"
+              class="svelte-14yn4jg"
             >
               8
             </td>
              
             <td
-              class="col-span-5 svelte-1uzdiz4"
+              class="col-span-5 svelte-14yn4jg"
             >
               Gateway
             </td>
              
             <td
-              class="col-span-4 svelte-1uzdiz4"
+              class="col-span-4 svelte-14yn4jg"
             >
               <a
                 class="underlined"
@@ -797,24 +797,24 @@ exports[`Toolshot routes/album/[id].tools.svelte: Views/Album Details 1`] = `
              
              
             <td
-              class="svelte-1uzdiz4"
+              class="svelte-14yn4jg"
             >
               0:16
             </td>
              
             <td
-              class="svelte-1uzdiz4"
+              class="svelte-14yn4jg"
             >
               <span
                 aria-expanded="false"
                 aria-haspopup="menu"
-                class="wrapper svelte-11prmkk"
+                class="wrapper svelte-1x6dshm"
               >
                 <button
-                  class="iconOnly noBorder svelte-1e4q28k"
+                  class="iconOnly noBorder svelte-1vd9h50"
                 >
                   <i
-                    class="material-icons svelte-1e4q28k"
+                    class="material-icons svelte-1vd9h50"
                   >
                     more_vert
                   </i>
@@ -830,22 +830,22 @@ exports[`Toolshot routes/album/[id].tools.svelte: Views/Album Details 1`] = `
              
           </tr>
           <tr
-            class="svelte-1uzdiz4"
+            class="svelte-14yn4jg"
           >
             <td
-              class="svelte-1uzdiz4"
+              class="svelte-14yn4jg"
             >
               9
             </td>
              
             <td
-              class="col-span-5 svelte-1uzdiz4"
+              class="col-span-5 svelte-14yn4jg"
             >
               Forever Broke
             </td>
              
             <td
-              class="col-span-4 svelte-1uzdiz4"
+              class="col-span-4 svelte-14yn4jg"
             >
               <a
                 class="underlined"
@@ -866,24 +866,24 @@ exports[`Toolshot routes/album/[id].tools.svelte: Views/Album Details 1`] = `
              
              
             <td
-              class="svelte-1uzdiz4"
+              class="svelte-14yn4jg"
             >
               1:36
             </td>
              
             <td
-              class="svelte-1uzdiz4"
+              class="svelte-14yn4jg"
             >
               <span
                 aria-expanded="false"
                 aria-haspopup="menu"
-                class="wrapper svelte-11prmkk"
+                class="wrapper svelte-1x6dshm"
               >
                 <button
-                  class="iconOnly noBorder svelte-1e4q28k"
+                  class="iconOnly noBorder svelte-1vd9h50"
                 >
                   <i
-                    class="material-icons svelte-1e4q28k"
+                    class="material-icons svelte-1vd9h50"
                   >
                     more_vert
                   </i>
@@ -903,7 +903,7 @@ exports[`Toolshot routes/album/[id].tools.svelte: Views/Album Details 1`] = `
       
       
       <h3
-        class="svelte-w4sfb"
+        class="svelte-11p7ayw"
       >
         Disk #2
       </h3>
@@ -911,65 +911,65 @@ exports[`Toolshot routes/album/[id].tools.svelte: Views/Album Details 1`] = `
        
        
       <table
-        class=" svelte-1uzdiz4"
+        class=" svelte-14yn4jg"
       >
         <thead
-          class="svelte-1uzdiz4"
+          class="svelte-14yn4jg"
         >
           <tr
-            class="svelte-1uzdiz4"
+            class="svelte-14yn4jg"
           >
             <th
-              class="svelte-1uzdiz4"
+              class="svelte-14yn4jg"
             >
               #
             </th>
              
             <th
-              class="col-span-5 svelte-1uzdiz4"
+              class="col-span-5 svelte-14yn4jg"
             >
               Track
             </th>
              
             <th
-              class="col-span-4 svelte-1uzdiz4"
+              class="col-span-4 svelte-14yn4jg"
             >
               Artist
             </th>
              
              
             <th
-              class="svelte-1uzdiz4"
+              class="svelte-14yn4jg"
             >
               Duration
             </th>
              
             <th
-              class="svelte-1uzdiz4"
+              class="svelte-14yn4jg"
             />
           </tr>
         </thead>
          
         <tbody
-          class="svelte-1uzdiz4"
+          class="svelte-14yn4jg"
         >
           <tr
-            class="svelte-1uzdiz4"
+            class="svelte-14yn4jg"
           >
             <td
-              class="svelte-1uzdiz4"
+              class="svelte-14yn4jg"
             >
               2
             </td>
              
             <td
-              class="col-span-5 svelte-1uzdiz4"
+              class="col-span-5 svelte-14yn4jg"
             >
               Cats on Mars
             </td>
              
             <td
-              class="col-span-4 svelte-1uzdiz4"
+              class="col-span-4 svelte-14yn4jg"
             >
               <a
                 class="underlined"
@@ -990,24 +990,24 @@ exports[`Toolshot routes/album/[id].tools.svelte: Views/Album Details 1`] = `
              
              
             <td
-              class="svelte-1uzdiz4"
+              class="svelte-14yn4jg"
             >
               0:07
             </td>
              
             <td
-              class="svelte-1uzdiz4"
+              class="svelte-14yn4jg"
             >
               <span
                 aria-expanded="false"
                 aria-haspopup="menu"
-                class="wrapper svelte-11prmkk"
+                class="wrapper svelte-1x6dshm"
               >
                 <button
-                  class="iconOnly noBorder svelte-1e4q28k"
+                  class="iconOnly noBorder svelte-1vd9h50"
                 >
                   <i
-                    class="material-icons svelte-1e4q28k"
+                    class="material-icons svelte-1vd9h50"
                   >
                     more_vert
                   </i>
@@ -1023,22 +1023,22 @@ exports[`Toolshot routes/album/[id].tools.svelte: Views/Album Details 1`] = `
              
           </tr>
           <tr
-            class="svelte-1uzdiz4"
+            class="svelte-14yn4jg"
           >
             <td
-              class="svelte-1uzdiz4"
+              class="svelte-14yn4jg"
             >
               3
             </td>
              
             <td
-              class="col-span-5 svelte-1uzdiz4"
+              class="col-span-5 svelte-14yn4jg"
             >
               LIVE in Baghdad
             </td>
              
             <td
-              class="col-span-4 svelte-1uzdiz4"
+              class="col-span-4 svelte-14yn4jg"
             >
               <a
                 class="underlined"
@@ -1059,24 +1059,24 @@ exports[`Toolshot routes/album/[id].tools.svelte: Views/Album Details 1`] = `
              
              
             <td
-              class="svelte-1uzdiz4"
+              class="svelte-14yn4jg"
             >
               2:59
             </td>
              
             <td
-              class="svelte-1uzdiz4"
+              class="svelte-14yn4jg"
             >
               <span
                 aria-expanded="false"
                 aria-haspopup="menu"
-                class="wrapper svelte-11prmkk"
+                class="wrapper svelte-1x6dshm"
               >
                 <button
-                  class="iconOnly noBorder svelte-1e4q28k"
+                  class="iconOnly noBorder svelte-1vd9h50"
                 >
                   <i
-                    class="material-icons svelte-1e4q28k"
+                    class="material-icons svelte-1vd9h50"
                   >
                     more_vert
                   </i>
@@ -1092,22 +1092,22 @@ exports[`Toolshot routes/album/[id].tools.svelte: Views/Album Details 1`] = `
              
           </tr>
           <tr
-            class="svelte-1uzdiz4"
+            class="svelte-14yn4jg"
           >
             <td
-              class="svelte-1uzdiz4"
+              class="svelte-14yn4jg"
             >
               4
             </td>
              
             <td
-              class="col-span-5 svelte-1uzdiz4"
+              class="col-span-5 svelte-14yn4jg"
             >
               Vitamin B
             </td>
              
             <td
-              class="col-span-4 svelte-1uzdiz4"
+              class="col-span-4 svelte-14yn4jg"
             >
               <a
                 class="underlined"
@@ -1128,24 +1128,24 @@ exports[`Toolshot routes/album/[id].tools.svelte: Views/Album Details 1`] = `
              
              
             <td
-              class="svelte-1uzdiz4"
+              class="svelte-14yn4jg"
             >
               4:06
             </td>
              
             <td
-              class="svelte-1uzdiz4"
+              class="svelte-14yn4jg"
             >
               <span
                 aria-expanded="false"
                 aria-haspopup="menu"
-                class="wrapper svelte-11prmkk"
+                class="wrapper svelte-1x6dshm"
               >
                 <button
-                  class="iconOnly noBorder svelte-1e4q28k"
+                  class="iconOnly noBorder svelte-1vd9h50"
                 >
                   <i
-                    class="material-icons svelte-1e4q28k"
+                    class="material-icons svelte-1vd9h50"
                   >
                     more_vert
                   </i>
@@ -1161,22 +1161,22 @@ exports[`Toolshot routes/album/[id].tools.svelte: Views/Album Details 1`] = `
              
           </tr>
           <tr
-            class="svelte-1uzdiz4"
+            class="svelte-14yn4jg"
           >
             <td
-              class="svelte-1uzdiz4"
+              class="svelte-14yn4jg"
             >
               5
             </td>
              
             <td
-              class="col-span-5 svelte-1uzdiz4"
+              class="col-span-5 svelte-14yn4jg"
             >
               Green Bird
             </td>
              
             <td
-              class="col-span-4 svelte-1uzdiz4"
+              class="col-span-4 svelte-14yn4jg"
             >
               <a
                 class="underlined"
@@ -1197,24 +1197,24 @@ exports[`Toolshot routes/album/[id].tools.svelte: Views/Album Details 1`] = `
              
              
             <td
-              class="svelte-1uzdiz4"
+              class="svelte-14yn4jg"
             >
               2:33
             </td>
              
             <td
-              class="svelte-1uzdiz4"
+              class="svelte-14yn4jg"
             >
               <span
                 aria-expanded="false"
                 aria-haspopup="menu"
-                class="wrapper svelte-11prmkk"
+                class="wrapper svelte-1x6dshm"
               >
                 <button
-                  class="iconOnly noBorder svelte-1e4q28k"
+                  class="iconOnly noBorder svelte-1vd9h50"
                 >
                   <i
-                    class="material-icons svelte-1e4q28k"
+                    class="material-icons svelte-1vd9h50"
                   >
                     more_vert
                   </i>
@@ -1230,22 +1230,22 @@ exports[`Toolshot routes/album/[id].tools.svelte: Views/Album Details 1`] = `
              
           </tr>
           <tr
-            class="svelte-1uzdiz4"
+            class="svelte-14yn4jg"
           >
             <td
-              class="svelte-1uzdiz4"
+              class="svelte-14yn4jg"
             >
               6
             </td>
              
             <td
-              class="col-span-5 svelte-1uzdiz4"
+              class="col-span-5 svelte-14yn4jg"
             >
               ELM
             </td>
              
             <td
-              class="col-span-4 svelte-1uzdiz4"
+              class="col-span-4 svelte-14yn4jg"
             >
               <a
                 class="underlined"
@@ -1266,24 +1266,24 @@ exports[`Toolshot routes/album/[id].tools.svelte: Views/Album Details 1`] = `
              
              
             <td
-              class="svelte-1uzdiz4"
+              class="svelte-14yn4jg"
             >
               6:55
             </td>
              
             <td
-              class="svelte-1uzdiz4"
+              class="svelte-14yn4jg"
             >
               <span
                 aria-expanded="false"
                 aria-haspopup="menu"
-                class="wrapper svelte-11prmkk"
+                class="wrapper svelte-1x6dshm"
               >
                 <button
-                  class="iconOnly noBorder svelte-1e4q28k"
+                  class="iconOnly noBorder svelte-1vd9h50"
                 >
                   <i
-                    class="material-icons svelte-1e4q28k"
+                    class="material-icons svelte-1vd9h50"
                   >
                     more_vert
                   </i>
@@ -1299,22 +1299,22 @@ exports[`Toolshot routes/album/[id].tools.svelte: Views/Album Details 1`] = `
              
           </tr>
           <tr
-            class="svelte-1uzdiz4"
+            class="svelte-14yn4jg"
           >
             <td
-              class="svelte-1uzdiz4"
+              class="svelte-14yn4jg"
             >
               7
             </td>
              
             <td
-              class="col-span-5 svelte-1uzdiz4"
+              class="col-span-5 svelte-14yn4jg"
             >
               The Singing Sea
             </td>
              
             <td
-              class="col-span-4 svelte-1uzdiz4"
+              class="col-span-4 svelte-14yn4jg"
             >
               <a
                 class="underlined"
@@ -1335,24 +1335,24 @@ exports[`Toolshot routes/album/[id].tools.svelte: Views/Album Details 1`] = `
              
              
             <td
-              class="svelte-1uzdiz4"
+              class="svelte-14yn4jg"
             >
               6:41
             </td>
              
             <td
-              class="svelte-1uzdiz4"
+              class="svelte-14yn4jg"
             >
               <span
                 aria-expanded="false"
                 aria-haspopup="menu"
-                class="wrapper svelte-11prmkk"
+                class="wrapper svelte-1x6dshm"
               >
                 <button
-                  class="iconOnly noBorder svelte-1e4q28k"
+                  class="iconOnly noBorder svelte-1vd9h50"
                 >
                   <i
-                    class="material-icons svelte-1e4q28k"
+                    class="material-icons svelte-1vd9h50"
                   >
                     more_vert
                   </i>
@@ -1368,22 +1368,22 @@ exports[`Toolshot routes/album/[id].tools.svelte: Views/Album Details 1`] = `
              
           </tr>
           <tr
-            class="svelte-1uzdiz4"
+            class="svelte-14yn4jg"
           >
             <td
-              class="svelte-1uzdiz4"
+              class="svelte-14yn4jg"
             >
               8
             </td>
              
             <td
-              class="col-span-5 svelte-1uzdiz4"
+              class="col-span-5 svelte-14yn4jg"
             >
               The Egg and You!
             </td>
              
             <td
-              class="col-span-4 svelte-1uzdiz4"
+              class="col-span-4 svelte-14yn4jg"
             >
               <a
                 class="underlined"
@@ -1404,24 +1404,24 @@ exports[`Toolshot routes/album/[id].tools.svelte: Views/Album Details 1`] = `
              
              
             <td
-              class="svelte-1uzdiz4"
+              class="svelte-14yn4jg"
             >
               4:47
             </td>
              
             <td
-              class="svelte-1uzdiz4"
+              class="svelte-14yn4jg"
             >
               <span
                 aria-expanded="false"
                 aria-haspopup="menu"
-                class="wrapper svelte-11prmkk"
+                class="wrapper svelte-1x6dshm"
               >
                 <button
-                  class="iconOnly noBorder svelte-1e4q28k"
+                  class="iconOnly noBorder svelte-1vd9h50"
                 >
                   <i
-                    class="material-icons svelte-1e4q28k"
+                    class="material-icons svelte-1vd9h50"
                   >
                     more_vert
                   </i>
@@ -1437,22 +1437,22 @@ exports[`Toolshot routes/album/[id].tools.svelte: Views/Album Details 1`] = `
              
           </tr>
           <tr
-            class="svelte-1uzdiz4"
+            class="svelte-14yn4jg"
           >
             <td
-              class="svelte-1uzdiz4"
+              class="svelte-14yn4jg"
             >
               9
             </td>
              
             <td
-              class="col-span-5 svelte-1uzdiz4"
+              class="col-span-5 svelte-14yn4jg"
             >
               Power of Kungfu Remix
             </td>
              
             <td
-              class="col-span-4 svelte-1uzdiz4"
+              class="col-span-4 svelte-14yn4jg"
             >
               <a
                 class="underlined"
@@ -1473,24 +1473,24 @@ exports[`Toolshot routes/album/[id].tools.svelte: Views/Album Details 1`] = `
              
              
             <td
-              class="svelte-1uzdiz4"
+              class="svelte-14yn4jg"
             >
               2:22
             </td>
              
             <td
-              class="svelte-1uzdiz4"
+              class="svelte-14yn4jg"
             >
               <span
                 aria-expanded="false"
                 aria-haspopup="menu"
-                class="wrapper svelte-11prmkk"
+                class="wrapper svelte-1x6dshm"
               >
                 <button
-                  class="iconOnly noBorder svelte-1e4q28k"
+                  class="iconOnly noBorder svelte-1vd9h50"
                 >
                   <i
-                    class="material-icons svelte-1e4q28k"
+                    class="material-icons svelte-1vd9h50"
                   >
                     more_vert
                   </i>

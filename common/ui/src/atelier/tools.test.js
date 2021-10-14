@@ -25,5 +25,6 @@ beforeAll(() => {
 configureToolshot({
   folder: join(__dirname, '..'),
   include:
-    '^((?!Dialogue|MediaSelector|Snackbar|SystemNotifier|TrackDropdown).)*\\.tools\\.svelte$'
+    '^((?!Dialogue|MediaSelector|Snackbar|SystemNotifier|TrackDropdown).)*\\.tools\\.svelte$',
+  timeout: 10e3
 })

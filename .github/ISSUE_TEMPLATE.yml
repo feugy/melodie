@@ -1,0 +1,66 @@
+name: Bug Report
+description: File a bug report
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: textarea
+    attributes:
+      label: What happened?
+      description: Please describe the step to reproduce your issue. You can also attach screenshots.
+      placeholder: |
+        - Step 1
+        - Step 2
+           > The issue.
+      value: |
+        _Hello you!_
+        I really appreciate the time you're taking to fill out this bug report.
+
+        Please make sure you first searched for existing bugs. 
+        If you have an idea or some feedback, let's have a [discussion](https://github.com/feugy/melodie/discussions) instead.
+      render: Markdown
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Logs
+      description: |
+        Please copy and paste the content of the log file. 
+        You'll found it in:
+
+        - `~/snap/melodie/current/melodie/logs` (Linux snapcraft)
+        - `~/.config/melodie/melodie/logs` (Linux)
+        - `~/Library/Logs/melodie` (OSX)
+        - `%APPDATA%/melodie/logs` (Windows)
+ 
+        This will be automatically formatted into code, so no need for backticks.
+      render: shell
+  - type: textarea
+    attributes:
+      label: Your Operating System
+      placeholder: Example: Ubuntu 20, Windows 10...
+    validations:
+      required: true
+  - type: dropdown
+    attributes:
+      label: Mélodie's version
+      description: You'll find it in the settings page.
+      options:
+        - 2.0.0-beta.1
+        - 1.0.0
+    validations:
+      required: true
+  - type: dropdown
+    attributes:
+      label: Mélodie's packager
+      description: What packager have you used?
+      options:
+        - Snapcraft (Linux)
+        - AppImage (Linux)
+        - Tar.gz (Linux)
+        - DMG (OSX)
+        - Zip file (Windows)
+        - Exe Installer (Windows)
+        - Standalone Installer (Windows)
+        - Window App store (Windows)
+    validations:
+      required: true

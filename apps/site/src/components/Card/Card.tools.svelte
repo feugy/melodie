@@ -9,6 +9,7 @@
     title: 'Portable',
     image: 'logos/os.png'
   }}
+  layout="centered"
   let:props
 >
   <Card {...props}>

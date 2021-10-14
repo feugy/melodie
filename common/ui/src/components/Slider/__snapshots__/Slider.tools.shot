@@ -3,20 +3,20 @@
 exports[`Toolshot components/Slider/Slider.tools.svelte: Components/Slider 1`] = `
 <span>
   <div
-    class="wrapper w-1/2 svelte-flvs0m"
+    class="wrapper w-1/2 svelte-1gmj9k4"
   >
     <input
-      class="w-1/2 svelte-flvs0m"
+      class="w-1/2 svelte-1gmj9k4"
       max="100"
       min="0"
       type="range"
     />
      
     <div
-      class="sliderTrack svelte-flvs0m"
+      class="sliderTrack svelte-1gmj9k4"
     >
       <span
-        class="progress svelte-flvs0m"
+        class="progress svelte-1gmj9k4"
         style="right:90%"
       />
     </div>
