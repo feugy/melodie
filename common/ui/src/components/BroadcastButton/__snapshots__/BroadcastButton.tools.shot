@@ -3,13 +3,13 @@
 exports[`Toolshot components/BroadcastButton/BroadcastButton.tools.svelte: Components/Broadcast button 1`] = `
 <span>
   <span
-    class="button svelte-d6nb7m"
+    class="button svelte-cykzim"
   >
     <button
-      class="iconOnly noBorder svelte-1e4q28k"
+      class="iconOnly noBorder svelte-1vd9h50"
     >
       <i
-        class="material-icons svelte-1e4q28k"
+        class="material-icons svelte-1vd9h50"
       >
         wifi_off
       </i>

@@ -5,7 +5,7 @@ import { join, resolve } from 'path'
 import { defineConfig } from 'vite'
 
 export default defineConfig({
-  server: { open: true },
+  server: { open: true, port: 3002 },
   plugins: [
     svelte(),
     yaml(),
