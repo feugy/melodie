@@ -6,6 +6,7 @@ import { nanoid } from 'nanoid'
 
 let ws
 const messages$ = new BehaviorSubject({})
+const lastInvokation$ = new BehaviorSubject()
 
 /**
  * Connects to the server's Websocket.
@@ -77,6 +78,7 @@ export function send(data, failOnError = true) {
       throw new Error(`unestablished connection, call initConnection() first`)
     }
   } else {
+    lastInvokation$.next(data)
     ws.send(
       JSON.stringify(
         data.error
@@ -87,7 +89,9 @@ export function send(data, failOnError = true) {
   }
 }
 
-const lastInvokation$ = new BehaviorSubject()
+/**
+ * @yields {object} last invoked server method, with `invoked` , `args` and `id`
+ */
 export const lastInvokation = lastInvokation$.asObservable()
 
 /**

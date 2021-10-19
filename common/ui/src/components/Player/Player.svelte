@@ -96,7 +96,6 @@
 
   function handleError() {
     isPlaying = false
-    isLoading = true
     const save = src
     src = null
     setTimeout(() => (src = save), 100)

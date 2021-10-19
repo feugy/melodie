@@ -1,11 +1,18 @@
 'use strict'
 
 import { first, timeout } from 'rxjs/operators'
+import { get } from 'svelte/store'
 import faker from 'faker'
 import WebSocket from 'ws'
 import { sleep } from '../tests'
-const { closeConnection, fromServerEvent, initConnection, invoke, send } =
-  jest.requireActual('./connection')
+const {
+  closeConnection,
+  fromServerEvent,
+  initConnection,
+  invoke,
+  lastInvokation,
+  send
+} = jest.requireActual('./connection')
 
 describe.only('connection utilities', () => {
   let server
@@ -54,6 +61,7 @@ describe.only('connection utilities', () => {
     await closure
     expect(errorSpy).not.toHaveBeenCalled()
     expect(handleLostConnection).not.toHaveBeenCalled()
+    expect(get(lastInvokation)).toBeUndefined()
   })
 
   it('throws when initializing connection twice', async () => {
@@ -82,7 +90,13 @@ describe.only('connection utilities', () => {
     const invoked = 'media.triggerArtistsEnrichment'
     const args = faker.random.arrayElements()
     await initConnection(serverUrl, handleLostConnection)
+    expect(get(lastInvokation)).toBeUndefined()
     expect(await invoke(invoked, ...args)).toEqual(result)
+    expect(get(lastInvokation)).toEqual({
+      invoked,
+      args,
+      id: expect.any(String)
+    })
     expect(handleMessage).toHaveBeenCalledWith({
       invoked,
       args,

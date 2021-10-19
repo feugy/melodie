@@ -297,7 +297,7 @@ describe('Player component', () => {
     await audio.dispatchEvent(new Event('error'))
 
     expect(screen.queryByText('pause')).not.toBeInTheDocument()
-    expect(screen.queryByRole('button', { name: 'play_arrow' })).toBeDisabled()
+    expect(screen.queryByRole('button', { name: 'play_arrow' })).toBeEnabled()
     expect(get(current)).toBeUndefined()
 
     await audio.dispatchEvent(new Event('loadeddata'))
