@@ -3,39 +3,39 @@
 exports[`Toolshot components/TracksQueue/TracksQueue.tools.svelte: Empty 1`] = `
 <div>
   <span
-    class="sentinel svelte-1iy4s0s"
+    class="sentinel svelte-1oaxvmy"
   />
    
   <nav
-    class="svelte-1iy4s0s"
+    class="svelte-1oaxvmy"
   >
     <header
-      class="svelte-eibfn2"
+      class="svelte-1lxfxfd"
     >
       <h3>
         0 tracks
       </h3>
        
       <span
-        class="totalDuration svelte-eibfn2"
+        class="totalDuration svelte-1lxfxfd"
       />
        
     </header>
   </nav>
    
   <header
-    class=" svelte-8800qh"
+    class=" svelte-t58ezf"
     style="--image: url(../images/jason-rosewell-ASKeuOZqhYU-unsplash.jpg); --shade-color: rgba(0, 0, 0, 0.7); --bgPosition: center;"
   >
     <h1
-      class="svelte-8800qh"
+      class="svelte-t58ezf"
     >
       Queue
     </h1>
   </header>
    
   <div
-    class="svelte-eibfn2"
+    class="svelte-1lxfxfd"
   >
     <ol />
   </div>
@@ -45,14 +45,14 @@ exports[`Toolshot components/TracksQueue/TracksQueue.tools.svelte: Empty 1`] = `
 exports[`Toolshot components/TracksQueue/TracksQueue.tools.svelte: With track list 1`] = `
 <div>
   <span
-    class="sentinel svelte-1iy4s0s"
+    class="sentinel svelte-1oaxvmy"
   />
    
   <nav
-    class="svelte-1iy4s0s"
+    class="svelte-1oaxvmy"
   >
     <header
-      class="svelte-eibfn2"
+      class="svelte-1lxfxfd"
     >
       <h3>
         8 tracks
@@ -61,13 +61,13 @@ exports[`Toolshot components/TracksQueue/TracksQueue.tools.svelte: With track li
       <span
         aria-expanded="false"
         aria-haspopup="menu"
-        class="wrapper svelte-1x6dshm"
+        class="wrapper svelte-11prmkk"
       >
         <button
-          class="iconOnly noBorder svelte-1vd9h50"
+          class="iconOnly noBorder svelte-1e4q28k"
         >
           <i
-            class="material-icons svelte-1vd9h50"
+            class="material-icons svelte-1e4q28k"
           >
             library_add
           </i>
@@ -81,16 +81,16 @@ exports[`Toolshot components/TracksQueue/TracksQueue.tools.svelte: With track li
       
        
       <span
-        class="totalDuration svelte-eibfn2"
+        class="totalDuration svelte-1lxfxfd"
       >
         7:34
       </span>
        
       <button
-        class="iconOnly svelte-1vd9h50"
+        class="iconOnly svelte-1e4q28k"
       >
         <i
-          class="material-icons svelte-1vd9h50"
+          class="material-icons svelte-1e4q28k"
         >
           delete
         </i>
@@ -103,30 +103,30 @@ exports[`Toolshot components/TracksQueue/TracksQueue.tools.svelte: With track li
   </nav>
    
   <header
-    class=" svelte-8800qh"
+    class=" svelte-t58ezf"
     style="--image: url(../images/jason-rosewell-ASKeuOZqhYU-unsplash.jpg); --shade-color: rgba(0, 0, 0, 0.7); --bgPosition: center;"
   >
     <h1
-      class="svelte-8800qh"
+      class="svelte-t58ezf"
     >
       Queue
     </h1>
   </header>
    
   <div
-    class="svelte-eibfn2"
+    class="svelte-1lxfxfd"
   >
     <ol>
       <li
-        class="svelte-qra3ls"
+        class="svelte-w3rzzq"
         draggable="true"
       >
         <span
-          class="row svelte-eibfn2 current"
+          class="row svelte-1lxfxfd current"
           slot="item"
         >
           <div
-            class="flex-auto root svelte-1wnrcpi"
+            class="flex-auto root svelte-30dtyc"
           >
             <a
               class="flex-none"
@@ -134,7 +134,7 @@ exports[`Toolshot components/TracksQueue/TracksQueue.tools.svelte: With track li
             >
               <img
                 alt="./# Films/cover.jpg"
-                class="h-16 w-16 text-xs actionable rounded-sm svelte-dtt58s"
+                class="h-16 w-16 text-xs actionable rounded-sm svelte-1psk6yi"
                 height="256"
                 loading="lazy"
                 src="./%23 Films/cover.jpg"
@@ -145,10 +145,10 @@ exports[`Toolshot components/TracksQueue/TracksQueue.tools.svelte: With track li
             </a>
              
             <div
-              class="track svelte-1wnrcpi"
+              class="track svelte-30dtyc"
             >
               <span
-                class="title svelte-1wnrcpi"
+                class="title svelte-30dtyc"
               >
                 file 1
               </span>
@@ -165,7 +165,7 @@ exports[`Toolshot components/TracksQueue/TracksQueue.tools.svelte: With track li
             </div>
              
             <div
-              class="duration svelte-1wnrcpi"
+              class="duration svelte-30dtyc"
             >
               3:38
             </div>
@@ -173,10 +173,10 @@ exports[`Toolshot components/TracksQueue/TracksQueue.tools.svelte: With track li
           </div>
            
           <button
-            class="mx-2 iconOnly noBorder svelte-1vd9h50"
+            class="mx-2 iconOnly noBorder svelte-1e4q28k"
           >
             <i
-              class="material-icons svelte-1vd9h50"
+              class="material-icons svelte-1e4q28k"
             >
               close
             </i>
@@ -188,15 +188,15 @@ exports[`Toolshot components/TracksQueue/TracksQueue.tools.svelte: With track li
          
       </li>
       <li
-        class="svelte-qra3ls"
+        class="svelte-w3rzzq"
         draggable="true"
       >
         <span
-          class="row svelte-eibfn2"
+          class="row svelte-1lxfxfd"
           slot="item"
         >
           <div
-            class="flex-auto root svelte-1wnrcpi"
+            class="flex-auto root svelte-30dtyc"
           >
             <a
               class="flex-none"
@@ -204,7 +204,7 @@ exports[`Toolshot components/TracksQueue/TracksQueue.tools.svelte: With track li
             >
               <img
                 alt="./# Films/cover.jpg"
-                class="h-16 w-16 text-xs actionable rounded-sm svelte-dtt58s"
+                class="h-16 w-16 text-xs actionable rounded-sm svelte-1psk6yi"
                 height="256"
                 loading="lazy"
                 src="./%23 Films/cover.jpg"
@@ -215,10 +215,10 @@ exports[`Toolshot components/TracksQueue/TracksQueue.tools.svelte: With track li
             </a>
              
             <div
-              class="track svelte-1wnrcpi"
+              class="track svelte-30dtyc"
             >
               <span
-                class="title svelte-1wnrcpi"
+                class="title svelte-30dtyc"
               >
                 file 2
               </span>
@@ -235,7 +235,7 @@ exports[`Toolshot components/TracksQueue/TracksQueue.tools.svelte: With track li
             </div>
              
             <div
-              class="duration svelte-1wnrcpi"
+              class="duration svelte-30dtyc"
             >
               0:04
             </div>
@@ -243,10 +243,10 @@ exports[`Toolshot components/TracksQueue/TracksQueue.tools.svelte: With track li
           </div>
            
           <button
-            class="mx-2 iconOnly noBorder svelte-1vd9h50"
+            class="mx-2 iconOnly noBorder svelte-1e4q28k"
           >
             <i
-              class="material-icons svelte-1vd9h50"
+              class="material-icons svelte-1e4q28k"
             >
               close
             </i>
@@ -258,15 +258,15 @@ exports[`Toolshot components/TracksQueue/TracksQueue.tools.svelte: With track li
          
       </li>
       <li
-        class="svelte-qra3ls"
+        class="svelte-w3rzzq"
         draggable="true"
       >
         <span
-          class="row svelte-eibfn2"
+          class="row svelte-1lxfxfd"
           slot="item"
         >
           <div
-            class="flex-auto root svelte-1wnrcpi"
+            class="flex-auto root svelte-30dtyc"
           >
             <a
               class="flex-none"
@@ -274,7 +274,7 @@ exports[`Toolshot components/TracksQueue/TracksQueue.tools.svelte: With track li
             >
               <img
                 alt="./cover.jpg"
-                class="h-16 w-16 text-xs actionable rounded-sm svelte-dtt58s"
+                class="h-16 w-16 text-xs actionable rounded-sm svelte-1psk6yi"
                 height="256"
                 loading="lazy"
                 src="./cover.jpg"
@@ -285,10 +285,10 @@ exports[`Toolshot components/TracksQueue/TracksQueue.tools.svelte: With track li
             </a>
              
             <div
-              class="track svelte-1wnrcpi"
+              class="track svelte-30dtyc"
             >
               <span
-                class="title svelte-1wnrcpi"
+                class="title svelte-30dtyc"
               >
                 file 3
               </span>
@@ -305,7 +305,7 @@ exports[`Toolshot components/TracksQueue/TracksQueue.tools.svelte: With track li
             </div>
              
             <div
-              class="duration svelte-1wnrcpi"
+              class="duration svelte-30dtyc"
             >
               0:02
             </div>
@@ -313,10 +313,10 @@ exports[`Toolshot components/TracksQueue/TracksQueue.tools.svelte: With track li
           </div>
            
           <button
-            class="mx-2 iconOnly noBorder svelte-1vd9h50"
+            class="mx-2 iconOnly noBorder svelte-1e4q28k"
           >
             <i
-              class="material-icons svelte-1vd9h50"
+              class="material-icons svelte-1e4q28k"
             >
               close
             </i>
@@ -328,15 +328,15 @@ exports[`Toolshot components/TracksQueue/TracksQueue.tools.svelte: With track li
          
       </li>
       <li
-        class="svelte-qra3ls"
+        class="svelte-w3rzzq"
         draggable="true"
       >
         <span
-          class="row svelte-eibfn2"
+          class="row svelte-1lxfxfd"
           slot="item"
         >
           <div
-            class="flex-auto root svelte-1wnrcpi"
+            class="flex-auto root svelte-30dtyc"
           >
             <a
               class="flex-none"
@@ -344,7 +344,7 @@ exports[`Toolshot components/TracksQueue/TracksQueue.tools.svelte: With track li
             >
               <img
                 alt="./cover.jpg"
-                class="h-16 w-16 text-xs actionable rounded-sm svelte-dtt58s"
+                class="h-16 w-16 text-xs actionable rounded-sm svelte-1psk6yi"
                 height="256"
                 loading="lazy"
                 src="./cover.jpg"
@@ -355,10 +355,10 @@ exports[`Toolshot components/TracksQueue/TracksQueue.tools.svelte: With track li
             </a>
              
             <div
-              class="track svelte-1wnrcpi"
+              class="track svelte-30dtyc"
             >
               <span
-                class="title svelte-1wnrcpi"
+                class="title svelte-30dtyc"
               >
                 file 4
               </span>
@@ -375,7 +375,7 @@ exports[`Toolshot components/TracksQueue/TracksQueue.tools.svelte: With track li
             </div>
              
             <div
-              class="duration svelte-1wnrcpi"
+              class="duration svelte-30dtyc"
             >
               0:03
             </div>
@@ -383,10 +383,10 @@ exports[`Toolshot components/TracksQueue/TracksQueue.tools.svelte: With track li
           </div>
            
           <button
-            class="mx-2 iconOnly noBorder svelte-1vd9h50"
+            class="mx-2 iconOnly noBorder svelte-1e4q28k"
           >
             <i
-              class="material-icons svelte-1vd9h50"
+              class="material-icons svelte-1e4q28k"
             >
               close
             </i>
@@ -398,15 +398,15 @@ exports[`Toolshot components/TracksQueue/TracksQueue.tools.svelte: With track li
          
       </li>
       <li
-        class="svelte-qra3ls"
+        class="svelte-w3rzzq"
         draggable="true"
       >
         <span
-          class="row svelte-eibfn2"
+          class="row svelte-1lxfxfd"
           slot="item"
         >
           <div
-            class="flex-auto root svelte-1wnrcpi"
+            class="flex-auto root svelte-30dtyc"
           >
             <a
               class="flex-none"
@@ -414,7 +414,7 @@ exports[`Toolshot components/TracksQueue/TracksQueue.tools.svelte: With track li
             >
               <img
                 alt="./# Films/cover.jpg"
-                class="h-16 w-16 text-xs actionable rounded-sm svelte-dtt58s"
+                class="h-16 w-16 text-xs actionable rounded-sm svelte-1psk6yi"
                 height="256"
                 loading="lazy"
                 src="./%23 Films/cover.jpg"
@@ -425,10 +425,10 @@ exports[`Toolshot components/TracksQueue/TracksQueue.tools.svelte: With track li
             </a>
              
             <div
-              class="track svelte-1wnrcpi"
+              class="track svelte-30dtyc"
             >
               <span
-                class="title svelte-1wnrcpi"
+                class="title svelte-30dtyc"
               >
                 file 1
               </span>
@@ -445,7 +445,7 @@ exports[`Toolshot components/TracksQueue/TracksQueue.tools.svelte: With track li
             </div>
              
             <div
-              class="duration svelte-1wnrcpi"
+              class="duration svelte-30dtyc"
             >
               3:38
             </div>
@@ -453,10 +453,10 @@ exports[`Toolshot components/TracksQueue/TracksQueue.tools.svelte: With track li
           </div>
            
           <button
-            class="mx-2 iconOnly noBorder svelte-1vd9h50"
+            class="mx-2 iconOnly noBorder svelte-1e4q28k"
           >
             <i
-              class="material-icons svelte-1vd9h50"
+              class="material-icons svelte-1e4q28k"
             >
               close
             </i>
@@ -468,15 +468,15 @@ exports[`Toolshot components/TracksQueue/TracksQueue.tools.svelte: With track li
          
       </li>
       <li
-        class="svelte-qra3ls"
+        class="svelte-w3rzzq"
         draggable="true"
       >
         <span
-          class="row svelte-eibfn2"
+          class="row svelte-1lxfxfd"
           slot="item"
         >
           <div
-            class="flex-auto root svelte-1wnrcpi"
+            class="flex-auto root svelte-30dtyc"
           >
             <a
               class="flex-none"
@@ -484,7 +484,7 @@ exports[`Toolshot components/TracksQueue/TracksQueue.tools.svelte: With track li
             >
               <img
                 alt="./# Films/cover.jpg"
-                class="h-16 w-16 text-xs actionable rounded-sm svelte-dtt58s"
+                class="h-16 w-16 text-xs actionable rounded-sm svelte-1psk6yi"
                 height="256"
                 loading="lazy"
                 src="./%23 Films/cover.jpg"
@@ -495,10 +495,10 @@ exports[`Toolshot components/TracksQueue/TracksQueue.tools.svelte: With track li
             </a>
              
             <div
-              class="track svelte-1wnrcpi"
+              class="track svelte-30dtyc"
             >
               <span
-                class="title svelte-1wnrcpi"
+                class="title svelte-30dtyc"
               >
                 file 2
               </span>
@@ -515,7 +515,7 @@ exports[`Toolshot components/TracksQueue/TracksQueue.tools.svelte: With track li
             </div>
              
             <div
-              class="duration svelte-1wnrcpi"
+              class="duration svelte-30dtyc"
             >
               0:04
             </div>
@@ -523,10 +523,10 @@ exports[`Toolshot components/TracksQueue/TracksQueue.tools.svelte: With track li
           </div>
            
           <button
-            class="mx-2 iconOnly noBorder svelte-1vd9h50"
+            class="mx-2 iconOnly noBorder svelte-1e4q28k"
           >
             <i
-              class="material-icons svelte-1vd9h50"
+              class="material-icons svelte-1e4q28k"
             >
               close
             </i>
@@ -538,15 +538,15 @@ exports[`Toolshot components/TracksQueue/TracksQueue.tools.svelte: With track li
          
       </li>
       <li
-        class="svelte-qra3ls"
+        class="svelte-w3rzzq"
         draggable="true"
       >
         <span
-          class="row svelte-eibfn2"
+          class="row svelte-1lxfxfd"
           slot="item"
         >
           <div
-            class="flex-auto root svelte-1wnrcpi"
+            class="flex-auto root svelte-30dtyc"
           >
             <a
               class="flex-none"
@@ -554,7 +554,7 @@ exports[`Toolshot components/TracksQueue/TracksQueue.tools.svelte: With track li
             >
               <img
                 alt="./cover.jpg"
-                class="h-16 w-16 text-xs actionable rounded-sm svelte-dtt58s"
+                class="h-16 w-16 text-xs actionable rounded-sm svelte-1psk6yi"
                 height="256"
                 loading="lazy"
                 src="./cover.jpg"
@@ -565,10 +565,10 @@ exports[`Toolshot components/TracksQueue/TracksQueue.tools.svelte: With track li
             </a>
              
             <div
-              class="track svelte-1wnrcpi"
+              class="track svelte-30dtyc"
             >
               <span
-                class="title svelte-1wnrcpi"
+                class="title svelte-30dtyc"
               >
                 file 3
               </span>
@@ -585,7 +585,7 @@ exports[`Toolshot components/TracksQueue/TracksQueue.tools.svelte: With track li
             </div>
              
             <div
-              class="duration svelte-1wnrcpi"
+              class="duration svelte-30dtyc"
             >
               0:02
             </div>
@@ -593,10 +593,10 @@ exports[`Toolshot components/TracksQueue/TracksQueue.tools.svelte: With track li
           </div>
            
           <button
-            class="mx-2 iconOnly noBorder svelte-1vd9h50"
+            class="mx-2 iconOnly noBorder svelte-1e4q28k"
           >
             <i
-              class="material-icons svelte-1vd9h50"
+              class="material-icons svelte-1e4q28k"
             >
               close
             </i>
@@ -608,15 +608,15 @@ exports[`Toolshot components/TracksQueue/TracksQueue.tools.svelte: With track li
          
       </li>
       <li
-        class="svelte-qra3ls"
+        class="svelte-w3rzzq"
         draggable="true"
       >
         <span
-          class="row svelte-eibfn2"
+          class="row svelte-1lxfxfd"
           slot="item"
         >
           <div
-            class="flex-auto root svelte-1wnrcpi"
+            class="flex-auto root svelte-30dtyc"
           >
             <a
               class="flex-none"
@@ -624,7 +624,7 @@ exports[`Toolshot components/TracksQueue/TracksQueue.tools.svelte: With track li
             >
               <img
                 alt="./cover.jpg"
-                class="h-16 w-16 text-xs actionable rounded-sm svelte-dtt58s"
+                class="h-16 w-16 text-xs actionable rounded-sm svelte-1psk6yi"
                 height="256"
                 loading="lazy"
                 src="./cover.jpg"
@@ -635,10 +635,10 @@ exports[`Toolshot components/TracksQueue/TracksQueue.tools.svelte: With track li
             </a>
              
             <div
-              class="track svelte-1wnrcpi"
+              class="track svelte-30dtyc"
             >
               <span
-                class="title svelte-1wnrcpi"
+                class="title svelte-30dtyc"
               >
                 file 4
               </span>
@@ -655,7 +655,7 @@ exports[`Toolshot components/TracksQueue/TracksQueue.tools.svelte: With track li
             </div>
              
             <div
-              class="duration svelte-1wnrcpi"
+              class="duration svelte-30dtyc"
             >
               0:03
             </div>
@@ -663,10 +663,10 @@ exports[`Toolshot components/TracksQueue/TracksQueue.tools.svelte: With track li
           </div>
            
           <button
-            class="mx-2 iconOnly noBorder svelte-1vd9h50"
+            class="mx-2 iconOnly noBorder svelte-1e4q28k"
           >
             <i
-              class="material-icons svelte-1vd9h50"
+              class="material-icons svelte-1e4q28k"
             >
               close
             </i>

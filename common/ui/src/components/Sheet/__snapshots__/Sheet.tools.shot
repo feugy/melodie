@@ -2,20 +2,20 @@
 
 exports[`Toolshot components/Sheet/Sheet.tools.svelte: Components/Sheet 1`] = `
 <div
-  class="wrapper svelte-81oo1z"
+  class="wrapper svelte-1ruiooq"
 >
   <div
-    class="svelte-1ieq8lj"
+    class="svelte-ccx7ge"
   >
     <div
-      class="main svelte-1ieq8lj"
+      class="main svelte-ccx7ge"
     >
       <section
-        class="svelte-81oo1z"
+        class="svelte-1ruiooq"
         slot="main"
       >
         <button
-          class="svelte-1vd9h50"
+          class="svelte-1e4q28k"
         >
            
           <span>

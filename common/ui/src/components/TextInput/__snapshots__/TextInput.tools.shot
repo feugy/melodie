@@ -5,11 +5,11 @@ exports[`Toolshot components/TextInput/TextInput.tools.svelte: Default 1`] = `
   class="inline-block w-64"
 >
   <span
-    class="svelte-1crflxh"
+    class="svelte-1rbj4tt"
   >
      
     <input
-      class="svelte-1crflxh"
+      class="svelte-1rbj4tt"
       placeholder=""
       type="text"
     />
@@ -22,16 +22,16 @@ exports[`Toolshot components/TextInput/TextInput.tools.svelte: With icon and pla
   class="inline-block w-64"
 >
   <span
-    class="svelte-1crflxh icon"
+    class="svelte-1rbj4tt icon"
   >
     <i
-      class="material-icons svelte-1crflxh"
+      class="material-icons svelte-1rbj4tt"
     >
       search
     </i>
      
     <input
-      class="svelte-1crflxh"
+      class="svelte-1rbj4tt"
       placeholder="search..."
       type="search"
     />
@@ -44,16 +44,16 @@ exports[`Toolshot components/TextInput/TextInput.tools.svelte: With value 1`] = 
   class="inline-block w-64"
 >
   <span
-    class="svelte-1crflxh icon"
+    class="svelte-1rbj4tt icon"
   >
     <i
-      class="material-icons svelte-1crflxh"
+      class="material-icons svelte-1rbj4tt"
     >
       person
     </i>
      
     <input
-      class="svelte-1crflxh"
+      class="svelte-1rbj4tt"
       placeholder=""
       type="text"
     />

@@ -4,18 +4,18 @@ exports[`Toolshot components/Album/Album.tools.svelte: Default 1`] = `
 <div>
    
   <span
-    class="svelte-9e8ghi"
+    class="svelte-4r86n"
     role="article"
   >
     <div
-      class="content svelte-9e8ghi"
+      class="content svelte-4r86n"
     >
       <span
-        class="artwork svelte-9e8ghi"
+        class="artwork svelte-4r86n"
       >
         <img
           alt="./cover.jpg"
-          class="h-full w-full rounded-sm svelte-dtt58s"
+          class="h-full w-full rounded-sm svelte-1psk6yi"
           height="256"
           loading="lazy"
           src="./cover.jpg"
@@ -26,15 +26,15 @@ exports[`Toolshot components/Album/Album.tools.svelte: Default 1`] = `
       </span>
        
       <p
-        class="controls svelte-9e8ghi"
+        class="controls svelte-4r86n"
       >
          
         <button
-          class="primary iconOnly large svelte-1vd9h50"
+          class="primary iconOnly large svelte-1e4q28k"
           data-testid="play"
         >
           <i
-            class="material-icons svelte-1vd9h50"
+            class="material-icons svelte-1e4q28k"
           >
             play_arrow
           </i>
@@ -44,11 +44,11 @@ exports[`Toolshot components/Album/Album.tools.svelte: Default 1`] = `
         </button>
          
         <button
-          class="primary iconOnly large svelte-1vd9h50"
+          class="primary iconOnly large svelte-1e4q28k"
           data-testid="enqueue"
         >
           <i
-            class="material-icons svelte-1vd9h50"
+            class="material-icons svelte-1e4q28k"
           >
             playlist_add
           </i>
@@ -60,16 +60,16 @@ exports[`Toolshot components/Album/Album.tools.svelte: Default 1`] = `
     </div>
      
     <header
-      class="svelte-9e8ghi"
+      class="svelte-4r86n"
     >
       <h3
-        class="svelte-9e8ghi"
+        class="svelte-4r86n"
       >
         Diamonds on the inside
       </h3>
        
       <h4
-        class="svelte-1vmk98n"
+        class="svelte-rw2hde"
         slot="details"
       >
         by 
@@ -100,18 +100,18 @@ exports[`Toolshot components/Album/Album.tools.svelte: Many artists 1`] = `
 <div>
    
   <span
-    class="svelte-9e8ghi"
+    class="svelte-4r86n"
     role="article"
   >
     <div
-      class="content svelte-9e8ghi"
+      class="content svelte-4r86n"
     >
       <span
-        class="artwork svelte-9e8ghi"
+        class="artwork svelte-4r86n"
       >
         <img
           alt="./cover.jpg"
-          class="h-full w-full rounded-sm svelte-dtt58s"
+          class="h-full w-full rounded-sm svelte-1psk6yi"
           height="256"
           loading="lazy"
           src="./cover.jpg"
@@ -122,15 +122,15 @@ exports[`Toolshot components/Album/Album.tools.svelte: Many artists 1`] = `
       </span>
        
       <p
-        class="controls svelte-9e8ghi"
+        class="controls svelte-4r86n"
       >
          
         <button
-          class="primary iconOnly large svelte-1vd9h50"
+          class="primary iconOnly large svelte-1e4q28k"
           data-testid="play"
         >
           <i
-            class="material-icons svelte-1vd9h50"
+            class="material-icons svelte-1e4q28k"
           >
             play_arrow
           </i>
@@ -140,11 +140,11 @@ exports[`Toolshot components/Album/Album.tools.svelte: Many artists 1`] = `
         </button>
          
         <button
-          class="primary iconOnly large svelte-1vd9h50"
+          class="primary iconOnly large svelte-1e4q28k"
           data-testid="enqueue"
         >
           <i
-            class="material-icons svelte-1vd9h50"
+            class="material-icons svelte-1e4q28k"
           >
             playlist_add
           </i>
@@ -156,16 +156,16 @@ exports[`Toolshot components/Album/Album.tools.svelte: Many artists 1`] = `
     </div>
      
     <header
-      class="svelte-9e8ghi"
+      class="svelte-4r86n"
     >
       <h3
-        class="svelte-9e8ghi"
+        class="svelte-4r86n"
       >
         Diamonds on the inside
       </h3>
        
       <h4
-        class="svelte-1vmk98n"
+        class="svelte-rw2hde"
         slot="details"
       >
         by 
@@ -212,18 +212,18 @@ exports[`Toolshot components/Album/Album.tools.svelte: No artist 1`] = `
 <div>
    
   <span
-    class="svelte-9e8ghi"
+    class="svelte-4r86n"
     role="article"
   >
     <div
-      class="content svelte-9e8ghi"
+      class="content svelte-4r86n"
     >
       <span
-        class="artwork svelte-9e8ghi"
+        class="artwork svelte-4r86n"
       >
         <img
           alt="./cover.jpg"
-          class="h-full w-full rounded-sm svelte-dtt58s"
+          class="h-full w-full rounded-sm svelte-1psk6yi"
           height="256"
           loading="lazy"
           src="./cover.jpg"
@@ -234,15 +234,15 @@ exports[`Toolshot components/Album/Album.tools.svelte: No artist 1`] = `
       </span>
        
       <p
-        class="controls svelte-9e8ghi"
+        class="controls svelte-4r86n"
       >
          
         <button
-          class="primary iconOnly large svelte-1vd9h50"
+          class="primary iconOnly large svelte-1e4q28k"
           data-testid="play"
         >
           <i
-            class="material-icons svelte-1vd9h50"
+            class="material-icons svelte-1e4q28k"
           >
             play_arrow
           </i>
@@ -252,11 +252,11 @@ exports[`Toolshot components/Album/Album.tools.svelte: No artist 1`] = `
         </button>
          
         <button
-          class="primary iconOnly large svelte-1vd9h50"
+          class="primary iconOnly large svelte-1e4q28k"
           data-testid="enqueue"
         >
           <i
-            class="material-icons svelte-1vd9h50"
+            class="material-icons svelte-1e4q28k"
           >
             playlist_add
           </i>
@@ -268,16 +268,16 @@ exports[`Toolshot components/Album/Album.tools.svelte: No artist 1`] = `
     </div>
      
     <header
-      class="svelte-9e8ghi"
+      class="svelte-4r86n"
     >
       <h3
-        class="svelte-9e8ghi"
+        class="svelte-4r86n"
       >
         Diamonds on the inside
       </h3>
        
       <h4
-        class="svelte-1vmk98n"
+        class="svelte-rw2hde"
         slot="details"
       >
          
@@ -291,27 +291,27 @@ exports[`Toolshot components/Album/Album.tools.svelte: Unknown 1`] = `
 <div>
    
   <span
-    class="svelte-9e8ghi"
+    class="svelte-4r86n"
     role="article"
   >
     <div
-      class="content svelte-9e8ghi"
+      class="content svelte-4r86n"
     >
       <span
-        class="artwork svelte-9e8ghi"
+        class="artwork svelte-4r86n"
       >
         <img
-          class="h-full w-full rounded-sm hidden svelte-dtt58s"
+          class="h-full w-full rounded-sm hidden svelte-1psk6yi"
           height="256"
           loading="lazy"
           width="256"
         />
          
         <span
-          class="h-full w-full svelte-dtt58s rounded-sm"
+          class="h-full w-full svelte-1psk6yi rounded-sm"
         >
           <i
-            class="material-icons svelte-dtt58s"
+            class="material-icons svelte-1psk6yi"
           >
             music_note
           </i>
@@ -320,15 +320,15 @@ exports[`Toolshot components/Album/Album.tools.svelte: Unknown 1`] = `
       </span>
        
       <p
-        class="controls svelte-9e8ghi"
+        class="controls svelte-4r86n"
       >
          
         <button
-          class="primary iconOnly large svelte-1vd9h50"
+          class="primary iconOnly large svelte-1e4q28k"
           data-testid="play"
         >
           <i
-            class="material-icons svelte-1vd9h50"
+            class="material-icons svelte-1e4q28k"
           >
             play_arrow
           </i>
@@ -338,11 +338,11 @@ exports[`Toolshot components/Album/Album.tools.svelte: Unknown 1`] = `
         </button>
          
         <button
-          class="primary iconOnly large svelte-1vd9h50"
+          class="primary iconOnly large svelte-1e4q28k"
           data-testid="enqueue"
         >
           <i
-            class="material-icons svelte-1vd9h50"
+            class="material-icons svelte-1e4q28k"
           >
             playlist_add
           </i>
@@ -354,16 +354,16 @@ exports[`Toolshot components/Album/Album.tools.svelte: Unknown 1`] = `
     </div>
      
     <header
-      class="svelte-9e8ghi"
+      class="svelte-4r86n"
     >
       <h3
-        class="svelte-9e8ghi"
+        class="svelte-4r86n"
       >
         Unknown
       </h3>
        
       <h4
-        class="svelte-1vmk98n"
+        class="svelte-rw2hde"
         slot="details"
       >
         by 

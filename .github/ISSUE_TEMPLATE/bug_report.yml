@@ -14,7 +14,6 @@ body:
 
         Please make sure you first searched for existing bugs.
         If you have an idea or some feedback, let's have a [discussion](https://github.com/feugy/melodie/discussions) instead.
-      #render: markdown
     validations:
       required: true
   - type: textarea
