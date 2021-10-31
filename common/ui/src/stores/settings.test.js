@@ -74,10 +74,11 @@ describe('settings store', () => {
       }
       invoke.mockResolvedValue(values)
       const err = new Error('Connection error')
+      const getAuthDetails = jest.fn()
 
       // failure
       initConnection.mockRejectedValueOnce(err)
-      await init(url)
+      await init(url, getAuthDetails)
 
       expect(get(connected)).toEqual(false)
       expect(get(settings)).toEqual({
@@ -85,7 +86,11 @@ describe('settings store', () => {
         isBroadcasting: false,
         providers: { audiodb: {}, discogs: {} }
       })
-      expect(initConnection).toHaveBeenCalledWith(url, expect.any(Function))
+      expect(initConnection).toHaveBeenCalledWith(
+        url,
+        expect.any(Function),
+        getAuthDetails
+      )
       expect(initConnection).toHaveBeenCalledTimes(1)
       expect(invoke).not.toHaveBeenCalled()
 
@@ -95,7 +100,11 @@ describe('settings store', () => {
 
       expect(get(connected)).toEqual(true)
       expect(get(settings)).toEqual(values)
-      expect(initConnection).toHaveBeenCalledWith(url, expect.any(Function))
+      expect(initConnection).toHaveBeenCalledWith(
+        url,
+        expect.any(Function),
+        getAuthDetails
+      )
       expect(initConnection).toHaveBeenCalledTimes(2)
       expect(invoke).toHaveBeenCalledTimes(1)
 
@@ -113,13 +122,15 @@ describe('settings store', () => {
       expect(get(connected)).toEqual(true)
       expect(get(settings)).toEqual(values)
       expect(initConnection).toHaveBeenCalledTimes(5)
+      expect(getAuthDetails).not.toHaveBeenCalled()
     })
   })
 
   describe('given initialization', () => {
     beforeEach(async () => {
       await init(
-        `${faker.internet.protocol()}://${faker.internet.ip()}:${port}`
+        `${faker.internet.protocol()}://${faker.internet.ip()}:${port}`,
+        jest.fn()
       )
       jest.resetAllMocks()
     })
@@ -229,6 +240,7 @@ describe('settings store', () => {
       expect(closeConnection).toHaveBeenCalledTimes(1)
       expect(initConnection).toHaveBeenCalledWith(
         `ws://localhost:${port}`,
+        expect.any(Function),
         expect.any(Function)
       )
       expect(initConnection).toHaveBeenCalledTimes(1)
@@ -263,6 +275,7 @@ describe('settings store', () => {
       expect(closeConnection).toHaveBeenCalledTimes(1)
       expect(initConnection).toHaveBeenCalledWith(
         `ws://localhost:${port}`,
+        expect.any(Function),
         expect.any(Function)
       )
       expect(initConnection).toHaveBeenCalledTimes(1)

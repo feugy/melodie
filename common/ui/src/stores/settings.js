@@ -16,6 +16,8 @@ let reconnectTimeout
 
 let port
 
+let getAuthDetails
+
 const settings$ = new BehaviorSubject({
   providers: { audiodb: {}, discogs: {} },
   enqueueBehaviour: {},
@@ -42,7 +44,7 @@ async function connect(address, bail = false) {
   const handleLostConnection = () => connect(address)
 
   try {
-    await initConnection(address, handleLostConnection)
+    await initConnection(address, handleLostConnection, getAuthDetails)
     connected$.next(true)
   } catch (err) {
     if (bail) {
@@ -53,8 +55,9 @@ async function connect(address, bail = false) {
   }
 }
 
-export async function init(address) {
+export async function init(address, fetchAuthDetails) {
   try {
+    getAuthDetails = fetchAuthDetails ?? getAuthDetails
     await connect(address, true)
     fromServerEvent('settings-saved').subscribe(saved => {
       settings$.next(saved)

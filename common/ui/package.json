@@ -34,6 +34,7 @@
     "jest-yaml-transform": "^0.2.0",
     "knuth-shuffle": "^1.0.8",
     "nanoid": "^3.1.25",
+    "otpauth": "^7.0.6",
     "postcss-import": "^14.0.2",
     "postcss-load-config": "^3.1.0",
     "postcss-nesting": "^8.0.1",

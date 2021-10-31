@@ -1,6 +1,6 @@
 'use strict'
 
-import { BehaviorSubject } from 'rxjs'
+import { BehaviorSubject, firstValueFrom } from 'rxjs'
 import { filter, map, pluck, take } from 'rxjs/operators'
 import { nanoid } from 'nanoid'
 
@@ -14,16 +14,22 @@ const lastInvokation$ = new BehaviorSubject()
  * @async
  * @param {string} address            - WebService url to connect to
  * @param {function} onConnectionLost - function called when connection is lost
+ * @param {function} getAuthDetails   - async function called to get authentication details
  * @throws {err} if connection can not been established
  */
-export async function initConnection(address, onConnectionLost) {
+export async function initConnection(
+  address,
+  onConnectionLost,
+  getAuthDetails
+) {
   if (ws && [WebSocket.CONNECTING, WebSocket.OPEN].includes(ws.readyState)) {
     throw new Error(`connection already established, close it first`)
   }
 
+  const totp = await getAuthDetails()
   ws = await new Promise((resolve, reject) => {
     try {
-      const socket = new WebSocket(`${address}/ws`)
+      const socket = new WebSocket(`${address}/ws?totp=${totp}`)
       socket.onopen = () => {
         socket.onopen = null
         socket.onerror = null
@@ -105,8 +111,8 @@ export const lastInvokation = lastInvokation$.asObservable()
 export async function invoke(invoked, ...args) {
   const id = nanoid()
   send({ invoked, args, id })
-  return messages$
-    .pipe(
+  return firstValueFrom(
+    messages$.pipe(
       filter(msg => msg.id === id),
       take(1),
       map(({ result, error }) => {
@@ -116,7 +122,7 @@ export async function invoke(invoked, ...args) {
         return result
       })
     )
-    .toPromise()
+  )
 }
 
 const observables = new Map()

@@ -14,7 +14,7 @@ async function start(publicFolder, win, descriptor, desiredPort) {
   const { version, name } = descriptor
   await models.init(getStoragePath('db.sqlite3'))
 
-  const { close, address } = await initConnection(
+  const { close, address, totp } = await initConnection(
     {
       core: {
         focusWindow: () => focusOnNotification(win),
@@ -35,7 +35,7 @@ async function start(publicFolder, win, descriptor, desiredPort) {
   const port = +address.split(':')[2]
   await settings.init(port)
   tracks.listen()
-  return { close, port }
+  return { close, port, totp }
 }
 
 module.exports = { start, playFiles: tracks.play }

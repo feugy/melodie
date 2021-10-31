@@ -1,6 +1,8 @@
 <svelte:options immutable={true} />
 
 <script>
+  import { firstValueFrom } from 'rxjs'
+  import { filter } from 'rxjs/operators'
   import { onMount, tick } from 'svelte'
   import { _, locale } from 'svelte-intl'
   import { replace } from 'svelte-spa-router'
@@ -19,7 +21,7 @@
   import * as tutorial from './stores/tutorial'
   import { isLoading } from './stores/loading'
   import { screenSize, SM } from './stores/window'
-  import { isDesktop } from './stores/settings'
+  import { connected, isDesktop } from './stores/settings'
   import { invoke, stayAwake, releaseWakeLock } from './utils'
   import { autoScrollable } from './actions'
   import Router from './components/Router'
@@ -35,6 +37,9 @@
   }
 
   onMount(async () => {
+    await firstValueFrom(
+      connected.pipe(filter(connected => connected === true))
+    )
     const settings = await invoke('settings.get')
     locale.set(settings.locale)
     // await on locale to be set before rendering

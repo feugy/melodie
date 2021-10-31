@@ -16,6 +16,7 @@ artist: Artiste
 artists: Artistes
 broadcasting: Diffusion
 broadcast port: 'Port de diffusion : '
+broadcast port placeholder: Port local utilisé (n'oubliez pas de configurer votre pare-feu)
 build with love by: Fait avec amour par <a href="http://feugy.github.io" class="underlined">Damien Simonin Feugas</a>
 by _: 'par {artist}'
 cancel: Annuler
@@ -25,6 +26,7 @@ choose cover: Choisissez une couverture
 clear: Vider
 clears queue and plays: vide la liste et lit le morceau
 close queue: Fermer la liste
+code copied: Copié dans le presse papier !
 connection lost: Connexion perdue !
 confirm playlist _ delection: Voulez-vous vraiment supprimer la playlist {name} ?
 delete playlist: Supprimer

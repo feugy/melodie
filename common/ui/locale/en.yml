@@ -24,6 +24,7 @@ artist: Artist
 artists: Artists
 broadcasting: Broadcasting
 broadcast port: 'Broadcasting port: '
+broadcast port placeholder: Local port used (don't forget to update your firewall)
 build with love by: Built with love by <a href="http://feugy.github.io" class="underlined">Damien Simonin Feugas</a>
 by _: 'by {artist}'
 cancel: Cancel
@@ -33,6 +34,7 @@ choose cover: Choose a cover
 clear: Clear
 clears queue and plays: clears queue and plays track
 close queue: Close queue
+code copied: Copied into the clipboard!
 connection lost: Connection lost!
 confirm playlist _ delection: Do you really want to delete playlist {name}?
 delete playlist: Delete

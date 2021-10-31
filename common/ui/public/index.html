@@ -17,14 +17,6 @@
   <link rel="preload" href="./fonts/SourceSansPro-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="./fonts/PermanentMarker.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="./build/bundle.css">
-
-  <script type="application/javascript">
-    const match = /port=(\d+)/.exec(window.location.search)
-    window.serverUrl = match
-      ? `ws://localhost:${match[1]}`
-      : `${window.location.protocol.replace('http', 'ws')}//${window.location.host}`
-    window.dlUrl = window.serverUrl.replace('ws', 'http')
-  </script>
 </head>
 
 <body></body>

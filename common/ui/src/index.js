@@ -3,10 +3,22 @@
 import './common'
 import App from './App.svelte'
 import { send } from './utils'
-import { init } from './stores/settings'
+import { init as initSettings } from './stores/settings'
+import { init as initTotp, totp } from './stores/totp'
+import { get } from 'svelte/store'
 
 async function startApp() {
-  await init(window.serverUrl)
+  const url = new URL(window.location)
+  const port = url.searchParams.get('port')
+  const serverUrl = port
+    ? `ws://localhost:${port}`
+    : `${window.location.protocol.replace('http', 'ws')}//${
+        window.location.host
+      }`
+  window.dlUrl = serverUrl.replace('ws', 'http')
+
+  initTotp(url.searchParams.get('totpSecret'), url.searchParams.get('totp'))
+  await initSettings(serverUrl, () => get(totp))
 
   window.addEventListener('error', err => send(err, false))
   window.addEventListener('unhandledrejection', ({ reason }) =>
@@ -21,6 +33,14 @@ async function startApp() {
   console.warn = warn => {
     send({ warn }, false)
     originalWarn(warn)
+  }
+
+  // clean all parameters from url
+  if (!/electron/i.test(navigator.userAgent)) {
+    for (const [param] of url.searchParams) {
+      url.searchParams.delete(param)
+    }
+    window.history.replaceState({}, document.title, url.toString())
   }
 
   return new App({

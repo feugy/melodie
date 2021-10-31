@@ -60,6 +60,11 @@ Another option is to open it with Control-click: it'll immediately register the 
 
 ### features
 
+- Simple authorization for broadcasting
+
+  - feat(ui): when running on web, prompts user from TOTP
+  - feat(ui): displays TOTP url in settings so user could use generator apps
+
 - use file and folder names to complete missing tags
 
 - merge components/Album|Artist|Playlist tests for GridItem + hover behaviour (desktop only)

@@ -386,7 +386,7 @@ exports[`Toolshot routes/settings.tools.svelte: Views/Settings 1`] = `
            
           <input
             class="svelte-1rbj4tt"
-            placeholder="broadcast port placeholder"
+            placeholder="Local port used (don't forget to update your firewall)"
             type="number"
           />
         </span>

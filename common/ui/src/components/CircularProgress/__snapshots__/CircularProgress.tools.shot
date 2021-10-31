@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Toolshot components/CircularProgress/CircularProgress.tools.svelte: Components/Circular Progress 1`] = `
+<span>
+  <svg
+    height="60"
+    role="progressbar"
+    style="--stroke-width: 2; --circumference: 163.36281798666926; --offset: 109.45308805106839;"
+    width="60"
+  >
+    <circle
+      class="svelte-4ocr2i"
+      cx="30"
+      cy="30"
+      r="26"
+    />
+  </svg>
+</span>
+`;

@@ -25,15 +25,18 @@ describe('Services', () => {
     const port1 = faker.datatype.number()
     const port2 = faker.datatype.number()
     const path = faker.system.filePath()
+    const totp = { foo: 'bar' }
     electron.app.getPath.mockReturnValue(path)
     const close = jest.fn()
     initConnection.mockResolvedValue({
       close,
-      address: `ws:localhost:${port2}`
+      address: `ws:localhost:${port2}`,
+      totp
     })
     expect(await start(publicFolder, {}, {}, port1)).toEqual({
       close,
-      port: port2
+      port: port2,
+      totp
     })
 
     expect(models.init).toHaveBeenCalledWith(join(path, 'db.sqlite3'))

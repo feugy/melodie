@@ -145,16 +145,17 @@ starting... To change log levels, edit the level file and run \`kill -USR2 ${pro
 
     configureExternalLinks(win)
 
-    const { close: stopServices, port: realPort } = await services.start(
-      publicFolder,
-      win,
-      descriptor,
-      desiredPort
-    )
+    const {
+      close: stopServices,
+      port: realPort,
+      totp
+    } = await services.start(publicFolder, win, descriptor, desiredPort)
 
     win.once('ready-to-show', () => win.show())
     await win.loadURL(
-      `file://${join(publicFolder, 'index.html')}?port=${realPort}`
+      `file://${join(publicFolder, 'index.html')}?port=${realPort}&totpSecret=${
+        totp.secret.hex
+      }`
     )
     const openSubscription = openFiles$
       .pipe(

@@ -15,6 +15,7 @@ const { broadcast } = require('../utils')
  * - {object} enqueueBehaviour  - `clearBefore` & `onClick` booleans to control how tracks are enqueued
  * - {boolean} isBroadcasting   - true when the UI is served over the broadcast port
  * - {number} broadcastPort     - broadcast port set by user (optional)
+ * - {string} totpKey           - Key used for Time-based One-Time Passwords
  */
 class SettingsModel extends Model {
   constructor() {
