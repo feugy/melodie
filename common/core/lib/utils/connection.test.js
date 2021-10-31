@@ -551,5 +551,44 @@ describe('connection utilities', () => {
         expect(services.media.getArtistMedia).toHaveBeenCalledTimes(1)
       })
     })
+
+    describe('given mocked time', () => {
+      let ws
+
+      beforeEach(jest.useFakeTimers)
+
+      afterEach(() => {
+        ws?.close()
+        jest.useRealTimers()
+      })
+
+      it('regularly sends new TOTP', async () => {
+        const now = Date.now()
+        ws = await connectWSClient(address, totp.generate())
+        let promise = listen(ws)
+
+        jest.setSystemTime(now + 30e3)
+        jest.runOnlyPendingTimers()
+
+        const message1 = await promise
+        expect(message1).toEqual({
+          event: 'totp',
+          args: expect.stringMatching(/\d{6}/)
+        })
+
+        promise = listen(ws)
+
+        jest.setSystemTime(now + 60e3)
+        jest.runOnlyPendingTimers()
+
+        const message2 = await promise
+
+        expect(message2).toEqual({
+          event: 'totp',
+          args: expect.stringMatching(/\d{6}/)
+        })
+        expect(message1.args).not.toEqual(message2.args)
+      })
+    })
   })
 })

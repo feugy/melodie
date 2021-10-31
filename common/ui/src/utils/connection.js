@@ -1,7 +1,7 @@
 'use strict'
 
 import { BehaviorSubject, firstValueFrom } from 'rxjs'
-import { filter, map, pluck, take } from 'rxjs/operators'
+import { filter, map, take } from 'rxjs/operators'
 import { nanoid } from 'nanoid'
 
 let ws
@@ -138,7 +138,7 @@ export function fromServerEvent(name) {
       name,
       messages$.pipe(
         filter(msg => msg.event === name),
-        pluck('args')
+        map(msg => msg.args)
       )
     )
   }

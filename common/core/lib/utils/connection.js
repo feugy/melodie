@@ -89,17 +89,19 @@ exports.initConnection = async function (services, publicFolder, port = 0) {
 
   let settings = await services.settings.get()
 
+  const period = 30
+
   const TOTP = new OTPAuth.TOTP({
     issuer: 'Mélodie',
     algorithm: 'SHA256',
     digits: 6,
-    period: 30,
+    period,
     secret: OTPAuth.Secret.fromUTF8(settings.totpSecret)
   })
 
   let wsConnected = false
 
-  const handleSavedSettings = savedSettings => {
+  function handleSavedSettings(savedSettings) {
     const needRestart = settings.isBroadcasting !== savedSettings.isBroadcasting
     settings = savedSettings
     if (needRestart) {
@@ -110,14 +112,29 @@ exports.initConnection = async function (services, publicFolder, port = 0) {
       }, 100)
     }
   }
-
   exports.messageBus.on('settings-saved', handleSavedSettings)
 
   function handleConnection(connection) {
+    let totpTimeout
     wsConnected = true
-    connection.socket.on('destroy', () => {
+
+    function sendTOTP() {
+      connection.socket.send(
+        JSON.stringify({ event: 'totp', args: TOTP.generate() })
+      )
+      totpTimeout = setTimeout(
+        sendTOTP,
+        (period - (Math.floor(Date.now() / 1000) % period)) * 1000
+      )
+    }
+
+    totpTimeout = setTimeout(sendTOTP, 1000)
+
+    connection.socket.on('close', () => {
+      clearTimeout(totpTimeout)
       wsConnected = false
     })
+
     connection.socket.on('message', async function handleMessage(rawData) {
       try {
         const data = JSON.parse(rawData)

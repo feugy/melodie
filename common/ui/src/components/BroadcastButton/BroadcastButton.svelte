@@ -46,13 +46,12 @@
   })
 
   function refreshRemaining() {
-    if (remaining) {
-      remaining = remaining === 1 ? period - 1 : remaining - 1
-    } else {
-      // initial
-      remaining = period - (Math.floor(Date.now() / 1000) % period)
-    }
-    remainingTimer = setTimeout(refreshRemaining, 1000)
+    const now = Date.now()
+    remaining = period - Math.floor((now / 1000) % period)
+    remainingTimer = setTimeout(
+      refreshRemaining,
+      1000 - (now - Math.floor(now / 1000) * 1000) // refresh exactly on the next second
+    )
   }
 
   function handleMouseEnter() {
