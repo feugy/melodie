@@ -51,20 +51,20 @@ describe('totp store', () => {
       expect(value1).toMatch(/\d{6}/)
       expect(get(totp)).toEqual(value1)
 
-      jest.setSystemTime(now + 30e3)
+      jest.setSystemTime(now + 30000)
       jest.runOnlyPendingTimers()
 
       let value2 = get(totp)
       expect(value2).toMatch(/\d{6}/)
       expect(value2).not.toEqual(value1)
 
-      jest.setSystemTime(now + 60e3)
+      jest.setSystemTime(now + 60000)
       jest.runOnlyPendingTimers()
 
-      let value3 = get(totp)
-      expect(value3).toMatch(/\d{6}/)
-      expect(value3).not.toEqual(value1)
-      expect(value3).not.toEqual(value2)
+      let valu000 = get(totp)
+      expect(valu000).toMatch(/\d{6}/)
+      expect(valu000).not.toEqual(value1)
+      expect(valu000).not.toEqual(value2)
     })
 
     it('can be cleaned up', () => {
@@ -72,7 +72,7 @@ describe('totp store', () => {
       cleanup()
       expect(get(totp)).toBeNull()
 
-      jest.setSystemTime(Date.now() + 30e3)
+      jest.setSystemTime(Date.now() + 30000)
       jest.runOnlyPendingTimers()
       expect(get(totp)).toBeNull()
     })
@@ -87,7 +87,7 @@ describe('totp store', () => {
       let now = Date.now()
       expect(get(totp)).toEqual(value)
 
-      jest.setSystemTime(now + 30e3)
+      jest.setSystemTime(now + 30000)
       jest.runOnlyPendingTimers()
 
       expect(get(totp)).toEqual(value)
@@ -116,7 +116,7 @@ describe('totp store', () => {
       cleanup()
       expect(get(totp)).toBeNull()
 
-      jest.setSystemTime(Date.now() + 30e3)
+      jest.setSystemTime(Date.now() + 30000)
       jest.runOnlyPendingTimers()
       expect(get(totp)).toBeNull()
       expect(localStorage.getItem('totp')).toBeNull()

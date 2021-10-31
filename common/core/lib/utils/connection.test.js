@@ -567,7 +567,7 @@ describe('connection utilities', () => {
         ws = await connectWSClient(address, totp.generate())
         let promise = listen(ws)
 
-        jest.setSystemTime(now + 30e3)
+        jest.setSystemTime(now + 30000)
         jest.runOnlyPendingTimers()
 
         const message1 = await promise
@@ -578,7 +578,7 @@ describe('connection utilities', () => {
 
         promise = listen(ws)
 
-        jest.setSystemTime(now + 60e3)
+        jest.setSystemTime(now + 60000)
         jest.runOnlyPendingTimers()
 
         const message2 = await promise
