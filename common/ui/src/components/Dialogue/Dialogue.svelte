@@ -103,7 +103,7 @@
       />
     {/if}
     <article role="dialog" on:click|stopPropagation>
-      <header>{title}</header>
+      <header role="heading">{title}</header>
       <div class="content">
         <slot name="content" />
       </div>

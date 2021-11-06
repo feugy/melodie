@@ -9,6 +9,7 @@ import {
   initConnection,
   closeConnection
 } from '../utils'
+import { init as initTotp, totp } from './totp'
 
 const reconnectDelay = 100
 
@@ -16,15 +17,14 @@ let reconnectTimeout
 
 let port
 
-let getAuthDetails
-
 const settings$ = new BehaviorSubject({
   providers: { audiodb: {}, discogs: {} },
   enqueueBehaviour: {},
   isBroadcasting: false
 })
 
-const connected$ = new BehaviorSubject(false)
+const connected$ = new BehaviorSubject(null)
+let connSubscription
 
 export const settings = settings$.asObservable()
 
@@ -35,37 +35,39 @@ export const isDesktop = new BehaviorSubject(
   /electron/i.test(navigator.userAgent)
 )
 
-async function connect(address, bail = false) {
+async function connect(address) {
   port = address.split(':')[2]
-  connected$.next(false)
   clearTimeout(reconnectTimeout)
 
-  // never bail on connection lost
-  const handleLostConnection = () => connect(address)
-
-  try {
-    await initConnection(address, handleLostConnection, getAuthDetails)
-    connected$.next(true)
-  } catch (err) {
-    if (bail) {
-      throw err
-    }
-    // when not bailing, schedule a new attempt, but stop waiting
-    reconnectTimeout = setTimeout(handleLostConnection, reconnectDelay)
+  const handleLostConnection = () => {
+    connected$.next(false)
+    reconnectTimeout = setTimeout(() => connect(address), reconnectDelay)
   }
+
+  connected$.next(
+    await initConnection(address, handleLostConnection, () => get(totp))
+  )
 }
 
-export async function init(address, fetchAuthDetails) {
-  try {
-    getAuthDetails = fetchAuthDetails ?? getAuthDetails
-    await connect(address, true)
-    fromServerEvent('settings-saved').subscribe(saved => {
-      settings$.next(saved)
+export async function init(address, totpSecret, totp) {
+  initTotp(totpSecret, totp)
+
+  connected$.next(null)
+  await new Promise(resolve => {
+    connSubscription?.unsubscribe()
+    connSubscription = connected$.subscribe(async connected => {
+      if (connected) {
+        connSubscription.unsubscribe()
+        fromServerEvent('settings-saved').subscribe(saved => {
+          settings$.next(saved)
+        })
+        settings$.next(await invoke('settings.get'))
+        resolve()
+      }
     })
-    settings$.next(await invoke('settings.get'))
-  } catch {
-    // silently ignores errors
-  }
+
+    connect(address)
+  })
 }
 
 export async function saveLocale(value) {

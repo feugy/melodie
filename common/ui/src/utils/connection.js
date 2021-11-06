@@ -4,9 +4,10 @@ import { BehaviorSubject, firstValueFrom } from 'rxjs'
 import { filter, map, take } from 'rxjs/operators'
 import { nanoid } from 'nanoid'
 
-let ws
+let ws = null
 const messages$ = new BehaviorSubject({})
 const lastInvokation$ = new BehaviorSubject()
+const connectionTimeout = 5000
 
 /**
  * Connects to the server's Websocket.
@@ -27,36 +28,54 @@ export async function initConnection(
   }
 
   const totp = await getAuthDetails()
-  ws = await new Promise((resolve, reject) => {
-    try {
-      const socket = new WebSocket(`${address}/ws?totp=${totp}`)
-      socket.onopen = () => {
-        socket.onopen = null
-        socket.onerror = null
-        resolve(socket)
-      }
-      socket.onerror = err => {
-        socket.onopen = null
-        socket.onerror = null
+  try {
+    ws = await new Promise((resolve, reject) => {
+      try {
+        const socket = new WebSocket(`${address}/ws?totp=${totp}`)
+        const clear = () => {
+          clearTimeout(timeout)
+          socket.onopen = null
+          socket.onerror = null
+        }
+        socket.onopen = () => {
+          clear()
+          resolve(socket)
+        }
+        socket.onerror = () => {
+          clear()
+          reject(new Error(`failed to establish connection`))
+        }
+        const timeout = setTimeout(() => {
+          clear()
+          socket.close()
+          reject(new Error(`failed to establish connection: timeout`))
+        }, connectionTimeout)
+      } catch (err) {
         reject(new Error(`failed to establish connection: ${err.message}`))
       }
-    } catch (err) {
-      reject(new Error(`failed to establish connection: ${err.message}`))
-    }
-  })
+    })
 
-  ws.onmessage = ({ data }) => {
-    try {
-      messages$.next(JSON.parse(data))
-    } catch (err) {
-      console.error(`Failed to read server message: ${err.message}`, err, data)
+    ws.onmessage = ({ data }) => {
+      try {
+        messages$.next(JSON.parse(data))
+      } catch (err) {
+        console.error(
+          `Failed to read server message: ${err.message}`,
+          err,
+          data
+        )
+      }
     }
-  }
 
-  ws.onclose = () => {
-    closeConnection()
-    onConnectionLost()
+    ws.onclose = () => {
+      closeConnection()
+      onConnectionLost()
+    }
+  } catch (err) {
+    ws = null
+    onConnectionLost(err)
   }
+  return ws !== null
 }
 
 /**

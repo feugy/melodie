@@ -10,6 +10,7 @@ import {
 } from '../utils'
 import { sleep } from '../tests'
 import { saveBroadcastPort } from './settings'
+import { totp } from './totp'
 
 describe('settings store', () => {
   let settings
@@ -55,30 +56,26 @@ describe('settings store', () => {
   })
 
   describe('init()', () => {
-    it('handles connection failure, loads settings on success, and retries on lost connection', async () => {
-      // default state
-      expect(get(isDesktop)).toBeTrue()
-      expect(get(settings)).toEqual({
-        enqueueBehaviour: {},
-        isBroadcasting: false,
-        providers: { audiodb: {}, discogs: {} }
-      })
-      expect(get(connected)).toEqual(false)
+    const url = `${faker.internet.protocol()}://${faker.internet.ip()}:${port}`
+    const values = {
+      locale,
+      folders,
+      enqueueBehaviour,
+      providers
+    }
+    const totpValue = faker.datatype.number().toString()
 
-      const url = `${faker.internet.protocol()}://${faker.internet.ip()}:${port}`
-      const values = {
-        locale,
-        folders,
-        enqueueBehaviour,
-        providers
-      }
-      invoke.mockResolvedValue(values)
+    it('handles connection failure', async () => {
       const err = new Error('Connection error')
-      const getAuthDetails = jest.fn()
+      initConnection.mockImplementationOnce(
+        async (address, onConnectionLost) => {
+          onConnectionLost(err)
+          return false
+        }
+      )
+      init(url)
 
-      // failure
-      initConnection.mockRejectedValueOnce(err)
-      await init(url, getAuthDetails)
+      await sleep()
 
       expect(get(connected)).toEqual(false)
       expect(get(settings)).toEqual({
@@ -89,48 +86,73 @@ describe('settings store', () => {
       expect(initConnection).toHaveBeenCalledWith(
         url,
         expect.any(Function),
-        getAuthDetails
+        expect.any(Function)
       )
       expect(initConnection).toHaveBeenCalledTimes(1)
       expect(invoke).not.toHaveBeenCalled()
+    })
 
-      // success
-      initConnection.mockResolvedValueOnce()
-      await init(url)
+    it('loads settings', async () => {
+      invoke.mockResolvedValue(values)
+      initConnection.mockImplementationOnce(
+        async (address, onConnectionLost, getAuthDetails) => {
+          await getAuthDetails()
+          return true
+        }
+      )
+      await init(url, null, totpValue)
 
       expect(get(connected)).toEqual(true)
       expect(get(settings)).toEqual(values)
       expect(initConnection).toHaveBeenCalledWith(
         url,
         expect.any(Function),
-        getAuthDetails
+        expect.any(Function)
       )
-      expect(initConnection).toHaveBeenCalledTimes(2)
+      expect(initConnection).toHaveBeenCalledTimes(1)
       expect(invoke).toHaveBeenCalledTimes(1)
+      expect(get(totp)).toEqual(totpValue)
+    })
 
-      // run the connection lost callback
+    it('handles lost connection and retries', async () => {
+      invoke.mockResolvedValue(values)
       initConnection
-        .mockRejectedValueOnce(err)
-        .mockRejectedValueOnce(err)
-        .mockResolvedValueOnce()
-        .mock.calls[1][1]()
+        .mockResolvedValueOnce(true)
+        .mockImplementationOnce(async (address, onConnectionLost) => {
+          onConnectionLost()
+          return false
+        })
+        .mockImplementationOnce(async (address, onConnectionLost) => {
+          onConnectionLost()
+          return false
+        })
+        .mockResolvedValueOnce(true)
 
-      await sleep(50)
+      await init(url)
+
+      expect(get(connected)).toEqual(true)
+      expect(initConnection).toHaveBeenCalledTimes(1)
+      await initConnection.mock.calls[0][1]()
+
+      expect(get(connected)).toEqual(false)
+      await sleep(100)
+
+      expect(initConnection).toHaveBeenCalledTimes(2)
       expect(get(connected)).toEqual(false)
 
       await sleep(300)
+      expect(initConnection).toHaveBeenCalledTimes(4)
+
       expect(get(connected)).toEqual(true)
       expect(get(settings)).toEqual(values)
-      expect(initConnection).toHaveBeenCalledTimes(5)
-      expect(getAuthDetails).not.toHaveBeenCalled()
     })
   })
 
   describe('given initialization', () => {
     beforeEach(async () => {
+      initConnection.mockResolvedValueOnce(true)
       await init(
-        `${faker.internet.protocol()}://${faker.internet.ip()}:${port}`,
-        jest.fn()
+        `${faker.internet.protocol()}://${faker.internet.ip()}:${port}`
       )
       jest.resetAllMocks()
     })
@@ -227,7 +249,7 @@ describe('settings store', () => {
         enqueueBehaviour,
         providers
       }
-      initConnection.mockResolvedValueOnce()
+      initConnection.mockResolvedValueOnce(true)
       invoke.mockResolvedValueOnce(values)
 
       toggleBroadcast()
@@ -251,7 +273,6 @@ describe('settings store', () => {
     })
 
     it('retries connecting to new address when toggling broadcast', async () => {
-      const err = new Error('Connection error')
       const values = {
         locale,
         folders,
@@ -259,9 +280,15 @@ describe('settings store', () => {
         providers
       }
       initConnection
-        .mockRejectedValueOnce(err)
-        .mockRejectedValueOnce(err)
-        .mockResolvedValueOnce()
+        .mockImplementationOnce(async (address, onConnectionLost) => {
+          onConnectionLost()
+          return false
+        })
+        .mockImplementationOnce(async (address, onConnectionLost) => {
+          onConnectionLost()
+          return false
+        })
+        .mockResolvedValueOnce(true)
       invoke.mockResolvedValueOnce(values)
 
       toggleBroadcast()

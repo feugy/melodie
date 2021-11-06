@@ -4,17 +4,15 @@ import { screen, render, within } from '@testing-library/svelte'
 import userEvent from '@testing-library/user-event'
 import html from 'svelte-htm'
 import faker from 'faker'
-import { invoke } from './utils'
-import { makeRef, sleep, translate } from './tests'
-import { init } from './stores/settings'
 import App from './App.svelte'
-import { releaseWakeLock, stayAwake } from './utils'
-import { isDesktop } from './stores/settings'
+import { init, isDesktop } from './stores/settings'
+import { makeRef, sleep, translate } from './tests'
+import { initConnection, invoke, releaseWakeLock, stayAwake } from './utils'
 
 jest.mock('./utils/wake-lock')
 
 describe('App component', () => {
-  beforeEach(() => {
+  beforeEach(async () => {
     jest.resetAllMocks()
     location.hash = '#/'
     // disable slot warnings
@@ -59,6 +57,7 @@ describe('App component', () => {
 
   describe('given first launch', () => {
     beforeEach(async () => {
+      initConnection.mockResolvedValue(true)
       invoke.mockImplementation(async invoked =>
         invoked === 'settings.get'
           ? {
@@ -86,6 +85,7 @@ describe('App component', () => {
 
   describe('given initialized settings', () => {
     beforeEach(async () => {
+      initConnection.mockResolvedValue(true)
       invoke.mockImplementation(async invoked =>
         invoked === 'settings.get'
           ? {
@@ -168,6 +168,43 @@ describe('App component', () => {
       userEvent.click(album)
       await sleep(500)
       expect(screen.queryByRole('complementary')).not.toBeInTheDocument()
+    })
+
+    it('displays modal when loosing server connection', async () => {
+      render(html`<${App} />`)
+      await sleep()
+
+      expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
+
+      // invoke lost connection callbak
+      await initConnection.mock.calls[0][1]()
+
+      const dialog = screen.queryByRole('dialog')
+      expect(dialog).toBeInTheDocument()
+      expect(within(dialog).queryByRole('heading')).toHaveTextContent(
+        translate('connection lost')
+      )
+    })
+  })
+
+  describe('given unreachable server', () => {
+    beforeEach(async () => {
+      initConnection.mockImplementation(async (address, onConnectionLost) => {
+        onConnectionLost()
+        return false
+      })
+      init('')
+    })
+
+    it('displays modal when loosing server connection', async () => {
+      render(html`<${App} />`)
+      await sleep()
+
+      const dialog = screen.queryByRole('dialog')
+      expect(dialog).toBeInTheDocument()
+      expect(within(dialog).queryByRole('heading')).toHaveTextContent(
+        translate('connection lost')
+      )
     })
   })
 })

@@ -7,6 +7,7 @@
   import { _, locale } from 'svelte-intl'
   import { replace } from 'svelte-spa-router'
   import {
+    Dialogue,
     Progress,
     Player,
     Nav,
@@ -107,14 +108,21 @@
 </svelte:head>
 
 <SystemNotifier />
-{#if $isLoading}
+{#if $connected === false}
+  <Dialogue title={$_('connection lost')} open noClose>
+    <div slot="content">
+      {@html $_('you are disconnected')}
+    </div>
+  </Dialogue>
+{/if}
+{#if $isLoading || !ready}
   <span class="progress">
     <Progress />
   </span>
 {/if}
-{#if ready}
-  <div>
-    <main>
+<div>
+  <main>
+    {#if ready}
       <Sheet bind:open={isPlaylistOpen} width={withClose ? '100%' : '30%'}>
         <section slot="main" bind:this={scrollable} use:autoScrollable>
           <Nav bind:isPlaylistOpen />
@@ -124,11 +132,13 @@
           <TracksQueue on:close={() => (isPlaylistOpen = false)} {withClose} />
         </aside>
       </Sheet>
-    </main>
-    <footer>
+    {/if}
+  </main>
+  <footer>
+    {#if ready}
       <Player trackList={queue} />
-    </footer>
-  </div>
-  <Tutorial />
-  <Snackbar />
-{/if}
+    {/if}
+  </footer>
+</div>
+<Tutorial />
+<Snackbar />

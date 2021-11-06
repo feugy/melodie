@@ -10,7 +10,6 @@
   import Button from '../Button/Button.svelte'
   import BroadcastButton from '../BroadcastButton/BroadcastButton.svelte'
   import TextInput from '../TextInput/TextInput.svelte'
-  import Dialogue from '../Dialogue/Dialogue.svelte'
   import { invoke } from '../../utils'
   import {
     connected,
@@ -226,20 +225,12 @@
         />
       </li>
       <li>
-        {#if $isDesktop}
-          {#if address && !isSmall}
-            <BroadcastButton
-              {isBroadcasting}
-              {address}
-              on:click={toggleBroadcast}
-            />
-          {/if}
-        {:else if !$connected}
-          <Dialogue title={$_('connection lost')} open noClose>
-            <div slot="content">
-              {@html $_('you are disconnected')}
-            </div>
-          </Dialogue>
+        {#if $isDesktop && address && !isSmall}
+          <BroadcastButton
+            {isBroadcasting}
+            {address}
+            on:click={toggleBroadcast}
+          />
         {/if}
       </li>
       <li>

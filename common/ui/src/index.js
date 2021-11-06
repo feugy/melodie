@@ -3,9 +3,7 @@
 import './common'
 import App from './App.svelte'
 import { send } from './utils'
-import { init as initSettings } from './stores/settings'
-import { init as initTotp, totp } from './stores/totp'
-import { get } from 'svelte/store'
+import { init } from './stores/settings'
 
 async function startApp() {
   const url = new URL(window.location)
@@ -17,8 +15,11 @@ async function startApp() {
       }`
   window.dlUrl = serverUrl.replace('ws', 'http')
 
-  initTotp(url.searchParams.get('totpSecret'), url.searchParams.get('totp'))
-  await initSettings(serverUrl, () => get(totp))
+  init(
+    serverUrl,
+    url.searchParams.get('totpSecret'),
+    url.searchParams.get('totp')
+  )
 
   window.addEventListener('error', err => send(err, false))
   window.addEventListener('unhandledrejection', ({ reason }) =>

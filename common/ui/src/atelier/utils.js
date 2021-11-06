@@ -26,7 +26,11 @@ export function mockWebsocket(mock = () => null, autoconnect = true) {
       return this
     }
     if (autoconnect) {
-      await initConnection('unused', () => {})
+      await initConnection(
+        'unused',
+        () => {},
+        () => ''
+      )
     }
   }
 }

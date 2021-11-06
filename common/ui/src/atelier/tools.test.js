@@ -2,11 +2,12 @@
 
 import { configureToolshot } from '@atelier-wb/toolshot'
 import { join } from 'path'
-import { invoke } from '../utils/connection'
+import { invoke, initConnection } from '../utils/connection'
 
 beforeAll(() => {
   // since utils/connections are mocked in jest-setup.js
   // we implement simplistic behavior to leverage fixtures data from atlier/utils's mockWebsocket()
+  initConnection.mockResolvedValue(true)
   invoke.mockImplementation(
     (invoked, ...args) =>
       new Promise(resolve => {

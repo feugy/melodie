@@ -206,14 +206,4 @@ describe('Nav component', () => {
 
     expect(toggleBroadcast).toHaveBeenCalledTimes(1)
   })
-
-  it('shows connection lost dialogue on disconnected browser', async () => {
-    isDesktopStore.next(false)
-    connectedStore.next(false)
-    render(html`<${Nav} />`)
-
-    expect(screen.queryByText('wifi')).not.toBeInTheDocument()
-    expect(screen.queryByText('wifi_off')).not.toBeInTheDocument()
-    expect(screen.queryByText(translate('connection lost'))).toBeVisible()
-  })
 })
