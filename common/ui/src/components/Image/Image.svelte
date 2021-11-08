@@ -30,7 +30,7 @@
   }
 </script>
 
-<style type="postcss">
+<style lang="postcss">
   img {
     @apply border-none;
     font-size: 0;

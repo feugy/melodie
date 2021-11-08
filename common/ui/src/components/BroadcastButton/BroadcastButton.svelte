@@ -73,9 +73,9 @@
   }
 </script>
 
-<style type="postcss">
+<style lang="postcss">
   .button {
-    @apply relative;
+    @apply relative inline-block;
   }
   .menu {
     @apply absolute my-3 rounded z-20 text-sm p-4 whitespace-nowrap flex flex-col items-center;
@@ -96,7 +96,7 @@
       @apply absolute inset-x-0;
     }
     & > span {
-      @apply top-2;
+      @apply w-auto top-2;
     }
   }
 </style>

@@ -17,7 +17,7 @@
   }
 </script>
 
-<style type="postcss">
+<style lang="postcss">
   .isActive {
     color: var(--hover-color);
   }

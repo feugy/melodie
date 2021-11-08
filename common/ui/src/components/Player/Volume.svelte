@@ -7,19 +7,13 @@
   $: volumePct = volume * 100
 </script>
 
-<style type="postcss">
+<style lang="postcss">
   div {
     @apply flex flex-row items-center justify-end mr-0 flex-grow;
   }
 
   span {
-    @apply pr-2 inline-block flex-grow;
-  }
-
-  @screen md {
-    span {
-      max-width: 100px;
-    }
+    @apply pr-2 inline-block flex-grow md:max-w-100px;
   }
 </style>
 

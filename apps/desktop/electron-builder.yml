@@ -2,9 +2,6 @@ appId: org.feugy.melodie
 productName: Mélodie
 copyright: Copyright © 2021 ${author}
 
-# because pino's thread-stream loads a worker, which can not work in asar
-asar: false
-
 files:
   - LICENSE
   - CHANGELOG.md

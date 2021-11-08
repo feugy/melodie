@@ -12,7 +12,7 @@
   }
 </script>
 
-<style type="postcss">
+<style lang="postcss">
   span {
     @apply pr-2;
   }

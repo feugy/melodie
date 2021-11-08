@@ -3,7 +3,7 @@
   import TextInput from './TextInput.svelte'
 </script>
 
-<ToolBox name="Components/TextInput">
+<ToolBox name="Components/TextInput" layout="padded">
   <Tool name="Default" let:props let:handleEvent>
     <span class="inline-block w-64">
       <TextInput

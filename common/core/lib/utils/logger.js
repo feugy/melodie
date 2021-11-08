@@ -87,8 +87,12 @@ function computeLevel(name, levelSpecs) {
  * @returns {string} default level: 'silent' during tests, 'debug' during developement or 'info'
  */
 function computeDefaultLevel() {
-  const { ROLLUP_WATCH, NODE_ENV } = process.env
-  return NODE_ENV === 'test' ? 'silent' : ROLLUP_WATCH ? 'debug' : 'info'
+  const { NODE_ENV } = process.env
+  return NODE_ENV === 'test'
+    ? 'silent'
+    : NODE_ENV === 'production'
+    ? 'info'
+    : 'debug'
 }
 
 /**

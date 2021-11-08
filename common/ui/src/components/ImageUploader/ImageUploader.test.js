@@ -7,6 +7,10 @@ import html from 'svelte-htm'
 import faker from 'faker'
 import ImageUploader from './ImageUploader.svelte'
 
+function getDropTarget() {
+  return screen.getByRole('img', { hidden: true }).closest('span')
+}
+
 describe('ImageUploader component', () => {
   it('loads dropped file', async () => {
     const path = faker.system.fileName()
@@ -20,9 +24,7 @@ describe('ImageUploader component', () => {
       html`<${ImageUploader} bind:value=${value} on:select=${handleSelect} />`
     )
 
-    await fireEvent.drop(screen.getByRole('img').closest('span'), {
-      dataTransfer: { items: [item] }
-    })
+    await fireEvent.drop(getDropTarget(), { dataTransfer: { items: [item] } })
 
     expect(get(value)).toEqual(path)
     expect(handleSelect).not.toHaveBeenCalled()
@@ -40,9 +42,7 @@ describe('ImageUploader component', () => {
       html`<${ImageUploader} bind:value=${value} on:select=${handleSelect} />`
     )
 
-    await fireEvent.drop(screen.getByRole('img').closest('span'), {
-      dataTransfer: { items: [item] }
-    })
+    await fireEvent.drop(getDropTarget(), { dataTransfer: { items: [item] } })
 
     expect(get(value)).toEqual(avatar)
     expect(handleSelect).not.toHaveBeenCalled()
@@ -56,10 +56,8 @@ describe('ImageUploader component', () => {
       html`<${ImageUploader} bind:value=${value} on:select=${handleSelect} />`
     )
 
-    await fireEvent.paste(screen.getByRole('img'), {
-      clipboardData: {
-        getData: () => avatar
-      }
+    await fireEvent.paste(getDropTarget(), {
+      clipboardData: { getData: () => avatar }
     })
 
     expect(get(value)).toEqual(avatar)
@@ -76,12 +74,9 @@ describe('ImageUploader component', () => {
       html`<${ImageUploader} bind:value=${value} on:select=${handleSelect} />`
     )
 
-    await fireEvent.change(
-      screen.getByRole('img').closest('span').querySelector('input'),
-      {
-        target: { files: [file] }
-      }
-    )
+    await fireEvent.change(getDropTarget().querySelector('input'), {
+      target: { files: [file] }
+    })
 
     expect(get(value)).toEqual(path)
     expect(handleSelect).not.toHaveBeenCalled()
@@ -94,9 +89,7 @@ describe('ImageUploader component', () => {
       html`<${ImageUploader} bind:value=${value} on:select=${handleSelect} />`
     )
 
-    await fireEvent.drop(screen.getByRole('img').closest('span'), {
-      dataTransfer: { items: [] }
-    })
+    await fireEvent.drop(getDropTarget(), { dataTransfer: { items: [] } })
 
     expect(get(value)).not.toBeDefined()
     expect(handleSelect).not.toHaveBeenCalled()
@@ -109,9 +102,7 @@ describe('ImageUploader component', () => {
       html`<${ImageUploader} bind:value=${value} on:select=${handleSelect} />`
     )
 
-    await fireEvent.drop(screen.getByRole('img').closest('span'), {
-      dataTransfer: { items: [] }
-    })
+    await fireEvent.drop(getDropTarget(), { dataTransfer: { items: [] } })
 
     expect(get(value)).not.toBeDefined()
     expect(handleSelect).not.toHaveBeenCalled()
@@ -124,12 +115,9 @@ describe('ImageUploader component', () => {
       html`<${ImageUploader} bind:value=${value} on:select=${handleSelect} />`
     )
 
-    await fireEvent.change(
-      screen.getByRole('img').closest('span').querySelector('input'),
-      {
-        target: { files: [] }
-      }
-    )
+    await fireEvent.change(getDropTarget().querySelector('input'), {
+      target: { files: [] }
+    })
 
     expect(get(value)).not.toBeDefined()
     expect(handleSelect).not.toHaveBeenCalled()
@@ -145,12 +133,9 @@ describe('ImageUploader component', () => {
       html`<${ImageUploader} bind:value=${value} on:select=${handleSelect} />`
     )
 
-    await fireEvent.change(
-      screen.getByRole('img').closest('span').querySelector('input'),
-      {
-        target: { files: [file] }
-      }
-    )
+    await fireEvent.change(getDropTarget().querySelector('input'), {
+      target: { files: [file] }
+    })
 
     expect(get(value)).toEqual(path)
 
@@ -166,7 +151,7 @@ describe('ImageUploader component', () => {
       html`<${ImageUploader} bind:value=${value} on:select=${handleSelect} />`
     )
 
-    await userEvent.click(screen.getByRole('img'))
+    await userEvent.click(getDropTarget())
 
     expect(handleSelect).not.toHaveBeenCalled()
   })

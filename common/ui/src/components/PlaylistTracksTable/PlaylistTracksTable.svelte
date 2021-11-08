@@ -17,7 +17,7 @@
   onMount(() => clicks$.subscribe())
 </script>
 
-<style type="postcss">
+<style lang="postcss">
   table,
   tbody,
   thead,

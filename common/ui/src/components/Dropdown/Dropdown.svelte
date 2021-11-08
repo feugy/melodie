@@ -175,7 +175,7 @@
   }
 </script>
 
-<style type="postcss">
+<style lang="postcss">
   .wrapper {
     @apply inline-block;
   }

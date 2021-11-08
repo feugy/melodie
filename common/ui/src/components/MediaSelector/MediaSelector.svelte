@@ -42,7 +42,7 @@
   })
 </script>
 
-<style type="postcss">
+<style lang="postcss">
   .image-container {
     @apply flex flex-wrap justify-start my-4;
 

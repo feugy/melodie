@@ -3,7 +3,7 @@
   import { texts } from '../../tests/lorem'
 </script>
 
-<style type="postcss">
+<style lang="postcss">
   ol {
     @apply overflow-y-auto relative;
     max-height: 400px;

@@ -25,7 +25,7 @@
   )
 </script>
 
-<style type="postcss">
+<style lang="postcss">
   div {
     @apply fixed flex flex-row items-center justify-center inset-x-0 w-full z-20;
     bottom: 120px;

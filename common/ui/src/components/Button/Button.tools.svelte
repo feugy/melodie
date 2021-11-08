@@ -3,7 +3,12 @@
   import Button from './Button.svelte'
 </script>
 
-<ToolBox name="Components/Button" component={Button} events={['click']}>
+<ToolBox
+  name="Components/Button"
+  component={Button}
+  events={['click']}
+  layout="padded"
+>
   <Tool name="Default" props={{ text: 'Default' }} />
   <Tool name="Primary" props={{ text: 'Primary', primary: true }} />
   <Tool

@@ -11,7 +11,7 @@
   $: iconOnly = !text
 </script>
 
-<style type="postcss">
+<style lang="postcss">
   button {
     @apply inline-flex border-none cursor-pointer px-6 uppercase text-base
   font-semibold bg-transparent flex-row items-center rounded whitespace-nowrap;
@@ -94,12 +94,6 @@
     &:not(.iconOnly) > i {
       margin-left: -0.3em;
       margin-right: 0.3em;
-    }
-
-    @screen md {
-      & > i {
-        font-size: 'inherit';
-      }
     }
   }
 

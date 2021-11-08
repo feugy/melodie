@@ -1,2149 +1,2132 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`] = `
-<div>
-   
-   
-  <div
-    style="animation: __svelte_185617033_0 200ms linear 0ms 1 both;"
-  >
-    <header
-      class=" svelte-t58ezf"
-      style="--image: url(../images/anthony-martino-6AtQNsjMoJo-unsplash.jpg); --shade-color: rgba(0, 0, 0, 0.7); --bgPosition: bottom center;"
-    >
-      <h1
-        class="svelte-t58ezf"
-      >
-        Results for "Final Fantasy VII"
-      </h1>
-    </header>
+<div
+  class="w-99vw svelte-kon93i"
+>
+  <div>
      
      
-    <section
-      class="svelte-1bpty66"
+    <div
+      style="animation: __svelte_185617033_0 200ms linear 0ms 1 both;"
     >
-      <span
-        class="undefined tracks svelte-1kobtom"
+      <header
+        class=" svelte-10ndra7"
+        style="--image: url(../images/anthony-martino-6AtQNsjMoJo-unsplash.jpg); --shade-color: rgba(0, 0, 0, 0.7); --bgPosition: bottom center;"
       >
-        <h3
-          class="svelte-1kobtom"
+        <h1
+          class="svelte-10ndra7"
         >
-          18 tracks
-        </h3>
-         
-        <ul
-          class="svelte-1kobtom"
-        >
-          <li
-            class="svelte-1kobtom"
-          >
-            <div
-              class="undefined root svelte-30dtyc"
-            >
-              <a
-                class="flex-none"
-                href="#/album/1"
-              >
-                <img
-                  class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1psk6yi"
-                  height="256"
-                  loading="lazy"
-                  width="256"
-                />
-                 
-                <span
-                  class="h-16 w-16 text-xs actionable svelte-1psk6yi rounded-sm"
-                >
-                  <i
-                    class="material-icons svelte-1psk6yi"
-                  >
-                    music_note
-                  </i>
-                </span>
-                
-              </a>
-               
-              <div
-                class="track svelte-30dtyc"
-              >
-                <span
-                  class="title svelte-30dtyc"
-                >
-                  American Money
-                </span>
-                 
-                <span>
-                  <a
-                    class="text-sm underlined"
-                    href="#/artist/0"
-                    onclick="event.stopPropagation()"
-                  >
-                    Yoko Kanno
-                  </a>
-                  , 
-                  <a
-                    class="text-sm underlined"
-                    href="#/artist/1"
-                    onclick="event.stopPropagation()"
-                  >
-                    the Seatbelts
-                  </a>
-                </span>
-              </div>
-               
-               
-              <span
-                aria-expanded="false"
-                aria-haspopup="menu"
-                class="wrapper svelte-11prmkk"
-              >
-                <button
-                  class="iconOnly noBorder svelte-1e4q28k"
-                >
-                  <i
-                    class="material-icons svelte-1e4q28k"
-                  >
-                    more_vert
-                  </i>
-                   
-                   
-                  
-                   
-                </button>
-              </span>
-               
-              
-            </div>
-             
-          </li>
-          <li
-            class="svelte-1kobtom"
-          >
-            <div
-              class="undefined root svelte-30dtyc"
-            >
-              <a
-                class="flex-none"
-                href="#/album/1"
-              >
-                <img
-                  class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1psk6yi"
-                  height="256"
-                  loading="lazy"
-                  width="256"
-                />
-                 
-                <span
-                  class="h-16 w-16 text-xs actionable svelte-1psk6yi rounded-sm"
-                >
-                  <i
-                    class="material-icons svelte-1psk6yi"
-                  >
-                    music_note
-                  </i>
-                </span>
-                
-              </a>
-               
-              <div
-                class="track svelte-30dtyc"
-              >
-                <span
-                  class="title svelte-30dtyc"
-                >
-                  Bindy
-                </span>
-                 
-                <span>
-                  <a
-                    class="text-sm underlined"
-                    href="#/artist/0"
-                    onclick="event.stopPropagation()"
-                  >
-                    Yoko Kanno
-                  </a>
-                  , 
-                  <a
-                    class="text-sm underlined"
-                    href="#/artist/1"
-                    onclick="event.stopPropagation()"
-                  >
-                    the Seatbelts
-                  </a>
-                </span>
-              </div>
-               
-               
-              <span
-                aria-expanded="false"
-                aria-haspopup="menu"
-                class="wrapper svelte-11prmkk"
-              >
-                <button
-                  class="iconOnly noBorder svelte-1e4q28k"
-                >
-                  <i
-                    class="material-icons svelte-1e4q28k"
-                  >
-                    more_vert
-                  </i>
-                   
-                   
-                  
-                   
-                </button>
-              </span>
-               
-              
-            </div>
-             
-          </li>
-          <li
-            class="svelte-1kobtom"
-          >
-            <div
-              class="undefined root svelte-30dtyc"
-            >
-              <a
-                class="flex-none"
-                href="#/album/1"
-              >
-                <img
-                  class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1psk6yi"
-                  height="256"
-                  loading="lazy"
-                  width="256"
-                />
-                 
-                <span
-                  class="h-16 w-16 text-xs actionable svelte-1psk6yi rounded-sm"
-                >
-                  <i
-                    class="material-icons svelte-1psk6yi"
-                  >
-                    music_note
-                  </i>
-                </span>
-                
-              </a>
-               
-              <div
-                class="track svelte-30dtyc"
-              >
-                <span
-                  class="title svelte-30dtyc"
-                >
-                  Cats on Mars
-                </span>
-                 
-                <span>
-                  <a
-                    class="text-sm underlined"
-                    href="#/artist/0"
-                    onclick="event.stopPropagation()"
-                  >
-                    Yoko Kanno
-                  </a>
-                  , 
-                  <a
-                    class="text-sm underlined"
-                    href="#/artist/1"
-                    onclick="event.stopPropagation()"
-                  >
-                    the Seatbelts
-                  </a>
-                </span>
-              </div>
-               
-               
-              <span
-                aria-expanded="false"
-                aria-haspopup="menu"
-                class="wrapper svelte-11prmkk"
-              >
-                <button
-                  class="iconOnly noBorder svelte-1e4q28k"
-                >
-                  <i
-                    class="material-icons svelte-1e4q28k"
-                  >
-                    more_vert
-                  </i>
-                   
-                   
-                  
-                   
-                </button>
-              </span>
-               
-              
-            </div>
-             
-          </li>
-          <li
-            class="svelte-1kobtom"
-          >
-            <div
-              class="undefined root svelte-30dtyc"
-            >
-              <a
-                class="flex-none"
-                href="#/album/1"
-              >
-                <img
-                  class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1psk6yi"
-                  height="256"
-                  loading="lazy"
-                  width="256"
-                />
-                 
-                <span
-                  class="h-16 w-16 text-xs actionable svelte-1psk6yi rounded-sm"
-                >
-                  <i
-                    class="material-icons svelte-1psk6yi"
-                  >
-                    music_note
-                  </i>
-                </span>
-                
-              </a>
-               
-              <div
-                class="track svelte-30dtyc"
-              >
-                <span
-                  class="title svelte-30dtyc"
-                >
-                  Don't Bother None
-                </span>
-                 
-                <span>
-                  <a
-                    class="text-sm underlined"
-                    href="#/artist/0"
-                    onclick="event.stopPropagation()"
-                  >
-                    Yoko Kanno
-                  </a>
-                  , 
-                  <a
-                    class="text-sm underlined"
-                    href="#/artist/1"
-                    onclick="event.stopPropagation()"
-                  >
-                    the Seatbelts
-                  </a>
-                </span>
-              </div>
-               
-               
-              <span
-                aria-expanded="false"
-                aria-haspopup="menu"
-                class="wrapper svelte-11prmkk"
-              >
-                <button
-                  class="iconOnly noBorder svelte-1e4q28k"
-                >
-                  <i
-                    class="material-icons svelte-1e4q28k"
-                  >
-                    more_vert
-                  </i>
-                   
-                   
-                  
-                   
-                </button>
-              </span>
-               
-              
-            </div>
-             
-          </li>
-          <li
-            class="svelte-1kobtom"
-          >
-            <div
-              class="undefined root svelte-30dtyc"
-            >
-              <a
-                class="flex-none"
-                href="#/album/1"
-              >
-                <img
-                  class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1psk6yi"
-                  height="256"
-                  loading="lazy"
-                  width="256"
-                />
-                 
-                <span
-                  class="h-16 w-16 text-xs actionable svelte-1psk6yi rounded-sm"
-                >
-                  <i
-                    class="material-icons svelte-1psk6yi"
-                  >
-                    music_note
-                  </i>
-                </span>
-                
-              </a>
-               
-              <div
-                class="track svelte-30dtyc"
-              >
-                <span
-                  class="title svelte-30dtyc"
-                >
-                  ELM
-                </span>
-                 
-                <span>
-                  <a
-                    class="text-sm underlined"
-                    href="#/artist/0"
-                    onclick="event.stopPropagation()"
-                  >
-                    Yoko Kanno
-                  </a>
-                  , 
-                  <a
-                    class="text-sm underlined"
-                    href="#/artist/1"
-                    onclick="event.stopPropagation()"
-                  >
-                    the Seatbelts
-                  </a>
-                </span>
-              </div>
-               
-               
-              <span
-                aria-expanded="false"
-                aria-haspopup="menu"
-                class="wrapper svelte-11prmkk"
-              >
-                <button
-                  class="iconOnly noBorder svelte-1e4q28k"
-                >
-                  <i
-                    class="material-icons svelte-1e4q28k"
-                  >
-                    more_vert
-                  </i>
-                   
-                   
-                  
-                   
-                </button>
-              </span>
-               
-              
-            </div>
-             
-          </li>
-          <li
-            class="svelte-1kobtom"
-          >
-            <div
-              class="undefined root svelte-30dtyc"
-            >
-              <a
-                class="flex-none"
-                href="#/album/1"
-              >
-                <img
-                  class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1psk6yi"
-                  height="256"
-                  loading="lazy"
-                  width="256"
-                />
-                 
-                <span
-                  class="h-16 w-16 text-xs actionable svelte-1psk6yi rounded-sm"
-                >
-                  <i
-                    class="material-icons svelte-1psk6yi"
-                  >
-                    music_note
-                  </i>
-                </span>
-                
-              </a>
-               
-              <div
-                class="track svelte-30dtyc"
-              >
-                <span
-                  class="title svelte-30dtyc"
-                >
-                  Fantaisie Sign
-                </span>
-                 
-                <span>
-                  <a
-                    class="text-sm underlined"
-                    href="#/artist/0"
-                    onclick="event.stopPropagation()"
-                  >
-                    Yoko Kanno
-                  </a>
-                  , 
-                  <a
-                    class="text-sm underlined"
-                    href="#/artist/1"
-                    onclick="event.stopPropagation()"
-                  >
-                    the Seatbelts
-                  </a>
-                </span>
-              </div>
-               
-               
-              <span
-                aria-expanded="false"
-                aria-haspopup="menu"
-                class="wrapper svelte-11prmkk"
-              >
-                <button
-                  class="iconOnly noBorder svelte-1e4q28k"
-                >
-                  <i
-                    class="material-icons svelte-1e4q28k"
-                  >
-                    more_vert
-                  </i>
-                   
-                   
-                  
-                   
-                </button>
-              </span>
-               
-              
-            </div>
-             
-          </li>
-          <li
-            class="svelte-1kobtom"
-          >
-            <div
-              class="undefined root svelte-30dtyc"
-            >
-              <a
-                class="flex-none"
-                href="#/album/1"
-              >
-                <img
-                  class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1psk6yi"
-                  height="256"
-                  loading="lazy"
-                  width="256"
-                />
-                 
-                <span
-                  class="h-16 w-16 text-xs actionable svelte-1psk6yi rounded-sm"
-                >
-                  <i
-                    class="material-icons svelte-1psk6yi"
-                  >
-                    music_note
-                  </i>
-                </span>
-                
-              </a>
-               
-              <div
-                class="track svelte-30dtyc"
-              >
-                <span
-                  class="title svelte-30dtyc"
-                >
-                  Forever Broke
-                </span>
-                 
-                <span>
-                  <a
-                    class="text-sm underlined"
-                    href="#/artist/0"
-                    onclick="event.stopPropagation()"
-                  >
-                    Yoko Kanno
-                  </a>
-                  , 
-                  <a
-                    class="text-sm underlined"
-                    href="#/artist/1"
-                    onclick="event.stopPropagation()"
-                  >
-                    the Seatbelts
-                  </a>
-                </span>
-              </div>
-               
-               
-              <span
-                aria-expanded="false"
-                aria-haspopup="menu"
-                class="wrapper svelte-11prmkk"
-              >
-                <button
-                  class="iconOnly noBorder svelte-1e4q28k"
-                >
-                  <i
-                    class="material-icons svelte-1e4q28k"
-                  >
-                    more_vert
-                  </i>
-                   
-                   
-                  
-                   
-                </button>
-              </span>
-               
-              
-            </div>
-             
-          </li>
-          <li
-            class="svelte-1kobtom"
-          >
-            <div
-              class="undefined root svelte-30dtyc"
-            >
-              <a
-                class="flex-none"
-                href="#/album/1"
-              >
-                <img
-                  class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1psk6yi"
-                  height="256"
-                  loading="lazy"
-                  width="256"
-                />
-                 
-                <span
-                  class="h-16 w-16 text-xs actionable svelte-1psk6yi rounded-sm"
-                >
-                  <i
-                    class="material-icons svelte-1psk6yi"
-                  >
-                    music_note
-                  </i>
-                </span>
-                
-              </a>
-               
-              <div
-                class="track svelte-30dtyc"
-              >
-                <span
-                  class="title svelte-30dtyc"
-                >
-                  Gateway
-                </span>
-                 
-                <span>
-                  <a
-                    class="text-sm underlined"
-                    href="#/artist/0"
-                    onclick="event.stopPropagation()"
-                  >
-                    Yoko Kanno
-                  </a>
-                  , 
-                  <a
-                    class="text-sm underlined"
-                    href="#/artist/1"
-                    onclick="event.stopPropagation()"
-                  >
-                    the Seatbelts
-                  </a>
-                </span>
-              </div>
-               
-               
-              <span
-                aria-expanded="false"
-                aria-haspopup="menu"
-                class="wrapper svelte-11prmkk"
-              >
-                <button
-                  class="iconOnly noBorder svelte-1e4q28k"
-                >
-                  <i
-                    class="material-icons svelte-1e4q28k"
-                  >
-                    more_vert
-                  </i>
-                   
-                   
-                  
-                   
-                </button>
-              </span>
-               
-              
-            </div>
-             
-          </li>
-          <li
-            class="svelte-1kobtom"
-          >
-            <div
-              class="undefined root svelte-30dtyc"
-            >
-              <a
-                class="flex-none"
-                href="#/album/1"
-              >
-                <img
-                  class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1psk6yi"
-                  height="256"
-                  loading="lazy"
-                  width="256"
-                />
-                 
-                <span
-                  class="h-16 w-16 text-xs actionable svelte-1psk6yi rounded-sm"
-                >
-                  <i
-                    class="material-icons svelte-1psk6yi"
-                  >
-                    music_note
-                  </i>
-                </span>
-                
-              </a>
-               
-              <div
-                class="track svelte-30dtyc"
-              >
-                <span
-                  class="title svelte-30dtyc"
-                >
-                  Green Bird
-                </span>
-                 
-                <span>
-                  <a
-                    class="text-sm underlined"
-                    href="#/artist/0"
-                    onclick="event.stopPropagation()"
-                  >
-                    Yoko Kanno
-                  </a>
-                  , 
-                  <a
-                    class="text-sm underlined"
-                    href="#/artist/1"
-                    onclick="event.stopPropagation()"
-                  >
-                    the Seatbelts
-                  </a>
-                </span>
-              </div>
-               
-               
-              <span
-                aria-expanded="false"
-                aria-haspopup="menu"
-                class="wrapper svelte-11prmkk"
-              >
-                <button
-                  class="iconOnly noBorder svelte-1e4q28k"
-                >
-                  <i
-                    class="material-icons svelte-1e4q28k"
-                  >
-                    more_vert
-                  </i>
-                   
-                   
-                  
-                   
-                </button>
-              </span>
-               
-              
-            </div>
-             
-          </li>
-          <li
-            class="svelte-1kobtom"
-          >
-            <div
-              class="undefined root svelte-30dtyc"
-            >
-              <a
-                class="flex-none"
-                href="#/album/1"
-              >
-                <img
-                  class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1psk6yi"
-                  height="256"
-                  loading="lazy"
-                  width="256"
-                />
-                 
-                <span
-                  class="h-16 w-16 text-xs actionable svelte-1psk6yi rounded-sm"
-                >
-                  <i
-                    class="material-icons svelte-1psk6yi"
-                  >
-                    music_note
-                  </i>
-                </span>
-                
-              </a>
-               
-              <div
-                class="track svelte-30dtyc"
-              >
-                <span
-                  class="title svelte-30dtyc"
-                >
-                  LIVE in Baghdad
-                </span>
-                 
-                <span>
-                  <a
-                    class="text-sm underlined"
-                    href="#/artist/0"
-                    onclick="event.stopPropagation()"
-                  >
-                    Yoko Kanno
-                  </a>
-                  , 
-                  <a
-                    class="text-sm underlined"
-                    href="#/artist/1"
-                    onclick="event.stopPropagation()"
-                  >
-                    the Seatbelts
-                  </a>
-                </span>
-              </div>
-               
-               
-              <span
-                aria-expanded="false"
-                aria-haspopup="menu"
-                class="wrapper svelte-11prmkk"
-              >
-                <button
-                  class="iconOnly noBorder svelte-1e4q28k"
-                >
-                  <i
-                    class="material-icons svelte-1e4q28k"
-                  >
-                    more_vert
-                  </i>
-                   
-                   
-                  
-                   
-                </button>
-              </span>
-               
-              
-            </div>
-             
-          </li>
-          <li
-            class="svelte-1kobtom"
-          >
-            <div
-              class="undefined root svelte-30dtyc"
-            >
-              <a
-                class="flex-none"
-                href="#/album/1"
-              >
-                <img
-                  class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1psk6yi"
-                  height="256"
-                  loading="lazy"
-                  width="256"
-                />
-                 
-                <span
-                  class="h-16 w-16 text-xs actionable svelte-1psk6yi rounded-sm"
-                >
-                  <i
-                    class="material-icons svelte-1psk6yi"
-                  >
-                    music_note
-                  </i>
-                </span>
-                
-              </a>
-               
-              <div
-                class="track svelte-30dtyc"
-              >
-                <span
-                  class="title svelte-30dtyc"
-                >
-                  Power of Kungfu Remix
-                </span>
-                 
-                <span>
-                  <a
-                    class="text-sm underlined"
-                    href="#/artist/0"
-                    onclick="event.stopPropagation()"
-                  >
-                    Yoko Kanno
-                  </a>
-                  , 
-                  <a
-                    class="text-sm underlined"
-                    href="#/artist/1"
-                    onclick="event.stopPropagation()"
-                  >
-                    the Seatbelts
-                  </a>
-                </span>
-              </div>
-               
-               
-              <span
-                aria-expanded="false"
-                aria-haspopup="menu"
-                class="wrapper svelte-11prmkk"
-              >
-                <button
-                  class="iconOnly noBorder svelte-1e4q28k"
-                >
-                  <i
-                    class="material-icons svelte-1e4q28k"
-                  >
-                    more_vert
-                  </i>
-                   
-                   
-                  
-                   
-                </button>
-              </span>
-               
-              
-            </div>
-             
-          </li>
-          <li
-            class="svelte-1kobtom"
-          >
-            <div
-              class="undefined root svelte-30dtyc"
-            >
-              <a
-                class="flex-none"
-                href="#/album/1"
-              >
-                <img
-                  class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1psk6yi"
-                  height="256"
-                  loading="lazy"
-                  width="256"
-                />
-                 
-                <span
-                  class="h-16 w-16 text-xs actionable svelte-1psk6yi rounded-sm"
-                >
-                  <i
-                    class="material-icons svelte-1psk6yi"
-                  >
-                    music_note
-                  </i>
-                </span>
-                
-              </a>
-               
-              <div
-                class="track svelte-30dtyc"
-              >
-                <span
-                  class="title svelte-30dtyc"
-                >
-                  The Egg and You!
-                </span>
-                 
-                <span>
-                  <a
-                    class="text-sm underlined"
-                    href="#/artist/0"
-                    onclick="event.stopPropagation()"
-                  >
-                    Yoko Kanno
-                  </a>
-                  , 
-                  <a
-                    class="text-sm underlined"
-                    href="#/artist/1"
-                    onclick="event.stopPropagation()"
-                  >
-                    the Seatbelts
-                  </a>
-                </span>
-              </div>
-               
-               
-              <span
-                aria-expanded="false"
-                aria-haspopup="menu"
-                class="wrapper svelte-11prmkk"
-              >
-                <button
-                  class="iconOnly noBorder svelte-1e4q28k"
-                >
-                  <i
-                    class="material-icons svelte-1e4q28k"
-                  >
-                    more_vert
-                  </i>
-                   
-                   
-                  
-                   
-                </button>
-              </span>
-               
-              
-            </div>
-             
-          </li>
-          <li
-            class="svelte-1kobtom"
-          >
-            <div
-              class="undefined root svelte-30dtyc"
-            >
-              <a
-                class="flex-none"
-                href="#/album/1"
-              >
-                <img
-                  class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1psk6yi"
-                  height="256"
-                  loading="lazy"
-                  width="256"
-                />
-                 
-                <span
-                  class="h-16 w-16 text-xs actionable svelte-1psk6yi rounded-sm"
-                >
-                  <i
-                    class="material-icons svelte-1psk6yi"
-                  >
-                    music_note
-                  </i>
-                </span>
-                
-              </a>
-               
-              <div
-                class="track svelte-30dtyc"
-              >
-                <span
-                  class="title svelte-30dtyc"
-                >
-                  The Singing Sea
-                </span>
-                 
-                <span>
-                  <a
-                    class="text-sm underlined"
-                    href="#/artist/0"
-                    onclick="event.stopPropagation()"
-                  >
-                    Yoko Kanno
-                  </a>
-                  , 
-                  <a
-                    class="text-sm underlined"
-                    href="#/artist/1"
-                    onclick="event.stopPropagation()"
-                  >
-                    the Seatbelts
-                  </a>
-                </span>
-              </div>
-               
-               
-              <span
-                aria-expanded="false"
-                aria-haspopup="menu"
-                class="wrapper svelte-11prmkk"
-              >
-                <button
-                  class="iconOnly noBorder svelte-1e4q28k"
-                >
-                  <i
-                    class="material-icons svelte-1e4q28k"
-                  >
-                    more_vert
-                  </i>
-                   
-                   
-                  
-                   
-                </button>
-              </span>
-               
-              
-            </div>
-             
-          </li>
-          <li
-            class="svelte-1kobtom"
-          >
-            <div
-              class="undefined root svelte-30dtyc"
-            >
-              <a
-                class="flex-none"
-                href="#/album/1"
-              >
-                <img
-                  class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1psk6yi"
-                  height="256"
-                  loading="lazy"
-                  width="256"
-                />
-                 
-                <span
-                  class="h-16 w-16 text-xs actionable svelte-1psk6yi rounded-sm"
-                >
-                  <i
-                    class="material-icons svelte-1psk6yi"
-                  >
-                    music_note
-                  </i>
-                </span>
-                
-              </a>
-               
-              <div
-                class="track svelte-30dtyc"
-              >
-                <span
-                  class="title svelte-30dtyc"
-                >
-                  Vitamin A
-                </span>
-                 
-                <span>
-                  <a
-                    class="text-sm underlined"
-                    href="#/artist/0"
-                    onclick="event.stopPropagation()"
-                  >
-                    Yoko Kanno
-                  </a>
-                  , 
-                  <a
-                    class="text-sm underlined"
-                    href="#/artist/1"
-                    onclick="event.stopPropagation()"
-                  >
-                    the Seatbelts
-                  </a>
-                </span>
-              </div>
-               
-               
-              <span
-                aria-expanded="false"
-                aria-haspopup="menu"
-                class="wrapper svelte-11prmkk"
-              >
-                <button
-                  class="iconOnly noBorder svelte-1e4q28k"
-                >
-                  <i
-                    class="material-icons svelte-1e4q28k"
-                  >
-                    more_vert
-                  </i>
-                   
-                   
-                  
-                   
-                </button>
-              </span>
-               
-              
-            </div>
-             
-          </li>
-          <li
-            class="svelte-1kobtom"
-          >
-            <div
-              class="undefined root svelte-30dtyc"
-            >
-              <a
-                class="flex-none"
-                href="#/album/1"
-              >
-                <img
-                  class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1psk6yi"
-                  height="256"
-                  loading="lazy"
-                  width="256"
-                />
-                 
-                <span
-                  class="h-16 w-16 text-xs actionable svelte-1psk6yi rounded-sm"
-                >
-                  <i
-                    class="material-icons svelte-1psk6yi"
-                  >
-                    music_note
-                  </i>
-                </span>
-                
-              </a>
-               
-              <div
-                class="track svelte-30dtyc"
-              >
-                <span
-                  class="title svelte-30dtyc"
-                >
-                  Vitamin B
-                </span>
-                 
-                <span>
-                  <a
-                    class="text-sm underlined"
-                    href="#/artist/0"
-                    onclick="event.stopPropagation()"
-                  >
-                    Yoko Kanno
-                  </a>
-                  , 
-                  <a
-                    class="text-sm underlined"
-                    href="#/artist/1"
-                    onclick="event.stopPropagation()"
-                  >
-                    the Seatbelts
-                  </a>
-                </span>
-              </div>
-               
-               
-              <span
-                aria-expanded="false"
-                aria-haspopup="menu"
-                class="wrapper svelte-11prmkk"
-              >
-                <button
-                  class="iconOnly noBorder svelte-1e4q28k"
-                >
-                  <i
-                    class="material-icons svelte-1e4q28k"
-                  >
-                    more_vert
-                  </i>
-                   
-                   
-                  
-                   
-                </button>
-              </span>
-               
-              
-            </div>
-             
-          </li>
-          <li
-            class="svelte-1kobtom"
-          >
-            <div
-              class="undefined root svelte-30dtyc"
-            >
-              <a
-                class="flex-none"
-                href="#/album/1"
-              >
-                <img
-                  class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1psk6yi"
-                  height="256"
-                  loading="lazy"
-                  width="256"
-                />
-                 
-                <span
-                  class="h-16 w-16 text-xs actionable svelte-1psk6yi rounded-sm"
-                >
-                  <i
-                    class="material-icons svelte-1psk6yi"
-                  >
-                    music_note
-                  </i>
-                </span>
-                
-              </a>
-               
-              <div
-                class="track svelte-30dtyc"
-              >
-                <span
-                  class="title svelte-30dtyc"
-                >
-                  Vitamin C
-                </span>
-                 
-                <span>
-                  <a
-                    class="text-sm underlined"
-                    href="#/artist/0"
-                    onclick="event.stopPropagation()"
-                  >
-                    Yoko Kanno
-                  </a>
-                  , 
-                  <a
-                    class="text-sm underlined"
-                    href="#/artist/1"
-                    onclick="event.stopPropagation()"
-                  >
-                    the Seatbelts
-                  </a>
-                </span>
-              </div>
-               
-               
-              <span
-                aria-expanded="false"
-                aria-haspopup="menu"
-                class="wrapper svelte-11prmkk"
-              >
-                <button
-                  class="iconOnly noBorder svelte-1e4q28k"
-                >
-                  <i
-                    class="material-icons svelte-1e4q28k"
-                  >
-                    more_vert
-                  </i>
-                   
-                   
-                  
-                   
-                </button>
-              </span>
-               
-              
-            </div>
-             
-          </li>
-          <li
-            class="svelte-1kobtom"
-          >
-            <div
-              class="undefined root svelte-30dtyc"
-            >
-              <a
-                class="flex-none"
-                href="#/album/1"
-              >
-                <img
-                  class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1psk6yi"
-                  height="256"
-                  loading="lazy"
-                  width="256"
-                />
-                 
-                <span
-                  class="h-16 w-16 text-xs actionable svelte-1psk6yi rounded-sm"
-                >
-                  <i
-                    class="material-icons svelte-1psk6yi"
-                  >
-                    music_note
-                  </i>
-                </span>
-                
-              </a>
-               
-              <div
-                class="track svelte-30dtyc"
-              >
-                <span
-                  class="title svelte-30dtyc"
-                >
-                  Want it All Back
-                </span>
-                 
-                <span>
-                  <a
-                    class="text-sm underlined"
-                    href="#/artist/0"
-                    onclick="event.stopPropagation()"
-                  >
-                    Yoko Kanno
-                  </a>
-                  , 
-                  <a
-                    class="text-sm underlined"
-                    href="#/artist/1"
-                    onclick="event.stopPropagation()"
-                  >
-                    the Seatbelts
-                  </a>
-                </span>
-              </div>
-               
-               
-              <span
-                aria-expanded="false"
-                aria-haspopup="menu"
-                class="wrapper svelte-11prmkk"
-              >
-                <button
-                  class="iconOnly noBorder svelte-1e4q28k"
-                >
-                  <i
-                    class="material-icons svelte-1e4q28k"
-                  >
-                    more_vert
-                  </i>
-                   
-                   
-                  
-                   
-                </button>
-              </span>
-               
-              
-            </div>
-             
-          </li>
-          <li
-            class="svelte-1kobtom"
-          >
-            <div
-              class="undefined root svelte-30dtyc"
-            >
-              <a
-                class="flex-none"
-                href="#/album/1"
-              >
-                <img
-                  class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1psk6yi"
-                  height="256"
-                  loading="lazy"
-                  width="256"
-                />
-                 
-                <span
-                  class="h-16 w-16 text-xs actionable svelte-1psk6yi rounded-sm"
-                >
-                  <i
-                    class="material-icons svelte-1psk6yi"
-                  >
-                    music_note
-                  </i>
-                </span>
-                
-              </a>
-               
-              <div
-                class="track svelte-30dtyc"
-              >
-                <span
-                  class="title svelte-30dtyc"
-                >
-                  You Make Me Coo
-                </span>
-                 
-                <span>
-                  <a
-                    class="text-sm underlined"
-                    href="#/artist/0"
-                    onclick="event.stopPropagation()"
-                  >
-                    Yoko Kanno
-                  </a>
-                  , 
-                  <a
-                    class="text-sm underlined"
-                    href="#/artist/1"
-                    onclick="event.stopPropagation()"
-                  >
-                    the Seatbelts
-                  </a>
-                </span>
-              </div>
-               
-               
-              <span
-                aria-expanded="false"
-                aria-haspopup="menu"
-                class="wrapper svelte-11prmkk"
-              >
-                <button
-                  class="iconOnly noBorder svelte-1e4q28k"
-                >
-                  <i
-                    class="material-icons svelte-1e4q28k"
-                  >
-                    more_vert
-                  </i>
-                   
-                   
-                  
-                   
-                </button>
-              </span>
-               
-              
-            </div>
-             
-          </li>
-        </ul>
-         
-        <iframe
-          aria-hidden="true"
-          src="about:blank"
-          style="display: block; position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; border: 0; opacity: 0; pointer-events: none; z-index: -1;"
-          tabindex="-1"
-        />
-      </span>
-      
-    </section>
-     
-    <section
-      class="svelte-1bpty66"
-    >
-      <span
-        class="undefined artists svelte-1kobtom"
+          Results for "Final Fantasy VII"
+        </h1>
+      </header>
+       
+       
+      <section
+        class="svelte-1t67qsu"
       >
-        <h3
-          class="svelte-1kobtom"
+        <span
+          class="undefined tracks svelte-pgngt4"
         >
-          3 artists
-        </h3>
-         
-        <ul
-          class="svelte-1kobtom"
-        >
-          <li
-            class="svelte-1kobtom"
+          <h3
+            class="svelte-pgngt4"
           >
-             
-            <span
-              class="svelte-4r86n"
-              role="article"
+            18 tracks
+          </h3>
+           
+          <ul
+            class="svelte-pgngt4"
+          >
+            <li
+              class="svelte-pgngt4"
             >
               <div
-                class="content svelte-4r86n"
+                class="undefined root svelte-138dtrj"
               >
-                <span
-                  class="artwork svelte-4r86n"
+                <a
+                  class="svelte-138dtrj"
+                  href="#/album/1"
                 >
                   <img
-                    class="h-full w-full rounded-full hidden svelte-1psk6yi"
+                    alt="./cover.jpg"
+                    class="h-16 w-16 text-xs actionable rounded-sm svelte-1oz3k7v"
                     height="256"
                     loading="lazy"
+                    src="./cover.jpg"
                     width="256"
                   />
                    
+                  
+                </a>
+                 
+                <div
+                  class="track svelte-138dtrj"
+                >
                   <span
-                    class="h-full w-full svelte-1psk6yi rounded-full"
+                    class="title svelte-138dtrj"
                   >
-                    <i
-                      class="material-icons svelte-1psk6yi"
-                    >
-                      person
-                    </i>
+                    American Money
                   </span>
-                  
-                </span>
-                 
-                <p
-                  class="controls svelte-4r86n"
-                >
                    
-                  <button
-                    class="primary iconOnly large svelte-1e4q28k"
-                    data-testid="play"
-                  >
-                    <i
-                      class="material-icons svelte-1e4q28k"
+                  <span>
+                    <a
+                      class="text-sm underlined"
+                      href="#/artist/0"
+                      onclick="event.stopPropagation()"
                     >
-                      play_arrow
-                    </i>
-                     
-                     
-                     
-                  </button>
-                   
-                  <button
-                    class="primary iconOnly large svelte-1e4q28k"
-                    data-testid="enqueue"
-                  >
-                    <i
-                      class="material-icons svelte-1e4q28k"
+                      Yoko Kanno
+                    </a>
+                    , 
+                    <a
+                      class="text-sm underlined"
+                      href="#/artist/1"
+                      onclick="event.stopPropagation()"
                     >
-                      playlist_add
-                    </i>
-                     
-                     
-                     
-                  </button>
-                </p>
-              </div>
-               
-              <header
-                class="svelte-4r86n"
-              >
-                <h3
-                  class="svelte-4r86n"
-                >
-                  Ludwig Van Beethoven
-                </h3>
-                 
-                <h4
-                  class="svelte-rw2hde"
-                  slot="details"
-                >
-                  1 album
-                </h4>
-              </header>
-            </span>
-             
-          </li>
-          <li
-            class="svelte-1kobtom"
-          >
-             
-            <span
-              class="svelte-4r86n"
-              role="article"
-            >
-              <div
-                class="content svelte-4r86n"
-              >
-                <span
-                  class="artwork svelte-4r86n"
-                >
-                  <img
-                    alt="avatar.jpg"
-                    class="h-full w-full rounded-full svelte-1psk6yi"
-                    height="256"
-                    loading="lazy"
-                    src="avatar.jpg"
-                    width="256"
-                  />
-                   
-                  
-                </span>
-                 
-                <p
-                  class="controls svelte-4r86n"
-                >
-                   
-                  <button
-                    class="primary iconOnly large svelte-1e4q28k"
-                    data-testid="play"
-                  >
-                    <i
-                      class="material-icons svelte-1e4q28k"
-                    >
-                      play_arrow
-                    </i>
-                     
-                     
-                     
-                  </button>
-                   
-                  <button
-                    class="primary iconOnly large svelte-1e4q28k"
-                    data-testid="enqueue"
-                  >
-                    <i
-                      class="material-icons svelte-1e4q28k"
-                    >
-                      playlist_add
-                    </i>
-                     
-                     
-                     
-                  </button>
-                </p>
-              </div>
-               
-              <header
-                class="svelte-4r86n"
-              >
-                <h3
-                  class="svelte-4r86n"
-                >
-                  Mademoiselle K
-                </h3>
-                 
-                <h4
-                  class="svelte-rw2hde"
-                  slot="details"
-                >
-                  2 albums
-                </h4>
-              </header>
-            </span>
-             
-          </li>
-          <li
-            class="svelte-1kobtom"
-          >
-             
-            <span
-              class="svelte-4r86n"
-              role="article"
-            >
-              <div
-                class="content svelte-4r86n"
-              >
-                <span
-                  class="artwork svelte-4r86n"
-                >
-                  <img
-                    class="h-full w-full rounded-full hidden svelte-1psk6yi"
-                    height="256"
-                    loading="lazy"
-                    width="256"
-                  />
-                   
-                  <span
-                    class="h-full w-full svelte-1psk6yi rounded-full"
-                  >
-                    <i
-                      class="material-icons svelte-1psk6yi"
-                    >
-                      person
-                    </i>
+                      the Seatbelts
+                    </a>
                   </span>
-                  
+                </div>
+                 
+                 
+                <span
+                  aria-expanded="false"
+                  aria-haspopup="menu"
+                  class="wrapper svelte-1g0595r"
+                >
+                  <button
+                    class="iconOnly noBorder svelte-sadb63"
+                  >
+                    <i
+                      class="material-icons svelte-sadb63"
+                    >
+                      more_vert
+                    </i>
+                     
+                     
+                    
+                     
+                  </button>
                 </span>
                  
-                <p
-                  class="controls svelte-4r86n"
-                >
-                   
-                  <button
-                    class="primary iconOnly large svelte-1e4q28k"
-                    data-testid="play"
-                  >
-                    <i
-                      class="material-icons svelte-1e4q28k"
-                    >
-                      play_arrow
-                    </i>
-                     
-                     
-                     
-                  </button>
-                   
-                  <button
-                    class="primary iconOnly large svelte-1e4q28k"
-                    data-testid="enqueue"
-                  >
-                    <i
-                      class="material-icons svelte-1e4q28k"
-                    >
-                      playlist_add
-                    </i>
-                     
-                     
-                     
-                  </button>
-                </p>
+                
               </div>
                
-              <header
-                class="svelte-4r86n"
-              >
-                <h3
-                  class="svelte-4r86n"
-                >
-                  Yoko Kanno and the Seatbelts
-                </h3>
-                 
-                <h4
-                  class="svelte-rw2hde"
-                  slot="details"
-                >
-                  9 albums
-                </h4>
-              </header>
-            </span>
-             
-          </li>
-        </ul>
-         
-        <iframe
-          aria-hidden="true"
-          src="about:blank"
-          style="display: block; position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; border: 0; opacity: 0; pointer-events: none; z-index: -1;"
-          tabindex="-1"
-        />
-      </span>
-      
-    </section>
-     
-    <section
-      class="svelte-1bpty66"
-    >
-      <span
-        class="undefined albums svelte-1kobtom"
-      >
-        <h3
-          class="svelte-1kobtom"
-        >
-          3 albums
-        </h3>
-         
-        <ul
-          class="svelte-1kobtom"
-        >
-          <li
-            class="svelte-1kobtom"
-          >
-             
-            <span
-              class="svelte-4r86n"
-              role="article"
+            </li>
+            <li
+              class="svelte-pgngt4"
             >
               <div
-                class="content svelte-4r86n"
+                class="undefined root svelte-138dtrj"
               >
-                <span
-                  class="artwork svelte-4r86n"
+                <a
+                  class="svelte-138dtrj"
+                  href="#/album/1"
                 >
                   <img
-                    class="h-full w-full rounded-sm hidden svelte-1psk6yi"
+                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1oz3k7v"
                     height="256"
                     loading="lazy"
                     width="256"
                   />
                    
                   <span
-                    class="h-full w-full svelte-1psk6yi rounded-sm"
+                    class="h-16 w-16 text-xs actionable svelte-1oz3k7v rounded-sm"
                   >
                     <i
-                      class="material-icons svelte-1psk6yi"
+                      class="material-icons svelte-1oz3k7v"
                     >
                       music_note
                     </i>
                   </span>
                   
+                </a>
+                 
+                <div
+                  class="track svelte-138dtrj"
+                >
+                  <span
+                    class="title svelte-138dtrj"
+                  >
+                    Bindy
+                  </span>
+                   
+                  <span>
+                    <a
+                      class="text-sm underlined"
+                      href="#/artist/0"
+                      onclick="event.stopPropagation()"
+                    >
+                      Yoko Kanno
+                    </a>
+                    , 
+                    <a
+                      class="text-sm underlined"
+                      href="#/artist/1"
+                      onclick="event.stopPropagation()"
+                    >
+                      the Seatbelts
+                    </a>
+                  </span>
+                </div>
+                 
+                 
+                <span
+                  aria-expanded="false"
+                  aria-haspopup="menu"
+                  class="wrapper svelte-1g0595r"
+                >
+                  <button
+                    class="iconOnly noBorder svelte-sadb63"
+                  >
+                    <i
+                      class="material-icons svelte-sadb63"
+                    >
+                      more_vert
+                    </i>
+                     
+                     
+                    
+                     
+                  </button>
                 </span>
                  
-                <p
-                  class="controls svelte-4r86n"
-                >
-                   
-                  <button
-                    class="primary iconOnly large svelte-1e4q28k"
-                    data-testid="play"
-                  >
-                    <i
-                      class="material-icons svelte-1e4q28k"
-                    >
-                      play_arrow
-                    </i>
-                     
-                     
-                     
-                  </button>
-                   
-                  <button
-                    class="primary iconOnly large svelte-1e4q28k"
-                    data-testid="enqueue"
-                  >
-                    <i
-                      class="material-icons svelte-1e4q28k"
-                    >
-                      playlist_add
-                    </i>
-                     
-                     
-                     
-                  </button>
-                </p>
+                
               </div>
                
-              <header
-                class="svelte-4r86n"
-              >
-                <h3
-                  class="svelte-4r86n"
-                >
-                  100 Best Karajan
-                </h3>
-                 
-                <h4
-                  class="svelte-rw2hde"
-                  slot="details"
-                >
-                  by 
-                  <a
-                    class="underlined"
-                    href="#/artist/1"
-                    onclick="event.stopPropagation()"
-                  >
-                    Émile Waldteufel
-                  </a>
-                  , 
-                  <a
-                    class="underlined"
-                    href="#/artist/2"
-                    onclick="event.stopPropagation()"
-                  >
-                    Johann Sebastian Bach
-                  </a>
-                  , 
-                  <a
-                    class="underlined"
-                    href="#/artist/3"
-                    onclick="event.stopPropagation()"
-                  >
-                    Wolfgang Amadeus Mozart
-                  </a>
-                  , 
-                  <a
-                    class="underlined"
-                    href="#/artist/4"
-                    onclick="event.stopPropagation()"
-                  >
-                    Ottorino Respighi
-                  </a>
-                  , 
-                  <a
-                    class="underlined"
-                    href="#/artist/5"
-                    onclick="event.stopPropagation()"
-                  >
-                    Ludwig van Beethoven
-                  </a>
-                  , 
-                  <a
-                    class="underlined"
-                    href="#/artist/6"
-                    onclick="event.stopPropagation()"
-                  >
-                    Giuseppe Verdi
-                  </a>
-                  
-                   
-                </h4>
-              </header>
-            </span>
-             
-          </li>
-          <li
-            class="svelte-1kobtom"
-          >
-             
-            <span
-              class="svelte-4r86n"
-              role="article"
+            </li>
+            <li
+              class="svelte-pgngt4"
             >
               <div
-                class="content svelte-4r86n"
+                class="undefined root svelte-138dtrj"
               >
-                <span
-                  class="artwork svelte-4r86n"
+                <a
+                  class="svelte-138dtrj"
+                  href="#/album/1"
                 >
                   <img
-                    alt="cover.jpg"
-                    class="h-full w-full rounded-sm svelte-1psk6yi"
-                    height="256"
-                    loading="lazy"
-                    src="cover.jpg"
-                    width="256"
-                  />
-                   
-                  
-                </span>
-                 
-                <p
-                  class="controls svelte-4r86n"
-                >
-                   
-                  <button
-                    class="primary iconOnly large svelte-1e4q28k"
-                    data-testid="play"
-                  >
-                    <i
-                      class="material-icons svelte-1e4q28k"
-                    >
-                      play_arrow
-                    </i>
-                     
-                     
-                     
-                  </button>
-                   
-                  <button
-                    class="primary iconOnly large svelte-1e4q28k"
-                    data-testid="enqueue"
-                  >
-                    <i
-                      class="material-icons svelte-1e4q28k"
-                    >
-                      playlist_add
-                    </i>
-                     
-                     
-                     
-                  </button>
-                </p>
-              </div>
-               
-              <header
-                class="svelte-4r86n"
-              >
-                <h3
-                  class="svelte-4r86n"
-                >
-                  Black Orpheus
-                </h3>
-                 
-                <h4
-                  class="svelte-rw2hde"
-                  slot="details"
-                >
-                  by 
-                  <a
-                    class="underlined"
-                    href="#/artist/7"
-                    onclick="event.stopPropagation()"
-                  >
-                    Keziah Jones
-                  </a>
-                  
-                   
-                </h4>
-              </header>
-            </span>
-             
-          </li>
-          <li
-            class="svelte-1kobtom"
-          >
-             
-            <span
-              class="svelte-4r86n"
-              role="article"
-            >
-              <div
-                class="content svelte-4r86n"
-              >
-                <span
-                  class="artwork svelte-4r86n"
-                >
-                  <img
-                    class="h-full w-full rounded-sm hidden svelte-1psk6yi"
+                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1oz3k7v"
                     height="256"
                     loading="lazy"
                     width="256"
                   />
                    
                   <span
-                    class="h-full w-full svelte-1psk6yi rounded-sm"
+                    class="h-16 w-16 text-xs actionable svelte-1oz3k7v rounded-sm"
                   >
                     <i
-                      class="material-icons svelte-1psk6yi"
+                      class="material-icons svelte-1oz3k7v"
                     >
                       music_note
                     </i>
                   </span>
                   
+                </a>
+                 
+                <div
+                  class="track svelte-138dtrj"
+                >
+                  <span
+                    class="title svelte-138dtrj"
+                  >
+                    Cats on Mars
+                  </span>
+                   
+                  <span>
+                    <a
+                      class="text-sm underlined"
+                      href="#/artist/0"
+                      onclick="event.stopPropagation()"
+                    >
+                      Yoko Kanno
+                    </a>
+                    , 
+                    <a
+                      class="text-sm underlined"
+                      href="#/artist/1"
+                      onclick="event.stopPropagation()"
+                    >
+                      the Seatbelts
+                    </a>
+                  </span>
+                </div>
+                 
+                 
+                <span
+                  aria-expanded="false"
+                  aria-haspopup="menu"
+                  class="wrapper svelte-1g0595r"
+                >
+                  <button
+                    class="iconOnly noBorder svelte-sadb63"
+                  >
+                    <i
+                      class="material-icons svelte-sadb63"
+                    >
+                      more_vert
+                    </i>
+                     
+                     
+                    
+                     
+                  </button>
                 </span>
                  
-                <p
-                  class="controls svelte-4r86n"
-                >
-                   
-                  <button
-                    class="primary iconOnly large svelte-1e4q28k"
-                    data-testid="play"
-                  >
-                    <i
-                      class="material-icons svelte-1e4q28k"
-                    >
-                      play_arrow
-                    </i>
-                     
-                     
-                     
-                  </button>
-                   
-                  <button
-                    class="primary iconOnly large svelte-1e4q28k"
-                    data-testid="enqueue"
-                  >
-                    <i
-                      class="material-icons svelte-1e4q28k"
-                    >
-                      playlist_add
-                    </i>
-                     
-                     
-                     
-                  </button>
-                </p>
+                
               </div>
                
-              <header
-                class="svelte-4r86n"
+            </li>
+            <li
+              class="svelte-pgngt4"
+            >
+              <div
+                class="undefined root svelte-138dtrj"
               >
-                <h3
-                  class="svelte-4r86n"
+                <a
+                  class="svelte-138dtrj"
+                  href="#/album/1"
                 >
-                  Distant Worlds - Music from Final Fantasy
-                </h3>
-                 
-                <h4
-                  class="svelte-rw2hde"
-                  slot="details"
-                >
-                  by 
-                  <a
-                    class="underlined"
-                    href="#/artist/8"
-                    onclick="event.stopPropagation()"
-                  >
-                    Nobuo Uematsu
-                  </a>
-                  
+                  <img
+                    alt="./cover.jpg"
+                    class="h-16 w-16 text-xs actionable rounded-sm svelte-1oz3k7v"
+                    height="256"
+                    loading="lazy"
+                    src="./cover.jpg"
+                    width="256"
+                  />
                    
-                </h4>
-              </header>
-            </span>
-             
-          </li>
-        </ul>
-         
-        <iframe
-          aria-hidden="true"
-          src="about:blank"
-          style="display: block; position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; border: 0; opacity: 0; pointer-events: none; z-index: -1;"
-          tabindex="-1"
-        />
-      </span>
-      
-    </section>
+                  
+                </a>
+                 
+                <div
+                  class="track svelte-138dtrj"
+                >
+                  <span
+                    class="title svelte-138dtrj"
+                  >
+                    Don't Bother None
+                  </span>
+                   
+                  <span>
+                    <a
+                      class="text-sm underlined"
+                      href="#/artist/0"
+                      onclick="event.stopPropagation()"
+                    >
+                      Yoko Kanno
+                    </a>
+                    , 
+                    <a
+                      class="text-sm underlined"
+                      href="#/artist/1"
+                      onclick="event.stopPropagation()"
+                    >
+                      the Seatbelts
+                    </a>
+                  </span>
+                </div>
+                 
+                 
+                <span
+                  aria-expanded="false"
+                  aria-haspopup="menu"
+                  class="wrapper svelte-1g0595r"
+                >
+                  <button
+                    class="iconOnly noBorder svelte-sadb63"
+                  >
+                    <i
+                      class="material-icons svelte-sadb63"
+                    >
+                      more_vert
+                    </i>
+                     
+                     
+                    
+                     
+                  </button>
+                </span>
+                 
+                
+              </div>
+               
+            </li>
+            <li
+              class="svelte-pgngt4"
+            >
+              <div
+                class="undefined root svelte-138dtrj"
+              >
+                <a
+                  class="svelte-138dtrj"
+                  href="#/album/1"
+                >
+                  <img
+                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1oz3k7v"
+                    height="256"
+                    loading="lazy"
+                    width="256"
+                  />
+                   
+                  <span
+                    class="h-16 w-16 text-xs actionable svelte-1oz3k7v rounded-sm"
+                  >
+                    <i
+                      class="material-icons svelte-1oz3k7v"
+                    >
+                      music_note
+                    </i>
+                  </span>
+                  
+                </a>
+                 
+                <div
+                  class="track svelte-138dtrj"
+                >
+                  <span
+                    class="title svelte-138dtrj"
+                  >
+                    ELM
+                  </span>
+                   
+                  <span>
+                    <a
+                      class="text-sm underlined"
+                      href="#/artist/0"
+                      onclick="event.stopPropagation()"
+                    >
+                      Yoko Kanno
+                    </a>
+                    , 
+                    <a
+                      class="text-sm underlined"
+                      href="#/artist/1"
+                      onclick="event.stopPropagation()"
+                    >
+                      the Seatbelts
+                    </a>
+                  </span>
+                </div>
+                 
+                 
+                <span
+                  aria-expanded="false"
+                  aria-haspopup="menu"
+                  class="wrapper svelte-1g0595r"
+                >
+                  <button
+                    class="iconOnly noBorder svelte-sadb63"
+                  >
+                    <i
+                      class="material-icons svelte-sadb63"
+                    >
+                      more_vert
+                    </i>
+                     
+                     
+                    
+                     
+                  </button>
+                </span>
+                 
+                
+              </div>
+               
+            </li>
+            <li
+              class="svelte-pgngt4"
+            >
+              <div
+                class="undefined root svelte-138dtrj"
+              >
+                <a
+                  class="svelte-138dtrj"
+                  href="#/album/1"
+                >
+                  <img
+                    alt="./cover.jpg"
+                    class="h-16 w-16 text-xs actionable rounded-sm svelte-1oz3k7v"
+                    height="256"
+                    loading="lazy"
+                    src="./cover.jpg"
+                    width="256"
+                  />
+                   
+                  
+                </a>
+                 
+                <div
+                  class="track svelte-138dtrj"
+                >
+                  <span
+                    class="title svelte-138dtrj"
+                  >
+                    Fantaisie Sign
+                  </span>
+                   
+                  <span>
+                    <a
+                      class="text-sm underlined"
+                      href="#/artist/0"
+                      onclick="event.stopPropagation()"
+                    >
+                      Yoko Kanno
+                    </a>
+                    , 
+                    <a
+                      class="text-sm underlined"
+                      href="#/artist/1"
+                      onclick="event.stopPropagation()"
+                    >
+                      the Seatbelts
+                    </a>
+                  </span>
+                </div>
+                 
+                 
+                <span
+                  aria-expanded="false"
+                  aria-haspopup="menu"
+                  class="wrapper svelte-1g0595r"
+                >
+                  <button
+                    class="iconOnly noBorder svelte-sadb63"
+                  >
+                    <i
+                      class="material-icons svelte-sadb63"
+                    >
+                      more_vert
+                    </i>
+                     
+                     
+                    
+                     
+                  </button>
+                </span>
+                 
+                
+              </div>
+               
+            </li>
+            <li
+              class="svelte-pgngt4"
+            >
+              <div
+                class="undefined root svelte-138dtrj"
+              >
+                <a
+                  class="svelte-138dtrj"
+                  href="#/album/1"
+                >
+                  <img
+                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1oz3k7v"
+                    height="256"
+                    loading="lazy"
+                    width="256"
+                  />
+                   
+                  <span
+                    class="h-16 w-16 text-xs actionable svelte-1oz3k7v rounded-sm"
+                  >
+                    <i
+                      class="material-icons svelte-1oz3k7v"
+                    >
+                      music_note
+                    </i>
+                  </span>
+                  
+                </a>
+                 
+                <div
+                  class="track svelte-138dtrj"
+                >
+                  <span
+                    class="title svelte-138dtrj"
+                  >
+                    Forever Broke
+                  </span>
+                   
+                  <span>
+                    <a
+                      class="text-sm underlined"
+                      href="#/artist/0"
+                      onclick="event.stopPropagation()"
+                    >
+                      Yoko Kanno
+                    </a>
+                    , 
+                    <a
+                      class="text-sm underlined"
+                      href="#/artist/1"
+                      onclick="event.stopPropagation()"
+                    >
+                      the Seatbelts
+                    </a>
+                  </span>
+                </div>
+                 
+                 
+                <span
+                  aria-expanded="false"
+                  aria-haspopup="menu"
+                  class="wrapper svelte-1g0595r"
+                >
+                  <button
+                    class="iconOnly noBorder svelte-sadb63"
+                  >
+                    <i
+                      class="material-icons svelte-sadb63"
+                    >
+                      more_vert
+                    </i>
+                     
+                     
+                    
+                     
+                  </button>
+                </span>
+                 
+                
+              </div>
+               
+            </li>
+            <li
+              class="svelte-pgngt4"
+            >
+              <div
+                class="undefined root svelte-138dtrj"
+              >
+                <a
+                  class="svelte-138dtrj"
+                  href="#/album/1"
+                >
+                  <img
+                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1oz3k7v"
+                    height="256"
+                    loading="lazy"
+                    width="256"
+                  />
+                   
+                  <span
+                    class="h-16 w-16 text-xs actionable svelte-1oz3k7v rounded-sm"
+                  >
+                    <i
+                      class="material-icons svelte-1oz3k7v"
+                    >
+                      music_note
+                    </i>
+                  </span>
+                  
+                </a>
+                 
+                <div
+                  class="track svelte-138dtrj"
+                >
+                  <span
+                    class="title svelte-138dtrj"
+                  >
+                    Gateway
+                  </span>
+                   
+                  <span>
+                    <a
+                      class="text-sm underlined"
+                      href="#/artist/0"
+                      onclick="event.stopPropagation()"
+                    >
+                      Yoko Kanno
+                    </a>
+                    , 
+                    <a
+                      class="text-sm underlined"
+                      href="#/artist/1"
+                      onclick="event.stopPropagation()"
+                    >
+                      the Seatbelts
+                    </a>
+                  </span>
+                </div>
+                 
+                 
+                <span
+                  aria-expanded="false"
+                  aria-haspopup="menu"
+                  class="wrapper svelte-1g0595r"
+                >
+                  <button
+                    class="iconOnly noBorder svelte-sadb63"
+                  >
+                    <i
+                      class="material-icons svelte-sadb63"
+                    >
+                      more_vert
+                    </i>
+                     
+                     
+                    
+                     
+                  </button>
+                </span>
+                 
+                
+              </div>
+               
+            </li>
+            <li
+              class="svelte-pgngt4"
+            >
+              <div
+                class="undefined root svelte-138dtrj"
+              >
+                <a
+                  class="svelte-138dtrj"
+                  href="#/album/1"
+                >
+                  <img
+                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1oz3k7v"
+                    height="256"
+                    loading="lazy"
+                    width="256"
+                  />
+                   
+                  <span
+                    class="h-16 w-16 text-xs actionable svelte-1oz3k7v rounded-sm"
+                  >
+                    <i
+                      class="material-icons svelte-1oz3k7v"
+                    >
+                      music_note
+                    </i>
+                  </span>
+                  
+                </a>
+                 
+                <div
+                  class="track svelte-138dtrj"
+                >
+                  <span
+                    class="title svelte-138dtrj"
+                  >
+                    Green Bird
+                  </span>
+                   
+                  <span>
+                    <a
+                      class="text-sm underlined"
+                      href="#/artist/0"
+                      onclick="event.stopPropagation()"
+                    >
+                      Yoko Kanno
+                    </a>
+                    , 
+                    <a
+                      class="text-sm underlined"
+                      href="#/artist/1"
+                      onclick="event.stopPropagation()"
+                    >
+                      the Seatbelts
+                    </a>
+                  </span>
+                </div>
+                 
+                 
+                <span
+                  aria-expanded="false"
+                  aria-haspopup="menu"
+                  class="wrapper svelte-1g0595r"
+                >
+                  <button
+                    class="iconOnly noBorder svelte-sadb63"
+                  >
+                    <i
+                      class="material-icons svelte-sadb63"
+                    >
+                      more_vert
+                    </i>
+                     
+                     
+                    
+                     
+                  </button>
+                </span>
+                 
+                
+              </div>
+               
+            </li>
+            <li
+              class="svelte-pgngt4"
+            >
+              <div
+                class="undefined root svelte-138dtrj"
+              >
+                <a
+                  class="svelte-138dtrj"
+                  href="#/album/1"
+                >
+                  <img
+                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1oz3k7v"
+                    height="256"
+                    loading="lazy"
+                    width="256"
+                  />
+                   
+                  <span
+                    class="h-16 w-16 text-xs actionable svelte-1oz3k7v rounded-sm"
+                  >
+                    <i
+                      class="material-icons svelte-1oz3k7v"
+                    >
+                      music_note
+                    </i>
+                  </span>
+                  
+                </a>
+                 
+                <div
+                  class="track svelte-138dtrj"
+                >
+                  <span
+                    class="title svelte-138dtrj"
+                  >
+                    LIVE in Baghdad
+                  </span>
+                   
+                  <span>
+                    <a
+                      class="text-sm underlined"
+                      href="#/artist/0"
+                      onclick="event.stopPropagation()"
+                    >
+                      Yoko Kanno
+                    </a>
+                    , 
+                    <a
+                      class="text-sm underlined"
+                      href="#/artist/1"
+                      onclick="event.stopPropagation()"
+                    >
+                      the Seatbelts
+                    </a>
+                  </span>
+                </div>
+                 
+                 
+                <span
+                  aria-expanded="false"
+                  aria-haspopup="menu"
+                  class="wrapper svelte-1g0595r"
+                >
+                  <button
+                    class="iconOnly noBorder svelte-sadb63"
+                  >
+                    <i
+                      class="material-icons svelte-sadb63"
+                    >
+                      more_vert
+                    </i>
+                     
+                     
+                    
+                     
+                  </button>
+                </span>
+                 
+                
+              </div>
+               
+            </li>
+            <li
+              class="svelte-pgngt4"
+            >
+              <div
+                class="undefined root svelte-138dtrj"
+              >
+                <a
+                  class="svelte-138dtrj"
+                  href="#/album/1"
+                >
+                  <img
+                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1oz3k7v"
+                    height="256"
+                    loading="lazy"
+                    width="256"
+                  />
+                   
+                  <span
+                    class="h-16 w-16 text-xs actionable svelte-1oz3k7v rounded-sm"
+                  >
+                    <i
+                      class="material-icons svelte-1oz3k7v"
+                    >
+                      music_note
+                    </i>
+                  </span>
+                  
+                </a>
+                 
+                <div
+                  class="track svelte-138dtrj"
+                >
+                  <span
+                    class="title svelte-138dtrj"
+                  >
+                    Power of Kungfu Remix
+                  </span>
+                   
+                  <span>
+                    <a
+                      class="text-sm underlined"
+                      href="#/artist/0"
+                      onclick="event.stopPropagation()"
+                    >
+                      Yoko Kanno
+                    </a>
+                    , 
+                    <a
+                      class="text-sm underlined"
+                      href="#/artist/1"
+                      onclick="event.stopPropagation()"
+                    >
+                      the Seatbelts
+                    </a>
+                  </span>
+                </div>
+                 
+                 
+                <span
+                  aria-expanded="false"
+                  aria-haspopup="menu"
+                  class="wrapper svelte-1g0595r"
+                >
+                  <button
+                    class="iconOnly noBorder svelte-sadb63"
+                  >
+                    <i
+                      class="material-icons svelte-sadb63"
+                    >
+                      more_vert
+                    </i>
+                     
+                     
+                    
+                     
+                  </button>
+                </span>
+                 
+                
+              </div>
+               
+            </li>
+            <li
+              class="svelte-pgngt4"
+            >
+              <div
+                class="undefined root svelte-138dtrj"
+              >
+                <a
+                  class="svelte-138dtrj"
+                  href="#/album/1"
+                >
+                  <img
+                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1oz3k7v"
+                    height="256"
+                    loading="lazy"
+                    width="256"
+                  />
+                   
+                  <span
+                    class="h-16 w-16 text-xs actionable svelte-1oz3k7v rounded-sm"
+                  >
+                    <i
+                      class="material-icons svelte-1oz3k7v"
+                    >
+                      music_note
+                    </i>
+                  </span>
+                  
+                </a>
+                 
+                <div
+                  class="track svelte-138dtrj"
+                >
+                  <span
+                    class="title svelte-138dtrj"
+                  >
+                    The Egg and You!
+                  </span>
+                   
+                  <span>
+                    <a
+                      class="text-sm underlined"
+                      href="#/artist/0"
+                      onclick="event.stopPropagation()"
+                    >
+                      Yoko Kanno
+                    </a>
+                    , 
+                    <a
+                      class="text-sm underlined"
+                      href="#/artist/1"
+                      onclick="event.stopPropagation()"
+                    >
+                      the Seatbelts
+                    </a>
+                  </span>
+                </div>
+                 
+                 
+                <span
+                  aria-expanded="false"
+                  aria-haspopup="menu"
+                  class="wrapper svelte-1g0595r"
+                >
+                  <button
+                    class="iconOnly noBorder svelte-sadb63"
+                  >
+                    <i
+                      class="material-icons svelte-sadb63"
+                    >
+                      more_vert
+                    </i>
+                     
+                     
+                    
+                     
+                  </button>
+                </span>
+                 
+                
+              </div>
+               
+            </li>
+            <li
+              class="svelte-pgngt4"
+            >
+              <div
+                class="undefined root svelte-138dtrj"
+              >
+                <a
+                  class="svelte-138dtrj"
+                  href="#/album/1"
+                >
+                  <img
+                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1oz3k7v"
+                    height="256"
+                    loading="lazy"
+                    width="256"
+                  />
+                   
+                  <span
+                    class="h-16 w-16 text-xs actionable svelte-1oz3k7v rounded-sm"
+                  >
+                    <i
+                      class="material-icons svelte-1oz3k7v"
+                    >
+                      music_note
+                    </i>
+                  </span>
+                  
+                </a>
+                 
+                <div
+                  class="track svelte-138dtrj"
+                >
+                  <span
+                    class="title svelte-138dtrj"
+                  >
+                    The Singing Sea
+                  </span>
+                   
+                  <span>
+                    <a
+                      class="text-sm underlined"
+                      href="#/artist/0"
+                      onclick="event.stopPropagation()"
+                    >
+                      Yoko Kanno
+                    </a>
+                    , 
+                    <a
+                      class="text-sm underlined"
+                      href="#/artist/1"
+                      onclick="event.stopPropagation()"
+                    >
+                      the Seatbelts
+                    </a>
+                  </span>
+                </div>
+                 
+                 
+                <span
+                  aria-expanded="false"
+                  aria-haspopup="menu"
+                  class="wrapper svelte-1g0595r"
+                >
+                  <button
+                    class="iconOnly noBorder svelte-sadb63"
+                  >
+                    <i
+                      class="material-icons svelte-sadb63"
+                    >
+                      more_vert
+                    </i>
+                     
+                     
+                    
+                     
+                  </button>
+                </span>
+                 
+                
+              </div>
+               
+            </li>
+            <li
+              class="svelte-pgngt4"
+            >
+              <div
+                class="undefined root svelte-138dtrj"
+              >
+                <a
+                  class="svelte-138dtrj"
+                  href="#/album/1"
+                >
+                  <img
+                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1oz3k7v"
+                    height="256"
+                    loading="lazy"
+                    width="256"
+                  />
+                   
+                  <span
+                    class="h-16 w-16 text-xs actionable svelte-1oz3k7v rounded-sm"
+                  >
+                    <i
+                      class="material-icons svelte-1oz3k7v"
+                    >
+                      music_note
+                    </i>
+                  </span>
+                  
+                </a>
+                 
+                <div
+                  class="track svelte-138dtrj"
+                >
+                  <span
+                    class="title svelte-138dtrj"
+                  >
+                    Vitamin A
+                  </span>
+                   
+                  <span>
+                    <a
+                      class="text-sm underlined"
+                      href="#/artist/0"
+                      onclick="event.stopPropagation()"
+                    >
+                      Yoko Kanno
+                    </a>
+                    , 
+                    <a
+                      class="text-sm underlined"
+                      href="#/artist/1"
+                      onclick="event.stopPropagation()"
+                    >
+                      the Seatbelts
+                    </a>
+                  </span>
+                </div>
+                 
+                 
+                <span
+                  aria-expanded="false"
+                  aria-haspopup="menu"
+                  class="wrapper svelte-1g0595r"
+                >
+                  <button
+                    class="iconOnly noBorder svelte-sadb63"
+                  >
+                    <i
+                      class="material-icons svelte-sadb63"
+                    >
+                      more_vert
+                    </i>
+                     
+                     
+                    
+                     
+                  </button>
+                </span>
+                 
+                
+              </div>
+               
+            </li>
+            <li
+              class="svelte-pgngt4"
+            >
+              <div
+                class="undefined root svelte-138dtrj"
+              >
+                <a
+                  class="svelte-138dtrj"
+                  href="#/album/1"
+                >
+                  <img
+                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1oz3k7v"
+                    height="256"
+                    loading="lazy"
+                    width="256"
+                  />
+                   
+                  <span
+                    class="h-16 w-16 text-xs actionable svelte-1oz3k7v rounded-sm"
+                  >
+                    <i
+                      class="material-icons svelte-1oz3k7v"
+                    >
+                      music_note
+                    </i>
+                  </span>
+                  
+                </a>
+                 
+                <div
+                  class="track svelte-138dtrj"
+                >
+                  <span
+                    class="title svelte-138dtrj"
+                  >
+                    Vitamin B
+                  </span>
+                   
+                  <span>
+                    <a
+                      class="text-sm underlined"
+                      href="#/artist/0"
+                      onclick="event.stopPropagation()"
+                    >
+                      Yoko Kanno
+                    </a>
+                    , 
+                    <a
+                      class="text-sm underlined"
+                      href="#/artist/1"
+                      onclick="event.stopPropagation()"
+                    >
+                      the Seatbelts
+                    </a>
+                  </span>
+                </div>
+                 
+                 
+                <span
+                  aria-expanded="false"
+                  aria-haspopup="menu"
+                  class="wrapper svelte-1g0595r"
+                >
+                  <button
+                    class="iconOnly noBorder svelte-sadb63"
+                  >
+                    <i
+                      class="material-icons svelte-sadb63"
+                    >
+                      more_vert
+                    </i>
+                     
+                     
+                    
+                     
+                  </button>
+                </span>
+                 
+                
+              </div>
+               
+            </li>
+            <li
+              class="svelte-pgngt4"
+            >
+              <div
+                class="undefined root svelte-138dtrj"
+              >
+                <a
+                  class="svelte-138dtrj"
+                  href="#/album/1"
+                >
+                  <img
+                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1oz3k7v"
+                    height="256"
+                    loading="lazy"
+                    width="256"
+                  />
+                   
+                  <span
+                    class="h-16 w-16 text-xs actionable svelte-1oz3k7v rounded-sm"
+                  >
+                    <i
+                      class="material-icons svelte-1oz3k7v"
+                    >
+                      music_note
+                    </i>
+                  </span>
+                  
+                </a>
+                 
+                <div
+                  class="track svelte-138dtrj"
+                >
+                  <span
+                    class="title svelte-138dtrj"
+                  >
+                    Vitamin C
+                  </span>
+                   
+                  <span>
+                    <a
+                      class="text-sm underlined"
+                      href="#/artist/0"
+                      onclick="event.stopPropagation()"
+                    >
+                      Yoko Kanno
+                    </a>
+                    , 
+                    <a
+                      class="text-sm underlined"
+                      href="#/artist/1"
+                      onclick="event.stopPropagation()"
+                    >
+                      the Seatbelts
+                    </a>
+                  </span>
+                </div>
+                 
+                 
+                <span
+                  aria-expanded="false"
+                  aria-haspopup="menu"
+                  class="wrapper svelte-1g0595r"
+                >
+                  <button
+                    class="iconOnly noBorder svelte-sadb63"
+                  >
+                    <i
+                      class="material-icons svelte-sadb63"
+                    >
+                      more_vert
+                    </i>
+                     
+                     
+                    
+                     
+                  </button>
+                </span>
+                 
+                
+              </div>
+               
+            </li>
+            <li
+              class="svelte-pgngt4"
+            >
+              <div
+                class="undefined root svelte-138dtrj"
+              >
+                <a
+                  class="svelte-138dtrj"
+                  href="#/album/1"
+                >
+                  <img
+                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1oz3k7v"
+                    height="256"
+                    loading="lazy"
+                    width="256"
+                  />
+                   
+                  <span
+                    class="h-16 w-16 text-xs actionable svelte-1oz3k7v rounded-sm"
+                  >
+                    <i
+                      class="material-icons svelte-1oz3k7v"
+                    >
+                      music_note
+                    </i>
+                  </span>
+                  
+                </a>
+                 
+                <div
+                  class="track svelte-138dtrj"
+                >
+                  <span
+                    class="title svelte-138dtrj"
+                  >
+                    Want it All Back
+                  </span>
+                   
+                  <span>
+                    <a
+                      class="text-sm underlined"
+                      href="#/artist/0"
+                      onclick="event.stopPropagation()"
+                    >
+                      Yoko Kanno
+                    </a>
+                    , 
+                    <a
+                      class="text-sm underlined"
+                      href="#/artist/1"
+                      onclick="event.stopPropagation()"
+                    >
+                      the Seatbelts
+                    </a>
+                  </span>
+                </div>
+                 
+                 
+                <span
+                  aria-expanded="false"
+                  aria-haspopup="menu"
+                  class="wrapper svelte-1g0595r"
+                >
+                  <button
+                    class="iconOnly noBorder svelte-sadb63"
+                  >
+                    <i
+                      class="material-icons svelte-sadb63"
+                    >
+                      more_vert
+                    </i>
+                     
+                     
+                    
+                     
+                  </button>
+                </span>
+                 
+                
+              </div>
+               
+            </li>
+            <li
+              class="svelte-pgngt4"
+            >
+              <div
+                class="undefined root svelte-138dtrj"
+              >
+                <a
+                  class="svelte-138dtrj"
+                  href="#/album/1"
+                >
+                  <img
+                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1oz3k7v"
+                    height="256"
+                    loading="lazy"
+                    width="256"
+                  />
+                   
+                  <span
+                    class="h-16 w-16 text-xs actionable svelte-1oz3k7v rounded-sm"
+                  >
+                    <i
+                      class="material-icons svelte-1oz3k7v"
+                    >
+                      music_note
+                    </i>
+                  </span>
+                  
+                </a>
+                 
+                <div
+                  class="track svelte-138dtrj"
+                >
+                  <span
+                    class="title svelte-138dtrj"
+                  >
+                    You Make Me Coo
+                  </span>
+                   
+                  <span>
+                    <a
+                      class="text-sm underlined"
+                      href="#/artist/0"
+                      onclick="event.stopPropagation()"
+                    >
+                      Yoko Kanno
+                    </a>
+                    , 
+                    <a
+                      class="text-sm underlined"
+                      href="#/artist/1"
+                      onclick="event.stopPropagation()"
+                    >
+                      the Seatbelts
+                    </a>
+                  </span>
+                </div>
+                 
+                 
+                <span
+                  aria-expanded="false"
+                  aria-haspopup="menu"
+                  class="wrapper svelte-1g0595r"
+                >
+                  <button
+                    class="iconOnly noBorder svelte-sadb63"
+                  >
+                    <i
+                      class="material-icons svelte-sadb63"
+                    >
+                      more_vert
+                    </i>
+                     
+                     
+                    
+                     
+                  </button>
+                </span>
+                 
+                
+              </div>
+               
+            </li>
+          </ul>
+           
+          <iframe
+            aria-hidden="true"
+            src="about:blank"
+            style="display: block; position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; border: 0; opacity: 0; pointer-events: none; z-index: -1;"
+            tabindex="-1"
+          />
+        </span>
+        
+      </section>
+       
+      <section
+        class="svelte-1t67qsu"
+      >
+        <span
+          class="undefined artists svelte-pgngt4"
+        >
+          <h3
+            class="svelte-pgngt4"
+          >
+            3 artists
+          </h3>
+           
+          <ul
+            class="svelte-pgngt4"
+          >
+            <li
+              class="svelte-pgngt4"
+            >
+               
+              <span
+                class="svelte-4mizr"
+                role="article"
+              >
+                <div
+                  class="content svelte-4mizr"
+                >
+                  <span
+                    class="artwork svelte-4mizr"
+                  >
+                    <img
+                      class="h-full w-full rounded-full hidden svelte-1oz3k7v"
+                      height="256"
+                      loading="lazy"
+                      width="256"
+                    />
+                     
+                    <span
+                      class="h-full w-full svelte-1oz3k7v rounded-full"
+                    >
+                      <i
+                        class="material-icons svelte-1oz3k7v"
+                      >
+                        person
+                      </i>
+                    </span>
+                    
+                  </span>
+                   
+                  <p
+                    class="controls svelte-4mizr"
+                  >
+                     
+                    <button
+                      class="primary iconOnly large svelte-sadb63"
+                      data-testid="play"
+                    >
+                      <i
+                        class="material-icons svelte-sadb63"
+                      >
+                        play_arrow
+                      </i>
+                       
+                       
+                       
+                    </button>
+                     
+                    <button
+                      class="primary iconOnly large svelte-sadb63"
+                      data-testid="enqueue"
+                    >
+                      <i
+                        class="material-icons svelte-sadb63"
+                      >
+                        playlist_add
+                      </i>
+                       
+                       
+                       
+                    </button>
+                  </p>
+                </div>
+                 
+                <header
+                  class="svelte-4mizr"
+                >
+                  <h3
+                    class="svelte-4mizr"
+                  >
+                    Ludwig Van Beethoven
+                  </h3>
+                   
+                  <h4
+                    class="svelte-yqtzij"
+                    slot="details"
+                  >
+                    1 album
+                  </h4>
+                </header>
+              </span>
+               
+            </li>
+            <li
+              class="svelte-pgngt4"
+            >
+               
+              <span
+                class="svelte-4mizr"
+                role="article"
+              >
+                <div
+                  class="content svelte-4mizr"
+                >
+                  <span
+                    class="artwork svelte-4mizr"
+                  >
+                    <img
+                      alt="avatar.jpg"
+                      class="h-full w-full rounded-full svelte-1oz3k7v"
+                      height="256"
+                      loading="lazy"
+                      src="avatar.jpg"
+                      width="256"
+                    />
+                     
+                    
+                  </span>
+                   
+                  <p
+                    class="controls svelte-4mizr"
+                  >
+                     
+                    <button
+                      class="primary iconOnly large svelte-sadb63"
+                      data-testid="play"
+                    >
+                      <i
+                        class="material-icons svelte-sadb63"
+                      >
+                        play_arrow
+                      </i>
+                       
+                       
+                       
+                    </button>
+                     
+                    <button
+                      class="primary iconOnly large svelte-sadb63"
+                      data-testid="enqueue"
+                    >
+                      <i
+                        class="material-icons svelte-sadb63"
+                      >
+                        playlist_add
+                      </i>
+                       
+                       
+                       
+                    </button>
+                  </p>
+                </div>
+                 
+                <header
+                  class="svelte-4mizr"
+                >
+                  <h3
+                    class="svelte-4mizr"
+                  >
+                    Mademoiselle K
+                  </h3>
+                   
+                  <h4
+                    class="svelte-yqtzij"
+                    slot="details"
+                  >
+                    2 albums
+                  </h4>
+                </header>
+              </span>
+               
+            </li>
+            <li
+              class="svelte-pgngt4"
+            >
+               
+              <span
+                class="svelte-4mizr"
+                role="article"
+              >
+                <div
+                  class="content svelte-4mizr"
+                >
+                  <span
+                    class="artwork svelte-4mizr"
+                  >
+                    <img
+                      class="h-full w-full rounded-full hidden svelte-1oz3k7v"
+                      height="256"
+                      loading="lazy"
+                      width="256"
+                    />
+                     
+                    <span
+                      class="h-full w-full svelte-1oz3k7v rounded-full"
+                    >
+                      <i
+                        class="material-icons svelte-1oz3k7v"
+                      >
+                        person
+                      </i>
+                    </span>
+                    
+                  </span>
+                   
+                  <p
+                    class="controls svelte-4mizr"
+                  >
+                     
+                    <button
+                      class="primary iconOnly large svelte-sadb63"
+                      data-testid="play"
+                    >
+                      <i
+                        class="material-icons svelte-sadb63"
+                      >
+                        play_arrow
+                      </i>
+                       
+                       
+                       
+                    </button>
+                     
+                    <button
+                      class="primary iconOnly large svelte-sadb63"
+                      data-testid="enqueue"
+                    >
+                      <i
+                        class="material-icons svelte-sadb63"
+                      >
+                        playlist_add
+                      </i>
+                       
+                       
+                       
+                    </button>
+                  </p>
+                </div>
+                 
+                <header
+                  class="svelte-4mizr"
+                >
+                  <h3
+                    class="svelte-4mizr"
+                  >
+                    Yoko Kanno and the Seatbelts
+                  </h3>
+                   
+                  <h4
+                    class="svelte-yqtzij"
+                    slot="details"
+                  >
+                    9 albums
+                  </h4>
+                </header>
+              </span>
+               
+            </li>
+          </ul>
+           
+          <iframe
+            aria-hidden="true"
+            src="about:blank"
+            style="display: block; position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; border: 0; opacity: 0; pointer-events: none; z-index: -1;"
+            tabindex="-1"
+          />
+        </span>
+        
+      </section>
+       
+      <section
+        class="svelte-1t67qsu"
+      >
+        <span
+          class="undefined albums svelte-pgngt4"
+        >
+          <h3
+            class="svelte-pgngt4"
+          >
+            3 albums
+          </h3>
+           
+          <ul
+            class="svelte-pgngt4"
+          >
+            <li
+              class="svelte-pgngt4"
+            >
+               
+              <span
+                class="svelte-4mizr"
+                role="article"
+              >
+                <div
+                  class="content svelte-4mizr"
+                >
+                  <span
+                    class="artwork svelte-4mizr"
+                  >
+                    <img
+                      class="h-full w-full rounded-sm hidden svelte-1oz3k7v"
+                      height="256"
+                      loading="lazy"
+                      width="256"
+                    />
+                     
+                    <span
+                      class="h-full w-full svelte-1oz3k7v rounded-sm"
+                    >
+                      <i
+                        class="material-icons svelte-1oz3k7v"
+                      >
+                        music_note
+                      </i>
+                    </span>
+                    
+                  </span>
+                   
+                  <p
+                    class="controls svelte-4mizr"
+                  >
+                     
+                    <button
+                      class="primary iconOnly large svelte-sadb63"
+                      data-testid="play"
+                    >
+                      <i
+                        class="material-icons svelte-sadb63"
+                      >
+                        play_arrow
+                      </i>
+                       
+                       
+                       
+                    </button>
+                     
+                    <button
+                      class="primary iconOnly large svelte-sadb63"
+                      data-testid="enqueue"
+                    >
+                      <i
+                        class="material-icons svelte-sadb63"
+                      >
+                        playlist_add
+                      </i>
+                       
+                       
+                       
+                    </button>
+                  </p>
+                </div>
+                 
+                <header
+                  class="svelte-4mizr"
+                >
+                  <h3
+                    class="svelte-4mizr"
+                  >
+                    100 Best Karajan
+                  </h3>
+                   
+                  <h4
+                    class="svelte-yqtzij"
+                    slot="details"
+                  >
+                    by 
+                    <a
+                      class="underlined"
+                      href="#/artist/1"
+                      onclick="event.stopPropagation()"
+                    >
+                      Émile Waldteufel
+                    </a>
+                    , 
+                    <a
+                      class="underlined"
+                      href="#/artist/2"
+                      onclick="event.stopPropagation()"
+                    >
+                      Johann Sebastian Bach
+                    </a>
+                    , 
+                    <a
+                      class="underlined"
+                      href="#/artist/3"
+                      onclick="event.stopPropagation()"
+                    >
+                      Wolfgang Amadeus Mozart
+                    </a>
+                    , 
+                    <a
+                      class="underlined"
+                      href="#/artist/4"
+                      onclick="event.stopPropagation()"
+                    >
+                      Ottorino Respighi
+                    </a>
+                    , 
+                    <a
+                      class="underlined"
+                      href="#/artist/5"
+                      onclick="event.stopPropagation()"
+                    >
+                      Ludwig van Beethoven
+                    </a>
+                    , 
+                    <a
+                      class="underlined"
+                      href="#/artist/6"
+                      onclick="event.stopPropagation()"
+                    >
+                      Giuseppe Verdi
+                    </a>
+                    
+                     
+                  </h4>
+                </header>
+              </span>
+               
+            </li>
+            <li
+              class="svelte-pgngt4"
+            >
+               
+              <span
+                class="svelte-4mizr"
+                role="article"
+              >
+                <div
+                  class="content svelte-4mizr"
+                >
+                  <span
+                    class="artwork svelte-4mizr"
+                  >
+                    <img
+                      alt="cover.jpg"
+                      class="h-full w-full rounded-sm svelte-1oz3k7v"
+                      height="256"
+                      loading="lazy"
+                      src="cover.jpg"
+                      width="256"
+                    />
+                     
+                    
+                  </span>
+                   
+                  <p
+                    class="controls svelte-4mizr"
+                  >
+                     
+                    <button
+                      class="primary iconOnly large svelte-sadb63"
+                      data-testid="play"
+                    >
+                      <i
+                        class="material-icons svelte-sadb63"
+                      >
+                        play_arrow
+                      </i>
+                       
+                       
+                       
+                    </button>
+                     
+                    <button
+                      class="primary iconOnly large svelte-sadb63"
+                      data-testid="enqueue"
+                    >
+                      <i
+                        class="material-icons svelte-sadb63"
+                      >
+                        playlist_add
+                      </i>
+                       
+                       
+                       
+                    </button>
+                  </p>
+                </div>
+                 
+                <header
+                  class="svelte-4mizr"
+                >
+                  <h3
+                    class="svelte-4mizr"
+                  >
+                    Black Orpheus
+                  </h3>
+                   
+                  <h4
+                    class="svelte-yqtzij"
+                    slot="details"
+                  >
+                    by 
+                    <a
+                      class="underlined"
+                      href="#/artist/7"
+                      onclick="event.stopPropagation()"
+                    >
+                      Keziah Jones
+                    </a>
+                    
+                     
+                  </h4>
+                </header>
+              </span>
+               
+            </li>
+            <li
+              class="svelte-pgngt4"
+            >
+               
+              <span
+                class="svelte-4mizr"
+                role="article"
+              >
+                <div
+                  class="content svelte-4mizr"
+                >
+                  <span
+                    class="artwork svelte-4mizr"
+                  >
+                    <img
+                      class="h-full w-full rounded-sm hidden svelte-1oz3k7v"
+                      height="256"
+                      loading="lazy"
+                      width="256"
+                    />
+                     
+                    <span
+                      class="h-full w-full svelte-1oz3k7v rounded-sm"
+                    >
+                      <i
+                        class="material-icons svelte-1oz3k7v"
+                      >
+                        music_note
+                      </i>
+                    </span>
+                    
+                  </span>
+                   
+                  <p
+                    class="controls svelte-4mizr"
+                  >
+                     
+                    <button
+                      class="primary iconOnly large svelte-sadb63"
+                      data-testid="play"
+                    >
+                      <i
+                        class="material-icons svelte-sadb63"
+                      >
+                        play_arrow
+                      </i>
+                       
+                       
+                       
+                    </button>
+                     
+                    <button
+                      class="primary iconOnly large svelte-sadb63"
+                      data-testid="enqueue"
+                    >
+                      <i
+                        class="material-icons svelte-sadb63"
+                      >
+                        playlist_add
+                      </i>
+                       
+                       
+                       
+                    </button>
+                  </p>
+                </div>
+                 
+                <header
+                  class="svelte-4mizr"
+                >
+                  <h3
+                    class="svelte-4mizr"
+                  >
+                    Distant Worlds - Music from Final Fantasy
+                  </h3>
+                   
+                  <h4
+                    class="svelte-yqtzij"
+                    slot="details"
+                  >
+                    by 
+                    <a
+                      class="underlined"
+                      href="#/artist/8"
+                      onclick="event.stopPropagation()"
+                    >
+                      Nobuo Uematsu
+                    </a>
+                    
+                     
+                  </h4>
+                </header>
+              </span>
+               
+            </li>
+          </ul>
+           
+          <iframe
+            aria-hidden="true"
+            src="about:blank"
+            style="display: block; position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; border: 0; opacity: 0; pointer-events: none; z-index: -1;"
+            tabindex="-1"
+          />
+        </span>
+        
+      </section>
+    </div>
   </div>
 </div>
 `;

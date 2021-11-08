@@ -9,9 +9,9 @@
   $: tags = (src && src.tags) || {}
 </script>
 
-<style type="postcss">
+<style lang="postcss">
   .root {
-    @apply flex m-2 items-center text-left;
+    @apply flex m-2 text-left md:min-w-200px;
   }
 
   .track {
@@ -26,19 +26,13 @@
     @apply text-lg;
   }
 
-  @screen md {
-    .root {
-      min-width: 200px;
-    }
+  a {
+    @apply flex-none w-16;
   }
 </style>
 
 <div class={`${$$restProps.class} root`} on:click>
-  <a
-    on:click|stopPropagation
-    href={linkTo('album', src.albumRef)}
-    class="flex-none"
-  >
+  <a on:click|stopPropagation href={linkTo('album', src.albumRef)}>
     <Image
       class="h-16 w-16 text-xs actionable"
       src={src && src.media ? `${window.dlUrl}${src.media}` : null}

@@ -14,7 +14,7 @@ const { sleep } = require('./lib/tests')
 const services = require('./lib/services')
 const { configureExternalLinks } = require('./lib/utils')
 const descriptor = require('./package')
-const publicFolder = resolve(__dirname, '..', '..', 'common', 'ui', 'public')
+const publicFolder = resolve(__dirname, '..', '..', 'common', 'ui', 'dist')
 
 let platformSpy = jest.spyOn(os, 'platform')
 
@@ -112,7 +112,7 @@ describe('Application test', () => {
     expect(win.loadURL).toHaveBeenCalledWith(
       `file://${join(
         dirname(require.resolve('@melodie/ui')),
-        'public',
+        'dist',
         'index.html'
       )}?port=${port}&totpSecret=${totpSecret}`
     )
@@ -155,7 +155,7 @@ describe('Application test', () => {
     expect(win.loadURL).toHaveBeenCalledWith(
       `file://${join(
         dirname(require.resolve('@melodie/ui')),
-        'public',
+        'dist',
         'index.html'
       )}?port=${desiredPort || port}&totpSecret=${totpSecret}`
     )

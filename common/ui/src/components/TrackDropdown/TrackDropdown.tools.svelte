@@ -46,6 +46,7 @@
     }))()
     list()
   }}
+  layout="centered"
   let:props
   let:eventHandler
 >

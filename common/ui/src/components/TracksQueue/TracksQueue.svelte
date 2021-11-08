@@ -56,7 +56,7 @@
   )
 </script>
 
-<style type="postcss">
+<style lang="postcss">
   header {
     @apply w-full flex flex-row items-center p-2 gap-2;
     line-height: 1.8rem;

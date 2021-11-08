@@ -7,11 +7,9 @@
     Trapezium,
     ReflectedImage
   } from '../components'
-
-  export const segment = ''
 </script>
 
-<style type="postcss">
+<style lang="postcss">
   h2 {
     @apply border-0;
     text-transform: none;
@@ -75,10 +73,6 @@
   }
 </style>
 
-<svelte:head>
-  <title>{$_('Mélodie')}</title>
-</svelte:head>
-
 <Sticky>
   <nav>
     <img
@@ -99,7 +93,7 @@
     >
     <span class="flex-grow" />
     <a target="_blank" href="https://github.com/feugy/melodie"
-      ><img src="./logos/github.png" alt="" /></a
+      ><img src="/logos/github.png" alt="" /></a
     >
   </nav>
 </Sticky>
@@ -114,7 +108,7 @@
       </span>
       <div class="image-wrapper">
         <ReflectedImage
-          src="images/screenshot-ui-{$locale}.png"
+          src="/images/screenshot-ui-{$locale}.png"
           height="350px"
         />
       </div>
@@ -133,7 +127,7 @@
       </span>
       <div class="image-wrapper">
         <ReflectedImage
-          src="images/screenshot-player-{$locale}.png"
+          src="/images/screenshot-player-{$locale}.png"
           height="100px"
         />
       </div>
@@ -152,7 +146,7 @@
       </span>
       <div class="image-wrapper">
         <ReflectedImage
-          src="images/screenshot-artists-{$locale}.png"
+          src="/images/screenshot-artists-{$locale}.png"
           height="275px"
         />
       </div>
@@ -171,7 +165,7 @@
       </span>
       <div class="image-wrapper">
         <ReflectedImage
-          src="images/screenshot-artist-details-{$locale}.png"
+          src="/images/screenshot-artist-details-{$locale}.png"
           height="250px"
         />
       </div>
@@ -182,13 +176,13 @@
 <section id="for-geeks">
   <Trapezium color="#2e3141" inverted>
     <div class="content flex-wrap">
-      <Card image="logos/os.png" title={$_('works on your machine')}>
+      <Card image="/logos/os.png" title={$_('works on your machine')}>
         {@html $_('description.portable')}
       </Card>
-      <Card image="logos/open-source.png" title={$_('open source')}>
+      <Card image="/logos/open-source.png" title={$_('open source')}>
         {@html $_('description.open source')}
       </Card>
-      <Card image="logos/js.png" title={$_('js powered')}>
+      <Card image="/logos/js.png" title={$_('js powered')}>
         {@html $_('description.technologies')}
       </Card>
     </div>

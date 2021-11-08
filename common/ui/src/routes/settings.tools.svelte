@@ -29,7 +29,7 @@
       false
     )()
     isDesktop.next(true)
-    window.TAILWINDCSS_VERSION = '1.9.0'
+    window.WINDICSS_VERSION = '3.2.1'
     window.RXJS_VERSION = '6.0.0'
     await init('http://192.168.0.10:9999')
   }}

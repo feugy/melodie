@@ -8,6 +8,7 @@ const artistRefs = artists.map((artist, id) => [id, artist])
 export const disksData = [
   {
     id: 1,
+    media: './cover.jpg',
     tags: {
       title: 'American Money',
       artists,
@@ -20,6 +21,7 @@ export const disksData = [
   },
   {
     id: 2,
+    media: './cover.jpg',
     tags: {
       title: 'Fantaisie Sign',
       artists,
@@ -32,6 +34,7 @@ export const disksData = [
   },
   {
     id: 3,
+    media: './cover.jpg',
     tags: {
       title: "Don't Bother None",
       artists,

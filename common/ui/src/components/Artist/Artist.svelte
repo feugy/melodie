@@ -6,7 +6,7 @@
   export let src
 </script>
 
-<style type="postcss">
+<style lang="postcss">
   h4 {
     @apply text-sm truncate w-full;
   }

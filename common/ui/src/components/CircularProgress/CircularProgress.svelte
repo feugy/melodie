@@ -10,7 +10,7 @@
   $: offset = circumference - (percentage / 100) * circumference
 </script>
 
-<style type="postcss">
+<style lang="postcss">
   circle {
     stroke: var(--primary-color);
     stroke-width: var(--stroke-width);

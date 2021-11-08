@@ -14,7 +14,7 @@
   let confirmed = false
 </script>
 
-<style type="postcss">
+<style lang="postcss">
   .content {
     @apply mb-4;
   }

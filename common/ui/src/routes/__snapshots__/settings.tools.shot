@@ -4,40 +4,40 @@ exports[`Toolshot routes/settings.tools.svelte: Views/Settings 1`] = `
 <span>
   <section>
     <header
-      class=" svelte-t58ezf"
+      class=" svelte-10ndra7"
       style="--image: url(../images/rima-kruciene-gpKe3hmIawg-unsplash.jpg); --shade-color: rgba(0, 0, 0, 0.7); --bgPosition: center 65%;"
     >
       <h1
-        class="svelte-t58ezf"
+        class="svelte-10ndra7"
       >
         Settings
       </h1>
     </header>
      
     <article
-      class="svelte-n00d3j"
+      class="svelte-lv3kqd"
     >
       <h4
-        class=" svelte-177xz1h"
+        class=" svelte-qxdwtd"
       >
         Music folders
       </h4>
        
       <ul>
         <li
-          class="svelte-n00d3j"
+          class="svelte-lv3kqd"
         >
           <span
-            class="svelte-n00d3j"
+            class="svelte-lv3kqd"
           >
             /home/music
           </span>
            
           <button
-            class="iconOnly noBorder svelte-1e4q28k"
+            class="iconOnly noBorder svelte-sadb63"
           >
             <i
-              class="material-icons svelte-1e4q28k"
+              class="material-icons svelte-sadb63"
             >
               close
             </i>
@@ -48,19 +48,19 @@ exports[`Toolshot routes/settings.tools.svelte: Views/Settings 1`] = `
            
         </li>
         <li
-          class="svelte-n00d3j"
+          class="svelte-lv3kqd"
         >
           <span
-            class="svelte-n00d3j"
+            class="svelte-lv3kqd"
           >
             /home/movies
           </span>
            
           <button
-            class="iconOnly noBorder svelte-1e4q28k"
+            class="iconOnly noBorder svelte-sadb63"
           >
             <i
-              class="material-icons svelte-1e4q28k"
+              class="material-icons svelte-sadb63"
             >
               close
             </i>
@@ -73,19 +73,21 @@ exports[`Toolshot routes/settings.tools.svelte: Views/Settings 1`] = `
       </ul>
        
       <span
-        class="controlContainer svelte-n00d3j"
+        class="controlContainer svelte-lv3kqd"
         id="folder"
       >
         <button
-          class="svelte-1e4q28k"
+          class="svelte-sadb63"
         >
           <i
-            class="material-icons svelte-1e4q28k"
+            class="material-icons svelte-sadb63"
           >
             folder
           </i>
            
-          <span>
+          <span
+            class="svelte-sadb63"
+          >
             Add folders
           </span>
            
@@ -95,43 +97,45 @@ exports[`Toolshot routes/settings.tools.svelte: Views/Settings 1`] = `
     </article>
      
     <article
-      class="svelte-n00d3j"
+      class="svelte-lv3kqd"
     >
       <h4
-        class=" svelte-177xz1h"
+        class=" svelte-qxdwtd"
       >
         Interface settings
       </h4>
        
       <p
-        class="svelte-n00d3j"
+        class="svelte-lv3kqd"
       >
         <label
-          class="svelte-n00d3j"
+          class="svelte-lv3kqd"
           for="locale"
         >
           Language:
         </label>
          
         <span
-          class="controlContainer svelte-n00d3j"
+          class="controlContainer svelte-lv3kqd"
           id="locale"
         >
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-11prmkk"
+            class="wrapper svelte-1g0595r"
           >
             <button
-              class="svelte-1e4q28k"
+              class="svelte-sadb63"
             >
                
-              <span>
+              <span
+                class="svelte-sadb63"
+              >
                 English
               </span>
                
               <i
-                class="material-icons arrow svelte-11prmkk"
+                class="material-icons arrow svelte-1g0595r"
               >
                 arrow_drop_down
               </i>
@@ -145,10 +149,10 @@ exports[`Toolshot routes/settings.tools.svelte: Views/Settings 1`] = `
       </p>
        
       <p
-        class="svelte-n00d3j"
+        class="svelte-lv3kqd"
       >
         <label
-          class="svelte-n00d3j"
+          class="svelte-lv3kqd"
           for="play-behaviour"
         >
           Button 
@@ -161,24 +165,26 @@ exports[`Toolshot routes/settings.tools.svelte: Views/Settings 1`] = `
         </label>
          
         <span
-          class="controlContainer svelte-n00d3j"
+          class="controlContainer svelte-lv3kqd"
           id="play-behaviour"
         >
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-11prmkk"
+            class="wrapper svelte-1g0595r"
           >
             <button
-              class="svelte-1e4q28k"
+              class="svelte-sadb63"
             >
                
-              <span>
+              <span
+                class="svelte-sadb63"
+              >
                 clears queue and plays track
               </span>
                
               <i
-                class="material-icons arrow svelte-11prmkk"
+                class="material-icons arrow svelte-1g0595r"
               >
                 arrow_drop_down
               </i>
@@ -192,34 +198,36 @@ exports[`Toolshot routes/settings.tools.svelte: Views/Settings 1`] = `
       </p>
        
       <p
-        class="svelte-n00d3j"
+        class="svelte-lv3kqd"
       >
         <label
-          class="svelte-n00d3j"
+          class="svelte-lv3kqd"
           for="click-behaviour"
         >
           Simple click:
         </label>
          
         <span
-          class="controlContainer svelte-n00d3j"
+          class="controlContainer svelte-lv3kqd"
           id="click-behaviour"
         >
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-11prmkk"
+            class="wrapper svelte-1g0595r"
           >
             <button
-              class="svelte-1e4q28k"
+              class="svelte-sadb63"
             >
                
-              <span>
+              <span
+                class="svelte-sadb63"
+              >
                 plays track
               </span>
                
               <i
-                class="material-icons arrow svelte-11prmkk"
+                class="material-icons arrow svelte-1g0595r"
               >
                 arrow_drop_down
               </i>
@@ -237,16 +245,16 @@ exports[`Toolshot routes/settings.tools.svelte: Views/Settings 1`] = `
     </article>
      
     <article
-      class="svelte-n00d3j"
+      class="svelte-lv3kqd"
     >
       <h4
-        class=" svelte-177xz1h"
+        class=" svelte-qxdwtd"
       >
         AudioDB data provider
       </h4>
        
       <div
-        class="instructions svelte-n00d3j"
+        class="instructions svelte-lv3kqd"
       >
         <p>
           TheAudioDB is a community Database of audio artwork and data with a JSON API. Mélodie can use it for album covers and artist artwork, but it needs an API key.
@@ -274,7 +282,7 @@ exports[`Toolshot routes/settings.tools.svelte: Views/Settings 1`] = `
       </div>
        
       <label
-        class="svelte-n00d3j"
+        class="svelte-lv3kqd"
         for="audiodb-key"
       >
         Key:
@@ -282,15 +290,15 @@ exports[`Toolshot routes/settings.tools.svelte: Views/Settings 1`] = `
       </label>
        
       <span
-        class="controlContainer svelte-n00d3j"
+        class="controlContainer svelte-lv3kqd"
         id="audiodb-key"
       >
         <span
-          class="settings-input svelte-1rbj4tt"
+          class="settings-input svelte-r9z0vs"
         >
            
           <input
-            class="svelte-1rbj4tt"
+            class="svelte-r9z0vs"
             placeholder="Paste your key here"
             type="text"
           />
@@ -299,16 +307,16 @@ exports[`Toolshot routes/settings.tools.svelte: Views/Settings 1`] = `
     </article>
      
     <article
-      class="svelte-n00d3j"
+      class="svelte-lv3kqd"
     >
       <h4
-        class=" svelte-177xz1h"
+        class=" svelte-qxdwtd"
       >
         Discogs data provider
       </h4>
        
       <div
-        class="instructions svelte-n00d3j"
+        class="instructions svelte-lv3kqd"
       >
         <p>
           Discogs is on a mission to build the biggest and most comprehensive music database and marketplace. Mélodie can use it for album covers and artist artwork, but it needs an access token.
@@ -336,7 +344,7 @@ exports[`Toolshot routes/settings.tools.svelte: Views/Settings 1`] = `
       </div>
        
       <label
-        class="svelte-n00d3j"
+        class="svelte-lv3kqd"
         for="discogs-token"
       >
         Access token:
@@ -344,15 +352,15 @@ exports[`Toolshot routes/settings.tools.svelte: Views/Settings 1`] = `
       </label>
        
       <span
-        class="controlContainer svelte-n00d3j"
+        class="controlContainer svelte-lv3kqd"
         id="discogs-token"
       >
         <span
-          class="settings-input svelte-1rbj4tt"
+          class="settings-input svelte-r9z0vs"
         >
            
           <input
-            class="svelte-1rbj4tt"
+            class="svelte-r9z0vs"
             placeholder="Paste your token here"
             type="text"
           />
@@ -361,31 +369,31 @@ exports[`Toolshot routes/settings.tools.svelte: Views/Settings 1`] = `
     </article>
      
     <article
-      class="svelte-n00d3j"
+      class="svelte-lv3kqd"
     >
       <h4
-        class=" svelte-177xz1h"
+        class=" svelte-qxdwtd"
       >
         Broadcasting
       </h4>
        
       <label
-        class="svelte-n00d3j"
+        class="svelte-lv3kqd"
         for="broadcast-port"
       >
         Broadcasting port: 
       </label>
        
       <span
-        class="controlContainer svelte-n00d3j"
+        class="controlContainer svelte-lv3kqd"
         id="broadcast-port"
       >
         <span
-          class="settings-input svelte-1rbj4tt"
+          class="settings-input svelte-r9z0vs"
         >
            
           <input
-            class="svelte-1rbj4tt"
+            class="svelte-r9z0vs"
             placeholder="Local port used (don't forget to update your firewall)"
             type="number"
           />
@@ -393,26 +401,26 @@ exports[`Toolshot routes/settings.tools.svelte: Views/Settings 1`] = `
       </span>
        
       <span
-        class="instructions svelte-n00d3j"
+        class="instructions svelte-lv3kqd"
       >
         (please restart to apply change)
       </span>
     </article>
      
     <article
-      class="svelte-n00d3j"
+      class="svelte-lv3kqd"
     >
       <h4
-        class=" svelte-177xz1h"
+        class=" svelte-qxdwtd"
       >
         About
       </h4>
        
       <div
-        class="instructions svelte-n00d3j"
+        class="instructions svelte-lv3kqd"
       >
         <p
-          class="svelte-n00d3j"
+          class="svelte-lv3kqd"
         >
           Built with love by 
           <a
@@ -424,22 +432,22 @@ exports[`Toolshot routes/settings.tools.svelte: Views/Settings 1`] = `
         </p>
          
         <p
-          class="version-container svelte-n00d3j"
+          class="version-container svelte-lv3kqd"
         >
           <div
-            class="svelte-n00d3j"
+            class="svelte-lv3kqd"
           >
             <header
-              class="svelte-n00d3j"
+              class="svelte-lv3kqd"
             >
               <div
-                class="svelte-n00d3j"
+                class="svelte-lv3kqd"
               >
                 Mélodie
               </div>
                
               <div
-                class="svelte-n00d3j"
+                class="svelte-lv3kqd"
               >
                 2.0.0
               </div>
@@ -447,25 +455,25 @@ exports[`Toolshot routes/settings.tools.svelte: Views/Settings 1`] = `
              
             <img
               alt="Mélodie"
-              class="svelte-n00d3j"
+              class="svelte-lv3kqd"
               src="icons/icon-512x512.png"
             />
              
           </div>
           <div
-            class="svelte-n00d3j"
+            class="svelte-lv3kqd"
           >
             <header
-              class="svelte-n00d3j"
+              class="svelte-lv3kqd"
             >
               <div
-                class="svelte-n00d3j"
+                class="svelte-lv3kqd"
               >
                 Electron
               </div>
                
               <div
-                class="svelte-n00d3j"
+                class="svelte-lv3kqd"
               >
                 11.0.0
               </div>
@@ -473,77 +481,77 @@ exports[`Toolshot routes/settings.tools.svelte: Views/Settings 1`] = `
              
             <img
               alt="Electron"
-              class="svelte-n00d3j"
+              class="svelte-lv3kqd"
               src="images/electron-logo.png"
             />
              
           </div>
           <div
-            class="svelte-n00d3j"
+            class="svelte-lv3kqd"
           >
             <header
-              class="svelte-n00d3j"
+              class="svelte-lv3kqd"
             >
               <div
-                class="svelte-n00d3j"
+                class="svelte-lv3kqd"
               >
                 Svelte
               </div>
                
               <div
-                class="svelte-n00d3j"
+                class="svelte-lv3kqd"
               >
-                3.43.1
+                3.44.1
               </div>
             </header>
              
             <img
               alt="Svelte"
-              class="svelte-n00d3j"
+              class="svelte-lv3kqd"
               src="images/svelte-logo.png"
             />
              
           </div>
           <div
-            class="svelte-n00d3j"
+            class="svelte-lv3kqd"
           >
             <header
-              class="svelte-n00d3j"
+              class="svelte-lv3kqd"
             >
               <div
-                class="svelte-n00d3j"
+                class="svelte-lv3kqd"
               >
-                Tailwind
+                WindiCSS
               </div>
                
               <div
-                class="svelte-n00d3j"
+                class="svelte-lv3kqd"
               >
-                1.9.0
+                3.2.1
               </div>
             </header>
              
             <img
-              alt="Tailwind"
-              class="svelte-n00d3j"
-              src="images/tailwindcss-logo.png"
+              alt="WindiCSS"
+              class="svelte-lv3kqd"
+              src="images/windicss-logo.png"
             />
              
           </div>
           <div
-            class="svelte-n00d3j"
+            class="svelte-lv3kqd"
           >
             <header
-              class="svelte-n00d3j"
+              class="svelte-lv3kqd"
             >
               <div
-                class="svelte-n00d3j"
+                class="svelte-lv3kqd"
               >
                 RxJS
               </div>
                
               <div
-                class="svelte-n00d3j"
+                class="svelte-lv3kqd"
               >
                 6.0.0
               </div>
@@ -551,25 +559,25 @@ exports[`Toolshot routes/settings.tools.svelte: Views/Settings 1`] = `
              
             <img
               alt="RxJS"
-              class="svelte-n00d3j"
+              class="svelte-lv3kqd"
               src="images/rx-logo.png"
             />
              
           </div>
           <div
-            class="svelte-n00d3j"
+            class="svelte-lv3kqd"
           >
             <header
-              class="svelte-n00d3j"
+              class="svelte-lv3kqd"
             >
               <div
-                class="svelte-n00d3j"
+                class="svelte-lv3kqd"
               >
                 SQLite
               </div>
                
               <div
-                class="svelte-n00d3j"
+                class="svelte-lv3kqd"
               >
                 3.26.0
               </div>
@@ -577,7 +585,7 @@ exports[`Toolshot routes/settings.tools.svelte: Views/Settings 1`] = `
              
             <img
               alt="SQLite"
-              class="svelte-n00d3j"
+              class="svelte-lv3kqd"
               src="images/sqlite-logo.png"
             />
              
@@ -585,13 +593,13 @@ exports[`Toolshot routes/settings.tools.svelte: Views/Settings 1`] = `
         </p>
          
         <p
-          class="svelte-n00d3j"
+          class="svelte-lv3kqd"
         >
           <span>
             Photos by:
              
             <a
-              class="underlined whitespace-nowrap"
+              class="underlined whitespace-nowrap svelte-lv3kqd"
               href="https://unsplash.com/photos/6AtQNsjMoJo"
             >
               Anthony Martino
@@ -604,7 +612,7 @@ exports[`Toolshot routes/settings.tools.svelte: Views/Settings 1`] = `
             </a>
             , 
             <a
-              class="underlined whitespace-nowrap"
+              class="underlined whitespace-nowrap svelte-lv3kqd"
               href="https://unsplash.com/photos/YNJGB-_Vlgw"
             >
               David Villasana
@@ -617,7 +625,7 @@ exports[`Toolshot routes/settings.tools.svelte: Views/Settings 1`] = `
             </a>
             , 
             <a
-              class="underlined whitespace-nowrap"
+              class="underlined whitespace-nowrap svelte-lv3kqd"
               href="https://unsplash.com/photos/JmVaNyemtN8"
             >
               Dark Rider
@@ -630,7 +638,7 @@ exports[`Toolshot routes/settings.tools.svelte: Views/Settings 1`] = `
             </a>
             , 
             <a
-              class="underlined whitespace-nowrap"
+              class="underlined whitespace-nowrap svelte-lv3kqd"
               href="https://unsplash.com/photos/Vfvf3H-5OHc"
             >
               Harry Swales
@@ -643,7 +651,7 @@ exports[`Toolshot routes/settings.tools.svelte: Views/Settings 1`] = `
             </a>
             , 
             <a
-              class="underlined whitespace-nowrap"
+              class="underlined whitespace-nowrap svelte-lv3kqd"
               href="https://unsplash.com/photos/ASKeuOZqhYU"
             >
               Jason Rosewell
@@ -656,7 +664,7 @@ exports[`Toolshot routes/settings.tools.svelte: Views/Settings 1`] = `
             </a>
             , 
             <a
-              class="underlined whitespace-nowrap"
+              class="underlined whitespace-nowrap svelte-lv3kqd"
               href="https://unsplash.com/photos/slbOcNlWNHA"
             >
               Larisa Birta
@@ -669,7 +677,7 @@ exports[`Toolshot routes/settings.tools.svelte: Views/Settings 1`] = `
             </a>
             , 
             <a
-              class="underlined whitespace-nowrap"
+              class="underlined whitespace-nowrap svelte-lv3kqd"
               href="https://unsplash.com/photos/gpKe3hmIawg"
             >
               Rima Kruciene
@@ -682,7 +690,7 @@ exports[`Toolshot routes/settings.tools.svelte: Views/Settings 1`] = `
             </a>
             , 
             <a
-              class="underlined whitespace-nowrap"
+              class="underlined whitespace-nowrap svelte-lv3kqd"
               href="https://unsplash.com/photos/MEcxLZ8ENV8"
             >
               Valentino Funghi
@@ -699,7 +707,7 @@ exports[`Toolshot routes/settings.tools.svelte: Views/Settings 1`] = `
         </p>
          
         <p
-          class="svelte-n00d3j"
+          class="svelte-lv3kqd"
         >
           <span>
             Using 

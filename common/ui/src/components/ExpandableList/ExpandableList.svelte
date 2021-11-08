@@ -65,7 +65,7 @@
   onMount(() => (kind === TRACKS ? clicks$.subscribe() : null))
 </script>
 
-<style type="postcss">
+<style lang="postcss">
   span {
     @apply inline-flex flex-col items-center text-left w-full overflow-x-hidden p-4;
   }

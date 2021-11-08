@@ -15,8 +15,7 @@
     "apps/*"
   ],
   "scripts": {
-    "dev": "run-p -ncs dev:**",
-    "dev:desktop": "npm run --workspace apps/desktop dev",
+    "dev:desktop": "sleep 1 && npm run --workspace apps/desktop dev",
     "dev:ui": "npm run --workspace common/ui dev",
     "lint": "run-s -ncs lint:**",
     "lint:core": "npx eslint common/core/lib",

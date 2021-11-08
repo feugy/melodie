@@ -100,8 +100,7 @@ describe('logger', () => {
     expect(pino).not.toHaveBeenCalled()
   })
 
-  it('set level when run with rollup', async () => {
-    process.env.ROLLUP_WATCH = 'true'
+  it('set level when run with in dev', async () => {
     process.env.NODE_ENV = 'dev'
     const name = faker.random.word()
 
@@ -120,7 +119,7 @@ describe('logger', () => {
     )
   })
 
-  it('set level when run without jest or rollup', async () => {
+  it('set level when run without jest', async () => {
     process.env.NODE_ENV = 'production'
     const name = faker.random.word()
     getLogger()

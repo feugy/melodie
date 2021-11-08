@@ -2,25 +2,25 @@
 
 exports[`Toolshot components/Card/Card.tools.svelte: Site components/Card 1`] = `
 <article
-  class="svelte-1ru4bsx"
+  class="svelte-p3cb93"
 >
   <img
     alt=""
-    class="svelte-1ru4bsx"
+    class="svelte-p3cb93"
     src="logos/os.png"
   />
    
   <div
-    class="svelte-1ru4bsx"
+    class="svelte-p3cb93"
   >
     <h4
-      class="svelte-1ru4bsx"
+      class="svelte-p3cb93"
     >
       Portable
     </h4>
      
     <p
-      class="svelte-1ru4bsx"
+      class="svelte-p3cb93"
     >
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod

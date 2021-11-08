@@ -4,6 +4,7 @@ const { dirname, basename } = require('path')
 const { EventEmitter } = require('events')
 const fastify = require('fastify')
 const compressPlugin = require('fastify-compress')
+const corsPlugin = require('fastify-cors')
 const staticPlugin = require('fastify-static')
 const websocketPlugin = require('fastify-websocket')
 const Ajv = require('ajv').default
@@ -173,6 +174,9 @@ exports.initConnection = async function (services, publicFolder, port = 0) {
 
   async function startServer() {
     server = fastify({ logger, disableRequestLogging: true })
+    server.register(corsPlugin, {
+      origin: settings.isBroadcasting ? '*' : 'http://localhost:3000'
+    })
     server.register(websocketPlugin, {
       options: {
         // note: it would be better to use 'upgrade' server event

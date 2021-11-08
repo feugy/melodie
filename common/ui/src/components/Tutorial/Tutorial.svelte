@@ -36,7 +36,7 @@
   }
 </script>
 
-<style type="postcss">
+<style lang="postcss">
   .skip {
     @apply fixed;
     bottom: 100px;

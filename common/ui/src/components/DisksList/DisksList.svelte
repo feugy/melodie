@@ -18,7 +18,7 @@
     : []
 </script>
 
-<style type="postcss">
+<style lang="postcss">
   h3 {
     @apply text-left text-lg mt-8 mb-4;
   }

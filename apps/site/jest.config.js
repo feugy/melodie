@@ -1,6 +1,4 @@
-'use strict'
-
-module.exports = {
+export default {
   rootDir: 'src/',
   testEnvironment: 'jsdom',
   transform: {
@@ -12,16 +10,14 @@ module.exports = {
     ],
     '^.+\\.svelte$': [
       'svelte-jester',
-      { preprocess: require.resolve('./svelte.config') }
+      { preprocess: './svelte-jester.config.js' }
     ],
     '^.+\\.ya?ml$': 'jest-yaml-transform'
   },
   moduleNameMapper: {
     '^.+\\.css$': 'identity-obj-proxy'
   },
-  transformIgnorePatterns: [
-    'node_modules\\/(?!svelte|tailwindcss|@atelier-wb)'
-  ],
+  transformIgnorePatterns: ['node_modules\\/(?!svelte|@atelier-wb)'],
   moduleFileExtensions: ['js', 'svelte', 'json', 'yml'],
   setupFilesAfterEnv: [
     'jest-extended',

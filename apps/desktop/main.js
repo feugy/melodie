@@ -48,7 +48,7 @@ exports.main = async argv => {
   let dispose
   const { app, BrowserWindow, Menu } = electron
   const isDev = process.env.NODE_ENV === 'test'
-  const publicFolder = join(dirname(require.resolve('@melodie/ui')), 'public')
+  const publicFolder = join(dirname(require.resolve('@melodie/ui')), 'dist')
 
   if (!isDev && !app.requestSingleInstanceLock()) {
     return app.quit()
@@ -103,12 +103,10 @@ starting... To change log levels, edit the level file and run \`kill -USR2 ${pro
   if (isDev) {
     logger.info('enabling reloading')
     const reloadOnChange = require('electron-reload')
-    // soft reset for renderer process changes
-    reloadOnChange(publicFolder)
     // hard reset for main process changes
     reloadOnChange([__dirname, dirname(require.resolve('@melodie/core'))], {
       electron: join(__dirname, '..', '..', 'node_modules', '.bin', 'electron'),
-      hardResetMethod: 'exit',
+      hardResetMethod: 'quit',
       forceHardReset: true,
       awaitWriteFinish: true
     })
@@ -152,11 +150,10 @@ starting... To change log levels, edit the level file and run \`kill -USR2 ${pro
     } = await services.start(publicFolder, win, descriptor, desiredPort)
 
     win.once('ready-to-show', () => win.show())
-    await win.loadURL(
-      `file://${join(publicFolder, 'index.html')}?port=${realPort}&totpSecret=${
-        totp.secret.hex
-      }`
-    )
+    const url = isDev
+      ? 'http:localhost:3000'
+      : `file://${join(publicFolder, 'index.html')}`
+    await win.loadURL(`${url}?port=${realPort}&totpSecret=${totp.secret.hex}`)
     const openSubscription = openFiles$
       .pipe(
         bufferWhen(() => openFiles$.pipe(debounceTime(200))),

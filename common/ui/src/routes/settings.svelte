@@ -111,9 +111,9 @@
         src: 'images/svelte-logo.png'
       },
       {
-        label: 'Tailwind',
-        value: TAILWINDCSS_VERSION,
-        src: 'images/tailwindcss-logo.png'
+        label: 'WindiCSS',
+        value: WINDICSS_VERSION,
+        src: 'images/windicss-logo.png'
       },
       {
         label: 'RxJS',
@@ -129,7 +129,7 @@
   })
 </script>
 
-<style type="postcss">
+<style lang="postcss">
   article {
     @apply text-left m-4 mt-0;
 
@@ -158,15 +158,15 @@
   }
 
   .controlContainer {
-    @apply inline-block;
+    @apply inline-block md:ml-4;
   }
 
   label {
-    @apply block;
+    @apply block md:text-right md:inline-block md:min-w-180px;
   }
 
   :global(.settings-input) {
-    @apply inline-block;
+    @apply inline-block md:w-400px;
   }
 
   .version-container {
@@ -187,21 +187,6 @@
       & > img {
         @apply w-full p-2;
       }
-    }
-  }
-
-  @screen md {
-    label {
-      @apply text-right inline-block;
-      min-width: 180px;
-    }
-
-    .controlContainer {
-      @apply ml-4;
-    }
-
-    :global(.settings-input) {
-      width: 400px;
     }
   }
 </style>

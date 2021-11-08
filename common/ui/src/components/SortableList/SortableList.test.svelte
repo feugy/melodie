@@ -7,7 +7,7 @@
   let dispatch = createEventDispatcher()
 </script>
 
-<style type="postcss">
+<style lang="postcss">
   div {
     @apply grid grid-cols-12 gap-0 items-center;
   }

@@ -23,7 +23,7 @@
   })
 </script>
 
-<style type="postcss">
+<style lang="postcss">
   .sentinel {
     @apply block w-full h-0 relative top-0;
   }

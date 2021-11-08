@@ -95,6 +95,14 @@ Another option is to open it with Control-click: it'll immediately register the 
 
 ### tools
 
+- replace TailwindCSS with WindiCSS
+
+- replace rollup with vite for dev and bundling
+
+- dependabot + dep update
+
+- rename git master branch to main
+
 - automated end-to-end tests
 
 - more technical documentation (install & release process notably)
@@ -479,6 +487,7 @@ Mélodie is referenced on these stores and hubs:
 - since v22.11.1, electron-builder fails to build the app on [Github worker](https://github.com/electron-userland/electron-builder/issues/6124). Fixing the version to 22.10.5 for the time being.
 
 - Tailwind is veeeeeeeeeeeery slow to compile. Svelte preprocessor can not handle it fast, making vite pretty slow when starting atelier (only the first load). More [information here](https://github.com/vitejs/vite/issues/5145). I'll strongly consider moving to [Windi CSS](https://windicss.org/)
+  Moving to WindiCSS speed the build time from 65 to 28 seconds. Still issues with: globals, safelist, @keyframes/@screen directives
 
 #### How watch & diff works
 

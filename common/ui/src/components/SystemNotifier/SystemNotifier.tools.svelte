@@ -8,7 +8,7 @@
   Notification.requestPermission()
 </script>
 
-<style type="postcss">
+<style lang="postcss">
   .disclaimer {
     @apply text-left m-8;
   }

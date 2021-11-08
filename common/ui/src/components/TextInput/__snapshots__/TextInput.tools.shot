@@ -2,14 +2,14 @@
 
 exports[`Toolshot components/TextInput/TextInput.tools.svelte: Default 1`] = `
 <span
-  class="inline-block w-64"
+  class="inline-block w-64 svelte-136j3mg"
 >
   <span
-    class="svelte-1rbj4tt"
+    class="svelte-r9z0vs"
   >
      
     <input
-      class="svelte-1rbj4tt"
+      class="svelte-r9z0vs"
       placeholder=""
       type="text"
     />
@@ -19,19 +19,19 @@ exports[`Toolshot components/TextInput/TextInput.tools.svelte: Default 1`] = `
 
 exports[`Toolshot components/TextInput/TextInput.tools.svelte: With icon and placeholder 1`] = `
 <span
-  class="inline-block w-64"
+  class="inline-block w-64 svelte-136j3mg"
 >
   <span
-    class="svelte-1rbj4tt icon"
+    class="svelte-r9z0vs icon"
   >
     <i
-      class="material-icons svelte-1rbj4tt"
+      class="material-icons svelte-r9z0vs"
     >
       search
     </i>
      
     <input
-      class="svelte-1rbj4tt"
+      class="svelte-r9z0vs"
       placeholder="search..."
       type="search"
     />
@@ -41,19 +41,19 @@ exports[`Toolshot components/TextInput/TextInput.tools.svelte: With icon and pla
 
 exports[`Toolshot components/TextInput/TextInput.tools.svelte: With value 1`] = `
 <span
-  class="inline-block w-64"
+  class="inline-block w-64 svelte-136j3mg"
 >
   <span
-    class="svelte-1rbj4tt icon"
+    class="svelte-r9z0vs icon"
   >
     <i
-      class="material-icons svelte-1rbj4tt"
+      class="material-icons svelte-r9z0vs"
     >
       person
     </i>
      
     <input
-      class="svelte-1rbj4tt"
+      class="svelte-r9z0vs"
       placeholder=""
       type="text"
     />

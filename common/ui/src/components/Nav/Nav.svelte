@@ -100,7 +100,7 @@
   }
 </script>
 
-<style type="postcss">
+<style lang="postcss">
   .bar {
     @apply w-full flex flex-row items-center p-2 gap-2;
     transition: background-color 0ms 260ms;
@@ -108,11 +108,27 @@
 
   li {
     &.nav {
-      @apply whitespace-nowrap;
+      @apply whitespace-nowrap md:order-1;
     }
 
     &.track-list {
       @apply flex-grow text-right;
+    }
+
+    &:nth-child(4) {
+      @apply md:order-2;
+    }
+
+    &:nth-child(5) {
+      @apply md:order-4;
+    }
+
+    &.expand {
+      @apply md:flex-grow md:text-right md:order-2 pl-4 md:pl-0;
+    }
+
+    &.track-list {
+      @apply md:flex-grow-0 md:order-4;
     }
   }
 
@@ -132,30 +148,6 @@
 
   .material-icons {
     @apply align-text-bottom;
-  }
-
-  @screen md {
-    li {
-      &.nav {
-        order: 1;
-      }
-
-      &:nth-child(4) {
-        order: 2;
-      }
-      &.expand {
-        @apply flex-grow text-right;
-        order: 2;
-      }
-
-      &:nth-child(5) {
-        order: 4;
-      }
-      &.track-list {
-        @apply flex-grow-0;
-        order: 4;
-      }
-    }
   }
 </style>
 

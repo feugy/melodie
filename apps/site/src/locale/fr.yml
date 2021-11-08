@@ -24,7 +24,7 @@ description:
   portable: >
     <p>Que votre système d'exploitation préféré soit macOS, Windows ou Linux, profitez de la même expérience utilisateur.</p>
   technologies: >
-    <p>Avec beaucoup d'amour et Electron, Svelte, RxJS, TailwindCSS, SQLite, Music-Metadata, Svelte SPA router...<p>
+    <p>Avec beaucoup d'amour et Electron, Svelte, RxJS, WindiCSS, SQLite, Music-Metadata, Svelte SPA router...<p>
   tuned: >
     <p>Grâce à <a class="underlined" target="_blank" href="https://www.theaudiodb.com">AudioDB <i class="material-icons">launch</i></a> et <a class="underlined" target="_blank" href="https://www.discogs.com/en">Discogs <i class="material-icons">launch</i></a>, Mélodie enrichira votre librairie libraries avec des couvertures, avatars et biographies (nécessite des clés d'accès).</p>
     <p>Ajoutez ou supprimez des fichiers sur le disque, changez leurs méta-données : votre librairie le détectera immédiatement.</p>

@@ -14,7 +14,7 @@
   }
 </script>
 
-<style type="postcss">
+<style lang="postcss">
   span {
     @apply inline-flex items-center;
 
@@ -45,7 +45,8 @@
   {#if icon}
     <i
       class="material-icons"
-      on:click|stopPropagation={() => dispatch('iconClick')}>
+      on:click|stopPropagation={() => dispatch('iconClick')}
+    >
       {icon}
     </i>
   {/if}

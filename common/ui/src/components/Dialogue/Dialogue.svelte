@@ -32,7 +32,7 @@
   }
 </script>
 
-<style type="postcss">
+<style lang="postcss">
   .backdrop,
   .filter {
     @apply fixed flex items-center justify-center inset-0 m-0 z-10 p-10;
@@ -55,7 +55,7 @@
   }
 
   article {
-    @apply flex flex-col text-center w-full max-h-full;
+    @apply flex flex-col text-center w-full md:w-8/10 lg:w-7/10 xl:w-1/2 max-h-full md:max-h-8/10;
   }
 
   .content {
@@ -69,25 +69,6 @@
 
   footer {
     @apply mt-4;
-  }
-
-  @screen md {
-    article {
-      width: 80%;
-      max-height: 80%;
-    }
-  }
-
-  @screen lg {
-    article {
-      width: 70%;
-    }
-  }
-
-  @screen xl {
-    article {
-      width: 50%;
-    }
   }
 </style>
 

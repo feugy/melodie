@@ -200,7 +200,13 @@ describe('connection utilities', () => {
     })
     ;({ close, address } = await initConnection(services, publicFolder))
     expect(address).toInclude('0.0.0.0')
-    expect(await got.get(`${address}/index.html`)).toBeDefined()
+    const response = await got.get(`${address}/index.html`)
+    expect(response).toBeDefined()
+    expect(response.headers).toEqual(
+      expect.objectContaining({
+        'access-control-allow-origin': '*'
+      })
+    )
     await expect(got(`${address}/unknown.js`)).rejects.toThrow(/Not Found/)
   })
 

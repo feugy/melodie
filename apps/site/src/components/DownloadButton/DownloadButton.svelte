@@ -4,7 +4,7 @@
   import DownloadButtonItem from './DownloadButtonItem.svelte'
 
   const version = MELODIE_VERSION
-  
+
   const baseUrl = `https://github.com/feugy/melodie/releases/download/v${version}`
 
   const options = [
