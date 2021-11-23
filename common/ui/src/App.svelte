@@ -74,7 +74,7 @@
   }
 </script>
 
-<style lang="postcss" windi:preflights:global windi:safelist:global>
+<style lang="postcss">
   div {
     @apply flex flex-col h-full max-h-full;
   }

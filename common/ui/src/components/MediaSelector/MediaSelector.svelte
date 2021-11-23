@@ -62,7 +62,9 @@
         {#if attribute in image}
           <div class="m-2">
             <Image
-              src={image[attribute]}
+              src="{image[attribute]?.startsWith('http')
+                ? ''
+                : window.dlUrl}{image[attribute]}"
               withNonce
               class="w-48 h-48 actionable"
               on:click={() => handleSelect(image[attribute])}

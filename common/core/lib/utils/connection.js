@@ -240,6 +240,14 @@ exports.initConnection = async function (services, publicFolder, port = 0) {
       '/albums/:id/media/:count',
       makeMediaHandler(services.media.getAlbumMedia)
     )
+    server.get('/media', async ({ query: { path } }, reply) => {
+      if (!wsConnected) {
+        return reply.code(401).send()
+      }
+      return (await services.media.isMediaAllowed(path))
+        ? reply.sendFile(basename(path), dirname(path))
+        : reply.code(403).send()
+    })
     const address = await server.listen(
       port || settings.broadcastPort,
       settings.isBroadcasting ? '0.0.0.0' : 'localhost'

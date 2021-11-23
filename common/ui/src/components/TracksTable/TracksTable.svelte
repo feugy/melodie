@@ -26,7 +26,7 @@
   onMount(() => clicks$.subscribe())
 </script>
 
-<style lang="postcss" windi:safeList>
+<style lang="postcss">
   table,
   tbody,
   thead,

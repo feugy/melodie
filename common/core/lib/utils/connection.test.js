@@ -78,7 +78,8 @@ describe('connection utilities', () => {
       getAlbumMedia: jest.fn(),
       getArtistMedia: jest.fn(),
       getTrackMedia: jest.fn(),
-      getTrackData: jest.fn()
+      getTrackData: jest.fn(),
+      isMediaAllowed: jest.fn()
     }
   }
 
@@ -380,36 +381,46 @@ describe('connection utilities', () => {
     it('denies access to album cover', async () => {
       const id = faker.datatype.number({ min: 1000 })
       const count = faker.datatype.number({ min: 1, max: 10 })
-      services.media.getAlbumMedia.mockResolvedValueOnce(cover)
       await expect(
         got.get(`${address}/albums/${id}/media/${count}`)
       ).rejects.toThrow(/Unauthorized/)
+      expect(services.media.getAlbumMedia).not.toHaveBeenCalled()
     })
 
     it('denies access to track data', async () => {
       const id = faker.datatype.number({ min: 1000 })
-      services.media.getTrackData.mockResolvedValueOnce(mp3)
       await expect(got.get(`${address}/tracks/${id}/data`)).rejects.toThrow(
         /Unauthorized/
       )
+      expect(services.media.getTrackData).not.toHaveBeenCalled()
     })
 
     it('denies access to track cover', async () => {
       const id = faker.datatype.number({ min: 1000 })
       const count = faker.datatype.number({ min: 1, max: 10 })
-      services.media.getTrackMedia.mockResolvedValueOnce(cover)
       await expect(
         got.get(`${address}/tracks/${id}/media/${count}`)
       ).rejects.toThrow(/Unauthorized/)
+      expect(services.media.getTrackMedia).not.toHaveBeenCalled()
     })
 
     it('denies access to artist artworks', async () => {
       const id = faker.datatype.number({ min: 1000 })
       const count = faker.datatype.number({ min: 1, max: 10 })
-      services.media.getArtistMedia.mockResolvedValueOnce(avatar)
       await expect(
         got.get(`${address}/artists/${id}/media/${count}`)
       ).rejects.toThrow(/Unauthorized/)
+      expect(services.media.getArtistMedia).not.toHaveBeenCalled()
+    })
+
+    it('denies access to possible local medias', async () => {
+      services.media.getTrackMedia.mockResolvedValueOnce(cover)
+      await expect(
+        got.get(`${address}/media`, {
+          searchParams: { path: cover }
+        })
+      ).rejects.toThrow(/Unauthorized/)
+      expect(services.media.isMediaAllowed).not.toHaveBeenCalled()
     })
 
     describe('given a connected client', () => {
@@ -555,6 +566,39 @@ describe('connection utilities', () => {
           count
         )
         expect(services.media.getArtistMedia).toHaveBeenCalledTimes(1)
+      })
+
+      it('serves possible media', async () => {
+        services.media.isMediaAllowed.mockResolvedValueOnce(true)
+        const response = await got.get(`${address}/media`, {
+          searchParams: { path: avatar }
+        })
+        expect(response.statusCode).toEqual(200)
+        expect(response.headers).toEqual(
+          expect.objectContaining({
+            etag: expect.any(String),
+            'content-type': 'image/jpeg',
+            'content-length': '19790'
+          })
+        )
+      })
+
+      it('returns 404 for unknown media', async () => {
+        services.media.isMediaAllowed.mockResolvedValueOnce(true)
+        await expect(
+          got.get(`${address}/media`, {
+            searchParams: { path: avatar.replace('.jpg', '.png') }
+          })
+        ).rejects.toThrow(/Not Found/)
+      })
+
+      it('returns 404 for unsupported media', async () => {
+        services.media.isMediaAllowed.mockResolvedValueOnce(false)
+        await expect(
+          got.get(`${address}/media`, {
+            searchParams: { path: mp3 }
+          })
+        ).rejects.toThrow(/Forbidden/)
       })
     })
 
