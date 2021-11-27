@@ -132,46 +132,46 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
        
        
       <table
-        class="svelte-16ykc92"
+        class="svelte-1hd20y5"
       >
         <thead
-          class="svelte-16ykc92"
+          class="svelte-1hd20y5"
         >
           <tr
-            class="svelte-16ykc92"
+            class="svelte-1hd20y5"
           >
             <th
-              class="svelte-16ykc92"
+              class="svelte-1hd20y5"
             >
               #
             </th>
              
             <th
-              class="col-span-5 svelte-16ykc92"
+              class="col-span-5 svelte-1hd20y5"
             >
               Track
             </th>
              
             <th
-              class="col-span-1 svelte-16ykc92"
+              class="col-span-1 svelte-1hd20y5"
             >
               Duration
             </th>
              
             <th
-              class="col-span-4 svelte-16ykc92"
+              class="col-span-4 svelte-1hd20y5"
             >
               Album
             </th>
              
             <th
-              class="svelte-16ykc92"
+              class="svelte-1hd20y5"
             />
           </tr>
         </thead>
          
         <tbody
-          class="svelte-16ykc92"
+          class="svelte-1hd20y5"
         >
           <ol>
             <li
@@ -179,17 +179,17 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
               draggable="true"
             >
               <tr
-                class="svelte-16ykc92"
+                class="svelte-1hd20y5"
                 slot="item"
               >
                 <td
-                  class="svelte-16ykc92"
+                  class="svelte-1hd20y5"
                 >
                   1
                 </td>
                  
                 <td
-                  class="col-span-6 svelte-16ykc92"
+                  class="col-span-6 playlist-track svelte-1hd20y5"
                 >
                   <div
                     class="undefined root svelte-138dtrj"
@@ -248,7 +248,7 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                 </td>
                  
                 <td
-                  class="col-span-4 svelte-16ykc92"
+                  class="col-span-4 svelte-1hd20y5"
                 >
                   <a
                     class="underlined"
@@ -260,7 +260,7 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                 </td>
                  
                 <td
-                  class="svelte-16ykc92"
+                  class="svelte-1hd20y5"
                 >
                   <span
                     aria-expanded="false"
@@ -292,17 +292,17 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
               draggable="true"
             >
               <tr
-                class="svelte-16ykc92"
+                class="svelte-1hd20y5"
                 slot="item"
               >
                 <td
-                  class="svelte-16ykc92"
+                  class="svelte-1hd20y5"
                 >
                   2
                 </td>
                  
                 <td
-                  class="col-span-6 svelte-16ykc92"
+                  class="col-span-6 playlist-track svelte-1hd20y5"
                 >
                   <div
                     class="undefined root svelte-138dtrj"
@@ -361,7 +361,7 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                 </td>
                  
                 <td
-                  class="col-span-4 svelte-16ykc92"
+                  class="col-span-4 svelte-1hd20y5"
                 >
                   <a
                     class="underlined"
@@ -373,7 +373,7 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                 </td>
                  
                 <td
-                  class="svelte-16ykc92"
+                  class="svelte-1hd20y5"
                 >
                   <span
                     aria-expanded="false"
@@ -405,17 +405,17 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
               draggable="true"
             >
               <tr
-                class="svelte-16ykc92"
+                class="svelte-1hd20y5"
                 slot="item"
               >
                 <td
-                  class="svelte-16ykc92"
+                  class="svelte-1hd20y5"
                 >
                   3
                 </td>
                  
                 <td
-                  class="col-span-6 svelte-16ykc92"
+                  class="col-span-6 playlist-track svelte-1hd20y5"
                 >
                   <div
                     class="undefined root svelte-138dtrj"
@@ -474,7 +474,7 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                 </td>
                  
                 <td
-                  class="col-span-4 svelte-16ykc92"
+                  class="col-span-4 svelte-1hd20y5"
                 >
                   <a
                     class="underlined"
@@ -486,7 +486,7 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                 </td>
                  
                 <td
-                  class="svelte-16ykc92"
+                  class="svelte-1hd20y5"
                 >
                   <span
                     aria-expanded="false"
@@ -518,17 +518,17 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
               draggable="true"
             >
               <tr
-                class="svelte-16ykc92"
+                class="svelte-1hd20y5"
                 slot="item"
               >
                 <td
-                  class="svelte-16ykc92"
+                  class="svelte-1hd20y5"
                 >
                   4
                 </td>
                  
                 <td
-                  class="col-span-6 svelte-16ykc92"
+                  class="col-span-6 playlist-track svelte-1hd20y5"
                 >
                   <div
                     class="undefined root svelte-138dtrj"
@@ -594,7 +594,7 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                 </td>
                  
                 <td
-                  class="col-span-4 svelte-16ykc92"
+                  class="col-span-4 svelte-1hd20y5"
                 >
                   <a
                     class="underlined"
@@ -606,7 +606,7 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                 </td>
                  
                 <td
-                  class="svelte-16ykc92"
+                  class="svelte-1hd20y5"
                 >
                   <span
                     aria-expanded="false"
@@ -638,17 +638,17 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
               draggable="true"
             >
               <tr
-                class="svelte-16ykc92"
+                class="svelte-1hd20y5"
                 slot="item"
               >
                 <td
-                  class="svelte-16ykc92"
+                  class="svelte-1hd20y5"
                 >
                   5
                 </td>
                  
                 <td
-                  class="col-span-6 svelte-16ykc92"
+                  class="col-span-6 playlist-track svelte-1hd20y5"
                 >
                   <div
                     class="undefined root svelte-138dtrj"
@@ -714,7 +714,7 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                 </td>
                  
                 <td
-                  class="col-span-4 svelte-16ykc92"
+                  class="col-span-4 svelte-1hd20y5"
                 >
                   <a
                     class="underlined"
@@ -726,7 +726,7 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                 </td>
                  
                 <td
-                  class="svelte-16ykc92"
+                  class="svelte-1hd20y5"
                 >
                   <span
                     aria-expanded="false"
@@ -758,17 +758,17 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
               draggable="true"
             >
               <tr
-                class="svelte-16ykc92"
+                class="svelte-1hd20y5"
                 slot="item"
               >
                 <td
-                  class="svelte-16ykc92"
+                  class="svelte-1hd20y5"
                 >
                   6
                 </td>
                  
                 <td
-                  class="col-span-6 svelte-16ykc92"
+                  class="col-span-6 playlist-track svelte-1hd20y5"
                 >
                   <div
                     class="undefined root svelte-138dtrj"
@@ -834,7 +834,7 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                 </td>
                  
                 <td
-                  class="col-span-4 svelte-16ykc92"
+                  class="col-span-4 svelte-1hd20y5"
                 >
                   <a
                     class="underlined"
@@ -846,7 +846,7 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                 </td>
                  
                 <td
-                  class="svelte-16ykc92"
+                  class="svelte-1hd20y5"
                 >
                   <span
                     aria-expanded="false"
@@ -878,17 +878,17 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
               draggable="true"
             >
               <tr
-                class="svelte-16ykc92"
+                class="svelte-1hd20y5"
                 slot="item"
               >
                 <td
-                  class="svelte-16ykc92"
+                  class="svelte-1hd20y5"
                 >
                   7
                 </td>
                  
                 <td
-                  class="col-span-6 svelte-16ykc92"
+                  class="col-span-6 playlist-track svelte-1hd20y5"
                 >
                   <div
                     class="undefined root svelte-138dtrj"
@@ -954,7 +954,7 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                 </td>
                  
                 <td
-                  class="col-span-4 svelte-16ykc92"
+                  class="col-span-4 svelte-1hd20y5"
                 >
                   <a
                     class="underlined"
@@ -966,7 +966,7 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                 </td>
                  
                 <td
-                  class="svelte-16ykc92"
+                  class="svelte-1hd20y5"
                 >
                   <span
                     aria-expanded="false"
@@ -998,17 +998,17 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
               draggable="true"
             >
               <tr
-                class="svelte-16ykc92"
+                class="svelte-1hd20y5"
                 slot="item"
               >
                 <td
-                  class="svelte-16ykc92"
+                  class="svelte-1hd20y5"
                 >
                   8
                 </td>
                  
                 <td
-                  class="col-span-6 svelte-16ykc92"
+                  class="col-span-6 playlist-track svelte-1hd20y5"
                 >
                   <div
                     class="undefined root svelte-138dtrj"
@@ -1074,7 +1074,7 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                 </td>
                  
                 <td
-                  class="col-span-4 svelte-16ykc92"
+                  class="col-span-4 svelte-1hd20y5"
                 >
                   <a
                     class="underlined"
@@ -1086,7 +1086,7 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                 </td>
                  
                 <td
-                  class="svelte-16ykc92"
+                  class="svelte-1hd20y5"
                 >
                   <span
                     aria-expanded="false"
@@ -1118,17 +1118,17 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
               draggable="true"
             >
               <tr
-                class="svelte-16ykc92"
+                class="svelte-1hd20y5"
                 slot="item"
               >
                 <td
-                  class="svelte-16ykc92"
+                  class="svelte-1hd20y5"
                 >
                   9
                 </td>
                  
                 <td
-                  class="col-span-6 svelte-16ykc92"
+                  class="col-span-6 playlist-track svelte-1hd20y5"
                 >
                   <div
                     class="undefined root svelte-138dtrj"
@@ -1194,7 +1194,7 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                 </td>
                  
                 <td
-                  class="col-span-4 svelte-16ykc92"
+                  class="col-span-4 svelte-1hd20y5"
                 >
                   <a
                     class="underlined"
@@ -1206,7 +1206,7 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                 </td>
                  
                 <td
-                  class="svelte-16ykc92"
+                  class="svelte-1hd20y5"
                 >
                   <span
                     aria-expanded="false"
@@ -1238,17 +1238,17 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
               draggable="true"
             >
               <tr
-                class="svelte-16ykc92"
+                class="svelte-1hd20y5"
                 slot="item"
               >
                 <td
-                  class="svelte-16ykc92"
+                  class="svelte-1hd20y5"
                 >
                   10
                 </td>
                  
                 <td
-                  class="col-span-6 svelte-16ykc92"
+                  class="col-span-6 playlist-track svelte-1hd20y5"
                 >
                   <div
                     class="undefined root svelte-138dtrj"
@@ -1314,7 +1314,7 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                 </td>
                  
                 <td
-                  class="col-span-4 svelte-16ykc92"
+                  class="col-span-4 svelte-1hd20y5"
                 >
                   <a
                     class="underlined"
@@ -1326,7 +1326,7 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                 </td>
                  
                 <td
-                  class="svelte-16ykc92"
+                  class="svelte-1hd20y5"
                 >
                   <span
                     aria-expanded="false"
@@ -1358,17 +1358,17 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
               draggable="true"
             >
               <tr
-                class="svelte-16ykc92"
+                class="svelte-1hd20y5"
                 slot="item"
               >
                 <td
-                  class="svelte-16ykc92"
+                  class="svelte-1hd20y5"
                 >
                   11
                 </td>
                  
                 <td
-                  class="col-span-6 svelte-16ykc92"
+                  class="col-span-6 playlist-track svelte-1hd20y5"
                 >
                   <div
                     class="undefined root svelte-138dtrj"
@@ -1434,7 +1434,7 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                 </td>
                  
                 <td
-                  class="col-span-4 svelte-16ykc92"
+                  class="col-span-4 svelte-1hd20y5"
                 >
                   <a
                     class="underlined"
@@ -1446,7 +1446,7 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                 </td>
                  
                 <td
-                  class="svelte-16ykc92"
+                  class="svelte-1hd20y5"
                 >
                   <span
                     aria-expanded="false"
@@ -1478,17 +1478,17 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
               draggable="true"
             >
               <tr
-                class="svelte-16ykc92"
+                class="svelte-1hd20y5"
                 slot="item"
               >
                 <td
-                  class="svelte-16ykc92"
+                  class="svelte-1hd20y5"
                 >
                   12
                 </td>
                  
                 <td
-                  class="col-span-6 svelte-16ykc92"
+                  class="col-span-6 playlist-track svelte-1hd20y5"
                 >
                   <div
                     class="undefined root svelte-138dtrj"
@@ -1554,7 +1554,7 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                 </td>
                  
                 <td
-                  class="col-span-4 svelte-16ykc92"
+                  class="col-span-4 svelte-1hd20y5"
                 >
                   <a
                     class="underlined"
@@ -1566,7 +1566,7 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                 </td>
                  
                 <td
-                  class="svelte-16ykc92"
+                  class="svelte-1hd20y5"
                 >
                   <span
                     aria-expanded="false"
@@ -1598,17 +1598,17 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
               draggable="true"
             >
               <tr
-                class="svelte-16ykc92"
+                class="svelte-1hd20y5"
                 slot="item"
               >
                 <td
-                  class="svelte-16ykc92"
+                  class="svelte-1hd20y5"
                 >
                   13
                 </td>
                  
                 <td
-                  class="col-span-6 svelte-16ykc92"
+                  class="col-span-6 playlist-track svelte-1hd20y5"
                 >
                   <div
                     class="undefined root svelte-138dtrj"
@@ -1674,7 +1674,7 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                 </td>
                  
                 <td
-                  class="col-span-4 svelte-16ykc92"
+                  class="col-span-4 svelte-1hd20y5"
                 >
                   <a
                     class="underlined"
@@ -1686,7 +1686,7 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                 </td>
                  
                 <td
-                  class="svelte-16ykc92"
+                  class="svelte-1hd20y5"
                 >
                   <span
                     aria-expanded="false"
@@ -1718,17 +1718,17 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
               draggable="true"
             >
               <tr
-                class="svelte-16ykc92"
+                class="svelte-1hd20y5"
                 slot="item"
               >
                 <td
-                  class="svelte-16ykc92"
+                  class="svelte-1hd20y5"
                 >
                   14
                 </td>
                  
                 <td
-                  class="col-span-6 svelte-16ykc92"
+                  class="col-span-6 playlist-track svelte-1hd20y5"
                 >
                   <div
                     class="undefined root svelte-138dtrj"
@@ -1794,7 +1794,7 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                 </td>
                  
                 <td
-                  class="col-span-4 svelte-16ykc92"
+                  class="col-span-4 svelte-1hd20y5"
                 >
                   <a
                     class="underlined"
@@ -1806,7 +1806,7 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                 </td>
                  
                 <td
-                  class="svelte-16ykc92"
+                  class="svelte-1hd20y5"
                 >
                   <span
                     aria-expanded="false"
@@ -1838,17 +1838,17 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
               draggable="true"
             >
               <tr
-                class="svelte-16ykc92"
+                class="svelte-1hd20y5"
                 slot="item"
               >
                 <td
-                  class="svelte-16ykc92"
+                  class="svelte-1hd20y5"
                 >
                   15
                 </td>
                  
                 <td
-                  class="col-span-6 svelte-16ykc92"
+                  class="col-span-6 playlist-track svelte-1hd20y5"
                 >
                   <div
                     class="undefined root svelte-138dtrj"
@@ -1914,7 +1914,7 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                 </td>
                  
                 <td
-                  class="col-span-4 svelte-16ykc92"
+                  class="col-span-4 svelte-1hd20y5"
                 >
                   <a
                     class="underlined"
@@ -1926,7 +1926,7 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                 </td>
                  
                 <td
-                  class="svelte-16ykc92"
+                  class="svelte-1hd20y5"
                 >
                   <span
                     aria-expanded="false"
@@ -1958,17 +1958,17 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
               draggable="true"
             >
               <tr
-                class="svelte-16ykc92"
+                class="svelte-1hd20y5"
                 slot="item"
               >
                 <td
-                  class="svelte-16ykc92"
+                  class="svelte-1hd20y5"
                 >
                   16
                 </td>
                  
                 <td
-                  class="col-span-6 svelte-16ykc92"
+                  class="col-span-6 playlist-track svelte-1hd20y5"
                 >
                   <div
                     class="undefined root svelte-138dtrj"
@@ -2034,7 +2034,7 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                 </td>
                  
                 <td
-                  class="col-span-4 svelte-16ykc92"
+                  class="col-span-4 svelte-1hd20y5"
                 >
                   <a
                     class="underlined"
@@ -2046,7 +2046,7 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                 </td>
                  
                 <td
-                  class="svelte-16ykc92"
+                  class="svelte-1hd20y5"
                 >
                   <span
                     aria-expanded="false"
@@ -2078,17 +2078,17 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
               draggable="true"
             >
               <tr
-                class="svelte-16ykc92"
+                class="svelte-1hd20y5"
                 slot="item"
               >
                 <td
-                  class="svelte-16ykc92"
+                  class="svelte-1hd20y5"
                 >
                   17
                 </td>
                  
                 <td
-                  class="col-span-6 svelte-16ykc92"
+                  class="col-span-6 playlist-track svelte-1hd20y5"
                 >
                   <div
                     class="undefined root svelte-138dtrj"
@@ -2154,7 +2154,7 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                 </td>
                  
                 <td
-                  class="col-span-4 svelte-16ykc92"
+                  class="col-span-4 svelte-1hd20y5"
                 >
                   <a
                     class="underlined"
@@ -2166,7 +2166,7 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                 </td>
                  
                 <td
-                  class="svelte-16ykc92"
+                  class="svelte-1hd20y5"
                 >
                   <span
                     aria-expanded="false"
@@ -2198,17 +2198,17 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
               draggable="true"
             >
               <tr
-                class="svelte-16ykc92"
+                class="svelte-1hd20y5"
                 slot="item"
               >
                 <td
-                  class="svelte-16ykc92"
+                  class="svelte-1hd20y5"
                 >
                   18
                 </td>
                  
                 <td
-                  class="col-span-6 svelte-16ykc92"
+                  class="col-span-6 playlist-track svelte-1hd20y5"
                 >
                   <div
                     class="undefined root svelte-138dtrj"
@@ -2274,7 +2274,7 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                 </td>
                  
                 <td
-                  class="col-span-4 svelte-16ykc92"
+                  class="col-span-4 svelte-1hd20y5"
                 >
                   <a
                     class="underlined"
@@ -2286,7 +2286,7 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                 </td>
                  
                 <td
-                  class="svelte-16ykc92"
+                  class="svelte-1hd20y5"
                 >
                   <span
                     aria-expanded="false"

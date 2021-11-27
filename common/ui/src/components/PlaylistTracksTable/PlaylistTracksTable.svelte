@@ -37,13 +37,21 @@
   }
 
   tr {
-    @apply grid gap-0 items-center;
+    @apply grid gap-0 items-start;
     grid-template-columns: 60px repeat(10, 1fr) 60px;
 
     & > *:first-child,
     & > *:last-child {
       @apply text-center;
     }
+    & > td:nth-child(2) {
+      @apply p-1;
+    }
+  }
+
+  /* We're altering the content of Track component, to keep font size consitent across all columns. */
+  :global(.playlist-track .duration) {
+    @apply text-base;
   }
 
   thead {
@@ -92,7 +100,7 @@
       >
         <tr slot="item" let:item let:i on:click={() => clicks$.next(item)}>
           <td>{i + 1}</td>
-          <td class="col-span-6">
+          <td class="col-span-6 playlist-track">
             <Track src={item} details="true" />
           </td>
           <td class="col-span-4">
