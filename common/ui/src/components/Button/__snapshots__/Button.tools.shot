@@ -3,13 +3,31 @@
 exports[`Toolshot components/Button/Button.tools.svelte: Default 1`] = `
 <span>
   <button
-    class="svelte-sadb63"
+    class="svelte-11qpkf0"
   >
      
     <span
-      class="svelte-sadb63"
+      class="svelte-11qpkf0"
     >
       Default
+    </span>
+     
+     
+  </button>
+</span>
+`;
+
+exports[`Toolshot components/Button/Button.tools.svelte: Disabled 1`] = `
+<span>
+  <button
+    class="svelte-11qpkf0"
+    disabled=""
+  >
+     
+    <span
+      class="svelte-11qpkf0"
+    >
+      Disabled
     </span>
      
      
@@ -20,10 +38,10 @@ exports[`Toolshot components/Button/Button.tools.svelte: Default 1`] = `
 exports[`Toolshot components/Button/Button.tools.svelte: Large icon 1`] = `
 <span>
   <button
-    class="iconOnly large svelte-sadb63"
+    class="iconOnly large svelte-11qpkf0"
   >
     <i
-      class="material-icons svelte-sadb63"
+      class="material-icons svelte-11qpkf0"
     >
       play_arrow
     </i>
@@ -37,16 +55,16 @@ exports[`Toolshot components/Button/Button.tools.svelte: Large icon 1`] = `
 exports[`Toolshot components/Button/Button.tools.svelte: Large text and icon 1`] = `
 <span>
   <button
-    class="large svelte-sadb63"
+    class="large svelte-11qpkf0"
   >
     <i
-      class="material-icons svelte-sadb63"
+      class="material-icons svelte-11qpkf0"
     >
       person
     </i>
      
     <span
-      class="svelte-sadb63"
+      class="svelte-11qpkf0"
     >
       Hey!
     </span>
@@ -59,11 +77,29 @@ exports[`Toolshot components/Button/Button.tools.svelte: Large text and icon 1`]
 exports[`Toolshot components/Button/Button.tools.svelte: Primary 1`] = `
 <span>
   <button
-    class="primary svelte-sadb63"
+    class="primary svelte-11qpkf0"
   >
      
     <span
-      class="svelte-sadb63"
+      class="svelte-11qpkf0"
+    >
+      Primary
+    </span>
+     
+     
+  </button>
+</span>
+`;
+
+exports[`Toolshot components/Button/Button.tools.svelte: Primary disabled 1`] = `
+<span>
+  <button
+    class="primary svelte-11qpkf0"
+    disabled=""
+  >
+     
+    <span
+      class="svelte-11qpkf0"
     >
       Primary
     </span>
@@ -76,10 +112,10 @@ exports[`Toolshot components/Button/Button.tools.svelte: Primary 1`] = `
 exports[`Toolshot components/Button/Button.tools.svelte: Primary icon 1`] = `
 <span>
   <button
-    class="primary iconOnly svelte-sadb63"
+    class="primary iconOnly svelte-11qpkf0"
   >
     <i
-      class="material-icons svelte-sadb63"
+      class="material-icons svelte-11qpkf0"
     >
       volume_up
     </i>
@@ -93,23 +129,23 @@ exports[`Toolshot components/Button/Button.tools.svelte: Primary icon 1`] = `
 exports[`Toolshot components/Button/Button.tools.svelte: Primary with badge 1`] = `
 <span>
   <button
-    class="primary svelte-sadb63"
+    class="primary svelte-11qpkf0"
   >
     <i
-      class="material-icons svelte-sadb63"
+      class="material-icons svelte-11qpkf0"
     >
       face
     </i>
      
     <span
-      class="svelte-sadb63"
+      class="svelte-11qpkf0"
     >
       Hello
     </span>
      
      
     <div
-      class="badge svelte-sadb63 halo"
+      class="badge svelte-11qpkf0 halo"
     >
       5
     </div>
@@ -120,16 +156,16 @@ exports[`Toolshot components/Button/Button.tools.svelte: Primary with badge 1`] 
 exports[`Toolshot components/Button/Button.tools.svelte: Text and icon 1`] = `
 <span>
   <button
-    class="svelte-sadb63"
+    class="svelte-11qpkf0"
   >
     <i
-      class="material-icons svelte-sadb63"
+      class="material-icons svelte-11qpkf0"
     >
       face
     </i>
      
     <span
-      class="svelte-sadb63"
+      class="svelte-11qpkf0"
     >
       Hello
     </span>
@@ -142,23 +178,23 @@ exports[`Toolshot components/Button/Button.tools.svelte: Text and icon 1`] = `
 exports[`Toolshot components/Button/Button.tools.svelte: With badge 1`] = `
 <span>
   <button
-    class="svelte-sadb63"
+    class="svelte-11qpkf0"
   >
     <i
-      class="material-icons svelte-sadb63"
+      class="material-icons svelte-11qpkf0"
     >
       face
     </i>
      
     <span
-      class="svelte-sadb63"
+      class="svelte-11qpkf0"
     >
       Hello
     </span>
      
      
     <div
-      class="badge svelte-sadb63 halo"
+      class="badge svelte-11qpkf0 halo"
     >
       23
     </div>
@@ -169,23 +205,23 @@ exports[`Toolshot components/Button/Button.tools.svelte: With badge 1`] = `
 exports[`Toolshot components/Button/Button.tools.svelte: With badge limit 1`] = `
 <span>
   <button
-    class="svelte-sadb63"
+    class="svelte-11qpkf0"
   >
     <i
-      class="material-icons svelte-sadb63"
+      class="material-icons svelte-11qpkf0"
     >
       warning
     </i>
      
     <span
-      class="svelte-sadb63"
+      class="svelte-11qpkf0"
     >
       Just too much
     </span>
      
      
     <div
-      class="badge svelte-sadb63 halo"
+      class="badge svelte-11qpkf0 halo"
     >
       999+
     </div>

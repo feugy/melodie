@@ -12,7 +12,6 @@ const { dependencies } = require('../../package-lock.json')
 export default defineConfig(({ command, mode }) => {
   const isAtelier = command === 'serve' && mode === 'test'
   return {
-    base: './',
     build: command === 'serve' && { watch: {} },
     server: { open: isAtelier },
     define: {

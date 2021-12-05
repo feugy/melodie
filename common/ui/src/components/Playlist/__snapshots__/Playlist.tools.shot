@@ -19,11 +19,11 @@ exports[`Toolshot components/Playlist/Playlist.tools.svelte: Default 1`] = `
       >
          
         <button
-          class="primary iconOnly large svelte-sadb63"
+          class="primary iconOnly large svelte-11qpkf0"
           data-testid="play"
         >
           <i
-            class="material-icons svelte-sadb63"
+            class="material-icons svelte-11qpkf0"
           >
             play_arrow
           </i>
@@ -33,11 +33,11 @@ exports[`Toolshot components/Playlist/Playlist.tools.svelte: Default 1`] = `
         </button>
          
         <button
-          class="primary iconOnly large svelte-sadb63"
+          class="primary iconOnly large svelte-11qpkf0"
           data-testid="enqueue"
         >
           <i
-            class="material-icons svelte-sadb63"
+            class="material-icons svelte-11qpkf0"
           >
             playlist_add
           </i>
@@ -86,11 +86,11 @@ exports[`Toolshot components/Playlist/Playlist.tools.svelte: Single track 1`] = 
       >
          
         <button
-          class="primary iconOnly large svelte-sadb63"
+          class="primary iconOnly large svelte-11qpkf0"
           data-testid="play"
         >
           <i
-            class="material-icons svelte-sadb63"
+            class="material-icons svelte-11qpkf0"
           >
             play_arrow
           </i>
@@ -100,11 +100,11 @@ exports[`Toolshot components/Playlist/Playlist.tools.svelte: Single track 1`] = 
         </button>
          
         <button
-          class="primary iconOnly large svelte-sadb63"
+          class="primary iconOnly large svelte-11qpkf0"
           data-testid="enqueue"
         >
           <i
-            class="material-icons svelte-sadb63"
+            class="material-icons svelte-11qpkf0"
           >
             playlist_add
           </i>

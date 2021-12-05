@@ -128,7 +128,7 @@ describe('settings store', () => {
         })
         .mockResolvedValueOnce(true)
 
-      await init(url)
+      await init(url, undefined, undefined, 100)
 
       expect(get(connected)).toEqual(true)
       expect(initConnection).toHaveBeenCalledTimes(1)
@@ -136,7 +136,6 @@ describe('settings store', () => {
 
       expect(get(connected)).toEqual(false)
       await sleep(100)
-
       expect(initConnection).toHaveBeenCalledTimes(2)
       expect(get(connected)).toEqual(false)
 
@@ -253,7 +252,7 @@ describe('settings store', () => {
       invoke.mockResolvedValueOnce(values)
 
       toggleBroadcast()
-      await sleep(50)
+      await sleep(550)
 
       expect(get(connected)).toEqual(true)
       expect(get(settings)).toEqual(values)
@@ -292,7 +291,7 @@ describe('settings store', () => {
       invoke.mockResolvedValueOnce(values)
 
       toggleBroadcast()
-      await sleep(50)
+      await sleep(550)
 
       // will first fail, then retries
       expect(get(connected)).toEqual(false)

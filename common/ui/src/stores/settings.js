@@ -11,9 +11,15 @@ import {
 } from '../utils'
 import { init as initTotp, totp } from './totp'
 
-const reconnectDelay = 100
-
 let reconnectTimeout
+let totpSubscription
+
+function cleanPending() {
+  clearTimeout(reconnectTimeout)
+  totpSubscription?.unsubscribe()
+  reconnectTimeout = null
+  totpSubscription = null
+}
 
 let port
 
@@ -35,13 +41,25 @@ export const isDesktop = new BehaviorSubject(
   /electron/i.test(navigator.userAgent)
 )
 
-async function connect(address) {
+async function connect(address, reconnectDelay) {
+  cleanPending()
   port = address.split(':')[2]
-  clearTimeout(reconnectTimeout)
 
   const handleLostConnection = () => {
+    const current = get(totp)
+    totpSubscription = totp.subscribe({
+      next: value => {
+        // we must compare new and old value since totp is a BehaviourSubject and will issue its value upon subscription
+        if (value && value !== current) {
+          connect(address, reconnectDelay)
+        }
+      }
+    })
+    reconnectTimeout = setTimeout(
+      () => connect(address, reconnectDelay),
+      reconnectDelay
+    )
     connected$.next(false)
-    reconnectTimeout = setTimeout(() => connect(address), reconnectDelay)
   }
 
   connected$.next(
@@ -49,9 +67,8 @@ async function connect(address) {
   )
 }
 
-export async function init(address, totpSecret, totp) {
-  initTotp(totpSecret, totp)
-
+export async function init(address, totpSecret, totp, reconnectDelay = 5000) {
+  cleanPending()
   connected$.next(null)
   await new Promise(resolve => {
     connSubscription?.unsubscribe()
@@ -66,7 +83,8 @@ export async function init(address, totpSecret, totp) {
       }
     })
 
-    connect(address)
+    initTotp(totpSecret, totp)
+    connect(address, reconnectDelay)
   })
 }
 
@@ -107,9 +125,10 @@ export async function toggleBroadcast() {
   }
   settings$.next(await invoke('settings.toggleBroadcast'))
   closeConnection()
+  connected$.next(false)
   // toggling broadcast on and off is a desktop feature: url will always be localhost.
-  // connect without bail on the new port
-  connect(`ws://localhost:${port}`)
+  // slightly wait for server to have restarted before trying again.
+  setTimeout(() => connect(`ws://localhost:${port}`, 100), 500)
 }
 
 export function saveBroadcastPort(port) {

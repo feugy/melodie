@@ -60,11 +60,6 @@ Another option is to open it with Control-click: it'll immediately register the 
 
 ### features
 
-- Simple authorization for broadcasting
-
-  - feat(ui): when running on web, prompts user from TOTP
-  - feat(ui): displays TOTP url in settings so user could use generator apps
-
 - use file and folder names to complete missing tags
 
 - merge components/Album|Artist|Playlist tests for GridItem + hover behaviour (desktop only)
@@ -104,6 +99,8 @@ Another option is to open it with Control-click: it'll immediately register the 
 - more technical documentation (install & release process notably)
 
 ### Bugs and known issues
+
+1. When server is not reachable, attempts to establish new WebSocket connection takes longer and longer
 
 1. DMG package does not download updates: [it requires zip](https://github.com/electron-userland/electron-builder/issues/2199), and we cannot build zip because of [the accent in product name](https://github.com/electron-userland/electron-builder/issues/4306#issuecomment-717232761)...
 

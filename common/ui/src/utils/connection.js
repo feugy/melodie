@@ -7,7 +7,7 @@ import { nanoid } from 'nanoid'
 let ws = null
 const messages$ = new BehaviorSubject({})
 const lastInvokation$ = new BehaviorSubject()
-const connectionTimeout = 5000
+const connectionTimeout = 2000
 
 /**
  * Connects to the server's Websocket.
@@ -41,7 +41,7 @@ export async function initConnection(
           clear()
           resolve(socket)
         }
-        socket.onerror = () => {
+        socket.onclose = () => {
           clear()
           reject(new Error(`failed to establish connection`))
         }
@@ -72,7 +72,7 @@ export async function initConnection(
       onConnectionLost()
     }
   } catch (err) {
-    ws = null
+    closeConnection()
     onConnectionLost(err)
   }
   return ws !== null

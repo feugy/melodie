@@ -145,10 +145,10 @@ exports[`Toolshot components/Track/Track.tools.svelte: With menu 1`] = `
       class="wrapper svelte-1g0595r"
     >
       <button
-        class="iconOnly noBorder svelte-sadb63"
+        class="iconOnly noBorder svelte-11qpkf0"
       >
         <i
-          class="material-icons svelte-sadb63"
+          class="material-icons svelte-11qpkf0"
         >
           more_vert
         </i>

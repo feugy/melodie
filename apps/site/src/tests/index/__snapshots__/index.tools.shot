@@ -116,16 +116,16 @@ exports[`Toolshot tests/index/index.tools.svelte: Site Page/Index 1`] = `
               class="wrapper svelte-1g0595r"
             >
               <button
-                class="text-white primary large svelte-sadb63"
+                class="text-white primary large svelte-11qpkf0"
               >
                 <i
-                  class="material-icons svelte-sadb63"
+                  class="material-icons svelte-11qpkf0"
                 >
                   get_app
                 </i>
                  
                 <span
-                  class="svelte-sadb63"
+                  class="svelte-11qpkf0"
                 >
                   Install v2.0.0-beta.1
                 </span>

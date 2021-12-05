@@ -59,11 +59,11 @@ exports[`Toolshot routes/album.tools.svelte: Views/Albums 1`] = `
             >
                
               <button
-                class="primary iconOnly large svelte-sadb63"
+                class="primary iconOnly large svelte-11qpkf0"
                 data-testid="play"
               >
                 <i
-                  class="material-icons svelte-sadb63"
+                  class="material-icons svelte-11qpkf0"
                 >
                   play_arrow
                 </i>
@@ -73,11 +73,11 @@ exports[`Toolshot routes/album.tools.svelte: Views/Albums 1`] = `
               </button>
                
               <button
-                class="primary iconOnly large svelte-sadb63"
+                class="primary iconOnly large svelte-11qpkf0"
                 data-testid="enqueue"
               >
                 <i
-                  class="material-icons svelte-sadb63"
+                  class="material-icons svelte-11qpkf0"
                 >
                   playlist_add
                 </i>
@@ -187,11 +187,11 @@ exports[`Toolshot routes/album.tools.svelte: Views/Albums 1`] = `
             >
                
               <button
-                class="primary iconOnly large svelte-sadb63"
+                class="primary iconOnly large svelte-11qpkf0"
                 data-testid="play"
               >
                 <i
-                  class="material-icons svelte-sadb63"
+                  class="material-icons svelte-11qpkf0"
                 >
                   play_arrow
                 </i>
@@ -201,11 +201,11 @@ exports[`Toolshot routes/album.tools.svelte: Views/Albums 1`] = `
               </button>
                
               <button
-                class="primary iconOnly large svelte-sadb63"
+                class="primary iconOnly large svelte-11qpkf0"
                 data-testid="enqueue"
               >
                 <i
-                  class="material-icons svelte-sadb63"
+                  class="material-icons svelte-11qpkf0"
                 >
                   playlist_add
                 </i>
@@ -282,11 +282,11 @@ exports[`Toolshot routes/album.tools.svelte: Views/Albums 1`] = `
             >
                
               <button
-                class="primary iconOnly large svelte-sadb63"
+                class="primary iconOnly large svelte-11qpkf0"
                 data-testid="play"
               >
                 <i
-                  class="material-icons svelte-sadb63"
+                  class="material-icons svelte-11qpkf0"
                 >
                   play_arrow
                 </i>
@@ -296,11 +296,11 @@ exports[`Toolshot routes/album.tools.svelte: Views/Albums 1`] = `
               </button>
                
               <button
-                class="primary iconOnly large svelte-sadb63"
+                class="primary iconOnly large svelte-11qpkf0"
                 data-testid="enqueue"
               >
                 <i
-                  class="material-icons svelte-sadb63"
+                  class="material-icons svelte-11qpkf0"
                 >
                   playlist_add
                 </i>

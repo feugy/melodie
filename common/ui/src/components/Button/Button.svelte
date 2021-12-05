@@ -29,6 +29,11 @@
       @apply shadow-none;
     }
 
+    &:disabled {
+      @apply cursor-default;
+      color: var(--disabled-color);
+    }
+
     & > i {
       font-size: 'inherit';
     }
@@ -46,12 +51,13 @@
       @apply outline-none;
     }
 
-    &:hover {
+    &:hover:not(:disabled),
+    &:focus:not(:disabled) {
       @apply outline-none;
       background-color: var(--hover-bg-color);
       transform: scale(1.03);
     }
-    &:active {
+    &:active:not(:disabled) {
       background-color: var(--hover-bg-color);
       transform: scale(0.95);
     }
@@ -59,10 +65,11 @@
     &.iconOnly {
       @apply p-2 rounded-full;
 
-      &:hover {
+      &:hover:not(:disabled),
+      &:focus:not(:disabled) {
         transform: scale(1.1);
       }
-      &:active {
+      &:active:not(:disabled) {
         transform: scale(0.95);
       }
       & .badge {
@@ -85,8 +92,9 @@
       background-color: var(--primary-color);
 
       /* TODO mobile? */
-      &:hover,
-      &:active {
+      &:hover:not(:disabled),
+      &:focus:not(:disabled),
+      &:active:not(:disabled) {
         background-color: var(--hover-primary-color);
       }
     }
@@ -139,7 +147,7 @@
   class:large
   class:noBorder
   {...$$restProps}
-  on:click|preventDefault|stopPropagation
+  on:click|stopPropagation
 >
   {#if icon}<i class="material-icons">{icon}</i>{/if}
   {#if text}<span>{text}</span>{/if}

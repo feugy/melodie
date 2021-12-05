@@ -2,10 +2,12 @@
 
 import { screen, render, within } from '@testing-library/svelte'
 import userEvent from '@testing-library/user-event'
+import { get } from 'svelte/store'
 import html from 'svelte-htm'
 import faker from 'faker'
 import App from './App.svelte'
 import { init, isDesktop } from './stores/settings'
+import { totp } from './stores/totp'
 import { makeRef, sleep, translate } from './tests'
 import { initConnection, invoke, releaseWakeLock, stayAwake } from './utils'
 
@@ -181,16 +183,34 @@ describe('App component', () => {
 
       const dialog = screen.queryByRole('dialog')
       expect(dialog).toBeInTheDocument()
-      expect(within(dialog).queryByRole('heading')).toHaveTextContent(
-        translate('connection lost')
-      )
+      expect(
+        within(dialog).queryByRole('heading', { level: 1 })
+      ).toHaveTextContent(translate('connection lost'))
+    })
+
+    it('reconnects with provided one-time password', async () => {
+      const otp = Math.floor(Math.random() * 1000)
+      render(html`<${App} />`)
+      await sleep()
+      expect(get(totp)).toBeNull()
+      expect(initConnection).toHaveBeenCalledTimes(1)
+
+      // invoke lost connection callbak
+      await initConnection.mock.calls[0][1]()
+
+      const dialog = screen.queryByRole('dialog')
+      expect(dialog).toBeInTheDocument()
+      userEvent.type(within(dialog).queryByRole('textbox'), `${otp}{enter}`)
+
+      expect(get(totp)).toEqual(otp.toString())
+      expect(initConnection).toHaveBeenCalledTimes(2)
     })
   })
 
   describe('given unreachable server', () => {
     beforeEach(async () => {
       initConnection.mockImplementation(async (address, onConnectionLost) => {
-        onConnectionLost()
+        setTimeout(onConnectionLost, 0)
         return false
       })
       init('')
@@ -202,9 +222,9 @@ describe('App component', () => {
 
       const dialog = screen.queryByRole('dialog')
       expect(dialog).toBeInTheDocument()
-      expect(within(dialog).queryByRole('heading')).toHaveTextContent(
-        translate('connection lost')
-      )
+      expect(
+        within(dialog).queryByRole('heading', { level: 1 })
+      ).toHaveTextContent(translate('connection lost'))
     })
   })
 })

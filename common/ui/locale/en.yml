@@ -60,6 +60,7 @@ no: No
 no clear during tutorial: It is not possible to clear the queue during this tutorial
 no results: Nothing at all !
 on unsplash: on Unsplash.
+one time password: One-time Password
 open: Open
 open folder: Open containing folder
 open queue: Open queue
@@ -90,6 +91,7 @@ show details: Show track details
 show less: Show less
 start loading some tracks: Start loading some tracks
 total duration _: 'Duration: {total}'
+totp key: 'OTP Key:'
 track details: Track details
 track: Track
 unknown: Unknown
@@ -98,8 +100,7 @@ watched folders: Music folders
 year _: 'Year: {year}'
 yes: Yes
 you are disconnected: >
-  <p>You're disconnected... Mélodie will keep trying to connecting, but please please check your internet.</p>
-  <p>If you purposingly stopped broadcasting, or have no network, please close Mélodie.</p>
+  <p>You're disconnected... Please check your internet connection, then provide the one-time password to reconnect.</p>
 audiodb:
   description: >
     <p>TheAudioDB is a community Database of audio artwork and data with a JSON API. Mélodie can use it for album covers and artist artwork, but it needs an API key.</p>

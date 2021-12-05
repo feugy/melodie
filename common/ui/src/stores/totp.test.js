@@ -11,12 +11,13 @@ describe('totp store', () => {
   let cleanup
   let init
   let totp
+  let setTotp
   let serverTotp = new Subject()
   fromServerEvent.mockReturnValue(serverTotp)
 
   beforeAll(async () => {
     jest.useFakeTimers()
-    ;({ cleanup, init, totp } = await import('./totp'))
+    ;({ cleanup, init, totp, setTotp } = await import('./totp'))
     cleanup()
   })
 
@@ -36,10 +37,19 @@ describe('totp store', () => {
     expect(get(totp)).toEqual(value)
   })
 
-  it('can be null with no storage nor parameters', () => {
+  it('can be null with no storage nor parameters', async () => {
     localStorage.removeItem('totp')
-    init()
+    await init()
     expect(get(totp)).toBeNull()
+  })
+
+  it('can be changed', async () => {
+    const value = faker.datatype.number({ min: 100000, max: 999999 }).toString()
+    localStorage.setItem('totp', 'initial')
+    await init()
+    expect(get(totp)).toEqual('initial')
+    setTotp(value)
+    expect(get(totp)).toEqual(value)
   })
 
   describe('given a store initialized with a secret', () => {

@@ -10,7 +10,12 @@
   layout="padded"
 >
   <Tool name="Default" props={{ text: 'Default' }} />
+  <Tool name="Disabled" props={{ text: 'Disabled', disabled: true }} />
   <Tool name="Primary" props={{ text: 'Primary', primary: true }} />
+  <Tool
+    name="Primary disabled"
+    props={{ text: 'Primary', primary: true, disabled: true }}
+  />
   <Tool
     name="Large text and icon"
     props={{ text: 'Hey!', icon: 'person', large: true }}

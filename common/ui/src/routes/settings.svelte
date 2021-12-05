@@ -1,6 +1,7 @@
 <script>
-  import { VERSION } from 'svelte/compiler'
+  import QRCode from 'qrcode'
   import { onMount } from 'svelte'
+  import { VERSION } from 'svelte/compiler'
   import { fade } from 'svelte/transition'
   import { _, locales, locale } from 'svelte-intl'
   import {
@@ -21,11 +22,13 @@
     removeFolder,
     saveLocale
   } from '../stores/settings'
+  import { totpUrl } from '../stores/totp'
   import { invoke } from '../utils'
 
   export const params = {}
   let currentLocale = $locale ? { value: $locale, label: $_($locale) } : null
   let versions = []
+  let totpCanvas
 
   const photographers = [
     {
@@ -84,6 +87,13 @@
   $: doubleClick = clickOptions.find(
     ({ value }) => value !== $settings.enqueueBehaviour.onClick
   )
+  $: if ($totpUrl && totpCanvas) {
+    QRCode.toCanvas(totpCanvas, $totpUrl, {
+      errorCorrectionLevel: 'Q',
+      margin: 0.5,
+      scale: 4
+    })
+  }
 
   function handleSaveEnqueueBehaviour() {
     saveEnqueueBehaviour({
@@ -162,7 +172,7 @@
   }
 
   label {
-    @apply block md:text-right md:inline-block md:min-w-180px;
+    @apply block md:text-right md:inline-block md:min-w-180px align-top;
   }
 
   :global(.settings-input) {
@@ -286,18 +296,26 @@
   {#if $isDesktop}
     <article>
       <SubHeading>{$_('broadcasting')}</SubHeading>
-      <label for="broadcast-port">{$_('broadcast port')}</label>
-      <span class="controlContainer" id="broadcast-port"
-        ><TextInput
-          class="settings-input"
-          placeholder={$_('broadcast port placeholder')}
-          value={$settings.broadcastPort}
-          type="number"
-          on:change={({ target: { value } }) =>
-            saveBroadcastPort(value || null)}
-        /></span
-      >
-      <span class="instructions">{$_('restart to apply')}</span>
+      <p>
+        <label for="broadcast-port">{$_('broadcast port')}</label>
+        <span class="controlContainer" id="broadcast-port"
+          ><TextInput
+            class="settings-input"
+            placeholder={$_('broadcast port placeholder')}
+            value={$settings.broadcastPort}
+            type="number"
+            on:change={({ target: { value } }) =>
+              saveBroadcastPort(value || null)}
+          /></span
+        >
+        <span class="instructions">{$_('restart to apply')}</span>
+      </p>
+      <p>
+        <label for="totp">{$_('totp key')}</label>
+        <span class="controlContainer">
+          <canvas bind:this={totpCanvas} />
+        </span>
+      </p>
     </article>
   {/if}
   <article>

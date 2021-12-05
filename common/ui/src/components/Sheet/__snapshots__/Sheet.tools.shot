@@ -15,11 +15,11 @@ exports[`Toolshot components/Sheet/Sheet.tools.svelte: Components/Sheet 1`] = `
         slot="main"
       >
         <button
-          class="svelte-sadb63"
+          class="svelte-11qpkf0"
         >
            
           <span
-            class="svelte-sadb63"
+            class="svelte-11qpkf0"
           >
             open
           </span>

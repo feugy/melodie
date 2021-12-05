@@ -43,16 +43,16 @@ exports[`Toolshot routes/artist/[id].tools.svelte: Views/Artist Details 1`] = `
           class="actions svelte-bpg7b6"
         >
           <button
-            class="svelte-sadb63"
+            class="svelte-11qpkf0"
           >
             <i
-              class="material-icons svelte-sadb63"
+              class="material-icons svelte-11qpkf0"
             >
               play_arrow
             </i>
              
             <span
-              class="svelte-sadb63"
+              class="svelte-11qpkf0"
             >
               Play all
             </span>
@@ -61,16 +61,16 @@ exports[`Toolshot routes/artist/[id].tools.svelte: Views/Artist Details 1`] = `
           </button>
            
           <button
-            class="svelte-sadb63"
+            class="svelte-11qpkf0"
           >
             <i
-              class="material-icons svelte-sadb63"
+              class="material-icons svelte-11qpkf0"
             >
               playlist_add
             </i>
              
             <span
-              class="svelte-sadb63"
+              class="svelte-11qpkf0"
             >
               Enqueue all
             </span>
@@ -124,11 +124,11 @@ The band briefly continued as a trio until Chris Shiflett joined as the band's l
             >
                
               <button
-                class="primary iconOnly large svelte-sadb63"
+                class="primary iconOnly large svelte-11qpkf0"
                 data-testid="play"
               >
                 <i
-                  class="material-icons svelte-sadb63"
+                  class="material-icons svelte-11qpkf0"
                 >
                   play_arrow
                 </i>
@@ -138,11 +138,11 @@ The band briefly continued as a trio until Chris Shiflett joined as the band's l
               </button>
                
               <button
-                class="primary iconOnly large svelte-sadb63"
+                class="primary iconOnly large svelte-11qpkf0"
                 data-testid="enqueue"
               >
                 <i
-                  class="material-icons svelte-sadb63"
+                  class="material-icons svelte-11qpkf0"
                 >
                   playlist_add
                 </i>
@@ -205,11 +205,11 @@ The band briefly continued as a trio until Chris Shiflett joined as the band's l
             >
                
               <button
-                class="primary iconOnly large svelte-sadb63"
+                class="primary iconOnly large svelte-11qpkf0"
                 data-testid="play"
               >
                 <i
-                  class="material-icons svelte-sadb63"
+                  class="material-icons svelte-11qpkf0"
                 >
                   play_arrow
                 </i>
@@ -219,11 +219,11 @@ The band briefly continued as a trio until Chris Shiflett joined as the band's l
               </button>
                
               <button
-                class="primary iconOnly large svelte-sadb63"
+                class="primary iconOnly large svelte-11qpkf0"
                 data-testid="enqueue"
               >
                 <i
-                  class="material-icons svelte-sadb63"
+                  class="material-icons svelte-11qpkf0"
                 >
                   playlist_add
                 </i>
@@ -286,11 +286,11 @@ The band briefly continued as a trio until Chris Shiflett joined as the band's l
             >
                
               <button
-                class="primary iconOnly large svelte-sadb63"
+                class="primary iconOnly large svelte-11qpkf0"
                 data-testid="play"
               >
                 <i
-                  class="material-icons svelte-sadb63"
+                  class="material-icons svelte-11qpkf0"
                 >
                   play_arrow
                 </i>
@@ -300,11 +300,11 @@ The band briefly continued as a trio until Chris Shiflett joined as the band's l
               </button>
                
               <button
-                class="primary iconOnly large svelte-sadb63"
+                class="primary iconOnly large svelte-11qpkf0"
                 data-testid="enqueue"
               >
                 <i
-                  class="material-icons svelte-sadb63"
+                  class="material-icons svelte-11qpkf0"
                 >
                   playlist_add
                 </i>

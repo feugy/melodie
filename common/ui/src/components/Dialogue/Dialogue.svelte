@@ -84,7 +84,7 @@
       />
     {/if}
     <article role="dialog" on:click|stopPropagation>
-      <header role="heading">{title}</header>
+      <header role="heading" aria-level="1">{title}</header>
       <div class="content">
         <slot name="content" />
       </div>

@@ -22,16 +22,16 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
       class="svelte-pam9yp"
     >
       <button
-        class="svelte-sadb63"
+        class="svelte-11qpkf0"
       >
         <i
-          class="material-icons svelte-sadb63"
+          class="material-icons svelte-11qpkf0"
         >
           play_arrow
         </i>
          
         <span
-          class="svelte-sadb63"
+          class="svelte-11qpkf0"
         >
           Play all
         </span>
@@ -40,16 +40,16 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
       </button>
        
       <button
-        class="svelte-sadb63"
+        class="svelte-11qpkf0"
       >
         <i
-          class="material-icons svelte-sadb63"
+          class="material-icons svelte-11qpkf0"
         >
           playlist_add
         </i>
          
         <span
-          class="svelte-sadb63"
+          class="svelte-11qpkf0"
         >
           Enqueue all
         </span>
@@ -58,16 +58,16 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
       </button>
        
       <button
-        class="svelte-sadb63"
+        class="svelte-11qpkf0"
       >
         <i
-          class="material-icons svelte-sadb63"
+          class="material-icons svelte-11qpkf0"
         >
           edit
         </i>
          
         <span
-          class="svelte-sadb63"
+          class="svelte-11qpkf0"
         >
           Rename
         </span>
@@ -76,16 +76,16 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
       </button>
        
       <button
-        class="svelte-sadb63"
+        class="svelte-11qpkf0"
       >
         <i
-          class="material-icons svelte-sadb63"
+          class="material-icons svelte-11qpkf0"
         >
           save_alt
         </i>
          
         <span
-          class="svelte-sadb63"
+          class="svelte-11qpkf0"
         >
           Export
         </span>
@@ -94,16 +94,16 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
       </button>
        
       <button
-        class="svelte-sadb63"
+        class="svelte-11qpkf0"
       >
         <i
-          class="material-icons svelte-sadb63"
+          class="material-icons svelte-11qpkf0"
         >
           delete
         </i>
          
         <span
-          class="svelte-sadb63"
+          class="svelte-11qpkf0"
         >
           Delete
         </span>
@@ -268,10 +268,10 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                     class="wrapper svelte-1g0595r"
                   >
                     <button
-                      class="iconOnly noBorder svelte-sadb63"
+                      class="iconOnly noBorder svelte-11qpkf0"
                     >
                       <i
-                        class="material-icons svelte-sadb63"
+                        class="material-icons svelte-11qpkf0"
                       >
                         more_vert
                       </i>
@@ -381,10 +381,10 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                     class="wrapper svelte-1g0595r"
                   >
                     <button
-                      class="iconOnly noBorder svelte-sadb63"
+                      class="iconOnly noBorder svelte-11qpkf0"
                     >
                       <i
-                        class="material-icons svelte-sadb63"
+                        class="material-icons svelte-11qpkf0"
                       >
                         more_vert
                       </i>
@@ -494,10 +494,10 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                     class="wrapper svelte-1g0595r"
                   >
                     <button
-                      class="iconOnly noBorder svelte-sadb63"
+                      class="iconOnly noBorder svelte-11qpkf0"
                     >
                       <i
-                        class="material-icons svelte-sadb63"
+                        class="material-icons svelte-11qpkf0"
                       >
                         more_vert
                       </i>
@@ -614,10 +614,10 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                     class="wrapper svelte-1g0595r"
                   >
                     <button
-                      class="iconOnly noBorder svelte-sadb63"
+                      class="iconOnly noBorder svelte-11qpkf0"
                     >
                       <i
-                        class="material-icons svelte-sadb63"
+                        class="material-icons svelte-11qpkf0"
                       >
                         more_vert
                       </i>
@@ -734,10 +734,10 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                     class="wrapper svelte-1g0595r"
                   >
                     <button
-                      class="iconOnly noBorder svelte-sadb63"
+                      class="iconOnly noBorder svelte-11qpkf0"
                     >
                       <i
-                        class="material-icons svelte-sadb63"
+                        class="material-icons svelte-11qpkf0"
                       >
                         more_vert
                       </i>
@@ -854,10 +854,10 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                     class="wrapper svelte-1g0595r"
                   >
                     <button
-                      class="iconOnly noBorder svelte-sadb63"
+                      class="iconOnly noBorder svelte-11qpkf0"
                     >
                       <i
-                        class="material-icons svelte-sadb63"
+                        class="material-icons svelte-11qpkf0"
                       >
                         more_vert
                       </i>
@@ -974,10 +974,10 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                     class="wrapper svelte-1g0595r"
                   >
                     <button
-                      class="iconOnly noBorder svelte-sadb63"
+                      class="iconOnly noBorder svelte-11qpkf0"
                     >
                       <i
-                        class="material-icons svelte-sadb63"
+                        class="material-icons svelte-11qpkf0"
                       >
                         more_vert
                       </i>
@@ -1094,10 +1094,10 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                     class="wrapper svelte-1g0595r"
                   >
                     <button
-                      class="iconOnly noBorder svelte-sadb63"
+                      class="iconOnly noBorder svelte-11qpkf0"
                     >
                       <i
-                        class="material-icons svelte-sadb63"
+                        class="material-icons svelte-11qpkf0"
                       >
                         more_vert
                       </i>
@@ -1214,10 +1214,10 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                     class="wrapper svelte-1g0595r"
                   >
                     <button
-                      class="iconOnly noBorder svelte-sadb63"
+                      class="iconOnly noBorder svelte-11qpkf0"
                     >
                       <i
-                        class="material-icons svelte-sadb63"
+                        class="material-icons svelte-11qpkf0"
                       >
                         more_vert
                       </i>
@@ -1334,10 +1334,10 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                     class="wrapper svelte-1g0595r"
                   >
                     <button
-                      class="iconOnly noBorder svelte-sadb63"
+                      class="iconOnly noBorder svelte-11qpkf0"
                     >
                       <i
-                        class="material-icons svelte-sadb63"
+                        class="material-icons svelte-11qpkf0"
                       >
                         more_vert
                       </i>
@@ -1454,10 +1454,10 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                     class="wrapper svelte-1g0595r"
                   >
                     <button
-                      class="iconOnly noBorder svelte-sadb63"
+                      class="iconOnly noBorder svelte-11qpkf0"
                     >
                       <i
-                        class="material-icons svelte-sadb63"
+                        class="material-icons svelte-11qpkf0"
                       >
                         more_vert
                       </i>
@@ -1574,10 +1574,10 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                     class="wrapper svelte-1g0595r"
                   >
                     <button
-                      class="iconOnly noBorder svelte-sadb63"
+                      class="iconOnly noBorder svelte-11qpkf0"
                     >
                       <i
-                        class="material-icons svelte-sadb63"
+                        class="material-icons svelte-11qpkf0"
                       >
                         more_vert
                       </i>
@@ -1694,10 +1694,10 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                     class="wrapper svelte-1g0595r"
                   >
                     <button
-                      class="iconOnly noBorder svelte-sadb63"
+                      class="iconOnly noBorder svelte-11qpkf0"
                     >
                       <i
-                        class="material-icons svelte-sadb63"
+                        class="material-icons svelte-11qpkf0"
                       >
                         more_vert
                       </i>
@@ -1814,10 +1814,10 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                     class="wrapper svelte-1g0595r"
                   >
                     <button
-                      class="iconOnly noBorder svelte-sadb63"
+                      class="iconOnly noBorder svelte-11qpkf0"
                     >
                       <i
-                        class="material-icons svelte-sadb63"
+                        class="material-icons svelte-11qpkf0"
                       >
                         more_vert
                       </i>
@@ -1934,10 +1934,10 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                     class="wrapper svelte-1g0595r"
                   >
                     <button
-                      class="iconOnly noBorder svelte-sadb63"
+                      class="iconOnly noBorder svelte-11qpkf0"
                     >
                       <i
-                        class="material-icons svelte-sadb63"
+                        class="material-icons svelte-11qpkf0"
                       >
                         more_vert
                       </i>
@@ -2054,10 +2054,10 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                     class="wrapper svelte-1g0595r"
                   >
                     <button
-                      class="iconOnly noBorder svelte-sadb63"
+                      class="iconOnly noBorder svelte-11qpkf0"
                     >
                       <i
-                        class="material-icons svelte-sadb63"
+                        class="material-icons svelte-11qpkf0"
                       >
                         more_vert
                       </i>
@@ -2174,10 +2174,10 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                     class="wrapper svelte-1g0595r"
                   >
                     <button
-                      class="iconOnly noBorder svelte-sadb63"
+                      class="iconOnly noBorder svelte-11qpkf0"
                     >
                       <i
-                        class="material-icons svelte-sadb63"
+                        class="material-icons svelte-11qpkf0"
                       >
                         more_vert
                       </i>
@@ -2294,10 +2294,10 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                     class="wrapper svelte-1g0595r"
                   >
                     <button
-                      class="iconOnly noBorder svelte-sadb63"
+                      class="iconOnly noBorder svelte-11qpkf0"
                     >
                       <i
-                        class="material-icons svelte-sadb63"
+                        class="material-icons svelte-11qpkf0"
                       >
                         more_vert
                       </i>

@@ -8,10 +8,10 @@ exports[`Toolshot components/AddToPlaylist/AddToPlaylist.tools.svelte: Component
     class="wrapper svelte-1g0595r"
   >
     <button
-      class="iconOnly svelte-sadb63"
+      class="iconOnly svelte-11qpkf0"
     >
       <i
-        class="material-icons svelte-sadb63"
+        class="material-icons svelte-11qpkf0"
       >
         library_add
       </i>

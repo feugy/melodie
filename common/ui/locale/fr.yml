@@ -48,6 +48,7 @@ no: Non
 no clear during tutorial: Il n'est pas possible de vider la liste pendant la présentation
 no results: Rien du tout !
 on unsplash: sur Unsplash.
+one time password: Code unique
 open: Ouvrir
 open folder: Ouvrir le dossier parent
 open queue: Liste de lecture
@@ -75,6 +76,7 @@ show details: Afficher les détails
 show less: Voir moins
 start loading some tracks: Commencez par charger quelques morceaux
 total duration _: 'Durée : {total}'
+totp key: 'Clé OTP:'
 track details: Détails du morceau
 track: Morceau
 unknown: Inconnu
@@ -83,8 +85,7 @@ watched folders: Répertoires de musique
 year _: 'Année : {year}'
 yes: Oui
 you are disconnected: >
-  <p>Vous êtes déconnecté(e)... Mélodie essaie the se reconnecter, merci de vérifier votre connexion Internet.</p>
-  <p>Si vous avez stoppé la diffusion vous même, you n'avez plus de réseau, veuillez fermer Mélodie.</p>
+  <p>Vous êtes déconnecté(e)... Merci de vérifier votre connexion Internet, puis entrez votre code unique pour vous reconnecter.</p>
 tags:
   albumartist: Artiste de l'album
   arranger: Arranger

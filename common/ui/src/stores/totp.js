@@ -10,6 +10,7 @@ let generator
 let timeout
 let totp$ = new BehaviorSubject(null)
 let unsubscribe
+let totpUrl$ = new BehaviorSubject('')
 
 function refresh() {
   clearTimeout(timeout)
@@ -30,6 +31,7 @@ export function init(totpSecret, totp = null) {
       period: period,
       secret: OTPAuth.Secret.fromHex(secret)
     })
+    totpUrl$.next(generator.toString())
     refresh()
   } else {
     const stored = localStorage.getItem(storageKey)
@@ -50,10 +52,16 @@ export function init(totpSecret, totp = null) {
 
 export const totp = totp$.asObservable()
 
+export const totpUrl = totpUrl$.asObservable()
+
 export function cleanup() {
   clearTimeout(timeout)
   totp$.next(null)
   generator = null
   unsubscribe?.()
   unsubscribe = null
+}
+
+export function setTotp(value) {
+  totp$.next(value)
 }

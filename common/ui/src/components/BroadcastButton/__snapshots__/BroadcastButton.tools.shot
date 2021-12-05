@@ -6,10 +6,10 @@ exports[`Toolshot components/BroadcastButton/BroadcastButton.tools.svelte: Compo
     class="button svelte-184m92z"
   >
     <button
-      class="iconOnly noBorder svelte-sadb63"
+      class="iconOnly noBorder svelte-11qpkf0"
     >
       <i
-        class="material-icons svelte-sadb63"
+        class="material-icons svelte-11qpkf0"
       >
         wifi_off
       </i>

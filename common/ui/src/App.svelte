@@ -7,7 +7,7 @@
   import { _, locale } from 'svelte-intl'
   import { replace } from 'svelte-spa-router'
   import {
-    Dialogue,
+    DisconnectionDialogue,
     Progress,
     Player,
     Nav,
@@ -23,6 +23,7 @@
   import { isLoading } from './stores/loading'
   import { screenSize, SM } from './stores/window'
   import { connected, isDesktop } from './stores/settings'
+  import { setTotp } from './stores/totp'
   import { invoke, stayAwake, releaseWakeLock } from './utils'
   import { autoScrollable } from './actions'
   import Router from './components/Router'
@@ -72,6 +73,10 @@
       isPlaylistOpen = false
     }
   }
+
+  function handleReconnect({ detail }) {
+    setTotp(detail)
+  }
 </script>
 
 <style lang="postcss">
@@ -108,12 +113,12 @@
 </svelte:head>
 
 <SystemNotifier />
-{#if $connected === false}
-  <Dialogue title={$_('connection lost')} open noClose>
-    <div slot="content">
-      {@html $_('you are disconnected')}
-    </div>
-  </Dialogue>
+{#if !$isDesktop}
+  <DisconnectionDialogue
+    open={!$connected}
+    connecting={$connected === null}
+    on:reconnect={handleReconnect}
+  />
 {/if}
 {#if $isLoading || !ready}
   <span class="progress">

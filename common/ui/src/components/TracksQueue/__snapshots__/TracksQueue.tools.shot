@@ -64,10 +64,10 @@ exports[`Toolshot components/TracksQueue/TracksQueue.tools.svelte: With track li
         class="wrapper svelte-1g0595r"
       >
         <button
-          class="iconOnly noBorder svelte-sadb63"
+          class="iconOnly noBorder svelte-11qpkf0"
         >
           <i
-            class="material-icons svelte-sadb63"
+            class="material-icons svelte-11qpkf0"
           >
             library_add
           </i>
@@ -87,10 +87,10 @@ exports[`Toolshot components/TracksQueue/TracksQueue.tools.svelte: With track li
       </span>
        
       <button
-        class="iconOnly svelte-sadb63"
+        class="iconOnly svelte-11qpkf0"
       >
         <i
-          class="material-icons svelte-sadb63"
+          class="material-icons svelte-11qpkf0"
         >
           delete
         </i>
@@ -173,10 +173,10 @@ exports[`Toolshot components/TracksQueue/TracksQueue.tools.svelte: With track li
           </div>
            
           <button
-            class="mx-2 iconOnly noBorder svelte-sadb63"
+            class="mx-2 iconOnly noBorder svelte-11qpkf0"
           >
             <i
-              class="material-icons svelte-sadb63"
+              class="material-icons svelte-11qpkf0"
             >
               close
             </i>
@@ -243,10 +243,10 @@ exports[`Toolshot components/TracksQueue/TracksQueue.tools.svelte: With track li
           </div>
            
           <button
-            class="mx-2 iconOnly noBorder svelte-sadb63"
+            class="mx-2 iconOnly noBorder svelte-11qpkf0"
           >
             <i
-              class="material-icons svelte-sadb63"
+              class="material-icons svelte-11qpkf0"
             >
               close
             </i>
@@ -313,10 +313,10 @@ exports[`Toolshot components/TracksQueue/TracksQueue.tools.svelte: With track li
           </div>
            
           <button
-            class="mx-2 iconOnly noBorder svelte-sadb63"
+            class="mx-2 iconOnly noBorder svelte-11qpkf0"
           >
             <i
-              class="material-icons svelte-sadb63"
+              class="material-icons svelte-11qpkf0"
             >
               close
             </i>
@@ -383,10 +383,10 @@ exports[`Toolshot components/TracksQueue/TracksQueue.tools.svelte: With track li
           </div>
            
           <button
-            class="mx-2 iconOnly noBorder svelte-sadb63"
+            class="mx-2 iconOnly noBorder svelte-11qpkf0"
           >
             <i
-              class="material-icons svelte-sadb63"
+              class="material-icons svelte-11qpkf0"
             >
               close
             </i>
@@ -453,10 +453,10 @@ exports[`Toolshot components/TracksQueue/TracksQueue.tools.svelte: With track li
           </div>
            
           <button
-            class="mx-2 iconOnly noBorder svelte-sadb63"
+            class="mx-2 iconOnly noBorder svelte-11qpkf0"
           >
             <i
-              class="material-icons svelte-sadb63"
+              class="material-icons svelte-11qpkf0"
             >
               close
             </i>
@@ -523,10 +523,10 @@ exports[`Toolshot components/TracksQueue/TracksQueue.tools.svelte: With track li
           </div>
            
           <button
-            class="mx-2 iconOnly noBorder svelte-sadb63"
+            class="mx-2 iconOnly noBorder svelte-11qpkf0"
           >
             <i
-              class="material-icons svelte-sadb63"
+              class="material-icons svelte-11qpkf0"
             >
               close
             </i>
@@ -593,10 +593,10 @@ exports[`Toolshot components/TracksQueue/TracksQueue.tools.svelte: With track li
           </div>
            
           <button
-            class="mx-2 iconOnly noBorder svelte-sadb63"
+            class="mx-2 iconOnly noBorder svelte-11qpkf0"
           >
             <i
-              class="material-icons svelte-sadb63"
+              class="material-icons svelte-11qpkf0"
             >
               close
             </i>
@@ -663,10 +663,10 @@ exports[`Toolshot components/TracksQueue/TracksQueue.tools.svelte: With track li
           </div>
            
           <button
-            class="mx-2 iconOnly noBorder svelte-sadb63"
+            class="mx-2 iconOnly noBorder svelte-11qpkf0"
           >
             <i
-              class="material-icons svelte-sadb63"
+              class="material-icons svelte-11qpkf0"
             >
               close
             </i>
