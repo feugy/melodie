@@ -63,7 +63,7 @@
   }
 </script>
 
-<style type="postcss">
+<style lang="postcss">
   table {
     @apply w-full border-collapse text-left;
   }

@@ -1,20 +1,43 @@
-'use strict'
+import atelier from '@atelier-wb/vite-plugin-svelte'
+import yaml from '@rollup/plugin-yaml'
+import adapter from '@sveltejs/adapter-static'
+import { createRequire } from 'module'
+import { join, resolve } from 'path'
+import sveltePreprocess from 'svelte-preprocess'
+import { URL } from 'url'
+import windi from 'vite-plugin-windicss'
 
-const sveltePreprocess = require('svelte-preprocess')
+const require = createRequire(import.meta.url)
 const { version } = require('./package.json')
+const __dirname = new URL('.', import.meta.url).pathname
 
-const production = !process.env.ROLLUP_WATCH
+const base = process.env.NODE_ENV === 'production' ? '/melodie' : ''
 
-module.exports = {
-  preprocess: sveltePreprocess({
-    postcss: {
-      configFilePath: require.resolve('@melodie/ui/postcss.config')
-    },
-    // only used while running tests
-    replace: [['MELODIE_VERSION', JSON.stringify(version)]]
-  }),
-  compilerOptions: {
-    // enable run-time checks when not in production
-    dev: !production
+/** @type {import('@sveltejs/kit').Config} */
+export default {
+  preprocess: [
+    sveltePreprocess({
+      postcss: true,
+      replace: [['MELODIE_VERSION', JSON.stringify(version)]]
+    })
+  ],
+  kit: {
+    target: '#svelte',
+    ssr: false,
+    paths: { base },
+    appDir: 'app',
+    adapter: adapter(),
+    vite: {
+      plugins: [
+        yaml(),
+        windi(),
+        atelier({
+          url: '/atelier',
+          path: resolve(__dirname, 'src'),
+          setupPath: resolve(__dirname, 'src', 'atelier', 'setup'),
+          publicDir: ['static', join('..', '..', 'common', 'ui', 'public')]
+        })
+      ]
+    }
   }
 }

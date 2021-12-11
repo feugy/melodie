@@ -1,25 +1,4 @@
-<style type="postcss">
-  @keyframes increase {
-    from {
-      left: -5%;
-      width: 5%;
-    }
-    to {
-      left: 130%;
-      width: 150%;
-    }
-  }
-  @keyframes decrease {
-    from {
-      left: -90%;
-      width: 90%;
-    }
-    to {
-      left: 110%;
-      width: 10%;
-    }
-  }
-
+<style lang="postcss">
   .wrapper {
     @apply top-0 left-0 w-full h-1 overflow-hidden relative;
     background: var(--font-color);
@@ -35,6 +14,28 @@
   }
   .dec {
     animation: decrease 2s 0.9s ease-in-out infinite;
+  }
+
+  @keyframes increase {
+    0% {
+      left: -5%;
+      width: 5%;
+    }
+    100% {
+      left: 130%;
+      width: 150%;
+    }
+  }
+
+  @keyframes decrease {
+    0% {
+      left: -90%;
+      width: 90%;
+    }
+    100% {
+      left: 110%;
+      width: 10%;
+    }
   }
 </style>
 

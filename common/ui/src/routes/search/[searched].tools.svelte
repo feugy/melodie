@@ -36,5 +36,5 @@
   )}
   let:props
 >
-  <HRefSink><Component {...props} /></HRefSink>
+  <div class="w-99vw"><HRefSink><Component {...props} /></HRefSink></div>
 </Tool>

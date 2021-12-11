@@ -62,9 +62,9 @@
   })
 </script>
 
-<style type="postcss">
+<style lang="postcss">
   section {
-    @apply flex flex-wrap items-center z-0 m-4 mt-0 gap-4;
+    @apply flex flex-wrap items-center z-0 m-4 mt-0 gap-4 md:items-start md:flex-nowrap;
   }
 
   .disks {
@@ -72,11 +72,7 @@
   }
 
   .image-container {
-    @apply flex-shrink-0 flex-grow cursor-pointer;
-    width: 300px;
-    height: 300px;
-    max-width: 300px;
-    max-height: 300px;
+    @apply flex-shrink-0 flex-grow cursor-pointer w-300px h-300px max-w-300px max-h-300px lg:w-400px lg:h-400px lg:max-w-400px lg:max-h-400px;
   }
 
   section > div {
@@ -89,21 +85,6 @@
 
   .actions {
     @apply flex flex-wrap mb-4 gap-4 items-start;
-  }
-
-  @screen md {
-    section {
-      @apply items-start flex-nowrap;
-    }
-  }
-
-  @screen lg {
-    .image-container {
-      width: 400px;
-      height: 400px;
-      max-width: 400px;
-      max-height: 400px;
-    }
   }
 </style>
 

@@ -12,4 +12,4 @@
 </script>
 
 <TextInput on:keyup={handleKeyup} placeholder={$_('search over')} {focus} />
-<Button icon="search" class="ml-1 -mr-1" noBorder />
+<Button icon="search" class="ml-2 -mr-2" noBorder />

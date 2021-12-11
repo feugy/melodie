@@ -75,6 +75,17 @@ function makeModelFileRetriever(modelClass, forPath = false) {
   }
 }
 
+function prependEndpoint(results, property) {
+  return results.map(result => ({
+    ...result,
+    [property]: result[property]
+      ? result[property].startsWith('http')
+        ? result[property]
+        : `/media?path=${encodeURIComponent(result[property])}`
+      : undefined
+  }))
+}
+
 module.exports = {
   /**
    * Triggers enrichement of all artists: will fetch artwork from (in order):
@@ -280,7 +291,10 @@ module.exports = {
       allProviders.map(provider => provider.findArtistArtwork(name))
     )
     return requests.reduce(
-      (results, { value = [] }) => [...results, ...value],
+      (results, { value = [] }) => [
+        ...results,
+        ...prependEndpoint(value, 'artwork')
+      ],
       []
     )
   },
@@ -299,7 +313,10 @@ module.exports = {
       allProviders.map(provider => provider.findAlbumCover(name))
     )
     return requests.reduce(
-      (results, { value = [] }) => [...results, ...value],
+      (results, { value = [] }) => [
+        ...results,
+        ...prependEndpoint(value, 'cover')
+      ],
       []
     )
   },
@@ -451,5 +468,32 @@ module.exports = {
    * @param {number} mediaCount - current media count
    * @returns {string} path to the artist's artwork file, or null if artist does not exist or if the media count doesn't match
    */
-  getArtistMedia: makeModelFileRetriever(artistsModel)
+  getArtistMedia: makeModelFileRetriever(artistsModel),
+
+  /**
+   * Indicates whether a file pointed by desired path can be used as artwork or cover.
+   * Only allows image medias, within the watched folders (for obvious security reasons)
+   * @async
+   * @param {string} path - desired media path
+   * @returns {boolean} path to the artist's artwork file, or null if artist does not exist or if the media count doesn't match
+   */
+  isMediaAllowed: async path => {
+    const type = mime.lookup(extname(path ?? ''))
+    if (
+      type !== 'image/jpeg' &&
+      type !== 'image/gif' &&
+      type !== 'image/png' &&
+      type !== 'image/bmp'
+    ) {
+      return false
+    }
+    const { folders } = await settingsModel.get()
+    const normalized = resolve(decodeURIComponent(path))
+    for (const folder of folders) {
+      if (normalized.startsWith(folder)) {
+        return true
+      }
+    }
+    return false
+  }
 }

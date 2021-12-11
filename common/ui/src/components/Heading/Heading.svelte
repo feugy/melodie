@@ -5,7 +5,7 @@
   export let imagePosition = 'center'
 </script>
 
-<style type="postcss">
+<style lang="postcss">
   header {
     @apply w-full px-4 pt-16 pb-40 relative;
     z-index: -1;

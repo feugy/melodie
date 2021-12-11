@@ -95,7 +95,7 @@
   })
 </script>
 
-<style type="postcss">
+<style lang="postcss">
   section {
     @apply flex flex-wrap items-center text-left m-4 mt-0 gap-4;
   }

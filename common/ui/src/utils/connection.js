@@ -1,12 +1,13 @@
 'use strict'
 
-import { BehaviorSubject } from 'rxjs'
-import { filter, map, pluck, take } from 'rxjs/operators'
+import { BehaviorSubject, firstValueFrom } from 'rxjs'
+import { filter, map, take } from 'rxjs/operators'
 import { nanoid } from 'nanoid'
 
-let ws
+let ws = null
 const messages$ = new BehaviorSubject({})
 const lastInvokation$ = new BehaviorSubject()
+const connectionTimeout = 2000
 
 /**
  * Connects to the server's Websocket.
@@ -14,43 +15,67 @@ const lastInvokation$ = new BehaviorSubject()
  * @async
  * @param {string} address            - WebService url to connect to
  * @param {function} onConnectionLost - function called when connection is lost
+ * @param {function} getAuthDetails   - async function called to get authentication details
  * @throws {err} if connection can not been established
  */
-export async function initConnection(address, onConnectionLost) {
+export async function initConnection(
+  address,
+  onConnectionLost,
+  getAuthDetails
+) {
   if (ws && [WebSocket.CONNECTING, WebSocket.OPEN].includes(ws.readyState)) {
     throw new Error(`connection already established, close it first`)
   }
 
-  ws = await new Promise((resolve, reject) => {
-    try {
-      const socket = new WebSocket(`${address}/ws`)
-      socket.onopen = () => {
-        socket.onopen = null
-        socket.onerror = null
-        resolve(socket)
-      }
-      socket.onerror = err => {
-        socket.onopen = null
-        socket.onerror = null
+  const totp = await getAuthDetails()
+  try {
+    ws = await new Promise((resolve, reject) => {
+      try {
+        const socket = new WebSocket(`${address}/ws?totp=${totp}`)
+        const clear = () => {
+          clearTimeout(timeout)
+          socket.onopen = null
+          socket.onerror = null
+        }
+        socket.onopen = () => {
+          clear()
+          resolve(socket)
+        }
+        socket.onclose = () => {
+          clear()
+          reject(new Error(`failed to establish connection`))
+        }
+        const timeout = setTimeout(() => {
+          clear()
+          socket.close()
+          reject(new Error(`failed to establish connection: timeout`))
+        }, connectionTimeout)
+      } catch (err) {
         reject(new Error(`failed to establish connection: ${err.message}`))
       }
-    } catch (err) {
-      reject(new Error(`failed to establish connection: ${err.message}`))
-    }
-  })
+    })
 
-  ws.onmessage = ({ data }) => {
-    try {
-      messages$.next(JSON.parse(data))
-    } catch (err) {
-      console.error(`Failed to read server message: ${err.message}`, err, data)
+    ws.onmessage = ({ data }) => {
+      try {
+        messages$.next(JSON.parse(data))
+      } catch (err) {
+        console.error(
+          `Failed to read server message: ${err.message}`,
+          err,
+          data
+        )
+      }
     }
-  }
 
-  ws.onclose = () => {
+    ws.onclose = () => {
+      closeConnection()
+      onConnectionLost()
+    }
+  } catch (err) {
     closeConnection()
-    onConnectionLost()
+    onConnectionLost(err)
   }
+  return ws !== null
 }
 
 /**
@@ -105,8 +130,8 @@ export const lastInvokation = lastInvokation$.asObservable()
 export async function invoke(invoked, ...args) {
   const id = nanoid()
   send({ invoked, args, id })
-  return messages$
-    .pipe(
+  return firstValueFrom(
+    messages$.pipe(
       filter(msg => msg.id === id),
       take(1),
       map(({ result, error }) => {
@@ -116,7 +141,7 @@ export async function invoke(invoked, ...args) {
         return result
       })
     )
-    .toPromise()
+  )
 }
 
 const observables = new Map()
@@ -132,7 +157,7 @@ export function fromServerEvent(name) {
       name,
       messages$.pipe(
         filter(msg => msg.event === name),
-        pluck('args')
+        map(msg => msg.args)
       )
     )
   }

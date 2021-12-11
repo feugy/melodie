@@ -19,7 +19,7 @@
   })
 </script>
 
-<style type="postcss">
+<style lang="postcss">
   section {
     @apply flex flex-col items-stretch w-full overflow-hidden;
     min-height: 16rem;

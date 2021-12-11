@@ -13,7 +13,7 @@
   }
 </script>
 
-<style type="postcss">
+<style lang="postcss">
   .wrapper {
     @apply relative inline-block;
     font-size: 1.2rem;

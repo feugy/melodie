@@ -6,7 +6,7 @@
   let anchors = []
 </script>
 
-<style type="postcss">
+<style lang="postcss">
   .test-grid {
     @apply absolute w-full h-full inset-0 grid grid-flow-row grid-cols-4 grid-rows-3 gap-4;
   }

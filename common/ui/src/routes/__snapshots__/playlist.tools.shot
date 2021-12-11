@@ -3,48 +3,48 @@
 exports[`Toolshot routes/playlist.tools.svelte: Views/Playlist 1`] = `
 <div>
   <section
-    class="svelte-14jiyy0"
+    class="svelte-pjdel3"
     style="animation: __svelte_185617033_0 200ms linear 0ms 1 both;"
   >
     <header
-      class=" svelte-t58ezf"
+      class=" svelte-10ndra7"
       style="--image: url(../images/david-villasana-YNJGB-_Vlgw-unsplash.jpg); --shade-color: rgba(0, 0, 0, 0.7); --bgPosition: center 46%;"
     >
       <h1
-        class="svelte-t58ezf"
+        class="svelte-10ndra7"
       >
         3 playlists
       </h1>
     </header>
      
     <div
-      class="svelte-14jiyy0"
+      class="svelte-pjdel3"
     >
       <span
-        class="svelte-14jiyy0"
+        class="svelte-pjdel3"
       >
          
         <span
-          class="svelte-4r86n overlay"
+          class="svelte-4mizr overlay"
           role="article"
         >
           <div
-            class="content svelte-4r86n"
+            class="content svelte-4mizr"
           >
             <span
-              class="artwork svelte-4r86n"
+              class="artwork svelte-4mizr"
             />
              
             <p
-              class="controls svelte-4r86n"
+              class="controls svelte-4mizr"
             >
                
               <button
-                class="primary iconOnly large svelte-1e4q28k"
+                class="primary iconOnly large svelte-11qpkf0"
                 data-testid="play"
               >
                 <i
-                  class="material-icons svelte-1e4q28k"
+                  class="material-icons svelte-11qpkf0"
                 >
                   play_arrow
                 </i>
@@ -54,11 +54,11 @@ exports[`Toolshot routes/playlist.tools.svelte: Views/Playlist 1`] = `
               </button>
                
               <button
-                class="primary iconOnly large svelte-1e4q28k"
+                class="primary iconOnly large svelte-11qpkf0"
                 data-testid="enqueue"
               >
                 <i
-                  class="material-icons svelte-1e4q28k"
+                  class="material-icons svelte-11qpkf0"
                 >
                   playlist_add
                 </i>
@@ -70,10 +70,10 @@ exports[`Toolshot routes/playlist.tools.svelte: Views/Playlist 1`] = `
           </div>
            
           <header
-            class="svelte-4r86n"
+            class="svelte-4mizr"
           >
             <h3
-              class="svelte-4r86n"
+              class="svelte-4mizr"
             >
               My favourites
             </h3>
@@ -88,30 +88,30 @@ exports[`Toolshot routes/playlist.tools.svelte: Views/Playlist 1`] = `
          
       </span>
       <span
-        class="svelte-14jiyy0"
+        class="svelte-pjdel3"
       >
          
         <span
-          class="svelte-4r86n overlay"
+          class="svelte-4mizr overlay"
           role="article"
         >
           <div
-            class="content svelte-4r86n"
+            class="content svelte-4mizr"
           >
             <span
-              class="artwork svelte-4r86n"
+              class="artwork svelte-4mizr"
             />
              
             <p
-              class="controls svelte-4r86n"
+              class="controls svelte-4mizr"
             >
                
               <button
-                class="primary iconOnly large svelte-1e4q28k"
+                class="primary iconOnly large svelte-11qpkf0"
                 data-testid="play"
               >
                 <i
-                  class="material-icons svelte-1e4q28k"
+                  class="material-icons svelte-11qpkf0"
                 >
                   play_arrow
                 </i>
@@ -121,11 +121,11 @@ exports[`Toolshot routes/playlist.tools.svelte: Views/Playlist 1`] = `
               </button>
                
               <button
-                class="primary iconOnly large svelte-1e4q28k"
+                class="primary iconOnly large svelte-11qpkf0"
                 data-testid="enqueue"
               >
                 <i
-                  class="material-icons svelte-1e4q28k"
+                  class="material-icons svelte-11qpkf0"
                 >
                   playlist_add
                 </i>
@@ -137,10 +137,10 @@ exports[`Toolshot routes/playlist.tools.svelte: Views/Playlist 1`] = `
           </div>
            
           <header
-            class="svelte-4r86n"
+            class="svelte-4mizr"
           >
             <h3
-              class="svelte-4r86n"
+              class="svelte-4mizr"
             >
               Rock
             </h3>
@@ -155,30 +155,30 @@ exports[`Toolshot routes/playlist.tools.svelte: Views/Playlist 1`] = `
          
       </span>
       <span
-        class="svelte-14jiyy0"
+        class="svelte-pjdel3"
       >
          
         <span
-          class="svelte-4r86n overlay"
+          class="svelte-4mizr overlay"
           role="article"
         >
           <div
-            class="content svelte-4r86n"
+            class="content svelte-4mizr"
           >
             <span
-              class="artwork svelte-4r86n"
+              class="artwork svelte-4mizr"
             />
              
             <p
-              class="controls svelte-4r86n"
+              class="controls svelte-4mizr"
             >
                
               <button
-                class="primary iconOnly large svelte-1e4q28k"
+                class="primary iconOnly large svelte-11qpkf0"
                 data-testid="play"
               >
                 <i
-                  class="material-icons svelte-1e4q28k"
+                  class="material-icons svelte-11qpkf0"
                 >
                   play_arrow
                 </i>
@@ -188,11 +188,11 @@ exports[`Toolshot routes/playlist.tools.svelte: Views/Playlist 1`] = `
               </button>
                
               <button
-                class="primary iconOnly large svelte-1e4q28k"
+                class="primary iconOnly large svelte-11qpkf0"
                 data-testid="enqueue"
               >
                 <i
-                  class="material-icons svelte-1e4q28k"
+                  class="material-icons svelte-11qpkf0"
                 >
                   playlist_add
                 </i>
@@ -204,10 +204,10 @@ exports[`Toolshot routes/playlist.tools.svelte: Views/Playlist 1`] = `
           </div>
            
           <header
-            class="svelte-4r86n"
+            class="svelte-4mizr"
           >
             <h3
-              class="svelte-4r86n"
+              class="svelte-4mizr"
             >
               Slows
             </h3>

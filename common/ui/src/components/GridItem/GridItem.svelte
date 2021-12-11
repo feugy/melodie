@@ -59,10 +59,10 @@
   }
 </script>
 
-<style type="postcss">
+<style lang="postcss">
   /* do not apply relative! makes layout very slow when displaying many grid items */
   span {
-    @apply inline-block w-32 cursor-pointer;
+    @apply inline-block w-32 md:w-48 lg:w-64 cursor-pointer;
     -webkit-tap-highlight-color: transparent;
 
     &.overlay {
@@ -70,7 +70,7 @@
         @apply hidden;
       }
       & > header {
-        @apply inline-flex w-full h-32 rounded-sm border-2 border-solid p-4;
+        @apply inline-flex w-full h-32 md:h-48 lg:h-64 rounded-sm border-2 border-solid p-4;
         border-color: var(--outline-color);
         background-color: var(--hover-bg-color);
 
@@ -97,55 +97,16 @@
     @apply relative;
 
     & .artwork {
-      @apply inline-block h-32 text-3xl;
+      @apply inline-block h-32 md:h-48 lg:h-64 text-3xl;
     }
 
     & .controls {
-      @apply absolute opacity-0 transition-opacity duration-500 ease-in-out inset-x-0 text-center z-10 pointer-events-none flex justify-center flex-wrap gap-2;
-      top: 20px;
+      @apply absolute opacity-0 transition-opacity duration-500 ease-in-out inset-x-0 
+        text-center z-10 pointer-events-none flex justify-center flex-wrap gap-2
+        top-20px md:top-120px lg:top-190px;
 
       &.open {
         @apply opacity-100 pointer-events-auto;
-      }
-    }
-  }
-
-  @screen md {
-    span {
-      @apply w-48;
-
-      &.overlay header {
-        @apply h-48;
-      }
-
-      & .content {
-        & .controls {
-          @apply gap-2;
-          top: 120px;
-        }
-
-        & .artwork {
-          @apply h-48;
-        }
-      }
-    }
-  }
-  @screen lg {
-    span {
-      @apply w-64;
-
-      &.overlay header {
-        @apply h-64;
-      }
-
-      & .content {
-        & .controls {
-          top: 190px;
-        }
-
-        & .artwork {
-          @apply h-64;
-        }
       }
     }
   }

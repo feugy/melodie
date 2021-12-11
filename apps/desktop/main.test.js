@@ -6,6 +6,7 @@ const os = require('os')
 const electron = require('electron')
 const { autoUpdater } = require('electron-updater')
 const faker = require('faker')
+const OTPAuth = require('otpauth')
 const {
   utils: { getLogger }
 } = require('@melodie/core')
@@ -13,7 +14,7 @@ const { sleep } = require('./lib/tests')
 const services = require('./lib/services')
 const { configureExternalLinks } = require('./lib/utils')
 const descriptor = require('./package')
-const publicFolder = resolve(__dirname, '..', '..', 'common', 'ui', 'public')
+const publicFolder = resolve(__dirname, '..', '..', 'common', 'ui', 'dist')
 
 let platformSpy = jest.spyOn(os, 'platform')
 
@@ -64,6 +65,9 @@ describe('Application test', () => {
   let win
   let main
   const port = faker.datatype.number({ min: 1024, max: 20000 })
+  const totpSecret = Buffer.from(faker.datatype.uuid())
+    .toString('hex')
+    .toUpperCase()
 
   beforeAll(() => {
     // defer so we could mock electron
@@ -84,7 +88,8 @@ describe('Application test', () => {
     services.start.mockImplementation(
       async (folder, win, desc, desiredPort) => ({
         port: desiredPort || port,
-        close: jest.fn()
+        close: jest.fn(),
+        totp: new OTPAuth.TOTP({ secret: OTPAuth.Secret.fromHex(totpSecret) })
       })
     )
   })
@@ -107,9 +112,9 @@ describe('Application test', () => {
     expect(win.loadURL).toHaveBeenCalledWith(
       `file://${join(
         dirname(require.resolve('@melodie/ui')),
-        'public',
+        'dist',
         'index.html'
-      )}?port=${port}`
+      )}?port=${port}&totpSecret=${totpSecret}`
     )
     expect(electron.app.quit).not.toHaveBeenCalled()
     expect(electron.dialog.showErrorBox).not.toHaveBeenCalled()
@@ -150,9 +155,9 @@ describe('Application test', () => {
     expect(win.loadURL).toHaveBeenCalledWith(
       `file://${join(
         dirname(require.resolve('@melodie/ui')),
-        'public',
+        'dist',
         'index.html'
-      )}?port=${desiredPort || port}`
+      )}?port=${desiredPort || port}&totpSecret=${totpSecret}`
     )
 
     await sleep(300)

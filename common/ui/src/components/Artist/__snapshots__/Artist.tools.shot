@@ -4,18 +4,18 @@ exports[`Toolshot components/Artist/Artist.tools.svelte: Default 1`] = `
 <div>
    
   <span
-    class="svelte-4r86n"
+    class="svelte-4mizr"
     role="article"
   >
     <div
-      class="content svelte-4r86n"
+      class="content svelte-4mizr"
     >
       <span
-        class="artwork svelte-4r86n"
+        class="artwork svelte-4mizr"
       >
         <img
           alt="./avatar.jpg"
-          class="h-full w-full rounded-full svelte-1psk6yi"
+          class="h-full w-full rounded-full svelte-1oz3k7v"
           height="256"
           loading="lazy"
           src="./avatar.jpg"
@@ -26,15 +26,15 @@ exports[`Toolshot components/Artist/Artist.tools.svelte: Default 1`] = `
       </span>
        
       <p
-        class="controls svelte-4r86n"
+        class="controls svelte-4mizr"
       >
          
         <button
-          class="primary iconOnly large svelte-1e4q28k"
+          class="primary iconOnly large svelte-11qpkf0"
           data-testid="play"
         >
           <i
-            class="material-icons svelte-1e4q28k"
+            class="material-icons svelte-11qpkf0"
           >
             play_arrow
           </i>
@@ -44,11 +44,11 @@ exports[`Toolshot components/Artist/Artist.tools.svelte: Default 1`] = `
         </button>
          
         <button
-          class="primary iconOnly large svelte-1e4q28k"
+          class="primary iconOnly large svelte-11qpkf0"
           data-testid="enqueue"
         >
           <i
-            class="material-icons svelte-1e4q28k"
+            class="material-icons svelte-11qpkf0"
           >
             playlist_add
           </i>
@@ -60,16 +60,16 @@ exports[`Toolshot components/Artist/Artist.tools.svelte: Default 1`] = `
     </div>
      
     <header
-      class="svelte-4r86n"
+      class="svelte-4mizr"
     >
       <h3
-        class="svelte-4r86n"
+        class="svelte-4mizr"
       >
         Foo Fighters
       </h3>
        
       <h4
-        class="svelte-rw2hde"
+        class="svelte-yqtzij"
         slot="details"
       >
         2 albums
@@ -83,18 +83,18 @@ exports[`Toolshot components/Artist/Artist.tools.svelte: No album 1`] = `
 <div>
    
   <span
-    class="svelte-4r86n"
+    class="svelte-4mizr"
     role="article"
   >
     <div
-      class="content svelte-4r86n"
+      class="content svelte-4mizr"
     >
       <span
-        class="artwork svelte-4r86n"
+        class="artwork svelte-4mizr"
       >
         <img
           alt="./avatar.jpg"
-          class="h-full w-full rounded-full svelte-1psk6yi"
+          class="h-full w-full rounded-full svelte-1oz3k7v"
           height="256"
           loading="lazy"
           src="./avatar.jpg"
@@ -105,15 +105,15 @@ exports[`Toolshot components/Artist/Artist.tools.svelte: No album 1`] = `
       </span>
        
       <p
-        class="controls svelte-4r86n"
+        class="controls svelte-4mizr"
       >
          
         <button
-          class="primary iconOnly large svelte-1e4q28k"
+          class="primary iconOnly large svelte-11qpkf0"
           data-testid="play"
         >
           <i
-            class="material-icons svelte-1e4q28k"
+            class="material-icons svelte-11qpkf0"
           >
             play_arrow
           </i>
@@ -123,11 +123,11 @@ exports[`Toolshot components/Artist/Artist.tools.svelte: No album 1`] = `
         </button>
          
         <button
-          class="primary iconOnly large svelte-1e4q28k"
+          class="primary iconOnly large svelte-11qpkf0"
           data-testid="enqueue"
         >
           <i
-            class="material-icons svelte-1e4q28k"
+            class="material-icons svelte-11qpkf0"
           >
             playlist_add
           </i>
@@ -139,16 +139,16 @@ exports[`Toolshot components/Artist/Artist.tools.svelte: No album 1`] = `
     </div>
      
     <header
-      class="svelte-4r86n"
+      class="svelte-4mizr"
     >
       <h3
-        class="svelte-4r86n"
+        class="svelte-4mizr"
       >
         Foo Fighters
       </h3>
        
       <h4
-        class="svelte-rw2hde"
+        class="svelte-yqtzij"
         slot="details"
       />
     </header>
@@ -160,27 +160,27 @@ exports[`Toolshot components/Artist/Artist.tools.svelte: Unknown 1`] = `
 <div>
    
   <span
-    class="svelte-4r86n"
+    class="svelte-4mizr"
     role="article"
   >
     <div
-      class="content svelte-4r86n"
+      class="content svelte-4mizr"
     >
       <span
-        class="artwork svelte-4r86n"
+        class="artwork svelte-4mizr"
       >
         <img
-          class="h-full w-full rounded-full hidden svelte-1psk6yi"
+          class="h-full w-full rounded-full hidden svelte-1oz3k7v"
           height="256"
           loading="lazy"
           width="256"
         />
          
         <span
-          class="h-full w-full svelte-1psk6yi rounded-full"
+          class="h-full w-full svelte-1oz3k7v rounded-full"
         >
           <i
-            class="material-icons svelte-1psk6yi"
+            class="material-icons svelte-1oz3k7v"
           >
             person
           </i>
@@ -189,15 +189,15 @@ exports[`Toolshot components/Artist/Artist.tools.svelte: Unknown 1`] = `
       </span>
        
       <p
-        class="controls svelte-4r86n"
+        class="controls svelte-4mizr"
       >
          
         <button
-          class="primary iconOnly large svelte-1e4q28k"
+          class="primary iconOnly large svelte-11qpkf0"
           data-testid="play"
         >
           <i
-            class="material-icons svelte-1e4q28k"
+            class="material-icons svelte-11qpkf0"
           >
             play_arrow
           </i>
@@ -207,11 +207,11 @@ exports[`Toolshot components/Artist/Artist.tools.svelte: Unknown 1`] = `
         </button>
          
         <button
-          class="primary iconOnly large svelte-1e4q28k"
+          class="primary iconOnly large svelte-11qpkf0"
           data-testid="enqueue"
         >
           <i
-            class="material-icons svelte-1e4q28k"
+            class="material-icons svelte-11qpkf0"
           >
             playlist_add
           </i>
@@ -223,16 +223,16 @@ exports[`Toolshot components/Artist/Artist.tools.svelte: Unknown 1`] = `
     </div>
      
     <header
-      class="svelte-4r86n"
+      class="svelte-4mizr"
     >
       <h3
-        class="svelte-4r86n"
+        class="svelte-4mizr"
       >
         Unknown
       </h3>
        
       <h4
-        class="svelte-rw2hde"
+        class="svelte-yqtzij"
         slot="details"
       >
         2 albums

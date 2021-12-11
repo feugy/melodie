@@ -5,96 +5,89 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
    
    
   <table
-    class="svelte-1s1441n"
+    class="svelte-1hd20y5"
   >
     <thead
-      class="svelte-1s1441n"
+      class="svelte-1hd20y5"
     >
       <tr
-        class="svelte-1s1441n"
+        class="svelte-1hd20y5"
       >
         <th
-          class="svelte-1s1441n"
+          class="svelte-1hd20y5"
         >
           #
         </th>
          
         <th
-          class="col-span-5 svelte-1s1441n"
+          class="col-span-5 svelte-1hd20y5"
         >
           Track
         </th>
          
         <th
-          class="col-span-1 svelte-1s1441n"
+          class="col-span-1 svelte-1hd20y5"
         >
           Duration
         </th>
          
         <th
-          class="col-span-4 svelte-1s1441n"
+          class="col-span-4 svelte-1hd20y5"
         >
           Album
         </th>
          
         <th
-          class="svelte-1s1441n"
+          class="svelte-1hd20y5"
         />
       </tr>
     </thead>
      
     <tbody
-      class="svelte-1s1441n"
+      class="svelte-1hd20y5"
     >
       <ol>
         <li
-          class="svelte-w3rzzq"
+          class="svelte-4381ki"
           draggable="true"
         >
           <tr
-            class="svelte-1s1441n"
+            class="svelte-1hd20y5"
             slot="item"
           >
             <td
-              class="svelte-1s1441n"
+              class="svelte-1hd20y5"
             >
               1
             </td>
              
             <td
-              class="col-span-6 svelte-1s1441n"
+              class="col-span-6 playlist-track svelte-1hd20y5"
             >
               <div
-                class="undefined root svelte-30dtyc"
+                class="undefined root svelte-138dtrj"
               >
                 <a
-                  class="flex-none"
+                  class="svelte-138dtrj"
                   href="#/album/1"
                 >
                   <img
-                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1psk6yi"
+                    alt="./cover.jpg"
+                    class="h-16 w-16 text-xs actionable rounded-sm svelte-1oz3k7v"
                     height="256"
                     loading="lazy"
+                    src="./cover.jpg"
                     width="256"
                   />
                    
-                  <span
-                    class="h-16 w-16 text-xs actionable svelte-1psk6yi rounded-sm"
-                  >
-                    <i
-                      class="material-icons svelte-1psk6yi"
-                    >
-                      music_note
-                    </i>
-                  </span>
                   
                 </a>
                  
                 <div
-                  class="track svelte-30dtyc"
+                  class="track svelte-138dtrj"
                 >
                   <span
-                    class="title svelte-30dtyc"
+                    class="title svelte-138dtrj"
                   >
                     American Money
                   </span>
@@ -119,7 +112,7 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
                 </div>
                  
                 <div
-                  class="duration svelte-30dtyc"
+                  class="duration svelte-138dtrj"
                 >
                   5:32
                 </div>
@@ -128,7 +121,7 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
             </td>
              
             <td
-              class="col-span-4 svelte-1s1441n"
+              class="col-span-4 svelte-1hd20y5"
             >
               <a
                 class="underlined"
@@ -140,18 +133,18 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
             </td>
              
             <td
-              class="svelte-1s1441n"
+              class="svelte-1hd20y5"
             >
               <span
                 aria-expanded="false"
                 aria-haspopup="menu"
-                class="wrapper svelte-11prmkk"
+                class="wrapper svelte-1g0595r"
               >
                 <button
-                  class="iconOnly noBorder svelte-1e4q28k"
+                  class="iconOnly noBorder svelte-11qpkf0"
                 >
                   <i
-                    class="material-icons svelte-1e4q28k"
+                    class="material-icons svelte-11qpkf0"
                   >
                     more_vert
                   </i>
@@ -168,53 +161,46 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
            
         </li>
         <li
-          class="svelte-w3rzzq"
+          class="svelte-4381ki"
           draggable="true"
         >
           <tr
-            class="svelte-1s1441n"
+            class="svelte-1hd20y5"
             slot="item"
           >
             <td
-              class="svelte-1s1441n"
+              class="svelte-1hd20y5"
             >
               2
             </td>
              
             <td
-              class="col-span-6 svelte-1s1441n"
+              class="col-span-6 playlist-track svelte-1hd20y5"
             >
               <div
-                class="undefined root svelte-30dtyc"
+                class="undefined root svelte-138dtrj"
               >
                 <a
-                  class="flex-none"
+                  class="svelte-138dtrj"
                   href="#/album/1"
                 >
                   <img
-                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1psk6yi"
+                    alt="./cover.jpg"
+                    class="h-16 w-16 text-xs actionable rounded-sm svelte-1oz3k7v"
                     height="256"
                     loading="lazy"
+                    src="./cover.jpg"
                     width="256"
                   />
                    
-                  <span
-                    class="h-16 w-16 text-xs actionable svelte-1psk6yi rounded-sm"
-                  >
-                    <i
-                      class="material-icons svelte-1psk6yi"
-                    >
-                      music_note
-                    </i>
-                  </span>
                   
                 </a>
                  
                 <div
-                  class="track svelte-30dtyc"
+                  class="track svelte-138dtrj"
                 >
                   <span
-                    class="title svelte-30dtyc"
+                    class="title svelte-138dtrj"
                   >
                     Fantaisie Sign
                   </span>
@@ -239,7 +225,7 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
                 </div>
                  
                 <div
-                  class="duration svelte-30dtyc"
+                  class="duration svelte-138dtrj"
                 >
                   3:35
                 </div>
@@ -248,7 +234,7 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
             </td>
              
             <td
-              class="col-span-4 svelte-1s1441n"
+              class="col-span-4 svelte-1hd20y5"
             >
               <a
                 class="underlined"
@@ -260,18 +246,18 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
             </td>
              
             <td
-              class="svelte-1s1441n"
+              class="svelte-1hd20y5"
             >
               <span
                 aria-expanded="false"
                 aria-haspopup="menu"
-                class="wrapper svelte-11prmkk"
+                class="wrapper svelte-1g0595r"
               >
                 <button
-                  class="iconOnly noBorder svelte-1e4q28k"
+                  class="iconOnly noBorder svelte-11qpkf0"
                 >
                   <i
-                    class="material-icons svelte-1e4q28k"
+                    class="material-icons svelte-11qpkf0"
                   >
                     more_vert
                   </i>
@@ -288,53 +274,46 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
            
         </li>
         <li
-          class="svelte-w3rzzq"
+          class="svelte-4381ki"
           draggable="true"
         >
           <tr
-            class="svelte-1s1441n"
+            class="svelte-1hd20y5"
             slot="item"
           >
             <td
-              class="svelte-1s1441n"
+              class="svelte-1hd20y5"
             >
               3
             </td>
              
             <td
-              class="col-span-6 svelte-1s1441n"
+              class="col-span-6 playlist-track svelte-1hd20y5"
             >
               <div
-                class="undefined root svelte-30dtyc"
+                class="undefined root svelte-138dtrj"
               >
                 <a
-                  class="flex-none"
+                  class="svelte-138dtrj"
                   href="#/album/1"
                 >
                   <img
-                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1psk6yi"
+                    alt="./cover.jpg"
+                    class="h-16 w-16 text-xs actionable rounded-sm svelte-1oz3k7v"
                     height="256"
                     loading="lazy"
+                    src="./cover.jpg"
                     width="256"
                   />
                    
-                  <span
-                    class="h-16 w-16 text-xs actionable svelte-1psk6yi rounded-sm"
-                  >
-                    <i
-                      class="material-icons svelte-1psk6yi"
-                    >
-                      music_note
-                    </i>
-                  </span>
                   
                 </a>
                  
                 <div
-                  class="track svelte-30dtyc"
+                  class="track svelte-138dtrj"
                 >
                   <span
-                    class="title svelte-30dtyc"
+                    class="title svelte-138dtrj"
                   >
                     Don't Bother None
                   </span>
@@ -359,7 +338,7 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
                 </div>
                  
                 <div
-                  class="duration svelte-30dtyc"
+                  class="duration svelte-138dtrj"
                 >
                   3:45
                 </div>
@@ -368,7 +347,7 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
             </td>
              
             <td
-              class="col-span-4 svelte-1s1441n"
+              class="col-span-4 svelte-1hd20y5"
             >
               <a
                 class="underlined"
@@ -380,18 +359,18 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
             </td>
              
             <td
-              class="svelte-1s1441n"
+              class="svelte-1hd20y5"
             >
               <span
                 aria-expanded="false"
                 aria-haspopup="menu"
-                class="wrapper svelte-11prmkk"
+                class="wrapper svelte-1g0595r"
               >
                 <button
-                  class="iconOnly noBorder svelte-1e4q28k"
+                  class="iconOnly noBorder svelte-11qpkf0"
                 >
                   <i
-                    class="material-icons svelte-1e4q28k"
+                    class="material-icons svelte-11qpkf0"
                   >
                     more_vert
                   </i>
@@ -408,41 +387,41 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
            
         </li>
         <li
-          class="svelte-w3rzzq"
+          class="svelte-4381ki"
           draggable="true"
         >
           <tr
-            class="svelte-1s1441n"
+            class="svelte-1hd20y5"
             slot="item"
           >
             <td
-              class="svelte-1s1441n"
+              class="svelte-1hd20y5"
             >
               4
             </td>
              
             <td
-              class="col-span-6 svelte-1s1441n"
+              class="col-span-6 playlist-track svelte-1hd20y5"
             >
               <div
-                class="undefined root svelte-30dtyc"
+                class="undefined root svelte-138dtrj"
               >
                 <a
-                  class="flex-none"
+                  class="svelte-138dtrj"
                   href="#/album/1"
                 >
                   <img
-                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1psk6yi"
+                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1oz3k7v"
                     height="256"
                     loading="lazy"
                     width="256"
                   />
                    
                   <span
-                    class="h-16 w-16 text-xs actionable svelte-1psk6yi rounded-sm"
+                    class="h-16 w-16 text-xs actionable svelte-1oz3k7v rounded-sm"
                   >
                     <i
-                      class="material-icons svelte-1psk6yi"
+                      class="material-icons svelte-1oz3k7v"
                     >
                       music_note
                     </i>
@@ -451,10 +430,10 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
                 </a>
                  
                 <div
-                  class="track svelte-30dtyc"
+                  class="track svelte-138dtrj"
                 >
                   <span
-                    class="title svelte-30dtyc"
+                    class="title svelte-138dtrj"
                   >
                     Vitamin A
                   </span>
@@ -479,7 +458,7 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
                 </div>
                  
                 <div
-                  class="duration svelte-30dtyc"
+                  class="duration svelte-138dtrj"
                 >
                   4:41
                 </div>
@@ -488,7 +467,7 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
             </td>
              
             <td
-              class="col-span-4 svelte-1s1441n"
+              class="col-span-4 svelte-1hd20y5"
             >
               <a
                 class="underlined"
@@ -500,18 +479,18 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
             </td>
              
             <td
-              class="svelte-1s1441n"
+              class="svelte-1hd20y5"
             >
               <span
                 aria-expanded="false"
                 aria-haspopup="menu"
-                class="wrapper svelte-11prmkk"
+                class="wrapper svelte-1g0595r"
               >
                 <button
-                  class="iconOnly noBorder svelte-1e4q28k"
+                  class="iconOnly noBorder svelte-11qpkf0"
                 >
                   <i
-                    class="material-icons svelte-1e4q28k"
+                    class="material-icons svelte-11qpkf0"
                   >
                     more_vert
                   </i>
@@ -528,41 +507,41 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
            
         </li>
         <li
-          class="svelte-w3rzzq"
+          class="svelte-4381ki"
           draggable="true"
         >
           <tr
-            class="svelte-1s1441n"
+            class="svelte-1hd20y5"
             slot="item"
           >
             <td
-              class="svelte-1s1441n"
+              class="svelte-1hd20y5"
             >
               5
             </td>
              
             <td
-              class="col-span-6 svelte-1s1441n"
+              class="col-span-6 playlist-track svelte-1hd20y5"
             >
               <div
-                class="undefined root svelte-30dtyc"
+                class="undefined root svelte-138dtrj"
               >
                 <a
-                  class="flex-none"
+                  class="svelte-138dtrj"
                   href="#/album/1"
                 >
                   <img
-                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1psk6yi"
+                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1oz3k7v"
                     height="256"
                     loading="lazy"
                     width="256"
                   />
                    
                   <span
-                    class="h-16 w-16 text-xs actionable svelte-1psk6yi rounded-sm"
+                    class="h-16 w-16 text-xs actionable svelte-1oz3k7v rounded-sm"
                   >
                     <i
-                      class="material-icons svelte-1psk6yi"
+                      class="material-icons svelte-1oz3k7v"
                     >
                       music_note
                     </i>
@@ -571,10 +550,10 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
                 </a>
                  
                 <div
-                  class="track svelte-30dtyc"
+                  class="track svelte-138dtrj"
                 >
                   <span
-                    class="title svelte-30dtyc"
+                    class="title svelte-138dtrj"
                   >
                     LIVE in Baghdad
                   </span>
@@ -599,7 +578,7 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
                 </div>
                  
                 <div
-                  class="duration svelte-30dtyc"
+                  class="duration svelte-138dtrj"
                 >
                   2:59
                 </div>
@@ -608,7 +587,7 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
             </td>
              
             <td
-              class="col-span-4 svelte-1s1441n"
+              class="col-span-4 svelte-1hd20y5"
             >
               <a
                 class="underlined"
@@ -620,18 +599,18 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
             </td>
              
             <td
-              class="svelte-1s1441n"
+              class="svelte-1hd20y5"
             >
               <span
                 aria-expanded="false"
                 aria-haspopup="menu"
-                class="wrapper svelte-11prmkk"
+                class="wrapper svelte-1g0595r"
               >
                 <button
-                  class="iconOnly noBorder svelte-1e4q28k"
+                  class="iconOnly noBorder svelte-11qpkf0"
                 >
                   <i
-                    class="material-icons svelte-1e4q28k"
+                    class="material-icons svelte-11qpkf0"
                   >
                     more_vert
                   </i>
@@ -648,41 +627,41 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
            
         </li>
         <li
-          class="svelte-w3rzzq"
+          class="svelte-4381ki"
           draggable="true"
         >
           <tr
-            class="svelte-1s1441n"
+            class="svelte-1hd20y5"
             slot="item"
           >
             <td
-              class="svelte-1s1441n"
+              class="svelte-1hd20y5"
             >
               6
             </td>
              
             <td
-              class="col-span-6 svelte-1s1441n"
+              class="col-span-6 playlist-track svelte-1hd20y5"
             >
               <div
-                class="undefined root svelte-30dtyc"
+                class="undefined root svelte-138dtrj"
               >
                 <a
-                  class="flex-none"
+                  class="svelte-138dtrj"
                   href="#/album/1"
                 >
                   <img
-                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1psk6yi"
+                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1oz3k7v"
                     height="256"
                     loading="lazy"
                     width="256"
                   />
                    
                   <span
-                    class="h-16 w-16 text-xs actionable svelte-1psk6yi rounded-sm"
+                    class="h-16 w-16 text-xs actionable svelte-1oz3k7v rounded-sm"
                   >
                     <i
-                      class="material-icons svelte-1psk6yi"
+                      class="material-icons svelte-1oz3k7v"
                     >
                       music_note
                     </i>
@@ -691,10 +670,10 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
                 </a>
                  
                 <div
-                  class="track svelte-30dtyc"
+                  class="track svelte-138dtrj"
                 >
                   <span
-                    class="title svelte-30dtyc"
+                    class="title svelte-138dtrj"
                   >
                     Cats on Mars
                   </span>
@@ -719,7 +698,7 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
                 </div>
                  
                 <div
-                  class="duration svelte-30dtyc"
+                  class="duration svelte-138dtrj"
                 >
                   0:07
                 </div>
@@ -728,7 +707,7 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
             </td>
              
             <td
-              class="col-span-4 svelte-1s1441n"
+              class="col-span-4 svelte-1hd20y5"
             >
               <a
                 class="underlined"
@@ -740,18 +719,18 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
             </td>
              
             <td
-              class="svelte-1s1441n"
+              class="svelte-1hd20y5"
             >
               <span
                 aria-expanded="false"
                 aria-haspopup="menu"
-                class="wrapper svelte-11prmkk"
+                class="wrapper svelte-1g0595r"
               >
                 <button
-                  class="iconOnly noBorder svelte-1e4q28k"
+                  class="iconOnly noBorder svelte-11qpkf0"
                 >
                   <i
-                    class="material-icons svelte-1e4q28k"
+                    class="material-icons svelte-11qpkf0"
                   >
                     more_vert
                   </i>
@@ -768,41 +747,41 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
            
         </li>
         <li
-          class="svelte-w3rzzq"
+          class="svelte-4381ki"
           draggable="true"
         >
           <tr
-            class="svelte-1s1441n"
+            class="svelte-1hd20y5"
             slot="item"
           >
             <td
-              class="svelte-1s1441n"
+              class="svelte-1hd20y5"
             >
               7
             </td>
              
             <td
-              class="col-span-6 svelte-1s1441n"
+              class="col-span-6 playlist-track svelte-1hd20y5"
             >
               <div
-                class="undefined root svelte-30dtyc"
+                class="undefined root svelte-138dtrj"
               >
                 <a
-                  class="flex-none"
+                  class="svelte-138dtrj"
                   href="#/album/1"
                 >
                   <img
-                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1psk6yi"
+                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1oz3k7v"
                     height="256"
                     loading="lazy"
                     width="256"
                   />
                    
                   <span
-                    class="h-16 w-16 text-xs actionable svelte-1psk6yi rounded-sm"
+                    class="h-16 w-16 text-xs actionable svelte-1oz3k7v rounded-sm"
                   >
                     <i
-                      class="material-icons svelte-1psk6yi"
+                      class="material-icons svelte-1oz3k7v"
                     >
                       music_note
                     </i>
@@ -811,10 +790,10 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
                 </a>
                  
                 <div
-                  class="track svelte-30dtyc"
+                  class="track svelte-138dtrj"
                 >
                   <span
-                    class="title svelte-30dtyc"
+                    class="title svelte-138dtrj"
                   >
                     Want it All Back
                   </span>
@@ -839,7 +818,7 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
                 </div>
                  
                 <div
-                  class="duration svelte-30dtyc"
+                  class="duration svelte-138dtrj"
                 >
                   3:51
                 </div>
@@ -848,7 +827,7 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
             </td>
              
             <td
-              class="col-span-4 svelte-1s1441n"
+              class="col-span-4 svelte-1hd20y5"
             >
               <a
                 class="underlined"
@@ -860,18 +839,18 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
             </td>
              
             <td
-              class="svelte-1s1441n"
+              class="svelte-1hd20y5"
             >
               <span
                 aria-expanded="false"
                 aria-haspopup="menu"
-                class="wrapper svelte-11prmkk"
+                class="wrapper svelte-1g0595r"
               >
                 <button
-                  class="iconOnly noBorder svelte-1e4q28k"
+                  class="iconOnly noBorder svelte-11qpkf0"
                 >
                   <i
-                    class="material-icons svelte-1e4q28k"
+                    class="material-icons svelte-11qpkf0"
                   >
                     more_vert
                   </i>
@@ -888,41 +867,41 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
            
         </li>
         <li
-          class="svelte-w3rzzq"
+          class="svelte-4381ki"
           draggable="true"
         >
           <tr
-            class="svelte-1s1441n"
+            class="svelte-1hd20y5"
             slot="item"
           >
             <td
-              class="svelte-1s1441n"
+              class="svelte-1hd20y5"
             >
               8
             </td>
              
             <td
-              class="col-span-6 svelte-1s1441n"
+              class="col-span-6 playlist-track svelte-1hd20y5"
             >
               <div
-                class="undefined root svelte-30dtyc"
+                class="undefined root svelte-138dtrj"
               >
                 <a
-                  class="flex-none"
+                  class="svelte-138dtrj"
                   href="#/album/1"
                 >
                   <img
-                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1psk6yi"
+                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1oz3k7v"
                     height="256"
                     loading="lazy"
                     width="256"
                   />
                    
                   <span
-                    class="h-16 w-16 text-xs actionable svelte-1psk6yi rounded-sm"
+                    class="h-16 w-16 text-xs actionable svelte-1oz3k7v rounded-sm"
                   >
                     <i
-                      class="material-icons svelte-1psk6yi"
+                      class="material-icons svelte-1oz3k7v"
                     >
                       music_note
                     </i>
@@ -931,10 +910,10 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
                 </a>
                  
                 <div
-                  class="track svelte-30dtyc"
+                  class="track svelte-138dtrj"
                 >
                   <span
-                    class="title svelte-30dtyc"
+                    class="title svelte-138dtrj"
                   >
                     Bindy
                   </span>
@@ -959,7 +938,7 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
                 </div>
                  
                 <div
-                  class="duration svelte-30dtyc"
+                  class="duration svelte-138dtrj"
                 >
                   0:15
                 </div>
@@ -968,7 +947,7 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
             </td>
              
             <td
-              class="col-span-4 svelte-1s1441n"
+              class="col-span-4 svelte-1hd20y5"
             >
               <a
                 class="underlined"
@@ -980,18 +959,18 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
             </td>
              
             <td
-              class="svelte-1s1441n"
+              class="svelte-1hd20y5"
             >
               <span
                 aria-expanded="false"
                 aria-haspopup="menu"
-                class="wrapper svelte-11prmkk"
+                class="wrapper svelte-1g0595r"
               >
                 <button
-                  class="iconOnly noBorder svelte-1e4q28k"
+                  class="iconOnly noBorder svelte-11qpkf0"
                 >
                   <i
-                    class="material-icons svelte-1e4q28k"
+                    class="material-icons svelte-11qpkf0"
                   >
                     more_vert
                   </i>
@@ -1008,41 +987,41 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
            
         </li>
         <li
-          class="svelte-w3rzzq"
+          class="svelte-4381ki"
           draggable="true"
         >
           <tr
-            class="svelte-1s1441n"
+            class="svelte-1hd20y5"
             slot="item"
           >
             <td
-              class="svelte-1s1441n"
+              class="svelte-1hd20y5"
             >
               9
             </td>
              
             <td
-              class="col-span-6 svelte-1s1441n"
+              class="col-span-6 playlist-track svelte-1hd20y5"
             >
               <div
-                class="undefined root svelte-30dtyc"
+                class="undefined root svelte-138dtrj"
               >
                 <a
-                  class="flex-none"
+                  class="svelte-138dtrj"
                   href="#/album/1"
                 >
                   <img
-                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1psk6yi"
+                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1oz3k7v"
                     height="256"
                     loading="lazy"
                     width="256"
                   />
                    
                   <span
-                    class="h-16 w-16 text-xs actionable svelte-1psk6yi rounded-sm"
+                    class="h-16 w-16 text-xs actionable svelte-1oz3k7v rounded-sm"
                   >
                     <i
-                      class="material-icons svelte-1psk6yi"
+                      class="material-icons svelte-1oz3k7v"
                     >
                       music_note
                     </i>
@@ -1051,10 +1030,10 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
                 </a>
                  
                 <div
-                  class="track svelte-30dtyc"
+                  class="track svelte-138dtrj"
                 >
                   <span
-                    class="title svelte-30dtyc"
+                    class="title svelte-138dtrj"
                   >
                     You Make Me Coo
                   </span>
@@ -1079,7 +1058,7 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
                 </div>
                  
                 <div
-                  class="duration svelte-30dtyc"
+                  class="duration svelte-138dtrj"
                 >
                   3:14
                 </div>
@@ -1088,7 +1067,7 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
             </td>
              
             <td
-              class="col-span-4 svelte-1s1441n"
+              class="col-span-4 svelte-1hd20y5"
             >
               <a
                 class="underlined"
@@ -1100,18 +1079,18 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
             </td>
              
             <td
-              class="svelte-1s1441n"
+              class="svelte-1hd20y5"
             >
               <span
                 aria-expanded="false"
                 aria-haspopup="menu"
-                class="wrapper svelte-11prmkk"
+                class="wrapper svelte-1g0595r"
               >
                 <button
-                  class="iconOnly noBorder svelte-1e4q28k"
+                  class="iconOnly noBorder svelte-11qpkf0"
                 >
                   <i
-                    class="material-icons svelte-1e4q28k"
+                    class="material-icons svelte-11qpkf0"
                   >
                     more_vert
                   </i>
@@ -1128,41 +1107,41 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
            
         </li>
         <li
-          class="svelte-w3rzzq"
+          class="svelte-4381ki"
           draggable="true"
         >
           <tr
-            class="svelte-1s1441n"
+            class="svelte-1hd20y5"
             slot="item"
           >
             <td
-              class="svelte-1s1441n"
+              class="svelte-1hd20y5"
             >
               10
             </td>
              
             <td
-              class="col-span-6 svelte-1s1441n"
+              class="col-span-6 playlist-track svelte-1hd20y5"
             >
               <div
-                class="undefined root svelte-30dtyc"
+                class="undefined root svelte-138dtrj"
               >
                 <a
-                  class="flex-none"
+                  class="svelte-138dtrj"
                   href="#/album/1"
                 >
                   <img
-                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1psk6yi"
+                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1oz3k7v"
                     height="256"
                     loading="lazy"
                     width="256"
                   />
                    
                   <span
-                    class="h-16 w-16 text-xs actionable svelte-1psk6yi rounded-sm"
+                    class="h-16 w-16 text-xs actionable svelte-1oz3k7v rounded-sm"
                   >
                     <i
-                      class="material-icons svelte-1psk6yi"
+                      class="material-icons svelte-1oz3k7v"
                     >
                       music_note
                     </i>
@@ -1171,10 +1150,10 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
                 </a>
                  
                 <div
-                  class="track svelte-30dtyc"
+                  class="track svelte-138dtrj"
                 >
                   <span
-                    class="title svelte-30dtyc"
+                    class="title svelte-138dtrj"
                   >
                     Vitamin B
                   </span>
@@ -1199,7 +1178,7 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
                 </div>
                  
                 <div
-                  class="duration svelte-30dtyc"
+                  class="duration svelte-138dtrj"
                 >
                   4:06
                 </div>
@@ -1208,7 +1187,7 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
             </td>
              
             <td
-              class="col-span-4 svelte-1s1441n"
+              class="col-span-4 svelte-1hd20y5"
             >
               <a
                 class="underlined"
@@ -1220,18 +1199,18 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
             </td>
              
             <td
-              class="svelte-1s1441n"
+              class="svelte-1hd20y5"
             >
               <span
                 aria-expanded="false"
                 aria-haspopup="menu"
-                class="wrapper svelte-11prmkk"
+                class="wrapper svelte-1g0595r"
               >
                 <button
-                  class="iconOnly noBorder svelte-1e4q28k"
+                  class="iconOnly noBorder svelte-11qpkf0"
                 >
                   <i
-                    class="material-icons svelte-1e4q28k"
+                    class="material-icons svelte-11qpkf0"
                   >
                     more_vert
                   </i>
@@ -1248,41 +1227,41 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
            
         </li>
         <li
-          class="svelte-w3rzzq"
+          class="svelte-4381ki"
           draggable="true"
         >
           <tr
-            class="svelte-1s1441n"
+            class="svelte-1hd20y5"
             slot="item"
           >
             <td
-              class="svelte-1s1441n"
+              class="svelte-1hd20y5"
             >
               11
             </td>
              
             <td
-              class="col-span-6 svelte-1s1441n"
+              class="col-span-6 playlist-track svelte-1hd20y5"
             >
               <div
-                class="undefined root svelte-30dtyc"
+                class="undefined root svelte-138dtrj"
               >
                 <a
-                  class="flex-none"
+                  class="svelte-138dtrj"
                   href="#/album/1"
                 >
                   <img
-                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1psk6yi"
+                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1oz3k7v"
                     height="256"
                     loading="lazy"
                     width="256"
                   />
                    
                   <span
-                    class="h-16 w-16 text-xs actionable svelte-1psk6yi rounded-sm"
+                    class="h-16 w-16 text-xs actionable svelte-1oz3k7v rounded-sm"
                   >
                     <i
-                      class="material-icons svelte-1psk6yi"
+                      class="material-icons svelte-1oz3k7v"
                     >
                       music_note
                     </i>
@@ -1291,10 +1270,10 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
                 </a>
                  
                 <div
-                  class="track svelte-30dtyc"
+                  class="track svelte-138dtrj"
                 >
                   <span
-                    class="title svelte-30dtyc"
+                    class="title svelte-138dtrj"
                   >
                     Green Bird
                   </span>
@@ -1319,7 +1298,7 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
                 </div>
                  
                 <div
-                  class="duration svelte-30dtyc"
+                  class="duration svelte-138dtrj"
                 >
                   2:33
                 </div>
@@ -1328,7 +1307,7 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
             </td>
              
             <td
-              class="col-span-4 svelte-1s1441n"
+              class="col-span-4 svelte-1hd20y5"
             >
               <a
                 class="underlined"
@@ -1340,18 +1319,18 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
             </td>
              
             <td
-              class="svelte-1s1441n"
+              class="svelte-1hd20y5"
             >
               <span
                 aria-expanded="false"
                 aria-haspopup="menu"
-                class="wrapper svelte-11prmkk"
+                class="wrapper svelte-1g0595r"
               >
                 <button
-                  class="iconOnly noBorder svelte-1e4q28k"
+                  class="iconOnly noBorder svelte-11qpkf0"
                 >
                   <i
-                    class="material-icons svelte-1e4q28k"
+                    class="material-icons svelte-11qpkf0"
                   >
                     more_vert
                   </i>
@@ -1368,41 +1347,41 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
            
         </li>
         <li
-          class="svelte-w3rzzq"
+          class="svelte-4381ki"
           draggable="true"
         >
           <tr
-            class="svelte-1s1441n"
+            class="svelte-1hd20y5"
             slot="item"
           >
             <td
-              class="svelte-1s1441n"
+              class="svelte-1hd20y5"
             >
               12
             </td>
              
             <td
-              class="col-span-6 svelte-1s1441n"
+              class="col-span-6 playlist-track svelte-1hd20y5"
             >
               <div
-                class="undefined root svelte-30dtyc"
+                class="undefined root svelte-138dtrj"
               >
                 <a
-                  class="flex-none"
+                  class="svelte-138dtrj"
                   href="#/album/1"
                 >
                   <img
-                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1psk6yi"
+                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1oz3k7v"
                     height="256"
                     loading="lazy"
                     width="256"
                   />
                    
                   <span
-                    class="h-16 w-16 text-xs actionable svelte-1psk6yi rounded-sm"
+                    class="h-16 w-16 text-xs actionable svelte-1oz3k7v rounded-sm"
                   >
                     <i
-                      class="material-icons svelte-1psk6yi"
+                      class="material-icons svelte-1oz3k7v"
                     >
                       music_note
                     </i>
@@ -1411,10 +1390,10 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
                 </a>
                  
                 <div
-                  class="track svelte-30dtyc"
+                  class="track svelte-138dtrj"
                 >
                   <span
-                    class="title svelte-30dtyc"
+                    class="title svelte-138dtrj"
                   >
                     ELM
                   </span>
@@ -1439,7 +1418,7 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
                 </div>
                  
                 <div
-                  class="duration svelte-30dtyc"
+                  class="duration svelte-138dtrj"
                 >
                   6:55
                 </div>
@@ -1448,7 +1427,7 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
             </td>
              
             <td
-              class="col-span-4 svelte-1s1441n"
+              class="col-span-4 svelte-1hd20y5"
             >
               <a
                 class="underlined"
@@ -1460,18 +1439,18 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
             </td>
              
             <td
-              class="svelte-1s1441n"
+              class="svelte-1hd20y5"
             >
               <span
                 aria-expanded="false"
                 aria-haspopup="menu"
-                class="wrapper svelte-11prmkk"
+                class="wrapper svelte-1g0595r"
               >
                 <button
-                  class="iconOnly noBorder svelte-1e4q28k"
+                  class="iconOnly noBorder svelte-11qpkf0"
                 >
                   <i
-                    class="material-icons svelte-1e4q28k"
+                    class="material-icons svelte-11qpkf0"
                   >
                     more_vert
                   </i>
@@ -1488,41 +1467,41 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
            
         </li>
         <li
-          class="svelte-w3rzzq"
+          class="svelte-4381ki"
           draggable="true"
         >
           <tr
-            class="svelte-1s1441n"
+            class="svelte-1hd20y5"
             slot="item"
           >
             <td
-              class="svelte-1s1441n"
+              class="svelte-1hd20y5"
             >
               13
             </td>
              
             <td
-              class="col-span-6 svelte-1s1441n"
+              class="col-span-6 playlist-track svelte-1hd20y5"
             >
               <div
-                class="undefined root svelte-30dtyc"
+                class="undefined root svelte-138dtrj"
               >
                 <a
-                  class="flex-none"
+                  class="svelte-138dtrj"
                   href="#/album/1"
                 >
                   <img
-                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1psk6yi"
+                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1oz3k7v"
                     height="256"
                     loading="lazy"
                     width="256"
                   />
                    
                   <span
-                    class="h-16 w-16 text-xs actionable svelte-1psk6yi rounded-sm"
+                    class="h-16 w-16 text-xs actionable svelte-1oz3k7v rounded-sm"
                   >
                     <i
-                      class="material-icons svelte-1psk6yi"
+                      class="material-icons svelte-1oz3k7v"
                     >
                       music_note
                     </i>
@@ -1531,10 +1510,10 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
                 </a>
                  
                 <div
-                  class="track svelte-30dtyc"
+                  class="track svelte-138dtrj"
                 >
                   <span
-                    class="title svelte-30dtyc"
+                    class="title svelte-138dtrj"
                   >
                     Vitamin C
                   </span>
@@ -1559,7 +1538,7 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
                 </div>
                  
                 <div
-                  class="duration svelte-30dtyc"
+                  class="duration svelte-138dtrj"
                 >
                   5:24
                 </div>
@@ -1568,7 +1547,7 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
             </td>
              
             <td
-              class="col-span-4 svelte-1s1441n"
+              class="col-span-4 svelte-1hd20y5"
             >
               <a
                 class="underlined"
@@ -1580,18 +1559,18 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
             </td>
              
             <td
-              class="svelte-1s1441n"
+              class="svelte-1hd20y5"
             >
               <span
                 aria-expanded="false"
                 aria-haspopup="menu"
-                class="wrapper svelte-11prmkk"
+                class="wrapper svelte-1g0595r"
               >
                 <button
-                  class="iconOnly noBorder svelte-1e4q28k"
+                  class="iconOnly noBorder svelte-11qpkf0"
                 >
                   <i
-                    class="material-icons svelte-1e4q28k"
+                    class="material-icons svelte-11qpkf0"
                   >
                     more_vert
                   </i>
@@ -1608,41 +1587,41 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
            
         </li>
         <li
-          class="svelte-w3rzzq"
+          class="svelte-4381ki"
           draggable="true"
         >
           <tr
-            class="svelte-1s1441n"
+            class="svelte-1hd20y5"
             slot="item"
           >
             <td
-              class="svelte-1s1441n"
+              class="svelte-1hd20y5"
             >
               14
             </td>
              
             <td
-              class="col-span-6 svelte-1s1441n"
+              class="col-span-6 playlist-track svelte-1hd20y5"
             >
               <div
-                class="undefined root svelte-30dtyc"
+                class="undefined root svelte-138dtrj"
               >
                 <a
-                  class="flex-none"
+                  class="svelte-138dtrj"
                   href="#/album/1"
                 >
                   <img
-                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1psk6yi"
+                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1oz3k7v"
                     height="256"
                     loading="lazy"
                     width="256"
                   />
                    
                   <span
-                    class="h-16 w-16 text-xs actionable svelte-1psk6yi rounded-sm"
+                    class="h-16 w-16 text-xs actionable svelte-1oz3k7v rounded-sm"
                   >
                     <i
-                      class="material-icons svelte-1psk6yi"
+                      class="material-icons svelte-1oz3k7v"
                     >
                       music_note
                     </i>
@@ -1651,10 +1630,10 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
                 </a>
                  
                 <div
-                  class="track svelte-30dtyc"
+                  class="track svelte-138dtrj"
                 >
                   <span
-                    class="title svelte-30dtyc"
+                    class="title svelte-138dtrj"
                   >
                     Gateway
                   </span>
@@ -1679,7 +1658,7 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
                 </div>
                  
                 <div
-                  class="duration svelte-30dtyc"
+                  class="duration svelte-138dtrj"
                 >
                   0:16
                 </div>
@@ -1688,7 +1667,7 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
             </td>
              
             <td
-              class="col-span-4 svelte-1s1441n"
+              class="col-span-4 svelte-1hd20y5"
             >
               <a
                 class="underlined"
@@ -1700,18 +1679,18 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
             </td>
              
             <td
-              class="svelte-1s1441n"
+              class="svelte-1hd20y5"
             >
               <span
                 aria-expanded="false"
                 aria-haspopup="menu"
-                class="wrapper svelte-11prmkk"
+                class="wrapper svelte-1g0595r"
               >
                 <button
-                  class="iconOnly noBorder svelte-1e4q28k"
+                  class="iconOnly noBorder svelte-11qpkf0"
                 >
                   <i
-                    class="material-icons svelte-1e4q28k"
+                    class="material-icons svelte-11qpkf0"
                   >
                     more_vert
                   </i>
@@ -1728,41 +1707,41 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
            
         </li>
         <li
-          class="svelte-w3rzzq"
+          class="svelte-4381ki"
           draggable="true"
         >
           <tr
-            class="svelte-1s1441n"
+            class="svelte-1hd20y5"
             slot="item"
           >
             <td
-              class="svelte-1s1441n"
+              class="svelte-1hd20y5"
             >
               15
             </td>
              
             <td
-              class="col-span-6 svelte-1s1441n"
+              class="col-span-6 playlist-track svelte-1hd20y5"
             >
               <div
-                class="undefined root svelte-30dtyc"
+                class="undefined root svelte-138dtrj"
               >
                 <a
-                  class="flex-none"
+                  class="svelte-138dtrj"
                   href="#/album/1"
                 >
                   <img
-                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1psk6yi"
+                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1oz3k7v"
                     height="256"
                     loading="lazy"
                     width="256"
                   />
                    
                   <span
-                    class="h-16 w-16 text-xs actionable svelte-1psk6yi rounded-sm"
+                    class="h-16 w-16 text-xs actionable svelte-1oz3k7v rounded-sm"
                   >
                     <i
-                      class="material-icons svelte-1psk6yi"
+                      class="material-icons svelte-1oz3k7v"
                     >
                       music_note
                     </i>
@@ -1771,10 +1750,10 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
                 </a>
                  
                 <div
-                  class="track svelte-30dtyc"
+                  class="track svelte-138dtrj"
                 >
                   <span
-                    class="title svelte-30dtyc"
+                    class="title svelte-138dtrj"
                   >
                     The Singing Sea
                   </span>
@@ -1799,7 +1778,7 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
                 </div>
                  
                 <div
-                  class="duration svelte-30dtyc"
+                  class="duration svelte-138dtrj"
                 >
                   6:41
                 </div>
@@ -1808,7 +1787,7 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
             </td>
              
             <td
-              class="col-span-4 svelte-1s1441n"
+              class="col-span-4 svelte-1hd20y5"
             >
               <a
                 class="underlined"
@@ -1820,18 +1799,18 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
             </td>
              
             <td
-              class="svelte-1s1441n"
+              class="svelte-1hd20y5"
             >
               <span
                 aria-expanded="false"
                 aria-haspopup="menu"
-                class="wrapper svelte-11prmkk"
+                class="wrapper svelte-1g0595r"
               >
                 <button
-                  class="iconOnly noBorder svelte-1e4q28k"
+                  class="iconOnly noBorder svelte-11qpkf0"
                 >
                   <i
-                    class="material-icons svelte-1e4q28k"
+                    class="material-icons svelte-11qpkf0"
                   >
                     more_vert
                   </i>
@@ -1848,41 +1827,41 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
            
         </li>
         <li
-          class="svelte-w3rzzq"
+          class="svelte-4381ki"
           draggable="true"
         >
           <tr
-            class="svelte-1s1441n"
+            class="svelte-1hd20y5"
             slot="item"
           >
             <td
-              class="svelte-1s1441n"
+              class="svelte-1hd20y5"
             >
               16
             </td>
              
             <td
-              class="col-span-6 svelte-1s1441n"
+              class="col-span-6 playlist-track svelte-1hd20y5"
             >
               <div
-                class="undefined root svelte-30dtyc"
+                class="undefined root svelte-138dtrj"
               >
                 <a
-                  class="flex-none"
+                  class="svelte-138dtrj"
                   href="#/album/1"
                 >
                   <img
-                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1psk6yi"
+                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1oz3k7v"
                     height="256"
                     loading="lazy"
                     width="256"
                   />
                    
                   <span
-                    class="h-16 w-16 text-xs actionable svelte-1psk6yi rounded-sm"
+                    class="h-16 w-16 text-xs actionable svelte-1oz3k7v rounded-sm"
                   >
                     <i
-                      class="material-icons svelte-1psk6yi"
+                      class="material-icons svelte-1oz3k7v"
                     >
                       music_note
                     </i>
@@ -1891,10 +1870,10 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
                 </a>
                  
                 <div
-                  class="track svelte-30dtyc"
+                  class="track svelte-138dtrj"
                 >
                   <span
-                    class="title svelte-30dtyc"
+                    class="title svelte-138dtrj"
                   >
                     The Egg and You!
                   </span>
@@ -1919,7 +1898,7 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
                 </div>
                  
                 <div
-                  class="duration svelte-30dtyc"
+                  class="duration svelte-138dtrj"
                 >
                   4:47
                 </div>
@@ -1928,7 +1907,7 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
             </td>
              
             <td
-              class="col-span-4 svelte-1s1441n"
+              class="col-span-4 svelte-1hd20y5"
             >
               <a
                 class="underlined"
@@ -1940,18 +1919,18 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
             </td>
              
             <td
-              class="svelte-1s1441n"
+              class="svelte-1hd20y5"
             >
               <span
                 aria-expanded="false"
                 aria-haspopup="menu"
-                class="wrapper svelte-11prmkk"
+                class="wrapper svelte-1g0595r"
               >
                 <button
-                  class="iconOnly noBorder svelte-1e4q28k"
+                  class="iconOnly noBorder svelte-11qpkf0"
                 >
                   <i
-                    class="material-icons svelte-1e4q28k"
+                    class="material-icons svelte-11qpkf0"
                   >
                     more_vert
                   </i>
@@ -1968,41 +1947,41 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
            
         </li>
         <li
-          class="svelte-w3rzzq"
+          class="svelte-4381ki"
           draggable="true"
         >
           <tr
-            class="svelte-1s1441n"
+            class="svelte-1hd20y5"
             slot="item"
           >
             <td
-              class="svelte-1s1441n"
+              class="svelte-1hd20y5"
             >
               17
             </td>
              
             <td
-              class="col-span-6 svelte-1s1441n"
+              class="col-span-6 playlist-track svelte-1hd20y5"
             >
               <div
-                class="undefined root svelte-30dtyc"
+                class="undefined root svelte-138dtrj"
               >
                 <a
-                  class="flex-none"
+                  class="svelte-138dtrj"
                   href="#/album/1"
                 >
                   <img
-                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1psk6yi"
+                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1oz3k7v"
                     height="256"
                     loading="lazy"
                     width="256"
                   />
                    
                   <span
-                    class="h-16 w-16 text-xs actionable svelte-1psk6yi rounded-sm"
+                    class="h-16 w-16 text-xs actionable svelte-1oz3k7v rounded-sm"
                   >
                     <i
-                      class="material-icons svelte-1psk6yi"
+                      class="material-icons svelte-1oz3k7v"
                     >
                       music_note
                     </i>
@@ -2011,10 +1990,10 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
                 </a>
                  
                 <div
-                  class="track svelte-30dtyc"
+                  class="track svelte-138dtrj"
                 >
                   <span
-                    class="title svelte-30dtyc"
+                    class="title svelte-138dtrj"
                   >
                     Forever Broke
                   </span>
@@ -2039,7 +2018,7 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
                 </div>
                  
                 <div
-                  class="duration svelte-30dtyc"
+                  class="duration svelte-138dtrj"
                 >
                   1:36
                 </div>
@@ -2048,7 +2027,7 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
             </td>
              
             <td
-              class="col-span-4 svelte-1s1441n"
+              class="col-span-4 svelte-1hd20y5"
             >
               <a
                 class="underlined"
@@ -2060,18 +2039,18 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
             </td>
              
             <td
-              class="svelte-1s1441n"
+              class="svelte-1hd20y5"
             >
               <span
                 aria-expanded="false"
                 aria-haspopup="menu"
-                class="wrapper svelte-11prmkk"
+                class="wrapper svelte-1g0595r"
               >
                 <button
-                  class="iconOnly noBorder svelte-1e4q28k"
+                  class="iconOnly noBorder svelte-11qpkf0"
                 >
                   <i
-                    class="material-icons svelte-1e4q28k"
+                    class="material-icons svelte-11qpkf0"
                   >
                     more_vert
                   </i>
@@ -2088,41 +2067,41 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
            
         </li>
         <li
-          class="svelte-w3rzzq"
+          class="svelte-4381ki"
           draggable="true"
         >
           <tr
-            class="svelte-1s1441n"
+            class="svelte-1hd20y5"
             slot="item"
           >
             <td
-              class="svelte-1s1441n"
+              class="svelte-1hd20y5"
             >
               18
             </td>
              
             <td
-              class="col-span-6 svelte-1s1441n"
+              class="col-span-6 playlist-track svelte-1hd20y5"
             >
               <div
-                class="undefined root svelte-30dtyc"
+                class="undefined root svelte-138dtrj"
               >
                 <a
-                  class="flex-none"
+                  class="svelte-138dtrj"
                   href="#/album/1"
                 >
                   <img
-                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1psk6yi"
+                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1oz3k7v"
                     height="256"
                     loading="lazy"
                     width="256"
                   />
                    
                   <span
-                    class="h-16 w-16 text-xs actionable svelte-1psk6yi rounded-sm"
+                    class="h-16 w-16 text-xs actionable svelte-1oz3k7v rounded-sm"
                   >
                     <i
-                      class="material-icons svelte-1psk6yi"
+                      class="material-icons svelte-1oz3k7v"
                     >
                       music_note
                     </i>
@@ -2131,10 +2110,10 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
                 </a>
                  
                 <div
-                  class="track svelte-30dtyc"
+                  class="track svelte-138dtrj"
                 >
                   <span
-                    class="title svelte-30dtyc"
+                    class="title svelte-138dtrj"
                   >
                     Power of Kungfu Remix
                   </span>
@@ -2159,7 +2138,7 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
                 </div>
                  
                 <div
-                  class="duration svelte-30dtyc"
+                  class="duration svelte-138dtrj"
                 >
                   2:22
                 </div>
@@ -2168,7 +2147,7 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
             </td>
              
             <td
-              class="col-span-4 svelte-1s1441n"
+              class="col-span-4 svelte-1hd20y5"
             >
               <a
                 class="underlined"
@@ -2180,18 +2159,18 @@ exports[`Toolshot components/PlaylistTracksTable/PlaylistTracksTable.tools.svelt
             </td>
              
             <td
-              class="svelte-1s1441n"
+              class="svelte-1hd20y5"
             >
               <span
                 aria-expanded="false"
                 aria-haspopup="menu"
-                class="wrapper svelte-11prmkk"
+                class="wrapper svelte-1g0595r"
               >
                 <button
-                  class="iconOnly noBorder svelte-1e4q28k"
+                  class="iconOnly noBorder svelte-11qpkf0"
                 >
                   <i
-                    class="material-icons svelte-1e4q28k"
+                    class="material-icons svelte-11qpkf0"
                   >
                     more_vert
                   </i>

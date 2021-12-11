@@ -9,10 +9,17 @@ import {
   initConnection,
   closeConnection
 } from '../utils'
-
-const reconnectDelay = 100
+import { init as initTotp, totp } from './totp'
 
 let reconnectTimeout
+let totpSubscription
+
+function cleanPending() {
+  clearTimeout(reconnectTimeout)
+  totpSubscription?.unsubscribe()
+  reconnectTimeout = null
+  totpSubscription = null
+}
 
 let port
 
@@ -22,7 +29,8 @@ const settings$ = new BehaviorSubject({
   isBroadcasting: false
 })
 
-const connected$ = new BehaviorSubject(false)
+const connected$ = new BehaviorSubject(null)
+let connSubscription
 
 export const settings = settings$.asObservable()
 
@@ -33,36 +41,51 @@ export const isDesktop = new BehaviorSubject(
   /electron/i.test(navigator.userAgent)
 )
 
-async function connect(address, bail = false) {
+async function connect(address, reconnectDelay) {
+  cleanPending()
   port = address.split(':')[2]
-  connected$.next(false)
-  clearTimeout(reconnectTimeout)
 
-  // never bail on connection lost
-  const handleLostConnection = () => connect(address)
-
-  try {
-    await initConnection(address, handleLostConnection)
-    connected$.next(true)
-  } catch (err) {
-    if (bail) {
-      throw err
-    }
-    // when not bailing, schedule a new attempt, but stop waiting
-    reconnectTimeout = setTimeout(handleLostConnection, reconnectDelay)
+  const handleLostConnection = () => {
+    const current = get(totp)
+    totpSubscription = totp.subscribe({
+      next: value => {
+        // we must compare new and old value since totp is a BehaviourSubject and will issue its value upon subscription
+        if (value && value !== current) {
+          connect(address, reconnectDelay)
+        }
+      }
+    })
+    reconnectTimeout = setTimeout(
+      () => connect(address, reconnectDelay),
+      reconnectDelay
+    )
+    connected$.next(false)
   }
+
+  connected$.next(
+    await initConnection(address, handleLostConnection, () => get(totp))
+  )
 }
 
-export async function init(address) {
-  try {
-    await connect(address, true)
-    fromServerEvent('settings-saved').subscribe(saved => {
-      settings$.next(saved)
+export async function init(address, totpSecret, totp, reconnectDelay = 5000) {
+  cleanPending()
+  connected$.next(null)
+  await new Promise(resolve => {
+    connSubscription?.unsubscribe()
+    connSubscription = connected$.subscribe(async connected => {
+      if (connected) {
+        connSubscription.unsubscribe()
+        fromServerEvent('settings-saved').subscribe(saved => {
+          settings$.next(saved)
+        })
+        settings$.next(await invoke('settings.get'))
+        resolve()
+      }
     })
-    settings$.next(await invoke('settings.get'))
-  } catch {
-    // silently ignores errors
-  }
+
+    initTotp(totpSecret, totp)
+    connect(address, reconnectDelay)
+  })
 }
 
 export async function saveLocale(value) {
@@ -102,9 +125,10 @@ export async function toggleBroadcast() {
   }
   settings$.next(await invoke('settings.toggleBroadcast'))
   closeConnection()
+  connected$.next(false)
   // toggling broadcast on and off is a desktop feature: url will always be localhost.
-  // connect without bail on the new port
-  connect(`ws://localhost:${port}`)
+  // slightly wait for server to have restarted before trying again.
+  setTimeout(() => connect(`ws://localhost:${port}`, 100), 500)
 }
 
 export function saveBroadcastPort(port) {

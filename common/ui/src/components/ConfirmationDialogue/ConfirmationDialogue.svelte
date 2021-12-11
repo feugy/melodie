@@ -10,11 +10,11 @@
   export let confirmText = 'yes'
   export let cancelIcon = 'cancel'
   export let confirmIcon = 'done'
-  let dispatch = createEventDispatcher()
+  const dispatch = createEventDispatcher()
   let confirmed = false
 </script>
 
-<style type="postcss">
+<style lang="postcss">
   .content {
     @apply mb-4;
   }

@@ -2,15 +2,15 @@
 
 exports[`Toolshot components/ReflectedImage/ReflectedImage.tools.svelte: Site components/Reflected image 1`] = `
 <div
-  class="flex"
+  class="flex svelte-1dg38t7"
 >
   <div
-    class="svelte-10pqkkt"
-    style="--height: 250px; --src: url('../images/screenshot-ui-fr.png');"
+    class="svelte-1mqvpso"
+    style="--height: 250px; --src: url('images/screenshot-ui-fr.png');"
   >
     <img
       alt=""
-      class="svelte-10pqkkt"
+      class="svelte-1mqvpso"
       src="images/screenshot-ui-fr.png"
     />
   </div>

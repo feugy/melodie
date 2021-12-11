@@ -1,10 +1,13 @@
 <svelte:options immutable={true} />
 
 <script>
+  import { firstValueFrom } from 'rxjs'
+  import { filter } from 'rxjs/operators'
   import { onMount, tick } from 'svelte'
   import { _, locale } from 'svelte-intl'
   import { replace } from 'svelte-spa-router'
   import {
+    DisconnectionDialogue,
     Progress,
     Player,
     Nav,
@@ -19,7 +22,8 @@
   import * as tutorial from './stores/tutorial'
   import { isLoading } from './stores/loading'
   import { screenSize, SM } from './stores/window'
-  import { isDesktop } from './stores/settings'
+  import { connected, isDesktop } from './stores/settings'
+  import { setTotp } from './stores/totp'
   import { invoke, stayAwake, releaseWakeLock } from './utils'
   import { autoScrollable } from './actions'
   import Router from './components/Router'
@@ -35,6 +39,9 @@
   }
 
   onMount(async () => {
+    await firstValueFrom(
+      connected.pipe(filter(connected => connected === true))
+    )
     const settings = await invoke('settings.get')
     locale.set(settings.locale)
     // await on locale to be set before rendering
@@ -66,9 +73,13 @@
       isPlaylistOpen = false
     }
   }
+
+  function handleReconnect({ detail }) {
+    setTotp(detail)
+  }
 </script>
 
-<style type="postcss">
+<style lang="postcss">
   div {
     @apply flex flex-col h-full max-h-full;
   }
@@ -102,14 +113,21 @@
 </svelte:head>
 
 <SystemNotifier />
-{#if $isLoading}
+{#if !$isDesktop}
+  <DisconnectionDialogue
+    open={!$connected}
+    connecting={$connected === null}
+    on:reconnect={handleReconnect}
+  />
+{/if}
+{#if $isLoading || !ready}
   <span class="progress">
     <Progress />
   </span>
 {/if}
-{#if ready}
-  <div>
-    <main>
+<div>
+  <main>
+    {#if ready}
       <Sheet bind:open={isPlaylistOpen} width={withClose ? '100%' : '30%'}>
         <section slot="main" bind:this={scrollable} use:autoScrollable>
           <Nav bind:isPlaylistOpen />
@@ -119,11 +137,13 @@
           <TracksQueue on:close={() => (isPlaylistOpen = false)} {withClose} />
         </aside>
       </Sheet>
-    </main>
-    <footer>
+    {/if}
+  </main>
+  <footer>
+    {#if ready}
       <Player trackList={queue} />
-    </footer>
-  </div>
-  <Tutorial />
-  <Snackbar />
-{/if}
+    {/if}
+  </footer>
+</div>
+<Tutorial />
+<Snackbar />

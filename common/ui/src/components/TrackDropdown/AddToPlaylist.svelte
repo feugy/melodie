@@ -8,7 +8,7 @@
   const dispatch = createEventDispatcher()
 </script>
 
-<style type="postcss">
+<style lang="postcss">
   div {
     @apply inline-flex min-w-full text-left items-center;
 

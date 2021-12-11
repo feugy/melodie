@@ -3,15 +3,15 @@
 exports[`Toolshot components/Track/Track.tools.svelte: Default 1`] = `
 <div>
   <div
-    class="undefined root svelte-30dtyc"
+    class="undefined root svelte-138dtrj"
   >
     <a
-      class="flex-none"
+      class="svelte-138dtrj"
       href="#/album/1"
     >
       <img
         alt="./cover.jpg"
-        class="h-16 w-16 text-xs actionable rounded-sm svelte-1psk6yi"
+        class="h-16 w-16 text-xs actionable rounded-sm svelte-1oz3k7v"
         height="256"
         loading="lazy"
         src="./cover.jpg"
@@ -22,10 +22,10 @@ exports[`Toolshot components/Track/Track.tools.svelte: Default 1`] = `
     </a>
      
     <div
-      class="track svelte-30dtyc"
+      class="track svelte-138dtrj"
     >
       <span
-        class="title svelte-30dtyc"
+        class="title svelte-138dtrj"
       >
         Mama got a girlfriend
       </span>
@@ -49,15 +49,15 @@ exports[`Toolshot components/Track/Track.tools.svelte: Default 1`] = `
 exports[`Toolshot components/Track/Track.tools.svelte: With details 1`] = `
 <div>
   <div
-    class="undefined root svelte-30dtyc"
+    class="undefined root svelte-138dtrj"
   >
     <a
-      class="flex-none"
+      class="svelte-138dtrj"
       href="#/album/1"
     >
       <img
         alt="./cover.jpg"
-        class="h-16 w-16 text-xs actionable rounded-sm svelte-1psk6yi"
+        class="h-16 w-16 text-xs actionable rounded-sm svelte-1oz3k7v"
         height="256"
         loading="lazy"
         src="./cover.jpg"
@@ -68,10 +68,10 @@ exports[`Toolshot components/Track/Track.tools.svelte: With details 1`] = `
     </a>
      
     <div
-      class="track svelte-30dtyc"
+      class="track svelte-138dtrj"
     >
       <span
-        class="title svelte-30dtyc"
+        class="title svelte-138dtrj"
       >
         Mama got a girlfriend
       </span>
@@ -88,7 +88,7 @@ exports[`Toolshot components/Track/Track.tools.svelte: With details 1`] = `
     </div>
      
     <div
-      class="duration svelte-30dtyc"
+      class="duration svelte-138dtrj"
     >
       2:06
     </div>
@@ -100,15 +100,15 @@ exports[`Toolshot components/Track/Track.tools.svelte: With details 1`] = `
 exports[`Toolshot components/Track/Track.tools.svelte: With menu 1`] = `
 <div>
   <div
-    class="undefined root svelte-30dtyc"
+    class="undefined root svelte-138dtrj"
   >
     <a
-      class="flex-none"
+      class="svelte-138dtrj"
       href="#/album/1"
     >
       <img
         alt="./cover.jpg"
-        class="h-16 w-16 text-xs actionable rounded-sm svelte-1psk6yi"
+        class="h-16 w-16 text-xs actionable rounded-sm svelte-1oz3k7v"
         height="256"
         loading="lazy"
         src="./cover.jpg"
@@ -119,10 +119,10 @@ exports[`Toolshot components/Track/Track.tools.svelte: With menu 1`] = `
     </a>
      
     <div
-      class="track svelte-30dtyc"
+      class="track svelte-138dtrj"
     >
       <span
-        class="title svelte-30dtyc"
+        class="title svelte-138dtrj"
       >
         Mama got a girlfriend
       </span>
@@ -142,13 +142,13 @@ exports[`Toolshot components/Track/Track.tools.svelte: With menu 1`] = `
     <span
       aria-expanded="false"
       aria-haspopup="menu"
-      class="wrapper svelte-11prmkk"
+      class="wrapper svelte-1g0595r"
     >
       <button
-        class="iconOnly noBorder svelte-1e4q28k"
+        class="iconOnly noBorder svelte-11qpkf0"
       >
         <i
-          class="material-icons svelte-1e4q28k"
+          class="material-icons svelte-11qpkf0"
         >
           more_vert
         </i>

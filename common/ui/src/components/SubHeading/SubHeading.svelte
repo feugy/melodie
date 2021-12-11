@@ -1,4 +1,4 @@
-<style type="postcss">
+<style lang="postcss">
   h4 {
     @apply font-semibold text-2xl mb-4 uppercase text-left;
   }

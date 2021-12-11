@@ -20,7 +20,7 @@
   }
 </script>
 
-<style type="postcss">
+<style lang="postcss">
   div {
     @apply m-4;
   }
@@ -60,5 +60,7 @@
       bind:checked={hasButton}
     />
   </div>
-  <Button on:click={handleClick} text={'Show snack'} />
+  <div>
+    <Button on:click={handleClick} text={'Show snack'} />
+  </div>
 </Tool>

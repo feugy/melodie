@@ -16,6 +16,7 @@ artist: Artiste
 artists: Artistes
 broadcasting: Diffusion
 broadcast port: 'Port de diffusion : '
+broadcast port placeholder: Port local utilisé (n'oubliez pas de configurer votre pare-feu)
 build with love by: Fait avec amour par <a href="http://feugy.github.io" class="underlined">Damien Simonin Feugas</a>
 by _: 'par {artist}'
 cancel: Annuler
@@ -25,6 +26,7 @@ choose cover: Choisissez une couverture
 clear: Vider
 clears queue and plays: vide la liste et lit le morceau
 close queue: Fermer la liste
+code copied: Copié dans le presse papier !
 connection lost: Connexion perdue !
 confirm playlist _ delection: Voulez-vous vraiment supprimer la playlist {name} ?
 delete playlist: Supprimer
@@ -46,6 +48,7 @@ no: Non
 no clear during tutorial: Il n'est pas possible de vider la liste pendant la présentation
 no results: Rien du tout !
 on unsplash: sur Unsplash.
+one time password: Code unique
 open: Ouvrir
 open folder: Ouvrir le dossier parent
 open queue: Liste de lecture
@@ -73,6 +76,7 @@ show details: Afficher les détails
 show less: Voir moins
 start loading some tracks: Commencez par charger quelques morceaux
 total duration _: 'Durée : {total}'
+totp key: 'Clé OTP:'
 track details: Détails du morceau
 track: Morceau
 unknown: Inconnu
@@ -81,8 +85,7 @@ watched folders: Répertoires de musique
 year _: 'Année : {year}'
 yes: Oui
 you are disconnected: >
-  <p>Vous êtes déconnecté(e)... Mélodie essaie the se reconnecter, merci de vérifier votre connexion Internet.</p>
-  <p>Si vous avez stoppé la diffusion vous même, you n'avez plus de réseau, veuillez fermer Mélodie.</p>
+  <p>Vous êtes déconnecté(e)... Merci de vérifier votre connexion Internet, puis entrez votre code unique pour vous reconnecter.</p>
 tags:
   albumartist: Artiste de l'album
   arranger: Arranger

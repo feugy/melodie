@@ -26,7 +26,9 @@
     setup={mockWebsocket(() => artistData)}
     let:props
   >
-    <HRefSink><ExpandableList {...props} /></HRefSink>
+    <HRefSink>
+      <div class="max-w-900px"><ExpandableList {...props} /></div>
+    </HRefSink>
   </Tool>
 
   <Tool
@@ -40,7 +42,12 @@
     setup={mockWebsocket(() => albumData)}
     let:props
   >
-    <HRefSink><ExpandableList {...props} /></HRefSink>
+    <HRefSink>
+      <div class="max-w-900px">
+        <ExpandableList {...props} />
+        <div />
+      </div></HRefSink
+    >
   </Tool>
 
   <Tool
@@ -59,6 +66,11 @@
     }))}
     let:props
   >
-    <HRefSink><ExpandableList {...props} /></HRefSink>
+    <HRefSink>
+      <div class="max-w-900px">
+        <ExpandableList {...props} />
+        <div />
+      </div></HRefSink
+    >
   </Tool>
 </ToolBox>

@@ -28,7 +28,7 @@
   }
 </script>
 
-<style type="postcss">
+<style lang="postcss">
   section {
     @apply z-0 m-4 mt-0;
   }

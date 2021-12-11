@@ -3,20 +3,20 @@
 exports[`Toolshot components/ImageUploader/ImageUploader.tools.svelte: Components/Image Uploader 1`] = `
 <span>
   <span
-    class="h-64 w-64 inline-block actionable svelte-15abie0"
+    class="h-64 w-64 inline-block actionable svelte-k7o30a"
   >
     <img
-      class="w-full h-full rounded-sm hidden svelte-1psk6yi"
+      class="w-full h-full rounded-sm hidden svelte-1oz3k7v"
       height="256"
       loading="lazy"
       width="256"
     />
      
     <span
-      class="w-full h-full svelte-1psk6yi rounded-sm"
+      class="w-full h-full svelte-1oz3k7v rounded-sm"
     >
       <i
-        class="material-icons svelte-1psk6yi"
+        class="material-icons svelte-1oz3k7v"
       >
         add_box
       </i>
@@ -24,7 +24,7 @@ exports[`Toolshot components/ImageUploader/ImageUploader.tools.svelte: Component
     
      
     <input
-      class="svelte-15abie0"
+      class="svelte-k7o30a"
       type="file"
     />
   </span>

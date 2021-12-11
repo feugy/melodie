@@ -1,4 +1,4 @@
 globals:
-  TAILWINDCSS_VERSION: true
+  WINDICSS_VERSION: true
   RXJS_VERSION: true
   MediaMetadata: true

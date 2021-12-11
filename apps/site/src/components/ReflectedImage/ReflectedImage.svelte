@@ -3,7 +3,7 @@
   export let height
 </script>
 
-<style type="postcss">
+<style lang="postcss">
   img {
     height: var(--height);
   }
@@ -23,6 +23,6 @@
   }
 </style>
 
-<div style="--height: {height}; --src:url('../{src}');">
+<div style="--height: {height}; --src:url('{src}');">
   <img {...$$restProps} alt="" {src} />
 </div>

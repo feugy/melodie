@@ -2,36 +2,36 @@
 
 exports[`Toolshot components/Trapezium/Trapezium.tools.svelte: Site components/Trapezium 1`] = `
 <section
-  class="svelte-h0c516"
+  class="svelte-v44a7p"
   style="--color: #353849; --clip-path: polygon(0% 7rem, 100% 0%, 100% 100%, 0 calc(100% - 7rem));"
 >
   <div>
     <div
-      class="flex flex-row my-8 mx-auto max-w-screen-lg gap-8"
+      class="flex flex-row my-8 mx-auto max-w-screen-lg gap-8 svelte-1af4wf6"
     >
       <span
-        class="flex-grow text-right"
+        class="flex-grow text-right svelte-1af4wf6"
       >
         <h3>
           Here is some title
         </h3>
          
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua.
         </p>
       </span>
        
       <div
-        class="flex-shrink-0"
+        class="flex-shrink-0 svelte-1af4wf6"
       >
         <div
-          class="svelte-10pqkkt"
-          style="--height: 275px; --src: url('../images/screenshot-artists-en.png');"
+          class="svelte-1mqvpso"
+          style="--height: 275px; --src: url('images/screenshot-artists-en.png');"
         >
           <img
             alt=""
-            class="svelte-10pqkkt"
+            class="svelte-1mqvpso"
             src="images/screenshot-artists-en.png"
           />
         </div>

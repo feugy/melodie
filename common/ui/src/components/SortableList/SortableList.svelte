@@ -72,7 +72,7 @@
   }
 </script>
 
-<style type="postcss">
+<style lang="postcss">
   li {
     transition: margin-top 150ms linear, margin-bottom 150ms linear;
 

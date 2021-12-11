@@ -43,7 +43,8 @@ describe('Settings model', () => {
         clearBefore: true
       },
       broadcastPort: null,
-      isBroadcasting: false
+      isBroadcasting: false,
+      totpSecret: expect.any(String)
     })
     expect(broadcast).not.toHaveBeenCalled()
   })

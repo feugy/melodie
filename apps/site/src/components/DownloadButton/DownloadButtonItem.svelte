@@ -14,7 +14,7 @@
   }
 </script>
 
-<style type="postcss">
+<style lang="postcss">
   div {
     @apply py-1;
   }

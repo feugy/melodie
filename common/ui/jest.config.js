@@ -12,19 +12,19 @@ module.exports = {
     ],
     '^.+\\.svelte$': [
       'svelte-jester',
-      { preprocess: require.resolve('./svelte.config') }
+      { preprocess: require.resolve('./svelte-jester.config') }
     ],
     '^.+\\.ya?ml$': 'jest-yaml-transform'
   },
   moduleNameMapper: {
-    '^.+\\.css$': 'identity-obj-proxy'
+    '^.+\\.(post)?css$': 'identity-obj-proxy'
   },
   transformIgnorePatterns: [
-    'node_modules\\/(?!svelte-spa-router|svelte-portal|tailwindcss|@atelier-wb)'
+    'node_modules\\/(?!svelte-spa-router|svelte-portal|@atelier-wb)'
   ],
   moduleFileExtensions: ['js', 'svelte', 'json', 'yml'],
   setupFilesAfterEnv: [
-    'jest-extended',
+    'jest-extended/all',
     '@testing-library/jest-dom/extend-expect'
   ],
   setupFiles: ['./tests/jest-setup'],

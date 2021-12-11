@@ -15,21 +15,20 @@
     "apps/*"
   ],
   "scripts": {
-    "dev": "run-p -ncs dev:**",
-    "dev:desktop": "npm run --workspace apps/desktop dev",
-    "dev:ui": "npm run --workspace common/ui dev",
     "lint": "run-s -ncs lint:**",
     "lint:core": "npx eslint common/core/lib",
     "lint:desktop": "npx eslint apps/desktop/lib",
     "lint:site": "npx eslint apps/site/src",
     "lint:ui": "npx eslint common/ui/src",
     "release:bump": "standard-version -s",
-    "start": "run-p -n dev:**",
+    "start": "run-p -n start:**",
+    "start:desktop": "sleep 1 && npm run dev -w apps/desktop",
+    "start:ui": "npm run dev -w common/ui",
     "test": "run-s -ncs test:**",
-    "test:core": "npm run --workspace common/core test",
-    "test:desktop": "npm run --workspace apps/desktop test",
-    "test:site": "npm run --workspace apps/site test",
-    "test:ui": "npm run --workspace common/ui test"
+    "test:core": "npm run test -w common/core",
+    "test:desktop": "npm run test -w apps/desktop",
+    "test:site": "npm run test -w apps/site",
+    "test:ui": "npm run test -w common/ui"
   },
   "devDependencies": {
     "eslint": "^7.32.0",

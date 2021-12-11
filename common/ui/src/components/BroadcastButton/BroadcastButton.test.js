@@ -5,8 +5,10 @@ import userEvent from '@testing-library/user-event'
 import html from 'svelte-htm'
 import faker from 'faker'
 import QRCode from 'qrcode'
+import { get } from 'svelte/store'
 import BroadcastButton from './BroadcastButton.svelte'
 import { sleep } from '../../tests'
+import { cleanup, init, totp } from '../../stores/totp'
 import { stayAwake, releaseWakeLock } from '../../utils'
 
 jest.mock('qrcode', () => ({ default: { toCanvas: jest.fn() } }))
@@ -20,6 +22,10 @@ describe('BroadcastButton component', () => {
   let address
   let handleClick
 
+  beforeAll(() => init('abcdef'))
+
+  afterAll(cleanup)
+
   beforeEach(() => {
     jest.resetAllMocks()
     handleClick = jest.fn()
@@ -27,6 +33,10 @@ describe('BroadcastButton component', () => {
     stayAwake.mockResolvedValue()
     releaseWakeLock.mockResolvedValue()
   })
+
+  function getFullAddress() {
+    return `${address}?totp=${get(totp)}`
+  }
 
   it('displays QR code when broadcasting', async () => {
     const { component } = render(BroadcastButton, {
@@ -42,13 +52,13 @@ describe('BroadcastButton component', () => {
 
     await component.$set({ isBroadcasting: true })
     expect(screen.queryByRole('menu')).toBeInTheDocument()
-    expect(screen.queryByRole('link')).toHaveAttribute('href', address)
+    expect(screen.queryByRole('link')).toHaveAttribute('href', getFullAddress())
     expect(screen.queryByText('wifi_off')).not.toBeInTheDocument()
     expect(screen.queryByText('wifi')).toBeInTheDocument()
     expect(handleClick).not.toHaveBeenCalled()
     expect(toCanvas).toHaveBeenCalledWith(
       expect.anything(),
-      address,
+      getFullAddress(),
       expect.any(Object)
     )
     expect(toCanvas).toHaveBeenCalledTimes(1)
@@ -65,12 +75,12 @@ describe('BroadcastButton component', () => {
     component.$on('click', handleClick)
     await component.$set({ isBroadcasting: true })
     expect(screen.queryByRole('menu')).toBeInTheDocument()
-    expect(screen.queryByRole('link')).toHaveAttribute('href', address)
+    expect(screen.queryByRole('link')).toHaveAttribute('href', getFullAddress())
     expect(screen.queryByText('wifi_off')).not.toBeInTheDocument()
     expect(screen.queryByText('wifi')).toBeInTheDocument()
     expect(toCanvas).toHaveBeenCalledWith(
       expect.anything(),
-      address,
+      getFullAddress(),
       expect.any(Object)
     )
 
@@ -112,7 +122,7 @@ describe('BroadcastButton component', () => {
     await fireEvent.mouseEnter(screen.queryByRole('button').parentElement)
 
     expect(screen.queryByRole('menu')).toBeInTheDocument()
-    expect(screen.queryByRole('link')).toHaveAttribute('href', address)
+    expect(screen.queryByRole('link')).toHaveAttribute('href', getFullAddress())
 
     fireEvent.mouseLeave(screen.queryByRole('button').parentElement)
     await sleep(450)
@@ -122,7 +132,7 @@ describe('BroadcastButton component', () => {
     expect(handleClick).not.toHaveBeenCalled()
     expect(toCanvas).toHaveBeenCalledWith(
       expect.anything(),
-      address,
+      getFullAddress(),
       expect.any(Object)
     )
     expect(toCanvas).toHaveBeenCalledTimes(1)

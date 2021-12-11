@@ -72,4 +72,4 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./apps/site/__sapper__/export/melodie
+          publish_dir: ./apps/site/build

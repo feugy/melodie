@@ -90,11 +90,17 @@ Another option is to open it with Control-click: it'll immediately register the 
 
 ### tools
 
+- dependabot + dep update
+
+- rename git master branch to main
+
 - automated end-to-end tests
 
 - more technical documentation (install & release process notably)
 
 ### Bugs and known issues
+
+1. When server is not reachable, attempts to establish new WebSocket connection takes longer and longer
 
 1. DMG package does not download updates: [it requires zip](https://github.com/electron-userland/electron-builder/issues/2199), and we cannot build zip because of [the accent in product name](https://github.com/electron-userland/electron-builder/issues/4306#issuecomment-717232761)...
 
@@ -473,7 +479,7 @@ Mélodie is referenced on these stores and hubs:
 
 - since v22.11.1, electron-builder fails to build the app on [Github worker](https://github.com/electron-userland/electron-builder/issues/6124). Fixing the version to 22.10.5 for the time being.
 
-- Tailwind is veeeeeeeeeeeery slow to compile. Svelte preprocessor can not handle it fast, making vite pretty slow when starting atelier (only the first load). More [information here](https://github.com/vitejs/vite/issues/5145). I'll strongly consider moving to [Windi CSS](https://windicss.org/)
+- Tailwind is veeeeeeeeeeeery slow to compile. Svelte preprocessor can not handle it fast, making vite pretty slow when starting atelier (only the first load). More [information here](https://github.com/vitejs/vite/issues/5145). Moving to [Windi CSS](https://windicss.org/) speed the build time from 65 to 28 seconds!
 
 #### How watch & diff works
 

@@ -3,50 +3,50 @@
 exports[`Toolshot routes/album.tools.svelte: Views/Albums 1`] = `
 <div>
   <section
-    class="svelte-ojckha"
+    class="svelte-114khfx"
     style="animation: __svelte_185617033_0 200ms linear 0ms 1 both;"
   >
     <header
-      class=" svelte-t58ezf"
+      class=" svelte-10ndra7"
       style="--image: url(../images/valentino-funghi-MEcxLZ8ENV8-unsplash.jpg); --shade-color: rgba(0, 0, 0, 0.7); --bgPosition: center 25%;"
     >
       <h1
-        class="svelte-t58ezf"
+        class="svelte-10ndra7"
       >
         3 albums
       </h1>
     </header>
      
     <div
-      class="svelte-ojckha"
+      class="svelte-114khfx"
     >
       <span
-        class="svelte-ojckha"
+        class="svelte-114khfx"
         id="firstAlbum"
       >
          
         <span
-          class="svelte-4r86n"
+          class="svelte-4mizr"
           role="article"
         >
           <div
-            class="content svelte-4r86n"
+            class="content svelte-4mizr"
           >
             <span
-              class="artwork svelte-4r86n"
+              class="artwork svelte-4mizr"
             >
               <img
-                class="h-full w-full rounded-sm hidden svelte-1psk6yi"
+                class="h-full w-full rounded-sm hidden svelte-1oz3k7v"
                 height="256"
                 loading="lazy"
                 width="256"
               />
                
               <span
-                class="h-full w-full svelte-1psk6yi rounded-sm"
+                class="h-full w-full svelte-1oz3k7v rounded-sm"
               >
                 <i
-                  class="material-icons svelte-1psk6yi"
+                  class="material-icons svelte-1oz3k7v"
                 >
                   music_note
                 </i>
@@ -55,15 +55,15 @@ exports[`Toolshot routes/album.tools.svelte: Views/Albums 1`] = `
             </span>
              
             <p
-              class="controls svelte-4r86n"
+              class="controls svelte-4mizr"
             >
                
               <button
-                class="primary iconOnly large svelte-1e4q28k"
+                class="primary iconOnly large svelte-11qpkf0"
                 data-testid="play"
               >
                 <i
-                  class="material-icons svelte-1e4q28k"
+                  class="material-icons svelte-11qpkf0"
                 >
                   play_arrow
                 </i>
@@ -73,11 +73,11 @@ exports[`Toolshot routes/album.tools.svelte: Views/Albums 1`] = `
               </button>
                
               <button
-                class="primary iconOnly large svelte-1e4q28k"
+                class="primary iconOnly large svelte-11qpkf0"
                 data-testid="enqueue"
               >
                 <i
-                  class="material-icons svelte-1e4q28k"
+                  class="material-icons svelte-11qpkf0"
                 >
                   playlist_add
                 </i>
@@ -89,16 +89,16 @@ exports[`Toolshot routes/album.tools.svelte: Views/Albums 1`] = `
           </div>
            
           <header
-            class="svelte-4r86n"
+            class="svelte-4mizr"
           >
             <h3
-              class="svelte-4r86n"
+              class="svelte-4mizr"
             >
               100 Best Karajan
             </h3>
              
             <h4
-              class="svelte-rw2hde"
+              class="svelte-yqtzij"
               slot="details"
             >
               by 
@@ -157,22 +157,22 @@ exports[`Toolshot routes/album.tools.svelte: Views/Albums 1`] = `
          
       </span>
       <span
-        class="svelte-ojckha"
+        class="svelte-114khfx"
       >
          
         <span
-          class="svelte-4r86n"
+          class="svelte-4mizr"
           role="article"
         >
           <div
-            class="content svelte-4r86n"
+            class="content svelte-4mizr"
           >
             <span
-              class="artwork svelte-4r86n"
+              class="artwork svelte-4mizr"
             >
               <img
                 alt="cover.jpg"
-                class="h-full w-full rounded-sm svelte-1psk6yi"
+                class="h-full w-full rounded-sm svelte-1oz3k7v"
                 height="256"
                 loading="lazy"
                 src="cover.jpg"
@@ -183,15 +183,15 @@ exports[`Toolshot routes/album.tools.svelte: Views/Albums 1`] = `
             </span>
              
             <p
-              class="controls svelte-4r86n"
+              class="controls svelte-4mizr"
             >
                
               <button
-                class="primary iconOnly large svelte-1e4q28k"
+                class="primary iconOnly large svelte-11qpkf0"
                 data-testid="play"
               >
                 <i
-                  class="material-icons svelte-1e4q28k"
+                  class="material-icons svelte-11qpkf0"
                 >
                   play_arrow
                 </i>
@@ -201,11 +201,11 @@ exports[`Toolshot routes/album.tools.svelte: Views/Albums 1`] = `
               </button>
                
               <button
-                class="primary iconOnly large svelte-1e4q28k"
+                class="primary iconOnly large svelte-11qpkf0"
                 data-testid="enqueue"
               >
                 <i
-                  class="material-icons svelte-1e4q28k"
+                  class="material-icons svelte-11qpkf0"
                 >
                   playlist_add
                 </i>
@@ -217,16 +217,16 @@ exports[`Toolshot routes/album.tools.svelte: Views/Albums 1`] = `
           </div>
            
           <header
-            class="svelte-4r86n"
+            class="svelte-4mizr"
           >
             <h3
-              class="svelte-4r86n"
+              class="svelte-4mizr"
             >
               Black Orpheus
             </h3>
              
             <h4
-              class="svelte-rw2hde"
+              class="svelte-yqtzij"
               slot="details"
             >
               by 
@@ -245,31 +245,31 @@ exports[`Toolshot routes/album.tools.svelte: Views/Albums 1`] = `
          
       </span>
       <span
-        class="svelte-ojckha"
+        class="svelte-114khfx"
       >
          
         <span
-          class="svelte-4r86n"
+          class="svelte-4mizr"
           role="article"
         >
           <div
-            class="content svelte-4r86n"
+            class="content svelte-4mizr"
           >
             <span
-              class="artwork svelte-4r86n"
+              class="artwork svelte-4mizr"
             >
               <img
-                class="h-full w-full rounded-sm hidden svelte-1psk6yi"
+                class="h-full w-full rounded-sm hidden svelte-1oz3k7v"
                 height="256"
                 loading="lazy"
                 width="256"
               />
                
               <span
-                class="h-full w-full svelte-1psk6yi rounded-sm"
+                class="h-full w-full svelte-1oz3k7v rounded-sm"
               >
                 <i
-                  class="material-icons svelte-1psk6yi"
+                  class="material-icons svelte-1oz3k7v"
                 >
                   music_note
                 </i>
@@ -278,15 +278,15 @@ exports[`Toolshot routes/album.tools.svelte: Views/Albums 1`] = `
             </span>
              
             <p
-              class="controls svelte-4r86n"
+              class="controls svelte-4mizr"
             >
                
               <button
-                class="primary iconOnly large svelte-1e4q28k"
+                class="primary iconOnly large svelte-11qpkf0"
                 data-testid="play"
               >
                 <i
-                  class="material-icons svelte-1e4q28k"
+                  class="material-icons svelte-11qpkf0"
                 >
                   play_arrow
                 </i>
@@ -296,11 +296,11 @@ exports[`Toolshot routes/album.tools.svelte: Views/Albums 1`] = `
               </button>
                
               <button
-                class="primary iconOnly large svelte-1e4q28k"
+                class="primary iconOnly large svelte-11qpkf0"
                 data-testid="enqueue"
               >
                 <i
-                  class="material-icons svelte-1e4q28k"
+                  class="material-icons svelte-11qpkf0"
                 >
                   playlist_add
                 </i>
@@ -312,16 +312,16 @@ exports[`Toolshot routes/album.tools.svelte: Views/Albums 1`] = `
           </div>
            
           <header
-            class="svelte-4r86n"
+            class="svelte-4mizr"
           >
             <h3
-              class="svelte-4r86n"
+              class="svelte-4mizr"
             >
               Distant Worlds - Music from Final Fantasy
             </h3>
              
             <h4
-              class="svelte-rw2hde"
+              class="svelte-yqtzij"
               slot="details"
             >
               by 

@@ -3,15 +3,15 @@
 exports[`Toolshot components/Progress/Progress.tools.svelte: Components/Progress 1`] = `
 <span>
   <div
-    class="wrapper svelte-11b7si"
+    class="wrapper svelte-nlrp2p"
     role="progressbar"
   >
     <div
-      class="inc svelte-11b7si"
+      class="inc svelte-nlrp2p"
     />
      
     <div
-      class="dec svelte-11b7si"
+      class="dec svelte-nlrp2p"
     />
   </div>
 </span>

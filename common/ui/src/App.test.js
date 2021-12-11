@@ -2,19 +2,19 @@
 
 import { screen, render, within } from '@testing-library/svelte'
 import userEvent from '@testing-library/user-event'
+import { get } from 'svelte/store'
 import html from 'svelte-htm'
 import faker from 'faker'
-import { invoke } from './utils'
-import { makeRef, sleep, translate } from './tests'
-import { init } from './stores/settings'
 import App from './App.svelte'
-import { releaseWakeLock, stayAwake } from './utils'
-import { isDesktop } from './stores/settings'
+import { init, isDesktop } from './stores/settings'
+import { totp } from './stores/totp'
+import { makeRef, sleep, translate } from './tests'
+import { initConnection, invoke, releaseWakeLock, stayAwake } from './utils'
 
 jest.mock('./utils/wake-lock')
 
 describe('App component', () => {
-  beforeEach(() => {
+  beforeEach(async () => {
     jest.resetAllMocks()
     location.hash = '#/'
     // disable slot warnings
@@ -59,6 +59,7 @@ describe('App component', () => {
 
   describe('given first launch', () => {
     beforeEach(async () => {
+      initConnection.mockResolvedValue(true)
       invoke.mockImplementation(async invoked =>
         invoked === 'settings.get'
           ? {
@@ -86,6 +87,7 @@ describe('App component', () => {
 
   describe('given initialized settings', () => {
     beforeEach(async () => {
+      initConnection.mockResolvedValue(true)
       invoke.mockImplementation(async invoked =>
         invoked === 'settings.get'
           ? {
@@ -168,6 +170,61 @@ describe('App component', () => {
       userEvent.click(album)
       await sleep(500)
       expect(screen.queryByRole('complementary')).not.toBeInTheDocument()
+    })
+
+    it('displays modal when loosing server connection', async () => {
+      render(html`<${App} />`)
+      await sleep()
+
+      expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
+
+      // invoke lost connection callbak
+      await initConnection.mock.calls[0][1]()
+
+      const dialog = screen.queryByRole('dialog')
+      expect(dialog).toBeInTheDocument()
+      expect(
+        within(dialog).queryByRole('heading', { level: 1 })
+      ).toHaveTextContent(translate('connection lost'))
+    })
+
+    it('reconnects with provided one-time password', async () => {
+      const otp = Math.floor(Math.random() * 1000)
+      render(html`<${App} />`)
+      await sleep()
+      expect(get(totp)).toBeNull()
+      expect(initConnection).toHaveBeenCalledTimes(1)
+
+      // invoke lost connection callbak
+      await initConnection.mock.calls[0][1]()
+
+      const dialog = screen.queryByRole('dialog')
+      expect(dialog).toBeInTheDocument()
+      userEvent.type(within(dialog).queryByRole('textbox'), `${otp}{enter}`)
+
+      expect(get(totp)).toEqual(otp.toString())
+      expect(initConnection).toHaveBeenCalledTimes(2)
+    })
+  })
+
+  describe('given unreachable server', () => {
+    beforeEach(async () => {
+      initConnection.mockImplementation(async (address, onConnectionLost) => {
+        setTimeout(onConnectionLost, 0)
+        return false
+      })
+      init('')
+    })
+
+    it('displays modal when loosing server connection', async () => {
+      render(html`<${App} />`)
+      await sleep()
+
+      const dialog = screen.queryByRole('dialog')
+      expect(dialog).toBeInTheDocument()
+      expect(
+        within(dialog).queryByRole('heading', { level: 1 })
+      ).toHaveTextContent(translate('connection lost'))
     })
   })
 })

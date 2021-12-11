@@ -3,8 +3,10 @@ build/
 coverage/
 dist/
 __sapper__/
+.svelte-kit/
 .levels
 .env
 logs.txt
 winehq.key
 apps/desktop/package-lock.json
+apps/site/static/fonts

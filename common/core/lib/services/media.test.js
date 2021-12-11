@@ -66,6 +66,37 @@ describe('Media service', () => {
       expect(await mediaService.findForArtist('coldplay')).toEqual(artworks)
     })
 
+    it('prepends url on local files', async () => {
+      const path1 =
+        '/home/user/music/Coldplay/(2000) Parachutes/AlbumArt_{CAAEE3D3-1E76-4E3E-B207-CF3E68D31BAE}_Large.jpg'
+      const path2 =
+        '/home/user/music/Coldplay/(2000) Parachutes/AlbumArt_{CAAEE3D3-1E76-4E3E-B207-CF3E68D31BAE}_Small.jpg'
+      const artworks = [
+        {
+          artwork:
+            'https://www.theaudiodb.com/images/media/album/thumb/swxywp1367234202.jpg'
+        },
+        {
+          artwork:
+            'https://img.discogs.com/eTfvDOHIvDIHuMFHv28H6_MG-b0=/fit-in/500x505/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-3069838-1466508617-4579.jpeg.jpg'
+        },
+        {
+          artwork: `/media?path=${encodeURIComponent(path1)}`
+        },
+        {
+          artwork: `/media?path=${encodeURIComponent(path2)}`
+        }
+      ]
+      audiodb.findArtistArtwork.mockResolvedValueOnce(artworks.slice(0, 1))
+      discogs.findArtistArtwork.mockResolvedValueOnce(artworks.slice(1, 2))
+      local.findArtistArtwork.mockResolvedValueOnce([
+        { artwork: path1 },
+        { artwork: path2 }
+      ])
+
+      expect(await mediaService.findForArtist('coldplay')).toEqual(artworks)
+    })
+
     it('does not fail error', async () => {
       const artworks = [
         {
@@ -73,14 +104,18 @@ describe('Media service', () => {
             'https://www.theaudiodb.com/images/media/artist/thumb/uxrqxy1347913147.jpg'
         },
         {
-          artwork: resolve(fixtures, 'cover.jpg')
+          artwork: `/media?path=${encodeURIComponent(
+            resolve(fixtures, 'cover.jpg')
+          )}`
         }
       ]
       audiodb.findArtistArtwork.mockResolvedValueOnce(artworks.slice(0, 1))
       discogs.findArtistArtwork.mockRejectedValueOnce(
         new TooManyRequestsError()
       )
-      local.findArtistArtwork.mockResolvedValueOnce(artworks.slice(1))
+      local.findArtistArtwork.mockResolvedValueOnce([
+        { artwork: resolve(fixtures, 'cover.jpg') }
+      ])
 
       expect(await mediaService.findForArtist('coldplay')).toEqual(artworks)
     })
@@ -96,7 +131,7 @@ describe('Media service', () => {
     })
   })
 
-  describe('findAlbumCover', () => {
+  describe('findForAlbum', () => {
     it('returns cover for album', async () => {
       const covers = [
         {
@@ -123,6 +158,37 @@ describe('Media service', () => {
       expect(await mediaService.findForAlbum('Parachutes')).toEqual(covers)
     })
 
+    it('prepends url on local files', async () => {
+      const path1 =
+        '/home/user/music/Coldplay/(2000) Parachutes/AlbumArt_{CAAEE3D3-1E76-4E3E-B207-CF3E68D31BAE}_Large.jpg'
+      const path2 =
+        '/home/user/music/Coldplay/(2000) Parachutes/AlbumArt_{CAAEE3D3-1E76-4E3E-B207-CF3E68D31BAE}_Small.jpg'
+      const covers = [
+        {
+          cover:
+            'https://www.theaudiodb.com/images/media/album/thumb/swxywp1367234202.jpg'
+        },
+        {
+          cover:
+            'https://img.discogs.com/eTfvDOHIvDIHuMFHv28H6_MG-b0=/fit-in/500x505/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-3069838-1466508617-4579.jpeg.jpg'
+        },
+        {
+          cover: `/media?path=${encodeURIComponent(path1)}`
+        },
+        {
+          cover: `/media?path=${encodeURIComponent(path2)}`
+        }
+      ]
+      audiodb.findAlbumCover.mockResolvedValueOnce(covers.slice(0, 1))
+      discogs.findAlbumCover.mockResolvedValueOnce(covers.slice(1, 2))
+      local.findAlbumCover.mockResolvedValueOnce([
+        { cover: path1 },
+        { cover: path2 }
+      ])
+
+      expect(await mediaService.findForAlbum('Parachutes')).toEqual(covers)
+    })
+
     it('does not fail on error', async () => {
       const covers = [
         {
@@ -130,12 +196,16 @@ describe('Media service', () => {
             'https://img.discogs.com/eTfvDOHIvDIHuMFHv28H6_MG-b0=/fit-in/500x505/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-3069838-1466508617-4579.jpeg.jpg'
         },
         {
-          cover: resolve(fixtures, 'cover.jpg')
+          cover: `/media?path=${encodeURIComponent(
+            resolve(fixtures, 'cover.jpg')
+          )}`
         }
       ]
       audiodb.findAlbumCover.mockRejectedValueOnce(new TooManyRequestsError())
       discogs.findAlbumCover.mockResolvedValueOnce(covers.slice(0, 1))
-      local.findAlbumCover.mockResolvedValueOnce(covers.slice(1))
+      local.findAlbumCover.mockResolvedValueOnce([
+        { cover: resolve(fixtures, 'cover.jpg') }
+      ])
 
       expect(await mediaService.findForAlbum('Parachutes')).toEqual(covers)
     })
@@ -148,6 +218,46 @@ describe('Media service', () => {
       expect(audiodb.findAlbumCover).not.toHaveBeenCalled()
       expect(discogs.findAlbumCover).not.toHaveBeenCalled()
       expect(local.findAlbumCover).not.toHaveBeenCalled()
+    })
+  })
+
+  describe('isMediaAllowed', () => {
+    it('returns true for an image within watched folders', async () => {
+      settingsModel.get.mockResolvedValue({ folders: [fixtures] })
+      expect(
+        await mediaService.isMediaAllowed(resolve(fixtures, 'cover.jpg'))
+      ).toBe(true)
+      expect(
+        await mediaService.isMediaAllowed(
+          resolve(fixtures, '# Films', 'cover.jpg')
+        )
+      ).toBe(true)
+    })
+
+    it('returns false for an image outside watched folders', async () => {
+      settingsModel.get.mockResolvedValue({
+        folders: [resolve(fixtures, '# Films')]
+      })
+      expect(
+        await mediaService.isMediaAllowed(resolve(fixtures, 'cover.jpg'))
+      ).toBe(false)
+      expect(
+        await mediaService.isMediaAllowed(
+          resolve(fixtures, '# Films', 'cover.jpg')
+        )
+      ).toBe(true)
+      expect(await mediaService.isMediaAllowed(null)).toBe(false)
+      expect(await mediaService.isMediaAllowed()).toBe(false)
+    })
+
+    it('returns false for music file within watched folders', async () => {
+      settingsModel.get.mockResolvedValue({ folders: [fixtures] })
+      expect(
+        await mediaService.isMediaAllowed(resolve(fixtures, 'file.flac'))
+      ).toBe(false)
+      expect(
+        await mediaService.isMediaAllowed(resolve(fixtures, 'file.mp3'))
+      ).toBe(false)
     })
   })
 

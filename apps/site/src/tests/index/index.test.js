@@ -6,7 +6,7 @@ import { locale } from 'svelte-intl'
 import { screen, render, fireEvent } from '@testing-library/svelte'
 import { sleep, translate } from '../utils'
 import Page from '../../routes/index.svelte'
-import Layout from '../../routes/_layout.svelte'
+import Layout from '../../routes/__layout.svelte'
 
 describe('Index page', () => {
   beforeEach(() => {
@@ -14,7 +14,7 @@ describe('Index page', () => {
   })
 
   it('can change locale', async () => {
-    render(html`<${Layout} segment="">
+    render(html`<${Layout}>
       <${Page} />
     </${Layout}>`)
     expect(screen.getByText('Mélodie is a music player')).toBeInTheDocument()
@@ -28,7 +28,7 @@ describe('Index page', () => {
   })
 
   it('navigates between sections', async () => {
-    render(html`<${Layout} segment="">
+    render(html`<${Layout}>
       <${Page} />
     </${Layout}>`)
     expect(location.hash).toEqual('')

@@ -2,25 +2,24 @@
 
 exports[`Toolshot tests/index/index.tools.svelte: Site Page/Index 1`] = `
 <main>
-   
   <span
-    class="sentinel svelte-1oaxvmy"
+    class="sentinel svelte-17ljgog"
   />
    
   <nav
-    class="svelte-1oaxvmy"
+    class="svelte-17ljgog"
   >
     <nav
-      class="svelte-5f2zy3"
+      class="svelte-1bz4o77"
     >
       <img
         alt="Mélodie logo - link to the page top"
-        class="svelte-5f2zy3"
+        class="svelte-1bz4o77"
         src="favicon.png"
       />
        
       <a
-        class="svelte-5f2zy3"
+        class="svelte-1bz4o77"
         href="#intuitive"
       >
         <i
@@ -32,7 +31,7 @@ exports[`Toolshot tests/index/index.tools.svelte: Site Page/Index 1`] = `
       </a>
        
       <a
-        class="svelte-5f2zy3"
+        class="svelte-1bz4o77"
         href="#organized"
       >
         <i
@@ -44,7 +43,7 @@ exports[`Toolshot tests/index/index.tools.svelte: Site Page/Index 1`] = `
       </a>
        
       <a
-        class="svelte-5f2zy3"
+        class="svelte-1bz4o77"
         href="#reactive"
       >
         <i
@@ -56,7 +55,7 @@ exports[`Toolshot tests/index/index.tools.svelte: Site Page/Index 1`] = `
       </a>
        
       <a
-        class="svelte-5f2zy3"
+        class="svelte-1bz4o77"
         href="#for-geeks"
       >
         <i
@@ -68,45 +67,45 @@ exports[`Toolshot tests/index/index.tools.svelte: Site Page/Index 1`] = `
       </a>
        
       <span
-        class="flex-grow"
+        class="flex-grow svelte-1bz4o77"
       />
        
       <a
-        class="svelte-5f2zy3"
+        class="svelte-1bz4o77"
         href="https://github.com/feugy/melodie"
         target="_blank"
       >
         <img
           alt=""
-          class="svelte-5f2zy3"
-          src="./logos/github.png"
+          class="svelte-1bz4o77"
+          src="/logos/github.png"
         />
       </a>
     </nav>
   </nav>
    
   <header
-    class="inverted-colors svelte-5f2zy3"
+    class="inverted-colors svelte-1bz4o77"
   >
     <section
-      class="svelte-h0c516"
+      class="svelte-v44a7p"
       style="--color: transparent; --clip-path: polygon(0% 0%, 100% 7rem, 100% calc(100% - 7rem), 0 100%);"
     >
       <div>
         <div
-          class="content svelte-5f2zy3"
+          class="content svelte-1bz4o77"
         >
           <span
-            class="svelte-5f2zy3"
+            class="svelte-1bz4o77"
           >
             <h1
-              class="svelte-5f2zy3"
+              class="svelte-1bz4o77"
             >
               Mélodie is a music player
             </h1>
              
             <h2
-              class="svelte-5f2zy3"
+              class="svelte-1bz4o77"
             >
               It is intuitive, portable and open source!
             </h2>
@@ -114,23 +113,25 @@ exports[`Toolshot tests/index/index.tools.svelte: Site Page/Index 1`] = `
             <span
               aria-expanded="false"
               aria-haspopup="menu"
-              class="wrapper svelte-11prmkk"
+              class="wrapper svelte-1g0595r"
             >
               <button
-                class="text-white primary large svelte-1e4q28k"
+                class="text-white primary large svelte-11qpkf0"
               >
                 <i
-                  class="material-icons svelte-1e4q28k"
+                  class="material-icons svelte-11qpkf0"
                 >
                   get_app
                 </i>
                  
-                <span>
+                <span
+                  class="svelte-11qpkf0"
+                >
                   Install v2.0.0-beta.1
                 </span>
                  
                 <i
-                  class="material-icons arrow svelte-11prmkk"
+                  class="material-icons arrow svelte-1g0595r"
                 >
                   arrow_drop_down
                 </i>
@@ -143,16 +144,16 @@ exports[`Toolshot tests/index/index.tools.svelte: Site Page/Index 1`] = `
           </span>
            
           <div
-            class="image-wrapper svelte-5f2zy3"
+            class="image-wrapper svelte-1bz4o77"
           >
             <div
-              class="svelte-10pqkkt"
-              style="--height: 350px; --src: url('../images/screenshot-ui-en.png');"
+              class="svelte-1mqvpso"
+              style="--height: 350px; --src: url('/images/screenshot-ui-en.png');"
             >
               <img
                 alt=""
-                class="svelte-10pqkkt"
-                src="images/screenshot-ui-en.png"
+                class="svelte-1mqvpso"
+                src="/images/screenshot-ui-en.png"
               />
             </div>
           </div>
@@ -162,28 +163,28 @@ exports[`Toolshot tests/index/index.tools.svelte: Site Page/Index 1`] = `
   </header>
    
   <section
-    class="svelte-5f2zy3"
+    class="svelte-1bz4o77"
     id="intuitive"
   >
     <section
-      class="svelte-h0c516"
+      class="svelte-v44a7p"
       style="--color: #4c5c96; --clip-path: polygon(0% 7rem, 100% 0%, 100% 100%, 0 calc(100% - 7rem));"
     >
       <div>
         <div
-          class="content svelte-5f2zy3"
+          class="content svelte-1bz4o77"
         >
           <span
-            class="svelte-5f2zy3"
+            class="svelte-1bz4o77"
           >
             <h3
-              class="svelte-5f2zy3"
+              class="svelte-1bz4o77"
             >
               No frills, just the basics
             </h3>
              
             <p
-              class="svelte-5f2zy3"
+              class="svelte-1bz4o77"
             >
               <p>
                 Plays Mp3, Ogg Vorbis and Flac files. Controls speak for themselves. 
@@ -198,16 +199,16 @@ exports[`Toolshot tests/index/index.tools.svelte: Site Page/Index 1`] = `
           </span>
            
           <div
-            class="image-wrapper svelte-5f2zy3"
+            class="image-wrapper svelte-1bz4o77"
           >
             <div
-              class="svelte-10pqkkt"
-              style="--height: 100px; --src: url('../images/screenshot-player-en.png');"
+              class="svelte-1mqvpso"
+              style="--height: 100px; --src: url('/images/screenshot-player-en.png');"
             >
               <img
                 alt=""
-                class="svelte-10pqkkt"
-                src="images/screenshot-player-en.png"
+                class="svelte-1mqvpso"
+                src="/images/screenshot-player-en.png"
               />
             </div>
           </div>
@@ -217,28 +218,28 @@ exports[`Toolshot tests/index/index.tools.svelte: Site Page/Index 1`] = `
   </section>
    
   <section
-    class="svelte-5f2zy3"
+    class="svelte-1bz4o77"
     id="organized"
   >
     <section
-      class="svelte-h0c516"
+      class="svelte-v44a7p"
       style="--color: #43527f; --clip-path: polygon(0% 0%, 100% 7rem, 100% calc(100% - 7rem), 0 100%);"
     >
       <div>
         <div
-          class="content svelte-5f2zy3"
+          class="content svelte-1bz4o77"
         >
           <span
-            class="svelte-5f2zy3"
+            class="svelte-1bz4o77"
           >
             <h3
-              class="svelte-5f2zy3"
+              class="svelte-1bz4o77"
             >
               Organized, so you don't have to
             </h3>
              
             <p
-              class="svelte-5f2zy3"
+              class="svelte-1bz4o77"
             >
               <p>
                 Mélodie reads tracks music metadata, and automatically creates your album and artist library.
@@ -253,16 +254,16 @@ exports[`Toolshot tests/index/index.tools.svelte: Site Page/Index 1`] = `
           </span>
            
           <div
-            class="image-wrapper svelte-5f2zy3"
+            class="image-wrapper svelte-1bz4o77"
           >
             <div
-              class="svelte-10pqkkt"
-              style="--height: 275px; --src: url('../images/screenshot-artists-en.png');"
+              class="svelte-1mqvpso"
+              style="--height: 275px; --src: url('/images/screenshot-artists-en.png');"
             >
               <img
                 alt=""
-                class="svelte-10pqkkt"
-                src="images/screenshot-artists-en.png"
+                class="svelte-1mqvpso"
+                src="/images/screenshot-artists-en.png"
               />
             </div>
           </div>
@@ -272,28 +273,28 @@ exports[`Toolshot tests/index/index.tools.svelte: Site Page/Index 1`] = `
   </section>
    
   <section
-    class="svelte-5f2zy3"
+    class="svelte-1bz4o77"
     id="reactive"
   >
     <section
-      class="svelte-h0c516"
+      class="svelte-v44a7p"
       style="--color: #353849; --clip-path: polygon(0% 7rem, 100% 0%, 100% 100%, 0 calc(100% - 7rem));"
     >
       <div>
         <div
-          class="content svelte-5f2zy3"
+          class="content svelte-1bz4o77"
         >
           <span
-            class="svelte-5f2zy3"
+            class="svelte-1bz4o77"
           >
             <h3
-              class="svelte-5f2zy3"
+              class="svelte-1bz4o77"
             >
               It stays tuned
             </h3>
              
             <p
-              class="svelte-5f2zy3"
+              class="svelte-1bz4o77"
             >
               <p>
                 Thanks to 
@@ -338,16 +339,16 @@ exports[`Toolshot tests/index/index.tools.svelte: Site Page/Index 1`] = `
           </span>
            
           <div
-            class="image-wrapper svelte-5f2zy3"
+            class="image-wrapper svelte-1bz4o77"
           >
             <div
-              class="svelte-10pqkkt"
-              style="--height: 250px; --src: url('../images/screenshot-artist-details-en.png');"
+              class="svelte-1mqvpso"
+              style="--height: 250px; --src: url('/images/screenshot-artist-details-en.png');"
             >
               <img
                 alt=""
-                class="svelte-10pqkkt"
-                src="images/screenshot-artist-details-en.png"
+                class="svelte-1mqvpso"
+                src="/images/screenshot-artist-details-en.png"
               />
             </div>
           </div>
@@ -357,37 +358,37 @@ exports[`Toolshot tests/index/index.tools.svelte: Site Page/Index 1`] = `
   </section>
    
   <section
-    class="svelte-5f2zy3"
+    class="svelte-1bz4o77"
     id="for-geeks"
   >
     <section
-      class="svelte-h0c516"
+      class="svelte-v44a7p"
       style="--color: #2e3141; --clip-path: polygon(0% 0%, 100% 7rem, 100% calc(100% - 7rem), 0 100%);"
     >
       <div>
         <div
-          class="content flex-wrap svelte-5f2zy3"
+          class="content flex-wrap svelte-1bz4o77"
         >
           <article
-            class="svelte-1ru4bsx"
+            class="svelte-p3cb93"
           >
             <img
               alt=""
-              class="svelte-1ru4bsx"
-              src="logos/os.png"
+              class="svelte-p3cb93"
+              src="/logos/os.png"
             />
              
             <div
-              class="svelte-1ru4bsx"
+              class="svelte-p3cb93"
             >
               <h4
-                class="svelte-1ru4bsx"
+                class="svelte-p3cb93"
               >
                 Works on your machine
               </h4>
                
               <p
-                class="svelte-1ru4bsx"
+                class="svelte-p3cb93"
               >
                 <p>
                   May your favorite operating system be macOS, Windows or Linux, you will get the same user experience.
@@ -400,25 +401,25 @@ exports[`Toolshot tests/index/index.tools.svelte: Site Page/Index 1`] = `
           </article>
            
           <article
-            class="svelte-1ru4bsx"
+            class="svelte-p3cb93"
           >
             <img
               alt=""
-              class="svelte-1ru4bsx"
-              src="logos/open-source.png"
+              class="svelte-p3cb93"
+              src="/logos/open-source.png"
             />
              
             <div
-              class="svelte-1ru4bsx"
+              class="svelte-p3cb93"
             >
               <h4
-                class="svelte-1ru4bsx"
+                class="svelte-p3cb93"
               >
                 Open Source
               </h4>
                
               <p
-                class="svelte-1ru4bsx"
+                class="svelte-p3cb93"
               >
                 <p>
                   Mélodie's source code is 
@@ -448,28 +449,28 @@ exports[`Toolshot tests/index/index.tools.svelte: Site Page/Index 1`] = `
           </article>
            
           <article
-            class="svelte-1ru4bsx"
+            class="svelte-p3cb93"
           >
             <img
               alt=""
-              class="svelte-1ru4bsx"
-              src="logos/js.png"
+              class="svelte-p3cb93"
+              src="/logos/js.png"
             />
              
             <div
-              class="svelte-1ru4bsx"
+              class="svelte-p3cb93"
             >
               <h4
-                class="svelte-1ru4bsx"
+                class="svelte-p3cb93"
               >
                 Powered by JS
               </h4>
                
               <p
-                class="svelte-1ru4bsx"
+                class="svelte-p3cb93"
               >
                 <p>
-                  With a lot of love and Electron, Svelte, RxJS, TailwindCSS, SQLite, Music-Metadata, Svelte SPA router...
+                  With a lot of love and Electron, Svelte, RxJS, WindiCSS, SQLite, Music-Metadata, Svelte SPA router...
                 </p>
                 <p>
                   
@@ -485,22 +486,22 @@ exports[`Toolshot tests/index/index.tools.svelte: Site Page/Index 1`] = `
   </section>
    
   <footer
-    class="inverted-colors svelte-5f2zy3"
+    class="inverted-colors svelte-1bz4o77"
   >
     <div
-      class="content svelte-5f2zy3"
+      class="content svelte-1bz4o77"
     >
       <span
-        class="svelte-5f2zy3"
+        class="svelte-1bz4o77"
       >
         Copyright (c) 2020-2021 Damien Simonin Feugas
       </span>
        
       <span
-        class="svelte-5f2zy3"
+        class="svelte-1bz4o77"
       >
         <a
-          class="underlined svelte-5f2zy3"
+          class="underlined svelte-1bz4o77"
           href="https://unsplash.com/photos/slbOcNlWNHA"
           target="_blank"
         >

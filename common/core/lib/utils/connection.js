@@ -4,9 +4,11 @@ const { dirname, basename } = require('path')
 const { EventEmitter } = require('events')
 const fastify = require('fastify')
 const compressPlugin = require('fastify-compress')
+const corsPlugin = require('fastify-cors')
 const staticPlugin = require('fastify-static')
 const websocketPlugin = require('fastify-websocket')
 const Ajv = require('ajv').default
+const OTPAuth = require('otpauth')
 const WebSocket = require('ws')
 const { getLogger } = require('./logger')
 
@@ -53,6 +55,13 @@ exports.messageBus = new EventEmitter()
 exports.messageBus.setMaxListeners(10000)
 
 /**
+ * @typedef {object} ConnectionResult
+ * @property {string} address - connection listening URL.
+ * @property {function} close - function to close the connection.
+ * @property {require('otpauth').TOTP} totp - Time based One-Time Password generator utility, used to open WS channel.
+ */
+
+/**
  * Exposes services and their functions through a WebSocket connection, and serve static content
  * Connection clients can invoke any service function by:
  * 1. sending a request message with 'invoked' (service and function names), 'args' (array of parameters) and 'id'
@@ -71,7 +80,7 @@ exports.messageBus.setMaxListeners(10000)
  * @param {object} services     - services exposed: their properties are expected to be objects, and the nested keys are functions.
  * @param {string} publicFolder - relative or absolute path to the public folder served.
  * @param {number} [port = 0]   - port this server will listening to (by default uses broadcastPort from settings, or gets the first available port)
- * @returns {object} result object with `address` property and `close` function a function to stop the connection
+ * @returns {ConnectionResult} connection created
  * @throws {error} when connection has already been started
  */
 exports.initConnection = async function (services, publicFolder, port = 0) {
@@ -81,7 +90,19 @@ exports.initConnection = async function (services, publicFolder, port = 0) {
 
   let settings = await services.settings.get()
 
-  const handleSavedSettings = savedSettings => {
+  const period = 30
+
+  const TOTP = new OTPAuth.TOTP({
+    issuer: 'Mélodie',
+    algorithm: 'SHA256',
+    digits: 6,
+    period,
+    secret: OTPAuth.Secret.fromUTF8(settings.totpSecret)
+  })
+
+  let wsConnected = false
+
+  function handleSavedSettings(savedSettings) {
     const needRestart = settings.isBroadcasting !== savedSettings.isBroadcasting
     settings = savedSettings
     if (needRestart) {
@@ -92,11 +113,30 @@ exports.initConnection = async function (services, publicFolder, port = 0) {
       }, 100)
     }
   }
-
   exports.messageBus.on('settings-saved', handleSavedSettings)
 
-  function handleConnection(client) {
-    client.socket.on('message', async function handleMessage(rawData) {
+  function handleConnection(connection) {
+    let totpTimeout
+    wsConnected = true
+
+    function sendTOTP() {
+      connection.socket.send(
+        JSON.stringify({ event: 'totp', args: TOTP.generate() })
+      )
+      totpTimeout = setTimeout(
+        sendTOTP,
+        (period - (Math.floor(Date.now() / 1000) % period)) * 1000
+      )
+    }
+
+    totpTimeout = setTimeout(sendTOTP, 1000)
+
+    connection.socket.on('close', () => {
+      clearTimeout(totpTimeout)
+      wsConnected = false
+    })
+
+    connection.socket.on('message', async function handleMessage(rawData) {
       try {
         const data = JSON.parse(rawData)
         if (!validate(data)) {
@@ -118,11 +158,11 @@ exports.initConnection = async function (services, publicFolder, port = 0) {
             throw new Error(`core doesn't support ${name}.${op}()`)
           } else {
             const result = await services[name][op](...(data.args || []))
-            client.socket.send(JSON.stringify({ id: data.id, result }))
+            connection.socket.send(JSON.stringify({ id: data.id, result }))
           }
         } catch (err) {
           logger.error({ data, err }, err.message)
-          client.socket.send(
+          connection.socket.send(
             JSON.stringify({ id: data.id, error: err.message })
           )
         }
@@ -134,7 +174,35 @@ exports.initConnection = async function (services, publicFolder, port = 0) {
 
   async function startServer() {
     server = fastify({ logger, disableRequestLogging: true })
-    server.register(websocketPlugin)
+    server.register(corsPlugin, {
+      origin: settings.isBroadcasting ? '*' : 'http://localhost:3000'
+    })
+    server.register(websocketPlugin, {
+      options: {
+        // note: it would be better to use 'upgrade' server event
+        // to authenticate incoming WS connections, but fastify-websocket does not allow it.
+        // https://github.com/websockets/ws/issues/377#issuecomment-462152231
+        verifyClient: ({ req }, next) => {
+          try {
+            const { searchParams } = new URL(req.url, 'http://localhost')
+            const token = searchParams.get('totp')
+            if (!token) {
+              const err = new Error('TOTP is missing')
+              err.code = 401
+              throw err
+            }
+            if (TOTP.validate({ token, window: 1 }) === null) {
+              const err = new Error('Invalid TOTP')
+              err.code = 403
+              throw err
+            }
+            next(true)
+          } catch (err) {
+            next(false, err.code, err.message)
+          }
+        }
+      }
+    })
     server.register(compressPlugin)
     server.register(staticPlugin, {
       root: publicFolder,
@@ -146,6 +214,9 @@ exports.initConnection = async function (services, publicFolder, port = 0) {
     })
     function makeMediaHandler(retriever) {
       return async ({ params: { id, count } }, reply) => {
+        if (!wsConnected) {
+          return reply.code(401).send()
+        }
         const path = await retriever(id, count && +count)
         return path
           ? reply.sendFile(basename(path), dirname(path))
@@ -169,6 +240,14 @@ exports.initConnection = async function (services, publicFolder, port = 0) {
       '/albums/:id/media/:count',
       makeMediaHandler(services.media.getAlbumMedia)
     )
+    server.get('/media', async ({ query: { path } }, reply) => {
+      if (!wsConnected) {
+        return reply.code(401).send()
+      }
+      return (await services.media.isMediaAllowed(path))
+        ? reply.sendFile(basename(path), dirname(path))
+        : reply.code(403).send()
+    })
     const address = await server.listen(
       port || settings.broadcastPort,
       settings.isBroadcasting ? '0.0.0.0' : 'localhost'
@@ -181,7 +260,7 @@ exports.initConnection = async function (services, publicFolder, port = 0) {
     await server?.close()
     server = null
   }
-  return { address: await startServer(), close }
+  return { address: await startServer(), close, totp: TOTP }
 }
 
 /**

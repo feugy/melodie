@@ -18,7 +18,7 @@
   }
 </script>
 
-<style type="postcss">
+<style lang="postcss">
   div {
     @apply flex items-center justify-center gap-2;
   }

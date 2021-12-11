@@ -3,7 +3,7 @@
   export let image = null
 </script>
 
-<style type="postcss">
+<style lang="postcss">
   article {
     @apply rounded inline-flex flex-col text-left;
     background-color: #353849;

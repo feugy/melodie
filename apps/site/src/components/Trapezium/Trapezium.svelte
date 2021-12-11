@@ -9,7 +9,7 @@
     : `polygon(0% ${offset}, 100% 0%, 100% 100%, 0 calc(100% - ${offset}))`
 </script>
 
-<style type="postcss">
+<style lang="postcss">
   section {
     @apply py-20 relative;
     background-color: var(--color);

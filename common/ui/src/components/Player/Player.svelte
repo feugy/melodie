@@ -113,22 +113,19 @@
   }
 </script>
 
-<style type="postcss">
+<style lang="postcss">
   .root {
-    /* get rid of whitespaces introduced by conditionals */
-    font-size: 0px;
-
     & > audio {
       height: 0;
     }
   }
 
   .content {
-    @apply flex items-center justify-center;
+    @apply flex items-center justify-center md:p-2;
   }
 
   .player {
-    @apply flex-col;
+    @apply flex-col md:flex-grow;
   }
 
   .controls {
@@ -136,7 +133,7 @@
   }
 
   .current {
-    @apply flex-grow;
+    @apply flex-grow md:w-1/4 md:flex-grow-0;
   }
 
   .expansion {
@@ -148,22 +145,8 @@
     background: var(--outline-color);
   }
 
-  @screen md {
-    .content {
-      @apply p-2;
-    }
-
-    .player {
-      @apply flex-grow;
-    }
-
-    .current {
-      @apply w-1/4 flex-grow-0;
-    }
-
-    .volume {
-      @apply w-1/4;
-    }
+  .volume {
+    @apply md:w-1/4;
   }
 </style>
 
@@ -172,6 +155,7 @@
   <audio
     data-testid="audio"
     autoplay
+    crossOrigin="anonymous"
     bind:this={player}
     {src}
     bind:duration

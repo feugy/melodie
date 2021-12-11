@@ -5,7 +5,7 @@
   export let width = '30%'
 </script>
 
-<style type="postcss">
+<style lang="postcss">
   div {
     @apply flex flex-row h-full overflow-x-hidden;
   }

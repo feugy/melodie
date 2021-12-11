@@ -26,7 +26,7 @@
   onMount(() => clicks$.subscribe())
 </script>
 
-<style type="postcss">
+<style lang="postcss">
   table,
   tbody,
   thead,
@@ -114,7 +114,9 @@
           <td>{(track.tags.track && track.tags.track.no) || '--'}</td>
           <td class={`col-span-${withAlbum ? 3 : 5}`}>{track.tags.title}</td>
           <td class={`col-span-${withAlbum ? 3 : 4}`}>
-            {@html track.artistRefs.map(artist => wrapWithLink('artist', artist)).join(', ')}
+            {@html track.artistRefs
+              .map(artist => wrapWithLink('artist', artist))
+              .join(', ')}
           </td>
           {#if withAlbum}
             <td class="col-span-3">

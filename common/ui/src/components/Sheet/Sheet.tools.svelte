@@ -8,7 +8,7 @@
   import { texts } from '../../tests/lorem'
 </script>
 
-<style type="postcss">
+<style lang="postcss">
   .wrapper {
     @apply absolute inset-0;
   }

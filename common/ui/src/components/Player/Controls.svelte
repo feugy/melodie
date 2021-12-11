@@ -5,7 +5,7 @@
   export let player
   export let isPlaying
   export let disabled
-  
+
   function handlePlay() {
     if (player.src) {
       if (isPlaying) {
@@ -26,6 +26,12 @@
     playPrevious()
   }
 </script>
-<Button on:click={handlePrevious} icon="skip_previous" noBorder {disabled}/>
-<Button on:click={handlePlay} icon={isPlaying ? 'pause' : 'play_arrow'} large {disabled}/>
-<Button on:click={handleNext} icon="skip_next" noBorder {disabled}/>
+
+<Button on:click={handlePrevious} icon="skip_previous" noBorder {disabled} />
+<Button
+  on:click={handlePlay}
+  icon={isPlaying ? 'pause' : 'play_arrow'}
+  large
+  {disabled}
+/>
+<Button on:click={handleNext} icon="skip_next" noBorder {disabled} />

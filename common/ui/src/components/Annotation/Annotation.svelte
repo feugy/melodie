@@ -115,7 +115,7 @@
   }
 </script>
 
-<style type="postcss">
+<style lang="postcss">
   .backdrop {
     @apply fixed flex items-center justify-center inset-0 m-0 z-10 p-10;
     clip-path: polygon(
