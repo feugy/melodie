@@ -1,6 +1,6 @@
 import { translations } from 'svelte-intl'
 import { defaultKey, addTranslations } from '@melodie/ui/src/utils/translations'
-import './styles.css'
+import './styles.postcss'
 
 import en from './locale/en.yml'
 import fr from './locale/fr.yml'

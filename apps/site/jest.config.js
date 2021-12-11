@@ -15,7 +15,7 @@ export default {
     '^.+\\.ya?ml$': 'jest-yaml-transform'
   },
   moduleNameMapper: {
-    '^.+\\.css$': 'identity-obj-proxy'
+    '^.+\\.(post)?css$': 'identity-obj-proxy'
   },
   transformIgnorePatterns: ['node_modules\\/(?!svelte|@atelier-wb)'],
   moduleFileExtensions: ['js', 'svelte', 'json', 'yml'],

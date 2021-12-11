@@ -1,6 +1,6 @@
 'use strict'
 
 import '../common'
-import './styles.css'
+import './styles.postcss'
 
 window.dlUrl = ''

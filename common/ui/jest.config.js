@@ -17,7 +17,7 @@ module.exports = {
     '^.+\\.ya?ml$': 'jest-yaml-transform'
   },
   moduleNameMapper: {
-    '^.+\\.css$': 'identity-obj-proxy'
+    '^.+\\.(post)?css$': 'identity-obj-proxy'
   },
   transformIgnorePatterns: [
     'node_modules\\/(?!svelte-spa-router|svelte-portal|@atelier-wb)'
