@@ -9,6 +9,7 @@
   import Volume from './Volume.svelte'
   import Shuffle from './Shuffle.svelte'
   import Repeat from './Repeat.svelte'
+  import { isDesktop } from '../../stores/settings'
   import { current, next, tracks } from '../../stores/track-queue'
   import { playNext } from '../../stores/track-queue'
   import { screenSize, MD } from '../../stores/window'
@@ -28,32 +29,22 @@
   let gainNode
 
   onMount(() => {
-    if ('AudioContext' in window) {
-      const context = new AudioContext()
-      const sourceNode = context.createMediaElementSource(player)
-      gainNode = context.createGain()
-      sourceNode.connect(gainNode)
-      gainNode.connect(context.destination)
-    }
+    buildAudioContext()
+
+    navigator.bluetooth
+      ?.requestDevice()
+      .then(device => console.log(device))
+      .catch(error => console.error(error))
 
     const currentSubscription = current.subscribe(current => {
       if (!current) {
         src = null
-        if (player) {
-          isPlaying = false
-          player.load()
-        }
       } else {
         src = window.dlUrl + current.data
-        isLoading = true
-        const {
-          replaygain_track_gain: trackGain,
-          replaygain_album_gain: albumGain
-        } = current.tags
-        if (gainNode) {
-          // apply replay gain when set
-          gainNode.gain.value = (trackGain || albumGain || { ratio: 1 }).ratio
-        }
+      }
+      if (player && src !== player.currentSrc) {
+        isPlaying = false
+        player.load()
       }
     })
     const nextSubscription = next.subscribe(next => {
@@ -67,16 +58,19 @@
     }
   })
 
-  function handleLoaded() {
-    // Chrome will block playing songs until user interact with the page, and will
-    // issue an error on console
+  async function handleLoaded() {
     isLoading = false
-    player.play()
   }
 
   function handleLoading() {
     isPlaying = false
     isLoading = true
+  }
+
+  function handlePlay() {
+    configureGain()
+    isPlaying = true
+    timeUpdateTimer = window.requestAnimationFrame(updateTime)
   }
 
   function handlePause() {
@@ -88,9 +82,12 @@
     isPlaying = false
     if (repeatOne) {
       player.play()
-    } else if (repeatAll || $tracks[$tracks.length - 1] !== $current) {
+    } else {
       player.pause()
-      playNext()
+      player.currentTime = 0
+      if (repeatAll || $tracks[$tracks.length - 1] !== $current) {
+        playNext()
+      }
     }
   }
 
@@ -109,6 +106,29 @@
       setTimeout(() => {
         timeUpdateTimer = window.requestAnimationFrame(updateTime)
       }, 100)
+    }
+  }
+
+  async function buildAudioContext() {
+    // There's an unsolvable issue with Chrome Android:
+    // when bluetooth is active prior to loading the app,
+    // built AudioContext starts suspended, but can never be resumed
+    if ('AudioContext' in window && (!window.chrome || $isDesktop === true)) {
+      const context = new AudioContext()
+      const sourceNode = context.createMediaElementSource(player)
+      gainNode = context.createGain()
+      sourceNode.connect(gainNode)
+      gainNode.connect(context.destination)
+    }
+  }
+
+  function configureGain() {
+    if (gainNode) {
+      const {
+        replaygain_track_gain: trackGain,
+        replaygain_album_gain: albumGain
+      } = $current.tags
+      gainNode.gain.value = (trackGain || albumGain || { ratio: 1 }).ratio
     }
   }
 </script>
@@ -165,14 +185,7 @@
     on:loadeddata={handleLoaded}
     on:error={handleError}
     on:ended={handleEnded}
-    on:play={() => {
-      if (gainNode) {
-        // required on Chrome
-        gainNode.context.resume()
-      }
-      isPlaying = true
-      timeUpdateTimer = window.requestAnimationFrame(updateTime)
-    }}
+    on:play={handlePlay}
     on:pause={handlePause}
   />{#if $screenSize >= MD}
     <div class="content">
