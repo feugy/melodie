@@ -251,7 +251,10 @@ function watch(folders, logger) {
                 )
           )
         )
-        .subscribe(() => playlists.checkIntegrity())
+        .subscribe({
+          next: () => playlists.checkIntegrity(),
+          error: logger.error.bind(logger)
+        })
     )
   }
 }
