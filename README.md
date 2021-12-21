@@ -92,8 +92,6 @@ Another option is to open it with Control-click: it'll immediately register the 
 
 - dependabot + dep update
 
-- rename git master branch to main
-
 - automated end-to-end tests
 
 - more technical documentation (install & release process notably)
@@ -546,8 +544,8 @@ Mélodie is referenced on these stores and hubs:
      1. on no results, save date on artist/album
 
 [releases]: https://github.com/feugy/melodie/releases
-[changelog]: https://github.com/feugy/melodie/blob/master/CHANGELOG.md
-[license]: https://github.com/feugy/melodie/blob/master/LICENSE
+[changelog]: https://github.com/feugy/melodie/blob/main/CHANGELOG.md
+[license]: https://github.com/feugy/melodie/blob/main/LICENSE
 [electron]: https://www.electronjs.org
 [svelte]: https://svelte.dev
 [rxjs]: https://www.learnrxjs.io
