@@ -298,7 +298,6 @@ exports[`Toolshot components/Player/Player.tools.svelte: With track list 1`] = `
            
           <button
             class="iconOnly noBorder svelte-11qpkf0"
-            disabled=""
           >
             <i
               class="material-icons svelte-11qpkf0"
@@ -312,7 +311,6 @@ exports[`Toolshot components/Player/Player.tools.svelte: With track list 1`] = `
            
           <button
             class="iconOnly large svelte-11qpkf0"
-            disabled=""
           >
             <i
               class="material-icons svelte-11qpkf0"
@@ -326,7 +324,6 @@ exports[`Toolshot components/Player/Player.tools.svelte: With track list 1`] = `
            
           <button
             class="iconOnly noBorder svelte-11qpkf0"
-            disabled=""
           >
             <i
               class="material-icons svelte-11qpkf0"

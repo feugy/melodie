@@ -100,6 +100,8 @@ Another option is to open it with Control-click: it'll immediately register the 
 
 ### Bugs and known issues
 
+1. Melodie desktop sometimes fails to download new tracks due to TOTP.
+
 1. When server is not reachable, attempts to establish new WebSocket connection takes longer and longer
 
 1. DMG package does not download updates: [it requires zip](https://github.com/electron-userland/electron-builder/issues/2199), and we cannot build zip because of [the accent in product name](https://github.com/electron-userland/electron-builder/issues/4306#issuecomment-717232761)...
@@ -474,12 +476,14 @@ Mélodie is referenced on these stores and hubs:
 - svelte-spa-router, and its dependency on regexparam, has been bother me for a very long time. When ran with jest, svelte-spa-router files must be transpiled by Svelte compiler, but they import regexparam as esm, and this lib doesn't expose such binding. One must replace the import with require, and this must only be done during test, because rollup will handle it properly.
   When receiving errors from svelte-jester, don't forget to clean jest cache with --cleanCache CLI option.
 
-- pino@7+ has a new concepts of transports, which run in a worker. Unfortunately, this does not play well when bundled in an [asar archive](https://github.com/electron/electron/issues/22446).
-  And because electron-builder's [asarUnpack](https://www.electron.build/configuration/configuration) does not remove the modules from the asar (it unpacks them in addition to embed them), I had to completely disable asar.
-
 - since v22.11.1, electron-builder fails to build the app on [Github worker](https://github.com/electron-userland/electron-builder/issues/6124). Fixing the version to 22.10.5 for the time being.
 
 - Tailwind is veeeeeeeeeeeery slow to compile. Svelte preprocessor can not handle it fast, making vite pretty slow when starting atelier (only the first load). More [information here](https://github.com/vitejs/vite/issues/5145). Moving to [Windi CSS](https://windicss.org/) speed the build time from 65 to 28 seconds!
+
+- The `Audio` element failed to play any music when coupled with `AudioContext`:
+  1.  Bluetooth must be enabled prior to starting the app (simply reload the app once enabled)
+  1.  `AudioContext` will build, but will not process any data.
+      Being running or suspended (as per Google's [policy](https://developer.chrome.com/blog/autoplay/#webaudio)) does not matter: rebuilding the context or building it on user interaction does not solve the issue as long as bluetooth is enabled
 
 #### How watch & diff works
 

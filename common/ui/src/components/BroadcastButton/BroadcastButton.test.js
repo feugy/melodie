@@ -1,6 +1,6 @@
 'use strict'
 
-import { screen, render, fireEvent } from '@testing-library/svelte'
+import { screen, render, fireEvent, waitFor } from '@testing-library/svelte'
 import userEvent from '@testing-library/user-event'
 import html from 'svelte-htm'
 import faker from 'faker'
@@ -72,6 +72,7 @@ describe('BroadcastButton component', () => {
       isBroadcasting: false,
       address
     })
+    expect(releaseWakeLock).toHaveBeenCalledTimes(1)
     component.$on('click', handleClick)
     await component.$set({ isBroadcasting: true })
     expect(screen.queryByRole('menu')).toBeInTheDocument()
@@ -84,13 +85,15 @@ describe('BroadcastButton component', () => {
       expect.any(Object)
     )
 
+    expect(releaseWakeLock).toHaveBeenCalledTimes(1)
     component.$set({ isBroadcasting: false })
-    await sleep(250)
 
-    expect(screen.queryByRole('menu')).not.toBeInTheDocument()
-    expect(screen.queryByRole('link')).not.toBeInTheDocument()
-    expect(screen.queryByText('wifi_off')).toBeInTheDocument()
-    expect(screen.queryByText('wifi')).not.toBeInTheDocument()
+    await waitFor(() => {
+      expect(screen.queryByRole('menu')).not.toBeInTheDocument()
+      expect(screen.queryByRole('link')).not.toBeInTheDocument()
+      expect(screen.queryByText('wifi_off')).toBeInTheDocument()
+      expect(screen.queryByText('wifi')).not.toBeInTheDocument()
+    })
     expect(handleClick).not.toHaveBeenCalled()
     expect(toCanvas).toHaveBeenCalledTimes(1)
     expect(stayAwake).toHaveBeenCalledTimes(1)

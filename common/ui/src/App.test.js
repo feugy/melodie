@@ -200,7 +200,7 @@ describe('App component', () => {
 
       const dialog = screen.queryByRole('dialog')
       expect(dialog).toBeInTheDocument()
-      userEvent.type(within(dialog).queryByRole('textbox'), `${otp}{enter}`)
+      userEvent.type(within(dialog).getByRole('spinbutton'), `${otp}{enter}`)
 
       expect(get(totp)).toEqual(otp.toString())
       expect(initConnection).toHaveBeenCalledTimes(2)

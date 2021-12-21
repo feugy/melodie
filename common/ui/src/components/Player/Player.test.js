@@ -1,6 +1,6 @@
 'use strict'
 
-import { screen, render, fireEvent } from '@testing-library/svelte'
+import { screen, render, fireEvent, waitFor } from '@testing-library/svelte'
 import userEvent from '@testing-library/user-event'
 import { get } from 'svelte/store'
 import html from 'svelte-htm'
@@ -17,9 +17,8 @@ import {
 } from '../../stores/track-queue'
 import * as playlistStore from '../../stores/playlists'
 import { invoke } from '../../utils'
-import { sleep } from '../../tests'
 
-const { play, pause } = HTMLMediaElement.prototype
+const { play, pause, load } = HTMLMediaElement.prototype
 
 describe('Player component', () => {
   let mediaElementSource
@@ -29,7 +28,7 @@ describe('Player component', () => {
   let fetch
   const dlUrl = faker.internet.url()
 
-  async function renderPlayer() {
+  function renderPlayer() {
     render(html`<${Player} />`)
     const audio = screen.getByTestId('audio')
     // simulate audio events
@@ -37,14 +36,15 @@ describe('Player component', () => {
       for (const { attributeName } of mutations) {
         if (attributeName === 'src' && audio.src) {
           audio.dispatchEvent(new Event('loadeddata'))
+          setTimeout(() => audio.dispatchEvent(new Event('play')), 1)
         }
       }
     })
     observer.observe(audio, { attributes: true })
     if (audio.src) {
       audio.dispatchEvent(new Event('loadeddata'))
+      setTimeout(() => audio.dispatchEvent(new Event('play')), 1)
     }
-    await sleep()
     return audio
   }
 
@@ -61,14 +61,16 @@ describe('Player component', () => {
     }
     audioContext = {
       createMediaElementSource: jest.fn().mockReturnValue(mediaElementSource),
-      createGain: jest.fn().mockReturnValue(gainNode),
-      resume: jest.fn()
+      createGain: jest.fn().mockReturnValue(gainNode)
     }
     window.AudioContext = function () {
       return audioContext
     }
     window.dlUrl = dlUrl
 
+    load.mockImplementation(function () {
+      setTimeout(() => this.dispatchEvent(new Event('loading')), 1)
+    })
     play.mockImplementation(function () {
       this.dispatchEvent(new Event('play'))
     })
@@ -89,36 +91,32 @@ describe('Player component', () => {
 
   it('plays and pause track', async () => {
     add(trackListData)
-    expect(play).not.toHaveBeenCalled()
 
-    const audio = await renderPlayer()
+    const audio = renderPlayer()
     expect(audio).toHaveAttribute(
       'src',
       `${window.dlUrl}${trackListData[0].data}`
     )
 
     expect(get(current)).toEqual(trackListData[0])
-    expect(play).toHaveBeenCalledTimes(1)
     expect(fetch).toHaveBeenCalledWith(
       `${window.dlUrl}${trackListData[1].data}`
     )
 
-    await userEvent.click(screen.getByText('pause'))
+    await userEvent.click(await screen.findByText('pause'))
 
     expect(get(current)).toEqual(trackListData[0])
-    expect(play).toHaveBeenCalledTimes(1)
 
     await userEvent.click(screen.getByText('play_arrow'))
 
     expect(get(current)).toEqual(trackListData[0])
-    expect(play).toHaveBeenCalledTimes(2)
     expect(fetch).toHaveBeenCalledTimes(1)
   })
 
   it('mutes and unmute volume', async () => {
     add(trackListData)
 
-    const audio = await renderPlayer()
+    const audio = renderPlayer()
     expect(audio.muted).toEqual(false)
     await userEvent.click(screen.getByText('volume_up'))
     expect(audio.muted).toEqual(true)
@@ -130,7 +128,7 @@ describe('Player component', () => {
   it('goes to next track', async () => {
     add(trackListData)
 
-    await renderPlayer()
+    renderPlayer()
     expect(fetch).toHaveBeenNthCalledWith(
       1,
       `${window.dlUrl}${trackListData[1].data}`
@@ -150,7 +148,7 @@ describe('Player component', () => {
     jumpTo(2)
     expect(get(current)).toEqual(trackListData[2])
 
-    await renderPlayer()
+    renderPlayer()
     expect(fetch).toHaveBeenNthCalledWith(
       1,
       `${window.dlUrl}${trackListData[3].data}`
@@ -168,7 +166,7 @@ describe('Player component', () => {
   it('can change volume', async () => {
     add(trackListData)
 
-    const audio = await renderPlayer()
+    const audio = renderPlayer()
     const slider = screen.queryAllByRole('slider')[1]
     await fireEvent.input(slider, { target: { value: '50' } })
 
@@ -181,60 +179,65 @@ describe('Player component', () => {
   it(`navigates to current track's album`, async () => {
     add(trackListData)
 
-    await renderPlayer()
+    renderPlayer()
     await userEvent.click(screen.getByRole('img'))
-    await sleep()
-
-    expect(location.hash).toEqual(`#/album/${trackListData[0].albumRef[0]}`)
+    await waitFor(() =>
+      expect(location.hash).toEqual(`#/album/${trackListData[0].albumRef[0]}`)
+    )
   })
 
   it(`navigates to current track's artist`, async () => {
     add(trackListData)
 
-    await renderPlayer()
+    renderPlayer()
     await userEvent.click(screen.getByText(trackListData[0].artistRefs[0][1]))
-    await sleep()
-
-    expect(location.hash).toEqual(
-      `#/artist/${trackListData[0].artistRefs[0][0]}`
+    await waitFor(() =>
+      expect(location.hash).toEqual(
+        `#/artist/${trackListData[0].artistRefs[0][0]}`
+      )
     )
   })
 
   it('applies track and album ReplayGain when available', async () => {
     add(trackListData)
 
-    await renderPlayer()
+    renderPlayer()
     expect(gainNode.gain).toEqual({ value: 1 })
 
     jumpTo(1)
-    expect(gainNode.gain).toEqual({
-      value: trackListData[1].tags.replaygain_track_gain.ratio
-    })
+    await waitFor(() =>
+      expect(gainNode.gain).toEqual({
+        value: trackListData[1].tags.replaygain_track_gain.ratio
+      })
+    )
 
     jumpTo(2)
-    expect(gainNode.gain).toEqual({
-      value: trackListData[2].tags.replaygain_album_gain.ratio
-    })
+    await waitFor(() =>
+      expect(gainNode.gain).toEqual({
+        value: trackListData[2].tags.replaygain_album_gain.ratio
+      })
+    )
 
     jumpTo(3)
-    expect(gainNode.gain).toEqual({
-      value: trackListData[3].tags.replaygain_track_gain.ratio
-    })
+    await waitFor(() =>
+      expect(gainNode.gain).toEqual({
+        value: trackListData[3].tags.replaygain_track_gain.ratio
+      })
+    )
 
     jumpTo(0)
-    expect(gainNode.gain).toEqual({ value: 1 })
+    await waitFor(() => expect(gainNode.gain).toEqual({ value: 1 }))
   })
 
   it('goes to next track on track end', async () => {
     add(trackListData)
-    const audio = await renderPlayer()
+    const audio = renderPlayer()
     expect(get(current)).toEqual(trackListData[0])
 
     audio.dispatchEvent(new Event('ended'))
     expect(get(current)).toEqual(trackListData[1])
-    await sleep(10)
 
-    expect(screen.queryByText('pause')).toBeInTheDocument()
+    expect(await screen.findByText('pause')).toBeInTheDocument()
     expect(screen.queryByText('play_arrow')).not.toBeInTheDocument()
   })
 
@@ -242,30 +245,28 @@ describe('Player component', () => {
     add(trackListData)
     jumpTo(3)
 
-    const audio = await renderPlayer()
+    const audio = renderPlayer()
     expect(get(current)).toEqual(trackListData[3])
 
     audio.dispatchEvent(new Event('ended'))
     expect(get(current)).toEqual(trackListData[3])
-    await sleep()
 
+    expect(await screen.findByText('play_arrow')).toBeInTheDocument()
     expect(screen.queryByText('pause')).not.toBeInTheDocument()
-    expect(screen.queryByText('play_arrow')).toBeInTheDocument()
   })
 
   it('restarts to first track when repeat is on and last track has ended', async () => {
     add(trackListData)
     jumpTo(3)
 
-    const audio = await renderPlayer()
+    const audio = renderPlayer()
     await userEvent.click(screen.getByText('repeat'))
     expect(get(current)).toEqual(trackListData[3])
 
     audio.dispatchEvent(new Event('ended'))
     expect(get(current)).toEqual(trackListData[0])
-    await sleep()
 
-    expect(screen.queryByText('pause')).toBeInTheDocument()
+    expect(await screen.findByText('pause')).toBeInTheDocument()
     expect(screen.queryByText('play_arrow')).not.toBeInTheDocument()
   })
 
@@ -273,39 +274,40 @@ describe('Player component', () => {
     add(trackListData)
     jumpTo(3)
 
-    const audio = await renderPlayer()
+    const audio = renderPlayer()
     await userEvent.click(screen.getByText('repeat'))
     await userEvent.click(screen.getByText('repeat'))
 
     expect(get(current)).toEqual(trackListData[3])
-    await sleep()
+    expect(await screen.findByText('pause')).toBeInTheDocument()
 
     audio.dispatchEvent(new Event('ended'))
+
+    expect(await screen.findByText('pause')).toBeInTheDocument()
     expect(get(current)).toEqual(trackListData[3])
-    await sleep()
 
     audio.dispatchEvent(new Event('ended'))
-    expect(get(current)).toEqual(trackListData[3])
-    await sleep()
 
-    expect(screen.queryByText('pause')).toBeInTheDocument()
-    expect(screen.queryByText('play_arrow')).not.toBeInTheDocument()
+    expect(await screen.findByText('pause')).toBeInTheDocument()
+    expect(get(current)).toEqual(trackListData[3])
   })
 
   it('retries downloading data on network error', async () => {
-    const audio = await renderPlayer()
+    add(trackListData)
+    const audio = renderPlayer()
+    expect(await screen.findByText('pause')).toBeInTheDocument()
+
     await audio.dispatchEvent(new Event('error'))
-
+    expect(await screen.findByText('play_arrow')).toBeInTheDocument()
     expect(screen.queryByText('pause')).not.toBeInTheDocument()
-    expect(screen.queryByRole('button', { name: 'play_arrow' })).toBeEnabled()
-    expect(get(current)).toBeUndefined()
 
-    await audio.dispatchEvent(new Event('loadeddata'))
-    expect(screen.queryByRole('button', { name: 'pause' })).toBeEnabled()
+    // in 100ms src will be automatically reset
+    expect(await screen.findByText('pause')).toBeInTheDocument()
+    expect(screen.queryByText('play_arrow')).not.toBeInTheDocument()
   })
 
   it('shuffles and unshuffles current track when repeat one is on', async () => {
-    await renderPlayer()
+    renderPlayer()
     await userEvent.click(screen.getByText('shuffle'))
     expect(get(isShuffling)).toEqual(true)
 
@@ -347,8 +349,8 @@ describe('Player component', () => {
       add(trackListData)
       jumpTo(3)
 
-      await renderPlayer()
-      await sleep()
+      renderPlayer()
+      expect(await screen.findByText('pause')).toBeInTheDocument()
       jest.resetAllMocks()
 
       const playlist = faker.random.arrayElement(playlists)

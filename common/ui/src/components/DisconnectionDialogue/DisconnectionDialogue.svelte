@@ -39,7 +39,7 @@
     <div class="otp">
       <h3>{$_('one time password')}</h3>
       <form on:submit|preventDefault={handleConnect}>
-        <TextInput on:input={handleInput} on:change focus />
+        <TextInput type="number" on:input={handleInput} on:change focus />
         <Button type="submit" icon="input" primary />
       </form>
     </div>

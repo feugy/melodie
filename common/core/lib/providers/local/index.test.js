@@ -37,6 +37,17 @@ jest.mock('./playlist', () => {
   }
 })
 
+let mockWatcher
+jest.mock('chokidar', () => {
+  const chokidar = jest.requireActual('chokidar')
+  return {
+    watch(...args) {
+      mockWatcher = chokidar.watch(...args)
+      return mockWatcher
+    }
+  }
+})
+
 describe('Local provider', () => {
   beforeEach(() => {
     jest.resetAllMocks()
@@ -604,6 +615,27 @@ describe('Local provider', () => {
       it('handles no modifications', async () => {
         const { saved, removedIds } = await provider.compareTracks()
 
+        expect(removedIds).toEqual([])
+        expect(saved).toEqual([])
+        expect(tracksService.add).not.toHaveBeenCalled()
+        expect(tracksService.remove).not.toHaveBeenCalled()
+        expect(playlistsService.save).not.toHaveBeenCalled()
+        expect(covers.findInFolder).not.toHaveBeenCalled()
+        expect(tagReader.read).not.toHaveBeenCalled()
+        expect(playlistUtils.read).not.toHaveBeenCalled()
+        expect(playlistsService.checkIntegrity).not.toHaveBeenCalled()
+      })
+
+      it('handles watcher errors', async () => {
+        const error = new Error('Intentionaly triggered!!')
+        const errorSpy = jest.spyOn(provider.logger, 'error')
+        const promise = provider.compareTracks()
+        await sleep()
+        mockWatcher.emit('error', error)
+        const { saved, removedIds } = await promise
+
+        expect(errorSpy).toHaveBeenCalledTimes(1)
+        expect(errorSpy).toHaveBeenCalledWith(error)
         expect(removedIds).toEqual([])
         expect(saved).toEqual([])
         expect(tracksService.add).not.toHaveBeenCalled()
