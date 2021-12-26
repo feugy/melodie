@@ -59,19 +59,15 @@ describe('App component', () => {
 
   describe('given first launch', () => {
     beforeEach(async () => {
-      initConnection.mockResolvedValue(true)
-      invoke.mockImplementation(async invoked =>
-        invoked === 'settings.get'
-          ? {
-              locale: 'en',
-              folders: [],
-              openCount: 0,
-              providers: { audiodb: {}, discogs: {} },
-              enqueueBehaviour: {},
-              isBroadcasting: false
-            }
-          : {}
-      )
+      invoke.mockResolvedValue({})
+      initConnection.mockResolvedValue({
+        locale: 'en',
+        folders: [],
+        openCount: 0,
+        providers: { audiodb: {}, discogs: {} },
+        enqueueBehaviour: {},
+        isBroadcasting: false
+      })
       await init('')
       render(html`<${App} />`)
       await sleep()
@@ -87,18 +83,16 @@ describe('App component', () => {
 
   describe('given initialized settings', () => {
     beforeEach(async () => {
-      initConnection.mockResolvedValue(true)
+      initConnection.mockResolvedValue({
+        locale: 'en',
+        folders: ['/home/music'],
+        openCount: 1,
+        providers: { audiodb: {}, discogs: {} },
+        enqueueBehaviour: {},
+        isBroadcasting: false
+      })
       invoke.mockImplementation(async invoked =>
-        invoked === 'settings.get'
-          ? {
-              locale: 'en',
-              folders: ['/home/music'],
-              openCount: 1,
-              providers: { audiodb: {}, discogs: {} },
-              enqueueBehaviour: {},
-              isBroadcasting: false
-            }
-          : invoked === 'tracks.list'
+        invoked === 'tracks.list'
           ? {
               total: 2,
               results: albums
@@ -179,7 +173,7 @@ describe('App component', () => {
       expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
 
       // invoke lost connection callbak
-      await initConnection.mock.calls[0][1]()
+      await initConnection.mock.calls[0][2]()
 
       const dialog = screen.queryByRole('dialog')
       expect(dialog).toBeInTheDocument()
@@ -196,7 +190,7 @@ describe('App component', () => {
       expect(initConnection).toHaveBeenCalledTimes(1)
 
       // invoke lost connection callbak
-      await initConnection.mock.calls[0][1]()
+      await initConnection.mock.calls[0][2]()
 
       const dialog = screen.queryByRole('dialog')
       expect(dialog).toBeInTheDocument()
@@ -209,10 +203,11 @@ describe('App component', () => {
 
   describe('given unreachable server', () => {
     beforeEach(async () => {
-      initConnection.mockImplementation(async (address, onConnectionLost) => {
-        setTimeout(onConnectionLost, 0)
-        return false
-      })
+      initConnection.mockImplementation(
+        async (address, totp, onConnectionLost) => {
+          setTimeout(onConnectionLost, 0)
+        }
+      )
       init('')
     })
 

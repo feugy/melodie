@@ -13,6 +13,7 @@
   import { current, next, tracks } from '../../stores/track-queue'
   import { playNext } from '../../stores/track-queue'
   import { screenSize, MD } from '../../stores/window'
+  import { enhanceUrl } from '../../utils'
 
   let isPlaying
   let isLoading
@@ -40,7 +41,7 @@
       if (!current) {
         src = null
       } else {
-        src = window.dlUrl + current.data
+        src = enhanceUrl(current.data)
       }
       if (player && src !== player.currentSrc) {
         isPlaying = false
@@ -49,7 +50,7 @@
     })
     const nextSubscription = next.subscribe(next => {
       if (next) {
-        fetch(window.dlUrl + next.data)
+        fetch(enhanceUrl(next.data))
       }
     })
     return () => {

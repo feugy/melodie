@@ -3,6 +3,23 @@
   import Component from './settings.svelte'
   import { mockWebsocket } from '../atelier/utils'
   import { init, isDesktop } from '../stores/settings'
+  import { initConnection } from '../utils/connection'
+
+  const settings = {
+    folders: ['/home/music', '/home/movies'],
+    locale: 'en',
+    providers: {
+      audiodb: { key: '123456' },
+      discogs: { token: 'abcdefg' }
+    },
+    enqueueBehaviour: {
+      clearBefore: true,
+      onClick: false
+    },
+    isBroadcasting: true
+  }
+  // used during tool shot
+  initConnection.mockResolvedValue?.(settings)
 </script>
 
 <Tool
@@ -12,20 +29,9 @@
     await mockWebsocket(
       invoked =>
         invoked === 'settings.get'
-          ? {
-              folders: ['/home/music', '/home/movies'],
-              locale: 'en',
-              providers: {
-                audiodb: { key: '123456' },
-                discogs: { token: 'abcdefg' }
-              },
-              enqueueBehaviour: {
-                clearBefore: true,
-                onClick: false
-              },
-              isBroadcasting: true
-            }
+          ? settings
           : { melodie: '2.0.0', electron: '11.0.0' },
+      settings,
       false
     )()
     isDesktop.next(true)

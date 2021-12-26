@@ -17,17 +17,21 @@
   let wasConnected = true
 
   async function connectWebsocket() {
-    await mockWebsocket(invoked => {
-      if (invoked === 'settings.toggleBroadcast') {
-        settings.isBroadcasting = !settings.isBroadcasting
-        return settings
-      } else if (invoked === 'settings.getUIAddress') {
-        return url
-      } else {
-        return settings
-      }
-    }, false)()
-    init(url)
+    await mockWebsocket(
+      invoked => {
+        if (invoked === 'settings.toggleBroadcast') {
+          settings.isBroadcasting = !settings.isBroadcasting
+          return settings
+        } else if (invoked === 'settings.getUIAddress') {
+          return url
+        } else {
+          return settings
+        }
+      },
+      settings,
+      false
+    )()
+    init(url, 'totp-key')
   }
 
   function updateConnection(connected) {

@@ -98,8 +98,6 @@ Another option is to open it with Control-click: it'll immediately register the 
 
 ### Bugs and known issues
 
-1. Melodie desktop sometimes fails to download new tracks due to TOTP.
-
 1. When server is not reachable, attempts to establish new WebSocket connection takes longer and longer
 
 1. DMG package does not download updates: [it requires zip](https://github.com/electron-userland/electron-builder/issues/2199), and we cannot build zip because of [the accent in product name](https://github.com/electron-userland/electron-builder/issues/4306#issuecomment-717232761)...

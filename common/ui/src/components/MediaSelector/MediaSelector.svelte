@@ -6,7 +6,7 @@
   import Image, { broken } from '../Image/Image.svelte'
   import ImageUploader from '../ImageUploader/ImageUploader.svelte'
   import Progress from '../Progress/Progress.svelte'
-  import { invoke } from '../../utils'
+  import { enhanceUrl, invoke } from '../../utils'
   import { isDesktop } from '../../stores/settings'
 
   export let open
@@ -62,9 +62,9 @@
         {#if attribute in image}
           <div class="m-2">
             <Image
-              src="{image[attribute]?.startsWith('http')
-                ? ''
-                : window.dlUrl}{image[attribute]}"
+              src={image[attribute]?.startsWith('http')
+                ? image[attribute]
+                : enhanceUrl(image[attribute])}
               withNonce
               class="w-48 h-48 actionable"
               on:click={() => handleSelect(image[attribute])}

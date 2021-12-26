@@ -62,9 +62,15 @@ async function connect(address, reconnectDelay) {
     connected$.next(false)
   }
 
-  connected$.next(
-    await initConnection(address, handleLostConnection, () => get(totp))
+  const settings = await initConnection(
+    address,
+    get(totp),
+    handleLostConnection
   )
+  if (settings) {
+    settings$.next(settings)
+  }
+  connected$.next(Boolean(settings))
 }
 
 export async function init(address, totpSecret, totp, reconnectDelay = 5000) {
@@ -78,7 +84,6 @@ export async function init(address, totpSecret, totp, reconnectDelay = 5000) {
         fromServerEvent('settings-saved').subscribe(saved => {
           settings$.next(saved)
         })
-        settings$.next(await invoke('settings.get'))
         resolve()
       }
     })

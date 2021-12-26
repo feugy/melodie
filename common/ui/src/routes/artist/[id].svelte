@@ -13,7 +13,7 @@
   } from '../../components'
   import { load, changes, removals } from '../../stores/artists'
   import { add } from '../../stores/track-queue'
-  import { getYears, invoke } from '../../utils'
+  import { enhanceUrl, getYears, invoke } from '../../utils'
 
   export let params
   let albums = []
@@ -136,7 +136,7 @@
           width="400"
           height="400"
           rounded
-          src={artist.media ? `${window.dlUrl}${artist.media}` : null}
+          src={enhanceUrl(artist.media)}
         />
       </span>
       <div>

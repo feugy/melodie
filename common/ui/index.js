@@ -14,7 +14,6 @@ async function startApp() {
     : `${window.location.protocol.replace('http', 'ws')}//${
         window.location.host
       }`
-  window.dlUrl = serverUrl.replace('ws', 'http')
 
   init(
     serverUrl,

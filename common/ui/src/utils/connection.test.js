@@ -7,6 +7,7 @@ import WebSocket from 'ws'
 import { sleep } from '../tests'
 const {
   closeConnection,
+  enhanceUrl,
   fromServerEvent,
   initConnection,
   invoke,
@@ -19,10 +20,11 @@ describe('connection utilities', () => {
   let serverUrl
   let errorSpy
   let handleLostConnection
-  let getAuthDetails
+  let handleUpgrade
   const webSocketSave = window.WebSocket
   const totp = faker.datatype.number({ min: 100000, max: 999999 }).toString()
-  const delayed = 'delay'
+  const token = faker.datatype.uuid()
+  const settings = { folders: [faker.system.directoryPath()] }
 
   function setServerResponse(handleMessage) {
     server.on('connection', client => {
@@ -35,41 +37,44 @@ describe('connection utilities', () => {
     })
   }
 
+  function setServerUpgrade(handleUpgrade) {
+    const messageByCode = {
+      401: 'Unauthorized',
+      403: 'Forbidden'
+    }
+    server._server.removeAllListeners('upgrade')
+    server._server.on('upgrade', async (request, socket, head) => {
+      const code = await handleUpgrade(
+        Object.fromEntries(
+          new URL(request.url, 'http://localhost').searchParams.entries()
+        )
+      )
+      if (code) {
+        socket.write(`HTTP/1.1 ${code} ${messageByCode[code]}'}\r\n\r\n`)
+        socket.destroy()
+      } else {
+        server.handleUpgrade(request, socket, head, ws =>
+          server.emit('connection', ws, request)
+        )
+      }
+    })
+  }
+
   beforeEach(async () => {
     jest.resetAllMocks()
     window.WebSocket = webSocketSave
     errorSpy = jest.spyOn(console, 'error').mockImplementation(() => {})
     handleLostConnection = jest.fn()
-    getAuthDetails = jest.fn().mockResolvedValue(totp)
     server = new WebSocket.Server({ port: 0 })
+    handleUpgrade = jest.fn().mockResolvedValue(null)
     await new Promise((resolve, reject) => {
       server.on('error', reject)
       server.on('listening', resolve)
     })
-    server._server.removeAllListeners('upgrade')
-    server._server.on('upgrade', (request, socket, head) => {
-      const totpValue = new URL(
-        request.url,
-        'http://localhost'
-      ).searchParams.get('totp')
-
-      if (totpValue === totp || totpValue === delayed) {
-        setTimeout(
-          () => {
-            server.handleUpgrade(request, socket, head, ws =>
-              server.emit('connection', ws, request)
-            )
-          },
-          totpValue === delayed ? 8000 : 0
-        )
-      } else {
-        socket.write(
-          `HTTP/1.1 40${totpValue ? '3 Forbidden' : '1 Unauthorized'}\r\n\r\n`
-        )
-        socket.destroy()
-      }
-    })
+    server.on('connection', ws => ws.send(JSON.stringify({ token, settings })))
+    setServerUpgrade(handleUpgrade)
     serverUrl = `ws://localhost:${server.address().port}/ws`
+    localStorage.clear()
   })
 
   afterEach(() => {
@@ -80,12 +85,24 @@ describe('connection utilities', () => {
     server.close()
   })
 
+  it('returns null when enhancing falsy url', () => {
+    expect(enhanceUrl()).toBeNull()
+    expect(enhanceUrl(null)).toBeNull()
+    expect(enhanceUrl(false)).toBeNull()
+    expect(enhanceUrl(0)).toBeNull()
+  })
+
+  it('returns null when enhancing url without connection', () => {
+    expect(enhanceUrl('/media/1')).toBeNull()
+  })
+
   it('connects to WebSocket server and can disconnect', async () => {
     const connection = new Promise(resolve => server.on('connection', resolve))
-    expect(
-      await initConnection(serverUrl, handleLostConnection, getAuthDetails)
-    ).toBe(true)
+    expect(await initConnection(serverUrl, totp, handleLostConnection)).toEqual(
+      settings
+    )
     const client = await connection
+    expect(localStorage.getItem('token')).toEqual(token)
 
     const closure = new Promise(resolve => client.on('close', resolve))
     closeConnection()
@@ -95,24 +112,44 @@ describe('connection utilities', () => {
     expect(get(lastInvokation)).toBeUndefined()
   })
 
+  it('connects to WebSocket server with Totp', async () => {
+    await initConnection(serverUrl, totp, handleLostConnection)
+    expect(handleUpgrade).toHaveBeenCalledWith({ totp })
+    expect(localStorage.getItem('token')).toEqual(token)
+  })
+
+  it('connects to WebSocket server with token', async () => {
+    localStorage.setItem('token', token)
+    await initConnection(serverUrl, null, handleLostConnection)
+    expect(handleUpgrade).toHaveBeenCalledWith({ token })
+    expect(localStorage.getItem('token')).toEqual(token)
+  })
+
+  it('connects to WebSocket server with token and Totp', async () => {
+    localStorage.setItem('token', token)
+    await initConnection(serverUrl, totp, handleLostConnection)
+    expect(handleUpgrade).toHaveBeenCalledWith({ token, totp })
+    expect(localStorage.getItem('token')).toEqual(token)
+  })
+
   it('throws when initializing connection twice', async () => {
-    expect(
-      await initConnection(serverUrl, handleLostConnection, getAuthDetails)
-    ).toBe(true)
+    expect(await initConnection(serverUrl, totp, handleLostConnection)).toEqual(
+      settings
+    )
     await expect(
-      initConnection(serverUrl, handleLostConnection, getAuthDetails)
+      initConnection(serverUrl, totp, handleLostConnection)
     ).rejects.toThrow(/connection already established, close it first/)
     expect(errorSpy).not.toHaveBeenCalled()
     expect(handleLostConnection).not.toHaveBeenCalled()
   })
 
-  it('invokes callback on initial connection error', async () => {
+  it('invokes error callback when server throws an error', async () => {
     window.WebSocket = function () {
       throw new Error('boom!')
     }
     expect(
-      await initConnection(serverUrl, handleLostConnection, getAuthDetails)
-    ).toBe(false)
+      await initConnection(serverUrl, totp, handleLostConnection)
+    ).toBeNull()
     expect(errorSpy).not.toHaveBeenCalled()
     expect(handleLostConnection).toHaveBeenCalledTimes(1)
     expect(handleLostConnection).toHaveBeenCalledWith(
@@ -120,11 +157,11 @@ describe('connection utilities', () => {
     )
   })
 
-  it('invokes callback on unavailable server', async () => {
+  it('invokes error callback when connecting to unavailable server', async () => {
     server.close()
     expect(
-      await initConnection(serverUrl, handleLostConnection, getAuthDetails)
-    ).toBe(false)
+      await initConnection(serverUrl, totp, handleLostConnection)
+    ).toBeNull()
     expect(errorSpy).not.toHaveBeenCalled()
     expect(handleLostConnection).toHaveBeenCalledTimes(1)
     expect(handleLostConnection).toHaveBeenCalledWith(
@@ -132,11 +169,11 @@ describe('connection utilities', () => {
     )
   })
 
-  it('invokes callback on denied connection for invalid TOTP', async () => {
-    getAuthDetails.mockResolvedValueOnce('invalid')
+  it('invokes error callback when connecting with invalid TOTP', async () => {
+    setServerUpgrade(() => 401)
     expect(
-      await initConnection(serverUrl, handleLostConnection, getAuthDetails)
-    ).toBe(false)
+      await initConnection(serverUrl, totp, handleLostConnection)
+    ).toBeNull()
     expect(errorSpy).not.toHaveBeenCalled()
     expect(handleLostConnection).toHaveBeenCalledTimes(1)
     expect(handleLostConnection).toHaveBeenCalledWith(
@@ -144,134 +181,42 @@ describe('connection utilities', () => {
     )
   })
 
-  it('throws when server denied connection for missing TOTP', async () => {
-    getAuthDetails.mockResolvedValueOnce()
+  it('invokes error callback when failing to receive token from server', async () => {
+    const data = 'unparseable'
+    const error = new Error(
+      'Failed to receive token from server: Unexpected token u in JSON at position 0'
+    )
+    server.removeAllListeners('connection')
+    server.on('connection', ws => ws.send(data))
     expect(
-      await initConnection(serverUrl, handleLostConnection, getAuthDetails)
-    ).toBe(false)
+      await initConnection(serverUrl, totp, handleLostConnection)
+    ).toBeNull()
+    expect(errorSpy).toHaveBeenCalledTimes(1)
+    expect(errorSpy).toHaveBeenCalledWith(error, data)
+    expect(handleLostConnection).toHaveBeenCalledWith(error)
+  })
+
+  it('invokes error callback when server denied connection for missing TOTP', async () => {
+    setServerUpgrade(() => 403)
+    expect(
+      await initConnection(serverUrl, totp, handleLostConnection)
+    ).toBeNull()
     expect(errorSpy).not.toHaveBeenCalled()
     expect(handleLostConnection).toHaveBeenCalledWith(
       new Error('failed to establish connection')
     )
   })
 
-  it('throws after some time on unresponsive server', async () => {
-    getAuthDetails.mockResolvedValueOnce(delayed)
+  it('invokes error callback after some time on unresponsive server', async () => {
+    setServerUpgrade(() => sleep(8000))
     expect(
-      await initConnection(serverUrl, handleLostConnection, getAuthDetails)
-    ).toBe(false)
+      await initConnection(serverUrl, totp, handleLostConnection)
+    ).toBeNull()
     expect(errorSpy).not.toHaveBeenCalled()
     expect(handleLostConnection).toHaveBeenCalledWith(
       new Error('failed to establish connection: timeout')
     )
-  }, 10000)
-
-  it('can invoke a service function', async () => {
-    const result = { foo: faker.random.word() }
-    const handleMessage = jest.fn().mockResolvedValueOnce({ result })
-    setServerResponse(handleMessage)
-
-    const invoked = 'media.triggerArtistsEnrichment'
-    const args = faker.random.arrayElements()
-    expect(
-      await initConnection(serverUrl, handleLostConnection, getAuthDetails)
-    ).toBe(true)
-    expect(get(lastInvokation)).toBeUndefined()
-    expect(await invoke(invoked, ...args)).toEqual(result)
-    expect(get(lastInvokation)).toEqual({
-      invoked,
-      args,
-      id: expect.any(String)
-    })
-    expect(handleMessage).toHaveBeenCalledWith({
-      invoked,
-      args,
-      id: expect.any(String)
-    })
-    expect(handleMessage).toHaveBeenCalledTimes(1)
-    expect(errorSpy).not.toHaveBeenCalled()
-    expect(handleLostConnection).not.toHaveBeenCalled()
-  })
-
-  it('supports a service function with no results', async () => {
-    const handleMessage = jest.fn().mockResolvedValueOnce({})
-    setServerResponse(handleMessage)
-
-    const invoked = 'media.triggerArtistsEnrichment'
-    const args = faker.random.arrayElements()
-    expect(
-      await initConnection(serverUrl, handleLostConnection, getAuthDetails)
-    ).toBe(true)
-    expect(await invoke(invoked, ...args)).toBeUndefined()
-    expect(handleMessage).toHaveBeenCalledWith({
-      invoked,
-      args,
-      id: expect.any(String)
-    })
-    expect(handleMessage).toHaveBeenCalledTimes(1)
-    expect(errorSpy).not.toHaveBeenCalled()
-    expect(handleLostConnection).not.toHaveBeenCalled()
-  })
-
-  it('supports a service function throwing error', async () => {
-    const error = 'boom!'
-    const handleMessage = jest.fn().mockResolvedValueOnce({ error })
-    setServerResponse(handleMessage)
-
-    const invoked = 'media.triggerArtistsEnrichment'
-    const args = faker.random.arrayElements()
-    expect(
-      await initConnection(serverUrl, handleLostConnection, getAuthDetails)
-    ).toBe(true)
-    await expect(invoke(invoked, ...args)).rejects.toThrow(error)
-    expect(handleMessage).toHaveBeenCalledWith({
-      invoked,
-      args,
-      id: expect.any(String)
-    })
-    expect(handleMessage).toHaveBeenCalledTimes(1)
-    expect(errorSpy).not.toHaveBeenCalled()
-    expect(handleLostConnection).not.toHaveBeenCalled()
-  })
-
-  it('does not mix parallel calls', async () => {
-    const args1 = [1]
-    const args2 = [2]
-    const result1 = { foo: 'result 1' }
-    const result2 = { foo: 'result 2' }
-    const handleMessage = jest.fn().mockImplementation(async ({ args }) => {
-      if (args[0] === args1[0]) {
-        await sleep(10)
-        return { result: result1 }
-      } else {
-        return { result: result2 }
-      }
-    })
-
-    setServerResponse(handleMessage)
-
-    const invoked = 'media.triggerArtistsEnrichment'
-    expect(
-      await initConnection(serverUrl, handleLostConnection, getAuthDetails)
-    ).toBe(true)
-
-    const call1 = invoke(invoked, ...args1)
-    const call2 = invoke(invoked, ...args2)
-    expect(await Promise.all([call1, call2])).toEqual([result1, result2])
-    expect(handleMessage).toHaveBeenNthCalledWith(1, {
-      invoked,
-      args: args1,
-      id: expect.any(String)
-    })
-    expect(handleMessage).toHaveBeenNthCalledWith(2, {
-      invoked,
-      args: args2,
-      id: expect.any(String)
-    })
-    expect(handleMessage).toHaveBeenCalledTimes(2)
-    expect(errorSpy).not.toHaveBeenCalled()
-    expect(handleLostConnection).not.toHaveBeenCalled()
-  })
+  }, 3000)
 
   it('throws an error when invoking function without connection', async () => {
     await expect(invoke('media.test')).rejects.toThrow(
@@ -279,6 +224,28 @@ describe('connection utilities', () => {
     )
     expect(errorSpy).not.toHaveBeenCalled()
     expect(handleLostConnection).not.toHaveBeenCalled()
+  })
+
+  it('throws error when sending data without a connection', async () => {
+    expect(() => send('test')).toThrowError(
+      new Error(`unestablished connection, call initConnection() first`)
+    )
+  })
+
+  it('can skip throwing error when sending data without a connection', async () => {
+    expect(() => send('test', false)).not.toThrow()
+  })
+
+  it('closes and invokes callback on connection lost', async () => {
+    await initConnection(serverUrl, totp, handleLostConnection)
+    expect(handleLostConnection).not.toHaveBeenCalled()
+
+    for (const ws of server.clients) {
+      ws.terminate()
+    }
+    await sleep(10)
+    expect(handleLostConnection).toHaveBeenCalled()
+    expect(errorSpy).not.toHaveBeenCalled()
   })
 
   it('can receive server events', async () => {
@@ -290,9 +257,7 @@ describe('connection utilities', () => {
     server.on('connection', client => {
       ws = client
     })
-    expect(
-      await initConnection(serverUrl, handleLostConnection, getAuthDetails)
-    ).toBe(true)
+    await initConnection(serverUrl, totp, handleLostConnection)
 
     const fromEvent1 = fromServerEvent(event1)
       .pipe(first(), timeout(delay))
@@ -312,6 +277,22 @@ describe('connection utilities', () => {
     expect(handleLostConnection).not.toHaveBeenCalled()
   })
 
+  it('can receive fresh token', async () => {
+    const newToken = faker.datatype.uuid()
+    let ws
+    server.on('connection', client => {
+      ws = client
+    })
+    await initConnection(serverUrl, totp, handleLostConnection)
+    expect(localStorage.getItem('token')).toEqual(token)
+
+    ws.send(JSON.stringify({ token: newToken }))
+    await sleep()
+    expect(localStorage.getItem('token')).toEqual(newToken)
+    expect(errorSpy).not.toHaveBeenCalled()
+    expect(handleLostConnection).not.toHaveBeenCalled()
+  })
+
   it('warns unsupported message from server', async () => {
     const delay = 10
     const event = faker.random.word()
@@ -321,10 +302,8 @@ describe('connection utilities', () => {
     server.on('connection', client => {
       ws = client
     })
+    await initConnection(serverUrl, totp, handleLostConnection)
 
-    expect(
-      await initConnection(serverUrl, handleLostConnection, getAuthDetails)
-    ).toBe(true)
     const fromEvent = fromServerEvent(event)
       .pipe(first(), timeout(delay))
       .toPromise()
@@ -340,27 +319,111 @@ describe('connection utilities', () => {
     expect(handleLostConnection).not.toHaveBeenCalled()
   })
 
-  it('throws error when sending data without a connection', async () => {
-    expect(() => send('test')).toThrowError(
-      new Error(`unestablished connection, call initConnection() first`)
-    )
-  })
+  describe('given a connection', () => {
+    const handleMessage = jest.fn()
+    beforeEach(async () => {
+      setServerResponse(handleMessage)
+      await initConnection(serverUrl, totp, handleLostConnection)
+    })
 
-  it('can skip throwing error when sending data without a connection', async () => {
-    expect(() => send('test', false)).not.toThrow()
-  })
+    it('can enhance urls', () => {
+      expect(enhanceUrl('/media/1')).toBe(
+        `${serverUrl.replace('ws', 'http')}/media/1?token=${token}`
+      )
+      expect(enhanceUrl('/media?path=test')).toBe(
+        `${serverUrl.replace('ws', 'http')}/media?path=test&token=${token}`
+      )
+    })
 
-  it('closes and invokes callback on connection lost', async () => {
-    expect(
-      await initConnection(serverUrl, handleLostConnection, getAuthDetails)
-    ).toBe(true)
-    expect(handleLostConnection).not.toHaveBeenCalled()
+    it('can invoke a service function', async () => {
+      const result = { foo: faker.random.word() }
+      handleMessage.mockResolvedValueOnce({ result })
+      const invoked = 'media.triggerArtistsEnrichment'
+      const args = faker.random.arrayElements()
+      expect(get(lastInvokation)).toBeUndefined()
+      expect(await invoke(invoked, ...args)).toEqual(result)
+      expect(get(lastInvokation)).toEqual({
+        invoked,
+        args,
+        id: expect.any(String)
+      })
+      expect(handleMessage).toHaveBeenCalledWith({
+        invoked,
+        args,
+        token,
+        id: expect.any(String)
+      })
+      expect(handleMessage).toHaveBeenCalledTimes(1)
+      expect(errorSpy).not.toHaveBeenCalled()
+      expect(handleLostConnection).not.toHaveBeenCalled()
+    })
 
-    for (const ws of server.clients) {
-      ws.terminate()
-    }
-    await sleep(10)
-    expect(handleLostConnection).toHaveBeenCalled()
-    expect(errorSpy).not.toHaveBeenCalled()
+    it('supports a service function with no results', async () => {
+      handleMessage.mockResolvedValueOnce({})
+      const invoked = 'media.triggerArtistsEnrichment'
+      const args = faker.random.arrayElements()
+      expect(await invoke(invoked, ...args)).toBeUndefined()
+      expect(handleMessage).toHaveBeenCalledWith({
+        invoked,
+        args,
+        token,
+        id: expect.any(String)
+      })
+      expect(handleMessage).toHaveBeenCalledTimes(1)
+      expect(errorSpy).not.toHaveBeenCalled()
+      expect(handleLostConnection).not.toHaveBeenCalled()
+    })
+
+    it('supports a service function throwing error', async () => {
+      const error = 'boom!'
+      handleMessage.mockResolvedValueOnce({ error })
+      const invoked = 'media.triggerArtistsEnrichment'
+      const args = faker.random.arrayElements()
+      await expect(invoke(invoked, ...args)).rejects.toThrow(error)
+      expect(handleMessage).toHaveBeenCalledWith({
+        invoked,
+        args,
+        token,
+        id: expect.any(String)
+      })
+      expect(handleMessage).toHaveBeenCalledTimes(1)
+      expect(errorSpy).not.toHaveBeenCalled()
+      expect(handleLostConnection).not.toHaveBeenCalled()
+    })
+
+    it('does not mix parallel calls', async () => {
+      const args1 = [1]
+      const args2 = [2]
+      const result1 = { foo: 'result 1' }
+      const result2 = { foo: 'result 2' }
+      handleMessage.mockImplementation(async ({ args }) => {
+        if (args[0] === args1[0]) {
+          await sleep(10)
+          return { result: result1 }
+        } else {
+          return { result: result2 }
+        }
+      })
+
+      const invoked = 'media.triggerArtistsEnrichment'
+      const call1 = invoke(invoked, ...args1)
+      const call2 = invoke(invoked, ...args2)
+      expect(await Promise.all([call1, call2])).toEqual([result1, result2])
+      expect(handleMessage).toHaveBeenNthCalledWith(1, {
+        invoked,
+        args: args1,
+        token,
+        id: expect.any(String)
+      })
+      expect(handleMessage).toHaveBeenNthCalledWith(2, {
+        invoked,
+        args: args2,
+        token,
+        id: expect.any(String)
+      })
+      expect(handleMessage).toHaveBeenCalledTimes(2)
+      expect(errorSpy).not.toHaveBeenCalled()
+      expect(handleLostConnection).not.toHaveBeenCalled()
+    })
   })
 })
