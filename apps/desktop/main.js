@@ -80,6 +80,7 @@ exports.main = async argv => {
   logger.info(
     {
       levelFile: process.env.LOG_LEVEL_FILE || '.levels',
+      logFile: process.env.LOG_DESTINATION,
       pid: process.pid,
       desiredPort,
       entries
