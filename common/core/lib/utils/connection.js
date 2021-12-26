@@ -99,7 +99,6 @@ exports.initConnection = async function (services, publicFolder, port = 0) {
   exports.messageBus.on('settings-saved', handleSavedSettings)
 
   const period = 30
-  const tokenExpiry = '30m'
 
   const TOTP = new OTPAuth.TOTP({
     issuer: 'Mélodie',
@@ -117,7 +116,7 @@ exports.initConnection = async function (services, publicFolder, port = 0) {
 
     server.register(jwtPlugin, {
       secret: JWTSecret,
-      sign: { algorithm: JWTAlgorithm, expiresIn: tokenExpiry },
+      sign: { algorithm: JWTAlgorithm, expiresIn: `${JWTExpiryInSeconds}s` },
       verify: { algorithms: [JWTAlgorithm] }
     })
 
