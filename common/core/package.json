@@ -18,6 +18,7 @@
     "fastify-static": "^4.4.0",
     "fastify-websocket": "^4.0.0",
     "fs-extra": "^10.0.0",
+    "json-schema": "^0.4.0",
     "got": "^11.8.2",
     "klaw": "^4.0.1",
     "knex": "^0.95.11",
