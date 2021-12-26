@@ -22,7 +22,7 @@
   import * as tutorial from './stores/tutorial'
   import { isLoading } from './stores/loading'
   import { screenSize, SM } from './stores/window'
-  import { connected, isDesktop } from './stores/settings'
+  import { connected, settings, isDesktop } from './stores/settings'
   import { setTotp } from './stores/totp'
   import { invoke, stayAwake, releaseWakeLock } from './utils'
   import { autoScrollable } from './actions'
@@ -42,11 +42,10 @@
     await firstValueFrom(
       connected.pipe(filter(connected => connected === true))
     )
-    const settings = await invoke('settings.get')
-    locale.set(settings.locale)
+    locale.set($settings.locale)
     // await on locale to be set before rendering
     ready = true
-    if (settings.openCount < 20 && !settings.folders.length) {
+    if ($settings.openCount < 20 && !$settings.folders.length) {
       await tick()
       replace('/settings')
       tutorial.start()

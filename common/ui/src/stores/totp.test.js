@@ -30,23 +30,14 @@ describe('totp store', () => {
     expect(get(totp)).toBeNull()
   })
 
-  it('falls back to local storage value when initialized without parameters', async () => {
-    const value = faker.datatype.number({ min: 100000, max: 999999 }).toString()
-    localStorage.setItem('totp', value)
-    await init()
-    expect(get(totp)).toEqual(value)
-  })
-
-  it('can be null with no storage nor parameters', async () => {
-    localStorage.removeItem('totp')
+  it('can be null with no parameters', async () => {
     await init()
     expect(get(totp)).toBeNull()
   })
 
   it('can be changed', async () => {
     const value = faker.datatype.number({ min: 100000, max: 999999 }).toString()
-    localStorage.setItem('totp', 'initial')
-    await init()
+    await init(null, 'initial')
     expect(get(totp)).toEqual('initial')
     setTotp(value)
     expect(get(totp)).toEqual(value)
@@ -93,7 +84,7 @@ describe('totp store', () => {
 
     beforeAll(() => init(null, value))
 
-    it('has constant value, saved in local storage', () => {
+    it('has constant value', () => {
       let now = Date.now()
       expect(get(totp)).toEqual(value)
 
@@ -101,35 +92,16 @@ describe('totp store', () => {
       jest.runOnlyPendingTimers()
 
       expect(get(totp)).toEqual(value)
-      expect(localStorage.getItem('totp')).toEqual(value)
-    })
-
-    it('updates when receiving server value', () => {
-      expect(get(totp)).toEqual(value)
-      expect(localStorage.getItem('totp')).toEqual(value)
-
-      const nextValue = faker.datatype
-        .number({ min: 100000, max: 999999 })
-        .toString()
-      serverTotp.next(nextValue)
-      expect(get(totp)).toEqual(nextValue)
-      expect(localStorage.getItem('totp')).toEqual(nextValue)
-
-      serverTotp.next(value)
-      expect(get(totp)).toEqual(value)
-      expect(localStorage.getItem('totp')).toEqual(value)
     })
 
     it('can be cleaned up', () => {
       expect(get(totp)).toEqual(value)
-      expect(localStorage.getItem('totp')).toEqual(value)
       cleanup()
       expect(get(totp)).toBeNull()
 
       jest.setSystemTime(Date.now() + 30000)
       jest.runOnlyPendingTimers()
       expect(get(totp)).toBeNull()
-      expect(localStorage.getItem('totp')).toBeNull()
     })
   })
 })

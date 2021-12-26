@@ -2,10 +2,8 @@
 
 import * as OTPAuth from 'otpauth'
 import { BehaviorSubject } from 'rxjs'
-import { fromServerEvent } from '../utils/connection'
 
 export const period = 30
-const storageKey = 'totp'
 let generator
 let timeout
 let totp$ = new BehaviorSubject(null)
@@ -34,19 +32,7 @@ export function init(totpSecret, totp = null) {
     totpUrl$.next(generator.toString())
     refresh()
   } else {
-    const stored = localStorage.getItem(storageKey)
-    const serverSubscription = fromServerEvent(storageKey).subscribe(totp$)
-    const storageSubscription = totp$.subscribe({
-      next: value =>
-        value
-          ? localStorage.setItem(storageKey, value)
-          : localStorage.removeItem(storageKey)
-    })
-    unsubscribe = () => {
-      serverSubscription.unsubscribe()
-      storageSubscription.unsubscribe()
-    }
-    totp$.next(totp || stored)
+    totp$.next(totp)
   }
 }
 

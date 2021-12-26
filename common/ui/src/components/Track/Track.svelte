@@ -1,7 +1,7 @@
 <script>
   import Image from '../Image/Image.svelte'
   import TrackDropdown from '../TrackDropdown/TrackDropdown.svelte'
-  import { formatTime, linkTo, wrapWithLink } from '../../utils'
+  import { enhanceUrl, formatTime, linkTo, wrapWithLink } from '../../utils'
 
   export let src
   export let details = false
@@ -33,10 +33,7 @@
 
 <div class={`${$$restProps.class} root`} on:click>
   <a on:click|stopPropagation href={linkTo('album', src.albumRef)}>
-    <Image
-      class="h-16 w-16 text-xs actionable"
-      src={src && src.media ? `${window.dlUrl}${src.media}` : null}
-    />
+    <Image class="h-16 w-16 text-xs actionable" src={enhanceUrl(src?.media)} />
   </a>
   <div class="track">
     <span class="title">{tags.title}</span>

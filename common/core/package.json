@@ -14,6 +14,7 @@
     "fastify": "^3.22.0",
     "fastify-compress": "^3.6.0",
     "fastify-cors": "^6.0.2",
+    "fastify-jwt": "^4.1.1",
     "fastify-static": "^4.4.0",
     "fastify-websocket": "^4.0.0",
     "fs-extra": "^10.0.0",

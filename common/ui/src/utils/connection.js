@@ -5,45 +5,78 @@ import { filter, map, take } from 'rxjs/operators'
 import { nanoid } from 'nanoid'
 
 let ws = null
+let rootUrl = null
+let token = null
+const tokenKey = 'token'
 const messages$ = new BehaviorSubject({})
 const lastInvokation$ = new BehaviorSubject()
 const connectionTimeout = 2000
+
+/**
+ * Enhanced an URL with prefix and security token
+ * @param {string} url? - url to be enhanced
+ * @returns {string|null} - enhenced url, if any
+ */
+export function enhanceUrl(url) {
+  return url && rootUrl
+    ? `${rootUrl}${url}${
+        url.includes('?') ? '&' : '?'
+      }token=${encodeURIComponent(token)}`
+    : null
+}
 
 /**
  * Connects to the server's Websocket.
  * Does nothing if connection is already live.
  * @async
  * @param {string} address            - WebService url to connect to
+ * @param {string} totp               - optional Totp value
  * @param {function} onConnectionLost - function called when connection is lost
- * @param {function} getAuthDetails   - async function called to get authentication details
  * @throws {err} if connection can not been established
  */
-export async function initConnection(
-  address,
-  onConnectionLost,
-  getAuthDetails
-) {
+export async function initConnection(address, totp, onConnectionLost) {
   if (ws && [WebSocket.CONNECTING, WebSocket.OPEN].includes(ws.readyState)) {
     throw new Error(`connection already established, close it first`)
   }
 
-  const totp = await getAuthDetails()
+  let settings = null
+  rootUrl = address.replace('ws', 'http')
   try {
     ws = await new Promise((resolve, reject) => {
       try {
-        const socket = new WebSocket(`${address}/ws?totp=${totp}`)
+        const params = new URLSearchParams(
+          Object.fromEntries(
+            [
+              ['totp', totp],
+              ['token', localStorage.getItem(tokenKey)]
+            ].filter(([, value]) => value)
+          )
+        )
+        const socket = new WebSocket(`${address}/ws?${params.toString()}`)
         const clear = () => {
           clearTimeout(timeout)
           socket.onopen = null
-          socket.onerror = null
         }
-        socket.onopen = () => {
-          clear()
-          resolve(socket)
-        }
+
         socket.onclose = () => {
           clear()
           reject(new Error(`failed to establish connection`))
+        }
+
+        socket.onmessage = ({ data }) => {
+          clear()
+          try {
+            const payload = JSON.parse(data)
+            updateToken(payload.token)
+            settings = payload.settings
+            resolve(socket)
+          } catch (err) {
+            const error = new Error(
+              `Failed to receive token from server: ${err.message}`
+            )
+            console.error(error, data)
+            reject(error)
+          }
         }
         const timeout = setTimeout(() => {
           clear()
@@ -57,7 +90,12 @@ export async function initConnection(
 
     ws.onmessage = ({ data }) => {
       try {
-        messages$.next(JSON.parse(data))
+        const payload = JSON.parse(data)
+        if (payload.token) {
+          updateToken(payload.token)
+        } else {
+          messages$.next(payload)
+        }
       } catch (err) {
         console.error(
           `Failed to read server message: ${err.message}`,
@@ -75,7 +113,12 @@ export async function initConnection(
     closeConnection()
     onConnectionLost(err)
   }
-  return ws !== null
+  return settings
+}
+
+function updateToken(value) {
+  token = value
+  localStorage.setItem(tokenKey, token)
 }
 
 /**
@@ -87,6 +130,7 @@ export function closeConnection() {
     ws.onclose = null
     ws.close()
   }
+  rootUrl = ''
   ws = null
 }
 
@@ -108,7 +152,7 @@ export function send(data, failOnError = true) {
       JSON.stringify(
         data.error
           ? { error: { message: data.error.message, stack: data.error.stack } }
-          : data
+          : { token, ...data }
       )
     ) // TODO use safe-stringify
   }

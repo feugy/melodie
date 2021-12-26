@@ -9,7 +9,12 @@ jest.mock('qrcode', () => ({ default: { toCanvas: jest.fn() } }))
 beforeAll(() => {
   // since utils/connections are mocked in jest-setup.js
   // we implement simplistic behavior to leverage fixtures data from atlier/utils's mockWebsocket()
-  initConnection.mockResolvedValue(true)
+  initConnection.mockResolvedValue({
+    folders: [],
+    providers: { audiodb: {}, discogs: {} },
+    enqueueBehaviour: {},
+    isBroadcasting: false
+  })
   invoke.mockImplementation(
     (invoked, ...args) =>
       new Promise(resolve => {

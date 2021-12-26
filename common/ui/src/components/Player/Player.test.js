@@ -26,7 +26,6 @@ describe('Player component', () => {
   let audioContext
   let observer
   let fetch
-  const dlUrl = faker.internet.url()
 
   function renderPlayer() {
     render(html`<${Player} />`)
@@ -66,7 +65,6 @@ describe('Player component', () => {
     window.AudioContext = function () {
       return audioContext
     }
-    window.dlUrl = dlUrl
 
     load.mockImplementation(function () {
       setTimeout(() => this.dispatchEvent(new Event('loading')), 1)
@@ -93,15 +91,10 @@ describe('Player component', () => {
     add(trackListData)
 
     const audio = renderPlayer()
-    expect(audio).toHaveAttribute(
-      'src',
-      `${window.dlUrl}${trackListData[0].data}`
-    )
+    expect(audio).toHaveAttribute('src', trackListData[0].data)
 
     expect(get(current)).toEqual(trackListData[0])
-    expect(fetch).toHaveBeenCalledWith(
-      `${window.dlUrl}${trackListData[1].data}`
-    )
+    expect(fetch).toHaveBeenCalledWith(trackListData[1].data)
 
     await userEvent.click(await screen.findByText('pause'))
 
@@ -129,15 +122,9 @@ describe('Player component', () => {
     add(trackListData)
 
     renderPlayer()
-    expect(fetch).toHaveBeenNthCalledWith(
-      1,
-      `${window.dlUrl}${trackListData[1].data}`
-    )
+    expect(fetch).toHaveBeenNthCalledWith(1, trackListData[1].data)
     await userEvent.click(screen.getByText('skip_next'))
-    expect(fetch).toHaveBeenNthCalledWith(
-      2,
-      `${window.dlUrl}${trackListData[2].data}`
-    )
+    expect(fetch).toHaveBeenNthCalledWith(2, trackListData[2].data)
 
     expect(get(current)).toEqual(trackListData[1])
     expect(fetch).toHaveBeenCalledTimes(2)
@@ -149,15 +136,9 @@ describe('Player component', () => {
     expect(get(current)).toEqual(trackListData[2])
 
     renderPlayer()
-    expect(fetch).toHaveBeenNthCalledWith(
-      1,
-      `${window.dlUrl}${trackListData[3].data}`
-    )
+    expect(fetch).toHaveBeenNthCalledWith(1, trackListData[3].data)
     await userEvent.click(screen.getByText('skip_previous'))
-    expect(fetch).toHaveBeenNthCalledWith(
-      2,
-      `${window.dlUrl}${trackListData[2].data}`
-    )
+    expect(fetch).toHaveBeenNthCalledWith(2, trackListData[2].data)
 
     expect(get(current)).toEqual(trackListData[1])
     expect(fetch).toHaveBeenCalledTimes(2)

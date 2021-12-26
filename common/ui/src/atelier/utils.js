@@ -5,14 +5,22 @@ import { initConnection, closeConnection } from '../utils'
 let connection
 let disconnected = false
 
-export function mockWebsocket(mock = () => null, autoconnect = true) {
+export function mockWebsocket(
+  mock = () => null,
+  settings = {
+    providers: { audiodb: {}, discogs: {} },
+    enqueueBehaviour: {},
+    isBroadcasting: false
+  },
+  autoconnect = true
+) {
   return async () => {
     closeConnection()
     disconnected = false
     window.WebSocket = function () {
       connection = this
       if (disconnected) {
-        setTimeout(() => this.onerror(new Error('Forced disconnection')), 0)
+        setTimeout(() => this.onclose(new Error('Forced disconnection')), 0)
         return this
       }
       this.send = rawData => {
@@ -22,15 +30,18 @@ export function mockWebsocket(mock = () => null, autoconnect = true) {
         this.onmessage({ data: JSON.stringify({ id, result }) })
       }
       this.close = () => {}
-      setTimeout(() => this.onopen(), 0)
+      setTimeout(
+        () =>
+          this.onmessage?.({
+            data: JSON.stringify({ token: 'test-token', settings })
+          }),
+        0
+      )
       return this
     }
     if (autoconnect) {
-      await initConnection(
-        'unused',
-        () => {},
-        () => ''
-      )
+      // has to be the same port used when starting Atelier
+      await initConnection('ws://localhost:3000/', 'totp', () => {})
     }
   }
 }

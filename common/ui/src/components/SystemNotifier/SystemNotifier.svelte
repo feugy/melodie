@@ -6,7 +6,7 @@
 <script>
   import { onMount } from 'svelte'
   import { _ } from 'svelte-intl'
-  import { invoke } from '../../utils'
+  import { enhanceUrl, invoke } from '../../utils'
   import { current, playPrevious, playNext } from '../../stores/track-queue'
   import { isDesktop } from '../../stores/settings'
 
@@ -28,7 +28,7 @@
       const title = tags.title || unknown
       const album = tags.album || unknown
       trackId = id
-      const icon = media ? `${window.dlUrl}${media}` : null
+      const icon = enhanceUrl(media)
 
       if (!isFocused && supportsNotification) {
         try {

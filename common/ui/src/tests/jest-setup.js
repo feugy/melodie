@@ -37,6 +37,7 @@ jest.mock('../utils/connection', () => {
   const lastInvokation = new Subject()
   const observables = new Map()
   return {
+    enhanceUrl: url => url,
     invoke: jest.fn(),
     // same implementation as real, except the source
     fromServerEvent(name) {
@@ -58,8 +59,6 @@ jest.mock('../utils/connection', () => {
     closeConnection: jest.fn()
   }
 })
-
-window.dlUrl = ''
 
 global.RXJS_VERSION = 'a.b.c'
 global.WINDICSS_VERSION = 'x.y.z'
