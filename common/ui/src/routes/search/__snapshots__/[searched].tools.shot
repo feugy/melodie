@@ -2,7 +2,7 @@
 
 exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`] = `
 <div
-  class="w-99vw svelte-kon93i"
+  class="w-99vw svelte-m2lcci"
 >
   <div>
      
@@ -11,11 +11,11 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
       style="animation: __svelte_185617033_0 200ms linear 0ms 1 both;"
     >
       <header
-        class=" svelte-10ndra7"
+        class=" svelte-1whmh27"
         style="--image: url(../images/anthony-martino-6AtQNsjMoJo-unsplash.jpg); --shade-color: rgba(0, 0, 0, 0.7); --bgPosition: bottom center;"
       >
         <h1
-          class="svelte-10ndra7"
+          class="svelte-1whmh27"
         >
           Results for "Final Fantasy VII"
         </h1>
@@ -23,33 +23,33 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
        
        
       <section
-        class="svelte-1t67qsu"
+        class="svelte-3frkku"
       >
         <span
-          class="undefined tracks svelte-pgngt4"
+          class="undefined tracks svelte-1i39aag"
         >
           <h3
-            class="svelte-pgngt4"
+            class="svelte-1i39aag"
           >
             18 tracks
           </h3>
            
           <ul
-            class="svelte-pgngt4"
+            class="svelte-1i39aag"
           >
             <li
-              class="svelte-pgngt4"
+              class="svelte-1i39aag"
             >
               <div
-                class="undefined root svelte-138dtrj"
+                class="undefined root svelte-8oy723"
               >
                 <a
-                  class="svelte-138dtrj"
+                  class="svelte-8oy723"
                   href="#/album/1"
                 >
                   <img
                     alt="./cover.jpg"
-                    class="h-16 w-16 text-xs actionable rounded-sm svelte-1oz3k7v"
+                    class="h-16 w-16 text-xs actionable rounded-sm svelte-1u4ypdz"
                     height="256"
                     loading="lazy"
                     src="./cover.jpg"
@@ -60,10 +60,10 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                 </a>
                  
                 <div
-                  class="track svelte-138dtrj"
+                  class="track svelte-8oy723"
                 >
                   <span
-                    class="title svelte-138dtrj"
+                    class="title svelte-8oy723"
                   >
                     American Money
                   </span>
@@ -91,13 +91,13 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                 <span
                   aria-expanded="false"
                   aria-haspopup="menu"
-                  class="wrapper svelte-1g0595r"
+                  class="wrapper svelte-1v2cnbz"
                 >
                   <button
-                    class="iconOnly noBorder svelte-11qpkf0"
+                    class="iconOnly noBorder svelte-xh4kfu"
                   >
                     <i
-                      class="material-icons svelte-11qpkf0"
+                      class="material-icons svelte-xh4kfu"
                     >
                       more_vert
                     </i>
@@ -113,27 +113,27 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                
             </li>
             <li
-              class="svelte-pgngt4"
+              class="svelte-1i39aag"
             >
               <div
-                class="undefined root svelte-138dtrj"
+                class="undefined root svelte-8oy723"
               >
                 <a
-                  class="svelte-138dtrj"
+                  class="svelte-8oy723"
                   href="#/album/1"
                 >
                   <img
-                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1oz3k7v"
+                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1u4ypdz"
                     height="256"
                     loading="lazy"
                     width="256"
                   />
                    
                   <span
-                    class="h-16 w-16 text-xs actionable svelte-1oz3k7v rounded-sm"
+                    class="h-16 w-16 text-xs actionable svelte-1u4ypdz rounded-sm"
                   >
                     <i
-                      class="material-icons svelte-1oz3k7v"
+                      class="material-icons svelte-1u4ypdz"
                     >
                       music_note
                     </i>
@@ -142,10 +142,10 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                 </a>
                  
                 <div
-                  class="track svelte-138dtrj"
+                  class="track svelte-8oy723"
                 >
                   <span
-                    class="title svelte-138dtrj"
+                    class="title svelte-8oy723"
                   >
                     Bindy
                   </span>
@@ -173,13 +173,13 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                 <span
                   aria-expanded="false"
                   aria-haspopup="menu"
-                  class="wrapper svelte-1g0595r"
+                  class="wrapper svelte-1v2cnbz"
                 >
                   <button
-                    class="iconOnly noBorder svelte-11qpkf0"
+                    class="iconOnly noBorder svelte-xh4kfu"
                   >
                     <i
-                      class="material-icons svelte-11qpkf0"
+                      class="material-icons svelte-xh4kfu"
                     >
                       more_vert
                     </i>
@@ -195,27 +195,27 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                
             </li>
             <li
-              class="svelte-pgngt4"
+              class="svelte-1i39aag"
             >
               <div
-                class="undefined root svelte-138dtrj"
+                class="undefined root svelte-8oy723"
               >
                 <a
-                  class="svelte-138dtrj"
+                  class="svelte-8oy723"
                   href="#/album/1"
                 >
                   <img
-                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1oz3k7v"
+                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1u4ypdz"
                     height="256"
                     loading="lazy"
                     width="256"
                   />
                    
                   <span
-                    class="h-16 w-16 text-xs actionable svelte-1oz3k7v rounded-sm"
+                    class="h-16 w-16 text-xs actionable svelte-1u4ypdz rounded-sm"
                   >
                     <i
-                      class="material-icons svelte-1oz3k7v"
+                      class="material-icons svelte-1u4ypdz"
                     >
                       music_note
                     </i>
@@ -224,10 +224,10 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                 </a>
                  
                 <div
-                  class="track svelte-138dtrj"
+                  class="track svelte-8oy723"
                 >
                   <span
-                    class="title svelte-138dtrj"
+                    class="title svelte-8oy723"
                   >
                     Cats on Mars
                   </span>
@@ -255,13 +255,13 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                 <span
                   aria-expanded="false"
                   aria-haspopup="menu"
-                  class="wrapper svelte-1g0595r"
+                  class="wrapper svelte-1v2cnbz"
                 >
                   <button
-                    class="iconOnly noBorder svelte-11qpkf0"
+                    class="iconOnly noBorder svelte-xh4kfu"
                   >
                     <i
-                      class="material-icons svelte-11qpkf0"
+                      class="material-icons svelte-xh4kfu"
                     >
                       more_vert
                     </i>
@@ -277,18 +277,18 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                
             </li>
             <li
-              class="svelte-pgngt4"
+              class="svelte-1i39aag"
             >
               <div
-                class="undefined root svelte-138dtrj"
+                class="undefined root svelte-8oy723"
               >
                 <a
-                  class="svelte-138dtrj"
+                  class="svelte-8oy723"
                   href="#/album/1"
                 >
                   <img
                     alt="./cover.jpg"
-                    class="h-16 w-16 text-xs actionable rounded-sm svelte-1oz3k7v"
+                    class="h-16 w-16 text-xs actionable rounded-sm svelte-1u4ypdz"
                     height="256"
                     loading="lazy"
                     src="./cover.jpg"
@@ -299,10 +299,10 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                 </a>
                  
                 <div
-                  class="track svelte-138dtrj"
+                  class="track svelte-8oy723"
                 >
                   <span
-                    class="title svelte-138dtrj"
+                    class="title svelte-8oy723"
                   >
                     Don't Bother None
                   </span>
@@ -330,13 +330,13 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                 <span
                   aria-expanded="false"
                   aria-haspopup="menu"
-                  class="wrapper svelte-1g0595r"
+                  class="wrapper svelte-1v2cnbz"
                 >
                   <button
-                    class="iconOnly noBorder svelte-11qpkf0"
+                    class="iconOnly noBorder svelte-xh4kfu"
                   >
                     <i
-                      class="material-icons svelte-11qpkf0"
+                      class="material-icons svelte-xh4kfu"
                     >
                       more_vert
                     </i>
@@ -352,27 +352,27 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                
             </li>
             <li
-              class="svelte-pgngt4"
+              class="svelte-1i39aag"
             >
               <div
-                class="undefined root svelte-138dtrj"
+                class="undefined root svelte-8oy723"
               >
                 <a
-                  class="svelte-138dtrj"
+                  class="svelte-8oy723"
                   href="#/album/1"
                 >
                   <img
-                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1oz3k7v"
+                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1u4ypdz"
                     height="256"
                     loading="lazy"
                     width="256"
                   />
                    
                   <span
-                    class="h-16 w-16 text-xs actionable svelte-1oz3k7v rounded-sm"
+                    class="h-16 w-16 text-xs actionable svelte-1u4ypdz rounded-sm"
                   >
                     <i
-                      class="material-icons svelte-1oz3k7v"
+                      class="material-icons svelte-1u4ypdz"
                     >
                       music_note
                     </i>
@@ -381,10 +381,10 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                 </a>
                  
                 <div
-                  class="track svelte-138dtrj"
+                  class="track svelte-8oy723"
                 >
                   <span
-                    class="title svelte-138dtrj"
+                    class="title svelte-8oy723"
                   >
                     ELM
                   </span>
@@ -412,13 +412,13 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                 <span
                   aria-expanded="false"
                   aria-haspopup="menu"
-                  class="wrapper svelte-1g0595r"
+                  class="wrapper svelte-1v2cnbz"
                 >
                   <button
-                    class="iconOnly noBorder svelte-11qpkf0"
+                    class="iconOnly noBorder svelte-xh4kfu"
                   >
                     <i
-                      class="material-icons svelte-11qpkf0"
+                      class="material-icons svelte-xh4kfu"
                     >
                       more_vert
                     </i>
@@ -434,18 +434,18 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                
             </li>
             <li
-              class="svelte-pgngt4"
+              class="svelte-1i39aag"
             >
               <div
-                class="undefined root svelte-138dtrj"
+                class="undefined root svelte-8oy723"
               >
                 <a
-                  class="svelte-138dtrj"
+                  class="svelte-8oy723"
                   href="#/album/1"
                 >
                   <img
                     alt="./cover.jpg"
-                    class="h-16 w-16 text-xs actionable rounded-sm svelte-1oz3k7v"
+                    class="h-16 w-16 text-xs actionable rounded-sm svelte-1u4ypdz"
                     height="256"
                     loading="lazy"
                     src="./cover.jpg"
@@ -456,10 +456,10 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                 </a>
                  
                 <div
-                  class="track svelte-138dtrj"
+                  class="track svelte-8oy723"
                 >
                   <span
-                    class="title svelte-138dtrj"
+                    class="title svelte-8oy723"
                   >
                     Fantaisie Sign
                   </span>
@@ -487,13 +487,13 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                 <span
                   aria-expanded="false"
                   aria-haspopup="menu"
-                  class="wrapper svelte-1g0595r"
+                  class="wrapper svelte-1v2cnbz"
                 >
                   <button
-                    class="iconOnly noBorder svelte-11qpkf0"
+                    class="iconOnly noBorder svelte-xh4kfu"
                   >
                     <i
-                      class="material-icons svelte-11qpkf0"
+                      class="material-icons svelte-xh4kfu"
                     >
                       more_vert
                     </i>
@@ -509,27 +509,27 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                
             </li>
             <li
-              class="svelte-pgngt4"
+              class="svelte-1i39aag"
             >
               <div
-                class="undefined root svelte-138dtrj"
+                class="undefined root svelte-8oy723"
               >
                 <a
-                  class="svelte-138dtrj"
+                  class="svelte-8oy723"
                   href="#/album/1"
                 >
                   <img
-                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1oz3k7v"
+                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1u4ypdz"
                     height="256"
                     loading="lazy"
                     width="256"
                   />
                    
                   <span
-                    class="h-16 w-16 text-xs actionable svelte-1oz3k7v rounded-sm"
+                    class="h-16 w-16 text-xs actionable svelte-1u4ypdz rounded-sm"
                   >
                     <i
-                      class="material-icons svelte-1oz3k7v"
+                      class="material-icons svelte-1u4ypdz"
                     >
                       music_note
                     </i>
@@ -538,10 +538,10 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                 </a>
                  
                 <div
-                  class="track svelte-138dtrj"
+                  class="track svelte-8oy723"
                 >
                   <span
-                    class="title svelte-138dtrj"
+                    class="title svelte-8oy723"
                   >
                     Forever Broke
                   </span>
@@ -569,13 +569,13 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                 <span
                   aria-expanded="false"
                   aria-haspopup="menu"
-                  class="wrapper svelte-1g0595r"
+                  class="wrapper svelte-1v2cnbz"
                 >
                   <button
-                    class="iconOnly noBorder svelte-11qpkf0"
+                    class="iconOnly noBorder svelte-xh4kfu"
                   >
                     <i
-                      class="material-icons svelte-11qpkf0"
+                      class="material-icons svelte-xh4kfu"
                     >
                       more_vert
                     </i>
@@ -591,27 +591,27 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                
             </li>
             <li
-              class="svelte-pgngt4"
+              class="svelte-1i39aag"
             >
               <div
-                class="undefined root svelte-138dtrj"
+                class="undefined root svelte-8oy723"
               >
                 <a
-                  class="svelte-138dtrj"
+                  class="svelte-8oy723"
                   href="#/album/1"
                 >
                   <img
-                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1oz3k7v"
+                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1u4ypdz"
                     height="256"
                     loading="lazy"
                     width="256"
                   />
                    
                   <span
-                    class="h-16 w-16 text-xs actionable svelte-1oz3k7v rounded-sm"
+                    class="h-16 w-16 text-xs actionable svelte-1u4ypdz rounded-sm"
                   >
                     <i
-                      class="material-icons svelte-1oz3k7v"
+                      class="material-icons svelte-1u4ypdz"
                     >
                       music_note
                     </i>
@@ -620,10 +620,10 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                 </a>
                  
                 <div
-                  class="track svelte-138dtrj"
+                  class="track svelte-8oy723"
                 >
                   <span
-                    class="title svelte-138dtrj"
+                    class="title svelte-8oy723"
                   >
                     Gateway
                   </span>
@@ -651,13 +651,13 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                 <span
                   aria-expanded="false"
                   aria-haspopup="menu"
-                  class="wrapper svelte-1g0595r"
+                  class="wrapper svelte-1v2cnbz"
                 >
                   <button
-                    class="iconOnly noBorder svelte-11qpkf0"
+                    class="iconOnly noBorder svelte-xh4kfu"
                   >
                     <i
-                      class="material-icons svelte-11qpkf0"
+                      class="material-icons svelte-xh4kfu"
                     >
                       more_vert
                     </i>
@@ -673,27 +673,27 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                
             </li>
             <li
-              class="svelte-pgngt4"
+              class="svelte-1i39aag"
             >
               <div
-                class="undefined root svelte-138dtrj"
+                class="undefined root svelte-8oy723"
               >
                 <a
-                  class="svelte-138dtrj"
+                  class="svelte-8oy723"
                   href="#/album/1"
                 >
                   <img
-                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1oz3k7v"
+                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1u4ypdz"
                     height="256"
                     loading="lazy"
                     width="256"
                   />
                    
                   <span
-                    class="h-16 w-16 text-xs actionable svelte-1oz3k7v rounded-sm"
+                    class="h-16 w-16 text-xs actionable svelte-1u4ypdz rounded-sm"
                   >
                     <i
-                      class="material-icons svelte-1oz3k7v"
+                      class="material-icons svelte-1u4ypdz"
                     >
                       music_note
                     </i>
@@ -702,10 +702,10 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                 </a>
                  
                 <div
-                  class="track svelte-138dtrj"
+                  class="track svelte-8oy723"
                 >
                   <span
-                    class="title svelte-138dtrj"
+                    class="title svelte-8oy723"
                   >
                     Green Bird
                   </span>
@@ -733,13 +733,13 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                 <span
                   aria-expanded="false"
                   aria-haspopup="menu"
-                  class="wrapper svelte-1g0595r"
+                  class="wrapper svelte-1v2cnbz"
                 >
                   <button
-                    class="iconOnly noBorder svelte-11qpkf0"
+                    class="iconOnly noBorder svelte-xh4kfu"
                   >
                     <i
-                      class="material-icons svelte-11qpkf0"
+                      class="material-icons svelte-xh4kfu"
                     >
                       more_vert
                     </i>
@@ -755,27 +755,27 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                
             </li>
             <li
-              class="svelte-pgngt4"
+              class="svelte-1i39aag"
             >
               <div
-                class="undefined root svelte-138dtrj"
+                class="undefined root svelte-8oy723"
               >
                 <a
-                  class="svelte-138dtrj"
+                  class="svelte-8oy723"
                   href="#/album/1"
                 >
                   <img
-                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1oz3k7v"
+                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1u4ypdz"
                     height="256"
                     loading="lazy"
                     width="256"
                   />
                    
                   <span
-                    class="h-16 w-16 text-xs actionable svelte-1oz3k7v rounded-sm"
+                    class="h-16 w-16 text-xs actionable svelte-1u4ypdz rounded-sm"
                   >
                     <i
-                      class="material-icons svelte-1oz3k7v"
+                      class="material-icons svelte-1u4ypdz"
                     >
                       music_note
                     </i>
@@ -784,10 +784,10 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                 </a>
                  
                 <div
-                  class="track svelte-138dtrj"
+                  class="track svelte-8oy723"
                 >
                   <span
-                    class="title svelte-138dtrj"
+                    class="title svelte-8oy723"
                   >
                     LIVE in Baghdad
                   </span>
@@ -815,13 +815,13 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                 <span
                   aria-expanded="false"
                   aria-haspopup="menu"
-                  class="wrapper svelte-1g0595r"
+                  class="wrapper svelte-1v2cnbz"
                 >
                   <button
-                    class="iconOnly noBorder svelte-11qpkf0"
+                    class="iconOnly noBorder svelte-xh4kfu"
                   >
                     <i
-                      class="material-icons svelte-11qpkf0"
+                      class="material-icons svelte-xh4kfu"
                     >
                       more_vert
                     </i>
@@ -837,27 +837,27 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                
             </li>
             <li
-              class="svelte-pgngt4"
+              class="svelte-1i39aag"
             >
               <div
-                class="undefined root svelte-138dtrj"
+                class="undefined root svelte-8oy723"
               >
                 <a
-                  class="svelte-138dtrj"
+                  class="svelte-8oy723"
                   href="#/album/1"
                 >
                   <img
-                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1oz3k7v"
+                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1u4ypdz"
                     height="256"
                     loading="lazy"
                     width="256"
                   />
                    
                   <span
-                    class="h-16 w-16 text-xs actionable svelte-1oz3k7v rounded-sm"
+                    class="h-16 w-16 text-xs actionable svelte-1u4ypdz rounded-sm"
                   >
                     <i
-                      class="material-icons svelte-1oz3k7v"
+                      class="material-icons svelte-1u4ypdz"
                     >
                       music_note
                     </i>
@@ -866,10 +866,10 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                 </a>
                  
                 <div
-                  class="track svelte-138dtrj"
+                  class="track svelte-8oy723"
                 >
                   <span
-                    class="title svelte-138dtrj"
+                    class="title svelte-8oy723"
                   >
                     Power of Kungfu Remix
                   </span>
@@ -897,13 +897,13 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                 <span
                   aria-expanded="false"
                   aria-haspopup="menu"
-                  class="wrapper svelte-1g0595r"
+                  class="wrapper svelte-1v2cnbz"
                 >
                   <button
-                    class="iconOnly noBorder svelte-11qpkf0"
+                    class="iconOnly noBorder svelte-xh4kfu"
                   >
                     <i
-                      class="material-icons svelte-11qpkf0"
+                      class="material-icons svelte-xh4kfu"
                     >
                       more_vert
                     </i>
@@ -919,27 +919,27 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                
             </li>
             <li
-              class="svelte-pgngt4"
+              class="svelte-1i39aag"
             >
               <div
-                class="undefined root svelte-138dtrj"
+                class="undefined root svelte-8oy723"
               >
                 <a
-                  class="svelte-138dtrj"
+                  class="svelte-8oy723"
                   href="#/album/1"
                 >
                   <img
-                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1oz3k7v"
+                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1u4ypdz"
                     height="256"
                     loading="lazy"
                     width="256"
                   />
                    
                   <span
-                    class="h-16 w-16 text-xs actionable svelte-1oz3k7v rounded-sm"
+                    class="h-16 w-16 text-xs actionable svelte-1u4ypdz rounded-sm"
                   >
                     <i
-                      class="material-icons svelte-1oz3k7v"
+                      class="material-icons svelte-1u4ypdz"
                     >
                       music_note
                     </i>
@@ -948,10 +948,10 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                 </a>
                  
                 <div
-                  class="track svelte-138dtrj"
+                  class="track svelte-8oy723"
                 >
                   <span
-                    class="title svelte-138dtrj"
+                    class="title svelte-8oy723"
                   >
                     The Egg and You!
                   </span>
@@ -979,13 +979,13 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                 <span
                   aria-expanded="false"
                   aria-haspopup="menu"
-                  class="wrapper svelte-1g0595r"
+                  class="wrapper svelte-1v2cnbz"
                 >
                   <button
-                    class="iconOnly noBorder svelte-11qpkf0"
+                    class="iconOnly noBorder svelte-xh4kfu"
                   >
                     <i
-                      class="material-icons svelte-11qpkf0"
+                      class="material-icons svelte-xh4kfu"
                     >
                       more_vert
                     </i>
@@ -1001,27 +1001,27 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                
             </li>
             <li
-              class="svelte-pgngt4"
+              class="svelte-1i39aag"
             >
               <div
-                class="undefined root svelte-138dtrj"
+                class="undefined root svelte-8oy723"
               >
                 <a
-                  class="svelte-138dtrj"
+                  class="svelte-8oy723"
                   href="#/album/1"
                 >
                   <img
-                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1oz3k7v"
+                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1u4ypdz"
                     height="256"
                     loading="lazy"
                     width="256"
                   />
                    
                   <span
-                    class="h-16 w-16 text-xs actionable svelte-1oz3k7v rounded-sm"
+                    class="h-16 w-16 text-xs actionable svelte-1u4ypdz rounded-sm"
                   >
                     <i
-                      class="material-icons svelte-1oz3k7v"
+                      class="material-icons svelte-1u4ypdz"
                     >
                       music_note
                     </i>
@@ -1030,10 +1030,10 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                 </a>
                  
                 <div
-                  class="track svelte-138dtrj"
+                  class="track svelte-8oy723"
                 >
                   <span
-                    class="title svelte-138dtrj"
+                    class="title svelte-8oy723"
                   >
                     The Singing Sea
                   </span>
@@ -1061,13 +1061,13 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                 <span
                   aria-expanded="false"
                   aria-haspopup="menu"
-                  class="wrapper svelte-1g0595r"
+                  class="wrapper svelte-1v2cnbz"
                 >
                   <button
-                    class="iconOnly noBorder svelte-11qpkf0"
+                    class="iconOnly noBorder svelte-xh4kfu"
                   >
                     <i
-                      class="material-icons svelte-11qpkf0"
+                      class="material-icons svelte-xh4kfu"
                     >
                       more_vert
                     </i>
@@ -1083,27 +1083,27 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                
             </li>
             <li
-              class="svelte-pgngt4"
+              class="svelte-1i39aag"
             >
               <div
-                class="undefined root svelte-138dtrj"
+                class="undefined root svelte-8oy723"
               >
                 <a
-                  class="svelte-138dtrj"
+                  class="svelte-8oy723"
                   href="#/album/1"
                 >
                   <img
-                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1oz3k7v"
+                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1u4ypdz"
                     height="256"
                     loading="lazy"
                     width="256"
                   />
                    
                   <span
-                    class="h-16 w-16 text-xs actionable svelte-1oz3k7v rounded-sm"
+                    class="h-16 w-16 text-xs actionable svelte-1u4ypdz rounded-sm"
                   >
                     <i
-                      class="material-icons svelte-1oz3k7v"
+                      class="material-icons svelte-1u4ypdz"
                     >
                       music_note
                     </i>
@@ -1112,10 +1112,10 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                 </a>
                  
                 <div
-                  class="track svelte-138dtrj"
+                  class="track svelte-8oy723"
                 >
                   <span
-                    class="title svelte-138dtrj"
+                    class="title svelte-8oy723"
                   >
                     Vitamin A
                   </span>
@@ -1143,13 +1143,13 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                 <span
                   aria-expanded="false"
                   aria-haspopup="menu"
-                  class="wrapper svelte-1g0595r"
+                  class="wrapper svelte-1v2cnbz"
                 >
                   <button
-                    class="iconOnly noBorder svelte-11qpkf0"
+                    class="iconOnly noBorder svelte-xh4kfu"
                   >
                     <i
-                      class="material-icons svelte-11qpkf0"
+                      class="material-icons svelte-xh4kfu"
                     >
                       more_vert
                     </i>
@@ -1165,27 +1165,27 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                
             </li>
             <li
-              class="svelte-pgngt4"
+              class="svelte-1i39aag"
             >
               <div
-                class="undefined root svelte-138dtrj"
+                class="undefined root svelte-8oy723"
               >
                 <a
-                  class="svelte-138dtrj"
+                  class="svelte-8oy723"
                   href="#/album/1"
                 >
                   <img
-                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1oz3k7v"
+                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1u4ypdz"
                     height="256"
                     loading="lazy"
                     width="256"
                   />
                    
                   <span
-                    class="h-16 w-16 text-xs actionable svelte-1oz3k7v rounded-sm"
+                    class="h-16 w-16 text-xs actionable svelte-1u4ypdz rounded-sm"
                   >
                     <i
-                      class="material-icons svelte-1oz3k7v"
+                      class="material-icons svelte-1u4ypdz"
                     >
                       music_note
                     </i>
@@ -1194,10 +1194,10 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                 </a>
                  
                 <div
-                  class="track svelte-138dtrj"
+                  class="track svelte-8oy723"
                 >
                   <span
-                    class="title svelte-138dtrj"
+                    class="title svelte-8oy723"
                   >
                     Vitamin B
                   </span>
@@ -1225,13 +1225,13 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                 <span
                   aria-expanded="false"
                   aria-haspopup="menu"
-                  class="wrapper svelte-1g0595r"
+                  class="wrapper svelte-1v2cnbz"
                 >
                   <button
-                    class="iconOnly noBorder svelte-11qpkf0"
+                    class="iconOnly noBorder svelte-xh4kfu"
                   >
                     <i
-                      class="material-icons svelte-11qpkf0"
+                      class="material-icons svelte-xh4kfu"
                     >
                       more_vert
                     </i>
@@ -1247,27 +1247,27 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                
             </li>
             <li
-              class="svelte-pgngt4"
+              class="svelte-1i39aag"
             >
               <div
-                class="undefined root svelte-138dtrj"
+                class="undefined root svelte-8oy723"
               >
                 <a
-                  class="svelte-138dtrj"
+                  class="svelte-8oy723"
                   href="#/album/1"
                 >
                   <img
-                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1oz3k7v"
+                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1u4ypdz"
                     height="256"
                     loading="lazy"
                     width="256"
                   />
                    
                   <span
-                    class="h-16 w-16 text-xs actionable svelte-1oz3k7v rounded-sm"
+                    class="h-16 w-16 text-xs actionable svelte-1u4ypdz rounded-sm"
                   >
                     <i
-                      class="material-icons svelte-1oz3k7v"
+                      class="material-icons svelte-1u4ypdz"
                     >
                       music_note
                     </i>
@@ -1276,10 +1276,10 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                 </a>
                  
                 <div
-                  class="track svelte-138dtrj"
+                  class="track svelte-8oy723"
                 >
                   <span
-                    class="title svelte-138dtrj"
+                    class="title svelte-8oy723"
                   >
                     Vitamin C
                   </span>
@@ -1307,13 +1307,13 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                 <span
                   aria-expanded="false"
                   aria-haspopup="menu"
-                  class="wrapper svelte-1g0595r"
+                  class="wrapper svelte-1v2cnbz"
                 >
                   <button
-                    class="iconOnly noBorder svelte-11qpkf0"
+                    class="iconOnly noBorder svelte-xh4kfu"
                   >
                     <i
-                      class="material-icons svelte-11qpkf0"
+                      class="material-icons svelte-xh4kfu"
                     >
                       more_vert
                     </i>
@@ -1329,27 +1329,27 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                
             </li>
             <li
-              class="svelte-pgngt4"
+              class="svelte-1i39aag"
             >
               <div
-                class="undefined root svelte-138dtrj"
+                class="undefined root svelte-8oy723"
               >
                 <a
-                  class="svelte-138dtrj"
+                  class="svelte-8oy723"
                   href="#/album/1"
                 >
                   <img
-                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1oz3k7v"
+                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1u4ypdz"
                     height="256"
                     loading="lazy"
                     width="256"
                   />
                    
                   <span
-                    class="h-16 w-16 text-xs actionable svelte-1oz3k7v rounded-sm"
+                    class="h-16 w-16 text-xs actionable svelte-1u4ypdz rounded-sm"
                   >
                     <i
-                      class="material-icons svelte-1oz3k7v"
+                      class="material-icons svelte-1u4ypdz"
                     >
                       music_note
                     </i>
@@ -1358,10 +1358,10 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                 </a>
                  
                 <div
-                  class="track svelte-138dtrj"
+                  class="track svelte-8oy723"
                 >
                   <span
-                    class="title svelte-138dtrj"
+                    class="title svelte-8oy723"
                   >
                     Want it All Back
                   </span>
@@ -1389,13 +1389,13 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                 <span
                   aria-expanded="false"
                   aria-haspopup="menu"
-                  class="wrapper svelte-1g0595r"
+                  class="wrapper svelte-1v2cnbz"
                 >
                   <button
-                    class="iconOnly noBorder svelte-11qpkf0"
+                    class="iconOnly noBorder svelte-xh4kfu"
                   >
                     <i
-                      class="material-icons svelte-11qpkf0"
+                      class="material-icons svelte-xh4kfu"
                     >
                       more_vert
                     </i>
@@ -1411,27 +1411,27 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                
             </li>
             <li
-              class="svelte-pgngt4"
+              class="svelte-1i39aag"
             >
               <div
-                class="undefined root svelte-138dtrj"
+                class="undefined root svelte-8oy723"
               >
                 <a
-                  class="svelte-138dtrj"
+                  class="svelte-8oy723"
                   href="#/album/1"
                 >
                   <img
-                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1oz3k7v"
+                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1u4ypdz"
                     height="256"
                     loading="lazy"
                     width="256"
                   />
                    
                   <span
-                    class="h-16 w-16 text-xs actionable svelte-1oz3k7v rounded-sm"
+                    class="h-16 w-16 text-xs actionable svelte-1u4ypdz rounded-sm"
                   >
                     <i
-                      class="material-icons svelte-1oz3k7v"
+                      class="material-icons svelte-1u4ypdz"
                     >
                       music_note
                     </i>
@@ -1440,10 +1440,10 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                 </a>
                  
                 <div
-                  class="track svelte-138dtrj"
+                  class="track svelte-8oy723"
                 >
                   <span
-                    class="title svelte-138dtrj"
+                    class="title svelte-8oy723"
                   >
                     You Make Me Coo
                   </span>
@@ -1471,13 +1471,13 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                 <span
                   aria-expanded="false"
                   aria-haspopup="menu"
-                  class="wrapper svelte-1g0595r"
+                  class="wrapper svelte-1v2cnbz"
                 >
                   <button
-                    class="iconOnly noBorder svelte-11qpkf0"
+                    class="iconOnly noBorder svelte-xh4kfu"
                   >
                     <i
-                      class="material-icons svelte-11qpkf0"
+                      class="material-icons svelte-xh4kfu"
                     >
                       more_vert
                     </i>
@@ -1505,46 +1505,46 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
       </section>
        
       <section
-        class="svelte-1t67qsu"
+        class="svelte-3frkku"
       >
         <span
-          class="undefined artists svelte-pgngt4"
+          class="undefined artists svelte-1i39aag"
         >
           <h3
-            class="svelte-pgngt4"
+            class="svelte-1i39aag"
           >
             3 artists
           </h3>
            
           <ul
-            class="svelte-pgngt4"
+            class="svelte-1i39aag"
           >
             <li
-              class="svelte-pgngt4"
+              class="svelte-1i39aag"
             >
                
               <span
-                class="svelte-4mizr"
+                class="svelte-1ipxhxy"
                 role="article"
               >
                 <div
-                  class="content svelte-4mizr"
+                  class="content svelte-1ipxhxy"
                 >
                   <span
-                    class="artwork svelte-4mizr"
+                    class="artwork svelte-1ipxhxy"
                   >
                     <img
-                      class="h-full w-full rounded-full hidden svelte-1oz3k7v"
+                      class="h-full w-full rounded-full hidden svelte-1u4ypdz"
                       height="256"
                       loading="lazy"
                       width="256"
                     />
                      
                     <span
-                      class="h-full w-full svelte-1oz3k7v rounded-full"
+                      class="h-full w-full svelte-1u4ypdz rounded-full"
                     >
                       <i
-                        class="material-icons svelte-1oz3k7v"
+                        class="material-icons svelte-1u4ypdz"
                       >
                         person
                       </i>
@@ -1553,15 +1553,15 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                   </span>
                    
                   <p
-                    class="controls svelte-4mizr"
+                    class="controls svelte-1ipxhxy"
                   >
                      
                     <button
-                      class="primary iconOnly large svelte-11qpkf0"
+                      class="primary iconOnly large svelte-xh4kfu"
                       data-testid="play"
                     >
                       <i
-                        class="material-icons svelte-11qpkf0"
+                        class="material-icons svelte-xh4kfu"
                       >
                         play_arrow
                       </i>
@@ -1571,11 +1571,11 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                     </button>
                      
                     <button
-                      class="primary iconOnly large svelte-11qpkf0"
+                      class="primary iconOnly large svelte-xh4kfu"
                       data-testid="enqueue"
                     >
                       <i
-                        class="material-icons svelte-11qpkf0"
+                        class="material-icons svelte-xh4kfu"
                       >
                         playlist_add
                       </i>
@@ -1587,16 +1587,16 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                 </div>
                  
                 <header
-                  class="svelte-4mizr"
+                  class="svelte-1ipxhxy"
                 >
                   <h3
-                    class="svelte-4mizr"
+                    class="svelte-1ipxhxy"
                   >
                     Ludwig Van Beethoven
                   </h3>
                    
                   <h4
-                    class="svelte-yqtzij"
+                    class="svelte-1ae1g9f"
                     slot="details"
                   >
                     1 album
@@ -1606,22 +1606,22 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                
             </li>
             <li
-              class="svelte-pgngt4"
+              class="svelte-1i39aag"
             >
                
               <span
-                class="svelte-4mizr"
+                class="svelte-1ipxhxy"
                 role="article"
               >
                 <div
-                  class="content svelte-4mizr"
+                  class="content svelte-1ipxhxy"
                 >
                   <span
-                    class="artwork svelte-4mizr"
+                    class="artwork svelte-1ipxhxy"
                   >
                     <img
                       alt="avatar.jpg"
-                      class="h-full w-full rounded-full svelte-1oz3k7v"
+                      class="h-full w-full rounded-full svelte-1u4ypdz"
                       height="256"
                       loading="lazy"
                       src="avatar.jpg"
@@ -1632,15 +1632,15 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                   </span>
                    
                   <p
-                    class="controls svelte-4mizr"
+                    class="controls svelte-1ipxhxy"
                   >
                      
                     <button
-                      class="primary iconOnly large svelte-11qpkf0"
+                      class="primary iconOnly large svelte-xh4kfu"
                       data-testid="play"
                     >
                       <i
-                        class="material-icons svelte-11qpkf0"
+                        class="material-icons svelte-xh4kfu"
                       >
                         play_arrow
                       </i>
@@ -1650,11 +1650,11 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                     </button>
                      
                     <button
-                      class="primary iconOnly large svelte-11qpkf0"
+                      class="primary iconOnly large svelte-xh4kfu"
                       data-testid="enqueue"
                     >
                       <i
-                        class="material-icons svelte-11qpkf0"
+                        class="material-icons svelte-xh4kfu"
                       >
                         playlist_add
                       </i>
@@ -1666,16 +1666,16 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                 </div>
                  
                 <header
-                  class="svelte-4mizr"
+                  class="svelte-1ipxhxy"
                 >
                   <h3
-                    class="svelte-4mizr"
+                    class="svelte-1ipxhxy"
                   >
                     Mademoiselle K
                   </h3>
                    
                   <h4
-                    class="svelte-yqtzij"
+                    class="svelte-1ae1g9f"
                     slot="details"
                   >
                     2 albums
@@ -1685,31 +1685,31 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                
             </li>
             <li
-              class="svelte-pgngt4"
+              class="svelte-1i39aag"
             >
                
               <span
-                class="svelte-4mizr"
+                class="svelte-1ipxhxy"
                 role="article"
               >
                 <div
-                  class="content svelte-4mizr"
+                  class="content svelte-1ipxhxy"
                 >
                   <span
-                    class="artwork svelte-4mizr"
+                    class="artwork svelte-1ipxhxy"
                   >
                     <img
-                      class="h-full w-full rounded-full hidden svelte-1oz3k7v"
+                      class="h-full w-full rounded-full hidden svelte-1u4ypdz"
                       height="256"
                       loading="lazy"
                       width="256"
                     />
                      
                     <span
-                      class="h-full w-full svelte-1oz3k7v rounded-full"
+                      class="h-full w-full svelte-1u4ypdz rounded-full"
                     >
                       <i
-                        class="material-icons svelte-1oz3k7v"
+                        class="material-icons svelte-1u4ypdz"
                       >
                         person
                       </i>
@@ -1718,15 +1718,15 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                   </span>
                    
                   <p
-                    class="controls svelte-4mizr"
+                    class="controls svelte-1ipxhxy"
                   >
                      
                     <button
-                      class="primary iconOnly large svelte-11qpkf0"
+                      class="primary iconOnly large svelte-xh4kfu"
                       data-testid="play"
                     >
                       <i
-                        class="material-icons svelte-11qpkf0"
+                        class="material-icons svelte-xh4kfu"
                       >
                         play_arrow
                       </i>
@@ -1736,11 +1736,11 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                     </button>
                      
                     <button
-                      class="primary iconOnly large svelte-11qpkf0"
+                      class="primary iconOnly large svelte-xh4kfu"
                       data-testid="enqueue"
                     >
                       <i
-                        class="material-icons svelte-11qpkf0"
+                        class="material-icons svelte-xh4kfu"
                       >
                         playlist_add
                       </i>
@@ -1752,16 +1752,16 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                 </div>
                  
                 <header
-                  class="svelte-4mizr"
+                  class="svelte-1ipxhxy"
                 >
                   <h3
-                    class="svelte-4mizr"
+                    class="svelte-1ipxhxy"
                   >
                     Yoko Kanno and the Seatbelts
                   </h3>
                    
                   <h4
-                    class="svelte-yqtzij"
+                    class="svelte-1ae1g9f"
                     slot="details"
                   >
                     9 albums
@@ -1783,46 +1783,46 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
       </section>
        
       <section
-        class="svelte-1t67qsu"
+        class="svelte-3frkku"
       >
         <span
-          class="undefined albums svelte-pgngt4"
+          class="undefined albums svelte-1i39aag"
         >
           <h3
-            class="svelte-pgngt4"
+            class="svelte-1i39aag"
           >
             3 albums
           </h3>
            
           <ul
-            class="svelte-pgngt4"
+            class="svelte-1i39aag"
           >
             <li
-              class="svelte-pgngt4"
+              class="svelte-1i39aag"
             >
                
               <span
-                class="svelte-4mizr"
+                class="svelte-1ipxhxy"
                 role="article"
               >
                 <div
-                  class="content svelte-4mizr"
+                  class="content svelte-1ipxhxy"
                 >
                   <span
-                    class="artwork svelte-4mizr"
+                    class="artwork svelte-1ipxhxy"
                   >
                     <img
-                      class="h-full w-full rounded-sm hidden svelte-1oz3k7v"
+                      class="h-full w-full rounded-sm hidden svelte-1u4ypdz"
                       height="256"
                       loading="lazy"
                       width="256"
                     />
                      
                     <span
-                      class="h-full w-full svelte-1oz3k7v rounded-sm"
+                      class="h-full w-full svelte-1u4ypdz rounded-sm"
                     >
                       <i
-                        class="material-icons svelte-1oz3k7v"
+                        class="material-icons svelte-1u4ypdz"
                       >
                         music_note
                       </i>
@@ -1831,15 +1831,15 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                   </span>
                    
                   <p
-                    class="controls svelte-4mizr"
+                    class="controls svelte-1ipxhxy"
                   >
                      
                     <button
-                      class="primary iconOnly large svelte-11qpkf0"
+                      class="primary iconOnly large svelte-xh4kfu"
                       data-testid="play"
                     >
                       <i
-                        class="material-icons svelte-11qpkf0"
+                        class="material-icons svelte-xh4kfu"
                       >
                         play_arrow
                       </i>
@@ -1849,11 +1849,11 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                     </button>
                      
                     <button
-                      class="primary iconOnly large svelte-11qpkf0"
+                      class="primary iconOnly large svelte-xh4kfu"
                       data-testid="enqueue"
                     >
                       <i
-                        class="material-icons svelte-11qpkf0"
+                        class="material-icons svelte-xh4kfu"
                       >
                         playlist_add
                       </i>
@@ -1865,16 +1865,16 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                 </div>
                  
                 <header
-                  class="svelte-4mizr"
+                  class="svelte-1ipxhxy"
                 >
                   <h3
-                    class="svelte-4mizr"
+                    class="svelte-1ipxhxy"
                   >
                     100 Best Karajan
                   </h3>
                    
                   <h4
-                    class="svelte-yqtzij"
+                    class="svelte-1ae1g9f"
                     slot="details"
                   >
                     by 
@@ -1933,22 +1933,22 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                
             </li>
             <li
-              class="svelte-pgngt4"
+              class="svelte-1i39aag"
             >
                
               <span
-                class="svelte-4mizr"
+                class="svelte-1ipxhxy"
                 role="article"
               >
                 <div
-                  class="content svelte-4mizr"
+                  class="content svelte-1ipxhxy"
                 >
                   <span
-                    class="artwork svelte-4mizr"
+                    class="artwork svelte-1ipxhxy"
                   >
                     <img
                       alt="cover.jpg"
-                      class="h-full w-full rounded-sm svelte-1oz3k7v"
+                      class="h-full w-full rounded-sm svelte-1u4ypdz"
                       height="256"
                       loading="lazy"
                       src="cover.jpg"
@@ -1959,15 +1959,15 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                   </span>
                    
                   <p
-                    class="controls svelte-4mizr"
+                    class="controls svelte-1ipxhxy"
                   >
                      
                     <button
-                      class="primary iconOnly large svelte-11qpkf0"
+                      class="primary iconOnly large svelte-xh4kfu"
                       data-testid="play"
                     >
                       <i
-                        class="material-icons svelte-11qpkf0"
+                        class="material-icons svelte-xh4kfu"
                       >
                         play_arrow
                       </i>
@@ -1977,11 +1977,11 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                     </button>
                      
                     <button
-                      class="primary iconOnly large svelte-11qpkf0"
+                      class="primary iconOnly large svelte-xh4kfu"
                       data-testid="enqueue"
                     >
                       <i
-                        class="material-icons svelte-11qpkf0"
+                        class="material-icons svelte-xh4kfu"
                       >
                         playlist_add
                       </i>
@@ -1993,16 +1993,16 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                 </div>
                  
                 <header
-                  class="svelte-4mizr"
+                  class="svelte-1ipxhxy"
                 >
                   <h3
-                    class="svelte-4mizr"
+                    class="svelte-1ipxhxy"
                   >
                     Black Orpheus
                   </h3>
                    
                   <h4
-                    class="svelte-yqtzij"
+                    class="svelte-1ae1g9f"
                     slot="details"
                   >
                     by 
@@ -2021,31 +2021,31 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                
             </li>
             <li
-              class="svelte-pgngt4"
+              class="svelte-1i39aag"
             >
                
               <span
-                class="svelte-4mizr"
+                class="svelte-1ipxhxy"
                 role="article"
               >
                 <div
-                  class="content svelte-4mizr"
+                  class="content svelte-1ipxhxy"
                 >
                   <span
-                    class="artwork svelte-4mizr"
+                    class="artwork svelte-1ipxhxy"
                   >
                     <img
-                      class="h-full w-full rounded-sm hidden svelte-1oz3k7v"
+                      class="h-full w-full rounded-sm hidden svelte-1u4ypdz"
                       height="256"
                       loading="lazy"
                       width="256"
                     />
                      
                     <span
-                      class="h-full w-full svelte-1oz3k7v rounded-sm"
+                      class="h-full w-full svelte-1u4ypdz rounded-sm"
                     >
                       <i
-                        class="material-icons svelte-1oz3k7v"
+                        class="material-icons svelte-1u4ypdz"
                       >
                         music_note
                       </i>
@@ -2054,15 +2054,15 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                   </span>
                    
                   <p
-                    class="controls svelte-4mizr"
+                    class="controls svelte-1ipxhxy"
                   >
                      
                     <button
-                      class="primary iconOnly large svelte-11qpkf0"
+                      class="primary iconOnly large svelte-xh4kfu"
                       data-testid="play"
                     >
                       <i
-                        class="material-icons svelte-11qpkf0"
+                        class="material-icons svelte-xh4kfu"
                       >
                         play_arrow
                       </i>
@@ -2072,11 +2072,11 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                     </button>
                      
                     <button
-                      class="primary iconOnly large svelte-11qpkf0"
+                      class="primary iconOnly large svelte-xh4kfu"
                       data-testid="enqueue"
                     >
                       <i
-                        class="material-icons svelte-11qpkf0"
+                        class="material-icons svelte-xh4kfu"
                       >
                         playlist_add
                       </i>
@@ -2088,16 +2088,16 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                 </div>
                  
                 <header
-                  class="svelte-4mizr"
+                  class="svelte-1ipxhxy"
                 >
                   <h3
-                    class="svelte-4mizr"
+                    class="svelte-1ipxhxy"
                   >
                     Distant Worlds - Music from Final Fantasy
                   </h3>
                    
                   <h4
-                    class="svelte-yqtzij"
+                    class="svelte-1ae1g9f"
                     slot="details"
                   >
                     by 

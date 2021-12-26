@@ -2,15 +2,15 @@
 
 exports[`Toolshot components/Trapezium/Trapezium.tools.svelte: Site components/Trapezium 1`] = `
 <section
-  class="svelte-v44a7p"
+  class="svelte-1euf1h1"
   style="--color: #353849; --clip-path: polygon(0% 7rem, 100% 0%, 100% 100%, 0 calc(100% - 7rem));"
 >
   <div>
     <div
-      class="flex flex-row my-8 mx-auto max-w-screen-lg gap-8 svelte-1af4wf6"
+      class="flex flex-row my-8 mx-auto max-w-screen-lg gap-8 svelte-nkp3qe"
     >
       <span
-        class="flex-grow text-right svelte-1af4wf6"
+        class="flex-grow text-right svelte-nkp3qe"
       >
         <h3>
           Here is some title
@@ -23,15 +23,15 @@ exports[`Toolshot components/Trapezium/Trapezium.tools.svelte: Site components/T
       </span>
        
       <div
-        class="flex-shrink-0 svelte-1af4wf6"
+        class="flex-shrink-0 svelte-nkp3qe"
       >
         <div
-          class="svelte-1mqvpso"
+          class="svelte-1qdbxso"
           style="--height: 275px; --src: url('images/screenshot-artists-en.png');"
         >
           <img
             alt=""
-            class="svelte-1mqvpso"
+            class="svelte-1qdbxso"
             src="images/screenshot-artists-en.png"
           />
         </div>

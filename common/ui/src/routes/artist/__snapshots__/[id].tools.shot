@@ -8,25 +8,25 @@ exports[`Toolshot routes/artist/[id].tools.svelte: Views/Artist Details 1`] = `
     style="animation: __svelte_185617033_0 200ms linear 0ms 1 both;"
   >
     <header
-      class=" svelte-10ndra7"
+      class=" svelte-1whmh27"
       style="--image: url(../images/harry-swales-Vfvf3H-5OHc-unsplash.jpg); --shade-color: rgba(0, 0, 0, 0.7); --bgPosition: center 40%;"
     >
       <h1
-        class="svelte-10ndra7"
+        class="svelte-1whmh27"
       >
         Foo Fighters
       </h1>
     </header>
      
     <section
-      class="svelte-bpg7b6"
+      class="svelte-frl20m"
     >
       <span
-        class="image-container svelte-bpg7b6"
+        class="image-container svelte-frl20m"
       >
         <img
           alt="./avatar.jpg"
-          class="h-full w-full text-3xl actionable rounded-full svelte-1oz3k7v"
+          class="h-full w-full text-3xl actionable rounded-full svelte-1u4ypdz"
           height="400"
           loading="lazy"
           src="./avatar.jpg"
@@ -37,23 +37,21 @@ exports[`Toolshot routes/artist/[id].tools.svelte: Views/Artist Details 1`] = `
       </span>
        
       <div
-        class="svelte-bpg7b6"
+        class="svelte-frl20m"
       >
         <span
-          class="actions svelte-bpg7b6"
+          class="actions svelte-frl20m"
         >
           <button
-            class="svelte-11qpkf0"
+            class="svelte-xh4kfu"
           >
             <i
-              class="material-icons svelte-11qpkf0"
+              class="material-icons svelte-xh4kfu"
             >
               play_arrow
             </i>
              
-            <span
-              class="svelte-11qpkf0"
-            >
+            <span>
               Play all
             </span>
              
@@ -61,17 +59,15 @@ exports[`Toolshot routes/artist/[id].tools.svelte: Views/Artist Details 1`] = `
           </button>
            
           <button
-            class="svelte-11qpkf0"
+            class="svelte-xh4kfu"
           >
             <i
-              class="material-icons svelte-11qpkf0"
+              class="material-icons svelte-xh4kfu"
             >
               playlist_add
             </i>
              
-            <span
-              class="svelte-11qpkf0"
-            >
+            <span>
               Enqueue all
             </span>
              
@@ -80,7 +76,7 @@ exports[`Toolshot routes/artist/[id].tools.svelte: Views/Artist Details 1`] = `
         </span>
          
         <span
-          class="bio svelte-bpg7b6"
+          class="bio svelte-frl20m"
         >
           Foo Fighters is an American alternative rock band formed in Seattle in 1994. It was founded by Nirvana drummer Dave Grohl as a one-man project following the death of Kurt Cobain and the resulting dissolution of his previous band. The group got its name from the UFOs and various aerial phenomena that were reported by Allied aircraft pilots in World War II, which were known collectively as foo fighters. Prior to the release of the Foo Fighters' 1995 debut album Foo Fighters, which featured Grohl as the only official member, Grohl recruited bassist Nate Mendel and drummer William Goldsmith, both formerly of Sunny Day Real Estate, as well as fellow Nirvana touring bandmate Pat Smear as guitarist to complete the lineup. 
 The band began with performances in Portland, Oregon. Goldsmith quit during the recording of the group's second album, The Colour and the Shape (1997) when most of the drum parts were re-recorded by Grohl himself. Smear's departure followed soon afterward. They were replaced by Taylor Hawkins and Franz Stahl, respectively, although Stahl was fired before the recording of the group's third album, There Is Nothing Left to Lose (1999).
@@ -90,26 +86,26 @@ The band briefly continued as a trio until Chris Shiflett joined as the band's l
     </section>
      
     <div
-      class="albums svelte-bpg7b6"
+      class="albums svelte-frl20m"
     >
       <a
-        class="p-4 svelte-bpg7b6"
+        class="p-4 svelte-frl20m"
         href="#/album/2358057182"
       >
          
         <span
-          class="svelte-4mizr"
+          class="svelte-1ipxhxy"
           role="article"
         >
           <div
-            class="content svelte-4mizr"
+            class="content svelte-1ipxhxy"
           >
             <span
-              class="artwork svelte-4mizr"
+              class="artwork svelte-1ipxhxy"
             >
               <img
                 alt="cover.jpg"
-                class="h-full w-full rounded-sm svelte-1oz3k7v"
+                class="h-full w-full rounded-sm svelte-1u4ypdz"
                 height="256"
                 loading="lazy"
                 src="cover.jpg"
@@ -120,15 +116,15 @@ The band briefly continued as a trio until Chris Shiflett joined as the band's l
             </span>
              
             <p
-              class="controls svelte-4mizr"
+              class="controls svelte-1ipxhxy"
             >
                
               <button
-                class="primary iconOnly large svelte-11qpkf0"
+                class="primary iconOnly large svelte-xh4kfu"
                 data-testid="play"
               >
                 <i
-                  class="material-icons svelte-11qpkf0"
+                  class="material-icons svelte-xh4kfu"
                 >
                   play_arrow
                 </i>
@@ -138,11 +134,11 @@ The band briefly continued as a trio until Chris Shiflett joined as the band's l
               </button>
                
               <button
-                class="primary iconOnly large svelte-11qpkf0"
+                class="primary iconOnly large svelte-xh4kfu"
                 data-testid="enqueue"
               >
                 <i
-                  class="material-icons svelte-11qpkf0"
+                  class="material-icons svelte-xh4kfu"
                 >
                   playlist_add
                 </i>
@@ -154,16 +150,16 @@ The band briefly continued as a trio until Chris Shiflett joined as the band's l
           </div>
            
           <header
-            class="svelte-4mizr"
+            class="svelte-1ipxhxy"
           >
             <h3
-              class="svelte-4mizr"
+              class="svelte-1ipxhxy"
             >
               Foo Fighters
             </h3>
              
             <h4
-              class="svelte-yqtzij"
+              class="svelte-1ae1g9f"
               slot="details"
             >
                
@@ -174,23 +170,23 @@ The band briefly continued as a trio until Chris Shiflett joined as the band's l
          
       </a>
       <a
-        class="p-4 svelte-bpg7b6"
+        class="p-4 svelte-frl20m"
         href="#/album/2084548277"
       >
          
         <span
-          class="svelte-4mizr"
+          class="svelte-1ipxhxy"
           role="article"
         >
           <div
-            class="content svelte-4mizr"
+            class="content svelte-1ipxhxy"
           >
             <span
-              class="artwork svelte-4mizr"
+              class="artwork svelte-1ipxhxy"
             >
               <img
                 alt="(1997) The Colour and the Shape/cover.jpg"
-                class="h-full w-full rounded-sm svelte-1oz3k7v"
+                class="h-full w-full rounded-sm svelte-1u4ypdz"
                 height="256"
                 loading="lazy"
                 src="(1997) The Colour and the Shape/cover.jpg"
@@ -201,15 +197,15 @@ The band briefly continued as a trio until Chris Shiflett joined as the band's l
             </span>
              
             <p
-              class="controls svelte-4mizr"
+              class="controls svelte-1ipxhxy"
             >
                
               <button
-                class="primary iconOnly large svelte-11qpkf0"
+                class="primary iconOnly large svelte-xh4kfu"
                 data-testid="play"
               >
                 <i
-                  class="material-icons svelte-11qpkf0"
+                  class="material-icons svelte-xh4kfu"
                 >
                   play_arrow
                 </i>
@@ -219,11 +215,11 @@ The band briefly continued as a trio until Chris Shiflett joined as the band's l
               </button>
                
               <button
-                class="primary iconOnly large svelte-11qpkf0"
+                class="primary iconOnly large svelte-xh4kfu"
                 data-testid="enqueue"
               >
                 <i
-                  class="material-icons svelte-11qpkf0"
+                  class="material-icons svelte-xh4kfu"
                 >
                   playlist_add
                 </i>
@@ -235,16 +231,16 @@ The band briefly continued as a trio until Chris Shiflett joined as the band's l
           </div>
            
           <header
-            class="svelte-4mizr"
+            class="svelte-1ipxhxy"
           >
             <h3
-              class="svelte-4mizr"
+              class="svelte-1ipxhxy"
             >
               The Colour And The Shape
             </h3>
              
             <h4
-              class="svelte-yqtzij"
+              class="svelte-1ae1g9f"
               slot="details"
             >
                
@@ -255,23 +251,23 @@ The band briefly continued as a trio until Chris Shiflett joined as the band's l
          
       </a>
       <a
-        class="p-4 svelte-bpg7b6"
+        class="p-4 svelte-frl20m"
         href="#/album/1783531088"
       >
          
         <span
-          class="svelte-4mizr"
+          class="svelte-1ipxhxy"
           role="article"
         >
           <div
-            class="content svelte-4mizr"
+            class="content svelte-1ipxhxy"
           >
             <span
-              class="artwork svelte-4mizr"
+              class="artwork svelte-1ipxhxy"
             >
               <img
                 alt="(1999) There Is Nothing Left To Lose/cover.jpg"
-                class="h-full w-full rounded-sm svelte-1oz3k7v"
+                class="h-full w-full rounded-sm svelte-1u4ypdz"
                 height="256"
                 loading="lazy"
                 src="(1999) There Is Nothing Left To Lose/cover.jpg"
@@ -282,15 +278,15 @@ The band briefly continued as a trio until Chris Shiflett joined as the band's l
             </span>
              
             <p
-              class="controls svelte-4mizr"
+              class="controls svelte-1ipxhxy"
             >
                
               <button
-                class="primary iconOnly large svelte-11qpkf0"
+                class="primary iconOnly large svelte-xh4kfu"
                 data-testid="play"
               >
                 <i
-                  class="material-icons svelte-11qpkf0"
+                  class="material-icons svelte-xh4kfu"
                 >
                   play_arrow
                 </i>
@@ -300,11 +296,11 @@ The band briefly continued as a trio until Chris Shiflett joined as the band's l
               </button>
                
               <button
-                class="primary iconOnly large svelte-11qpkf0"
+                class="primary iconOnly large svelte-xh4kfu"
                 data-testid="enqueue"
               >
                 <i
-                  class="material-icons svelte-11qpkf0"
+                  class="material-icons svelte-xh4kfu"
                 >
                   playlist_add
                 </i>
@@ -316,16 +312,16 @@ The band briefly continued as a trio until Chris Shiflett joined as the band's l
           </div>
            
           <header
-            class="svelte-4mizr"
+            class="svelte-1ipxhxy"
           >
             <h3
-              class="svelte-4mizr"
+              class="svelte-1ipxhxy"
             >
               There Is Nothing Left To Lose
             </h3>
              
             <h4
-              class="svelte-yqtzij"
+              class="svelte-1ae1g9f"
               slot="details"
             >
                

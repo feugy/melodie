@@ -14,26 +14,24 @@ exports[`Toolshot components/Dropdown/Dropdown.tools.svelte: Custom button optio
     <span
       aria-expanded="false"
       aria-haspopup="menu"
-      class="wrapper svelte-1g0595r"
+      class="wrapper svelte-1v2cnbz"
     >
       <button
         align="text-right"
-        class="primary svelte-11qpkf0"
+        class="primary svelte-xh4kfu"
       >
         <i
-          class="material-icons svelte-11qpkf0"
+          class="material-icons svelte-xh4kfu"
         >
           person
         </i>
          
-        <span
-          class="svelte-11qpkf0"
-        >
+        <span>
           Primary
         </span>
          
         <i
-          class="material-icons arrow svelte-1g0595r"
+          class="material-icons arrow svelte-1v2cnbz"
         >
           arrow_drop_down
         </i>
@@ -127,20 +125,18 @@ exports[`Toolshot components/Dropdown/Dropdown.tools.svelte: Custom option 1`] =
     <span
       aria-expanded="false"
       aria-haspopup="menu"
-      class="wrapper svelte-1g0595r"
+      class="wrapper svelte-1v2cnbz"
     >
       <button
-        class="svelte-11qpkf0"
+        class="svelte-xh4kfu"
       >
          
-        <span
-          class="svelte-11qpkf0"
-        >
+        <span>
           simple
         </span>
          
         <i
-          class="material-icons arrow svelte-1g0595r"
+          class="material-icons arrow svelte-1v2cnbz"
         >
           arrow_drop_down
         </i>
@@ -234,20 +230,18 @@ exports[`Toolshot components/Dropdown/Dropdown.tools.svelte: Default 1`] = `
     <span
       aria-expanded="false"
       aria-haspopup="menu"
-      class="wrapper svelte-1g0595r"
+      class="wrapper svelte-1v2cnbz"
     >
       <button
-        class="svelte-11qpkf0"
+        class="svelte-xh4kfu"
       >
          
-        <span
-          class="svelte-11qpkf0"
-        >
+        <span>
           one
         </span>
          
         <i
-          class="material-icons arrow svelte-1g0595r"
+          class="material-icons arrow svelte-1v2cnbz"
         >
           arrow_drop_down
         </i>
@@ -341,14 +335,14 @@ exports[`Toolshot components/Dropdown/Dropdown.tools.svelte: Icon only with rela
     <span
       aria-expanded="false"
       aria-haspopup="menu"
-      class="wrapper svelte-1g0595r"
+      class="wrapper svelte-1v2cnbz"
     >
       <button
-        class="iconOnly svelte-11qpkf0"
+        class="iconOnly svelte-xh4kfu"
         parentposition="relative"
       >
         <i
-          class="material-icons svelte-11qpkf0"
+          class="material-icons svelte-xh4kfu"
         >
           more_vert
         </i>
@@ -444,26 +438,24 @@ exports[`Toolshot components/Dropdown/Dropdown.tools.svelte: Independent text an
     <span
       aria-expanded="false"
       aria-haspopup="menu"
-      class="wrapper svelte-1g0595r"
+      class="wrapper svelte-1v2cnbz"
     >
       <button
         align="text-left"
-        class="svelte-11qpkf0"
+        class="svelte-xh4kfu"
       >
         <i
-          class="material-icons svelte-11qpkf0"
+          class="material-icons svelte-xh4kfu"
         >
           settings
         </i>
          
-        <span
-          class="svelte-11qpkf0"
-        >
+        <span>
           options
         </span>
          
         <i
-          class="material-icons arrow svelte-1g0595r"
+          class="material-icons arrow svelte-1v2cnbz"
         >
           arrow_drop_down
         </i>
@@ -557,20 +549,18 @@ exports[`Toolshot components/Dropdown/Dropdown.tools.svelte: Simple array 1`] = 
     <span
       aria-expanded="false"
       aria-haspopup="menu"
-      class="wrapper svelte-1g0595r"
+      class="wrapper svelte-1v2cnbz"
     >
       <button
-        class="svelte-11qpkf0"
+        class="svelte-xh4kfu"
       >
          
-        <span
-          class="svelte-11qpkf0"
-        >
+        <span>
           one
         </span>
          
         <i
-          class="material-icons arrow svelte-1g0595r"
+          class="material-icons arrow svelte-1v2cnbz"
         >
           arrow_drop_down
         </i>

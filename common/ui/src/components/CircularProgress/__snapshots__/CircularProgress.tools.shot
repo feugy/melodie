@@ -9,7 +9,7 @@ exports[`Toolshot components/CircularProgress/CircularProgress.tools.svelte: Com
     width="60"
   >
     <circle
-      class="svelte-1dyw4ak"
+      class="svelte-2wr77g"
       cx="30"
       cy="30"
       r="26"

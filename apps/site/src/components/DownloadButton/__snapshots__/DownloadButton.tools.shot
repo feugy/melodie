@@ -5,25 +5,23 @@ exports[`Toolshot components/DownloadButton/DownloadButton.tools.svelte: Site co
   <span
     aria-expanded="false"
     aria-haspopup="menu"
-    class="wrapper svelte-1g0595r"
+    class="wrapper svelte-1v2cnbz"
   >
     <button
-      class="text-white primary large svelte-11qpkf0"
+      class="text-white primary large svelte-xh4kfu"
     >
       <i
-        class="material-icons svelte-11qpkf0"
+        class="material-icons svelte-xh4kfu"
       >
         get_app
       </i>
        
-      <span
-        class="svelte-11qpkf0"
-      >
+      <span>
         Install v2.0.0-beta.1
       </span>
        
       <i
-        class="material-icons arrow svelte-1g0595r"
+        class="material-icons arrow svelte-1v2cnbz"
       >
         arrow_drop_down
       </i>

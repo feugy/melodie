@@ -3,13 +3,13 @@
 exports[`Toolshot actions/auto-scrollable/auto-scrollable.tools.svelte: Actions/auto-scrollable 1`] = `
 <span>
   <p
-    class="p-4 font-bold svelte-12220xb"
+    class="p-4 font-bold svelte-1v7skd5"
   >
     Caution: does not work on Firefox (DragEvent always have 0 clientY)
   </p>
    
   <ol
-    class="svelte-12220xb"
+    class="svelte-1v7skd5"
     style="--padding: 75px; --margin: -75px;"
   >
     <li
