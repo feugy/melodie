@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0-beta.2](https://github.com/feugy/melodie/compare/v2.0.0-beta.1...v2.0.0-beta.2) (2021-12-27)
+
+### Features
+
+- includes album artists in artist list, display in tracks tables ([#31](https://github.com/feugy/melodie/issues/31)) ([bbeb62f](https://github.com/feugy/melodie/commit/bbeb62f51a74d4a660c74ce3fafefc5e513eaccd))
+- secures broadcast with TOTP ([#37](https://github.com/feugy/melodie/issues/37)) ([4a31f92](https://github.com/feugy/melodie/commit/4a31f925756e9c7b7cb45b5f2eb638c2171c5318))
+- uses jwt to secure accesses ([#40](https://github.com/feugy/melodie/issues/40)) ([52eca69](https://github.com/feugy/melodie/commit/52eca69156f8e85d52a8811242e49295d5171985))
+
+### Bug Fixes
+
+- **ui:** improves player's stablility ([#39](https://github.com/feugy/melodie/issues/39)) ([f4715a2](https://github.com/feugy/melodie/commit/f4715a286bfb61564430ec0325d12561de4ec27a)), closes [#38](https://github.com/feugy/melodie/issues/38)
+
 ## [2.0.0-beta.1](https://github.com/feugy/melodie/compare/v2.0.0-alpha.2...v2.0.0-beta.1) (2021-09-25)
 
 ### Features
