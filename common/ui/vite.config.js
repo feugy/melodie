@@ -12,6 +12,7 @@ const { dependencies } = require('../../package-lock.json')
 export default defineConfig(({ command, mode }) => {
   const isAtelier = command === 'serve' && mode === 'test'
   return {
+    base: '', // needed for usage in production mode within Electron
     build: command === 'serve' && { watch: {} },
     server: { open: isAtelier },
     define: {
