@@ -230,6 +230,17 @@ DISCOGS_TOKEN=XYZ
 AUDIODB_KEY=1
 ```
 
+### Promo site
+
+Located under `apps/site`, it publicize Mélodie and has a button to download latest release artifacts.
+
+Caveats:
+
+- it is build for Github pages. That is, the final hosting will have a base path (`/melodie`), which we don't have when trying out locally
+- it reuses common/ui stylesheet, which requires workaround due to font paths. Fonts must be copied into `/apps/site/static/fonts` for dev, and the production build creates undesired copies in `/common/ui/src/fonts`
+- when developing locally, use `npm -w apps/site run dev` and browse to http://localhost:3000
+- when willing to try out production result, use `npm -w apps/site run build`, `npm -w apps/site run serve` and browse to http://localhost:3000/melodie
+
 ### Trying snaps out
 
 Working with snaps locally isn't really easy.
@@ -311,10 +322,10 @@ Windows App store release can not be automated: Github CI will build the appx pa
 1. **Don't forget to update snapshots**: the presentation site test depend on the version number.
 
    ```shell
+   TAG=$(git describe --tags)
    npm t --workspace apps/site -- --clearCache
    npm t --workspace apps/site -- -u
    git commit -a --amend --no-edit
-   TAG=$(git describe --tags)
    git tag -f $TAG
    ```
 
@@ -352,7 +363,7 @@ Until [this PR](https://github.com/electron-userland/electron-builder/pull/5313)
 
    ```shell
    rm -rf apps/desktop/dist/
-   npm run release:artifacts --workspace apps/desktop -- -l snap
+   npm -w apps/desktop  run release:artifacts -- -l snap
    cd apps/desktop/dist/
    rm -rf linux-unpacked builder-effective-config.yaml
    file-roller -f *.snap .

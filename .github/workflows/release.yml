@@ -41,10 +41,10 @@ jobs:
         run: npm ci
 
       - name: Build application
-        run: npm run build --workspace common/ui
+        run: npm -w common/ui run build
 
       - name: Release application
-        run: npm run release:publish --workspace apps/desktop -- onTagOrDraft -${{ matrix.flags}}
+        run: npm -w apps/desktop run release:publish -- onTagOrDraft -${{ matrix.flags}}
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
@@ -66,7 +66,7 @@ jobs:
         run: npm ci
 
       - name: Build site
-        run: npm run build --workspace apps/site
+        run: npm -w apps/site run build
 
       - name: Publish site
         uses: peaceiris/actions-gh-pages@v3
