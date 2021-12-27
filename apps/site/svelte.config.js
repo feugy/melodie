@@ -18,14 +18,16 @@ export default {
   preprocess: [
     sveltePreprocess({
       postcss: true,
-      replace: [['MELODIE_VERSION', JSON.stringify(version)]]
+      replace: [
+        ['BASE_URL', JSON.stringify(base ?? '.')],
+        ['MELODIE_VERSION', JSON.stringify(version)]
+      ]
     })
   ],
   kit: {
     target: '#svelte',
     ssr: false,
     paths: { base },
-    appDir: 'app',
     adapter: adapter(),
     vite: {
       plugins: [

@@ -9,7 +9,10 @@ export default {
   preprocess: [
     sveltePreprocess({
       postcss: true,
-      replace: [['MELODIE_VERSION', JSON.stringify(version)]]
+      replace: [
+        ['BASE_URL', '""'],
+        ['MELODIE_VERSION', JSON.stringify(version)]
+      ]
     }),
     // Jest does not use vite, which has its windiCSS processor
     windi({})

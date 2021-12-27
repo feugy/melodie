@@ -1,5 +1,7 @@
 import '../common'
 
+window.BASE_URL = ''
+
 window.IntersectionObserver = function () {
   return {
     observe: jest.fn(),

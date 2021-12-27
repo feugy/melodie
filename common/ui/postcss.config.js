@@ -1,5 +1,12 @@
 'use strict'
 
 module.exports = {
-  plugins: [require('postcss-nesting')]
+  plugins: {
+    'postcss-nesting': {},
+    'postcss-url': {
+      url: 'copy',
+      basePath: '../public',
+      assetsPath: '../dist/assets/'
+    }
+  }
 }
