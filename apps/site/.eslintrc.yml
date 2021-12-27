@@ -1,2 +1,3 @@
 globals:
+  BASE_URL: true
   MELODIE_VERSION: true
