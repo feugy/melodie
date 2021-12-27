@@ -323,6 +323,7 @@ Windows App store release can not be automated: Github CI will build the appx pa
 
    ```shell
    TAG=$(git describe --tags)
+   TAG=${TAG::-11}
    npm t --workspace apps/site -- --clearCache
    npm t --workspace apps/site -- -u
    git commit -a --amend --no-edit
@@ -369,7 +370,7 @@ Until [this PR](https://github.com/electron-userland/electron-builder/pull/5313)
    file-roller -f *.snap .
    ```
 
-   Then select the dist folder as target folder
+   Then select the dist folder as target folder, and close the "Could not open 'dist'" error popup.
 
 1. Amend the `meta/snap.yaml` descriptor. **At root level**, replaces `slots` with:
 

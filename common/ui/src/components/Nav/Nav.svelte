@@ -217,7 +217,7 @@
         />
       </li>
       <li>
-        {#if $isDesktop && $connected && address && !isSmall}
+        {#if $isDesktop && address && !isSmall}
           <BroadcastButton
             {isBroadcasting}
             {address}
