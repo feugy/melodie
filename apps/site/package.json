@@ -4,11 +4,12 @@
   "description": "Mélodie promotion site, deployed as github page",
   "type": "module",
   "scripts": {
-    "build": "svelte-kit build",
+    "build": "run-s -ncs build:kit build:copy",
+    "build:copy": "node -r fs-extra -e \"const { join } = require('path'); require('fs-extra').copySync(join('..', '..', 'common', 'ui', 'public', 'fonts'), join('build', 'app', 'assets', 'fonts'))\"",
+    "build:kit": "svelte-kit build",
     "dev": "run-s -ncs dev:copy dev:kit",
     "dev:copy": "node -r fs-extra -e \"const { join } = require('path'); require('fs-extra').copySync(join('..', '..', 'common', 'ui', 'public', 'fonts'), join('static', 'fonts'))\"",
     "dev:kit": "svelte-kit dev",
-    "serve": "svelte-kit preview",
     "test": "jest --coverage --colors",
     "test:dev": "jest --watch"
   },
