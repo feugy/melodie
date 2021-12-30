@@ -95,7 +95,7 @@
     >
     <span class="flex-grow" />
     <a target="_blank" href="https://github.com/feugy/melodie"
-      ><img src="/logos/github.png" alt="" /></a
+      ><img src="{baseUrl}/logos/github.png" alt="" /></a
     >
   </nav>
 </Sticky>
