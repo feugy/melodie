@@ -1,8 +1,8 @@
-import atelier from '@atelier-wb/vite-plugin-svelte'
+import atelier from '@atelier-wb/vite-plugin-atelier'
 import yaml from '@rollup/plugin-yaml'
 import { svelte } from '@sveltejs/vite-plugin-svelte'
 import { createRequire } from 'module'
-import { join, resolve } from 'path'
+import { join } from 'path'
 import windi from 'vite-plugin-windicss'
 import { defineConfig } from 'vite'
 
@@ -27,8 +27,8 @@ export default defineConfig(({ command, mode }) => {
       isAtelier &&
         atelier({
           url: '/',
-          path: resolve(__dirname, 'src'),
-          setupPath: resolve(__dirname, 'src', 'atelier', 'setup'),
+          path: join('.', 'src'),
+          setupPath: './atelier/setup.js',
           publicDir: join('..', 'fixtures')
         })
     ]
