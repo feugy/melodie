@@ -6,7 +6,7 @@
   import Image, { broken } from '../Image/Image.svelte'
   import ImageUploader from '../ImageUploader/ImageUploader.svelte'
   import Progress from '../Progress/Progress.svelte'
-  import { enhanceUrl, invoke } from '../../utils'
+  import { invoke } from '../../utils'
   import { isDesktop } from '../../stores/settings'
 
   export let open
@@ -25,10 +25,10 @@
   let findPromise
   let wasOpen
 
-  async function handleSelect(url) {
+  async function handleSelect(imageSrc) {
     // clear broken images so Image could try reloading the same url
     broken.clear()
-    await invoke(`media.saveFor${modelName}`, src.id, url)
+    await invoke(`media.saveFor${modelName}`, src.id, extractUrl(imageSrc))
     open = false
   }
 
@@ -37,9 +37,17 @@
       uploaded = null
       findPromise = invoke(`media.findFor${modelName}`, src.name)
       proposals = (await findPromise) || []
+    } else if (wasOpen && !open) {
+      proposals = []
     }
     wasOpen = open
   })
+
+  function extractUrl(imageSrc) {
+    return imageSrc.startsWith('/media')
+      ? new URLSearchParams(imageSrc.replace('/media', '')).get('path')
+      : imageSrc
+  }
 </script>
 
 <style lang="postcss">
@@ -62,9 +70,7 @@
         {#if attribute in image}
           <div class="m-2">
             <Image
-              src={image[attribute]?.startsWith('http')
-                ? image[attribute]
-                : enhanceUrl(image[attribute])}
+              src={image[attribute]}
               withNonce
               class="w-48 h-48 actionable"
               on:click={() => handleSelect(image[attribute])}

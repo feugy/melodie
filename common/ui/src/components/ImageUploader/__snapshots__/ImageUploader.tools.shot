@@ -6,17 +6,17 @@ exports[`Toolshot components/ImageUploader/ImageUploader.tools.svelte: Component
     class="h-64 w-64 inline-block actionable svelte-o9jdfk"
   >
     <img
-      class="w-full h-full rounded-sm hidden svelte-1u4ypdz"
+      class="w-full h-full rounded-sm hidden svelte-1l44pje"
       height="256"
-      loading="lazy"
+      src=""
       width="256"
     />
      
     <span
-      class="w-full h-full svelte-1u4ypdz rounded-sm"
+      class="w-full h-full svelte-1l44pje rounded-sm"
     >
       <i
-        class="material-icons svelte-1u4ypdz"
+        class="material-icons svelte-1l44pje"
       >
         add_box
       </i>

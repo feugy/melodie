@@ -4,9 +4,8 @@ exports[`Toolshot components/Image/Image.tools.svelte: Broken 1`] = `
 <span>
   <img
     alt="./unknown.jpg"
-    class="w-64 h-64 inline-block rounded-sm svelte-1u4ypdz"
+    class="w-64 h-64 inline-block rounded-sm svelte-1l44pje"
     height="256"
-    loading="lazy"
     src="./unknown.jpg"
     width="256"
   />
@@ -23,17 +22,17 @@ exports[`Toolshot components/Image/Image.tools.svelte: Broken rounded 1`] = `
 <span>
   <img
     alt=""
-    class="w-64 h-64 inline-block rounded-full hidden svelte-1u4ypdz"
+    class="w-64 h-64 inline-block rounded-full hidden svelte-1l44pje"
     height="256"
-    loading="lazy"
+    src=""
     width="256"
   />
    
   <span
-    class="w-64 h-64 inline-block svelte-1u4ypdz rounded-full"
+    class="w-64 h-64 inline-block svelte-1l44pje rounded-full"
   >
     <i
-      class="material-icons svelte-1u4ypdz"
+      class="material-icons svelte-1l44pje"
     >
       person
     </i>
@@ -50,9 +49,8 @@ exports[`Toolshot components/Image/Image.tools.svelte: Default 1`] = `
 <span>
   <img
     alt="./cover.jpg"
-    class="w-64 h-64 inline-block rounded-sm svelte-1u4ypdz"
+    class="w-64 h-64 inline-block rounded-sm svelte-1l44pje"
     height="256"
-    loading="lazy"
     src="./cover.jpg"
     width="256"
   />
@@ -69,9 +67,8 @@ exports[`Toolshot components/Image/Image.tools.svelte: Rouded 1`] = `
 <span>
   <img
     alt="./avatar.jpg"
-    class="w-64 h-64 inline-block rounded-full svelte-1u4ypdz"
+    class="w-64 h-64 inline-block rounded-full svelte-1l44pje"
     height="256"
-    loading="lazy"
     src="./avatar.jpg"
     width="256"
   />
@@ -88,9 +85,8 @@ exports[`Toolshot components/Image/Image.tools.svelte: With escaped path 1`] = `
 <span>
   <img
     alt="./# Films/cover.jpg"
-    class="w-64 h-64 inline-block rounded-sm svelte-1u4ypdz"
+    class="w-64 h-64 inline-block rounded-sm svelte-1l44pje"
     height="256"
-    loading="lazy"
     src="./%23 Films/cover.jpg"
     width="256"
   />

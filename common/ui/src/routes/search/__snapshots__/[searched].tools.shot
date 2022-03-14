@@ -49,9 +49,8 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                 >
                   <img
                     alt="./cover.jpg"
-                    class="h-16 w-16 text-xs actionable rounded-sm svelte-1u4ypdz"
+                    class="h-16 w-16 text-xs actionable rounded-sm svelte-1l44pje"
                     height="256"
-                    loading="lazy"
                     src="./cover.jpg"
                     width="256"
                   />
@@ -123,17 +122,17 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                   href="#/album/1"
                 >
                   <img
-                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1u4ypdz"
+                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1l44pje"
                     height="256"
-                    loading="lazy"
+                    src=""
                     width="256"
                   />
                    
                   <span
-                    class="h-16 w-16 text-xs actionable svelte-1u4ypdz rounded-sm"
+                    class="h-16 w-16 text-xs actionable svelte-1l44pje rounded-sm"
                   >
                     <i
-                      class="material-icons svelte-1u4ypdz"
+                      class="material-icons svelte-1l44pje"
                     >
                       music_note
                     </i>
@@ -205,17 +204,17 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                   href="#/album/1"
                 >
                   <img
-                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1u4ypdz"
+                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1l44pje"
                     height="256"
-                    loading="lazy"
+                    src=""
                     width="256"
                   />
                    
                   <span
-                    class="h-16 w-16 text-xs actionable svelte-1u4ypdz rounded-sm"
+                    class="h-16 w-16 text-xs actionable svelte-1l44pje rounded-sm"
                   >
                     <i
-                      class="material-icons svelte-1u4ypdz"
+                      class="material-icons svelte-1l44pje"
                     >
                       music_note
                     </i>
@@ -288,9 +287,8 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                 >
                   <img
                     alt="./cover.jpg"
-                    class="h-16 w-16 text-xs actionable rounded-sm svelte-1u4ypdz"
+                    class="h-16 w-16 text-xs actionable rounded-sm svelte-1l44pje"
                     height="256"
-                    loading="lazy"
                     src="./cover.jpg"
                     width="256"
                   />
@@ -362,17 +360,17 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                   href="#/album/1"
                 >
                   <img
-                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1u4ypdz"
+                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1l44pje"
                     height="256"
-                    loading="lazy"
+                    src=""
                     width="256"
                   />
                    
                   <span
-                    class="h-16 w-16 text-xs actionable svelte-1u4ypdz rounded-sm"
+                    class="h-16 w-16 text-xs actionable svelte-1l44pje rounded-sm"
                   >
                     <i
-                      class="material-icons svelte-1u4ypdz"
+                      class="material-icons svelte-1l44pje"
                     >
                       music_note
                     </i>
@@ -445,9 +443,8 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                 >
                   <img
                     alt="./cover.jpg"
-                    class="h-16 w-16 text-xs actionable rounded-sm svelte-1u4ypdz"
+                    class="h-16 w-16 text-xs actionable rounded-sm svelte-1l44pje"
                     height="256"
-                    loading="lazy"
                     src="./cover.jpg"
                     width="256"
                   />
@@ -519,17 +516,17 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                   href="#/album/1"
                 >
                   <img
-                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1u4ypdz"
+                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1l44pje"
                     height="256"
-                    loading="lazy"
+                    src=""
                     width="256"
                   />
                    
                   <span
-                    class="h-16 w-16 text-xs actionable svelte-1u4ypdz rounded-sm"
+                    class="h-16 w-16 text-xs actionable svelte-1l44pje rounded-sm"
                   >
                     <i
-                      class="material-icons svelte-1u4ypdz"
+                      class="material-icons svelte-1l44pje"
                     >
                       music_note
                     </i>
@@ -601,17 +598,17 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                   href="#/album/1"
                 >
                   <img
-                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1u4ypdz"
+                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1l44pje"
                     height="256"
-                    loading="lazy"
+                    src=""
                     width="256"
                   />
                    
                   <span
-                    class="h-16 w-16 text-xs actionable svelte-1u4ypdz rounded-sm"
+                    class="h-16 w-16 text-xs actionable svelte-1l44pje rounded-sm"
                   >
                     <i
-                      class="material-icons svelte-1u4ypdz"
+                      class="material-icons svelte-1l44pje"
                     >
                       music_note
                     </i>
@@ -683,17 +680,17 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                   href="#/album/1"
                 >
                   <img
-                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1u4ypdz"
+                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1l44pje"
                     height="256"
-                    loading="lazy"
+                    src=""
                     width="256"
                   />
                    
                   <span
-                    class="h-16 w-16 text-xs actionable svelte-1u4ypdz rounded-sm"
+                    class="h-16 w-16 text-xs actionable svelte-1l44pje rounded-sm"
                   >
                     <i
-                      class="material-icons svelte-1u4ypdz"
+                      class="material-icons svelte-1l44pje"
                     >
                       music_note
                     </i>
@@ -765,17 +762,17 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                   href="#/album/1"
                 >
                   <img
-                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1u4ypdz"
+                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1l44pje"
                     height="256"
-                    loading="lazy"
+                    src=""
                     width="256"
                   />
                    
                   <span
-                    class="h-16 w-16 text-xs actionable svelte-1u4ypdz rounded-sm"
+                    class="h-16 w-16 text-xs actionable svelte-1l44pje rounded-sm"
                   >
                     <i
-                      class="material-icons svelte-1u4ypdz"
+                      class="material-icons svelte-1l44pje"
                     >
                       music_note
                     </i>
@@ -847,17 +844,17 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                   href="#/album/1"
                 >
                   <img
-                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1u4ypdz"
+                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1l44pje"
                     height="256"
-                    loading="lazy"
+                    src=""
                     width="256"
                   />
                    
                   <span
-                    class="h-16 w-16 text-xs actionable svelte-1u4ypdz rounded-sm"
+                    class="h-16 w-16 text-xs actionable svelte-1l44pje rounded-sm"
                   >
                     <i
-                      class="material-icons svelte-1u4ypdz"
+                      class="material-icons svelte-1l44pje"
                     >
                       music_note
                     </i>
@@ -929,17 +926,17 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                   href="#/album/1"
                 >
                   <img
-                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1u4ypdz"
+                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1l44pje"
                     height="256"
-                    loading="lazy"
+                    src=""
                     width="256"
                   />
                    
                   <span
-                    class="h-16 w-16 text-xs actionable svelte-1u4ypdz rounded-sm"
+                    class="h-16 w-16 text-xs actionable svelte-1l44pje rounded-sm"
                   >
                     <i
-                      class="material-icons svelte-1u4ypdz"
+                      class="material-icons svelte-1l44pje"
                     >
                       music_note
                     </i>
@@ -1011,17 +1008,17 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                   href="#/album/1"
                 >
                   <img
-                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1u4ypdz"
+                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1l44pje"
                     height="256"
-                    loading="lazy"
+                    src=""
                     width="256"
                   />
                    
                   <span
-                    class="h-16 w-16 text-xs actionable svelte-1u4ypdz rounded-sm"
+                    class="h-16 w-16 text-xs actionable svelte-1l44pje rounded-sm"
                   >
                     <i
-                      class="material-icons svelte-1u4ypdz"
+                      class="material-icons svelte-1l44pje"
                     >
                       music_note
                     </i>
@@ -1093,17 +1090,17 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                   href="#/album/1"
                 >
                   <img
-                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1u4ypdz"
+                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1l44pje"
                     height="256"
-                    loading="lazy"
+                    src=""
                     width="256"
                   />
                    
                   <span
-                    class="h-16 w-16 text-xs actionable svelte-1u4ypdz rounded-sm"
+                    class="h-16 w-16 text-xs actionable svelte-1l44pje rounded-sm"
                   >
                     <i
-                      class="material-icons svelte-1u4ypdz"
+                      class="material-icons svelte-1l44pje"
                     >
                       music_note
                     </i>
@@ -1175,17 +1172,17 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                   href="#/album/1"
                 >
                   <img
-                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1u4ypdz"
+                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1l44pje"
                     height="256"
-                    loading="lazy"
+                    src=""
                     width="256"
                   />
                    
                   <span
-                    class="h-16 w-16 text-xs actionable svelte-1u4ypdz rounded-sm"
+                    class="h-16 w-16 text-xs actionable svelte-1l44pje rounded-sm"
                   >
                     <i
-                      class="material-icons svelte-1u4ypdz"
+                      class="material-icons svelte-1l44pje"
                     >
                       music_note
                     </i>
@@ -1257,17 +1254,17 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                   href="#/album/1"
                 >
                   <img
-                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1u4ypdz"
+                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1l44pje"
                     height="256"
-                    loading="lazy"
+                    src=""
                     width="256"
                   />
                    
                   <span
-                    class="h-16 w-16 text-xs actionable svelte-1u4ypdz rounded-sm"
+                    class="h-16 w-16 text-xs actionable svelte-1l44pje rounded-sm"
                   >
                     <i
-                      class="material-icons svelte-1u4ypdz"
+                      class="material-icons svelte-1l44pje"
                     >
                       music_note
                     </i>
@@ -1339,17 +1336,17 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                   href="#/album/1"
                 >
                   <img
-                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1u4ypdz"
+                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1l44pje"
                     height="256"
-                    loading="lazy"
+                    src=""
                     width="256"
                   />
                    
                   <span
-                    class="h-16 w-16 text-xs actionable svelte-1u4ypdz rounded-sm"
+                    class="h-16 w-16 text-xs actionable svelte-1l44pje rounded-sm"
                   >
                     <i
-                      class="material-icons svelte-1u4ypdz"
+                      class="material-icons svelte-1l44pje"
                     >
                       music_note
                     </i>
@@ -1421,17 +1418,17 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                   href="#/album/1"
                 >
                   <img
-                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1u4ypdz"
+                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1l44pje"
                     height="256"
-                    loading="lazy"
+                    src=""
                     width="256"
                   />
                    
                   <span
-                    class="h-16 w-16 text-xs actionable svelte-1u4ypdz rounded-sm"
+                    class="h-16 w-16 text-xs actionable svelte-1l44pje rounded-sm"
                   >
                     <i
-                      class="material-icons svelte-1u4ypdz"
+                      class="material-icons svelte-1l44pje"
                     >
                       music_note
                     </i>
@@ -1534,17 +1531,17 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                     class="artwork svelte-1ipxhxy"
                   >
                     <img
-                      class="h-full w-full rounded-full hidden svelte-1u4ypdz"
+                      class="h-full w-full rounded-full hidden svelte-1l44pje"
                       height="256"
-                      loading="lazy"
+                      src=""
                       width="256"
                     />
                      
                     <span
-                      class="h-full w-full svelte-1u4ypdz rounded-full"
+                      class="h-full w-full svelte-1l44pje rounded-full"
                     >
                       <i
-                        class="material-icons svelte-1u4ypdz"
+                        class="material-icons svelte-1l44pje"
                       >
                         person
                       </i>
@@ -1621,9 +1618,8 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                   >
                     <img
                       alt="avatar.jpg"
-                      class="h-full w-full rounded-full svelte-1u4ypdz"
+                      class="h-full w-full rounded-full svelte-1l44pje"
                       height="256"
-                      loading="lazy"
                       src="avatar.jpg"
                       width="256"
                     />
@@ -1699,17 +1695,17 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                     class="artwork svelte-1ipxhxy"
                   >
                     <img
-                      class="h-full w-full rounded-full hidden svelte-1u4ypdz"
+                      class="h-full w-full rounded-full hidden svelte-1l44pje"
                       height="256"
-                      loading="lazy"
+                      src=""
                       width="256"
                     />
                      
                     <span
-                      class="h-full w-full svelte-1u4ypdz rounded-full"
+                      class="h-full w-full svelte-1l44pje rounded-full"
                     >
                       <i
-                        class="material-icons svelte-1u4ypdz"
+                        class="material-icons svelte-1l44pje"
                       >
                         person
                       </i>
@@ -1812,17 +1808,17 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                     class="artwork svelte-1ipxhxy"
                   >
                     <img
-                      class="h-full w-full rounded-sm hidden svelte-1u4ypdz"
+                      class="h-full w-full rounded-sm hidden svelte-1l44pje"
                       height="256"
-                      loading="lazy"
+                      src=""
                       width="256"
                     />
                      
                     <span
-                      class="h-full w-full svelte-1u4ypdz rounded-sm"
+                      class="h-full w-full svelte-1l44pje rounded-sm"
                     >
                       <i
-                        class="material-icons svelte-1u4ypdz"
+                        class="material-icons svelte-1l44pje"
                       >
                         music_note
                       </i>
@@ -1948,9 +1944,8 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                   >
                     <img
                       alt="cover.jpg"
-                      class="h-full w-full rounded-sm svelte-1u4ypdz"
+                      class="h-full w-full rounded-sm svelte-1l44pje"
                       height="256"
-                      loading="lazy"
                       src="cover.jpg"
                       width="256"
                     />
@@ -2035,17 +2030,17 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                     class="artwork svelte-1ipxhxy"
                   >
                     <img
-                      class="h-full w-full rounded-sm hidden svelte-1u4ypdz"
+                      class="h-full w-full rounded-sm hidden svelte-1l44pje"
                       height="256"
-                      loading="lazy"
+                      src=""
                       width="256"
                     />
                      
                     <span
-                      class="h-full w-full svelte-1u4ypdz rounded-sm"
+                      class="h-full w-full svelte-1l44pje rounded-sm"
                     >
                       <i
-                        class="material-icons svelte-1u4ypdz"
+                        class="material-icons svelte-1l44pje"
                       >
                         music_note
                       </i>

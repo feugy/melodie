@@ -1,15 +1,13 @@
-import atelier from '@atelier-wb/vite-plugin-svelte'
+import atelier from '@atelier-wb/vite-plugin-atelier'
 import yaml from '@rollup/plugin-yaml'
 import adapter from '@sveltejs/adapter-static'
 import { createRequire } from 'module'
-import { join, resolve } from 'path'
+import { join } from 'path'
 import sveltePreprocess from 'svelte-preprocess'
-import { URL } from 'url'
 import windi from 'vite-plugin-windicss'
 
 const require = createRequire(import.meta.url)
 const { version } = require('./package.json')
-const __dirname = new URL('.', import.meta.url).pathname
 
 const base = process.env.NODE_ENV === 'production' ? '/melodie' : ''
 
@@ -34,9 +32,9 @@ export default {
         yaml(),
         windi(),
         atelier({
-          url: '/atelier',
-          path: resolve(__dirname, 'src'),
-          setupPath: resolve(__dirname, 'src', 'atelier', 'setup'),
+          url: '/atelier/',
+          path: join('.', 'src'),
+          setupPath: './atelier/setup.js',
           publicDir: ['static', join('..', '..', 'common', 'ui', 'public')]
         })
       ]

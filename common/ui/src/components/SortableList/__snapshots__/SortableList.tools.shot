@@ -20,9 +20,8 @@ exports[`Toolshot components/SortableList/SortableList.tools.svelte: Components/
           >
             <img
               alt="./# Films/cover.jpg"
-              class="h-16 w-16 text-xs actionable rounded-sm svelte-1u4ypdz"
+              class="h-16 w-16 text-xs actionable rounded-sm svelte-1l44pje"
               height="256"
-              loading="lazy"
               src="./%23 Films/cover.jpg"
               width="256"
             />
@@ -92,9 +91,8 @@ exports[`Toolshot components/SortableList/SortableList.tools.svelte: Components/
           >
             <img
               alt="./# Films/cover.jpg"
-              class="h-16 w-16 text-xs actionable rounded-sm svelte-1u4ypdz"
+              class="h-16 w-16 text-xs actionable rounded-sm svelte-1l44pje"
               height="256"
-              loading="lazy"
               src="./%23 Films/cover.jpg"
               width="256"
             />
@@ -164,9 +162,8 @@ exports[`Toolshot components/SortableList/SortableList.tools.svelte: Components/
           >
             <img
               alt="./cover.jpg"
-              class="h-16 w-16 text-xs actionable rounded-sm svelte-1u4ypdz"
+              class="h-16 w-16 text-xs actionable rounded-sm svelte-1l44pje"
               height="256"
-              loading="lazy"
               src="./cover.jpg"
               width="256"
             />
@@ -236,9 +233,8 @@ exports[`Toolshot components/SortableList/SortableList.tools.svelte: Components/
           >
             <img
               alt="./cover.jpg"
-              class="h-16 w-16 text-xs actionable rounded-sm svelte-1u4ypdz"
+              class="h-16 w-16 text-xs actionable rounded-sm svelte-1l44pje"
               height="256"
-              loading="lazy"
               src="./cover.jpg"
               width="256"
             />
@@ -308,9 +304,8 @@ exports[`Toolshot components/SortableList/SortableList.tools.svelte: Components/
           >
             <img
               alt="./# Films/cover.jpg"
-              class="h-16 w-16 text-xs actionable rounded-sm svelte-1u4ypdz"
+              class="h-16 w-16 text-xs actionable rounded-sm svelte-1l44pje"
               height="256"
-              loading="lazy"
               src="./%23 Films/cover.jpg"
               width="256"
             />
@@ -380,9 +375,8 @@ exports[`Toolshot components/SortableList/SortableList.tools.svelte: Components/
           >
             <img
               alt="./# Films/cover.jpg"
-              class="h-16 w-16 text-xs actionable rounded-sm svelte-1u4ypdz"
+              class="h-16 w-16 text-xs actionable rounded-sm svelte-1l44pje"
               height="256"
-              loading="lazy"
               src="./%23 Films/cover.jpg"
               width="256"
             />
@@ -452,9 +446,8 @@ exports[`Toolshot components/SortableList/SortableList.tools.svelte: Components/
           >
             <img
               alt="./cover.jpg"
-              class="h-16 w-16 text-xs actionable rounded-sm svelte-1u4ypdz"
+              class="h-16 w-16 text-xs actionable rounded-sm svelte-1l44pje"
               height="256"
-              loading="lazy"
               src="./cover.jpg"
               width="256"
             />
@@ -524,9 +517,8 @@ exports[`Toolshot components/SortableList/SortableList.tools.svelte: Components/
           >
             <img
               alt="./cover.jpg"
-              class="h-16 w-16 text-xs actionable rounded-sm svelte-1u4ypdz"
+              class="h-16 w-16 text-xs actionable rounded-sm svelte-1l44pje"
               height="256"
-              loading="lazy"
               src="./cover.jpg"
               width="256"
             />

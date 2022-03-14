@@ -11,9 +11,8 @@ exports[`Toolshot components/Track/Track.tools.svelte: Default 1`] = `
     >
       <img
         alt="./cover.jpg"
-        class="h-16 w-16 text-xs actionable rounded-sm svelte-1u4ypdz"
+        class="h-16 w-16 text-xs actionable rounded-sm svelte-1l44pje"
         height="256"
-        loading="lazy"
         src="./cover.jpg"
         width="256"
       />
@@ -57,9 +56,8 @@ exports[`Toolshot components/Track/Track.tools.svelte: With details 1`] = `
     >
       <img
         alt="./cover.jpg"
-        class="h-16 w-16 text-xs actionable rounded-sm svelte-1u4ypdz"
+        class="h-16 w-16 text-xs actionable rounded-sm svelte-1l44pje"
         height="256"
-        loading="lazy"
         src="./cover.jpg"
         width="256"
       />
@@ -108,9 +106,8 @@ exports[`Toolshot components/Track/Track.tools.svelte: With menu 1`] = `
     >
       <img
         alt="./cover.jpg"
-        class="h-16 w-16 text-xs actionable rounded-sm svelte-1u4ypdz"
+        class="h-16 w-16 text-xs actionable rounded-sm svelte-1l44pje"
         height="256"
-        loading="lazy"
         src="./cover.jpg"
         width="256"
       />

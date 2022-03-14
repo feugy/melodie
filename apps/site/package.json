@@ -14,9 +14,9 @@
     "upload": "NODE_DEBUG=gh-pages gh-pages -d build -t"
   },
   "devDependencies": {
-    "@atelier-wb/svelte": "^0.5.1",
-    "@atelier-wb/toolshot": "^0.5.1",
-    "@atelier-wb/vite-plugin-svelte": "^0.5.1",
+    "@atelier-wb/svelte": "^0.6.9",
+    "@atelier-wb/toolshot": "^0.6.9",
+    "@atelier-wb/vite-plugin-atelier": "^0.6.9",
     "@babel/core": "^7.16.0",
     "@babel/preset-env": "^7.16.0",
     "@rollup/plugin-yaml": "^3.1.0",

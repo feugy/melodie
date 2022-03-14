@@ -33,9 +33,8 @@ exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Albums 
               >
                 <img
                   alt="./cover.jpg"
-                  class="h-full w-full rounded-sm svelte-1u4ypdz"
+                  class="h-full w-full rounded-sm svelte-1l44pje"
                   height="256"
-                  loading="lazy"
                   src="./cover.jpg"
                   width="256"
                 />
@@ -129,9 +128,8 @@ exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Albums 
               >
                 <img
                   alt="./cover.jpg"
-                  class="h-full w-full rounded-sm svelte-1u4ypdz"
+                  class="h-full w-full rounded-sm svelte-1l44pje"
                   height="256"
-                  loading="lazy"
                   src="./cover.jpg"
                   width="256"
                 />
@@ -225,9 +223,8 @@ exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Albums 
               >
                 <img
                   alt="./cover.jpg"
-                  class="h-full w-full rounded-sm svelte-1u4ypdz"
+                  class="h-full w-full rounded-sm svelte-1l44pje"
                   height="256"
-                  loading="lazy"
                   src="./cover.jpg"
                   width="256"
                 />
@@ -321,9 +318,8 @@ exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Albums 
               >
                 <img
                   alt="./cover.jpg"
-                  class="h-full w-full rounded-sm svelte-1u4ypdz"
+                  class="h-full w-full rounded-sm svelte-1l44pje"
                   height="256"
-                  loading="lazy"
                   src="./cover.jpg"
                   width="256"
                 />
@@ -417,9 +413,8 @@ exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Albums 
               >
                 <img
                   alt="./cover.jpg"
-                  class="h-full w-full rounded-sm svelte-1u4ypdz"
+                  class="h-full w-full rounded-sm svelte-1l44pje"
                   height="256"
-                  loading="lazy"
                   src="./cover.jpg"
                   width="256"
                 />
@@ -546,9 +541,8 @@ exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Artists
               >
                 <img
                   alt="./avatar.jpg"
-                  class="h-full w-full rounded-full svelte-1u4ypdz"
+                  class="h-full w-full rounded-full svelte-1l44pje"
                   height="256"
-                  loading="lazy"
                   src="./avatar.jpg"
                   width="256"
                 />
@@ -625,9 +619,8 @@ exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Artists
               >
                 <img
                   alt="./avatar.jpg"
-                  class="h-full w-full rounded-full svelte-1u4ypdz"
+                  class="h-full w-full rounded-full svelte-1l44pje"
                   height="256"
-                  loading="lazy"
                   src="./avatar.jpg"
                   width="256"
                 />
@@ -704,9 +697,8 @@ exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Artists
               >
                 <img
                   alt="./avatar.jpg"
-                  class="h-full w-full rounded-full svelte-1u4ypdz"
+                  class="h-full w-full rounded-full svelte-1l44pje"
                   height="256"
-                  loading="lazy"
                   src="./avatar.jpg"
                   width="256"
                 />
@@ -783,9 +775,8 @@ exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Artists
               >
                 <img
                   alt="./avatar.jpg"
-                  class="h-full w-full rounded-full svelte-1u4ypdz"
+                  class="h-full w-full rounded-full svelte-1l44pje"
                   height="256"
-                  loading="lazy"
                   src="./avatar.jpg"
                   width="256"
                 />
@@ -862,9 +853,8 @@ exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Artists
               >
                 <img
                   alt="./avatar.jpg"
-                  class="h-full w-full rounded-full svelte-1u4ypdz"
+                  class="h-full w-full rounded-full svelte-1l44pje"
                   height="256"
-                  loading="lazy"
                   src="./avatar.jpg"
                   width="256"
                 />
@@ -968,9 +958,8 @@ exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Tracks 
             >
               <img
                 alt="./cover.jpg"
-                class="h-16 w-16 text-xs actionable rounded-sm svelte-1u4ypdz"
+                class="h-16 w-16 text-xs actionable rounded-sm svelte-1l44pje"
                 height="256"
-                loading="lazy"
                 src="./cover.jpg"
                 width="256"
               />
@@ -1035,9 +1024,8 @@ exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Tracks 
             >
               <img
                 alt="./cover.jpg"
-                class="h-16 w-16 text-xs actionable rounded-sm svelte-1u4ypdz"
+                class="h-16 w-16 text-xs actionable rounded-sm svelte-1l44pje"
                 height="256"
-                loading="lazy"
                 src="./cover.jpg"
                 width="256"
               />
@@ -1102,9 +1090,8 @@ exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Tracks 
             >
               <img
                 alt="./cover.jpg"
-                class="h-16 w-16 text-xs actionable rounded-sm svelte-1u4ypdz"
+                class="h-16 w-16 text-xs actionable rounded-sm svelte-1l44pje"
                 height="256"
-                loading="lazy"
                 src="./cover.jpg"
                 width="256"
               />
@@ -1169,9 +1156,8 @@ exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Tracks 
             >
               <img
                 alt="./cover.jpg"
-                class="h-16 w-16 text-xs actionable rounded-sm svelte-1u4ypdz"
+                class="h-16 w-16 text-xs actionable rounded-sm svelte-1l44pje"
                 height="256"
-                loading="lazy"
                 src="./cover.jpg"
                 width="256"
               />
@@ -1236,9 +1222,8 @@ exports[`Toolshot components/ExpandableList/ExpandableList.tools.svelte: Tracks 
             >
               <img
                 alt="./cover.jpg"
-                class="h-16 w-16 text-xs actionable rounded-sm svelte-1u4ypdz"
+                class="h-16 w-16 text-xs actionable rounded-sm svelte-1l44pje"
                 height="256"
-                loading="lazy"
                 src="./cover.jpg"
                 width="256"
               />

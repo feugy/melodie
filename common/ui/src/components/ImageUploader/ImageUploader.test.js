@@ -27,7 +27,10 @@ describe('ImageUploader component', () => {
     await fireEvent.drop(getDropTarget(), { dataTransfer: { items: [item] } })
 
     expect(get(value)).toEqual(path)
-    expect(handleSelect).not.toHaveBeenCalled()
+    expect(handleSelect).toHaveBeenCalledWith(
+      expect.objectContaining({ detail: path })
+    )
+    expect(handleSelect).toHaveBeenCalledTimes(1)
   })
 
   it('loads dragged url', async () => {
@@ -45,7 +48,10 @@ describe('ImageUploader component', () => {
     await fireEvent.drop(getDropTarget(), { dataTransfer: { items: [item] } })
 
     expect(get(value)).toEqual(avatar)
-    expect(handleSelect).not.toHaveBeenCalled()
+    expect(handleSelect).toHaveBeenCalledWith(
+      expect.objectContaining({ detail: avatar })
+    )
+    expect(handleSelect).toHaveBeenCalledTimes(1)
   })
 
   it('loads paste url', async () => {
@@ -61,7 +67,10 @@ describe('ImageUploader component', () => {
     })
 
     expect(get(value)).toEqual(avatar)
-    expect(handleSelect).not.toHaveBeenCalled()
+    expect(handleSelect).toHaveBeenCalledWith(
+      expect.objectContaining({ detail: avatar })
+    )
+    expect(handleSelect).toHaveBeenCalledTimes(1)
   })
 
   it('loads file from browser', async () => {
@@ -79,7 +88,10 @@ describe('ImageUploader component', () => {
     })
 
     expect(get(value)).toEqual(path)
-    expect(handleSelect).not.toHaveBeenCalled()
+    expect(handleSelect).toHaveBeenCalledWith(
+      expect.objectContaining({ detail: path })
+    )
+    expect(handleSelect).toHaveBeenCalledTimes(1)
   })
 
   it('does not update value on empty drop', async () => {
@@ -138,9 +150,9 @@ describe('ImageUploader component', () => {
     })
 
     expect(get(value)).toEqual(path)
-
-    await userEvent.click(screen.getByRole('img'))
-
+    expect(handleSelect).toHaveBeenCalledWith(
+      expect.objectContaining({ detail: path })
+    )
     expect(handleSelect).toHaveBeenCalledTimes(1)
   })
 

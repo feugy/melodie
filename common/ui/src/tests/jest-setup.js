@@ -14,9 +14,11 @@ navigator.mediaSession = {
 }
 window.fetch = jest.fn()
 
-window.IntersectionObserver = function () {
+window.IntersectionObserver = function (callback) {
   return {
-    observe: jest.fn(),
+    observe: target => {
+      callback([{ target, isIntersecting: true }])
+    },
     unobserve: jest.fn()
   }
 }
