@@ -26,9 +26,8 @@ exports[`Toolshot routes/artist/[id].tools.svelte: Views/Artist Details 1`] = `
       >
         <img
           alt="./avatar.jpg"
-          class="h-full w-full text-3xl actionable rounded-full svelte-1u4ypdz"
+          class="h-full w-full text-3xl actionable rounded-full svelte-1l44pje"
           height="400"
-          loading="lazy"
           src="./avatar.jpg"
           width="400"
         />
@@ -105,9 +104,8 @@ The band briefly continued as a trio until Chris Shiflett joined as the band's l
             >
               <img
                 alt="cover.jpg"
-                class="h-full w-full rounded-sm svelte-1u4ypdz"
+                class="h-full w-full rounded-sm svelte-1l44pje"
                 height="256"
-                loading="lazy"
                 src="cover.jpg"
                 width="256"
               />
@@ -186,9 +184,8 @@ The band briefly continued as a trio until Chris Shiflett joined as the band's l
             >
               <img
                 alt="(1997) The Colour and the Shape/cover.jpg"
-                class="h-full w-full rounded-sm svelte-1u4ypdz"
+                class="h-full w-full rounded-sm svelte-1l44pje"
                 height="256"
-                loading="lazy"
                 src="(1997) The Colour and the Shape/cover.jpg"
                 width="256"
               />
@@ -267,9 +264,8 @@ The band briefly continued as a trio until Chris Shiflett joined as the band's l
             >
               <img
                 alt="(1999) There Is Nothing Left To Lose/cover.jpg"
-                class="h-full w-full rounded-sm svelte-1u4ypdz"
+                class="h-full w-full rounded-sm svelte-1l44pje"
                 height="256"
-                loading="lazy"
                 src="(1999) There Is Nothing Left To Lose/cover.jpg"
                 width="256"
               />

@@ -73,7 +73,7 @@ describe('connection utilities', () => {
     })
     server.on('connection', ws => ws.send(JSON.stringify({ token, settings })))
     setServerUpgrade(handleUpgrade)
-    serverUrl = `ws://localhost:${server.address().port}/ws`
+    serverUrl = `ws://localhost:${server.address().port}`
     localStorage.clear()
   })
 

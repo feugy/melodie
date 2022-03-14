@@ -2,7 +2,7 @@
   import { _ } from 'svelte-intl'
   import Image from '../Image/Image.svelte'
   import GridItem from '../GridItem/GridItem.svelte'
-  import { enhanceUrl, wrapWithLinks } from '../../utils'
+  import { wrapWithLinks } from '../../utils'
 
   export let src
 </script>
@@ -14,7 +14,7 @@
 </style>
 
 <GridItem {src} kind="album">
-  <Image class="h-full w-full" src={enhanceUrl(src?.media)} />
+  <Image class="h-full w-full" src={src?.media} />
   <h4 slot="details">
     {#if src.refs.length}
       {@html $_('by _', {

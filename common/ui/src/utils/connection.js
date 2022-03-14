@@ -18,11 +18,12 @@ const connectionTimeout = 2000
  * @returns {string|null} - enhenced url, if any
  */
 export function enhanceUrl(url) {
-  return url && rootUrl
-    ? `${rootUrl}${url}${
-        url.includes('?') ? '&' : '?'
-      }token=${encodeURIComponent(token)}`
-    : null
+  if (!url || !rootUrl) {
+    return null
+  }
+  const resultUrl = new URL(url, rootUrl)
+  resultUrl.searchParams.set('token', token)
+  return resultUrl.toString()
 }
 
 /**
@@ -40,7 +41,7 @@ export async function initConnection(address, totp, onConnectionLost) {
   }
 
   let settings = null
-  rootUrl = address.replace('ws', 'http')
+  rootUrl = address.replace(/^ws/, 'http')
   try {
     ws = await new Promise((resolve, reject) => {
       try {

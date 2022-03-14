@@ -1,8 +1,43 @@
 <script context="module">
+  import { enhanceUrl } from '../../utils'
+
   export const broken = new Set()
+
+  function encodeSrc(src, withNonce = false) {
+    return src && !broken.has(src)
+      ? withNonce
+        ? addNonce(toDOMSrc(src))
+        : toDOMSrc(src)
+      : null
+  }
+
+  function toDOMSrc(path) {
+    return path && path.replace(/#/g, '%23')
+  }
+
+  function enhanceUrlWhenRequired(src) {
+    return src ? (src.startsWith('http') ? src : enhanceUrl(src)) : src
+  }
+
+  function addNonce(src) {
+    return `${src}#nonce-${Math.random()}`
+  }
+
+  const intersectionObserver = new IntersectionObserver(entries => {
+    for (const { isIntersecting, target: image } of entries) {
+      if (isIntersecting) {
+        let { src } = image.dataset
+        delete image.dataset.src
+        image.src = enhanceUrlWhenRequired(src) ?? ''
+        intersectionObserver.unobserve(image)
+      }
+    }
+  })
 </script>
 
 <script>
+  import { onMount } from 'svelte'
+
   export let src
   export let rounded = false
   export let fallback = rounded ? 'person' : 'music_note'
@@ -14,6 +49,17 @@
 
   $: hidden = !src || broken.has(src)
 
+  let imgElement
+  $: if (imgElement) {
+    if (imgElement.hasAttribute('src')) {
+      imgElement.src = encodeSrc(enhanceUrlWhenRequired(src), withNonce) ?? ''
+    } else {
+      imgElement.dataset.src = encodeSrc(src, withNonce)
+    }
+  }
+
+  onMount(() => intersectionObserver.observe(imgElement))
+
   function handleError() {
     if (src) {
       broken.add(src)
@@ -24,10 +70,6 @@
   function handleLoad() {
     dimension = { width: this.naturalWidth, height: this.naturalHeight }
   }
-
-  function toDOMSrc(path) {
-    return path && path.replace(/#/g, '%23')
-  }
 </script>
 
 <style lang="postcss">
@@ -36,6 +78,10 @@
     font-size: 0;
     object-fit: cover;
     background-color: var(--hover-bg-color);
+
+    &:not(&[src]) {
+      visibility: hidden;
+    }
   }
 
   span {
@@ -54,16 +100,11 @@
   on:load={handleLoad}
   {width}
   {height}
+  bind:this={imgElement}
   {...$$restProps}
   class:rounded-full={rounded}
   class:rounded-sm={!rounded}
   class:hidden
-  loading="lazy"
-  src={src && !broken.has(src)
-    ? withNonce
-      ? `${toDOMSrc(src)}#nonce=${Math.random()}`
-      : toDOMSrc(src)
-    : null}
   alt={src}
 />
 {#if hidden}

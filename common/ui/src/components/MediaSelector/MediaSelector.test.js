@@ -135,12 +135,6 @@ describe('MediaSelector component', () => {
       dataTransfer: { items: [item] }
     })
 
-    await fireEvent.click(
-      screen
-        .queryAllByRole('img')
-        .find(node => node.getAttribute('src').includes(path))
-    )
-
     expect(invoke).toHaveBeenCalledWith(
       'media.saveForAlbum',
       artistData.id,

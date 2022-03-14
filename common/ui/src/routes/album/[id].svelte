@@ -14,7 +14,6 @@
   import { load, changes, removals } from '../../stores/albums'
   import { add, current } from '../../stores/track-queue'
   import {
-    enhanceUrl,
     formatTime,
     getYears,
     sumDurations,
@@ -104,7 +103,7 @@
           class="h-full w-full text-3xl actionable"
           width="400"
           height="400"
-          src={enhanceUrl(album.media)}
+          src={album.media}
         />
       </span>
       <div>

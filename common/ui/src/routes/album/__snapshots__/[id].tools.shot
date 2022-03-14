@@ -26,9 +26,8 @@ exports[`Toolshot routes/album/[id].tools.svelte: Views/Album Details 1`] = `
       >
         <img
           alt="cover.jpg"
-          class="h-full w-full text-3xl actionable rounded-sm svelte-1u4ypdz"
+          class="h-full w-full text-3xl actionable rounded-sm svelte-1l44pje"
           height="400"
-          loading="lazy"
           src="cover.jpg"
           width="400"
         />

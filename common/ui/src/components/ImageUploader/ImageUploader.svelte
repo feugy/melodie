@@ -5,14 +5,6 @@
   export let value
   const dispatch = createEventDispatcher()
 
-  function handleClick(evt) {
-    if (value) {
-      evt.stopPropagation()
-      evt.preventDefault()
-      dispatch('select', value)
-    }
-  }
-
   function handleDragOver({ dataTransfer }) {
     dataTransfer.dropEffect = 'copy'
   }
@@ -27,17 +19,20 @@
         // the path attribute is an Electron's addition: https://github.com/electron/electron/blob/master/docs/api/file-object.md
         value = item.getAsFile().path
       }
+      dispatch('select', value)
     }
   }
 
   function handlePaste({ clipboardData }) {
     value = clipboardData.getData('text')
+    dispatch('select', value)
   }
 
   function handleSelectFile({ target: { files } }) {
     if (files.length) {
       // the path attribute is an Electron's addition: https://github.com/electron/electron/blob/master/docs/api/file-object.md
       value = files[0].path
+      dispatch('select', value)
     }
   }
 </script>
@@ -58,8 +53,7 @@
   class="{$$restProps.class} actionable"
   on:dragover|preventDefault|stopPropagation={handleDragOver}
   on:drop|preventDefault|stopPropagation={handleDrop}
-  on:click|capture={handleClick}
 >
-  <Image src={value} class="w-full h-full" fallback={'add_box'} withNonce />
+  <Image src={value} class="w-full h-full" fallback={'add_box'} />
   <input type="file" on:change={handleSelectFile} />
 </span>
