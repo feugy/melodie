@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0-beta.3](https://github.com/feugy/melodie/compare/v2.0.0-beta.2...v2.0.0-beta.3) (2022-03-14)
+
+### Bug Fixes
+
+- **ui:** images are broken after JWT has expired ([#43](https://github.com/feugy/melodie/issues/43)) ([4b87b72](https://github.com/feugy/melodie/commit/4b87b72ee0220929a2fdb6da6a385bd63c4d77dc))
+
 ## [2.0.0-beta.2](https://github.com/feugy/melodie/compare/v2.0.0-beta.1...v2.0.0-beta.2) (2021-12-27)
 
 ### Features

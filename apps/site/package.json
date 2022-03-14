@@ -1,6 +1,6 @@
 {
   "name": "@melodie/site",
-  "version": "2.0.0-beta.2",
+  "version": "2.0.0-beta.3",
   "description": "Mélodie promotion site, deployed as github page",
   "type": "module",
   "scripts": {
