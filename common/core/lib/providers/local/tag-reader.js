@@ -13,7 +13,7 @@ module.exports = {
   /**
    * List of supported file formats.
    */
-  formats: ['.mp3', '.ogg', '.flac'],
+  formats: ['.mp3', '.ogg', '.flac', '.webm', '.weba', '.opus', '.wav'],
 
   /**
    * @typedef {object} Tags
