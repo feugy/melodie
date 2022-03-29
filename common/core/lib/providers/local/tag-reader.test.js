@@ -10,6 +10,10 @@ const fixtures = resolve(__dirname, '..', '..', '..', '..', 'fixtures')
 const mp3 = resolve(fixtures, 'file.mp3')
 const ogg = resolve(fixtures, 'file.ogg')
 const flac = resolve(fixtures, 'file.flac')
+const opus = resolve(fixtures, 'file.opus')
+const wav = resolve(fixtures, 'file.wav')
+const weba = resolve(fixtures, 'file.weba')
+const webm = resolve(fixtures, 'file.webm')
 const noDuration = resolve(fixtures, 'no-duration.mp3')
 const untagged = resolve(fixtures, 'untagged.mp3')
 
@@ -78,6 +82,92 @@ describe('Tag reader', () => {
       track: { no: 1, of: null },
       year: 1990,
       cover: null,
+      movementIndex: {}
+    })
+  })
+
+  it('reads opus file', async () => {
+    expect(await read(opus)).toEqual({
+      album: 'Test files',
+      albumartist: null,
+      artist: 'Epicanis',
+      artists: ['Epicanis'],
+      disk: { no: null, of: null },
+      duration: 174.0230625,
+      title: 'Presentation file',
+      track: { no: null, of: null },
+      cover: {
+        data: expect.any(Buffer),
+        format: 'image/png',
+        description: '',
+        height: 512,
+        width: 512,
+        type: 'Cover (front)',
+        indexed_color: 0,
+        colour_depth: 0
+      },
+      year: null,
+      genre: [],
+      movementIndex: {},
+      comment: ['Opus Audio']
+    })
+  })
+
+  it('reads wave file', async () => {
+    expect(await read(wav)).toEqual({
+      album: 'Test files',
+      albumartist: null,
+      artist: 'Epicanis',
+      artists: ['Epicanis'],
+      disk: { no: null, of: null },
+      duration: 23.916541666666667,
+      title: 'A test wave file',
+      track: { no: null, of: null },
+      cover: {
+        data: expect.any(Buffer),
+        format: 'image/png',
+        description: '',
+        type: 'Cover (front)'
+      },
+      date: '2012',
+      year: 2012,
+      genre: [],
+      movementIndex: {},
+      comment: ['PCM Audio']
+    })
+  })
+
+  it('reads weba file', async () => {
+    expect(await read(weba)).toEqual({
+      album: 'fixtures',
+      albumartist: null,
+      artist: null,
+      artists: [],
+      disk: { no: null, of: null },
+      duration: 79.658672352,
+      title: 'file',
+      track: { no: null, of: null },
+      cover: null,
+      year: null,
+      genre: [],
+      movementIndex: {}
+    })
+  })
+
+  it('reads webm file', async () => {
+    expect(await read(webm)).toEqual({
+      album: 'fixtures',
+      albumartist: null,
+      artist: 'Ivan "Epicanis" Privaci (pseud.)',
+      artists: ['Ivan "Epicanis" Privaci (pseud.)'],
+      disk: { no: null, of: null },
+      duration: 27.632,
+      encodedby: 'Lavc57.107.100 libopus',
+      title: 'WEBMv2',
+      track: { no: 3, of: null },
+      genre: ['speech'],
+      cover: null,
+      year: null,
       movementIndex: {}
     })
   })
