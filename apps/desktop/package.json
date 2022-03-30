@@ -1,6 +1,6 @@
 {
   "name": "melodie",
-  "version": "2.0.0-beta.3",
+  "version": "2.0.0",
   "description": "Mélodie is a portable, simple-as-pie music player",
   "author": {
     "name": "Damien Simonin Feugas",
@@ -28,8 +28,8 @@
     "rxjs": "^7.5.5"
   },
   "optionalDependencies": {
-    "@melodie/core": "2.0.0-beta.3",
-    "@melodie/ui": "2.0.0-beta.3"
+    "@melodie/core": "2.0.0",
+    "@melodie/ui": "2.0.0"
   },
   "devDependencies": {
     "electron": "18.0.0",

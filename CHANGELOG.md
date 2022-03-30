@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/feugy/melodie/compare/v2.0.0-beta.3...v2.0.0) (2022-03-30)
+
+### Features
+
+- **core:** adds more audio formats ([#48](https://github.com/feugy/melodie/issues/48)) ([4a0643e](https://github.com/feugy/melodie/commit/4a0643eb4af5f75cde89a2d20f61c10f67b47c8f))
+
 ## [2.0.0-beta.3](https://github.com/feugy/melodie/compare/v2.0.0-beta.2...v2.0.0-beta.3) (2022-03-14)
 
 ### Bug Fixes

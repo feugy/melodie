@@ -17,7 +17,7 @@ exports[`Toolshot components/DownloadButton/DownloadButton.tools.svelte: Site co
       </i>
        
       <span>
-        Install v2.0.0-beta.3
+        Install v2.0.0
       </span>
        
       <i
