@@ -23,10 +23,10 @@ export default {
     })
   ],
   kit: {
-    target: '#svelte',
-    ssr: false,
     paths: { base },
-    adapter: adapter(),
+    adapter: adapter({
+      fallback: 'index.html'
+    }),
     vite: {
       plugins: [
         yaml(),

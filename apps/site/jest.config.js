@@ -20,7 +20,7 @@ export default {
   transformIgnorePatterns: ['node_modules\\/(?!svelte|@atelier-wb)'],
   moduleFileExtensions: ['js', 'svelte', 'json', 'yml'],
   setupFilesAfterEnv: [
-    'jest-extended',
+    'jest-extended/all',
     '@testing-library/jest-dom/extend-expect'
   ],
   setupFiles: ['./tests/jest-setup'],

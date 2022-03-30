@@ -1,6 +1,7 @@
 name: release
 
 on:
+  workflow_dispatch: {}
   workflow_run:
     workflows: [CI]
     branches: [main]
@@ -47,6 +48,7 @@ jobs:
         run: npm -w apps/desktop run release:publish -- onTagOrDraft -${{ matrix.flags}}
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          USE_HARD_LINKS: false
 
   release-site:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}

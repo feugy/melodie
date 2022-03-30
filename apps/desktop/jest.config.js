@@ -3,7 +3,7 @@
 module.exports = {
   testEnvironment: 'node',
   setupFiles: ['./lib/tests/jest-setup'],
-  setupFilesAfterEnv: ['jest-extended'],
+  setupFilesAfterEnv: ['jest-extended/all'],
   watchPlugins: [
     'jest-watch-typeahead/filename',
     'jest-watch-typeahead/testname'

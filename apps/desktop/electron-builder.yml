@@ -74,7 +74,8 @@ snap:
     - screen-inhibit-control
   slots:
     - mpris:
-      name: chromium
+        name: chromium
+        interface: mpris
 
 appImage:
   desktop:

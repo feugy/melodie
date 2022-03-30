@@ -358,7 +358,7 @@ Windows App store release can not be automated: Github CI will build the appx pa
 
 ### Manual snap release
 
-Until [this PR](https://github.com/electron-userland/electron-builder/pull/5313) lands on electron-builder, we need to manually release on snap.
+Until [this issue on Github Actions](https://github.com/electron-userland/electron-builder/issues/6124#issuecomment-927177943) is fixed on Electron-builder, we're stuck with electron-builder@22.10.5 and we need to manually release on snap.
 
 1. Clean up distribution, build snap file and extract it:
 

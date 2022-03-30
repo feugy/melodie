@@ -5,7 +5,7 @@ module.exports = {
   testEnvironment: 'node',
   setupFiles: ['./tests/jest-setup'],
   watchPathIgnorePatterns: ['/node_modules/', '/__nocks__/'],
-  setupFilesAfterEnv: ['jest-extended'],
+  setupFilesAfterEnv: ['jest-extended/all'],
   watchPlugins: [
     'jest-watch-typeahead/filename',
     'jest-watch-typeahead/testname'

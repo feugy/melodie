@@ -32,6 +32,8 @@ module.exports = {
     // some false-positives:
     // /home/damien/dev/perso/melodie/common/core/lib/models/abstract-model.test.js
     //   314:38  error  `getById` query is sync so it does not need to be awaited
-    'testing-library/no-await-sync-query': 'off'
+    'testing-library/no-await-sync-query': 'off',
+    'testing-library/prefer-presence-queries': 'off',
+    'testing-library/no-wait-for-multiple-assertions': 'off'
   }
 }
