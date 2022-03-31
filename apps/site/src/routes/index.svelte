@@ -78,7 +78,7 @@
 <Sticky>
   <nav>
     <img
-      src="favicon.png"
+      src="{baseUrl}/favicon.png"
       alt={$_('alt.home')}
       on:click={() => {
         window.location.hash = ''

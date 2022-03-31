@@ -6,6 +6,8 @@
   export let file
   export let baseUrl
 
+  const imageBaseUrl = BASE_URL
+
   const dispatch = createEventDispatcher()
 
   function handleClick() {
@@ -24,5 +26,5 @@
 </style>
 
 <div on:click={handleClick}>
-  <img src="logos/{os}.png" alt={os} /><span>{label}</span>
+  <img src="{imageBaseUrl}/logos/{os}.png" alt={os} /><span>{label}</span>
 </div>
