@@ -15,7 +15,7 @@ exports[`Toolshot tests/index/index.tools.svelte: Site Page/Index 1`] = `
       <img
         alt="Mélodie logo - link to the page top"
         class="svelte-11kojun"
-        src="favicon.png"
+        src="/favicon.png"
       />
        
       <a

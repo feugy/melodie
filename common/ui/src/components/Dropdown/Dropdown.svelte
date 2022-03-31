@@ -240,7 +240,7 @@
   </Button>
 </span>
 {#if open && anchor && options && options.length}
-  <Portal>
+  <Portal target="body">
     <ul
       role="menu"
       tabindex="-1"

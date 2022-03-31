@@ -2,8 +2,6 @@ appId: org.feugy.melodie
 productName: Mélodie
 copyright: Copyright © 2021 ${author}
 
-asar: false
-
 files:
   - LICENSE
   - CHANGELOG.md
