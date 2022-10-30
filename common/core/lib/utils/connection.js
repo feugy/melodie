@@ -142,28 +142,35 @@ exports.initConnection = async function (services, publicFolder, port = 0) {
     )
     registerMediaRoute('/albums/:id/media/:count', services.media.getAlbumMedia)
 
-    server.get('/media', async ({ query }, reply) => {
-      verify(query)
+    server.get('/media', async ({ query, url }, reply) => {
+      verify(query, url)
       const { path } = query
       return (await services.media.isMediaAllowed(path))
         ? reply.sendFile(basename(path), dirname(path))
         : reply.code(403).send()
     })
 
-    function registerMediaRoute(url, retriever) {
-      server.get(url, async ({ params: { id, count }, query }, reply) => {
-        verify(query)
-        const path = await retriever(id, count && +count)
-        return path
-          ? reply.sendFile(basename(path), dirname(path))
-          : reply.code(404).send()
-      })
+    function registerMediaRoute(route, retriever) {
+      server.get(
+        route,
+        async ({ params: { id, count }, query, url }, reply) => {
+          verify(query, url)
+          const path = await retriever(id, count && +count)
+          return path
+            ? reply.sendFile(basename(path), dirname(path))
+            : reply.code(404).send()
+        }
+      )
     }
 
-    function verify(params) {
+    function verify({ token } = {}, url = '') {
       try {
-        server.jwt.verify(params.token)
+        server.jwt.verify(token)
       } catch (error) {
+        logger.debug(
+          { token, url, error },
+          `failed to verify token: ${error.message}`
+        )
         // fastify will automatically use this code
         error.statusCode = 401
         throw error
@@ -178,6 +185,7 @@ exports.initConnection = async function (services, publicFolder, port = 0) {
         const { searchParams } = new URL(req.url, 'http://localhost')
         const otp = searchParams.get('totp')
         const token = searchParams.get('token')
+        logger.debug({ otp, token }, `verifying new connection`)
         if (!otp && !token) {
           const error = new Error('TOTP and token are missing')
           error.statusCode = 401
@@ -186,7 +194,7 @@ exports.initConnection = async function (services, publicFolder, port = 0) {
         let tokenSuccess = false
         if (token) {
           try {
-            verify({ token })
+            verify({ token }, 'ws/')
             tokenSuccess = true
           } catch {
             // do not fail yet, and try OTP
@@ -197,6 +205,10 @@ exports.initConnection = async function (services, publicFolder, port = 0) {
           otpSuccess = TOTP.validate({ token: otp, window: 1 }) !== null
         }
         if (!otpSuccess && !tokenSuccess) {
+          logger.info(
+            { otp, otpSuccess, token, tokenSuccess },
+            `refusing connection`
+          )
           const error = new Error('Invalid TOTP or token')
           error.statusCode = 403
           throw error
@@ -274,6 +286,7 @@ exports.initConnection = async function (services, publicFolder, port = 0) {
     }
 
     function sendNewToken(extraData = {}) {
+      logger.info('send new token to connected clients')
       sendToWS({ token: server.jwt.sign({}), ...extraData })
       sendTokenTimeout = setTimeout(
         sendNewToken,

@@ -78,7 +78,7 @@ Another option is to open it with Control-click: it'll immediately register the 
 
 - progressive webapp
 
-- Consider yarn2, once svelte-preprocess is fixed
+- Consider yarn2/pnpm, once svelte-preprocess is fixed
 
 - search tooling to find deps version mismatch, and maintain package.json same version
 

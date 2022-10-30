@@ -12,14 +12,12 @@
   let otp = ''
 
   function handleInput({ target }) {
-    otp = target.value.replace(/\D/g, '')
-    target.value = otp
+    otp = target.value
   }
 
   function handleConnect() {
-    if (!connecting) {
-      dispatch('reconnect', otp)
-    }
+    dispatch('reconnect', otp.replace(/\D/g, ''))
+    otp = ''
   }
 </script>
 
@@ -39,8 +37,14 @@
     <div class="otp">
       <h3>{$_('one time password')}</h3>
       <form on:submit|preventDefault={handleConnect}>
-        <TextInput type="number" on:input={handleInput} on:change focus />
-        <Button type="submit" icon="input" primary />
+        <TextInput
+          type="number"
+          value={otp}
+          on:input={handleInput}
+          on:change
+          focus
+        />
+        <Button type="submit" icon="input" primary disabled={connecting} />
       </form>
     </div>
   </div>

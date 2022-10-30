@@ -25,7 +25,6 @@ describe('Player component', () => {
   let gainNode
   let audioContext
   let observer
-  let fetch
 
   function renderPlayer() {
     render(html`<${Player} />`)
@@ -77,7 +76,6 @@ describe('Player component', () => {
     })
     clear()
     invoke.mockResolvedValueOnce({ total: 0, results: [] })
-    fetch = jest.spyOn(window, 'fetch')
   })
 
   afterEach(() => {
@@ -94,7 +92,6 @@ describe('Player component', () => {
     expect(audio).toHaveAttribute('src', trackListData[0].data)
 
     expect(get(current)).toEqual(trackListData[0])
-    expect(fetch).toHaveBeenCalledWith(trackListData[1].data)
 
     await userEvent.click(await screen.findByText('pause'))
 
@@ -103,7 +100,6 @@ describe('Player component', () => {
     await userEvent.click(screen.getByText('play_arrow'))
 
     expect(get(current)).toEqual(trackListData[0])
-    expect(fetch).toHaveBeenCalledTimes(1)
   })
 
   it('mutes and unmute volume', async () => {
@@ -122,12 +118,9 @@ describe('Player component', () => {
     add(trackListData)
 
     renderPlayer()
-    expect(fetch).toHaveBeenNthCalledWith(1, trackListData[1].data)
     await userEvent.click(screen.getByText('skip_next'))
-    expect(fetch).toHaveBeenNthCalledWith(2, trackListData[2].data)
 
     expect(get(current)).toEqual(trackListData[1])
-    expect(fetch).toHaveBeenCalledTimes(2)
   })
 
   it('goes to previous track', async () => {
@@ -136,12 +129,9 @@ describe('Player component', () => {
     expect(get(current)).toEqual(trackListData[2])
 
     renderPlayer()
-    expect(fetch).toHaveBeenNthCalledWith(1, trackListData[3].data)
     await userEvent.click(screen.getByText('skip_previous'))
-    expect(fetch).toHaveBeenNthCalledWith(2, trackListData[2].data)
 
     expect(get(current)).toEqual(trackListData[1])
-    expect(fetch).toHaveBeenCalledTimes(2)
   })
 
   it('can change volume', async () => {

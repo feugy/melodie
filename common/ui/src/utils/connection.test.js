@@ -74,7 +74,7 @@ describe('connection utilities', () => {
     server.on('connection', ws => ws.send(JSON.stringify({ token, settings })))
     setServerUpgrade(handleUpgrade)
     serverUrl = `ws://localhost:${server.address().port}`
-    localStorage.clear()
+    sessionStorage.clear()
   })
 
   afterEach(() => {
@@ -102,7 +102,7 @@ describe('connection utilities', () => {
       settings
     )
     const client = await connection
-    expect(localStorage.getItem('token')).toEqual(token)
+    expect(sessionStorage.getItem('token')).toEqual(token)
 
     const closure = new Promise(resolve => client.on('close', resolve))
     closeConnection()
@@ -115,21 +115,21 @@ describe('connection utilities', () => {
   it('connects to WebSocket server with Totp', async () => {
     await initConnection(serverUrl, totp, handleLostConnection)
     expect(handleUpgrade).toHaveBeenCalledWith({ totp })
-    expect(localStorage.getItem('token')).toEqual(token)
+    expect(sessionStorage.getItem('token')).toEqual(token)
   })
 
   it('connects to WebSocket server with token', async () => {
-    localStorage.setItem('token', token)
+    sessionStorage.setItem('token', token)
     await initConnection(serverUrl, null, handleLostConnection)
     expect(handleUpgrade).toHaveBeenCalledWith({ token })
-    expect(localStorage.getItem('token')).toEqual(token)
+    expect(sessionStorage.getItem('token')).toEqual(token)
   })
 
   it('connects to WebSocket server with token and Totp', async () => {
-    localStorage.setItem('token', token)
+    sessionStorage.setItem('token', token)
     await initConnection(serverUrl, totp, handleLostConnection)
     expect(handleUpgrade).toHaveBeenCalledWith({ token, totp })
-    expect(localStorage.getItem('token')).toEqual(token)
+    expect(sessionStorage.getItem('token')).toEqual(token)
   })
 
   it('throws when initializing connection twice', async () => {
@@ -284,11 +284,11 @@ describe('connection utilities', () => {
       ws = client
     })
     await initConnection(serverUrl, totp, handleLostConnection)
-    expect(localStorage.getItem('token')).toEqual(token)
+    expect(sessionStorage.getItem('token')).toEqual(token)
 
     ws.send(JSON.stringify({ token: newToken }))
     await sleep()
-    expect(localStorage.getItem('token')).toEqual(newToken)
+    expect(sessionStorage.getItem('token')).toEqual(newToken)
     expect(errorSpy).not.toHaveBeenCalled()
     expect(handleLostConnection).not.toHaveBeenCalled()
   })
