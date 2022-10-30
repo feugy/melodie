@@ -10,7 +10,7 @@
   import Shuffle from './Shuffle.svelte'
   import Repeat from './Repeat.svelte'
   import { isDesktop } from '../../stores/settings'
-  import { current, next, tracks } from '../../stores/track-queue'
+  import { current, tracks } from '../../stores/track-queue'
   import { playNext } from '../../stores/track-queue'
   import { screenSize, MD } from '../../stores/window'
   import { enhanceUrl } from '../../utils'
@@ -48,14 +48,8 @@
         player.load()
       }
     })
-    const nextSubscription = next.subscribe(next => {
-      if (next) {
-        fetch(enhanceUrl(next.data))
-      }
-    })
     return () => {
       currentSubscription.unsubscribe()
-      nextSubscription.unsubscribe()
     }
   })
 

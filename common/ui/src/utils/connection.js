@@ -22,7 +22,9 @@ export function enhanceUrl(url) {
     return null
   }
   const resultUrl = new URL(url, rootUrl)
-  resultUrl.searchParams.set('token', token)
+  if (token) {
+    resultUrl.searchParams.set('token', token)
+  }
   return resultUrl.toString()
 }
 
@@ -39,8 +41,17 @@ export async function initConnection(address, totp, onConnectionLost) {
   if (ws && [WebSocket.CONNECTING, WebSocket.OPEN].includes(ws.readyState)) {
     throw new Error(`connection already established, close it first`)
   }
-
+  let connectionAlreadyLost = false
   let settings = null
+
+  const callConnectionLostHandler = error => {
+    closeConnection()
+    if (!connectionAlreadyLost) {
+      connectionAlreadyLost = true
+      onConnectionLost(error)
+    }
+  }
+
   rootUrl = address.replace(/^ws/, 'http')
   try {
     ws = await new Promise((resolve, reject) => {
@@ -49,7 +60,7 @@ export async function initConnection(address, totp, onConnectionLost) {
           Object.fromEntries(
             [
               ['totp', totp],
-              ['token', localStorage.getItem(tokenKey)]
+              ['token', sessionStorage.getItem(tokenKey)]
             ].filter(([, value]) => value)
           )
         )
@@ -107,19 +118,17 @@ export async function initConnection(address, totp, onConnectionLost) {
     }
 
     ws.onclose = () => {
-      closeConnection()
-      onConnectionLost()
+      callConnectionLostHandler()
     }
   } catch (err) {
-    closeConnection()
-    onConnectionLost(err)
+    callConnectionLostHandler(err)
   }
   return settings
 }
 
 function updateToken(value) {
   token = value
-  localStorage.setItem(tokenKey, token)
+  sessionStorage.setItem(tokenKey, token)
 }
 
 /**

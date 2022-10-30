@@ -73,7 +73,7 @@ async function connect(address, reconnectDelay) {
   connected$.next(Boolean(settings))
 }
 
-export async function init(address, totpSecret, totp, reconnectDelay = 5000) {
+export async function init(address, totpSecret, totp, reconnectDelay = 1000) {
   cleanPending()
   connected$.next(null)
   await new Promise(resolve => {
