@@ -14,12 +14,9 @@ const { initConnection, broadcast, messageBus } = require('./connection')
 const { getLogger } = require('./logger')
 const { sleep, makeFolder } = require('../tests')
 
-function connectWSClient(address, totp, token) {
+function connectWSClient(address, token) {
   return new Promise((resolve, reject) => {
     const params = new URLSearchParams()
-    if (totp) {
-      params.set('totp', totp)
-    }
     if (token) {
       params.set('token', token)
     }
@@ -68,14 +65,17 @@ function callAndListen(ws, data) {
 
 describe('connection utilities', () => {
   let errorSpy
-  let warnSpy
+  let uiErrorSpy
+  let uiWarnSpy
   let close
   let address
   let folder
   let tracks
   let totp
+  const externalIp = '79.191.130.17'
   const totpSecret = faker.random.word()
   const publicFolder = join(tmpdir(), faker.random.word())
+  const trackId = faker.datatype.uuid()
 
   const services = {
     settings: { get: jest.fn() },
@@ -102,24 +102,26 @@ describe('connection utilities', () => {
     errorSpy = jest
       .spyOn(getLogger('connection'), 'error')
       .mockImplementation(() => {})
-    warnSpy = jest
-      .spyOn(getLogger('connection'), 'warn')
+    uiErrorSpy = jest
+      .spyOn(getLogger('ui'), 'error')
       .mockImplementation(() => {})
+    uiWarnSpy = jest.spyOn(getLogger('ui'), 'warn').mockImplementation(() => {})
     services.settings.get.mockResolvedValue({
       folders: [folder],
       isBroadcasting: false,
       totpSecret
     })
+    services.media.getTrackData.mockResolvedValueOnce(tracks[0].path)
   })
 
   afterEach(() => (close ? close() : null))
 
-  it('starts a WebSocket server, connects with valid OTP and can stop', async () => {
-    ;({ close, address, totp } = await initConnection(services, publicFolder))
+  it('starts a WebSocket server, connects localy with no token and can stop', async () => {
+    ;({ close, address } = await initConnection(services, publicFolder))
     expect(close).toBeInstanceOf(Function)
     expect(address).toInclude('127.0.0.1')
 
-    const { ws, initMessage } = await connectWSClient(address, totp.generate())
+    const { ws, initMessage } = await connectWSClient(address)
 
     await expect(got(`${address}/index.html`)).rejects.toThrow(/Not Found/)
     await expect(
@@ -142,34 +144,11 @@ describe('connection utilities', () => {
     expect(errorSpy).not.toHaveBeenCalled()
   })
 
-  it('can reconnect with JWT', async () => {
-    ;({ close, address, totp } = await initConnection(services, publicFolder))
-    expect(close).toBeInstanceOf(Function)
-    expect(address).toInclude('127.0.0.1')
+  it('can not generate a token with a missing OTP', async () => {
+    ;({ close, address } = await initConnection(services, publicFolder, 0))
 
-    let {
-      ws,
-      initMessage: { token }
-    } = await connectWSClient(address, totp.generate())
-    ws.terminate()
-
-    ws = (await connectWSClient(address, null, token)).ws
-    ws.terminate()
-
-    // both
-    ws = (await connectWSClient(address, 'invalid', token)).ws
-    ws.terminate()
-
-    expect(errorSpy).not.toHaveBeenCalled()
-  })
-
-  it('can not connect with missing OTP', async () => {
-    ;({ close, address } = await initConnection(services, publicFolder))
-    expect(close).toBeInstanceOf(Function)
-    expect(address).toInclude('127.0.0.1')
-
-    await expect(connectWSClient(address)).rejects.toThrow(
-      'Unexpected server response: 401'
+    await expect(got.post(`${address}/token`)).rejects.toThrow(
+      'Response code 401 (Unauthorized)'
     )
     await expect(got(`${address}/index.html`)).rejects.toThrow(/Not Found/)
 
@@ -177,18 +156,59 @@ describe('connection utilities', () => {
     expect(errorSpy).not.toHaveBeenCalled()
   })
 
-  it('can not connect with invalid OTP', async () => {
-    ;({ close, address } = await initConnection(services, publicFolder))
-    expect(close).toBeInstanceOf(Function)
-    expect(address).toInclude('127.0.0.1')
+  it('can not generate a token with an invalid OTP', async () => {
+    ;({ close, address } = await initConnection(
+      services,
+      publicFolder,
+      0,
+      externalIp
+    ))
 
-    await expect(connectWSClient(address, '000000')).rejects.toThrow(
-      'Unexpected server response: 403'
-    )
-    await expect(got(`${address}/index.html`)).rejects.toThrow(/Not Found/)
+    await expect(
+      got.post(`${address}/token`, {
+        body: '000000',
+        headers: {
+          'content-type': 'text/plain',
+          'x-forwarded-for': '192.168.0.1'
+        }
+      })
+    ).rejects.toThrow('Response code 401 (Unauthorized)')
+    await expect(
+      got(`${address}/tracks/${trackId}/data`, {
+        searchParams: { token: '0000' }
+      })
+    ).rejects.toThrow('Response code 401 (Unauthorized)')
 
     close()
     expect(errorSpy).not.toHaveBeenCalled()
+    expect(services.media.getTrackData).toHaveBeenCalledTimes(0)
+  })
+
+  it('can generate a token from valid OTP', async () => {
+    ;({ close, address, totp } = await initConnection(
+      services,
+      publicFolder,
+      0,
+      externalIp
+    ))
+
+    const token = await got
+      .post(`${address}/token`, {
+        body: totp.generate(),
+        headers: { 'content-type': 'text/plain' }
+      })
+      .text()
+    expect(token).toBeDefined()
+    expect(
+      await got(`${address}/tracks/${trackId}/data`, {
+        searchParams: { token }
+      })
+    ).toBeDefined()
+
+    close()
+    expect(errorSpy).not.toHaveBeenCalled()
+    expect(services.media.getTrackData).toHaveBeenCalledWith(trackId, undefined)
+    expect(services.media.getTrackData).toHaveBeenCalledTimes(1)
   })
 
   it('uses explicit port over settings', async () => {
@@ -259,13 +279,13 @@ describe('connection utilities', () => {
   })
 
   it('can invoke a service function', async () => {
-    ;({ close, address, totp } = await initConnection(services, publicFolder))
+    ;({ close, address } = await initConnection(services, publicFolder))
     const result = { foo: faker.lorem.words() }
     services.media.triggerArtistsEnrichment.mockResolvedValueOnce(result)
     const {
       ws,
       initMessage: { token }
-    } = await connectWSClient(address, totp.generate())
+    } = await connectWSClient(address)
     const invoked = 'media.triggerArtistsEnrichment'
     const args = faker.random.arrayElements()
     const id = faker.datatype.uuid()
@@ -282,11 +302,11 @@ describe('connection utilities', () => {
   })
 
   it('returns error on unknown module', async () => {
-    ;({ close, address, totp } = await initConnection(services, publicFolder))
+    ;({ close, address } = await initConnection(services, publicFolder))
     const {
       ws,
       initMessage: { token }
-    } = await connectWSClient(address, totp.generate())
+    } = await connectWSClient(address)
     const name = 'whatever'
     const fn = 'triggerArtistsEnrichment'
     const invoked = `${name}.${fn}`
@@ -304,11 +324,11 @@ describe('connection utilities', () => {
   })
 
   it('returns error on unknown function', async () => {
-    ;({ close, address, totp } = await initConnection(services, publicFolder))
+    ;({ close, address } = await initConnection(services, publicFolder))
     const {
       ws,
       initMessage: { token }
-    } = await connectWSClient(address, totp.generate())
+    } = await connectWSClient(address)
     const name = 'media'
     const fn = 'whatever'
     const invoked = `${name}.${fn}`
@@ -326,13 +346,13 @@ describe('connection utilities', () => {
   })
 
   it('returns error from invoked function', async () => {
-    ;({ close, address, totp } = await initConnection(services, publicFolder))
+    ;({ close, address } = await initConnection(services, publicFolder))
     const err = new Error('boom!')
     services.media.triggerArtistsEnrichment.mockRejectedValueOnce(err)
     const {
       ws,
       initMessage: { token }
-    } = await connectWSClient(address, totp.generate())
+    } = await connectWSClient(address)
     const invoked = `media.triggerArtistsEnrichment`
     const args = faker.random.arrayElements()
     const id = faker.datatype.uuid()
@@ -348,8 +368,8 @@ describe('connection utilities', () => {
   })
 
   it('logs warning on unsupported message', async () => {
-    ;({ close, address, totp } = await initConnection(services, publicFolder))
-    const { ws } = await connectWSClient(address, totp.generate())
+    ;({ close, address } = await initConnection(services, publicFolder))
+    const { ws } = await connectWSClient(address)
 
     const data = { foo: faker.random.word() }
     call(ws, data)
@@ -362,8 +382,8 @@ describe('connection utilities', () => {
   })
 
   it('logs warning on unparseable message', async () => {
-    ;({ close, address, totp } = await initConnection(services, publicFolder))
-    const { ws } = await connectWSClient(address, totp.generate())
+    ;({ close, address } = await initConnection(services, publicFolder))
+    const { ws } = await connectWSClient(address)
 
     const rawData = 'does not parse to JSON'
     ws.send(rawData)
@@ -377,10 +397,10 @@ describe('connection utilities', () => {
 
   it('broadcast external and internal messages', async () => {
     const event = faker.random.word()
-    ;({ close, address, totp } = await initConnection(services, publicFolder))
+    ;({ close, address } = await initConnection(services, publicFolder))
     const listener = jest.fn()
-    const { ws: ws1 } = await connectWSClient(address, totp.generate())
-    const { ws: ws2 } = await connectWSClient(address, totp.generate())
+    const { ws: ws1 } = await connectWSClient(address)
+    const { ws: ws2 } = await connectWSClient(address)
     const p1 = listen(ws1)
     const p2 = listen(ws2)
     messageBus.on(event, listener)
@@ -406,7 +426,12 @@ describe('connection utilities', () => {
 
   describe('given a running server', () => {
     beforeEach(async () => {
-      ;({ close, address, totp } = await initConnection(services, publicFolder))
+      ;({ close, address, totp } = await initConnection(
+        services,
+        publicFolder,
+        0,
+        externalIp
+      ))
     })
 
     const mp3 = resolve(__dirname, '..', '..', '..', 'fixtures', 'file.mp3')
@@ -421,9 +446,21 @@ describe('connection utilities', () => {
     )
 
     describe.each([
-      ['given no token', ''],
-      ['given invalid token', '?token=123456']
-    ])('%s', (title, token) => {
+      { title: 'given no token', token: '', status: 401 },
+      { title: 'given invalid token', token: '123456', status: 403 }
+    ])('$title', ({ token, status }) => {
+      it('denies Web Socket connection', async () => {
+        await expect(connectWSClient(address, token)).rejects.toThrow(
+          `Unexpected server response: ${status}`
+        )
+        expect(services.media.getAlbumMedia).not.toHaveBeenCalled()
+      })
+    })
+
+    describe.each([
+      { title: 'given no token', token: '' },
+      { title: 'given invalid token', token: '?token=123456' }
+    ])('$title', ({ token }) => {
       it('denies access to album cover', async () => {
         const id = faker.datatype.number({ min: 1000 })
         const count = faker.datatype.number({ min: 1, max: 10 })
@@ -475,46 +512,32 @@ describe('connection utilities', () => {
       let token
 
       beforeEach(async () => {
-        const result = await connectWSClient(address, totp.generate())
+        token = await got
+          .post(`${address}/token`, {
+            body: totp.generate(),
+            headers: { 'content-type': 'text/plain' }
+          })
+          .text()
+        const result = await connectWSClient(address, token)
         ws = result.ws
-        token = result.initMessage.token
       })
 
       afterEach(async () => ws.close())
       describe.each([
-        [
-          'given no token',
-          undefined,
-          `Validation errors:
-data must have required property 'error'
-data must have required property 'warn'
+        {
+          title: 'given no token',
+          error: `Validation errors:
+data must have required property 'token'
+data must have required property 'logs'
 data must have required property 'token'
 data must match exactly one schema in oneOf`
-        ],
-        ['given invalid token', '123456', 'The token is malformed.']
-      ])('%s', (title, token, error) => {
-        it('logs UI errors', async () => {
-          const data = { error: 'for testing!', lineno: 10, colno: 153 }
-          call(ws, data)
-          await sleep(10)
-          expect(errorSpy).toHaveBeenCalledWith(
-            data,
-            `UI error: "${data.error}"`
-          )
-          expect(warnSpy).not.toHaveBeenCalled()
-        })
-
-        it('logs UI warnings', async () => {
-          const data = { warn: 'for testing!', lineno: 10, colno: 153 }
-          call(ws, data)
-          await sleep(10)
-          expect(warnSpy).toHaveBeenCalledWith(
-            data,
-            `UI warning: "${data.warn}"`
-          )
-          expect(errorSpy).not.toHaveBeenCalled()
-        })
-
+        },
+        {
+          title: 'given invalid token',
+          token: '123456',
+          error: 'The token is malformed.'
+        }
+      ])('$title', ({ token, error }) => {
         it('can not invoke a service function', async () => {
           expect(
             await callAndListen(ws, {
@@ -540,6 +563,23 @@ data must match exactly one schema in oneOf`
           expect(services.media.triggerArtistsEnrichment).not.toHaveBeenCalled()
           expect(errorSpy).toHaveBeenCalled()
         })
+      })
+
+      it('write UI logs', async () => {
+        const logs = [
+          { level: 'error', args: ['for testing!'] },
+          { level: 'warn', args: ['Howdy!', 4] }
+        ]
+        call(ws, { logs, token })
+        await sleep(10)
+        expect(uiErrorSpy).toHaveBeenCalledWith(
+          { time: logs[0].time },
+          ...logs[0].args
+        )
+        expect(uiWarnSpy).toHaveBeenCalledWith(
+          { time: logs[1].time },
+          ...logs[1].args
+        )
       })
 
       it('serves album covers', async () => {
@@ -580,7 +620,7 @@ data must match exactly one schema in oneOf`
 
       it('serves track data', async () => {
         const id = faker.datatype.number({ min: 1000 })
-        services.media.getTrackData.mockResolvedValueOnce(mp3)
+        services.media.getTrackData.mockReset().mockResolvedValueOnce(mp3)
         const response = await got.get(
           `${address}/tracks/${id}/data?token=${token}`
         )
@@ -601,7 +641,7 @@ data must match exactly one schema in oneOf`
 
       it('returns 404 for unknown track data', async () => {
         const id = faker.datatype.number({ min: 1000 })
-        services.media.getTrackData.mockResolvedValueOnce(null)
+        services.media.getTrackData.mockReset().mockResolvedValueOnce(null)
         await expect(
           got.get(`${address}/tracks/${id}/data?token=${token}`)
         ).rejects.toThrow(/Not Found/)
@@ -730,7 +770,13 @@ data must match exactly one schema in oneOf`
 
       it('regularly sends new token', async () => {
         const now = Date.now()
-        ;({ ws } = await connectWSClient(address, totp.generate()))
+        const token = await got
+          .post(`${address}/token`, {
+            body: totp.generate(),
+            headers: { 'content-type': 'text/plain' }
+          })
+          .text()
+        ;({ ws } = await connectWSClient(address, token))
         let promise = listen(ws)
 
         jest.setSystemTime(now + 30 * 60 * 1000)

@@ -15,6 +15,7 @@ const WebSocket = require('ws')
 const { getLogger } = require('./logger')
 
 const logger = getLogger('connection')
+const uiLogger = getLogger('ui')
 let server
 const ajv = new Ajv({ allErrors: true })
 const validate = ajv.compile({
@@ -22,18 +23,21 @@ const validate = ajv.compile({
     {
       type: 'object',
       properties: {
-        error: { oneOf: [{ type: 'string' }, { type: 'object' }] },
+        token: { type: 'string' },
+        logs: {
+          type: 'array',
+          items: {
+            type: 'object',
+            properties: {
+              level: { type: 'string' },
+              args: { type: 'array' },
+              additionnalProperties: true
+            }
+          }
+        },
         additionnalProperties: true
       },
-      required: ['error']
-    },
-    {
-      type: 'object',
-      properties: {
-        warn: { type: 'string' },
-        additionnalProperties: true
-      },
-      required: ['warn']
+      required: ['token', 'logs']
     },
     {
       type: 'object',
@@ -75,7 +79,7 @@ exports.messageBus.setMaxListeners(10000)
  * 2. awaiting on a response message with 'id' (same as in request message) and 'result' (any)
  *
  * Since data goes over the wire, the invoked function args and result must be serializable as strings.
- * Clients can also send their errors for logging. Error message must contain (at least) an 'error' string property
+ * Clients can also send their logs: an array of object containing level (string) and args (array of anything).
  *
  * If `settings.isBroadcasting` is true, all files from public folder will be served by an http server,
  * as well as any file present in tracked folders. Addded tracked folders will automatically be served, or removed accordingly.
@@ -84,13 +88,19 @@ exports.messageBus.setMaxListeners(10000)
  * If the listening port isn't explicitly specified, `settings.broadcastPort` will be used, or if not set, the first available
  * port.
  * @async
- * @param {object} services     - services exposed: their properties are expected to be objects, and the nested keys are functions.
- * @param {string} publicFolder - relative or absolute path to the public folder served.
- * @param {number} [port = 0]   - port this server will listening to (by default uses broadcastPort from settings, or gets the first available port)
+ * @param {object} services         - services exposed: their properties are expected to be objects, and the nested keys are functions.
+ * @param {string} publicFolder     - relative or absolute path to the public folder served.
+ * @param {number} [port = 0]       - port this server will listening to (by default uses broadcastPort from settings, or gets the first available port)
+ * @param {string} [remoteAddress]  - fixed IP address used for incoming request. Only used for testing.
  * @returns {ConnectionResult} connection created
  * @throws {error} when connection has already been started
  */
-exports.initConnection = async function (services, publicFolder, port = 0) {
+exports.initConnection = async function (
+  services,
+  publicFolder,
+  port = 0,
+  remoteAddress = undefined
+) {
   if (server) {
     throw new Error(`connection already started, stop it first`)
   }
@@ -110,6 +120,18 @@ exports.initConnection = async function (services, publicFolder, port = 0) {
 
   async function startServer() {
     server = fastify({ logger, disableRequestLogging: true })
+
+    if (remoteAddress) {
+      // just for testing
+      server.addHook('onRequest', async request => {
+        const { socket } = request.raw
+        request.raw.connection = { ...request.raw.connection, remoteAddress }
+        request.raw.socket = {
+          ...socket,
+          address: () => ({ address: remoteAddress, family: 'IPv4', port: 443 })
+        }
+      })
+    }
 
     const origin = settings.isBroadcasting ? '*' : 'http://localhost:3000'
     server.register(corsPlugin, { origin })
@@ -133,6 +155,16 @@ exports.initConnection = async function (services, publicFolder, port = 0) {
       cacheControl: true
     })
 
+    server.post('/token', ({ body: totp, url }, reply) => {
+      if (TOTP.validate({ token: totp ?? '', window: 1 }) === null) {
+        logger.debug({ totp, url }, `failed to verify token`)
+        const error = new Error('Invalid TOTP')
+        error.statusCode = 401
+        throw error
+      }
+      reply.send(server.jwt.sign({}))
+    })
+
     server.get('/ws', { websocket: true }, handleConnection)
     registerMediaRoute('/tracks/:id/data', services.media.getTrackData)
     registerMediaRoute('/tracks/:id/media/:count', services.media.getTrackMedia)
@@ -142,8 +174,8 @@ exports.initConnection = async function (services, publicFolder, port = 0) {
     )
     registerMediaRoute('/albums/:id/media/:count', services.media.getAlbumMedia)
 
-    server.get('/media', async ({ query, url }, reply) => {
-      verify(query, url)
+    server.get('/media', async ({ query, url, ip }, reply) => {
+      verify(query, ip, url)
       const { path } = query
       return (await services.media.isMediaAllowed(path))
         ? reply.sendFile(basename(path), dirname(path))
@@ -153,8 +185,8 @@ exports.initConnection = async function (services, publicFolder, port = 0) {
     function registerMediaRoute(route, retriever) {
       server.get(
         route,
-        async ({ params: { id, count }, query, url }, reply) => {
-          verify(query, url)
+        async ({ params: { id, count }, query, url, ip }, reply) => {
+          verify(query, ip, url)
           const path = await retriever(id, count && +count)
           return path
             ? reply.sendFile(basename(path), dirname(path))
@@ -163,17 +195,19 @@ exports.initConnection = async function (services, publicFolder, port = 0) {
       )
     }
 
-    function verify({ token } = {}, url = '') {
-      try {
-        server.jwt.verify(token)
-      } catch (error) {
-        logger.debug(
-          { token, url, error },
-          `failed to verify token: ${error.message}`
-        )
-        // fastify will automatically use this code
-        error.statusCode = 401
-        throw error
+    function verify({ token } = {}, ip, url = '') {
+      if (!isLocalhost(ip)) {
+        try {
+          server.jwt.verify(token)
+        } catch (error) {
+          logger.debug(
+            { token, url, error },
+            `failed to verify token: ${error.message}`
+          )
+          // fastify will automatically use this code
+          error.statusCode = 401
+          throw error
+        }
       }
     }
 
@@ -181,35 +215,25 @@ exports.initConnection = async function (services, publicFolder, port = 0) {
     // to authenticate incoming WS connections, but fastify-websocket does not allow it.
     // https://github.com/websockets/ws/issues/377#issuecomment-462152231
     function verifyClient({ req }, next) {
+      if (isLocalhost(req.socket.address().address)) {
+        return next(true)
+      }
       try {
         const { searchParams } = new URL(req.url, 'http://localhost')
-        const otp = searchParams.get('totp')
         const token = searchParams.get('token')
-        logger.debug({ otp, token }, `verifying new connection`)
-        if (!otp && !token) {
-          const error = new Error('TOTP and token are missing')
+        logger.debug(
+          { token, socket: req.socket.address() },
+          `verifying new connection`
+        )
+        if (!token) {
+          const error = new Error('Missing token')
           error.statusCode = 401
           throw error
         }
-        let tokenSuccess = false
-        if (token) {
-          try {
-            verify({ token }, 'ws/')
-            tokenSuccess = true
-          } catch {
-            // do not fail yet, and try OTP
-          }
-        }
-        let otpSuccess = false
-        if (otp) {
-          otpSuccess = TOTP.validate({ token: otp, window: 1 }) !== null
-        }
-        if (!otpSuccess && !tokenSuccess) {
-          logger.info(
-            { otp, otpSuccess, token, tokenSuccess },
-            `refusing connection`
-          )
-          const error = new Error('Invalid TOTP or token')
+        try {
+          verify({ token }, 'ws/')
+        } catch {
+          const error = new Error('Invalid token')
           error.statusCode = 403
           throw error
         }
@@ -237,7 +261,7 @@ exports.initConnection = async function (services, publicFolder, port = 0) {
     if (needRestart) {
       // delay restart so UI could get new values
       setTimeout(async () => {
-        await server.close()
+        server.close()
         startServer()
       }, 100)
     }
@@ -258,11 +282,10 @@ exports.initConnection = async function (services, publicFolder, port = 0) {
       try {
         const data = JSON.parse(rawData)
         checkMessageFormat(data)
-        if (isUILogMessage(data)) {
+        request.server.jwt.verify(data.token)
+        if (handleUIMessage(data)) {
           return
         }
-
-        request.server.jwt.verify(data.token)
         const [name, op] = data.invoked.split('.')
         try {
           if (!(name in services) || !(op in services[name])) {
@@ -305,19 +328,17 @@ exports.initConnection = async function (services, publicFolder, port = 0) {
     }
   }
 
-  function isUILogMessage(data) {
-    if (data.error) {
-      logger.error(data, `UI error: ${JSON.stringify(data.error)}`)
-      return true
-    }
-    if (data.warn) {
-      logger.warn(data, `UI warning: ${JSON.stringify(data.warn)}`)
+  function handleUIMessage(data) {
+    if (data.logs) {
+      for (const log of data.logs) {
+        uiLogger[log.level]({ time: log.time }, ...log.args)
+      }
       return true
     }
     return false
   }
 
-  return { address: await startServer(), close, totp: TOTP }
+  return { address: await startServer(), close, server, totp: TOTP }
 }
 
 /**
@@ -338,4 +359,12 @@ exports.broadcast = function (event, args) {
       }
     }
   }
+}
+
+function isLocalhost(ip) {
+  // https://github.com/stdlib-js/assert-is-localhost/blob/main/lib/main.js#L29
+  return (
+    ip === '[::1]' ||
+    /^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/.test(ip)
+  )
 }
