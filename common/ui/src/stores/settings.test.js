@@ -9,7 +9,6 @@ import {
   serverEmitter
 } from '../utils'
 import { sleep } from '../tests'
-import { saveBroadcastPort } from './settings'
 import { totp, setTotp } from './totp'
 
 describe('settings store', () => {
@@ -18,6 +17,7 @@ describe('settings store', () => {
   let askToAddFolder
   let removeFolder
   let saveAudioDBKey
+  let saveBroadcastPort
   let saveDiscogsToken
   let saveEnqueueBehaviour
   let saveLocale
@@ -31,6 +31,7 @@ describe('settings store', () => {
   const enqueueBehaviour = { onClick: true, clearBefore: false }
   const folders = [faker.system.fileName(), faker.system.fileName()]
   const port = faker.datatype.number({ min: 2000, max: 10000 })
+  const fetch = jest.spyOn(global, 'fetch')
 
   beforeAll(async () => {
     ;({
@@ -39,6 +40,7 @@ describe('settings store', () => {
       connected,
       askToAddFolder,
       removeFolder,
+      saveBroadcastPort,
       saveAudioDBKey,
       saveDiscogsToken,
       saveEnqueueBehaviour,
@@ -68,7 +70,7 @@ describe('settings store', () => {
     it('handles connection failure', async () => {
       const err = new Error('Connection error')
       initConnection.mockImplementationOnce(
-        async (address, totp, onConnectionLost) => {
+        async (address, token, onConnectionLost) => {
           onConnectionLost(err)
           return false
         }
@@ -86,6 +88,7 @@ describe('settings store', () => {
       expect(initConnection).toHaveBeenCalledWith(
         url,
         null,
+        expect.any(Function),
         expect.any(Function)
       )
       expect(initConnection).toHaveBeenCalledTimes(1)
@@ -100,7 +103,8 @@ describe('settings store', () => {
       expect(get(settings)).toEqual(values)
       expect(initConnection).toHaveBeenCalledWith(
         url,
-        totpValue,
+        null,
+        expect.any(Function),
         expect.any(Function)
       )
       expect(initConnection).toHaveBeenCalledTimes(1)
@@ -138,8 +142,7 @@ describe('settings store', () => {
     })
   })
 
-  describe('given initialization', () => {
-    const totpValue = faker.datatype.number().toString()
+  describe('given initialization on desktop', () => {
     const serverAddress = `${faker.internet.protocol()}://${faker.internet.ip()}:${port}`
 
     beforeEach(async () => {
@@ -149,7 +152,7 @@ describe('settings store', () => {
         enqueueBehaviour,
         providers
       })
-      await init(serverAddress, null, totpValue)
+      await init(serverAddress, null)
     })
 
     it('redirects to albums on successful folder addition', async () => {
@@ -256,7 +259,8 @@ describe('settings store', () => {
       expect(closeConnection).toHaveBeenCalledTimes(1)
       expect(initConnection).toHaveBeenCalledWith(
         `ws://localhost:${port}`,
-        totpValue,
+        null,
+        expect.any(Function),
         expect.any(Function)
       )
       expect(initConnection).toHaveBeenCalledTimes(2)
@@ -274,10 +278,10 @@ describe('settings store', () => {
         providers
       }
       initConnection
-        .mockImplementationOnce(async (address, totp, onConnectionLost) => {
+        .mockImplementationOnce(async (address, token, onConnectionLost) => {
           onConnectionLost()
         })
-        .mockImplementationOnce(async (address, totp, onConnectionLost) => {
+        .mockImplementationOnce(async (address, token, onConnectionLost) => {
           onConnectionLost()
         })
         .mockResolvedValueOnce(values)
@@ -295,7 +299,8 @@ describe('settings store', () => {
       expect(initConnection).toHaveBeenNthCalledWith(
         2,
         `ws://localhost:${port}`,
-        totpValue,
+        null,
+        expect.any(Function),
         expect.any(Function)
       )
       expect(initConnection).toHaveBeenCalledTimes(2)
@@ -304,41 +309,54 @@ describe('settings store', () => {
       expect(get(connected)).toEqual(true)
       expect(initConnection).toHaveBeenCalledTimes(4)
     })
+  })
+
+  describe('given not being on desktop', () => {
+    const totpValue = faker.datatype.number().toString()
+    const serverAddress = `${faker.internet.protocol()}://${faker.internet.ip()}:${port}`
+
+    beforeEach(async () => {
+      isDesktop.next(false)
+    })
 
     it('retries connecting when providing new Totp', async () => {
-      const values = {
+      initConnection.mockResolvedValueOnce({
         locale,
         folders,
         enqueueBehaviour,
         providers
-      }
-      initConnection.mockResolvedValueOnce(values)
-
-      expect(initConnection).toHaveBeenCalledWith(
-        serverAddress,
-        totpValue,
-        expect.any(Function)
-      )
-      expect(initConnection).toHaveBeenCalledTimes(1)
-      await initConnection.mock.calls[0][2]()
-      expect(get(connected)).toEqual(false)
+      })
+      const newToken = faker.datatype.uuid()
+      fetch
+        .mockResolvedValueOnce({ ok: false })
+        .mockResolvedValueOnce({ ok: true, text: async () => newToken })
+      init(serverAddress)
+      expect(get(connected)).toBeNull()
 
       setTotp(totpValue)
       await sleep()
-      expect(get(connected)).toEqual(false)
+      expect(fetch).toHaveBeenNthCalledWith(1, '/token', {
+        method: 'POST',
+        body: totpValue
+      })
+      expect(get(connected)).toBeNull()
 
       const newTotpValue = faker.datatype.number().toString()
       setTotp(newTotpValue)
       await sleep()
+      expect(fetch).toHaveBeenNthCalledWith(2, '/token', {
+        method: 'POST',
+        body: newTotpValue
+      })
       expect(get(connected)).toEqual(true)
 
-      expect(initConnection).toHaveBeenNthCalledWith(
-        2,
+      expect(initConnection).toHaveBeenCalledWith(
         serverAddress,
-        newTotpValue,
+        newToken,
+        expect.any(Function),
         expect.any(Function)
       )
-      expect(initConnection).toHaveBeenCalledTimes(2)
+      expect(initConnection).toHaveBeenCalledTimes(1)
     })
   })
 })

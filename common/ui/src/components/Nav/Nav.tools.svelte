@@ -17,6 +17,7 @@
   let wasConnected = true
 
   async function connectWebsocket() {
+    window.fetch = async () => ({ ok: true, text: async () => 'token' })
     await mockWebsocket(
       invoked => {
         if (invoked === 'settings.toggleBroadcast') {

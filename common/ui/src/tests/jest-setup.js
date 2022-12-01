@@ -38,6 +38,7 @@ jest.mock('../utils/connection', () => {
   const serverEmitter = new Subject()
   const lastInvokation = new Subject()
   const observables = new Map()
+  jest.spyOn(console, 'trace').mockImplementation(() => {})
   return {
     enhanceUrl: url => url,
     invoke: jest.fn(),

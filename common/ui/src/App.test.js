@@ -13,6 +13,8 @@ import { initConnection, invoke, releaseWakeLock, stayAwake } from './utils'
 
 jest.mock('./utils/wake-lock')
 
+const fetch = jest.spyOn(global, 'fetch')
+
 describe('App component', () => {
   beforeEach(async () => {
     jest.resetAllMocks()
@@ -59,6 +61,7 @@ describe('App component', () => {
 
   describe('given first launch', () => {
     beforeEach(async () => {
+      isDesktop.next(true)
       invoke.mockResolvedValue({})
       initConnection.mockResolvedValue({
         locale: 'en',
@@ -83,6 +86,7 @@ describe('App component', () => {
 
   describe('given initialized settings', () => {
     beforeEach(async () => {
+      isDesktop.next(true)
       initConnection.mockResolvedValue({
         locale: 'en',
         folders: ['/home/music'],
@@ -105,7 +109,6 @@ describe('App component', () => {
     })
 
     it('triggers comparison once listing is over on desktop', async () => {
-      isDesktop.next(true)
       render(html`<${App} />`)
       await sleep()
 
@@ -167,6 +170,7 @@ describe('App component', () => {
     })
 
     it('displays modal when loosing server connection', async () => {
+      isDesktop.next(false)
       render(html`<${App} />`)
       await sleep()
 
@@ -183,6 +187,10 @@ describe('App component', () => {
     })
 
     it('reconnects with provided one-time password', async () => {
+      isDesktop.next(false)
+      const token = faker.datatype.uuid()
+      fetch.mockReturnValue({ ok: true, text: async () => token })
+      init('')
       const otp = Math.floor(Math.random() * 1000)
       render(html`<${App} />`)
       await sleep()
@@ -195,8 +203,23 @@ describe('App component', () => {
       const dialog = screen.queryByRole('dialog')
       expect(dialog).toBeInTheDocument()
       userEvent.type(within(dialog).getByRole('spinbutton'), `${otp}{enter}`)
+      await sleep()
 
       expect(get(totp)).toEqual(otp.toString())
+      expect(initConnection).toHaveBeenNthCalledWith(
+        1,
+        '',
+        null,
+        expect.any(Function),
+        expect.any(Function)
+      )
+      expect(initConnection).toHaveBeenNthCalledWith(
+        2,
+        '',
+        token,
+        expect.any(Function),
+        expect.any(Function)
+      )
       expect(initConnection).toHaveBeenCalledTimes(2)
     })
   })

@@ -58,8 +58,9 @@ jest.mock('../../stores/search', () => {
   }
 })
 jest.mock('../../stores/settings', () => {
-  const { BehaviorSubject } = require('rxjs')
+  const { BehaviorSubject, Subject } = require('rxjs')
   return {
+    tokenUpdated: new Subject(),
     settings: new BehaviorSubject({
       locale: 'en',
       folders: [],

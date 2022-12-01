@@ -13,6 +13,7 @@ import {
   settings,
   toggleBroadcast
 } from '../../stores/settings'
+import { init as initTotp } from '../../stores/totp'
 import { invoke } from '../../utils'
 import { sleep, translate } from '../../tests'
 
@@ -189,6 +190,7 @@ describe('Nav component', () => {
   })
 
   it('can toggle broadcasting on desktop', async () => {
+    initTotp('secret')
     isDesktopStore.next(true)
     toggleBroadcast.mockImplementation(async () => {
       settingsStore.next({ isBroadcasting: true })

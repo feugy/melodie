@@ -13,6 +13,9 @@
 
   function handleInput({ target }) {
     otp = target.value
+    if (/^\d{6}$/.test(otp)) {
+      handleConnect()
+    }
   }
 
   function handleConnect() {

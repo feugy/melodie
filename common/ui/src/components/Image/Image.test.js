@@ -4,11 +4,21 @@ import { screen, render } from '@testing-library/svelte'
 import html from 'svelte-htm'
 import Image from './Image.svelte'
 import { tick } from 'svelte'
+import { tokenUpdated } from '../../stores/settings'
+import { enhanceUrl } from '../../utils'
 
+jest.mock('../../utils')
 jest.mock('../../stores/track-queue')
+jest.mock('../../stores/settings', () => {
+  const { Subject } = require('rxjs')
+  return { tokenUpdated: new Subject() }
+})
 
 describe('Image component', () => {
-  beforeEach(jest.resetAllMocks)
+  beforeEach(() => {
+    jest.resetAllMocks()
+    enhanceUrl.mockImplementation(src => src)
+  })
 
   function renderComponent(props = {}) {
     return render(html`<${Image} ...${props} />`)
@@ -33,6 +43,28 @@ describe('Image component', () => {
     const image = screen.queryByRole('img')
     const encoded = image.getAttribute('src')
     expect(encoded).toMatch(new RegExp(`^${src}#nonce-[\\d\\.]+$`))
+  })
+
+  it('enhances urls with token', async () => {
+    const src = '/public/icon-512x512.png'
+    renderComponent({ src })
+    await tick()
+    expect(enhanceUrl).toHaveBeenCalledTimes(1)
+  })
+
+  it('updates src on token update', async () => {
+    const src = 'public/icon-512x512.png'
+    renderComponent({ src })
+    await tick()
+    const image = screen.queryByRole('img')
+    const encoded = image.getAttribute('src')
+    expect(enhanceUrl).toHaveBeenCalledTimes(1)
+    enhanceUrl.mockImplementation(src => `${src}?token=whatever`)
+    tokenUpdated.next()
+    await tick()
+    const newEncoded = image.getAttribute('src')
+    expect(newEncoded).not.toEqual(encoded)
+    expect(enhanceUrl).toHaveBeenCalledTimes(2)
   })
 
   it('encodes and adds nonce', async () => {
@@ -67,7 +99,7 @@ describe('Image component', () => {
     const image = screen.queryByRole('img')
     image.dispatchEvent(new ErrorEvent('error'))
     await tick()
-    expect(image).toHaveAttribute('src', '')
+    expect(image).toHaveAttribute('src', src)
     expect(screen.getByText('music_note')).toBeInTheDocument()
     expect(screen.queryByText('person')).not.toBeInTheDocument()
   })
@@ -78,7 +110,7 @@ describe('Image component', () => {
     const image = screen.queryByRole('img')
     image.dispatchEvent(new ErrorEvent('error'))
     await tick()
-    expect(image).toHaveAttribute('src', '')
+    expect(image).toHaveAttribute('src', src)
     expect(screen.getByText('person')).toBeInTheDocument()
     expect(screen.queryByText('music_note')).not.toBeInTheDocument()
   })

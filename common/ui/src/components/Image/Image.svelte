@@ -37,6 +37,7 @@
 
 <script>
   import { onMount } from 'svelte'
+  import { tokenUpdated } from '../../stores/settings'
 
   export let src
   export let rounded = false
@@ -50,15 +51,24 @@
   $: hidden = !src || broken.has(src)
 
   let imgElement
-  $: if (imgElement) {
+
+  onMount(() => {
+    intersectionObserver.observe(imgElement)
+    setSrc()
+    const tokenSuscription = tokenUpdated.subscribe(setSrc)
+    return () => {
+      intersectionObserver.unobserve(imgElement)
+      tokenSuscription.unsubscribe()
+    }
+  })
+
+  function setSrc() {
     if (imgElement.hasAttribute('src')) {
       imgElement.src = encodeSrc(enhanceUrlWhenRequired(src), withNonce) ?? ''
     } else {
       imgElement.dataset.src = encodeSrc(src, withNonce)
     }
   }
-
-  onMount(() => intersectionObserver.observe(imgElement))
 
   function handleError() {
     if (src) {

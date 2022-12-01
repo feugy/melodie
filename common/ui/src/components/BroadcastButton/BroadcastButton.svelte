@@ -88,6 +88,9 @@
   }
   .totp {
     @apply flex text-4xl mt-1 cursor-pointer;
+    & > i {
+      @apply mr-2 not-italic;
+    }
   }
   .remaining {
     @apply inline-block relative text-base ml-2;
@@ -116,7 +119,7 @@
       <a href={fullAddress}><canvas bind:this={codeCanvas} /></a>
       <p>{$_('scan or click the code to open Mélodie in your browser')}</p>
       <div class="totp" on:click|stopPropagation={handleClickTotp}>
-        {$totp}
+        <i>{$totp.slice(0, 3)}</i><i>{$totp.slice(3)}</i>
         <div class="remaining">
           <span>{remaining}</span>
           <CircularProgress size="40" percentage={(remaining * 100) / period} />
