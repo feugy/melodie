@@ -101,18 +101,6 @@ starting... To change log levels, edit the level file and run \`kill -USR2 ${pro
     stopOnError(error)
   })
 
-  if (isDev) {
-    logger.info('enabling reloading')
-    const reloadOnChange = require('electron-reload')
-    // hard reset for main process changes
-    reloadOnChange([__dirname, dirname(require.resolve('@melodie/core'))], {
-      electron: join(__dirname, '..', '..', 'node_modules', '.bin', 'electron'),
-      hardResetMethod: 'quit',
-      forceHardReset: true,
-      awaitWriteFinish: true
-    })
-  }
-
   async function createWindow() {
     Menu.setApplicationMenu(null)
 
