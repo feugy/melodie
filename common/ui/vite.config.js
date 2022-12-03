@@ -14,7 +14,7 @@ export default defineConfig(({ command, mode }) => {
   return {
     base: '', // needed for usage in production mode within Electron
     build: command === 'serve' && { watch: {} },
-    server: { open: isAtelier },
+    server: { open: false },
     define: {
       RXJS_VERSION: JSON.stringify(dependencies.rxjs.version),
       WINDICSS_VERSION: JSON.stringify(dependencies.windicss.version),

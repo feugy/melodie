@@ -32,6 +32,7 @@ describe('settings store', () => {
   const folders = [faker.system.fileName(), faker.system.fileName()]
   const port = faker.datatype.number({ min: 2000, max: 10000 })
   const fetch = jest.spyOn(global, 'fetch')
+  jest.spyOn(console, 'error').mockImplementation(() => {})
 
   beforeAll(async () => {
     ;({
@@ -319,37 +320,41 @@ describe('settings store', () => {
       isDesktop.next(false)
     })
 
-    it('retries connecting when providing new Totp', async () => {
+    it('handles invalid TOTP', async () => {
+      fetch.mockResolvedValueOnce({ ok: false })
+      init(serverAddress)
+      expect(get(connected)).toBeNull()
+
+      setTotp(totpValue)
+      await sleep()
+      expect(fetch).toHaveBeenCalledWith('/token', {
+        method: 'POST',
+        body: totpValue
+      })
+      expect(get(connected)).toBeNull()
+      expect(get(totp)).toBeNull()
+      expect(initConnection).not.toHaveBeenCalled()
+    })
+
+    it('connects with valid TOTP', async () => {
+      const newToken = faker.datatype.uuid()
+      fetch.mockResolvedValueOnce({ ok: true, text: async () => newToken })
       initConnection.mockResolvedValueOnce({
         locale,
         folders,
         enqueueBehaviour,
         providers
       })
-      const newToken = faker.datatype.uuid()
-      fetch
-        .mockResolvedValueOnce({ ok: false })
-        .mockResolvedValueOnce({ ok: true, text: async () => newToken })
-      init(serverAddress)
-      expect(get(connected)).toBeNull()
 
+      const totpValue = faker.datatype.number().toString()
       setTotp(totpValue)
       await sleep()
-      expect(fetch).toHaveBeenNthCalledWith(1, '/token', {
+      expect(fetch).toHaveBeenCalledWith('/token', {
         method: 'POST',
         body: totpValue
       })
-      expect(get(connected)).toBeNull()
-
-      const newTotpValue = faker.datatype.number().toString()
-      setTotp(newTotpValue)
-      await sleep()
-      expect(fetch).toHaveBeenNthCalledWith(2, '/token', {
-        method: 'POST',
-        body: newTotpValue
-      })
       expect(get(connected)).toEqual(true)
-
+      expect(get(totp)).toBeNull()
       expect(initConnection).toHaveBeenCalledWith(
         serverAddress,
         newToken,

@@ -9,7 +9,7 @@ import {
   initConnection,
   closeConnection
 } from '../utils'
-import { init as initTotp, totp } from './totp'
+import { init as initTotp, setTotp, totp } from './totp'
 
 const tokenKey = 'token'
 let reconnectTimeout
@@ -61,25 +61,12 @@ async function connect(address, reconnectDelay) {
   )
   const token = token$.value
 
-  if (!isDesktop.value && !token) {
-    totpSubscription = totp.pipe(filter(Boolean)).subscribe({
-      next: async totp => {
-        const response = await fetch(`/token`, {
-          method: 'POST',
-          body: totp
-        })
-        if (response.ok) {
-          token$.next(await response.text())
-          connect(address, reconnectDelay)
-        }
-      }
-    })
-  } else {
+  if (token || isDesktop.value) {
     const settings = await initConnection(
       address,
       token,
-      () => {
-        console.trace(`disconnected`)
+      error => {
+        console.error(`disconnected: ${error?.message}`)
         connected$.next(false)
         reconnectTimeout = setTimeout(
           () => connect(address, reconnectDelay),
@@ -95,6 +82,20 @@ async function connect(address, reconnectDelay) {
       console.trace(`connection failed`)
     }
     connected$.next(Boolean(settings))
+  } else if (!isDesktop.value) {
+    totpSubscription = totp.pipe(filter(Boolean)).subscribe({
+      next: async totp => {
+        const response = await fetch(`/token`, {
+          method: 'POST',
+          body: totp
+        })
+        setTotp(null)
+        if (response.ok) {
+          token$.next(await response.text())
+          connect(address, reconnectDelay)
+        }
+      }
+    })
   }
 }
 

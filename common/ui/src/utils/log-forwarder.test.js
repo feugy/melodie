@@ -1,13 +1,12 @@
 'use strict'
 
-import { send } from './connection'
-import { configureLogForward } from './log-forwarder'
+import { sendLogs } from './connection'
 
-jest.mock('./connection', () => ({ send: jest.fn() }))
+jest.mock('./connection', () => ({ sendLogs: jest.fn() }))
 
 describe('log forwarder', () => {
+  let configureLogForward
   const originals = {
-    trace: console.trace.bind(console),
     log: console.log.bind(console),
     warn: console.warn.bind(console),
     error: console.error.bind(console)
@@ -15,16 +14,15 @@ describe('log forwarder', () => {
 
   beforeEach(() => {
     jest.resetAllMocks()
-    console.trace = () => {}
-    console.log = () => {}
-    console.warn = () => {}
-    console.error = () => {}
-    send.mockReset()
     configureLogForward()
   })
 
-  beforeAll(() => {
+  beforeAll(async () => {
     jest.useFakeTimers()
+    console.log = () => {}
+    console.warn = () => {}
+    console.error = () => {}
+    ;({ configureLogForward } = await import('./log-forwarder'))
   })
 
   afterEach(() => {
@@ -53,21 +51,19 @@ describe('log forwarder', () => {
     console.log(14)
     console.warn(15)
     console.error(16)
-    expect(send).toHaveBeenCalledWith({
-      logs: [
-        { level: 'trace', args: [1], time: expect.any(Number) },
-        { level: 'debug', args: [2], time: expect.any(Number) },
-        { level: 'warn', args: [3], time: expect.any(Number) },
-        { level: 'error', args: [4], time: expect.any(Number) },
-        { level: 'trace', args: [5], time: expect.any(Number) },
-        { level: 'debug', args: [6], time: expect.any(Number) },
-        { level: 'warn', args: [7], time: expect.any(Number) },
-        { level: 'error', args: [8], time: expect.any(Number) },
-        { level: 'trace', args: [9], time: expect.any(Number) },
-        { level: 'debug', args: [10], time: expect.any(Number) }
-      ]
-    })
-    expect(send).toHaveBeenCalledTimes(1)
+    expect(sendLogs).toHaveBeenCalledWith([
+      { level: 'trace', args: [1], time: expect.any(Number) },
+      { level: 'debug', args: [2], time: expect.any(Number) },
+      { level: 'warn', args: [3], time: expect.any(Number) },
+      { level: 'error', args: [4], time: expect.any(Number) },
+      { level: 'trace', args: [5], time: expect.any(Number) },
+      { level: 'debug', args: [6], time: expect.any(Number) },
+      { level: 'warn', args: [7], time: expect.any(Number) },
+      { level: 'error', args: [8], time: expect.any(Number) },
+      { level: 'trace', args: [9], time: expect.any(Number) },
+      { level: 'debug', args: [10], time: expect.any(Number) }
+    ])
+    expect(sendLogs).toHaveBeenCalledTimes(1)
   })
 
   it('sends traces, logs, warns and erros after some time', () => {
@@ -75,22 +71,20 @@ describe('log forwarder', () => {
     console.log(18)
     console.warn(19)
     console.error(20)
-    expect(send).not.toHaveBeenCalled()
-    send.mockRejectedValueOnce(new Error('boom!'))
+    expect(sendLogs).not.toHaveBeenCalled()
+    sendLogs.mockRejectedValueOnce(new Error('boom!'))
     jest.advanceTimersByTime(5000)
-    expect(send).toHaveBeenCalledTimes(1)
+    expect(sendLogs).toHaveBeenCalledTimes(1)
 
     configureLogForward()
     jest.advanceTimersByTime(5000)
-    expect(send).toHaveBeenCalledWith({
-      logs: [
-        { level: 'trace', args: [17], time: expect.any(Number) },
-        { level: 'debug', args: [18], time: expect.any(Number) },
-        { level: 'warn', args: [19], time: expect.any(Number) },
-        { level: 'error', args: [20], time: expect.any(Number) }
-      ]
-    })
-    expect(send).toHaveBeenCalledTimes(1)
+    expect(sendLogs).toHaveBeenCalledWith([
+      { level: 'trace', args: [17], time: expect.any(Number) },
+      { level: 'debug', args: [18], time: expect.any(Number) },
+      { level: 'warn', args: [19], time: expect.any(Number) },
+      { level: 'error', args: [20], time: expect.any(Number) }
+    ])
+    expect(sendLogs).toHaveBeenCalledTimes(1)
   })
 
   it('sends data from previous run', () => {
@@ -99,19 +93,17 @@ describe('log forwarder', () => {
     console.warn(23)
     console.error(24)
     jest.advanceTimersByTime(1000)
-    expect(send).not.toHaveBeenCalled()
+    expect(sendLogs).not.toHaveBeenCalled()
     configureLogForward()
     jest.advanceTimersByTime(4500)
-    expect(send).not.toHaveBeenCalled()
+    expect(sendLogs).not.toHaveBeenCalled()
     jest.advanceTimersByTime(1000)
-    expect(send).toHaveBeenCalledWith({
-      logs: [
-        { level: 'trace', args: [21], time: expect.any(Number) },
-        { level: 'debug', args: [22], time: expect.any(Number) },
-        { level: 'warn', args: [23], time: expect.any(Number) },
-        { level: 'error', args: [24], time: expect.any(Number) }
-      ]
-    })
-    expect(send).toHaveBeenCalledTimes(1)
+    expect(sendLogs).toHaveBeenCalledWith([
+      { level: 'trace', args: [21], time: expect.any(Number) },
+      { level: 'debug', args: [22], time: expect.any(Number) },
+      { level: 'warn', args: [23], time: expect.any(Number) },
+      { level: 'error', args: [24], time: expect.any(Number) }
+    ])
+    expect(sendLogs).toHaveBeenCalledTimes(1)
   })
 })

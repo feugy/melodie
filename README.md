@@ -60,6 +60,8 @@ Another option is to open it with Control-click: it'll immediately register the 
 
 ### features
 
+- when cover search failed once, do not retry on next start
+
 - use file and folder names to complete missing tags
 
 - merge components/Album|Artist|Playlist tests for GridItem + hover behaviour (desktop only)
@@ -90,7 +92,15 @@ Another option is to open it with Control-click: it'll immediately register the 
 
 ### tools
 
-- dependabot + dep update
+- unit tests for log fowarder
+
+- try out [electron-vite](https://evite.netlify.app/) and migrate to [svelte-kit](https://kit.svelte.dev/)
+
+- manual depdency updates, including electron and faker
+
+- dependabot
+
+- changeset
 
 - automated end-to-end tests
 

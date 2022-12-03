@@ -1,10 +1,16 @@
-import { send } from './connection'
+import { sendLogs } from './connection'
 
 let timeout
 let sending = false
 const batchLimit = 10
 const logsKey = 'logs'
 const scheduleInterval = 5000
+const originals = {
+  trace: console.log.bind(console),
+  debug: console.log.bind(console),
+  warn: console.warn.bind(console),
+  error: console.error.bind(console)
+}
 
 export function configureLogForward() {
   clearTimeout(timeout)
@@ -28,9 +34,8 @@ function readSavedLogs() {
 
 function wrapConsoleMethod(name, logs) {
   const level = name === 'log' ? 'debug' : name
-  const original = console[name]
   console[name] = (...args) => {
-    original.apply(console, args)
+    originals[level](...args)
     logs.push({ level, args, time: Date.now() })
     localStorage.setItem(logsKey, JSON.stringify(logs))
     if (logs.length >= batchLimit) {
@@ -50,9 +55,10 @@ async function sendBatch(logs) {
   if (logs.length && !sending) {
     try {
       sending = true
-      await send({ logs: [...logs] })
-      localStorage.removeItem(logsKey)
-      logs.splice(0)
+      let size = logs.length
+      await sendLogs([...logs])
+      logs.splice(0, size)
+      localStorage.setItem(logsKey, JSON.stringify(logs))
     } catch {
       // ignore error
     } finally {

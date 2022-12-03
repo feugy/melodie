@@ -15,6 +15,7 @@ module.exports = {
     '**/*.js',
     '!**/__nocks__/**',
     '!**/*.test.js',
-    '!**/tests/**'
+    '!**/tests/**',
+    '!**/migrations/**'
   ]
 }

@@ -70,42 +70,47 @@ export async function initConnection(
 
   try {
     ws = await new Promise((resolve, reject) => {
-      try {
-        const socket = new WebSocket(`${address}/ws?token=${token}`)
-        const clear = () => {
-          clearTimeout(timeout)
-          socket.onopen = null
-        }
+      let reason
+      const socket = new WebSocket(`${address}/ws?token=${token}`)
 
-        socket.onclose = () => {
-          clear()
-          reject(new Error(`failed to establish connection`))
-        }
-
-        socket.onmessage = ({ data }) => {
-          clear()
-          try {
-            const payload = JSON.parse(data)
-            updateToken(payload.token)
-            settings = payload.settings
-            socket.onmessage = undefined
-            resolve(socket)
-          } catch (err) {
-            const error = new Error(
-              `Failed to receive token from server: ${err.message}`
-            )
-            console.error(error, data)
-            reject(error)
-          }
-        }
-        const timeout = setTimeout(() => {
-          clear()
-          socket.close()
-          reject(new Error(`failed to establish connection: timeout`))
-        }, connectionTimeout)
-      } catch (err) {
-        reject(new Error(`failed to establish connection: ${err.message}`))
+      function clear() {
+        clearTimeout(timeout)
+        socket.onmessage = undefined
       }
+
+      function closeOnError(message) {
+        clear()
+        reason = message
+        socket.close()
+      }
+
+      socket.onclose = () =>
+        reject(
+          new Error(
+            `Failed to establish connection${reason ? `: ${reason}` : ''}`
+          )
+        )
+
+      socket.onmessage = ({ data }) => {
+        clear()
+        try {
+          const payload = JSON.parse(data)
+          if (payload.error) {
+            updateToken(null)
+            throw new Error(payload.error)
+          }
+          settings = payload.settings
+          resolve(socket)
+          updateToken(payload.token)
+        } catch (err) {
+          closeOnError(err.message)
+        }
+      }
+
+      const timeout = setTimeout(
+        () => closeOnError('timeout'),
+        connectionTimeout
+      )
     })
 
     ws.onmessage = ({ data }) => {
@@ -125,8 +130,10 @@ export async function initConnection(
       }
     }
 
-    ws.onclose = () => {
-      callConnectionLostHandler()
+    ws.onclose = ({ reason, code }) => {
+      callConnectionLostHandler(
+        new Error(`Connection closed: ${reason} (${code})`)
+      )
     }
   } catch (err) {
     callConnectionLostHandler(err)
@@ -143,7 +150,6 @@ export function closeConnection() {
     ws.onclose = null
     ws.close()
   }
-  rootUrl = ''
   ws = null
 }
 
@@ -162,6 +168,24 @@ export function send(data, failOnError = true) {
   } else {
     lastInvokation$.next(data)
     ws.send(JSON.stringify({ ...data, token })) // TODO use safe-stringify
+  }
+}
+
+/**
+ * Sends UI logs for recording in server output.
+ * @param {object[]} logs - a list of logs to recrod
+ * @return {Promise<void>}
+ */
+export async function sendLogs(logs) {
+  const response = await fetch(enhanceUrl('/logs'), {
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    body: JSON.stringify({ logs })
+  })
+  if (!response.ok) {
+    throw new Error(
+      `Failed to send logs: ${await response.text()} (${response.status})`
+    )
   }
 }
 

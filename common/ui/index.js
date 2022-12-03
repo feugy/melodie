@@ -3,7 +3,7 @@
 import App from './src/App.svelte'
 // order matters: App.svelte contains windi's reset rules, that we may override in common
 import './src/common'
-import { send } from './src/utils'
+import { configureLogForward } from './src/utils'
 import { init } from './src/stores/settings'
 
 async function startApp() {
@@ -14,6 +14,7 @@ async function startApp() {
     : `${window.location.protocol.replace('http', 'ws')}//${
         window.location.host
       }`
+  configureLogForward()
 
   init(
     serverUrl,
@@ -21,20 +22,12 @@ async function startApp() {
     url.searchParams.get('totp')
   )
 
-  window.addEventListener('error', err => send(err, false))
-  window.addEventListener('unhandledrejection', ({ reason }) =>
-    send({ error: reason }, false)
+  window.addEventListener('error', err =>
+    console.error('Uncaught error', { message: err.message, stack: err.stack })
   )
-  const originalWarn = console.warn
-  const originalError = console.error
-  console.error = error => {
-    send({ error }, false)
-    originalError(error)
-  }
-  console.warn = warn => {
-    send({ warn }, false)
-    originalWarn(warn)
-  }
+  window.addEventListener('unhandledrejection', event =>
+    console.error('Unhandled rejection', { reason: event.reason })
+  )
 
   // clean all parameters from url
   if (!/electron/i.test(navigator.userAgent)) {

@@ -21,6 +21,7 @@ describe('App component', () => {
     location.hash = '#/'
     // disable slot warnings
     jest.spyOn(console, 'warn').mockImplementation(() => {})
+    jest.spyOn(console, 'error').mockImplementation(() => {})
 
     Element.prototype.scroll = jest.fn()
     Element.prototype.scrollIntoView = jest.fn()
@@ -205,7 +206,7 @@ describe('App component', () => {
       userEvent.type(within(dialog).getByRole('spinbutton'), `${otp}{enter}`)
       await sleep()
 
-      expect(get(totp)).toEqual(otp.toString())
+      expect(get(totp)).toBeNull()
       expect(initConnection).toHaveBeenNthCalledWith(
         1,
         '',
