@@ -18,6 +18,7 @@
     "fastify-jwt": "^4.1.1",
     "fastify-static": "^4.6.1",
     "fastify-websocket": "^4.2.1",
+    "fluent-json-schema": "^4.0.0",
     "fs-extra": "^10.0.1",
     "got": "^11.8.2",
     "json-schema": "^0.4.0",

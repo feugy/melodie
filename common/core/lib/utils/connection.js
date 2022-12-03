@@ -3,13 +3,14 @@
 const { randomUUID } = require('crypto')
 const { dirname, basename } = require('path')
 const { EventEmitter } = require('events')
+const Ajv = require('ajv').default
 const fastify = require('fastify')
 const compressPlugin = require('fastify-compress')
 const corsPlugin = require('fastify-cors')
 const jwtPlugin = require('fastify-jwt')
 const staticPlugin = require('fastify-static')
 const websocketPlugin = require('fastify-websocket')
-const Ajv = require('ajv').default
+const S = require('fluent-json-schema')
 const OTPAuth = require('otpauth')
 const WebSocket = require('ws')
 const { getLogger } = require('./logger')
@@ -19,38 +20,15 @@ const uiLogger = getLogger('ui')
 let server
 const ajv = new Ajv({ allErrors: true })
 const validate = ajv.compile({
-  oneOf: [
-    {
-      type: 'object',
-      properties: {
-        token: { type: 'string' },
-        logs: {
-          type: 'array',
-          items: {
-            type: 'object',
-            properties: {
-              level: { type: 'string' },
-              args: { type: 'array' },
-              additionnalProperties: true
-            }
-          }
-        },
-        additionnalProperties: true
-      },
-      required: ['token', 'logs']
-    },
-    {
-      type: 'object',
-      properties: {
-        token: { type: 'string' },
-        invoked: { type: 'string' },
-        id: { type: 'string' },
-        args: { type: 'array' },
-        additionnalProperties: false
-      },
-      required: ['token', 'invoked', 'id']
-    }
-  ]
+  type: 'object',
+  properties: {
+    token: { type: 'string' },
+    invoked: { type: 'string' },
+    id: { type: 'string' },
+    args: { type: 'array' },
+    additionnalProperties: false
+  },
+  required: ['token', 'invoked', 'id']
 })
 
 const maxAge = 1000 * 60 * 60 * 24 * 2
@@ -124,12 +102,7 @@ exports.initConnection = async function (
     if (remoteAddress) {
       // just for testing
       server.addHook('onRequest', async request => {
-        const { socket } = request.raw
         request.raw.connection = { ...request.raw.connection, remoteAddress }
-        request.raw.socket = {
-          ...socket,
-          address: () => ({ address: remoteAddress, family: 'IPv4', port: 443 })
-        }
       })
     }
 
@@ -142,7 +115,7 @@ exports.initConnection = async function (
       verify: { algorithms: [JWTAlgorithm] }
     })
 
-    server.register(websocketPlugin, { options: { verifyClient } })
+    server.register(websocketPlugin)
 
     server.register(compressPlugin)
 
@@ -155,91 +128,156 @@ exports.initConnection = async function (
       cacheControl: true
     })
 
-    server.post('/token', ({ body: totp, url }, reply) => {
-      if (TOTP.validate({ token: totp ?? '', window: 1 }) === null) {
-        logger.debug({ totp, url }, `failed to verify token`)
-        const error = new Error('Invalid TOTP')
-        error.statusCode = 401
-        throw error
-      }
-      reply.send(server.jwt.sign({}))
-    })
-
+    // websocket must always come before other routes
+    // https://github.com/fastify/fastify-websocket#using-hooks
     server.get('/ws', { websocket: true }, handleConnection)
-    registerMediaRoute('/tracks/:id/data', services.media.getTrackData)
-    registerMediaRoute('/tracks/:id/media/:count', services.media.getTrackMedia)
-    registerMediaRoute(
-      '/artists/:id/media/:count',
-      services.media.getArtistMedia
-    )
-    registerMediaRoute('/albums/:id/media/:count', services.media.getAlbumMedia)
 
-    server.get('/media', async ({ query, url, ip }, reply) => {
-      verify(query, ip, url)
-      const { path } = query
-      return (await services.media.isMediaAllowed(path))
-        ? reply.sendFile(basename(path), dirname(path))
-        : reply.code(403).send()
-    })
+    server.register(async server => {
+      server.addHook('preValidation', async ({ query: { token }, ip, url }) => {
+        if (!isLocalhost(ip)) {
+          verifyToken(token, url)
+        }
+      })
 
-    function registerMediaRoute(route, retriever) {
-      server.get(
-        route,
-        async ({ params: { id, count }, query, url, ip }, reply) => {
-          verify(query, ip, url)
+      registerMediaRoute('/tracks/:id/data', services.media.getTrackData)
+      registerMediaRoute(
+        '/tracks/:id/media/:count',
+        services.media.getTrackMedia
+      )
+      registerMediaRoute(
+        '/artists/:id/media/:count',
+        services.media.getArtistMedia
+      )
+      registerMediaRoute(
+        '/albums/:id/media/:count',
+        services.media.getAlbumMedia
+      )
+
+      server.get('/media', async ({ query: { path } }, reply) => {
+        return (await services.media.isMediaAllowed(path))
+          ? reply.sendFile(basename(path), dirname(path))
+          : reply.code(403).send()
+      })
+
+      server.post(
+        '/logs',
+        {
+          schema: S.object().prop(
+            'logs',
+            S.array()
+              .items(
+                S.object().prop('level', S.string()).prop('args', S.array())
+              )
+              .required()
+          )
+        },
+        ({ body }, reply) => {
+          reportUiLogs(body)
+          reply.send()
+        }
+      )
+
+      function registerMediaRoute(route, retriever) {
+        server.get(route, async ({ params: { id, count } }, reply) => {
           const path = await retriever(id, count && +count)
           return path
             ? reply.sendFile(basename(path), dirname(path))
             : reply.code(404).send()
-        }
-      )
-    }
-
-    function verify({ token } = {}, ip, url = '') {
-      if (!isLocalhost(ip)) {
-        try {
-          server.jwt.verify(token)
-        } catch (error) {
-          logger.debug(
-            { token, url, error },
-            `failed to verify token: ${error.message}`
-          )
-          // fastify will automatically use this code
-          error.statusCode = 401
-          throw error
-        }
+        })
       }
-    }
+    })
 
-    // note: it would be better to use 'upgrade' server event
-    // to authenticate incoming WS connections, but fastify-websocket does not allow it.
-    // https://github.com/websockets/ws/issues/377#issuecomment-462152231
-    function verifyClient({ req }, next) {
-      if (isLocalhost(req.socket.address().address)) {
-        return next(true)
+    server.post('/token', ({ body: totp, url }, reply) => {
+      if (TOTP.validate({ token: totp ?? '', window: 1 }) === null) {
+        logger.debug({ totp, url }, `failed to verify TOTP`)
+        const error = new Error('Invalid TOTP')
+        error.statusCode = 401
+        throw error
       }
+      const token = server.jwt.sign({})
+      logger.debug({ totp, url, token }, `TOTP valid, sending new token`)
+      reply.send(token)
+    })
+
+    function verifyToken(token, url) {
       try {
-        const { searchParams } = new URL(req.url, 'http://localhost')
-        const token = searchParams.get('token')
-        logger.debug(
-          { token, socket: req.socket.address() },
-          `verifying new connection`
-        )
-        if (!token) {
-          const error = new Error('Missing token')
-          error.statusCode = 401
-          throw error
-        }
-        try {
-          verify({ token }, 'ws/')
-        } catch {
-          const error = new Error('Invalid token')
-          error.statusCode = 403
-          throw error
-        }
-        next(true)
+        server.jwt.verify(token)
       } catch (error) {
-        next(false, error.statusCode, error.message)
+        logger.debug(
+          { token, url, error },
+          `failed to verify token: ${error.message}`
+        )
+        // fastify will automatically use this code
+        error.statusCode = 403
+        throw error
+      }
+    }
+
+    function handleConnection(connection, { id, ip, url, query: { token } }) {
+      let sendTokenTimeout
+      logger.debug({ id }, `opens WS connection for ${id}`)
+
+      // Establishes connection first, then validates token.
+      // This allows returning a reason for rejecting connection, allowing the
+      // client to distinguish flaky network from outdated JWT.
+      // Validating as part of `upgrade` or with `preValidation` hook does not allow this.
+      if (!isLocalhost(ip)) {
+        logger.debug({ token, ip }, `verifying new connection`)
+        try {
+          if (!token) {
+            const error = new Error('Missing token')
+            error.statusCode = 401
+            throw error
+          }
+          verifyToken(token, url)
+        } catch (error) {
+          sendToWS({ error: error.message, code: error.statusCode })
+          connection.socket.close()
+          return
+        }
+      }
+
+      sendNewToken({ settings })
+
+      connection.socket.on('close', () => {
+        clearTimeout(sendTokenTimeout)
+        logger.debug({ id }, `closes WS connection for ${id}`)
+      })
+
+      connection.socket.on('message', async function handleMessage(rawData) {
+        try {
+          const data = JSON.parse(rawData)
+          checkPayload(data)
+          server.jwt.verify(data.token)
+          const [name, op] = data.invoked.split('.')
+          try {
+            if (!(name in services) || !(op in services[name])) {
+              throw new Error(`core doesn't support ${name}.${op}()`)
+            } else {
+              const result = await services[name][op](...(data.args || []))
+              sendToWS({ id: data.id, result })
+            }
+          } catch (err) {
+            logger.error({ data, err }, err.message)
+            sendToWS({ id: data.id, error: err.message })
+          }
+        } catch (err) {
+          logger.error({ rawData }, `can not process message: ${err.message}`)
+          sendToWS({ error: err.message })
+        }
+      })
+
+      function sendToWS(data) {
+        connection.socket.send(JSON.stringify(data))
+      }
+
+      function sendNewToken(extraData = {}) {
+        logger.info('send new token to connected clients')
+        sendToWS({ token: server.jwt.sign({}), ...extraData })
+        sendTokenTimeout = setTimeout(
+          sendNewToken,
+          (JWTExpiryInSeconds - 5) * 1000
+        )
       }
     }
 
@@ -267,75 +305,22 @@ exports.initConnection = async function (
     }
   }
 
-  function handleConnection(connection, request) {
-    let sendTokenTimeout
-    logger.debug({ id: request.id }, `opens WS connection for ${request.id}`)
-
-    sendNewToken({ settings })
-
-    connection.socket.on('close', () => {
-      clearTimeout(sendTokenTimeout)
-      logger.debug({ id: request.id }, `closes WS connection for ${request.id}`)
-    })
-
-    connection.socket.on('message', async function handleMessage(rawData) {
-      try {
-        const data = JSON.parse(rawData)
-        checkMessageFormat(data)
-        request.server.jwt.verify(data.token)
-        if (handleUIMessage(data)) {
-          return
-        }
-        const [name, op] = data.invoked.split('.')
-        try {
-          if (!(name in services) || !(op in services[name])) {
-            throw new Error(`core doesn't support ${name}.${op}()`)
-          } else {
-            const result = await services[name][op](...(data.args || []))
-            sendToWS({ id: data.id, result })
-          }
-        } catch (err) {
-          logger.error({ data, err }, err.message)
-          sendToWS({ id: data.id, error: err.message })
-        }
-      } catch (err) {
-        logger.error({ rawData }, `can not process message: ${err.message}`)
-        sendToWS({ error: err.message })
-      }
-    })
-
-    function sendToWS(data) {
-      connection.socket.send(JSON.stringify(data))
-    }
-
-    function sendNewToken(extraData = {}) {
-      logger.info('send new token to connected clients')
-      sendToWS({ token: server.jwt.sign({}), ...extraData })
-      sendTokenTimeout = setTimeout(
-        sendNewToken,
-        (JWTExpiryInSeconds - 5) * 1000
-      )
-    }
-  }
-
-  function checkMessageFormat(data) {
+  function checkPayload(data) {
     if (!validate(data)) {
       const reason = `Validation errors:\n${ajv.errorsText(validate.errors, {
         separator: '\n'
       })}`
       logger.error({ data, reason }, `unsupported message received`)
-      throw new Error(reason)
+      const error = new Error(reason)
+      error.statusCode = 400
+      throw error
     }
   }
 
-  function handleUIMessage(data) {
-    if (data.logs) {
-      for (const log of data.logs) {
-        uiLogger[log.level]({ time: log.time }, ...log.args)
-      }
-      return true
+  function reportUiLogs(data) {
+    for (const log of data.logs) {
+      uiLogger[log.level]({ time: log.time }, ...log.args)
     }
-    return false
   }
 
   return { address: await startServer(), close, server, totp: TOTP }

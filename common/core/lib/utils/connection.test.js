@@ -150,8 +150,6 @@ describe('connection utilities', () => {
     await expect(got.post(`${address}/token`)).rejects.toThrow(
       'Response code 401 (Unauthorized)'
     )
-    await expect(got(`${address}/index.html`)).rejects.toThrow(/Not Found/)
-
     close()
     expect(errorSpy).not.toHaveBeenCalled()
   })
@@ -173,15 +171,8 @@ describe('connection utilities', () => {
         }
       })
     ).rejects.toThrow('Response code 401 (Unauthorized)')
-    await expect(
-      got(`${address}/tracks/${trackId}/data`, {
-        searchParams: { token: '0000' }
-      })
-    ).rejects.toThrow('Response code 401 (Unauthorized)')
-
     close()
     expect(errorSpy).not.toHaveBeenCalled()
-    expect(services.media.getTrackData).toHaveBeenCalledTimes(0)
   })
 
   it('can generate a token from valid OTP', async () => {
@@ -446,13 +437,17 @@ describe('connection utilities', () => {
     )
 
     describe.each([
-      { title: 'given no token', token: '', status: 401 },
-      { title: 'given invalid token', token: '123456', status: 403 }
-    ])('$title', ({ token, status }) => {
+      { title: 'given no token', token: '', error: 'Missing token' },
+      {
+        title: 'given invalid token',
+        token: '123456',
+        error: 'The token is malformed.'
+      }
+    ])('$title', ({ token, error }) => {
       it('denies Web Socket connection', async () => {
-        await expect(connectWSClient(address, token)).rejects.toThrow(
-          `Unexpected server response: ${status}`
-        )
+        await expect(connectWSClient(address, token)).resolves.toMatchObject({
+          initMessage: { error }
+        })
         expect(services.media.getAlbumMedia).not.toHaveBeenCalled()
       })
     })
@@ -466,7 +461,7 @@ describe('connection utilities', () => {
         const count = faker.datatype.number({ min: 1, max: 10 })
         await expect(
           got.get(`${address}/albums/${id}/media/${count}${token}`)
-        ).rejects.toThrow(/Unauthorized/)
+        ).rejects.toThrow(/Forbidden/)
         expect(services.media.getAlbumMedia).not.toHaveBeenCalled()
       })
 
@@ -474,7 +469,7 @@ describe('connection utilities', () => {
         const id = faker.datatype.number({ min: 1000 })
         await expect(
           got.get(`${address}/tracks/${id}/data${token}`)
-        ).rejects.toThrow(/Unauthorized/)
+        ).rejects.toThrow(/Forbidden/)
         expect(services.media.getTrackData).not.toHaveBeenCalled()
       })
 
@@ -483,7 +478,7 @@ describe('connection utilities', () => {
         const count = faker.datatype.number({ min: 1, max: 10 })
         await expect(
           got.get(`${address}/tracks/${id}/media/${count}${token}`)
-        ).rejects.toThrow(/Unauthorized/)
+        ).rejects.toThrow(/Forbidden/)
         expect(services.media.getTrackMedia).not.toHaveBeenCalled()
       })
 
@@ -492,7 +487,7 @@ describe('connection utilities', () => {
         const count = faker.datatype.number({ min: 1, max: 10 })
         await expect(
           got.get(`${address}/artists/${id}/media/${count}${token}`)
-        ).rejects.toThrow(/Unauthorized/)
+        ).rejects.toThrow(/Forbidden/)
         expect(services.media.getArtistMedia).not.toHaveBeenCalled()
       })
 
@@ -502,8 +497,18 @@ describe('connection utilities', () => {
           got.get(`${address}/media${token}`, {
             searchParams: { path: cover }
           })
-        ).rejects.toThrow(/Unauthorized/)
+        ).rejects.toThrow(/Forbidden/)
         expect(services.media.isMediaAllowed).not.toHaveBeenCalled()
+      })
+
+      it('denies access to logs', async () => {
+        services.media.getTrackMedia.mockResolvedValueOnce(cover)
+        await expect(
+          got.post(`${address}/logs${token}`, {
+            logs: [{ level: 'error', args: ['boom!'] }]
+          })
+        ).rejects.toThrow(/Forbidden/)
+        expect(uiErrorSpy).not.toHaveBeenCalled()
       })
     })
 
@@ -527,10 +532,7 @@ describe('connection utilities', () => {
         {
           title: 'given no token',
           error: `Validation errors:
-data must have required property 'token'
-data must have required property 'logs'
-data must have required property 'token'
-data must match exactly one schema in oneOf`
+data must have required property 'token'`
         },
         {
           title: 'given invalid token',
@@ -570,7 +572,7 @@ data must match exactly one schema in oneOf`
           { level: 'error', args: ['for testing!'] },
           { level: 'warn', args: ['Howdy!', 4] }
         ]
-        call(ws, { logs, token })
+        await got.post(`${address}/logs?token=${token}`, { json: { logs } })
         await sleep(10)
         expect(uiErrorSpy).toHaveBeenCalledWith(
           { time: logs[0].time },
