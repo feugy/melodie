@@ -22,7 +22,7 @@
     "got": "^11.8.2",
     "json-schema": "^0.4.0",
     "klaw": "^4.0.1",
-    "knex": "^1.0.4",
+    "knex": "^2.4.0",
     "knex-migrate": "^1.7.4",
     "mime-types": "^2.1.35",
     "music-metadata": "^7.12.2",
