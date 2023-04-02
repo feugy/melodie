@@ -60,6 +60,8 @@ Another option is to open it with Control-click: it'll immediately register the 
 
 ### features
 
+- use lightweight thumbnails for images, except when displaying Album/Artist details
+
 - when cover search failed once, do not retry on next start
 
 - use file and folder names to complete missing tags
@@ -108,7 +110,7 @@ Another option is to open it with Control-click: it'll immediately register the 
 
 ### Bugs and known issues
 
-1. When server is not reachable, attempts to establish new WebSocket connection takes longer and longer
+1. When loading the remote UI, playing current track is delayed by any other loading operation (like listing albums)
 
 1. DMG package does not download updates: [it requires zip](https://github.com/electron-userland/electron-builder/issues/2199), and we cannot build zip because of [the accent in product name](https://github.com/electron-userland/electron-builder/issues/4306#issuecomment-717232761)...
 

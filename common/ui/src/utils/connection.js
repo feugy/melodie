@@ -21,9 +21,6 @@ export function enhanceUrl(url) {
     return null
   }
   const resultUrl = new URL(url, rootUrl)
-  if (token) {
-    resultUrl.searchParams.set('token', token)
-  }
   return resultUrl.toString()
 }
 

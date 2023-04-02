@@ -5,11 +5,12 @@ const { dirname, basename } = require('path')
 const { EventEmitter } = require('events')
 const Ajv = require('ajv').default
 const fastify = require('fastify')
-const compressPlugin = require('fastify-compress')
-const corsPlugin = require('fastify-cors')
-const jwtPlugin = require('fastify-jwt')
-const staticPlugin = require('fastify-static')
-const websocketPlugin = require('fastify-websocket')
+const compressPlugin = require('@fastify/compress')
+const cookiePlugin = require('@fastify/cookie')
+const corsPlugin = require('@fastify/cors')
+const jwtPlugin = require('@fastify/jwt')
+const staticPlugin = require('@fastify/static')
+const websocketPlugin = require('@fastify/websocket')
 const S = require('fluent-json-schema')
 const OTPAuth = require('otpauth')
 const WebSocket = require('ws')
@@ -34,6 +35,7 @@ const validate = ajv.compile({
 const maxAge = 1000 * 60 * 60 * 24 * 2
 const JWTAlgorithm = 'HS512'
 const JWTExpiryInSeconds = 30 * 60
+const keepAliveInSeconds = 3000
 // make a new secret on every Mélodie restart
 const JWTSecret = randomUUID()
 
@@ -107,19 +109,19 @@ exports.initConnection = async function (
     }
 
     const origin = settings.isBroadcasting ? '*' : 'http://localhost:3000'
-    server.register(corsPlugin, { origin })
+    await server.register(corsPlugin, { origin })
 
-    server.register(jwtPlugin, {
+    await server.register(jwtPlugin, {
       secret: JWTSecret,
       sign: { algorithm: JWTAlgorithm, expiresIn: `${JWTExpiryInSeconds}s` },
       verify: { algorithms: [JWTAlgorithm] }
     })
 
-    server.register(websocketPlugin)
+    await server.register(websocketPlugin)
 
-    server.register(compressPlugin)
+    await server.register(compressPlugin)
 
-    server.register(staticPlugin, {
+    await server.register(staticPlugin, {
       root: publicFolder,
       wildcard: false,
       serve: settings.isBroadcasting,
@@ -128,14 +130,16 @@ exports.initConnection = async function (
       cacheControl: true
     })
 
+    await server.register(cookiePlugin)
+
     // websocket must always come before other routes
     // https://github.com/fastify/fastify-websocket#using-hooks
-    server.get('/ws', { websocket: true }, handleConnection)
+    await server.get('/ws', { websocket: true }, handleConnection)
 
-    server.register(async server => {
-      server.addHook('preValidation', async ({ query: { token }, ip, url }) => {
-        if (!isLocalhost(ip)) {
-          verifyToken(token, url)
+    await server.register(async server => {
+      server.addHook('preValidation', async req => {
+        if (!isLocalhost(req.ip)) {
+          verifyToken(extractToken(req), req.url)
         }
       })
 
@@ -213,8 +217,13 @@ exports.initConnection = async function (
       }
     }
 
+    function extractToken({ cookies }) {
+      return cookies.token
+    }
+
     function handleConnection(connection, { id, ip, url, query: { token } }) {
       let sendTokenTimeout
+      let keepAliveTimeout
       logger.debug({ id }, `opens WS connection for ${id}`)
 
       // Establishes connection first, then validates token.
@@ -239,8 +248,11 @@ exports.initConnection = async function (
 
       sendNewToken({ settings })
 
+      ping()
+
       connection.socket.on('close', () => {
         clearTimeout(sendTokenTimeout)
+        clearTimeout(keepAliveTimeout)
         logger.debug({ id }, `closes WS connection for ${id}`)
       })
 
@@ -258,33 +270,48 @@ exports.initConnection = async function (
               sendToWS({ id: data.id, result })
             }
           } catch (err) {
-            logger.error({ data, err }, err.message)
+            logger.error({ id, data, err }, err.message)
             sendToWS({ id: data.id, error: err.message })
           }
         } catch (err) {
-          logger.error({ rawData }, `can not process message: ${err.message}`)
+          logger.error(
+            { id, rawData },
+            `can not process message: ${err.message}`
+          )
           sendToWS({ error: err.message })
         }
       })
 
       function sendToWS(data) {
-        connection.socket.send(JSON.stringify(data))
+        connection.socket.send(JSON.stringify(data), error => {
+          if (error) {
+            logger.error(
+              { id, error },
+              `can not send message to client: ${error.message}`
+            )
+          }
+        })
       }
 
       function sendNewToken(extraData = {}) {
-        logger.info('send new token to connected clients')
+        logger.info({ id }, 'send new token to connected client')
         sendToWS({ token: server.jwt.sign({}), ...extraData })
         sendTokenTimeout = setTimeout(
           sendNewToken,
-          (JWTExpiryInSeconds - 5) * 1000
+          (JWTExpiryInSeconds - 30) * 1000
         )
+      }
+
+      function ping() {
+        connection.socket.ping()
+        keepAliveTimeout = setTimeout(ping, keepAliveInSeconds)
       }
     }
 
-    return server.listen(
-      port || settings.broadcastPort,
-      settings.isBroadcasting ? '0.0.0.0' : 'localhost'
-    )
+    return server.listen({
+      port: port || settings.broadcastPort,
+      host: settings.isBroadcasting ? '0.0.0.0' : 'localhost'
+    })
   }
 
   async function close() {

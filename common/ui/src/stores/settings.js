@@ -31,14 +31,16 @@ const settings$ = new BehaviorSubject({
 const connected$ = new BehaviorSubject(null)
 let connSubscription
 
-const initialToken = sessionStorage.getItem(tokenKey)
+const initialToken = localStorage.getItem(tokenKey)
 const token$ = new BehaviorSubject(initialToken)
 token$.subscribe(value => {
   console.trace(`updating client token with ${value}`)
   if (value) {
-    sessionStorage.setItem(tokenKey, value)
+    localStorage.setItem(tokenKey, value)
+    document.cookie = `token=${value}; samesite=strict`
   } else {
-    sessionStorage.removeItem(tokenKey)
+    localStorage.removeItem(tokenKey)
+    document.cookie = `token=-; expires=Thu, 01 Jan 1970 00:00:00 UTC`
   }
 })
 
@@ -102,14 +104,19 @@ async function connect(address, reconnectDelay) {
 export async function init(address, totpSecret, totp, reconnectDelay = 5000) {
   connected$.next(null)
   await new Promise(resolve => {
+    let fullReloadTimeout = null
     connSubscription?.unsubscribe()
     connSubscription = connected$.subscribe(async connected => {
       if (connected) {
+        clearTimeout(fullReloadTimeout)
+        fullReloadTimeout = null
         connSubscription.unsubscribe()
         fromServerEvent('settings-saved').subscribe(saved => {
           settings$.next(saved)
         })
         resolve()
+      } else if (!fullReloadTimeout) {
+        fullReloadTimeout = setTimeout(() => window.location.reload(), 30000)
       }
     })
 

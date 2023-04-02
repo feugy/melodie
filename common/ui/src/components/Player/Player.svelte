@@ -86,7 +86,8 @@
     }
   }
 
-  function handleError() {
+  function handleError({ currentTarget: { error } }) {
+    console.log('player error', error.message, error.code)
     isPlaying = false
     const save = src
     src = null

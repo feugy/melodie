@@ -60,11 +60,11 @@
     } else {
       stayAwake()
     }
-    return () => {
+    window.addEventListener('beforeunload', () => {
       if (!$isDesktop) {
         releaseWakeLock()
       }
-    }
+    })
   })
 
   function handleNav() {
