@@ -1,12 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Toolshot components/Dropdown/Dropdown.tools.svelte: Custom button options 1`] = `
-<span>
+exports[`Custom button options 1`] = `
+HTMLCollection [
   <div>
     current value is: 
     one
-  </div>
-   
+  </div>,
   <div
     class="text-right"
     style="position: inherited"
@@ -14,35 +13,34 @@ exports[`Toolshot components/Dropdown/Dropdown.tools.svelte: Custom button optio
     <span
       aria-expanded="false"
       aria-haspopup="menu"
-      class="wrapper svelte-1v2cnbz"
+      class="wrapper s-vOP9EO5q76eY"
     >
       <button
         align="text-right"
-        class="primary svelte-xh4kfu"
+        class="primary s-zdMNlEQUhDx4"
       >
         <i
-          class="material-icons svelte-xh4kfu"
-        >
-          person
-        </i>
+          class="icons i-mdi-account s-zdMNlEQUhDx4"
+        />
          
-        <span>
+        <span
+          class="s-zdMNlEQUhDx4"
+        >
           Primary
         </span>
          
         <i
-          class="material-icons arrow svelte-1v2cnbz"
-        >
-          arrow_drop_down
-        </i>
+          class="icons arrow i-mdi-menu-down s-vOP9EO5q76eY"
+        />
         
          
       </button>
+      <!--&lt;Button&gt;-->
     </span>
      
     
-  </div>
-   
+    <!--&lt;Dropdown&gt;-->
+  </div>,
   <p>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 In eu mi bibendum neque egestas congue quisque egestas
@@ -74,8 +72,7 @@ Sagittis vitae et leo duis ut
 Pretium lectus quam id leo in
 Fusce ut placerat orci nulla pellentesque dignissim enim sit
 Sed cras ornare arcu dui vivamus arcu.
-  </p>
-   
+  </p>,
   <p>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 In eu mi bibendum neque egestas congue quisque egestas
@@ -107,17 +104,16 @@ Sagittis vitae et leo duis ut
 Pretium lectus quam id leo in
 Fusce ut placerat orci nulla pellentesque dignissim enim sit
 Sed cras ornare arcu dui vivamus arcu.
-  </p>
-</span>
+  </p>,
+]
 `;
 
-exports[`Toolshot components/Dropdown/Dropdown.tools.svelte: Custom option 1`] = `
-<span>
+exports[`Custom option 1`] = `
+HTMLCollection [
   <div>
     current value is: 
     simple
-  </div>
-   
+  </div>,
   <div
     class="text-center"
     style="position: inherited"
@@ -125,29 +121,30 @@ exports[`Toolshot components/Dropdown/Dropdown.tools.svelte: Custom option 1`] =
     <span
       aria-expanded="false"
       aria-haspopup="menu"
-      class="wrapper svelte-1v2cnbz"
+      class="wrapper s-vOP9EO5q76eY"
     >
       <button
-        class="svelte-xh4kfu"
+        class="s-zdMNlEQUhDx4"
       >
          
-        <span>
+        <span
+          class="s-zdMNlEQUhDx4"
+        >
           simple
         </span>
          
         <i
-          class="material-icons arrow svelte-1v2cnbz"
-        >
-          arrow_drop_down
-        </i>
+          class="icons arrow i-mdi-menu-down s-vOP9EO5q76eY"
+        />
         
          
       </button>
+      <!--&lt;Button&gt;-->
     </span>
      
     
-  </div>
-   
+    <!--&lt;Dropdown&gt;-->
+  </div>,
   <p>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 In eu mi bibendum neque egestas congue quisque egestas
@@ -179,8 +176,7 @@ Sagittis vitae et leo duis ut
 Pretium lectus quam id leo in
 Fusce ut placerat orci nulla pellentesque dignissim enim sit
 Sed cras ornare arcu dui vivamus arcu.
-  </p>
-   
+  </p>,
   <p>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 In eu mi bibendum neque egestas congue quisque egestas
@@ -212,17 +208,16 @@ Sagittis vitae et leo duis ut
 Pretium lectus quam id leo in
 Fusce ut placerat orci nulla pellentesque dignissim enim sit
 Sed cras ornare arcu dui vivamus arcu.
-  </p>
-</span>
+  </p>,
+]
 `;
 
-exports[`Toolshot components/Dropdown/Dropdown.tools.svelte: Default 1`] = `
-<span>
+exports[`Default 1`] = `
+HTMLCollection [
   <div>
     current value is: 
     one
-  </div>
-   
+  </div>,
   <div
     class="text-center"
     style="position: inherited"
@@ -230,29 +225,30 @@ exports[`Toolshot components/Dropdown/Dropdown.tools.svelte: Default 1`] = `
     <span
       aria-expanded="false"
       aria-haspopup="menu"
-      class="wrapper svelte-1v2cnbz"
+      class="wrapper s-vOP9EO5q76eY"
     >
       <button
-        class="svelte-xh4kfu"
+        class="s-zdMNlEQUhDx4"
       >
          
-        <span>
+        <span
+          class="s-zdMNlEQUhDx4"
+        >
           one
         </span>
          
         <i
-          class="material-icons arrow svelte-1v2cnbz"
-        >
-          arrow_drop_down
-        </i>
+          class="icons arrow i-mdi-menu-down s-vOP9EO5q76eY"
+        />
         
          
       </button>
+      <!--&lt;Button&gt;-->
     </span>
      
     
-  </div>
-   
+    <!--&lt;Dropdown&gt;-->
+  </div>,
   <p>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 In eu mi bibendum neque egestas congue quisque egestas
@@ -284,8 +280,7 @@ Sagittis vitae et leo duis ut
 Pretium lectus quam id leo in
 Fusce ut placerat orci nulla pellentesque dignissim enim sit
 Sed cras ornare arcu dui vivamus arcu.
-  </p>
-   
+  </p>,
   <p>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 In eu mi bibendum neque egestas congue quisque egestas
@@ -317,17 +312,16 @@ Sagittis vitae et leo duis ut
 Pretium lectus quam id leo in
 Fusce ut placerat orci nulla pellentesque dignissim enim sit
 Sed cras ornare arcu dui vivamus arcu.
-  </p>
-</span>
+  </p>,
+]
 `;
 
-exports[`Toolshot components/Dropdown/Dropdown.tools.svelte: Icon only with relative parent 1`] = `
-<span>
+exports[`Icon only with relative parent 1`] = `
+HTMLCollection [
   <div>
     current value is: 
     one
-  </div>
-   
+  </div>,
   <div
     class="text-center"
     style="position: relative"
@@ -335,27 +329,26 @@ exports[`Toolshot components/Dropdown/Dropdown.tools.svelte: Icon only with rela
     <span
       aria-expanded="false"
       aria-haspopup="menu"
-      class="wrapper svelte-1v2cnbz"
+      class="wrapper s-vOP9EO5q76eY"
     >
       <button
-        class="iconOnly svelte-xh4kfu"
+        class="iconOnly s-zdMNlEQUhDx4"
         parentposition="relative"
       >
         <i
-          class="material-icons svelte-xh4kfu"
-        >
-          more_vert
-        </i>
+          class="icons i-mdi-dots-vertical s-zdMNlEQUhDx4"
+        />
          
          
         
          
       </button>
+      <!--&lt;Button&gt;-->
     </span>
      
     
-  </div>
-   
+    <!--&lt;Dropdown&gt;-->
+  </div>,
   <p>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 In eu mi bibendum neque egestas congue quisque egestas
@@ -387,8 +380,7 @@ Sagittis vitae et leo duis ut
 Pretium lectus quam id leo in
 Fusce ut placerat orci nulla pellentesque dignissim enim sit
 Sed cras ornare arcu dui vivamus arcu.
-  </p>
-   
+  </p>,
   <p>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 In eu mi bibendum neque egestas congue quisque egestas
@@ -420,17 +412,16 @@ Sagittis vitae et leo duis ut
 Pretium lectus quam id leo in
 Fusce ut placerat orci nulla pellentesque dignissim enim sit
 Sed cras ornare arcu dui vivamus arcu.
-  </p>
-</span>
+  </p>,
+]
 `;
 
-exports[`Toolshot components/Dropdown/Dropdown.tools.svelte: Independent text and icon 1`] = `
-<span>
+exports[`Independent text and icon 1`] = `
+HTMLCollection [
   <div>
     current value is: 
     one
-  </div>
-   
+  </div>,
   <div
     class="text-left"
     style="position: inherited"
@@ -438,35 +429,34 @@ exports[`Toolshot components/Dropdown/Dropdown.tools.svelte: Independent text an
     <span
       aria-expanded="false"
       aria-haspopup="menu"
-      class="wrapper svelte-1v2cnbz"
+      class="wrapper s-vOP9EO5q76eY"
     >
       <button
         align="text-left"
-        class="svelte-xh4kfu"
+        class="s-zdMNlEQUhDx4"
       >
         <i
-          class="material-icons svelte-xh4kfu"
-        >
-          settings
-        </i>
+          class="icons i-mdi-cog s-zdMNlEQUhDx4"
+        />
          
-        <span>
+        <span
+          class="s-zdMNlEQUhDx4"
+        >
           options
         </span>
          
         <i
-          class="material-icons arrow svelte-1v2cnbz"
-        >
-          arrow_drop_down
-        </i>
+          class="icons arrow i-mdi-menu-down s-vOP9EO5q76eY"
+        />
         
          
       </button>
+      <!--&lt;Button&gt;-->
     </span>
      
     
-  </div>
-   
+    <!--&lt;Dropdown&gt;-->
+  </div>,
   <p>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 In eu mi bibendum neque egestas congue quisque egestas
@@ -498,8 +488,7 @@ Sagittis vitae et leo duis ut
 Pretium lectus quam id leo in
 Fusce ut placerat orci nulla pellentesque dignissim enim sit
 Sed cras ornare arcu dui vivamus arcu.
-  </p>
-   
+  </p>,
   <p>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 In eu mi bibendum neque egestas congue quisque egestas
@@ -531,17 +520,16 @@ Sagittis vitae et leo duis ut
 Pretium lectus quam id leo in
 Fusce ut placerat orci nulla pellentesque dignissim enim sit
 Sed cras ornare arcu dui vivamus arcu.
-  </p>
-</span>
+  </p>,
+]
 `;
 
-exports[`Toolshot components/Dropdown/Dropdown.tools.svelte: Simple array 1`] = `
-<span>
+exports[`Simple array 1`] = `
+HTMLCollection [
   <div>
     current value is: 
     one
-  </div>
-   
+  </div>,
   <div
     class="text-center"
     style="position: inherited"
@@ -549,29 +537,30 @@ exports[`Toolshot components/Dropdown/Dropdown.tools.svelte: Simple array 1`] = 
     <span
       aria-expanded="false"
       aria-haspopup="menu"
-      class="wrapper svelte-1v2cnbz"
+      class="wrapper s-vOP9EO5q76eY"
     >
       <button
-        class="svelte-xh4kfu"
+        class="s-zdMNlEQUhDx4"
       >
          
-        <span>
+        <span
+          class="s-zdMNlEQUhDx4"
+        >
           one
         </span>
          
         <i
-          class="material-icons arrow svelte-1v2cnbz"
-        >
-          arrow_drop_down
-        </i>
+          class="icons arrow i-mdi-menu-down s-vOP9EO5q76eY"
+        />
         
          
       </button>
+      <!--&lt;Button&gt;-->
     </span>
      
     
-  </div>
-   
+    <!--&lt;Dropdown&gt;-->
+  </div>,
   <p>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 In eu mi bibendum neque egestas congue quisque egestas
@@ -603,8 +592,7 @@ Sagittis vitae et leo duis ut
 Pretium lectus quam id leo in
 Fusce ut placerat orci nulla pellentesque dignissim enim sit
 Sed cras ornare arcu dui vivamus arcu.
-  </p>
-   
+  </p>,
   <p>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 In eu mi bibendum neque egestas congue quisque egestas
@@ -636,6 +624,6 @@ Sagittis vitae et leo duis ut
 Pretium lectus quam id leo in
 Fusce ut placerat orci nulla pellentesque dignissim enim sit
 Sed cras ornare arcu dui vivamus arcu.
-  </p>
-</span>
+  </p>,
+]
 `;

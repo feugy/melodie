@@ -1,13 +1,14 @@
 <script>
-  import { afterUpdate, onMount } from 'svelte'
-  import { _ } from 'svelte-intl'
-  import { slide } from 'svelte/transition'
   import QRCode from 'qrcode'
+  import { afterUpdate, onMount } from 'svelte'
+  import { slide } from 'svelte/transition'
+  import { _ } from 'svelte-intl'
+
+  import { showSnack } from '../../stores/snackbars'
+  import { period, totp } from '../../stores/totp'
+  import { releaseWakeLock, stayAwake } from '../../utils'
   import Button from '../Button/Button.svelte'
   import CircularProgress from '../CircularProgress/CircularProgress.svelte'
-  import { releaseWakeLock, stayAwake } from '../../utils'
-  import { totp, period } from '../../stores/totp'
-  import { showSnack } from '../../stores/snackbars'
 
   export let isBroadcasting
   export let address
@@ -73,58 +74,60 @@
   }
 </script>
 
-<style lang="postcss">
-  .button {
-    @apply relative inline-block;
-  }
-  .menu {
-    @apply absolute my-3 rounded z-20 text-sm p-4 whitespace-nowrap flex flex-col items-center;
-    background-color: var(--bg-primary-color);
-    border: 1px solid var(--outline-color);
-
-    & > p {
-      @apply mt-4;
-    }
-  }
-  .totp {
-    @apply flex text-4xl mt-1 cursor-pointer;
-    & > i {
-      @apply mr-2 not-italic;
-    }
-  }
-  .remaining {
-    @apply inline-block relative text-base ml-2;
-
-    & > * {
-      @apply absolute inset-x-0;
-    }
-    & > span {
-      @apply w-auto top-2;
-    }
-  }
-</style>
-
 <span
   class="button"
+  role="menu"
+  tabindex="0"
   on:mouseenter={handleMouseEnter}
   on:mouseleave={handleMouseLeave}
 >
   <Button
     on:click
-    icon={isBroadcasting ? 'wifi' : 'wifi_off'}
+    icon={isBroadcasting ? 'i-mdi-wifi' : 'i-mdi-wifi-off'}
     noBorder={true}
+    data-testid="broadcast-button"
   />
   {#if open}
     <div class="menu" role="menu" transition:slide>
       <a href={fullAddress}><canvas bind:this={codeCanvas} /></a>
       <p>{$_('scan or click the code to open Mélodie in your browser')}</p>
-      <div class="totp" on:click|stopPropagation={handleClickTotp}>
+      <button class="totp" on:click|stopPropagation={handleClickTotp}>
         <i>{$totp.slice(0, 3)}</i><i>{$totp.slice(3)}</i>
         <div class="remaining">
-          <span>{remaining}</span>
           <CircularProgress size="40" percentage={(remaining * 100) / period} />
+          <span>{remaining}</span>
         </div>
-      </div>
+      </button>
     </div>
   {/if}
 </span>
+
+<style>
+  .button {
+    --at-apply: relative inline-block;
+  }
+  .menu {
+    --at-apply: absolute my-3 rounded z-20 text-sm p-4 whitespace-nowrap flex
+      flex-col items-center;
+    background-color: var(--bg-primary-color);
+    border: 1px solid var(--outline-color);
+
+    & > p {
+      --at-apply: mt-4;
+    }
+  }
+  .totp {
+    --at-apply: flex text-4xl mt-1 cursor-pointer;
+    & > i {
+      --at-apply: mr-2 not-italic;
+    }
+  }
+  .remaining {
+    --at-apply: inline-flex items-center justify-center relative text-base w-10
+      ml-2 mt-2;
+
+    & > *:not(span) {
+      --at-apply: absolute inset-x-0;
+    }
+  }
+</style>

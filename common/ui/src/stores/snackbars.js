@@ -1,5 +1,3 @@
-'use strict'
-
 import { Subject } from 'rxjs'
 import { map, scan, shareReplay } from 'rxjs/operators'
 

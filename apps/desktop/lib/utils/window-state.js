@@ -1,14 +1,11 @@
-'use strict'
+import { utils } from '@melodie/core'
+import fs from 'fs-extra'
+import { fromEvent, merge } from 'rxjs'
+import { debounceTime, filter, map, mergeMap } from 'rxjs/operators'
 
-const { fromEvent, merge } = require('rxjs')
-const { debounceTime, map, mergeMap, filter } = require('rxjs/operators')
-const fs = require('fs-extra')
-const {
-  utils: { getLogger }
-} = require('@melodie/core')
-const { getStoragePath } = require('./files')
+import { getStoragePath } from './files.js'
 
-const logger = getLogger('utils/window-state')
+const logger = utils.getLogger('utils/window-state')
 
 /**
  * Makes a function to save window state into `state-{id}.json` file, within Electron's storage folder.
@@ -82,36 +79,34 @@ function makePositionObservable(window) {
 
 const subscriptions = new Map()
 
-module.exports = {
-  /**
-   * Starts monitoring the state (minimized, maximized, position and fullscreen) of a given window.
-   * Its state is persisted so it could be restored.
-   * @param {BrowserWindow} window - to start monitoring
-   */
-  manageState(window) {
-    restore(window)
-    subscriptions.set(window.id, makePositionObservable(window).subscribe())
-  },
+/**
+ * Starts monitoring the state (minimized, maximized, position and fullscreen) of a given window.
+ * Its state is persisted so it could be restored.
+ * @param {BrowserWindow} window - to start monitoring
+ */
+export function manageState(window) {
+  restore(window)
+  subscriptions.set(window.id, makePositionObservable(window).subscribe())
+}
 
-  /**
-   * Stops monitoring this window state.
-   * @param {BrowserWindow} window - to stop monitoring
-   */
-  unmanageState(window) {
-    const subscription = subscriptions.get(window.id)
-    if (subscription) {
-      subscription.unsubscribe()
-    }
-  },
-
-  /**
-   * Focus a given window, restoring it if it is minimized
-   * @param {BrowserWindow} window - to be focused
-   */
-  focusOnNotification(window) {
-    if (window.isMinimized()) {
-      window.restore()
-    }
-    window.focus()
+/**
+ * Stops monitoring this window state.
+ * @param {BrowserWindow} window - to stop monitoring
+ */
+export function unmanageState(window) {
+  const subscription = subscriptions.get(window.id)
+  if (subscription) {
+    subscription.unsubscribe()
   }
+}
+
+/**
+ * Focus a given window, restoring it if it is minimized
+ * @param {BrowserWindow} window - to be focused
+ */
+export function focusOnNotification(window) {
+  if (window.isMinimized()) {
+    window.restore()
+  }
+  window.focus()
 }

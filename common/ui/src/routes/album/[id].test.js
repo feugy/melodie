@@ -1,35 +1,35 @@
-'use strict'
-
-import { screen, render } from '@testing-library/svelte'
+import { faker } from '@faker-js/faker'
+import { render, screen } from '@testing-library/svelte'
 import userEvent from '@testing-library/user-event'
-import html from 'svelte-htm'
 import { BehaviorSubject } from 'rxjs'
+import html from 'svelte-htm'
 import { replace } from 'svelte-spa-router'
-import faker from 'faker'
-import albumRoute from './[id].svelte'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
+
 import {
   albums as mockedAlbums,
   changes,
-  removals,
-  load
+  load,
+  removals
 } from '../../stores/albums'
 import { add } from '../../stores/track-queue'
-import { translate, sleep, addRefs } from '../../tests'
+import { addRefs, sleep, translate } from '../../tests'
+import albumRoute from './[id].svelte'
 
-jest.mock('svelte-spa-router')
-jest.mock('../../stores/track-queue', () => ({
-  add: jest.fn(),
+vi.mock('svelte-spa-router')
+vi.mock('../../stores/track-queue', () => ({
+  add: vi.fn(),
   createClickToAddObservable() {
-    return { subscribe: () => ({ unsubscribe: jest.fn() }), next: jest.fn() }
+    return { subscribe: () => ({ unsubscribe: vi.fn() }), next: vi.fn() }
   },
   current: {
     subscribe: () => ({ unsubscribe: () => {} })
   }
 }))
-jest.mock('../../stores/albums', () => {
+vi.mock('../../stores/albums', () => {
   const { Subject } = require('rxjs')
   return {
-    load: jest.fn(),
+    load: vi.fn(),
     changes: new Subject(),
     removals: new Subject(),
     albums: {
@@ -40,38 +40,38 @@ jest.mock('../../stores/albums', () => {
 
 describe('album details route', () => {
   const album = {
-    id: faker.datatype.number(),
+    id: faker.number.int(),
     name: faker.commerce.productName(),
     refs: [
-      [faker.datatype.number(), faker.name.findName()],
-      [faker.datatype.number(), faker.name.findName()]
+      [faker.number.int(), faker.person.firstName()],
+      [faker.number.int(), faker.person.firstName()]
     ],
     media: faker.image.avatar(),
     tracks: [
       {
-        id: faker.datatype.uuid(),
+        id: faker.string.uuid(),
         tags: {
           title: faker.commerce.productName(),
-          artists: [faker.name.findName()],
+          artists: [faker.person.firstName()],
           album: faker.lorem.words(),
           duration: 265,
-          year: faker.datatype.number({ min: 1970, max: 2030 })
+          year: faker.number.int({ min: 1970, max: 2030 })
         }
       },
       {
-        id: faker.datatype.uuid(),
+        id: faker.string.uuid(),
         tags: {
           title: faker.commerce.productName(),
-          artists: [faker.name.findName()],
+          artists: [faker.person.firstName()],
           album: faker.lorem.words(),
           duration: 270
         }
       },
       {
-        id: faker.datatype.uuid(),
+        id: faker.string.uuid(),
         tags: {
           title: faker.commerce.productName(),
-          artists: [faker.name.findName()],
+          artists: [faker.person.firstName()],
           album: faker.lorem.words(),
           duration: 281
         }
@@ -81,16 +81,16 @@ describe('album details route', () => {
 
   function expectDisplayedTracks() {
     for (const track of album.tracks) {
-      expect(screen.queryByText(track.tags.artists[0])).toBeInTheDocument()
+      expect(screen.getByText(track.tags.artists[0])).toBeInTheDocument()
       expect(screen.queryByText(track.tags.album)).not.toBeInTheDocument()
-      expect(screen.queryByText(track.tags.title)).toBeInTheDocument()
+      expect(screen.getByText(track.tags.title)).toBeInTheDocument()
     }
   }
 
   beforeEach(() => {
     const albums = new BehaviorSubject([album])
     mockedAlbums.subscribe = albums.subscribe.bind(albums)
-    jest.resetAllMocks()
+    vi.resetAllMocks()
   })
 
   it('redirects to album list on unknown album', async () => {
@@ -112,7 +112,7 @@ describe('album details route', () => {
     })
 
     it('displays album title, image, artists, total duration and year', async () => {
-      expect(screen.queryByText(album.name)).toBeInTheDocument()
+      expect(screen.getByText(album.name)).toBeInTheDocument()
       const image = screen.queryAllByRole('img')
       expect(
         image.filter(
@@ -122,14 +122,14 @@ describe('album details route', () => {
         )
       ).toBeDefined()
 
-      expect(screen.queryByText(album.refs[0][1])).toBeInTheDocument()
-      expect(screen.queryByText(album.refs[1][1])).toBeInTheDocument()
+      expect(screen.getByText(album.refs[0][1])).toBeInTheDocument()
+      expect(screen.getByText(album.refs[1][1])).toBeInTheDocument()
 
       expect(
-        screen.queryByText(translate('total duration _', { total: '13:36' }))
+        screen.getByText(translate('total duration _', { total: '13:36' }))
       ).toBeInTheDocument()
       expect(
-        screen.queryByText(
+        screen.getByText(
           translate('year _', { year: album.tracks[0].tags.year })
         )
       ).toBeInTheDocument()
@@ -138,13 +138,13 @@ describe('album details route', () => {
     })
 
     it('has links to artists', async () => {
-      const [id, artist] = faker.random.arrayElement(album.refs)
+      const [id, artist] = faker.helpers.arrayElement(album.refs)
       // first occurence is in album header, then we have tracks
-      userEvent.click(screen.getAllByText(artist)[0])
+      await userEvent.click(screen.getAllByText(artist)[0])
       await sleep()
 
       expect(add).not.toHaveBeenCalled()
-      expect(location.hash).toEqual(`#/artist/${id}`)
+      expect(location.hash).toBe(`#/artist/${id}`)
     })
 
     it('loads tracks and display them', async () => {
@@ -157,7 +157,7 @@ describe('album details route', () => {
       await userEvent.click(screen.getByText(translate('enqueue all')))
 
       expect(add).toHaveBeenCalledWith(album.tracks)
-      expect(add).toHaveBeenCalledTimes(1)
+      expect(add).toHaveBeenCalledOnce()
     })
 
     it('plays whole album', async () => {
@@ -165,8 +165,8 @@ describe('album details route', () => {
       await sleep()
 
       expect(add).toHaveBeenCalledWith(album.tracks, true)
-      expect(add).toHaveBeenCalledTimes(1)
-      expect(location.hash).toEqual(`#/album/${album.id}`)
+      expect(add).toHaveBeenCalledOnce()
+      expect(location.hash).toBe(`#/album/${album.id}`)
     })
 
     it('updates on album change', async () => {
@@ -184,9 +184,7 @@ describe('album details route', () => {
     it('ignores changes on other albums', async () => {
       load.mockReset()
 
-      changes.next([
-        { ...album, id: faker.datatype.number(), tracks: undefined }
-      ])
+      changes.next([{ ...album, id: faker.number.int(), tracks: undefined }])
       await sleep()
 
       expectDisplayedTracks()
@@ -201,7 +199,7 @@ describe('album details route', () => {
 
       expect(load).toHaveBeenCalledWith(album.id)
       expectDisplayedTracks()
-      expect(load).toHaveBeenCalledTimes(1)
+      expect(load).toHaveBeenCalledOnce()
     })
 
     it('redirects to albums list on removal', async () => {
@@ -211,7 +209,7 @@ describe('album details route', () => {
     })
 
     it('ignores other album removals', async () => {
-      removals.next([faker.datatype.number()])
+      removals.next([faker.number.int()])
 
       expect(replace).not.toHaveBeenCalledWith('/album')
     })

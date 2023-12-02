@@ -1,62 +1,61 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Toolshot components/TextInput/TextInput.tools.svelte: Default 1`] = `
+exports[`Default 1`] = `
 <span
-  class="inline-block w-64 svelte-1aipfg4"
+  class="__inline-block_jnii2f_jnii2f __w-64_jnii2f_jnii2f s-Si-t0uQp-0iu"
 >
   <span
-    class="svelte-x75l88"
+    class=" s-t-4K-QPPrmFY"
   >
      
     <input
-      class="svelte-x75l88"
+      class="s-t-4K-QPPrmFY"
       placeholder=""
       type="text"
     />
   </span>
+  <!--&lt;TextInput&gt;-->
 </span>
 `;
 
-exports[`Toolshot components/TextInput/TextInput.tools.svelte: With icon and placeholder 1`] = `
+exports[`With icon and placeholder 1`] = `
 <span
-  class="inline-block w-64 svelte-1aipfg4"
+  class="__inline-block_jnii2f_jnii2f __w-64_jnii2f_jnii2f s-Si-t0uQp-0iu"
 >
   <span
-    class="svelte-x75l88 icon"
+    class="s-t-4K-QPPrmFY icon"
   >
-    <i
-      class="material-icons svelte-x75l88"
-    >
-      search
-    </i>
+    <button
+      class="icons i-mdi-magnify s-t-4K-QPPrmFY"
+    />
      
     <input
-      class="svelte-x75l88"
+      class="s-t-4K-QPPrmFY"
       placeholder="search..."
       type="search"
     />
   </span>
+  <!--&lt;TextInput&gt;-->
 </span>
 `;
 
-exports[`Toolshot components/TextInput/TextInput.tools.svelte: With value 1`] = `
+exports[`With value 1`] = `
 <span
-  class="inline-block w-64 svelte-1aipfg4"
+  class="__inline-block_jnii2f_jnii2f __w-64_jnii2f_jnii2f s-Si-t0uQp-0iu"
 >
   <span
-    class="svelte-x75l88 icon"
+    class="s-t-4K-QPPrmFY icon"
   >
-    <i
-      class="material-icons svelte-x75l88"
-    >
-      person
-    </i>
+    <button
+      class="icons i-mdi-account s-t-4K-QPPrmFY"
+    />
      
     <input
-      class="svelte-x75l88"
+      class="s-t-4K-QPPrmFY"
       placeholder=""
       type="text"
     />
   </span>
+  <!--&lt;TextInput&gt;-->
 </span>
 `;

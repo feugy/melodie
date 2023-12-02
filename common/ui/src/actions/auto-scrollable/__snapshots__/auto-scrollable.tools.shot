@@ -1,167 +1,196 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Toolshot actions/auto-scrollable/auto-scrollable.tools.svelte: Actions/auto-scrollable 1`] = `
-<span>
+exports[`Actions/auto-scrollable 1`] = `
+HTMLCollection [
   <p
-    class="p-4 font-bold svelte-1v7skd5"
+    class="__p-4_5eatd9_5eatd9 __font-bold_5eatd9_5eatd9 s-yD2TLBgpkGA3"
   >
     Caution: does not work on Firefox (DragEvent always have 0 clientY)
-  </p>
-   
+  </p>,
   <ol
-    class="svelte-1v7skd5"
+    class="s-yD2TLBgpkGA3"
     style="--padding: 75px; --margin: -75px;"
   >
     <li
+      class="s-yD2TLBgpkGA3"
       draggable="true"
     >
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
     </li>
     <li
+      class="s-yD2TLBgpkGA3"
       draggable="true"
     >
       In eu mi bibendum neque egestas congue quisque egestas
     </li>
     <li
+      class="s-yD2TLBgpkGA3"
       draggable="true"
     >
       Arcu non odio euismod lacinia at quis risus sed
     </li>
     <li
+      class="s-yD2TLBgpkGA3"
       draggable="true"
     >
       Massa tempor nec feugiat nisl
     </li>
     <li
+      class="s-yD2TLBgpkGA3"
       draggable="true"
     >
       Sagittis aliquam malesuada bibendum arcu vitae elementum
     </li>
     <li
+      class="s-yD2TLBgpkGA3"
       draggable="true"
     >
       Elementum facilisis leo vel fringilla est ullamcorper eget nulla
     </li>
     <li
+      class="s-yD2TLBgpkGA3"
       draggable="true"
     >
       Bibendum arcu vitae elementum curabitur vitae nunc sed velit dignissim
     </li>
     <li
+      class="s-yD2TLBgpkGA3"
       draggable="true"
     >
       Elit sed vulputate mi sit amet mauris commodo
     </li>
     <li
+      class="s-yD2TLBgpkGA3"
       draggable="true"
     >
       Ut enim blandit volutpat maecenas volutpat blandit aliquam etiam erat
     </li>
     <li
+      class="s-yD2TLBgpkGA3"
       draggable="true"
     >
       Lorem mollis aliquam ut porttitor leo a diam sollicitudin
     </li>
     <li
+      class="s-yD2TLBgpkGA3"
       draggable="true"
     >
       Vitae proin sagittis nisl rhoncus mattis
     </li>
     <li
+      class="s-yD2TLBgpkGA3"
       draggable="true"
     >
       Ut morbi tincidunt augue interdum velit euismod in pellentesque
     </li>
     <li
+      class="s-yD2TLBgpkGA3"
       draggable="true"
     >
       Aliquam purus sit amet luctus venenatis lectus magna
     </li>
     <li
+      class="s-yD2TLBgpkGA3"
       draggable="true"
     >
       Amet venenatis urna cursus eget
     </li>
     <li
+      class="s-yD2TLBgpkGA3"
       draggable="true"
     >
       Et pharetra pharetra massa massa
     </li>
     <li
+      class="s-yD2TLBgpkGA3"
       draggable="true"
     >
       Ac ut consequat semper viverra nam libero justo laoreet
     </li>
     <li
+      class="s-yD2TLBgpkGA3"
       draggable="true"
     >
       Eget arcu dictum varius duis at consectetur lorem
     </li>
     <li
+      class="s-yD2TLBgpkGA3"
       draggable="true"
     >
       Tellus id interdum velit laoreet id donec
     </li>
     <li
+      class="s-yD2TLBgpkGA3"
       draggable="true"
     >
       Aliquam sem fringilla ut morbi
     </li>
     <li
+      class="s-yD2TLBgpkGA3"
       draggable="true"
     >
       Consequat nisl vel pretium lectus quam id leo in vitae
     </li>
     <li
+      class="s-yD2TLBgpkGA3"
       draggable="true"
     >
       Velit scelerisque in dictum non
     </li>
     <li
+      class="s-yD2TLBgpkGA3"
       draggable="true"
     >
       Pretium aenean pharetra magna ac
     </li>
     <li
+      class="s-yD2TLBgpkGA3"
       draggable="true"
     >
       Tincidunt arcu non sodales neque sodales ut etiam
     </li>
     <li
+      class="s-yD2TLBgpkGA3"
       draggable="true"
     >
       Cursus eget nunc scelerisque viverra mauris in aliquam
     </li>
     <li
+      class="s-yD2TLBgpkGA3"
       draggable="true"
     >
       Tortor at auctor urna nunc id cursus
     </li>
     <li
+      class="s-yD2TLBgpkGA3"
       draggable="true"
     >
       Consequat interdum varius sit amet mattis vulputate enim nulla
     </li>
     <li
+      class="s-yD2TLBgpkGA3"
       draggable="true"
     >
       Sagittis vitae et leo duis ut
     </li>
     <li
+      class="s-yD2TLBgpkGA3"
       draggable="true"
     >
       Pretium lectus quam id leo in
     </li>
     <li
+      class="s-yD2TLBgpkGA3"
       draggable="true"
     >
       Fusce ut placerat orci nulla pellentesque dignissim enim sit
     </li>
     <li
+      class="s-yD2TLBgpkGA3"
       draggable="true"
     >
       Sed cras ornare arcu dui vivamus arcu.
     </li>
-  </ol>
-</span>
+  </ol>,
+]
 `;

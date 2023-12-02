@@ -214,7 +214,7 @@ You'll need npm@7+ and node@16+
 ```shell
 git clone git@github.com:feugy/melodie.git
 cd melodie
-npm i
+npm i --legacy-peer-deps
 npm start
 ```
 

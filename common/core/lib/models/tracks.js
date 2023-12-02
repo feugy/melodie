@@ -1,7 +1,5 @@
-'use strict'
-
-const Model = require('./abstract-model')
-const { hash } = require('../utils')
+import { hash } from '../utils/index.js'
+import Model from './abstract-model.js'
 
 /**
  * @class TracksModel
@@ -164,4 +162,4 @@ class TracksModel extends Model {
   }
 }
 
-exports.tracksModel = new TracksModel()
+export const tracksModel = new TracksModel()

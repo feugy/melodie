@@ -1,5 +1,3 @@
-'use strict'
-
 export * from './clicks'
 export * from './connection'
 export * from './links'

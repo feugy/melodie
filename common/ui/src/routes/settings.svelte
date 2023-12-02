@@ -3,24 +3,25 @@
   import { onMount } from 'svelte'
   import { VERSION } from 'svelte/compiler'
   import { fade } from 'svelte/transition'
-  import { _, locales, locale } from 'svelte-intl'
+  import { _, locale, locales } from 'svelte-intl'
+
   import {
-    Heading,
     Button,
-    SubHeading,
     Dropdown,
+    Heading,
+    SubHeading,
     TextInput
   } from '../components'
   import {
-    settings,
-    isDesktop,
     askToAddFolder,
-    saveEnqueueBehaviour,
-    saveDiscogsToken,
+    isDesktop,
+    removeFolder,
     saveAudioDBKey,
     saveBroadcastPort,
-    removeFolder,
-    saveLocale
+    saveDiscogsToken,
+    saveEnqueueBehaviour,
+    saveLocale,
+    settings
   } from '../stores/settings'
   import { totpUrl } from '../stores/totp'
   import { invoke } from '../utils'
@@ -118,17 +119,17 @@
       {
         label: 'Svelte',
         value: VERSION,
-        src: 'images/svelte-logo.png'
+        src: 'images/svelte-logo.svg'
       },
       {
-        label: 'WindiCSS',
-        value: WINDICSS_VERSION,
-        src: 'images/windicss-logo.png'
+        label: 'UnoCSS',
+        value: UNOCSS_VERSION,
+        src: 'images/unocss-logo.svg'
       },
       {
         label: 'RxJS',
         value: RXJS_VERSION,
-        src: 'images/rx-logo.png'
+        src: 'images/rxjs-logo.svg'
       },
       {
         label: 'SQLite',
@@ -138,68 +139,6 @@
     ]
   })
 </script>
-
-<style lang="postcss">
-  article {
-    @apply text-left m-4 mt-0;
-
-    & .instructions {
-      @apply text-sm my-4;
-    }
-
-    & p {
-      @apply mb-4;
-    }
-  }
-
-  :global(label > .material-icons) {
-    font-size: 1em;
-    vertical-align: -0.15rem;
-  }
-
-  li {
-    @apply p-2 rounded-full mb-4 mr-4 inline-flex items-center;
-    font-size: 1.3rem;
-    background-color: var(--bg-primary-color);
-
-    & > span {
-      @apply px-4;
-    }
-  }
-
-  .controlContainer {
-    @apply inline-block md:ml-4;
-  }
-
-  label {
-    @apply block md:text-right md:inline-block md:min-w-180px align-top;
-  }
-
-  :global(.settings-input) {
-    @apply inline-block md:w-400px;
-  }
-
-  .version-container {
-    @apply flex flex-wrap justify-center gap-8 m-4;
-
-    & > div {
-      @apply rounded shadow-lg w-32 whitespace-nowrap;
-      background: var(--bg-primary-color);
-
-      & > header {
-        @apply px-4 pt-2;
-
-        & > div:first-child {
-          @apply font-bold text-lg;
-        }
-      }
-
-      & > img {
-        @apply w-full p-2;
-      }
-    }
-  }
-</style>
 
 <section in:fade={{ duration: 200 }}>
   <Heading
@@ -213,14 +152,18 @@
       {#each $settings.folders as folder (folder)}
         <li>
           <span>{folder}</span>
-          <Button on:click={() => removeFolder(folder)} noBorder icon="close" />
+          <Button
+            on:click={() => removeFolder(folder)}
+            noBorder
+            icon="i-mdi-close"
+          />
         </li>
       {/each}
     </ul>
     {#if $isDesktop}
       <span class="controlContainer" id="folder"
         ><Button
-          icon="folder"
+          icon="i-mdi-folder"
           on:click={askToAddFolder}
           text={$_('add folders')}
         /></span
@@ -240,6 +183,7 @@
       >
     </p>
     <p>
+      <!-- eslint-disable-next-line svelte/no-at-html-tags -->
       <label for="play-behaviour">{@html $_('play now behaviour')}</label>
       <span class="controlContainer" id="play-behaviour"
         ><Dropdown
@@ -266,6 +210,7 @@
   <article>
     <SubHeading>{$_('audiodb.title')}</SubHeading>
     <div class="instructions">
+      <!-- eslint-disable-next-line svelte/no-at-html-tags -->
       {@html $_('audiodb.description')}
     </div>
     <label for="audiodb-key">{$_('audiodb.key')}</label>
@@ -281,6 +226,7 @@
   <article>
     <SubHeading>{$_('discogs.title')}</SubHeading>
     <div class="instructions">
+      <!-- eslint-disable-next-line svelte/no-at-html-tags -->
       {@html $_('discogs.description')}
     </div>
     <label for="discogs-token">{$_('discogs.token')}</label>
@@ -312,7 +258,7 @@
       </p>
       <p>
         <label for="totp">{$_('totp key')}</label>
-        <span class="controlContainer">
+        <span class="controlContainer align-top">
           <canvas bind:this={totpCanvas} />
         </span>
       </p>
@@ -322,6 +268,7 @@
     <SubHeading>{$_('about')}</SubHeading>
     <div class="instructions">
       <p>
+        <!-- eslint-disable-next-line svelte/no-at-html-tags -->
         {@html $_('build with love by')}
       </p>
       <p class="version-container">
@@ -340,15 +287,81 @@
           >{$_('photos by')}{#each photographers as { href, label }, i}
             {i > 0 ? ', ' : ' '}<a {href} class="underlined whitespace-nowrap"
               >{label}
-              <i class="material-icons">launch</i></a
+              <i class="icons i-mdi-launch" /></a
             >
           {/each}
           {$_('on unsplash')}</span
         >
       </p>
       <p>
+        <!-- eslint-disable-next-line svelte/no-at-html-tags -->
         <span>{@html $_('using material design icons')}</span>
       </p>
     </div>
   </article>
 </section>
+
+<style>
+  article {
+    --at-apply: text-left m-4 mt-0;
+
+    & .instructions {
+      --at-apply: text-sm my-4;
+    }
+
+    & p {
+      --at-apply: mb-4;
+    }
+  }
+
+  :global(label > .icons) {
+    --at-apply: inline-block h-8;
+    line-height: 1.3em;
+  }
+
+  li {
+    --at-apply: p-2 rounded-full mb-4 mr-4 inline-flex items-center;
+    font-size: 1.3rem;
+    background-color: var(--bg-primary-color);
+
+    & > span {
+      --at-apply: px-4;
+    }
+  }
+
+  .controlContainer {
+    /* prettier-ignore */
+    --at-apply: inline-block md:ml-4;
+  }
+
+  label {
+    /* prettier-ignore */
+    --at-apply: block md:text-right md:inline-block md:min-w-180px align-baseline;
+  }
+
+  :global(.settings-input) {
+    /* prettier-ignore */
+    --at-apply: inline-block md:w-400px;
+  }
+
+  .version-container {
+    --at-apply: flex flex-wrap justify-center gap-8 m-4;
+
+    & > div {
+      --at-apply: rounded shadow-lg w-32 whitespace-nowrap;
+      background: var(--bg-primary-color);
+
+      & > header {
+        --at-apply: px-4 pt-2;
+
+        & > div:first-child {
+          --at-apply: font-bold text-lg;
+        }
+      }
+
+      & > img {
+        --at-apply: w-full p-2;
+      }
+    }
+  }
+</style>

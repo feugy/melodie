@@ -1,18 +1,20 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
-  <meta charset="utf-8" />
-  <!-- https://electronjs.org/docs/tutorial/security#csp-meta-tag -->
-  <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline' 'unsafe-eval'" />
+  <meta charset="UTF-8" />
+  <title>Mélodie</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, minimum-scale=1.0" />
+  <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src 'self'; connect-src 'self' *; img-src 'self' * data: blob:; media-src 'self' *;script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'" />
+  %unocss-svelte-scoped.global%
 
   <link rel="icon" type="image/png" href="/icons/icon-256x256.png" />
 </head>
 
 <body>
-  <noscript>You need to enable JavaScript to run this app.</noscript>
-  <script type="module" src="/index.js"></script>
+  <script type="module" src="/src/main.js"></script>
 </body>
 
 </html>

@@ -1,10 +1,11 @@
 <script>
-  import { onMount, afterUpdate } from 'svelte'
-  import { location } from 'svelte-spa-router'
+  import { afterUpdate, onMount } from 'svelte'
   import { _ } from 'svelte-intl'
+  import { location } from 'svelte-spa-router'
+
+  import { current, handleNextButtonClick, stop } from '../../stores/tutorial'
   import Annotation from '../Annotation/Annotation.svelte'
   import Button from '../Button/Button.svelte'
-  import { handleNextButtonClick, current, stop } from '../../stores/tutorial'
 
   let anchor
   let annotation
@@ -36,22 +37,15 @@
   }
 </script>
 
-<style lang="postcss">
-  .skip {
-    @apply fixed;
-    bottom: 100px;
-    left: 100px;
-  }
-</style>
-
 {#if $current}
   <Annotation {anchor} {...annotation}>
+    <!-- eslint-disable-next-line svelte/no-at-html-tags -->
     {@html $_($current.messageKey)}
     {#if $current.nextButtonKey}
       <Button
         class="mt-4"
         text={$_($current.nextButtonKey)}
-        icon={$_($current.nextIcon || 'navigate_next')}
+        icon={$_($current.nextIcon || 'i-mdi-chevron-right')}
         on:click={handleNextButtonClick}
         primary="true"
       />
@@ -59,10 +53,18 @@
     <span class="skip">
       <Button
         text={$_('i will figure out')}
-        icon="close"
+        icon="i-mdi-close"
         noBorder
         on:click={stop}
       />
     </span>
   </Annotation>
 {/if}
+
+<style>
+  .skip {
+    --at-apply: fixed;
+    bottom: 100px;
+    left: 100px;
+  }
+</style>

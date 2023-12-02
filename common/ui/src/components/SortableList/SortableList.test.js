@@ -1,10 +1,10 @@
-'use strict'
-
-import { screen, render, fireEvent } from '@testing-library/svelte'
+import { faker } from '@faker-js/faker'
+import { fireEvent, render, screen } from '@testing-library/svelte'
 import html from 'svelte-htm'
-import faker from 'faker'
-import SortableList from './SortableList.test.svelte'
+import { beforeAll, beforeEach, describe, expect, it, vi } from 'vitest'
+
 import { addRefs } from '../../tests'
+import SortableList from './SortableList.test.svelte'
 
 describe('SortableList component', () => {
   it('allows duplicated items', async () => {
@@ -12,7 +12,7 @@ describe('SortableList component', () => {
       id: 1,
       tags: {
         title: faker.commerce.productName(),
-        artists: [faker.name.findName()]
+        artists: [faker.person.firstName()]
       },
       media: faker.system.fileName()
     })
@@ -20,7 +20,7 @@ describe('SortableList component', () => {
       id: 2,
       tags: {
         title: faker.commerce.productName(),
-        artists: [faker.name.findName()]
+        artists: [faker.person.firstName()]
       },
       media: faker.system.fileName()
     })
@@ -38,7 +38,7 @@ describe('SortableList component', () => {
         id: 1,
         tags: {
           title: faker.commerce.productName(),
-          artists: [faker.name.findName()]
+          artists: [faker.person.firstName()]
         },
         media: faker.system.fileName()
       },
@@ -46,7 +46,7 @@ describe('SortableList component', () => {
         id: 2,
         tags: {
           title: faker.commerce.productName(),
-          artists: [faker.name.findName()]
+          artists: [faker.person.firstName()]
         },
         media: faker.system.fileName()
       },
@@ -54,7 +54,7 @@ describe('SortableList component', () => {
         id: 3,
         tags: {
           title: faker.commerce.productName(),
-          artists: [faker.name.findName()]
+          artists: [faker.person.firstName()]
         },
         media: faker.system.fileName()
       },
@@ -62,7 +62,7 @@ describe('SortableList component', () => {
         id: 4,
         tags: {
           title: faker.commerce.productName(),
-          artists: [faker.name.findName()]
+          artists: [faker.person.firstName()]
         },
         media: faker.system.fileName()
       },
@@ -70,14 +70,14 @@ describe('SortableList component', () => {
         id: 5,
         tags: {
           title: faker.commerce.productName(),
-          artists: [faker.name.findName()]
+          artists: [faker.person.firstName()]
         },
         media: faker.system.fileName()
       }
     ].map(addRefs)
 
-    const onMove = jest.fn()
-    const dataTransfer = { setDragImage: jest.fn() }
+    const onMove = vi.fn()
+    const dataTransfer = { setDragImage: vi.fn() }
     let pageY
 
     beforeAll(() => {
@@ -95,7 +95,7 @@ describe('SortableList component', () => {
         html`<p data-testid="paragraph">fake drop</p>
           <${SortableList} items=${items} on:move=${onMove} />`
       )
-      jest.resetAllMocks()
+      vi.resetAllMocks()
     })
 
     it('drags track forward in the list', async () => {
@@ -112,7 +112,7 @@ describe('SortableList component', () => {
       expect(onMove).toHaveBeenCalledWith(
         expect.objectContaining({ detail: { from: 1, to: 3 } })
       )
-      expect(onMove).toHaveBeenCalledTimes(1)
+      expect(onMove).toHaveBeenCalledOnce()
     })
 
     it('drags track backward in the list', async () => {
@@ -129,7 +129,7 @@ describe('SortableList component', () => {
       expect(onMove).toHaveBeenCalledWith(
         expect.objectContaining({ detail: { from: 3, to: 2 } })
       )
-      expect(onMove).toHaveBeenCalledTimes(1)
+      expect(onMove).toHaveBeenCalledOnce()
     })
 
     it('drags track at the very end', async () => {
@@ -144,7 +144,7 @@ describe('SortableList component', () => {
       expect(onMove).toHaveBeenCalledWith(
         expect.objectContaining({ detail: { from: 0, to: 4 } })
       )
-      expect(onMove).toHaveBeenCalledTimes(1)
+      expect(onMove).toHaveBeenCalledOnce()
     })
 
     it('drags track at the very beginning', async () => {
@@ -162,7 +162,7 @@ describe('SortableList component', () => {
       expect(onMove).toHaveBeenCalledWith(
         expect.objectContaining({ detail: { from: 1, to: 0 } })
       )
-      expect(onMove).toHaveBeenCalledTimes(1)
+      expect(onMove).toHaveBeenCalledOnce()
     })
 
     it(`does not move track on cancelled drag'n drop`, async () => {

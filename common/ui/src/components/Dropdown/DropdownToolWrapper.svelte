@@ -1,6 +1,6 @@
 <script>
-  import Dropdown from './Dropdown.svelte'
   import { texts } from '../../tests/lorem'
+  import Dropdown from './Dropdown.svelte'
 
   export let align = 'text-center'
   export let parentPosition = 'inherited'

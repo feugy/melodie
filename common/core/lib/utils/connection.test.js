@@ -1,18 +1,31 @@
-'use strict'
+import { faker } from '@faker-js/faker'
+import { ensureDir, ensureFile } from 'fs-extra'
+import Got from 'got'
+import { tmpdir } from 'os'
+import { join, resolve } from 'path'
+import { CookieJar } from 'tough-cookie'
+import {
+  afterEach,
+  beforeAll,
+  beforeEach,
+  describe,
+  expect,
+  it,
+  vi
+} from 'vitest'
+import WebSocket from 'ws'
 
-const { join, resolve } = require('path')
-const { tmpdir } = require('os')
-const faker = require('faker')
-const { ensureDir, ensureFile } = require('fs-extra')
-const got = require('got').extend({
-  timeout: 100,
-  retry: 0,
-  followRedirect: false
+import { makeFolder, sleep } from '../tests'
+import { broadcast, initConnection, messageBus } from './connection'
+import { getLogger } from './logger'
+
+const cookieJar = new CookieJar()
+const got = Got.extend({
+  timeout: { lookup: 100 },
+  retry: { limit: 0 },
+  followRedirect: false,
+  cookieJar
 })
-const WebSocket = require('ws')
-const { initConnection, broadcast, messageBus } = require('./connection')
-const { getLogger } = require('./logger')
-const { sleep, makeFolder } = require('../tests')
 
 function connectWSClient(address, token) {
   return new Promise((resolve, reject) => {
@@ -23,7 +36,9 @@ function connectWSClient(address, token) {
     let ws = new WebSocket(
       `${address.replace('http', 'ws')}/ws?${params.toString()}`
     )
-    ws.once('message', data => resolve({ ws, initMessage: JSON.parse(data) }))
+    ws.once('message', data =>
+      resolve({ ws, initMessage: JSON.parse(data.toString()) })
+    )
     ws.once('error', reject)
     ws.once('open', () => ws.off('error', reject))
   })
@@ -73,19 +88,19 @@ describe('connection utilities', () => {
   let tracks
   let totp
   const externalIp = '79.191.130.17'
-  const totpSecret = faker.random.word()
-  const publicFolder = join(tmpdir(), faker.random.word())
-  const trackId = faker.datatype.uuid()
+  const totpSecret = faker.string.alpha()
+  const publicFolder = join(tmpdir(), faker.string.alpha())
+  const trackId = faker.string.uuid()
 
   const services = {
-    settings: { get: jest.fn() },
+    settings: { get: vi.fn() },
     media: {
-      triggerArtistsEnrichment: jest.fn(),
-      getAlbumMedia: jest.fn(),
-      getArtistMedia: jest.fn(),
-      getTrackMedia: jest.fn(),
-      getTrackData: jest.fn(),
-      isMediaAllowed: jest.fn()
+      triggerArtistsEnrichment: vi.fn(),
+      getAlbumMedia: vi.fn(),
+      getArtistMedia: vi.fn(),
+      getTrackMedia: vi.fn(),
+      getTrackData: vi.fn(),
+      isMediaAllowed: vi.fn()
     }
   }
 
@@ -98,20 +113,19 @@ describe('connection utilities', () => {
   })
 
   beforeEach(() => {
-    jest.resetAllMocks()
-    errorSpy = jest
+    vi.resetAllMocks()
+    errorSpy = vi
       .spyOn(getLogger('connection'), 'error')
       .mockImplementation(() => {})
-    uiErrorSpy = jest
-      .spyOn(getLogger('ui'), 'error')
-      .mockImplementation(() => {})
-    uiWarnSpy = jest.spyOn(getLogger('ui'), 'warn').mockImplementation(() => {})
+    uiErrorSpy = vi.spyOn(getLogger('ui'), 'error').mockImplementation(() => {})
+    uiWarnSpy = vi.spyOn(getLogger('ui'), 'warn').mockImplementation(() => {})
     services.settings.get.mockResolvedValue({
       folders: [folder],
       isBroadcasting: false,
       totpSecret
     })
     services.media.getTrackData.mockResolvedValueOnce(tracks[0].path)
+    cookieJar.removeAllCookiesSync()
   })
 
   afterEach(() => (close ? close() : null))
@@ -119,7 +133,7 @@ describe('connection utilities', () => {
   it('starts a WebSocket server, connects localy with no token and can stop', async () => {
     ;({ close, address } = await initConnection(services, publicFolder))
     expect(close).toBeInstanceOf(Function)
-    expect(address).toInclude('127.0.0.1')
+    expect(address).toEqual(expect.stringContaining('127.0.0.1'))
 
     const { ws, initMessage } = await connectWSClient(address)
 
@@ -190,21 +204,18 @@ describe('connection utilities', () => {
       })
       .text()
     expect(token).toBeDefined()
-    expect(
-      await got(`${address}/tracks/${trackId}/data`, {
-        searchParams: { token }
-      })
-    ).toBeDefined()
+    await cookieJar.setCookie(`token=${token}`, address)
+    expect(await got(`${address}/tracks/${trackId}/data`)).toBeDefined()
 
     close()
     expect(errorSpy).not.toHaveBeenCalled()
     expect(services.media.getTrackData).toHaveBeenCalledWith(trackId, undefined)
-    expect(services.media.getTrackData).toHaveBeenCalledTimes(1)
+    expect(services.media.getTrackData).toHaveBeenCalledOnce()
   })
 
   it('uses explicit port over settings', async () => {
-    const broadcastPort = faker.datatype.number({ min: 2000, max: 4000 })
-    const port = faker.datatype.number({ min: 5000, max: 8000 })
+    const broadcastPort = faker.number.int({ min: 2000, max: 4000 })
+    const port = faker.number.int({ min: 5000, max: 8000 })
     services.settings.get.mockResolvedValueOnce({
       folders: [folder],
       isBroadcasting: false,
@@ -212,22 +223,22 @@ describe('connection utilities', () => {
     })
     ;({ close, address } = await initConnection(services, publicFolder))
     expect(close).toBeInstanceOf(Function)
-    expect(address).toInclude(broadcastPort)
+    expect(address).toEqual(expect.stringContaining(broadcastPort.toString()))
     await close()
     ;({ close, address } = await initConnection(services, publicFolder, port))
     expect(close).toBeInstanceOf(Function)
-    expect(address).toInclude(port)
+    expect(address).toEqual(expect.stringContaining(port.toString()))
 
     expect(errorSpy).not.toHaveBeenCalled()
   })
 
   it('can start and stop broadcasting', async () => {
-    const port = faker.datatype.number({ min: 9000, max: 10000 })
+    const port = faker.number.int({ min: 9000, max: 10000 })
 
     ;({ close, address } = await initConnection(services, publicFolder, port))
     expect(close).toBeInstanceOf(Function)
-    expect(address).toInclude('127.0.0.1')
-    expect(address).toInclude(`:${port}`)
+    expect(address).toEqual(expect.stringContaining('127.0.0.1'))
+    expect(address).toEqual(expect.stringContaining(`:${port}`))
     await expect(got(`${address}/index.html`)).rejects.toThrow(/Not Found/)
 
     broadcast('settings-saved', {
@@ -251,7 +262,7 @@ describe('connection utilities', () => {
       isBroadcasting: true
     })
     ;({ close, address } = await initConnection(services, publicFolder))
-    expect(address).toInclude('0.0.0.0')
+    expect(address).toEqual(expect.stringContaining('0.0.0.0'))
     const response = await got.get(`${address}/index.html`)
     expect(response).toBeDefined()
     expect(response.headers).toEqual(
@@ -264,7 +275,7 @@ describe('connection utilities', () => {
 
   it('throws when initializing connection twice', async () => {
     close = (await initConnection(services, publicFolder)).close
-    expect(initConnection(services, publicFolder)).rejects.toThrow(
+    await expect(initConnection(services, publicFolder)).rejects.toThrow(
       `connection already started, stop it first`
     )
   })
@@ -278,8 +289,8 @@ describe('connection utilities', () => {
       initMessage: { token }
     } = await connectWSClient(address)
     const invoked = 'media.triggerArtistsEnrichment'
-    const args = faker.random.arrayElements()
-    const id = faker.datatype.uuid()
+    const args = faker.helpers.arrayElements(['cat', 'dog', 'cow'])
+    const id = faker.string.uuid()
 
     expect(await callAndListen(ws, { token, invoked, args, id })).toEqual({
       id,
@@ -288,7 +299,7 @@ describe('connection utilities', () => {
     expect(services.media.triggerArtistsEnrichment).toHaveBeenCalledWith(
       ...args
     )
-    expect(services.media.triggerArtistsEnrichment).toHaveBeenCalledTimes(1)
+    expect(services.media.triggerArtistsEnrichment).toHaveBeenCalledOnce()
     expect(errorSpy).not.toHaveBeenCalled()
   })
 
@@ -301,15 +312,19 @@ describe('connection utilities', () => {
     const name = 'whatever'
     const fn = 'triggerArtistsEnrichment'
     const invoked = `${name}.${fn}`
-    const args = faker.random.arrayElements()
-    const id = faker.datatype.uuid()
+    const args = faker.helpers.arrayElements(['cat', 'dog', 'cow'])
+    const id = faker.string.uuid()
 
     expect(await callAndListen(ws, { token, invoked, args, id })).toEqual({
       id,
       error: `core doesn't support ${name}.${fn}()`
     })
     expect(errorSpy).toHaveBeenCalledWith(
-      { data: { token, invoked, args, id }, err: expect.any(Error) },
+      {
+        data: { token, invoked, args, id },
+        err: expect.any(Error),
+        id: 'req-1'
+      },
       `core doesn't support ${name}.${fn}()`
     )
   })
@@ -323,15 +338,19 @@ describe('connection utilities', () => {
     const name = 'media'
     const fn = 'whatever'
     const invoked = `${name}.${fn}`
-    const args = faker.random.arrayElements()
-    const id = faker.datatype.uuid()
+    const args = faker.helpers.arrayElements(['cat', 'dog', 'cow'])
+    const id = faker.string.uuid()
 
     expect(await callAndListen(ws, { token, invoked, args, id })).toEqual({
       id,
       error: `core doesn't support ${name}.${fn}()`
     })
     expect(errorSpy).toHaveBeenCalledWith(
-      { data: { token, invoked, args, id }, err: expect.any(Error) },
+      {
+        data: { token, invoked, args, id },
+        err: expect.any(Error),
+        id: 'req-1'
+      },
       `core doesn't support ${name}.${fn}()`
     )
   })
@@ -345,15 +364,15 @@ describe('connection utilities', () => {
       initMessage: { token }
     } = await connectWSClient(address)
     const invoked = `media.triggerArtistsEnrichment`
-    const args = faker.random.arrayElements()
-    const id = faker.datatype.uuid()
+    const args = faker.helpers.arrayElements(['cat', 'dog', 'cow'])
+    const id = faker.string.uuid()
 
     expect(await callAndListen(ws, { token, invoked, args, id })).toEqual({
       id,
       error: err.message
     })
     expect(errorSpy).toHaveBeenCalledWith(
-      { data: { token, invoked, args, id }, err },
+      { data: { token, invoked, args, id }, err, id: 'req-1' },
       err.message
     )
   })
@@ -362,7 +381,7 @@ describe('connection utilities', () => {
     ;({ close, address } = await initConnection(services, publicFolder))
     const { ws } = await connectWSClient(address)
 
-    const data = { foo: faker.random.word() }
+    const data = { foo: faker.string.alpha() }
     call(ws, data)
     await sleep(10)
 
@@ -381,15 +400,15 @@ describe('connection utilities', () => {
     await sleep(10)
 
     expect(errorSpy).toHaveBeenCalledWith(
-      { rawData: Buffer.from(rawData) },
-      `can not process message: Unexpected token d in JSON at position 0`
+      { rawData: Buffer.from(rawData), id: 'req-1' },
+      `can not process message: Unexpected token 'd', "does not p"... is not valid JSON`
     )
   })
 
   it('broadcast external and internal messages', async () => {
-    const event = faker.random.word()
+    const event = faker.string.alpha()
     ;({ close, address } = await initConnection(services, publicFolder))
-    const listener = jest.fn()
+    const listener = vi.fn()
     const { ws: ws1 } = await connectWSClient(address)
     const { ws: ws2 } = await connectWSClient(address)
     const p1 = listen(ws1)
@@ -403,13 +422,13 @@ describe('connection utilities', () => {
       { event, args }
     ])
     expect(listener).toHaveBeenCalledWith(args)
-    expect(listener).toHaveBeenCalledTimes(1)
+    expect(listener).toHaveBeenCalledOnce()
 
     expect(errorSpy).not.toHaveBeenCalled()
   })
 
   it('throws error when broadcasting without connection', async () => {
-    expect(() => broadcast(faker.random.word(), {})).toThrow(
+    expect(() => broadcast(faker.string.alpha(), {})).toThrow(
       `unstarted connection, call subscribeRemote() first`
     )
     expect(errorSpy).not.toHaveBeenCalled()
@@ -457,8 +476,8 @@ describe('connection utilities', () => {
       { title: 'given invalid token', token: '?token=123456' }
     ])('$title', ({ token }) => {
       it('denies access to album cover', async () => {
-        const id = faker.datatype.number({ min: 1000 })
-        const count = faker.datatype.number({ min: 1, max: 10 })
+        const id = faker.number.int({ min: 1000 })
+        const count = faker.number.int({ min: 1, max: 10 })
         await expect(
           got.get(`${address}/albums/${id}/media/${count}${token}`)
         ).rejects.toThrow(/Forbidden/)
@@ -466,7 +485,7 @@ describe('connection utilities', () => {
       })
 
       it('denies access to track data', async () => {
-        const id = faker.datatype.number({ min: 1000 })
+        const id = faker.number.int({ min: 1000 })
         await expect(
           got.get(`${address}/tracks/${id}/data${token}`)
         ).rejects.toThrow(/Forbidden/)
@@ -474,8 +493,8 @@ describe('connection utilities', () => {
       })
 
       it('denies access to track cover', async () => {
-        const id = faker.datatype.number({ min: 1000 })
-        const count = faker.datatype.number({ min: 1, max: 10 })
+        const id = faker.number.int({ min: 1000 })
+        const count = faker.number.int({ min: 1, max: 10 })
         await expect(
           got.get(`${address}/tracks/${id}/media/${count}${token}`)
         ).rejects.toThrow(/Forbidden/)
@@ -483,8 +502,8 @@ describe('connection utilities', () => {
       })
 
       it('denies access to artist artworks', async () => {
-        const id = faker.datatype.number({ min: 1000 })
-        const count = faker.datatype.number({ min: 1, max: 10 })
+        const id = faker.number.int({ min: 1000 })
+        const count = faker.number.int({ min: 1, max: 10 })
         await expect(
           got.get(`${address}/artists/${id}/media/${count}${token}`)
         ).rejects.toThrow(/Forbidden/)
@@ -505,7 +524,7 @@ describe('connection utilities', () => {
         services.media.getTrackMedia.mockResolvedValueOnce(cover)
         await expect(
           got.post(`${address}/logs${token}`, {
-            logs: [{ level: 'error', args: ['boom!'] }]
+            json: { logs: [{ level: 'error', args: ['boom!'] }] }
           })
         ).rejects.toThrow(/Forbidden/)
         expect(uiErrorSpy).not.toHaveBeenCalled()
@@ -528,6 +547,7 @@ describe('connection utilities', () => {
       })
 
       afterEach(async () => ws.close())
+
       describe.each([
         {
           title: 'given no token',
@@ -545,21 +565,8 @@ data must have required property 'token'`
             await callAndListen(ws, {
               token,
               invoked: 'media.triggerArtistsEnrichment',
-              args: faker.random.arrayElements(),
-              id: faker.datatype.uuid()
-            })
-          ).toEqual({ error })
-          expect(services.media.triggerArtistsEnrichment).not.toHaveBeenCalled()
-          expect(errorSpy).toHaveBeenCalled()
-        })
-
-        it('can not invoke a service function', async () => {
-          expect(
-            await callAndListen(ws, {
-              token,
-              invoked: 'media.triggerArtistsEnrichment',
-              args: faker.random.arrayElements(),
-              id: faker.datatype.uuid()
+              args: faker.helpers.arrayElements(['cat', 'dog', 'cow']),
+              id: faker.string.uuid()
             })
           ).toEqual({ error })
           expect(services.media.triggerArtistsEnrichment).not.toHaveBeenCalled()
@@ -567,12 +574,13 @@ data must have required property 'token'`
         })
       })
 
-      it('write UI logs', async () => {
+      it('writes UI logs', async () => {
         const logs = [
           { level: 'error', args: ['for testing!'] },
           { level: 'warn', args: ['Howdy!', 4] }
         ]
-        await got.post(`${address}/logs?token=${token}`, { json: { logs } })
+        await cookieJar.setCookie(`token=${token}`, address)
+        await got.post(`${address}/logs`, { json: { logs } })
         await sleep(10)
         expect(uiErrorSpy).toHaveBeenCalledWith(
           { time: logs[0].time },
@@ -585,13 +593,12 @@ data must have required property 'token'`
       })
 
       it('serves album covers', async () => {
-        const id = faker.datatype.number({ min: 1000 })
-        const count = faker.datatype.number({ min: 1, max: 10 })
+        const id = faker.number.int({ min: 1000 })
+        const count = faker.number.int({ min: 1, max: 10 })
         services.media.getAlbumMedia.mockResolvedValueOnce(cover)
-        const response = await got.get(
-          `${address}/albums/${id}/media/${count}?token=${token}`
-        )
-        expect(response.statusCode).toEqual(200)
+        await cookieJar.setCookie(`token=${token}`, address)
+        const response = await got.get(`${address}/albums/${id}/media/${count}`)
+        expect(response.statusCode).toBe(200)
         expect(response.headers).toEqual(
           expect.objectContaining({
             etag: expect.any(String),
@@ -603,30 +610,30 @@ data must have required property 'token'`
           `${id}`,
           count
         )
-        expect(services.media.getAlbumMedia).toHaveBeenCalledTimes(1)
+        expect(services.media.getAlbumMedia).toHaveBeenCalledOnce()
       })
 
       it('returns 404 for unknown album cover', async () => {
-        const id = faker.datatype.number({ min: 1000 })
-        const count = faker.datatype.number({ min: 1, max: 10 })
+        const id = faker.number.int({ min: 1000 })
+        const count = faker.number.int({ min: 1, max: 10 })
         services.media.getAlbumMedia.mockResolvedValueOnce(null)
+        await cookieJar.setCookie(`token=${token}`, address)
         await expect(
-          got.get(`${address}/albums/${id}/media/${count}?token=${token}`)
+          got.get(`${address}/albums/${id}/media/${count}`)
         ).rejects.toThrow(/Not Found/)
         expect(services.media.getAlbumMedia).toHaveBeenCalledWith(
           `${id}`,
           count
         )
-        expect(services.media.getAlbumMedia).toHaveBeenCalledTimes(1)
+        expect(services.media.getAlbumMedia).toHaveBeenCalledOnce()
       })
 
       it('serves track data', async () => {
-        const id = faker.datatype.number({ min: 1000 })
+        const id = faker.number.int({ min: 1000 })
         services.media.getTrackData.mockReset().mockResolvedValueOnce(mp3)
-        const response = await got.get(
-          `${address}/tracks/${id}/data?token=${token}`
-        )
-        expect(response.statusCode).toEqual(200)
+        await cookieJar.setCookie(`token=${token}`, address)
+        const response = await got.get(`${address}/tracks/${id}/data`)
+        expect(response.statusCode).toBe(200)
         expect(response.headers).toEqual(
           expect.objectContaining({
             etag: expect.any(String),
@@ -638,30 +645,30 @@ data must have required property 'token'`
           `${id}`,
           undefined
         )
-        expect(services.media.getTrackData).toHaveBeenCalledTimes(1)
+        expect(services.media.getTrackData).toHaveBeenCalledOnce()
       })
 
       it('returns 404 for unknown track data', async () => {
-        const id = faker.datatype.number({ min: 1000 })
+        const id = faker.number.int({ min: 1000 })
         services.media.getTrackData.mockReset().mockResolvedValueOnce(null)
-        await expect(
-          got.get(`${address}/tracks/${id}/data?token=${token}`)
-        ).rejects.toThrow(/Not Found/)
+        await cookieJar.setCookie(`token=${token}`, address)
+        await expect(got.get(`${address}/tracks/${id}/data`)).rejects.toThrow(
+          /Not Found/
+        )
         expect(services.media.getTrackData).toHaveBeenCalledWith(
           `${id}`,
           undefined
         )
-        expect(services.media.getTrackData).toHaveBeenCalledTimes(1)
+        expect(services.media.getTrackData).toHaveBeenCalledOnce()
       })
 
       it('serves track covers', async () => {
-        const id = faker.datatype.number({ min: 1000 })
-        const count = faker.datatype.number({ min: 1, max: 10 })
+        const id = faker.number.int({ min: 1000 })
+        const count = faker.number.int({ min: 1, max: 10 })
         services.media.getTrackMedia.mockResolvedValueOnce(cover)
-        const response = await got.get(
-          `${address}/tracks/${id}/media/${count}?token=${token}`
-        )
-        expect(response.statusCode).toEqual(200)
+        await cookieJar.setCookie(`token=${token}`, address)
+        const response = await got.get(`${address}/tracks/${id}/media/${count}`)
+        expect(response.statusCode).toBe(200)
         expect(response.headers).toEqual(
           expect.objectContaining({
             etag: expect.any(String),
@@ -673,31 +680,33 @@ data must have required property 'token'`
           `${id}`,
           count
         )
-        expect(services.media.getTrackMedia).toHaveBeenCalledTimes(1)
+        expect(services.media.getTrackMedia).toHaveBeenCalledOnce()
       })
 
       it('returns 404 for unknown track cover', async () => {
-        const id = faker.datatype.number({ min: 1000 })
-        const count = faker.datatype.number({ min: 1, max: 10 })
+        const id = faker.number.int({ min: 1000 })
+        const count = faker.number.int({ min: 1, max: 10 })
         services.media.getTrackMedia.mockResolvedValueOnce(null)
+        await cookieJar.setCookie(`token=${token}`, address)
         await expect(
-          got.get(`${address}/tracks/${id}/media/${count}?token=${token}`)
+          got.get(`${address}/tracks/${id}/media/${count}`)
         ).rejects.toThrow(/Not Found/)
         expect(services.media.getTrackMedia).toHaveBeenCalledWith(
           `${id}`,
           count
         )
-        expect(services.media.getTrackMedia).toHaveBeenCalledTimes(1)
+        expect(services.media.getTrackMedia).toHaveBeenCalledOnce()
       })
 
       it('serves artist artworks', async () => {
-        const id = faker.datatype.number({ min: 1000 })
-        const count = faker.datatype.number({ min: 1, max: 10 })
+        const id = faker.number.int({ min: 1000 })
+        const count = faker.number.int({ min: 1, max: 10 })
         services.media.getArtistMedia.mockResolvedValueOnce(avatar)
+        await cookieJar.setCookie(`token=${token}`, address)
         const response = await got.get(
-          `${address}/artists/${id}/media/${count}?token=${token}`
+          `${address}/artists/${id}/media/${count}`
         )
-        expect(response.statusCode).toEqual(200)
+        expect(response.statusCode).toBe(200)
         expect(response.headers).toEqual(
           expect.objectContaining({
             etag: expect.any(String),
@@ -709,29 +718,31 @@ data must have required property 'token'`
           `${id}`,
           count
         )
-        expect(services.media.getArtistMedia).toHaveBeenCalledTimes(1)
+        expect(services.media.getArtistMedia).toHaveBeenCalledOnce()
       })
 
       it('returns 404 for unknown artist artwork', async () => {
-        const id = faker.datatype.number({ min: 1000 })
-        const count = faker.datatype.number({ min: 1, max: 10 })
+        const id = faker.number.int({ min: 1000 })
+        const count = faker.number.int({ min: 1, max: 10 })
         services.media.getArtistMedia.mockResolvedValueOnce(null)
+        await cookieJar.setCookie(`token=${token}`, address)
         await expect(
-          got.get(`${address}/artists/${id}/media/${count}?token=${token}`)
+          got.get(`${address}/artists/${id}/media/${count}`)
         ).rejects.toThrow(/Not Found/)
         expect(services.media.getArtistMedia).toHaveBeenCalledWith(
           `${id}`,
           count
         )
-        expect(services.media.getArtistMedia).toHaveBeenCalledTimes(1)
+        expect(services.media.getArtistMedia).toHaveBeenCalledOnce()
       })
 
       it('serves possible media', async () => {
         services.media.isMediaAllowed.mockResolvedValueOnce(true)
+        await cookieJar.setCookie(`token=${token}`, address)
         const response = await got.get(`${address}/media`, {
           searchParams: { token, path: avatar }
         })
-        expect(response.statusCode).toEqual(200)
+        expect(response.statusCode).toBe(200)
         expect(response.headers).toEqual(
           expect.objectContaining({
             etag: expect.any(String),
@@ -743,6 +754,7 @@ data must have required property 'token'`
 
       it('returns 404 for unknown media', async () => {
         services.media.isMediaAllowed.mockResolvedValueOnce(true)
+        await cookieJar.setCookie(`token=${token}`, address)
         await expect(
           got.get(`${address}/media`, {
             searchParams: { token, path: avatar.replace('.jpg', '.png') }
@@ -750,8 +762,9 @@ data must have required property 'token'`
         ).rejects.toThrow(/Not Found/)
       })
 
-      it('returns 404 for unsupported media', async () => {
+      it('returns 403 for unsupported media', async () => {
         services.media.isMediaAllowed.mockResolvedValueOnce(false)
+        await cookieJar.setCookie(`token=${token}`, address)
         await expect(
           got.get(`${address}/media`, {
             searchParams: { token, path: mp3 }
@@ -763,11 +776,11 @@ data must have required property 'token'`
     describe('given mocked time', () => {
       let ws
 
-      beforeEach(jest.useFakeTimers)
+      beforeEach(() => vi.useFakeTimers())
 
       afterEach(() => {
         ws?.close()
-        jest.useRealTimers()
+        vi.useRealTimers()
       })
 
       it('regularly sends new token', async () => {
@@ -781,8 +794,8 @@ data must have required property 'token'`
         ;({ ws } = await connectWSClient(address, token))
         let promise = listen(ws)
 
-        jest.setSystemTime(now + 30 * 60 * 1000)
-        jest.runOnlyPendingTimers()
+        vi.setSystemTime(now + 30 * 60 * 1000)
+        vi.runOnlyPendingTimers()
 
         const message1 = await promise
         expect(message1).toEqual({
@@ -791,8 +804,8 @@ data must have required property 'token'`
 
         promise = listen(ws)
 
-        jest.setSystemTime(now + 30 * 60 * 1000)
-        jest.runOnlyPendingTimers()
+        vi.setSystemTime(now + 30 * 60 * 1000)
+        vi.runOnlyPendingTimers()
 
         const message2 = await promise
 

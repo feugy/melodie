@@ -1,11 +1,13 @@
-'use strict'
-
-import { screen, render } from '@testing-library/svelte'
+import { render, screen, waitFor } from '@testing-library/svelte'
 import userEvent from '@testing-library/user-event'
 import html from 'svelte-htm'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
+
+import { translate } from '../../tests'
 import Track from './Track.svelte'
 import { trackData } from './Track.testdata'
-import { sleep } from '../../tests'
+
+vi.mock('../../stores/playlists')
 
 describe('Track component', () => {
   beforeEach(() => {
@@ -16,24 +18,22 @@ describe('Track component', () => {
     const [id, artist] = trackData.artistRefs[0]
     render(html`<${Track} src=${trackData} />`)
 
-    userEvent.click(screen.getByText(artist))
-    await sleep()
+    await userEvent.click(screen.getByText(artist))
 
-    expect(location.hash).toEqual(`#/artist/${id}`)
+    await waitFor(() => expect(location.hash).toBe(`#/artist/${id}`))
   })
 
   it('has link to album', async () => {
     const [id] = trackData.albumRef
     render(html`<${Track} src=${trackData} />`)
 
-    userEvent.click(screen.getByRole('img'))
-    await sleep()
+    await userEvent.click(screen.getByRole('img').closest('a'))
 
-    expect(location.hash).toEqual(`#/album/${id}`)
+    await waitFor(() => expect(location.hash).toBe(`#/album/${id}`))
   })
 
   it('dispatches track dropdown showDetails event', async () => {
-    const handleShowDetails = jest.fn()
+    const handleShowDetails = vi.fn()
     render(
       html`<${Track}
         src=${trackData}
@@ -42,12 +42,12 @@ describe('Track component', () => {
       />`
     )
 
-    await userEvent.click(screen.getByRole('button'))
-    userEvent.click(screen.getByText('local_offer'))
+    await userEvent.click(screen.getByTestId('track-dropdown'))
+    await userEvent.click(screen.getByText(translate('show details')))
 
     expect(handleShowDetails).toHaveBeenCalledWith(
       expect.objectContaining({ detail: trackData })
     )
-    expect(handleShowDetails).toHaveBeenCalledTimes(1)
+    expect(handleShowDetails).toHaveBeenCalledOnce()
   })
 })

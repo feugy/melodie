@@ -1,17 +1,17 @@
-'use strict'
+import { faker } from '@faker-js/faker'
+import fs from 'fs-extra'
+import os from 'os'
+import { join } from 'path'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
-const fs = require('fs-extra')
-const os = require('os')
-const { join } = require('path')
-const faker = require('faker')
-const { findInFolder, findForAlbum } = require('./cover-finder')
-const { tracksModel } = require('../../models')
-const { hash } = require('../../utils')
+import { tracksModel } from '../../models'
+import { hash } from '../../utils'
+import { findForAlbum, findInFolder } from './cover-finder'
 
-jest.mock('../../models/tracks')
+vi.mock('../../models/tracks')
 
 describe('Cover finder', () => {
-  beforeEach(jest.resetAllMocks)
+  beforeEach(() => vi.resetAllMocks())
 
   describe('findInFolder', () => {
     let path
@@ -21,7 +21,7 @@ describe('Cover finder', () => {
     })
 
     it('returns null for cover-less path', async () => {
-      expect(await findInFolder(join(path, 'file.mp3'))).toBe(null)
+      expect(await findInFolder(join(path, 'file.mp3'))).toBeNull()
     })
 
     it('finds gif', async () => {
@@ -69,7 +69,7 @@ describe('Cover finder', () => {
   })
 
   describe('findAlbumCover()', () => {
-    const folder = join(os.tmpdir(), 'melodie', faker.datatype.uuid())
+    const folder = join(os.tmpdir(), 'melodie', faker.string.uuid())
     const files = [
       join(folder, 'track1.mp3'),
       join(folder, 'track2.mp3'),

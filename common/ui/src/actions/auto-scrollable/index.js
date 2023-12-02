@@ -1,5 +1,3 @@
-'use strict'
-
 export function autoScrollable(node, params = {}) {
   let borderDetection
   let maxScroll
@@ -22,7 +20,7 @@ export function autoScrollable(node, params = {}) {
 
   function scrollView() {
     node.scrollBy({ top: scrollBy })
-    timeout = requestAnimationFrame(scrollView)
+    timeout = window?.requestAnimationFrame(scrollView)
   }
 
   function handleMouseMove({ clientY }) {
@@ -30,7 +28,7 @@ export function autoScrollable(node, params = {}) {
     if (scrollHeight <= clientHeight || clientY === 0) {
       return
     }
-    cancelAnimationFrame(timeout)
+    window?.cancelAnimationFrame(timeout)
     scrollBy = 0
     if (clientY < borderDetection && scrollTop > 0) {
       scrollBy = (-(borderDetection - clientY) * maxScroll) / borderDetection
@@ -49,7 +47,7 @@ export function autoScrollable(node, params = {}) {
   }
 
   function handleMouseLeave() {
-    cancelAnimationFrame(timeout)
+    window?.cancelAnimationFrame(timeout)
   }
 
   return { update, destroy }

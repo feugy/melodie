@@ -6,27 +6,28 @@
   import { onMount, tick } from 'svelte'
   import { _, locale } from 'svelte-intl'
   import { replace } from 'svelte-spa-router'
+
+  import { autoScrollable } from './actions'
   import {
     DisconnectionDialogue,
-    Progress,
-    Player,
     Nav,
+    Player,
+    Progress,
     Sheet,
     Snackbar,
     SystemNotifier,
     TracksQueue,
     Tutorial
   } from './components'
+  import Router from './components/Router'
   import { isListing } from './stores/albums'
+  import { isLoading } from './stores/loading'
+  import { connected, isDesktop, settings } from './stores/settings'
+  import { setTotp } from './stores/totp'
   import * as queue from './stores/track-queue'
   import * as tutorial from './stores/tutorial'
-  import { isLoading } from './stores/loading'
   import { screenSize, SM } from './stores/window'
-  import { connected, settings, isDesktop } from './stores/settings'
-  import { setTotp } from './stores/totp'
-  import { invoke, stayAwake, releaseWakeLock } from './utils'
-  import { autoScrollable } from './actions'
-  import Router from './components/Router'
+  import { invoke, releaseWakeLock, stayAwake } from './utils'
 
   let isPlaylistOpen = null
   let ready = false
@@ -78,35 +79,6 @@
   }
 </script>
 
-<style lang="postcss">
-  div {
-    @apply flex flex-col h-full max-h-full;
-  }
-
-  main {
-    @apply flex-grow overflow-y-auto z-0;
-    background: var(--bg-color);
-  }
-
-  section {
-    @apply text-center w-full overflow-auto;
-  }
-
-  aside {
-    @apply overflow-y-auto h-full relative z-0;
-    background: var(--bg-primary-color);
-  }
-
-  footer {
-    background: var(--nav-bg-color);
-    border-top: solid 2px var(--outline-color);
-  }
-
-  .progress {
-    @apply absolute inset-x-0 top-0 z-10;
-  }
-</style>
-
 <svelte:head>
   <title>{$_('Mélodie')}</title>
 </svelte:head>
@@ -146,3 +118,32 @@
 </div>
 <Tutorial />
 <Snackbar />
+
+<style>
+  div {
+    --at-apply: flex flex-col h-full max-h-full;
+  }
+
+  main {
+    --at-apply: flex-grow overflow-y-auto z-0;
+    background: var(--bg-color);
+  }
+
+  section {
+    --at-apply: text-center w-full overflow-auto;
+  }
+
+  aside {
+    --at-apply: overflow-y-auto h-full relative z-0;
+    background: var(--bg-primary-color);
+  }
+
+  footer {
+    background: var(--nav-bg-color);
+    border-top: solid 2px var(--outline-color);
+  }
+
+  .progress {
+    --at-apply: absolute inset-x-0 top-0 z-10;
+  }
+</style>

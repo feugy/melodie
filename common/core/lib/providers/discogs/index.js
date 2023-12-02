@@ -1,8 +1,7 @@
-'use strict'
+import got from 'got'
+import { basename } from 'path'
 
-const got = require('got')
-const { basename } = require('path')
-const AbstractProvider = require('../abstract-provider')
+import AbstractProvider from '../abstract-provider.js'
 
 /**
  * @class Discogs
@@ -135,4 +134,5 @@ class Discogs extends AbstractProvider {
   }
 }
 
-module.exports = new Discogs()
+const discogs = new Discogs()
+export default discogs

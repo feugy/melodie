@@ -1,20 +1,19 @@
-'use strict'
+import compressPlugin from '@fastify/compress'
+import cookiePlugin from '@fastify/cookie'
+import corsPlugin from '@fastify/cors'
+import jwtPlugin from '@fastify/jwt'
+import staticPlugin from '@fastify/static'
+import websocketPlugin from '@fastify/websocket'
+import Ajv from 'ajv'
+import { randomUUID } from 'crypto'
+import { EventEmitter } from 'events'
+import fastify from 'fastify'
+import S from 'fluent-json-schema'
+import * as OTPAuth from 'otpauth'
+import { basename, dirname } from 'path'
+import WebSocket from 'ws'
 
-const { randomUUID } = require('crypto')
-const { dirname, basename } = require('path')
-const { EventEmitter } = require('events')
-const Ajv = require('ajv').default
-const fastify = require('fastify')
-const compressPlugin = require('@fastify/compress')
-const cookiePlugin = require('@fastify/cookie')
-const corsPlugin = require('@fastify/cors')
-const jwtPlugin = require('@fastify/jwt')
-const staticPlugin = require('@fastify/static')
-const websocketPlugin = require('@fastify/websocket')
-const S = require('fluent-json-schema')
-const OTPAuth = require('otpauth')
-const WebSocket = require('ws')
-const { getLogger } = require('./logger')
+import { getLogger } from './logger.js'
 
 const logger = getLogger('connection')
 const uiLogger = getLogger('ui')
@@ -35,15 +34,15 @@ const validate = ajv.compile({
 const maxAge = 1000 * 60 * 60 * 24 * 2
 const JWTAlgorithm = 'HS512'
 const JWTExpiryInSeconds = 30 * 60
-const keepAliveInSeconds = 3000
+const keepAliveInSeconds = 3
 // make a new secret on every Mélodie restart
 const JWTSecret = randomUUID()
 
 /**
  * Message bus to receive events internally.
  */
-exports.messageBus = new EventEmitter()
-exports.messageBus.setMaxListeners(10000)
+export const messageBus = new EventEmitter()
+messageBus.setMaxListeners(10000)
 
 /**
  * @typedef {object} ConnectionResult
@@ -75,7 +74,7 @@ exports.messageBus.setMaxListeners(10000)
  * @returns {ConnectionResult} connection created
  * @throws {error} when connection has already been started
  */
-exports.initConnection = async function (
+export const initConnection = async function (
   services,
   publicFolder,
   port = 0,
@@ -86,7 +85,7 @@ exports.initConnection = async function (
   }
 
   let settings = await services.settings.get()
-  exports.messageBus.on('settings-saved', handleSavedSettings)
+  messageBus.on('settings-saved', handleSavedSettings)
 
   const period = 30
 
@@ -224,14 +223,14 @@ exports.initConnection = async function (
     function handleConnection(connection, { id, ip, url, query: { token } }) {
       let sendTokenTimeout
       let keepAliveTimeout
-      logger.debug({ id }, `opens WS connection for ${id}`)
+      logger.info({ id, ip }, `opens WS connection for ${id}`)
 
       // Establishes connection first, then validates token.
       // This allows returning a reason for rejecting connection, allowing the
       // client to distinguish flaky network from outdated JWT.
       // Validating as part of `upgrade` or with `preValidation` hook does not allow this.
       if (!isLocalhost(ip)) {
-        logger.debug({ token, ip }, `verifying new connection`)
+        logger.debug({ id, ip, token }, `verifying new connection`)
         try {
           if (!token) {
             const error = new Error('Missing token')
@@ -240,6 +239,10 @@ exports.initConnection = async function (
           }
           verifyToken(token, url)
         } catch (error) {
+          logger.debug(
+            { id, ip, token, error },
+            `failed to establish connection`
+          )
           sendToWS({ error: error.message, code: error.statusCode })
           connection.socket.close()
           return
@@ -253,7 +256,7 @@ exports.initConnection = async function (
       connection.socket.on('close', () => {
         clearTimeout(sendTokenTimeout)
         clearTimeout(keepAliveTimeout)
-        logger.debug({ id }, `closes WS connection for ${id}`)
+        logger.info({ id, ip }, `closes WS connection for ${id}`)
       })
 
       connection.socket.on('message', async function handleMessage(rawData) {
@@ -269,16 +272,16 @@ exports.initConnection = async function (
               const result = await services[name][op](...(data.args || []))
               sendToWS({ id: data.id, result })
             }
-          } catch (err) {
-            logger.error({ id, data, err }, err.message)
-            sendToWS({ id: data.id, error: err.message })
+          } catch (error) {
+            logger.error({ id, ip, error, data }, error.message)
+            sendToWS({ id: data.id, error: error.message })
           }
-        } catch (err) {
+        } catch (error) {
           logger.error(
-            { id, rawData },
-            `can not process message: ${err.message}`
+            { id, ip, error, rawData },
+            `can not process message: ${error.message}`
           )
-          sendToWS({ error: err.message })
+          sendToWS({ error: error.message })
         }
       })
 
@@ -286,7 +289,7 @@ exports.initConnection = async function (
         connection.socket.send(JSON.stringify(data), error => {
           if (error) {
             logger.error(
-              { id, error },
+              { id, ip, error },
               `can not send message to client: ${error.message}`
             )
           }
@@ -294,7 +297,7 @@ exports.initConnection = async function (
       }
 
       function sendNewToken(extraData = {}) {
-        logger.info({ id }, 'send new token to connected client')
+        logger.info({ id, ip }, 'send new token to connected client')
         sendToWS({ token: server.jwt.sign({}), ...extraData })
         sendTokenTimeout = setTimeout(
           sendNewToken,
@@ -304,7 +307,7 @@ exports.initConnection = async function (
 
       function ping() {
         connection.socket.ping()
-        keepAliveTimeout = setTimeout(ping, keepAliveInSeconds)
+        keepAliveTimeout = setTimeout(ping, keepAliveInSeconds * 1000)
       }
     }
 
@@ -315,7 +318,13 @@ exports.initConnection = async function (
   }
 
   async function close() {
-    exports.messageBus.removeListener('settings-saved', handleSavedSettings)
+    messageBus.removeListener('settings-saved', handleSavedSettings)
+    // force close all connected sockets to avoid closing them after pino worker has exited
+    for (const client of server.websocketServer.clients) {
+      client.emit('close')
+      client.removeAllListeners('close')
+      client.close()
+    }
     await server?.close()
     server = null
   }
@@ -359,11 +368,11 @@ exports.initConnection = async function (
  * @param {any} args      - optional arguments
  * @throws {error} when connection has not been started
  */
-exports.broadcast = function (event, args) {
+export const broadcast = function (event, args) {
   if (!server) {
     throw new Error(`unstarted connection, call subscribeRemote() first`)
   }
-  exports.messageBus.emit(event, args)
+  messageBus.emit(event, args)
   if (server.websocketServer?.clients) {
     for (const client of server.websocketServer.clients) {
       if (client.readyState === WebSocket.OPEN) {

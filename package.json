@@ -2,6 +2,7 @@
   "name": "melodie",
   "version": "2.0.0",
   "description": "Mélodie is a portable, simple-as-pie music player",
+  "private": true,
   "author": {
     "name": "Damien Simonin Feugas",
     "email": "damien.simoninfeugas@gmail.com"
@@ -10,43 +11,41 @@
   "repository": {
     "url": "https://github.com/feugy/melodie"
   },
+  "type": "module",
   "workspaces": [
     "common/*",
-    "apps/*"
+    "apps/desktop"
   ],
   "scripts": {
-    "lint": "run-s -ncs lint:**",
-    "lint:core": "npx eslint common/core/lib",
-    "lint:desktop": "npx eslint apps/desktop/lib",
-    "lint:site": "npx eslint apps/site/src",
-    "lint:ui": "npx eslint common/ui/src",
-    "release:bump": "standard-version -s",
-    "start": "run-p -n start:**",
-    "start:desktop": "sleep 1 && npm run dev -w apps/desktop",
-    "start:ui": "npm run dev -w common/ui",
-    "test": "run-s -ncs test:**",
-    "test:core": "npm run test -w common/core",
-    "test:desktop": "npm run test -w apps/desktop",
-    "test:site": "npm run test -w apps/site",
-    "test:ui": "npm run test -w common/ui"
+    "dev": "pnpm -F melodie dev",
+    "lint": "eslint . --fix",
+    "start": "pnpm -F melodie start",
+    "test": "pnpm -r --stream t",
+    "test:core": "pnpm -F @melodie/core t",
+    "test:desktop": "pnpm -F melodie t",
+    "test:ui": "pnpm -F @melodie/ui t"
   },
   "devDependencies": {
-    "eslint": "^8.12.0",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-jest": "^26.1.3",
-    "eslint-plugin-jest-dom": "^4.0.1",
-    "eslint-plugin-testing-library": "^5.1.0",
-    "eslint-plugin-svelte3": "^3.4.1",
-    "husky": "^7.0.2",
-    "lint-staged": "^12.3.1",
+    "@babel/eslint-parser": "^7.23.3",
+    "@babel/plugin-syntax-import-assertions": "^7.23.3",
+    "@changesets/cli": "^2.27.1",
+    "@electron-toolkit/eslint-config": "^1.0.1",
+    "@electron-toolkit/eslint-config-prettier": "^1.0.1",
+    "@faker-js/faker": "^8.3.1",
+    "@vitest/coverage-v8": "^1.0.4",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-simple-import-sort": "^10.0.0",
+    "eslint-plugin-svelte": "^2.35.0",
+    "eslint-plugin-testing-library": "^6.1.2",
+    "eslint-plugin-vitest": "^0.3.17",
+    "husky": "^8.0.3",
+    "jest-extended": "^4.0.2",
+    "lint-staged": "^15.2.0",
     "npm-run-all": "^4.1.5",
-    "prettier": "^2.6.1",
-    "prettier-plugin-svelte": "^2.6.0",
-    "standard-version": "^9.3.1"
-  },
-  "engines": {
-    "node": ">=16.0.0",
-    "npm": ">=7.24.0"
+    "prettier": "^3.1.1",
+    "prettier-plugin-svelte": "^3.1.2",
+    "vitest": "^1.0.4"
   },
   "lint-staged": {
     "*.js": [

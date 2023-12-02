@@ -1,73 +1,86 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`] = `
+exports[`Views/Search Results 1`] = `
 <div
-  class="w-99vw svelte-m2lcci"
+  class="__w-99vw_nfd2yy_nfd2yy s-r7xGi6lFNHin"
 >
   <div>
      
+    <!--&lt;Portal&gt;-->
+    <!--&lt;Dialogue&gt;-->
+    <!--&lt;TrackDetailsDialogue&gt;-->
      
     <div
-      style="animation: __svelte_185617033_0 200ms linear 0ms 1 both;"
+      class="s-06BtxFxwWAmV"
+      style=""
     >
       <header
-        class=" svelte-1whmh27"
+        class=" s-xf4KciiwOEPn"
         style="--image: url(../images/anthony-martino-6AtQNsjMoJo-unsplash.jpg); --shade-color: rgba(0, 0, 0, 0.7); --bgPosition: bottom center;"
       >
         <h1
-          class="svelte-1whmh27"
+          class="s-xf4KciiwOEPn"
         >
           Results for "Final Fantasy VII"
         </h1>
       </header>
+      <!--&lt;Heading&gt;-->
        
        
       <section
-        class="svelte-3frkku"
+        class="s-06BtxFxwWAmV"
       >
         <span
-          class="undefined tracks svelte-1i39aag"
+          class="undefined tracks s-td7QJeJ6dPr_"
         >
           <h3
-            class="svelte-1i39aag"
+            class="s-td7QJeJ6dPr_"
           >
             18 tracks
           </h3>
            
-          <ul
-            class="svelte-1i39aag"
+          <group
+            class="s-td7QJeJ6dPr_"
+            role="list"
+            style="flex-wrap: nowrap;"
           >
-            <li
-              class="svelte-1i39aag"
+            <button
+              class="s-td7QJeJ6dPr_"
+              style="visibility: visible;"
             >
-              <div
-                class="undefined root svelte-8oy723"
+              <button
+                class="undefined root s-B4OUyNjosq8C"
               >
                 <a
-                  class="svelte-8oy723"
+                  class="s-B4OUyNjosq8C"
                   href="#/album/1"
                 >
-                  <img
-                    alt="./cover.jpg"
-                    class="h-16 w-16 text-xs actionable rounded-sm svelte-1l44pje"
-                    height="256"
-                    src="./cover.jpg"
-                    width="256"
-                  />
-                   
-                  
+                  <button
+                    class="__flex_tliuhg_tliuhg __justify-center_tliuhg_tliuhg __items-center_tliuhg_tliuhg __bg-[--hover-bg-color]_tliuhg_tliuhg __overflow-hidden_tliuhg_tliuhg __h-16_cxt0i8_cxt0i8 __w-16_cxt0i8_cxt0i8 __text-xs_cxt0i8_cxt0i8 actionable s-JU4hIbuSbdGN __rounded-sm_tliuhg_tliuhg"
+                  >
+                    <img
+                      alt="./cover.jpg"
+                      class="__border-none_tliuhg_tliuhg __font-size-0_tliuhg_tliuhg __object-cover_tliuhg_tliuhg __w-full_tliuhg_tliuhg __h-full_tliuhg_tliuhg s-JU4hIbuSbdGN"
+                      loading="lazy"
+                      src="./cover.jpg"
+                    />
+                     
+                  </button>
+                  <!--&lt;Image&gt;-->
                 </a>
                  
                 <div
-                  class="track svelte-8oy723"
+                  class="track s-B4OUyNjosq8C"
                 >
                   <span
-                    class="title svelte-8oy723"
+                    class="title s-B4OUyNjosq8C"
                   >
                     American Money
                   </span>
                    
-                  <span>
+                  <span
+                    class="s-B4OUyNjosq8C"
+                  >
                     <a
                       class="text-sm underlined"
                       href="#/artist/0"
@@ -90,66 +103,70 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                 <span
                   aria-expanded="false"
                   aria-haspopup="menu"
-                  class="wrapper svelte-1v2cnbz"
+                  class="wrapper s-vOP9EO5q76eY"
                 >
                   <button
-                    class="iconOnly noBorder svelte-xh4kfu"
+                    class="iconOnly noBorder s-zdMNlEQUhDx4"
+                    data-testid="track-dropdown"
                   >
                     <i
-                      class="material-icons svelte-xh4kfu"
-                    >
-                      more_vert
-                    </i>
+                      class="icons i-mdi-dots-vertical s-zdMNlEQUhDx4"
+                    />
                      
                      
                     
                      
                   </button>
+                  <!--&lt;Button&gt;-->
                 </span>
                  
                 
-              </div>
+                <!--&lt;Dropdown&gt;-->
+                <!--&lt;TrackDropdown&gt;-->
+              </button>
+              <!--&lt;Track&gt;-->
                
-            </li>
-            <li
-              class="svelte-1i39aag"
+            </button>
+            <button
+              class="s-td7QJeJ6dPr_"
+              style="visibility: visible;"
             >
-              <div
-                class="undefined root svelte-8oy723"
+              <button
+                class="undefined root s-B4OUyNjosq8C"
               >
                 <a
-                  class="svelte-8oy723"
+                  class="s-B4OUyNjosq8C"
                   href="#/album/1"
                 >
-                  <img
-                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1l44pje"
-                    height="256"
-                    src=""
-                    width="256"
-                  />
-                   
-                  <span
-                    class="h-16 w-16 text-xs actionable svelte-1l44pje rounded-sm"
+                  <button
+                    class="__flex_tliuhg_tliuhg __justify-center_tliuhg_tliuhg __items-center_tliuhg_tliuhg __bg-[--hover-bg-color]_tliuhg_tliuhg __overflow-hidden_tliuhg_tliuhg __h-16_cxt0i8_cxt0i8 __w-16_cxt0i8_cxt0i8 __text-xs_cxt0i8_cxt0i8 actionable s-JU4hIbuSbdGN __rounded-sm_tliuhg_tliuhg"
                   >
+                    <img
+                      class="__border-none_tliuhg_tliuhg __font-size-0_tliuhg_tliuhg __object-cover_tliuhg_tliuhg __w-full_tliuhg_tliuhg __h-full_tliuhg_tliuhg __hidden_tliuhg_tliuhg s-JU4hIbuSbdGN"
+                      loading="lazy"
+                      src=""
+                    />
+                     
                     <i
-                      class="material-icons svelte-1l44pje"
-                    >
-                      music_note
-                    </i>
-                  </span>
-                  
+                      class="__inline-block_tliuhg_tliuhg __font-size-[200%]_tliuhg_tliuhg icons i-mdi-music-note s-JU4hIbuSbdGN"
+                      data-testid="i-mdi-music-note"
+                    />
+                  </button>
+                  <!--&lt;Image&gt;-->
                 </a>
                  
                 <div
-                  class="track svelte-8oy723"
+                  class="track s-B4OUyNjosq8C"
                 >
                   <span
-                    class="title svelte-8oy723"
+                    class="title s-B4OUyNjosq8C"
                   >
                     Bindy
                   </span>
                    
-                  <span>
+                  <span
+                    class="s-B4OUyNjosq8C"
+                  >
                     <a
                       class="text-sm underlined"
                       href="#/artist/0"
@@ -172,66 +189,70 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                 <span
                   aria-expanded="false"
                   aria-haspopup="menu"
-                  class="wrapper svelte-1v2cnbz"
+                  class="wrapper s-vOP9EO5q76eY"
                 >
                   <button
-                    class="iconOnly noBorder svelte-xh4kfu"
+                    class="iconOnly noBorder s-zdMNlEQUhDx4"
+                    data-testid="track-dropdown"
                   >
                     <i
-                      class="material-icons svelte-xh4kfu"
-                    >
-                      more_vert
-                    </i>
+                      class="icons i-mdi-dots-vertical s-zdMNlEQUhDx4"
+                    />
                      
                      
                     
                      
                   </button>
+                  <!--&lt;Button&gt;-->
                 </span>
                  
                 
-              </div>
+                <!--&lt;Dropdown&gt;-->
+                <!--&lt;TrackDropdown&gt;-->
+              </button>
+              <!--&lt;Track&gt;-->
                
-            </li>
-            <li
-              class="svelte-1i39aag"
+            </button>
+            <button
+              class="s-td7QJeJ6dPr_"
+              style="visibility: visible;"
             >
-              <div
-                class="undefined root svelte-8oy723"
+              <button
+                class="undefined root s-B4OUyNjosq8C"
               >
                 <a
-                  class="svelte-8oy723"
+                  class="s-B4OUyNjosq8C"
                   href="#/album/1"
                 >
-                  <img
-                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1l44pje"
-                    height="256"
-                    src=""
-                    width="256"
-                  />
-                   
-                  <span
-                    class="h-16 w-16 text-xs actionable svelte-1l44pje rounded-sm"
+                  <button
+                    class="__flex_tliuhg_tliuhg __justify-center_tliuhg_tliuhg __items-center_tliuhg_tliuhg __bg-[--hover-bg-color]_tliuhg_tliuhg __overflow-hidden_tliuhg_tliuhg __h-16_cxt0i8_cxt0i8 __w-16_cxt0i8_cxt0i8 __text-xs_cxt0i8_cxt0i8 actionable s-JU4hIbuSbdGN __rounded-sm_tliuhg_tliuhg"
                   >
+                    <img
+                      class="__border-none_tliuhg_tliuhg __font-size-0_tliuhg_tliuhg __object-cover_tliuhg_tliuhg __w-full_tliuhg_tliuhg __h-full_tliuhg_tliuhg __hidden_tliuhg_tliuhg s-JU4hIbuSbdGN"
+                      loading="lazy"
+                      src=""
+                    />
+                     
                     <i
-                      class="material-icons svelte-1l44pje"
-                    >
-                      music_note
-                    </i>
-                  </span>
-                  
+                      class="__inline-block_tliuhg_tliuhg __font-size-[200%]_tliuhg_tliuhg icons i-mdi-music-note s-JU4hIbuSbdGN"
+                      data-testid="i-mdi-music-note"
+                    />
+                  </button>
+                  <!--&lt;Image&gt;-->
                 </a>
                  
                 <div
-                  class="track svelte-8oy723"
+                  class="track s-B4OUyNjosq8C"
                 >
                   <span
-                    class="title svelte-8oy723"
+                    class="title s-B4OUyNjosq8C"
                   >
                     Cats on Mars
                   </span>
                    
-                  <span>
+                  <span
+                    class="s-B4OUyNjosq8C"
+                  >
                     <a
                       class="text-sm underlined"
                       href="#/artist/0"
@@ -254,58 +275,67 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                 <span
                   aria-expanded="false"
                   aria-haspopup="menu"
-                  class="wrapper svelte-1v2cnbz"
+                  class="wrapper s-vOP9EO5q76eY"
                 >
                   <button
-                    class="iconOnly noBorder svelte-xh4kfu"
+                    class="iconOnly noBorder s-zdMNlEQUhDx4"
+                    data-testid="track-dropdown"
                   >
                     <i
-                      class="material-icons svelte-xh4kfu"
-                    >
-                      more_vert
-                    </i>
+                      class="icons i-mdi-dots-vertical s-zdMNlEQUhDx4"
+                    />
                      
                      
                     
                      
                   </button>
+                  <!--&lt;Button&gt;-->
                 </span>
                  
                 
-              </div>
+                <!--&lt;Dropdown&gt;-->
+                <!--&lt;TrackDropdown&gt;-->
+              </button>
+              <!--&lt;Track&gt;-->
                
-            </li>
-            <li
-              class="svelte-1i39aag"
+            </button>
+            <button
+              class="s-td7QJeJ6dPr_"
+              style="visibility: visible;"
             >
-              <div
-                class="undefined root svelte-8oy723"
+              <button
+                class="undefined root s-B4OUyNjosq8C"
               >
                 <a
-                  class="svelte-8oy723"
+                  class="s-B4OUyNjosq8C"
                   href="#/album/1"
                 >
-                  <img
-                    alt="./cover.jpg"
-                    class="h-16 w-16 text-xs actionable rounded-sm svelte-1l44pje"
-                    height="256"
-                    src="./cover.jpg"
-                    width="256"
-                  />
-                   
-                  
+                  <button
+                    class="__flex_tliuhg_tliuhg __justify-center_tliuhg_tliuhg __items-center_tliuhg_tliuhg __bg-[--hover-bg-color]_tliuhg_tliuhg __overflow-hidden_tliuhg_tliuhg __h-16_cxt0i8_cxt0i8 __w-16_cxt0i8_cxt0i8 __text-xs_cxt0i8_cxt0i8 actionable s-JU4hIbuSbdGN __rounded-sm_tliuhg_tliuhg"
+                  >
+                    <img
+                      alt="./cover.jpg"
+                      class="__border-none_tliuhg_tliuhg __font-size-0_tliuhg_tliuhg __object-cover_tliuhg_tliuhg __w-full_tliuhg_tliuhg __h-full_tliuhg_tliuhg s-JU4hIbuSbdGN"
+                      loading="lazy"
+                      src="./cover.jpg"
+                    />
+                     
+                  </button>
+                  <!--&lt;Image&gt;-->
                 </a>
                  
                 <div
-                  class="track svelte-8oy723"
+                  class="track s-B4OUyNjosq8C"
                 >
                   <span
-                    class="title svelte-8oy723"
+                    class="title s-B4OUyNjosq8C"
                   >
                     Don't Bother None
                   </span>
                    
-                  <span>
+                  <span
+                    class="s-B4OUyNjosq8C"
+                  >
                     <a
                       class="text-sm underlined"
                       href="#/artist/0"
@@ -328,66 +358,70 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                 <span
                   aria-expanded="false"
                   aria-haspopup="menu"
-                  class="wrapper svelte-1v2cnbz"
+                  class="wrapper s-vOP9EO5q76eY"
                 >
                   <button
-                    class="iconOnly noBorder svelte-xh4kfu"
+                    class="iconOnly noBorder s-zdMNlEQUhDx4"
+                    data-testid="track-dropdown"
                   >
                     <i
-                      class="material-icons svelte-xh4kfu"
-                    >
-                      more_vert
-                    </i>
+                      class="icons i-mdi-dots-vertical s-zdMNlEQUhDx4"
+                    />
                      
                      
                     
                      
                   </button>
+                  <!--&lt;Button&gt;-->
                 </span>
                  
                 
-              </div>
+                <!--&lt;Dropdown&gt;-->
+                <!--&lt;TrackDropdown&gt;-->
+              </button>
+              <!--&lt;Track&gt;-->
                
-            </li>
-            <li
-              class="svelte-1i39aag"
+            </button>
+            <button
+              class="s-td7QJeJ6dPr_"
+              style="visibility: visible;"
             >
-              <div
-                class="undefined root svelte-8oy723"
+              <button
+                class="undefined root s-B4OUyNjosq8C"
               >
                 <a
-                  class="svelte-8oy723"
+                  class="s-B4OUyNjosq8C"
                   href="#/album/1"
                 >
-                  <img
-                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1l44pje"
-                    height="256"
-                    src=""
-                    width="256"
-                  />
-                   
-                  <span
-                    class="h-16 w-16 text-xs actionable svelte-1l44pje rounded-sm"
+                  <button
+                    class="__flex_tliuhg_tliuhg __justify-center_tliuhg_tliuhg __items-center_tliuhg_tliuhg __bg-[--hover-bg-color]_tliuhg_tliuhg __overflow-hidden_tliuhg_tliuhg __h-16_cxt0i8_cxt0i8 __w-16_cxt0i8_cxt0i8 __text-xs_cxt0i8_cxt0i8 actionable s-JU4hIbuSbdGN __rounded-sm_tliuhg_tliuhg"
                   >
+                    <img
+                      class="__border-none_tliuhg_tliuhg __font-size-0_tliuhg_tliuhg __object-cover_tliuhg_tliuhg __w-full_tliuhg_tliuhg __h-full_tliuhg_tliuhg __hidden_tliuhg_tliuhg s-JU4hIbuSbdGN"
+                      loading="lazy"
+                      src=""
+                    />
+                     
                     <i
-                      class="material-icons svelte-1l44pje"
-                    >
-                      music_note
-                    </i>
-                  </span>
-                  
+                      class="__inline-block_tliuhg_tliuhg __font-size-[200%]_tliuhg_tliuhg icons i-mdi-music-note s-JU4hIbuSbdGN"
+                      data-testid="i-mdi-music-note"
+                    />
+                  </button>
+                  <!--&lt;Image&gt;-->
                 </a>
                  
                 <div
-                  class="track svelte-8oy723"
+                  class="track s-B4OUyNjosq8C"
                 >
                   <span
-                    class="title svelte-8oy723"
+                    class="title s-B4OUyNjosq8C"
                   >
                     ELM
                   </span>
                    
-                  <span>
+                  <span
+                    class="s-B4OUyNjosq8C"
+                  >
                     <a
                       class="text-sm underlined"
                       href="#/artist/0"
@@ -410,58 +444,67 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                 <span
                   aria-expanded="false"
                   aria-haspopup="menu"
-                  class="wrapper svelte-1v2cnbz"
+                  class="wrapper s-vOP9EO5q76eY"
                 >
                   <button
-                    class="iconOnly noBorder svelte-xh4kfu"
+                    class="iconOnly noBorder s-zdMNlEQUhDx4"
+                    data-testid="track-dropdown"
                   >
                     <i
-                      class="material-icons svelte-xh4kfu"
-                    >
-                      more_vert
-                    </i>
+                      class="icons i-mdi-dots-vertical s-zdMNlEQUhDx4"
+                    />
                      
                      
                     
                      
                   </button>
+                  <!--&lt;Button&gt;-->
                 </span>
                  
                 
-              </div>
+                <!--&lt;Dropdown&gt;-->
+                <!--&lt;TrackDropdown&gt;-->
+              </button>
+              <!--&lt;Track&gt;-->
                
-            </li>
-            <li
-              class="svelte-1i39aag"
+            </button>
+            <button
+              class="s-td7QJeJ6dPr_"
+              style="visibility: visible;"
             >
-              <div
-                class="undefined root svelte-8oy723"
+              <button
+                class="undefined root s-B4OUyNjosq8C"
               >
                 <a
-                  class="svelte-8oy723"
+                  class="s-B4OUyNjosq8C"
                   href="#/album/1"
                 >
-                  <img
-                    alt="./cover.jpg"
-                    class="h-16 w-16 text-xs actionable rounded-sm svelte-1l44pje"
-                    height="256"
-                    src="./cover.jpg"
-                    width="256"
-                  />
-                   
-                  
+                  <button
+                    class="__flex_tliuhg_tliuhg __justify-center_tliuhg_tliuhg __items-center_tliuhg_tliuhg __bg-[--hover-bg-color]_tliuhg_tliuhg __overflow-hidden_tliuhg_tliuhg __h-16_cxt0i8_cxt0i8 __w-16_cxt0i8_cxt0i8 __text-xs_cxt0i8_cxt0i8 actionable s-JU4hIbuSbdGN __rounded-sm_tliuhg_tliuhg"
+                  >
+                    <img
+                      alt="./cover.jpg"
+                      class="__border-none_tliuhg_tliuhg __font-size-0_tliuhg_tliuhg __object-cover_tliuhg_tliuhg __w-full_tliuhg_tliuhg __h-full_tliuhg_tliuhg s-JU4hIbuSbdGN"
+                      loading="lazy"
+                      src="./cover.jpg"
+                    />
+                     
+                  </button>
+                  <!--&lt;Image&gt;-->
                 </a>
                  
                 <div
-                  class="track svelte-8oy723"
+                  class="track s-B4OUyNjosq8C"
                 >
                   <span
-                    class="title svelte-8oy723"
+                    class="title s-B4OUyNjosq8C"
                   >
                     Fantaisie Sign
                   </span>
                    
-                  <span>
+                  <span
+                    class="s-B4OUyNjosq8C"
+                  >
                     <a
                       class="text-sm underlined"
                       href="#/artist/0"
@@ -484,66 +527,70 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                 <span
                   aria-expanded="false"
                   aria-haspopup="menu"
-                  class="wrapper svelte-1v2cnbz"
+                  class="wrapper s-vOP9EO5q76eY"
                 >
                   <button
-                    class="iconOnly noBorder svelte-xh4kfu"
+                    class="iconOnly noBorder s-zdMNlEQUhDx4"
+                    data-testid="track-dropdown"
                   >
                     <i
-                      class="material-icons svelte-xh4kfu"
-                    >
-                      more_vert
-                    </i>
+                      class="icons i-mdi-dots-vertical s-zdMNlEQUhDx4"
+                    />
                      
                      
                     
                      
                   </button>
+                  <!--&lt;Button&gt;-->
                 </span>
                  
                 
-              </div>
+                <!--&lt;Dropdown&gt;-->
+                <!--&lt;TrackDropdown&gt;-->
+              </button>
+              <!--&lt;Track&gt;-->
                
-            </li>
-            <li
-              class="svelte-1i39aag"
+            </button>
+            <button
+              class="s-td7QJeJ6dPr_"
+              style="visibility: visible;"
             >
-              <div
-                class="undefined root svelte-8oy723"
+              <button
+                class="undefined root s-B4OUyNjosq8C"
               >
                 <a
-                  class="svelte-8oy723"
+                  class="s-B4OUyNjosq8C"
                   href="#/album/1"
                 >
-                  <img
-                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1l44pje"
-                    height="256"
-                    src=""
-                    width="256"
-                  />
-                   
-                  <span
-                    class="h-16 w-16 text-xs actionable svelte-1l44pje rounded-sm"
+                  <button
+                    class="__flex_tliuhg_tliuhg __justify-center_tliuhg_tliuhg __items-center_tliuhg_tliuhg __bg-[--hover-bg-color]_tliuhg_tliuhg __overflow-hidden_tliuhg_tliuhg __h-16_cxt0i8_cxt0i8 __w-16_cxt0i8_cxt0i8 __text-xs_cxt0i8_cxt0i8 actionable s-JU4hIbuSbdGN __rounded-sm_tliuhg_tliuhg"
                   >
+                    <img
+                      class="__border-none_tliuhg_tliuhg __font-size-0_tliuhg_tliuhg __object-cover_tliuhg_tliuhg __w-full_tliuhg_tliuhg __h-full_tliuhg_tliuhg __hidden_tliuhg_tliuhg s-JU4hIbuSbdGN"
+                      loading="lazy"
+                      src=""
+                    />
+                     
                     <i
-                      class="material-icons svelte-1l44pje"
-                    >
-                      music_note
-                    </i>
-                  </span>
-                  
+                      class="__inline-block_tliuhg_tliuhg __font-size-[200%]_tliuhg_tliuhg icons i-mdi-music-note s-JU4hIbuSbdGN"
+                      data-testid="i-mdi-music-note"
+                    />
+                  </button>
+                  <!--&lt;Image&gt;-->
                 </a>
                  
                 <div
-                  class="track svelte-8oy723"
+                  class="track s-B4OUyNjosq8C"
                 >
                   <span
-                    class="title svelte-8oy723"
+                    class="title s-B4OUyNjosq8C"
                   >
                     Forever Broke
                   </span>
                    
-                  <span>
+                  <span
+                    class="s-B4OUyNjosq8C"
+                  >
                     <a
                       class="text-sm underlined"
                       href="#/artist/0"
@@ -566,66 +613,70 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                 <span
                   aria-expanded="false"
                   aria-haspopup="menu"
-                  class="wrapper svelte-1v2cnbz"
+                  class="wrapper s-vOP9EO5q76eY"
                 >
                   <button
-                    class="iconOnly noBorder svelte-xh4kfu"
+                    class="iconOnly noBorder s-zdMNlEQUhDx4"
+                    data-testid="track-dropdown"
                   >
                     <i
-                      class="material-icons svelte-xh4kfu"
-                    >
-                      more_vert
-                    </i>
+                      class="icons i-mdi-dots-vertical s-zdMNlEQUhDx4"
+                    />
                      
                      
                     
                      
                   </button>
+                  <!--&lt;Button&gt;-->
                 </span>
                  
                 
-              </div>
+                <!--&lt;Dropdown&gt;-->
+                <!--&lt;TrackDropdown&gt;-->
+              </button>
+              <!--&lt;Track&gt;-->
                
-            </li>
-            <li
-              class="svelte-1i39aag"
+            </button>
+            <button
+              class="s-td7QJeJ6dPr_"
+              style="visibility: visible;"
             >
-              <div
-                class="undefined root svelte-8oy723"
+              <button
+                class="undefined root s-B4OUyNjosq8C"
               >
                 <a
-                  class="svelte-8oy723"
+                  class="s-B4OUyNjosq8C"
                   href="#/album/1"
                 >
-                  <img
-                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1l44pje"
-                    height="256"
-                    src=""
-                    width="256"
-                  />
-                   
-                  <span
-                    class="h-16 w-16 text-xs actionable svelte-1l44pje rounded-sm"
+                  <button
+                    class="__flex_tliuhg_tliuhg __justify-center_tliuhg_tliuhg __items-center_tliuhg_tliuhg __bg-[--hover-bg-color]_tliuhg_tliuhg __overflow-hidden_tliuhg_tliuhg __h-16_cxt0i8_cxt0i8 __w-16_cxt0i8_cxt0i8 __text-xs_cxt0i8_cxt0i8 actionable s-JU4hIbuSbdGN __rounded-sm_tliuhg_tliuhg"
                   >
+                    <img
+                      class="__border-none_tliuhg_tliuhg __font-size-0_tliuhg_tliuhg __object-cover_tliuhg_tliuhg __w-full_tliuhg_tliuhg __h-full_tliuhg_tliuhg __hidden_tliuhg_tliuhg s-JU4hIbuSbdGN"
+                      loading="lazy"
+                      src=""
+                    />
+                     
                     <i
-                      class="material-icons svelte-1l44pje"
-                    >
-                      music_note
-                    </i>
-                  </span>
-                  
+                      class="__inline-block_tliuhg_tliuhg __font-size-[200%]_tliuhg_tliuhg icons i-mdi-music-note s-JU4hIbuSbdGN"
+                      data-testid="i-mdi-music-note"
+                    />
+                  </button>
+                  <!--&lt;Image&gt;-->
                 </a>
                  
                 <div
-                  class="track svelte-8oy723"
+                  class="track s-B4OUyNjosq8C"
                 >
                   <span
-                    class="title svelte-8oy723"
+                    class="title s-B4OUyNjosq8C"
                   >
                     Gateway
                   </span>
                    
-                  <span>
+                  <span
+                    class="s-B4OUyNjosq8C"
+                  >
                     <a
                       class="text-sm underlined"
                       href="#/artist/0"
@@ -648,66 +699,70 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                 <span
                   aria-expanded="false"
                   aria-haspopup="menu"
-                  class="wrapper svelte-1v2cnbz"
+                  class="wrapper s-vOP9EO5q76eY"
                 >
                   <button
-                    class="iconOnly noBorder svelte-xh4kfu"
+                    class="iconOnly noBorder s-zdMNlEQUhDx4"
+                    data-testid="track-dropdown"
                   >
                     <i
-                      class="material-icons svelte-xh4kfu"
-                    >
-                      more_vert
-                    </i>
+                      class="icons i-mdi-dots-vertical s-zdMNlEQUhDx4"
+                    />
                      
                      
                     
                      
                   </button>
+                  <!--&lt;Button&gt;-->
                 </span>
                  
                 
-              </div>
+                <!--&lt;Dropdown&gt;-->
+                <!--&lt;TrackDropdown&gt;-->
+              </button>
+              <!--&lt;Track&gt;-->
                
-            </li>
-            <li
-              class="svelte-1i39aag"
+            </button>
+            <button
+              class="s-td7QJeJ6dPr_"
+              style="visibility: visible;"
             >
-              <div
-                class="undefined root svelte-8oy723"
+              <button
+                class="undefined root s-B4OUyNjosq8C"
               >
                 <a
-                  class="svelte-8oy723"
+                  class="s-B4OUyNjosq8C"
                   href="#/album/1"
                 >
-                  <img
-                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1l44pje"
-                    height="256"
-                    src=""
-                    width="256"
-                  />
-                   
-                  <span
-                    class="h-16 w-16 text-xs actionable svelte-1l44pje rounded-sm"
+                  <button
+                    class="__flex_tliuhg_tliuhg __justify-center_tliuhg_tliuhg __items-center_tliuhg_tliuhg __bg-[--hover-bg-color]_tliuhg_tliuhg __overflow-hidden_tliuhg_tliuhg __h-16_cxt0i8_cxt0i8 __w-16_cxt0i8_cxt0i8 __text-xs_cxt0i8_cxt0i8 actionable s-JU4hIbuSbdGN __rounded-sm_tliuhg_tliuhg"
                   >
+                    <img
+                      class="__border-none_tliuhg_tliuhg __font-size-0_tliuhg_tliuhg __object-cover_tliuhg_tliuhg __w-full_tliuhg_tliuhg __h-full_tliuhg_tliuhg __hidden_tliuhg_tliuhg s-JU4hIbuSbdGN"
+                      loading="lazy"
+                      src=""
+                    />
+                     
                     <i
-                      class="material-icons svelte-1l44pje"
-                    >
-                      music_note
-                    </i>
-                  </span>
-                  
+                      class="__inline-block_tliuhg_tliuhg __font-size-[200%]_tliuhg_tliuhg icons i-mdi-music-note s-JU4hIbuSbdGN"
+                      data-testid="i-mdi-music-note"
+                    />
+                  </button>
+                  <!--&lt;Image&gt;-->
                 </a>
                  
                 <div
-                  class="track svelte-8oy723"
+                  class="track s-B4OUyNjosq8C"
                 >
                   <span
-                    class="title svelte-8oy723"
+                    class="title s-B4OUyNjosq8C"
                   >
                     Green Bird
                   </span>
                    
-                  <span>
+                  <span
+                    class="s-B4OUyNjosq8C"
+                  >
                     <a
                       class="text-sm underlined"
                       href="#/artist/0"
@@ -730,66 +785,70 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                 <span
                   aria-expanded="false"
                   aria-haspopup="menu"
-                  class="wrapper svelte-1v2cnbz"
+                  class="wrapper s-vOP9EO5q76eY"
                 >
                   <button
-                    class="iconOnly noBorder svelte-xh4kfu"
+                    class="iconOnly noBorder s-zdMNlEQUhDx4"
+                    data-testid="track-dropdown"
                   >
                     <i
-                      class="material-icons svelte-xh4kfu"
-                    >
-                      more_vert
-                    </i>
+                      class="icons i-mdi-dots-vertical s-zdMNlEQUhDx4"
+                    />
                      
                      
                     
                      
                   </button>
+                  <!--&lt;Button&gt;-->
                 </span>
                  
                 
-              </div>
+                <!--&lt;Dropdown&gt;-->
+                <!--&lt;TrackDropdown&gt;-->
+              </button>
+              <!--&lt;Track&gt;-->
                
-            </li>
-            <li
-              class="svelte-1i39aag"
+            </button>
+            <button
+              class="s-td7QJeJ6dPr_"
+              style="visibility: visible;"
             >
-              <div
-                class="undefined root svelte-8oy723"
+              <button
+                class="undefined root s-B4OUyNjosq8C"
               >
                 <a
-                  class="svelte-8oy723"
+                  class="s-B4OUyNjosq8C"
                   href="#/album/1"
                 >
-                  <img
-                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1l44pje"
-                    height="256"
-                    src=""
-                    width="256"
-                  />
-                   
-                  <span
-                    class="h-16 w-16 text-xs actionable svelte-1l44pje rounded-sm"
+                  <button
+                    class="__flex_tliuhg_tliuhg __justify-center_tliuhg_tliuhg __items-center_tliuhg_tliuhg __bg-[--hover-bg-color]_tliuhg_tliuhg __overflow-hidden_tliuhg_tliuhg __h-16_cxt0i8_cxt0i8 __w-16_cxt0i8_cxt0i8 __text-xs_cxt0i8_cxt0i8 actionable s-JU4hIbuSbdGN __rounded-sm_tliuhg_tliuhg"
                   >
+                    <img
+                      class="__border-none_tliuhg_tliuhg __font-size-0_tliuhg_tliuhg __object-cover_tliuhg_tliuhg __w-full_tliuhg_tliuhg __h-full_tliuhg_tliuhg __hidden_tliuhg_tliuhg s-JU4hIbuSbdGN"
+                      loading="lazy"
+                      src=""
+                    />
+                     
                     <i
-                      class="material-icons svelte-1l44pje"
-                    >
-                      music_note
-                    </i>
-                  </span>
-                  
+                      class="__inline-block_tliuhg_tliuhg __font-size-[200%]_tliuhg_tliuhg icons i-mdi-music-note s-JU4hIbuSbdGN"
+                      data-testid="i-mdi-music-note"
+                    />
+                  </button>
+                  <!--&lt;Image&gt;-->
                 </a>
                  
                 <div
-                  class="track svelte-8oy723"
+                  class="track s-B4OUyNjosq8C"
                 >
                   <span
-                    class="title svelte-8oy723"
+                    class="title s-B4OUyNjosq8C"
                   >
                     LIVE in Baghdad
                   </span>
                    
-                  <span>
+                  <span
+                    class="s-B4OUyNjosq8C"
+                  >
                     <a
                       class="text-sm underlined"
                       href="#/artist/0"
@@ -812,66 +871,70 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                 <span
                   aria-expanded="false"
                   aria-haspopup="menu"
-                  class="wrapper svelte-1v2cnbz"
+                  class="wrapper s-vOP9EO5q76eY"
                 >
                   <button
-                    class="iconOnly noBorder svelte-xh4kfu"
+                    class="iconOnly noBorder s-zdMNlEQUhDx4"
+                    data-testid="track-dropdown"
                   >
                     <i
-                      class="material-icons svelte-xh4kfu"
-                    >
-                      more_vert
-                    </i>
+                      class="icons i-mdi-dots-vertical s-zdMNlEQUhDx4"
+                    />
                      
                      
                     
                      
                   </button>
+                  <!--&lt;Button&gt;-->
                 </span>
                  
                 
-              </div>
+                <!--&lt;Dropdown&gt;-->
+                <!--&lt;TrackDropdown&gt;-->
+              </button>
+              <!--&lt;Track&gt;-->
                
-            </li>
-            <li
-              class="svelte-1i39aag"
+            </button>
+            <button
+              class="s-td7QJeJ6dPr_"
+              style="visibility: visible;"
             >
-              <div
-                class="undefined root svelte-8oy723"
+              <button
+                class="undefined root s-B4OUyNjosq8C"
               >
                 <a
-                  class="svelte-8oy723"
+                  class="s-B4OUyNjosq8C"
                   href="#/album/1"
                 >
-                  <img
-                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1l44pje"
-                    height="256"
-                    src=""
-                    width="256"
-                  />
-                   
-                  <span
-                    class="h-16 w-16 text-xs actionable svelte-1l44pje rounded-sm"
+                  <button
+                    class="__flex_tliuhg_tliuhg __justify-center_tliuhg_tliuhg __items-center_tliuhg_tliuhg __bg-[--hover-bg-color]_tliuhg_tliuhg __overflow-hidden_tliuhg_tliuhg __h-16_cxt0i8_cxt0i8 __w-16_cxt0i8_cxt0i8 __text-xs_cxt0i8_cxt0i8 actionable s-JU4hIbuSbdGN __rounded-sm_tliuhg_tliuhg"
                   >
+                    <img
+                      class="__border-none_tliuhg_tliuhg __font-size-0_tliuhg_tliuhg __object-cover_tliuhg_tliuhg __w-full_tliuhg_tliuhg __h-full_tliuhg_tliuhg __hidden_tliuhg_tliuhg s-JU4hIbuSbdGN"
+                      loading="lazy"
+                      src=""
+                    />
+                     
                     <i
-                      class="material-icons svelte-1l44pje"
-                    >
-                      music_note
-                    </i>
-                  </span>
-                  
+                      class="__inline-block_tliuhg_tliuhg __font-size-[200%]_tliuhg_tliuhg icons i-mdi-music-note s-JU4hIbuSbdGN"
+                      data-testid="i-mdi-music-note"
+                    />
+                  </button>
+                  <!--&lt;Image&gt;-->
                 </a>
                  
                 <div
-                  class="track svelte-8oy723"
+                  class="track s-B4OUyNjosq8C"
                 >
                   <span
-                    class="title svelte-8oy723"
+                    class="title s-B4OUyNjosq8C"
                   >
                     Power of Kungfu Remix
                   </span>
                    
-                  <span>
+                  <span
+                    class="s-B4OUyNjosq8C"
+                  >
                     <a
                       class="text-sm underlined"
                       href="#/artist/0"
@@ -894,66 +957,70 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                 <span
                   aria-expanded="false"
                   aria-haspopup="menu"
-                  class="wrapper svelte-1v2cnbz"
+                  class="wrapper s-vOP9EO5q76eY"
                 >
                   <button
-                    class="iconOnly noBorder svelte-xh4kfu"
+                    class="iconOnly noBorder s-zdMNlEQUhDx4"
+                    data-testid="track-dropdown"
                   >
                     <i
-                      class="material-icons svelte-xh4kfu"
-                    >
-                      more_vert
-                    </i>
+                      class="icons i-mdi-dots-vertical s-zdMNlEQUhDx4"
+                    />
                      
                      
                     
                      
                   </button>
+                  <!--&lt;Button&gt;-->
                 </span>
                  
                 
-              </div>
+                <!--&lt;Dropdown&gt;-->
+                <!--&lt;TrackDropdown&gt;-->
+              </button>
+              <!--&lt;Track&gt;-->
                
-            </li>
-            <li
-              class="svelte-1i39aag"
+            </button>
+            <button
+              class="s-td7QJeJ6dPr_"
+              style="visibility: visible;"
             >
-              <div
-                class="undefined root svelte-8oy723"
+              <button
+                class="undefined root s-B4OUyNjosq8C"
               >
                 <a
-                  class="svelte-8oy723"
+                  class="s-B4OUyNjosq8C"
                   href="#/album/1"
                 >
-                  <img
-                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1l44pje"
-                    height="256"
-                    src=""
-                    width="256"
-                  />
-                   
-                  <span
-                    class="h-16 w-16 text-xs actionable svelte-1l44pje rounded-sm"
+                  <button
+                    class="__flex_tliuhg_tliuhg __justify-center_tliuhg_tliuhg __items-center_tliuhg_tliuhg __bg-[--hover-bg-color]_tliuhg_tliuhg __overflow-hidden_tliuhg_tliuhg __h-16_cxt0i8_cxt0i8 __w-16_cxt0i8_cxt0i8 __text-xs_cxt0i8_cxt0i8 actionable s-JU4hIbuSbdGN __rounded-sm_tliuhg_tliuhg"
                   >
+                    <img
+                      class="__border-none_tliuhg_tliuhg __font-size-0_tliuhg_tliuhg __object-cover_tliuhg_tliuhg __w-full_tliuhg_tliuhg __h-full_tliuhg_tliuhg __hidden_tliuhg_tliuhg s-JU4hIbuSbdGN"
+                      loading="lazy"
+                      src=""
+                    />
+                     
                     <i
-                      class="material-icons svelte-1l44pje"
-                    >
-                      music_note
-                    </i>
-                  </span>
-                  
+                      class="__inline-block_tliuhg_tliuhg __font-size-[200%]_tliuhg_tliuhg icons i-mdi-music-note s-JU4hIbuSbdGN"
+                      data-testid="i-mdi-music-note"
+                    />
+                  </button>
+                  <!--&lt;Image&gt;-->
                 </a>
                  
                 <div
-                  class="track svelte-8oy723"
+                  class="track s-B4OUyNjosq8C"
                 >
                   <span
-                    class="title svelte-8oy723"
+                    class="title s-B4OUyNjosq8C"
                   >
                     The Egg and You!
                   </span>
                    
-                  <span>
+                  <span
+                    class="s-B4OUyNjosq8C"
+                  >
                     <a
                       class="text-sm underlined"
                       href="#/artist/0"
@@ -976,66 +1043,70 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                 <span
                   aria-expanded="false"
                   aria-haspopup="menu"
-                  class="wrapper svelte-1v2cnbz"
+                  class="wrapper s-vOP9EO5q76eY"
                 >
                   <button
-                    class="iconOnly noBorder svelte-xh4kfu"
+                    class="iconOnly noBorder s-zdMNlEQUhDx4"
+                    data-testid="track-dropdown"
                   >
                     <i
-                      class="material-icons svelte-xh4kfu"
-                    >
-                      more_vert
-                    </i>
+                      class="icons i-mdi-dots-vertical s-zdMNlEQUhDx4"
+                    />
                      
                      
                     
                      
                   </button>
+                  <!--&lt;Button&gt;-->
                 </span>
                  
                 
-              </div>
+                <!--&lt;Dropdown&gt;-->
+                <!--&lt;TrackDropdown&gt;-->
+              </button>
+              <!--&lt;Track&gt;-->
                
-            </li>
-            <li
-              class="svelte-1i39aag"
+            </button>
+            <button
+              class="s-td7QJeJ6dPr_"
+              style="visibility: visible;"
             >
-              <div
-                class="undefined root svelte-8oy723"
+              <button
+                class="undefined root s-B4OUyNjosq8C"
               >
                 <a
-                  class="svelte-8oy723"
+                  class="s-B4OUyNjosq8C"
                   href="#/album/1"
                 >
-                  <img
-                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1l44pje"
-                    height="256"
-                    src=""
-                    width="256"
-                  />
-                   
-                  <span
-                    class="h-16 w-16 text-xs actionable svelte-1l44pje rounded-sm"
+                  <button
+                    class="__flex_tliuhg_tliuhg __justify-center_tliuhg_tliuhg __items-center_tliuhg_tliuhg __bg-[--hover-bg-color]_tliuhg_tliuhg __overflow-hidden_tliuhg_tliuhg __h-16_cxt0i8_cxt0i8 __w-16_cxt0i8_cxt0i8 __text-xs_cxt0i8_cxt0i8 actionable s-JU4hIbuSbdGN __rounded-sm_tliuhg_tliuhg"
                   >
+                    <img
+                      class="__border-none_tliuhg_tliuhg __font-size-0_tliuhg_tliuhg __object-cover_tliuhg_tliuhg __w-full_tliuhg_tliuhg __h-full_tliuhg_tliuhg __hidden_tliuhg_tliuhg s-JU4hIbuSbdGN"
+                      loading="lazy"
+                      src=""
+                    />
+                     
                     <i
-                      class="material-icons svelte-1l44pje"
-                    >
-                      music_note
-                    </i>
-                  </span>
-                  
+                      class="__inline-block_tliuhg_tliuhg __font-size-[200%]_tliuhg_tliuhg icons i-mdi-music-note s-JU4hIbuSbdGN"
+                      data-testid="i-mdi-music-note"
+                    />
+                  </button>
+                  <!--&lt;Image&gt;-->
                 </a>
                  
                 <div
-                  class="track svelte-8oy723"
+                  class="track s-B4OUyNjosq8C"
                 >
                   <span
-                    class="title svelte-8oy723"
+                    class="title s-B4OUyNjosq8C"
                   >
                     The Singing Sea
                   </span>
                    
-                  <span>
+                  <span
+                    class="s-B4OUyNjosq8C"
+                  >
                     <a
                       class="text-sm underlined"
                       href="#/artist/0"
@@ -1058,66 +1129,70 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                 <span
                   aria-expanded="false"
                   aria-haspopup="menu"
-                  class="wrapper svelte-1v2cnbz"
+                  class="wrapper s-vOP9EO5q76eY"
                 >
                   <button
-                    class="iconOnly noBorder svelte-xh4kfu"
+                    class="iconOnly noBorder s-zdMNlEQUhDx4"
+                    data-testid="track-dropdown"
                   >
                     <i
-                      class="material-icons svelte-xh4kfu"
-                    >
-                      more_vert
-                    </i>
+                      class="icons i-mdi-dots-vertical s-zdMNlEQUhDx4"
+                    />
                      
                      
                     
                      
                   </button>
+                  <!--&lt;Button&gt;-->
                 </span>
                  
                 
-              </div>
+                <!--&lt;Dropdown&gt;-->
+                <!--&lt;TrackDropdown&gt;-->
+              </button>
+              <!--&lt;Track&gt;-->
                
-            </li>
-            <li
-              class="svelte-1i39aag"
+            </button>
+            <button
+              class="s-td7QJeJ6dPr_"
+              style="visibility: visible;"
             >
-              <div
-                class="undefined root svelte-8oy723"
+              <button
+                class="undefined root s-B4OUyNjosq8C"
               >
                 <a
-                  class="svelte-8oy723"
+                  class="s-B4OUyNjosq8C"
                   href="#/album/1"
                 >
-                  <img
-                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1l44pje"
-                    height="256"
-                    src=""
-                    width="256"
-                  />
-                   
-                  <span
-                    class="h-16 w-16 text-xs actionable svelte-1l44pje rounded-sm"
+                  <button
+                    class="__flex_tliuhg_tliuhg __justify-center_tliuhg_tliuhg __items-center_tliuhg_tliuhg __bg-[--hover-bg-color]_tliuhg_tliuhg __overflow-hidden_tliuhg_tliuhg __h-16_cxt0i8_cxt0i8 __w-16_cxt0i8_cxt0i8 __text-xs_cxt0i8_cxt0i8 actionable s-JU4hIbuSbdGN __rounded-sm_tliuhg_tliuhg"
                   >
+                    <img
+                      class="__border-none_tliuhg_tliuhg __font-size-0_tliuhg_tliuhg __object-cover_tliuhg_tliuhg __w-full_tliuhg_tliuhg __h-full_tliuhg_tliuhg __hidden_tliuhg_tliuhg s-JU4hIbuSbdGN"
+                      loading="lazy"
+                      src=""
+                    />
+                     
                     <i
-                      class="material-icons svelte-1l44pje"
-                    >
-                      music_note
-                    </i>
-                  </span>
-                  
+                      class="__inline-block_tliuhg_tliuhg __font-size-[200%]_tliuhg_tliuhg icons i-mdi-music-note s-JU4hIbuSbdGN"
+                      data-testid="i-mdi-music-note"
+                    />
+                  </button>
+                  <!--&lt;Image&gt;-->
                 </a>
                  
                 <div
-                  class="track svelte-8oy723"
+                  class="track s-B4OUyNjosq8C"
                 >
                   <span
-                    class="title svelte-8oy723"
+                    class="title s-B4OUyNjosq8C"
                   >
                     Vitamin A
                   </span>
                    
-                  <span>
+                  <span
+                    class="s-B4OUyNjosq8C"
+                  >
                     <a
                       class="text-sm underlined"
                       href="#/artist/0"
@@ -1140,66 +1215,70 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                 <span
                   aria-expanded="false"
                   aria-haspopup="menu"
-                  class="wrapper svelte-1v2cnbz"
+                  class="wrapper s-vOP9EO5q76eY"
                 >
                   <button
-                    class="iconOnly noBorder svelte-xh4kfu"
+                    class="iconOnly noBorder s-zdMNlEQUhDx4"
+                    data-testid="track-dropdown"
                   >
                     <i
-                      class="material-icons svelte-xh4kfu"
-                    >
-                      more_vert
-                    </i>
+                      class="icons i-mdi-dots-vertical s-zdMNlEQUhDx4"
+                    />
                      
                      
                     
                      
                   </button>
+                  <!--&lt;Button&gt;-->
                 </span>
                  
                 
-              </div>
+                <!--&lt;Dropdown&gt;-->
+                <!--&lt;TrackDropdown&gt;-->
+              </button>
+              <!--&lt;Track&gt;-->
                
-            </li>
-            <li
-              class="svelte-1i39aag"
+            </button>
+            <button
+              class="s-td7QJeJ6dPr_"
+              style="visibility: visible;"
             >
-              <div
-                class="undefined root svelte-8oy723"
+              <button
+                class="undefined root s-B4OUyNjosq8C"
               >
                 <a
-                  class="svelte-8oy723"
+                  class="s-B4OUyNjosq8C"
                   href="#/album/1"
                 >
-                  <img
-                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1l44pje"
-                    height="256"
-                    src=""
-                    width="256"
-                  />
-                   
-                  <span
-                    class="h-16 w-16 text-xs actionable svelte-1l44pje rounded-sm"
+                  <button
+                    class="__flex_tliuhg_tliuhg __justify-center_tliuhg_tliuhg __items-center_tliuhg_tliuhg __bg-[--hover-bg-color]_tliuhg_tliuhg __overflow-hidden_tliuhg_tliuhg __h-16_cxt0i8_cxt0i8 __w-16_cxt0i8_cxt0i8 __text-xs_cxt0i8_cxt0i8 actionable s-JU4hIbuSbdGN __rounded-sm_tliuhg_tliuhg"
                   >
+                    <img
+                      class="__border-none_tliuhg_tliuhg __font-size-0_tliuhg_tliuhg __object-cover_tliuhg_tliuhg __w-full_tliuhg_tliuhg __h-full_tliuhg_tliuhg __hidden_tliuhg_tliuhg s-JU4hIbuSbdGN"
+                      loading="lazy"
+                      src=""
+                    />
+                     
                     <i
-                      class="material-icons svelte-1l44pje"
-                    >
-                      music_note
-                    </i>
-                  </span>
-                  
+                      class="__inline-block_tliuhg_tliuhg __font-size-[200%]_tliuhg_tliuhg icons i-mdi-music-note s-JU4hIbuSbdGN"
+                      data-testid="i-mdi-music-note"
+                    />
+                  </button>
+                  <!--&lt;Image&gt;-->
                 </a>
                  
                 <div
-                  class="track svelte-8oy723"
+                  class="track s-B4OUyNjosq8C"
                 >
                   <span
-                    class="title svelte-8oy723"
+                    class="title s-B4OUyNjosq8C"
                   >
                     Vitamin B
                   </span>
                    
-                  <span>
+                  <span
+                    class="s-B4OUyNjosq8C"
+                  >
                     <a
                       class="text-sm underlined"
                       href="#/artist/0"
@@ -1222,66 +1301,70 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                 <span
                   aria-expanded="false"
                   aria-haspopup="menu"
-                  class="wrapper svelte-1v2cnbz"
+                  class="wrapper s-vOP9EO5q76eY"
                 >
                   <button
-                    class="iconOnly noBorder svelte-xh4kfu"
+                    class="iconOnly noBorder s-zdMNlEQUhDx4"
+                    data-testid="track-dropdown"
                   >
                     <i
-                      class="material-icons svelte-xh4kfu"
-                    >
-                      more_vert
-                    </i>
+                      class="icons i-mdi-dots-vertical s-zdMNlEQUhDx4"
+                    />
                      
                      
                     
                      
                   </button>
+                  <!--&lt;Button&gt;-->
                 </span>
                  
                 
-              </div>
+                <!--&lt;Dropdown&gt;-->
+                <!--&lt;TrackDropdown&gt;-->
+              </button>
+              <!--&lt;Track&gt;-->
                
-            </li>
-            <li
-              class="svelte-1i39aag"
+            </button>
+            <button
+              class="s-td7QJeJ6dPr_"
+              style="visibility: visible;"
             >
-              <div
-                class="undefined root svelte-8oy723"
+              <button
+                class="undefined root s-B4OUyNjosq8C"
               >
                 <a
-                  class="svelte-8oy723"
+                  class="s-B4OUyNjosq8C"
                   href="#/album/1"
                 >
-                  <img
-                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1l44pje"
-                    height="256"
-                    src=""
-                    width="256"
-                  />
-                   
-                  <span
-                    class="h-16 w-16 text-xs actionable svelte-1l44pje rounded-sm"
+                  <button
+                    class="__flex_tliuhg_tliuhg __justify-center_tliuhg_tliuhg __items-center_tliuhg_tliuhg __bg-[--hover-bg-color]_tliuhg_tliuhg __overflow-hidden_tliuhg_tliuhg __h-16_cxt0i8_cxt0i8 __w-16_cxt0i8_cxt0i8 __text-xs_cxt0i8_cxt0i8 actionable s-JU4hIbuSbdGN __rounded-sm_tliuhg_tliuhg"
                   >
+                    <img
+                      class="__border-none_tliuhg_tliuhg __font-size-0_tliuhg_tliuhg __object-cover_tliuhg_tliuhg __w-full_tliuhg_tliuhg __h-full_tliuhg_tliuhg __hidden_tliuhg_tliuhg s-JU4hIbuSbdGN"
+                      loading="lazy"
+                      src=""
+                    />
+                     
                     <i
-                      class="material-icons svelte-1l44pje"
-                    >
-                      music_note
-                    </i>
-                  </span>
-                  
+                      class="__inline-block_tliuhg_tliuhg __font-size-[200%]_tliuhg_tliuhg icons i-mdi-music-note s-JU4hIbuSbdGN"
+                      data-testid="i-mdi-music-note"
+                    />
+                  </button>
+                  <!--&lt;Image&gt;-->
                 </a>
                  
                 <div
-                  class="track svelte-8oy723"
+                  class="track s-B4OUyNjosq8C"
                 >
                   <span
-                    class="title svelte-8oy723"
+                    class="title s-B4OUyNjosq8C"
                   >
                     Vitamin C
                   </span>
                    
-                  <span>
+                  <span
+                    class="s-B4OUyNjosq8C"
+                  >
                     <a
                       class="text-sm underlined"
                       href="#/artist/0"
@@ -1304,66 +1387,70 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                 <span
                   aria-expanded="false"
                   aria-haspopup="menu"
-                  class="wrapper svelte-1v2cnbz"
+                  class="wrapper s-vOP9EO5q76eY"
                 >
                   <button
-                    class="iconOnly noBorder svelte-xh4kfu"
+                    class="iconOnly noBorder s-zdMNlEQUhDx4"
+                    data-testid="track-dropdown"
                   >
                     <i
-                      class="material-icons svelte-xh4kfu"
-                    >
-                      more_vert
-                    </i>
+                      class="icons i-mdi-dots-vertical s-zdMNlEQUhDx4"
+                    />
                      
                      
                     
                      
                   </button>
+                  <!--&lt;Button&gt;-->
                 </span>
                  
                 
-              </div>
+                <!--&lt;Dropdown&gt;-->
+                <!--&lt;TrackDropdown&gt;-->
+              </button>
+              <!--&lt;Track&gt;-->
                
-            </li>
-            <li
-              class="svelte-1i39aag"
+            </button>
+            <button
+              class="s-td7QJeJ6dPr_"
+              style="visibility: visible;"
             >
-              <div
-                class="undefined root svelte-8oy723"
+              <button
+                class="undefined root s-B4OUyNjosq8C"
               >
                 <a
-                  class="svelte-8oy723"
+                  class="s-B4OUyNjosq8C"
                   href="#/album/1"
                 >
-                  <img
-                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1l44pje"
-                    height="256"
-                    src=""
-                    width="256"
-                  />
-                   
-                  <span
-                    class="h-16 w-16 text-xs actionable svelte-1l44pje rounded-sm"
+                  <button
+                    class="__flex_tliuhg_tliuhg __justify-center_tliuhg_tliuhg __items-center_tliuhg_tliuhg __bg-[--hover-bg-color]_tliuhg_tliuhg __overflow-hidden_tliuhg_tliuhg __h-16_cxt0i8_cxt0i8 __w-16_cxt0i8_cxt0i8 __text-xs_cxt0i8_cxt0i8 actionable s-JU4hIbuSbdGN __rounded-sm_tliuhg_tliuhg"
                   >
+                    <img
+                      class="__border-none_tliuhg_tliuhg __font-size-0_tliuhg_tliuhg __object-cover_tliuhg_tliuhg __w-full_tliuhg_tliuhg __h-full_tliuhg_tliuhg __hidden_tliuhg_tliuhg s-JU4hIbuSbdGN"
+                      loading="lazy"
+                      src=""
+                    />
+                     
                     <i
-                      class="material-icons svelte-1l44pje"
-                    >
-                      music_note
-                    </i>
-                  </span>
-                  
+                      class="__inline-block_tliuhg_tliuhg __font-size-[200%]_tliuhg_tliuhg icons i-mdi-music-note s-JU4hIbuSbdGN"
+                      data-testid="i-mdi-music-note"
+                    />
+                  </button>
+                  <!--&lt;Image&gt;-->
                 </a>
                  
                 <div
-                  class="track svelte-8oy723"
+                  class="track s-B4OUyNjosq8C"
                 >
                   <span
-                    class="title svelte-8oy723"
+                    class="title s-B4OUyNjosq8C"
                   >
                     Want it All Back
                   </span>
                    
-                  <span>
+                  <span
+                    class="s-B4OUyNjosq8C"
+                  >
                     <a
                       class="text-sm underlined"
                       href="#/artist/0"
@@ -1386,66 +1473,70 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                 <span
                   aria-expanded="false"
                   aria-haspopup="menu"
-                  class="wrapper svelte-1v2cnbz"
+                  class="wrapper s-vOP9EO5q76eY"
                 >
                   <button
-                    class="iconOnly noBorder svelte-xh4kfu"
+                    class="iconOnly noBorder s-zdMNlEQUhDx4"
+                    data-testid="track-dropdown"
                   >
                     <i
-                      class="material-icons svelte-xh4kfu"
-                    >
-                      more_vert
-                    </i>
+                      class="icons i-mdi-dots-vertical s-zdMNlEQUhDx4"
+                    />
                      
                      
                     
                      
                   </button>
+                  <!--&lt;Button&gt;-->
                 </span>
                  
                 
-              </div>
+                <!--&lt;Dropdown&gt;-->
+                <!--&lt;TrackDropdown&gt;-->
+              </button>
+              <!--&lt;Track&gt;-->
                
-            </li>
-            <li
-              class="svelte-1i39aag"
+            </button>
+            <button
+              class="s-td7QJeJ6dPr_"
+              style="visibility: visible;"
             >
-              <div
-                class="undefined root svelte-8oy723"
+              <button
+                class="undefined root s-B4OUyNjosq8C"
               >
                 <a
-                  class="svelte-8oy723"
+                  class="s-B4OUyNjosq8C"
                   href="#/album/1"
                 >
-                  <img
-                    class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1l44pje"
-                    height="256"
-                    src=""
-                    width="256"
-                  />
-                   
-                  <span
-                    class="h-16 w-16 text-xs actionable svelte-1l44pje rounded-sm"
+                  <button
+                    class="__flex_tliuhg_tliuhg __justify-center_tliuhg_tliuhg __items-center_tliuhg_tliuhg __bg-[--hover-bg-color]_tliuhg_tliuhg __overflow-hidden_tliuhg_tliuhg __h-16_cxt0i8_cxt0i8 __w-16_cxt0i8_cxt0i8 __text-xs_cxt0i8_cxt0i8 actionable s-JU4hIbuSbdGN __rounded-sm_tliuhg_tliuhg"
                   >
+                    <img
+                      class="__border-none_tliuhg_tliuhg __font-size-0_tliuhg_tliuhg __object-cover_tliuhg_tliuhg __w-full_tliuhg_tliuhg __h-full_tliuhg_tliuhg __hidden_tliuhg_tliuhg s-JU4hIbuSbdGN"
+                      loading="lazy"
+                      src=""
+                    />
+                     
                     <i
-                      class="material-icons svelte-1l44pje"
-                    >
-                      music_note
-                    </i>
-                  </span>
-                  
+                      class="__inline-block_tliuhg_tliuhg __font-size-[200%]_tliuhg_tliuhg icons i-mdi-music-note s-JU4hIbuSbdGN"
+                      data-testid="i-mdi-music-note"
+                    />
+                  </button>
+                  <!--&lt;Image&gt;-->
                 </a>
                  
                 <div
-                  class="track svelte-8oy723"
+                  class="track s-B4OUyNjosq8C"
                 >
                   <span
-                    class="title svelte-8oy723"
+                    class="title s-B4OUyNjosq8C"
                   >
                     You Make Me Coo
                   </span>
                    
-                  <span>
+                  <span
+                    class="s-B4OUyNjosq8C"
+                  >
                     <a
                       class="text-sm underlined"
                       href="#/artist/0"
@@ -1468,28 +1559,31 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                 <span
                   aria-expanded="false"
                   aria-haspopup="menu"
-                  class="wrapper svelte-1v2cnbz"
+                  class="wrapper s-vOP9EO5q76eY"
                 >
                   <button
-                    class="iconOnly noBorder svelte-xh4kfu"
+                    class="iconOnly noBorder s-zdMNlEQUhDx4"
+                    data-testid="track-dropdown"
                   >
                     <i
-                      class="material-icons svelte-xh4kfu"
-                    >
-                      more_vert
-                    </i>
+                      class="icons i-mdi-dots-vertical s-zdMNlEQUhDx4"
+                    />
                      
                      
                     
                      
                   </button>
+                  <!--&lt;Button&gt;-->
                 </span>
                  
                 
-              </div>
+                <!--&lt;Dropdown&gt;-->
+                <!--&lt;TrackDropdown&gt;-->
+              </button>
+              <!--&lt;Track&gt;-->
                
-            </li>
-          </ul>
+            </button>
+          </group>
            
           <iframe
             aria-hidden="true"
@@ -1499,274 +1593,282 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
           />
         </span>
         
+        <!--&lt;ExpandableList&gt;-->
       </section>
        
       <section
-        class="svelte-3frkku"
+        class="s-06BtxFxwWAmV"
       >
         <span
-          class="undefined artists svelte-1i39aag"
+          class="undefined artists s-td7QJeJ6dPr_"
         >
           <h3
-            class="svelte-1i39aag"
+            class="s-td7QJeJ6dPr_"
           >
             3 artists
           </h3>
            
-          <ul
-            class="svelte-1i39aag"
+          <group
+            class="s-td7QJeJ6dPr_"
+            role="list"
+            style="flex-wrap: nowrap;"
           >
-            <li
-              class="svelte-1i39aag"
+            <button
+              class="s-td7QJeJ6dPr_"
+              style="visibility: visible;"
             >
                
               <span
-                class="svelte-1ipxhxy"
-                role="article"
+                class=" s-y8aqkkbOYo4q"
+                role="tab"
+                tabindex="0"
               >
                 <div
-                  class="content svelte-1ipxhxy"
+                  class="content s-y8aqkkbOYo4q"
                 >
                   <span
-                    class="artwork svelte-1ipxhxy"
+                    class="artwork s-y8aqkkbOYo4q"
                   >
-                    <img
-                      class="h-full w-full rounded-full hidden svelte-1l44pje"
-                      height="256"
-                      src=""
-                      width="256"
-                    />
-                     
-                    <span
-                      class="h-full w-full svelte-1l44pje rounded-full"
+                    <button
+                      class="__flex_tliuhg_tliuhg __justify-center_tliuhg_tliuhg __items-center_tliuhg_tliuhg __bg-[--hover-bg-color]_tliuhg_tliuhg __overflow-hidden_tliuhg_tliuhg __h-full_ricfrc_ricfrc __w-full_ricfrc_ricfrc s-JU4hIbuSbdGN __rounded-full_tliuhg_tliuhg"
                     >
+                      <img
+                        class="__border-none_tliuhg_tliuhg __font-size-0_tliuhg_tliuhg __object-cover_tliuhg_tliuhg __w-full_tliuhg_tliuhg __h-full_tliuhg_tliuhg __hidden_tliuhg_tliuhg s-JU4hIbuSbdGN"
+                        loading="lazy"
+                        src=""
+                      />
+                       
                       <i
-                        class="material-icons svelte-1l44pje"
-                      >
-                        person
-                      </i>
-                    </span>
-                    
+                        class="__inline-block_tliuhg_tliuhg __font-size-[200%]_tliuhg_tliuhg icons i-mdi-account s-JU4hIbuSbdGN"
+                        data-testid="i-mdi-account"
+                      />
+                    </button>
+                    <!--&lt;Image&gt;-->
                   </span>
                    
                   <p
-                    class="controls svelte-1ipxhxy"
+                    class="controls s-y8aqkkbOYo4q"
                   >
                      
                     <button
-                      class="primary iconOnly large svelte-xh4kfu"
+                      class="primary iconOnly large s-zdMNlEQUhDx4"
                       data-testid="play"
                     >
                       <i
-                        class="material-icons svelte-xh4kfu"
-                      >
-                        play_arrow
-                      </i>
+                        class="icons i-mdi-play s-zdMNlEQUhDx4"
+                      />
                        
                        
                        
                     </button>
+                    <!--&lt;Button&gt;-->
                      
                     <button
-                      class="primary iconOnly large svelte-xh4kfu"
+                      class="primary iconOnly large s-zdMNlEQUhDx4"
                       data-testid="enqueue"
                     >
                       <i
-                        class="material-icons svelte-xh4kfu"
-                      >
-                        playlist_add
-                      </i>
+                        class="icons i-mdi-playlist-plus s-zdMNlEQUhDx4"
+                      />
                        
                        
                        
                     </button>
+                    <!--&lt;Button&gt;-->
                   </p>
                 </div>
                  
                 <header
-                  class="svelte-1ipxhxy"
+                  class="s-y8aqkkbOYo4q"
                 >
                   <h3
-                    class="svelte-1ipxhxy"
+                    class="s-y8aqkkbOYo4q"
                   >
                     Ludwig Van Beethoven
                   </h3>
                    
                   <h4
-                    class="svelte-1ae1g9f"
+                    class="s-9pbhBDjb6W8T"
                     slot="details"
                   >
                     1 album
                   </h4>
                 </header>
               </span>
+              <!--&lt;GridItem&gt;-->
+              <!--&lt;Artist&gt;-->
                
-            </li>
-            <li
-              class="svelte-1i39aag"
+            </button>
+            <button
+              class="s-td7QJeJ6dPr_"
+              style="visibility: visible;"
             >
                
               <span
-                class="svelte-1ipxhxy"
-                role="article"
+                class=" s-y8aqkkbOYo4q"
+                role="tab"
+                tabindex="0"
               >
                 <div
-                  class="content svelte-1ipxhxy"
+                  class="content s-y8aqkkbOYo4q"
                 >
                   <span
-                    class="artwork svelte-1ipxhxy"
+                    class="artwork s-y8aqkkbOYo4q"
                   >
-                    <img
-                      alt="avatar.jpg"
-                      class="h-full w-full rounded-full svelte-1l44pje"
-                      height="256"
-                      src="avatar.jpg"
-                      width="256"
-                    />
-                     
-                    
+                    <button
+                      class="__flex_tliuhg_tliuhg __justify-center_tliuhg_tliuhg __items-center_tliuhg_tliuhg __bg-[--hover-bg-color]_tliuhg_tliuhg __overflow-hidden_tliuhg_tliuhg __h-full_ricfrc_ricfrc __w-full_ricfrc_ricfrc s-JU4hIbuSbdGN __rounded-full_tliuhg_tliuhg"
+                    >
+                      <img
+                        alt="avatar.jpg"
+                        class="__border-none_tliuhg_tliuhg __font-size-0_tliuhg_tliuhg __object-cover_tliuhg_tliuhg __w-full_tliuhg_tliuhg __h-full_tliuhg_tliuhg s-JU4hIbuSbdGN"
+                        loading="lazy"
+                        src="avatar.jpg"
+                      />
+                       
+                    </button>
+                    <!--&lt;Image&gt;-->
                   </span>
                    
                   <p
-                    class="controls svelte-1ipxhxy"
+                    class="controls s-y8aqkkbOYo4q"
                   >
                      
                     <button
-                      class="primary iconOnly large svelte-xh4kfu"
+                      class="primary iconOnly large s-zdMNlEQUhDx4"
                       data-testid="play"
                     >
                       <i
-                        class="material-icons svelte-xh4kfu"
-                      >
-                        play_arrow
-                      </i>
+                        class="icons i-mdi-play s-zdMNlEQUhDx4"
+                      />
                        
                        
                        
                     </button>
+                    <!--&lt;Button&gt;-->
                      
                     <button
-                      class="primary iconOnly large svelte-xh4kfu"
+                      class="primary iconOnly large s-zdMNlEQUhDx4"
                       data-testid="enqueue"
                     >
                       <i
-                        class="material-icons svelte-xh4kfu"
-                      >
-                        playlist_add
-                      </i>
+                        class="icons i-mdi-playlist-plus s-zdMNlEQUhDx4"
+                      />
                        
                        
                        
                     </button>
+                    <!--&lt;Button&gt;-->
                   </p>
                 </div>
                  
                 <header
-                  class="svelte-1ipxhxy"
+                  class="s-y8aqkkbOYo4q"
                 >
                   <h3
-                    class="svelte-1ipxhxy"
+                    class="s-y8aqkkbOYo4q"
                   >
                     Mademoiselle K
                   </h3>
                    
                   <h4
-                    class="svelte-1ae1g9f"
+                    class="s-9pbhBDjb6W8T"
                     slot="details"
                   >
                     2 albums
                   </h4>
                 </header>
               </span>
+              <!--&lt;GridItem&gt;-->
+              <!--&lt;Artist&gt;-->
                
-            </li>
-            <li
-              class="svelte-1i39aag"
+            </button>
+            <button
+              class="s-td7QJeJ6dPr_"
+              style="visibility: visible;"
             >
                
               <span
-                class="svelte-1ipxhxy"
-                role="article"
+                class=" s-y8aqkkbOYo4q"
+                role="tab"
+                tabindex="0"
               >
                 <div
-                  class="content svelte-1ipxhxy"
+                  class="content s-y8aqkkbOYo4q"
                 >
                   <span
-                    class="artwork svelte-1ipxhxy"
+                    class="artwork s-y8aqkkbOYo4q"
                   >
-                    <img
-                      class="h-full w-full rounded-full hidden svelte-1l44pje"
-                      height="256"
-                      src=""
-                      width="256"
-                    />
-                     
-                    <span
-                      class="h-full w-full svelte-1l44pje rounded-full"
+                    <button
+                      class="__flex_tliuhg_tliuhg __justify-center_tliuhg_tliuhg __items-center_tliuhg_tliuhg __bg-[--hover-bg-color]_tliuhg_tliuhg __overflow-hidden_tliuhg_tliuhg __h-full_ricfrc_ricfrc __w-full_ricfrc_ricfrc s-JU4hIbuSbdGN __rounded-full_tliuhg_tliuhg"
                     >
+                      <img
+                        class="__border-none_tliuhg_tliuhg __font-size-0_tliuhg_tliuhg __object-cover_tliuhg_tliuhg __w-full_tliuhg_tliuhg __h-full_tliuhg_tliuhg __hidden_tliuhg_tliuhg s-JU4hIbuSbdGN"
+                        loading="lazy"
+                        src=""
+                      />
+                       
                       <i
-                        class="material-icons svelte-1l44pje"
-                      >
-                        person
-                      </i>
-                    </span>
-                    
+                        class="__inline-block_tliuhg_tliuhg __font-size-[200%]_tliuhg_tliuhg icons i-mdi-account s-JU4hIbuSbdGN"
+                        data-testid="i-mdi-account"
+                      />
+                    </button>
+                    <!--&lt;Image&gt;-->
                   </span>
                    
                   <p
-                    class="controls svelte-1ipxhxy"
+                    class="controls s-y8aqkkbOYo4q"
                   >
                      
                     <button
-                      class="primary iconOnly large svelte-xh4kfu"
+                      class="primary iconOnly large s-zdMNlEQUhDx4"
                       data-testid="play"
                     >
                       <i
-                        class="material-icons svelte-xh4kfu"
-                      >
-                        play_arrow
-                      </i>
+                        class="icons i-mdi-play s-zdMNlEQUhDx4"
+                      />
                        
                        
                        
                     </button>
+                    <!--&lt;Button&gt;-->
                      
                     <button
-                      class="primary iconOnly large svelte-xh4kfu"
+                      class="primary iconOnly large s-zdMNlEQUhDx4"
                       data-testid="enqueue"
                     >
                       <i
-                        class="material-icons svelte-xh4kfu"
-                      >
-                        playlist_add
-                      </i>
+                        class="icons i-mdi-playlist-plus s-zdMNlEQUhDx4"
+                      />
                        
                        
                        
                     </button>
+                    <!--&lt;Button&gt;-->
                   </p>
                 </div>
                  
                 <header
-                  class="svelte-1ipxhxy"
+                  class="s-y8aqkkbOYo4q"
                 >
                   <h3
-                    class="svelte-1ipxhxy"
+                    class="s-y8aqkkbOYo4q"
                   >
                     Yoko Kanno and the Seatbelts
                   </h3>
                    
                   <h4
-                    class="svelte-1ae1g9f"
+                    class="s-9pbhBDjb6W8T"
                     slot="details"
                   >
                     9 albums
                   </h4>
                 </header>
               </span>
+              <!--&lt;GridItem&gt;-->
+              <!--&lt;Artist&gt;-->
                
-            </li>
-          </ul>
+            </button>
+          </group>
            
           <iframe
             aria-hidden="true"
@@ -1776,101 +1878,102 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
           />
         </span>
         
+        <!--&lt;ExpandableList&gt;-->
       </section>
        
       <section
-        class="svelte-3frkku"
+        class="s-06BtxFxwWAmV"
       >
         <span
-          class="undefined albums svelte-1i39aag"
+          class="undefined albums s-td7QJeJ6dPr_"
         >
           <h3
-            class="svelte-1i39aag"
+            class="s-td7QJeJ6dPr_"
           >
             3 albums
           </h3>
            
-          <ul
-            class="svelte-1i39aag"
+          <group
+            class="s-td7QJeJ6dPr_"
+            role="list"
+            style="flex-wrap: nowrap;"
           >
-            <li
-              class="svelte-1i39aag"
+            <button
+              class="s-td7QJeJ6dPr_"
+              style="visibility: visible;"
             >
                
               <span
-                class="svelte-1ipxhxy"
-                role="article"
+                class=" s-y8aqkkbOYo4q"
+                role="tab"
+                tabindex="0"
               >
                 <div
-                  class="content svelte-1ipxhxy"
+                  class="content s-y8aqkkbOYo4q"
                 >
                   <span
-                    class="artwork svelte-1ipxhxy"
+                    class="artwork s-y8aqkkbOYo4q"
                   >
-                    <img
-                      class="h-full w-full rounded-sm hidden svelte-1l44pje"
-                      height="256"
-                      src=""
-                      width="256"
-                    />
-                     
-                    <span
-                      class="h-full w-full svelte-1l44pje rounded-sm"
+                    <button
+                      class="__flex_tliuhg_tliuhg __justify-center_tliuhg_tliuhg __items-center_tliuhg_tliuhg __bg-[--hover-bg-color]_tliuhg_tliuhg __overflow-hidden_tliuhg_tliuhg __h-full_qb5vnk_qb5vnk __w-full_qb5vnk_qb5vnk s-JU4hIbuSbdGN __rounded-sm_tliuhg_tliuhg"
                     >
+                      <img
+                        class="__border-none_tliuhg_tliuhg __font-size-0_tliuhg_tliuhg __object-cover_tliuhg_tliuhg __w-full_tliuhg_tliuhg __h-full_tliuhg_tliuhg __hidden_tliuhg_tliuhg s-JU4hIbuSbdGN"
+                        loading="lazy"
+                        src=""
+                      />
+                       
                       <i
-                        class="material-icons svelte-1l44pje"
-                      >
-                        music_note
-                      </i>
-                    </span>
-                    
+                        class="__inline-block_tliuhg_tliuhg __font-size-[200%]_tliuhg_tliuhg icons i-mdi-music-note s-JU4hIbuSbdGN"
+                        data-testid="i-mdi-music-note"
+                      />
+                    </button>
+                    <!--&lt;Image&gt;-->
                   </span>
                    
                   <p
-                    class="controls svelte-1ipxhxy"
+                    class="controls s-y8aqkkbOYo4q"
                   >
                      
                     <button
-                      class="primary iconOnly large svelte-xh4kfu"
+                      class="primary iconOnly large s-zdMNlEQUhDx4"
                       data-testid="play"
                     >
                       <i
-                        class="material-icons svelte-xh4kfu"
-                      >
-                        play_arrow
-                      </i>
+                        class="icons i-mdi-play s-zdMNlEQUhDx4"
+                      />
                        
                        
                        
                     </button>
+                    <!--&lt;Button&gt;-->
                      
                     <button
-                      class="primary iconOnly large svelte-xh4kfu"
+                      class="primary iconOnly large s-zdMNlEQUhDx4"
                       data-testid="enqueue"
                     >
                       <i
-                        class="material-icons svelte-xh4kfu"
-                      >
-                        playlist_add
-                      </i>
+                        class="icons i-mdi-playlist-plus s-zdMNlEQUhDx4"
+                      />
                        
                        
                        
                     </button>
+                    <!--&lt;Button&gt;-->
                   </p>
                 </div>
                  
                 <header
-                  class="svelte-1ipxhxy"
+                  class="s-y8aqkkbOYo4q"
                 >
                   <h3
-                    class="svelte-1ipxhxy"
+                    class="s-y8aqkkbOYo4q"
                   >
                     100 Best Karajan
                   </h3>
                    
                   <h4
-                    class="svelte-1ae1g9f"
+                    class="s-irUkF_IR-GRw"
                     slot="details"
                   >
                     by 
@@ -1926,78 +2029,83 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                   </h4>
                 </header>
               </span>
+              <!--&lt;GridItem&gt;-->
+              <!--&lt;Album&gt;-->
                
-            </li>
-            <li
-              class="svelte-1i39aag"
+            </button>
+            <button
+              class="s-td7QJeJ6dPr_"
+              style="visibility: visible;"
             >
                
               <span
-                class="svelte-1ipxhxy"
-                role="article"
+                class=" s-y8aqkkbOYo4q"
+                role="tab"
+                tabindex="0"
               >
                 <div
-                  class="content svelte-1ipxhxy"
+                  class="content s-y8aqkkbOYo4q"
                 >
                   <span
-                    class="artwork svelte-1ipxhxy"
+                    class="artwork s-y8aqkkbOYo4q"
                   >
-                    <img
-                      alt="cover.jpg"
-                      class="h-full w-full rounded-sm svelte-1l44pje"
-                      height="256"
-                      src="cover.jpg"
-                      width="256"
-                    />
-                     
-                    
+                    <button
+                      class="__flex_tliuhg_tliuhg __justify-center_tliuhg_tliuhg __items-center_tliuhg_tliuhg __bg-[--hover-bg-color]_tliuhg_tliuhg __overflow-hidden_tliuhg_tliuhg __h-full_qb5vnk_qb5vnk __w-full_qb5vnk_qb5vnk s-JU4hIbuSbdGN __rounded-sm_tliuhg_tliuhg"
+                    >
+                      <img
+                        alt="cover.jpg"
+                        class="__border-none_tliuhg_tliuhg __font-size-0_tliuhg_tliuhg __object-cover_tliuhg_tliuhg __w-full_tliuhg_tliuhg __h-full_tliuhg_tliuhg s-JU4hIbuSbdGN"
+                        loading="lazy"
+                        src="cover.jpg"
+                      />
+                       
+                    </button>
+                    <!--&lt;Image&gt;-->
                   </span>
                    
                   <p
-                    class="controls svelte-1ipxhxy"
+                    class="controls s-y8aqkkbOYo4q"
                   >
                      
                     <button
-                      class="primary iconOnly large svelte-xh4kfu"
+                      class="primary iconOnly large s-zdMNlEQUhDx4"
                       data-testid="play"
                     >
                       <i
-                        class="material-icons svelte-xh4kfu"
-                      >
-                        play_arrow
-                      </i>
+                        class="icons i-mdi-play s-zdMNlEQUhDx4"
+                      />
                        
                        
                        
                     </button>
+                    <!--&lt;Button&gt;-->
                      
                     <button
-                      class="primary iconOnly large svelte-xh4kfu"
+                      class="primary iconOnly large s-zdMNlEQUhDx4"
                       data-testid="enqueue"
                     >
                       <i
-                        class="material-icons svelte-xh4kfu"
-                      >
-                        playlist_add
-                      </i>
+                        class="icons i-mdi-playlist-plus s-zdMNlEQUhDx4"
+                      />
                        
                        
                        
                     </button>
+                    <!--&lt;Button&gt;-->
                   </p>
                 </div>
                  
                 <header
-                  class="svelte-1ipxhxy"
+                  class="s-y8aqkkbOYo4q"
                 >
                   <h3
-                    class="svelte-1ipxhxy"
+                    class="s-y8aqkkbOYo4q"
                   >
                     Black Orpheus
                   </h3>
                    
                   <h4
-                    class="svelte-1ae1g9f"
+                    class="s-irUkF_IR-GRw"
                     slot="details"
                   >
                     by 
@@ -2013,86 +2121,86 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                   </h4>
                 </header>
               </span>
+              <!--&lt;GridItem&gt;-->
+              <!--&lt;Album&gt;-->
                
-            </li>
-            <li
-              class="svelte-1i39aag"
+            </button>
+            <button
+              class="s-td7QJeJ6dPr_"
+              style="visibility: visible;"
             >
                
               <span
-                class="svelte-1ipxhxy"
-                role="article"
+                class=" s-y8aqkkbOYo4q"
+                role="tab"
+                tabindex="0"
               >
                 <div
-                  class="content svelte-1ipxhxy"
+                  class="content s-y8aqkkbOYo4q"
                 >
                   <span
-                    class="artwork svelte-1ipxhxy"
+                    class="artwork s-y8aqkkbOYo4q"
                   >
-                    <img
-                      class="h-full w-full rounded-sm hidden svelte-1l44pje"
-                      height="256"
-                      src=""
-                      width="256"
-                    />
-                     
-                    <span
-                      class="h-full w-full svelte-1l44pje rounded-sm"
+                    <button
+                      class="__flex_tliuhg_tliuhg __justify-center_tliuhg_tliuhg __items-center_tliuhg_tliuhg __bg-[--hover-bg-color]_tliuhg_tliuhg __overflow-hidden_tliuhg_tliuhg __h-full_qb5vnk_qb5vnk __w-full_qb5vnk_qb5vnk s-JU4hIbuSbdGN __rounded-sm_tliuhg_tliuhg"
                     >
+                      <img
+                        class="__border-none_tliuhg_tliuhg __font-size-0_tliuhg_tliuhg __object-cover_tliuhg_tliuhg __w-full_tliuhg_tliuhg __h-full_tliuhg_tliuhg __hidden_tliuhg_tliuhg s-JU4hIbuSbdGN"
+                        loading="lazy"
+                        src=""
+                      />
+                       
                       <i
-                        class="material-icons svelte-1l44pje"
-                      >
-                        music_note
-                      </i>
-                    </span>
-                    
+                        class="__inline-block_tliuhg_tliuhg __font-size-[200%]_tliuhg_tliuhg icons i-mdi-music-note s-JU4hIbuSbdGN"
+                        data-testid="i-mdi-music-note"
+                      />
+                    </button>
+                    <!--&lt;Image&gt;-->
                   </span>
                    
                   <p
-                    class="controls svelte-1ipxhxy"
+                    class="controls s-y8aqkkbOYo4q"
                   >
                      
                     <button
-                      class="primary iconOnly large svelte-xh4kfu"
+                      class="primary iconOnly large s-zdMNlEQUhDx4"
                       data-testid="play"
                     >
                       <i
-                        class="material-icons svelte-xh4kfu"
-                      >
-                        play_arrow
-                      </i>
+                        class="icons i-mdi-play s-zdMNlEQUhDx4"
+                      />
                        
                        
                        
                     </button>
+                    <!--&lt;Button&gt;-->
                      
                     <button
-                      class="primary iconOnly large svelte-xh4kfu"
+                      class="primary iconOnly large s-zdMNlEQUhDx4"
                       data-testid="enqueue"
                     >
                       <i
-                        class="material-icons svelte-xh4kfu"
-                      >
-                        playlist_add
-                      </i>
+                        class="icons i-mdi-playlist-plus s-zdMNlEQUhDx4"
+                      />
                        
                        
                        
                     </button>
+                    <!--&lt;Button&gt;-->
                   </p>
                 </div>
                  
                 <header
-                  class="svelte-1ipxhxy"
+                  class="s-y8aqkkbOYo4q"
                 >
                   <h3
-                    class="svelte-1ipxhxy"
+                    class="s-y8aqkkbOYo4q"
                   >
                     Distant Worlds - Music from Final Fantasy
                   </h3>
                    
                   <h4
-                    class="svelte-1ae1g9f"
+                    class="s-irUkF_IR-GRw"
                     slot="details"
                   >
                     by 
@@ -2108,9 +2216,11 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
                   </h4>
                 </header>
               </span>
+              <!--&lt;GridItem&gt;-->
+              <!--&lt;Album&gt;-->
                
-            </li>
-          </ul>
+            </button>
+          </group>
            
           <iframe
             aria-hidden="true"
@@ -2120,8 +2230,11 @@ exports[`Toolshot routes/search/[searched].tools.svelte: Views/Search Results 1`
           />
         </span>
         
+        <!--&lt;ExpandableList&gt;-->
       </section>
     </div>
+    <!--&lt;[searched]&gt;-->
   </div>
+  <!--&lt;HRefSink&gt;-->
 </div>
 `;

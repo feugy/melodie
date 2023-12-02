@@ -1,35 +1,30 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Toolshot components/DownloadButton/DownloadButton.tools.svelte: Site components/Download button 1`] = `
-<span>
-  <span
-    aria-expanded="false"
-    aria-haspopup="menu"
-    class="wrapper svelte-1v2cnbz"
+exports[`Site components/Download button 1`] = `
+<span
+  aria-expanded="false"
+  aria-haspopup="menu"
+  class="wrapper s-dgBKMCN75_Se"
+>
+  <button
+    class="__text-white_ix9oqw_ix9oqw primary large s-vvHE-pm6jDa5"
   >
-    <button
-      class="text-white primary large svelte-xh4kfu"
+    <i
+      class="icons i-mdi-cloud-arrow-down s-vvHE-pm6jDa5"
+    />
+     
+    <span
+      class="s-vvHE-pm6jDa5"
     >
-      <i
-        class="material-icons svelte-xh4kfu"
-      >
-        get_app
-      </i>
-       
-      <span>
-        Install v2.0.0
-      </span>
-       
-      <i
-        class="material-icons arrow svelte-1v2cnbz"
-      >
-        arrow_drop_down
-      </i>
-      
-       
-    </button>
-  </span>
-   
-  
+      Install v2.0.0
+    </span>
+     
+    <i
+      class="icons arrow i-mdi-menu-down s-dgBKMCN75_Se"
+    />
+    
+     
+  </button>
+  <!--&lt;Button&gt;-->
 </span>
 `;

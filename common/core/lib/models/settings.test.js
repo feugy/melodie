@@ -1,16 +1,16 @@
-'use strict'
+import fs from 'fs-extra'
+import knex from 'knex'
+import os from 'os'
+import { join } from 'path'
+import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest'
 
-const knex = require('knex')
-const fs = require('fs-extra')
-const os = require('os')
-const { join } = require('path')
-const { broadcast } = require('../utils')
-const { settingsModel } = require('./settings')
+import { broadcast } from '../utils'
+import { settingsModel } from './settings'
 
 let dbFile
 let db
 
-jest.mock('../utils/connection')
+vi.mock('../utils/connection')
 
 describe('Settings model', () => {
   beforeAll(async () => {

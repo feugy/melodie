@@ -1,14 +1,13 @@
-'use strict'
-
-const fs = require('fs-extra')
-const { resolve, dirname } = require('path')
-const nock = require('nock')
-const stackTrace = require('stack-trace')
+import fs from 'fs-extra'
+import nock from 'nock'
+import { dirname, resolve } from 'path'
+import * as stackTrace from 'stack-trace'
+import { afterAll, beforeAll, describe, it } from 'vitest'
 
 const isMocked = !('REAL_NETWORK' in process.env)
 const updateMocks = 'UPDATE_NOCKS' in process.env
 
-exports.withNockIt = (name, test) => {
+export const withNockIt = (name, test) => {
   const mockFile = resolve(
     dirname(stackTrace.get()[1].getFileName()),
     '__nocks__',
@@ -37,6 +36,7 @@ exports.withNockIt = (name, test) => {
       }
     })
 
+    // eslint-disable-next-line vitest/valid-title, vitest/expect-expect
     it(name, async () => {
       await test()
       // only update on success

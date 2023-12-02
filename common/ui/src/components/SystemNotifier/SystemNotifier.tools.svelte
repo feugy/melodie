@@ -1,22 +1,13 @@
 <script>
   import { Tool } from '@atelier-wb/svelte'
-  import SystemNotifier from './SystemNotifier.svelte'
+
+  import * as queue from '../../stores/track-queue'
   import Player from '../Player/Player.svelte'
   import { trackListData } from '../Player/Player.testdata'
-  import * as queue from '../../stores/track-queue'
+  import SystemNotifier from './SystemNotifier.svelte'
 
   Notification.requestPermission()
 </script>
-
-<style lang="postcss">
-  .disclaimer {
-    @apply text-left m-8;
-  }
-
-  .disclaimer ul > li {
-    @apply list-disc ml-4;
-  }
-</style>
 
 <Tool
   name="Components/System Notifier"
@@ -46,3 +37,13 @@
   <SystemNotifier />
   <Player />
 </Tool>
+
+<style lang="postcss">
+  .disclaimer {
+    --at-apply: text-left m-8;
+  }
+
+  .disclaimer ul > li {
+    --at-apply: list-disc ml-4;
+  }
+</style>

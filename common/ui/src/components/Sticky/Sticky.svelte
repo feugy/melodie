@@ -23,22 +23,6 @@
   })
 </script>
 
-<style lang="postcss">
-  .sentinel {
-    @apply block w-full h-0 relative top-0;
-  }
-
-  .floating {
-    background: var(--nav-bg-color);
-  }
-
-  nav {
-    @apply sticky w-full top-0;
-    transition: background ease-in-out 200ms;
-    z-index: 1;
-  }
-</style>
-
 <span bind:this={sentinel} class="sentinel" />
 <nav
   class={$$restProps.class}
@@ -48,3 +32,19 @@
 >
   <slot {floating} />
 </nav>
+
+<style>
+  .sentinel {
+    --at-apply: block w-full h-0 relative top-0;
+  }
+
+  .floating {
+    background: var(--nav-bg-color);
+  }
+
+  nav {
+    --at-apply: sticky w-full top-0;
+    transition: background ease-in-out 200ms;
+    z-index: 1;
+  }
+</style>

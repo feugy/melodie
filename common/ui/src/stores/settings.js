@@ -1,13 +1,12 @@
-'use strict'
-
 import { BehaviorSubject, filter, map } from 'rxjs'
 import { get } from 'svelte/store'
 import { push } from 'svelte-spa-router'
+
 import {
-  invoke,
+  closeConnection,
   fromServerEvent,
   initConnection,
-  closeConnection
+  invoke
 } from '../utils'
 import { init as initTotp, setTotp, totp } from './totp'
 
@@ -50,14 +49,14 @@ export const connected = connected$.asObservable()
 
 export const tokenUpdated = token$.pipe(map(() => {}))
 
-// export the whole subject to allow testing, since it's not easy to change JSDom userAgent within Jest
+// export the whole subject to allow testing, since it's not easy to change JSDom userAgent within vi
 export const isDesktop = new BehaviorSubject(
   /electron/i.test(navigator.userAgent)
 )
 
 async function connect(address, reconnectDelay) {
   cleanPending()
-  port = address.split(':')[2]
+  port = address.split(':').pop()
   console.trace(
     `connecting to ${address} with initial token ${initialToken}...`
   )

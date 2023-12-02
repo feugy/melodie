@@ -1,7 +1,6 @@
-'use strict'
+import got from 'got'
 
-const got = require('got')
-const AbstractProvider = require('../abstract-provider')
+import AbstractProvider from '../abstract-provider.js'
 const descByLocales = {
   en: 'strBiographyEN',
   fr: 'strBiographyFR'
@@ -129,4 +128,5 @@ class AudioDB extends AbstractProvider {
   }
 }
 
-module.exports = new AudioDB()
+const audioDB = new AudioDB()
+export default audioDB

@@ -1,15 +1,15 @@
-'use strict'
-
+import { faker } from '@faker-js/faker'
 import { get } from 'svelte/store'
-import faker from 'faker'
+import { beforeAll, beforeEach, describe, expect, it, vi } from 'vitest'
+
+import { sleep } from '../tests'
 import {
-  invoke,
-  initConnection,
   closeConnection,
+  initConnection,
+  invoke,
   serverEmitter
 } from '../utils'
-import { sleep } from '../tests'
-import { totp, setTotp } from './totp'
+import { setTotp, totp } from './totp'
 
 describe('settings store', () => {
   let settings
@@ -25,14 +25,15 @@ describe('settings store', () => {
   let init
   let isDesktop
   const locale = 'en'
-  const key = faker.random.alphaNumeric(10)
-  const token = faker.datatype.uuid()
+  const key = faker.string.alphanumeric(10)
+  const token = faker.string.uuid()
   const providers = { audiodb: { key }, discogs: { token } }
   const enqueueBehaviour = { onClick: true, clearBefore: false }
   const folders = [faker.system.fileName(), faker.system.fileName()]
-  const port = faker.datatype.number({ min: 2000, max: 10000 })
-  const fetch = jest.spyOn(global, 'fetch')
-  jest.spyOn(console, 'error').mockImplementation(() => {})
+  const port = faker.number.int({ min: 2000, max: 10000 })
+  const fetch = vi.spyOn(global, 'fetch')
+  vi.spyOn(console, 'trace').mockImplementation(() => {})
+  vi.spyOn(console, 'error').mockImplementation(() => {})
 
   beforeAll(async () => {
     ;({
@@ -53,7 +54,7 @@ describe('settings store', () => {
 
   beforeEach(() => {
     location.hash = `#/`
-    jest.resetAllMocks()
+    vi.resetAllMocks()
     // for testing, force desktop
     isDesktop.next(true)
   })
@@ -66,7 +67,7 @@ describe('settings store', () => {
       enqueueBehaviour,
       providers
     }
-    const totpValue = faker.datatype.number().toString()
+    const totpValue = faker.number.int().toString()
 
     it('handles connection failure', async () => {
       const err = new Error('Connection error')
@@ -80,7 +81,7 @@ describe('settings store', () => {
 
       await sleep()
 
-      expect(get(connected)).toEqual(false)
+      expect(get(connected)).toBe(false)
       expect(get(settings)).toEqual({
         enqueueBehaviour: {},
         isBroadcasting: false,
@@ -92,7 +93,7 @@ describe('settings store', () => {
         expect.any(Function),
         expect.any(Function)
       )
-      expect(initConnection).toHaveBeenCalledTimes(1)
+      expect(initConnection).toHaveBeenCalledOnce()
       expect(invoke).not.toHaveBeenCalled()
     })
 
@@ -100,7 +101,7 @@ describe('settings store', () => {
       initConnection.mockResolvedValueOnce(values)
       await init(url, null, totpValue)
 
-      expect(get(connected)).toEqual(true)
+      expect(get(connected)).toBe(true)
       expect(get(settings)).toEqual(values)
       expect(initConnection).toHaveBeenCalledWith(
         url,
@@ -108,7 +109,7 @@ describe('settings store', () => {
         expect.any(Function),
         expect.any(Function)
       )
-      expect(initConnection).toHaveBeenCalledTimes(1)
+      expect(initConnection).toHaveBeenCalledOnce()
       expect(invoke).not.toHaveBeenCalled()
       expect(get(totp)).toEqual(totpValue)
     })
@@ -126,19 +127,19 @@ describe('settings store', () => {
 
       await init(url, undefined, undefined, 100)
 
-      expect(get(connected)).toEqual(true)
-      expect(initConnection).toHaveBeenCalledTimes(1)
+      expect(get(connected)).toBe(true)
+      expect(initConnection).toHaveBeenCalledOnce()
       await initConnection.mock.calls[0][2]()
 
-      expect(get(connected)).toEqual(false)
+      expect(get(connected)).toBe(false)
       await sleep(100)
       expect(initConnection).toHaveBeenCalledTimes(2)
-      expect(get(connected)).toEqual(false)
+      expect(get(connected)).toBe(false)
 
       await sleep(300)
       expect(initConnection).toHaveBeenCalledTimes(4)
 
-      expect(get(connected)).toEqual(true)
+      expect(get(connected)).toBe(true)
       expect(get(settings)).toEqual(values)
     })
   })
@@ -162,7 +163,7 @@ describe('settings store', () => {
       await sleep(10)
 
       expect(invoke).toHaveBeenCalledWith('settings.addFolders')
-      expect(location.hash).toEqual('#/album')
+      expect(location.hash).toBe('#/album')
     })
 
     it('does not redirect to albums on cancelled folder addition', async () => {
@@ -171,12 +172,16 @@ describe('settings store', () => {
       await sleep(10)
 
       expect(invoke).toHaveBeenCalledWith('settings.addFolders')
-      expect(location.hash).toEqual('#/')
+      expect(location.hash).toBe('#/')
     })
 
     it('can not add folders on browser', async () => {
       isDesktop.next(false)
-      await expect(askToAddFolder()).rejects.toThrow(/not supported/)
+      await expect(askToAddFolder()).rejects.toEqual(
+        expect.objectContaining({
+          message: 'Operation not supported on browser'
+        })
+      )
       expect(invoke).not.toHaveBeenCalled()
     })
 
@@ -196,28 +201,28 @@ describe('settings store', () => {
     })
 
     it('can remove folders', async () => {
-      const removed = faker.random.arrayElement(folders)
+      const removed = faker.helpers.arrayElement(folders)
       await removeFolder(removed)
 
       expect(invoke).toHaveBeenCalledWith('settings.removeFolder', removed)
     })
 
     it('can save locale', async () => {
-      const locale = faker.random.arrayElement(['en', 'fr'])
+      const locale = faker.helpers.arrayElement(['en', 'fr'])
       await saveLocale(locale)
 
       expect(invoke).toHaveBeenCalledWith('settings.setLocale', locale)
     })
 
     it('can save AudioDB key', async () => {
-      const key = faker.random.alphaNumeric(10)
+      const key = faker.string.alphanumeric(10)
       await saveAudioDBKey(key)
 
       expect(invoke).toHaveBeenCalledWith('settings.setAudioDBKey', key)
     })
 
     it('can save Discogs token', async () => {
-      const token = faker.datatype.uuid()
+      const token = faker.string.uuid()
       await saveDiscogsToken(token)
 
       expect(invoke).toHaveBeenCalledWith('settings.setDiscogsToken', token)
@@ -235,7 +240,7 @@ describe('settings store', () => {
     })
 
     it('can set broadcast port', async () => {
-      const port = faker.datatype.number()
+      const port = faker.number.int()
       await saveBroadcastPort(port)
 
       expect(invoke).toHaveBeenCalledWith('settings.setBroadcastPort', port)
@@ -253,11 +258,11 @@ describe('settings store', () => {
       toggleBroadcast()
       await sleep(550)
 
-      expect(get(connected)).toEqual(true)
+      expect(get(connected)).toBe(true)
       expect(get(settings)).toEqual(values)
 
       expect(invoke).toHaveBeenCalledWith('settings.toggleBroadcast')
-      expect(closeConnection).toHaveBeenCalledTimes(1)
+      expect(closeConnection).toHaveBeenCalledOnce()
       expect(initConnection).toHaveBeenCalledWith(
         `ws://localhost:${port}`,
         null,
@@ -267,8 +272,12 @@ describe('settings store', () => {
       expect(initConnection).toHaveBeenCalledTimes(2)
 
       isDesktop.next(false)
-      await expect(toggleBroadcast()).rejects.toThrow(/not supported/)
-      expect(invoke).toHaveBeenCalledTimes(1)
+      await expect(toggleBroadcast()).rejects.toEqual(
+        expect.objectContaining({
+          message: 'Operation not supported on browser'
+        })
+      )
+      expect(invoke).toHaveBeenCalledOnce()
     })
 
     it('retries connecting to new address when toggling broadcast', async () => {
@@ -292,11 +301,11 @@ describe('settings store', () => {
       await sleep(550)
 
       // will first fail, then retries
-      expect(get(connected)).toEqual(false)
+      expect(get(connected)).toBe(false)
 
       expect(invoke).toHaveBeenCalledWith('settings.toggleBroadcast')
-      expect(invoke).toHaveBeenCalledTimes(1)
-      expect(closeConnection).toHaveBeenCalledTimes(1)
+      expect(invoke).toHaveBeenCalledOnce()
+      expect(closeConnection).toHaveBeenCalledOnce()
       expect(initConnection).toHaveBeenNthCalledWith(
         2,
         `ws://localhost:${port}`,
@@ -307,13 +316,13 @@ describe('settings store', () => {
       expect(initConnection).toHaveBeenCalledTimes(2)
 
       await sleep(300)
-      expect(get(connected)).toEqual(true)
+      expect(get(connected)).toBe(true)
       expect(initConnection).toHaveBeenCalledTimes(4)
     })
   })
 
   describe('given not being on desktop', () => {
-    const totpValue = faker.datatype.number().toString()
+    const totpValue = faker.number.int().toString()
     const serverAddress = `${faker.internet.protocol()}://${faker.internet.ip()}:${port}`
 
     beforeEach(async () => {
@@ -337,7 +346,7 @@ describe('settings store', () => {
     })
 
     it('connects with valid TOTP', async () => {
-      const newToken = faker.datatype.uuid()
+      const newToken = faker.string.uuid()
       fetch.mockResolvedValueOnce({ ok: true, text: async () => newToken })
       initConnection.mockResolvedValueOnce({
         locale,
@@ -346,14 +355,14 @@ describe('settings store', () => {
         providers
       })
 
-      const totpValue = faker.datatype.number().toString()
+      const totpValue = faker.number.int().toString()
       setTotp(totpValue)
       await sleep()
       expect(fetch).toHaveBeenCalledWith('/token', {
         method: 'POST',
         body: totpValue
       })
-      expect(get(connected)).toEqual(true)
+      expect(get(connected)).toBe(true)
       expect(get(totp)).toBeNull()
       expect(initConnection).toHaveBeenCalledWith(
         serverAddress,
@@ -361,7 +370,7 @@ describe('settings store', () => {
         expect.any(Function),
         expect.any(Function)
       )
-      expect(initConnection).toHaveBeenCalledTimes(1)
+      expect(initConnection).toHaveBeenCalledOnce()
     })
   })
 })

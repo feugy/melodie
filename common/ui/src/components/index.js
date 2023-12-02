@@ -1,5 +1,3 @@
-'use strict'
-
 export { default as AddToPlaylist } from './AddToPlaylist/AddToPlaylist.svelte'
 export { default as Album } from './Album/Album.svelte'
 export { default as Annotation } from './Annotation/Annotation.svelte'

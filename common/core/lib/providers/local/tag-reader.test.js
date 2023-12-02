@@ -1,10 +1,10 @@
-'use strict'
+import { faker } from '@faker-js/faker'
+import { copy, mkdtemp, remove } from 'fs-extra'
+import os from 'os'
+import { resolve } from 'path'
+import { afterEach, beforeAll, describe, expect, it } from 'vitest'
 
-const { resolve } = require('path')
-const os = require('os')
-const { copy, mkdtemp, remove } = require('fs-extra')
-const faker = require('faker')
-const { read } = require('./tag-reader')
+import { read } from './tag-reader'
 
 const fixtures = resolve(__dirname, '..', '..', '..', '..', 'fixtures')
 const mp3 = resolve(fixtures, 'file.mp3')
@@ -245,13 +245,13 @@ describe('Tag reader', () => {
     })
 
     it('reads track number, artist and title from file name', async () => {
-      const title = faker.random.arrayElement([
+      const title = faker.helpers.arrayElement([
         'One More Time',
         'Harder, Better, Faster, Stronger',
         'Face To Face'
       ])
-      const artist = faker.random.arrayElement(['Daft Punk', 'Phoenix'])
-      const trackNo = faker.random.arrayElement([1, 5, 12])
+      const artist = faker.helpers.arrayElement(['Daft Punk', 'Phoenix'])
+      const trackNo = faker.helpers.arrayElement([1, 5, 12])
       file = resolve(folder, `${trackNo}. ${artist} - ${title}.mp3`)
       await copy(untagged, file)
 
@@ -272,12 +272,12 @@ describe('Tag reader', () => {
     })
 
     it('reads track number and title from file name', async () => {
-      const title = faker.random.arrayElement([
+      const title = faker.helpers.arrayElement([
         'One More Time',
         'Harder, Better, Faster, Stronger',
         'Face To Face'
       ])
-      const trackNo = faker.random.arrayElement([1, 5, 12])
+      const trackNo = faker.helpers.arrayElement([1, 5, 12])
       file = resolve(folder, `${trackNo} - ${title}.flac`)
       await copy(untagged, file)
 
@@ -296,12 +296,12 @@ describe('Tag reader', () => {
     })
 
     it('reads artist and title from file name', async () => {
-      const title = faker.random.arrayElement([
+      const title = faker.helpers.arrayElement([
         'One More Time',
         'Harder, Better, Faster, Stronger',
         'Face To Face'
       ])
-      const artist = faker.random.arrayElement(['Daft Punk', 'Phoenix'])
+      const artist = faker.helpers.arrayElement(['Daft Punk', 'Phoenix'])
       file = resolve(folder, `${artist}-${title}.ogg`)
       await copy(untagged, file)
 
@@ -322,7 +322,7 @@ describe('Tag reader', () => {
     })
 
     it('reads title from file name', async () => {
-      const title = faker.random.arrayElement([
+      const title = faker.helpers.arrayElement([
         'One More Time',
         'Harder, Better, Faster, Stronger',
         'Face To Face'
@@ -347,18 +347,18 @@ describe('Tag reader', () => {
     })
 
     it('reads album from parent folder', async () => {
-      const album = faker.random.arrayElement([
+      const album = faker.helpers.arrayElement([
         'Discovery',
         'Home Work',
         'Random Access Memories'
       ])
-      const title = faker.random.arrayElement([
+      const title = faker.helpers.arrayElement([
         'One More Time',
         'Harder, Better, Faster, Stronger',
         'Face To Face'
       ])
-      const artist = faker.random.arrayElement(['Daft Punk', 'Phoenix'])
-      const trackNo = faker.random.arrayElement([1, 5, 12])
+      const artist = faker.helpers.arrayElement(['Daft Punk', 'Phoenix'])
+      const trackNo = faker.helpers.arrayElement([1, 5, 12])
       file = resolve(folder, album, `${trackNo}. ${artist} - ${title}.mp3`)
       await copy(untagged, file)
       expect(await read(file)).toEqual({
@@ -378,19 +378,19 @@ describe('Tag reader', () => {
     })
 
     it('reads year and album from parent folder', async () => {
-      const album = faker.random.arrayElement([
+      const album = faker.helpers.arrayElement([
         'Discovery',
         'Home Work',
         'Random Access Memories'
       ])
-      const title = faker.random.arrayElement([
+      const title = faker.helpers.arrayElement([
         'One More Time',
         'Harder, Better, Faster, Stronger',
         'Face To Face'
       ])
-      const artist = faker.random.arrayElement(['Daft Punk', 'Phoenix'])
-      const trackNo = faker.random.arrayElement([1, 5, 12])
-      const year = faker.random.arrayElement([1999, 2009, 2005])
+      const artist = faker.helpers.arrayElement(['Daft Punk', 'Phoenix'])
+      const trackNo = faker.helpers.arrayElement([1, 5, 12])
+      const year = faker.helpers.arrayElement([1999, 2009, 2005])
       file = resolve(
         folder,
         `(${year}) ${album}`,

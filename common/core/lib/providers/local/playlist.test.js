@@ -1,7 +1,5 @@
-'use strict'
-
-const { join, relative, resolve, sep } = require('path')
-const { tmpdir } = require('os')
+import { tmpdir } from 'os'
+import { join, relative, resolve, sep } from 'path'
 const {
   access,
   constants,
@@ -10,9 +8,11 @@ const {
   readFile,
   writeFile
 } = require('fs-extra')
-const faker = require('faker')
-const { hash } = require('../../utils')
-const { isPlaylistFile, read, write } = require('./playlist')
+import { faker } from '@faker-js/faker'
+import { beforeAll, describe, expect, it } from 'vitest'
+
+import { hash } from '../../utils'
+import { isPlaylistFile, read, write } from './playlist'
 
 const fixtures = resolve(__dirname, '..', '..', '..', '..', 'fixtures')
 const album =
@@ -220,13 +220,7 @@ https://example.com/track.ogg
       const path1 = resolve(album, "01 - Norah Jones - Don't Know Why.ogg")
       const path2 = resolve(fixtures, 'file.flac')
       const path3 = resolve(folder, 'file.ogg')
-      const path4 = resolve(
-        folder,
-        '..',
-        '..',
-        faker.random.words(),
-        'file.mp3'
-      )
+      const path4 = resolve(folder, '..', '..', faker.lorem.words(), 'file.mp3')
       const path5 = resolve(folder, '# movies', 'file.ogg')
 
       tracks.splice(
@@ -237,7 +231,7 @@ https://example.com/track.ogg
           path: path1,
           tags: {
             title: faker.lorem.words(),
-            duration: faker.datatype.number({ max: 500 })
+            duration: faker.number.int({ max: 500 })
           }
         },
         {
@@ -245,7 +239,7 @@ https://example.com/track.ogg
           path: path2,
           tags: {
             title: faker.lorem.words(),
-            duration: faker.datatype.number({ max: 500 })
+            duration: faker.number.int({ max: 500 })
           }
         },
         {
@@ -253,7 +247,7 @@ https://example.com/track.ogg
           path: path3,
           tags: {
             title: faker.lorem.words(),
-            duration: faker.datatype.number({ max: 500 })
+            duration: faker.number.int({ max: 500 })
           }
         },
         {
@@ -261,7 +255,7 @@ https://example.com/track.ogg
           path: path4,
           tags: {
             title: faker.lorem.words(),
-            duration: faker.datatype.number({ max: 500 })
+            duration: faker.number.int({ max: 500 })
           }
         },
         {
@@ -269,7 +263,7 @@ https://example.com/track.ogg
           path: path5,
           tags: {
             title: faker.lorem.words(),
-            duration: faker.datatype.number({ max: 500 })
+            duration: faker.number.int({ max: 500 })
           }
         }
       )

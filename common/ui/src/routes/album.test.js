@@ -1,18 +1,18 @@
-'use strict'
-
-import { screen, render } from '@testing-library/svelte'
-import html from 'svelte-htm'
+import { faker } from '@faker-js/faker'
+import { render, screen } from '@testing-library/svelte'
 import { BehaviorSubject } from 'rxjs'
-import faker from 'faker'
-import albumRoute from './album.svelte'
-import { albums as mockedAlbums, list } from '../stores/albums'
-import { translate, makeRef } from '../tests'
+import html from 'svelte-htm'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 
-jest.mock('svelte-spa-router')
-jest.mock('../stores/albums')
+import { albums as mockedAlbums, list } from '../stores/albums'
+import { makeRef, translate } from '../tests'
+import albumRoute from './album.svelte'
+
+vi.mock('svelte-spa-router')
+vi.mock('../stores/albums')
 
 describe('album route', () => {
-  beforeEach(jest.resetAllMocks)
+  beforeEach(() => vi.resetAllMocks())
 
   it('handles no artists', async () => {
     const store = new BehaviorSubject([])
@@ -40,16 +40,18 @@ describe('album route', () => {
         0,
         albums.length,
         {
-          id: faker.datatype.uuid(),
+          id: faker.string.uuid(),
           name: faker.commerce.productName(),
           media: faker.image.avatar(),
-          refs: [faker.name.findName(), faker.name.findName()].map(makeRef)
+          refs: [faker.person.firstName(), faker.person.firstName()].map(
+            makeRef
+          )
         },
         {
-          id: faker.datatype.uuid(),
+          id: faker.string.uuid(),
           name: faker.commerce.productName(),
           media: faker.image.avatar(),
-          refs: [makeRef(faker.name.findName())]
+          refs: [makeRef(faker.person.firstName())]
         }
       )
       const store = new BehaviorSubject(albums)

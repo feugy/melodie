@@ -1,42 +1,43 @@
-'use strict'
-
-import { screen, render } from '@testing-library/svelte'
+import { faker } from '@faker-js/faker'
+import { render, screen, waitFor } from '@testing-library/svelte'
 import userEvent from '@testing-library/user-event'
-import html from 'svelte-htm'
-import faker from 'faker'
 import { BehaviorSubject } from 'rxjs'
-import TrackDropdown from './TrackDropdown.svelte'
-import { add } from '../../stores/track-queue'
+import html from 'svelte-htm'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
+
 import {
-  playlists as mockedPlaylists,
-  appendTracks
+  appendTracks,
+  playlists as mockedPlaylists
 } from '../../stores/playlists'
 import { isDesktop } from '../../stores/settings'
+import { add } from '../../stores/track-queue'
+import { translate } from '../../tests'
 import { invoke } from '../../utils'
-import { translate, sleep } from '../../tests'
+import TrackDropdown from './TrackDropdown.svelte'
 
-jest.mock('../../stores/playlists')
-jest.mock('../../stores/track-queue')
+vi.mock('../../stores/playlists')
+vi.mock('../../stores/track-queue')
 
 describe('TrackDropdown component', () => {
-  beforeEach(jest.resetAllMocks)
-
-  afterEach(() => isDesktop.next(true))
+  beforeEach(() => {
+    vi.resetAllMocks()
+    isDesktop.next(true)
+  })
 
   describe('given an opened dropdown', () => {
-    const option = { label: 'Custom item', icon: 'close', act: jest.fn() }
-    const track = { id: faker.datatype.number(), path: faker.system.fileName() }
-    const handleShowDetails = jest.fn()
+    const option = { label: 'Custom item', icon: 'close', act: vi.fn() }
+    const track = { id: faker.number.int(), path: faker.system.fileName() }
+    const handleShowDetails = vi.fn()
     const playlists = [
       {
-        id: faker.datatype.number(),
+        id: faker.number.int(),
         name: faker.commerce.productName(),
-        trackIds: [faker.datatype.number(), faker.datatype.number()]
+        trackIds: [faker.number.int(), faker.number.int()]
       },
       {
-        id: faker.datatype.number(),
+        id: faker.number.int(),
         name: faker.commerce.productName(),
-        trackIds: [faker.datatype.number(), faker.datatype.number()]
+        trackIds: [faker.number.int(), faker.number.int()]
       }
     ]
     const store = new BehaviorSubject(playlists)
@@ -51,14 +52,14 @@ describe('TrackDropdown component', () => {
         />`
       )
 
-      await userEvent.click(screen.getByText('more_vert'))
+      await userEvent.click(screen.getByRole('button'))
     })
 
     it('removes track from playlist with dropdown', async () => {
-      userEvent.click(screen.getByText(option.label))
+      await userEvent.click(screen.getByText(option.label))
 
       expect(option.act).toHaveBeenCalledWith(track)
-      expect(option.act).toHaveBeenCalledTimes(1)
+      expect(option.act).toHaveBeenCalledOnce()
       expect(add).not.toHaveBeenCalled()
       expect(invoke).not.toHaveBeenCalled()
       expect(handleShowDetails).not.toHaveBeenCalled()
@@ -66,10 +67,10 @@ describe('TrackDropdown component', () => {
     })
 
     it('plays track with dropdown', async () => {
-      userEvent.click(screen.getByText('play_arrow'))
+      await userEvent.click(screen.getByText(translate('play now')))
 
       expect(add).toHaveBeenCalledWith(track, true)
-      expect(add).toHaveBeenCalledTimes(1)
+      expect(add).toHaveBeenCalledOnce()
       expect(invoke).not.toHaveBeenCalled()
       expect(handleShowDetails).not.toHaveBeenCalled()
       expect(option.act).not.toHaveBeenCalled()
@@ -77,10 +78,10 @@ describe('TrackDropdown component', () => {
     })
 
     it('enqueues track with dropdown', async () => {
-      userEvent.click(screen.getByText('playlist_add'))
+      await userEvent.click(screen.getByText(translate('enqueue')))
 
       expect(add).toHaveBeenCalledWith(track)
-      expect(add).toHaveBeenCalledTimes(1)
+      expect(add).toHaveBeenCalledOnce()
       expect(invoke).not.toHaveBeenCalled()
       expect(handleShowDetails).not.toHaveBeenCalled()
       expect(option.act).not.toHaveBeenCalled()
@@ -88,30 +89,33 @@ describe('TrackDropdown component', () => {
     })
 
     it('invokes service to open parent folder, on desktop', async () => {
-      userEvent.click(screen.getByText('launch'))
+      await userEvent.click(screen.getByText(translate('open folder')))
 
       expect(invoke).toHaveBeenCalledWith(
         'tracks.openContainingFolder',
         track.id
       )
-      expect(invoke).toHaveBeenCalledTimes(1)
+      expect(invoke).toHaveBeenCalledOnce()
       expect(handleShowDetails).not.toHaveBeenCalled()
       expect(add).not.toHaveBeenCalled()
       expect(option.act).not.toHaveBeenCalled()
       expect(appendTracks).not.toHaveBeenCalled()
 
       isDesktop.next(false)
-      await sleep(100)
-      expect(screen.queryByText('launch')).not.toBeInTheDocument()
+      await waitFor(() =>
+        expect(
+          screen.queryByText(translate('open folder'))
+        ).not.toBeInTheDocument()
+      )
     })
 
     it('dispatches event when opening track details', async () => {
-      userEvent.click(screen.getByText('local_offer'))
+      await userEvent.click(screen.getByText(translate('show details')))
 
       expect(handleShowDetails).toHaveBeenCalledWith(
         expect.objectContaining({ detail: track })
       )
-      expect(handleShowDetails).toHaveBeenCalledTimes(1)
+      expect(handleShowDetails).toHaveBeenCalledOnce()
       expect(add).not.toHaveBeenCalled()
       expect(invoke).not.toHaveBeenCalled()
       expect(option.act).not.toHaveBeenCalled()
@@ -119,15 +123,15 @@ describe('TrackDropdown component', () => {
     })
 
     it('adds track to an existing playlist', async () => {
-      userEvent.click(screen.getByText(translate('add to playlist')))
-      await sleep(350)
-      userEvent.click(screen.getByText(playlists[1].name))
-      await sleep(350)
-
-      expect(appendTracks).toHaveBeenCalledWith({
-        id: playlists[1].id,
-        tracks: [track]
-      })
+      await userEvent.click(screen.getByText(translate('add to playlist')))
+      const name = await screen.findByText(playlists[1].name)
+      await userEvent.click(name)
+      await waitFor(() =>
+        expect(appendTracks).toHaveBeenCalledWith({
+          id: playlists[1].id,
+          tracks: [track]
+        })
+      )
       expect(handleShowDetails).not.toHaveBeenCalled()
       expect(add).not.toHaveBeenCalled()
       expect(invoke).not.toHaveBeenCalled()

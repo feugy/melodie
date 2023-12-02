@@ -1,0 +1,119 @@
+:root {
+  --bg-color: #2e3141;
+  --font-color: #ffffff;
+  --disabled-color: #bbbbbb;
+  --nav-bg-color: rgba(10, 10, 10, 0.95);
+  --bg-primary-color: #272933;
+  --outline-color: rgba(255, 255, 255, 0.25);
+  --primary-color: #4c5c96;
+  --hover-color: #ccffff;
+  --hover-bg-color: rgba(255, 255, 255, 0.125);
+  --hover-primary-color: #43527f;
+  --backdrop-color: rgba(39, 41, 51, 0.9);
+  --input-bg-color: rgba(255, 255, 255, 0.05);
+  --scroll-width: 10px;
+}
+
+html,
+body {
+  --at-apply: relative w-full h-full overflow-hidden p-0 m-0;
+  user-select: none;
+}
+
+body {
+  box-sizing: border-box;
+  color: var(--font-color);
+  font-family: 'Source Sans Pro';
+  font-size: 15px;
+  font-weight: 300;
+  letter-spacing: 0.025em;
+  line-height: 1.65;
+}
+
+h1 {
+  --at-apply: font-bold uppercase mb-4;
+  font-family: Raleway;
+  letter-spacing: 0.1em;
+}
+
+.icons {
+  --at-apply: font-normal font-not-italic font-size-5;
+}
+
+.inline-icons {
+  --at-apply: inline-block font-normal font-not-italic line-height-none;
+}
+
+a:hover {
+  --at-apply: no-underline;
+}
+
+a.underlined {
+  --at-apply: relative color-[--hover-color];
+
+  &:before {
+    --at-apply: absolute right-full left-0 bg-[--hover-color];
+    content: '';
+    bottom: -1px;
+    height: 0.5px;
+    transition: all 0.5s ease-in-out;
+  }
+
+  &:active:before {
+    --at-apply: left-0;
+  }
+
+  & > .icons {
+    --at-apply: inline-block;
+    font-size: 1em;
+    vertical-align: -0.15rem;
+  }
+}
+
+@media (hover: hover) {
+  a.underlined {
+    --at-apply: color-inherit;
+
+    &:hover {
+      --at-apply: no-underline border-none outline-none color-[--hover-color];
+
+      &:before {
+        --at-apply: opacity-100 right-0;
+      }
+    }
+  }
+
+  .actionable:hover,
+  a:hover .actionable {
+    box-shadow: 0 0 0 2px var(--hover-color);
+  }
+}
+
+.actionable {
+  --at-apply: cursor-pointer;
+  transition: box-shadow 0.1s linear;
+}
+
+input,
+textarea,
+*[contenteditable='true'] {
+  user-select: auto;
+}
+
+*::-webkit-scrollbar {
+  width: var(--scroll-width);
+}
+*::-webkit-scrollbar-track {
+  background: var(--bg-primary-color);
+}
+*::-webkit-scrollbar-thumb {
+  background-color: var(--outline-color);
+  border-radius: calc(var(--scroll-width) / 2);
+  border: 2px solid var(--bg-primary-color);
+}
+*::-webkit-scrollbar-thumb:hover {
+  background-color: var(--font-color);
+}
+::-webkit-search-cancel-button {
+  display: none;
+}

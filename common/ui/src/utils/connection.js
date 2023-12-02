@@ -1,8 +1,6 @@
-'use strict'
-
+import { nanoid } from 'nanoid'
 import { BehaviorSubject, firstValueFrom } from 'rxjs'
 import { filter, map, take } from 'rxjs/operators'
-import { nanoid } from 'nanoid'
 
 let ws = null
 let rootUrl = null

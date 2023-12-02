@@ -1,10 +1,11 @@
 <script>
   import { Tool } from '@atelier-wb/svelte'
-  import Component from './[id].svelte'
-  import { mockWebsocket } from '../../atelier/utils'
+
   import HRefSink from '../../atelier/HRefSink.svelte'
+  import { mockWebsocket } from '../../atelier/utils'
   import { playlistsData } from '../../components/AddToPlaylist/AddToPlaylist.testdata'
   import { artistData } from '../../components/Artist/Artist.testdata'
+  import Component from './[id].svelte'
 
   const tracks = [
     {
@@ -80,21 +81,21 @@
           results: playlistsData
         }
       : invoked === 'media.findForArtist'
-      ? [
-          {
-            artwork:
-              'https://www.theaudiodb.com/images/media/artist/thumb/uxrqxy1347913147.jpg'
-          },
-          {
-            artwork:
-              'https://www.theaudiodb.com/images/media/artist/fanart/spvryu1347980801.jpg'
-          },
-          {
-            artwork:
-              'https://img.discogs.com/RLkA5Qmo6_eNpWGjioaI4bJZUB4=/600x600/smart/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/A-29735-1591800654-2186.jpeg.jpg'
-          }
-        ]
-      : artist
+        ? [
+            {
+              artwork:
+                'https://www.theaudiodb.com/images/media/artist/thumb/uxrqxy1347913147.jpg'
+            },
+            {
+              artwork:
+                'https://www.theaudiodb.com/images/media/artist/fanart/spvryu1347980801.jpg'
+            },
+            {
+              artwork:
+                'https://img.discogs.com/RLkA5Qmo6_eNpWGjioaI4bJZUB4=/600x600/smart/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/A-29735-1591800654-2186.jpeg.jpg'
+            }
+          ]
+        : artist
   )}
   let:props
 >

@@ -1,8 +1,17 @@
-'use strict'
+import {
+  afterAll,
+  afterEach,
+  beforeAll,
+  beforeEach,
+  describe,
+  expect,
+  it,
+  vi
+} from 'vitest'
 
 import { sendLogs } from './connection'
 
-jest.mock('./connection', () => ({ sendLogs: jest.fn() }))
+vi.mock('./connection', () => ({ sendLogs: vi.fn() }))
 
 describe('log forwarder', () => {
   let configureLogForward
@@ -13,12 +22,12 @@ describe('log forwarder', () => {
   }
 
   beforeEach(() => {
-    jest.resetAllMocks()
+    vi.resetAllMocks()
     configureLogForward()
   })
 
   beforeAll(async () => {
-    jest.useFakeTimers()
+    vi.useFakeTimers()
     console.log = () => {}
     console.warn = () => {}
     console.error = () => {}
@@ -26,7 +35,7 @@ describe('log forwarder', () => {
   })
 
   afterEach(() => {
-    jest.clearAllTimers()
+    vi.clearAllTimers()
     localStorage.clear()
   })
 
@@ -63,7 +72,7 @@ describe('log forwarder', () => {
       { level: 'trace', args: [9], time: expect.any(Number) },
       { level: 'debug', args: [10], time: expect.any(Number) }
     ])
-    expect(sendLogs).toHaveBeenCalledTimes(1)
+    expect(sendLogs).toHaveBeenCalledOnce()
   })
 
   it('sends traces, logs, warns and erros after some time', () => {
@@ -73,18 +82,18 @@ describe('log forwarder', () => {
     console.error(20)
     expect(sendLogs).not.toHaveBeenCalled()
     sendLogs.mockRejectedValueOnce(new Error('boom!'))
-    jest.advanceTimersByTime(5000)
-    expect(sendLogs).toHaveBeenCalledTimes(1)
+    vi.advanceTimersByTime(5000)
+    expect(sendLogs).toHaveBeenCalledOnce()
 
     configureLogForward()
-    jest.advanceTimersByTime(5000)
+    vi.advanceTimersByTime(5000)
     expect(sendLogs).toHaveBeenCalledWith([
       { level: 'trace', args: [17], time: expect.any(Number) },
       { level: 'debug', args: [18], time: expect.any(Number) },
       { level: 'warn', args: [19], time: expect.any(Number) },
       { level: 'error', args: [20], time: expect.any(Number) }
     ])
-    expect(sendLogs).toHaveBeenCalledTimes(1)
+    expect(sendLogs).toHaveBeenCalledOnce()
   })
 
   it('sends data from previous run', () => {
@@ -92,18 +101,18 @@ describe('log forwarder', () => {
     console.log(22)
     console.warn(23)
     console.error(24)
-    jest.advanceTimersByTime(1000)
+    vi.advanceTimersByTime(1000)
     expect(sendLogs).not.toHaveBeenCalled()
     configureLogForward()
-    jest.advanceTimersByTime(4500)
+    vi.advanceTimersByTime(4500)
     expect(sendLogs).not.toHaveBeenCalled()
-    jest.advanceTimersByTime(1000)
+    vi.advanceTimersByTime(1000)
     expect(sendLogs).toHaveBeenCalledWith([
       { level: 'trace', args: [21], time: expect.any(Number) },
       { level: 'debug', args: [22], time: expect.any(Number) },
       { level: 'warn', args: [23], time: expect.any(Number) },
       { level: 'error', args: [24], time: expect.any(Number) }
     ])
-    expect(sendLogs).toHaveBeenCalledTimes(1)
+    expect(sendLogs).toHaveBeenCalledOnce()
   })
 })

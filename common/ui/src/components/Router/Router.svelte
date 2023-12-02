@@ -8,10 +8,11 @@
 </script>
 
 <script>
+  import { Subject } from 'rxjs'
+  import { map, pluck, scan, withLatestFrom } from 'rxjs/operators'
   import Router, { replace } from 'svelte-spa-router'
   import { wrap } from 'svelte-spa-router/wrap'
-  import { Subject } from 'rxjs'
-  import { withLatestFrom, map, scan, pluck } from 'rxjs/operators'
+
   import Albums from '../../routes/album.svelte'
   import AlbumDetails from '../../routes/album/[id].svelte'
   import Artists from '../../routes/artist.svelte'

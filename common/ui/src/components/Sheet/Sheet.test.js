@@ -1,15 +1,15 @@
-'use strict'
-
+import { faker } from '@faker-js/faker'
 import { render, screen } from '@testing-library/svelte'
 import html from 'svelte-htm'
-import faker from 'faker'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
+
 import Sheet from './Sheet.svelte'
 
-jest.mock('svelte-spa-router')
+vi.mock('svelte-spa-router')
 
 describe('Sheet component', () => {
   beforeEach(() => {
-    jest.resetAllMocks()
+    vi.resetAllMocks()
   })
 
   it('has two slots and is closed by default', async () => {

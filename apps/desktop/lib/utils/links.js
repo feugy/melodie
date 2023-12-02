@@ -1,6 +1,4 @@
-'use strict'
-
-const { shell } = require('electron')
+import { shell } from 'electron'
 
 /**
  * Prevent navigation and opens the targeted url with default browser, except if the link isn't
@@ -21,6 +19,6 @@ function openExternalLinksInOSBrowser(event, url) {
  *
  * @param {BrowserWindow} window - an Electron window
  */
-exports.configureExternalLinks = function (window) {
+export function configureExternalLinks(window) {
   window.webContents.on('will-navigate', openExternalLinksInOSBrowser)
 }

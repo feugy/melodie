@@ -1,32 +1,30 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Toolshot components/ImageUploader/ImageUploader.tools.svelte: Components/Image Uploader 1`] = `
-<span>
-  <span
-    class="h-64 w-64 inline-block actionable svelte-o9jdfk"
+exports[`Components/Image Uploader 1`] = `
+<span
+  class="h-64 w-64 inline-block actionable s-k9MVR_iM4VMn"
+  role="link"
+  tabindex="-1"
+>
+  <button
+    class="__flex_tliuhg_tliuhg __justify-center_tliuhg_tliuhg __items-center_tliuhg_tliuhg __bg-[--hover-bg-color]_tliuhg_tliuhg __overflow-hidden_tliuhg_tliuhg __w-full_9piuo0_9piuo0 __h-full_9piuo0_9piuo0 s-JU4hIbuSbdGN __rounded-sm_tliuhg_tliuhg"
   >
     <img
-      class="w-full h-full rounded-sm hidden svelte-1l44pje"
-      height="256"
+      class="__border-none_tliuhg_tliuhg __font-size-0_tliuhg_tliuhg __object-cover_tliuhg_tliuhg __w-full_tliuhg_tliuhg __h-full_tliuhg_tliuhg __hidden_tliuhg_tliuhg s-JU4hIbuSbdGN"
+      loading="lazy"
       src=""
-      width="256"
     />
      
-    <span
-      class="w-full h-full svelte-1l44pje rounded-sm"
-    >
-      <i
-        class="material-icons svelte-1l44pje"
-      >
-        add_box
-      </i>
-    </span>
-    
-     
-    <input
-      class="svelte-o9jdfk"
-      type="file"
+    <i
+      class="__inline-block_tliuhg_tliuhg __font-size-[200%]_tliuhg_tliuhg icons i-mdi-plus-box s-JU4hIbuSbdGN"
+      data-testid="i-mdi-plus-box"
     />
-  </span>
+  </button>
+  <!--&lt;Image&gt;-->
+   
+  <input
+    class="s-k9MVR_iM4VMn"
+    type="file"
+  />
 </span>
 `;

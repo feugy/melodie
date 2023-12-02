@@ -1,31 +1,31 @@
-'use strict'
-
-import { screen, render } from '@testing-library/svelte'
+import { faker } from '@faker-js/faker'
+import { render, screen } from '@testing-library/svelte'
 import userEvent from '@testing-library/user-event'
 import html from 'svelte-htm'
-import faker from 'faker'
-import Playlist from './Playlist.svelte'
-import { playlistData } from './Playlist.testdata'
-import { sleep } from '../../tests'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
+
 import { load } from '../../stores/playlists'
 import { add } from '../../stores/track-queue'
+import { sleep } from '../../tests'
+import Playlist from './Playlist.svelte'
+import { playlistData } from './Playlist.testdata'
 
-jest.mock('../../stores/track-queue')
-jest.mock('../../stores/playlists')
+vi.mock('../../stores/track-queue')
+vi.mock('../../stores/playlists')
 
 describe('Playlist component', () => {
   beforeEach(() => {
     location.hash = '#/'
-    jest.clearAllMocks()
+    vi.clearAllMocks()
   })
 
   it('navigates to playlist details page', async () => {
     render(html`<${Playlist} src=${playlistData} />`)
-    userEvent.hover(screen.getByRole('article'))
-    userEvent.click(screen.getByText(playlistData.name))
+    await userEvent.hover(screen.getByRole('tab'))
+    await userEvent.click(screen.getByText(playlistData.name))
     await sleep()
 
-    expect(location.hash).toEqual(`#/playlist/${playlistData.id}`)
+    expect(location.hash).toBe(`#/playlist/${playlistData.id}`)
     expect(load).not.toHaveBeenCalled()
     expect(add).not.toHaveBeenCalled()
   })
@@ -33,7 +33,7 @@ describe('Playlist component', () => {
   it('loads and play all tracks', async () => {
     const playlist = { ...playlistData, tracks: undefined }
     const tracks = [
-      { id: faker.datatype.uuid(), path: faker.system.directoryPath() }
+      { id: faker.string.uuid(), path: faker.system.directoryPath() }
     ]
     load.mockImplementation(async () => {
       playlist.tracks = tracks
@@ -41,19 +41,19 @@ describe('Playlist component', () => {
     })
 
     render(html`<${Playlist} src=${playlist} />`)
-    await userEvent.hover(screen.getByRole('article'))
-    userEvent.click(screen.getByTestId('play'))
+    await userEvent.hover(screen.getByRole('tab'))
+    await userEvent.click(screen.getByTestId('play'))
     await sleep()
 
     expect(load).toHaveBeenCalledWith(playlist.id)
     expect(add).toHaveBeenCalledWith(tracks, true)
-    expect(location.hash).toEqual(`#/`)
+    expect(location.hash).toBe(`#/`)
   })
 
   it('loads and enqueus all tracks', async () => {
     const playlist = { ...playlistData, tracks: undefined }
     const tracks = [
-      { id: faker.datatype.uuid(), path: faker.system.directoryPath() }
+      { id: faker.string.uuid(), path: faker.system.directoryPath() }
     ]
     load.mockImplementation(async () => {
       playlist.tracks = tracks
@@ -61,28 +61,28 @@ describe('Playlist component', () => {
     })
 
     render(html`<${Playlist} src=${playlist} />`)
-    await userEvent.hover(screen.getByRole('article'))
-    userEvent.click(screen.getByTestId('enqueue'))
+    await userEvent.hover(screen.getByRole('tab'))
+    await userEvent.click(screen.getByTestId('enqueue'))
     await sleep()
 
     expect(load).toHaveBeenCalledWith(playlist.id)
     expect(add).toHaveBeenCalledWith(tracks, false)
-    expect(location.hash).toEqual(`#/`)
+    expect(location.hash).toBe(`#/`)
   })
 
   it('does not load tracks when already there', async () => {
     const tracks = [
-      { id: faker.datatype.uuid(), path: faker.system.directoryPath() }
+      { id: faker.string.uuid(), path: faker.system.directoryPath() }
     ]
     const playlist = { ...playlistData, tracks }
 
     render(html`<${Playlist} src=${playlist} />`)
-    await userEvent.hover(screen.getByRole('article'))
-    userEvent.click(screen.getByTestId('play'))
+    await userEvent.hover(screen.getByRole('tab'))
+    await userEvent.click(screen.getByTestId('play'))
     await sleep()
 
     expect(load).not.toHaveBeenCalled()
     expect(add).toHaveBeenCalledWith(tracks, true)
-    expect(location.hash).toEqual(`#/`)
+    expect(location.hash).toBe(`#/`)
   })
 })

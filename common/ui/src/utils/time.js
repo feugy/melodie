@@ -1,8 +1,6 @@
-'use strict'
-
 import { tick } from 'svelte'
 import { get } from 'svelte/store'
-import { translate, locale } from 'svelte-intl'
+import { locale, translate } from 'svelte-intl'
 
 const labels = {}
 locale.subscribe(async () => {
@@ -31,14 +29,14 @@ export function formatTimeLong(seconds) {
     hours === 1
       ? labels.hour
       : hours > 1
-      ? labels.hours.replace('_', hours)
-      : ''
+        ? labels.hours.replace('_', hours)
+        : ''
   const formattedMinute =
     minutes === 1
       ? labels.minute
       : minutes > 1
-      ? labels.minutes.replace('_', minutes)
-      : ''
+        ? labels.minutes.replace('_', minutes)
+        : ''
   return `${formattedHour}${
     formattedHour && formattedMinute ? ' ' : ''
   }${formattedMinute}`

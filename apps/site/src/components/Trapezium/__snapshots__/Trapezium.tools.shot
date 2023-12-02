@@ -1,40 +1,47 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Toolshot components/Trapezium/Trapezium.tools.svelte: Site components/Trapezium 1`] = `
+exports[`Site components/Trapezium 1`] = `
 <section
-  class="svelte-1euf1h1"
+  class="s-h16aoz_pbhxR"
   style="--color: #353849; --clip-path: polygon(0% 7rem, 100% 0%, 100% 100%, 0 calc(100% - 7rem));"
 >
-  <div>
+  <div
+    class="s-h16aoz_pbhxR"
+  >
     <div
-      class="flex flex-row my-8 mx-auto max-w-screen-lg gap-8 svelte-nkp3qe"
+      class="__flex_02w4o9_02w4o9 __flex-row_02w4o9_02w4o9 __my-8_02w4o9_02w4o9 __mx-auto_02w4o9_02w4o9 __max-w-screen-lg_02w4o9_02w4o9 __gap-8_02w4o9_02w4o9 s-XYFxnKbn8JLQ"
     >
       <span
-        class="flex-grow text-right svelte-nkp3qe"
+        class="__flex-grow_02w4o9_02w4o9 __text-right_02w4o9_02w4o9 s-XYFxnKbn8JLQ"
       >
-        <h3>
+        <h3
+          class="s-XYFxnKbn8JLQ"
+        >
           Here is some title
         </h3>
          
-        <p>
+        <p
+          class="s-XYFxnKbn8JLQ"
+        >
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua.
         </p>
       </span>
        
       <div
-        class="flex-shrink-0 svelte-nkp3qe"
+        class="__flex-shrink-0_02w4o9_02w4o9 s-XYFxnKbn8JLQ"
       >
         <div
-          class="svelte-1qdbxso"
+          class="s-WYXjB5GLW6Vo"
           style="--height: 275px; --src: url('images/screenshot-artists-en.png');"
         >
           <img
             alt=""
-            class="svelte-1qdbxso"
+            class="s-WYXjB5GLW6Vo"
             src="images/screenshot-artists-en.png"
           />
         </div>
+        <!--&lt;ReflectedImage&gt;-->
       </div>
     </div>
   </div>

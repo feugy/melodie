@@ -1,13 +1,14 @@
 <script>
   import { onMount } from 'svelte'
   import { _ } from 'svelte-intl'
-  import TrackDropdown from '../TrackDropdown/TrackDropdown.svelte'
+
+  import { moveTrack, removeTrack } from '../../stores/playlists'
+  import { createClickToAddObservable } from '../../stores/track-queue'
+  import { wrapWithLink } from '../../utils'
   import SortableList from '../SortableList/SortableList.svelte'
   import Track from '../Track/Track.svelte'
   import TrackDetailsDialogue from '../TrackDetailsDialogue/TrackDetailsDialogue.svelte'
-  import { wrapWithLink } from '../../utils'
-  import { createClickToAddObservable } from '../../stores/track-queue'
-  import { removeTrack, moveTrack } from '../../stores/playlists'
+  import TrackDropdown from '../TrackDropdown/TrackDropdown.svelte'
 
   export let playlist
   let openedTrack = null
@@ -16,65 +17,6 @@
 
   onMount(() => clicks$.subscribe())
 </script>
-
-<style lang="postcss">
-  table,
-  tbody,
-  thead,
-  tr,
-  td,
-  th {
-    @apply block;
-  }
-
-  table {
-    @apply w-full mt-4 overflow-x-auto;
-  }
-
-  tbody,
-  thead {
-    min-width: 600px;
-  }
-
-  tr {
-    @apply grid gap-0 items-start;
-    grid-template-columns: 60px repeat(10, 1fr) 60px;
-
-    & > *:first-child,
-    & > *:last-child {
-      @apply text-center;
-    }
-    & > td:nth-child(2) {
-      @apply p-1;
-    }
-  }
-
-  /* We're altering the content of Track component, to keep font size consitent across all columns. */
-  :global(.playlist-track .duration) {
-    @apply text-base;
-  }
-
-  thead {
-    border-bottom: solid 2px var(--outline-color);
-  }
-
-  th,
-  td {
-    @apply p-3 text-left;
-  }
-
-  th {
-    @apply font-semibold text-sm;
-
-    &:nth-child(3) {
-      @apply text-right;
-    }
-  }
-
-  tbody > * > *:nth-child(2n + 1) {
-    background-color: var(--hover-bg-color);
-  }
-</style>
 
 <TrackDetailsDialogue
   src={openedTrack}
@@ -104,6 +46,7 @@
             <Track src={item} details="true" />
           </td>
           <td class="col-span-4">
+            <!-- eslint-disable-next-line svelte/no-at-html-tags -->
             {@html wrapWithLink('album', item.albumRef)}
           </td>
           <td on:click|stopPropagation>
@@ -112,7 +55,7 @@
               additionalOptions={[
                 {
                   label: $_('remove from playlist'),
-                  icon: 'close',
+                  icon: 'i-mdi-close',
                   act: () => removeTrack(playlist, i)
                 }
               ]}
@@ -124,3 +67,62 @@
     </tbody>
   </table>
 {/if}
+
+<style>
+  table,
+  tbody,
+  thead,
+  tr,
+  td,
+  th {
+    --at-apply: block;
+  }
+
+  table {
+    --at-apply: w-full mt-4 overflow-x-auto;
+  }
+
+  tbody,
+  thead {
+    min-width: 600px;
+  }
+
+  tr {
+    --at-apply: grid gap-0 items-start;
+    grid-template-columns: 60px repeat(10, 1fr) 60px;
+
+    & > *:first-child,
+    & > *:last-child {
+      --at-apply: text-center;
+    }
+    & > td:nth-child(2) {
+      --at-apply: p-1;
+    }
+  }
+
+  /* We're altering the content of Track component, to keep font size consitent across all columns. */
+  :global(.playlist-track .duration) {
+    --at-apply: text-base;
+  }
+
+  thead {
+    border-bottom: solid 2px var(--outline-color);
+  }
+
+  th,
+  td {
+    --at-apply: p-3 text-left;
+  }
+
+  th {
+    --at-apply: font-semibold text-sm;
+
+    &:nth-child(3) {
+      --at-apply: text-right;
+    }
+  }
+
+  tbody > * > *:nth-child(2n + 1) {
+    background-color: var(--hover-bg-color);
+  }
+</style>

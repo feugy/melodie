@@ -6,9 +6,10 @@
 <script>
   import { onMount } from 'svelte'
   import { _ } from 'svelte-intl'
-  import { enhanceUrl, invoke } from '../../utils'
-  import { current, playPrevious, playNext } from '../../stores/track-queue'
+
   import { isDesktop } from '../../stores/settings'
+  import { current, playNext, playPrevious } from '../../stores/track-queue'
+  import { enhanceUrl, invoke } from '../../utils'
 
   let trackId = null
   let isFocused = false

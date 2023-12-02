@@ -1,8 +1,9 @@
-'use strict'
 import { get } from 'svelte/store'
-import { artists, list, isListing } from './artists'
-import { invoke } from '../utils'
+import { describe, expect, it } from 'vitest'
+
 import { sleep } from '../tests'
+import { invoke } from '../utils'
+import { artists, isListing, list } from './artists'
 
 describe('artists store', () => {
   it('lists all artists', async () => {

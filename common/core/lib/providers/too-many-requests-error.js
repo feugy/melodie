@@ -1,5 +1,3 @@
-'use strict'
-
 /**
  * Error used when capping the number of request of a given provider.
  * @class
@@ -7,7 +5,7 @@
  * @property {string} provider  - provider name
  * @property {number} code      - an error code (429)
  */
-module.exports = class TooManyRequestsError extends Error {
+export class TooManyRequestsError extends Error {
   /**
    * Constructs a new error.
    * @param {string} message  - error message

@@ -1,26 +1,13 @@
 <script>
   import { Tool } from '@atelier-wb/svelte'
-  import Sheet from './Sheet.svelte'
+
   import Button from '../Button/Button.svelte'
+  import Sheet from './Sheet.svelte'
 
   export let content = 'This is some content'
   let open = false
   import { texts } from '../../tests/lorem'
 </script>
-
-<style lang="postcss">
-  .wrapper {
-    @apply absolute inset-0;
-  }
-
-  section {
-    @apply p-4 text-left;
-  }
-
-  aside {
-    @apply bg-gray-700 p-4 h-full;
-  }
-</style>
 
 <Tool
   name="Components/Sheet"
@@ -41,8 +28,23 @@
         {/each}
       </section>
       <aside slot="aside">
+        <!-- eslint-disable-next-line svelte/no-at-html-tags -->
         {@html content}
       </aside>
     </Sheet>
   </div>
 </Tool>
+
+<style lang="postcss">
+  .wrapper {
+    --at-apply: absolute inset-0;
+  }
+
+  section {
+    --at-apply: p-4 text-left;
+  }
+
+  aside {
+    --at-apply: bg-gray-700 p-4 h-full;
+  }
+</style>

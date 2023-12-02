@@ -1,8 +1,6 @@
-'use strict'
-
-const TrackList = require('./abstract-track-list')
-const { tracksModel } = require('./tracks')
-const { uniqRef, parseRawRefArray } = require('../utils')
+import { parseRawRefArray, uniqRef } from '../utils/index.js'
+import TrackList from './abstract-track-list.js'
+import { tracksModel } from './tracks.js'
 
 /**
  * @class AlbumsModel
@@ -59,4 +57,4 @@ class AlbumsModel extends TrackList {
   }
 }
 
-exports.albumsModel = new AlbumsModel()
+export const albumsModel = new AlbumsModel()

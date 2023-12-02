@@ -1,32 +1,32 @@
-'use strict'
-
 import { get } from 'svelte/store'
 import { push } from 'svelte-spa-router'
-import { start, stop, current, handleNextButtonClick } from './tutorial'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
+
+import { sleep } from '../tests'
+import { invoke, lastInvokation } from '../utils'
 import * as albums from './albums'
 import * as trackQueue from './track-queue'
-import { invoke, lastInvokation } from '../utils'
-import { sleep } from '../tests'
+import { current, handleNextButtonClick, start, stop } from './tutorial'
 
 describe('tutorial store', () => {
   beforeEach(() => {
     location.hash = `#/`
-    jest.resetAllMocks()
+    vi.resetAllMocks()
   })
 
   it('is disabled by default, and allows navigation', async () => {
-    expect(get(current)).toEqual(null)
+    expect(get(current)).toBeNull()
     push('/search/test')
     await sleep(10)
-    expect(location.hash).toEqual('#/search/test')
+    expect(location.hash).toBe('#/search/test')
   })
 
   it('does nothing when stopping unstarted tutorial', async () => {
-    expect(get(current)).toEqual(null)
+    expect(get(current)).toBeNull()
     stop()
     push('/search/test')
     await sleep(10)
-    expect(location.hash).toEqual('#/search/test')
+    expect(location.hash).toBe('#/search/test')
   })
 
   it('starts on first step, and prevents navigation', async () => {
@@ -41,7 +41,7 @@ describe('tutorial store', () => {
     )
     push('/search/test')
     await sleep(10)
-    expect(location.hash).toEqual('#/')
+    expect(location.hash).toBe('#/')
   })
 
   it('goes to second step on click', async () => {
@@ -130,15 +130,15 @@ describe('tutorial store', () => {
     push('/search/test')
     await sleep(10)
 
-    expect(location.hash).toEqual('#/playlist')
+    expect(location.hash).toBe('#/playlist')
     handleNextButtonClick()
     await sleep()
 
-    expect(get(current)).toEqual(null)
+    expect(get(current)).toBeNull()
     push('/search/test')
     await sleep(10)
 
-    expect(location.hash).toEqual('#/search/test')
+    expect(location.hash).toBe('#/search/test')
   })
 
   it('can be started and stopped', async () => {
@@ -160,7 +160,7 @@ describe('tutorial store', () => {
     push('/album')
     await sleep(10)
 
-    expect(get(current)).toEqual(null)
-    expect(location.hash).toEqual('#/album')
+    expect(get(current)).toBeNull()
+    expect(location.hash).toBe('#/album')
   })
 })

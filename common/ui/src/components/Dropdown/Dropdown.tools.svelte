@@ -1,11 +1,12 @@
 <script>
   import { Tool, ToolBox } from '@atelier-wb/svelte'
-  import Dropdown from './DropdownToolWrapper.svelte'
+
   import {
-    dropdownData,
     dropdownCustomData,
+    dropdownData,
     dropdownSimpleData
   } from './Dropdown.testdata'
+  import Dropdown from './DropdownToolWrapper.svelte'
 </script>
 
 <ToolBox
@@ -22,7 +23,7 @@
     props={{
       valueAsText: false,
       text: 'options',
-      icon: 'settings',
+      icon: 'i-mdi-cog',
       align: 'text-left'
     }}
   />
@@ -30,7 +31,7 @@
     name="Icon only with relative parent"
     props={{
       parentPosition: 'relative',
-      icon: 'more_vert',
+      icon: 'i-mdi-dots-vertical',
       withArrow: false,
       valueAsText: false
     }}
@@ -41,7 +42,7 @@
       text: 'Primary',
       primary: true,
       valueAsText: false,
-      icon: 'person',
+      icon: 'i-mdi-account',
       align: 'text-right'
     }}
   />

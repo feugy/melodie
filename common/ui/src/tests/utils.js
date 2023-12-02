@@ -1,8 +1,6 @@
-'use strict'
-
+import { faker } from '@faker-js/faker'
 import { get } from 'svelte/store'
 import { _ } from 'svelte-intl'
-import faker from 'faker'
 
 export function sleep(ms = 0) {
   return new Promise(resolve => setTimeout(resolve, ms))
@@ -13,7 +11,7 @@ export function translate(...args) {
 }
 
 export function makeRef(value) {
-  return [faker.datatype.number(), value]
+  return [faker.number.int(), value]
 }
 
 export function addRefs(track) {

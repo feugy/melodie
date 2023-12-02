@@ -1,212 +1,194 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Toolshot components/Button/Button.tools.svelte: Default 1`] = `
-<span>
-  <button
-    class="svelte-xh4kfu"
+exports[`Default 1`] = `
+<button
+  class="s-zdMNlEQUhDx4"
+>
+   
+  <span
+    class="s-zdMNlEQUhDx4"
   >
-     
-    <span>
-      Default
-    </span>
-     
-     
-  </button>
-</span>
+    Default
+  </span>
+   
+   
+</button>
 `;
 
-exports[`Toolshot components/Button/Button.tools.svelte: Disabled 1`] = `
-<span>
-  <button
-    class="svelte-xh4kfu"
-    disabled=""
+exports[`Disabled 1`] = `
+<button
+  class="s-zdMNlEQUhDx4"
+  disabled=""
+>
+   
+  <span
+    class="s-zdMNlEQUhDx4"
   >
-     
-    <span>
-      Disabled
-    </span>
-     
-     
-  </button>
-</span>
+    Disabled
+  </span>
+   
+   
+</button>
 `;
 
-exports[`Toolshot components/Button/Button.tools.svelte: Large icon 1`] = `
-<span>
-  <button
-    class="iconOnly large svelte-xh4kfu"
-  >
-    <i
-      class="material-icons svelte-xh4kfu"
-    >
-      play_arrow
-    </i>
-     
-     
-     
-  </button>
-</span>
+exports[`Large icon 1`] = `
+<button
+  class="iconOnly large s-zdMNlEQUhDx4"
+>
+  <i
+    class="icons i-mdi-play s-zdMNlEQUhDx4"
+  />
+   
+   
+   
+</button>
 `;
 
-exports[`Toolshot components/Button/Button.tools.svelte: Large text and icon 1`] = `
-<span>
-  <button
-    class="large svelte-xh4kfu"
+exports[`Large text and icon 1`] = `
+<button
+  class="large s-zdMNlEQUhDx4"
+>
+  <i
+    class="icons i-mdi-account s-zdMNlEQUhDx4"
+  />
+   
+  <span
+    class="s-zdMNlEQUhDx4"
   >
-    <i
-      class="material-icons svelte-xh4kfu"
-    >
-      person
-    </i>
-     
-    <span>
-      Hey!
-    </span>
-     
-     
-  </button>
-</span>
+    Hey!
+  </span>
+   
+   
+</button>
 `;
 
-exports[`Toolshot components/Button/Button.tools.svelte: Primary 1`] = `
-<span>
-  <button
-    class="primary svelte-xh4kfu"
+exports[`Primary 1`] = `
+<button
+  class="primary s-zdMNlEQUhDx4"
+>
+   
+  <span
+    class="s-zdMNlEQUhDx4"
   >
-     
-    <span>
-      Primary
-    </span>
-     
-     
-  </button>
-</span>
+    Primary
+  </span>
+   
+   
+</button>
 `;
 
-exports[`Toolshot components/Button/Button.tools.svelte: Primary disabled 1`] = `
-<span>
-  <button
-    class="primary svelte-xh4kfu"
-    disabled=""
+exports[`Primary disabled 1`] = `
+<button
+  class="primary s-zdMNlEQUhDx4"
+  disabled=""
+>
+   
+  <span
+    class="s-zdMNlEQUhDx4"
   >
-     
-    <span>
-      Primary
-    </span>
-     
-     
-  </button>
-</span>
+    Primary
+  </span>
+   
+   
+</button>
 `;
 
-exports[`Toolshot components/Button/Button.tools.svelte: Primary icon 1`] = `
-<span>
-  <button
-    class="primary iconOnly svelte-xh4kfu"
-  >
-    <i
-      class="material-icons svelte-xh4kfu"
-    >
-      volume_up
-    </i>
-     
-     
-     
-  </button>
-</span>
+exports[`Primary icon 1`] = `
+<button
+  class="primary iconOnly s-zdMNlEQUhDx4"
+>
+  <i
+    class="icons i-mdi-volume-plus s-zdMNlEQUhDx4"
+  />
+   
+   
+   
+</button>
 `;
 
-exports[`Toolshot components/Button/Button.tools.svelte: Primary with badge 1`] = `
-<span>
-  <button
-    class="primary svelte-xh4kfu"
+exports[`Primary with badge 1`] = `
+<button
+  class="primary s-zdMNlEQUhDx4"
+>
+  <i
+    class="icons i-mdi-account s-zdMNlEQUhDx4"
+  />
+   
+  <span
+    class="s-zdMNlEQUhDx4"
   >
-    <i
-      class="material-icons svelte-xh4kfu"
-    >
-      face
-    </i>
-     
-    <span>
-      Hello
-    </span>
-     
-     
-    <div
-      class="badge svelte-xh4kfu halo"
-    >
-      5
-    </div>
-  </button>
-</span>
+    Hello
+  </span>
+   
+   
+  <div
+    class="badge s-zdMNlEQUhDx4 halo"
+  >
+    5
+  </div>
+</button>
 `;
 
-exports[`Toolshot components/Button/Button.tools.svelte: Text and icon 1`] = `
-<span>
-  <button
-    class="svelte-xh4kfu"
+exports[`Text and icon 1`] = `
+<button
+  class="s-zdMNlEQUhDx4"
+>
+  <i
+    class="icons i-mdi-account s-zdMNlEQUhDx4"
+  />
+   
+  <span
+    class="s-zdMNlEQUhDx4"
   >
-    <i
-      class="material-icons svelte-xh4kfu"
-    >
-      face
-    </i>
-     
-    <span>
-      Hello
-    </span>
-     
-     
-  </button>
-</span>
+    Hello
+  </span>
+   
+   
+</button>
 `;
 
-exports[`Toolshot components/Button/Button.tools.svelte: With badge 1`] = `
-<span>
-  <button
-    class="svelte-xh4kfu"
+exports[`With badge 1`] = `
+<button
+  class="s-zdMNlEQUhDx4"
+>
+  <i
+    class="icons i-mdi-account s-zdMNlEQUhDx4"
+  />
+   
+  <span
+    class="s-zdMNlEQUhDx4"
   >
-    <i
-      class="material-icons svelte-xh4kfu"
-    >
-      face
-    </i>
-     
-    <span>
-      Hello
-    </span>
-     
-     
-    <div
-      class="badge svelte-xh4kfu halo"
-    >
-      23
-    </div>
-  </button>
-</span>
+    Hello
+  </span>
+   
+   
+  <div
+    class="badge s-zdMNlEQUhDx4 halo"
+  >
+    23
+  </div>
+</button>
 `;
 
-exports[`Toolshot components/Button/Button.tools.svelte: With badge limit 1`] = `
-<span>
-  <button
-    class="svelte-xh4kfu"
+exports[`With badge limit 1`] = `
+<button
+  class="s-zdMNlEQUhDx4"
+>
+  <i
+    class="icons i-mdi-alert s-zdMNlEQUhDx4"
+  />
+   
+  <span
+    class="s-zdMNlEQUhDx4"
   >
-    <i
-      class="material-icons svelte-xh4kfu"
-    >
-      warning
-    </i>
-     
-    <span>
-      Just too much
-    </span>
-     
-     
-    <div
-      class="badge svelte-xh4kfu halo"
-    >
-      999+
-    </div>
-  </button>
-</span>
+    Just too much
+  </span>
+   
+   
+  <div
+    class="badge s-zdMNlEQUhDx4 halo"
+  >
+    999+
+  </div>
+</button>
 `;

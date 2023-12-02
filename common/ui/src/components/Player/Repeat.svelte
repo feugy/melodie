@@ -17,16 +17,17 @@
   }
 </script>
 
-<style lang="postcss">
+<span class:isActive={repeatOne || repeatAll}>
+  <Button
+    on:click={handleRepeat}
+    icon={repeatOne ? 'i-mdi-repeat-once' : 'i-mdi-repeat'}
+    noBorder
+    data-testid="repeat-button"
+  />
+</span>
+
+<style>
   .isActive {
     color: var(--hover-color);
   }
 </style>
-
-<span class:isActive={repeatOne || repeatAll}>
-  <Button
-    on:click={handleRepeat}
-    icon={repeatOne ? 'repeat_one' : 'repeat'}
-    noBorder
-  />
-</span>

@@ -1,104 +1,102 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Toolshot routes/album.tools.svelte: Views/Albums 1`] = `
+exports[`Views/Albums 1`] = `
 <div>
   <section
-    class="svelte-2d5xot"
-    style="animation: __svelte_185617033_0 200ms linear 0ms 1 both;"
+    class="s-KbxoIZQm1a0-"
+    style=""
   >
     <header
-      class=" svelte-1whmh27"
+      class=" s-xf4KciiwOEPn"
       style="--image: url(../images/valentino-funghi-MEcxLZ8ENV8-unsplash.jpg); --shade-color: rgba(0, 0, 0, 0.7); --bgPosition: center 25%;"
     >
       <h1
-        class="svelte-1whmh27"
+        class="s-xf4KciiwOEPn"
       >
         3 albums
       </h1>
     </header>
+    <!--&lt;Heading&gt;-->
      
     <div
-      class="svelte-2d5xot"
+      class="s-KbxoIZQm1a0-"
     >
       <span
-        class="svelte-2d5xot"
+        class="s-KbxoIZQm1a0-"
         id="firstAlbum"
       >
          
         <span
-          class="svelte-1ipxhxy"
-          role="article"
+          class=" s-y8aqkkbOYo4q"
+          role="tab"
+          tabindex="0"
         >
           <div
-            class="content svelte-1ipxhxy"
+            class="content s-y8aqkkbOYo4q"
           >
             <span
-              class="artwork svelte-1ipxhxy"
+              class="artwork s-y8aqkkbOYo4q"
             >
-              <img
-                class="h-full w-full rounded-sm hidden svelte-1l44pje"
-                height="256"
-                src=""
-                width="256"
-              />
-               
-              <span
-                class="h-full w-full svelte-1l44pje rounded-sm"
+              <button
+                class="__flex_tliuhg_tliuhg __justify-center_tliuhg_tliuhg __items-center_tliuhg_tliuhg __bg-[--hover-bg-color]_tliuhg_tliuhg __overflow-hidden_tliuhg_tliuhg __h-full_qb5vnk_qb5vnk __w-full_qb5vnk_qb5vnk s-JU4hIbuSbdGN __rounded-sm_tliuhg_tliuhg"
               >
+                <img
+                  class="__border-none_tliuhg_tliuhg __font-size-0_tliuhg_tliuhg __object-cover_tliuhg_tliuhg __w-full_tliuhg_tliuhg __h-full_tliuhg_tliuhg __hidden_tliuhg_tliuhg s-JU4hIbuSbdGN"
+                  loading="lazy"
+                  src=""
+                />
+                 
                 <i
-                  class="material-icons svelte-1l44pje"
-                >
-                  music_note
-                </i>
-              </span>
-              
+                  class="__inline-block_tliuhg_tliuhg __font-size-[200%]_tliuhg_tliuhg icons i-mdi-music-note s-JU4hIbuSbdGN"
+                  data-testid="i-mdi-music-note"
+                />
+              </button>
+              <!--&lt;Image&gt;-->
             </span>
              
             <p
-              class="controls svelte-1ipxhxy"
+              class="controls s-y8aqkkbOYo4q"
             >
                
               <button
-                class="primary iconOnly large svelte-xh4kfu"
+                class="primary iconOnly large s-zdMNlEQUhDx4"
                 data-testid="play"
               >
                 <i
-                  class="material-icons svelte-xh4kfu"
-                >
-                  play_arrow
-                </i>
+                  class="icons i-mdi-play s-zdMNlEQUhDx4"
+                />
                  
                  
                  
               </button>
+              <!--&lt;Button&gt;-->
                
               <button
-                class="primary iconOnly large svelte-xh4kfu"
+                class="primary iconOnly large s-zdMNlEQUhDx4"
                 data-testid="enqueue"
               >
                 <i
-                  class="material-icons svelte-xh4kfu"
-                >
-                  playlist_add
-                </i>
+                  class="icons i-mdi-playlist-plus s-zdMNlEQUhDx4"
+                />
                  
                  
                  
               </button>
+              <!--&lt;Button&gt;-->
             </p>
           </div>
            
           <header
-            class="svelte-1ipxhxy"
+            class="s-y8aqkkbOYo4q"
           >
             <h3
-              class="svelte-1ipxhxy"
+              class="s-y8aqkkbOYo4q"
             >
               100 Best Karajan
             </h3>
              
             <h4
-              class="svelte-1ae1g9f"
+              class="s-irUkF_IR-GRw"
               slot="details"
             >
               by 
@@ -154,78 +152,82 @@ exports[`Toolshot routes/album.tools.svelte: Views/Albums 1`] = `
             </h4>
           </header>
         </span>
+        <!--&lt;GridItem&gt;-->
+        <!--&lt;Album&gt;-->
          
       </span>
       <span
-        class="svelte-2d5xot"
+        class="s-KbxoIZQm1a0-"
       >
          
         <span
-          class="svelte-1ipxhxy"
-          role="article"
+          class=" s-y8aqkkbOYo4q"
+          role="tab"
+          tabindex="0"
         >
           <div
-            class="content svelte-1ipxhxy"
+            class="content s-y8aqkkbOYo4q"
           >
             <span
-              class="artwork svelte-1ipxhxy"
+              class="artwork s-y8aqkkbOYo4q"
             >
-              <img
-                alt="cover.jpg"
-                class="h-full w-full rounded-sm svelte-1l44pje"
-                height="256"
-                src="cover.jpg"
-                width="256"
-              />
-               
-              
+              <button
+                class="__flex_tliuhg_tliuhg __justify-center_tliuhg_tliuhg __items-center_tliuhg_tliuhg __bg-[--hover-bg-color]_tliuhg_tliuhg __overflow-hidden_tliuhg_tliuhg __h-full_qb5vnk_qb5vnk __w-full_qb5vnk_qb5vnk s-JU4hIbuSbdGN __rounded-sm_tliuhg_tliuhg"
+              >
+                <img
+                  alt="cover.jpg"
+                  class="__border-none_tliuhg_tliuhg __font-size-0_tliuhg_tliuhg __object-cover_tliuhg_tliuhg __w-full_tliuhg_tliuhg __h-full_tliuhg_tliuhg s-JU4hIbuSbdGN"
+                  loading="lazy"
+                  src="cover.jpg"
+                />
+                 
+              </button>
+              <!--&lt;Image&gt;-->
             </span>
              
             <p
-              class="controls svelte-1ipxhxy"
+              class="controls s-y8aqkkbOYo4q"
             >
                
               <button
-                class="primary iconOnly large svelte-xh4kfu"
+                class="primary iconOnly large s-zdMNlEQUhDx4"
                 data-testid="play"
               >
                 <i
-                  class="material-icons svelte-xh4kfu"
-                >
-                  play_arrow
-                </i>
+                  class="icons i-mdi-play s-zdMNlEQUhDx4"
+                />
                  
                  
                  
               </button>
+              <!--&lt;Button&gt;-->
                
               <button
-                class="primary iconOnly large svelte-xh4kfu"
+                class="primary iconOnly large s-zdMNlEQUhDx4"
                 data-testid="enqueue"
               >
                 <i
-                  class="material-icons svelte-xh4kfu"
-                >
-                  playlist_add
-                </i>
+                  class="icons i-mdi-playlist-plus s-zdMNlEQUhDx4"
+                />
                  
                  
                  
               </button>
+              <!--&lt;Button&gt;-->
             </p>
           </div>
            
           <header
-            class="svelte-1ipxhxy"
+            class="s-y8aqkkbOYo4q"
           >
             <h3
-              class="svelte-1ipxhxy"
+              class="s-y8aqkkbOYo4q"
             >
               Black Orpheus
             </h3>
              
             <h4
-              class="svelte-1ae1g9f"
+              class="s-irUkF_IR-GRw"
               slot="details"
             >
               by 
@@ -241,86 +243,85 @@ exports[`Toolshot routes/album.tools.svelte: Views/Albums 1`] = `
             </h4>
           </header>
         </span>
+        <!--&lt;GridItem&gt;-->
+        <!--&lt;Album&gt;-->
          
       </span>
       <span
-        class="svelte-2d5xot"
+        class="s-KbxoIZQm1a0-"
       >
          
         <span
-          class="svelte-1ipxhxy"
-          role="article"
+          class=" s-y8aqkkbOYo4q"
+          role="tab"
+          tabindex="0"
         >
           <div
-            class="content svelte-1ipxhxy"
+            class="content s-y8aqkkbOYo4q"
           >
             <span
-              class="artwork svelte-1ipxhxy"
+              class="artwork s-y8aqkkbOYo4q"
             >
-              <img
-                class="h-full w-full rounded-sm hidden svelte-1l44pje"
-                height="256"
-                src=""
-                width="256"
-              />
-               
-              <span
-                class="h-full w-full svelte-1l44pje rounded-sm"
+              <button
+                class="__flex_tliuhg_tliuhg __justify-center_tliuhg_tliuhg __items-center_tliuhg_tliuhg __bg-[--hover-bg-color]_tliuhg_tliuhg __overflow-hidden_tliuhg_tliuhg __h-full_qb5vnk_qb5vnk __w-full_qb5vnk_qb5vnk s-JU4hIbuSbdGN __rounded-sm_tliuhg_tliuhg"
               >
+                <img
+                  class="__border-none_tliuhg_tliuhg __font-size-0_tliuhg_tliuhg __object-cover_tliuhg_tliuhg __w-full_tliuhg_tliuhg __h-full_tliuhg_tliuhg __hidden_tliuhg_tliuhg s-JU4hIbuSbdGN"
+                  loading="lazy"
+                  src=""
+                />
+                 
                 <i
-                  class="material-icons svelte-1l44pje"
-                >
-                  music_note
-                </i>
-              </span>
-              
+                  class="__inline-block_tliuhg_tliuhg __font-size-[200%]_tliuhg_tliuhg icons i-mdi-music-note s-JU4hIbuSbdGN"
+                  data-testid="i-mdi-music-note"
+                />
+              </button>
+              <!--&lt;Image&gt;-->
             </span>
              
             <p
-              class="controls svelte-1ipxhxy"
+              class="controls s-y8aqkkbOYo4q"
             >
                
               <button
-                class="primary iconOnly large svelte-xh4kfu"
+                class="primary iconOnly large s-zdMNlEQUhDx4"
                 data-testid="play"
               >
                 <i
-                  class="material-icons svelte-xh4kfu"
-                >
-                  play_arrow
-                </i>
+                  class="icons i-mdi-play s-zdMNlEQUhDx4"
+                />
                  
                  
                  
               </button>
+              <!--&lt;Button&gt;-->
                
               <button
-                class="primary iconOnly large svelte-xh4kfu"
+                class="primary iconOnly large s-zdMNlEQUhDx4"
                 data-testid="enqueue"
               >
                 <i
-                  class="material-icons svelte-xh4kfu"
-                >
-                  playlist_add
-                </i>
+                  class="icons i-mdi-playlist-plus s-zdMNlEQUhDx4"
+                />
                  
                  
                  
               </button>
+              <!--&lt;Button&gt;-->
             </p>
           </div>
            
           <header
-            class="svelte-1ipxhxy"
+            class="s-y8aqkkbOYo4q"
           >
             <h3
-              class="svelte-1ipxhxy"
+              class="s-y8aqkkbOYo4q"
             >
               Distant Worlds - Music from Final Fantasy
             </h3>
              
             <h4
-              class="svelte-1ae1g9f"
+              class="s-irUkF_IR-GRw"
               slot="details"
             >
               by 
@@ -336,9 +337,12 @@ exports[`Toolshot routes/album.tools.svelte: Views/Albums 1`] = `
             </h4>
           </header>
         </span>
+        <!--&lt;GridItem&gt;-->
+        <!--&lt;Album&gt;-->
          
       </span>
     </div>
   </section>
+  <!--&lt;Album&gt;-->
 </div>
 `;

@@ -1,5 +1,3 @@
-'use strict'
-
-export * from './jest-setup'
+export * from './test-setup'
 export * from './lorem'
 export * from './utils'

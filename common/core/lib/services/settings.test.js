@@ -1,33 +1,37 @@
-'use strict'
+import { faker } from '@faker-js/faker'
+import { osLocale } from 'os-locale'
+import { join } from 'path'
+import { publicIpv4 } from 'public-ip'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 
-const { join } = require('path')
-const faker = require('faker')
-const osLocale = require('os-locale')
-const publicIp = require('public-ip')
-const settingsService = require('./settings')
-const { local, audiodb, discogs } = require('../providers')
-const { settingsModel } = require('../models/settings')
-const { broadcast } = require('../utils')
+import { settingsModel } from '../models/settings'
+import { audiodb, discogs, local } from '../providers'
+import { broadcast } from '../utils'
+import * as settingsService from './settings'
 
-jest.mock('os-locale')
-jest.mock('public-ip')
-jest.mock('../services')
-jest.mock('../models/settings')
-jest.mock('../providers/local')
-jest.mock('../providers/discogs')
-jest.mock('../providers/audiodb')
-jest.mock('../utils/connection', () => ({ broadcast: jest.fn() }))
+vi.mock('os-locale')
+vi.mock('public-ip', () => ({ publicIpv4: vi.fn() }))
+vi.mock('../services')
+vi.mock('../models/settings')
+vi.mock('../providers/index.js')
+vi.mock('../utils/connection', () => ({ broadcast: vi.fn() }))
+
+async function nextPromise() {
+  await Promise.resolve()
+  await Promise.resolve()
+  await Promise.resolve()
+}
 
 describe('Settings service', () => {
   beforeEach(() => {
-    jest.clearAllMocks()
+    vi.clearAllMocks()
     settingsModel.get.mockResolvedValue({})
   })
 
   it('returns settings', async () => {
     const folders = [faker.system.fileName(), faker.system.fileName()]
-    const locale = faker.random.word()
-    const openCount = faker.datatype.number({ min: 1 })
+    const locale = faker.string.alpha()
+    const openCount = faker.number.int({ min: 1 })
     settingsModel.get.mockResolvedValueOnce({ folders, locale, openCount })
     osLocale.mockResolvedValueOnce('fr-FR')
 
@@ -37,7 +41,7 @@ describe('Settings service', () => {
 
   it('returns system locale when locale not set', async () => {
     const folders = [faker.system.fileName(), faker.system.fileName()]
-    const openCount = faker.datatype.number({ min: 1 })
+    const openCount = faker.number.int({ min: 1 })
     settingsModel.get.mockResolvedValueOnce({ openCount, folders })
     osLocale.mockResolvedValueOnce('fr-FR')
 
@@ -50,8 +54,8 @@ describe('Settings service', () => {
   })
 
   it('can set locale', async () => {
-    const locale = faker.random.word()
-    const openCount = faker.datatype.number({ min: 1 })
+    const locale = faker.string.alpha()
+    const openCount = faker.number.int({ min: 1 })
     const folders = [faker.system.fileName(), faker.system.fileName()]
     settingsModel.get.mockResolvedValueOnce({ folders, openCount })
     const saved = { folders, locale, openCount }
@@ -62,11 +66,11 @@ describe('Settings service', () => {
   })
 
   it('saves AudioDB provider key', async () => {
-    const locale = faker.random.word()
-    const key = faker.datatype.uuid()
+    const locale = faker.string.alpha()
+    const key = faker.string.uuid()
     const providers = {
-      audiodb: { foo: faker.random.word() },
-      discogs: { foo: faker.random.word() }
+      audiodb: { foo: faker.string.alpha() },
+      discogs: { foo: faker.string.alpha() }
     }
     settingsModel.get.mockResolvedValueOnce({ locale, providers })
     const saved = { locale, providers: { ...providers, audiodb: { key } } }
@@ -81,11 +85,11 @@ describe('Settings service', () => {
   })
 
   it('saves Discogs provider token', async () => {
-    const locale = faker.random.word()
-    const token = faker.datatype.uuid()
+    const locale = faker.string.alpha()
+    const token = faker.string.uuid()
     const providers = {
-      audiodb: { foo: faker.random.word() },
-      discogs: { foo: faker.random.word() }
+      audiodb: { foo: faker.string.alpha() },
+      discogs: { foo: faker.string.alpha() }
     }
     settingsModel.get.mockResolvedValueOnce({ locale, providers })
     const saved = { locale, providers: { ...providers, discogs: { token } } }
@@ -100,12 +104,12 @@ describe('Settings service', () => {
   })
 
   it('saves enqueue behaviour', async () => {
-    const locale = faker.random.word()
+    const locale = faker.string.alpha()
     const onClick = faker.datatype.boolean()
     const clearBefore = faker.datatype.boolean()
     const providers = {
-      audiodb: { foo: faker.random.word() },
-      discogs: { foo: faker.random.word() }
+      audiodb: { foo: faker.string.alpha() },
+      discogs: { foo: faker.string.alpha() }
     }
     settingsModel.get.mockResolvedValueOnce({
       locale,
@@ -125,7 +129,7 @@ describe('Settings service', () => {
   })
 
   it('toggles broadcast on and off', async () => {
-    const locale = faker.random.word()
+    const locale = faker.string.alpha()
     settingsModel.get
       .mockResolvedValueOnce({ locale, isBroadcasting: false })
       .mockResolvedValueOnce({ locale, isBroadcasting: true })
@@ -151,8 +155,8 @@ describe('Settings service', () => {
   })
 
   it('sets broadcast port', async () => {
-    const locale = faker.random.word()
-    const broadcastPort = faker.datatype.number()
+    const locale = faker.string.alpha()
+    const broadcastPort = faker.number.int()
     settingsModel.get.mockResolvedValueOnce({ locale })
     const saved = { locale, broadcastPort }
     settingsModel.save.mockResolvedValueOnce(saved)
@@ -164,14 +168,14 @@ describe('Settings service', () => {
 
   describe('init', () => {
     const providers = {
-      audiodb: { foo: faker.random.word() },
-      discogs: { foo: faker.random.word() }
+      audiodb: { foo: faker.string.alpha() },
+      discogs: { foo: faker.string.alpha() }
     }
-    const locale = faker.random.word()
-    const port = faker.datatype.number({ min: 3000, max: 9999 })
+    const locale = faker.string.alpha()
+    const port = faker.number.int({ min: 3000, max: 9999 })
 
     it('increments opening count', async () => {
-      const openCount = faker.datatype.number({ min: 1 })
+      const openCount = faker.number.int({ min: 1 })
       settingsModel.get.mockResolvedValueOnce({ openCount, locale, providers })
 
       await settingsService.init(port)
@@ -199,29 +203,27 @@ describe('Settings service', () => {
 
     it('fetches public IP', async () => {
       const ip = faker.internet.ip()
-      publicIp.v4.mockResolvedValue(ip)
+      publicIpv4.mockResolvedValue(ip)
       settingsModel.get.mockResolvedValueOnce({ locale, providers })
       await settingsService.init(port)
 
-      expect(await settingsService.getUIAddress()).toEqual(
-        `http://${ip}:${port}`
-      )
-      expect(publicIp.v4).toHaveBeenCalledTimes(1)
+      expect(await settingsService.getUIAddress()).toBe(`http://${ip}:${port}`)
+      expect(publicIpv4).toHaveBeenCalledTimes(1)
     })
 
     it('handles no network', async () => {
-      publicIp.v4.mockRejectedValue(new Error('unreachable network'))
+      publicIpv4.mockRejectedValue(new Error('unreachable network'))
       settingsModel.get.mockResolvedValueOnce({ locale, providers })
       await settingsService.init(port)
 
       expect(await settingsService.getUIAddress()).toBeNull()
-      expect(publicIp.v4).toHaveBeenCalledTimes(1)
+      expect(publicIpv4).toHaveBeenCalledTimes(1)
     })
   })
 
   describe('addFolders', () => {
     it('saves specified folders to settings and invoke done callback', async () => {
-      const locale = faker.random.word()
+      const locale = faker.string.alpha()
       const folders = [faker.system.fileName()]
       settingsModel.get.mockResolvedValueOnce({ folders, locale })
       const added = [faker.system.fileName(), faker.system.fileName()]
@@ -230,12 +232,16 @@ describe('Settings service', () => {
       settingsModel.save.mockResolvedValueOnce(saved)
       local.importTracks.mockResolvedValueOnce()
 
-      const onDone = jest.fn()
+      const onDone = vi.fn()
 
       expect(await settingsService.addFolders(added, onDone)).toEqual(saved)
+      await nextPromise()
 
       expect(settingsModel.get).toHaveBeenCalledTimes(1)
-      expect(settingsModel.save).toHaveBeenCalledWith(saved)
+      expect(settingsModel.save).toHaveBeenCalledWith({
+        ...saved,
+        id: undefined
+      })
       expect(settingsModel.save).toHaveBeenCalledTimes(1)
       expect(local.importTracks).toHaveBeenCalledTimes(1)
       expect(onDone).toHaveBeenCalledAfter(broadcast)
@@ -244,7 +250,7 @@ describe('Settings service', () => {
     })
 
     it('merges nested added folders into its tracked parent', async () => {
-      const locale = faker.random.word()
+      const locale = faker.string.alpha()
       const parent1 = join(faker.lorem.word(), faker.lorem.word())
       const parent2 = join(faker.lorem.word(), faker.lorem.word())
       const folders = [parent1, faker.system.fileName(), parent2]
@@ -260,9 +266,13 @@ describe('Settings service', () => {
       local.importTracks.mockResolvedValueOnce()
 
       expect(await settingsService.addFolders(filePaths)).toEqual(saved)
+      await nextPromise()
 
       expect(settingsModel.get).toHaveBeenCalledTimes(1)
-      expect(settingsModel.save).toHaveBeenCalledWith(saved)
+      expect(settingsModel.save).toHaveBeenCalledWith({
+        ...saved,
+        id: undefined
+      })
       expect(settingsModel.save).toHaveBeenCalledTimes(1)
       expect(local.importTracks).toHaveBeenCalledTimes(1)
       expect(broadcast).toHaveBeenCalledWith(
@@ -273,7 +283,7 @@ describe('Settings service', () => {
     })
 
     it('removes nested folders when adding a common parent', async () => {
-      const locale = faker.random.word()
+      const locale = faker.string.alpha()
       const parent = join(faker.lorem.word(), faker.lorem.word())
       const folders = [
         join(parent, faker.system.fileName()),
@@ -287,9 +297,13 @@ describe('Settings service', () => {
       local.importTracks.mockResolvedValueOnce()
 
       expect(await settingsService.addFolders([parent])).toEqual(saved)
+      await nextPromise()
 
       expect(settingsModel.get).toHaveBeenCalledTimes(1)
-      expect(settingsModel.save).toHaveBeenCalledWith(saved)
+      expect(settingsModel.save).toHaveBeenCalledWith({
+        ...saved,
+        id: undefined
+      })
       expect(settingsModel.save).toHaveBeenCalledTimes(1)
       expect(local.importTracks).toHaveBeenCalledTimes(1)
       expect(broadcast).toHaveBeenCalledWith('watching-folders', [parent])
@@ -297,7 +311,7 @@ describe('Settings service', () => {
     })
 
     it('does not import already-watched folders', async () => {
-      const locale = faker.random.word()
+      const locale = faker.string.alpha()
       const parent1 = join(faker.lorem.word(), faker.lorem.word())
       const parent2 = join(faker.lorem.word(), faker.lorem.word())
       const folders = [parent1, parent2]
@@ -309,6 +323,7 @@ describe('Settings service', () => {
           join(parent2, faker.lorem.word())
         ])
       ).toEqual({ folders, locale })
+      await nextPromise()
 
       expect(settingsModel.get).toHaveBeenCalledTimes(1)
       expect(settingsModel.save).not.toHaveBeenCalled()
@@ -319,7 +334,7 @@ describe('Settings service', () => {
 
   describe('removeFolder', () => {
     it('removes tracked folder from settings', async () => {
-      const locale = faker.random.word()
+      const locale = faker.string.alpha()
       const folders = [
         faker.system.fileName(),
         faker.system.fileName(),
@@ -336,13 +351,16 @@ describe('Settings service', () => {
       expect(await settingsService.removeFolder(folders[1])).toEqual(saved)
 
       expect(settingsModel.get).toHaveBeenCalledTimes(1)
-      expect(settingsModel.save).toHaveBeenCalledWith(saved)
+      expect(settingsModel.save).toHaveBeenCalledWith({
+        ...saved,
+        id: undefined
+      })
       expect(settingsModel.save).toHaveBeenCalledTimes(1)
       expect(local.importTracks).toHaveBeenCalledTimes(1)
     })
 
     it('ignores untracked folder', async () => {
-      const locale = faker.random.word()
+      const locale = faker.string.alpha()
       const folders = [faker.system.fileName(), faker.system.fileName()]
       settingsModel.get.mockResolvedValueOnce({ folders, locale })
 

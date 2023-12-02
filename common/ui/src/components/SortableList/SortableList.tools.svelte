@@ -1,8 +1,9 @@
 <script>
   import { Tool } from '@atelier-wb/svelte'
-  import SortableList from './SortableList.test.svelte'
-  import { trackListData } from '../Player/Player.testdata'
+
   import HRefSink from '../../atelier/HRefSink.svelte'
+  import { trackListData } from '../Player/Player.testdata'
+  import SortableList from './SortableList.test.svelte'
 </script>
 
 <Tool

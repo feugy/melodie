@@ -1,44 +1,51 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Toolshot components/SortableList/SortableList.tools.svelte: Components/Sortable list 1`] = `
+exports[`Components/Sortable list 1`] = `
 <div>
-  <ol>
+  <ol
+    class="s-Wu4er3rFOHtk"
+  >
     <li
-      class="svelte-v0o86q"
+      class="s-Wu4er3rFOHtk"
       draggable="true"
     >
       <div
-        class="svelte-91ypv7"
+        class="s-nkNNd3P6s7H8"
         slot="item"
       >
-        <div
-          class="col-span-11 root svelte-8oy723"
+        <button
+          class="__col-span-11_p2itly_p2itly root s-B4OUyNjosq8C"
         >
           <a
-            class="svelte-8oy723"
+            class="s-B4OUyNjosq8C"
             href="#/album/1"
           >
-            <img
-              alt="./# Films/cover.jpg"
-              class="h-16 w-16 text-xs actionable rounded-sm svelte-1l44pje"
-              height="256"
-              src="./%23 Films/cover.jpg"
-              width="256"
-            />
-             
-            
+            <button
+              class="__flex_tliuhg_tliuhg __justify-center_tliuhg_tliuhg __items-center_tliuhg_tliuhg __bg-[--hover-bg-color]_tliuhg_tliuhg __overflow-hidden_tliuhg_tliuhg __h-16_cxt0i8_cxt0i8 __w-16_cxt0i8_cxt0i8 __text-xs_cxt0i8_cxt0i8 actionable s-JU4hIbuSbdGN __rounded-sm_tliuhg_tliuhg"
+            >
+              <img
+                alt="./# Films/cover.jpg"
+                class="__border-none_tliuhg_tliuhg __font-size-0_tliuhg_tliuhg __object-cover_tliuhg_tliuhg __w-full_tliuhg_tliuhg __h-full_tliuhg_tliuhg s-JU4hIbuSbdGN"
+                loading="lazy"
+                src="./%23 Films/cover.jpg"
+              />
+               
+            </button>
+            <!--&lt;Image&gt;-->
           </a>
            
           <div
-            class="track svelte-8oy723"
+            class="track s-B4OUyNjosq8C"
           >
             <span
-              class="title svelte-8oy723"
+              class="title s-B4OUyNjosq8C"
             >
               file 1
             </span>
              
-            <span>
+            <span
+              class="s-B4OUyNjosq8C"
+            >
               <a
                 class="text-sm underlined"
                 href="#/artist/0"
@@ -50,66 +57,73 @@ exports[`Toolshot components/SortableList/SortableList.tools.svelte: Components/
           </div>
            
           <div
-            class="duration svelte-8oy723"
+            class="duration s-B4OUyNjosq8C"
           >
             3:38
           </div>
            
-        </div>
+        </button>
+        <!--&lt;Track&gt;-->
          
-        <span>
+        <span
+          class="s-nkNNd3P6s7H8"
+        >
           <button
-            class="iconOnly noBorder svelte-xh4kfu"
+            class="iconOnly noBorder s-zdMNlEQUhDx4"
           >
             <i
-              class="material-icons svelte-xh4kfu"
-            >
-              close
-            </i>
+              class="icons i-mdi-close s-zdMNlEQUhDx4"
+            />
              
              
              
           </button>
+          <!--&lt;Button&gt;-->
         </span>
       </div>
        
     </li>
     <li
-      class="svelte-v0o86q"
+      class="s-Wu4er3rFOHtk"
       draggable="true"
     >
       <div
-        class="svelte-91ypv7"
+        class="s-nkNNd3P6s7H8"
         slot="item"
       >
-        <div
-          class="col-span-11 root svelte-8oy723"
+        <button
+          class="__col-span-11_p2itly_p2itly root s-B4OUyNjosq8C"
         >
           <a
-            class="svelte-8oy723"
+            class="s-B4OUyNjosq8C"
             href="#/album/1"
           >
-            <img
-              alt="./# Films/cover.jpg"
-              class="h-16 w-16 text-xs actionable rounded-sm svelte-1l44pje"
-              height="256"
-              src="./%23 Films/cover.jpg"
-              width="256"
-            />
-             
-            
+            <button
+              class="__flex_tliuhg_tliuhg __justify-center_tliuhg_tliuhg __items-center_tliuhg_tliuhg __bg-[--hover-bg-color]_tliuhg_tliuhg __overflow-hidden_tliuhg_tliuhg __h-16_cxt0i8_cxt0i8 __w-16_cxt0i8_cxt0i8 __text-xs_cxt0i8_cxt0i8 actionable s-JU4hIbuSbdGN __rounded-sm_tliuhg_tliuhg"
+            >
+              <img
+                alt="./# Films/cover.jpg"
+                class="__border-none_tliuhg_tliuhg __font-size-0_tliuhg_tliuhg __object-cover_tliuhg_tliuhg __w-full_tliuhg_tliuhg __h-full_tliuhg_tliuhg s-JU4hIbuSbdGN"
+                loading="lazy"
+                src="./%23 Films/cover.jpg"
+              />
+               
+            </button>
+            <!--&lt;Image&gt;-->
           </a>
            
           <div
-            class="track svelte-8oy723"
+            class="track s-B4OUyNjosq8C"
           >
             <span
-              class="title svelte-8oy723"
+              class="title s-B4OUyNjosq8C"
             >
               file 2
             </span>
              
-            <span>
+            <span
+              class="s-B4OUyNjosq8C"
+            >
               <a
                 class="text-sm underlined"
                 href="#/artist/0"
@@ -121,66 +135,73 @@ exports[`Toolshot components/SortableList/SortableList.tools.svelte: Components/
           </div>
            
           <div
-            class="duration svelte-8oy723"
+            class="duration s-B4OUyNjosq8C"
           >
             0:04
           </div>
            
-        </div>
+        </button>
+        <!--&lt;Track&gt;-->
          
-        <span>
+        <span
+          class="s-nkNNd3P6s7H8"
+        >
           <button
-            class="iconOnly noBorder svelte-xh4kfu"
+            class="iconOnly noBorder s-zdMNlEQUhDx4"
           >
             <i
-              class="material-icons svelte-xh4kfu"
-            >
-              close
-            </i>
+              class="icons i-mdi-close s-zdMNlEQUhDx4"
+            />
              
              
              
           </button>
+          <!--&lt;Button&gt;-->
         </span>
       </div>
        
     </li>
     <li
-      class="svelte-v0o86q"
+      class="s-Wu4er3rFOHtk"
       draggable="true"
     >
       <div
-        class="svelte-91ypv7"
+        class="s-nkNNd3P6s7H8"
         slot="item"
       >
-        <div
-          class="col-span-11 root svelte-8oy723"
+        <button
+          class="__col-span-11_p2itly_p2itly root s-B4OUyNjosq8C"
         >
           <a
-            class="svelte-8oy723"
+            class="s-B4OUyNjosq8C"
             href="#/album/1"
           >
-            <img
-              alt="./cover.jpg"
-              class="h-16 w-16 text-xs actionable rounded-sm svelte-1l44pje"
-              height="256"
-              src="./cover.jpg"
-              width="256"
-            />
-             
-            
+            <button
+              class="__flex_tliuhg_tliuhg __justify-center_tliuhg_tliuhg __items-center_tliuhg_tliuhg __bg-[--hover-bg-color]_tliuhg_tliuhg __overflow-hidden_tliuhg_tliuhg __h-16_cxt0i8_cxt0i8 __w-16_cxt0i8_cxt0i8 __text-xs_cxt0i8_cxt0i8 actionable s-JU4hIbuSbdGN __rounded-sm_tliuhg_tliuhg"
+            >
+              <img
+                alt="./cover.jpg"
+                class="__border-none_tliuhg_tliuhg __font-size-0_tliuhg_tliuhg __object-cover_tliuhg_tliuhg __w-full_tliuhg_tliuhg __h-full_tliuhg_tliuhg s-JU4hIbuSbdGN"
+                loading="lazy"
+                src="./cover.jpg"
+              />
+               
+            </button>
+            <!--&lt;Image&gt;-->
           </a>
            
           <div
-            class="track svelte-8oy723"
+            class="track s-B4OUyNjosq8C"
           >
             <span
-              class="title svelte-8oy723"
+              class="title s-B4OUyNjosq8C"
             >
               file 3
             </span>
              
-            <span>
+            <span
+              class="s-B4OUyNjosq8C"
+            >
               <a
                 class="text-sm underlined"
                 href="#/artist/1"
@@ -192,66 +213,73 @@ exports[`Toolshot components/SortableList/SortableList.tools.svelte: Components/
           </div>
            
           <div
-            class="duration svelte-8oy723"
+            class="duration s-B4OUyNjosq8C"
           >
             0:02
           </div>
            
-        </div>
+        </button>
+        <!--&lt;Track&gt;-->
          
-        <span>
+        <span
+          class="s-nkNNd3P6s7H8"
+        >
           <button
-            class="iconOnly noBorder svelte-xh4kfu"
+            class="iconOnly noBorder s-zdMNlEQUhDx4"
           >
             <i
-              class="material-icons svelte-xh4kfu"
-            >
-              close
-            </i>
+              class="icons i-mdi-close s-zdMNlEQUhDx4"
+            />
              
              
              
           </button>
+          <!--&lt;Button&gt;-->
         </span>
       </div>
        
     </li>
     <li
-      class="svelte-v0o86q"
+      class="s-Wu4er3rFOHtk"
       draggable="true"
     >
       <div
-        class="svelte-91ypv7"
+        class="s-nkNNd3P6s7H8"
         slot="item"
       >
-        <div
-          class="col-span-11 root svelte-8oy723"
+        <button
+          class="__col-span-11_p2itly_p2itly root s-B4OUyNjosq8C"
         >
           <a
-            class="svelte-8oy723"
+            class="s-B4OUyNjosq8C"
             href="#/album/1"
           >
-            <img
-              alt="./cover.jpg"
-              class="h-16 w-16 text-xs actionable rounded-sm svelte-1l44pje"
-              height="256"
-              src="./cover.jpg"
-              width="256"
-            />
-             
-            
+            <button
+              class="__flex_tliuhg_tliuhg __justify-center_tliuhg_tliuhg __items-center_tliuhg_tliuhg __bg-[--hover-bg-color]_tliuhg_tliuhg __overflow-hidden_tliuhg_tliuhg __h-16_cxt0i8_cxt0i8 __w-16_cxt0i8_cxt0i8 __text-xs_cxt0i8_cxt0i8 actionable s-JU4hIbuSbdGN __rounded-sm_tliuhg_tliuhg"
+            >
+              <img
+                alt="./cover.jpg"
+                class="__border-none_tliuhg_tliuhg __font-size-0_tliuhg_tliuhg __object-cover_tliuhg_tliuhg __w-full_tliuhg_tliuhg __h-full_tliuhg_tliuhg s-JU4hIbuSbdGN"
+                loading="lazy"
+                src="./cover.jpg"
+              />
+               
+            </button>
+            <!--&lt;Image&gt;-->
           </a>
            
           <div
-            class="track svelte-8oy723"
+            class="track s-B4OUyNjosq8C"
           >
             <span
-              class="title svelte-8oy723"
+              class="title s-B4OUyNjosq8C"
             >
               file 4
             </span>
              
-            <span>
+            <span
+              class="s-B4OUyNjosq8C"
+            >
               <a
                 class="text-sm underlined"
                 href="#/artist/2"
@@ -263,66 +291,73 @@ exports[`Toolshot components/SortableList/SortableList.tools.svelte: Components/
           </div>
            
           <div
-            class="duration svelte-8oy723"
+            class="duration s-B4OUyNjosq8C"
           >
             0:03
           </div>
            
-        </div>
+        </button>
+        <!--&lt;Track&gt;-->
          
-        <span>
+        <span
+          class="s-nkNNd3P6s7H8"
+        >
           <button
-            class="iconOnly noBorder svelte-xh4kfu"
+            class="iconOnly noBorder s-zdMNlEQUhDx4"
           >
             <i
-              class="material-icons svelte-xh4kfu"
-            >
-              close
-            </i>
+              class="icons i-mdi-close s-zdMNlEQUhDx4"
+            />
              
              
              
           </button>
+          <!--&lt;Button&gt;-->
         </span>
       </div>
        
     </li>
     <li
-      class="svelte-v0o86q"
+      class="s-Wu4er3rFOHtk"
       draggable="true"
     >
       <div
-        class="svelte-91ypv7"
+        class="s-nkNNd3P6s7H8"
         slot="item"
       >
-        <div
-          class="col-span-11 root svelte-8oy723"
+        <button
+          class="__col-span-11_p2itly_p2itly root s-B4OUyNjosq8C"
         >
           <a
-            class="svelte-8oy723"
+            class="s-B4OUyNjosq8C"
             href="#/album/1"
           >
-            <img
-              alt="./# Films/cover.jpg"
-              class="h-16 w-16 text-xs actionable rounded-sm svelte-1l44pje"
-              height="256"
-              src="./%23 Films/cover.jpg"
-              width="256"
-            />
-             
-            
+            <button
+              class="__flex_tliuhg_tliuhg __justify-center_tliuhg_tliuhg __items-center_tliuhg_tliuhg __bg-[--hover-bg-color]_tliuhg_tliuhg __overflow-hidden_tliuhg_tliuhg __h-16_cxt0i8_cxt0i8 __w-16_cxt0i8_cxt0i8 __text-xs_cxt0i8_cxt0i8 actionable s-JU4hIbuSbdGN __rounded-sm_tliuhg_tliuhg"
+            >
+              <img
+                alt="./# Films/cover.jpg"
+                class="__border-none_tliuhg_tliuhg __font-size-0_tliuhg_tliuhg __object-cover_tliuhg_tliuhg __w-full_tliuhg_tliuhg __h-full_tliuhg_tliuhg s-JU4hIbuSbdGN"
+                loading="lazy"
+                src="./%23 Films/cover.jpg"
+              />
+               
+            </button>
+            <!--&lt;Image&gt;-->
           </a>
            
           <div
-            class="track svelte-8oy723"
+            class="track s-B4OUyNjosq8C"
           >
             <span
-              class="title svelte-8oy723"
+              class="title s-B4OUyNjosq8C"
             >
               file 1
             </span>
              
-            <span>
+            <span
+              class="s-B4OUyNjosq8C"
+            >
               <a
                 class="text-sm underlined"
                 href="#/artist/0"
@@ -334,66 +369,73 @@ exports[`Toolshot components/SortableList/SortableList.tools.svelte: Components/
           </div>
            
           <div
-            class="duration svelte-8oy723"
+            class="duration s-B4OUyNjosq8C"
           >
             3:38
           </div>
            
-        </div>
+        </button>
+        <!--&lt;Track&gt;-->
          
-        <span>
+        <span
+          class="s-nkNNd3P6s7H8"
+        >
           <button
-            class="iconOnly noBorder svelte-xh4kfu"
+            class="iconOnly noBorder s-zdMNlEQUhDx4"
           >
             <i
-              class="material-icons svelte-xh4kfu"
-            >
-              close
-            </i>
+              class="icons i-mdi-close s-zdMNlEQUhDx4"
+            />
              
              
              
           </button>
+          <!--&lt;Button&gt;-->
         </span>
       </div>
        
     </li>
     <li
-      class="svelte-v0o86q"
+      class="s-Wu4er3rFOHtk"
       draggable="true"
     >
       <div
-        class="svelte-91ypv7"
+        class="s-nkNNd3P6s7H8"
         slot="item"
       >
-        <div
-          class="col-span-11 root svelte-8oy723"
+        <button
+          class="__col-span-11_p2itly_p2itly root s-B4OUyNjosq8C"
         >
           <a
-            class="svelte-8oy723"
+            class="s-B4OUyNjosq8C"
             href="#/album/1"
           >
-            <img
-              alt="./# Films/cover.jpg"
-              class="h-16 w-16 text-xs actionable rounded-sm svelte-1l44pje"
-              height="256"
-              src="./%23 Films/cover.jpg"
-              width="256"
-            />
-             
-            
+            <button
+              class="__flex_tliuhg_tliuhg __justify-center_tliuhg_tliuhg __items-center_tliuhg_tliuhg __bg-[--hover-bg-color]_tliuhg_tliuhg __overflow-hidden_tliuhg_tliuhg __h-16_cxt0i8_cxt0i8 __w-16_cxt0i8_cxt0i8 __text-xs_cxt0i8_cxt0i8 actionable s-JU4hIbuSbdGN __rounded-sm_tliuhg_tliuhg"
+            >
+              <img
+                alt="./# Films/cover.jpg"
+                class="__border-none_tliuhg_tliuhg __font-size-0_tliuhg_tliuhg __object-cover_tliuhg_tliuhg __w-full_tliuhg_tliuhg __h-full_tliuhg_tliuhg s-JU4hIbuSbdGN"
+                loading="lazy"
+                src="./%23 Films/cover.jpg"
+              />
+               
+            </button>
+            <!--&lt;Image&gt;-->
           </a>
            
           <div
-            class="track svelte-8oy723"
+            class="track s-B4OUyNjosq8C"
           >
             <span
-              class="title svelte-8oy723"
+              class="title s-B4OUyNjosq8C"
             >
               file 2
             </span>
              
-            <span>
+            <span
+              class="s-B4OUyNjosq8C"
+            >
               <a
                 class="text-sm underlined"
                 href="#/artist/0"
@@ -405,66 +447,73 @@ exports[`Toolshot components/SortableList/SortableList.tools.svelte: Components/
           </div>
            
           <div
-            class="duration svelte-8oy723"
+            class="duration s-B4OUyNjosq8C"
           >
             0:04
           </div>
            
-        </div>
+        </button>
+        <!--&lt;Track&gt;-->
          
-        <span>
+        <span
+          class="s-nkNNd3P6s7H8"
+        >
           <button
-            class="iconOnly noBorder svelte-xh4kfu"
+            class="iconOnly noBorder s-zdMNlEQUhDx4"
           >
             <i
-              class="material-icons svelte-xh4kfu"
-            >
-              close
-            </i>
+              class="icons i-mdi-close s-zdMNlEQUhDx4"
+            />
              
              
              
           </button>
+          <!--&lt;Button&gt;-->
         </span>
       </div>
        
     </li>
     <li
-      class="svelte-v0o86q"
+      class="s-Wu4er3rFOHtk"
       draggable="true"
     >
       <div
-        class="svelte-91ypv7"
+        class="s-nkNNd3P6s7H8"
         slot="item"
       >
-        <div
-          class="col-span-11 root svelte-8oy723"
+        <button
+          class="__col-span-11_p2itly_p2itly root s-B4OUyNjosq8C"
         >
           <a
-            class="svelte-8oy723"
+            class="s-B4OUyNjosq8C"
             href="#/album/1"
           >
-            <img
-              alt="./cover.jpg"
-              class="h-16 w-16 text-xs actionable rounded-sm svelte-1l44pje"
-              height="256"
-              src="./cover.jpg"
-              width="256"
-            />
-             
-            
+            <button
+              class="__flex_tliuhg_tliuhg __justify-center_tliuhg_tliuhg __items-center_tliuhg_tliuhg __bg-[--hover-bg-color]_tliuhg_tliuhg __overflow-hidden_tliuhg_tliuhg __h-16_cxt0i8_cxt0i8 __w-16_cxt0i8_cxt0i8 __text-xs_cxt0i8_cxt0i8 actionable s-JU4hIbuSbdGN __rounded-sm_tliuhg_tliuhg"
+            >
+              <img
+                alt="./cover.jpg"
+                class="__border-none_tliuhg_tliuhg __font-size-0_tliuhg_tliuhg __object-cover_tliuhg_tliuhg __w-full_tliuhg_tliuhg __h-full_tliuhg_tliuhg s-JU4hIbuSbdGN"
+                loading="lazy"
+                src="./cover.jpg"
+              />
+               
+            </button>
+            <!--&lt;Image&gt;-->
           </a>
            
           <div
-            class="track svelte-8oy723"
+            class="track s-B4OUyNjosq8C"
           >
             <span
-              class="title svelte-8oy723"
+              class="title s-B4OUyNjosq8C"
             >
               file 3
             </span>
              
-            <span>
+            <span
+              class="s-B4OUyNjosq8C"
+            >
               <a
                 class="text-sm underlined"
                 href="#/artist/1"
@@ -476,66 +525,73 @@ exports[`Toolshot components/SortableList/SortableList.tools.svelte: Components/
           </div>
            
           <div
-            class="duration svelte-8oy723"
+            class="duration s-B4OUyNjosq8C"
           >
             0:02
           </div>
            
-        </div>
+        </button>
+        <!--&lt;Track&gt;-->
          
-        <span>
+        <span
+          class="s-nkNNd3P6s7H8"
+        >
           <button
-            class="iconOnly noBorder svelte-xh4kfu"
+            class="iconOnly noBorder s-zdMNlEQUhDx4"
           >
             <i
-              class="material-icons svelte-xh4kfu"
-            >
-              close
-            </i>
+              class="icons i-mdi-close s-zdMNlEQUhDx4"
+            />
              
              
              
           </button>
+          <!--&lt;Button&gt;-->
         </span>
       </div>
        
     </li>
     <li
-      class="svelte-v0o86q"
+      class="s-Wu4er3rFOHtk"
       draggable="true"
     >
       <div
-        class="svelte-91ypv7"
+        class="s-nkNNd3P6s7H8"
         slot="item"
       >
-        <div
-          class="col-span-11 root svelte-8oy723"
+        <button
+          class="__col-span-11_p2itly_p2itly root s-B4OUyNjosq8C"
         >
           <a
-            class="svelte-8oy723"
+            class="s-B4OUyNjosq8C"
             href="#/album/1"
           >
-            <img
-              alt="./cover.jpg"
-              class="h-16 w-16 text-xs actionable rounded-sm svelte-1l44pje"
-              height="256"
-              src="./cover.jpg"
-              width="256"
-            />
-             
-            
+            <button
+              class="__flex_tliuhg_tliuhg __justify-center_tliuhg_tliuhg __items-center_tliuhg_tliuhg __bg-[--hover-bg-color]_tliuhg_tliuhg __overflow-hidden_tliuhg_tliuhg __h-16_cxt0i8_cxt0i8 __w-16_cxt0i8_cxt0i8 __text-xs_cxt0i8_cxt0i8 actionable s-JU4hIbuSbdGN __rounded-sm_tliuhg_tliuhg"
+            >
+              <img
+                alt="./cover.jpg"
+                class="__border-none_tliuhg_tliuhg __font-size-0_tliuhg_tliuhg __object-cover_tliuhg_tliuhg __w-full_tliuhg_tliuhg __h-full_tliuhg_tliuhg s-JU4hIbuSbdGN"
+                loading="lazy"
+                src="./cover.jpg"
+              />
+               
+            </button>
+            <!--&lt;Image&gt;-->
           </a>
            
           <div
-            class="track svelte-8oy723"
+            class="track s-B4OUyNjosq8C"
           >
             <span
-              class="title svelte-8oy723"
+              class="title s-B4OUyNjosq8C"
             >
               file 4
             </span>
              
-            <span>
+            <span
+              class="s-B4OUyNjosq8C"
+            >
               <a
                 class="text-sm underlined"
                 href="#/artist/2"
@@ -547,30 +603,34 @@ exports[`Toolshot components/SortableList/SortableList.tools.svelte: Components/
           </div>
            
           <div
-            class="duration svelte-8oy723"
+            class="duration s-B4OUyNjosq8C"
           >
             0:03
           </div>
            
-        </div>
+        </button>
+        <!--&lt;Track&gt;-->
          
-        <span>
+        <span
+          class="s-nkNNd3P6s7H8"
+        >
           <button
-            class="iconOnly noBorder svelte-xh4kfu"
+            class="iconOnly noBorder s-zdMNlEQUhDx4"
           >
             <i
-              class="material-icons svelte-xh4kfu"
-            >
-              close
-            </i>
+              class="icons i-mdi-close s-zdMNlEQUhDx4"
+            />
              
              
              
           </button>
+          <!--&lt;Button&gt;-->
         </span>
       </div>
        
     </li>
   </ol>
+  <!--&lt;SortableList&gt;-->
+  <!--&lt;SortableList.test&gt;-->
 </div>
 `;

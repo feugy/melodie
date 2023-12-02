@@ -1,100 +1,110 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Toolshot components/Image/Image.tools.svelte: Broken 1`] = `
-<span>
-  <img
-    alt="./unknown.jpg"
-    class="w-64 h-64 inline-block rounded-sm svelte-1l44pje"
-    height="256"
-    src="./unknown.jpg"
-    width="256"
-  />
-   
-  
-   
-  <div>
-    
-  </div>
-</span>
-`;
-
-exports[`Toolshot components/Image/Image.tools.svelte: Broken rounded 1`] = `
-<span>
-  <img
-    alt=""
-    class="w-64 h-64 inline-block rounded-full hidden svelte-1l44pje"
-    height="256"
-    src=""
-    width="256"
-  />
-   
-  <span
-    class="w-64 h-64 inline-block svelte-1l44pje rounded-full"
+exports[`Broken 1`] = `
+HTMLCollection [
+  <button
+    class="__flex_tliuhg_tliuhg __justify-center_tliuhg_tliuhg __items-center_tliuhg_tliuhg __bg-[--hover-bg-color]_tliuhg_tliuhg __overflow-hidden_tliuhg_tliuhg __w-64_anw491_anw491 __h-64_anw491_anw491 s-JU4hIbuSbdGN __rounded-sm_tliuhg_tliuhg"
   >
+    <img
+      alt="./unknown.jpg"
+      class="__border-none_tliuhg_tliuhg __font-size-0_tliuhg_tliuhg __object-cover_tliuhg_tliuhg __w-full_tliuhg_tliuhg __h-full_tliuhg_tliuhg s-JU4hIbuSbdGN"
+      loading="lazy"
+      src="./unknown.jpg"
+    />
+     
+  </button>,
+  <div
+    class="s-LNPVBhJsmTX0"
+  >
+    
+  </div>,
+]
+`;
+
+exports[`Broken rounded 1`] = `
+HTMLCollection [
+  <button
+    class="__flex_tliuhg_tliuhg __justify-center_tliuhg_tliuhg __items-center_tliuhg_tliuhg __bg-[--hover-bg-color]_tliuhg_tliuhg __overflow-hidden_tliuhg_tliuhg __w-64_anw491_anw491 __h-64_anw491_anw491 s-JU4hIbuSbdGN __rounded-full_tliuhg_tliuhg"
+  >
+    <img
+      alt=""
+      class="__border-none_tliuhg_tliuhg __font-size-0_tliuhg_tliuhg __object-cover_tliuhg_tliuhg __w-full_tliuhg_tliuhg __h-full_tliuhg_tliuhg __hidden_tliuhg_tliuhg s-JU4hIbuSbdGN"
+      loading="lazy"
+      src=""
+    />
+     
     <i
-      class="material-icons svelte-1l44pje"
-    >
-      person
-    </i>
-  </span>
-  
-   
-  <div>
+      class="__inline-block_tliuhg_tliuhg __font-size-[200%]_tliuhg_tliuhg icons i-mdi-account s-JU4hIbuSbdGN"
+      data-testid="i-mdi-account"
+    />
+  </button>,
+  <div
+    class="s-LNPVBhJsmTX0"
+  >
     
-  </div>
-</span>
+  </div>,
+]
 `;
 
-exports[`Toolshot components/Image/Image.tools.svelte: Default 1`] = `
-<span>
-  <img
-    alt="./cover.jpg"
-    class="w-64 h-64 inline-block rounded-sm svelte-1l44pje"
-    height="256"
-    src="./cover.jpg"
-    width="256"
-  />
-   
-  
-   
-  <div>
+exports[`Default 1`] = `
+HTMLCollection [
+  <button
+    class="__flex_tliuhg_tliuhg __justify-center_tliuhg_tliuhg __items-center_tliuhg_tliuhg __bg-[--hover-bg-color]_tliuhg_tliuhg __overflow-hidden_tliuhg_tliuhg __w-64_anw491_anw491 __h-64_anw491_anw491 s-JU4hIbuSbdGN __rounded-sm_tliuhg_tliuhg"
+  >
+    <img
+      alt="./cover.jpg"
+      class="__border-none_tliuhg_tliuhg __font-size-0_tliuhg_tliuhg __object-cover_tliuhg_tliuhg __w-full_tliuhg_tliuhg __h-full_tliuhg_tliuhg s-JU4hIbuSbdGN"
+      loading="lazy"
+      src="./cover.jpg"
+    />
+     
+  </button>,
+  <div
+    class="s-LNPVBhJsmTX0"
+  >
     
-  </div>
-</span>
+  </div>,
+]
 `;
 
-exports[`Toolshot components/Image/Image.tools.svelte: Rouded 1`] = `
-<span>
-  <img
-    alt="./avatar.jpg"
-    class="w-64 h-64 inline-block rounded-full svelte-1l44pje"
-    height="256"
-    src="./avatar.jpg"
-    width="256"
-  />
-   
-  
-   
-  <div>
+exports[`Rouded 1`] = `
+HTMLCollection [
+  <button
+    class="__flex_tliuhg_tliuhg __justify-center_tliuhg_tliuhg __items-center_tliuhg_tliuhg __bg-[--hover-bg-color]_tliuhg_tliuhg __overflow-hidden_tliuhg_tliuhg __w-64_anw491_anw491 __h-64_anw491_anw491 s-JU4hIbuSbdGN __rounded-full_tliuhg_tliuhg"
+  >
+    <img
+      alt="./avatar.jpg"
+      class="__border-none_tliuhg_tliuhg __font-size-0_tliuhg_tliuhg __object-cover_tliuhg_tliuhg __w-full_tliuhg_tliuhg __h-full_tliuhg_tliuhg s-JU4hIbuSbdGN"
+      loading="lazy"
+      src="./avatar.jpg"
+    />
+     
+  </button>,
+  <div
+    class="s-LNPVBhJsmTX0"
+  >
     
-  </div>
-</span>
+  </div>,
+]
 `;
 
-exports[`Toolshot components/Image/Image.tools.svelte: With escaped path 1`] = `
-<span>
-  <img
-    alt="./# Films/cover.jpg"
-    class="w-64 h-64 inline-block rounded-sm svelte-1l44pje"
-    height="256"
-    src="./%23 Films/cover.jpg"
-    width="256"
-  />
-   
-  
-   
-  <div>
+exports[`With escaped path 1`] = `
+HTMLCollection [
+  <button
+    class="__flex_tliuhg_tliuhg __justify-center_tliuhg_tliuhg __items-center_tliuhg_tliuhg __bg-[--hover-bg-color]_tliuhg_tliuhg __overflow-hidden_tliuhg_tliuhg __w-64_anw491_anw491 __h-64_anw491_anw491 s-JU4hIbuSbdGN __rounded-sm_tliuhg_tliuhg"
+  >
+    <img
+      alt="./# Films/cover.jpg"
+      class="__border-none_tliuhg_tliuhg __font-size-0_tliuhg_tliuhg __object-cover_tliuhg_tliuhg __w-full_tliuhg_tliuhg __h-full_tliuhg_tliuhg s-JU4hIbuSbdGN"
+      loading="lazy"
+      src="./%23 Films/cover.jpg"
+    />
+     
+  </button>,
+  <div
+    class="s-LNPVBhJsmTX0"
+  >
     
-  </div>
-</span>
+  </div>,
+]
 `;

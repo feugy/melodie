@@ -16,7 +16,7 @@
   onMount(() => {
     reset()
     tracking = true
-    window.requestAnimationFrame(handleFrame)
+    window?.requestAnimationFrame(handleFrame)
     return () => {
       tracking = false
     }
@@ -34,7 +34,7 @@
       reset()
       return
     }
-    window.requestAnimationFrame(handleFrame)
+    window?.requestAnimationFrame(handleFrame)
     if (!anchor || !article) {
       reset()
       return
@@ -74,27 +74,27 @@
         (isAbove || isBellow) && (isLeft || isRight)
           ? clip.left + clip.width * 0.5
           : isLastThird || (!isAbove && !isBellow && isRight)
-          ? clip.left - margin
-          : clip.right + margin,
+            ? clip.left - margin
+            : clip.right + margin,
       startY:
         (!isAbove && !isBellow) || (!isLeft && !isRight)
           ? clip.top + clip.height * 0.5
           : isAbove
-          ? clip.bottom + margin
-          : clip.top - margin,
+            ? clip.bottom + margin
+            : clip.top - margin,
       endX: isLeft
         ? rect.left - margin
         : isRight
-        ? rect.right + margin
-        : isLastThird
-        ? rect.left + rect.width * 0.25
-        : rect.left + rect.width * 0.75,
+          ? rect.right + margin
+          : isLastThird
+            ? rect.left + rect.width * 0.25
+            : rect.left + rect.width * 0.75,
       endY:
         isAbove && !isLeft && !isRight
           ? rect.top - margin
           : isBellow && !isLeft && !isRight
-          ? rect.bottom + margin
-          : rect.top + rect.height * 0.5
+            ? rect.bottom + margin
+            : rect.top + rect.height * 0.5
     }
 
     curve =
@@ -104,50 +104,16 @@
             y: connector.startY - (connector.startY - connector.endY) * 0.3
           }
         : !isAbove && !isBellow
-        ? {
-            x: connector.endX - (connector.endX - connector.startX) * 0.5,
-            y: connector.startY
-          }
-        : {
-            x: connector.startX - (connector.startX - connector.endX) * 0.3,
-            y: connector.endY - (connector.endY - connector.startY) * 0.3
-          }
+          ? {
+              x: connector.endX - (connector.endX - connector.startX) * 0.5,
+              y: connector.startY
+            }
+          : {
+              x: connector.startX - (connector.startX - connector.endX) * 0.3,
+              y: connector.endY - (connector.endY - connector.startY) * 0.3
+            }
   }
 </script>
-
-<style lang="postcss">
-  .backdrop {
-    @apply fixed flex items-center justify-center inset-0 m-0 z-10 p-10;
-    clip-path: polygon(
-      0% 0%,
-      0% 100%,
-      var(--left) 100%,
-      var(--left) var(--top),
-      var(--right) var(--top),
-      var(--right) var(--bottom),
-      var(--left) var(--bottom),
-      var(--left) 100%,
-      100% 100%,
-      100% 0%
-    );
-    background-color: var(--backdrop-color);
-  }
-
-  .connector {
-    @apply absolute inset-0 w-full h-full;
-    stroke: var(--font-color);
-    stroke-linecap: round;
-    stroke-width: 2;
-    fill: transparent;
-  }
-
-  article {
-    @apply absolute;
-    font-family: 'Permanent Marker';
-    max-width: 35%;
-    max-height: 25%;
-  }
-</style>
 
 <div
   class="backdrop"
@@ -166,3 +132,37 @@
     <slot />
   </article>
 </div>
+
+<style>
+  .backdrop {
+    --at-apply: fixed flex items-center justify-center inset-0 m-0 z-10 p-10;
+    clip-path: polygon(
+      0% 0%,
+      0% 100%,
+      var(--left) 100%,
+      var(--left) var(--top),
+      var(--right) var(--top),
+      var(--right) var(--bottom),
+      var(--left) var(--bottom),
+      var(--left) 100%,
+      100% 100%,
+      100% 0%
+    );
+    background-color: var(--backdrop-color);
+  }
+
+  .connector {
+    --at-apply: absolute inset-0 w-full h-full;
+    stroke: var(--font-color);
+    stroke-linecap: round;
+    stroke-width: 2;
+    fill: transparent;
+  }
+
+  article {
+    --at-apply: absolute;
+    font-family: 'Permanent Marker';
+    max-width: 35%;
+    max-height: 25%;
+  }
+</style>

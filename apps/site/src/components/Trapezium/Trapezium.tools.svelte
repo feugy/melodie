@@ -1,7 +1,8 @@
 <script>
   import { Tool } from '@atelier-wb/svelte'
-  import Trapezium from './Trapezium.svelte'
+
   import ReflectedImage from '../ReflectedImage/ReflectedImage.svelte'
+  import Trapezium from './Trapezium.svelte'
 </script>
 
 <Tool

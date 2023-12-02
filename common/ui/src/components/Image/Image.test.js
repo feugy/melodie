@@ -1,22 +1,22 @@
-'use strict'
-
-import { screen, render } from '@testing-library/svelte'
-import html from 'svelte-htm'
-import Image from './Image.svelte'
+import { render, screen } from '@testing-library/svelte'
 import { tick } from 'svelte'
+import html from 'svelte-htm'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
+
 import { tokenUpdated } from '../../stores/settings'
 import { enhanceUrl } from '../../utils'
+import Image from './Image.svelte'
 
-jest.mock('../../utils')
-jest.mock('../../stores/track-queue')
-jest.mock('../../stores/settings', () => {
+vi.mock('../../utils')
+vi.mock('../../stores/track-queue')
+vi.mock('../../stores/settings', () => {
   const { Subject } = require('rxjs')
   return { tokenUpdated: new Subject() }
 })
 
 describe('Image component', () => {
   beforeEach(() => {
-    jest.resetAllMocks()
+    vi.resetAllMocks()
     enhanceUrl.mockImplementation(src => src)
   })
 
@@ -30,10 +30,8 @@ describe('Image component', () => {
     await tick()
     const image = screen.queryByRole('img')
     expect(image).toHaveAttribute('src', src)
-    expect(image).toHaveAttribute('width', '256')
-    expect(image).toHaveAttribute('height', '256')
-    expect(screen.queryByText('music_note')).not.toBeInTheDocument()
-    expect(screen.queryByText('person')).not.toBeInTheDocument()
+    expect(screen.queryByTestId('i-mdi-music-note')).not.toBeInTheDocument()
+    expect(screen.queryByTestId('i-mdi-account')).not.toBeInTheDocument()
   })
 
   it('adds nonce', async () => {
@@ -49,7 +47,7 @@ describe('Image component', () => {
     const src = '/public/icon-512x512.png'
     renderComponent({ src })
     await tick()
-    expect(enhanceUrl).toHaveBeenCalledTimes(1)
+    expect(enhanceUrl).toHaveBeenCalledOnce()
   })
 
   it('updates src on token update', async () => {
@@ -58,7 +56,7 @@ describe('Image component', () => {
     await tick()
     const image = screen.queryByRole('img')
     const encoded = image.getAttribute('src')
-    expect(enhanceUrl).toHaveBeenCalledTimes(1)
+    expect(enhanceUrl).toHaveBeenCalledOnce()
     enhanceUrl.mockImplementation(src => `${src}?token=whatever`)
     tokenUpdated.next()
     await tick()
@@ -89,8 +87,8 @@ describe('Image component', () => {
     await tick()
     image = screen.queryByRole('img')
     expect(image).toHaveAttribute('src', newSrc)
-    expect(screen.queryByText('music_note')).not.toBeInTheDocument()
-    expect(screen.queryByText('person')).not.toBeInTheDocument()
+    expect(screen.queryByTestId('i-mdi-music-note')).not.toBeInTheDocument()
+    expect(screen.queryByTestId('i-mdi-account')).not.toBeInTheDocument()
   })
 
   it('displays fallback for broken image', async () => {
@@ -100,8 +98,8 @@ describe('Image component', () => {
     image.dispatchEvent(new ErrorEvent('error'))
     await tick()
     expect(image).toHaveAttribute('src', src)
-    expect(screen.getByText('music_note')).toBeInTheDocument()
-    expect(screen.queryByText('person')).not.toBeInTheDocument()
+    expect(screen.getByTestId('i-mdi-music-note')).toBeInTheDocument()
+    expect(screen.queryByTestId('i-mdi-account')).not.toBeInTheDocument()
   })
 
   it('displays avatar fallback for broken image', async () => {
@@ -111,7 +109,7 @@ describe('Image component', () => {
     image.dispatchEvent(new ErrorEvent('error'))
     await tick()
     expect(image).toHaveAttribute('src', src)
-    expect(screen.getByText('person')).toBeInTheDocument()
-    expect(screen.queryByText('music_note')).not.toBeInTheDocument()
+    expect(screen.getByTestId('i-mdi-account')).toBeInTheDocument()
+    expect(screen.queryByTestId('i-mdi-music-note')).not.toBeInTheDocument()
   })
 })

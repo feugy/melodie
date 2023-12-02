@@ -9,12 +9,14 @@
   import { createEventDispatcher } from 'svelte'
   import { slide } from 'svelte/transition'
   import Portal from 'svelte-portal'
+
   import Button from '../Button/Button.svelte'
 
   export let value = null
   export let options = []
   export let valueAsText = true
   export let withArrow = true
+  /** @type {string|null} */
   export let text = null
   export let open = false
 
@@ -37,10 +39,10 @@
     return !element
       ? false
       : element === ref ||
-        (element.getAttribute && element.getAttribute('role') === 'menu') ||
-        element === anchor
-      ? true
-      : isInComponent(element.parentElement)
+          (element.getAttribute && element.getAttribute('role') === 'menu') ||
+          element === anchor
+        ? true
+        : isInComponent(element.parentElement)
   }
 
   function select(option) {
@@ -114,6 +116,14 @@
     }
   }
 
+  function handleBlur() {
+    setTimeout(() => {
+      if (!isInComponent(document.activeElement) && open) {
+        toggleVisibility()
+      }
+    }, 0)
+  }
+
   function handleMenuKeyDown(evt) {
     switch (evt.key) {
       case 'ArrowDown':
@@ -131,7 +141,6 @@
         handleFocus(evt, false)
         break
       case 'Escape':
-      case 'Tab':
         toggleVisibility()
         break
     }
@@ -175,55 +184,7 @@
   }
 </script>
 
-<style lang="postcss">
-  .wrapper {
-    @apply inline-block;
-  }
-
-  .arrow {
-    @apply ml-2;
-
-    &:not(.iconOnly) {
-      @apply -mr-4;
-    }
-  }
-
-  ul {
-    @apply absolute my-3 rounded z-20 text-sm;
-    background-color: var(--bg-primary-color);
-    border: 1px solid var(--outline-color);
-  }
-
-  li {
-    @apply p-2 whitespace-nowrap flex items-center;
-
-    &:not(.disabled) {
-      &:hover,
-      &:focus {
-        @apply cursor-pointer outline-none;
-        color: var(--hover-color);
-        background-color: var(--hover-bg-color);
-      }
-      &.current {
-        color: var(--hover-color);
-        background-color: var(--outline-color);
-      }
-    }
-
-    &.disabled {
-      color: var(--disabled-color);
-    }
-
-    & > i {
-      @apply mr-2 text-base;
-    }
-  }
-</style>
-
-<svelte:window
-  on:click|capture={handleInteraction}
-  on:resize|capture={handleVisible}
-/>
+<svelte:window on:resize|capture={handleVisible} />
 
 <span
   class="wrapper"
@@ -233,9 +194,7 @@
 >
   <Button {...$$restProps} {text} on:click={toggleVisibility}>
     {#if withArrow}
-      <i class:iconOnly class="material-icons arrow">
-        {`arrow_drop_${open ? 'up' : 'down'}`}
-      </i>
+      <i class:iconOnly class="icons arrow i-mdi-menu-{open ? 'up' : 'down'}" />
     {/if}
   </Button>
 </span>
@@ -248,6 +207,7 @@
       on:introstart={handleVisible}
       on:keydown={handleMenuKeyDown}
       on:focus={evt => handleFocus(evt, ref.dataset.focusNext !== 'false')}
+      on:focusout={evt => handleBlur(evt)}
       bind:this={ref}
     >
       {#each options as option}
@@ -273,7 +233,7 @@
               on:close={handleInteraction}
             />
           {:else}
-            {#if option.icon}<i class="material-icons">{option.icon}</i>{/if}
+            {#if option.icon}<i class="icons {option.icon}" />{/if}
             {option.label || option}
           {/if}
         </li>
@@ -281,3 +241,48 @@
     </ul>
   </Portal>
 {/if}
+
+<style>
+  .wrapper {
+    --at-apply: inline-block;
+  }
+
+  .arrow {
+    --at-apply: ml-2;
+
+    &:not(.iconOnly) {
+      --at-apply: -mr-4 ml-1;
+    }
+  }
+
+  ul {
+    --at-apply: absolute my-3 rounded z-20 text-sm;
+    background-color: var(--bg-primary-color);
+    border: 1px solid var(--outline-color);
+  }
+
+  li {
+    --at-apply: p-2 whitespace-nowrap flex items-center;
+
+    &:not(.disabled) {
+      &:hover,
+      &:focus {
+        --at-apply: cursor-pointer outline-none;
+        color: var(--hover-color);
+        background-color: var(--hover-bg-color);
+      }
+      &.current {
+        color: var(--hover-color);
+        background-color: var(--outline-color);
+      }
+    }
+
+    &.disabled {
+      color: var(--disabled-color);
+    }
+
+    & > i {
+      --at-apply: mr-2 text-base;
+    }
+  }
+</style>

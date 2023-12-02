@@ -1,15 +1,13 @@
-'use strict'
-
-const { join, extname, dirname } = require('path')
-const { Observable } = require('rxjs')
-const klaw = require('klaw')
+import klaw from 'klaw'
+import { dirname, extname, join } from 'path'
+import { Observable } from 'rxjs'
 
 /**
  * Computes full path to a model's artwork file, according to ARTWORK_DESTINATION environment variable.
  * @param {number} id - model's id.
  * @returns {string} full path to that media (without extension)
  */
-exports.getArtworkFile = function (id) {
+export const getArtworkFile = function (id) {
   return join(process.env.ARTWORK_DESTINATION, `${id}`)
 }
 
@@ -19,7 +17,7 @@ exports.getArtworkFile = function (id) {
  * @param {string} path - path to walk
  * @returns {Observable} emitting file full paths
  */
-exports.walk = function (path) {
+export const walk = function (path) {
   return new Observable(function (observer) {
     klaw(path)
       .on('readable', function () {
@@ -45,9 +43,9 @@ exports.walk = function (path) {
  * @param {array<string>} list - list of path to add to
  * @returns {MergeResult} result objects with:
  */
-exports.mergePaths = function (added, list) {
-  const distinctAdded = exports.excludeDescendants(added, list)
-  const distinctExisting = exports.excludeDescendants(list, distinctAdded)
+export const mergePaths = function (added, list) {
+  const distinctAdded = excludeDescendants(added, list)
+  const distinctExisting = excludeDescendants(list, distinctAdded)
   return {
     merged: distinctExisting.concat(distinctAdded),
     added: distinctAdded
@@ -59,7 +57,7 @@ exports.mergePaths = function (added, list) {
  * @param {array<string>} entries - list of files/folders
  * @returns {array<string>} list of unique paths
  */
-exports.dirPaths = function (entries) {
+export const dirPaths = function (entries) {
   const unique = new Set()
   for (const entry of entries) {
     unique.add(extname(entry) ? dirname(entry) : entry)
@@ -73,7 +71,7 @@ exports.dirPaths = function (entries) {
  * @param {array<string>} ancestors - list of ancestors
  * @returns {array<string>} paths that are not descendants of provided ancestors
  */
-exports.excludeDescendants = function (paths, ancestors) {
+export const excludeDescendants = function (paths, ancestors) {
   return paths.filter(
     folder => !ancestors.some(parent => folder.startsWith(parent))
   )
