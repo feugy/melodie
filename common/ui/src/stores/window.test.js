@@ -1,11 +1,11 @@
-'use strict'
-
 import { get } from 'svelte/store'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
+
 import { sleep } from '../tests'
-import { screenSize, isTouchable, SM, MD, LG, XL } from './window'
+import { isTouchable, LG, MD, screenSize, SM, XL } from './window'
 
 describe('window store', () => {
-  beforeEach(jest.resetAllMocks)
+  beforeEach(() => vi.resetAllMocks())
 
   async function resizeTo(width) {
     window.innerWidth = width
@@ -23,7 +23,7 @@ describe('window store', () => {
       [1279, 'large', LG],
       [1280, 'extra large', XL],
       [2400, 'extra large', XL]
-    ])('consider width of %spx as %s display', async (width, unused, size) => {
+    ])('consider width of %spx as %s display', async (width, _, size) => {
       await resizeTo(width)
       expect(get(screenSize)).toEqual(size)
     })
@@ -31,13 +31,13 @@ describe('window store', () => {
 
   describe('isTouchable()', () => {
     it('detects not touchable display', async () => {
-      expect(get(isTouchable)).toBeFalse()
+      expect(get(isTouchable)).toBe(false)
     })
 
     it('detects touchable display', async () => {
       navigator.maxTouchPoints = 4
       await resizeTo(1024)
-      expect(get(isTouchable)).toBeTrue()
+      expect(get(isTouchable)).toBe(true)
     })
   })
 })

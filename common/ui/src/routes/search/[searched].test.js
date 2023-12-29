@@ -1,23 +1,24 @@
-'use strict'
-
+import { faker } from '@faker-js/faker'
 import { render, screen } from '@testing-library/svelte'
 import userEvent from '@testing-library/user-event'
+import { BehaviorSubject } from 'rxjs'
 import { tick } from 'svelte'
 import html from 'svelte-htm'
-import { BehaviorSubject } from 'rxjs'
-import faker from 'faker'
-import searchRoute from './[searched].svelte'
-import { artists, albums, tracks, search, current } from '../../stores/search'
-import { artistData } from '../../components/Artist/Artist.testdata'
-import { albumData } from '../../components/Album/Album.testdata'
-import { tracksData } from '../../components/TracksTable/TracksTable.testdata'
-import { translate, sleep } from '../../tests'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 
-jest.mock('svelte-spa-router')
-jest.mock('../../stores/search', () => {
+import { albumData } from '../../components/Album/Album.testdata'
+import { artistData } from '../../components/Artist/Artist.testdata'
+import { tracksData } from '../../components/TracksTable/TracksTable.testdata'
+import { albums, artists, current, search, tracks } from '../../stores/search'
+import { translate } from '../../tests'
+import searchRoute from './[searched].svelte'
+
+vi.mock('svelte-spa-router')
+vi.mock('../../stores/playlists')
+vi.mock('../../stores/search', () => {
   const { Subject, BehaviorSubject } = require('rxjs')
   return {
-    search: jest.fn(),
+    search: vi.fn(),
     albums: new Subject(),
     artists: new Subject(),
     tracks: new Subject(),
@@ -40,7 +41,7 @@ describe('search results route', () => {
     id
   }))
 
-  beforeEach(() => jest.resetAllMocks())
+  beforeEach(() => vi.resetAllMocks())
 
   it('handles no results', async () => {
     const artists$ = new BehaviorSubject([])
@@ -53,8 +54,8 @@ describe('search results route', () => {
     current.subscribe = current$.subscribe.bind(current$)
 
     render(html`<${searchRoute} params=${{ searched }} />`)
-    await sleep()
 
+    expect(await screen.findByText(translate('no results'))).toBeInTheDocument()
     expect(
       screen.queryByText(translate('_ albums', { total: 0 }))
     ).not.toBeInTheDocument()
@@ -65,7 +66,6 @@ describe('search results route', () => {
       screen.queryByText(translate('_ tracks', { total: 0 }))
     ).not.toBeInTheDocument()
     expect(screen.queryByRole('listitem')).not.toBeInTheDocument()
-    expect(screen.queryByText(translate('no results'))).toBeInTheDocument()
   })
 
   it('triggers search with escapted characters', async () => {
@@ -88,7 +88,7 @@ describe('search results route', () => {
 
     expect(search).toHaveBeenCalledWith(searched)
     expect(
-      screen.queryByText(translate('results for _', { searched }))
+      screen.getByText(translate('results for _', { searched }))
     ).toBeInTheDocument()
   })
 
@@ -107,7 +107,7 @@ describe('search results route', () => {
 
     expect(search).not.toHaveBeenCalled()
     expect(
-      screen.queryByText(translate('results for _', { searched }))
+      screen.getByText(translate('results for _', { searched }))
     ).toBeInTheDocument()
   })
 
@@ -131,34 +131,32 @@ describe('search results route', () => {
     it('triggers search on load', async () => {
       expect(search).toHaveBeenCalledWith(searched)
       expect(
-        screen.queryByText(translate('results for _', { searched }))
+        screen.getByText(translate('results for _', { searched }))
       ).toBeInTheDocument()
     })
 
     it('displays found tracks, albums and artists', async () => {
       expect(
-        screen.queryByText(translate('_ albums', { total: albumsData.length }))
+        screen.getByText(translate('_ albums', { total: albumsData.length }))
       ).toBeInTheDocument()
       for (const { name } of albumsData) {
-        expect(screen.queryByText(name)).toBeInTheDocument()
+        expect(screen.getByText(name)).toBeInTheDocument()
       }
 
       expect(
-        screen.queryByText(
-          translate('_ artists', { total: artistsData.length })
-        )
+        screen.getByText(translate('_ artists', { total: artistsData.length }))
       ).toBeInTheDocument()
       for (const { name } of artistsData) {
-        expect(screen.queryByText(name)).toBeInTheDocument()
+        expect(screen.getByText(name)).toBeInTheDocument()
       }
 
       expect(
-        screen.queryByText(translate('_ tracks', { total: tracksData.length }))
+        screen.getByText(translate('_ tracks', { total: tracksData.length }))
       ).toBeInTheDocument()
       for (const {
         tags: { title }
       } of tracksData) {
-        expect(screen.queryByText(title)).toBeInTheDocument()
+        expect(screen.getByText(title)).toBeInTheDocument()
       }
 
       expect(screen.getByText(translate('track details'))).not.toBeVisible()
@@ -169,9 +167,9 @@ describe('search results route', () => {
         screen
           .queryByText(tracksData[0].tags.title)
           .closest('.root')
-          .querySelector('button')
+          .querySelector('.i-mdi-dots-vertical')
       )
-      await userEvent.click(screen.queryByText('local_offer'))
+      await userEvent.click(screen.queryByText(translate('show details')))
 
       expect(screen.getByText(translate('track details'))).toBeVisible()
     })

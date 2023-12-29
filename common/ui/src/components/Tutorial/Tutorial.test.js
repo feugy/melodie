@@ -1,22 +1,22 @@
-'use strict'
-
-import { screen, render } from '@testing-library/svelte'
+import { faker } from '@faker-js/faker'
+import { render, screen } from '@testing-library/svelte'
 import userEvent from '@testing-library/user-event'
-import html from 'svelte-htm'
 import { BehaviorSubject } from 'rxjs'
-import faker from 'faker'
-import Tutorial from './Tutorial.svelte'
+import html from 'svelte-htm'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
+
 import * as tutorial from '../../stores/tutorial'
 import { translate } from '../../tests'
+import Tutorial from './Tutorial.svelte'
 
-jest.mock('../../stores/tutorial')
+vi.mock('../../stores/tutorial')
 
 describe('TracksTable component', () => {
   const store = new BehaviorSubject()
   beforeEach(() => {
     store.next(null)
     tutorial.current.subscribe = store.subscribe.bind(store)
-    jest.resetAllMocks()
+    vi.resetAllMocks()
   })
 
   it('displays nothing on disabled tutorial', async () => {
@@ -26,7 +26,7 @@ describe('TracksTable component', () => {
   })
 
   it('displays current tutorial message', async () => {
-    const messageKey = faker.random.arrayElement([
+    const messageKey = faker.helpers.arrayElement([
       'alright',
       'ok',
       'clear',
@@ -48,7 +48,7 @@ describe('TracksTable component', () => {
   })
 
   it('updates store on button click', async () => {
-    const nextButtonKey = faker.random.arrayElement([
+    const nextButtonKey = faker.helpers.arrayElement([
       'alright',
       'ok',
       'clear',
@@ -67,8 +67,8 @@ describe('TracksTable component', () => {
     const nextButton = screen.queryByText(translate(nextButtonKey))
     expect(nextButton).toBeVisible()
 
-    userEvent.click(nextButton)
-    expect(tutorial.handleNextButtonClick).toHaveBeenCalledTimes(1)
+    await userEvent.click(nextButton)
+    expect(tutorial.handleNextButtonClick).toHaveBeenCalledOnce()
     expect(tutorial.stop).not.toHaveBeenCalled()
   })
 
@@ -78,7 +78,7 @@ describe('TracksTable component', () => {
 
     const skipButton = screen.queryByText(translate('i will figure out'))
     expect(skipButton).toBeVisible()
-    userEvent.click(skipButton)
-    expect(tutorial.stop).toHaveBeenCalledTimes(1)
+    await userEvent.click(skipButton)
+    expect(tutorial.stop).toHaveBeenCalledOnce()
   })
 })

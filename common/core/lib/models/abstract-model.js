@@ -1,9 +1,9 @@
-'use strict'
+import fs from 'fs-extra'
+import knex from 'knex/knex.mjs'
+import { dirname, resolve } from 'path'
+import { fileURLToPath } from 'url'
 
-const { resolve } = require('path')
-const knex = require('knex')
-const fs = require('fs-extra')
-const { getLogger } = require('../utils')
+import { getLogger } from '../utils/index.js'
 
 let db
 
@@ -27,7 +27,11 @@ async function connect(filename, logger) {
       useNullAsDefault: true,
       connection: { filename },
       migrations: {
-        directory: resolve(__dirname, 'migrations')
+        directory: resolve(
+          dirname(fileURLToPath(import.meta.url)),
+          'migrations'
+        ),
+        loadExtensions: ['.js']
       },
       log: {
         deprecated: logger.info.bind(logger),
@@ -52,7 +56,7 @@ async function connect(filename, logger) {
  * Base class for all database models, provides CRUD operations on a single SQLite table.
  * Uses Knex as a layer to access database.
  */
-module.exports = class AbstractModel {
+export default class AbstractModel {
   /**
    * Release database connection (useful during tests)
    * @static
@@ -145,9 +149,8 @@ module.exports = class AbstractModel {
 
   /**
    * Get a single model by its id.
-   * @async
    * @param {number} id - desired id
-   * @returns {AbstractModel|null} matching model, or null
+   * @returns {Promise<AbstractModel|null>} matching model, or null
    */
   async getById(id) {
     const result = await this.db.where('id', id).select().from(this.name)

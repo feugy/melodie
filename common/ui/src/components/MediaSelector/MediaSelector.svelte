@@ -1,13 +1,14 @@
 <script>
   import { afterUpdate } from 'svelte'
   import { _ } from 'svelte-intl'
-  import Dialogue from '../Dialogue/Dialogue.svelte'
+
+  import { isDesktop } from '../../stores/settings'
+  import { invoke } from '../../utils'
   import Button from '../Button/Button.svelte'
+  import Dialogue from '../Dialogue/Dialogue.svelte'
   import Image, { broken } from '../Image/Image.svelte'
   import ImageUploader from '../ImageUploader/ImageUploader.svelte'
   import Progress from '../Progress/Progress.svelte'
-  import { invoke } from '../../utils'
-  import { isDesktop } from '../../stores/settings'
 
   export let open
   export let src
@@ -50,16 +51,6 @@
   }
 </script>
 
-<style lang="postcss">
-  .image-container {
-    @apply flex flex-wrap justify-start my-4;
-
-    & span {
-      @apply text-xs;
-    }
-  }
-</style>
-
 <Dialogue {title} bind:open on:open on:close>
   <div slot="content">
     {#await findPromise}
@@ -100,7 +91,17 @@
     <Button
       on:click={() => (open = false)}
       text={$_('cancel')}
-      icon={'close'}
+      icon={'i-mdi-close'}
     />
   </span>
 </Dialogue>
+
+<style>
+  .image-container {
+    --at-apply: flex flex-wrap justify-start my-4;
+
+    & span {
+      --at-apply: text-xs;
+    }
+  }
+</style>

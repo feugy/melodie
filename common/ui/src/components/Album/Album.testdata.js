@@ -1,5 +1,3 @@
-'use strict'
-
 export const albumData = {
   id: 1,
   name: 'Diamonds on the inside',

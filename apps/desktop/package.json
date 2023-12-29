@@ -10,34 +10,31 @@
   "repository": {
     "url": "https://github.com/feugy/melodie"
   },
-  "main": "main.js",
+  "main": "./main.js",
+  "type": "module",
+  "private": true,
   "scripts": {
-    "dev": "NODE_ENV=test electron .",
-    "release:artifacts": "electron-builder",
-    "release:publish": "electron-builder -p",
-    "start": "electron .",
-    "test": "jest --coverage --colors",
-    "test:dev": "jest --watch"
-  },
-  "dependencies": {
-    "dotenv": "^16.0.0",
-    "electron-localshortcut": "^3.2.1",
-    "electron-updater": "^4.6.5",
-    "fs-extra": "^10.0.1",
-    "minimist": "^1.2.6",
-    "rxjs": "^7.5.5"
+    "build": "electron-vite build",
+    "dev": "electron-vite dev",
+    "release:artefacts": "pnpm build && electron-builder --linux",
+    "start": "electron-vite preview",
+    "test": "vitest run --coverage",
+    "test:dev": "vitest dev"
   },
   "optionalDependencies": {
     "@melodie/core": "2.0.0",
     "@melodie/ui": "2.0.0"
   },
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "fs-extra": "^11.1.1",
+    "minimist": "^1.2.8",
+    "rxjs": "^7.8.1"
+  },
   "devDependencies": {
-    "electron": "18.0.0",
-    "electron-builder": "22.10.5",
-    "electron-reload": "^2.0.0-alpha.1",
-    "faker": "^5.5.3",
-    "jest": "^27.2.4",
-    "jest-extended": "^2.0.0",
-    "jest-watch-typeahead": "^1.0.0"
+    "electron": "28.0.0",
+    "electron-builder": "^24.9.1",
+    "electron-vite": "^1.0.29",
+    "vite": "^5.0.10"
   }
 }

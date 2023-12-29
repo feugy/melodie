@@ -1,9 +1,10 @@
 <script>
   import { Tool } from '@atelier-wb/svelte'
+
+  import { mockWebsocket } from '../../atelier/utils'
+  import { tracksData } from '../TracksTable/TracksTable.testdata'
   import AddToPlaylist from './AddToPlaylist.svelte'
   import { playlistsData } from './AddToPlaylist.testdata'
-  import { tracksData } from '../TracksTable/TracksTable.testdata'
-  import { mockWebsocket } from '../../atelier/utils'
 </script>
 
 <Tool

@@ -1,28 +1,30 @@
-'use strict'
-
-import { screen, render, fireEvent } from '@testing-library/svelte'
+import { fireEvent, render, screen, waitFor } from '@testing-library/svelte'
+import userEvent from '@testing-library/user-event'
 import html from 'svelte-htm'
-import { sleep, translate } from '../../tests/utils'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
+
+import descriptor from '../../../package.json' assert { type: 'json' }
+import { translate } from '../../tests/utils'
 import DownloadButton from './DownloadButton.svelte'
-const { version } = require('../../../package.json')
 
 describe('DownloadButton component', () => {
-  let openSpy
+  const { version } = descriptor
 
   beforeEach(() => {
-    jest.resetAllMocks()
-    openSpy = jest.spyOn(window, 'open')
+    vi.resetAllMocks()
+    location.hash = '#/'
   })
 
   it('displays download options', async () => {
     render(
+      // @ts-ignore -- typescript doesn't like svelte-htm
       html`<p data-testid="paragraph">lorem ipsum</p>
         <${DownloadButton} />`
     )
 
-    await fireEvent.click(screen.getByRole('button'))
+    fireEvent.click(screen.getByText(translate('install _', { version })))
 
-    const options = screen.queryAllByRole('menuitem')
+    const options = await screen.findAllByRole('menuitem')
     expect(options).toHaveLength(6)
     expect(screen.getByText(translate('download.exe'))).toBeInTheDocument()
     expect(
@@ -39,61 +41,56 @@ describe('DownloadButton component', () => {
     ).toBeInTheDocument()
     expect(screen.getByText(translate('download.dmg'))).toBeInTheDocument()
 
-    fireEvent.click(screen.getByTestId('paragraph'))
-    await sleep(350)
-
-    expect(screen.queryByRole('menuitem')).not.toBeInTheDocument()
-    expect(openSpy).not.toHaveBeenCalled()
+    await userEvent.click(screen.getByTestId('paragraph'))
+    await waitFor(() =>
+      expect(screen.queryByRole('menuitem')).not.toBeInTheDocument()
+    )
   })
 
   it('has link to the right artefacts', async () => {
     render(
+      // @ts-ignore -- typescript doesn't like svelte-htm
       html`<p data-testid="paragraph">lorem ipsum</p>
         <${DownloadButton} />`
     )
 
-    await fireEvent.click(screen.getByRole('button'))
-    await fireEvent.click(screen.getByText(translate('download.exe')))
-    expect(openSpy).toHaveBeenNthCalledWith(
-      1,
+    fireEvent.click(screen.getByRole('button'))
+    const links = await screen.findAllByRole('link')
+
+    expect(links[0]).toHaveTextContent(translate('download.exe'))
+    expect(links[0]).toHaveAttribute(
+      'href',
       `https://github.com/feugy/melodie/releases/download/v${version}/melodie-setup-${version}.exe`
     )
 
-    await fireEvent.click(screen.getByRole('button'))
-    await fireEvent.click(screen.getByText(translate('download.portable exe')))
-    expect(openSpy).toHaveBeenNthCalledWith(
-      2,
+    expect(links[1]).toHaveTextContent(translate('download.portable exe'))
+    expect(links[1]).toHaveAttribute(
+      'href',
       `https://github.com/feugy/melodie/releases/download/v${version}/melodie-${version}.exe`
     )
 
-    await fireEvent.click(screen.getByRole('button'))
-    await fireEvent.click(screen.getByText(translate('download.portable zip')))
-    expect(openSpy).toHaveBeenNthCalledWith(
-      3,
+    expect(links[2]).toHaveTextContent(translate('download.portable zip'))
+    expect(links[2]).toHaveAttribute(
+      'href',
       `https://github.com/feugy/melodie/releases/download/v${version}/melodie-${version}-win.zip`
     )
 
-    await fireEvent.click(screen.getByRole('button'))
-    await fireEvent.click(screen.getByText(translate('download.app image')))
-    expect(openSpy).toHaveBeenNthCalledWith(
-      4,
+    expect(links[3]).toHaveTextContent(translate('download.app image'))
+    expect(links[3]).toHaveAttribute(
+      'href',
       `https://github.com/feugy/melodie/releases/download/v${version}/melodie-${version}-x86_64.AppImage`
     )
 
-    await fireEvent.click(screen.getByRole('button'))
-    await fireEvent.click(screen.getByText(translate('download.portable tar')))
-    expect(openSpy).toHaveBeenNthCalledWith(
-      5,
+    expect(links[4]).toHaveTextContent(translate('download.portable tar'))
+    expect(links[4]).toHaveAttribute(
+      'href',
       `https://github.com/feugy/melodie/releases/download/v${version}/melodie-${version}.tar.gz`
     )
 
-    await fireEvent.click(screen.getByRole('button'))
-    await fireEvent.click(screen.getByText(translate('download.dmg')))
-    expect(openSpy).toHaveBeenNthCalledWith(
-      6,
+    expect(links[5]).toHaveTextContent(translate('download.dmg'))
+    expect(links[5]).toHaveAttribute(
+      'href',
       `https://github.com/feugy/melodie/releases/download/v${version}/melodie-${version}.dmg`
     )
-
-    expect(openSpy).toHaveBeenCalledTimes(6)
   })
 })

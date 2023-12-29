@@ -1,23 +1,23 @@
-'use strict'
-
-import faker from 'faker'
+import { faker } from '@faker-js/faker'
 import { get } from 'svelte/store'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
+
+import { sleep, translate } from '../tests'
+import { invoke } from '../utils'
 import {
-  playlists,
-  list,
-  remove,
   appendTracks,
-  removeTrack,
+  isListing,
+  list,
   moveTrack,
-  isListing
+  playlists,
+  remove,
+  removeTrack
 } from './playlists'
 import { clear, current } from './snackbars'
-import { invoke } from '../utils'
-import { sleep, translate } from '../tests'
 
 describe('playlists store', () => {
   beforeEach(() => {
-    jest.clearAllMocks()
+    vi.clearAllMocks()
     clear()
   })
 
@@ -49,10 +49,10 @@ describe('playlists store', () => {
 
   describe('appendTracks', () => {
     it('does not append empty track list', async () => {
-      const id = faker.datatype.number()
-      expect(await appendTracks({ id, tracks: [] })).toEqual(null)
+      const id = faker.number.int()
+      expect(await appendTracks({ id, tracks: [] })).toBeNull()
       expect(invoke).not.toHaveBeenCalled()
-      expect(get(current)).toBeNil()
+      expect(get(current)).toBeUndefined()
     })
 
     it('appends tracks to existing playlist', async () => {
@@ -62,13 +62,13 @@ describe('playlists store', () => {
       ]
       const trackIds = tracks.map(({ id }) => id)
 
-      const id = faker.datatype.number()
+      const id = faker.number.int()
       const playlist = { id, trackIds }
       invoke.mockResolvedValueOnce(playlist)
 
       expect(await appendTracks({ id, tracks })).toEqual(playlist)
       expect(invoke).toHaveBeenCalledWith('playlists.append', id, trackIds)
-      expect(invoke).toHaveBeenCalledTimes(1)
+      expect(invoke).toHaveBeenCalledOnce()
       await sleep()
       expect(get(current)).toEqual({
         message: translate('playlist _ updated', playlist),
@@ -85,7 +85,7 @@ describe('playlists store', () => {
       const trackIds = tracks.map(({ id }) => id)
 
       const name = faker.commerce.productName()
-      const playlist = { id: faker.datatype.number(), name, trackIds }
+      const playlist = { id: faker.number.int(), name, trackIds }
       invoke.mockResolvedValueOnce(playlist)
 
       expect(await appendTracks({ name, tracks })).toEqual(playlist)
@@ -93,7 +93,7 @@ describe('playlists store', () => {
         name,
         trackIds
       })
-      expect(invoke).toHaveBeenCalledTimes(1)
+      expect(invoke).toHaveBeenCalledOnce()
       await sleep()
       expect(get(current)).toEqual({
         message: translate('playlist _ updated', playlist),
@@ -106,13 +106,13 @@ describe('playlists store', () => {
   describe('removeTrack', () => {
     it('removes track by index', async () => {
       const playlist = {
-        id: faker.datatype.number(),
+        id: faker.number.int(),
         name: faker.commerce.productName(),
         trackIds: [
-          faker.datatype.number(),
-          faker.datatype.number(),
-          faker.datatype.number(),
-          faker.datatype.number()
+          faker.number.int(),
+          faker.number.int(),
+          faker.number.int(),
+          faker.number.int()
         ]
       }
       invoke.mockResolvedValueOnce(playlist)
@@ -125,19 +125,19 @@ describe('playlists store', () => {
           ...playlist.trackIds.slice(2)
         ]
       })
-      expect(invoke).toHaveBeenCalledTimes(1)
-      expect(get(current)).toBeNil()
+      expect(invoke).toHaveBeenCalledOnce()
+      expect(get(current)).toBeNull()
     })
 
     it('ignores invalid indices', async () => {
       const playlist = {
-        id: faker.datatype.number(),
+        id: faker.number.int(),
         name: faker.commerce.productName(),
         trackIds: [
-          faker.datatype.number(),
-          faker.datatype.number(),
-          faker.datatype.number(),
-          faker.datatype.number()
+          faker.number.int(),
+          faker.number.int(),
+          faker.number.int(),
+          faker.number.int()
         ]
       }
       invoke.mockResolvedValue(playlist)
@@ -154,7 +154,7 @@ describe('playlists store', () => {
   describe('moveTrack', () => {
     it('move tracks forward', async () => {
       const playlist = {
-        id: faker.datatype.number(),
+        id: faker.number.int(),
         name: faker.commerce.productName(),
         trackIds: [1, 2, 3, 4]
       }
@@ -165,13 +165,13 @@ describe('playlists store', () => {
         ...playlist,
         trackIds: [2, 3, 1, 4]
       })
-      expect(invoke).toHaveBeenCalledTimes(1)
-      expect(get(current)).toBeNil()
+      expect(invoke).toHaveBeenCalledOnce()
+      expect(get(current)).toBeNull()
     })
 
     it('move tracks backward', async () => {
       const playlist = {
-        id: faker.datatype.number(),
+        id: faker.number.int(),
         name: faker.commerce.productName(),
         trackIds: [1, 2, 3, 4]
       }
@@ -182,13 +182,13 @@ describe('playlists store', () => {
         ...playlist,
         trackIds: [1, 4, 2, 3]
       })
-      expect(invoke).toHaveBeenCalledTimes(1)
-      expect(get(current)).toBeNil()
+      expect(invoke).toHaveBeenCalledOnce()
+      expect(get(current)).toBeNull()
     })
 
     it('ignores invalid indices', async () => {
       const playlist = {
-        id: faker.datatype.number(),
+        id: faker.number.int(),
         name: faker.commerce.productName(),
         trackIds: [1, 2, 3, 4]
       }
@@ -212,9 +212,9 @@ describe('playlists store', () => {
   describe('remove', () => {
     it('removes playlist', async () => {
       const playlist = {
-        id: faker.datatype.number(),
+        id: faker.number.int(),
         name: faker.commerce.productName(),
-        trackIds: [faker.datatype.number(), faker.datatype.number()]
+        trackIds: [faker.number.int(), faker.number.int()]
       }
       invoke.mockResolvedValueOnce(null)
 
@@ -223,8 +223,8 @@ describe('playlists store', () => {
         id: playlist.id,
         trackIds: []
       })
-      expect(invoke).toHaveBeenCalledTimes(1)
-      expect(get(current)).toBeNil()
+      expect(invoke).toHaveBeenCalledOnce()
+      expect(get(current)).toBeNull()
     })
   })
 })

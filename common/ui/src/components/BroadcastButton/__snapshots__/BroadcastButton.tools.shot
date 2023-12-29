@@ -1,23 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Toolshot components/BroadcastButton/BroadcastButton.tools.svelte: Components/Broadcast button 1`] = `
-<span>
-  <span
-    class="button svelte-1m6xcsb"
+exports[`Components/Broadcast button 1`] = `
+<span
+  class="button s-vU5b0o8a8YU8"
+  role="menu"
+  tabindex="0"
+>
+  <button
+    class="iconOnly noBorder s-zdMNlEQUhDx4"
+    data-testid="broadcast-button"
   >
-    <button
-      class="iconOnly noBorder svelte-xh4kfu"
-    >
-      <i
-        class="material-icons svelte-xh4kfu"
-      >
-        wifi_off
-      </i>
-       
-       
-       
-    </button>
+    <i
+      class="icons i-mdi-wifi-off s-zdMNlEQUhDx4"
+    />
      
-  </span>
+     
+     
+  </button>
+  <!--&lt;Button&gt;-->
+   
 </span>
 `;

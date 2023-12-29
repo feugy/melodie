@@ -1,9 +1,10 @@
 <script>
   import { recordEvent, Tool } from '@atelier-wb/svelte'
-  import TrackDropdown from './TrackDropdown.svelte'
+
+  import { mockWebsocket } from '../../atelier/utils'
   import { list } from '../../stores/playlists'
   import { isDesktop } from '../../stores/settings'
-  import { mockWebsocket } from '../../atelier/utils'
+  import TrackDropdown from './TrackDropdown.svelte'
 
   export const playlistsData = [
     {

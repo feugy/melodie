@@ -1,21 +1,21 @@
-'use strict'
-
+import { faker } from '@faker-js/faker'
 import {
-  screen,
-  render,
   fireEvent,
+  render,
+  screen,
   waitForElementToBeRemoved
 } from '@testing-library/svelte'
 import userEvent from '@testing-library/user-event'
 import html from 'svelte-htm'
-import faker from 'faker'
-import PlaylistTracksTable from './PlaylistTracksTable.svelte'
-import { createClickToAddObservable } from '../../stores/track-queue'
-import { removeTrack, moveTrack } from '../../stores/playlists'
-import { sleep, translate } from '../../tests'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
-jest.mock('../../stores/track-queue')
-jest.mock('../../stores/playlists')
+import { moveTrack, removeTrack } from '../../stores/playlists'
+import { createClickToAddObservable } from '../../stores/track-queue'
+import { sleep, translate } from '../../tests'
+import PlaylistTracksTable from './PlaylistTracksTable.svelte'
+
+vi.mock('../../stores/track-queue')
+vi.mock('../../stores/playlists')
 
 const album = 'Cowboy Bebop - NoDisc'
 const artists = ['Yoko Kanno', 'the Seatbelts']
@@ -96,49 +96,53 @@ export const playlist = {
 
 describe('PlaylistTracksTable component', () => {
   const clicks$ = {
-    subscribe: () => ({ unsubscribe: jest.fn() }),
-    next: jest.fn()
+    subscribe: () => ({ unsubscribe: vi.fn() }),
+    next: vi.fn()
   }
 
   beforeEach(() => {
     location.hash = '#/'
-    jest.resetAllMocks()
+    vi.resetAllMocks()
     createClickToAddObservable.mockReturnValue(clicks$)
   })
 
   it('has links to artists', async () => {
-    const [id, artist] = faker.random.arrayElement(playlist.tracks)
+    const [id, artist] = faker.helpers.arrayElement(playlist.tracks)
       .artistRefs[0]
     render(html`<${PlaylistTracksTable} playlist=${playlist} />`)
 
-    userEvent.click(faker.random.arrayElement(screen.queryAllByText(artist)))
+    await userEvent.click(
+      faker.helpers.arrayElement(screen.queryAllByText(artist))
+    )
     await sleep()
 
-    expect(location.hash).toEqual(`#/artist/${id}`)
+    expect(location.hash).toBe(`#/artist/${id}`)
   })
 
   it('has links to albums', async () => {
-    const [id, album] = faker.random.arrayElement(playlist.tracks).albumRef
+    const [id, album] = faker.helpers.arrayElement(playlist.tracks).albumRef
     render(html`<${PlaylistTracksTable} playlist=${playlist} />`)
 
-    userEvent.click(faker.random.arrayElement(screen.queryAllByText(album)))
+    await userEvent.click(
+      faker.helpers.arrayElement(screen.queryAllByText(album))
+    )
     await sleep()
 
-    expect(location.hash).toEqual(`#/album/${id}`)
+    expect(location.hash).toBe(`#/album/${id}`)
   })
 
   it('proxies table clicks to track-queue store', async () => {
-    const track = faker.random.arrayElement(playlist.tracks)
+    const track = faker.helpers.arrayElement(playlist.tracks)
     render(html`<${PlaylistTracksTable} playlist=${playlist} />`)
 
-    userEvent.click(screen.getByText(track.tags.title))
+    await userEvent.click(screen.getByText(track.tags.title))
 
     expect(clicks$.next).toHaveBeenCalledWith({
       ...track,
       key: `${track.id}-1`
     })
-    expect(clicks$.next).toHaveBeenCalledTimes(1)
-    expect(location.hash).toEqual(`#/`)
+    expect(clicks$.next).toHaveBeenCalledOnce()
+    expect(location.hash).toBe(`#/`)
   })
 
   it('moves track in the playlist', async () => {
@@ -147,7 +151,7 @@ describe('PlaylistTracksTable component', () => {
     const dragged = screen.queryByText(playlist.tracks[0].tags.title)
     const hovered = screen.queryByText(playlist.tracks[2].tags.title)
     const dropped = screen.queryByText(playlist.tracks[3].tags.title)
-    const dataTransfer = { setDragImage: jest.fn() }
+    const dataTransfer = { setDragImage: vi.fn() }
 
     fireEvent.dragStart(dragged, { dataTransfer })
     fireEvent.dragEnter(dragged, { dataTransfer })
@@ -157,25 +161,32 @@ describe('PlaylistTracksTable component', () => {
     await sleep()
 
     expect(moveTrack).toHaveBeenCalledWith(playlist, { from: 0, to: 3 })
-    expect(moveTrack).toHaveBeenCalledTimes(1)
-    expect(location.hash).toEqual(`#/`)
+    expect(moveTrack).toHaveBeenCalledOnce()
+    expect(location.hash).toBe(`#/`)
   })
 
   describe('given the dropdown menu opened', () => {
     let track
 
     beforeEach(async () => {
-      track = faker.random.arrayElement(playlist.tracks)
+      track = faker.helpers.arrayElement(playlist.tracks)
       render(html`<${PlaylistTracksTable} playlist=${playlist} />`)
 
-      userEvent.click(
-        screen.getByText(track.tags.title).closest('tr').querySelector('button')
+      await userEvent.click(
+        screen
+          .getByText(track.tags.title)
+          .closest('tr')
+          .querySelector('[data-testid="track-dropdown"]')
       )
     })
 
-    afterEach(async () =>
-      waitForElementToBeRemoved(screen.queryByText('local_offer'))
-    )
+    afterEach(async () => {
+      if (screen.queryByRole('menu')) {
+        await waitForElementToBeRemoved(
+          screen.queryByRole('menu')?.querySelector('.i-mdi-tag')
+        )
+      }
+    })
 
     it('removes track from playlist with dropdown', async () => {
       await userEvent.click(screen.getByText(translate('remove from playlist')))
@@ -185,15 +196,17 @@ describe('PlaylistTracksTable component', () => {
         playlist.tracks.indexOf(track)
       )
       expect(screen.getByText(translate('track details'))).not.toBeVisible()
-      expect(location.hash).toEqual(`#/`)
+      expect(location.hash).toBe(`#/`)
     })
 
     it('opens track details dialogue', async () => {
-      await userEvent.click(screen.getByText('local_offer'))
+      await userEvent.click(
+        screen.queryByRole('menu').querySelector('.i-mdi-tag')
+      )
 
       expect(screen.getByText(translate('track details'))).toBeVisible()
       expect(removeTrack).not.toHaveBeenCalled()
-      expect(location.hash).toEqual(`#/`)
+      expect(location.hash).toBe(`#/`)
     })
   })
 })

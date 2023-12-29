@@ -38,7 +38,7 @@ enqueues and jumps: ajoute le morceau à la liste et le lit
 enqueues track: ajoute le morceau à la liste
 enqueue: Ajouter à la liste
 export playlist: Exporter
-how to create playlist: Pour créer une playlist, ajouter des morceaux à la liste de lecture et cliquez sur <i class="material-icons">library_add</i>.
+how to create playlist: Pour créer une playlist, ajouter des morceaux à la liste de lecture et cliquez sur <i class="inline-icons i-mdi-plust-box-multiple"/>.
 let's go: C'est parti !
 i will figure out: Je me débrouillerai
 interface settings: Paramètres d'interface
@@ -55,7 +55,7 @@ open queue: Liste de lecture
 path: Chemin
 play all: Lire tout
 play now: Lire maintenant
-play now behaviour: 'Le bouton <i class="material-icons">play_arrow</i> :'
+play now behaviour: 'Le bouton <i class="inline-icons i-mdi-play"/> :'
 playlist deletion: Suppression de la playlist
 playlist renamal: Nouveau nom pour la playlist
 playlist _ updated: Playlist "{ name }" enregistrée !
@@ -80,12 +80,12 @@ totp key: 'Clé OTP:'
 track details: Détails du morceau
 track: Morceau
 unknown: Inconnu
-using material design icons: Avec les icônes <a class="underlined" href="https://material.io/resources/icons">Material Design <i class="material-icons">launch</i></a>.
+using material design icons: Avec les icônes <a class="underlined" href="https://icones.js.org/collection/mdi">Material Design <i class="inline-icons i-mdi-launch"></i></a>.
 watched folders: Répertoires de musique
 year _: 'Année : {year}'
 yes: Oui
 you are disconnected: >
-  <p>Vous êtes déconnecté(e)... Merci de vérifier votre connexion Internet, puis entrez votre code unique pour vous reconnecter.</p>
+  Vous êtes déconnecté(e)... Merci de vérifier votre connexion Internet, puis entrez votre code unique pour vous reconnecter.
 tags:
   albumartist: Artiste de l'album
   arranger: Arranger
@@ -113,7 +113,7 @@ tags:
 audiodb:
   description: >
     <p>TheAudioDB est une base de donnée communautaire de morceaux de musique avec une API JSON. Avec une clé d'API, Mélodie peux utiliser AudioDB pour retrouver les couvertures d'albums et les images d'artistes.</p>
-    <p>Pour obtenir votre clé, <a class="underlined" href="https://www.theaudiodb.com/api_apply.php">devenez un sponsor <i class="material-icons">launch</i></a>.<p/>
+    <p>Pour obtenir votre clé, <a class="underlined" href="https://www.theaudiodb.com/api_apply.php">devenez un sponsor <i class="inline-icons i-mdi-launch"></i></a>.</p>
   key: >
     Clé :
   key placeholder: Copiez votre clé ici
@@ -121,7 +121,7 @@ audiodb:
 discogs:
   description: >
     <p>Discogs s'est donné pour mission de construire la base de données musicale la plus grande et la plus complète. Avec un jeton d'accès, Mélodie peux utliser Discogs pour retrouver les couvertures d'albums et les images d'artistes.</p>
-    <p>Pour obtenir un jeton d'accès, <a class="underlined" href="https://www.discogs.com/fr/settings/developers">créez un compte développeur et générez un jeton d'accès personnel <i class="material-icons">launch</i></a>.<p/>
+    <p>Pour obtenir un jeton d'accès, <a class="underlined" href="https://www.discogs.com/fr/settings/developers">créez un compte développeur et générez un jeton d'accès personnel <i class="inline-icons i-mdi-launch"></i></a>.</p>
   token: >
     Jeton d'accès :
   token placeholder: Copiez votre jeton ici
@@ -134,11 +134,11 @@ tutorial:
   awaitFirstAlbum: >
     <p>Vos albums sont en cours de chargement, et vons apparaître sous peu.</p>
   playOrEnqueue: >
-    <p>Survolez cet album : ajoutez le à la fin de la liste de lecture avec <i class="material-icons">playlist_add</i>, ou jouez le immediatement avec <i class="material-icons">play_arrow</i></p>
+    <p>Survolez cet album : ajoutez le à la fin de la liste de lecture avec <i class="inline-icons i-mdi-playlist-plus"/>, ou jouez le immediatement avec <i class="inline-icons i-mdi-play"/></p>
   makePlaylist: >
     <p>Glissez-déposez les morceaux pour re-organiser la liste de lecture.</p>
-    <p>Une fois terminé, créez votre première playlist avec <i class="material-icons">library_add</i>.</p>
-    <p>Il suffit d'entrer un nom et d'appuyer sur la touche "Entrée" (ou sur <i class="material-icons">add_box</i>).</p>
+    <p>Une fois terminé, créez votre première playlist avec <i class="inline-icons i-mdi-plus-box-multiple"/>.</p>
+    <p>Il suffit d'entrer un nom et d'appuyer sur la touche "Entrée" (ou sur <i class="inline-icons i-mdi-plus-box"/>).</p>
   navigateToPlaylist: >
     <p>Et voilà ! Votre nouvelle playlist se trouve ici.</p>
   end: >

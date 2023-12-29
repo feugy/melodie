@@ -1,20 +1,15 @@
-'use strict'
+import { models, services, utils } from '@melodie/core'
 
-const {
-  models,
-  services: { media },
-  utils: { initConnection }
-} = require('@melodie/core')
-const playlists = require('./playlists')
-const settings = require('./settings')
-const tracks = require('./tracks')
-const { getStoragePath, focusOnNotification } = require('../utils')
+import { focusOnNotification, getStoragePath } from '../utils/index.js'
+import * as playlists from './playlists.js'
+import * as settings from './settings.js'
+import * as tracks from './tracks.js'
 
-async function start(publicFolder, win, descriptor, desiredPort) {
+export async function start(publicFolder, win, descriptor, desiredPort) {
   const { version, name } = descriptor
   await models.init(getStoragePath('db.sqlite3'))
 
-  const { close, address, totp } = await initConnection(
+  const { close, address, totp } = await utils.initConnection(
     {
       core: {
         focusWindow: () => focusOnNotification(win),
@@ -23,7 +18,7 @@ async function start(publicFolder, win, descriptor, desiredPort) {
           [name]: version
         })
       },
-      media,
+      media: services.media,
       playlists,
       settings,
       tracks
@@ -38,4 +33,4 @@ async function start(publicFolder, win, descriptor, desiredPort) {
   return { close, port, totp }
 }
 
-module.exports = { start, playFiles: tracks.play }
+export const playFiles = tracks.play

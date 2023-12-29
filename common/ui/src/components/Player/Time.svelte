@@ -1,6 +1,6 @@
 <script>
-  import Slider from '../Slider/Slider.svelte'
   import { formatTime } from '../../utils'
+  import Slider from '../Slider/Slider.svelte'
 
   export let player
   export let currentTime
@@ -18,16 +18,6 @@
   }
 </script>
 
-<style lang="postcss">
-  div {
-    @apply flex items-center justify-center gap-2;
-  }
-
-  span {
-    @apply text-sm;
-  }
-</style>
-
 <div>
   <span>{formatTime(currentTime)}</span>
   <Slider
@@ -38,3 +28,13 @@
   />
   <span>{formatTime(duration)}</span>
 </div>
+
+<style>
+  div {
+    --at-apply: flex items-center justify-center gap-2;
+  }
+
+  span {
+    --at-apply: text-sm;
+  }
+</style>

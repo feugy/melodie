@@ -1,18 +1,18 @@
-'use strict'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { isLoading } from './loading'
+import { sleep } from '../tests'
+import { invoke, serverEmitter } from '../utils'
 import * as albums from './albums'
 import * as artists from './artists'
+import { isLoading } from './loading'
 import * as playlists from './playlists'
-import { invoke, serverEmitter } from '../utils'
-import { sleep } from '../tests'
 
 describe('loading store', () => {
   let subscription
   let status
 
   beforeEach(() => {
-    jest.resetAllMocks()
+    vi.resetAllMocks()
     status = undefined
     subscription = isLoading.subscribe(isLoading => {
       status = isLoading

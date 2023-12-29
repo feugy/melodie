@@ -1,14 +1,22 @@
-'use strict'
-
+import { faker } from '@faker-js/faker'
+import { BehaviorSubject } from 'rxjs'
 import { tick } from 'svelte'
 import { get } from 'svelte/store'
-import { BehaviorSubject } from 'rxjs'
-import faker from 'faker'
-import { settings as mockedSettings } from './settings'
-import { serverEmitter } from '../utils'
-import { sleep } from '../tests'
+import {
+  afterEach,
+  beforeAll,
+  beforeEach,
+  describe,
+  expect,
+  it,
+  vi
+} from 'vitest'
 
-jest.mock('./settings')
+import { sleep } from '../tests'
+import { serverEmitter } from '../utils'
+import { settings as mockedSettings } from './settings'
+
+vi.mock('./settings')
 
 let queue
 const settings = new BehaviorSubject({ enqueueBehaviour: {} })
@@ -37,9 +45,9 @@ describe('track-queue store', () => {
   it('has initial, empty state', () => {
     const { current, index, tracks, isShuffling } = queue
     expect(get(tracks)).toEqual([])
-    expect(get(current)).not.toBeDefined()
-    expect(get(index)).toEqual(0)
-    expect(get(isShuffling)).toEqual(false)
+    expect(get(current)).toBeUndefined()
+    expect(get(index)).toBe(0)
+    expect(get(isShuffling)).toBe(false)
     expectStoredList(queue)
   })
 
@@ -63,7 +71,7 @@ describe('track-queue store', () => {
         await tick()
 
         expect(get(tracks)).toEqual(files)
-        expect(get(index)).toEqual(1)
+        expect(get(index)).toBe(1)
         expect(get(current)).toEqual(files[1])
         expectStoredList(queue)
       })
@@ -83,7 +91,7 @@ describe('track-queue store', () => {
 
         expect(get(tracks)).toEqual(files)
         expect(get(current)).toEqual(files[1])
-        expect(get(index)).toEqual(1)
+        expect(get(index)).toBe(1)
         expectStoredList(queue)
       })
 
@@ -101,7 +109,7 @@ describe('track-queue store', () => {
 
         expect(get(tracks)).toEqual(files.slice(1))
         expect(get(current)).toEqual(files[1])
-        expect(get(index)).toEqual(0)
+        expect(get(index)).toBe(0)
         expectStoredList(queue)
       })
 
@@ -119,7 +127,7 @@ describe('track-queue store', () => {
 
         expect(get(tracks)).toEqual(files.slice(2, 3))
         expect(get(current)).toEqual(files[2])
-        expect(get(index)).toEqual(0)
+        expect(get(index)).toBe(0)
         expectStoredList(queue)
       })
     })
@@ -143,7 +151,7 @@ describe('track-queue store', () => {
         await tick()
 
         expect(get(tracks)).toEqual(files)
-        expect(get(index)).toEqual(1)
+        expect(get(index)).toBe(1)
         expect(get(current)).toEqual(files[1])
         expectStoredList(queue)
       })
@@ -162,7 +170,7 @@ describe('track-queue store', () => {
 
         expect(get(tracks)).toEqual(files)
         expect(get(current)).toEqual(files[1])
-        expect(get(index)).toEqual(1)
+        expect(get(index)).toBe(1)
         expectStoredList(queue)
       })
     })
@@ -175,8 +183,8 @@ describe('track-queue store', () => {
       await tick()
 
       expect(get(tracks)).toEqual([])
-      expect(get(current)).not.toBeDefined()
-      expect(get(index)).toEqual(0)
+      expect(get(current)).toBeUndefined()
+      expect(get(index)).toBe(0)
     })
 
     it('goes to next and cycle', async () => {
@@ -189,27 +197,27 @@ describe('track-queue store', () => {
       add(files)
       expect(get(tracks)).toEqual(files)
       expect(get(current)).toEqual(files[0])
-      expect(get(index)).toEqual(0)
+      expect(get(index)).toBe(0)
 
       playNext()
       await tick()
       expect(get(current)).toEqual(files[1])
-      expect(get(index)).toEqual(1)
+      expect(get(index)).toBe(1)
 
       playNext()
       await tick()
       expect(get(current)).toEqual(files[2])
-      expect(get(index)).toEqual(2)
+      expect(get(index)).toBe(2)
 
       playNext()
       await tick()
       expect(get(current)).toEqual(files[0])
-      expect(get(index)).toEqual(0)
+      expect(get(index)).toBe(0)
 
       queue.playNext()
       await tick()
       expect(get(queue.current)).toEqual(files[1])
-      expect(get(queue.index)).toEqual(1)
+      expect(get(queue.index)).toBe(1)
       expectStoredList(queue)
     })
 
@@ -224,27 +232,27 @@ describe('track-queue store', () => {
       add(files)
       expect(get(tracks)).toEqual(files)
       expect(get(current)).toEqual(files[0])
-      expect(get(index)).toEqual(0)
+      expect(get(index)).toBe(0)
 
       playNext()
       await tick()
       expect(get(current)).toEqual(files[1])
-      expect(get(index)).toEqual(1)
+      expect(get(index)).toBe(1)
 
       playNext()
       await tick()
       expect(get(current)).toEqual(files[0])
-      expect(get(index)).toEqual(2)
+      expect(get(index)).toBe(2)
 
       playNext()
       await tick()
       expect(get(current)).toEqual(files[3])
-      expect(get(index)).toEqual(3)
+      expect(get(index)).toBe(3)
 
       playNext()
       await tick()
       expect(get(current)).toEqual(files[0])
-      expect(get(index)).toEqual(0)
+      expect(get(index)).toBe(0)
     })
   })
 
@@ -255,8 +263,8 @@ describe('track-queue store', () => {
       await tick()
 
       expect(get(tracks)).toEqual([])
-      expect(get(current)).not.toBeDefined()
-      expect(get(index)).toEqual(0)
+      expect(get(current)).toBeUndefined()
+      expect(get(index)).toBe(0)
     })
 
     it('goes to previous and cycle', async () => {
@@ -269,27 +277,27 @@ describe('track-queue store', () => {
       add(files)
       expect(get(tracks)).toEqual(files)
       expect(get(current)).toEqual(files[0])
-      expect(get(index)).toEqual(0)
+      expect(get(index)).toBe(0)
 
       playPrevious()
       await tick()
       expect(get(current)).toEqual(files[2])
-      expect(get(index)).toEqual(2)
+      expect(get(index)).toBe(2)
 
       playPrevious()
       await tick()
       expect(get(current)).toEqual(files[1])
-      expect(get(index)).toEqual(1)
+      expect(get(index)).toBe(1)
 
       playPrevious()
       await tick()
       expect(get(current)).toEqual(files[0])
-      expect(get(index)).toEqual(0)
+      expect(get(index)).toBe(0)
 
       playPrevious()
       await tick()
       expect(get(current)).toEqual(files[2])
-      expect(get(index)).toEqual(2)
+      expect(get(index)).toBe(2)
       expectStoredList(queue)
     })
   })
@@ -301,8 +309,8 @@ describe('track-queue store', () => {
       await tick()
 
       expect(get(tracks)).toEqual([])
-      expect(get(current)).not.toBeDefined()
-      expect(get(index)).toEqual(0)
+      expect(get(current)).toBeUndefined()
+      expect(get(index)).toBe(0)
     })
 
     it('goes forward and backward', async () => {
@@ -315,17 +323,17 @@ describe('track-queue store', () => {
       add(files)
       expect(get(tracks)).toEqual(files)
       expect(get(current)).toEqual(files[0])
-      expect(get(index)).toEqual(0)
+      expect(get(index)).toBe(0)
 
       jumpTo(2)
       await tick()
       expect(get(current)).toEqual(files[2])
-      expect(get(index)).toEqual(2)
+      expect(get(index)).toBe(2)
 
       jumpTo(0)
       await tick()
       expect(get(current)).toEqual(files[0])
-      expect(get(index)).toEqual(0)
+      expect(get(index)).toBe(0)
       expectStoredList(queue)
     })
 
@@ -339,17 +347,17 @@ describe('track-queue store', () => {
       add(files)
       expect(get(tracks)).toEqual(files)
       expect(get(current)).toEqual(files[0])
-      expect(get(index)).toEqual(0)
+      expect(get(index)).toBe(0)
 
       jumpTo(10)
       await tick()
       expect(get(current)).toEqual(files[0])
-      expect(get(index)).toEqual(0)
+      expect(get(index)).toBe(0)
 
       jumpTo(-1)
       await tick()
       expect(get(current)).toEqual(files[0])
-      expect(get(index)).toEqual(0)
+      expect(get(index)).toBe(0)
     })
 
     it('supports duplicates', async () => {
@@ -363,17 +371,17 @@ describe('track-queue store', () => {
       add(files)
       expect(get(tracks)).toEqual(files)
       expect(get(current)).toEqual(files[0])
-      expect(get(index)).toEqual(0)
+      expect(get(index)).toBe(0)
 
       jumpTo(2)
       await tick()
       expect(get(current)).toEqual(files[0])
-      expect(get(index)).toEqual(2)
+      expect(get(index)).toBe(2)
 
       jumpTo(1)
       await tick()
       expect(get(current)).toEqual(files[1])
-      expect(get(index)).toEqual(1)
+      expect(get(index)).toBe(1)
     })
   })
 
@@ -397,8 +405,8 @@ describe('track-queue store', () => {
       await tick()
 
       expect(get(tracks)).toEqual([])
-      expect(get(current)).not.toBeDefined()
-      expect(get(index)).toEqual(0)
+      expect(get(current)).toBeUndefined()
+      expect(get(index)).toBe(0)
     })
 
     it('moves track before current one', async () => {
@@ -406,42 +414,42 @@ describe('track-queue store', () => {
       jumpTo(2)
       await tick()
       expect(get(current)).toEqual(files[2])
-      expect(get(index)).toEqual(2)
+      expect(get(index)).toBe(2)
 
       move(3, 0)
       await tick()
 
       expect(get(tracks)).toEqual([files[3], files[0], files[1], files[2]])
       expect(get(current)).toEqual(files[2])
-      expect(get(index)).toEqual(3)
+      expect(get(index)).toBe(3)
       expectStoredList(queue)
     })
 
     it('moves track backward, after current', async () => {
       const { current, index, tracks, move } = queue
       expect(get(current)).toEqual(files[0])
-      expect(get(index)).toEqual(0)
+      expect(get(index)).toBe(0)
 
       move(2, 1)
       await tick()
 
       expect(get(tracks)).toEqual([files[0], files[2], files[1], files[3]])
       expect(get(current)).toEqual(files[0])
-      expect(get(index)).toEqual(0)
+      expect(get(index)).toBe(0)
       expectStoredList(queue)
     })
 
-    it('moves track forward, after current', async () => {
+    it('moves track forward, after first', async () => {
       const { current, index, tracks, move } = queue
       expect(get(current)).toEqual(files[0])
-      expect(get(index)).toEqual(0)
+      expect(get(index)).toBe(0)
 
       move(1, 3)
       await tick()
 
       expect(get(tracks)).toEqual([files[0], files[2], files[3], files[1]])
       expect(get(current)).toEqual(files[0])
-      expect(get(index)).toEqual(0)
+      expect(get(index)).toBe(0)
       expectStoredList(queue)
     })
 
@@ -450,14 +458,14 @@ describe('track-queue store', () => {
       jumpTo(2)
       await tick()
       expect(get(current)).toEqual(files[2])
-      expect(get(index)).toEqual(2)
+      expect(get(index)).toBe(2)
 
       move(1, 0)
       await tick()
 
       expect(get(tracks)).toEqual([files[1], files[0], files[2], files[3]])
       expect(get(current)).toEqual(files[2])
-      expect(get(index)).toEqual(2)
+      expect(get(index)).toBe(2)
       expectStoredList(queue)
     })
 
@@ -466,14 +474,14 @@ describe('track-queue store', () => {
       jumpTo(2)
       await tick()
       expect(get(current)).toEqual(files[2])
-      expect(get(index)).toEqual(2)
+      expect(get(index)).toBe(2)
 
       move(0, 1)
       await tick()
 
       expect(get(tracks)).toEqual([files[1], files[0], files[2], files[3]])
       expect(get(current)).toEqual(files[2])
-      expect(get(index)).toEqual(2)
+      expect(get(index)).toBe(2)
       expectStoredList(queue)
     })
 
@@ -483,14 +491,14 @@ describe('track-queue store', () => {
       await tick()
 
       expect(get(current)).toEqual(files[2])
-      expect(get(index)).toEqual(2)
+      expect(get(index)).toBe(2)
 
       move(0, 3)
       await tick()
 
       expect(get(tracks)).toEqual([files[1], files[2], files[3], files[0]])
       expect(get(current)).toEqual(files[2])
-      expect(get(index)).toEqual(1)
+      expect(get(index)).toBe(1)
       expectStoredList(queue)
     })
 
@@ -500,28 +508,28 @@ describe('track-queue store', () => {
       await tick()
 
       expect(get(current)).toEqual(files[0])
-      expect(get(index)).toEqual(0)
+      expect(get(index)).toBe(0)
       expect(get(tracks)).toEqual(files)
 
       move(10, 2)
       await tick()
 
       expect(get(current)).toEqual(files[0])
-      expect(get(index)).toEqual(0)
+      expect(get(index)).toBe(0)
       expect(get(tracks)).toEqual(files)
 
       move(2, -1)
       await tick()
 
       expect(get(current)).toEqual(files[0])
-      expect(get(index)).toEqual(0)
+      expect(get(index)).toBe(0)
       expect(get(tracks)).toEqual(files)
 
       move(2, 10)
       await tick()
 
       expect(get(current)).toEqual(files[0])
-      expect(get(index)).toEqual(0)
+      expect(get(index)).toBe(0)
       expect(get(tracks)).toEqual(files)
       expectStoredList(queue)
     })
@@ -534,8 +542,8 @@ describe('track-queue store', () => {
       await tick()
 
       expect(get(tracks)).toEqual([])
-      expect(get(index)).toEqual(0)
-      expect(get(current)).not.toBeDefined()
+      expect(get(index)).toBe(0)
+      expect(get(current)).toBeUndefined()
     })
 
     it('removes future track', async () => {
@@ -548,12 +556,12 @@ describe('track-queue store', () => {
       add(files)
       expect(get(tracks)).toEqual(files)
       expect(get(current)).toEqual(files[0])
-      expect(get(index)).toEqual(0)
+      expect(get(index)).toBe(0)
 
       remove(2)
       await tick()
       expect(get(tracks)).toEqual(files.slice(0, 2))
-      expect(get(index)).toEqual(0)
+      expect(get(index)).toBe(0)
       expect(get(current)).toEqual(files[0])
       expectStoredList(queue)
     })
@@ -569,12 +577,12 @@ describe('track-queue store', () => {
       playNext()
       expect(get(tracks)).toEqual(files)
       expect(get(current)).toEqual(files[1])
-      expect(get(index)).toEqual(1)
+      expect(get(index)).toBe(1)
 
       remove(1)
       await tick()
       expect(get(tracks)).toEqual([...files.slice(0, 1), ...files.slice(2)])
-      expect(get(index)).toEqual(1)
+      expect(get(index)).toBe(1)
       expect(get(current)).toEqual(files[2])
       expectStoredList(queue)
     })
@@ -590,12 +598,12 @@ describe('track-queue store', () => {
       jumpTo(2)
       expect(get(tracks)).toEqual(files)
       expect(get(current)).toEqual(files[2])
-      expect(get(index)).toEqual(2)
+      expect(get(index)).toBe(2)
 
       remove(2)
       await tick()
       expect(get(tracks)).toEqual([...files.slice(0, 2)])
-      expect(get(index)).toEqual(0)
+      expect(get(index)).toBe(0)
       expect(get(current)).toEqual(files[0])
       expectStoredList(queue)
     })
@@ -611,12 +619,12 @@ describe('track-queue store', () => {
       jumpTo(2)
       expect(get(tracks)).toEqual(files)
       expect(get(current)).toEqual(files[2])
-      expect(get(index)).toEqual(2)
+      expect(get(index)).toBe(2)
 
       remove(1)
       await tick()
       expect(get(tracks)).toEqual([...files.slice(0, 1), ...files.slice(2)])
-      expect(get(index)).toEqual(1)
+      expect(get(index)).toBe(1)
       expect(get(current)).toEqual(files[2])
       expectStoredList(queue)
     })
@@ -631,16 +639,16 @@ describe('track-queue store', () => {
       add(files)
       expect(get(tracks)).toEqual(files)
       expect(get(current)).toEqual(files[0])
-      expect(get(index)).toEqual(0)
+      expect(get(index)).toBe(0)
 
       remove(10)
       await tick()
-      expect(get(index)).toEqual(0)
+      expect(get(index)).toBe(0)
       expect(get(current)).toEqual(files[0])
 
       remove(-1)
       await tick()
-      expect(get(index)).toEqual(0)
+      expect(get(index)).toBe(0)
       expect(get(current)).toEqual(files[0])
     })
 
@@ -655,12 +663,12 @@ describe('track-queue store', () => {
       add(files)
       expect(get(tracks)).toEqual(files)
       expect(get(current)).toEqual(files[0])
-      expect(get(index)).toEqual(0)
+      expect(get(index)).toBe(0)
 
       remove(2)
       await tick()
       expect(get(tracks)).toEqual([...files.slice(0, 2), ...files.slice(3)])
-      expect(get(index)).toEqual(0)
+      expect(get(index)).toBe(0)
     })
   })
 
@@ -679,8 +687,8 @@ describe('track-queue store', () => {
       await tick()
 
       expect(get(tracks)).toEqual([])
-      expect(get(index)).toEqual(0)
-      expect(get(current)).not.toBeDefined()
+      expect(get(index)).toBe(0)
+      expect(get(current)).toBeUndefined()
     })
 
     it('does not change queue on un-queued track', async () => {
@@ -703,7 +711,7 @@ describe('track-queue store', () => {
       await tick()
 
       expect(get(tracks)).toEqual(files)
-      expect(get(index)).toEqual(0)
+      expect(get(index)).toBe(0)
       expect(get(current)).toEqual(files[0])
       expectStoredList(queue)
     })
@@ -718,7 +726,7 @@ describe('track-queue store', () => {
       add(files)
       await tick()
       expect(get(tracks)).toEqual(files)
-      expect(get(index)).toEqual(0)
+      expect(get(index)).toBe(0)
       expect(get(current)).toEqual(files[0])
 
       const changed = { id: 1, path: faker.system.fileName() }
@@ -726,7 +734,7 @@ describe('track-queue store', () => {
       await tick()
 
       expect(get(tracks)).toEqual([changed, files[1], changed, files[3]])
-      expect(get(index)).toEqual(0)
+      expect(get(index)).toBe(0)
       expect(get(current)).toEqual(changed)
       expectStoredList(queue)
     })
@@ -741,7 +749,7 @@ describe('track-queue store', () => {
       add(files)
       shuffle()
       await tick()
-      expect(get(index)).toEqual(0)
+      expect(get(index)).toBe(0)
       expect(get(current)).toEqual(files[0])
 
       const changed = { id: 1, path: faker.system.fileName() }
@@ -752,14 +760,14 @@ describe('track-queue store', () => {
         expect.arrayContaining([changed, files[1], files[3]])
       )
       expect(get(tracks)).not.toEqual(expect.arrayContaining([files[0]]))
-      expect(get(index)).toEqual(0)
+      expect(get(index)).toBe(0)
       expect(get(current)).toEqual(changed)
 
       unshuffle()
       await tick()
 
       expect(get(tracks)).toEqual([changed, files[1], changed, files[3]])
-      expect(get(index)).toEqual(0)
+      expect(get(index)).toBe(0)
       expect(get(current)).toEqual(changed)
       expectStoredList(queue)
     })
@@ -772,8 +780,8 @@ describe('track-queue store', () => {
       await tick()
 
       expect(get(tracks)).toEqual([])
-      expect(get(index)).toEqual(0)
-      expect(get(current)).not.toBeDefined()
+      expect(get(index)).toBe(0)
+      expect(get(current)).toBeUndefined()
     })
 
     it('does not change queue on un-queued track', async () => {
@@ -788,7 +796,7 @@ describe('track-queue store', () => {
       await tick()
 
       expect(get(tracks)).toEqual(files)
-      expect(get(index)).toEqual(0)
+      expect(get(index)).toBe(0)
       expect(get(current)).toEqual(files[0])
       expectStoredList(queue)
     })
@@ -805,14 +813,14 @@ describe('track-queue store', () => {
       await tick()
 
       expect(get(tracks)).toEqual(files)
-      expect(get(index)).toEqual(1)
+      expect(get(index)).toBe(1)
       expect(get(current)).toEqual(files[1])
 
       serverEmitter.next({ event: 'track-removals', args: [files[1].id] })
       await tick()
 
       expect(get(tracks)).toEqual([files[0], files[2]])
-      expect(get(index)).toEqual(1)
+      expect(get(index)).toBe(1)
       expect(get(current)).toEqual(files[2])
       expectStoredList(queue)
     })
@@ -829,14 +837,14 @@ describe('track-queue store', () => {
       await tick()
 
       expect(get(tracks)).toEqual(files)
-      expect(get(index)).toEqual(1)
+      expect(get(index)).toBe(1)
       expect(get(current)).toEqual(files[1])
 
       serverEmitter.next({ event: 'track-removals', args: [files[1].id] })
       await tick()
 
       expect(get(tracks)).toEqual([files[0], files[3]])
-      expect(get(index)).toEqual(1)
+      expect(get(index)).toBe(1)
       expect(get(current)).toEqual(files[3])
       expectStoredList(queue)
     })
@@ -853,7 +861,7 @@ describe('track-queue store', () => {
       shuffle()
       await tick()
 
-      expect(get(index)).toEqual(0)
+      expect(get(index)).toBe(0)
       expect(get(current)).toEqual(files[1])
 
       serverEmitter.next({ event: 'track-removals', args: [files[1].id] })
@@ -861,7 +869,7 @@ describe('track-queue store', () => {
 
       expect(get(tracks)).toEqual(expect.arrayContaining([files[0], files[3]]))
       expect(get(tracks)).not.toEqual(expect.arrayContaining([files[1]]))
-      expect(get(index)).toEqual(0)
+      expect(get(index)).toBe(0)
 
       unshuffle()
       await tick()
@@ -900,7 +908,7 @@ describe('track-queue store', () => {
 
       expect(get(tracks)).toEqual(files)
       expect(get(tracks).map(({ id }) => id)).toEqual(order)
-      expect(get(index)).toEqual(1)
+      expect(get(index)).toBe(1)
       expect(get(current)).toEqual(files[1])
 
       shuffle()
@@ -908,8 +916,8 @@ describe('track-queue store', () => {
 
       expect(get(tracks)).toEqual(expect.arrayContaining(files))
       expect(get(current)).toEqual(files[1])
-      expect(get(index)).toEqual(0)
-      expect(get(isShuffling)).toEqual(true)
+      expect(get(index)).toBe(0)
+      expect(get(isShuffling)).toBe(true)
       expect(get(tracks).map(({ id }) => id)).not.toEqual(order)
       expectStoredList(queue)
     })
@@ -928,7 +936,7 @@ describe('track-queue store', () => {
       playNext()
       await tick()
       expect(get(tracks).map(({ id }) => id)).toEqual(order)
-      expect(get(index)).toEqual(1)
+      expect(get(index)).toBe(1)
       expect(get(current)).toEqual(files[1])
 
       shuffle()
@@ -937,8 +945,8 @@ describe('track-queue store', () => {
       await tick()
 
       const currentShuffled = get(current)
-      expect(get(index)).toEqual(2)
-      expect(get(isShuffling)).toEqual(true)
+      expect(get(index)).toBe(2)
+      expect(get(isShuffling)).toBe(true)
 
       unshuffle()
       await tick()
@@ -946,7 +954,7 @@ describe('track-queue store', () => {
       expect(get(tracks)).toEqual(files)
       expect(get(current)).toEqual(currentShuffled)
       expect(get(index)).toEqual(files.indexOf(currentShuffled))
-      expect(get(isShuffling)).toEqual(false)
+      expect(get(isShuffling)).toBe(false)
       expectStoredList(queue)
     })
 
@@ -964,7 +972,7 @@ describe('track-queue store', () => {
       expect(get(tracks).map(({ id }) => id)).toEqual(order)
 
       jumpTo(4)
-      expect(get(index)).toEqual(4)
+      expect(get(index)).toBe(4)
       expect(get(current)).toEqual(files[4])
 
       shuffle()
@@ -974,13 +982,13 @@ describe('track-queue store', () => {
       remove(6)
       await tick()
 
-      expect(get(index)).toEqual(2)
+      expect(get(index)).toBe(2)
       expect(get(current)).toEqual(currentShuffled)
 
       remove(1)
       await tick()
 
-      expect(get(index)).toEqual(1)
+      expect(get(index)).toBe(1)
       expect(get(current)).toEqual(currentShuffled)
       const removed = difference(files, get(tracks)).map(({ id }) => id)
       expect(removed).toHaveLength(2)
@@ -993,7 +1001,7 @@ describe('track-queue store', () => {
       expect(get(tracks)).toEqual(remainingFiles)
       expect(get(current)).toEqual(currentShuffled)
       expect(get(index)).toEqual(remainingFiles.indexOf(currentShuffled))
-      expect(get(isShuffling)).toEqual(false)
+      expect(get(isShuffling)).toBe(false)
       expectStoredList(queue)
     })
 
@@ -1005,24 +1013,24 @@ describe('track-queue store', () => {
 
       const currentShuffled = get(current)
       const shuffled = get(tracks)
-      expect(get(index)).toEqual(0)
-      expect(get(isShuffling)).toEqual(true)
+      expect(get(index)).toBe(0)
+      expect(get(isShuffling)).toBe(true)
 
       shuffle()
       await tick()
 
       expect(get(current)).toEqual(currentShuffled)
-      expect(get(index)).toEqual(0)
+      expect(get(index)).toBe(0)
       expect(get(tracks)).toEqual(shuffled)
-      expect(get(isShuffling)).toEqual(true)
+      expect(get(isShuffling)).toBe(true)
 
       shuffle()
       await tick()
 
       expect(get(current)).toEqual(currentShuffled)
-      expect(get(index)).toEqual(0)
+      expect(get(index)).toBe(0)
       expect(get(tracks)).toEqual(shuffled)
-      expect(get(isShuffling)).toEqual(true)
+      expect(get(isShuffling)).toBe(true)
     })
 
     it('can shuffle and unshuffle empty list', async () => {
@@ -1033,42 +1041,42 @@ describe('track-queue store', () => {
       await tick()
 
       expect(get(current)).toBeUndefined()
-      expect(get(index)).toEqual(0)
+      expect(get(index)).toBe(0)
       expect(get(tracks)).toEqual([])
-      expect(get(isShuffling)).toEqual(false)
+      expect(get(isShuffling)).toBe(false)
 
       shuffle()
       await tick()
 
       expect(get(current)).toBeUndefined()
-      expect(get(index)).toEqual(0)
+      expect(get(index)).toBe(0)
       expect(get(tracks)).toEqual([])
-      expect(get(isShuffling)).toEqual(true)
+      expect(get(isShuffling)).toBe(true)
 
       unshuffle()
       await tick()
 
       expect(get(current)).toBeUndefined()
-      expect(get(index)).toEqual(0)
+      expect(get(index)).toBe(0)
       expect(get(tracks)).toEqual([])
-      expect(get(isShuffling)).toEqual(false)
+      expect(get(isShuffling)).toBe(false)
     })
 
     it('ignores unshuffle on non-shuffled list', async () => {
       const { current, index, isShuffling, tracks, unshuffle } = queue
 
       expect(get(current)).toEqual(files[0])
-      expect(get(index)).toEqual(0)
+      expect(get(index)).toBe(0)
       expect(get(tracks)).toEqual(files)
-      expect(get(isShuffling)).toEqual(false)
+      expect(get(isShuffling)).toBe(false)
 
       unshuffle()
       await tick()
 
       expect(get(current)).toEqual(files[0])
-      expect(get(index)).toEqual(0)
+      expect(get(index)).toBe(0)
       expect(get(tracks)).toEqual(files)
-      expect(get(isShuffling)).toEqual(false)
+      expect(get(isShuffling)).toBe(false)
     })
 
     it('ignores subsequent unshuffles', async () => {
@@ -1077,24 +1085,24 @@ describe('track-queue store', () => {
       shuffle()
       await tick()
 
-      expect(get(index)).toEqual(0)
-      expect(get(isShuffling)).toEqual(true)
+      expect(get(index)).toBe(0)
+      expect(get(isShuffling)).toBe(true)
 
       unshuffle()
       await tick()
 
       expect(get(current)).toEqual(files[0])
-      expect(get(index)).toEqual(0)
+      expect(get(index)).toBe(0)
       expect(get(tracks)).toEqual(files)
-      expect(get(isShuffling)).toEqual(false)
+      expect(get(isShuffling)).toBe(false)
 
       unshuffle()
       await tick()
 
       expect(get(current)).toEqual(files[0])
-      expect(get(index)).toEqual(0)
+      expect(get(index)).toBe(0)
       expect(get(tracks)).toEqual(files)
-      expect(get(isShuffling)).toEqual(false)
+      expect(get(isShuffling)).toBe(false)
     })
 
     it('clears shuffled and unshuffled list', async () => {
@@ -1103,17 +1111,17 @@ describe('track-queue store', () => {
       shuffle()
 
       expect(get(current)).toEqual(files[0])
-      expect(get(index)).toEqual(0)
+      expect(get(index)).toBe(0)
       expect(get(tracks)).toEqual(expect.arrayContaining(files))
-      expect(get(isShuffling)).toEqual(true)
+      expect(get(isShuffling)).toBe(true)
 
       clear()
       await tick()
 
       expect(get(current)).toBeUndefined()
-      expect(get(index)).toEqual(0)
+      expect(get(index)).toBe(0)
       expect(get(tracks)).toEqual([])
-      expect(get(isShuffling)).toEqual(true)
+      expect(get(isShuffling)).toBe(true)
     })
 
     it('adds new tracks at random position when turned on', async () => {
@@ -1130,14 +1138,14 @@ describe('track-queue store', () => {
       jumpTo(3)
 
       const currentShuffled = get(current)
-      expect(get(index)).toEqual(3)
+      expect(get(index)).toBe(3)
       expect(get(tracks)).toEqual(expect.arrayContaining(files))
-      expect(get(isShuffling)).toEqual(true)
+      expect(get(isShuffling)).toBe(true)
 
       add(added)
       await tick()
 
-      expect(get(index)).toEqual(3)
+      expect(get(index)).toBe(3)
       expect(get(current)).toEqual(currentShuffled)
       const content = get(tracks)
       expect(content).toHaveLength(files.length + added.length)
@@ -1146,7 +1154,7 @@ describe('track-queue store', () => {
       for (const track of added) {
         expect(content.indexOf(track) > 3).toBe(true)
       }
-      expect(get(isShuffling)).toEqual(true)
+      expect(get(isShuffling)).toBe(true)
       expectStoredList(queue)
     })
 
@@ -1166,12 +1174,12 @@ describe('track-queue store', () => {
       unshuffle()
       await tick()
 
-      expect(get(index)).toEqual(0)
+      expect(get(index)).toBe(0)
       expect(get(current)).toEqual(files[0])
       const content = get(tracks)
       expect(content).toHaveLength(files.length + added.length)
       expect(content).toEqual([...files, ...added])
-      expect(get(isShuffling)).toEqual(false)
+      expect(get(isShuffling)).toBe(false)
       expectStoredList(queue)
     })
 
@@ -1191,10 +1199,10 @@ describe('track-queue store', () => {
       clear()
       await tick()
 
-      expect(get(index)).toEqual(0)
+      expect(get(index)).toBe(0)
       expect(get(current)).toBeUndefined()
       expect(get(tracks)).toEqual([])
-      expect(get(isShuffling)).toEqual(true)
+      expect(get(isShuffling)).toBe(true)
 
       const added = [
         { id: 9, path: faker.system.fileName() },
@@ -1205,14 +1213,14 @@ describe('track-queue store', () => {
       add(added)
       await tick()
 
-      expect(get(index)).toEqual(0)
+      expect(get(index)).toBe(0)
       expect(get(tracks)).toHaveLength(added.length)
       expect(get(tracks)).toEqual(expect.arrayContaining(added))
 
       unshuffle()
       await tick()
       expect(get(tracks)).toEqual(added)
-      expect(get(isShuffling)).toEqual(false)
+      expect(get(isShuffling)).toBe(false)
       expectStoredList(queue)
     })
 
@@ -1234,14 +1242,14 @@ describe('track-queue store', () => {
 
       const content = [...get(tracks)]
       const currentShuffled = get(current)
-      expect(get(index)).toEqual(3)
-      expect(get(isShuffling)).toEqual(true)
+      expect(get(index)).toBe(3)
+      expect(get(isShuffling)).toBe(true)
 
       move(1, 6)
       await tick()
 
       expect(get(current)).toEqual(currentShuffled)
-      expect(get(index)).toEqual(2)
+      expect(get(index)).toBe(2)
       expect(get(tracks)).toEqual([
         content[0],
         content[2],
@@ -1256,7 +1264,7 @@ describe('track-queue store', () => {
 
       expect(get(current)).toEqual(currentShuffled)
       expect(get(queue.tracks)).toEqual(files)
-      expect(get(isShuffling)).toEqual(false)
+      expect(get(isShuffling)).toBe(false)
       expectStoredList(queue)
     })
   })
@@ -1298,7 +1306,7 @@ describe('track-queue store', () => {
 
         expect(get(queue.tracks)).toEqual([...files, file])
         expect(get(queue.current)).toEqual(files[1])
-        expect(get(queue.index)).toEqual(1)
+        expect(get(queue.index)).toBe(1)
       })
 
       it('plays track on double click', async () => {
@@ -1308,7 +1316,7 @@ describe('track-queue store', () => {
 
         expect(get(queue.tracks)).toEqual([file])
         expect(get(queue.current)).toEqual(file)
-        expect(get(queue.index)).toEqual(0)
+        expect(get(queue.index)).toBe(0)
       })
     })
 
@@ -1326,7 +1334,7 @@ describe('track-queue store', () => {
 
         expect(get(queue.tracks)).toEqual([...files, file])
         expect(get(queue.current)).toEqual(files[1])
-        expect(get(queue.index)).toEqual(1)
+        expect(get(queue.index)).toBe(1)
       })
 
       it('plays track on simple click', async () => {
@@ -1335,7 +1343,7 @@ describe('track-queue store', () => {
 
         expect(get(queue.tracks)).toEqual([file])
         expect(get(queue.current)).toEqual(file)
-        expect(get(queue.index)).toEqual(0)
+        expect(get(queue.index)).toBe(0)
       })
     })
   })
@@ -1361,7 +1369,7 @@ describe('track-queue store', () => {
 
       expect(get(queue.tracks)).toEqual(played)
       expect(get(queue.current)).toEqual(played[0])
-      expect(get(queue.index)).toEqual(0)
+      expect(get(queue.index)).toBe(0)
     })
 
     it('adds received tracks to the queue and play them', async () => {
@@ -1382,7 +1390,7 @@ describe('track-queue store', () => {
   })
 
   describe('given previously stored list', () => {
-    beforeEach(jest.resetModules)
+    beforeEach(vi.resetModules)
 
     it('restores initial state', async () => {
       const files = [
@@ -1397,8 +1405,8 @@ describe('track-queue store', () => {
       queue = await import('./track-queue')
       expect(get(queue.tracks)).toEqual(files)
       expect(get(queue.current)).toEqual(files[1])
-      expect(get(queue.index)).toEqual(1)
-      expect(get(queue.isShuffling)).toEqual(false)
+      expect(get(queue.index)).toBe(1)
+      expect(get(queue.isShuffling)).toBe(false)
       expectStoredList(queue)
     })
 
@@ -1407,8 +1415,8 @@ describe('track-queue store', () => {
       queue = await import('./track-queue')
       expect(get(queue.tracks)).toEqual([])
       expect(get(queue.current)).toBeUndefined()
-      expect(get(queue.index)).toEqual(0)
-      expect(get(queue.isShuffling)).toEqual(false)
+      expect(get(queue.index)).toBe(0)
+      expect(get(queue.isShuffling)).toBe(false)
       expectStoredList(queue)
     })
   })

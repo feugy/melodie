@@ -1,46 +1,46 @@
-'use strict'
-
-import { screen, render, fireEvent } from '@testing-library/svelte'
+import { faker } from '@faker-js/faker'
+import { fireEvent, render, screen } from '@testing-library/svelte'
 import userEvent from '@testing-library/user-event'
-import { locale } from 'svelte-intl'
-import html from 'svelte-htm'
-import faker from 'faker'
 import { BehaviorSubject } from 'rxjs'
-import settingsRoute from './settings.svelte'
+import html from 'svelte-htm'
+import { locale } from 'svelte-intl'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
+
 import {
-  settings as mockedSettings,
-  isDesktop as mockedIsDesktop,
-  saveLocale,
   askToAddFolder,
+  isDesktop as mockedIsDesktop,
   removeFolder,
   saveAudioDBKey,
-  saveEnqueueBehaviour,
+  saveBroadcastPort,
   saveDiscogsToken,
-  saveBroadcastPort
+  saveEnqueueBehaviour,
+  saveLocale,
+  settings as mockedSettings
 } from '../stores/settings'
+import { sleep, translate } from '../tests'
 import { invoke } from '../utils'
-import { translate, sleep } from '../tests'
+import settingsRoute from './settings.svelte'
 
-jest.mock('../stores/settings')
+vi.mock('../stores/settings')
 
 describe('settings route', () => {
-  const key = faker.random.alphaNumeric(10)
-  const token = faker.datatype.uuid()
-  const broadcastPort = faker.datatype.number()
+  const key = faker.string.alphanumeric(10)
+  const token = faker.string.uuid()
+  const broadcastPort = faker.number.int()
   const providers = { audiodb: { key }, discogs: { token } }
   const enqueueBehaviour = { onClick: true, clearBefore: false }
   const folders = [faker.system.fileName(), faker.system.fileName()]
   const settings = new BehaviorSubject()
   const isDesktop = new BehaviorSubject()
-  const version = `${faker.datatype.number({
+  const version = `${faker.number.int({
     max: 10
-  })}.${faker.datatype.number({
+  })}.${faker.number.int({
     max: 10
-  })}.${faker.datatype.number({ max: 10 })}`
+  })}.${faker.number.int({ max: 10 })}`
 
   beforeEach(() => {
     location.hash = '#/'
-    jest.resetAllMocks()
+    vi.resetAllMocks()
     settings.next({ folders, providers, enqueueBehaviour, broadcastPort })
     isDesktop.next(true)
     locale.set('fr')
@@ -56,11 +56,11 @@ describe('settings route', () => {
     await sleep()
 
     for (const folder of folders) {
-      expect(screen.queryByText(folder)).toBeInTheDocument()
+      expect(screen.getByText(folder)).toBeInTheDocument()
     }
-    expect(screen.queryByText(translate('add folders'))).toBeInTheDocument()
+    expect(screen.getByText(translate('add folders'))).toBeInTheDocument()
 
-    expect(screen.queryByText(translate('fr'))).toBeInTheDocument()
+    expect(screen.getByText(translate('fr'))).toBeInTheDocument()
 
     const textboxes = screen.getAllByRole('textbox')
     expect(textboxes[0]).toHaveValue(key)
@@ -68,13 +68,13 @@ describe('settings route', () => {
     expect(screen.queryByRole('spinbutton')).toHaveValue(broadcastPort)
 
     expect(
-      screen.queryByText(translate('enqueues and jumps'))
+      screen.getByText(translate('enqueues and jumps'))
     ).toBeInTheDocument()
-    expect(screen.queryByText(translate('enqueues track'))).toBeInTheDocument()
+    expect(screen.getByText(translate('enqueues track'))).toBeInTheDocument()
 
-    expect(screen.queryByText(version)).toBeInTheDocument()
+    expect(screen.getByText(version)).toBeInTheDocument()
     expect(invoke).toHaveBeenCalledWith('core.getVersions')
-    expect(invoke).toHaveBeenCalledTimes(1)
+    expect(invoke).toHaveBeenCalledOnce()
   })
 
   it('does not display button to add folder nor broadcast port unless in desktop', async () => {
@@ -84,35 +84,35 @@ describe('settings route', () => {
     await sleep()
 
     for (const folder of folders) {
-      expect(screen.queryByText(folder)).toBeInTheDocument()
+      expect(screen.getByText(folder)).toBeInTheDocument()
     }
     expect(screen.queryByText(translate('add folders'))).not.toBeInTheDocument()
     expect(
       screen.queryByText(translate('broadcasting'))
     ).not.toBeInTheDocument()
     expect(invoke).toHaveBeenCalledWith('core.getVersions')
-    expect(invoke).toHaveBeenCalledTimes(1)
+    expect(invoke).toHaveBeenCalledOnce()
   })
 
   it('changes current language and updates labels', async () => {
     render(html`<${settingsRoute} />`)
-    expect(screen.queryByText('Langage :')).toBeInTheDocument()
+    expect(screen.getByText('Langage :')).toBeInTheDocument()
 
-    userEvent.click(screen.queryByText(translate('fr')))
+    await userEvent.click(screen.getByText(translate('fr')))
     await sleep()
-    userEvent.click(screen.queryByText(translate('en')))
+    await userEvent.click(screen.getByText(translate('en')))
     await sleep(300)
 
-    expect(screen.queryByText(translate('en'))).toBeInTheDocument()
+    expect(screen.getByText(translate('en'))).toBeInTheDocument()
     expect(screen.queryByText(translate('fr'))).not.toBeInTheDocument()
-    expect(screen.queryByText('Language:')).toBeInTheDocument()
+    expect(screen.getByText('Language:')).toBeInTheDocument()
     expect(saveLocale).toHaveBeenCalledWith('en')
-    expect(saveLocale).toHaveBeenCalledTimes(1)
+    expect(saveLocale).toHaveBeenCalledOnce()
   })
 
   it('adds new folders and redirect to folders', async () => {
     settings.next({
-      folders: [faker.random.word()],
+      folders: [faker.string.alphanumeric(5)],
       providers,
       enqueueBehaviour
     })
@@ -120,22 +120,22 @@ describe('settings route', () => {
     render(html`<${settingsRoute} />`)
     await sleep()
 
-    userEvent.click(screen.queryByText(translate('add folders')))
+    await userEvent.click(screen.getByText(translate('add folders')))
     await sleep()
 
     expect(askToAddFolder).toHaveBeenCalled()
-    expect(askToAddFolder).toHaveBeenCalledTimes(1)
+    expect(askToAddFolder).toHaveBeenCalledOnce()
   })
 
   it('remove tracked folders', async () => {
     render(html`<${settingsRoute} />`)
     await sleep()
 
-    expect(screen.queryByText(folders[0])).toBeInTheDocument()
-    expect(screen.queryByText(folders[1])).toBeInTheDocument()
+    expect(screen.getByText(folders[0])).toBeInTheDocument()
+    expect(screen.getByText(folders[1])).toBeInTheDocument()
 
     // remove second one
-    userEvent.click(screen.getAllByText('close')[1])
+    await userEvent.click(screen.getAllByRole('button')[1])
 
     settings.next({
       folders: folders.slice(0, 1),
@@ -144,14 +144,14 @@ describe('settings route', () => {
     })
     await sleep()
 
-    expect(screen.queryByText(folders[0])).toBeInTheDocument()
+    expect(screen.getByText(folders[0])).toBeInTheDocument()
     expect(screen.queryByText(folders[1])).not.toBeInTheDocument()
     expect(removeFolder).toHaveBeenCalledWith(folders[1])
-    expect(removeFolder).toHaveBeenCalledTimes(1)
+    expect(removeFolder).toHaveBeenCalledOnce()
   })
 
   it('saves new key for AudioDB provider', async () => {
-    const newKey = faker.random.alphaNumeric(12)
+    const newKey = faker.string.alphanumeric(12)
 
     render(html`<${settingsRoute} />`)
     await sleep()
@@ -162,11 +162,11 @@ describe('settings route', () => {
     await sleep()
 
     expect(saveAudioDBKey).toHaveBeenCalledWith(newKey)
-    expect(saveAudioDBKey).toHaveBeenCalledTimes(1)
+    expect(saveAudioDBKey).toHaveBeenCalledOnce()
   })
 
   it('saves new token for Discogs provider', async () => {
-    const newToken = faker.datatype.uuid()
+    const newToken = faker.string.uuid()
 
     render(html`<${settingsRoute} />`)
     await sleep()
@@ -177,7 +177,7 @@ describe('settings route', () => {
     await sleep()
 
     expect(saveDiscogsToken).toHaveBeenCalledWith(newToken)
-    expect(saveDiscogsToken).toHaveBeenCalledTimes(1)
+    expect(saveDiscogsToken).toHaveBeenCalledOnce()
   })
 
   it('saves new behaviour for play button', async () => {
@@ -185,12 +185,12 @@ describe('settings route', () => {
     await sleep()
 
     expect(
-      screen.queryByText(translate('enqueues and jumps'))
+      screen.getByText(translate('enqueues and jumps'))
     ).toBeInTheDocument()
 
-    userEvent.click(screen.queryByText(translate('enqueues and jumps')))
+    await userEvent.click(screen.getByText(translate('enqueues and jumps')))
     await sleep()
-    userEvent.click(screen.queryByText(translate('clears queue and plays')))
+    await userEvent.click(screen.getByText(translate('clears queue and plays')))
     await sleep(300)
 
     expect(saveEnqueueBehaviour).toHaveBeenCalledWith({
@@ -203,11 +203,11 @@ describe('settings route', () => {
     render(html`<${settingsRoute} />`)
     await sleep()
 
-    expect(screen.queryByText(translate('enqueues track'))).toBeInTheDocument()
+    expect(screen.getByText(translate('enqueues track'))).toBeInTheDocument()
 
-    userEvent.click(screen.queryByText(translate('enqueues track')))
+    await userEvent.click(screen.getByText(translate('enqueues track')))
     await sleep()
-    userEvent.click(screen.queryByText(translate('plays track')))
+    await userEvent.click(screen.getByText(translate('plays track')))
     await sleep(300)
 
     expect(saveEnqueueBehaviour).toHaveBeenCalledWith({
@@ -217,7 +217,7 @@ describe('settings route', () => {
   })
 
   it('sets new broadcast port', async () => {
-    const newPort = faker.datatype.number()
+    const newPort = faker.number.int()
 
     render(html`<${settingsRoute} />`)
     await sleep()
@@ -228,6 +228,6 @@ describe('settings route', () => {
     await sleep()
 
     expect(saveBroadcastPort).toHaveBeenCalledWith(newPort.toString())
-    expect(saveBroadcastPort).toHaveBeenCalledTimes(1)
+    expect(saveBroadcastPort).toHaveBeenCalledOnce()
   })
 })

@@ -22,45 +22,43 @@
   function addNonce(src) {
     return `${src}#nonce-${Math.random()}`
   }
-
-  const intersectionObserver = new IntersectionObserver(entries => {
-    for (const { isIntersecting, target: image } of entries) {
-      if (isIntersecting) {
-        let { src } = image.dataset
-        delete image.dataset.src
-        image.src = enhanceUrlWhenRequired(src) ?? ''
-        intersectionObserver.unobserve(image)
-      }
-    }
-  })
 </script>
 
 <script>
   import { onMount } from 'svelte'
 
+  import { tokenUpdated } from '../../stores/settings'
+
   export let src
   export let rounded = false
-  export let fallback = rounded ? 'person' : 'music_note'
-  export let width = 256
-  export let height = 256
+  export let icon = rounded ? 'i-mdi-account' : 'i-mdi-music-note'
   export let withNonce = false
   // exposed dimension
   export let dimension = null
 
   $: hidden = !src || broken.has(src)
 
+  $: if (src) {
+    setSrc()
+  }
+
   let imgElement
-  $: if (imgElement) {
-    if (imgElement.hasAttribute('src')) {
+
+  onMount(() => {
+    setSrc()
+    const tokenSuscription = tokenUpdated.subscribe(setSrc)
+    return () => {
+      tokenSuscription.unsubscribe()
+    }
+  })
+
+  function setSrc() {
+    if (imgElement) {
       imgElement.src = encodeSrc(enhanceUrlWhenRequired(src), withNonce) ?? ''
-    } else {
-      imgElement.dataset.src = encodeSrc(src, withNonce)
     }
   }
 
-  onMount(() => intersectionObserver.observe(imgElement))
-
-  function handleError() {
+  function handleError(_, err) {
     if (src) {
       broken.add(src)
     }
@@ -72,48 +70,26 @@
   }
 </script>
 
-<style lang="postcss">
-  img {
-    @apply border-none;
-    font-size: 0;
-    object-fit: cover;
-    background-color: var(--hover-bg-color);
-
-    &:not(&[src]) {
-      visibility: hidden;
-    }
-  }
-
-  span {
-    @apply inline-flex justify-center items-center;
-    background-color: var(--hover-bg-color);
-  }
-
-  i {
-    font-size: 200%;
-  }
-</style>
-
-<img
+<button
   on:click
-  on:error={handleError}
-  on:load={handleLoad}
-  {width}
-  {height}
-  bind:this={imgElement}
-  {...$$restProps}
+  on:keydown
+  on:keyup
+  on:keypress
+  class="flex justify-center items-center bg-[--hover-bg-color] overflow-hidden {$$restProps.class}"
   class:rounded-full={rounded}
   class:rounded-sm={!rounded}
-  class:hidden
-  alt={src}
-/>
-{#if hidden}
-  <span
-    on:click
-    class={$$restProps.class}
-    class:rounded-full={rounded}
-    class:rounded-sm={!rounded}
-  >
-    <i class="material-icons">{fallback}</i>
-  </span>
-{/if}
+>
+  <img
+    on:error={handleError}
+    on:load={handleLoad}
+    bind:this={imgElement}
+    {...$$restProps}
+    class:hidden
+    loading="lazy"
+    class="border-none font-size-0 object-cover w-full h-full"
+    alt={src}
+  />
+  {#if hidden}
+    <i data-testid={icon} class="icons inline-block font-size-[200%] {icon}" />
+  {/if}
+</button>

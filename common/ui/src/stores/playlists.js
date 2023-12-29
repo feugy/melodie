@@ -1,9 +1,8 @@
-'use strict'
-
-import { push } from 'svelte-spa-router'
-import { showSnack } from './snackbars'
-import { createListStore, invoke } from '../utils'
 import * as intl from 'svelte-intl'
+import { push } from 'svelte-spa-router'
+
+import { createListStore, invoke } from '../utils'
+import { showSnack } from './snackbars'
 
 const store = createListStore('playlist')
 

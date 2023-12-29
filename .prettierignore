@@ -1,3 +1,6 @@
-node_modules/
-build/
-coverage/
+out
+dist
+node_modules
+build
+coverage
+LICENSE.md

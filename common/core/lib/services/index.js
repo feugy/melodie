@@ -1,8 +1,4 @@
-'use strict'
-
-module.exports = {
-  media: require('./media'),
-  playlists: require('./playlists'),
-  settings: require('./settings'),
-  tracks: require('./tracks')
-}
+export * as media from './media.js'
+export * as playlists from './playlists.js'
+export * as settings from './settings.js'
+export * as tracks from './tracks.js'

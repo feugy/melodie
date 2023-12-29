@@ -1,31 +1,39 @@
-'use strict'
+import { faker } from '@faker-js/faker'
+import { dirname, join, resolve } from 'path'
+import {
+  afterAll,
+  beforeAll,
+  beforeEach,
+  describe,
+  expect,
+  it,
+  vi
+} from 'vitest'
 
-const { join, dirname, resolve } = require('path')
-const faker = require('faker')
-const { artistsModel } = require('../models/artists')
-const { albumsModel } = require('../models/albums')
-const { tracksModel } = require('../models/tracks')
-const { playlistsModel } = require('../models/playlists')
-const { local, audiodb, discogs } = require('../providers')
-const { tracks: tracksService, settings: settingsService } = require('.')
-const { hash, broadcast } = require('../utils')
-const { sleep, addRefs, addId } = require('../tests')
+import { albumsModel } from '../models/albums'
+import { artistsModel } from '../models/artists'
+import { playlistsModel } from '../models/playlists'
+import { tracksModel } from '../models/tracks'
+import { audiodb, discogs, local } from '../providers'
+import { addId, addRefs, sleep } from '../tests'
+import { broadcast, hash } from '../utils'
+import { settings as settingsService, tracks as tracksService } from '.'
 
-jest.mock('./settings')
-jest.mock('../models/artists')
-jest.mock('../models/albums')
-jest.mock('../models/tracks')
-jest.mock('../models/playlists')
-jest.mock('../providers/local')
-jest.mock('../providers/discogs')
-jest.mock('../providers/audiodb')
-jest.mock('../utils/connection')
+vi.mock('./settings')
+vi.mock('../models/artists')
+vi.mock('../models/albums')
+vi.mock('../models/tracks')
+vi.mock('../models/playlists')
+vi.mock('../providers/local')
+vi.mock('../providers/discogs')
+vi.mock('../providers/audiodb')
+vi.mock('../utils/connection')
 
 const identity = data => data
 
 describe('Tracks service', () => {
   beforeEach(() => {
-    jest.resetAllMocks()
+    vi.resetAllMocks()
     albumsModel.list.mockResolvedValue([])
     albumsModel.save.mockResolvedValue({ saved: [], removedIds: [] })
     albumsModel.serializeForUi = identity
@@ -90,7 +98,7 @@ describe('Tracks service', () => {
     describe('add', () => {
       it('stores track with multiple artists', async () => {
         const path = faker.system.fileName()
-        const artistNames = [faker.name.findName(), faker.name.findName()]
+        const artistNames = [faker.person.fullName(), faker.person.fullName()]
         const artists = artistNames.map(name =>
           addId({
             name,
@@ -184,7 +192,7 @@ describe('Tracks service', () => {
 
       it('stores track with cover', async () => {
         const name = faker.commerce.productName()
-        const media = faker.image.image()
+        const media = faker.image.url()
         const path = faker.system.fileName()
         const album = addId({
           name,
@@ -236,8 +244,8 @@ describe('Tracks service', () => {
 
       it('skip existing albums', async () => {
         const name = faker.commerce.productName()
-        const artist1 = faker.name.findName()
-        const artist2 = faker.name.findName()
+        const artist1 = faker.person.fullName()
+        const artist2 = faker.person.fullName()
         const track1 = {
           path: faker.system.fileName(),
           tags: { album: name, artists: [artist1] }
@@ -299,9 +307,9 @@ describe('Tracks service', () => {
       })
 
       it('skip existing artists', async () => {
-        const artist1 = faker.name.findName()
-        const artist2 = faker.name.findName()
-        const artist3 = faker.name.findName()
+        const artist1 = faker.person.fullName()
+        const artist2 = faker.person.fullName()
+        const artist3 = faker.person.fullName()
         const track1 = {
           path: faker.system.fileName(),
           tags: { artists: [artist1, artist2] }
@@ -372,9 +380,9 @@ describe('Tracks service', () => {
         const oldName = faker.commerce.productName()
         const updatedName = faker.commerce.productName()
         const newName = faker.commerce.productName()
-        const artist1 = faker.name.findName()
-        const artist2 = faker.name.findName()
-        const artist3 = faker.name.findName()
+        const artist1 = faker.person.fullName()
+        const artist2 = faker.person.fullName()
+        const artist3 = faker.person.fullName()
 
         const track1 = {
           path: faker.system.fileName(),
@@ -468,9 +476,9 @@ describe('Tracks service', () => {
       })
 
       it('detects artist changes for existing tracks', async () => {
-        const oldName = faker.name.findName()
-        const updatedName = faker.name.findName()
-        const newName = faker.name.findName()
+        const oldName = faker.person.fullName()
+        const updatedName = faker.person.fullName()
+        const newName = faker.person.fullName()
 
         const track1 = {
           path: faker.system.fileName(),
@@ -555,7 +563,7 @@ describe('Tracks service', () => {
       it('updates album', async () => {
         const name = faker.commerce.productName()
         const path = faker.system.fileName()
-        const artistNames = [faker.name.findName(), faker.name.findName()]
+        const artistNames = [faker.person.fullName(), faker.person.fullName()]
 
         const album = addId({
           name,
@@ -607,7 +615,7 @@ describe('Tracks service', () => {
 
       it('updates artists', async () => {
         const path = faker.system.fileName()
-        const artistNames = [faker.name.findName(), faker.name.findName()]
+        const artistNames = [faker.person.fullName(), faker.person.fullName()]
         const artists = artistNames.map(name =>
           addId({
             name,
@@ -657,7 +665,7 @@ describe('Tracks service', () => {
       it('sends changes before removals', async () => {
         const path1 = faker.system.fileName()
         const path2 = faker.system.fileName()
-        const artistNames = [faker.name.findName(), faker.name.findName()]
+        const artistNames = [faker.person.fullName(), faker.person.fullName()]
         const artists = [
           addId({
             name: artistNames[0],
@@ -733,10 +741,10 @@ describe('Tracks service', () => {
     it('returns all artists', async () => {
       const artists = [
         {
-          name: faker.name.findName()
+          name: faker.person.fullName()
         },
         {
-          name: faker.name.findName()
+          name: faker.person.fullName()
         }
       ].map(addId)
       artistsModel.list.mockResolvedValueOnce({ results: artists })
@@ -747,11 +755,11 @@ describe('Tracks service', () => {
       const albums = [
         {
           name: faker.commerce.productName(),
-          media: faker.image.image()
+          media: faker.image.url()
         },
         {
           name: faker.commerce.productName(),
-          media: faker.image.image()
+          media: faker.image.url()
         }
       ].map(addId)
       albumsModel.list.mockResolvedValueOnce({ results: albums })
@@ -762,11 +770,11 @@ describe('Tracks service', () => {
       const playlists = [
         {
           name: faker.commerce.productName(),
-          media: faker.image.image()
+          media: faker.image.url()
         },
         {
           name: faker.commerce.productName(),
-          media: faker.image.image()
+          media: faker.image.url()
         }
       ].map(addId)
       playlistsModel.list.mockResolvedValueOnce({ results: playlists })
@@ -777,7 +785,7 @@ describe('Tracks service', () => {
   })
 
   describe('fetchWithTracks', () => {
-    beforeEach(() => jest.resetAllMocks())
+    beforeEach(() => vi.resetAllMocks())
 
     it('returns album with tracks, order by track number, single disc', async () => {
       const track1 = {
@@ -1010,9 +1018,9 @@ describe('Tracks service', () => {
       }
 
       artistsModel.getById.mockResolvedValueOnce(null)
-      expect(await tracksService.fetchWithTracks('artist', artist.id)).toEqual(
-        null
-      )
+      expect(
+        await tracksService.fetchWithTracks('artist', artist.id)
+      ).toBeNull()
       expect(albumsModel.getById).not.toHaveBeenCalled()
       expect(tracksModel.getByIds).not.toHaveBeenCalled()
     })
@@ -1078,7 +1086,7 @@ describe('Tracks service', () => {
         expect(results.tracks).toEqual([track1, track2])
         expect(results.size).toEqual(size)
         expect(results.from).toEqual(from)
-        expect(results.totalSum).toEqual(10)
+        expect(results.totalSum).toBe(10)
         expect(results.totals).toEqual({ albums: 3, artists: 2, tracks: 5 })
         expect(albumsModel.list).toHaveBeenCalledWith({
           searched
@@ -1121,7 +1129,7 @@ describe('Tracks service', () => {
         expect(results.tracks).toEqual([])
         expect(results.size).toEqual(size)
         expect(results.from).toEqual(from)
-        expect(results.totalSum).toEqual(0)
+        expect(results.totalSum).toBe(0)
         expect(results.totals).toEqual({ albums: 0, artists: 0, tracks: 0 })
         expect(albumsModel.list).toHaveBeenCalledWith({
           searched
@@ -1169,7 +1177,7 @@ describe('Tracks service', () => {
         expect(results.tracks).toEqual([])
         expect(results.size).toEqual(size)
         expect(results.from).toEqual(from)
-        expect(results.totalSum).toEqual(0)
+        expect(results.totalSum).toBe(0)
         expect(results.totals).toEqual({ albums: 0, artists: 0, tracks: 0 })
         expect(albumsModel.list).toHaveBeenCalledWith({
           searched,
@@ -1197,7 +1205,7 @@ describe('Tracks service', () => {
     ]
 
     beforeEach(() => {
-      jest.resetAllMocks()
+      vi.resetAllMocks()
       settingsService.get.mockResolvedValueOnce({ folders })
     })
 

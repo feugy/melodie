@@ -1,177 +1,180 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Toolshot components/Sheet/Sheet.tools.svelte: Components/Sheet 1`] = `
+exports[`Components/Sheet 1`] = `
 <div
-  class="wrapper svelte-qo1r50"
+  class="wrapper s-REK9Uieu6lu3"
 >
   <div
-    class="svelte-17lmoez"
+    class="s-EevtF25tgDDC"
   >
     <div
-      class="main svelte-17lmoez"
+      class="main s-EevtF25tgDDC"
     >
       <section
-        class="svelte-qo1r50"
+        class="s-REK9Uieu6lu3"
         slot="main"
       >
         <button
-          class="svelte-xh4kfu"
+          class="s-zdMNlEQUhDx4"
         >
            
-          <span>
+          <span
+            class="s-zdMNlEQUhDx4"
+          >
             open
           </span>
            
            
         </button>
+        <!--&lt;Button&gt;-->
          
         <p
-          class="py-2 svelte-qo1r50"
+          class="__py-2_hfnxff_hfnxff s-REK9Uieu6lu3"
         >
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
         </p>
         <p
-          class="py-2 svelte-qo1r50"
+          class="__py-2_hfnxff_hfnxff s-REK9Uieu6lu3"
         >
           In eu mi bibendum neque egestas congue quisque egestas
         </p>
         <p
-          class="py-2 svelte-qo1r50"
+          class="__py-2_hfnxff_hfnxff s-REK9Uieu6lu3"
         >
           Arcu non odio euismod lacinia at quis risus sed
         </p>
         <p
-          class="py-2 svelte-qo1r50"
+          class="__py-2_hfnxff_hfnxff s-REK9Uieu6lu3"
         >
           Massa tempor nec feugiat nisl
         </p>
         <p
-          class="py-2 svelte-qo1r50"
+          class="__py-2_hfnxff_hfnxff s-REK9Uieu6lu3"
         >
           Sagittis aliquam malesuada bibendum arcu vitae elementum
         </p>
         <p
-          class="py-2 svelte-qo1r50"
+          class="__py-2_hfnxff_hfnxff s-REK9Uieu6lu3"
         >
           Elementum facilisis leo vel fringilla est ullamcorper eget nulla
         </p>
         <p
-          class="py-2 svelte-qo1r50"
+          class="__py-2_hfnxff_hfnxff s-REK9Uieu6lu3"
         >
           Bibendum arcu vitae elementum curabitur vitae nunc sed velit dignissim
         </p>
         <p
-          class="py-2 svelte-qo1r50"
+          class="__py-2_hfnxff_hfnxff s-REK9Uieu6lu3"
         >
           Elit sed vulputate mi sit amet mauris commodo
         </p>
         <p
-          class="py-2 svelte-qo1r50"
+          class="__py-2_hfnxff_hfnxff s-REK9Uieu6lu3"
         >
           Ut enim blandit volutpat maecenas volutpat blandit aliquam etiam erat
         </p>
         <p
-          class="py-2 svelte-qo1r50"
+          class="__py-2_hfnxff_hfnxff s-REK9Uieu6lu3"
         >
           Lorem mollis aliquam ut porttitor leo a diam sollicitudin
         </p>
         <p
-          class="py-2 svelte-qo1r50"
+          class="__py-2_hfnxff_hfnxff s-REK9Uieu6lu3"
         >
           Vitae proin sagittis nisl rhoncus mattis
         </p>
         <p
-          class="py-2 svelte-qo1r50"
+          class="__py-2_hfnxff_hfnxff s-REK9Uieu6lu3"
         >
           Ut morbi tincidunt augue interdum velit euismod in pellentesque
         </p>
         <p
-          class="py-2 svelte-qo1r50"
+          class="__py-2_hfnxff_hfnxff s-REK9Uieu6lu3"
         >
           Aliquam purus sit amet luctus venenatis lectus magna
         </p>
         <p
-          class="py-2 svelte-qo1r50"
+          class="__py-2_hfnxff_hfnxff s-REK9Uieu6lu3"
         >
           Amet venenatis urna cursus eget
         </p>
         <p
-          class="py-2 svelte-qo1r50"
+          class="__py-2_hfnxff_hfnxff s-REK9Uieu6lu3"
         >
           Et pharetra pharetra massa massa
         </p>
         <p
-          class="py-2 svelte-qo1r50"
+          class="__py-2_hfnxff_hfnxff s-REK9Uieu6lu3"
         >
           Ac ut consequat semper viverra nam libero justo laoreet
         </p>
         <p
-          class="py-2 svelte-qo1r50"
+          class="__py-2_hfnxff_hfnxff s-REK9Uieu6lu3"
         >
           Eget arcu dictum varius duis at consectetur lorem
         </p>
         <p
-          class="py-2 svelte-qo1r50"
+          class="__py-2_hfnxff_hfnxff s-REK9Uieu6lu3"
         >
           Tellus id interdum velit laoreet id donec
         </p>
         <p
-          class="py-2 svelte-qo1r50"
+          class="__py-2_hfnxff_hfnxff s-REK9Uieu6lu3"
         >
           Aliquam sem fringilla ut morbi
         </p>
         <p
-          class="py-2 svelte-qo1r50"
+          class="__py-2_hfnxff_hfnxff s-REK9Uieu6lu3"
         >
           Consequat nisl vel pretium lectus quam id leo in vitae
         </p>
         <p
-          class="py-2 svelte-qo1r50"
+          class="__py-2_hfnxff_hfnxff s-REK9Uieu6lu3"
         >
           Velit scelerisque in dictum non
         </p>
         <p
-          class="py-2 svelte-qo1r50"
+          class="__py-2_hfnxff_hfnxff s-REK9Uieu6lu3"
         >
           Pretium aenean pharetra magna ac
         </p>
         <p
-          class="py-2 svelte-qo1r50"
+          class="__py-2_hfnxff_hfnxff s-REK9Uieu6lu3"
         >
           Tincidunt arcu non sodales neque sodales ut etiam
         </p>
         <p
-          class="py-2 svelte-qo1r50"
+          class="__py-2_hfnxff_hfnxff s-REK9Uieu6lu3"
         >
           Cursus eget nunc scelerisque viverra mauris in aliquam
         </p>
         <p
-          class="py-2 svelte-qo1r50"
+          class="__py-2_hfnxff_hfnxff s-REK9Uieu6lu3"
         >
           Tortor at auctor urna nunc id cursus
         </p>
         <p
-          class="py-2 svelte-qo1r50"
+          class="__py-2_hfnxff_hfnxff s-REK9Uieu6lu3"
         >
           Consequat interdum varius sit amet mattis vulputate enim nulla
         </p>
         <p
-          class="py-2 svelte-qo1r50"
+          class="__py-2_hfnxff_hfnxff s-REK9Uieu6lu3"
         >
           Sagittis vitae et leo duis ut
         </p>
         <p
-          class="py-2 svelte-qo1r50"
+          class="__py-2_hfnxff_hfnxff s-REK9Uieu6lu3"
         >
           Pretium lectus quam id leo in
         </p>
         <p
-          class="py-2 svelte-qo1r50"
+          class="__py-2_hfnxff_hfnxff s-REK9Uieu6lu3"
         >
           Fusce ut placerat orci nulla pellentesque dignissim enim sit
         </p>
         <p
-          class="py-2 svelte-qo1r50"
+          class="__py-2_hfnxff_hfnxff s-REK9Uieu6lu3"
         >
           Sed cras ornare arcu dui vivamus arcu.
         </p>
@@ -179,5 +182,6 @@ exports[`Toolshot components/Sheet/Sheet.tools.svelte: Components/Sheet 1`] = `
     </div>
      
   </div>
+  <!--&lt;Sheet&gt;-->
 </div>
 `;

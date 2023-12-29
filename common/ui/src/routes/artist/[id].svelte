@@ -1,17 +1,18 @@
 <script>
+  import { distinct, filter, map } from 'rxjs/operators'
   import { onDestroy } from 'svelte'
   import { fade } from 'svelte/transition'
   import { _, locale } from 'svelte-intl'
   import { replace } from 'svelte-spa-router'
-  import { filter, distinct, map } from 'rxjs/operators'
+
   import {
+    Album,
+    Button,
     Heading,
     Image,
-    Button,
-    Album,
     MediaSelector
   } from '../../components'
-  import { load, changes, removals } from '../../stores/artists'
+  import { changes, load, removals } from '../../stores/artists'
   import { add } from '../../stores/track-queue'
   import { getYears, invoke } from '../../utils'
 
@@ -89,36 +90,6 @@
   })
 </script>
 
-<style lang="postcss">
-  section {
-    @apply flex flex-wrap items-center z-0 m-4 mt-0 gap-4 md:items-start md:flex-nowrap md:max-h-400px;
-  }
-
-  section > div {
-    @apply flex flex-col items-start px-4 self-stretch text-left;
-  }
-
-  .bio {
-    @apply overflow-y-auto mb-4;
-  }
-
-  .albums {
-    @apply flex flex-row items-start flex-wrap justify-around;
-  }
-
-  .albums > * {
-    @apply m-4;
-  }
-
-  .image-container {
-    @apply flex-shrink-0 flex-grow cursor-pointer w-300px h-300px max-w-300px max-h-300px lg:w-400px lg:h-400px lg:max-w-400px lg:max-h-400px;
-  }
-
-  .actions {
-    @apply flex flex-wrap mb-4 gap-4 items-start;
-  }
-</style>
-
 <MediaSelector bind:open={openMediaSelector} src={artist} />
 
 <div in:fade={{ duration: 200 }}>
@@ -143,12 +114,12 @@
         <span class="actions">
           <Button
             on:click={() => add(artist.tracks, true)}
-            icon="play_arrow"
+            icon="i-mdi-play"
             text={$_('play all')}
           />
           <Button
             on:click={() => add(artist.tracks)}
-            icon="playlist_add"
+            icon="i-mdi-plus-box-multiple"
             text={$_('enqueue all')}
           />
         </span>
@@ -166,3 +137,37 @@
     </div>
   {/if}
 </div>
+
+<style>
+  section {
+    /* prettier-ignore */
+    --at-apply: flex flex-wrap items-center z-0 m-4 mt-0 gap-4 md:items-start
+      md:flex-nowrap md:max-h-400px;
+  }
+
+  section > div {
+    --at-apply: flex flex-col items-start px-4 self-stretch text-left;
+  }
+
+  .bio {
+    --at-apply: overflow-y-auto mb-4;
+  }
+
+  .albums {
+    --at-apply: flex flex-row items-start flex-wrap justify-around;
+  }
+
+  .albums > * {
+    --at-apply: m-4;
+  }
+
+  .image-container {
+    /* prettier-ignore */
+    --at-apply: flex-shrink-0 flex-grow cursor-pointer w-300px h-300px
+      max-w-300px max-h-300px lg:w-400px lg:h-400px lg:max-w-400px lg:max-h-400px;
+  }
+
+  .actions {
+    --at-apply: flex flex-wrap mb-4 gap-4 items-start;
+  }
+</style>

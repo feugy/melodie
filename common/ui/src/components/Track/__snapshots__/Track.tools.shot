@@ -1,35 +1,40 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Toolshot components/Track/Track.tools.svelte: Default 1`] = `
+exports[`Default 1`] = `
 <div>
-  <div
-    class="undefined root svelte-8oy723"
+  <button
+    class="undefined root s-B4OUyNjosq8C"
   >
     <a
-      class="svelte-8oy723"
+      class="s-B4OUyNjosq8C"
       href="#/album/1"
     >
-      <img
-        alt="./cover.jpg"
-        class="h-16 w-16 text-xs actionable rounded-sm svelte-1l44pje"
-        height="256"
-        src="./cover.jpg"
-        width="256"
-      />
-       
-      
+      <button
+        class="__flex_tliuhg_tliuhg __justify-center_tliuhg_tliuhg __items-center_tliuhg_tliuhg __bg-[--hover-bg-color]_tliuhg_tliuhg __overflow-hidden_tliuhg_tliuhg __h-16_cxt0i8_cxt0i8 __w-16_cxt0i8_cxt0i8 __text-xs_cxt0i8_cxt0i8 actionable s-JU4hIbuSbdGN __rounded-sm_tliuhg_tliuhg"
+      >
+        <img
+          alt="./cover.jpg"
+          class="__border-none_tliuhg_tliuhg __font-size-0_tliuhg_tliuhg __object-cover_tliuhg_tliuhg __w-full_tliuhg_tliuhg __h-full_tliuhg_tliuhg s-JU4hIbuSbdGN"
+          loading="lazy"
+          src="./cover.jpg"
+        />
+         
+      </button>
+      <!--&lt;Image&gt;-->
     </a>
      
     <div
-      class="track svelte-8oy723"
+      class="track s-B4OUyNjosq8C"
     >
       <span
-        class="title svelte-8oy723"
+        class="title s-B4OUyNjosq8C"
       >
         Mama got a girlfriend
       </span>
        
-      <span>
+      <span
+        class="s-B4OUyNjosq8C"
+      >
         <a
           class="text-sm underlined"
           href="#/artist/0"
@@ -41,40 +46,46 @@ exports[`Toolshot components/Track/Track.tools.svelte: Default 1`] = `
     </div>
      
      
-  </div>
+  </button>
+  <!--&lt;Track&gt;-->
 </div>
 `;
 
-exports[`Toolshot components/Track/Track.tools.svelte: With details 1`] = `
+exports[`With details 1`] = `
 <div>
-  <div
-    class="undefined root svelte-8oy723"
+  <button
+    class="undefined root s-B4OUyNjosq8C"
   >
     <a
-      class="svelte-8oy723"
+      class="s-B4OUyNjosq8C"
       href="#/album/1"
     >
-      <img
-        alt="./cover.jpg"
-        class="h-16 w-16 text-xs actionable rounded-sm svelte-1l44pje"
-        height="256"
-        src="./cover.jpg"
-        width="256"
-      />
-       
-      
+      <button
+        class="__flex_tliuhg_tliuhg __justify-center_tliuhg_tliuhg __items-center_tliuhg_tliuhg __bg-[--hover-bg-color]_tliuhg_tliuhg __overflow-hidden_tliuhg_tliuhg __h-16_cxt0i8_cxt0i8 __w-16_cxt0i8_cxt0i8 __text-xs_cxt0i8_cxt0i8 actionable s-JU4hIbuSbdGN __rounded-sm_tliuhg_tliuhg"
+      >
+        <img
+          alt="./cover.jpg"
+          class="__border-none_tliuhg_tliuhg __font-size-0_tliuhg_tliuhg __object-cover_tliuhg_tliuhg __w-full_tliuhg_tliuhg __h-full_tliuhg_tliuhg s-JU4hIbuSbdGN"
+          loading="lazy"
+          src="./cover.jpg"
+        />
+         
+      </button>
+      <!--&lt;Image&gt;-->
     </a>
      
     <div
-      class="track svelte-8oy723"
+      class="track s-B4OUyNjosq8C"
     >
       <span
-        class="title svelte-8oy723"
+        class="title s-B4OUyNjosq8C"
       >
         Mama got a girlfriend
       </span>
        
-      <span>
+      <span
+        class="s-B4OUyNjosq8C"
+      >
         <a
           class="text-sm underlined"
           href="#/artist/0"
@@ -86,45 +97,51 @@ exports[`Toolshot components/Track/Track.tools.svelte: With details 1`] = `
     </div>
      
     <div
-      class="duration svelte-8oy723"
+      class="duration s-B4OUyNjosq8C"
     >
       2:06
     </div>
      
-  </div>
+  </button>
+  <!--&lt;Track&gt;-->
 </div>
 `;
 
-exports[`Toolshot components/Track/Track.tools.svelte: With menu 1`] = `
+exports[`With menu 1`] = `
 <div>
-  <div
-    class="undefined root svelte-8oy723"
+  <button
+    class="undefined root s-B4OUyNjosq8C"
   >
     <a
-      class="svelte-8oy723"
+      class="s-B4OUyNjosq8C"
       href="#/album/1"
     >
-      <img
-        alt="./cover.jpg"
-        class="h-16 w-16 text-xs actionable rounded-sm svelte-1l44pje"
-        height="256"
-        src="./cover.jpg"
-        width="256"
-      />
-       
-      
+      <button
+        class="__flex_tliuhg_tliuhg __justify-center_tliuhg_tliuhg __items-center_tliuhg_tliuhg __bg-[--hover-bg-color]_tliuhg_tliuhg __overflow-hidden_tliuhg_tliuhg __h-16_cxt0i8_cxt0i8 __w-16_cxt0i8_cxt0i8 __text-xs_cxt0i8_cxt0i8 actionable s-JU4hIbuSbdGN __rounded-sm_tliuhg_tliuhg"
+      >
+        <img
+          alt="./cover.jpg"
+          class="__border-none_tliuhg_tliuhg __font-size-0_tliuhg_tliuhg __object-cover_tliuhg_tliuhg __w-full_tliuhg_tliuhg __h-full_tliuhg_tliuhg s-JU4hIbuSbdGN"
+          loading="lazy"
+          src="./cover.jpg"
+        />
+         
+      </button>
+      <!--&lt;Image&gt;-->
     </a>
      
     <div
-      class="track svelte-8oy723"
+      class="track s-B4OUyNjosq8C"
     >
       <span
-        class="title svelte-8oy723"
+        class="title s-B4OUyNjosq8C"
       >
         Mama got a girlfriend
       </span>
        
-      <span>
+      <span
+        class="s-B4OUyNjosq8C"
+      >
         <a
           class="text-sm underlined"
           href="#/artist/0"
@@ -139,24 +156,27 @@ exports[`Toolshot components/Track/Track.tools.svelte: With menu 1`] = `
     <span
       aria-expanded="false"
       aria-haspopup="menu"
-      class="wrapper svelte-1v2cnbz"
+      class="wrapper s-vOP9EO5q76eY"
     >
       <button
-        class="iconOnly noBorder svelte-xh4kfu"
+        class="iconOnly noBorder s-zdMNlEQUhDx4"
+        data-testid="track-dropdown"
       >
         <i
-          class="material-icons svelte-xh4kfu"
-        >
-          more_vert
-        </i>
+          class="icons i-mdi-dots-vertical s-zdMNlEQUhDx4"
+        />
          
          
         
          
       </button>
+      <!--&lt;Button&gt;-->
     </span>
      
     
-  </div>
+    <!--&lt;Dropdown&gt;-->
+    <!--&lt;TrackDropdown&gt;-->
+  </button>
+  <!--&lt;Track&gt;-->
 </div>
 `;

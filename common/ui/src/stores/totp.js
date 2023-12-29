@@ -1,5 +1,3 @@
-'use strict'
-
 import * as OTPAuth from 'otpauth'
 import { BehaviorSubject } from 'rxjs'
 

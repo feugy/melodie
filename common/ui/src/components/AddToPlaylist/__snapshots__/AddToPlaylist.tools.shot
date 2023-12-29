@@ -1,27 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Toolshot components/AddToPlaylist/AddToPlaylist.tools.svelte: Components/Add to playlist 1`] = `
-<span>
-  <span
-    aria-expanded="false"
-    aria-haspopup="menu"
-    class="wrapper svelte-1v2cnbz"
+exports[`Components/Add to playlist 1`] = `
+<span
+  aria-expanded="false"
+  aria-haspopup="menu"
+  class="wrapper s-vOP9EO5q76eY"
+>
+  <button
+    class="iconOnly s-zdMNlEQUhDx4"
+    data-testid="add-to-playlist-button"
   >
-    <button
-      class="iconOnly svelte-xh4kfu"
-    >
-      <i
-        class="material-icons svelte-xh4kfu"
-      >
-        library_add
-      </i>
-       
-       
-      
-       
-    </button>
-  </span>
-   
-  
+    <i
+      class="icons i-mdi-plus-box-multiple s-zdMNlEQUhDx4"
+    />
+     
+     
+    
+     
+  </button>
+  <!--&lt;Button&gt;-->
 </span>
 `;

@@ -1,6 +1,6 @@
-'use strict'
 import { recordEvent } from '@atelier-wb/svelte'
-import { initConnection, closeConnection } from '../utils'
+
+import { closeConnection, initConnection } from '../utils'
 
 let connection
 let disconnected = false

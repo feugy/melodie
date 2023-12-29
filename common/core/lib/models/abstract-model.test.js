@@ -1,11 +1,19 @@
-'use strict'
+import { faker } from '@faker-js/faker'
+import fs from 'fs-extra'
+import knex from 'knex'
+import os from 'os'
+import { join, resolve } from 'path'
+import {
+  afterAll,
+  afterEach,
+  beforeAll,
+  beforeEach,
+  describe,
+  expect,
+  it
+} from 'vitest'
 
-const faker = require('faker')
-const knex = require('knex')
-const os = require('os')
-const fs = require('fs-extra')
-const { join, resolve } = require('path')
-const Model = require('./abstract-model')
+import Model from './abstract-model'
 
 const modelName = 'test'
 
@@ -54,7 +62,7 @@ describe('Abstract model', () => {
     })
 
     it('can not create init without db file', async () => {
-      expect(new Test().init()).rejects.toThrow(
+      await expect(new Test().init()).rejects.toThrow(
         /must be initialized with an sqlite3 file/
       )
     })
@@ -93,16 +101,16 @@ describe('Abstract model', () => {
 
   describe('given some data', () => {
     const tested = new Test()
-    const name = faker.name.findName()
+    const name = faker.person.fullName()
     const models = [
-      { id: faker.datatype.number(), name, tags: '{}' },
-      { id: faker.datatype.number(), name: faker.name.findName(), tags: '{}' },
+      { id: faker.number.int(), name, tags: '{}' },
+      { id: faker.number.int(), name: faker.person.fullName(), tags: '{}' },
       {
-        id: faker.datatype.number(),
-        name: `${name} ${faker.name.findName()}`,
+        id: faker.number.int(),
+        name: `${name} ${faker.person.fullName()}`,
         tags: '{}'
       },
-      { id: faker.datatype.number(), name: faker.name.findName(), tags: '{}' }
+      { id: faker.number.int(), name: faker.person.fullName(), tags: '{}' }
     ]
 
     beforeEach(async () => {
@@ -135,8 +143,8 @@ describe('Abstract model', () => {
     describe('save', () => {
       it('adds single model', async () => {
         const model = {
-          id: faker.datatype.number(),
-          name: faker.name.findName(),
+          id: faker.number.int(),
+          name: faker.person.fullName(),
           tags: {}
         }
 
@@ -152,11 +160,11 @@ describe('Abstract model', () => {
       it('adds multiple models', async () => {
         const models = [
           {
-            id: faker.datatype.number(),
-            name: faker.name.findName(),
+            id: faker.number.int(),
+            name: faker.person.fullName(),
             tags: {}
           },
-          { id: faker.datatype.number(), name: faker.name.findName(), tags: {} }
+          { id: faker.number.int(), name: faker.person.fullName(), tags: {} }
         ]
 
         await tested.save(models)
@@ -180,13 +188,13 @@ describe('Abstract model', () => {
       it('update existing models', async () => {
         const originals = [
           {
-            id: faker.datatype.number(),
-            name: faker.name.findName(),
+            id: faker.number.int(),
+            name: faker.person.fullName(),
             tags: { old: true }
           },
           {
-            id: faker.datatype.number(),
-            name: faker.name.findName(),
+            id: faker.number.int(),
+            name: faker.person.fullName(),
             tags: { n: 10 }
           }
         ]
@@ -236,7 +244,7 @@ describe('Abstract model', () => {
         [['a', 'b'], '["a","b"]'],
         [{ foo: 'bar', baz: [1, 2] }, '{"foo":"bar","baz":[1,2]}']
       ])('serializes %j as JSON data', async (tags, expected) => {
-        const id = faker.datatype.number()
+        const id = faker.number.int()
         await tested.save([{ id, tags }])
         expect(await db(modelName).where({ id }).select()).toEqual([
           { id, name: null, tags: expected }
@@ -257,9 +265,9 @@ describe('Abstract model', () => {
         )
         expect(results).toHaveLength(models.length)
         expect(total).toEqual(models.length)
-        expect(size).toEqual(10)
-        expect(from).toEqual(0)
-        expect(sort).toEqual('+id')
+        expect(size).toBe(10)
+        expect(from).toBe(0)
+        expect(sort).toBe('+id')
       })
 
       it('lists models with order and pagination', async () => {
@@ -279,9 +287,9 @@ describe('Abstract model', () => {
         )
         expect(results).toHaveLength(size)
         expect(total).toEqual(models.length)
-        expect(size).toEqual(2)
-        expect(from).toEqual(1)
-        expect(sort).toEqual('-name')
+        expect(size).toBe(2)
+        expect(from).toBe(1)
+        expect(sort).toBe('-name')
       })
 
       it('lists models with bigger size than resultset', async () => {
@@ -297,9 +305,9 @@ describe('Abstract model', () => {
             .sort((a, b) => a.id - b.id)
         )
         expect(total).toEqual(models.length)
-        expect(size).toEqual(100)
-        expect(from).toEqual(0)
-        expect(sort).toEqual('+id')
+        expect(size).toBe(100)
+        expect(from).toBe(0)
+        expect(sort).toBe('+id')
       })
 
       it('lists models with out of range page', async () => {
@@ -308,9 +316,9 @@ describe('Abstract model', () => {
         })
         expect(results).toEqual([])
         expect(total).toEqual(models.length)
-        expect(size).toEqual(10)
-        expect(from).toEqual(10)
-        expect(sort).toEqual('+id')
+        expect(size).toBe(10)
+        expect(from).toBe(10)
+        expect(sort).toBe('+id')
       })
 
       it('get model by id', async () => {
@@ -342,9 +350,9 @@ describe('Abstract model', () => {
         )
         expect(results).toHaveLength(1)
         expect(total).toEqual(sorted.length)
-        expect(size).toEqual(2)
-        expect(from).toEqual(1)
-        expect(sort).toEqual('+name')
+        expect(size).toBe(2)
+        expect(from).toBe(1)
+        expect(sort).toBe('+name')
       })
 
       it('returns empty search results page', async () => {
@@ -353,10 +361,10 @@ describe('Abstract model', () => {
           searched: name
         })
         expect(results).toEqual([])
-        expect(total).toEqual(2)
-        expect(size).toEqual(10)
-        expect(from).toEqual(20)
-        expect(sort).toEqual('+name')
+        expect(total).toBe(2)
+        expect(size).toBe(10)
+        expect(from).toBe(20)
+        expect(sort).toBe('+name')
       })
 
       it('can return empty search results', async () => {
@@ -366,23 +374,24 @@ describe('Abstract model', () => {
           searched: 'unknown'
         })
         expect(results).toEqual([])
-        expect(total).toEqual(0)
-        expect(size).toEqual(2)
-        expect(from).toEqual(1)
-        expect(sort).toEqual('+name')
+        expect(total).toBe(0)
+        expect(size).toBe(2)
+        expect(from).toBe(1)
+        expect(sort).toBe('+name')
       })
     })
 
     describe('getById', () => {
       it('returns null when getting unknown model by id', async () => {
-        expect(await tested.getById(faker.datatype.number())).toBe(null)
+        // eslint-disable-next-line testing-library/prefer-presence-queries -- this is not a DOM query
+        expect(await tested.getById(faker.number.int())).toBeNull()
       })
 
       it('gets models by ids', async () => {
         const results = await tested.getByIds([
           models[0].id,
           models[3].id,
-          faker.datatype.number()
+          faker.number.int()
         ])
         expect(results).toEqual(
           expect.arrayContaining(
@@ -396,10 +405,10 @@ describe('Abstract model', () => {
       })
 
       it('throws meaningful error on deserialization error', async () => {
-        const id = faker.datatype.number()
+        const id = faker.number.int()
         await db(modelName).insert({ id, name, tags: '{' })
-        expect(tested.getByIds([id])).rejects.toThrow(
-          /failed to deserialize value "{" for col tags: Unexpected end of JSON input/
+        await expect(tested.getByIds([id])).rejects.toThrow(
+          /failed to deserialize value "{" for col tags: Expected property name or '}' in JSON at position 1/
         )
       })
     })
@@ -409,7 +418,7 @@ describe('Abstract model', () => {
         const removed = await tested.removeByIds([
           models[0].id,
           models[3].id,
-          faker.datatype.number()
+          faker.number.int()
         ])
 
         expect(removed).toEqual(

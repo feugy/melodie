@@ -1,10 +1,11 @@
 <script>
   import { Tool } from '@atelier-wb/svelte'
-  import Component from './[id].svelte'
-  import { mockWebsocket } from '../../atelier/utils'
+
   import HRefSink from '../../atelier/HRefSink.svelte'
+  import { mockWebsocket } from '../../atelier/utils'
   import { playlistsData } from '../../components/AddToPlaylist/AddToPlaylist.testdata'
   import { disksData } from '../../components/DisksList/DisksList.testdata'
+  import Component from './[id].svelte'
 </script>
 
 <Tool

@@ -1,5 +1,6 @@
 <script>
   import { createEventDispatcher } from 'svelte'
+
   import TextInput from '../TextInput/TextInput.svelte'
 
   export let onValueSet = () => {}
@@ -12,11 +13,11 @@
   }
 </script>
 
-<style lang="postcss">
-  span {
-    @apply pr-2;
-  }
-</style>
-
 <span>{text}</span>
 <TextInput on:change={handleChange} />
+
+<style>
+  span {
+    --at-apply: pr-2;
+  }
+</style>

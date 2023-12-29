@@ -1,13 +1,10 @@
-'use strict'
-
+import { nanoid } from 'nanoid'
 import { BehaviorSubject, firstValueFrom } from 'rxjs'
 import { filter, map, take } from 'rxjs/operators'
-import { nanoid } from 'nanoid'
 
 let ws = null
 let rootUrl = null
 let token = null
-const tokenKey = 'token'
 const messages$ = new BehaviorSubject({})
 const lastInvokation$ = new BehaviorSubject()
 const connectionTimeout = 2000
@@ -22,9 +19,6 @@ export function enhanceUrl(url) {
     return null
   }
   const resultUrl = new URL(url, rootUrl)
-  if (token) {
-    resultUrl.searchParams.set('token', token)
-  }
   return resultUrl.toString()
 }
 
@@ -32,72 +26,86 @@ export function enhanceUrl(url) {
  * Connects to the server's Websocket.
  * Does nothing if connection is already live.
  * @async
- * @param {string} address            - WebService url to connect to
- * @param {string} totp               - optional Totp value
- * @param {function} onConnectionLost - function called when connection is lost
+ * @param {string} address                - WebService url to connect to
+ * @param {string} jwt                    - optional authentication token
+ * @param {function} handleConnectionLost - function called when connection is lost
+ * @param {function} handleNewToken       - function called when receiving a new token from server
  * @throws {err} if connection can not been established
  */
-export async function initConnection(address, totp, onConnectionLost) {
-  if (ws && [WebSocket.CONNECTING, WebSocket.OPEN].includes(ws.readyState)) {
-    throw new Error(`connection already established, close it first`)
+export async function initConnection(
+  address,
+  jwt,
+  handleConnectionLost,
+  handleNewToken
+) {
+  if (ws) {
+    if ([WebSocket.CONNECTING, WebSocket.OPEN].includes(ws.readyState)) {
+      throw new Error(`connection already established, close it first`)
+    }
+    closeConnection()
   }
+  token = jwt
+  rootUrl = address.replace(/^ws/, 'http')
+
   let connectionAlreadyLost = false
   let settings = null
+
+  function updateToken(value) {
+    token = value
+    handleNewToken(value)
+  }
 
   const callConnectionLostHandler = error => {
     closeConnection()
     if (!connectionAlreadyLost) {
       connectionAlreadyLost = true
-      onConnectionLost(error)
+      handleConnectionLost(error)
     }
   }
 
-  rootUrl = address.replace(/^ws/, 'http')
   try {
     ws = await new Promise((resolve, reject) => {
-      try {
-        const params = new URLSearchParams(
-          Object.fromEntries(
-            [
-              ['totp', totp],
-              ['token', sessionStorage.getItem(tokenKey)]
-            ].filter(([, value]) => value)
+      let reason
+      const socket = new WebSocket(`${address}/ws?token=${token}`)
+
+      function clear() {
+        clearTimeout(timeout)
+        socket.onmessage = undefined
+      }
+
+      function closeOnError(message) {
+        clear()
+        reason = message
+        socket.close()
+      }
+
+      socket.onclose = () =>
+        reject(
+          new Error(
+            `Failed to establish connection${reason ? `: ${reason}` : ''}`
           )
         )
-        const socket = new WebSocket(`${address}/ws?${params.toString()}`)
-        const clear = () => {
-          clearTimeout(timeout)
-          socket.onopen = null
-        }
 
-        socket.onclose = () => {
-          clear()
-          reject(new Error(`failed to establish connection`))
-        }
-
-        socket.onmessage = ({ data }) => {
-          clear()
-          try {
-            const payload = JSON.parse(data)
-            updateToken(payload.token)
-            settings = payload.settings
-            resolve(socket)
-          } catch (err) {
-            const error = new Error(
-              `Failed to receive token from server: ${err.message}`
-            )
-            console.error(error, data)
-            reject(error)
+      socket.onmessage = ({ data }) => {
+        clear()
+        try {
+          const payload = JSON.parse(data)
+          if (payload.error) {
+            updateToken(null)
+            throw new Error(payload.error)
           }
+          settings = payload.settings
+          resolve(socket)
+          updateToken(payload.token)
+        } catch (err) {
+          closeOnError(err.message)
         }
-        const timeout = setTimeout(() => {
-          clear()
-          socket.close()
-          reject(new Error(`failed to establish connection: timeout`))
-        }, connectionTimeout)
-      } catch (err) {
-        reject(new Error(`failed to establish connection: ${err.message}`))
       }
+
+      const timeout = setTimeout(
+        () => closeOnError('timeout'),
+        connectionTimeout
+      )
     })
 
     ws.onmessage = ({ data }) => {
@@ -117,18 +125,15 @@ export async function initConnection(address, totp, onConnectionLost) {
       }
     }
 
-    ws.onclose = () => {
-      callConnectionLostHandler()
+    ws.onclose = ({ reason, code }) => {
+      callConnectionLostHandler(
+        new Error(`Connection closed: ${reason} (${code})`)
+      )
     }
   } catch (err) {
     callConnectionLostHandler(err)
   }
   return settings
-}
-
-function updateToken(value) {
-  token = value
-  sessionStorage.setItem(tokenKey, token)
 }
 
 /**
@@ -140,7 +145,6 @@ export function closeConnection() {
     ws.onclose = null
     ws.close()
   }
-  rootUrl = ''
   ws = null
 }
 
@@ -158,13 +162,25 @@ export function send(data, failOnError = true) {
     }
   } else {
     lastInvokation$.next(data)
-    ws.send(
-      JSON.stringify(
-        data.error
-          ? { error: { message: data.error.message, stack: data.error.stack } }
-          : { token, ...data }
-      )
-    ) // TODO use safe-stringify
+    ws.send(JSON.stringify({ ...data, token })) // TODO use safe-stringify
+  }
+}
+
+/**
+ * Sends UI logs for recording in server output.
+ * @param {object[]} logs - a list of logs to recrod
+ * @return {Promise<void>}
+ */
+export async function sendLogs(logs) {
+  const response = await fetch(enhanceUrl('/logs'), {
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    body: JSON.stringify({ logs })
+  })
+  if (!response.ok) {
+    throw new Error(
+      `Failed to send logs: ${await response.text()} (${response.status})`
+    )
   }
 }
 

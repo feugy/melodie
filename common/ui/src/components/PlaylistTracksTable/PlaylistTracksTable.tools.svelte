@@ -1,10 +1,11 @@
 <script>
   import { Tool } from '@atelier-wb/svelte'
-  import PlaylistTracksTable from './PlaylistTracksTable.svelte'
-  import { disksData } from '../DisksList/DisksList.testdata'
-  import { playlistsData } from '../AddToPlaylist/AddToPlaylist.testdata'
-  import { mockWebsocket } from '../../atelier/utils'
+
   import HRefSink from '../../atelier/HRefSink.svelte'
+  import { mockWebsocket } from '../../atelier/utils'
+  import { playlistsData } from '../AddToPlaylist/AddToPlaylist.testdata'
+  import { disksData } from '../DisksList/DisksList.testdata'
+  import PlaylistTracksTable from './PlaylistTracksTable.svelte'
 
   const playlistData = {
     id: 1,
@@ -36,7 +37,6 @@
     results: playlistsData
   }))}
   let:props
-  let:handleEvent
 >
   <HRefSink><PlaylistTracksTable {...props} /></HRefSink>
 </Tool>

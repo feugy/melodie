@@ -1,6 +1,6 @@
 <script>
-  import Button from '../Button/Button.svelte'
   import { playNext, playPrevious } from '../../stores/track-queue'
+  import Button from '../Button/Button.svelte'
 
   export let player
   export let isPlaying
@@ -27,11 +27,24 @@
   }
 </script>
 
-<Button on:click={handlePrevious} icon="skip_previous" noBorder {disabled} />
 <Button
-  on:click={handlePlay}
-  icon={isPlaying ? 'pause' : 'play_arrow'}
-  large
+  on:click={handlePrevious}
+  icon="i-mdi-skip-previous"
+  noBorder
+  data-testid="previous-button"
   {disabled}
 />
-<Button on:click={handleNext} icon="skip_next" noBorder {disabled} />
+<Button
+  on:click={handlePlay}
+  icon={isPlaying ? 'i-mdi-pause' : 'i-mdi-play'}
+  large
+  data-testid="play-button"
+  {disabled}
+/>
+<Button
+  on:click={handleNext}
+  icon="i-mdi-skip-next"
+  noBorder
+  {disabled}
+  data-testid="next-button"
+/>

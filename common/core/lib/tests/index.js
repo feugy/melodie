@@ -1,8 +1,4 @@
-'use strict'
-
-module.exports = {
-  ...require('./nocks'),
-  ...require('./files'),
-  ...require('./utils'),
-  ...require('./refs')
-}
+export * from './nocks.js'
+export * from './files.js'
+export * from './utils.js'
+export * from './refs.js'

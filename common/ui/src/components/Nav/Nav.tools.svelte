@@ -1,10 +1,11 @@
 <script>
   import { Tool } from '@atelier-wb/svelte'
-  import Nav from './Nav.svelte'
-  import Heading from '../Heading/Heading.svelte'
+
+  import { disconnectWebsocket, mockWebsocket } from '../../atelier/utils'
+  import { init, isDesktop } from '../../stores/settings'
   import { texts } from '../../tests/lorem'
-  import { isDesktop, init } from '../../stores/settings'
-  import { mockWebsocket, disconnectWebsocket } from '../../atelier/utils'
+  import Heading from '../Heading/Heading.svelte'
+  import Nav from './Nav.svelte'
 
   const settings = {
     providers: { audiodb: {}, discogs: {} },
@@ -17,6 +18,7 @@
   let wasConnected = true
 
   async function connectWebsocket() {
+    window.fetch = async () => ({ ok: true, text: async () => 'token' })
     await mockWebsocket(
       invoked => {
         if (invoked === 'settings.toggleBroadcast') {

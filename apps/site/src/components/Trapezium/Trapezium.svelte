@@ -9,16 +9,16 @@
     : `polygon(0% ${offset}, 100% 0%, 100% 100%, 0 calc(100% - ${offset}))`
 </script>
 
-<style lang="postcss">
-  section {
-    @apply py-20 relative;
-    background-color: var(--color);
-    clip-path: var(--clip-path);
-  }
-</style>
-
 <section style="--color: {color}; --clip-path: {clipPath}">
   <div>
     <slot />
   </div>
 </section>
+
+<style>
+  section {
+    --at-apply: py-20 relative;
+    background-color: var(--color);
+    clip-path: var(--clip-path);
+  }
+</style>

@@ -1,8 +1,6 @@
-'use strict'
-
-const app = require('../../package')
-const { getLogger } = require('../utils')
-const TooManyRequestsError = require('./too-many-requests-error')
+import app from '../../package.json' assert { type: 'json' }
+import { getLogger } from '../utils/index.js'
+import { TooManyRequestsError } from './too-many-requests-error.js'
 
 /**
  * @class AbstractProvider
@@ -13,7 +11,7 @@ const TooManyRequestsError = require('./too-many-requests-error')
  * - covers
  * Subclasses may only support a subset of these methods, as default implementation are no-ops.
  */
-module.exports = class AbstractProvider {
+export default class AbstractProvider {
   /**
    * Builds a provider.
    * @param {string} name                     - provider name, for logging

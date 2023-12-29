@@ -1,6 +1,4 @@
-'use strict'
-
-exports.up = async function (db) {
+export async function up(db) {
   await db.schema
     .createTable('settings', table => {
       table.integer('id').primary()
@@ -52,7 +50,7 @@ exports.up = async function (db) {
   })
 }
 
-exports.down = async function ({ schema }) {
+export async function down({ schema }) {
   await schema
     .dropTable('tracks')
     .dropTable('playlists')

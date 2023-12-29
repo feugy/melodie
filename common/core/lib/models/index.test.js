@@ -1,29 +1,22 @@
-'use strict'
+import { faker } from '@faker-js/faker'
+import { describe, expect, it, vi } from 'vitest'
 
-const faker = require('faker')
-const {
-  init,
-  albumsModel,
-  artistsModel,
-  tracksModel,
-  playlistsModel,
-  settingsModel
-} = require('.')
+import * as models from '.'
 
-jest.mock('./settings')
-jest.mock('./albums')
-jest.mock('./artists')
-jest.mock('./tracks')
-jest.mock('./playlists')
+vi.mock('./settings')
+vi.mock('./albums')
+vi.mock('./artists')
+vi.mock('./tracks')
+vi.mock('./playlists')
 
 describe('models', () => {
   it('initializes all models', async () => {
-    const args = faker.random.arrayElements()
-    await init(...args)
-    expect(settingsModel.init).toHaveBeenCalledWith(...args)
-    expect(albumsModel.init).toHaveBeenCalledWith(...args)
-    expect(artistsModel.init).toHaveBeenCalledWith(...args)
-    expect(tracksModel.init).toHaveBeenCalledWith(...args)
-    expect(playlistsModel.init).toHaveBeenCalledWith(...args)
+    const args = faker.helpers.arrayElement(['cat', 'dog', 'mouse'])
+    await models.init(...args)
+    expect(models.settingsModel.init).toHaveBeenCalledWith(...args)
+    expect(models.albumsModel.init).toHaveBeenCalledWith(...args)
+    expect(models.artistsModel.init).toHaveBeenCalledWith(...args)
+    expect(models.tracksModel.init).toHaveBeenCalledWith(...args)
+    expect(models.playlistsModel.init).toHaveBeenCalledWith(...args)
   })
 })

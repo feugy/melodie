@@ -1,11 +1,7 @@
-'use strict'
-
-module.exports = {
-  ...require('./collections'),
-  ...require('./connection'),
-  ...require('./files'),
-  ...require('./hash'),
-  ...require('./locale'),
-  ...require('./logger'),
-  ...require('./time')
-}
+export * from './collections.js'
+export * from './connection.js'
+export * from './files.js'
+export * from './hash.js'
+export * from './locale.js'
+export * from './logger.js'
+export * from './time.js'

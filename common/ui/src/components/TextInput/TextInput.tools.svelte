@@ -1,5 +1,6 @@
 <script>
   import { Tool, ToolBox } from '@atelier-wb/svelte'
+
   import TextInput from './TextInput.svelte'
 </script>
 
@@ -17,7 +18,7 @@
 
   <Tool
     name="With icon and placeholder"
-    props={{ icon: 'search', type: 'search', placeholder: 'search...' }}
+    props={{ icon: 'i-mdi-magnify', type: 'search', placeholder: 'search...' }}
     let:props
     let:handleEvent
   >
@@ -33,7 +34,7 @@
 
   <Tool
     name="With value"
-    props={{ icon: 'person', value: 'hej!' }}
+    props={{ icon: 'i-mdi-account', value: 'hej!' }}
     let:props
     let:handleEvent
   >

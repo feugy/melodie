@@ -1,22 +1,23 @@
 <script>
+  import { distinct, filter, map } from 'rxjs/operators'
   import { onMount } from 'svelte'
   import { fade } from 'svelte/transition'
   import { _ } from 'svelte-intl'
   import { replace } from 'svelte-spa-router'
-  import { distinct, filter, map } from 'rxjs/operators'
+
   import {
-    Heading,
     Button,
-    PlaylistTracksTable,
     ConfirmationDialogue,
+    Heading,
+    PlaylistTracksTable,
     TextInput
   } from '../../components'
-  import { load, changes, removals, remove, save } from '../../stores/playlists'
+  import { changes, load, removals, remove, save } from '../../stores/playlists'
   import { add } from '../../stores/track-queue'
   import {
-    invoke,
     formatTimeLong,
     fromServerEvent,
+    invoke,
     sumDurations
   } from '../../utils'
 
@@ -95,24 +96,6 @@
   })
 </script>
 
-<style lang="postcss">
-  section {
-    @apply flex flex-wrap items-center text-left m-4 mt-0 gap-4;
-  }
-
-  .meta {
-    @apply text-xl;
-  }
-
-  .divider {
-    @apply flex-grow;
-  }
-
-  .tracks {
-    @apply m-4;
-  }
-</style>
-
 {#if playlist}
   <ConfirmationDialogue
     bind:open={openDialogue}
@@ -139,12 +122,12 @@
     <section>
       <Button
         on:click={() => add(playlist.tracks, true)}
-        icon="play_arrow"
+        icon="i-mdi-play"
         text={$_('play all')}
       />
       <Button
         on:click={() => add(playlist.tracks)}
-        icon="playlist_add"
+        icon="i-mdi-plus-box-multiple"
         text={$_('enqueue all')}
       />
       <Button
@@ -152,12 +135,12 @@
           newName = playlist.name
           openDialogue = true
         }}
-        icon="edit"
+        icon="i-mdi-pencil"
         text={$_('rename playlist')}
       />
       <Button
-        on:click={() => invoke(`playlists.export`, playlist.id)}
-        icon="save_alt"
+        on:click={() => invoke(`playlists.exportPlaylist`, playlist.id)}
+        icon="i-mdi-tray-arrow-down"
         text={$_('export playlist')}
       />
       <Button
@@ -165,7 +148,7 @@
           isDeleting = true
           openDialogue = true
         }}
-        icon="delete"
+        icon="i-mdi-delete"
         text={$_('delete playlist')}
       />
       <div class="divider" />
@@ -180,3 +163,21 @@
     </div>
   {/if}
 </div>
+
+<style>
+  section {
+    --at-apply: flex flex-wrap items-center text-left m-4 mt-0 gap-4;
+  }
+
+  .meta {
+    --at-apply: text-xl;
+  }
+
+  .divider {
+    --at-apply: flex-grow;
+  }
+
+  .tracks {
+    --at-apply: m-4;
+  }
+</style>

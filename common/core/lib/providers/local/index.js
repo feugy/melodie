@@ -1,30 +1,29 @@
-'use strict'
-
-const { dirname, extname, resolve } = require('path')
-const fs = require('fs-extra')
-const { of, Observable, forkJoin, from, EMPTY } = require('rxjs')
-const {
-  mergeMap,
-  filter,
-  reduce,
+import chokidar from 'chokidar'
+import fs from 'fs-extra'
+import mime from 'mime-types'
+import { dirname, extname, resolve } from 'path'
+import { EMPTY, firstValueFrom, forkJoin, from, Observable, of } from 'rxjs'
+import {
   bufferCount,
-  map,
-  tap,
   bufferWhen,
   debounceTime,
-  share
-} = require('rxjs/operators')
-const chokidar = require('chokidar')
-const mime = require('mime-types')
-const AbstractProvider = require('../abstract-provider')
-const { albumsModel, settingsModel, tracksModel } = require('../../models')
+  filter,
+  map,
+  mergeMap,
+  reduce,
+  share,
+  tap
+} from 'rxjs/operators'
+
+import { albumsModel, settingsModel, tracksModel } from '../../models/index.js'
+import * as playlists from '../../services/playlists.js'
 // do not import ../../services to avoid circular dep
-const tracks = require('../../services/tracks')
-const playlists = require('../../services/playlists')
-const { hash, broadcast, walk, getArtworkFile } = require('../../utils')
-const { findInFolder, findForAlbum } = require('./cover-finder')
-const tagReader = require('./tag-reader')
-const playlistUtils = require('./playlist')
+import * as tracks from '../../services/tracks.js'
+import { broadcast, getArtworkFile, hash, walk } from '../../utils/index.js'
+import AbstractProvider from '../abstract-provider.js'
+import { findForAlbum, findInFolder } from './cover-finder.js'
+import * as playlistUtils from './playlist.js'
+import * as tagReader from './tag-reader.js'
 
 const readConcurrency = 10
 const walkConcurrency = 2
@@ -353,52 +352,53 @@ class Local extends AbstractProvider {
       op: 'compareTracks',
       provider: this.name
     })
-    return of(...(folders || []))
-      .pipe(
-        mergeMap(
-          folder => walk(folder).pipe(filter(onlySupported(true))),
-          walkConcurrency
-        )
-      )
-      .pipe(
-        filter(({ path, stats: { mtimeMs } }) => {
-          const id = hash(path)
-          const knownTime = existingIds.get(id)
-          existingIds.delete(id)
-          if (!knownTime || knownTime < mtimeMs) {
-            return true
-          }
-          return false
-        }),
-        ...makeEnrichAndSavePipeline(this.logger),
-        mergeMap(saved => {
-          const removedIds = Array.from(existingIds.keys())
-          return (
-            removedIds.length ? from(tracks.remove(removedIds)) : EMPTY
-          ).pipe(reduce(r => r, { saved, removedIds }))
-        }),
-        tap(({ saved, removedIds }) => {
-          if (saved.length) {
-            playlists.checkIntegrity()
-          }
-          broadcast('tracking', {
-            inProgress: false,
-            op: 'compareTracks',
-            provider: this.name
-          })
-          this.logger.info(
-            {
-              folders,
-              hits: {
-                savedCount: saved.length,
-                removedCount: removedIds.length
-              }
-            },
-            `folder succesfully compared in ${Date.now() - startMs}ms`
+    return firstValueFrom(
+      of(...(folders || []))
+        .pipe(
+          mergeMap(
+            folder => walk(folder).pipe(filter(onlySupported(true))),
+            walkConcurrency
           )
-        })
-      )
-      .toPromise()
+        )
+        .pipe(
+          filter(({ path, stats: { mtimeMs } }) => {
+            const id = hash(path)
+            const knownTime = existingIds.get(id)
+            existingIds.delete(id)
+            if (!knownTime || knownTime < mtimeMs) {
+              return true
+            }
+            return false
+          }),
+          ...makeEnrichAndSavePipeline(this.logger),
+          mergeMap(saved => {
+            const removedIds = Array.from(existingIds.keys())
+            return (
+              removedIds.length ? from(tracks.remove(removedIds)) : EMPTY
+            ).pipe(reduce(r => r, { saved, removedIds }))
+          }),
+          tap(({ saved, removedIds }) => {
+            if (saved.length) {
+              playlists.checkIntegrity()
+            }
+            broadcast('tracking', {
+              inProgress: false,
+              op: 'compareTracks',
+              provider: this.name
+            })
+            this.logger.info(
+              {
+                folders,
+                hits: {
+                  savedCount: saved.length,
+                  removedCount: removedIds.length
+                }
+              },
+              `folder succesfully compared in ${Date.now() - startMs}ms`
+            )
+          })
+        )
+    )
   }
 
   /**
@@ -423,31 +423,32 @@ class Local extends AbstractProvider {
     // unwatch and re-watch all folders
     this.unwatchAll()
     watch(allFolders, this.logger)
-    return of(...(folders || []))
-      .pipe(
-        mergeMap(
-          folder => walk(folder).pipe(filter(onlySupported())),
-          walkConcurrency
-        )
-      )
-      .pipe(
-        ...makeEnrichAndSavePipeline(this.logger),
-        tap(tracks => {
-          if (tracks.length) {
-            playlists.checkIntegrity()
-          }
-          broadcast('tracking', {
-            inProgress: false,
-            op: 'importTracks',
-            provider: this.name
-          })
-          this.logger.info(
-            { folders, hitCount: tracks.length },
-            `folder succesfully added in ${Date.now() - startMs}ms`
+    return firstValueFrom(
+      of(...(folders || []))
+        .pipe(
+          mergeMap(
+            folder => walk(folder).pipe(filter(onlySupported())),
+            walkConcurrency
           )
-        })
-      )
-      .toPromise()
+        )
+        .pipe(
+          ...makeEnrichAndSavePipeline(this.logger),
+          tap(tracks => {
+            if (tracks.length) {
+              playlists.checkIntegrity()
+            }
+            broadcast('tracking', {
+              inProgress: false,
+              op: 'importTracks',
+              provider: this.name
+            })
+            this.logger.info(
+              { folders, hitCount: tracks.length },
+              `folder succesfully added in ${Date.now() - startMs}ms`
+            )
+          })
+        )
+    )
   }
 
   unwatchAll() {
@@ -462,4 +463,5 @@ class Local extends AbstractProvider {
  * Local provider singleton
  * @type {LocalProvider}
  */
-module.exports = new Local()
+const local = new Local()
+export default local

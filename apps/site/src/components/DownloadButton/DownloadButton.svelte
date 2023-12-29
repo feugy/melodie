@@ -1,8 +1,10 @@
 <script>
-  import { _ } from 'svelte-intl'
   import Dropdown from '@melodie/ui/src/components/Dropdown/Dropdown.svelte'
+  import { _ } from 'svelte-intl'
+
   import DownloadButtonItem from './DownloadButtonItem.svelte'
 
+  // @ts-ignore -- defined in vite.config.js
   const version = MELODIE_VERSION
 
   const baseUrl = `https://github.com/feugy/melodie/releases/download/v${version}`
@@ -67,7 +69,7 @@
 
 <Dropdown
   class="text-white"
-  icon="get_app"
+  icon="i-mdi-cloud-arrow-down"
   text={$_('install _', { version })}
   primary
   large

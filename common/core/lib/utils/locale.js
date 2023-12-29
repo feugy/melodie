@@ -1,6 +1,4 @@
-'use strict'
-
-const osLocale = require('os-locale')
+import { osLocale } from 'os-locale'
 
 /**
  * Reads system locale
@@ -8,6 +6,6 @@ const osLocale = require('os-locale')
  * @returns {string} the first two characters of the ISO 639-1 language code
  * @see https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
  */
-exports.getSystemLocale = async function () {
+export const getSystemLocale = async function () {
   return (await osLocale()).slice(0, 2)
 }

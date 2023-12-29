@@ -1,26 +1,26 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Toolshot components/Card/Card.tools.svelte: Site components/Card 1`] = `
+exports[`Site components/Card 1`] = `
 <article
-  class="svelte-jxonef"
+  class="s-Ox3KIXghErgD"
 >
   <img
     alt=""
-    class="svelte-jxonef"
+    class="s-Ox3KIXghErgD"
     src="logos/os.png"
   />
    
   <div
-    class="svelte-jxonef"
+    class="s-Ox3KIXghErgD"
   >
     <h4
-      class="svelte-jxonef"
+      class="s-Ox3KIXghErgD"
     >
       Portable
     </h4>
      
     <p
-      class="svelte-jxonef"
+      class="s-Ox3KIXghErgD"
     >
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod

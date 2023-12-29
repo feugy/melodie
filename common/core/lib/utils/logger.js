@@ -1,7 +1,5 @@
-'use strict'
-
-const pino = require('pino')
-const fs = require('fs-extra')
+import fs from 'fs-extra'
+import pino from 'pino'
 
 let root
 let levelSpecs
@@ -91,8 +89,8 @@ function computeDefaultLevel() {
   return NODE_ENV === 'test'
     ? 'silent'
     : NODE_ENV === 'production'
-    ? 'info'
-    : 'debug'
+      ? 'info'
+      : 'debug'
 }
 
 /**
@@ -105,7 +103,7 @@ function computeDefaultLevel() {
  * @param {string} [lvl = 'info']   - logger level
  * @returns {Pino} a logger instance
  */
-exports.getLogger = (name = 'core', lvl) => {
+export const getLogger = (name = 'core', lvl) => {
   let logger = loggers.get(name)
   if (!logger) {
     if (!levelSpecs) {
@@ -143,7 +141,7 @@ exports.getLogger = (name = 'core', lvl) => {
  * Updates level of all built loggers from the configuration file (.level)
  * Can be triggered by sending SIGUSR2 signal to the application.
  */
-exports.refreshLogLevels = () => {
+export const refreshLogLevels = () => {
   levelSpecs = readLevels()
   for (const [name, logger] of loggers) {
     const level = computeLevel(name, levelSpecs)
@@ -153,4 +151,4 @@ exports.refreshLogLevels = () => {
   }
 }
 
-process.on('SIGUSR2', exports.refreshLogLevels)
+process.on('SIGUSR2', refreshLogLevels)

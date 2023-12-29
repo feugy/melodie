@@ -1,8 +1,9 @@
 <script>
   import { recordEvent, Tool } from '@atelier-wb/svelte'
-  import Snackbar from './Snackbar.svelte'
-  import Button from '../Button/Button.svelte'
+
   import { showSnack } from '../../stores/snackbars'
+  import Button from '../Button/Button.svelte'
+  import Snackbar from './Snackbar.svelte'
 
   let message = 'Enqueued into playlist!'
   let duration = 5
@@ -19,25 +20,6 @@
     )
   }
 </script>
-
-<style lang="postcss">
-  div {
-    @apply m-4;
-  }
-
-  label {
-    @apply text-right mr-4;
-  }
-
-  input {
-    @apply p-2;
-    color: black;
-
-    &[type='number'] {
-      width: 4rem;
-    }
-  }
-</style>
 
 <Tool name="Components/Snackbar">
   <Snackbar />
@@ -64,3 +46,22 @@
     <Button on:click={handleClick} text={'Show snack'} />
   </div>
 </Tool>
+
+<style lang="postcss">
+  div {
+    --at-apply: m-4;
+  }
+
+  label {
+    --at-apply: text-right mr-4;
+  }
+
+  input {
+    --at-apply: p-2;
+    color: black;
+
+    &[type='number'] {
+      width: 4rem;
+    }
+  }
+</style>

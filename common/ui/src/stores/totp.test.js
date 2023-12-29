@@ -1,11 +1,11 @@
-'use strict'
-
-import faker from 'faker'
+import { faker } from '@faker-js/faker'
 import { Subject } from 'rxjs'
 import { get } from 'svelte/store'
+import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest'
+
 import { fromServerEvent } from '../utils/connection'
 
-jest.mock('../utils/connection', () => ({ fromServerEvent: jest.fn() }))
+vi.mock('../utils/connection', () => ({ fromServerEvent: vi.fn() }))
 
 describe('totp store', () => {
   let cleanup
@@ -16,14 +16,14 @@ describe('totp store', () => {
   fromServerEvent.mockReturnValue(serverTotp)
 
   beforeAll(async () => {
-    jest.useFakeTimers()
+    vi.useFakeTimers()
     ;({ cleanup, init, totp, setTotp } = await import('./totp'))
     cleanup()
   })
 
   afterAll(() => {
     cleanup()
-    jest.useRealTimers()
+    vi.useRealTimers()
   })
 
   it('has no initial value', () => {
@@ -36,15 +36,15 @@ describe('totp store', () => {
   })
 
   it('can be changed', async () => {
-    const value = faker.datatype.number({ min: 100000, max: 999999 }).toString()
+    const value = faker.number.int({ min: 100000, max: 999999 }).toString()
     await init(null, 'initial')
-    expect(get(totp)).toEqual('initial')
+    expect(get(totp)).toBe('initial')
     setTotp(value)
     expect(get(totp)).toEqual(value)
   })
 
   describe('given a store initialized with a secret', () => {
-    beforeAll(() => init(faker.datatype.uuid()))
+    beforeAll(() => init(faker.string.uuid()))
 
     it('changes value every 30 seconds', async () => {
       let now = Date.now()
@@ -52,15 +52,15 @@ describe('totp store', () => {
       expect(value1).toMatch(/\d{6}/)
       expect(get(totp)).toEqual(value1)
 
-      jest.setSystemTime(now + 30000)
-      jest.runOnlyPendingTimers()
+      vi.setSystemTime(now + 30000)
+      vi.runOnlyPendingTimers()
 
       let value2 = get(totp)
       expect(value2).toMatch(/\d{6}/)
       expect(value2).not.toEqual(value1)
 
-      jest.setSystemTime(now + 60000)
-      jest.runOnlyPendingTimers()
+      vi.setSystemTime(now + 60000)
+      vi.runOnlyPendingTimers()
 
       let valu000 = get(totp)
       expect(valu000).toMatch(/\d{6}/)
@@ -73,14 +73,14 @@ describe('totp store', () => {
       cleanup()
       expect(get(totp)).toBeNull()
 
-      jest.setSystemTime(Date.now() + 30000)
-      jest.runOnlyPendingTimers()
+      vi.setSystemTime(Date.now() + 30000)
+      vi.runOnlyPendingTimers()
       expect(get(totp)).toBeNull()
     })
   })
 
   describe('given a store initialized with a value', () => {
-    const value = faker.datatype.number({ min: 100000, max: 999999 }).toString()
+    const value = faker.number.int({ min: 100000, max: 999999 }).toString()
 
     beforeAll(() => init(null, value))
 
@@ -88,8 +88,8 @@ describe('totp store', () => {
       let now = Date.now()
       expect(get(totp)).toEqual(value)
 
-      jest.setSystemTime(now + 30000)
-      jest.runOnlyPendingTimers()
+      vi.setSystemTime(now + 30000)
+      vi.runOnlyPendingTimers()
 
       expect(get(totp)).toEqual(value)
     })
@@ -99,8 +99,8 @@ describe('totp store', () => {
       cleanup()
       expect(get(totp)).toBeNull()
 
-      jest.setSystemTime(Date.now() + 30000)
-      jest.runOnlyPendingTimers()
+      vi.setSystemTime(Date.now() + 30000)
+      vi.runOnlyPendingTimers()
       expect(get(totp)).toBeNull()
     })
   })

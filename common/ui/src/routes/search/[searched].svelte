@@ -1,19 +1,20 @@
 <script>
   import { fade } from 'svelte/transition'
   import { _ } from 'svelte-intl'
+
   import {
-    Heading,
     ExpandableList,
     ExpandableListConstants,
+    Heading,
     TrackDetailsDialogue
   } from '../../components'
   import {
-    artists,
     albums,
-    tracks,
+    artists,
+    current,
     search,
     total,
-    current
+    tracks
   } from '../../stores/search'
 
   export let params
@@ -27,16 +28,6 @@
     }
   }
 </script>
-
-<style lang="postcss">
-  section {
-    @apply z-0 m-4 mt-0;
-  }
-
-  .noResults {
-    @apply text-2xl font-semibold;
-  }
-</style>
 
 <TrackDetailsDialogue
   src={openedTrack}
@@ -67,3 +58,13 @@
     <ExpandableList kind={ExpandableListConstants.ALBUMS} items={albums} />
   </section>
 </div>
+
+<style>
+  section {
+    --at-apply: z-0 m-4 mt-0;
+  }
+
+  .noResults {
+    --at-apply: text-2xl font-semibold;
+  }
+</style>

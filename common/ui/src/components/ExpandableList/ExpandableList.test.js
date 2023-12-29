@@ -1,31 +1,32 @@
-'use strict'
-
 import { render, screen, within } from '@testing-library/svelte'
 import userEvent from '@testing-library/user-event'
-import html from 'svelte-htm'
 import { BehaviorSubject } from 'rxjs'
+import { tick } from 'svelte'
+import html from 'svelte-htm'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
+
+import { createClickToAddObservable } from '../../stores/track-queue'
+import { sleep, translate } from '../../tests'
+import { albumData } from '../Album/Album.testdata'
+import { artistData } from '../Artist/Artist.testdata'
+import { tracksData } from '../TracksTable/TracksTable.testdata'
 import ExpandableList, {
   ALBUMS,
   ARTISTS,
   TRACKS
 } from './ExpandableList.svelte'
-import { albumData } from '../Album/Album.testdata'
-import { tracksData } from '../TracksTable/TracksTable.testdata'
-import { sleep, translate } from '../../tests'
-import { createClickToAddObservable } from '../../stores/track-queue'
-import { artistData } from '../Artist/Artist.testdata'
 
-jest.mock('../../stores/track-queue')
+vi.mock('../../stores/track-queue')
 
 describe('ExpandableList component', () => {
   const clicks$ = {
-    subscribe: jest.fn().mockReturnValue({ unsubscribe: jest.fn() }),
-    next: jest.fn()
+    subscribe: vi.fn().mockReturnValue({ unsubscribe: vi.fn() }),
+    next: vi.fn()
   }
 
   beforeEach(() => {
     location.hash = '#/'
-    jest.resetAllMocks()
+    vi.resetAllMocks()
     createClickToAddObservable.mockReturnValue(clicks$)
   })
 
@@ -55,10 +56,10 @@ describe('ExpandableList component', () => {
       />`
     )
 
-    const items = screen.getAllByRole('listitem')
+    const items = screen.getByRole('list').children
     expect(items).toHaveLength(albums.length)
     for (const [i, album] of albums.entries()) {
-      expect(within(items[i]).queryByText(album.name)).toBeInTheDocument()
+      expect(within(items[i]).getByText(album.name)).toBeInTheDocument()
     }
   })
 
@@ -70,10 +71,10 @@ describe('ExpandableList component', () => {
       />`
     )
 
-    userEvent.click(screen.getByRole('img'))
+    await userEvent.click(screen.getByRole('img'))
     await sleep()
 
-    expect(location.hash).toEqual(`#/album/${albumData.id}`)
+    expect(location.hash).toBe(`#/album/${albumData.id}`)
     expect(clicks$.next).toHaveBeenCalled()
     expect(clicks$.subscribe).not.toHaveBeenCalled()
   })
@@ -86,10 +87,10 @@ describe('ExpandableList component', () => {
       />`
     )
 
-    userEvent.click(screen.getByRole('img'))
+    await userEvent.click(screen.getByRole('img'))
     await sleep()
 
-    expect(location.hash).toEqual(`#/artist/${artistData.id}`)
+    expect(location.hash).toBe(`#/artist/${artistData.id}`)
     expect(clicks$.next).toHaveBeenCalled()
     expect(clicks$.subscribe).not.toHaveBeenCalled()
   })
@@ -97,6 +98,7 @@ describe('ExpandableList component', () => {
   describe('given a long list of tracks', () => {
     const tracks = tracksData.slice(0, 5)
     const items = new BehaviorSubject()
+    let component
 
     beforeEach(() => {
       Element.prototype.getBoundingClientRect = function () {
@@ -106,11 +108,12 @@ describe('ExpandableList component', () => {
       }
       items.next(tracks)
       // hack: do not use svelte-htm as it wrapps the returned component.
-      const { component } = render(ExpandableList, { kind: TRACKS, items })
-      component.$set({ _width: 280 })
+      component = render(ExpandableList, { kind: TRACKS, items }).component
     })
 
     it('shows them all when expanded', async () => {
+      component.$set({ _width: 280 })
+      await tick()
       const button = screen.getByText(translate('show all'))
       expect(button).toBeVisible()
 
@@ -120,7 +123,7 @@ describe('ExpandableList component', () => {
           tags: { title }
         }
       ] of tracks.entries()) {
-        const text = screen.getByText(title)
+        const text = screen.getByText(title).closest('button')
         if (i <= 2) {
           expect(text).toBeVisible()
         } else {
@@ -134,12 +137,14 @@ describe('ExpandableList component', () => {
       for (const {
         tags: { title }
       } of tracks) {
-        expect(screen.getByText(title)).toBeVisible()
+        expect(screen.getByText(title).closest('button')).toBeVisible()
       }
-      expect(location.hash).toEqual(`#/`)
+      expect(location.hash).toBe(`#/`)
     })
 
     it('shows only the first line when collapsed', async () => {
+      component.$set({ _width: 280 })
+      await tick()
       await userEvent.click(screen.getByText(translate('show all')))
       for (const {
         tags: { title }
@@ -162,7 +167,7 @@ describe('ExpandableList component', () => {
         }
       }
       expect(screen.getByText(translate('show all'))).toBeVisible()
-      expect(location.hash).toEqual(`#/`)
+      expect(location.hash).toBe(`#/`)
     })
 
     it('resets state when receiving new list', async () => {
@@ -178,11 +183,11 @@ describe('ExpandableList component', () => {
 
     it('proxies tracks clicks to track-queue store', async () => {
       const track = tracks[1]
-      userEvent.click(screen.getByText(track.tags.title))
+      await userEvent.click(screen.getByText(track.tags.title))
 
       expect(clicks$.next).toHaveBeenCalledWith(track)
       expect(clicks$.subscribe).toHaveBeenCalled()
-      expect(location.hash).toEqual(`#/`)
+      expect(location.hash).toBe(`#/`)
     })
   })
 })

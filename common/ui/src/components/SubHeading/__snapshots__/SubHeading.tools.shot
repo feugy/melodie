@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Toolshot components/SubHeading/SubHeading.tools.svelte: Components/Sub Heading 1`] = `
+exports[`Components/Sub Heading 1`] = `
 <h4
-  class=" svelte-ko9ja9"
+  class=" s-6YRYWv8WTqRO"
 >
   This is a sub title
 </h4>

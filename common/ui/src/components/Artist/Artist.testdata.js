@@ -1,5 +1,3 @@
-'use strict'
-
 export const artistData = {
   id: 1,
   name: 'Foo Fighters',

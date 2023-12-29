@@ -1,56 +1,61 @@
-'use strict'
+import { faker } from '@faker-js/faker'
+import fs from 'fs-extra'
+import os from 'os'
+import { basename, dirname, extname, join, resolve } from 'path'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
-const { basename, dirname, extname, join, resolve } = require('path')
-const os = require('os')
-const fs = require('fs-extra')
-const faker = require('faker')
-const provider = require('.')
-const tagReader = require('./tag-reader')
-const playlistUtils = require('./playlist')
-const covers = require('./cover-finder')
-const tracksService = require('../../services/tracks')
-const playlistsService = require('../../services/playlists')
-const { albumsModel, tracksModel, settingsModel } = require('../../models')
-const { hash, broadcast } = require('../../utils')
-const { makeFolder, makePlaylists, sleep } = require('../../tests')
+import { albumsModel, settingsModel, tracksModel } from '../../models'
+import * as playlistsService from '../../services/playlists'
+import * as tracksService from '../../services/tracks'
+import { makeFolder, makePlaylists, sleep } from '../../tests'
+import { broadcast, hash } from '../../utils'
+import provider from '.'
+import * as covers from './cover-finder'
+import * as playlistUtils from './playlist'
+import * as tagReader from './tag-reader'
 
-jest.mock('../../models/tracks')
-jest.mock('../../models/albums')
-jest.mock('../../models/settings')
-jest.mock('../../services/tracks')
-jest.mock('../../services/playlists')
-jest.mock('../../utils/connection')
-jest.mock('./cover-finder')
-jest.mock('./tag-reader', () => ({
+vi.mock('../../models/tracks')
+vi.mock('../../models/albums')
+vi.mock('../../models/settings')
+vi.mock('../../services/tracks')
+vi.mock('../../services/playlists')
+vi.mock('../../utils/connection')
+vi.mock('./cover-finder')
+vi.mock('./tag-reader', () => ({
+  default: '',
   formats: ['.mp3', '.ogg', '.flac'],
-  read: jest.fn()
+  read: vi.fn()
 }))
-jest.mock('./playlist', () => {
-  const { extname } = require('path')
+vi.mock('./playlist', () => {
   const formats = ['.m3u', '.m3u8']
   return {
+    default: '',
     formats,
     isPlaylistFile(file) {
       return formats.includes(extname(file))
     },
-    read: jest.fn()
+    read: vi.fn()
   }
 })
 
-let mockWatcher
-jest.mock('chokidar', () => {
-  const chokidar = jest.requireActual('chokidar')
+const mock = vi.hoisted(() => ({ watcher: null }))
+
+vi.mock('chokidar', async () => {
+  const chokidar = await vi.importActual('chokidar')
   return {
-    watch(...args) {
-      mockWatcher = chokidar.watch(...args)
-      return mockWatcher
+    default: {
+      ...chokidar,
+      watch(...args) {
+        mock.watcher = chokidar.watch(...args)
+        return mock.watcher
+      }
     }
   }
 })
 
 describe('Local provider', () => {
   beforeEach(() => {
-    jest.resetAllMocks()
+    vi.resetAllMocks()
     covers.findInFolder.mockResolvedValue(null)
     tagReader.read.mockResolvedValue({})
     tracksService.add.mockResolvedValue()
@@ -69,7 +74,7 @@ describe('Local provider', () => {
     const artworkFolder = process.env.ARTWORK_DESTINATION
 
     beforeEach(async () => {
-      jest.resetAllMocks()
+      vi.resetAllMocks()
       await fs.ensureDir(artworkFolder)
     })
 
@@ -82,7 +87,7 @@ describe('Local provider', () => {
     })
 
     it('returns existing images for known artist', async () => {
-      const searched = faker.random.word()
+      const searched = faker.string.alpha()
       const id = hash(searched)
       const files = [
         join(artworkFolder, `${id}.jpg`),
@@ -105,18 +110,18 @@ describe('Local provider', () => {
     })
 
     it('returns nothing on unknown artist', async () => {
-      const searched = faker.random.word()
+      const searched = faker.string.alpha()
 
       expect(await provider.findArtistArtwork(searched)).toEqual([])
     })
   })
 
   describe('findAlbumCover()', () => {
-    const folder = join(os.tmpdir(), 'melodie', faker.datatype.uuid())
-    const folder2 = join(os.tmpdir(), 'melodie', faker.datatype.uuid())
+    const folder = join(os.tmpdir(), 'melodie', faker.string.uuid())
+    const folder2 = join(os.tmpdir(), 'melodie', faker.string.uuid())
 
     it('returns images from multiple folders', async () => {
-      const searched = faker.random.word()
+      const searched = faker.string.alpha()
       const albums = [{ id: hash(folder) }, { id: hash(folder2) }]
       const results = [
         join(
@@ -141,7 +146,7 @@ describe('Local provider', () => {
     })
 
     it('returns nothing on unknown folder', async () => {
-      const searched = faker.random.word()
+      const searched = faker.string.alpha()
       albumsModel.getByName.mockResolvedValueOnce([])
 
       expect(await provider.findAlbumCover(searched)).toEqual([])
@@ -150,7 +155,7 @@ describe('Local provider', () => {
     })
 
     it('returns nothing on failure', async () => {
-      const searched = faker.random.word()
+      const searched = faker.string.alpha()
       albumsModel.getByName.mockRejectedValue(new Error('fake error'))
 
       expect(await provider.findAlbumCover(searched)).toEqual([])
@@ -229,7 +234,7 @@ describe('Local provider', () => {
       expect(tagReader.read).toHaveBeenCalledTimes(files.length)
       expect(settingsModel.get).toHaveBeenCalledTimes(1)
       expect(playlistsService.checkIntegrity).toHaveBeenCalledTimes(1)
-      await expect(fs.access(media, fs.constants.R_OK)).resolves.toBeNil()
+      await expect(fs.access(media, fs.constants.R_OK)).resolves.toBeUndefined()
     })
 
     it('handles error when saving cover from track tags as album media', async () => {
@@ -403,7 +408,7 @@ describe('Local provider', () => {
       tracksService.add.mockImplementation(
         () =>
           new Promise(r =>
-            setTimeout(r, faker.datatype.number({ min: 100, max: 200 }))
+            setTimeout(r, faker.number.int({ min: 100, max: 200 }))
           )
       )
       settingsModel.get.mockResolvedValueOnce({ folders: [folder] })
@@ -628,10 +633,10 @@ describe('Local provider', () => {
 
       it('handles watcher errors', async () => {
         const error = new Error('Intentionaly triggered!!')
-        const errorSpy = jest.spyOn(provider.logger, 'error')
+        const errorSpy = vi.spyOn(provider.logger, 'error')
         const promise = provider.compareTracks()
         await sleep()
-        mockWatcher.emit('error', error)
+        mock.watcher.emit('error', error)
         const { saved, removedIds } = await promise
 
         expect(errorSpy).toHaveBeenCalledTimes(1)
@@ -711,7 +716,7 @@ describe('Local provider', () => {
       it('finds new files and save them', async () => {
         await provider.compareTracks()
         await sleep(700)
-        jest.clearAllMocks()
+        vi.clearAllMocks()
 
         const first = join(tree.folder, 'first.mp3')
         const second = join(tree.folder, 'second.ogg')
@@ -753,7 +758,7 @@ describe('Local provider', () => {
       it('finds modified files and save them', async () => {
         await provider.compareTracks()
         await sleep(700)
-        jest.clearAllMocks()
+        vi.clearAllMocks()
 
         fs.writeFile(join(tree.folder, 'unsupported.png'), faker.lorem.word())
 
@@ -792,7 +797,7 @@ describe('Local provider', () => {
       it('handles file rename', async () => {
         await provider.compareTracks()
         await sleep(700)
-        jest.clearAllMocks()
+        vi.clearAllMocks()
 
         const { path } = tree.files[0]
         const { ino } = await fs.stat(path)
@@ -825,7 +830,7 @@ describe('Local provider', () => {
       it('handles folder rename', async () => {
         await provider.compareTracks()
         await sleep(700)
-        jest.clearAllMocks()
+        vi.clearAllMocks()
 
         const folder = dirname(tree.files[12].path)
         const newPath = folder.replace(basename(folder), 'renamed')
@@ -874,7 +879,7 @@ describe('Local provider', () => {
 
         await provider.compareTracks()
         await sleep(700)
-        jest.clearAllMocks()
+        vi.clearAllMocks()
 
         const removed = tree.files.slice(3, 7)
         for (const { path } of removed) {
@@ -915,7 +920,7 @@ describe('Local provider', () => {
       it('finds additions of playlist files', async () => {
         await provider.compareTracks()
         await sleep(700)
-        jest.clearAllMocks()
+        vi.clearAllMocks()
 
         const path = join(dirname(playlists[2]), 'new.m3u')
         fs.writeFile(path, '#EXTM3U\ntest.mp3', 'latin1')
@@ -943,7 +948,7 @@ describe('Local provider', () => {
       it('ignores modifications, deletions and additiong of playlist files', async () => {
         await provider.compareTracks()
         await sleep(700)
-        jest.clearAllMocks()
+        vi.clearAllMocks()
 
         fs.writeFile(playlists[2], '#EXTM3U\ntest.mp3', 'latin1')
         const path = playlists[3]
@@ -964,7 +969,7 @@ describe('Local provider', () => {
 
     it('stops watching previous folder', async () => {
       await provider.compareTracks()
-      jest.clearAllMocks()
+      vi.clearAllMocks()
 
       tracksModel.listWithTime.mockResolvedValueOnce(new Map())
       settingsModel.get.mockResolvedValueOnce({ folders: [] })

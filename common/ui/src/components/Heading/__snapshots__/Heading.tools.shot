@@ -1,17 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Toolshot components/Heading/Heading.tools.svelte: Components/Heading 1`] = `
+exports[`Components/Heading 1`] = `
 <section>
   <header
-    class=" svelte-1whmh27"
+    class=" s-xf4KciiwOEPn"
     style="--image: url(./images/valentino-funghi-MEcxLZ8ENV8-unsplash.jpg); --shade-color: rgba(0, 0, 0, 0.7); --bgPosition: center;"
   >
     <h1
-      class="svelte-1whmh27"
+      class="s-xf4KciiwOEPn"
     >
       70 albums
     </h1>
   </header>
+  <!--&lt;Heading&gt;-->
    
   <p>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.

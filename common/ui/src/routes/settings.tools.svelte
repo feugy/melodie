@@ -1,9 +1,10 @@
 <script>
   import { Tool } from '@atelier-wb/svelte'
-  import Component from './settings.svelte'
+
   import { mockWebsocket } from '../atelier/utils'
   import { init, isDesktop } from '../stores/settings'
   import { initConnection } from '../utils/connection'
+  import Component from './settings.svelte'
 
   const settings = {
     folders: ['/home/music', '/home/movies'],
@@ -35,7 +36,7 @@
       false
     )()
     isDesktop.next(true)
-    window.WINDICSS_VERSION = '3.2.1'
+    window.UNOCSS_VERSION = '0.58.0'
     window.RXJS_VERSION = '6.0.0'
     await init('http://192.168.0.10:9999', '12345678')
   }}

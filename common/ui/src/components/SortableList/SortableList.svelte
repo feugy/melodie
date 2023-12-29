@@ -72,9 +72,26 @@
   }
 </script>
 
-<style lang="postcss">
+<ol class:dragged>
+  {#each keyedItems as item, i (item.key)}
+    <li
+      draggable="true"
+      class:dragged={dragged && dragged.key === item.key}
+      out:slideOnRemove|local={{ duration: 250 }}
+      on:dragstart={evt => handleDragStart(evt, item.key, i)}
+      on:dragenter={evt => handleEnter(evt, item.key)}
+      on:dragend={handleDrop}
+    >
+      <slot name="item" {item} {i} />
+    </li>
+  {/each}
+</ol>
+
+<style>
   li {
-    transition: margin-top 150ms linear, margin-bottom 150ms linear;
+    transition:
+      margin-top 150ms linear,
+      margin-bottom 150ms linear;
 
     &.dragged {
       background-color: var(--hover-bg-color);
@@ -91,18 +108,3 @@
   } 
   */
 </style>
-
-<ol class:dragged>
-  {#each keyedItems as item, i (item.key)}
-    <li
-      draggable="true"
-      class:dragged={dragged && dragged.key === item.key}
-      out:slideOnRemove|local={{ duration: 250 }}
-      on:dragstart={evt => handleDragStart(evt, item.key, i)}
-      on:dragenter={evt => handleEnter(evt, item.key)}
-      on:dragend={handleDrop}
-    >
-      <slot name="item" {item} {i} />
-    </li>
-  {/each}
-</ol>

@@ -1,16 +1,16 @@
-'use strict'
+import { faker } from '@faker-js/faker'
+import fs from 'fs-extra'
+import os from 'os'
+import { join } from 'path'
+import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 
-const faker = require('faker')
-const fs = require('fs-extra')
-const os = require('os')
-const { join } = require('path')
-const { artistsModel } = require('./artists')
-const { tracksModel } = require('./tracks')
-const { makeRef } = require('../tests')
+import { makeRef } from '../tests'
+import { artistsModel } from './artists'
+import { tracksModel } from './tracks'
 
 describe('Artist model', () => {
-  const album1 = faker.name.findName()
-  const album2 = faker.name.findName()
+  const album1 = faker.person.fullName()
+  const album2 = faker.person.fullName()
 
   // use fixed ids for consistent ordering
   const tracks = [
@@ -48,8 +48,8 @@ describe('Artist model', () => {
 
   it('adds new artist with refs', async () => {
     const artist = {
-      id: faker.datatype.number(),
-      media: faker.image.image(),
+      id: faker.number.int(),
+      media: faker.image.url(),
       processedEpoch: null,
       name: faker.commerce.productName(),
       trackIds: [tracks[0].id, tracks[3].id],
@@ -68,9 +68,9 @@ describe('Artist model', () => {
 
   it('updates existing artist with refs', async () => {
     const artist = {
-      id: faker.datatype.number(),
-      media: faker.image.image(),
-      mediaCount: faker.datatype.number({ max: 10 }),
+      id: faker.number.int(),
+      media: faker.image.url(),
+      mediaCount: faker.number.int({ max: 10 }),
       processedEpoch: null,
       name: faker.commerce.productName(),
       trackIds: [tracks[0].id, tracks[3].id],

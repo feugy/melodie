@@ -1,112 +1,122 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] = `
+exports[`Views/Playlist Details 1`] = `
 <div>
    
+  <!--&lt;Portal&gt;-->
+  <!--&lt;Dialogue&gt;-->
+  <!--&lt;ConfirmationDialogue&gt;-->
    
   <div
-    style="animation: __svelte_185617033_0 200ms linear 0ms 1 both;"
+    class="s-8tn0QwGuWTbt"
+    style=""
   >
     <header
-      class=" svelte-1whmh27"
+      class=" s-xf4KciiwOEPn"
       style="--image: url(../images/bantersnaps-nE1K_qO2z38-unsplash.jpg); --shade-color: rgba(0, 0, 0, 0.7); --bgPosition: center 60%;"
     >
       <h1
-        class="svelte-1whmh27"
+        class="s-xf4KciiwOEPn"
       >
         Awesome mix, vol. 1
       </h1>
     </header>
+    <!--&lt;Heading&gt;-->
      
     <section
-      class="svelte-ucovap"
+      class="s-8tn0QwGuWTbt"
     >
       <button
-        class="svelte-xh4kfu"
+        class="s-zdMNlEQUhDx4"
       >
         <i
-          class="material-icons svelte-xh4kfu"
-        >
-          play_arrow
-        </i>
+          class="icons i-mdi-play s-zdMNlEQUhDx4"
+        />
          
-        <span>
+        <span
+          class="s-zdMNlEQUhDx4"
+        >
           Play all
         </span>
          
          
       </button>
+      <!--&lt;Button&gt;-->
        
       <button
-        class="svelte-xh4kfu"
+        class="s-zdMNlEQUhDx4"
       >
         <i
-          class="material-icons svelte-xh4kfu"
-        >
-          playlist_add
-        </i>
+          class="icons i-mdi-plus-box-multiple s-zdMNlEQUhDx4"
+        />
          
-        <span>
+        <span
+          class="s-zdMNlEQUhDx4"
+        >
           Enqueue all
         </span>
          
          
       </button>
+      <!--&lt;Button&gt;-->
        
       <button
-        class="svelte-xh4kfu"
+        class="s-zdMNlEQUhDx4"
       >
         <i
-          class="material-icons svelte-xh4kfu"
-        >
-          edit
-        </i>
+          class="icons i-mdi-pencil s-zdMNlEQUhDx4"
+        />
          
-        <span>
+        <span
+          class="s-zdMNlEQUhDx4"
+        >
           Rename
         </span>
          
          
       </button>
+      <!--&lt;Button&gt;-->
        
       <button
-        class="svelte-xh4kfu"
+        class="s-zdMNlEQUhDx4"
       >
         <i
-          class="material-icons svelte-xh4kfu"
-        >
-          save_alt
-        </i>
+          class="icons i-mdi-tray-arrow-down s-zdMNlEQUhDx4"
+        />
          
-        <span>
+        <span
+          class="s-zdMNlEQUhDx4"
+        >
           Export
         </span>
          
          
       </button>
+      <!--&lt;Button&gt;-->
        
       <button
-        class="svelte-xh4kfu"
+        class="s-zdMNlEQUhDx4"
       >
         <i
-          class="material-icons svelte-xh4kfu"
-        >
-          delete
-        </i>
+          class="icons i-mdi-delete s-zdMNlEQUhDx4"
+        />
          
-        <span>
+        <span
+          class="s-zdMNlEQUhDx4"
+        >
           Delete
         </span>
          
          
       </button>
+      <!--&lt;Button&gt;-->
        
       <div
-        class="divider svelte-ucovap"
+        class="divider s-8tn0QwGuWTbt"
       />
        
       <div
-        class="meta svelte-ucovap"
+        class="meta s-8tn0QwGuWTbt"
       >
         18 tracks
          
@@ -117,98 +127,108 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
     </section>
      
     <div
-      class="tracks svelte-ucovap"
+      class="tracks s-8tn0QwGuWTbt"
     >
        
+      <!--&lt;Portal&gt;-->
+      <!--&lt;Dialogue&gt;-->
+      <!--&lt;TrackDetailsDialogue&gt;-->
        
       <table
-        class="svelte-1glz3zx"
+        class="s-nuuc_oy_vIQ1"
       >
         <thead
-          class="svelte-1glz3zx"
+          class="s-nuuc_oy_vIQ1"
         >
           <tr
-            class="svelte-1glz3zx"
+            class="s-nuuc_oy_vIQ1"
           >
             <th
-              class="svelte-1glz3zx"
+              class="s-nuuc_oy_vIQ1"
             >
               #
             </th>
              
             <th
-              class="col-span-5 svelte-1glz3zx"
+              class="col-span-5 s-nuuc_oy_vIQ1"
             >
               Track
             </th>
              
             <th
-              class="col-span-1 svelte-1glz3zx"
+              class="col-span-1 s-nuuc_oy_vIQ1"
             >
               Duration
             </th>
              
             <th
-              class="col-span-4 svelte-1glz3zx"
+              class="col-span-4 s-nuuc_oy_vIQ1"
             >
               Album
             </th>
              
             <th
-              class="svelte-1glz3zx"
+              class="s-nuuc_oy_vIQ1"
             />
           </tr>
         </thead>
          
         <tbody
-          class="svelte-1glz3zx"
+          class="s-nuuc_oy_vIQ1"
         >
-          <ol>
+          <ol
+            class="s-Wu4er3rFOHtk"
+          >
             <li
-              class="svelte-v0o86q"
+              class="s-Wu4er3rFOHtk"
               draggable="true"
             >
               <tr
-                class="svelte-1glz3zx"
+                class="s-nuuc_oy_vIQ1"
                 slot="item"
               >
                 <td
-                  class="svelte-1glz3zx"
+                  class="s-nuuc_oy_vIQ1"
                 >
                   1
                 </td>
                  
                 <td
-                  class="col-span-6 playlist-track svelte-1glz3zx"
+                  class="col-span-6 playlist-track s-nuuc_oy_vIQ1"
                 >
-                  <div
-                    class="undefined root svelte-8oy723"
+                  <button
+                    class="undefined root s-B4OUyNjosq8C"
                   >
                     <a
-                      class="svelte-8oy723"
+                      class="s-B4OUyNjosq8C"
                       href="#/album/1"
                     >
-                      <img
-                        alt="./cover.jpg"
-                        class="h-16 w-16 text-xs actionable rounded-sm svelte-1l44pje"
-                        height="256"
-                        src="./cover.jpg"
-                        width="256"
-                      />
-                       
-                      
+                      <button
+                        class="__flex_tliuhg_tliuhg __justify-center_tliuhg_tliuhg __items-center_tliuhg_tliuhg __bg-[--hover-bg-color]_tliuhg_tliuhg __overflow-hidden_tliuhg_tliuhg __h-16_cxt0i8_cxt0i8 __w-16_cxt0i8_cxt0i8 __text-xs_cxt0i8_cxt0i8 actionable s-JU4hIbuSbdGN __rounded-sm_tliuhg_tliuhg"
+                      >
+                        <img
+                          alt="./cover.jpg"
+                          class="__border-none_tliuhg_tliuhg __font-size-0_tliuhg_tliuhg __object-cover_tliuhg_tliuhg __w-full_tliuhg_tliuhg __h-full_tliuhg_tliuhg s-JU4hIbuSbdGN"
+                          loading="lazy"
+                          src="./cover.jpg"
+                        />
+                         
+                      </button>
+                      <!--&lt;Image&gt;-->
                     </a>
                      
                     <div
-                      class="track svelte-8oy723"
+                      class="track s-B4OUyNjosq8C"
                     >
                       <span
-                        class="title svelte-8oy723"
+                        class="title s-B4OUyNjosq8C"
                       >
                         American Money
                       </span>
                        
-                      <span>
+                      <span
+                        class="s-B4OUyNjosq8C"
+                      >
                         <a
                           class="text-sm underlined"
                           href="#/artist/0"
@@ -228,16 +248,17 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                     </div>
                      
                     <div
-                      class="duration svelte-8oy723"
+                      class="duration s-B4OUyNjosq8C"
                     >
                       5:32
                     </div>
                      
-                  </div>
+                  </button>
+                  <!--&lt;Track&gt;-->
                 </td>
                  
                 <td
-                  class="col-span-4 svelte-1glz3zx"
+                  class="col-span-4 s-nuuc_oy_vIQ1"
                 >
                   <a
                     class="underlined"
@@ -249,78 +270,85 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                 </td>
                  
                 <td
-                  class="svelte-1glz3zx"
+                  class="s-nuuc_oy_vIQ1"
                 >
                   <span
                     aria-expanded="false"
                     aria-haspopup="menu"
-                    class="wrapper svelte-1v2cnbz"
+                    class="wrapper s-vOP9EO5q76eY"
                   >
                     <button
-                      class="iconOnly noBorder svelte-xh4kfu"
+                      class="iconOnly noBorder s-zdMNlEQUhDx4"
+                      data-testid="track-dropdown"
                     >
                       <i
-                        class="material-icons svelte-xh4kfu"
-                      >
-                        more_vert
-                      </i>
+                        class="icons i-mdi-dots-vertical s-zdMNlEQUhDx4"
+                      />
                        
                        
                       
                        
                     </button>
+                    <!--&lt;Button&gt;-->
                   </span>
                    
                   
+                  <!--&lt;Dropdown&gt;-->
+                  <!--&lt;TrackDropdown&gt;-->
                 </td>
               </tr>
                
             </li>
             <li
-              class="svelte-v0o86q"
+              class="s-Wu4er3rFOHtk"
               draggable="true"
             >
               <tr
-                class="svelte-1glz3zx"
+                class="s-nuuc_oy_vIQ1"
                 slot="item"
               >
                 <td
-                  class="svelte-1glz3zx"
+                  class="s-nuuc_oy_vIQ1"
                 >
                   2
                 </td>
                  
                 <td
-                  class="col-span-6 playlist-track svelte-1glz3zx"
+                  class="col-span-6 playlist-track s-nuuc_oy_vIQ1"
                 >
-                  <div
-                    class="undefined root svelte-8oy723"
+                  <button
+                    class="undefined root s-B4OUyNjosq8C"
                   >
                     <a
-                      class="svelte-8oy723"
+                      class="s-B4OUyNjosq8C"
                       href="#/album/1"
                     >
-                      <img
-                        alt="./cover.jpg"
-                        class="h-16 w-16 text-xs actionable rounded-sm svelte-1l44pje"
-                        height="256"
-                        src="./cover.jpg"
-                        width="256"
-                      />
-                       
-                      
+                      <button
+                        class="__flex_tliuhg_tliuhg __justify-center_tliuhg_tliuhg __items-center_tliuhg_tliuhg __bg-[--hover-bg-color]_tliuhg_tliuhg __overflow-hidden_tliuhg_tliuhg __h-16_cxt0i8_cxt0i8 __w-16_cxt0i8_cxt0i8 __text-xs_cxt0i8_cxt0i8 actionable s-JU4hIbuSbdGN __rounded-sm_tliuhg_tliuhg"
+                      >
+                        <img
+                          alt="./cover.jpg"
+                          class="__border-none_tliuhg_tliuhg __font-size-0_tliuhg_tliuhg __object-cover_tliuhg_tliuhg __w-full_tliuhg_tliuhg __h-full_tliuhg_tliuhg s-JU4hIbuSbdGN"
+                          loading="lazy"
+                          src="./cover.jpg"
+                        />
+                         
+                      </button>
+                      <!--&lt;Image&gt;-->
                     </a>
                      
                     <div
-                      class="track svelte-8oy723"
+                      class="track s-B4OUyNjosq8C"
                     >
                       <span
-                        class="title svelte-8oy723"
+                        class="title s-B4OUyNjosq8C"
                       >
                         Fantaisie Sign
                       </span>
                        
-                      <span>
+                      <span
+                        class="s-B4OUyNjosq8C"
+                      >
                         <a
                           class="text-sm underlined"
                           href="#/artist/0"
@@ -340,16 +368,17 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                     </div>
                      
                     <div
-                      class="duration svelte-8oy723"
+                      class="duration s-B4OUyNjosq8C"
                     >
                       3:35
                     </div>
                      
-                  </div>
+                  </button>
+                  <!--&lt;Track&gt;-->
                 </td>
                  
                 <td
-                  class="col-span-4 svelte-1glz3zx"
+                  class="col-span-4 s-nuuc_oy_vIQ1"
                 >
                   <a
                     class="underlined"
@@ -361,78 +390,85 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                 </td>
                  
                 <td
-                  class="svelte-1glz3zx"
+                  class="s-nuuc_oy_vIQ1"
                 >
                   <span
                     aria-expanded="false"
                     aria-haspopup="menu"
-                    class="wrapper svelte-1v2cnbz"
+                    class="wrapper s-vOP9EO5q76eY"
                   >
                     <button
-                      class="iconOnly noBorder svelte-xh4kfu"
+                      class="iconOnly noBorder s-zdMNlEQUhDx4"
+                      data-testid="track-dropdown"
                     >
                       <i
-                        class="material-icons svelte-xh4kfu"
-                      >
-                        more_vert
-                      </i>
+                        class="icons i-mdi-dots-vertical s-zdMNlEQUhDx4"
+                      />
                        
                        
                       
                        
                     </button>
+                    <!--&lt;Button&gt;-->
                   </span>
                    
                   
+                  <!--&lt;Dropdown&gt;-->
+                  <!--&lt;TrackDropdown&gt;-->
                 </td>
               </tr>
                
             </li>
             <li
-              class="svelte-v0o86q"
+              class="s-Wu4er3rFOHtk"
               draggable="true"
             >
               <tr
-                class="svelte-1glz3zx"
+                class="s-nuuc_oy_vIQ1"
                 slot="item"
               >
                 <td
-                  class="svelte-1glz3zx"
+                  class="s-nuuc_oy_vIQ1"
                 >
                   3
                 </td>
                  
                 <td
-                  class="col-span-6 playlist-track svelte-1glz3zx"
+                  class="col-span-6 playlist-track s-nuuc_oy_vIQ1"
                 >
-                  <div
-                    class="undefined root svelte-8oy723"
+                  <button
+                    class="undefined root s-B4OUyNjosq8C"
                   >
                     <a
-                      class="svelte-8oy723"
+                      class="s-B4OUyNjosq8C"
                       href="#/album/1"
                     >
-                      <img
-                        alt="./cover.jpg"
-                        class="h-16 w-16 text-xs actionable rounded-sm svelte-1l44pje"
-                        height="256"
-                        src="./cover.jpg"
-                        width="256"
-                      />
-                       
-                      
+                      <button
+                        class="__flex_tliuhg_tliuhg __justify-center_tliuhg_tliuhg __items-center_tliuhg_tliuhg __bg-[--hover-bg-color]_tliuhg_tliuhg __overflow-hidden_tliuhg_tliuhg __h-16_cxt0i8_cxt0i8 __w-16_cxt0i8_cxt0i8 __text-xs_cxt0i8_cxt0i8 actionable s-JU4hIbuSbdGN __rounded-sm_tliuhg_tliuhg"
+                      >
+                        <img
+                          alt="./cover.jpg"
+                          class="__border-none_tliuhg_tliuhg __font-size-0_tliuhg_tliuhg __object-cover_tliuhg_tliuhg __w-full_tliuhg_tliuhg __h-full_tliuhg_tliuhg s-JU4hIbuSbdGN"
+                          loading="lazy"
+                          src="./cover.jpg"
+                        />
+                         
+                      </button>
+                      <!--&lt;Image&gt;-->
                     </a>
                      
                     <div
-                      class="track svelte-8oy723"
+                      class="track s-B4OUyNjosq8C"
                     >
                       <span
-                        class="title svelte-8oy723"
+                        class="title s-B4OUyNjosq8C"
                       >
                         Don't Bother None
                       </span>
                        
-                      <span>
+                      <span
+                        class="s-B4OUyNjosq8C"
+                      >
                         <a
                           class="text-sm underlined"
                           href="#/artist/0"
@@ -452,16 +488,17 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                     </div>
                      
                     <div
-                      class="duration svelte-8oy723"
+                      class="duration s-B4OUyNjosq8C"
                     >
                       3:45
                     </div>
                      
-                  </div>
+                  </button>
+                  <!--&lt;Track&gt;-->
                 </td>
                  
                 <td
-                  class="col-span-4 svelte-1glz3zx"
+                  class="col-span-4 s-nuuc_oy_vIQ1"
                 >
                   <a
                     class="underlined"
@@ -473,86 +510,88 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                 </td>
                  
                 <td
-                  class="svelte-1glz3zx"
+                  class="s-nuuc_oy_vIQ1"
                 >
                   <span
                     aria-expanded="false"
                     aria-haspopup="menu"
-                    class="wrapper svelte-1v2cnbz"
+                    class="wrapper s-vOP9EO5q76eY"
                   >
                     <button
-                      class="iconOnly noBorder svelte-xh4kfu"
+                      class="iconOnly noBorder s-zdMNlEQUhDx4"
+                      data-testid="track-dropdown"
                     >
                       <i
-                        class="material-icons svelte-xh4kfu"
-                      >
-                        more_vert
-                      </i>
+                        class="icons i-mdi-dots-vertical s-zdMNlEQUhDx4"
+                      />
                        
                        
                       
                        
                     </button>
+                    <!--&lt;Button&gt;-->
                   </span>
                    
                   
+                  <!--&lt;Dropdown&gt;-->
+                  <!--&lt;TrackDropdown&gt;-->
                 </td>
               </tr>
                
             </li>
             <li
-              class="svelte-v0o86q"
+              class="s-Wu4er3rFOHtk"
               draggable="true"
             >
               <tr
-                class="svelte-1glz3zx"
+                class="s-nuuc_oy_vIQ1"
                 slot="item"
               >
                 <td
-                  class="svelte-1glz3zx"
+                  class="s-nuuc_oy_vIQ1"
                 >
                   4
                 </td>
                  
                 <td
-                  class="col-span-6 playlist-track svelte-1glz3zx"
+                  class="col-span-6 playlist-track s-nuuc_oy_vIQ1"
                 >
-                  <div
-                    class="undefined root svelte-8oy723"
+                  <button
+                    class="undefined root s-B4OUyNjosq8C"
                   >
                     <a
-                      class="svelte-8oy723"
+                      class="s-B4OUyNjosq8C"
                       href="#/album/1"
                     >
-                      <img
-                        class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1l44pje"
-                        height="256"
-                        src=""
-                        width="256"
-                      />
-                       
-                      <span
-                        class="h-16 w-16 text-xs actionable svelte-1l44pje rounded-sm"
+                      <button
+                        class="__flex_tliuhg_tliuhg __justify-center_tliuhg_tliuhg __items-center_tliuhg_tliuhg __bg-[--hover-bg-color]_tliuhg_tliuhg __overflow-hidden_tliuhg_tliuhg __h-16_cxt0i8_cxt0i8 __w-16_cxt0i8_cxt0i8 __text-xs_cxt0i8_cxt0i8 actionable s-JU4hIbuSbdGN __rounded-sm_tliuhg_tliuhg"
                       >
+                        <img
+                          class="__border-none_tliuhg_tliuhg __font-size-0_tliuhg_tliuhg __object-cover_tliuhg_tliuhg __w-full_tliuhg_tliuhg __h-full_tliuhg_tliuhg __hidden_tliuhg_tliuhg s-JU4hIbuSbdGN"
+                          loading="lazy"
+                          src=""
+                        />
+                         
                         <i
-                          class="material-icons svelte-1l44pje"
-                        >
-                          music_note
-                        </i>
-                      </span>
-                      
+                          class="__inline-block_tliuhg_tliuhg __font-size-[200%]_tliuhg_tliuhg icons i-mdi-music-note s-JU4hIbuSbdGN"
+                          data-testid="i-mdi-music-note"
+                        />
+                      </button>
+                      <!--&lt;Image&gt;-->
                     </a>
                      
                     <div
-                      class="track svelte-8oy723"
+                      class="track s-B4OUyNjosq8C"
                     >
                       <span
-                        class="title svelte-8oy723"
+                        class="title s-B4OUyNjosq8C"
                       >
                         Vitamin A
                       </span>
                        
-                      <span>
+                      <span
+                        class="s-B4OUyNjosq8C"
+                      >
                         <a
                           class="text-sm underlined"
                           href="#/artist/0"
@@ -572,16 +611,17 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                     </div>
                      
                     <div
-                      class="duration svelte-8oy723"
+                      class="duration s-B4OUyNjosq8C"
                     >
                       4:41
                     </div>
                      
-                  </div>
+                  </button>
+                  <!--&lt;Track&gt;-->
                 </td>
                  
                 <td
-                  class="col-span-4 svelte-1glz3zx"
+                  class="col-span-4 s-nuuc_oy_vIQ1"
                 >
                   <a
                     class="underlined"
@@ -593,86 +633,88 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                 </td>
                  
                 <td
-                  class="svelte-1glz3zx"
+                  class="s-nuuc_oy_vIQ1"
                 >
                   <span
                     aria-expanded="false"
                     aria-haspopup="menu"
-                    class="wrapper svelte-1v2cnbz"
+                    class="wrapper s-vOP9EO5q76eY"
                   >
                     <button
-                      class="iconOnly noBorder svelte-xh4kfu"
+                      class="iconOnly noBorder s-zdMNlEQUhDx4"
+                      data-testid="track-dropdown"
                     >
                       <i
-                        class="material-icons svelte-xh4kfu"
-                      >
-                        more_vert
-                      </i>
+                        class="icons i-mdi-dots-vertical s-zdMNlEQUhDx4"
+                      />
                        
                        
                       
                        
                     </button>
+                    <!--&lt;Button&gt;-->
                   </span>
                    
                   
+                  <!--&lt;Dropdown&gt;-->
+                  <!--&lt;TrackDropdown&gt;-->
                 </td>
               </tr>
                
             </li>
             <li
-              class="svelte-v0o86q"
+              class="s-Wu4er3rFOHtk"
               draggable="true"
             >
               <tr
-                class="svelte-1glz3zx"
+                class="s-nuuc_oy_vIQ1"
                 slot="item"
               >
                 <td
-                  class="svelte-1glz3zx"
+                  class="s-nuuc_oy_vIQ1"
                 >
                   5
                 </td>
                  
                 <td
-                  class="col-span-6 playlist-track svelte-1glz3zx"
+                  class="col-span-6 playlist-track s-nuuc_oy_vIQ1"
                 >
-                  <div
-                    class="undefined root svelte-8oy723"
+                  <button
+                    class="undefined root s-B4OUyNjosq8C"
                   >
                     <a
-                      class="svelte-8oy723"
+                      class="s-B4OUyNjosq8C"
                       href="#/album/1"
                     >
-                      <img
-                        class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1l44pje"
-                        height="256"
-                        src=""
-                        width="256"
-                      />
-                       
-                      <span
-                        class="h-16 w-16 text-xs actionable svelte-1l44pje rounded-sm"
+                      <button
+                        class="__flex_tliuhg_tliuhg __justify-center_tliuhg_tliuhg __items-center_tliuhg_tliuhg __bg-[--hover-bg-color]_tliuhg_tliuhg __overflow-hidden_tliuhg_tliuhg __h-16_cxt0i8_cxt0i8 __w-16_cxt0i8_cxt0i8 __text-xs_cxt0i8_cxt0i8 actionable s-JU4hIbuSbdGN __rounded-sm_tliuhg_tliuhg"
                       >
+                        <img
+                          class="__border-none_tliuhg_tliuhg __font-size-0_tliuhg_tliuhg __object-cover_tliuhg_tliuhg __w-full_tliuhg_tliuhg __h-full_tliuhg_tliuhg __hidden_tliuhg_tliuhg s-JU4hIbuSbdGN"
+                          loading="lazy"
+                          src=""
+                        />
+                         
                         <i
-                          class="material-icons svelte-1l44pje"
-                        >
-                          music_note
-                        </i>
-                      </span>
-                      
+                          class="__inline-block_tliuhg_tliuhg __font-size-[200%]_tliuhg_tliuhg icons i-mdi-music-note s-JU4hIbuSbdGN"
+                          data-testid="i-mdi-music-note"
+                        />
+                      </button>
+                      <!--&lt;Image&gt;-->
                     </a>
                      
                     <div
-                      class="track svelte-8oy723"
+                      class="track s-B4OUyNjosq8C"
                     >
                       <span
-                        class="title svelte-8oy723"
+                        class="title s-B4OUyNjosq8C"
                       >
                         LIVE in Baghdad
                       </span>
                        
-                      <span>
+                      <span
+                        class="s-B4OUyNjosq8C"
+                      >
                         <a
                           class="text-sm underlined"
                           href="#/artist/0"
@@ -692,16 +734,17 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                     </div>
                      
                     <div
-                      class="duration svelte-8oy723"
+                      class="duration s-B4OUyNjosq8C"
                     >
                       2:59
                     </div>
                      
-                  </div>
+                  </button>
+                  <!--&lt;Track&gt;-->
                 </td>
                  
                 <td
-                  class="col-span-4 svelte-1glz3zx"
+                  class="col-span-4 s-nuuc_oy_vIQ1"
                 >
                   <a
                     class="underlined"
@@ -713,86 +756,88 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                 </td>
                  
                 <td
-                  class="svelte-1glz3zx"
+                  class="s-nuuc_oy_vIQ1"
                 >
                   <span
                     aria-expanded="false"
                     aria-haspopup="menu"
-                    class="wrapper svelte-1v2cnbz"
+                    class="wrapper s-vOP9EO5q76eY"
                   >
                     <button
-                      class="iconOnly noBorder svelte-xh4kfu"
+                      class="iconOnly noBorder s-zdMNlEQUhDx4"
+                      data-testid="track-dropdown"
                     >
                       <i
-                        class="material-icons svelte-xh4kfu"
-                      >
-                        more_vert
-                      </i>
+                        class="icons i-mdi-dots-vertical s-zdMNlEQUhDx4"
+                      />
                        
                        
                       
                        
                     </button>
+                    <!--&lt;Button&gt;-->
                   </span>
                    
                   
+                  <!--&lt;Dropdown&gt;-->
+                  <!--&lt;TrackDropdown&gt;-->
                 </td>
               </tr>
                
             </li>
             <li
-              class="svelte-v0o86q"
+              class="s-Wu4er3rFOHtk"
               draggable="true"
             >
               <tr
-                class="svelte-1glz3zx"
+                class="s-nuuc_oy_vIQ1"
                 slot="item"
               >
                 <td
-                  class="svelte-1glz3zx"
+                  class="s-nuuc_oy_vIQ1"
                 >
                   6
                 </td>
                  
                 <td
-                  class="col-span-6 playlist-track svelte-1glz3zx"
+                  class="col-span-6 playlist-track s-nuuc_oy_vIQ1"
                 >
-                  <div
-                    class="undefined root svelte-8oy723"
+                  <button
+                    class="undefined root s-B4OUyNjosq8C"
                   >
                     <a
-                      class="svelte-8oy723"
+                      class="s-B4OUyNjosq8C"
                       href="#/album/1"
                     >
-                      <img
-                        class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1l44pje"
-                        height="256"
-                        src=""
-                        width="256"
-                      />
-                       
-                      <span
-                        class="h-16 w-16 text-xs actionable svelte-1l44pje rounded-sm"
+                      <button
+                        class="__flex_tliuhg_tliuhg __justify-center_tliuhg_tliuhg __items-center_tliuhg_tliuhg __bg-[--hover-bg-color]_tliuhg_tliuhg __overflow-hidden_tliuhg_tliuhg __h-16_cxt0i8_cxt0i8 __w-16_cxt0i8_cxt0i8 __text-xs_cxt0i8_cxt0i8 actionable s-JU4hIbuSbdGN __rounded-sm_tliuhg_tliuhg"
                       >
+                        <img
+                          class="__border-none_tliuhg_tliuhg __font-size-0_tliuhg_tliuhg __object-cover_tliuhg_tliuhg __w-full_tliuhg_tliuhg __h-full_tliuhg_tliuhg __hidden_tliuhg_tliuhg s-JU4hIbuSbdGN"
+                          loading="lazy"
+                          src=""
+                        />
+                         
                         <i
-                          class="material-icons svelte-1l44pje"
-                        >
-                          music_note
-                        </i>
-                      </span>
-                      
+                          class="__inline-block_tliuhg_tliuhg __font-size-[200%]_tliuhg_tliuhg icons i-mdi-music-note s-JU4hIbuSbdGN"
+                          data-testid="i-mdi-music-note"
+                        />
+                      </button>
+                      <!--&lt;Image&gt;-->
                     </a>
                      
                     <div
-                      class="track svelte-8oy723"
+                      class="track s-B4OUyNjosq8C"
                     >
                       <span
-                        class="title svelte-8oy723"
+                        class="title s-B4OUyNjosq8C"
                       >
                         Cats on Mars
                       </span>
                        
-                      <span>
+                      <span
+                        class="s-B4OUyNjosq8C"
+                      >
                         <a
                           class="text-sm underlined"
                           href="#/artist/0"
@@ -812,16 +857,17 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                     </div>
                      
                     <div
-                      class="duration svelte-8oy723"
+                      class="duration s-B4OUyNjosq8C"
                     >
                       0:07
                     </div>
                      
-                  </div>
+                  </button>
+                  <!--&lt;Track&gt;-->
                 </td>
                  
                 <td
-                  class="col-span-4 svelte-1glz3zx"
+                  class="col-span-4 s-nuuc_oy_vIQ1"
                 >
                   <a
                     class="underlined"
@@ -833,86 +879,88 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                 </td>
                  
                 <td
-                  class="svelte-1glz3zx"
+                  class="s-nuuc_oy_vIQ1"
                 >
                   <span
                     aria-expanded="false"
                     aria-haspopup="menu"
-                    class="wrapper svelte-1v2cnbz"
+                    class="wrapper s-vOP9EO5q76eY"
                   >
                     <button
-                      class="iconOnly noBorder svelte-xh4kfu"
+                      class="iconOnly noBorder s-zdMNlEQUhDx4"
+                      data-testid="track-dropdown"
                     >
                       <i
-                        class="material-icons svelte-xh4kfu"
-                      >
-                        more_vert
-                      </i>
+                        class="icons i-mdi-dots-vertical s-zdMNlEQUhDx4"
+                      />
                        
                        
                       
                        
                     </button>
+                    <!--&lt;Button&gt;-->
                   </span>
                    
                   
+                  <!--&lt;Dropdown&gt;-->
+                  <!--&lt;TrackDropdown&gt;-->
                 </td>
               </tr>
                
             </li>
             <li
-              class="svelte-v0o86q"
+              class="s-Wu4er3rFOHtk"
               draggable="true"
             >
               <tr
-                class="svelte-1glz3zx"
+                class="s-nuuc_oy_vIQ1"
                 slot="item"
               >
                 <td
-                  class="svelte-1glz3zx"
+                  class="s-nuuc_oy_vIQ1"
                 >
                   7
                 </td>
                  
                 <td
-                  class="col-span-6 playlist-track svelte-1glz3zx"
+                  class="col-span-6 playlist-track s-nuuc_oy_vIQ1"
                 >
-                  <div
-                    class="undefined root svelte-8oy723"
+                  <button
+                    class="undefined root s-B4OUyNjosq8C"
                   >
                     <a
-                      class="svelte-8oy723"
+                      class="s-B4OUyNjosq8C"
                       href="#/album/1"
                     >
-                      <img
-                        class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1l44pje"
-                        height="256"
-                        src=""
-                        width="256"
-                      />
-                       
-                      <span
-                        class="h-16 w-16 text-xs actionable svelte-1l44pje rounded-sm"
+                      <button
+                        class="__flex_tliuhg_tliuhg __justify-center_tliuhg_tliuhg __items-center_tliuhg_tliuhg __bg-[--hover-bg-color]_tliuhg_tliuhg __overflow-hidden_tliuhg_tliuhg __h-16_cxt0i8_cxt0i8 __w-16_cxt0i8_cxt0i8 __text-xs_cxt0i8_cxt0i8 actionable s-JU4hIbuSbdGN __rounded-sm_tliuhg_tliuhg"
                       >
+                        <img
+                          class="__border-none_tliuhg_tliuhg __font-size-0_tliuhg_tliuhg __object-cover_tliuhg_tliuhg __w-full_tliuhg_tliuhg __h-full_tliuhg_tliuhg __hidden_tliuhg_tliuhg s-JU4hIbuSbdGN"
+                          loading="lazy"
+                          src=""
+                        />
+                         
                         <i
-                          class="material-icons svelte-1l44pje"
-                        >
-                          music_note
-                        </i>
-                      </span>
-                      
+                          class="__inline-block_tliuhg_tliuhg __font-size-[200%]_tliuhg_tliuhg icons i-mdi-music-note s-JU4hIbuSbdGN"
+                          data-testid="i-mdi-music-note"
+                        />
+                      </button>
+                      <!--&lt;Image&gt;-->
                     </a>
                      
                     <div
-                      class="track svelte-8oy723"
+                      class="track s-B4OUyNjosq8C"
                     >
                       <span
-                        class="title svelte-8oy723"
+                        class="title s-B4OUyNjosq8C"
                       >
                         Want it All Back
                       </span>
                        
-                      <span>
+                      <span
+                        class="s-B4OUyNjosq8C"
+                      >
                         <a
                           class="text-sm underlined"
                           href="#/artist/0"
@@ -932,16 +980,17 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                     </div>
                      
                     <div
-                      class="duration svelte-8oy723"
+                      class="duration s-B4OUyNjosq8C"
                     >
                       3:51
                     </div>
                      
-                  </div>
+                  </button>
+                  <!--&lt;Track&gt;-->
                 </td>
                  
                 <td
-                  class="col-span-4 svelte-1glz3zx"
+                  class="col-span-4 s-nuuc_oy_vIQ1"
                 >
                   <a
                     class="underlined"
@@ -953,86 +1002,88 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                 </td>
                  
                 <td
-                  class="svelte-1glz3zx"
+                  class="s-nuuc_oy_vIQ1"
                 >
                   <span
                     aria-expanded="false"
                     aria-haspopup="menu"
-                    class="wrapper svelte-1v2cnbz"
+                    class="wrapper s-vOP9EO5q76eY"
                   >
                     <button
-                      class="iconOnly noBorder svelte-xh4kfu"
+                      class="iconOnly noBorder s-zdMNlEQUhDx4"
+                      data-testid="track-dropdown"
                     >
                       <i
-                        class="material-icons svelte-xh4kfu"
-                      >
-                        more_vert
-                      </i>
+                        class="icons i-mdi-dots-vertical s-zdMNlEQUhDx4"
+                      />
                        
                        
                       
                        
                     </button>
+                    <!--&lt;Button&gt;-->
                   </span>
                    
                   
+                  <!--&lt;Dropdown&gt;-->
+                  <!--&lt;TrackDropdown&gt;-->
                 </td>
               </tr>
                
             </li>
             <li
-              class="svelte-v0o86q"
+              class="s-Wu4er3rFOHtk"
               draggable="true"
             >
               <tr
-                class="svelte-1glz3zx"
+                class="s-nuuc_oy_vIQ1"
                 slot="item"
               >
                 <td
-                  class="svelte-1glz3zx"
+                  class="s-nuuc_oy_vIQ1"
                 >
                   8
                 </td>
                  
                 <td
-                  class="col-span-6 playlist-track svelte-1glz3zx"
+                  class="col-span-6 playlist-track s-nuuc_oy_vIQ1"
                 >
-                  <div
-                    class="undefined root svelte-8oy723"
+                  <button
+                    class="undefined root s-B4OUyNjosq8C"
                   >
                     <a
-                      class="svelte-8oy723"
+                      class="s-B4OUyNjosq8C"
                       href="#/album/1"
                     >
-                      <img
-                        class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1l44pje"
-                        height="256"
-                        src=""
-                        width="256"
-                      />
-                       
-                      <span
-                        class="h-16 w-16 text-xs actionable svelte-1l44pje rounded-sm"
+                      <button
+                        class="__flex_tliuhg_tliuhg __justify-center_tliuhg_tliuhg __items-center_tliuhg_tliuhg __bg-[--hover-bg-color]_tliuhg_tliuhg __overflow-hidden_tliuhg_tliuhg __h-16_cxt0i8_cxt0i8 __w-16_cxt0i8_cxt0i8 __text-xs_cxt0i8_cxt0i8 actionable s-JU4hIbuSbdGN __rounded-sm_tliuhg_tliuhg"
                       >
+                        <img
+                          class="__border-none_tliuhg_tliuhg __font-size-0_tliuhg_tliuhg __object-cover_tliuhg_tliuhg __w-full_tliuhg_tliuhg __h-full_tliuhg_tliuhg __hidden_tliuhg_tliuhg s-JU4hIbuSbdGN"
+                          loading="lazy"
+                          src=""
+                        />
+                         
                         <i
-                          class="material-icons svelte-1l44pje"
-                        >
-                          music_note
-                        </i>
-                      </span>
-                      
+                          class="__inline-block_tliuhg_tliuhg __font-size-[200%]_tliuhg_tliuhg icons i-mdi-music-note s-JU4hIbuSbdGN"
+                          data-testid="i-mdi-music-note"
+                        />
+                      </button>
+                      <!--&lt;Image&gt;-->
                     </a>
                      
                     <div
-                      class="track svelte-8oy723"
+                      class="track s-B4OUyNjosq8C"
                     >
                       <span
-                        class="title svelte-8oy723"
+                        class="title s-B4OUyNjosq8C"
                       >
                         Bindy
                       </span>
                        
-                      <span>
+                      <span
+                        class="s-B4OUyNjosq8C"
+                      >
                         <a
                           class="text-sm underlined"
                           href="#/artist/0"
@@ -1052,16 +1103,17 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                     </div>
                      
                     <div
-                      class="duration svelte-8oy723"
+                      class="duration s-B4OUyNjosq8C"
                     >
                       0:15
                     </div>
                      
-                  </div>
+                  </button>
+                  <!--&lt;Track&gt;-->
                 </td>
                  
                 <td
-                  class="col-span-4 svelte-1glz3zx"
+                  class="col-span-4 s-nuuc_oy_vIQ1"
                 >
                   <a
                     class="underlined"
@@ -1073,86 +1125,88 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                 </td>
                  
                 <td
-                  class="svelte-1glz3zx"
+                  class="s-nuuc_oy_vIQ1"
                 >
                   <span
                     aria-expanded="false"
                     aria-haspopup="menu"
-                    class="wrapper svelte-1v2cnbz"
+                    class="wrapper s-vOP9EO5q76eY"
                   >
                     <button
-                      class="iconOnly noBorder svelte-xh4kfu"
+                      class="iconOnly noBorder s-zdMNlEQUhDx4"
+                      data-testid="track-dropdown"
                     >
                       <i
-                        class="material-icons svelte-xh4kfu"
-                      >
-                        more_vert
-                      </i>
+                        class="icons i-mdi-dots-vertical s-zdMNlEQUhDx4"
+                      />
                        
                        
                       
                        
                     </button>
+                    <!--&lt;Button&gt;-->
                   </span>
                    
                   
+                  <!--&lt;Dropdown&gt;-->
+                  <!--&lt;TrackDropdown&gt;-->
                 </td>
               </tr>
                
             </li>
             <li
-              class="svelte-v0o86q"
+              class="s-Wu4er3rFOHtk"
               draggable="true"
             >
               <tr
-                class="svelte-1glz3zx"
+                class="s-nuuc_oy_vIQ1"
                 slot="item"
               >
                 <td
-                  class="svelte-1glz3zx"
+                  class="s-nuuc_oy_vIQ1"
                 >
                   9
                 </td>
                  
                 <td
-                  class="col-span-6 playlist-track svelte-1glz3zx"
+                  class="col-span-6 playlist-track s-nuuc_oy_vIQ1"
                 >
-                  <div
-                    class="undefined root svelte-8oy723"
+                  <button
+                    class="undefined root s-B4OUyNjosq8C"
                   >
                     <a
-                      class="svelte-8oy723"
+                      class="s-B4OUyNjosq8C"
                       href="#/album/1"
                     >
-                      <img
-                        class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1l44pje"
-                        height="256"
-                        src=""
-                        width="256"
-                      />
-                       
-                      <span
-                        class="h-16 w-16 text-xs actionable svelte-1l44pje rounded-sm"
+                      <button
+                        class="__flex_tliuhg_tliuhg __justify-center_tliuhg_tliuhg __items-center_tliuhg_tliuhg __bg-[--hover-bg-color]_tliuhg_tliuhg __overflow-hidden_tliuhg_tliuhg __h-16_cxt0i8_cxt0i8 __w-16_cxt0i8_cxt0i8 __text-xs_cxt0i8_cxt0i8 actionable s-JU4hIbuSbdGN __rounded-sm_tliuhg_tliuhg"
                       >
+                        <img
+                          class="__border-none_tliuhg_tliuhg __font-size-0_tliuhg_tliuhg __object-cover_tliuhg_tliuhg __w-full_tliuhg_tliuhg __h-full_tliuhg_tliuhg __hidden_tliuhg_tliuhg s-JU4hIbuSbdGN"
+                          loading="lazy"
+                          src=""
+                        />
+                         
                         <i
-                          class="material-icons svelte-1l44pje"
-                        >
-                          music_note
-                        </i>
-                      </span>
-                      
+                          class="__inline-block_tliuhg_tliuhg __font-size-[200%]_tliuhg_tliuhg icons i-mdi-music-note s-JU4hIbuSbdGN"
+                          data-testid="i-mdi-music-note"
+                        />
+                      </button>
+                      <!--&lt;Image&gt;-->
                     </a>
                      
                     <div
-                      class="track svelte-8oy723"
+                      class="track s-B4OUyNjosq8C"
                     >
                       <span
-                        class="title svelte-8oy723"
+                        class="title s-B4OUyNjosq8C"
                       >
                         You Make Me Coo
                       </span>
                        
-                      <span>
+                      <span
+                        class="s-B4OUyNjosq8C"
+                      >
                         <a
                           class="text-sm underlined"
                           href="#/artist/0"
@@ -1172,16 +1226,17 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                     </div>
                      
                     <div
-                      class="duration svelte-8oy723"
+                      class="duration s-B4OUyNjosq8C"
                     >
                       3:14
                     </div>
                      
-                  </div>
+                  </button>
+                  <!--&lt;Track&gt;-->
                 </td>
                  
                 <td
-                  class="col-span-4 svelte-1glz3zx"
+                  class="col-span-4 s-nuuc_oy_vIQ1"
                 >
                   <a
                     class="underlined"
@@ -1193,86 +1248,88 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                 </td>
                  
                 <td
-                  class="svelte-1glz3zx"
+                  class="s-nuuc_oy_vIQ1"
                 >
                   <span
                     aria-expanded="false"
                     aria-haspopup="menu"
-                    class="wrapper svelte-1v2cnbz"
+                    class="wrapper s-vOP9EO5q76eY"
                   >
                     <button
-                      class="iconOnly noBorder svelte-xh4kfu"
+                      class="iconOnly noBorder s-zdMNlEQUhDx4"
+                      data-testid="track-dropdown"
                     >
                       <i
-                        class="material-icons svelte-xh4kfu"
-                      >
-                        more_vert
-                      </i>
+                        class="icons i-mdi-dots-vertical s-zdMNlEQUhDx4"
+                      />
                        
                        
                       
                        
                     </button>
+                    <!--&lt;Button&gt;-->
                   </span>
                    
                   
+                  <!--&lt;Dropdown&gt;-->
+                  <!--&lt;TrackDropdown&gt;-->
                 </td>
               </tr>
                
             </li>
             <li
-              class="svelte-v0o86q"
+              class="s-Wu4er3rFOHtk"
               draggable="true"
             >
               <tr
-                class="svelte-1glz3zx"
+                class="s-nuuc_oy_vIQ1"
                 slot="item"
               >
                 <td
-                  class="svelte-1glz3zx"
+                  class="s-nuuc_oy_vIQ1"
                 >
                   10
                 </td>
                  
                 <td
-                  class="col-span-6 playlist-track svelte-1glz3zx"
+                  class="col-span-6 playlist-track s-nuuc_oy_vIQ1"
                 >
-                  <div
-                    class="undefined root svelte-8oy723"
+                  <button
+                    class="undefined root s-B4OUyNjosq8C"
                   >
                     <a
-                      class="svelte-8oy723"
+                      class="s-B4OUyNjosq8C"
                       href="#/album/1"
                     >
-                      <img
-                        class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1l44pje"
-                        height="256"
-                        src=""
-                        width="256"
-                      />
-                       
-                      <span
-                        class="h-16 w-16 text-xs actionable svelte-1l44pje rounded-sm"
+                      <button
+                        class="__flex_tliuhg_tliuhg __justify-center_tliuhg_tliuhg __items-center_tliuhg_tliuhg __bg-[--hover-bg-color]_tliuhg_tliuhg __overflow-hidden_tliuhg_tliuhg __h-16_cxt0i8_cxt0i8 __w-16_cxt0i8_cxt0i8 __text-xs_cxt0i8_cxt0i8 actionable s-JU4hIbuSbdGN __rounded-sm_tliuhg_tliuhg"
                       >
+                        <img
+                          class="__border-none_tliuhg_tliuhg __font-size-0_tliuhg_tliuhg __object-cover_tliuhg_tliuhg __w-full_tliuhg_tliuhg __h-full_tliuhg_tliuhg __hidden_tliuhg_tliuhg s-JU4hIbuSbdGN"
+                          loading="lazy"
+                          src=""
+                        />
+                         
                         <i
-                          class="material-icons svelte-1l44pje"
-                        >
-                          music_note
-                        </i>
-                      </span>
-                      
+                          class="__inline-block_tliuhg_tliuhg __font-size-[200%]_tliuhg_tliuhg icons i-mdi-music-note s-JU4hIbuSbdGN"
+                          data-testid="i-mdi-music-note"
+                        />
+                      </button>
+                      <!--&lt;Image&gt;-->
                     </a>
                      
                     <div
-                      class="track svelte-8oy723"
+                      class="track s-B4OUyNjosq8C"
                     >
                       <span
-                        class="title svelte-8oy723"
+                        class="title s-B4OUyNjosq8C"
                       >
                         Vitamin B
                       </span>
                        
-                      <span>
+                      <span
+                        class="s-B4OUyNjosq8C"
+                      >
                         <a
                           class="text-sm underlined"
                           href="#/artist/0"
@@ -1292,16 +1349,17 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                     </div>
                      
                     <div
-                      class="duration svelte-8oy723"
+                      class="duration s-B4OUyNjosq8C"
                     >
                       4:06
                     </div>
                      
-                  </div>
+                  </button>
+                  <!--&lt;Track&gt;-->
                 </td>
                  
                 <td
-                  class="col-span-4 svelte-1glz3zx"
+                  class="col-span-4 s-nuuc_oy_vIQ1"
                 >
                   <a
                     class="underlined"
@@ -1313,86 +1371,88 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                 </td>
                  
                 <td
-                  class="svelte-1glz3zx"
+                  class="s-nuuc_oy_vIQ1"
                 >
                   <span
                     aria-expanded="false"
                     aria-haspopup="menu"
-                    class="wrapper svelte-1v2cnbz"
+                    class="wrapper s-vOP9EO5q76eY"
                   >
                     <button
-                      class="iconOnly noBorder svelte-xh4kfu"
+                      class="iconOnly noBorder s-zdMNlEQUhDx4"
+                      data-testid="track-dropdown"
                     >
                       <i
-                        class="material-icons svelte-xh4kfu"
-                      >
-                        more_vert
-                      </i>
+                        class="icons i-mdi-dots-vertical s-zdMNlEQUhDx4"
+                      />
                        
                        
                       
                        
                     </button>
+                    <!--&lt;Button&gt;-->
                   </span>
                    
                   
+                  <!--&lt;Dropdown&gt;-->
+                  <!--&lt;TrackDropdown&gt;-->
                 </td>
               </tr>
                
             </li>
             <li
-              class="svelte-v0o86q"
+              class="s-Wu4er3rFOHtk"
               draggable="true"
             >
               <tr
-                class="svelte-1glz3zx"
+                class="s-nuuc_oy_vIQ1"
                 slot="item"
               >
                 <td
-                  class="svelte-1glz3zx"
+                  class="s-nuuc_oy_vIQ1"
                 >
                   11
                 </td>
                  
                 <td
-                  class="col-span-6 playlist-track svelte-1glz3zx"
+                  class="col-span-6 playlist-track s-nuuc_oy_vIQ1"
                 >
-                  <div
-                    class="undefined root svelte-8oy723"
+                  <button
+                    class="undefined root s-B4OUyNjosq8C"
                   >
                     <a
-                      class="svelte-8oy723"
+                      class="s-B4OUyNjosq8C"
                       href="#/album/1"
                     >
-                      <img
-                        class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1l44pje"
-                        height="256"
-                        src=""
-                        width="256"
-                      />
-                       
-                      <span
-                        class="h-16 w-16 text-xs actionable svelte-1l44pje rounded-sm"
+                      <button
+                        class="__flex_tliuhg_tliuhg __justify-center_tliuhg_tliuhg __items-center_tliuhg_tliuhg __bg-[--hover-bg-color]_tliuhg_tliuhg __overflow-hidden_tliuhg_tliuhg __h-16_cxt0i8_cxt0i8 __w-16_cxt0i8_cxt0i8 __text-xs_cxt0i8_cxt0i8 actionable s-JU4hIbuSbdGN __rounded-sm_tliuhg_tliuhg"
                       >
+                        <img
+                          class="__border-none_tliuhg_tliuhg __font-size-0_tliuhg_tliuhg __object-cover_tliuhg_tliuhg __w-full_tliuhg_tliuhg __h-full_tliuhg_tliuhg __hidden_tliuhg_tliuhg s-JU4hIbuSbdGN"
+                          loading="lazy"
+                          src=""
+                        />
+                         
                         <i
-                          class="material-icons svelte-1l44pje"
-                        >
-                          music_note
-                        </i>
-                      </span>
-                      
+                          class="__inline-block_tliuhg_tliuhg __font-size-[200%]_tliuhg_tliuhg icons i-mdi-music-note s-JU4hIbuSbdGN"
+                          data-testid="i-mdi-music-note"
+                        />
+                      </button>
+                      <!--&lt;Image&gt;-->
                     </a>
                      
                     <div
-                      class="track svelte-8oy723"
+                      class="track s-B4OUyNjosq8C"
                     >
                       <span
-                        class="title svelte-8oy723"
+                        class="title s-B4OUyNjosq8C"
                       >
                         Green Bird
                       </span>
                        
-                      <span>
+                      <span
+                        class="s-B4OUyNjosq8C"
+                      >
                         <a
                           class="text-sm underlined"
                           href="#/artist/0"
@@ -1412,16 +1472,17 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                     </div>
                      
                     <div
-                      class="duration svelte-8oy723"
+                      class="duration s-B4OUyNjosq8C"
                     >
                       2:33
                     </div>
                      
-                  </div>
+                  </button>
+                  <!--&lt;Track&gt;-->
                 </td>
                  
                 <td
-                  class="col-span-4 svelte-1glz3zx"
+                  class="col-span-4 s-nuuc_oy_vIQ1"
                 >
                   <a
                     class="underlined"
@@ -1433,86 +1494,88 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                 </td>
                  
                 <td
-                  class="svelte-1glz3zx"
+                  class="s-nuuc_oy_vIQ1"
                 >
                   <span
                     aria-expanded="false"
                     aria-haspopup="menu"
-                    class="wrapper svelte-1v2cnbz"
+                    class="wrapper s-vOP9EO5q76eY"
                   >
                     <button
-                      class="iconOnly noBorder svelte-xh4kfu"
+                      class="iconOnly noBorder s-zdMNlEQUhDx4"
+                      data-testid="track-dropdown"
                     >
                       <i
-                        class="material-icons svelte-xh4kfu"
-                      >
-                        more_vert
-                      </i>
+                        class="icons i-mdi-dots-vertical s-zdMNlEQUhDx4"
+                      />
                        
                        
                       
                        
                     </button>
+                    <!--&lt;Button&gt;-->
                   </span>
                    
                   
+                  <!--&lt;Dropdown&gt;-->
+                  <!--&lt;TrackDropdown&gt;-->
                 </td>
               </tr>
                
             </li>
             <li
-              class="svelte-v0o86q"
+              class="s-Wu4er3rFOHtk"
               draggable="true"
             >
               <tr
-                class="svelte-1glz3zx"
+                class="s-nuuc_oy_vIQ1"
                 slot="item"
               >
                 <td
-                  class="svelte-1glz3zx"
+                  class="s-nuuc_oy_vIQ1"
                 >
                   12
                 </td>
                  
                 <td
-                  class="col-span-6 playlist-track svelte-1glz3zx"
+                  class="col-span-6 playlist-track s-nuuc_oy_vIQ1"
                 >
-                  <div
-                    class="undefined root svelte-8oy723"
+                  <button
+                    class="undefined root s-B4OUyNjosq8C"
                   >
                     <a
-                      class="svelte-8oy723"
+                      class="s-B4OUyNjosq8C"
                       href="#/album/1"
                     >
-                      <img
-                        class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1l44pje"
-                        height="256"
-                        src=""
-                        width="256"
-                      />
-                       
-                      <span
-                        class="h-16 w-16 text-xs actionable svelte-1l44pje rounded-sm"
+                      <button
+                        class="__flex_tliuhg_tliuhg __justify-center_tliuhg_tliuhg __items-center_tliuhg_tliuhg __bg-[--hover-bg-color]_tliuhg_tliuhg __overflow-hidden_tliuhg_tliuhg __h-16_cxt0i8_cxt0i8 __w-16_cxt0i8_cxt0i8 __text-xs_cxt0i8_cxt0i8 actionable s-JU4hIbuSbdGN __rounded-sm_tliuhg_tliuhg"
                       >
+                        <img
+                          class="__border-none_tliuhg_tliuhg __font-size-0_tliuhg_tliuhg __object-cover_tliuhg_tliuhg __w-full_tliuhg_tliuhg __h-full_tliuhg_tliuhg __hidden_tliuhg_tliuhg s-JU4hIbuSbdGN"
+                          loading="lazy"
+                          src=""
+                        />
+                         
                         <i
-                          class="material-icons svelte-1l44pje"
-                        >
-                          music_note
-                        </i>
-                      </span>
-                      
+                          class="__inline-block_tliuhg_tliuhg __font-size-[200%]_tliuhg_tliuhg icons i-mdi-music-note s-JU4hIbuSbdGN"
+                          data-testid="i-mdi-music-note"
+                        />
+                      </button>
+                      <!--&lt;Image&gt;-->
                     </a>
                      
                     <div
-                      class="track svelte-8oy723"
+                      class="track s-B4OUyNjosq8C"
                     >
                       <span
-                        class="title svelte-8oy723"
+                        class="title s-B4OUyNjosq8C"
                       >
                         ELM
                       </span>
                        
-                      <span>
+                      <span
+                        class="s-B4OUyNjosq8C"
+                      >
                         <a
                           class="text-sm underlined"
                           href="#/artist/0"
@@ -1532,16 +1595,17 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                     </div>
                      
                     <div
-                      class="duration svelte-8oy723"
+                      class="duration s-B4OUyNjosq8C"
                     >
                       6:55
                     </div>
                      
-                  </div>
+                  </button>
+                  <!--&lt;Track&gt;-->
                 </td>
                  
                 <td
-                  class="col-span-4 svelte-1glz3zx"
+                  class="col-span-4 s-nuuc_oy_vIQ1"
                 >
                   <a
                     class="underlined"
@@ -1553,86 +1617,88 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                 </td>
                  
                 <td
-                  class="svelte-1glz3zx"
+                  class="s-nuuc_oy_vIQ1"
                 >
                   <span
                     aria-expanded="false"
                     aria-haspopup="menu"
-                    class="wrapper svelte-1v2cnbz"
+                    class="wrapper s-vOP9EO5q76eY"
                   >
                     <button
-                      class="iconOnly noBorder svelte-xh4kfu"
+                      class="iconOnly noBorder s-zdMNlEQUhDx4"
+                      data-testid="track-dropdown"
                     >
                       <i
-                        class="material-icons svelte-xh4kfu"
-                      >
-                        more_vert
-                      </i>
+                        class="icons i-mdi-dots-vertical s-zdMNlEQUhDx4"
+                      />
                        
                        
                       
                        
                     </button>
+                    <!--&lt;Button&gt;-->
                   </span>
                    
                   
+                  <!--&lt;Dropdown&gt;-->
+                  <!--&lt;TrackDropdown&gt;-->
                 </td>
               </tr>
                
             </li>
             <li
-              class="svelte-v0o86q"
+              class="s-Wu4er3rFOHtk"
               draggable="true"
             >
               <tr
-                class="svelte-1glz3zx"
+                class="s-nuuc_oy_vIQ1"
                 slot="item"
               >
                 <td
-                  class="svelte-1glz3zx"
+                  class="s-nuuc_oy_vIQ1"
                 >
                   13
                 </td>
                  
                 <td
-                  class="col-span-6 playlist-track svelte-1glz3zx"
+                  class="col-span-6 playlist-track s-nuuc_oy_vIQ1"
                 >
-                  <div
-                    class="undefined root svelte-8oy723"
+                  <button
+                    class="undefined root s-B4OUyNjosq8C"
                   >
                     <a
-                      class="svelte-8oy723"
+                      class="s-B4OUyNjosq8C"
                       href="#/album/1"
                     >
-                      <img
-                        class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1l44pje"
-                        height="256"
-                        src=""
-                        width="256"
-                      />
-                       
-                      <span
-                        class="h-16 w-16 text-xs actionable svelte-1l44pje rounded-sm"
+                      <button
+                        class="__flex_tliuhg_tliuhg __justify-center_tliuhg_tliuhg __items-center_tliuhg_tliuhg __bg-[--hover-bg-color]_tliuhg_tliuhg __overflow-hidden_tliuhg_tliuhg __h-16_cxt0i8_cxt0i8 __w-16_cxt0i8_cxt0i8 __text-xs_cxt0i8_cxt0i8 actionable s-JU4hIbuSbdGN __rounded-sm_tliuhg_tliuhg"
                       >
+                        <img
+                          class="__border-none_tliuhg_tliuhg __font-size-0_tliuhg_tliuhg __object-cover_tliuhg_tliuhg __w-full_tliuhg_tliuhg __h-full_tliuhg_tliuhg __hidden_tliuhg_tliuhg s-JU4hIbuSbdGN"
+                          loading="lazy"
+                          src=""
+                        />
+                         
                         <i
-                          class="material-icons svelte-1l44pje"
-                        >
-                          music_note
-                        </i>
-                      </span>
-                      
+                          class="__inline-block_tliuhg_tliuhg __font-size-[200%]_tliuhg_tliuhg icons i-mdi-music-note s-JU4hIbuSbdGN"
+                          data-testid="i-mdi-music-note"
+                        />
+                      </button>
+                      <!--&lt;Image&gt;-->
                     </a>
                      
                     <div
-                      class="track svelte-8oy723"
+                      class="track s-B4OUyNjosq8C"
                     >
                       <span
-                        class="title svelte-8oy723"
+                        class="title s-B4OUyNjosq8C"
                       >
                         Vitamin C
                       </span>
                        
-                      <span>
+                      <span
+                        class="s-B4OUyNjosq8C"
+                      >
                         <a
                           class="text-sm underlined"
                           href="#/artist/0"
@@ -1652,16 +1718,17 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                     </div>
                      
                     <div
-                      class="duration svelte-8oy723"
+                      class="duration s-B4OUyNjosq8C"
                     >
                       5:24
                     </div>
                      
-                  </div>
+                  </button>
+                  <!--&lt;Track&gt;-->
                 </td>
                  
                 <td
-                  class="col-span-4 svelte-1glz3zx"
+                  class="col-span-4 s-nuuc_oy_vIQ1"
                 >
                   <a
                     class="underlined"
@@ -1673,86 +1740,88 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                 </td>
                  
                 <td
-                  class="svelte-1glz3zx"
+                  class="s-nuuc_oy_vIQ1"
                 >
                   <span
                     aria-expanded="false"
                     aria-haspopup="menu"
-                    class="wrapper svelte-1v2cnbz"
+                    class="wrapper s-vOP9EO5q76eY"
                   >
                     <button
-                      class="iconOnly noBorder svelte-xh4kfu"
+                      class="iconOnly noBorder s-zdMNlEQUhDx4"
+                      data-testid="track-dropdown"
                     >
                       <i
-                        class="material-icons svelte-xh4kfu"
-                      >
-                        more_vert
-                      </i>
+                        class="icons i-mdi-dots-vertical s-zdMNlEQUhDx4"
+                      />
                        
                        
                       
                        
                     </button>
+                    <!--&lt;Button&gt;-->
                   </span>
                    
                   
+                  <!--&lt;Dropdown&gt;-->
+                  <!--&lt;TrackDropdown&gt;-->
                 </td>
               </tr>
                
             </li>
             <li
-              class="svelte-v0o86q"
+              class="s-Wu4er3rFOHtk"
               draggable="true"
             >
               <tr
-                class="svelte-1glz3zx"
+                class="s-nuuc_oy_vIQ1"
                 slot="item"
               >
                 <td
-                  class="svelte-1glz3zx"
+                  class="s-nuuc_oy_vIQ1"
                 >
                   14
                 </td>
                  
                 <td
-                  class="col-span-6 playlist-track svelte-1glz3zx"
+                  class="col-span-6 playlist-track s-nuuc_oy_vIQ1"
                 >
-                  <div
-                    class="undefined root svelte-8oy723"
+                  <button
+                    class="undefined root s-B4OUyNjosq8C"
                   >
                     <a
-                      class="svelte-8oy723"
+                      class="s-B4OUyNjosq8C"
                       href="#/album/1"
                     >
-                      <img
-                        class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1l44pje"
-                        height="256"
-                        src=""
-                        width="256"
-                      />
-                       
-                      <span
-                        class="h-16 w-16 text-xs actionable svelte-1l44pje rounded-sm"
+                      <button
+                        class="__flex_tliuhg_tliuhg __justify-center_tliuhg_tliuhg __items-center_tliuhg_tliuhg __bg-[--hover-bg-color]_tliuhg_tliuhg __overflow-hidden_tliuhg_tliuhg __h-16_cxt0i8_cxt0i8 __w-16_cxt0i8_cxt0i8 __text-xs_cxt0i8_cxt0i8 actionable s-JU4hIbuSbdGN __rounded-sm_tliuhg_tliuhg"
                       >
+                        <img
+                          class="__border-none_tliuhg_tliuhg __font-size-0_tliuhg_tliuhg __object-cover_tliuhg_tliuhg __w-full_tliuhg_tliuhg __h-full_tliuhg_tliuhg __hidden_tliuhg_tliuhg s-JU4hIbuSbdGN"
+                          loading="lazy"
+                          src=""
+                        />
+                         
                         <i
-                          class="material-icons svelte-1l44pje"
-                        >
-                          music_note
-                        </i>
-                      </span>
-                      
+                          class="__inline-block_tliuhg_tliuhg __font-size-[200%]_tliuhg_tliuhg icons i-mdi-music-note s-JU4hIbuSbdGN"
+                          data-testid="i-mdi-music-note"
+                        />
+                      </button>
+                      <!--&lt;Image&gt;-->
                     </a>
                      
                     <div
-                      class="track svelte-8oy723"
+                      class="track s-B4OUyNjosq8C"
                     >
                       <span
-                        class="title svelte-8oy723"
+                        class="title s-B4OUyNjosq8C"
                       >
                         Gateway
                       </span>
                        
-                      <span>
+                      <span
+                        class="s-B4OUyNjosq8C"
+                      >
                         <a
                           class="text-sm underlined"
                           href="#/artist/0"
@@ -1772,16 +1841,17 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                     </div>
                      
                     <div
-                      class="duration svelte-8oy723"
+                      class="duration s-B4OUyNjosq8C"
                     >
                       0:16
                     </div>
                      
-                  </div>
+                  </button>
+                  <!--&lt;Track&gt;-->
                 </td>
                  
                 <td
-                  class="col-span-4 svelte-1glz3zx"
+                  class="col-span-4 s-nuuc_oy_vIQ1"
                 >
                   <a
                     class="underlined"
@@ -1793,86 +1863,88 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                 </td>
                  
                 <td
-                  class="svelte-1glz3zx"
+                  class="s-nuuc_oy_vIQ1"
                 >
                   <span
                     aria-expanded="false"
                     aria-haspopup="menu"
-                    class="wrapper svelte-1v2cnbz"
+                    class="wrapper s-vOP9EO5q76eY"
                   >
                     <button
-                      class="iconOnly noBorder svelte-xh4kfu"
+                      class="iconOnly noBorder s-zdMNlEQUhDx4"
+                      data-testid="track-dropdown"
                     >
                       <i
-                        class="material-icons svelte-xh4kfu"
-                      >
-                        more_vert
-                      </i>
+                        class="icons i-mdi-dots-vertical s-zdMNlEQUhDx4"
+                      />
                        
                        
                       
                        
                     </button>
+                    <!--&lt;Button&gt;-->
                   </span>
                    
                   
+                  <!--&lt;Dropdown&gt;-->
+                  <!--&lt;TrackDropdown&gt;-->
                 </td>
               </tr>
                
             </li>
             <li
-              class="svelte-v0o86q"
+              class="s-Wu4er3rFOHtk"
               draggable="true"
             >
               <tr
-                class="svelte-1glz3zx"
+                class="s-nuuc_oy_vIQ1"
                 slot="item"
               >
                 <td
-                  class="svelte-1glz3zx"
+                  class="s-nuuc_oy_vIQ1"
                 >
                   15
                 </td>
                  
                 <td
-                  class="col-span-6 playlist-track svelte-1glz3zx"
+                  class="col-span-6 playlist-track s-nuuc_oy_vIQ1"
                 >
-                  <div
-                    class="undefined root svelte-8oy723"
+                  <button
+                    class="undefined root s-B4OUyNjosq8C"
                   >
                     <a
-                      class="svelte-8oy723"
+                      class="s-B4OUyNjosq8C"
                       href="#/album/1"
                     >
-                      <img
-                        class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1l44pje"
-                        height="256"
-                        src=""
-                        width="256"
-                      />
-                       
-                      <span
-                        class="h-16 w-16 text-xs actionable svelte-1l44pje rounded-sm"
+                      <button
+                        class="__flex_tliuhg_tliuhg __justify-center_tliuhg_tliuhg __items-center_tliuhg_tliuhg __bg-[--hover-bg-color]_tliuhg_tliuhg __overflow-hidden_tliuhg_tliuhg __h-16_cxt0i8_cxt0i8 __w-16_cxt0i8_cxt0i8 __text-xs_cxt0i8_cxt0i8 actionable s-JU4hIbuSbdGN __rounded-sm_tliuhg_tliuhg"
                       >
+                        <img
+                          class="__border-none_tliuhg_tliuhg __font-size-0_tliuhg_tliuhg __object-cover_tliuhg_tliuhg __w-full_tliuhg_tliuhg __h-full_tliuhg_tliuhg __hidden_tliuhg_tliuhg s-JU4hIbuSbdGN"
+                          loading="lazy"
+                          src=""
+                        />
+                         
                         <i
-                          class="material-icons svelte-1l44pje"
-                        >
-                          music_note
-                        </i>
-                      </span>
-                      
+                          class="__inline-block_tliuhg_tliuhg __font-size-[200%]_tliuhg_tliuhg icons i-mdi-music-note s-JU4hIbuSbdGN"
+                          data-testid="i-mdi-music-note"
+                        />
+                      </button>
+                      <!--&lt;Image&gt;-->
                     </a>
                      
                     <div
-                      class="track svelte-8oy723"
+                      class="track s-B4OUyNjosq8C"
                     >
                       <span
-                        class="title svelte-8oy723"
+                        class="title s-B4OUyNjosq8C"
                       >
                         The Singing Sea
                       </span>
                        
-                      <span>
+                      <span
+                        class="s-B4OUyNjosq8C"
+                      >
                         <a
                           class="text-sm underlined"
                           href="#/artist/0"
@@ -1892,16 +1964,17 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                     </div>
                      
                     <div
-                      class="duration svelte-8oy723"
+                      class="duration s-B4OUyNjosq8C"
                     >
                       6:41
                     </div>
                      
-                  </div>
+                  </button>
+                  <!--&lt;Track&gt;-->
                 </td>
                  
                 <td
-                  class="col-span-4 svelte-1glz3zx"
+                  class="col-span-4 s-nuuc_oy_vIQ1"
                 >
                   <a
                     class="underlined"
@@ -1913,86 +1986,88 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                 </td>
                  
                 <td
-                  class="svelte-1glz3zx"
+                  class="s-nuuc_oy_vIQ1"
                 >
                   <span
                     aria-expanded="false"
                     aria-haspopup="menu"
-                    class="wrapper svelte-1v2cnbz"
+                    class="wrapper s-vOP9EO5q76eY"
                   >
                     <button
-                      class="iconOnly noBorder svelte-xh4kfu"
+                      class="iconOnly noBorder s-zdMNlEQUhDx4"
+                      data-testid="track-dropdown"
                     >
                       <i
-                        class="material-icons svelte-xh4kfu"
-                      >
-                        more_vert
-                      </i>
+                        class="icons i-mdi-dots-vertical s-zdMNlEQUhDx4"
+                      />
                        
                        
                       
                        
                     </button>
+                    <!--&lt;Button&gt;-->
                   </span>
                    
                   
+                  <!--&lt;Dropdown&gt;-->
+                  <!--&lt;TrackDropdown&gt;-->
                 </td>
               </tr>
                
             </li>
             <li
-              class="svelte-v0o86q"
+              class="s-Wu4er3rFOHtk"
               draggable="true"
             >
               <tr
-                class="svelte-1glz3zx"
+                class="s-nuuc_oy_vIQ1"
                 slot="item"
               >
                 <td
-                  class="svelte-1glz3zx"
+                  class="s-nuuc_oy_vIQ1"
                 >
                   16
                 </td>
                  
                 <td
-                  class="col-span-6 playlist-track svelte-1glz3zx"
+                  class="col-span-6 playlist-track s-nuuc_oy_vIQ1"
                 >
-                  <div
-                    class="undefined root svelte-8oy723"
+                  <button
+                    class="undefined root s-B4OUyNjosq8C"
                   >
                     <a
-                      class="svelte-8oy723"
+                      class="s-B4OUyNjosq8C"
                       href="#/album/1"
                     >
-                      <img
-                        class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1l44pje"
-                        height="256"
-                        src=""
-                        width="256"
-                      />
-                       
-                      <span
-                        class="h-16 w-16 text-xs actionable svelte-1l44pje rounded-sm"
+                      <button
+                        class="__flex_tliuhg_tliuhg __justify-center_tliuhg_tliuhg __items-center_tliuhg_tliuhg __bg-[--hover-bg-color]_tliuhg_tliuhg __overflow-hidden_tliuhg_tliuhg __h-16_cxt0i8_cxt0i8 __w-16_cxt0i8_cxt0i8 __text-xs_cxt0i8_cxt0i8 actionable s-JU4hIbuSbdGN __rounded-sm_tliuhg_tliuhg"
                       >
+                        <img
+                          class="__border-none_tliuhg_tliuhg __font-size-0_tliuhg_tliuhg __object-cover_tliuhg_tliuhg __w-full_tliuhg_tliuhg __h-full_tliuhg_tliuhg __hidden_tliuhg_tliuhg s-JU4hIbuSbdGN"
+                          loading="lazy"
+                          src=""
+                        />
+                         
                         <i
-                          class="material-icons svelte-1l44pje"
-                        >
-                          music_note
-                        </i>
-                      </span>
-                      
+                          class="__inline-block_tliuhg_tliuhg __font-size-[200%]_tliuhg_tliuhg icons i-mdi-music-note s-JU4hIbuSbdGN"
+                          data-testid="i-mdi-music-note"
+                        />
+                      </button>
+                      <!--&lt;Image&gt;-->
                     </a>
                      
                     <div
-                      class="track svelte-8oy723"
+                      class="track s-B4OUyNjosq8C"
                     >
                       <span
-                        class="title svelte-8oy723"
+                        class="title s-B4OUyNjosq8C"
                       >
                         The Egg and You!
                       </span>
                        
-                      <span>
+                      <span
+                        class="s-B4OUyNjosq8C"
+                      >
                         <a
                           class="text-sm underlined"
                           href="#/artist/0"
@@ -2012,16 +2087,17 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                     </div>
                      
                     <div
-                      class="duration svelte-8oy723"
+                      class="duration s-B4OUyNjosq8C"
                     >
                       4:47
                     </div>
                      
-                  </div>
+                  </button>
+                  <!--&lt;Track&gt;-->
                 </td>
                  
                 <td
-                  class="col-span-4 svelte-1glz3zx"
+                  class="col-span-4 s-nuuc_oy_vIQ1"
                 >
                   <a
                     class="underlined"
@@ -2033,86 +2109,88 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                 </td>
                  
                 <td
-                  class="svelte-1glz3zx"
+                  class="s-nuuc_oy_vIQ1"
                 >
                   <span
                     aria-expanded="false"
                     aria-haspopup="menu"
-                    class="wrapper svelte-1v2cnbz"
+                    class="wrapper s-vOP9EO5q76eY"
                   >
                     <button
-                      class="iconOnly noBorder svelte-xh4kfu"
+                      class="iconOnly noBorder s-zdMNlEQUhDx4"
+                      data-testid="track-dropdown"
                     >
                       <i
-                        class="material-icons svelte-xh4kfu"
-                      >
-                        more_vert
-                      </i>
+                        class="icons i-mdi-dots-vertical s-zdMNlEQUhDx4"
+                      />
                        
                        
                       
                        
                     </button>
+                    <!--&lt;Button&gt;-->
                   </span>
                    
                   
+                  <!--&lt;Dropdown&gt;-->
+                  <!--&lt;TrackDropdown&gt;-->
                 </td>
               </tr>
                
             </li>
             <li
-              class="svelte-v0o86q"
+              class="s-Wu4er3rFOHtk"
               draggable="true"
             >
               <tr
-                class="svelte-1glz3zx"
+                class="s-nuuc_oy_vIQ1"
                 slot="item"
               >
                 <td
-                  class="svelte-1glz3zx"
+                  class="s-nuuc_oy_vIQ1"
                 >
                   17
                 </td>
                  
                 <td
-                  class="col-span-6 playlist-track svelte-1glz3zx"
+                  class="col-span-6 playlist-track s-nuuc_oy_vIQ1"
                 >
-                  <div
-                    class="undefined root svelte-8oy723"
+                  <button
+                    class="undefined root s-B4OUyNjosq8C"
                   >
                     <a
-                      class="svelte-8oy723"
+                      class="s-B4OUyNjosq8C"
                       href="#/album/1"
                     >
-                      <img
-                        class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1l44pje"
-                        height="256"
-                        src=""
-                        width="256"
-                      />
-                       
-                      <span
-                        class="h-16 w-16 text-xs actionable svelte-1l44pje rounded-sm"
+                      <button
+                        class="__flex_tliuhg_tliuhg __justify-center_tliuhg_tliuhg __items-center_tliuhg_tliuhg __bg-[--hover-bg-color]_tliuhg_tliuhg __overflow-hidden_tliuhg_tliuhg __h-16_cxt0i8_cxt0i8 __w-16_cxt0i8_cxt0i8 __text-xs_cxt0i8_cxt0i8 actionable s-JU4hIbuSbdGN __rounded-sm_tliuhg_tliuhg"
                       >
+                        <img
+                          class="__border-none_tliuhg_tliuhg __font-size-0_tliuhg_tliuhg __object-cover_tliuhg_tliuhg __w-full_tliuhg_tliuhg __h-full_tliuhg_tliuhg __hidden_tliuhg_tliuhg s-JU4hIbuSbdGN"
+                          loading="lazy"
+                          src=""
+                        />
+                         
                         <i
-                          class="material-icons svelte-1l44pje"
-                        >
-                          music_note
-                        </i>
-                      </span>
-                      
+                          class="__inline-block_tliuhg_tliuhg __font-size-[200%]_tliuhg_tliuhg icons i-mdi-music-note s-JU4hIbuSbdGN"
+                          data-testid="i-mdi-music-note"
+                        />
+                      </button>
+                      <!--&lt;Image&gt;-->
                     </a>
                      
                     <div
-                      class="track svelte-8oy723"
+                      class="track s-B4OUyNjosq8C"
                     >
                       <span
-                        class="title svelte-8oy723"
+                        class="title s-B4OUyNjosq8C"
                       >
                         Forever Broke
                       </span>
                        
-                      <span>
+                      <span
+                        class="s-B4OUyNjosq8C"
+                      >
                         <a
                           class="text-sm underlined"
                           href="#/artist/0"
@@ -2132,16 +2210,17 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                     </div>
                      
                     <div
-                      class="duration svelte-8oy723"
+                      class="duration s-B4OUyNjosq8C"
                     >
                       1:36
                     </div>
                      
-                  </div>
+                  </button>
+                  <!--&lt;Track&gt;-->
                 </td>
                  
                 <td
-                  class="col-span-4 svelte-1glz3zx"
+                  class="col-span-4 s-nuuc_oy_vIQ1"
                 >
                   <a
                     class="underlined"
@@ -2153,86 +2232,88 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                 </td>
                  
                 <td
-                  class="svelte-1glz3zx"
+                  class="s-nuuc_oy_vIQ1"
                 >
                   <span
                     aria-expanded="false"
                     aria-haspopup="menu"
-                    class="wrapper svelte-1v2cnbz"
+                    class="wrapper s-vOP9EO5q76eY"
                   >
                     <button
-                      class="iconOnly noBorder svelte-xh4kfu"
+                      class="iconOnly noBorder s-zdMNlEQUhDx4"
+                      data-testid="track-dropdown"
                     >
                       <i
-                        class="material-icons svelte-xh4kfu"
-                      >
-                        more_vert
-                      </i>
+                        class="icons i-mdi-dots-vertical s-zdMNlEQUhDx4"
+                      />
                        
                        
                       
                        
                     </button>
+                    <!--&lt;Button&gt;-->
                   </span>
                    
                   
+                  <!--&lt;Dropdown&gt;-->
+                  <!--&lt;TrackDropdown&gt;-->
                 </td>
               </tr>
                
             </li>
             <li
-              class="svelte-v0o86q"
+              class="s-Wu4er3rFOHtk"
               draggable="true"
             >
               <tr
-                class="svelte-1glz3zx"
+                class="s-nuuc_oy_vIQ1"
                 slot="item"
               >
                 <td
-                  class="svelte-1glz3zx"
+                  class="s-nuuc_oy_vIQ1"
                 >
                   18
                 </td>
                  
                 <td
-                  class="col-span-6 playlist-track svelte-1glz3zx"
+                  class="col-span-6 playlist-track s-nuuc_oy_vIQ1"
                 >
-                  <div
-                    class="undefined root svelte-8oy723"
+                  <button
+                    class="undefined root s-B4OUyNjosq8C"
                   >
                     <a
-                      class="svelte-8oy723"
+                      class="s-B4OUyNjosq8C"
                       href="#/album/1"
                     >
-                      <img
-                        class="h-16 w-16 text-xs actionable rounded-sm hidden svelte-1l44pje"
-                        height="256"
-                        src=""
-                        width="256"
-                      />
-                       
-                      <span
-                        class="h-16 w-16 text-xs actionable svelte-1l44pje rounded-sm"
+                      <button
+                        class="__flex_tliuhg_tliuhg __justify-center_tliuhg_tliuhg __items-center_tliuhg_tliuhg __bg-[--hover-bg-color]_tliuhg_tliuhg __overflow-hidden_tliuhg_tliuhg __h-16_cxt0i8_cxt0i8 __w-16_cxt0i8_cxt0i8 __text-xs_cxt0i8_cxt0i8 actionable s-JU4hIbuSbdGN __rounded-sm_tliuhg_tliuhg"
                       >
+                        <img
+                          class="__border-none_tliuhg_tliuhg __font-size-0_tliuhg_tliuhg __object-cover_tliuhg_tliuhg __w-full_tliuhg_tliuhg __h-full_tliuhg_tliuhg __hidden_tliuhg_tliuhg s-JU4hIbuSbdGN"
+                          loading="lazy"
+                          src=""
+                        />
+                         
                         <i
-                          class="material-icons svelte-1l44pje"
-                        >
-                          music_note
-                        </i>
-                      </span>
-                      
+                          class="__inline-block_tliuhg_tliuhg __font-size-[200%]_tliuhg_tliuhg icons i-mdi-music-note s-JU4hIbuSbdGN"
+                          data-testid="i-mdi-music-note"
+                        />
+                      </button>
+                      <!--&lt;Image&gt;-->
                     </a>
                      
                     <div
-                      class="track svelte-8oy723"
+                      class="track s-B4OUyNjosq8C"
                     >
                       <span
-                        class="title svelte-8oy723"
+                        class="title s-B4OUyNjosq8C"
                       >
                         Power of Kungfu Remix
                       </span>
                        
-                      <span>
+                      <span
+                        class="s-B4OUyNjosq8C"
+                      >
                         <a
                           class="text-sm underlined"
                           href="#/artist/0"
@@ -2252,16 +2333,17 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                     </div>
                      
                     <div
-                      class="duration svelte-8oy723"
+                      class="duration s-B4OUyNjosq8C"
                     >
                       2:22
                     </div>
                      
-                  </div>
+                  </button>
+                  <!--&lt;Track&gt;-->
                 </td>
                  
                 <td
-                  class="col-span-4 svelte-1glz3zx"
+                  class="col-span-4 s-nuuc_oy_vIQ1"
                 >
                   <a
                     class="underlined"
@@ -2273,38 +2355,43 @@ exports[`Toolshot routes/playlist/[id].tools.svelte: Views/Playlist Details 1`] 
                 </td>
                  
                 <td
-                  class="svelte-1glz3zx"
+                  class="s-nuuc_oy_vIQ1"
                 >
                   <span
                     aria-expanded="false"
                     aria-haspopup="menu"
-                    class="wrapper svelte-1v2cnbz"
+                    class="wrapper s-vOP9EO5q76eY"
                   >
                     <button
-                      class="iconOnly noBorder svelte-xh4kfu"
+                      class="iconOnly noBorder s-zdMNlEQUhDx4"
+                      data-testid="track-dropdown"
                     >
                       <i
-                        class="material-icons svelte-xh4kfu"
-                      >
-                        more_vert
-                      </i>
+                        class="icons i-mdi-dots-vertical s-zdMNlEQUhDx4"
+                      />
                        
                        
                       
                        
                     </button>
+                    <!--&lt;Button&gt;-->
                   </span>
                    
                   
+                  <!--&lt;Dropdown&gt;-->
+                  <!--&lt;TrackDropdown&gt;-->
                 </td>
               </tr>
                
             </li>
           </ol>
+          <!--&lt;SortableList&gt;-->
         </tbody>
       </table>
       
+      <!--&lt;PlaylistTracksTable&gt;-->
     </div>
   </div>
+  <!--&lt;[id]&gt;-->
 </div>
 `;

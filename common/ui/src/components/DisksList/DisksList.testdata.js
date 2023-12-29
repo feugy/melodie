@@ -1,5 +1,3 @@
-'use strict'
-
 const album = 'Cowboy Bebop - NoDisc'
 const artists = ['Yoko Kanno', 'the Seatbelts']
 const albumRef = [1, album]

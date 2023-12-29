@@ -1,11 +1,10 @@
-'use strict'
-
 import { combineLatest } from 'rxjs'
-import { pluck, map } from 'rxjs/operators'
+import { map, pluck } from 'rxjs/operators'
+
+import { fromServerEvent } from '../utils'
 import * as albums from './albums'
 import * as artists from './artists'
 import * as playlists from './playlists'
-import { fromServerEvent } from '../utils'
 
 export const isLoading = combineLatest([
   fromServerEvent('tracking').pipe(pluck('inProgress')),
