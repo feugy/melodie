@@ -45,7 +45,7 @@
     "svelte-portal": "romkor/svelte-portal#12d750f1b5305a7c4cb84cdd2606d565b4cac360",
     "svelte-preprocess": "^4.9.8",
     "svelte-spa-router": "^3.2.0",
-    "vite": "^2.6.14",
+    "vite": "^2.9.17",
     "vite-plugin-windicss": "^1.8.3",
     "windicss": "^3.5.1",
     "ws": "^8.5.0"
