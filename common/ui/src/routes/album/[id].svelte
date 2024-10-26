@@ -74,7 +74,10 @@
     <section>
       <span class="image-container">
         <Image
-          on:click={() => (openMediaSelector = true)}
+          on:click={ev => {
+            ev.stopPropagation()
+            openMediaSelector = true
+          }}
           class="h-full w-full text-3xl actionable"
           width="400"
           height="400"
