@@ -1,60 +1,10 @@
 {
-  "name": "melodie",
-  "version": "2.0.0",
-  "description": "Mélodie is a portable, simple-as-pie music player",
-  "author": {
-    "name": "Damien Simonin Feugas",
-    "email": "damien.simoninfeugas@gmail.com"
-  },
-  "license": "MIT",
-  "repository": {
-    "url": "https://github.com/feugy/melodie"
-  },
-  "workspaces": [
-    "common/*",
-    "apps/*"
-  ],
-  "scripts": {
-    "lint": "run-s -ncs lint:**",
-    "lint:core": "npx eslint common/core/lib",
-    "lint:desktop": "npx eslint apps/desktop/lib",
-    "lint:site": "npx eslint apps/site/src",
-    "lint:ui": "npx eslint common/ui/src",
-    "release:bump": "standard-version -s",
-    "start": "run-p -n start:**",
-    "start:desktop": "sleep 1 && npm run dev -w apps/desktop",
-    "start:ui": "npm run dev -w common/ui",
-    "test": "run-s -ncs test:**",
-    "test:core": "npm run test -w common/core",
-    "test:desktop": "npm run test -w apps/desktop",
-    "test:site": "npm run test -w apps/site",
-    "test:ui": "npm run test -w common/ui"
-  },
-  "devDependencies": {
-    "eslint": "^8.12.0",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-jest": "^26.1.3",
-    "eslint-plugin-jest-dom": "^4.0.1",
-    "eslint-plugin-testing-library": "^5.1.0",
-    "eslint-plugin-svelte3": "^3.4.1",
-    "husky": "^7.0.2",
-    "lint-staged": "^12.3.1",
-    "npm-run-all": "^4.1.5",
-    "prettier": "^2.6.1",
-    "prettier-plugin-svelte": "^2.6.0",
-    "standard-version": "^9.3.1"
-  },
-  "engines": {
-    "node": ">=16.0.0",
-    "npm": ">=7.24.0"
-  },
-  "lint-staged": {
-    "*.js": [
-      "eslint --fix",
-      "prettier --write"
-    ],
-    "*.(json|md)": [
-      "prettier --write"
-    ]
-  }
+	"name": "melodie",
+	"version": "3.0.0",
+	"devDependencies": {
+		"@biomejs/biome": "1.9.4",
+		"@types/node": "^22.10.2",
+		"typescript": "^5.7.2"
+	},
+	"packageManager": "pnpm@9.15.1+sha512.1acb565e6193efbebda772702950469150cf12bcc764262e7587e71d19dc98a423dff9536e57ea44c49bdf790ff694e83c27be5faa23d67e0c033b583be4bfcf"
 }

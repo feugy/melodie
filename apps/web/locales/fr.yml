@@ -1,0 +1,10 @@
+_ tracks: "{total, plural, =0 {aucun morceau} =1 {1 morceau} other {# morceaux}}"
+"#": N°
+artist: Artiste
+by _: par {artist}
+disk _: Disque N°{num}
+duration: Durée
+hours_minutes: "{hours, plural, =0 {} =1 {1 heure} other {# heures}} {minutes, plural, =0 {} =1 {1 minute} other {# minutes}}"
+none: Aucun
+track: Morceau
+unknown: Inconnu

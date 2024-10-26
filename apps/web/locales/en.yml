@@ -1,0 +1,12 @@
+_ albums: "{total} albums"
+_ tracks: "{total, plural, =0 {no track} =1 {1 track} other {# tracks}}"
+"#": "#"
+album: Album
+artist: Artist
+by _: by {artist}
+disk _: "Disk #{num}"
+duration: Duration
+hours_minutes: "{hours, plural, =0 { } =1 {1 hour} other {# hours}} {minutes, plural, =0 { } =1 {1 minute} other {# minutes}}"
+none: None
+track: Track
+unknown: Unknown

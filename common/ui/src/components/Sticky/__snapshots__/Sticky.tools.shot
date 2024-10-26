@@ -1,7 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Toolshot components/Sticky/Sticky.tools.svelte: Components/Sticky 1`] = `
-<span
-  class="sentinel svelte-194id2o"
-/>
-`;

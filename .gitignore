@@ -1,12 +1,29 @@
-node_modules/
-build/
-coverage/
-dist/
-__sapper__/
-.svelte-kit/
-.levels
+node_modules
+
+# Output
+.output
+.vercel
+.svelte-kit
+build
+.db.sqlite3
+dev-dist
+optimized-images
+tmp/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env
 .env
-logs.txt
-winehq.key
-apps/desktop/package-lock.json
-apps/site/static/fonts
+.env.*
+!.env.example
+!.env.test
+.log-levels
+tls/
+
+# Vite
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
+
+*storybook.log
