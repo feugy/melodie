@@ -1,76 +1,79 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Toolshot components/DisksList/DisksList.tools.svelte: Components/Disks list 1`] = `
+exports[`Components/Disks list 1`] = `
 <div>
   
    
    
+  <!--&lt;Portal&gt;-->
+  <!--&lt;Dialogue&gt;-->
+  <!--&lt;TrackDetailsDialogue&gt;-->
    
   <table
-    class=" svelte-1p99lao"
+    class=" s-a6xuFaCN1GoE"
   >
     <thead
-      class="svelte-1p99lao"
+      class="s-a6xuFaCN1GoE"
     >
       <tr
-        class="svelte-1p99lao"
+        class="s-a6xuFaCN1GoE"
       >
         <th
-          class="svelte-1p99lao"
+          class="s-a6xuFaCN1GoE"
         >
           #
         </th>
          
         <th
-          class="col-span-3 svelte-1p99lao"
+          class="col-span-3 s-a6xuFaCN1GoE"
         >
           Track
         </th>
          
         <th
-          class="col-span-3 svelte-1p99lao"
+          class="col-span-3 s-a6xuFaCN1GoE"
         >
           Artist
         </th>
          
         <th
-          class="col-span-3 svelte-1p99lao"
+          class="col-span-3 s-a6xuFaCN1GoE"
         >
           Album
         </th>
          
         <th
-          class="svelte-1p99lao"
+          class="s-a6xuFaCN1GoE"
         >
           Duration
         </th>
          
         <th
-          class="svelte-1p99lao"
+          class="s-a6xuFaCN1GoE"
         />
       </tr>
     </thead>
      
     <tbody
-      class="svelte-1p99lao"
+      class="s-a6xuFaCN1GoE"
     >
       <tr
-        class="svelte-1p99lao"
+        class="s-a6xuFaCN1GoE"
       >
         <td
-          class="svelte-1p99lao"
+          class="s-a6xuFaCN1GoE"
         >
           1
         </td>
          
         <td
-          class="col-span-3 svelte-1p99lao"
+          class="col-span-3 s-a6xuFaCN1GoE"
         >
           American Money
         </td>
          
         <td
-          class="col-span-3 svelte-1p99lao"
+          class="col-span-3 s-a6xuFaCN1GoE"
         >
           <a
             class="underlined"
@@ -90,7 +93,7 @@ exports[`Toolshot components/DisksList/DisksList.tools.svelte: Components/Disks 
         </td>
          
         <td
-          class="col-span-3 svelte-1p99lao"
+          class="col-span-3 s-a6xuFaCN1GoE"
         >
           <a
             class="underlined"
@@ -102,55 +105,57 @@ exports[`Toolshot components/DisksList/DisksList.tools.svelte: Components/Disks 
         </td>
          
         <td
-          class="svelte-1p99lao"
+          class="s-a6xuFaCN1GoE"
         >
           5:32
         </td>
          
         <td
-          class="svelte-1p99lao"
+          class="s-a6xuFaCN1GoE"
         >
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-1v2cnbz"
+            class="wrapper s-vOP9EO5q76eY"
           >
             <button
-              class="iconOnly noBorder svelte-xh4kfu"
+              class="iconOnly noBorder s-zdMNlEQUhDx4"
+              data-testid="track-dropdown"
             >
               <i
-                class="material-icons svelte-xh4kfu"
-              >
-                more_vert
-              </i>
+                class="icons i-mdi-dots-vertical s-zdMNlEQUhDx4"
+              />
                
                
               
                
             </button>
+            <!--&lt;Button&gt;-->
           </span>
            
           
+          <!--&lt;Dropdown&gt;-->
+          <!--&lt;TrackDropdown&gt;-->
         </td>
          
       </tr>
       <tr
-        class="svelte-1p99lao"
+        class="s-a6xuFaCN1GoE"
       >
         <td
-          class="svelte-1p99lao"
+          class="s-a6xuFaCN1GoE"
         >
           2
         </td>
          
         <td
-          class="col-span-3 svelte-1p99lao"
+          class="col-span-3 s-a6xuFaCN1GoE"
         >
           Fantaisie Sign
         </td>
          
         <td
-          class="col-span-3 svelte-1p99lao"
+          class="col-span-3 s-a6xuFaCN1GoE"
         >
           <a
             class="underlined"
@@ -170,7 +175,7 @@ exports[`Toolshot components/DisksList/DisksList.tools.svelte: Components/Disks 
         </td>
          
         <td
-          class="col-span-3 svelte-1p99lao"
+          class="col-span-3 s-a6xuFaCN1GoE"
         >
           <a
             class="underlined"
@@ -182,115 +187,121 @@ exports[`Toolshot components/DisksList/DisksList.tools.svelte: Components/Disks 
         </td>
          
         <td
-          class="svelte-1p99lao"
+          class="s-a6xuFaCN1GoE"
         >
           3:35
         </td>
          
         <td
-          class="svelte-1p99lao"
+          class="s-a6xuFaCN1GoE"
         >
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-1v2cnbz"
+            class="wrapper s-vOP9EO5q76eY"
           >
             <button
-              class="iconOnly noBorder svelte-xh4kfu"
+              class="iconOnly noBorder s-zdMNlEQUhDx4"
+              data-testid="track-dropdown"
             >
               <i
-                class="material-icons svelte-xh4kfu"
-              >
-                more_vert
-              </i>
+                class="icons i-mdi-dots-vertical s-zdMNlEQUhDx4"
+              />
                
                
               
                
             </button>
+            <!--&lt;Button&gt;-->
           </span>
            
           
+          <!--&lt;Dropdown&gt;-->
+          <!--&lt;TrackDropdown&gt;-->
         </td>
          
       </tr>
     </tbody>
   </table>
   
+  <!--&lt;TracksTable&gt;-->
   
   <h3
-    class="svelte-pnxs9"
+    class="s-NQRChVwRRfEx"
   >
     Disk #1
   </h3>
    
    
+  <!--&lt;Portal&gt;-->
+  <!--&lt;Dialogue&gt;-->
+  <!--&lt;TrackDetailsDialogue&gt;-->
    
   <table
-    class=" svelte-1p99lao"
+    class=" s-a6xuFaCN1GoE"
   >
     <thead
-      class="svelte-1p99lao"
+      class="s-a6xuFaCN1GoE"
     >
       <tr
-        class="svelte-1p99lao"
+        class="s-a6xuFaCN1GoE"
       >
         <th
-          class="svelte-1p99lao"
+          class="s-a6xuFaCN1GoE"
         >
           #
         </th>
          
         <th
-          class="col-span-3 svelte-1p99lao"
+          class="col-span-3 s-a6xuFaCN1GoE"
         >
           Track
         </th>
          
         <th
-          class="col-span-3 svelte-1p99lao"
+          class="col-span-3 s-a6xuFaCN1GoE"
         >
           Artist
         </th>
          
         <th
-          class="col-span-3 svelte-1p99lao"
+          class="col-span-3 s-a6xuFaCN1GoE"
         >
           Album
         </th>
          
         <th
-          class="svelte-1p99lao"
+          class="s-a6xuFaCN1GoE"
         >
           Duration
         </th>
          
         <th
-          class="svelte-1p99lao"
+          class="s-a6xuFaCN1GoE"
         />
       </tr>
     </thead>
      
     <tbody
-      class="svelte-1p99lao"
+      class="s-a6xuFaCN1GoE"
     >
       <tr
-        class="svelte-1p99lao current"
+        class="s-a6xuFaCN1GoE current"
       >
         <td
-          class="svelte-1p99lao"
+          class="s-a6xuFaCN1GoE"
         >
           2
         </td>
          
         <td
-          class="col-span-3 svelte-1p99lao"
+          class="col-span-3 s-a6xuFaCN1GoE"
         >
           Vitamin A
         </td>
          
         <td
-          class="col-span-3 svelte-1p99lao"
+          class="col-span-3 s-a6xuFaCN1GoE"
         >
           <a
             class="underlined"
@@ -310,7 +321,7 @@ exports[`Toolshot components/DisksList/DisksList.tools.svelte: Components/Disks 
         </td>
          
         <td
-          class="col-span-3 svelte-1p99lao"
+          class="col-span-3 s-a6xuFaCN1GoE"
         >
           <a
             class="underlined"
@@ -322,55 +333,57 @@ exports[`Toolshot components/DisksList/DisksList.tools.svelte: Components/Disks 
         </td>
          
         <td
-          class="svelte-1p99lao"
+          class="s-a6xuFaCN1GoE"
         >
           4:41
         </td>
          
         <td
-          class="svelte-1p99lao"
+          class="s-a6xuFaCN1GoE"
         >
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-1v2cnbz"
+            class="wrapper s-vOP9EO5q76eY"
           >
             <button
-              class="iconOnly noBorder svelte-xh4kfu"
+              class="iconOnly noBorder s-zdMNlEQUhDx4"
+              data-testid="track-dropdown"
             >
               <i
-                class="material-icons svelte-xh4kfu"
-              >
-                more_vert
-              </i>
+                class="icons i-mdi-dots-vertical s-zdMNlEQUhDx4"
+              />
                
                
               
                
             </button>
+            <!--&lt;Button&gt;-->
           </span>
            
           
+          <!--&lt;Dropdown&gt;-->
+          <!--&lt;TrackDropdown&gt;-->
         </td>
          
       </tr>
       <tr
-        class="svelte-1p99lao"
+        class="s-a6xuFaCN1GoE"
       >
         <td
-          class="svelte-1p99lao"
+          class="s-a6xuFaCN1GoE"
         >
           3
         </td>
          
         <td
-          class="col-span-3 svelte-1p99lao"
+          class="col-span-3 s-a6xuFaCN1GoE"
         >
           Don't Bother None
         </td>
          
         <td
-          class="col-span-3 svelte-1p99lao"
+          class="col-span-3 s-a6xuFaCN1GoE"
         >
           <a
             class="underlined"
@@ -390,7 +403,7 @@ exports[`Toolshot components/DisksList/DisksList.tools.svelte: Components/Disks 
         </td>
          
         <td
-          class="col-span-3 svelte-1p99lao"
+          class="col-span-3 s-a6xuFaCN1GoE"
         >
           <a
             class="underlined"
@@ -402,55 +415,57 @@ exports[`Toolshot components/DisksList/DisksList.tools.svelte: Components/Disks 
         </td>
          
         <td
-          class="svelte-1p99lao"
+          class="s-a6xuFaCN1GoE"
         >
           3:45
         </td>
          
         <td
-          class="svelte-1p99lao"
+          class="s-a6xuFaCN1GoE"
         >
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-1v2cnbz"
+            class="wrapper s-vOP9EO5q76eY"
           >
             <button
-              class="iconOnly noBorder svelte-xh4kfu"
+              class="iconOnly noBorder s-zdMNlEQUhDx4"
+              data-testid="track-dropdown"
             >
               <i
-                class="material-icons svelte-xh4kfu"
-              >
-                more_vert
-              </i>
+                class="icons i-mdi-dots-vertical s-zdMNlEQUhDx4"
+              />
                
                
               
                
             </button>
+            <!--&lt;Button&gt;-->
           </span>
            
           
+          <!--&lt;Dropdown&gt;-->
+          <!--&lt;TrackDropdown&gt;-->
         </td>
          
       </tr>
       <tr
-        class="svelte-1p99lao"
+        class="s-a6xuFaCN1GoE"
       >
         <td
-          class="svelte-1p99lao"
+          class="s-a6xuFaCN1GoE"
         >
           4
         </td>
          
         <td
-          class="col-span-3 svelte-1p99lao"
+          class="col-span-3 s-a6xuFaCN1GoE"
         >
           Want it All Back
         </td>
          
         <td
-          class="col-span-3 svelte-1p99lao"
+          class="col-span-3 s-a6xuFaCN1GoE"
         >
           <a
             class="underlined"
@@ -470,7 +485,7 @@ exports[`Toolshot components/DisksList/DisksList.tools.svelte: Components/Disks 
         </td>
          
         <td
-          class="col-span-3 svelte-1p99lao"
+          class="col-span-3 s-a6xuFaCN1GoE"
         >
           <a
             class="underlined"
@@ -482,55 +497,57 @@ exports[`Toolshot components/DisksList/DisksList.tools.svelte: Components/Disks 
         </td>
          
         <td
-          class="svelte-1p99lao"
+          class="s-a6xuFaCN1GoE"
         >
           3:51
         </td>
          
         <td
-          class="svelte-1p99lao"
+          class="s-a6xuFaCN1GoE"
         >
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-1v2cnbz"
+            class="wrapper s-vOP9EO5q76eY"
           >
             <button
-              class="iconOnly noBorder svelte-xh4kfu"
+              class="iconOnly noBorder s-zdMNlEQUhDx4"
+              data-testid="track-dropdown"
             >
               <i
-                class="material-icons svelte-xh4kfu"
-              >
-                more_vert
-              </i>
+                class="icons i-mdi-dots-vertical s-zdMNlEQUhDx4"
+              />
                
                
               
                
             </button>
+            <!--&lt;Button&gt;-->
           </span>
            
           
+          <!--&lt;Dropdown&gt;-->
+          <!--&lt;TrackDropdown&gt;-->
         </td>
          
       </tr>
       <tr
-        class="svelte-1p99lao"
+        class="s-a6xuFaCN1GoE"
       >
         <td
-          class="svelte-1p99lao"
+          class="s-a6xuFaCN1GoE"
         >
           5
         </td>
          
         <td
-          class="col-span-3 svelte-1p99lao"
+          class="col-span-3 s-a6xuFaCN1GoE"
         >
           Bindy
         </td>
          
         <td
-          class="col-span-3 svelte-1p99lao"
+          class="col-span-3 s-a6xuFaCN1GoE"
         >
           <a
             class="underlined"
@@ -550,7 +567,7 @@ exports[`Toolshot components/DisksList/DisksList.tools.svelte: Components/Disks 
         </td>
          
         <td
-          class="col-span-3 svelte-1p99lao"
+          class="col-span-3 s-a6xuFaCN1GoE"
         >
           <a
             class="underlined"
@@ -562,55 +579,57 @@ exports[`Toolshot components/DisksList/DisksList.tools.svelte: Components/Disks 
         </td>
          
         <td
-          class="svelte-1p99lao"
+          class="s-a6xuFaCN1GoE"
         >
           0:15
         </td>
          
         <td
-          class="svelte-1p99lao"
+          class="s-a6xuFaCN1GoE"
         >
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-1v2cnbz"
+            class="wrapper s-vOP9EO5q76eY"
           >
             <button
-              class="iconOnly noBorder svelte-xh4kfu"
+              class="iconOnly noBorder s-zdMNlEQUhDx4"
+              data-testid="track-dropdown"
             >
               <i
-                class="material-icons svelte-xh4kfu"
-              >
-                more_vert
-              </i>
+                class="icons i-mdi-dots-vertical s-zdMNlEQUhDx4"
+              />
                
                
               
                
             </button>
+            <!--&lt;Button&gt;-->
           </span>
            
           
+          <!--&lt;Dropdown&gt;-->
+          <!--&lt;TrackDropdown&gt;-->
         </td>
          
       </tr>
       <tr
-        class="svelte-1p99lao"
+        class="s-a6xuFaCN1GoE"
       >
         <td
-          class="svelte-1p99lao"
+          class="s-a6xuFaCN1GoE"
         >
           6
         </td>
          
         <td
-          class="col-span-3 svelte-1p99lao"
+          class="col-span-3 s-a6xuFaCN1GoE"
         >
           You Make Me Coo
         </td>
          
         <td
-          class="col-span-3 svelte-1p99lao"
+          class="col-span-3 s-a6xuFaCN1GoE"
         >
           <a
             class="underlined"
@@ -630,7 +649,7 @@ exports[`Toolshot components/DisksList/DisksList.tools.svelte: Components/Disks 
         </td>
          
         <td
-          class="col-span-3 svelte-1p99lao"
+          class="col-span-3 s-a6xuFaCN1GoE"
         >
           <a
             class="underlined"
@@ -642,55 +661,57 @@ exports[`Toolshot components/DisksList/DisksList.tools.svelte: Components/Disks 
         </td>
          
         <td
-          class="svelte-1p99lao"
+          class="s-a6xuFaCN1GoE"
         >
           3:14
         </td>
          
         <td
-          class="svelte-1p99lao"
+          class="s-a6xuFaCN1GoE"
         >
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-1v2cnbz"
+            class="wrapper s-vOP9EO5q76eY"
           >
             <button
-              class="iconOnly noBorder svelte-xh4kfu"
+              class="iconOnly noBorder s-zdMNlEQUhDx4"
+              data-testid="track-dropdown"
             >
               <i
-                class="material-icons svelte-xh4kfu"
-              >
-                more_vert
-              </i>
+                class="icons i-mdi-dots-vertical s-zdMNlEQUhDx4"
+              />
                
                
               
                
             </button>
+            <!--&lt;Button&gt;-->
           </span>
            
           
+          <!--&lt;Dropdown&gt;-->
+          <!--&lt;TrackDropdown&gt;-->
         </td>
          
       </tr>
       <tr
-        class="svelte-1p99lao"
+        class="s-a6xuFaCN1GoE"
       >
         <td
-          class="svelte-1p99lao"
+          class="s-a6xuFaCN1GoE"
         >
           7
         </td>
          
         <td
-          class="col-span-3 svelte-1p99lao"
+          class="col-span-3 s-a6xuFaCN1GoE"
         >
           Vitamin C
         </td>
          
         <td
-          class="col-span-3 svelte-1p99lao"
+          class="col-span-3 s-a6xuFaCN1GoE"
         >
           <a
             class="underlined"
@@ -710,7 +731,7 @@ exports[`Toolshot components/DisksList/DisksList.tools.svelte: Components/Disks 
         </td>
          
         <td
-          class="col-span-3 svelte-1p99lao"
+          class="col-span-3 s-a6xuFaCN1GoE"
         >
           <a
             class="underlined"
@@ -722,55 +743,57 @@ exports[`Toolshot components/DisksList/DisksList.tools.svelte: Components/Disks 
         </td>
          
         <td
-          class="svelte-1p99lao"
+          class="s-a6xuFaCN1GoE"
         >
           5:24
         </td>
          
         <td
-          class="svelte-1p99lao"
+          class="s-a6xuFaCN1GoE"
         >
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-1v2cnbz"
+            class="wrapper s-vOP9EO5q76eY"
           >
             <button
-              class="iconOnly noBorder svelte-xh4kfu"
+              class="iconOnly noBorder s-zdMNlEQUhDx4"
+              data-testid="track-dropdown"
             >
               <i
-                class="material-icons svelte-xh4kfu"
-              >
-                more_vert
-              </i>
+                class="icons i-mdi-dots-vertical s-zdMNlEQUhDx4"
+              />
                
                
               
                
             </button>
+            <!--&lt;Button&gt;-->
           </span>
            
           
+          <!--&lt;Dropdown&gt;-->
+          <!--&lt;TrackDropdown&gt;-->
         </td>
          
       </tr>
       <tr
-        class="svelte-1p99lao"
+        class="s-a6xuFaCN1GoE"
       >
         <td
-          class="svelte-1p99lao"
+          class="s-a6xuFaCN1GoE"
         >
           8
         </td>
          
         <td
-          class="col-span-3 svelte-1p99lao"
+          class="col-span-3 s-a6xuFaCN1GoE"
         >
           Gateway
         </td>
          
         <td
-          class="col-span-3 svelte-1p99lao"
+          class="col-span-3 s-a6xuFaCN1GoE"
         >
           <a
             class="underlined"
@@ -790,7 +813,7 @@ exports[`Toolshot components/DisksList/DisksList.tools.svelte: Components/Disks 
         </td>
          
         <td
-          class="col-span-3 svelte-1p99lao"
+          class="col-span-3 s-a6xuFaCN1GoE"
         >
           <a
             class="underlined"
@@ -802,55 +825,57 @@ exports[`Toolshot components/DisksList/DisksList.tools.svelte: Components/Disks 
         </td>
          
         <td
-          class="svelte-1p99lao"
+          class="s-a6xuFaCN1GoE"
         >
           0:16
         </td>
          
         <td
-          class="svelte-1p99lao"
+          class="s-a6xuFaCN1GoE"
         >
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-1v2cnbz"
+            class="wrapper s-vOP9EO5q76eY"
           >
             <button
-              class="iconOnly noBorder svelte-xh4kfu"
+              class="iconOnly noBorder s-zdMNlEQUhDx4"
+              data-testid="track-dropdown"
             >
               <i
-                class="material-icons svelte-xh4kfu"
-              >
-                more_vert
-              </i>
+                class="icons i-mdi-dots-vertical s-zdMNlEQUhDx4"
+              />
                
                
               
                
             </button>
+            <!--&lt;Button&gt;-->
           </span>
            
           
+          <!--&lt;Dropdown&gt;-->
+          <!--&lt;TrackDropdown&gt;-->
         </td>
          
       </tr>
       <tr
-        class="svelte-1p99lao"
+        class="s-a6xuFaCN1GoE"
       >
         <td
-          class="svelte-1p99lao"
+          class="s-a6xuFaCN1GoE"
         >
           9
         </td>
          
         <td
-          class="col-span-3 svelte-1p99lao"
+          class="col-span-3 s-a6xuFaCN1GoE"
         >
           Forever Broke
         </td>
          
         <td
-          class="col-span-3 svelte-1p99lao"
+          class="col-span-3 s-a6xuFaCN1GoE"
         >
           <a
             class="underlined"
@@ -870,7 +895,7 @@ exports[`Toolshot components/DisksList/DisksList.tools.svelte: Components/Disks 
         </td>
          
         <td
-          class="col-span-3 svelte-1p99lao"
+          class="col-span-3 s-a6xuFaCN1GoE"
         >
           <a
             class="underlined"
@@ -882,115 +907,121 @@ exports[`Toolshot components/DisksList/DisksList.tools.svelte: Components/Disks 
         </td>
          
         <td
-          class="svelte-1p99lao"
+          class="s-a6xuFaCN1GoE"
         >
           1:36
         </td>
          
         <td
-          class="svelte-1p99lao"
+          class="s-a6xuFaCN1GoE"
         >
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-1v2cnbz"
+            class="wrapper s-vOP9EO5q76eY"
           >
             <button
-              class="iconOnly noBorder svelte-xh4kfu"
+              class="iconOnly noBorder s-zdMNlEQUhDx4"
+              data-testid="track-dropdown"
             >
               <i
-                class="material-icons svelte-xh4kfu"
-              >
-                more_vert
-              </i>
+                class="icons i-mdi-dots-vertical s-zdMNlEQUhDx4"
+              />
                
                
               
                
             </button>
+            <!--&lt;Button&gt;-->
           </span>
            
           
+          <!--&lt;Dropdown&gt;-->
+          <!--&lt;TrackDropdown&gt;-->
         </td>
          
       </tr>
     </tbody>
   </table>
   
+  <!--&lt;TracksTable&gt;-->
   
   <h3
-    class="svelte-pnxs9"
+    class="s-NQRChVwRRfEx"
   >
     Disk #2
   </h3>
    
    
+  <!--&lt;Portal&gt;-->
+  <!--&lt;Dialogue&gt;-->
+  <!--&lt;TrackDetailsDialogue&gt;-->
    
   <table
-    class=" svelte-1p99lao"
+    class=" s-a6xuFaCN1GoE"
   >
     <thead
-      class="svelte-1p99lao"
+      class="s-a6xuFaCN1GoE"
     >
       <tr
-        class="svelte-1p99lao"
+        class="s-a6xuFaCN1GoE"
       >
         <th
-          class="svelte-1p99lao"
+          class="s-a6xuFaCN1GoE"
         >
           #
         </th>
          
         <th
-          class="col-span-3 svelte-1p99lao"
+          class="col-span-3 s-a6xuFaCN1GoE"
         >
           Track
         </th>
          
         <th
-          class="col-span-3 svelte-1p99lao"
+          class="col-span-3 s-a6xuFaCN1GoE"
         >
           Artist
         </th>
          
         <th
-          class="col-span-3 svelte-1p99lao"
+          class="col-span-3 s-a6xuFaCN1GoE"
         >
           Album
         </th>
          
         <th
-          class="svelte-1p99lao"
+          class="s-a6xuFaCN1GoE"
         >
           Duration
         </th>
          
         <th
-          class="svelte-1p99lao"
+          class="s-a6xuFaCN1GoE"
         />
       </tr>
     </thead>
      
     <tbody
-      class="svelte-1p99lao"
+      class="s-a6xuFaCN1GoE"
     >
       <tr
-        class="svelte-1p99lao"
+        class="s-a6xuFaCN1GoE"
       >
         <td
-          class="svelte-1p99lao"
+          class="s-a6xuFaCN1GoE"
         >
           2
         </td>
          
         <td
-          class="col-span-3 svelte-1p99lao"
+          class="col-span-3 s-a6xuFaCN1GoE"
         >
           Cats on Mars
         </td>
          
         <td
-          class="col-span-3 svelte-1p99lao"
+          class="col-span-3 s-a6xuFaCN1GoE"
         >
           <a
             class="underlined"
@@ -1010,7 +1041,7 @@ exports[`Toolshot components/DisksList/DisksList.tools.svelte: Components/Disks 
         </td>
          
         <td
-          class="col-span-3 svelte-1p99lao"
+          class="col-span-3 s-a6xuFaCN1GoE"
         >
           <a
             class="underlined"
@@ -1022,55 +1053,57 @@ exports[`Toolshot components/DisksList/DisksList.tools.svelte: Components/Disks 
         </td>
          
         <td
-          class="svelte-1p99lao"
+          class="s-a6xuFaCN1GoE"
         >
           0:07
         </td>
          
         <td
-          class="svelte-1p99lao"
+          class="s-a6xuFaCN1GoE"
         >
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-1v2cnbz"
+            class="wrapper s-vOP9EO5q76eY"
           >
             <button
-              class="iconOnly noBorder svelte-xh4kfu"
+              class="iconOnly noBorder s-zdMNlEQUhDx4"
+              data-testid="track-dropdown"
             >
               <i
-                class="material-icons svelte-xh4kfu"
-              >
-                more_vert
-              </i>
+                class="icons i-mdi-dots-vertical s-zdMNlEQUhDx4"
+              />
                
                
               
                
             </button>
+            <!--&lt;Button&gt;-->
           </span>
            
           
+          <!--&lt;Dropdown&gt;-->
+          <!--&lt;TrackDropdown&gt;-->
         </td>
          
       </tr>
       <tr
-        class="svelte-1p99lao"
+        class="s-a6xuFaCN1GoE"
       >
         <td
-          class="svelte-1p99lao"
+          class="s-a6xuFaCN1GoE"
         >
           3
         </td>
          
         <td
-          class="col-span-3 svelte-1p99lao"
+          class="col-span-3 s-a6xuFaCN1GoE"
         >
           LIVE in Baghdad
         </td>
          
         <td
-          class="col-span-3 svelte-1p99lao"
+          class="col-span-3 s-a6xuFaCN1GoE"
         >
           <a
             class="underlined"
@@ -1090,7 +1123,7 @@ exports[`Toolshot components/DisksList/DisksList.tools.svelte: Components/Disks 
         </td>
          
         <td
-          class="col-span-3 svelte-1p99lao"
+          class="col-span-3 s-a6xuFaCN1GoE"
         >
           <a
             class="underlined"
@@ -1102,55 +1135,57 @@ exports[`Toolshot components/DisksList/DisksList.tools.svelte: Components/Disks 
         </td>
          
         <td
-          class="svelte-1p99lao"
+          class="s-a6xuFaCN1GoE"
         >
           2:59
         </td>
          
         <td
-          class="svelte-1p99lao"
+          class="s-a6xuFaCN1GoE"
         >
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-1v2cnbz"
+            class="wrapper s-vOP9EO5q76eY"
           >
             <button
-              class="iconOnly noBorder svelte-xh4kfu"
+              class="iconOnly noBorder s-zdMNlEQUhDx4"
+              data-testid="track-dropdown"
             >
               <i
-                class="material-icons svelte-xh4kfu"
-              >
-                more_vert
-              </i>
+                class="icons i-mdi-dots-vertical s-zdMNlEQUhDx4"
+              />
                
                
               
                
             </button>
+            <!--&lt;Button&gt;-->
           </span>
            
           
+          <!--&lt;Dropdown&gt;-->
+          <!--&lt;TrackDropdown&gt;-->
         </td>
          
       </tr>
       <tr
-        class="svelte-1p99lao"
+        class="s-a6xuFaCN1GoE"
       >
         <td
-          class="svelte-1p99lao"
+          class="s-a6xuFaCN1GoE"
         >
           4
         </td>
          
         <td
-          class="col-span-3 svelte-1p99lao"
+          class="col-span-3 s-a6xuFaCN1GoE"
         >
           Vitamin B
         </td>
          
         <td
-          class="col-span-3 svelte-1p99lao"
+          class="col-span-3 s-a6xuFaCN1GoE"
         >
           <a
             class="underlined"
@@ -1170,7 +1205,7 @@ exports[`Toolshot components/DisksList/DisksList.tools.svelte: Components/Disks 
         </td>
          
         <td
-          class="col-span-3 svelte-1p99lao"
+          class="col-span-3 s-a6xuFaCN1GoE"
         >
           <a
             class="underlined"
@@ -1182,55 +1217,57 @@ exports[`Toolshot components/DisksList/DisksList.tools.svelte: Components/Disks 
         </td>
          
         <td
-          class="svelte-1p99lao"
+          class="s-a6xuFaCN1GoE"
         >
           4:06
         </td>
          
         <td
-          class="svelte-1p99lao"
+          class="s-a6xuFaCN1GoE"
         >
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-1v2cnbz"
+            class="wrapper s-vOP9EO5q76eY"
           >
             <button
-              class="iconOnly noBorder svelte-xh4kfu"
+              class="iconOnly noBorder s-zdMNlEQUhDx4"
+              data-testid="track-dropdown"
             >
               <i
-                class="material-icons svelte-xh4kfu"
-              >
-                more_vert
-              </i>
+                class="icons i-mdi-dots-vertical s-zdMNlEQUhDx4"
+              />
                
                
               
                
             </button>
+            <!--&lt;Button&gt;-->
           </span>
            
           
+          <!--&lt;Dropdown&gt;-->
+          <!--&lt;TrackDropdown&gt;-->
         </td>
          
       </tr>
       <tr
-        class="svelte-1p99lao"
+        class="s-a6xuFaCN1GoE"
       >
         <td
-          class="svelte-1p99lao"
+          class="s-a6xuFaCN1GoE"
         >
           5
         </td>
          
         <td
-          class="col-span-3 svelte-1p99lao"
+          class="col-span-3 s-a6xuFaCN1GoE"
         >
           Green Bird
         </td>
          
         <td
-          class="col-span-3 svelte-1p99lao"
+          class="col-span-3 s-a6xuFaCN1GoE"
         >
           <a
             class="underlined"
@@ -1250,7 +1287,7 @@ exports[`Toolshot components/DisksList/DisksList.tools.svelte: Components/Disks 
         </td>
          
         <td
-          class="col-span-3 svelte-1p99lao"
+          class="col-span-3 s-a6xuFaCN1GoE"
         >
           <a
             class="underlined"
@@ -1262,55 +1299,57 @@ exports[`Toolshot components/DisksList/DisksList.tools.svelte: Components/Disks 
         </td>
          
         <td
-          class="svelte-1p99lao"
+          class="s-a6xuFaCN1GoE"
         >
           2:33
         </td>
          
         <td
-          class="svelte-1p99lao"
+          class="s-a6xuFaCN1GoE"
         >
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-1v2cnbz"
+            class="wrapper s-vOP9EO5q76eY"
           >
             <button
-              class="iconOnly noBorder svelte-xh4kfu"
+              class="iconOnly noBorder s-zdMNlEQUhDx4"
+              data-testid="track-dropdown"
             >
               <i
-                class="material-icons svelte-xh4kfu"
-              >
-                more_vert
-              </i>
+                class="icons i-mdi-dots-vertical s-zdMNlEQUhDx4"
+              />
                
                
               
                
             </button>
+            <!--&lt;Button&gt;-->
           </span>
            
           
+          <!--&lt;Dropdown&gt;-->
+          <!--&lt;TrackDropdown&gt;-->
         </td>
          
       </tr>
       <tr
-        class="svelte-1p99lao"
+        class="s-a6xuFaCN1GoE"
       >
         <td
-          class="svelte-1p99lao"
+          class="s-a6xuFaCN1GoE"
         >
           6
         </td>
          
         <td
-          class="col-span-3 svelte-1p99lao"
+          class="col-span-3 s-a6xuFaCN1GoE"
         >
           ELM
         </td>
          
         <td
-          class="col-span-3 svelte-1p99lao"
+          class="col-span-3 s-a6xuFaCN1GoE"
         >
           <a
             class="underlined"
@@ -1330,7 +1369,7 @@ exports[`Toolshot components/DisksList/DisksList.tools.svelte: Components/Disks 
         </td>
          
         <td
-          class="col-span-3 svelte-1p99lao"
+          class="col-span-3 s-a6xuFaCN1GoE"
         >
           <a
             class="underlined"
@@ -1342,55 +1381,57 @@ exports[`Toolshot components/DisksList/DisksList.tools.svelte: Components/Disks 
         </td>
          
         <td
-          class="svelte-1p99lao"
+          class="s-a6xuFaCN1GoE"
         >
           6:55
         </td>
          
         <td
-          class="svelte-1p99lao"
+          class="s-a6xuFaCN1GoE"
         >
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-1v2cnbz"
+            class="wrapper s-vOP9EO5q76eY"
           >
             <button
-              class="iconOnly noBorder svelte-xh4kfu"
+              class="iconOnly noBorder s-zdMNlEQUhDx4"
+              data-testid="track-dropdown"
             >
               <i
-                class="material-icons svelte-xh4kfu"
-              >
-                more_vert
-              </i>
+                class="icons i-mdi-dots-vertical s-zdMNlEQUhDx4"
+              />
                
                
               
                
             </button>
+            <!--&lt;Button&gt;-->
           </span>
            
           
+          <!--&lt;Dropdown&gt;-->
+          <!--&lt;TrackDropdown&gt;-->
         </td>
          
       </tr>
       <tr
-        class="svelte-1p99lao"
+        class="s-a6xuFaCN1GoE"
       >
         <td
-          class="svelte-1p99lao"
+          class="s-a6xuFaCN1GoE"
         >
           7
         </td>
          
         <td
-          class="col-span-3 svelte-1p99lao"
+          class="col-span-3 s-a6xuFaCN1GoE"
         >
           The Singing Sea
         </td>
          
         <td
-          class="col-span-3 svelte-1p99lao"
+          class="col-span-3 s-a6xuFaCN1GoE"
         >
           <a
             class="underlined"
@@ -1410,7 +1451,7 @@ exports[`Toolshot components/DisksList/DisksList.tools.svelte: Components/Disks 
         </td>
          
         <td
-          class="col-span-3 svelte-1p99lao"
+          class="col-span-3 s-a6xuFaCN1GoE"
         >
           <a
             class="underlined"
@@ -1422,55 +1463,57 @@ exports[`Toolshot components/DisksList/DisksList.tools.svelte: Components/Disks 
         </td>
          
         <td
-          class="svelte-1p99lao"
+          class="s-a6xuFaCN1GoE"
         >
           6:41
         </td>
          
         <td
-          class="svelte-1p99lao"
+          class="s-a6xuFaCN1GoE"
         >
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-1v2cnbz"
+            class="wrapper s-vOP9EO5q76eY"
           >
             <button
-              class="iconOnly noBorder svelte-xh4kfu"
+              class="iconOnly noBorder s-zdMNlEQUhDx4"
+              data-testid="track-dropdown"
             >
               <i
-                class="material-icons svelte-xh4kfu"
-              >
-                more_vert
-              </i>
+                class="icons i-mdi-dots-vertical s-zdMNlEQUhDx4"
+              />
                
                
               
                
             </button>
+            <!--&lt;Button&gt;-->
           </span>
            
           
+          <!--&lt;Dropdown&gt;-->
+          <!--&lt;TrackDropdown&gt;-->
         </td>
          
       </tr>
       <tr
-        class="svelte-1p99lao"
+        class="s-a6xuFaCN1GoE"
       >
         <td
-          class="svelte-1p99lao"
+          class="s-a6xuFaCN1GoE"
         >
           8
         </td>
          
         <td
-          class="col-span-3 svelte-1p99lao"
+          class="col-span-3 s-a6xuFaCN1GoE"
         >
           The Egg and You!
         </td>
          
         <td
-          class="col-span-3 svelte-1p99lao"
+          class="col-span-3 s-a6xuFaCN1GoE"
         >
           <a
             class="underlined"
@@ -1490,7 +1533,7 @@ exports[`Toolshot components/DisksList/DisksList.tools.svelte: Components/Disks 
         </td>
          
         <td
-          class="col-span-3 svelte-1p99lao"
+          class="col-span-3 s-a6xuFaCN1GoE"
         >
           <a
             class="underlined"
@@ -1502,55 +1545,57 @@ exports[`Toolshot components/DisksList/DisksList.tools.svelte: Components/Disks 
         </td>
          
         <td
-          class="svelte-1p99lao"
+          class="s-a6xuFaCN1GoE"
         >
           4:47
         </td>
          
         <td
-          class="svelte-1p99lao"
+          class="s-a6xuFaCN1GoE"
         >
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-1v2cnbz"
+            class="wrapper s-vOP9EO5q76eY"
           >
             <button
-              class="iconOnly noBorder svelte-xh4kfu"
+              class="iconOnly noBorder s-zdMNlEQUhDx4"
+              data-testid="track-dropdown"
             >
               <i
-                class="material-icons svelte-xh4kfu"
-              >
-                more_vert
-              </i>
+                class="icons i-mdi-dots-vertical s-zdMNlEQUhDx4"
+              />
                
                
               
                
             </button>
+            <!--&lt;Button&gt;-->
           </span>
            
           
+          <!--&lt;Dropdown&gt;-->
+          <!--&lt;TrackDropdown&gt;-->
         </td>
          
       </tr>
       <tr
-        class="svelte-1p99lao"
+        class="s-a6xuFaCN1GoE"
       >
         <td
-          class="svelte-1p99lao"
+          class="s-a6xuFaCN1GoE"
         >
           9
         </td>
          
         <td
-          class="col-span-3 svelte-1p99lao"
+          class="col-span-3 s-a6xuFaCN1GoE"
         >
           Power of Kungfu Remix
         </td>
          
         <td
-          class="col-span-3 svelte-1p99lao"
+          class="col-span-3 s-a6xuFaCN1GoE"
         >
           <a
             class="underlined"
@@ -1570,7 +1615,7 @@ exports[`Toolshot components/DisksList/DisksList.tools.svelte: Components/Disks 
         </td>
          
         <td
-          class="col-span-3 svelte-1p99lao"
+          class="col-span-3 s-a6xuFaCN1GoE"
         >
           <a
             class="underlined"
@@ -1582,41 +1627,45 @@ exports[`Toolshot components/DisksList/DisksList.tools.svelte: Components/Disks 
         </td>
          
         <td
-          class="svelte-1p99lao"
+          class="s-a6xuFaCN1GoE"
         >
           2:22
         </td>
          
         <td
-          class="svelte-1p99lao"
+          class="s-a6xuFaCN1GoE"
         >
           <span
             aria-expanded="false"
             aria-haspopup="menu"
-            class="wrapper svelte-1v2cnbz"
+            class="wrapper s-vOP9EO5q76eY"
           >
             <button
-              class="iconOnly noBorder svelte-xh4kfu"
+              class="iconOnly noBorder s-zdMNlEQUhDx4"
+              data-testid="track-dropdown"
             >
               <i
-                class="material-icons svelte-xh4kfu"
-              >
-                more_vert
-              </i>
+                class="icons i-mdi-dots-vertical s-zdMNlEQUhDx4"
+              />
                
                
               
                
             </button>
+            <!--&lt;Button&gt;-->
           </span>
            
           
+          <!--&lt;Dropdown&gt;-->
+          <!--&lt;TrackDropdown&gt;-->
         </td>
          
       </tr>
     </tbody>
   </table>
   
+  <!--&lt;TracksTable&gt;-->
   
+  <!--&lt;DisksList&gt;-->
 </div>
 `;

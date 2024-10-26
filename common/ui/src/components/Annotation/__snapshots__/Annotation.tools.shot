@@ -1,1107 +1,1081 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Toolshot components/Annotation/Annotation.tools.svelte: Above center left 1`] = `
-<span>
+exports[`Above center left 1`] = `
+HTMLCollection [
   <div
-    class="backdrop svelte-17gyiyd"
+    class="backdrop s-jjVoPuXPuBam"
     style=""
   >
      
     <article
-      class="svelte-17gyiyd"
+      class="s-jjVoPuXPuBam"
     >
       Look! This text looks very interesting
     </article>
-  </div>
-   
+  </div>,
   <div
-    class="test-grid svelte-1bh7sdh"
+    class="test-grid s-1oYw6Qpi5NVX"
   >
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       In eu mi bibendum neque egestas congue quisque egestas
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Arcu non odio euismod lacinia at quis risus sed
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Massa tempor nec feugiat nisl
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Sagittis aliquam malesuada bibendum arcu vitae elementum
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Elementum facilisis leo vel fringilla est ullamcorper eget nulla
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Bibendum arcu vitae elementum curabitur vitae nunc sed velit dignissim
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Elit sed vulputate mi sit amet mauris commodo
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Ut enim blandit volutpat maecenas volutpat blandit aliquam etiam erat
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Lorem mollis aliquam ut porttitor leo a diam sollicitudin
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Vitae proin sagittis nisl rhoncus mattis
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Ut morbi tincidunt augue interdum velit euismod in pellentesque
     </div>
-  </div>
-   
+  </div>,
   <div
-    class="hidden svelte-1bh7sdh"
-  />
-</span>
+    class="__hidden_r4o97t_r4o97t s-1oYw6Qpi5NVX"
+  />,
+]
 `;
 
-exports[`Toolshot components/Annotation/Annotation.tools.svelte: Above center right 1`] = `
-<span>
+exports[`Above center right 1`] = `
+HTMLCollection [
   <div
-    class="backdrop svelte-17gyiyd"
+    class="backdrop s-jjVoPuXPuBam"
     style=""
   >
      
     <article
-      class="svelte-17gyiyd"
+      class="s-jjVoPuXPuBam"
     >
       Look! This text looks very interesting
     </article>
-  </div>
-   
+  </div>,
   <div
-    class="test-grid svelte-1bh7sdh"
+    class="test-grid s-1oYw6Qpi5NVX"
   >
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       In eu mi bibendum neque egestas congue quisque egestas
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Arcu non odio euismod lacinia at quis risus sed
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Massa tempor nec feugiat nisl
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Sagittis aliquam malesuada bibendum arcu vitae elementum
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Elementum facilisis leo vel fringilla est ullamcorper eget nulla
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Bibendum arcu vitae elementum curabitur vitae nunc sed velit dignissim
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Elit sed vulputate mi sit amet mauris commodo
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Ut enim blandit volutpat maecenas volutpat blandit aliquam etiam erat
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Lorem mollis aliquam ut porttitor leo a diam sollicitudin
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Vitae proin sagittis nisl rhoncus mattis
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Ut morbi tincidunt augue interdum velit euismod in pellentesque
     </div>
-  </div>
-   
+  </div>,
   <div
-    class="hidden svelte-1bh7sdh"
-  />
-</span>
+    class="__hidden_r4o97t_r4o97t s-1oYw6Qpi5NVX"
+  />,
+]
 `;
 
-exports[`Toolshot components/Annotation/Annotation.tools.svelte: Above right 1`] = `
-<span>
+exports[`Above right 1`] = `
+HTMLCollection [
   <div
-    class="backdrop svelte-17gyiyd"
+    class="backdrop s-jjVoPuXPuBam"
     style=""
   >
      
     <article
-      class="svelte-17gyiyd"
+      class="s-jjVoPuXPuBam"
     >
       Look! This text looks very interesting
     </article>
-  </div>
-   
+  </div>,
   <div
-    class="test-grid svelte-1bh7sdh"
+    class="test-grid s-1oYw6Qpi5NVX"
   >
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       In eu mi bibendum neque egestas congue quisque egestas
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Arcu non odio euismod lacinia at quis risus sed
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Massa tempor nec feugiat nisl
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Sagittis aliquam malesuada bibendum arcu vitae elementum
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Elementum facilisis leo vel fringilla est ullamcorper eget nulla
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Bibendum arcu vitae elementum curabitur vitae nunc sed velit dignissim
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Elit sed vulputate mi sit amet mauris commodo
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Ut enim blandit volutpat maecenas volutpat blandit aliquam etiam erat
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Lorem mollis aliquam ut porttitor leo a diam sollicitudin
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Vitae proin sagittis nisl rhoncus mattis
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Ut morbi tincidunt augue interdum velit euismod in pellentesque
     </div>
-  </div>
-   
+  </div>,
   <div
-    class="hidden svelte-1bh7sdh"
-  />
-</span>
+    class="__hidden_r4o97t_r4o97t s-1oYw6Qpi5NVX"
+  />,
+]
 `;
 
-exports[`Toolshot components/Annotation/Annotation.tools.svelte: Anchor not found 1`] = `
-<span>
+exports[`Anchor not found 1`] = `
+HTMLCollection [
   <div
-    class="backdrop svelte-17gyiyd"
+    class="backdrop s-jjVoPuXPuBam"
     style=""
   >
      
     <article
-      class="svelte-17gyiyd"
+      class="s-jjVoPuXPuBam"
     >
       Look! This text looks very interesting
     </article>
-  </div>
-   
+  </div>,
   <div
-    class="test-grid svelte-1bh7sdh"
+    class="test-grid s-1oYw6Qpi5NVX"
   >
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       In eu mi bibendum neque egestas congue quisque egestas
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Arcu non odio euismod lacinia at quis risus sed
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Massa tempor nec feugiat nisl
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Sagittis aliquam malesuada bibendum arcu vitae elementum
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Elementum facilisis leo vel fringilla est ullamcorper eget nulla
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Bibendum arcu vitae elementum curabitur vitae nunc sed velit dignissim
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Elit sed vulputate mi sit amet mauris commodo
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Ut enim blandit volutpat maecenas volutpat blandit aliquam etiam erat
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Lorem mollis aliquam ut porttitor leo a diam sollicitudin
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Vitae proin sagittis nisl rhoncus mattis
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Ut morbi tincidunt augue interdum velit euismod in pellentesque
     </div>
-  </div>
-   
+  </div>,
   <div
-    class="hidden svelte-1bh7sdh"
-  />
-</span>
+    class="__hidden_r4o97t_r4o97t s-1oYw6Qpi5NVX"
+  />,
+]
 `;
 
-exports[`Toolshot components/Annotation/Annotation.tools.svelte: Bellow center left 1`] = `
-<span>
+exports[`Bellow center left 1`] = `
+HTMLCollection [
   <div
-    class="backdrop svelte-17gyiyd"
+    class="backdrop s-jjVoPuXPuBam"
     style=""
   >
      
     <article
-      class="svelte-17gyiyd"
+      class="s-jjVoPuXPuBam"
     >
       Look! This text looks very interesting
     </article>
-  </div>
-   
+  </div>,
   <div
-    class="test-grid svelte-1bh7sdh"
+    class="test-grid s-1oYw6Qpi5NVX"
   >
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       In eu mi bibendum neque egestas congue quisque egestas
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Arcu non odio euismod lacinia at quis risus sed
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Massa tempor nec feugiat nisl
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Sagittis aliquam malesuada bibendum arcu vitae elementum
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Elementum facilisis leo vel fringilla est ullamcorper eget nulla
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Bibendum arcu vitae elementum curabitur vitae nunc sed velit dignissim
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Elit sed vulputate mi sit amet mauris commodo
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Ut enim blandit volutpat maecenas volutpat blandit aliquam etiam erat
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Lorem mollis aliquam ut porttitor leo a diam sollicitudin
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Vitae proin sagittis nisl rhoncus mattis
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Ut morbi tincidunt augue interdum velit euismod in pellentesque
     </div>
-  </div>
-   
+  </div>,
   <div
-    class="hidden svelte-1bh7sdh"
-  />
-</span>
+    class="__hidden_r4o97t_r4o97t s-1oYw6Qpi5NVX"
+  />,
+]
 `;
 
-exports[`Toolshot components/Annotation/Annotation.tools.svelte: Bellow center right 1`] = `
-<span>
+exports[`Bellow center right 1`] = `
+HTMLCollection [
   <div
-    class="backdrop svelte-17gyiyd"
+    class="backdrop s-jjVoPuXPuBam"
     style=""
   >
      
     <article
-      class="svelte-17gyiyd"
+      class="s-jjVoPuXPuBam"
     >
       Look! This text looks very interesting
     </article>
-  </div>
-   
+  </div>,
   <div
-    class="test-grid svelte-1bh7sdh"
+    class="test-grid s-1oYw6Qpi5NVX"
   >
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       In eu mi bibendum neque egestas congue quisque egestas
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Arcu non odio euismod lacinia at quis risus sed
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Massa tempor nec feugiat nisl
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Sagittis aliquam malesuada bibendum arcu vitae elementum
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Elementum facilisis leo vel fringilla est ullamcorper eget nulla
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Bibendum arcu vitae elementum curabitur vitae nunc sed velit dignissim
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Elit sed vulputate mi sit amet mauris commodo
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Ut enim blandit volutpat maecenas volutpat blandit aliquam etiam erat
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Lorem mollis aliquam ut porttitor leo a diam sollicitudin
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Vitae proin sagittis nisl rhoncus mattis
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Ut morbi tincidunt augue interdum velit euismod in pellentesque
     </div>
-  </div>
-   
+  </div>,
   <div
-    class="hidden svelte-1bh7sdh"
-  />
-</span>
+    class="__hidden_r4o97t_r4o97t s-1oYw6Qpi5NVX"
+  />,
+]
 `;
 
-exports[`Toolshot components/Annotation/Annotation.tools.svelte: Bellow left 1`] = `
-<span>
+exports[`Bellow left 1`] = `
+HTMLCollection [
   <div
-    class="backdrop svelte-17gyiyd"
+    class="backdrop s-jjVoPuXPuBam"
     style=""
   >
      
     <article
-      class="svelte-17gyiyd"
+      class="s-jjVoPuXPuBam"
     >
       Look! This text looks very interesting
     </article>
-  </div>
-   
+  </div>,
   <div
-    class="test-grid svelte-1bh7sdh"
+    class="test-grid s-1oYw6Qpi5NVX"
   >
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       In eu mi bibendum neque egestas congue quisque egestas
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Arcu non odio euismod lacinia at quis risus sed
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Massa tempor nec feugiat nisl
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Sagittis aliquam malesuada bibendum arcu vitae elementum
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Elementum facilisis leo vel fringilla est ullamcorper eget nulla
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Bibendum arcu vitae elementum curabitur vitae nunc sed velit dignissim
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Elit sed vulputate mi sit amet mauris commodo
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Ut enim blandit volutpat maecenas volutpat blandit aliquam etiam erat
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Lorem mollis aliquam ut porttitor leo a diam sollicitudin
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Vitae proin sagittis nisl rhoncus mattis
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Ut morbi tincidunt augue interdum velit euismod in pellentesque
     </div>
-  </div>
-   
+  </div>,
   <div
-    class="hidden svelte-1bh7sdh"
-  />
-</span>
+    class="__hidden_r4o97t_r4o97t s-1oYw6Qpi5NVX"
+  />,
+]
 `;
 
-exports[`Toolshot components/Annotation/Annotation.tools.svelte: Bellow right 1`] = `
-<span>
+exports[`Bellow right 1`] = `
+HTMLCollection [
   <div
-    class="backdrop svelte-17gyiyd"
+    class="backdrop s-jjVoPuXPuBam"
     style=""
   >
      
     <article
-      class="svelte-17gyiyd"
+      class="s-jjVoPuXPuBam"
     >
       Look! This text looks very interesting
     </article>
-  </div>
-   
+  </div>,
   <div
-    class="test-grid svelte-1bh7sdh"
+    class="test-grid s-1oYw6Qpi5NVX"
   >
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       In eu mi bibendum neque egestas congue quisque egestas
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Arcu non odio euismod lacinia at quis risus sed
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Massa tempor nec feugiat nisl
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Sagittis aliquam malesuada bibendum arcu vitae elementum
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Elementum facilisis leo vel fringilla est ullamcorper eget nulla
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Bibendum arcu vitae elementum curabitur vitae nunc sed velit dignissim
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Elit sed vulputate mi sit amet mauris commodo
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Ut enim blandit volutpat maecenas volutpat blandit aliquam etiam erat
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Lorem mollis aliquam ut porttitor leo a diam sollicitudin
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Vitae proin sagittis nisl rhoncus mattis
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Ut morbi tincidunt augue interdum velit euismod in pellentesque
     </div>
-  </div>
-   
+  </div>,
   <div
-    class="hidden svelte-1bh7sdh"
-  />
-</span>
+    class="__hidden_r4o97t_r4o97t s-1oYw6Qpi5NVX"
+  />,
+]
 `;
 
-exports[`Toolshot components/Annotation/Annotation.tools.svelte: Default 1`] = `
-<span>
+exports[`Default 1`] = `
+HTMLCollection [
   <div
-    class="backdrop svelte-17gyiyd"
+    class="backdrop s-jjVoPuXPuBam"
     style=""
   >
      
     <article
-      class="svelte-17gyiyd"
+      class="s-jjVoPuXPuBam"
     >
       Look! This text looks very interesting
     </article>
-  </div>
-   
+  </div>,
   <div
-    class="test-grid svelte-1bh7sdh"
+    class="test-grid s-1oYw6Qpi5NVX"
   >
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       In eu mi bibendum neque egestas congue quisque egestas
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Arcu non odio euismod lacinia at quis risus sed
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Massa tempor nec feugiat nisl
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Sagittis aliquam malesuada bibendum arcu vitae elementum
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Elementum facilisis leo vel fringilla est ullamcorper eget nulla
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Bibendum arcu vitae elementum curabitur vitae nunc sed velit dignissim
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Elit sed vulputate mi sit amet mauris commodo
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Ut enim blandit volutpat maecenas volutpat blandit aliquam etiam erat
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Lorem mollis aliquam ut porttitor leo a diam sollicitudin
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Vitae proin sagittis nisl rhoncus mattis
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Ut morbi tincidunt augue interdum velit euismod in pellentesque
     </div>
-  </div>
-   
+  </div>,
   <div
-    class="hidden svelte-1bh7sdh"
-  />
-</span>
+    class="__hidden_r4o97t_r4o97t s-1oYw6Qpi5NVX"
+  />,
+]
 `;
 
-exports[`Toolshot components/Annotation/Annotation.tools.svelte: Hidden anchor 1`] = `
-<span>
+exports[`Hidden anchor 1`] = `
+HTMLCollection [
   <div
-    class="backdrop svelte-17gyiyd"
+    class="backdrop s-jjVoPuXPuBam"
     style=""
   >
      
     <article
-      class="svelte-17gyiyd"
+      class="s-jjVoPuXPuBam"
     >
       Look! This text looks very interesting
     </article>
-  </div>
-   
+  </div>,
   <div
-    class="test-grid svelte-1bh7sdh"
+    class="test-grid s-1oYw6Qpi5NVX"
   >
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       In eu mi bibendum neque egestas congue quisque egestas
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Arcu non odio euismod lacinia at quis risus sed
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Massa tempor nec feugiat nisl
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Sagittis aliquam malesuada bibendum arcu vitae elementum
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Elementum facilisis leo vel fringilla est ullamcorper eget nulla
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Bibendum arcu vitae elementum curabitur vitae nunc sed velit dignissim
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Elit sed vulputate mi sit amet mauris commodo
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Ut enim blandit volutpat maecenas volutpat blandit aliquam etiam erat
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Lorem mollis aliquam ut porttitor leo a diam sollicitudin
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Vitae proin sagittis nisl rhoncus mattis
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Ut morbi tincidunt augue interdum velit euismod in pellentesque
     </div>
-  </div>
-   
+  </div>,
   <div
-    class="hidden svelte-1bh7sdh"
-  />
-</span>
+    class="__hidden_r4o97t_r4o97t s-1oYw6Qpi5NVX"
+  />,
+]
 `;
 
-exports[`Toolshot components/Annotation/Annotation.tools.svelte: Middle left 1`] = `
-<span>
+exports[`Middle left 1`] = `
+HTMLCollection [
   <div
-    class="backdrop svelte-17gyiyd"
+    class="backdrop s-jjVoPuXPuBam"
     style=""
   >
      
     <article
-      class="svelte-17gyiyd"
+      class="s-jjVoPuXPuBam"
     >
       Look! This text looks very interesting
     </article>
-  </div>
-   
+  </div>,
   <div
-    class="test-grid svelte-1bh7sdh"
+    class="test-grid s-1oYw6Qpi5NVX"
   >
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       In eu mi bibendum neque egestas congue quisque egestas
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Arcu non odio euismod lacinia at quis risus sed
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Massa tempor nec feugiat nisl
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Sagittis aliquam malesuada bibendum arcu vitae elementum
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Elementum facilisis leo vel fringilla est ullamcorper eget nulla
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Bibendum arcu vitae elementum curabitur vitae nunc sed velit dignissim
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Elit sed vulputate mi sit amet mauris commodo
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Ut enim blandit volutpat maecenas volutpat blandit aliquam etiam erat
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Lorem mollis aliquam ut porttitor leo a diam sollicitudin
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Vitae proin sagittis nisl rhoncus mattis
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Ut morbi tincidunt augue interdum velit euismod in pellentesque
     </div>
-  </div>
-   
+  </div>,
   <div
-    class="hidden svelte-1bh7sdh"
-  />
-</span>
+    class="__hidden_r4o97t_r4o97t s-1oYw6Qpi5NVX"
+  />,
+]
 `;
 
-exports[`Toolshot components/Annotation/Annotation.tools.svelte: Middle right 1`] = `
-<span>
+exports[`Middle right 1`] = `
+HTMLCollection [
   <div
-    class="backdrop svelte-17gyiyd"
+    class="backdrop s-jjVoPuXPuBam"
     style=""
   >
      
     <article
-      class="svelte-17gyiyd"
+      class="s-jjVoPuXPuBam"
     >
       Look! This text looks very interesting
     </article>
-  </div>
-   
+  </div>,
   <div
-    class="test-grid svelte-1bh7sdh"
+    class="test-grid s-1oYw6Qpi5NVX"
   >
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       In eu mi bibendum neque egestas congue quisque egestas
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Arcu non odio euismod lacinia at quis risus sed
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Massa tempor nec feugiat nisl
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Sagittis aliquam malesuada bibendum arcu vitae elementum
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Elementum facilisis leo vel fringilla est ullamcorper eget nulla
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Bibendum arcu vitae elementum curabitur vitae nunc sed velit dignissim
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Elit sed vulputate mi sit amet mauris commodo
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Ut enim blandit volutpat maecenas volutpat blandit aliquam etiam erat
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Lorem mollis aliquam ut porttitor leo a diam sollicitudin
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Vitae proin sagittis nisl rhoncus mattis
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Ut morbi tincidunt augue interdum velit euismod in pellentesque
     </div>
-  </div>
-   
+  </div>,
   <div
-    class="hidden svelte-1bh7sdh"
-  />
-</span>
+    class="__hidden_r4o97t_r4o97t s-1oYw6Qpi5NVX"
+  />,
+]
 `;
 
-exports[`Toolshot components/Annotation/Annotation.tools.svelte: Positionned 1`] = `
-<span>
+exports[`Positionned 1`] = `
+HTMLCollection [
   <div
-    class="backdrop svelte-17gyiyd"
+    class="backdrop s-jjVoPuXPuBam"
     style=""
   >
      
     <article
-      class="svelte-17gyiyd"
+      class="s-jjVoPuXPuBam"
       style="top: 5%; left: 60%;"
     >
       Look! This text looks very interesting
     </article>
-  </div>
-   
+  </div>,
   <div
-    class="test-grid svelte-1bh7sdh"
+    class="test-grid s-1oYw6Qpi5NVX"
   >
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       In eu mi bibendum neque egestas congue quisque egestas
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Arcu non odio euismod lacinia at quis risus sed
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Massa tempor nec feugiat nisl
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Sagittis aliquam malesuada bibendum arcu vitae elementum
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Elementum facilisis leo vel fringilla est ullamcorper eget nulla
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Bibendum arcu vitae elementum curabitur vitae nunc sed velit dignissim
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Elit sed vulputate mi sit amet mauris commodo
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Ut enim blandit volutpat maecenas volutpat blandit aliquam etiam erat
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Lorem mollis aliquam ut porttitor leo a diam sollicitudin
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Vitae proin sagittis nisl rhoncus mattis
     </div>
     <div
-      class="svelte-1bh7sdh"
+      class="s-1oYw6Qpi5NVX"
     >
       Ut morbi tincidunt augue interdum velit euismod in pellentesque
     </div>
-  </div>
-   
+  </div>,
   <div
-    class="hidden svelte-1bh7sdh"
-  />
-</span>
+    class="__hidden_r4o97t_r4o97t s-1oYw6Qpi5NVX"
+  />,
+]
 `;

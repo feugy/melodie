@@ -1,5 +1,3 @@
-'use strict'
-
 export function classOnChange(node, parameters) {
   let previousValue = null
   let timeout

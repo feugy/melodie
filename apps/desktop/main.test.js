@@ -1,101 +1,115 @@
-'use strict'
+// import { autoUpdater } from 'electron-updater'
+import { faker } from '@faker-js/faker'
+import { utils } from '@melodie/core'
+import { app, BrowserWindow, dialog } from 'electron'
+import { EventEmitter } from 'events'
+import os from 'os'
+import * as OTPAuth from 'otpauth'
+import { join, resolve } from 'path'
+import {
+  afterEach,
+  beforeAll,
+  beforeEach,
+  describe,
+  expect,
+  it,
+  vi
+} from 'vitest'
 
-const { EventEmitter } = require('events')
-const { dirname, join, resolve } = require('path')
-const os = require('os')
-const electron = require('electron')
-const { autoUpdater } = require('electron-updater')
-const faker = require('faker')
-const OTPAuth = require('otpauth')
-const {
-  utils: { getLogger }
-} = require('@melodie/core')
-const { sleep } = require('./lib/tests')
-const services = require('./lib/services')
-const { configureExternalLinks } = require('./lib/utils')
-const descriptor = require('./package')
-const publicFolder = resolve(__dirname, '..', '..', 'common', 'ui', 'dist')
+import * as services from './lib/services'
+import { sleep } from './lib/tests'
+import { configureExternalLinks } from './lib/utils'
+import descriptor from './package.json' assert { type: 'json' }
 
-let platformSpy = jest.spyOn(os, 'platform')
+const publicFolder = resolve(__dirname, 'out')
 
-jest.mock('electron', () => {
-  let instanceCount = 0
-  const { EventEmitter } = require('events')
+let platformSpy = vi.spyOn(os, 'platform')
+
+vi.mock('electron', async importActual => {
+  const { EventEmitter } = await import('events')
   const app = new EventEmitter()
-  app.whenReady = jest.fn().mockResolvedValue()
-  app.getPath = jest.fn().mockReturnValue('')
-  app.getAppPath = jest.fn().mockReturnValue('')
-  app.quit = jest.fn().mockImplementation(() => {
-    instanceCount--
+  app.instanceCount = 0
+  app.whenReady = vi.fn().mockResolvedValue()
+  app.getPath = vi.fn().mockReturnValue('')
+  app.getAppPath = vi.fn().mockReturnValue('')
+  app.quit = vi.fn().mockImplementation(() => {
+    app.instanceCount = Math.max(app.instanceCount - 1, 0)
   })
   app.isPackaged = true
-  app.requestSingleInstanceLock = jest.fn().mockImplementation(() => {
-    instanceCount++
-    if (instanceCount > 1) {
+  app.requestSingleInstanceLock = vi.fn().mockImplementation(() => {
+    app.instanceCount++
+    if (app.instanceCount > 1) {
       app.emit('second-instance')
     }
-    return instanceCount === 1
+    return app.instanceCount === 1
   })
   const ipcMain = new EventEmitter()
-  ipcMain.handle = jest.fn()
-  ipcMain.removeHandler = jest.fn()
+  ipcMain.handle = vi.fn()
+  ipcMain.removeHandler = vi.fn()
   return {
+    ...(await importActual()),
     app,
     ipcMain,
     dialog: {
-      showErrorBox: jest.fn()
+      showErrorBox: vi.fn()
     },
     Menu: {
-      setApplicationMenu: jest.fn()
+      setApplicationMenu: vi.fn()
     },
-    BrowserWindow: jest.fn()
+    globalShortcut: { register: vi.fn() },
+    BrowserWindow: vi.fn()
   }
 })
-jest.mock('electron-updater', () => {
-  const autoUpdater = new (require('events').EventEmitter)()
-  autoUpdater.checkForUpdatesAndNotify = jest.fn()
-  return { autoUpdater }
-})
-jest.mock('electron-reload')
-jest.mock('@melodie/core')
-jest.mock('./lib/services')
-jest.mock('./lib/utils/links')
+// vi.mock('electron-updater', () => {
+//   const autoUpdater = new (require('events').EventEmitter)()
+//   autoUpdater.checkForUpdatesAndNotify = vi.fn()
+//   return { autoUpdater }
+// })
+// vi.mock('electron-reload')
+vi.mock('@melodie/core')
+vi.mock('./lib/services')
+vi.mock('./lib/utils/links')
 
 describe('Application test', () => {
   let win
   let main
-  const port = faker.datatype.number({ min: 1024, max: 20000 })
-  const totpSecret = Buffer.from(faker.datatype.uuid())
+  const port = faker.number.int({ min: 1024, max: 20000 })
+  const totpSecret = Buffer.from(faker.string.uuid())
     .toString('hex')
     .toUpperCase()
 
-  beforeAll(() => {
+  beforeAll(async () => {
     // defer so we could mock electron
-    main = require('./main').main
+    ;({ main } = await import('./main'))
   })
 
   beforeEach(() => {
-    jest.clearAllMocks()
+    vi.clearAllMocks()
     win = new EventEmitter()
-    win.loadURL = jest.fn()
-    win.focus = jest.fn()
-    win.isMinimized = jest.fn()
-    win.restore = jest.fn()
-    electron.BrowserWindow.mockReturnValue(win)
-    electron.app.removeAllListeners()
+    win.loadURL = vi.fn()
+    win.focus = vi.fn()
+    win.isMinimized = vi.fn()
+    win.restore = vi.fn()
+    BrowserWindow.mockReturnValue(win)
+    app.removeAllListeners()
     process.env.NODE_ENV = ''
-    getLogger.mockReturnValue({ info() {}, debug() {}, warn() {}, error() {} })
+    utils.getLogger.mockReturnValue({
+      info() {},
+      debug() {},
+      warn() {},
+      error() {}
+    })
     services.start.mockImplementation(
       async (folder, win, desc, desiredPort) => ({
         port: desiredPort || port,
-        close: jest.fn(),
+        close: vi.fn(),
         totp: new OTPAuth.TOTP({ secret: OTPAuth.Secret.fromHex(totpSecret) })
       })
     )
   })
 
   afterEach(() => {
-    electron.app.emit('window-all-closed')
+    app.quit()
     process.env.NODE_ENV = 'test'
   })
 
@@ -108,19 +122,18 @@ describe('Application test', () => {
       descriptor,
       undefined
     )
-    expect(services.start).toHaveBeenCalledTimes(1)
+    expect(services.start).toHaveBeenCalledOnce()
     expect(win.loadURL).toHaveBeenCalledWith(
       `file://${join(
-        dirname(require.resolve('@melodie/ui')),
-        'dist',
+        publicFolder,
         'index.html'
       )}?port=${port}&totpSecret=${totpSecret}`
     )
-    expect(electron.app.quit).not.toHaveBeenCalled()
-    expect(electron.dialog.showErrorBox).not.toHaveBeenCalled()
+    expect(app.quit).not.toHaveBeenCalled()
+    expect(dialog.showErrorBox).not.toHaveBeenCalled()
     expect(configureExternalLinks).toHaveBeenCalledWith(win)
-    expect(configureExternalLinks).toHaveBeenCalledTimes(1)
-    expect(autoUpdater.checkForUpdatesAndNotify).toHaveBeenCalledTimes(1)
+    expect(configureExternalLinks).toHaveBeenCalledOnce()
+    // expect(autoUpdater.checkForUpdatesAndNotify).toHaveBeenCalledOnce()
 
     await sleep(300)
     expect(services.playFiles).not.toHaveBeenCalled()
@@ -151,19 +164,17 @@ describe('Application test', () => {
       descriptor,
       desiredPort
     )
-    expect(services.start).toHaveBeenCalledTimes(1)
+    expect(services.start).toHaveBeenCalledOnce()
     expect(win.loadURL).toHaveBeenCalledWith(
-      `file://${join(
-        dirname(require.resolve('@melodie/ui')),
-        'dist',
-        'index.html'
-      )}?port=${desiredPort || port}&totpSecret=${totpSecret}`
+      `file://${join(publicFolder, 'index.html')}?port=${
+        desiredPort || port
+      }&totpSecret=${totpSecret}`
     )
 
     await sleep(300)
     if (entries.length) {
       expect(services.playFiles).toHaveBeenCalledWith(entries)
-      expect(services.playFiles).toHaveBeenCalledTimes(1)
+      expect(services.playFiles).toHaveBeenCalledOnce()
     } else {
       expect(services.playFiles).not.toHaveBeenCalled()
     }
@@ -171,46 +182,43 @@ describe('Application test', () => {
 
   it('quits when closing window', async () => {
     await main(['asar-location'])
-    electron.app.emit('window-all-closed')
+    app.emit('window-all-closed')
 
-    expect(electron.app.quit).toHaveBeenCalledTimes(1)
+    expect(app.quit).toHaveBeenCalledOnce()
   })
 
   it('enforces single instance and focus existing one', async () => {
     await main(['asar-location'])
-    expect(electron.app.quit).not.toHaveBeenCalled()
-    expect(services.start).toHaveBeenCalledTimes(1)
+    expect(app.quit).not.toHaveBeenCalled()
+    expect(services.start).toHaveBeenCalledOnce()
     expect(win.isMinimized).not.toHaveBeenCalled()
     expect(win.focus).not.toHaveBeenCalled()
 
     await main(['asar-location'])
-    expect(electron.app.quit).toHaveBeenCalledTimes(1)
-    expect(services.start).toHaveBeenCalledTimes(1)
-    expect(win.isMinimized).toHaveBeenCalledTimes(1)
-    expect(win.focus).toHaveBeenCalledTimes(1)
-
-    electron.app.emit('window-all-closed')
-    expect(electron.app.quit).toHaveBeenCalledTimes(2)
+    expect(app.quit).toHaveBeenCalledOnce()
+    expect(services.start).toHaveBeenCalledOnce()
+    expect(win.isMinimized).toHaveBeenCalledOnce()
+    expect(win.focus).toHaveBeenCalledOnce()
   })
 
   it('restore minimized instance when opening another instance', async () => {
     win.isMinimized.mockReturnValue(true)
 
     await main(['asar-location'])
-    expect(electron.app.quit).not.toHaveBeenCalled()
-    expect(services.start).toHaveBeenCalledTimes(1)
+    expect(app.quit).not.toHaveBeenCalled()
+    expect(services.start).toHaveBeenCalledOnce()
     expect(win.isMinimized).not.toHaveBeenCalled()
     expect(win.focus).not.toHaveBeenCalled()
 
     await main(['asar-location'])
-    expect(electron.app.quit).toHaveBeenCalledTimes(1)
-    expect(services.start).toHaveBeenCalledTimes(1)
-    expect(win.isMinimized).toHaveBeenCalledTimes(1)
-    expect(win.restore).toHaveBeenCalledTimes(1)
+    expect(app.quit).toHaveBeenCalledOnce()
+    expect(services.start).toHaveBeenCalledOnce()
+    expect(win.isMinimized).toHaveBeenCalledOnce()
+    expect(win.restore).toHaveBeenCalledOnce()
     expect(win.focus).toHaveBeenCalledAfter(win.restore)
 
-    electron.app.emit('window-all-closed')
-    expect(electron.app.quit).toHaveBeenCalledTimes(2)
+    app.emit('window-all-closed')
+    expect(app.quit).toHaveBeenCalledTimes(2)
   })
 
   describe('given some files to open', () => {
@@ -231,21 +239,21 @@ describe('Application test', () => {
       })
 
       it('plays them when packed', async () => {
-        electron.app.isPackaged = true
+        app.isPackaged = true
         await main(['asar-location', ...files])
 
         await sleep(300)
         expect(services.playFiles).toHaveBeenCalledWith(files)
-        expect(services.playFiles).toHaveBeenCalledTimes(1)
+        expect(services.playFiles).toHaveBeenCalledOnce()
       })
 
       it('plays them when unpacked', async () => {
-        electron.app.isPackaged = false
+        app.isPackaged = false
         await main(['electron', '.', ...files])
 
         await sleep(300)
         expect(services.playFiles).toHaveBeenCalledWith(files)
-        expect(services.playFiles).toHaveBeenCalledTimes(1)
+        expect(services.playFiles).toHaveBeenCalledOnce()
       })
     })
 
@@ -257,13 +265,13 @@ describe('Application test', () => {
       it('plays them', async () => {
         const promise = main(['asar-location'])
         for (const file of files) {
-          electron.app.emit('open-file', {}, file)
+          app.emit('open-file', {}, file)
         }
         await promise
 
         await sleep(300)
         expect(services.playFiles).toHaveBeenCalledWith(files)
-        expect(services.playFiles).toHaveBeenCalledTimes(1)
+        expect(services.playFiles).toHaveBeenCalledOnce()
       })
     })
   })

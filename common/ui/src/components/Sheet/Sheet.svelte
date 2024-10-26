@@ -5,20 +5,6 @@
   export let width = '30%'
 </script>
 
-<style lang="postcss">
-  div {
-    @apply flex flex-row h-full overflow-x-hidden;
-  }
-
-  .main {
-    @apply flex-grow;
-  }
-
-  .aside {
-    @apply block;
-  }
-</style>
-
 <div>
   <div class="main">
     <slot name="main" />
@@ -33,3 +19,17 @@
     </div>
   {/if}
 </div>
+
+<style>
+  div {
+    --at-apply: flex flex-row h-full overflow-x-hidden;
+  }
+
+  .main {
+    --at-apply: flex-grow;
+  }
+
+  .aside {
+    --at-apply: block;
+  }
+</style>

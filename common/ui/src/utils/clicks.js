@@ -1,6 +1,4 @@
-'use strict'
-
-import { Subject, race } from 'rxjs'
+import { race, Subject } from 'rxjs'
 import { bufferCount, debounceTime, first, repeat } from 'rxjs/operators'
 
 const dblClickDuration = 250

@@ -7,16 +7,6 @@
   $: volumePct = volume * 100
 </script>
 
-<style lang="postcss">
-  div {
-    @apply flex flex-row items-center justify-end mr-0 flex-grow;
-  }
-
-  span {
-    @apply pr-2 inline-block flex-grow md:max-w-100px;
-  }
-</style>
-
 <div>
   <span class="volume-slider">
     <Slider
@@ -32,7 +22,19 @@
   </span>
   <Button
     on:click={() => (muted = !muted)}
-    icon={muted ? 'volume_off' : 'volume_up'}
+    icon={muted ? 'i-mdi-volume-off' : 'i-mdi-volume'}
     noBorder
+    data-testid="mute-button"
   />
 </div>
+
+<style>
+  div {
+    --at-apply: flex flex-row items-center justify-end mr-0 flex-grow;
+  }
+
+  span {
+    /* prettier-ignore */
+    --at-apply: pr-2 inline-block flex-grow md:max-w-100px;
+  }
+</style>

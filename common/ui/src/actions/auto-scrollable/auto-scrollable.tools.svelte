@@ -1,5 +1,6 @@
 <script>
   import { Tool } from '@atelier-wb/svelte'
+
   import Scrollable from './auto-scrollable.test.svelte'
 </script>
 

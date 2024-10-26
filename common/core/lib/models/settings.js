@@ -1,7 +1,5 @@
-'use strict'
-
-const Model = require('./abstract-model')
-const { broadcast } = require('../utils')
+import { broadcast } from '../utils/index.js'
+import Model from './abstract-model.js'
 
 /**
  * @class SettingsModel
@@ -62,4 +60,4 @@ class SettingsModel extends Model {
 
 SettingsModel
 
-exports.settingsModel = new SettingsModel()
+export const settingsModel = new SettingsModel()

@@ -1,8 +1,9 @@
 <script>
   import { Tool } from '@atelier-wb/svelte'
-  import Component from './playlist.svelte'
-  import { mockWebsocket } from '../atelier/utils'
+
   import HRefSink from '../atelier/HRefSink.svelte'
+  import { mockWebsocket } from '../atelier/utils'
+  import Component from './playlist.svelte'
 
   const playlistsData = [
     {

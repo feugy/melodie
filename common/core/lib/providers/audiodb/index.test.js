@@ -1,10 +1,11 @@
-'use strict'
+import 'dotenv/config'
 
-require('dotenv').config()
-const nock = require('nock')
-const provider = require('.')
-const TooManyRequestsError = require('../too-many-requests-error')
-const { withNockIt } = require('../../tests')
+import nock from 'nock'
+import { afterAll, beforeAll, beforeEach, describe, expect, it } from 'vitest'
+
+import { withNockIt } from '../../tests'
+import TooManyRequestsError from '../too-many-requests-error'
+import provider from '.'
 
 describe('AudioDB provider', () => {
   beforeEach(() => {
@@ -69,7 +70,7 @@ describe('AudioDB provider', () => {
       })
 
       it('throws error when calling too frequently', async () => {
-        expect(
+        await expect(
           Promise.all(
             Array.from({ length: 50 }, () =>
               provider.findArtistArtwork('loremipsum')
@@ -119,7 +120,7 @@ describe('AudioDB provider', () => {
       })
 
       it('throws error when calling too frequently', async () => {
-        expect(
+        await expect(
           Promise.all(
             Array.from({ length: 50 }, () =>
               provider.findAlbumCover('loremipsum')

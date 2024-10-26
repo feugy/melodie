@@ -1,13 +1,12 @@
-'use strict'
-const crypto = require('crypto')
+import crypto from 'crypto'
 
-exports.up = async function ({ schema }) {
+export async function up({ schema }) {
   await schema.table('settings', table => {
     table.string('totpSecret').defaultTo(crypto.randomUUID())
   })
 }
 
-exports.down = async function ({ schema }) {
+export async function down({ schema }) {
   await schema.table('settings', table => {
     table.dropColumn('totpSecret')
   })

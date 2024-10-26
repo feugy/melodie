@@ -2,11 +2,12 @@ node_modules/
 build/
 coverage/
 dist/
+out/
 __sapper__/
 .svelte-kit/
+.vercel/
 .levels
 .env
 logs.txt
 winehq.key
 apps/desktop/package-lock.json
-apps/site/static/fonts

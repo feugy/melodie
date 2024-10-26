@@ -1,18 +1,24 @@
 <script>
+  /** @type { string } */
   export let src
+  /** @type {string} */
   export let height
 </script>
 
-<style lang="postcss">
+<div style="--height: {height}; --src:url('{src}');">
+  <img {...$$restProps} alt="" {src} />
+</div>
+
+<style>
   img {
     height: var(--height);
   }
 
   div {
-    @apply relative;
+    --at-apply: relative;
 
     &:after {
-      @apply bg-no-repeat bg-cover absolute w-full mt-2 left-0;
+      --at-apply: bg-no-repeat bg-cover absolute w-full mt-2 left-0;
       content: '';
       height: 20%;
       transform: rotateX(180deg);
@@ -22,7 +28,3 @@
     }
   }
 </style>
-
-<div style="--height: {height}; --src:url('{src}');">
-  <img {...$$restProps} alt="" {src} />
-</div>

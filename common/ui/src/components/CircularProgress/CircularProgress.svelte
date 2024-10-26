@@ -10,7 +10,16 @@
   $: offset = circumference - (percentage / 100) * circumference
 </script>
 
-<style lang="postcss">
+<svg
+  height={size}
+  width={size}
+  role="progressbar"
+  style="--stroke-width:{strokeWidth}; --circumference:{circumference}; --offset:{offset};"
+>
+  <circle r={radius} cx={size / 2} cy={size / 2} />
+</svg>
+
+<style>
   circle {
     stroke: var(--primary-color);
     stroke-width: var(--stroke-width);
@@ -22,12 +31,3 @@
     transform-origin: 50% 50%;
   }
 </style>
-
-<svg
-  height={size}
-  width={size}
-  role="progressbar"
-  style="--stroke-width:{strokeWidth}; --circumference:{circumference}; --offset:{offset};"
->
-  <circle r={radius} cx={size / 2} cy={size / 2} />
-</svg>

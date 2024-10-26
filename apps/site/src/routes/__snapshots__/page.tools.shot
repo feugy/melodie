@@ -1,0 +1,527 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Site Page/Index 1`] = `
+<main>
+  <span
+    class="sentinel s-MqRace9P3QJx"
+  />
+   
+  <nav
+    class=" s-MqRace9P3QJx"
+  >
+    <nav
+      class="s-y_bCXRrkrYfP"
+    >
+      <button
+        class="s-y_bCXRrkrYfP"
+      >
+        <img
+          alt="Mélodie logo - link to the page top"
+          class="s-y_bCXRrkrYfP"
+          src="/favicon.png"
+        />
+      </button>
+       
+      <a
+        class="s-y_bCXRrkrYfP"
+        href="#intuitive"
+      >
+        <i
+          class="__i-mdi-infinity_6tjb5r_6tjb5r icons s-y_bCXRrkrYfP"
+        />
+        Intuitive
+      </a>
+       
+      <a
+        class="s-y_bCXRrkrYfP"
+        href="#organized"
+      >
+        <i
+          class="__i-mdi-land-plots_6tjb5r_6tjb5r icons s-y_bCXRrkrYfP"
+        />
+        Organized
+      </a>
+       
+      <a
+        class="s-y_bCXRrkrYfP"
+        href="#reactive"
+      >
+        <i
+          class="__i-mdi-sync_6tjb5r_6tjb5r icons s-y_bCXRrkrYfP"
+        />
+        Reactive
+      </a>
+       
+      <a
+        class="s-y_bCXRrkrYfP"
+        href="#for-geeks"
+      >
+        <i
+          class="__i-mdi-unicorn-variant_6tjb5r_6tjb5r icons s-y_bCXRrkrYfP"
+        />
+        For geeks
+      </a>
+       
+      <span
+        class="__flex-grow_6tjb5r_6tjb5r s-y_bCXRrkrYfP"
+      />
+       
+      <a
+        class="s-y_bCXRrkrYfP"
+        href="https://github.com/feugy/melodie"
+        target="_blank"
+      >
+        <img
+          alt=""
+          class="s-y_bCXRrkrYfP"
+          src="/logos/github.png"
+        />
+      </a>
+    </nav>
+  </nav>
+  <!--&lt;Sticky&gt;-->
+   
+  <header
+    class="inverted-colors s-y_bCXRrkrYfP"
+  >
+    <section
+      class="s-h16aoz_pbhxR"
+      style="--color: transparent; --clip-path: polygon(0% 0%, 100% 7rem, 100% calc(100% - 7rem), 0 100%);"
+    >
+      <div
+        class="s-h16aoz_pbhxR"
+      >
+        <div
+          class="content s-y_bCXRrkrYfP"
+        >
+          <span
+            class="s-y_bCXRrkrYfP"
+          >
+            <h1
+              class="s-y_bCXRrkrYfP"
+            >
+              Mélodie is a music player
+            </h1>
+             
+            <h2
+              class="s-y_bCXRrkrYfP"
+            >
+              It is intuitive, portable and open source!
+            </h2>
+             
+            <span
+              aria-expanded="false"
+              aria-haspopup="menu"
+              class="wrapper s-dgBKMCN75_Se"
+            >
+              <button
+                class="__text-white_ix9oqw_ix9oqw primary large s-vvHE-pm6jDa5"
+              >
+                <i
+                  class="icons i-mdi-cloud-arrow-down s-vvHE-pm6jDa5"
+                />
+                 
+                <span
+                  class="s-vvHE-pm6jDa5"
+                >
+                  Install v2.0.0
+                </span>
+                 
+                <i
+                  class="icons arrow i-mdi-menu-down s-dgBKMCN75_Se"
+                />
+                
+                 
+              </button>
+              <!--&lt;Button&gt;-->
+            </span>
+             
+            
+            <!--&lt;Dropdown&gt;-->
+            <!--&lt;DownloadButton&gt;-->
+          </span>
+           
+          <div
+            class="image-wrapper s-y_bCXRrkrYfP"
+          >
+            <div
+              class="s-WYXjB5GLW6Vo"
+              style="--height: 350px; --src: url('/images/screenshot-ui-en.png');"
+            >
+              <img
+                alt=""
+                class="s-WYXjB5GLW6Vo"
+                src="/images/screenshot-ui-en.png"
+              />
+            </div>
+            <!--&lt;ReflectedImage&gt;-->
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--&lt;Trapezium&gt;-->
+  </header>
+   
+  <section
+    class="s-y_bCXRrkrYfP"
+    id="intuitive"
+  >
+    <section
+      class="s-h16aoz_pbhxR"
+      style="--color: #4c5c96; --clip-path: polygon(0% 7rem, 100% 0%, 100% 100%, 0 calc(100% - 7rem));"
+    >
+      <div
+        class="s-h16aoz_pbhxR"
+      >
+        <div
+          class="content s-y_bCXRrkrYfP"
+        >
+          <span
+            class="s-y_bCXRrkrYfP"
+          >
+            <h3
+              class="s-y_bCXRrkrYfP"
+            >
+              No frills, just the basics
+            </h3>
+             
+            <p
+              class="s-y_bCXRrkrYfP"
+            >
+              <p>
+                Plays Mp3, Ogg Vorbis and Flac files. Controls speak for themselves. 
+              </p>
+               
+              <p>
+                What you don't see yet? Gap-less playback, ReplayGain, system notifications and media keys support.
+              </p>
+              
+
+            </p>
+          </span>
+           
+          <div
+            class="image-wrapper s-y_bCXRrkrYfP"
+          >
+            <div
+              class="s-WYXjB5GLW6Vo"
+              style="--height: 100px; --src: url('/images/screenshot-player-en.png');"
+            >
+              <img
+                alt=""
+                class="s-WYXjB5GLW6Vo"
+                src="/images/screenshot-player-en.png"
+              />
+            </div>
+            <!--&lt;ReflectedImage&gt;-->
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--&lt;Trapezium&gt;-->
+  </section>
+   
+  <section
+    class="s-y_bCXRrkrYfP"
+    id="organized"
+  >
+    <section
+      class="s-h16aoz_pbhxR"
+      style="--color: #43527f; --clip-path: polygon(0% 0%, 100% 7rem, 100% calc(100% - 7rem), 0 100%);"
+    >
+      <div
+        class="s-h16aoz_pbhxR"
+      >
+        <div
+          class="content s-y_bCXRrkrYfP"
+        >
+          <span
+            class="s-y_bCXRrkrYfP"
+          >
+            <h3
+              class="s-y_bCXRrkrYfP"
+            >
+              Organized, so you don't have to
+            </h3>
+             
+            <p
+              class="s-y_bCXRrkrYfP"
+            >
+              <p>
+                Mélodie reads tracks music metadata, and automatically creates your album and artist library.
+              </p>
+               
+              <p>
+                You don't need to change how you the actual files are organized on your hard drive.
+              </p>
+              
+
+            </p>
+          </span>
+           
+          <div
+            class="image-wrapper s-y_bCXRrkrYfP"
+          >
+            <div
+              class="s-WYXjB5GLW6Vo"
+              style="--height: 275px; --src: url('/images/screenshot-artists-en.png');"
+            >
+              <img
+                alt=""
+                class="s-WYXjB5GLW6Vo"
+                src="/images/screenshot-artists-en.png"
+              />
+            </div>
+            <!--&lt;ReflectedImage&gt;-->
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--&lt;Trapezium&gt;-->
+  </section>
+   
+  <section
+    class="s-y_bCXRrkrYfP"
+    id="reactive"
+  >
+    <section
+      class="s-h16aoz_pbhxR"
+      style="--color: #353849; --clip-path: polygon(0% 7rem, 100% 0%, 100% 100%, 0 calc(100% - 7rem));"
+    >
+      <div
+        class="s-h16aoz_pbhxR"
+      >
+        <div
+          class="content s-y_bCXRrkrYfP"
+        >
+          <span
+            class="s-y_bCXRrkrYfP"
+          >
+            <h3
+              class="s-y_bCXRrkrYfP"
+            >
+              It stays tuned
+            </h3>
+             
+            <p
+              class="s-y_bCXRrkrYfP"
+            >
+              <p>
+                Thanks to 
+                <a
+                  class="underlined"
+                  href="https://www.theaudiodb.com"
+                  target="_blank"
+                >
+                  AudioDB 
+                  <i
+                    class="icons i-mdi-launch"
+                  />
+                </a>
+                 and 
+                <a
+                  class="underlined"
+                  href="https://www.discogs.com/en"
+                  target="_blank"
+                >
+                  Discogs 
+                  <i
+                    class="icons i-mdi-launch"
+                  />
+                </a>
+                , Mélodie will enrich your libraries with covers, avatars and biographies (requires access keys).
+              </p>
+               
+              <p>
+                Add or remove files on your drive, change their metadata: your library will immediately update.
+              </p>
+               
+              <p>
+                A software update? It'll automatically apply next time you'll open it.
+              </p>
+              
+
+            </p>
+          </span>
+           
+          <div
+            class="image-wrapper s-y_bCXRrkrYfP"
+          >
+            <div
+              class="s-WYXjB5GLW6Vo"
+              style="--height: 250px; --src: url('/images/screenshot-artist-details-en.png');"
+            >
+              <img
+                alt=""
+                class="s-WYXjB5GLW6Vo"
+                src="/images/screenshot-artist-details-en.png"
+              />
+            </div>
+            <!--&lt;ReflectedImage&gt;-->
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--&lt;Trapezium&gt;-->
+  </section>
+   
+  <section
+    class="s-y_bCXRrkrYfP"
+    id="for-geeks"
+  >
+    <section
+      class="s-h16aoz_pbhxR"
+      style="--color: #2e3141; --clip-path: polygon(0% 0%, 100% 7rem, 100% calc(100% - 7rem), 0 100%);"
+    >
+      <div
+        class="s-h16aoz_pbhxR"
+      >
+        <div
+          class="__flex-wrap_6tjb5r_6tjb5r content s-y_bCXRrkrYfP"
+        >
+          <article
+            class="s-Ox3KIXghErgD"
+          >
+            <img
+              alt=""
+              class="s-Ox3KIXghErgD"
+              src="/logos/os.png"
+            />
+             
+            <div
+              class="s-Ox3KIXghErgD"
+            >
+              <h4
+                class="s-Ox3KIXghErgD"
+              >
+                Works on your machine
+              </h4>
+               
+              <p
+                class="s-Ox3KIXghErgD"
+              >
+                <p>
+                  May your favorite operating system be macOS, Windows or Linux, you will get the same user experience.
+                </p>
+                
+
+                
+              </p>
+            </div>
+          </article>
+          <!--&lt;Card&gt;-->
+           
+          <article
+            class="s-Ox3KIXghErgD"
+          >
+            <img
+              alt=""
+              class="s-Ox3KIXghErgD"
+              src="/logos/open-source.png"
+            />
+             
+            <div
+              class="s-Ox3KIXghErgD"
+            >
+              <h4
+                class="s-Ox3KIXghErgD"
+              >
+                Open Source
+              </h4>
+               
+              <p
+                class="s-Ox3KIXghErgD"
+              >
+                <p>
+                  Mélodie's source code is 
+                  <a
+                    class="underlined"
+                    href="https://github.com/feugy/melodie"
+                    target="_blank"
+                  >
+                    open 
+                    <i
+                      class="icons i-mdi-launch"
+                    />
+                  </a>
+                  .
+                </p>
+                 
+                <p>
+                  This application is free to use, and free or any adds.
+                </p>
+                
+
+                
+              </p>
+            </div>
+          </article>
+          <!--&lt;Card&gt;-->
+           
+          <article
+            class="s-Ox3KIXghErgD"
+          >
+            <img
+              alt=""
+              class="s-Ox3KIXghErgD"
+              src="/logos/js.png"
+            />
+             
+            <div
+              class="s-Ox3KIXghErgD"
+            >
+              <h4
+                class="s-Ox3KIXghErgD"
+              >
+                Powered by JS
+              </h4>
+               
+              <p
+                class="s-Ox3KIXghErgD"
+              >
+                <p>
+                  With a lot of love and Electron, Svelte, RxJS, UnoCSS, SQLite, Music-Metadata, Svelte SPA router...
+                </p>
+                <p>
+                  
+
+                </p>
+                
+              </p>
+            </div>
+          </article>
+          <!--&lt;Card&gt;-->
+        </div>
+      </div>
+    </section>
+    <!--&lt;Trapezium&gt;-->
+  </section>
+   
+  <footer
+    class="inverted-colors s-y_bCXRrkrYfP"
+  >
+    <div
+      class="content s-y_bCXRrkrYfP"
+    >
+      <span
+        class="s-y_bCXRrkrYfP"
+      >
+        Copyright (c) 2020-2024 Damien Simonin Feugas
+      </span>
+       
+      <span
+        class="s-y_bCXRrkrYfP"
+      >
+        <a
+          class="underlined s-y_bCXRrkrYfP"
+          href="https://unsplash.com/photos/slbOcNlWNHA"
+          target="_blank"
+        >
+          Photo by Larisa Birta
+        </a>
+      </span>
+    </div>
+  </footer>
+  <!--&lt;+page&gt;-->
+</main>
+`;

@@ -1,10 +1,11 @@
 <script>
   import { onMount } from 'svelte'
   import { _ } from 'svelte-intl'
-  import TrackDropdown from '../TrackDropdown/TrackDropdown.svelte'
-  import TrackDetailsDialogue from '../TrackDetailsDialogue/TrackDetailsDialogue.svelte'
-  import { formatTime, wrapWithLink } from '../../utils'
+
   import { createClickToAddObservable } from '../../stores/track-queue'
+  import { formatTime, wrapWithLink } from '../../utils'
+  import TrackDetailsDialogue from '../TrackDetailsDialogue/TrackDetailsDialogue.svelte'
+  import TrackDropdown from '../TrackDropdown/TrackDropdown.svelte'
 
   export let tracks
   export let current
@@ -25,65 +26,6 @@
 
   onMount(() => clicks$.subscribe())
 </script>
-
-<style lang="postcss">
-  table,
-  tbody,
-  thead,
-  tr,
-  td,
-  th {
-    @apply block;
-  }
-
-  table {
-    @apply w-full mt-4 overflow-x-auto;
-    font-size: 1.1rem;
-  }
-  tbody,
-  thead {
-    min-width: 600px;
-  }
-
-  tr {
-    @apply grid gap-0 items-center;
-    grid-template-columns: 60px repeat(10, 1fr) 60px;
-  }
-
-  thead {
-    border-bottom: solid 2px var(--outline-color);
-  }
-
-  th,
-  td {
-    @apply p-2 text-left;
-  }
-
-  th {
-    @apply font-semibold text-sm;
-  }
-
-  tr > *:first-child,
-  tr > *:last-child {
-    @apply text-center;
-  }
-
-  tbody tr {
-    &:nth-child(2n + 1) {
-      background-color: var(--hover-bg-color);
-    }
-
-    /* TODO mobile? */
-    &:hover {
-      @apply cursor-pointer;
-      background-color: var(--hover-primary-color);
-    }
-
-    &.current {
-      background-color: var(--outline-color);
-    }
-  }
-</style>
 
 <TrackDetailsDialogue
   src={openedTrack}
@@ -106,7 +48,7 @@
       </tr>
     </thead>
     <tbody>
-      {#each sortedTracks as track, i (track.id)}
+      {#each sortedTracks as track (track.id)}
         <tr
           on:click={() => clicks$.next(track)}
           class:current={$current && $current.id === track.id}
@@ -114,12 +56,14 @@
           <td>{(track.tags.track && track.tags.track.no) || '--'}</td>
           <td class={`col-span-${withAlbum ? 3 : 5}`}>{track.tags.title}</td>
           <td class={`col-span-${withAlbum ? 3 : 4}`}>
+            <!-- eslint-disable-next-line svelte/no-at-html-tags -->
             {@html track.artistRefs
               .map(artist => wrapWithLink('artist', artist))
               .join(', ')}
           </td>
           {#if withAlbum}
             <td class="col-span-3">
+              <!-- eslint-disable-next-line svelte/no-at-html-tags -->
               {@html wrapWithLink('album', track.albumRef)}
             </td>
           {/if}
@@ -135,3 +79,62 @@
     </tbody>
   </table>
 {/if}
+
+<style>
+  table,
+  tbody,
+  thead,
+  tr,
+  td,
+  th {
+    --at-apply: block;
+  }
+
+  table {
+    --at-apply: w-full mt-4 overflow-x-auto;
+    font-size: 1.1rem;
+  }
+  tbody,
+  thead {
+    min-width: 600px;
+  }
+
+  tr {
+    --at-apply: grid gap-0 items-center;
+    grid-template-columns: 60px repeat(10, 1fr) 60px;
+  }
+
+  thead {
+    border-bottom: solid 2px var(--outline-color);
+  }
+
+  th,
+  td {
+    --at-apply: p-2 text-left;
+  }
+
+  th {
+    --at-apply: font-semibold text-sm;
+  }
+
+  tr > *:first-child,
+  tr > *:last-child {
+    --at-apply: text-center;
+  }
+
+  tbody tr {
+    &:nth-child(2n + 1) {
+      background-color: var(--hover-bg-color);
+    }
+
+    /* TODO mobile? */
+    &:hover {
+      --at-apply: cursor-pointer;
+      background-color: var(--hover-primary-color);
+    }
+
+    &.current {
+      background-color: var(--outline-color);
+    }
+  }
+</style>

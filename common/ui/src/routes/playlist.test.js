@@ -1,18 +1,18 @@
-'use strict'
-
-import { screen, render } from '@testing-library/svelte'
-import html from 'svelte-htm'
+import { faker } from '@faker-js/faker'
+import { render, screen } from '@testing-library/svelte'
 import { BehaviorSubject } from 'rxjs'
-import faker from 'faker'
-import playlistRoute from './playlist.svelte'
-import { playlists as mockedPlaylists, list } from '../stores/playlists'
-import { translate, makeRef } from '../tests'
+import html from 'svelte-htm'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 
-jest.mock('svelte-spa-router')
-jest.mock('../stores/playlists')
+import { list, playlists as mockedPlaylists } from '../stores/playlists'
+import { makeRef, translate } from '../tests'
+import playlistRoute from './playlist.svelte'
+
+vi.mock('svelte-spa-router')
+vi.mock('../stores/playlists')
 
 describe('playlist route', () => {
-  beforeEach(jest.resetAllMocks)
+  beforeEach(() => vi.resetAllMocks())
 
   it('handles no playlists', async () => {
     const store = new BehaviorSubject([])
@@ -23,12 +23,10 @@ describe('playlist route', () => {
     expect(
       screen.getByText(translate('_ playlists', { total: 0 }))
     ).toBeInTheDocument()
+    const text = translate('how to create playlist')
     expect(
       screen.getByText(
-        translate('how to create playlist').replace(/<.+>/, ''),
-        {
-          exact: false
-        }
+        (content, element) => element.tagName === 'P' && text.includes(content)
       )
     ).toBeInTheDocument()
     expect(list).toHaveBeenCalled()
@@ -43,28 +41,30 @@ describe('playlist route', () => {
         0,
         playlists.length,
         {
-          id: faker.datatype.uuid(),
+          id: faker.string.uuid(),
           name: faker.commerce.productName(),
           media: faker.image.avatar(),
           trackIds: [
-            faker.datatype.number(),
-            faker.datatype.number(),
-            faker.datatype.number()
+            faker.number.int(),
+            faker.number.int(),
+            faker.number.int()
           ],
-          refs: [faker.name.findName(), faker.name.findName()].map(makeRef)
+          refs: [faker.person.firstName(), faker.person.firstName()].map(
+            makeRef
+          )
         },
         {
-          id: faker.datatype.uuid(),
+          id: faker.string.uuid(),
           name: faker.commerce.productName(),
           media: faker.image.avatar(),
           trackIds: [
-            faker.datatype.number(),
-            faker.datatype.number(),
-            faker.datatype.number(),
-            faker.datatype.number(),
-            faker.datatype.number()
+            faker.number.int(),
+            faker.number.int(),
+            faker.number.int(),
+            faker.number.int(),
+            faker.number.int()
           ],
-          refs: [makeRef(faker.name.findName())]
+          refs: [makeRef(faker.person.firstName())]
         }
       )
       const store = new BehaviorSubject(playlists)

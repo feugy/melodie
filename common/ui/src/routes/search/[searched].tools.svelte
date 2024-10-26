@@ -1,12 +1,13 @@
 <script>
   import { Tool } from '@atelier-wb/svelte'
-  import Component from './[searched].svelte'
-  import { mockWebsocket } from '../../atelier/utils'
+
   import HRefSink from '../../atelier/HRefSink.svelte'
-  import { artistsData } from '../artist.testdata'
-  import { albumsData } from '../album.testdata'
+  import { mockWebsocket } from '../../atelier/utils'
   import { playlistsData } from '../../components/AddToPlaylist/AddToPlaylist.testdata'
   import { disksData } from '../../components/DisksList/DisksList.testdata'
+  import { albumsData } from '../album.testdata'
+  import { artistsData } from '../artist.testdata'
+  import Component from './[searched].svelte'
 </script>
 
 <Tool

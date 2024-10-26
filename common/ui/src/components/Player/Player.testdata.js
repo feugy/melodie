@@ -1,5 +1,3 @@
-'use strict'
-
 const album = 'An album'
 const artists = ['Someone', 'Someone else', 'Another fellow']
 const albumRef = [1, album]

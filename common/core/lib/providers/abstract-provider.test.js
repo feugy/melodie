@@ -1,6 +1,6 @@
-'use strict'
+import { describe, expect, it } from 'vitest'
 
-const AbstractProvider = require('./abstract-provider')
+import AbstractProvider from './abstract-provider'
 
 class Test extends AbstractProvider {
   constructor() {

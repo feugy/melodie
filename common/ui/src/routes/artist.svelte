@@ -6,6 +6,7 @@
   import { onMount } from 'svelte'
   import { fade } from 'svelte/transition'
   import { _ } from 'svelte-intl'
+
   import { Artist, Heading } from '../components'
   import { artists, list } from '../stores/artists'
 
@@ -18,25 +19,6 @@
     }
   })
 </script>
-
-<style lang="postcss">
-  section {
-    @apply flex flex-col items-stretch w-full overflow-hidden;
-    min-height: 16rem;
-  }
-
-  div {
-    @apply flex flex-wrap justify-around;
-  }
-
-  span {
-    @apply p-2;
-  }
-
-  p {
-    @apply my-20;
-  }
-</style>
 
 <section in:fade={{ duration: 200 }}>
   <Heading
@@ -52,8 +34,28 @@
       </span>
     {:else}
       <p>
+        <!-- eslint-disable-next-line svelte/no-at-html-tags -->
         {@html $_('check parameters')}
       </p>
     {/each}
   </div>
 </section>
+
+<style>
+  section {
+    --at-apply: flex flex-col items-stretch w-full overflow-hidden;
+    min-height: 16rem;
+  }
+
+  div {
+    --at-apply: flex flex-wrap justify-around;
+  }
+
+  span {
+    --at-apply: p-2;
+  }
+
+  p {
+    --at-apply: my-20;
+  }
+</style>

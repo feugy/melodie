@@ -1,30 +1,30 @@
-'use strict'
+import { faker } from '@faker-js/faker'
+import { services as coreServices } from '@melodie/core'
+import * as electron from 'electron'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 
-const faker = require('faker')
-const electron = require('electron')
-const { services } = require('@melodie/core')
-const playlistsService = require('./playlists')
+import { exportPlaylist } from './playlists'
 
-jest.mock('@melodie/core')
-jest.mock('electron', () => ({
+vi.mock('@melodie/core')
+vi.mock('electron', () => ({
   dialog: {
-    showSaveDialog: jest.fn()
+    showSaveDialog: vi.fn()
   },
   app: {
-    getPath: jest.fn().mockReturnValue('')
+    getPath: vi.fn().mockReturnValue('')
   }
 }))
 
 describe('Playlists service', () => {
-  beforeEach(jest.resetAllMocks)
+  beforeEach(() => vi.resetAllMocks())
 
   describe('export', () => {
     it('does not show save dialog on missing playlist', async () => {
-      services.playlists.export.mockResolvedValueOnce(null)
-      const id = faker.datatype.number()
+      coreServices.playlists.exportPlaylist.mockResolvedValueOnce(null)
+      const id = faker.number.int()
 
-      expect(await playlistsService.export(id)).toBeNull()
-      expect(services.playlists.export).toHaveBeenCalledWith(
+      expect(await exportPlaylist(id)).toBeNull()
+      expect(coreServices.playlists.exportPlaylist).toHaveBeenCalledWith(
         id,
         expect.any(Function)
       )
@@ -34,25 +34,25 @@ describe('Playlists service', () => {
     it('opens save dialog when requested', async () => {
       const tracks = [
         {
-          id: faker.datatype.number(),
+          id: faker.number.int(),
           path: faker.system.filePath()
         }
       ]
       const playlist = {
-        id: faker.datatype.number(),
+        id: faker.number.int(),
         name: faker.commerce.productName(),
         trackIds: tracks.map(({ id }) => id)
       }
-      const formats = faker.random.arrayElements()
+      const formats = faker.helpers.arrayElements(['m3u8', 'm3u', 'pls'])
       let filePath = faker.system.filePath()
 
-      services.playlists.export.mockImplementation(async (id, selectPath) =>
-        selectPath(playlist, formats)
+      coreServices.playlists.exportPlaylist.mockImplementation(
+        async (id, selectPath) => selectPath(playlist, formats)
       )
       electron.dialog.showSaveDialog.mockResolvedValueOnce({ filePath })
 
-      expect(await playlistsService.export(playlist.id)).toEqual(filePath)
-      expect(services.playlists.export).toHaveBeenCalledWith(
+      expect(await exportPlaylist(playlist.id)).toEqual(filePath)
+      expect(coreServices.playlists.exportPlaylist).toHaveBeenCalledWith(
         playlist.id,
         expect.any(Function)
       )
@@ -61,7 +61,7 @@ describe('Playlists service', () => {
         properties: ['createDirectory'],
         filters: [{ extensions: formats }]
       })
-      expect(electron.dialog.showSaveDialog).toHaveBeenCalledTimes(1)
+      expect(electron.dialog.showSaveDialog).toHaveBeenCalledOnce()
     })
   })
 })

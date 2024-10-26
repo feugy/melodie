@@ -11,6 +11,9 @@
   }
 </script>
 
+<!-- TODO Fix svelte warnings -->
+<!-- svelte-ignore a11y-no-static-element-interactions -->
+<!-- svelte-ignore a11y-click-events-have-key-events -->
 <div on:click|capture={handleClick}>
   <slot />
 </div>

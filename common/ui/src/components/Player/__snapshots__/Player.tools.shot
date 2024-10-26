@@ -1,452 +1,471 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Toolshot components/Player/Player.tools.svelte: Empty 1`] = `
-<span>
+exports[`Empty 1`] = `
+<div
+  class="root s-ufYNuImLwCAK"
+>
+  <audio
+    autoplay=""
+    class="s-ufYNuImLwCAK"
+    crossorigin="anonymous"
+    data-testid="audio"
+  />
   <div
-    class="root svelte-hd6mn4"
+    class="content s-ufYNuImLwCAK"
   >
-    <audio
-      autoplay=""
-      class="svelte-hd6mn4"
-      crossorigin="anonymous"
-      data-testid="audio"
+    <span
+      class="current s-ufYNuImLwCAK"
     />
+     
     <div
-      class="content svelte-hd6mn4"
+      class="player s-ufYNuImLwCAK"
     >
       <span
-        class="current svelte-hd6mn4"
-      />
+        class="controls s-ufYNuImLwCAK"
+      >
+        
+        <!--&lt;AddToPlaylist&gt;-->
+         
+        <span
+          class="s-4uzssCMAypGt"
+        >
+          <button
+            class="iconOnly noBorder s-zdMNlEQUhDx4"
+            data-testid="shuffle-button"
+          >
+            <i
+              class="icons i-mdi-shuffle s-zdMNlEQUhDx4"
+            />
+             
+             
+             
+          </button>
+          <!--&lt;Button&gt;-->
+        </span>
+        <!--&lt;Shuffle&gt;-->
+         
+        <button
+          class="iconOnly noBorder s-zdMNlEQUhDx4"
+          data-testid="previous-button"
+        >
+          <i
+            class="icons i-mdi-skip-previous s-zdMNlEQUhDx4"
+          />
+           
+           
+           
+        </button>
+        <!--&lt;Button&gt;-->
+         
+        <button
+          class="iconOnly large s-zdMNlEQUhDx4"
+          data-testid="play-button"
+        >
+          <i
+            class="icons i-mdi-play s-zdMNlEQUhDx4"
+          />
+           
+           
+           
+        </button>
+        <!--&lt;Button&gt;-->
+         
+        <button
+          class="iconOnly noBorder s-zdMNlEQUhDx4"
+          data-testid="next-button"
+        >
+          <i
+            class="icons i-mdi-skip-next s-zdMNlEQUhDx4"
+          />
+           
+           
+           
+        </button>
+        <!--&lt;Button&gt;-->
+        <!--&lt;Controls&gt;-->
+         
+        <span
+          class="s-aAPY0ehrLWVj"
+        >
+          <button
+            class="iconOnly noBorder s-zdMNlEQUhDx4"
+            data-testid="repeat-button"
+          >
+            <i
+              class="icons i-mdi-repeat s-zdMNlEQUhDx4"
+            />
+             
+             
+             
+          </button>
+          <!--&lt;Button&gt;-->
+        </span>
+        <!--&lt;Repeat&gt;-->
+         
+      </span>
        
       <div
-        class="player svelte-hd6mn4"
+        class="s-CYN3HdtfaXVR"
       >
         <span
-          class="controls svelte-hd6mn4"
+          class="s-CYN3HdtfaXVR"
         >
-          
-           
-          <span
-            class="svelte-15hzj0h"
-          >
-            <button
-              class="iconOnly noBorder svelte-xh4kfu"
-            >
-              <i
-                class="material-icons svelte-xh4kfu"
-              >
-                shuffle
-              </i>
-               
-               
-               
-            </button>
-          </span>
-           
-          <button
-            class="iconOnly noBorder svelte-xh4kfu"
-          >
-            <i
-              class="material-icons svelte-xh4kfu"
-            >
-              skip_previous
-            </i>
-             
-             
-             
-          </button>
-           
-          <button
-            class="iconOnly large svelte-xh4kfu"
-          >
-            <i
-              class="material-icons svelte-xh4kfu"
-            >
-              play_arrow
-            </i>
-             
-             
-             
-          </button>
-           
-          <button
-            class="iconOnly noBorder svelte-xh4kfu"
-          >
-            <i
-              class="material-icons svelte-xh4kfu"
-            >
-              skip_next
-            </i>
-             
-             
-             
-          </button>
-           
-          <span
-            class="svelte-15hzj0h"
-          >
-            <button
-              class="iconOnly noBorder svelte-xh4kfu"
-            >
-              <i
-                class="material-icons svelte-xh4kfu"
-              >
-                repeat
-              </i>
-               
-               
-               
-            </button>
-          </span>
-           
+          0:00
         </span>
          
         <div
-          class="svelte-1rmg1dn"
+          class="wrapper __w-full_zgg3e0_zgg3e0 s-27Pxhr5HNZBc"
         >
-          <span
-            class="svelte-1rmg1dn"
-          >
-            0:00
-          </span>
+          <input
+            class="__w-full_zgg3e0_zgg3e0 s-27Pxhr5HNZBc"
+            max="0"
+            min="0"
+            type="range"
+          />
            
           <div
-            class="wrapper w-full svelte-gn1r9z"
+            class="sliderTrack s-27Pxhr5HNZBc"
+          >
+            <span
+              class="progress s-27Pxhr5HNZBc"
+              style="right:100%"
+            />
+          </div>
+        </div>
+        <!--&lt;Slider&gt;-->
+         
+        <span
+          class="s-CYN3HdtfaXVR"
+        >
+          0:00
+        </span>
+      </div>
+      <!--&lt;Time&gt;-->
+    </div>
+     
+    <span
+      class="volume s-ufYNuImLwCAK"
+    >
+      <div
+        class="s-80RvWJI4A9sy"
+      >
+        <span
+          class="volume-slider s-80RvWJI4A9sy"
+        >
+          <div
+            class="wrapper __w-full_aghqzd_aghqzd s-27Pxhr5HNZBc"
           >
             <input
-              class="w-full svelte-gn1r9z"
-              max="0"
+              class="__w-full_aghqzd_aghqzd s-27Pxhr5HNZBc"
+              max="100"
               min="0"
               type="range"
             />
              
             <div
-              class="sliderTrack svelte-gn1r9z"
+              class="sliderTrack s-27Pxhr5HNZBc"
             >
               <span
-                class="progress svelte-gn1r9z"
-                style="right:100%"
+                class="progress s-27Pxhr5HNZBc"
+                style="right:0%"
               />
             </div>
           </div>
-           
-          <span
-            class="svelte-1rmg1dn"
-          >
-            0:00
-          </span>
-        </div>
-      </div>
-       
-      <span
-        class="volume svelte-hd6mn4"
-      >
-        <div
-          class="svelte-9pjqje"
+          <!--&lt;Slider&gt;-->
+        </span>
+         
+        <button
+          class="iconOnly noBorder s-zdMNlEQUhDx4"
+          data-testid="mute-button"
         >
-          <span
-            class="volume-slider svelte-9pjqje"
-          >
-            <div
-              class="wrapper w-full svelte-gn1r9z"
-            >
-              <input
-                class="w-full svelte-gn1r9z"
-                max="100"
-                min="0"
-                type="range"
-              />
-               
-              <div
-                class="sliderTrack svelte-gn1r9z"
-              >
-                <span
-                  class="progress svelte-gn1r9z"
-                  style="right:0%"
-                />
-              </div>
-            </div>
-          </span>
+          <i
+            class="icons i-mdi-volume s-zdMNlEQUhDx4"
+          />
            
-          <button
-            class="iconOnly noBorder svelte-xh4kfu"
-          >
-            <i
-              class="material-icons svelte-xh4kfu"
-            >
-              volume_up
-            </i>
-             
-             
-             
-          </button>
-        </div>
-      </span>
-    </div>
+           
+           
+        </button>
+        <!--&lt;Button&gt;-->
+      </div>
+      <!--&lt;Volume&gt;-->
+    </span>
   </div>
-</span>
+</div>
 `;
 
-exports[`Toolshot components/Player/Player.tools.svelte: With track list 1`] = `
-<span>
+exports[`With track list 1`] = `
+<div
+  class="root s-ufYNuImLwCAK"
+>
+  <audio
+    autoplay=""
+    class="s-ufYNuImLwCAK"
+    crossorigin="anonymous"
+    data-testid="audio"
+    src="./no-duration.mp3"
+  />
   <div
-    class="root svelte-hd6mn4"
+    class="content s-ufYNuImLwCAK"
   >
-    <audio
-      autoplay=""
-      class="svelte-hd6mn4"
-      crossorigin="anonymous"
-      data-testid="audio"
-      src="./no-duration.mp3"
-    />
-    <div
-      class="content svelte-hd6mn4"
+    <span
+      class="current s-ufYNuImLwCAK"
     >
-      <span
-        class="current svelte-hd6mn4"
+      <button
+        class="undefined root s-B4OUyNjosq8C"
       >
-        <div
-          class="undefined root svelte-8oy723"
+        <a
+          class="s-B4OUyNjosq8C"
+          href="#/album/1"
         >
-          <a
-            class="svelte-8oy723"
-            href="#/album/1"
+          <button
+            class="__flex_tliuhg_tliuhg __justify-center_tliuhg_tliuhg __items-center_tliuhg_tliuhg __bg-[--hover-bg-color]_tliuhg_tliuhg __overflow-hidden_tliuhg_tliuhg __h-16_cxt0i8_cxt0i8 __w-16_cxt0i8_cxt0i8 __text-xs_cxt0i8_cxt0i8 actionable s-JU4hIbuSbdGN __rounded-sm_tliuhg_tliuhg"
           >
             <img
               alt="./# Films/cover.jpg"
-              class="h-16 w-16 text-xs actionable rounded-sm svelte-1l44pje"
-              height="256"
+              class="__border-none_tliuhg_tliuhg __font-size-0_tliuhg_tliuhg __object-cover_tliuhg_tliuhg __w-full_tliuhg_tliuhg __h-full_tliuhg_tliuhg s-JU4hIbuSbdGN"
+              loading="lazy"
               src="./%23 Films/cover.jpg"
-              width="256"
             />
              
-            
-          </a>
-           
-          <div
-            class="track svelte-8oy723"
+          </button>
+          <!--&lt;Image&gt;-->
+        </a>
+         
+        <div
+          class="track s-B4OUyNjosq8C"
+        >
+          <span
+            class="title s-B4OUyNjosq8C"
           >
-            <span
-              class="title svelte-8oy723"
+            file 1
+          </span>
+           
+          <span
+            class="s-B4OUyNjosq8C"
+          >
+            <a
+              class="text-sm underlined"
+              href="#/artist/0"
+              onclick="event.stopPropagation()"
             >
-              file 1
-            </span>
-             
-            <span>
-              <a
-                class="text-sm underlined"
-                href="#/artist/0"
-                onclick="event.stopPropagation()"
-              >
-                Someone
-              </a>
-            </span>
-          </div>
-           
-           
+              Someone
+            </a>
+          </span>
         </div>
+         
+         
+      </button>
+      <!--&lt;Track&gt;-->
+    </span>
+     
+    <div
+      class="player s-ufYNuImLwCAK"
+    >
+      <span
+        class="controls s-ufYNuImLwCAK"
+      >
+        <span>
+          <span
+            aria-expanded="false"
+            aria-haspopup="menu"
+            class="wrapper s-vOP9EO5q76eY"
+          >
+            <button
+              class="iconOnly noBorder s-zdMNlEQUhDx4"
+              data-testid="add-to-playlist-button"
+            >
+              <i
+                class="icons i-mdi-plus-box-multiple s-zdMNlEQUhDx4"
+              />
+               
+               
+              
+               
+            </button>
+            <!--&lt;Button&gt;-->
+          </span>
+           
+          
+          <!--&lt;Dropdown&gt;-->
+          <!--&lt;AddToPlaylist&gt;-->
+        </span>
+        
+        <!--&lt;AddToPlaylist&gt;-->
+         
+        <span
+          class="s-4uzssCMAypGt"
+        >
+          <button
+            class="iconOnly noBorder s-zdMNlEQUhDx4"
+            data-testid="shuffle-button"
+          >
+            <i
+              class="icons i-mdi-shuffle s-zdMNlEQUhDx4"
+            />
+             
+             
+             
+          </button>
+          <!--&lt;Button&gt;-->
+        </span>
+        <!--&lt;Shuffle&gt;-->
+         
+        <button
+          class="iconOnly noBorder s-zdMNlEQUhDx4"
+          data-testid="previous-button"
+        >
+          <i
+            class="icons i-mdi-skip-previous s-zdMNlEQUhDx4"
+          />
+           
+           
+           
+        </button>
+        <!--&lt;Button&gt;-->
+         
+        <button
+          class="iconOnly large s-zdMNlEQUhDx4"
+          data-testid="play-button"
+        >
+          <i
+            class="icons i-mdi-play s-zdMNlEQUhDx4"
+          />
+           
+           
+           
+        </button>
+        <!--&lt;Button&gt;-->
+         
+        <button
+          class="iconOnly noBorder s-zdMNlEQUhDx4"
+          data-testid="next-button"
+        >
+          <i
+            class="icons i-mdi-skip-next s-zdMNlEQUhDx4"
+          />
+           
+           
+           
+        </button>
+        <!--&lt;Button&gt;-->
+        <!--&lt;Controls&gt;-->
+         
+        <span
+          class="s-aAPY0ehrLWVj"
+        >
+          <button
+            class="iconOnly noBorder s-zdMNlEQUhDx4"
+            data-testid="repeat-button"
+          >
+            <i
+              class="icons i-mdi-repeat s-zdMNlEQUhDx4"
+            />
+             
+             
+             
+          </button>
+          <!--&lt;Button&gt;-->
+        </span>
+        <!--&lt;Repeat&gt;-->
+         
+        <button
+          class="__invisible_bscvrs_bscvrs iconOnly noBorder s-zdMNlEQUhDx4"
+        >
+          <i
+            class="icons i-mdi-heart-outline s-zdMNlEQUhDx4"
+          />
+           
+           
+           
+        </button>
+        <!--&lt;Button&gt;-->
       </span>
        
       <div
-        class="player svelte-hd6mn4"
+        class="s-CYN3HdtfaXVR"
       >
         <span
-          class="controls svelte-hd6mn4"
+          class="s-CYN3HdtfaXVR"
         >
-          <span>
-            <span
-              aria-expanded="false"
-              aria-haspopup="menu"
-              class="wrapper svelte-1v2cnbz"
-            >
-              <button
-                class="iconOnly noBorder svelte-xh4kfu"
-              >
-                <i
-                  class="material-icons svelte-xh4kfu"
-                >
-                  library_add
-                </i>
-                 
-                 
-                
-                 
-              </button>
-            </span>
-             
-            
-          </span>
-          
-           
-          <span
-            class="svelte-15hzj0h"
-          >
-            <button
-              class="iconOnly noBorder svelte-xh4kfu"
-            >
-              <i
-                class="material-icons svelte-xh4kfu"
-              >
-                shuffle
-              </i>
-               
-               
-               
-            </button>
-          </span>
-           
-          <button
-            class="iconOnly noBorder svelte-xh4kfu"
-          >
-            <i
-              class="material-icons svelte-xh4kfu"
-            >
-              skip_previous
-            </i>
-             
-             
-             
-          </button>
-           
-          <button
-            class="iconOnly large svelte-xh4kfu"
-          >
-            <i
-              class="material-icons svelte-xh4kfu"
-            >
-              play_arrow
-            </i>
-             
-             
-             
-          </button>
-           
-          <button
-            class="iconOnly noBorder svelte-xh4kfu"
-          >
-            <i
-              class="material-icons svelte-xh4kfu"
-            >
-              skip_next
-            </i>
-             
-             
-             
-          </button>
-           
-          <span
-            class="svelte-15hzj0h"
-          >
-            <button
-              class="iconOnly noBorder svelte-xh4kfu"
-            >
-              <i
-                class="material-icons svelte-xh4kfu"
-              >
-                repeat
-              </i>
-               
-               
-               
-            </button>
-          </span>
-           
-          <button
-            class="invisible iconOnly noBorder svelte-xh4kfu"
-          >
-            <i
-              class="material-icons svelte-xh4kfu"
-            >
-              favorite_border
-            </i>
-             
-             
-             
-          </button>
+          0:00
         </span>
          
         <div
-          class="svelte-1rmg1dn"
+          class="wrapper __w-full_zgg3e0_zgg3e0 s-27Pxhr5HNZBc"
         >
-          <span
-            class="svelte-1rmg1dn"
-          >
-            0:00
-          </span>
+          <input
+            class="__w-full_zgg3e0_zgg3e0 s-27Pxhr5HNZBc"
+            max="0"
+            min="0"
+            type="range"
+          />
            
           <div
-            class="wrapper w-full svelte-gn1r9z"
+            class="sliderTrack s-27Pxhr5HNZBc"
+          >
+            <span
+              class="progress s-27Pxhr5HNZBc"
+              style="right:100%"
+            />
+          </div>
+        </div>
+        <!--&lt;Slider&gt;-->
+         
+        <span
+          class="s-CYN3HdtfaXVR"
+        >
+          0:00
+        </span>
+      </div>
+      <!--&lt;Time&gt;-->
+    </div>
+     
+    <span
+      class="volume s-ufYNuImLwCAK"
+    >
+      <div
+        class="s-80RvWJI4A9sy"
+      >
+        <span
+          class="volume-slider s-80RvWJI4A9sy"
+        >
+          <div
+            class="wrapper __w-full_aghqzd_aghqzd s-27Pxhr5HNZBc"
           >
             <input
-              class="w-full svelte-gn1r9z"
-              max="0"
+              class="__w-full_aghqzd_aghqzd s-27Pxhr5HNZBc"
+              max="100"
               min="0"
               type="range"
             />
              
             <div
-              class="sliderTrack svelte-gn1r9z"
+              class="sliderTrack s-27Pxhr5HNZBc"
             >
               <span
-                class="progress svelte-gn1r9z"
-                style="right:100%"
+                class="progress s-27Pxhr5HNZBc"
+                style="right:0%"
               />
             </div>
           </div>
-           
-          <span
-            class="svelte-1rmg1dn"
-          >
-            0:00
-          </span>
-        </div>
-      </div>
-       
-      <span
-        class="volume svelte-hd6mn4"
-      >
-        <div
-          class="svelte-9pjqje"
+          <!--&lt;Slider&gt;-->
+        </span>
+         
+        <button
+          class="iconOnly noBorder s-zdMNlEQUhDx4"
+          data-testid="mute-button"
         >
-          <span
-            class="volume-slider svelte-9pjqje"
-          >
-            <div
-              class="wrapper w-full svelte-gn1r9z"
-            >
-              <input
-                class="w-full svelte-gn1r9z"
-                max="100"
-                min="0"
-                type="range"
-              />
-               
-              <div
-                class="sliderTrack svelte-gn1r9z"
-              >
-                <span
-                  class="progress svelte-gn1r9z"
-                  style="right:0%"
-                />
-              </div>
-            </div>
-          </span>
+          <i
+            class="icons i-mdi-volume s-zdMNlEQUhDx4"
+          />
            
-          <button
-            class="iconOnly noBorder svelte-xh4kfu"
-          >
-            <i
-              class="material-icons svelte-xh4kfu"
-            >
-              volume_up
-            </i>
-             
-             
-             
-          </button>
-        </div>
-      </span>
-    </div>
+           
+           
+        </button>
+        <!--&lt;Button&gt;-->
+      </div>
+      <!--&lt;Volume&gt;-->
+    </span>
   </div>
-</span>
+</div>
 `;

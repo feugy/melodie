@@ -1,20 +1,20 @@
-'use strict'
-
-import { screen, render } from '@testing-library/svelte'
+import { faker } from '@faker-js/faker'
+import { render, screen } from '@testing-library/svelte'
 import userEvent from '@testing-library/user-event'
 import html from 'svelte-htm'
-import faker from 'faker'
-import Snackbar from './Snackbar.svelte'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
+
 import { clear, showSnack } from '../../stores/snackbars'
 import { sleep } from '../../tests'
+import Snackbar from './Snackbar.svelte'
 
 describe('Snackbar component', () => {
-  beforeEach(clear)
+  beforeEach(() => clear())
 
   it('displays message and action', async () => {
     const message = faker.lorem.words()
     const button = faker.lorem.word()
-    const action = jest.fn()
+    const action = vi.fn()
 
     render(html`<${Snackbar} />`)
     showSnack({ message, button, action })

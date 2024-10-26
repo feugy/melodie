@@ -1,30 +1,25 @@
 <script>
-  import { createEventDispatcher } from 'svelte'
+  import { assets } from '$app/paths'
 
+  /** @type {string} */
   export let label
+  /** @type {string} */
   export let os
+  /** @type {string} */
   export let file
+  /** @type {string} */
   export let baseUrl
-
-  const imageBaseUrl = BASE_URL
-
-  const dispatch = createEventDispatcher()
-
-  function handleClick() {
-    dispatch('close')
-    window.open(`${baseUrl}/${file}`)
-  }
 </script>
 
+<a href={`${baseUrl}/${file}`} target="_blank" on:click>
+  <img src="{assets}/logos/{os}.png" alt={os} /><span>{label}</span>
+</a>
+
 <style lang="postcss">
-  div {
-    @apply py-1;
+  a {
+    --at-apply: py-1;
   }
   img {
-    @apply h-6 inline-block mr-4;
+    --at-apply: h-6 inline-block mr-4;
   }
 </style>
-
-<div on:click={handleClick}>
-  <img src="{imageBaseUrl}/logos/{os}.png" alt={os} /><span>{label}</span>
-</div>

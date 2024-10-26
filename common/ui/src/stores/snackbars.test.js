@@ -1,8 +1,8 @@
-'use strict'
+import { faker } from '@faker-js/faker'
+import { afterAll, beforeAll, beforeEach, describe, expect, it } from 'vitest'
 
-import faker from 'faker'
-import { clear, current, showSnack } from './snackbars'
 import { sleep } from '../tests'
+import { clear, current, showSnack } from './snackbars'
 
 describe('snackbars store', () => {
   let subscription

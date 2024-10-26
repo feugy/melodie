@@ -1,10 +1,11 @@
-'use strict'
-
-import { screen, render, fireEvent } from '@testing-library/svelte'
+import { faker } from '@faker-js/faker'
+import { fireEvent, render, screen } from '@testing-library/svelte'
 import userEvent from '@testing-library/user-event'
-import { writable, get } from 'svelte/store'
+import { tick } from 'svelte'
+import { get, writable } from 'svelte/store'
 import html from 'svelte-htm'
-import faker from 'faker'
+import { describe, expect, it, vi } from 'vitest'
+
 import ImageUploader from './ImageUploader.svelte'
 
 function getDropTarget() {
@@ -19,18 +20,18 @@ describe('ImageUploader component', () => {
       getAsFile: () => ({ path })
     }
     const value = writable()
-    const handleSelect = jest.fn()
+    const handleSelect = vi.fn()
     render(
       html`<${ImageUploader} bind:value=${value} on:select=${handleSelect} />`
     )
 
-    await fireEvent.drop(getDropTarget(), { dataTransfer: { items: [item] } })
+    fireEvent.drop(getDropTarget(), { dataTransfer: { items: [item] } })
 
     expect(get(value)).toEqual(path)
     expect(handleSelect).toHaveBeenCalledWith(
       expect.objectContaining({ detail: path })
     )
-    expect(handleSelect).toHaveBeenCalledTimes(1)
+    expect(handleSelect).toHaveBeenCalledOnce()
   })
 
   it('loads dragged url', async () => {
@@ -40,29 +41,30 @@ describe('ImageUploader component', () => {
       getAsString: cb => cb(avatar)
     }
     const value = writable()
-    const handleSelect = jest.fn()
+    const handleSelect = vi.fn()
     render(
       html`<${ImageUploader} bind:value=${value} on:select=${handleSelect} />`
     )
 
-    await fireEvent.drop(getDropTarget(), { dataTransfer: { items: [item] } })
+    fireEvent.drop(getDropTarget(), { dataTransfer: { items: [item] } })
+    await tick()
 
     expect(get(value)).toEqual(avatar)
     expect(handleSelect).toHaveBeenCalledWith(
       expect.objectContaining({ detail: avatar })
     )
-    expect(handleSelect).toHaveBeenCalledTimes(1)
+    expect(handleSelect).toHaveBeenCalledOnce()
   })
 
   it('loads paste url', async () => {
     const avatar = faker.image.avatar()
     const value = writable()
-    const handleSelect = jest.fn()
+    const handleSelect = vi.fn()
     render(
       html`<${ImageUploader} bind:value=${value} on:select=${handleSelect} />`
     )
 
-    await fireEvent.paste(getDropTarget(), {
+    fireEvent.paste(getDropTarget(), {
       clipboardData: { getData: () => avatar }
     })
 
@@ -70,7 +72,7 @@ describe('ImageUploader component', () => {
     expect(handleSelect).toHaveBeenCalledWith(
       expect.objectContaining({ detail: avatar })
     )
-    expect(handleSelect).toHaveBeenCalledTimes(1)
+    expect(handleSelect).toHaveBeenCalledOnce()
   })
 
   it('loads file from browser', async () => {
@@ -78,12 +80,12 @@ describe('ImageUploader component', () => {
     const file = new File([], 'test.png')
     file.path = path
     const value = writable()
-    const handleSelect = jest.fn()
+    const handleSelect = vi.fn()
     render(
       html`<${ImageUploader} bind:value=${value} on:select=${handleSelect} />`
     )
 
-    await fireEvent.change(getDropTarget().querySelector('input'), {
+    fireEvent.change(getDropTarget().querySelector('input'), {
       target: { files: [file] }
     })
 
@@ -91,47 +93,34 @@ describe('ImageUploader component', () => {
     expect(handleSelect).toHaveBeenCalledWith(
       expect.objectContaining({ detail: path })
     )
-    expect(handleSelect).toHaveBeenCalledTimes(1)
+    expect(handleSelect).toHaveBeenCalledOnce()
   })
 
   it('does not update value on empty drop', async () => {
     const value = writable()
-    const handleSelect = jest.fn()
+    const handleSelect = vi.fn()
     render(
       html`<${ImageUploader} bind:value=${value} on:select=${handleSelect} />`
     )
 
-    await fireEvent.drop(getDropTarget(), { dataTransfer: { items: [] } })
+    fireEvent.drop(getDropTarget(), { dataTransfer: { items: [] } })
 
-    expect(get(value)).not.toBeDefined()
-    expect(handleSelect).not.toHaveBeenCalled()
-  })
-
-  it('does not update value on empty drop', async () => {
-    const value = writable()
-    const handleSelect = jest.fn()
-    render(
-      html`<${ImageUploader} bind:value=${value} on:select=${handleSelect} />`
-    )
-
-    await fireEvent.drop(getDropTarget(), { dataTransfer: { items: [] } })
-
-    expect(get(value)).not.toBeDefined()
+    expect(get(value)).toBeUndefined()
     expect(handleSelect).not.toHaveBeenCalled()
   })
 
   it('does not update value on cancelled load', async () => {
     const value = writable()
-    const handleSelect = jest.fn()
+    const handleSelect = vi.fn()
     render(
       html`<${ImageUploader} bind:value=${value} on:select=${handleSelect} />`
     )
 
-    await fireEvent.change(getDropTarget().querySelector('input'), {
+    fireEvent.change(getDropTarget().querySelector('input'), {
       target: { files: [] }
     })
 
-    expect(get(value)).not.toBeDefined()
+    expect(get(value)).toBeUndefined()
     expect(handleSelect).not.toHaveBeenCalled()
   })
 
@@ -140,12 +129,12 @@ describe('ImageUploader component', () => {
     const file = new File([], 'test.png')
     file.path = path
     const value = writable()
-    const handleSelect = jest.fn()
+    const handleSelect = vi.fn()
     render(
       html`<${ImageUploader} bind:value=${value} on:select=${handleSelect} />`
     )
 
-    await fireEvent.change(getDropTarget().querySelector('input'), {
+    fireEvent.change(getDropTarget().querySelector('input'), {
       target: { files: [file] }
     })
 
@@ -153,12 +142,12 @@ describe('ImageUploader component', () => {
     expect(handleSelect).toHaveBeenCalledWith(
       expect.objectContaining({ detail: path })
     )
-    expect(handleSelect).toHaveBeenCalledTimes(1)
+    expect(handleSelect).toHaveBeenCalledOnce()
   })
 
   it('does not selects empty file', async () => {
     const value = writable()
-    const handleSelect = jest.fn()
+    const handleSelect = vi.fn()
     render(
       html`<${ImageUploader} bind:value=${value} on:select=${handleSelect} />`
     )

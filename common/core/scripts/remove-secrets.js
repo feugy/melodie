@@ -1,10 +1,8 @@
-'use strict'
-
 require('dotenv').config()
-const fs = require('fs-extra')
-const minimatch = require('minimatch')
-const { of, from } = require('rxjs')
-const { mergeMap, filter, map } = require('rxjs/operators')
+import fs from 'fs-extra'
+import minimatch from 'minimatch'
+import { from, of } from 'rxjs'
+import { filter, map, mergeMap } from 'rxjs/operators'
 const {
   utils: { walk }
 } = require('..')

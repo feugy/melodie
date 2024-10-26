@@ -1,19 +1,19 @@
-'use strict'
-
-import { screen, render, fireEvent } from '@testing-library/svelte'
+import { faker } from '@faker-js/faker'
+import { fireEvent, render, screen } from '@testing-library/svelte'
 import userEvent from '@testing-library/user-event'
 import { tick } from 'svelte'
-import { writable, get } from 'svelte/store'
+import { get, writable } from 'svelte/store'
 import html from 'svelte-htm'
-import faker from 'faker'
+import { describe, expect, it, vi } from 'vitest'
+
 import Dialogue from './Dialogue.svelte'
 
 describe('Dialogue component', () => {
   it('displays title and dispatches open event', async () => {
     const open = writable(false)
     const title = faker.lorem.words()
-    const handleOpen = jest.fn()
-    const handleClose = jest.fn()
+    const handleOpen = vi.fn()
+    const handleClose = vi.fn()
     render(
       html`<${Dialogue}
         on:open=${handleOpen}
@@ -38,8 +38,8 @@ describe('Dialogue component', () => {
   it('closes on backdrop click and dispatches close event', async () => {
     const open = writable(true)
     const title = faker.lorem.words()
-    const handleOpen = jest.fn()
-    const handleClose = jest.fn()
+    const handleOpen = vi.fn()
+    const handleClose = vi.fn()
     render(
       html`<${Dialogue}
         on:open=${handleOpen}
@@ -64,8 +64,8 @@ describe('Dialogue component', () => {
   it('closes on close button click and dispatches close event', async () => {
     const open = writable(true)
     const title = faker.lorem.words()
-    const handleOpen = jest.fn()
-    const handleClose = jest.fn()
+    const handleOpen = vi.fn()
+    const handleClose = vi.fn()
     render(
       html`<${Dialogue}
         on:open=${handleOpen}
@@ -90,8 +90,8 @@ describe('Dialogue component', () => {
   it('closes on esc key and dispatches close event', async () => {
     const open = writable(true)
     const title = faker.lorem.words()
-    const handleOpen = jest.fn()
-    const handleClose = jest.fn()
+    const handleOpen = vi.fn()
+    const handleClose = vi.fn()
     render(
       html`<p data-testid="paragraph" />
         <${Dialogue}
@@ -107,9 +107,10 @@ describe('Dialogue component', () => {
     expect(handleOpen).not.toHaveBeenCalled()
     expect(handleClose).not.toHaveBeenCalled()
 
-    await fireEvent.keyUp(screen.getByTestId('paragraph'), {
+    fireEvent.keyUp(screen.getByTestId('paragraph'), {
       key: 'Escape'
     })
+    await tick()
 
     expect(screen.queryByText(title)).not.toBeVisible()
     expect(handleClose).toHaveBeenCalled()
@@ -119,7 +120,7 @@ describe('Dialogue component', () => {
   it('does not display close button nor closes on backdrop click with noClose option', async () => {
     const open = writable(true)
     const title = faker.lorem.words()
-    const handleClose = jest.fn()
+    const handleClose = vi.fn()
     render(
       html`<${Dialogue}
         noClose
@@ -142,7 +143,7 @@ describe('Dialogue component', () => {
   it('does not close on esc key with noClose option', async () => {
     const open = writable(true)
     const title = faker.lorem.words()
-    const handleClose = jest.fn()
+    const handleClose = vi.fn()
     render(
       html`<p data-testid="paragraph" />
         <${Dialogue}
@@ -155,7 +156,7 @@ describe('Dialogue component', () => {
     await tick()
 
     expect(screen.queryByText(title)).toBeVisible()
-    await fireEvent.keyUp(screen.getByTestId('paragraph'), {
+    fireEvent.keyUp(screen.getByTestId('paragraph'), {
       key: 'Escape'
     })
 

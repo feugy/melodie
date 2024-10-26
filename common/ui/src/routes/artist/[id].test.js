@@ -1,34 +1,34 @@
-'use strict'
-
-import { screen, render } from '@testing-library/svelte'
+import { faker } from '@faker-js/faker'
+import { render, screen, waitFor } from '@testing-library/svelte'
 import userEvent from '@testing-library/user-event'
+import { BehaviorSubject } from 'rxjs'
 import html from 'svelte-htm'
 import { locale } from 'svelte-intl'
-import { BehaviorSubject } from 'rxjs'
 import { replace } from 'svelte-spa-router'
-import faker from 'faker'
-import artistRoute from './[id].svelte'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
+
 import {
   artists as mockedArtists,
   changes,
-  removals,
-  load
+  load,
+  removals
 } from '../../stores/artists'
 import { add } from '../../stores/track-queue'
+import { sleep, translate } from '../../tests'
 import { invoke } from '../../utils'
-import { translate, sleep } from '../../tests'
+import artistRoute from './[id].svelte'
 
-jest.mock('svelte-spa-router')
-jest.mock('../../stores/track-queue', () => ({
-  add: jest.fn(),
+vi.mock('svelte-spa-router')
+vi.mock('../../stores/track-queue', () => ({
+  add: vi.fn(),
   current: {
     subscribe: () => ({ unsubscribe: () => {} })
   }
 }))
-jest.mock('../../stores/artists', () => {
+vi.mock('../../stores/artists', () => {
   const { Subject } = require('rxjs')
   return {
-    load: jest.fn(),
+    load: vi.fn(),
     changes: new Subject(),
     removals: new Subject(),
     artists: {
@@ -39,22 +39,22 @@ jest.mock('../../stores/artists', () => {
 
 describe('artist details route', () => {
   const album1 = {
-    id: faker.datatype.number(),
+    id: faker.number.int(),
     name: faker.commerce.productName(),
     media: faker.image.avatar()
   }
   const album2 = {
-    id: faker.datatype.number(),
+    id: faker.number.int(),
     name: faker.commerce.productName(),
     media: faker.image.avatar()
   }
   const album3 = {
-    id: faker.datatype.number(),
+    id: faker.number.int(),
     name: faker.commerce.productName(),
     media: faker.image.avatar()
   }
-  const artistName = faker.name.findName()
-  const id = faker.datatype.number()
+  const artistName = faker.person.firstName()
+  const id = faker.number.int()
   const artistRefs = [[id, artistName]]
 
   const artist = {
@@ -67,20 +67,20 @@ describe('artist details route', () => {
     media: faker.image.avatar(),
     tracks: [
       {
-        id: faker.datatype.uuid(),
+        id: faker.string.uuid(),
         media: album1.media,
         tags: {
           title: faker.commerce.productName(),
           artists: [artistName],
           album: album1.name,
           duration: 265,
-          year: faker.datatype.number({ min: 1970, max: 2030 })
+          year: faker.number.int({ min: 1970, max: 2030 })
         },
         albumRef: [album1.id, album1.name],
         artistRefs
       },
       {
-        id: faker.datatype.uuid(),
+        id: faker.string.uuid(),
         media: album1.media,
         tags: {
           title: faker.commerce.productName(),
@@ -92,7 +92,7 @@ describe('artist details route', () => {
         artistRefs
       },
       {
-        id: faker.datatype.uuid(),
+        id: faker.string.uuid(),
         media: album2.media,
         tags: {
           title: faker.commerce.productName(),
@@ -109,7 +109,7 @@ describe('artist details route', () => {
   beforeEach(async () => {
     const artists = new BehaviorSubject([artist])
     mockedArtists.subscribe = artists.subscribe.bind(artists)
-    jest.resetAllMocks()
+    vi.resetAllMocks()
   })
 
   it('redirects to artist list on unknown album', async () => {
@@ -132,7 +132,7 @@ describe('artist details route', () => {
     })
 
     it('displays artist name, image and all albums with their years', async () => {
-      expect(screen.queryByText(artist.name)).toBeInTheDocument()
+      expect(screen.getByText(artist.name)).toBeInTheDocument()
       const images = Array.from(
         screen.queryAllByRole('img').filter(node => node.hasAttribute('src'))
       )
@@ -148,7 +148,7 @@ describe('artist details route', () => {
       ).toBeInTheDocument()
       expect(images).toHaveLength(3)
       expect(
-        screen.queryByText(`${artist.tracks[0].tags.year}`)
+        screen.getByText(`${artist.tracks[0].tags.year}`)
       ).toBeInTheDocument()
 
       expect(load).toHaveBeenCalledWith(artist.id)
@@ -156,35 +156,34 @@ describe('artist details route', () => {
         'media.triggerArtistEnrichment',
         artist.id
       )
-      expect(invoke).toHaveBeenCalledTimes(1)
+      expect(invoke).toHaveBeenCalledOnce()
     })
 
     it('enqueues all tracks', async () => {
-      userEvent.click(screen.getByText(translate('enqueue all')))
+      await userEvent.click(screen.getByText(translate('enqueue all')))
 
       expect(add).toHaveBeenCalledWith(artist.tracks)
-      expect(add).toHaveBeenCalledTimes(1)
+      expect(add).toHaveBeenCalledOnce()
     })
 
     it('plays all tracks', async () => {
-      userEvent.click(screen.getByText(translate('play all')))
+      await userEvent.click(screen.getByText(translate('play all')))
 
       expect(add).toHaveBeenCalledWith(artist.tracks, true)
-      expect(add).toHaveBeenCalledTimes(1)
+      expect(add).toHaveBeenCalledOnce()
     })
 
     it('navigates to album details page', async () => {
-      userEvent.click(screen.getByText(album2.name))
-      await sleep(250)
+      await userEvent.click(screen.getByText(album2.name))
 
+      await waitFor(() => expect(location.hash).toBe(`#/album/${album2.id}`))
       expect(add).not.toHaveBeenCalled()
-      expect(location.hash).toEqual(`#/album/${album2.id}`)
     })
 
     it('updates on artist change', async () => {
       load.mockReset()
 
-      const newName = faker.name.findName()
+      const newName = faker.person.firstName()
       changes.next([
         {
           ...artist,
@@ -192,7 +191,7 @@ describe('artist details route', () => {
           tracks: [
             ...artist.tracks,
             {
-              id: faker.datatype.uuid(),
+              id: faker.string.uuid(),
               media: album3.media,
               tags: {
                 title: faker.commerce.productName(),
@@ -231,9 +230,7 @@ describe('artist details route', () => {
     it('ignores changes on other artists', async () => {
       load.mockReset()
 
-      changes.next([
-        { ...artist, id: faker.datatype.number(), tracks: undefined }
-      ])
+      changes.next([{ ...artist, id: faker.number.int(), tracks: undefined }])
       await sleep()
 
       expect(load).not.toHaveBeenCalled()
@@ -258,7 +255,7 @@ describe('artist details route', () => {
       ).toBeInTheDocument()
       expect(images).toHaveLength(3)
 
-      expect(load).toHaveBeenCalledTimes(1)
+      expect(load).toHaveBeenCalledOnce()
     })
 
     it('redirects to artist list on removal', async () => {
@@ -268,7 +265,7 @@ describe('artist details route', () => {
     })
 
     it('ignores other artist removals', async () => {
-      removals.next([faker.datatype.number()])
+      removals.next([faker.number.int()])
 
       expect(replace).not.toHaveBeenCalledWith('/artist')
     })
@@ -280,7 +277,7 @@ describe('artist details route', () => {
           node.getAttribute('src').includes(artist.media)
       )
 
-      userEvent.click(artistImage)
+      await userEvent.click(artistImage)
 
       expect(await screen.findByText(translate('choose avatar'))).toBeVisible()
     })
@@ -310,7 +307,7 @@ describe('artist details route', () => {
       render(html`<${artistRoute} params=${{ id: artist.id }} />`)
       await sleep()
 
-      expect(screen.queryByText(bio.fr)).toBeInTheDocument()
+      expect(screen.getByText(bio.fr)).toBeInTheDocument()
       expect(screen.queryByText(bio.en)).not.toBeInTheDocument()
     })
 
@@ -319,7 +316,7 @@ describe('artist details route', () => {
       render(html`<${artistRoute} params=${{ id: artist.id }} />`)
       await sleep()
 
-      expect(screen.queryByText(bio.en)).toBeInTheDocument()
+      expect(screen.getByText(bio.en)).toBeInTheDocument()
       expect(screen.queryByText(bio.fr)).not.toBeInTheDocument()
     })
 

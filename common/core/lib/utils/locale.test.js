@@ -1,20 +1,19 @@
-'use strict'
+import { osLocale } from 'os-locale'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 
-const osLocale = require('os-locale')
-const { getSystemLocale } = require('./locale')
-
-jest.mock('os-locale')
+import { getSystemLocale } from './locale'
+vi.mock('os-locale')
 
 describe('getSystemLocale utility', () => {
-  beforeEach(() => jest.clearAllMocks())
+  beforeEach(() => vi.clearAllMocks())
 
   it('removes regional variant', async () => {
     osLocale.mockResolvedValueOnce('fr-FR')
-    expect(await getSystemLocale()).toEqual('fr')
+    expect(await getSystemLocale()).toBe('fr')
   })
 
   it('returns regional-less result', async () => {
     osLocale.mockResolvedValueOnce('en')
-    expect(await getSystemLocale()).toEqual('en')
+    expect(await getSystemLocale()).toBe('en')
   })
 })

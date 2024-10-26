@@ -1,10 +1,10 @@
-'use strict'
-
+import { faker } from '@faker-js/faker'
 import { get } from 'svelte/store'
-import faker from 'faker'
-import { search, albums, artists, tracks, total, current } from './search'
-import { invoke } from '../utils'
+import { describe, expect, it } from 'vitest'
+
 import { sleep } from '../tests'
+import { invoke } from '../utils'
+import { albums, artists, current, search, total, tracks } from './search'
 
 describe('search store', () => {
   it('triggers search and enqueue results', async () => {
@@ -58,7 +58,7 @@ describe('search store', () => {
     expect(get(albums)).toEqual([])
     expect(get(artists)).toEqual([])
     expect(get(tracks)).toEqual([])
-    expect(get(total)).toEqual(0)
+    expect(get(total)).toBe(0)
     expect(get(current)).toBeNull()
 
     search(text, size)

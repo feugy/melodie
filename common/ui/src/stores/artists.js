@@ -1,5 +1,3 @@
-'use strict'
-
 import { createListStore, invoke } from '../utils'
 
 const store = createListStore('artist')

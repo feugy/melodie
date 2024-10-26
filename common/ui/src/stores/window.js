@@ -1,5 +1,3 @@
-'use strict'
-
 import { BehaviorSubject, fromEvent } from 'rxjs'
 import { debounceTime } from 'rxjs/operators'
 
@@ -16,8 +14,8 @@ export const isTouchable = isTouchable$.asObservable()
 
 fromEvent(window, 'resize')
   .pipe(debounceTime(100))
-  .subscribe(({ target }) => {
-    screenSize$.next(calc(target.innerWidth))
+  .subscribe(() => {
+    screenSize$.next(calc(window.innerWidth))
     isTouchable$.next(checkIfTouchable())
   })
 

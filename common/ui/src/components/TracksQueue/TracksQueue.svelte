@@ -1,23 +1,24 @@
 <script>
-  import { onMount, createEventDispatcher } from 'svelte'
+  import { createEventDispatcher, onMount } from 'svelte'
   import { _ } from 'svelte-intl'
+
+  import { showSnack } from '../../stores/snackbars'
+  import {
+    clear,
+    index,
+    jumpTo,
+    move,
+    remove,
+    tracks
+  } from '../../stores/track-queue'
+  import { current } from '../../stores/tutorial'
+  import { formatTime, sumDurations } from '../../utils'
+  import AddToPlaylist from '../AddToPlaylist/AddToPlaylist.svelte'
   import Button from '../Button/Button.svelte'
   import Heading from '../Heading/Heading.svelte'
   import SortableList from '../SortableList/SortableList.svelte'
-  import Track from '../Track/Track.svelte'
-  import AddToPlaylist from '../AddToPlaylist/AddToPlaylist.svelte'
   import Sticky from '../Sticky/Sticky.svelte'
-  import {
-    tracks,
-    index,
-    jumpTo,
-    clear,
-    remove,
-    move
-  } from '../../stores/track-queue'
-  import { showSnack } from '../../stores/snackbars'
-  import { current } from '../../stores/tutorial'
-  import { formatTime, sumDurations } from '../../utils'
+  import Track from '../Track/Track.svelte'
 
   export let withClose = false
 
@@ -56,29 +57,6 @@
   )
 </script>
 
-<style lang="postcss">
-  header {
-    @apply w-full flex flex-row items-center p-2 gap-2;
-    line-height: 1.8rem;
-  }
-
-  div {
-    @apply my-2;
-  }
-
-  .totalDuration {
-    @apply flex-grow text-right px-2;
-  }
-
-  .row {
-    @apply py-1 px-2 flex flex-row items-center cursor-pointer;
-
-    &.current {
-      background-color: var(--outline-color);
-    }
-  }
-</style>
-
 <Sticky>
   <header>
     <h3>
@@ -89,10 +67,14 @@
     {#if $tracks.length}
       <AddToPlaylist tracks={$tracks} noBorder />
       <span class="totalDuration">{formatTime(sumDurations($tracks))}</span>
-      <Button icon="delete" on:click={handleClear} />
+      <Button
+        icon="i-mdi-delete"
+        on:click={handleClear}
+        data-testid="clear-button"
+      />
     {:else}<span class="totalDuration" />{/if}
     {#if withClose}
-      <Button icon="close" primary on:click={() => dispatch('close')} />
+      <Button icon="i-mdi-close" primary on:click={() => dispatch('close')} />
     {/if}
   </header>
 </Sticky>
@@ -105,7 +87,7 @@
     items={$tracks}
     on:move={({ detail: { from, to } }) => move(from, to)}
   >
-    <span
+    <button
       slot="item"
       let:item
       let:i
@@ -115,11 +97,34 @@
     >
       <Track src={item} details class="flex-auto" />
       <Button
-        icon="close"
+        icon="i-mdi-close"
         noBorder
         class="mx-2"
         on:click={() => handleRemove(i)}
       />
-    </span>
+    </button>
   </SortableList>
 </div>
+
+<style>
+  header {
+    --at-apply: w-full flex flex-row items-center p-2 gap-2;
+    line-height: 1.8rem;
+  }
+
+  div {
+    --at-apply: my-2;
+  }
+
+  .totalDuration {
+    --at-apply: flex-grow text-right px-2;
+  }
+
+  .row {
+    --at-apply: py-1 px-2 flex flex-row items-center cursor-pointer w-full;
+
+    &.current {
+      background-color: var(--outline-color);
+    }
+  }
+</style>

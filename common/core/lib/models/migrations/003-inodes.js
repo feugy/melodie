@@ -1,9 +1,8 @@
-'use strict'
+import fs from 'fs-extra'
 
-const { stat } = require('fs-extra')
-const { tracksModel } = require('..')
+import { tracksModel } from '../index.js'
 
-exports.up = async function (db) {
+export async function up(db) {
   await db.schema.table('tracks', table => {
     table.bigInteger('ino')
   })
@@ -14,7 +13,7 @@ exports.up = async function (db) {
   let page = await tracksModel.list({ from, size })
   while (page.results.length) {
     for (const track of page.results) {
-      track.ino = (await stat(track.path)).ino
+      track.ino = (await fs.stat(track.path)).ino
     }
     await tracksModel.save(page.results)
     from += page.results.length
@@ -22,7 +21,7 @@ exports.up = async function (db) {
   }
 }
 
-exports.down = async function ({ schema }) {
+export async function down({ schema }) {
   await schema.table('tracks', table => {
     table.dropColumn('ino')
   })

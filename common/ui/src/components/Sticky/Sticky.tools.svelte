@@ -1,8 +1,9 @@
 <script>
   import { Tool } from '@atelier-wb/svelte'
-  import Sticky from './Sticky.svelte'
-  import Button from '../Button/Button.svelte'
+
   import { texts } from '../../tests/lorem'
+  import Button from '../Button/Button.svelte'
+  import Sticky from './Sticky.svelte'
 </script>
 
 <Tool name="Components/Sticky" let:props>

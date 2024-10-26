@@ -1,5 +1,3 @@
-'use strict'
-
 function defaultDeep(source, defaults) {
   const keys = Object.keys(defaults)
   for (const key of keys) {

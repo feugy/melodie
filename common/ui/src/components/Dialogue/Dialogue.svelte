@@ -1,6 +1,7 @@
 <script>
-  import Portal from 'svelte-portal'
   import { afterUpdate, createEventDispatcher } from 'svelte'
+  import Portal from 'svelte-portal'
+
   import Button from '../Button/Button.svelte'
 
   export let open
@@ -32,57 +33,28 @@
   }
 </script>
 
-<style lang="postcss">
-  .backdrop,
-  .filter {
-    @apply fixed flex items-center justify-center inset-0 m-0 z-10 p-10;
-    visibility: hidden;
-  }
-
-  .filter.open {
-    @apply visible;
-    backdrop-filter: blur(2px);
-  }
-
-  .backdrop {
-    opacity: 0;
-    transition: all 0.35s ease;
-    background-color: var(--backdrop-color);
-
-    &.open {
-      @apply opacity-100 visible;
-    }
-  }
-
-  article {
-    @apply flex flex-col text-center w-full md:w-8/10 lg:w-7/10 xl:w-1/2 max-h-full md:max-h-8/10;
-  }
-
-  .content {
-    @apply overflow-y-auto;
-  }
-
-  header {
-    @apply mb-4 p-4 text-2xl uppercase font-semibold;
-    border-bottom: 1px solid var(--outline-color);
-  }
-
-  footer {
-    @apply mt-4;
-  }
-</style>
-
-<svelte:body on:keyup={handleKeyup} />
+<svelte:body on:keyup={handleKeyup} on:click={close} />
 <Portal>
-  <div class="filter" class:open />
-  <div class="backdrop" class:open on:click={close}>
+  <div
+    class="backdrop2"
+    class:open
+    style="visibility: {open ? 'visible' : 'hidden'};"
+  />
+  <div
+    class="backdrop"
+    class:open
+    data-testid="backdrop"
+    style="visibility: {open ? 'visible' : 'hidden'};"
+  >
     {#if !noClose}
       <Button
-        icon={'close'}
+        icon="i-mdi-close"
         class="absolute top-0 right-0 m-4"
         on:click={close}
       />
     {/if}
+    <!-- svelte-ignore a11y-click-events-have-key-events -->
+    <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
     <article role="dialog" on:click|stopPropagation>
       <header role="heading" aria-level="1">{title}</header>
       <div class="content">
@@ -93,8 +65,44 @@
       </footer>
     </article>
   </div>
-  <!-- Svelte issue: https://github.com/sveltejs/svelte/issues/4546 -->
-  {#if false}
-    <slot />
-  {/if}
 </Portal>
+
+<style>
+  .backdrop,
+  .backdrop2 {
+    --at-apply: fixed flex items-center justify-center inset-0 m-0 z-10 p-10;
+  }
+
+  .backdrop2.open {
+    backdrop-filter: blur(2px);
+  }
+
+  .backdrop {
+    opacity: 0;
+    transition: all 0.35s ease;
+    background-color: var(--backdrop-color);
+
+    &.open {
+      --at-apply: opacity-100;
+    }
+  }
+
+  article {
+    /* prettier-ignore */
+    --at-apply: flex flex-col text-center w-full md:w-8/10 lg:w-7/10 xl:w-1/2
+      max-h-full md:max-h-8/10;
+  }
+
+  .content {
+    --at-apply: overflow-y-auto;
+  }
+
+  header {
+    --at-apply: mb-4 p-4 text-2xl uppercase font-semibold;
+    border-bottom: 1px solid var(--outline-color);
+  }
+
+  footer {
+    --at-apply: mt-4;
+  }
+</style>

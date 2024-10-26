@@ -1,16 +1,12 @@
 <script>
+  import { Subject } from 'rxjs'
+  import { debounceTime, filter } from 'rxjs/operators'
   import { onMount, tick } from 'svelte'
   import { slide } from 'svelte/transition'
   import { _ } from 'svelte-intl'
   // don't use destructuring to ease mocking
   import * as router from 'svelte-spa-router'
-  import { Subject } from 'rxjs'
-  import { debounceTime, filter } from 'rxjs/operators'
-  import Sticky from '../Sticky/Sticky.svelte'
-  import Button from '../Button/Button.svelte'
-  import BroadcastButton from '../BroadcastButton/BroadcastButton.svelte'
-  import TextInput from '../TextInput/TextInput.svelte'
-  import { invoke } from '../../utils'
+
   import {
     connected,
     isDesktop,
@@ -18,7 +14,12 @@
     toggleBroadcast
   } from '../../stores/settings'
   import { tracks } from '../../stores/track-queue'
-  import { screenSize, SM, MD } from '../../stores/window'
+  import { MD, screenSize, SM } from '../../stores/window'
+  import { invoke } from '../../utils'
+  import BroadcastButton from '../BroadcastButton/BroadcastButton.svelte'
+  import Button from '../Button/Button.svelte'
+  import Sticky from '../Sticky/Sticky.svelte'
+  import TextInput from '../TextInput/TextInput.svelte'
 
   const { location, push } = router
 
@@ -43,8 +44,8 @@
     path === 'search'
       ? 'results for _'
       : path === 'settings'
-      ? path
-      : `${path}s`,
+        ? path
+        : `${path}s`,
     { searched }
   )
 
@@ -100,71 +101,20 @@
   }
 </script>
 
-<style lang="postcss">
-  .bar {
-    @apply w-full flex flex-row items-center p-2 gap-2;
-    transition: background-color 0ms 260ms;
-  }
-
-  li {
-    &.nav {
-      @apply whitespace-nowrap md:order-1;
-    }
-
-    &.track-list {
-      @apply flex-grow text-right;
-    }
-
-    &:nth-child(4) {
-      @apply md:order-2;
-    }
-
-    &:nth-child(5) {
-      @apply md:order-4;
-    }
-
-    &.expand {
-      @apply md:flex-grow md:text-right md:order-2 pl-4 md:pl-0;
-    }
-
-    &.track-list {
-      @apply md:flex-grow-0 md:order-4;
-    }
-  }
-
-  .menu {
-    @apply w-full flex flex-col p-2 gap-2 items-start;
-    background: var(--nav-bg-color);
-
-    & > li {
-      @apply w-full;
-    }
-  }
-
-  .menuOpen {
-    background: var(--nav-bg-color);
-    transition: none;
-  }
-
-  .material-icons {
-    @apply align-text-bottom;
-  }
-</style>
-
 <Sticky let:floating>
   {#if isSmall}
     <ul class="bar {$$restProps.class}" class:menuOpen>
       <li>
         <Button
           on:click={() => (menuOpen = !menuOpen)}
-          icon={menuOpen ? 'close' : 'menu'}
+          icon={menuOpen ? 'i-mdi-close' : 'i-mdi-menu'}
         />
       </li>
       <li>{floating ? title : ''}</li>
       <li class="track-list">
         <Button
           on:click={() => (isPlaylistOpen = !isPlaylistOpen)}
-          icon="queue_music"
+          icon="i-mdi-playlist-music"
           primary={!isPlaylistOpen}
           badge={$tracks.length || null}
           noBorder
@@ -185,7 +135,7 @@
           }}
           class="w-full"
           text={isLarge || isSmall ? $_('albums') : undefined}
-          icon="album"
+          icon="i-mdi-album"
           primary={floating && path === 'album'}
           noBorder={!isLarge}
         />
@@ -198,7 +148,7 @@
           }}
           class="w-full"
           text={isLarge || isSmall ? $_('artists') : undefined}
-          icon="person"
+          icon="i-mdi-account"
           primary={floating && path === 'artist'}
           noBorder={!isLarge}
         />
@@ -211,7 +161,7 @@
           }}
           class="w-full"
           text={isLarge || isSmall ? $_('playlists') : undefined}
-          icon="library_music"
+          icon="i-mdi-music-box-multiple"
           primary={floating && path === 'playlist'}
           noBorder={!isLarge}
         />
@@ -232,17 +182,18 @@
             handleMenuClick()
             push('/settings')
           }}
-          icon="settings"
+          icon="i-mdi-cog"
           text={isSmall ? $_('settings') : undefined}
           primary={floating && path === 'settings'}
           noBorder
+          data-testid="settings-link"
         />
       </li>
       <li class="expand">
         <TextInput
           class="{isSmall ? 'w-full' : 'w-48'} inline-block"
           type="search"
-          icon={searched ? 'close' : 'search'}
+          icon={searched ? 'i-mdi-close' : 'i-mdi-magnify'}
           value={searched}
           on:input={({ target: { value } }) => search$.next(value)}
           on:keyup={handleSearchKeyup}
@@ -250,14 +201,24 @@
         />
       </li>
       <li class="nav">
-        <Button on:click={handleBack} icon="navigate_before" noBorder />
-        <Button on:click={handleForward} icon="navigate_next" noBorder />
+        <Button
+          on:click={handleBack}
+          icon="i-mdi-chevron-left"
+          noBorder
+          data-testid="backward-link"
+        />
+        <Button
+          on:click={handleForward}
+          icon="i-mdi-chevron-right"
+          noBorder
+          data-testid="forward-link"
+        />
       </li>
       {#if !isSmall}
         <li class="track-list">
           <Button
             on:click={() => (isPlaylistOpen = !isPlaylistOpen)}
-            icon="queue_music"
+            icon="i-mdi-playlist-music"
             primary={!isPlaylistOpen}
             badge={$tracks.length || null}
           />
@@ -266,3 +227,59 @@
     </ul>
   {/if}
 </Sticky>
+
+<style>
+  .bar {
+    --at-apply: w-full flex flex-row items-center p-2 gap-2;
+    transition: background-color 0ms 260ms;
+  }
+
+  li {
+    &.nav {
+      /* prettier-ignore */
+      --at-apply: whitespace-nowrap md:order-1;
+    }
+
+    &.track-list {
+      --at-apply: flex-grow text-right;
+    }
+
+    &:nth-child(4) {
+      /* prettier-ignore */
+      --at-apply: md:order-2;
+    }
+
+    &:nth-child(5) {
+      /* prettier-ignore */
+      --at-apply: md:order-4;
+    }
+
+    &.expand {
+      /* prettier-ignore */
+      --at-apply: md:flex-grow md:text-right md:order-2 pl-4 md:pl-0;
+    }
+
+    &.track-list {
+      /* prettier-ignore */
+      --at-apply: md:flex-grow-0 md:order-4;
+    }
+  }
+
+  .menu {
+    --at-apply: w-full flex flex-col p-2 gap-2 items-start;
+    background: var(--nav-bg-color);
+
+    & > li {
+      --at-apply: w-full;
+    }
+  }
+
+  .menuOpen {
+    background: var(--nav-bg-color);
+    transition: none;
+  }
+
+  .icons {
+    --at-apply: align-text-bottom;
+  }
+</style>

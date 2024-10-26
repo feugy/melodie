@@ -1,17 +1,16 @@
-'use strict'
-
 import { recordEvent } from '@atelier-wb/svelte'
+
 import CustomOption from './DropdownToolCustomOption.svelte'
 
 export const dropdownData = {
   options: [
     { label: 'one' },
     { label: 'two (disabled)', disabled: true },
-    { label: 'three', icon: 'add' },
-    { label: 'four', icon: 'people' },
+    { label: 'three', icon: 'i-mdi-cog' },
+    { label: 'four', icon: 'i-mdi-account' },
     {
       label: `this is a very long label that doesn't wrap`,
-      icon: 'play_arrow'
+      icon: 'i-mdi-play'
     }
   ]
 }
@@ -19,7 +18,7 @@ export const dropdownData = {
 export const dropdownCustomData = {
   options: [
     { label: 'simple' },
-    { label: 'simple with icon', icon: 'add' },
+    { label: 'simple with icon', icon: 'i-mdi-playlist-plus' },
     {
       Component: CustomOption,
       props: {

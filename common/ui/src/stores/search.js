@@ -1,7 +1,6 @@
-'use strict'
+import { BehaviorSubject, ReplaySubject } from 'rxjs'
+import { map, mergeMap, scan } from 'rxjs/operators'
 
-import { ReplaySubject, BehaviorSubject } from 'rxjs'
-import { scan, mergeMap, map } from 'rxjs/operators'
 import { invoke } from '../utils'
 
 const collator = new Intl.Collator([], { numeric: true })

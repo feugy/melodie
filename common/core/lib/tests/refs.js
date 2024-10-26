@@ -1,15 +1,13 @@
-'use strict'
+import { hash } from '../utils/index.js'
 
-const { hash } = require('../utils')
+export const addId = obj => ({ ...obj, id: hash(obj.name) })
 
-exports.addId = obj => ({ ...obj, id: hash(obj.name) })
+export const makeRef = value => [hash(value), value]
 
-exports.makeRef = value => [hash(value), value]
-
-exports.addRefs = track => ({
+export const addRefs = track => ({
   ...track,
-  albumRef: track.tags.album ? exports.makeRef(track.tags.album) : [1, null],
+  albumRef: track.tags.album ? makeRef(track.tags.album) : [1, null],
   artistRefs: track.tags.artists.length
-    ? track.tags.artists.map(exports.makeRef)
+    ? track.tags.artists.map(makeRef)
     : [[1, null]]
 })

@@ -1,12 +1,17 @@
-<style lang="postcss">
+<div class="wrapper" role="progressbar">
+  <div class="inc" />
+  <div class="dec" />
+</div>
+
+<style>
   .wrapper {
-    @apply top-0 left-0 w-full h-1 overflow-hidden relative;
+    --at-apply: top-0 left-0 w-full h-1 overflow-hidden relative;
     background: var(--font-color);
   }
 
   .inc,
   .dec {
-    @apply h-1 absolute;
+    --at-apply: h-1 absolute;
     background: var(--primary-color);
   }
   .inc {
@@ -38,8 +43,3 @@
     }
   }
 </style>
-
-<div class="wrapper" role="progressbar">
-  <div class="inc" />
-  <div class="dec" />
-</div>

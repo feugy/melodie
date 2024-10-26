@@ -1,9 +1,10 @@
 <script>
   import { Tool, ToolBox } from '@atelier-wb/svelte'
+
+  import { mockWebsocket } from '../../atelier/utils'
+  import * as queue from '../../stores/track-queue'
   import Player from './Player.svelte'
   import { trackListData } from './Player.testdata'
-  import * as queue from '../../stores/track-queue'
-  import { mockWebsocket } from '../../atelier/utils'
 </script>
 
 <ToolBox
@@ -18,6 +19,7 @@
 
   <Tool
     name="With track list"
+    layout="centered"
     setup={() => {
       queue.add(trackListData)
     }}

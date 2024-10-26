@@ -1,16 +1,11 @@
 <script>
   import { _ } from 'svelte-intl'
-  import Image from '../Image/Image.svelte'
+
   import GridItem from '../GridItem/GridItem.svelte'
+  import Image from '../Image/Image.svelte'
 
   export let src
 </script>
-
-<style lang="postcss">
-  h4 {
-    @apply text-sm truncate w-full;
-  }
-</style>
 
 <GridItem {src} kind="artist">
   <Image class="h-full w-full" src={src?.media} rounded />
@@ -22,3 +17,9 @@
     {/if}
   </h4>
 </GridItem>
+
+<style>
+  h4 {
+    --at-apply: text-sm truncate w-full;
+  }
+</style>

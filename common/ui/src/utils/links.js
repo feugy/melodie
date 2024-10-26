@@ -1,5 +1,3 @@
-'use strict'
-
 import { get } from 'svelte/store'
 import { translate } from 'svelte-intl'
 
@@ -13,8 +11,8 @@ export function wrapWithLink(kind, ref, className = '') {
     onclick="event.stopPropagation()"
     href="${linkTo(kind, ref)}"
     class="${className ? className + ' ' : ''}underlined">${
-        ref[1] || get(translate)('unknown')
-      }</a>`
+      ref[1] || get(translate)('unknown')
+    }</a>`
     : ''
 }
 

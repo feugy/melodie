@@ -1,15 +1,14 @@
-'use strict'
+import { faker } from '@faker-js/faker'
+import fs from 'fs-extra'
+import os from 'os'
+import { join } from 'path'
+import pino from 'pino'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
-const { join } = require('path')
-const os = require('os')
-const faker = require('faker')
-const fs = require('fs-extra')
-
-let pino
 let getLogger
 let refreshLogLevels
 
-jest.mock('pino')
+vi.mock('pino')
 
 describe('logger', () => {
   const envSave = Object.assign({}, process.env)
@@ -19,28 +18,27 @@ describe('logger', () => {
 
   function setupLogger(name, proto = {}) {
     loggers[name] = proto
-    setters[name] = jest.fn()
+    setters[name] = vi.fn()
     Object.defineProperty(loggers[name], 'level', { set: setters[name] })
     return loggers[name]
   }
 
   beforeEach(async () => {
-    jest.resetModules()
-    jest.resetAllMocks()
+    vi.resetModules()
+    vi.resetAllMocks()
     process.env = {}
     Object.assign(process.env, envSave)
     process.env.LOG_LEVEL_FILE = levelFile
     await fs.writeFile(levelFile, '')
     loggers = {}
     setters = {}
-    pino = require('pino')
     pino.mockReturnValue(
       setupLogger('core', {
-        child: jest.fn().mockImplementation(({ name }) => setupLogger(name))
+        child: vi.fn().mockImplementation(({ name }) => setupLogger(name))
       })
     )
     process.env.LOG_DESTINATION = 1
-    ;({ getLogger, refreshLogLevels } = require('./logger'))
+    ;({ getLogger, refreshLogLevels } = await import('./logger'))
   })
 
   afterEach(async () => {
@@ -83,7 +81,7 @@ describe('logger', () => {
 
   it('returns child logger and cache it', async () => {
     const name = faker.commerce.productMaterial()
-    const level = faker.random.arrayElement(['trace', 'error', 'warning'])
+    const level = faker.helpers.arrayElement(['trace', 'error', 'warning'])
 
     const logger = getLogger(name, level)
 
@@ -102,7 +100,7 @@ describe('logger', () => {
 
   it('set level when run with in dev', async () => {
     process.env.NODE_ENV = 'dev'
-    const name = faker.random.word()
+    const name = faker.string.alpha()
 
     getLogger()
     expect(pino).toHaveBeenCalledWith(
@@ -119,9 +117,9 @@ describe('logger', () => {
     )
   })
 
-  it('set level when run without jest', async () => {
+  it('set level when run without vi', async () => {
     process.env.NODE_ENV = 'production'
-    const name = faker.random.word()
+    const name = faker.string.alpha()
     getLogger()
     expect(pino).toHaveBeenCalledWith(
       expect.objectContaining({
@@ -159,7 +157,7 @@ describe('logger', () => {
     expect(getLogger(name1)).toBe(loggers[name1])
     expect(getLogger(name2)).toBe(loggers[name2])
 
-    const newLevel = faker.random.arrayElement(['trace', 'error', 'warn'])
+    const newLevel = faker.helpers.arrayElement(['trace', 'error', 'warn'])
 
     await fs.writeFile(levelFile, `${name1}=${newLevel}`)
     process.emit('SIGUSR2')
@@ -178,7 +176,7 @@ describe('logger', () => {
     expect(getLogger(name1)).toBe(loggers[name1])
     expect(getLogger(name2)).toBe(loggers[name2])
 
-    const newLevel = faker.random.arrayElement(['trace', 'error', 'warn'])
+    const newLevel = faker.helpers.arrayElement(['trace', 'error', 'warn'])
 
     await fs.writeFile(levelFile, `models/*=${newLevel}`)
     refreshLogLevels()

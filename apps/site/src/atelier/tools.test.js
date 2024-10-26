@@ -1,5 +1,3 @@
-'use strict'
-
 import { configureToolshot } from '@atelier-wb/toolshot'
 import { join } from 'path'
 

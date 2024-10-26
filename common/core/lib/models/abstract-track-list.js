@@ -1,14 +1,12 @@
-'use strict'
-
-const Model = require('./abstract-model')
-const { uniq, difference } = require('../utils')
+import { difference, uniq } from '../utils/index.js'
+import Model from './abstract-model.js'
 
 /**
  * @class AbstractTrackList
  * Base class for all models containing references to tracks: Albums, Artists, Playlists.
  * Computes references automatically, and ensures reference integrity.
  */
-module.exports = class AbstractTrackList extends Model {
+export default class AbstractTrackList extends Model {
   /**
    * Builds a tracklist model manager, that can handle records with references to tracks
    * @param {object} args                         - arguments, including:

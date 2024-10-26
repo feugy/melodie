@@ -1,10 +1,11 @@
 <script>
   import { Tool, ToolBox } from '@atelier-wb/svelte'
+
+  import HRefSink from '../../atelier/HRefSink.svelte'
+  import { mockWebsocket } from '../../atelier/utils'
+  import { playlistsData } from '../AddToPlaylist/AddToPlaylist.testdata'
   import Track from './Track.svelte'
   import { trackData } from './Track.testdata'
-  import { playlistsData } from '../AddToPlaylist/AddToPlaylist.testdata'
-  import { mockWebsocket } from '../../atelier/utils'
-  import HRefSink from '../../atelier/HRefSink.svelte'
 </script>
 
 <ToolBox

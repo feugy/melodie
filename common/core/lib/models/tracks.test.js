@@ -1,12 +1,12 @@
-'use strict'
+import { faker } from '@faker-js/faker'
+import fs from 'fs-extra'
+import knex from 'knex'
+import os from 'os'
+import { join, resolve } from 'path'
+import { afterAll, beforeAll, beforeEach, describe, expect, it } from 'vitest'
 
-const faker = require('faker')
-const knex = require('knex')
-const fs = require('fs-extra')
-const os = require('os')
-const { join, resolve } = require('path')
-const { tracksModel } = require('./tracks')
-const { hash } = require('../utils')
+import { hash } from '../utils'
+import { tracksModel } from './tracks'
 
 let dbFile
 let db
@@ -20,18 +20,18 @@ describe('Tracks model', () => {
     {
       path: join(folder1, faker.system.fileName()),
       tags: JSON.stringify({}),
-      media: faker.image.image(),
-      mediaCount: faker.datatype.number({ min: 2, max: 10 }),
+      media: faker.image.url(),
+      mediaCount: faker.number.int({ min: 2, max: 10 }),
       mtimeMs: 1590479078019.59,
       ino: 2634312
     },
     {
-      path: join(folder1, faker.random.word(), faker.system.fileName()),
-      media: faker.image.image(),
-      mediaCount: faker.datatype.number({ min: 2, max: 10 }),
+      path: join(folder1, faker.string.alpha(), faker.system.fileName()),
+      media: faker.image.url(),
+      mediaCount: faker.number.int({ min: 2, max: 10 }),
       tags: JSON.stringify({
         title,
-        artists: [faker.name.findName()],
+        artists: [faker.person.fullName()],
         album: faker.commerce.productName()
       }),
       mtimeMs: 1591821991051.59,
@@ -41,7 +41,7 @@ describe('Tracks model', () => {
       path: join(folder2, faker.system.fileName()),
       tags: JSON.stringify({
         title: `${faker.commerce.productAdjective()} ${title}`,
-        artists: [faker.name.findName()]
+        artists: [faker.person.fullName()]
       }),
       mtimeMs: 1459069600000.0,
       ino: 2639112
@@ -91,12 +91,12 @@ describe('Tracks model', () => {
     it('adds new track with refs', async () => {
       const path = faker.system.fileName()
       const album = faker.commerce.productName()
-      const artists = [faker.name.findName(), faker.name.findName()]
+      const artists = [faker.person.fullName(), faker.person.fullName()]
       const track = {
         id: hash(path),
         path,
-        media: faker.image.image(),
-        mediaCount: faker.datatype.number({ min: 2, max: 10 }),
+        media: faker.image.url(),
+        mediaCount: faker.number.int({ min: 2, max: 10 }),
         mtimeMs: Date.now(),
         tags: { album, artists },
         ino: 2639762
@@ -119,8 +119,8 @@ describe('Tracks model', () => {
       const track = {
         id: hash(path),
         path,
-        media: faker.image.image(),
-        mediaCount: faker.datatype.number({ max: 10 }),
+        media: faker.image.url(),
+        mediaCount: faker.number.int({ max: 10 }),
         mtimeMs: Date.now(),
         tags: {},
         ino: 2639362
@@ -140,12 +140,12 @@ describe('Tracks model', () => {
       const path1 = faker.system.fileName()
       const path2 = faker.system.fileName()
       const album = faker.commerce.productName()
-      const artists = [faker.name.findName(), faker.name.findName()]
+      const artists = [faker.person.fullName(), faker.person.fullName()]
       const track1 = {
         id: hash(path1),
         path: path1,
-        media: faker.image.image(),
-        mediaCount: faker.datatype.number({ max: 10 }),
+        media: faker.image.url(),
+        mediaCount: faker.number.int({ max: 10 }),
         mtimeMs: Date.now(),
         tags: { album, artists: artists.slice(0, 1), albumartist: artists[0] },
         ino: 2459112
@@ -153,8 +153,8 @@ describe('Tracks model', () => {
       const track2 = {
         id: hash(path2),
         path: path2,
-        media: faker.image.image(),
-        mediaCount: faker.datatype.number({ max: 10 }),
+        media: faker.image.url(),
+        mediaCount: faker.number.int({ max: 10 }),
         mtimeMs: Date.now(),
         tags: { album, artists: artists.slice(1), albumartist: artists[1] },
         ino: 3439112
@@ -178,12 +178,12 @@ describe('Tracks model', () => {
 
     it('creates refs for artists and album artists', async () => {
       const album = faker.commerce.productName()
-      const artists = [faker.name.findName(), faker.name.findName()]
-      const albumartist = faker.name.findName()
+      const artists = [faker.person.fullName(), faker.person.fullName()]
+      const albumartist = faker.person.fullName()
       const track = {
         ...models[1],
-        media: faker.image.image(),
-        mediaCount: faker.datatype.number({ max: 10 }),
+        media: faker.image.url(),
+        mediaCount: faker.number.int({ max: 10 }),
         mtimeMs: Date.now(),
         tags: { album, artists, albumartist },
         ino: 3439196
@@ -210,14 +210,14 @@ describe('Tracks model', () => {
     it('removes duplicated (album) artists from refs', async () => {
       const album = faker.commerce.productName()
       const artists = [
-        faker.name.findName(),
-        faker.name.findName(),
-        faker.name.findName()
+        faker.person.fullName(),
+        faker.person.fullName(),
+        faker.person.fullName()
       ]
       const track = {
         ...models[1],
-        media: faker.image.image(),
-        mediaCount: faker.datatype.number({ max: 10 }),
+        media: faker.image.url(),
+        mediaCount: faker.number.int({ max: 10 }),
         mtimeMs: Date.now(),
         tags: {
           album,
@@ -244,11 +244,11 @@ describe('Tracks model', () => {
 
     it('returns old refs when saving existing track', async () => {
       const album = faker.commerce.productName()
-      const artists = [faker.name.findName(), faker.name.findName()]
+      const artists = [faker.person.fullName(), faker.person.fullName()]
       const track = {
         ...models[1],
-        media: faker.image.image(),
-        mediaCount: faker.datatype.number({ max: 10 }),
+        media: faker.image.url(),
+        mediaCount: faker.number.int({ max: 10 }),
         mtimeMs: Date.now(),
         tags: { album, artists },
         ino: 3439196
@@ -300,14 +300,14 @@ describe('Tracks model', () => {
           return !t1 && t2
             ? -1
             : !t2 && t1
-            ? 1
-            : !t1 && !t2
-            ? 0
-            : t2.title > t1.title
-            ? -1
-            : t1.title === t2.title
-            ? 0
-            : 1
+              ? 1
+              : !t1 && !t2
+                ? 0
+                : t2.title > t1.title
+                  ? -1
+                  : t1.title === t2.title
+                    ? 0
+                    : 1
         })
       expect(results).toEqual(
         sorted.slice(1).map(model => ({
@@ -319,9 +319,9 @@ describe('Tracks model', () => {
       )
       expect(results).toHaveLength(1)
       expect(total).toEqual(sorted.length)
-      expect(size).toEqual(2)
-      expect(from).toEqual(1)
-      expect(sort).toEqual('+title.value')
+      expect(size).toBe(2)
+      expect(from).toBe(1)
+      expect(sort).toBe('+title.value')
     })
 
     it('returns empty search results page', async () => {
@@ -330,10 +330,10 @@ describe('Tracks model', () => {
         searched: title
       })
       expect(results).toEqual([])
-      expect(total).toEqual(2)
-      expect(size).toEqual(10)
-      expect(from).toEqual(20)
-      expect(sort).toEqual('+title.value')
+      expect(total).toBe(2)
+      expect(size).toBe(10)
+      expect(from).toBe(20)
+      expect(sort).toBe('+title.value')
     })
 
     it('can return empty search results', async () => {
@@ -343,10 +343,10 @@ describe('Tracks model', () => {
         searched: 'unknown'
       })
       expect(results).toEqual([])
-      expect(total).toEqual(0)
-      expect(size).toEqual(2)
-      expect(from).toEqual(1)
-      expect(sort).toEqual('+title.value')
+      expect(total).toBe(0)
+      expect(size).toBe(2)
+      expect(from).toBe(1)
+      expect(sort).toBe('+title.value')
     })
   })
 

@@ -1,745 +1,743 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Toolshot routes/settings.tools.svelte: Views/Settings 1`] = `
-<span>
-  <section>
-    <header
-      class=" svelte-1whmh27"
-      style="--image: url(../images/rima-kruciene-gpKe3hmIawg-unsplash.jpg); --shade-color: rgba(0, 0, 0, 0.7); --bgPosition: center 65%;"
+exports[`Views/Settings 1`] = `
+<section
+  class="s-PDe-DHR7C-aO"
+>
+  <header
+    class=" s-xf4KciiwOEPn"
+    style="--image: url(../images/rima-kruciene-gpKe3hmIawg-unsplash.jpg); --shade-color: rgba(0, 0, 0, 0.7); --bgPosition: center 65%;"
+  >
+    <h1
+      class="s-xf4KciiwOEPn"
     >
-      <h1
-        class="svelte-1whmh27"
-      >
-        Settings
-      </h1>
-    </header>
+      Settings
+    </h1>
+  </header>
+  <!--&lt;Heading&gt;-->
+   
+  <article
+    class="s-PDe-DHR7C-aO"
+  >
+    <h4
+      class=" s-6YRYWv8WTqRO"
+    >
+      Music folders
+    </h4>
+    <!--&lt;SubHeading&gt;-->
      
-    <article
-      class="svelte-eji34d"
+    <ul
+      class="s-PDe-DHR7C-aO"
     >
-      <h4
-        class=" svelte-ko9ja9"
+      <li
+        class="s-PDe-DHR7C-aO"
       >
-        Music folders
-      </h4>
-       
-      <ul>
-        <li
-          class="svelte-eji34d"
+        <span
+          class="s-PDe-DHR7C-aO"
         >
-          <span
-            class="svelte-eji34d"
-          >
-            /home/music
-          </span>
-           
-          <button
-            class="iconOnly noBorder svelte-xh4kfu"
-          >
-            <i
-              class="material-icons svelte-xh4kfu"
-            >
-              close
-            </i>
-             
-             
-             
-          </button>
-           
-        </li>
-        <li
-          class="svelte-eji34d"
-        >
-          <span
-            class="svelte-eji34d"
-          >
-            /home/movies
-          </span>
-           
-          <button
-            class="iconOnly noBorder svelte-xh4kfu"
-          >
-            <i
-              class="material-icons svelte-xh4kfu"
-            >
-              close
-            </i>
-             
-             
-             
-          </button>
-           
-        </li>
-      </ul>
-       
-      <span
-        class="controlContainer svelte-eji34d"
-        id="folder"
-      >
+          /home/music
+        </span>
+         
         <button
-          class="svelte-xh4kfu"
+          class="iconOnly noBorder s-zdMNlEQUhDx4"
         >
           <i
-            class="material-icons svelte-xh4kfu"
-          >
-            folder
-          </i>
+            class="icons i-mdi-close s-zdMNlEQUhDx4"
+          />
            
-          <span>
-            Add folders
-          </span>
            
            
         </button>
-      </span>
-    </article>
-     
-    <article
-      class="svelte-eji34d"
-    >
-      <h4
-        class=" svelte-ko9ja9"
-      >
-        Interface settings
-      </h4>
-       
-      <p
-        class="svelte-eji34d"
-      >
-        <label
-          class="svelte-eji34d"
-          for="locale"
-        >
-          Language:
-        </label>
+        <!--&lt;Button&gt;-->
          
-        <span
-          class="controlContainer svelte-eji34d"
-          id="locale"
-        >
-          <span
-            aria-expanded="false"
-            aria-haspopup="menu"
-            class="wrapper svelte-1v2cnbz"
-          >
-            <button
-              class="svelte-xh4kfu"
-            >
-               
-              <span>
-                English
-              </span>
-               
-              <i
-                class="material-icons arrow svelte-1v2cnbz"
-              >
-                arrow_drop_down
-              </i>
-              
-               
-            </button>
-          </span>
-           
-          
-        </span>
-      </p>
-       
-      <p
-        class="svelte-eji34d"
+      </li>
+      <li
+        class="s-PDe-DHR7C-aO"
       >
-        <label
-          class="svelte-eji34d"
-          for="play-behaviour"
+        <span
+          class="s-PDe-DHR7C-aO"
         >
-          Button 
+          /home/movies
+        </span>
+         
+        <button
+          class="iconOnly noBorder s-zdMNlEQUhDx4"
+        >
           <i
-            class="material-icons"
+            class="icons i-mdi-close s-zdMNlEQUhDx4"
+          />
+           
+           
+           
+        </button>
+        <!--&lt;Button&gt;-->
+         
+      </li>
+    </ul>
+     
+    <span
+      class="controlContainer s-PDe-DHR7C-aO"
+      id="folder"
+    >
+      <button
+        class="s-zdMNlEQUhDx4"
+      >
+        <i
+          class="icons i-mdi-folder s-zdMNlEQUhDx4"
+        />
+         
+        <span
+          class="s-zdMNlEQUhDx4"
+        >
+          Add folders
+        </span>
+         
+         
+      </button>
+      <!--&lt;Button&gt;-->
+    </span>
+  </article>
+   
+  <article
+    class="s-PDe-DHR7C-aO"
+  >
+    <h4
+      class=" s-6YRYWv8WTqRO"
+    >
+      Interface settings
+    </h4>
+    <!--&lt;SubHeading&gt;-->
+     
+    <p
+      class="s-PDe-DHR7C-aO"
+    >
+      <label
+        class="s-PDe-DHR7C-aO"
+        for="locale"
+      >
+        Language:
+      </label>
+       
+      <span
+        class="controlContainer s-PDe-DHR7C-aO"
+        id="locale"
+      >
+        <span
+          aria-expanded="false"
+          aria-haspopup="menu"
+          class="wrapper s-vOP9EO5q76eY"
+        >
+          <button
+            class="s-zdMNlEQUhDx4"
           >
-            play_arrow
-          </i>
+             
+            <span
+              class="s-zdMNlEQUhDx4"
+            >
+              English
+            </span>
+             
+            <i
+              class="icons arrow i-mdi-menu-down s-vOP9EO5q76eY"
+            />
+            
+             
+          </button>
+          <!--&lt;Button&gt;-->
+        </span>
+         
+        
+        <!--&lt;Dropdown&gt;-->
+      </span>
+    </p>
+     
+    <p
+      class="s-PDe-DHR7C-aO"
+    >
+      <label
+        class="s-PDe-DHR7C-aO"
+        for="play-behaviour"
+      >
+        Button 
+        <i
+          class="inline-icons i-mdi-play"
+        >
           :
-        </label>
-         
-        <span
-          class="controlContainer svelte-eji34d"
-          id="play-behaviour"
-        >
-          <span
-            aria-expanded="false"
-            aria-haspopup="menu"
-            class="wrapper svelte-1v2cnbz"
-          >
-            <button
-              class="svelte-xh4kfu"
-            >
-               
-              <span>
-                clears queue and plays track
-              </span>
-               
-              <i
-                class="material-icons arrow svelte-1v2cnbz"
-              >
-                arrow_drop_down
-              </i>
-              
-               
-            </button>
-          </span>
-           
-          
-        </span>
-      </p>
-       
-      <p
-        class="svelte-eji34d"
-      >
-        <label
-          class="svelte-eji34d"
-          for="click-behaviour"
-        >
-          Simple click:
-        </label>
-         
-        <span
-          class="controlContainer svelte-eji34d"
-          id="click-behaviour"
-        >
-          <span
-            aria-expanded="false"
-            aria-haspopup="menu"
-            class="wrapper svelte-1v2cnbz"
-          >
-            <button
-              class="svelte-xh4kfu"
-            >
-               
-              <span>
-                plays track
-              </span>
-               
-              <i
-                class="material-icons arrow svelte-1v2cnbz"
-              >
-                arrow_drop_down
-              </i>
-              
-               
-            </button>
-          </span>
-           
-          
-        </span>
-        <span>
-          , double click enqueues track
-        </span>
-      </p>
-    </article>
-     
-    <article
-      class="svelte-eji34d"
-    >
-      <h4
-        class=" svelte-ko9ja9"
-      >
-        AudioDB data provider
-      </h4>
-       
-      <div
-        class="instructions svelte-eji34d"
-      >
-        <p>
-          TheAudioDB is a community Database of audio artwork and data with a JSON API. Mélodie can use it for album covers and artist artwork, but it needs an API key.
-        </p>
-         
-        <p>
-          To get your key, 
-          <a
-            class="underlined"
-            href="https://www.theaudiodb.com/api_apply.php"
-          >
-            apply as a Patreon 
-            <i
-              class="material-icons"
-            >
-              launch
-            </i>
-          </a>
-          .
-        </p>
-        <p>
-          
-
-        </p>
-      </div>
-       
-      <label
-        class="svelte-eji34d"
-        for="audiodb-key"
-      >
-        Key:
-
+        </i>
       </label>
        
       <span
-        class="controlContainer svelte-eji34d"
-        id="audiodb-key"
+        class="controlContainer s-PDe-DHR7C-aO"
+        id="play-behaviour"
       >
         <span
-          class="settings-input svelte-x75l88"
+          aria-expanded="false"
+          aria-haspopup="menu"
+          class="wrapper s-vOP9EO5q76eY"
         >
-           
-          <input
-            class="svelte-x75l88"
-            placeholder="Paste your key here"
-            type="text"
-          />
-        </span>
-      </span>
-    </article>
-     
-    <article
-      class="svelte-eji34d"
-    >
-      <h4
-        class=" svelte-ko9ja9"
-      >
-        Discogs data provider
-      </h4>
-       
-      <div
-        class="instructions svelte-eji34d"
-      >
-        <p>
-          Discogs is on a mission to build the biggest and most comprehensive music database and marketplace. Mélodie can use it for album covers and artist artwork, but it needs an access token.
-        </p>
-         
-        <p>
-          To get one, 
-          <a
-            class="underlined"
-            href="https://www.discogs.com/settings/developers"
+          <button
+            class="s-zdMNlEQUhDx4"
           >
-            opens a developer account at Discogs and generates a personal access token 
-            <i
-              class="material-icons"
+             
+            <span
+              class="s-zdMNlEQUhDx4"
             >
-              launch
-            </i>
-          </a>
-          .
-        </p>
-        <p>
-          
-
-        </p>
-      </div>
-       
+              clears queue and plays track
+            </span>
+             
+            <i
+              class="icons arrow i-mdi-menu-down s-vOP9EO5q76eY"
+            />
+            
+             
+          </button>
+          <!--&lt;Button&gt;-->
+        </span>
+         
+        
+        <!--&lt;Dropdown&gt;-->
+      </span>
+    </p>
+     
+    <p
+      class="s-PDe-DHR7C-aO"
+    >
       <label
-        class="svelte-eji34d"
-        for="discogs-token"
+        class="s-PDe-DHR7C-aO"
+        for="click-behaviour"
       >
-        Access token:
-
+        Simple click:
       </label>
        
       <span
-        class="controlContainer svelte-eji34d"
-        id="discogs-token"
+        class="controlContainer s-PDe-DHR7C-aO"
+        id="click-behaviour"
       >
         <span
-          class="settings-input svelte-x75l88"
+          aria-expanded="false"
+          aria-haspopup="menu"
+          class="wrapper s-vOP9EO5q76eY"
+        >
+          <button
+            class="s-zdMNlEQUhDx4"
+          >
+             
+            <span
+              class="s-zdMNlEQUhDx4"
+            >
+              plays track
+            </span>
+             
+            <i
+              class="icons arrow i-mdi-menu-down s-vOP9EO5q76eY"
+            />
+            
+             
+          </button>
+          <!--&lt;Button&gt;-->
+        </span>
+         
+        
+        <!--&lt;Dropdown&gt;-->
+      </span>
+      <span
+        class="s-PDe-DHR7C-aO"
+      >
+        , double click enqueues track
+      </span>
+    </p>
+  </article>
+   
+  <article
+    class="s-PDe-DHR7C-aO"
+  >
+    <h4
+      class=" s-6YRYWv8WTqRO"
+    >
+      AudioDB data provider
+    </h4>
+    <!--&lt;SubHeading&gt;-->
+     
+    <div
+      class="instructions s-PDe-DHR7C-aO"
+    >
+      <p>
+        TheAudioDB is a community Database of audio artwork and data with a JSON API. Mélodie can use it for album covers and artist artwork, but it needs an API key.
+      </p>
+       
+      <p>
+        To get your key, 
+        <a
+          class="underlined"
+          href="https://www.theaudiodb.com/api_apply.php"
+        >
+          apply as a Patreon 
+          <i
+            class="inline-icons i-mdi-launch"
+          />
+        </a>
+        .
+      </p>
+      
+
+    </div>
+     
+    <label
+      class="s-PDe-DHR7C-aO"
+      for="audiodb-key"
+    >
+      Key:
+
+    </label>
+     
+    <span
+      class="controlContainer s-PDe-DHR7C-aO"
+      id="audiodb-key"
+    >
+      <span
+        class="settings-input s-t-4K-QPPrmFY"
+      >
+         
+        <input
+          class="s-t-4K-QPPrmFY"
+          placeholder="Paste your key here"
+          type="text"
+        />
+      </span>
+      <!--&lt;TextInput&gt;-->
+    </span>
+  </article>
+   
+  <article
+    class="s-PDe-DHR7C-aO"
+  >
+    <h4
+      class=" s-6YRYWv8WTqRO"
+    >
+      Discogs data provider
+    </h4>
+    <!--&lt;SubHeading&gt;-->
+     
+    <div
+      class="instructions s-PDe-DHR7C-aO"
+    >
+      <p>
+        Discogs is on a mission to build the biggest and most comprehensive music database and marketplace. Mélodie can use it for album covers and artist artwork, but it needs an access token.
+      </p>
+       
+      <p>
+        To get one, 
+        <a
+          class="underlined"
+          href="https://www.discogs.com/settings/developers"
+        >
+          opens a developer account at Discogs and generates a personal access token 
+          <i
+            class="inline-icons i-mdi-launch"
+          />
+        </a>
+        .
+      </p>
+      
+
+    </div>
+     
+    <label
+      class="s-PDe-DHR7C-aO"
+      for="discogs-token"
+    >
+      Access token:
+
+    </label>
+     
+    <span
+      class="controlContainer s-PDe-DHR7C-aO"
+      id="discogs-token"
+    >
+      <span
+        class="settings-input s-t-4K-QPPrmFY"
+      >
+         
+        <input
+          class="s-t-4K-QPPrmFY"
+          placeholder="Paste your token here"
+          type="text"
+        />
+      </span>
+      <!--&lt;TextInput&gt;-->
+    </span>
+  </article>
+   
+  <article
+    class="s-PDe-DHR7C-aO"
+  >
+    <h4
+      class=" s-6YRYWv8WTqRO"
+    >
+      Broadcasting
+    </h4>
+    <!--&lt;SubHeading&gt;-->
+     
+    <p
+      class="s-PDe-DHR7C-aO"
+    >
+      <label
+        class="s-PDe-DHR7C-aO"
+        for="broadcast-port"
+      >
+        Broadcasting port: 
+      </label>
+       
+      <span
+        class="controlContainer s-PDe-DHR7C-aO"
+        id="broadcast-port"
+      >
+        <span
+          class="settings-input s-t-4K-QPPrmFY"
         >
            
           <input
-            class="svelte-x75l88"
-            placeholder="Paste your token here"
-            type="text"
+            class="s-t-4K-QPPrmFY"
+            placeholder="Local port used (don't forget to update your firewall)"
+            type="number"
           />
         </span>
+        <!--&lt;TextInput&gt;-->
       </span>
-    </article>
-     
-    <article
-      class="svelte-eji34d"
-    >
-      <h4
-        class=" svelte-ko9ja9"
+       
+      <span
+        class="instructions s-PDe-DHR7C-aO"
       >
-        Broadcasting
-      </h4>
+        (please restart to apply change)
+      </span>
+    </p>
+     
+    <p
+      class="s-PDe-DHR7C-aO"
+    >
+      <label
+        class="s-PDe-DHR7C-aO"
+        for="totp"
+      >
+        OTP Key:
+      </label>
+       
+      <span
+        class="__align-top_gr1swg_gr1swg controlContainer s-PDe-DHR7C-aO"
+      >
+        <canvas
+          class="s-PDe-DHR7C-aO"
+        />
+      </span>
+    </p>
+  </article>
+   
+  <article
+    class="s-PDe-DHR7C-aO"
+  >
+    <h4
+      class=" s-6YRYWv8WTqRO"
+    >
+      About
+    </h4>
+    <!--&lt;SubHeading&gt;-->
+     
+    <div
+      class="instructions s-PDe-DHR7C-aO"
+    >
+      <p
+        class="s-PDe-DHR7C-aO"
+      >
+        Built with love by 
+        <a
+          class="underlined"
+          href="http://feugy.github.io"
+        >
+          Damien Simonin Feugas
+        </a>
+      </p>
        
       <p
-        class="svelte-eji34d"
+        class="version-container s-PDe-DHR7C-aO"
       >
-        <label
-          class="svelte-eji34d"
-          for="broadcast-port"
+        <div
+          class="s-PDe-DHR7C-aO"
         >
-          Broadcasting port: 
-        </label>
-         
-        <span
-          class="controlContainer svelte-eji34d"
-          id="broadcast-port"
-        >
-          <span
-            class="settings-input svelte-x75l88"
+          <header
+            class="s-PDe-DHR7C-aO"
           >
+            <div
+              class="s-PDe-DHR7C-aO"
+            >
+              Mélodie
+            </div>
              
-            <input
-              class="svelte-x75l88"
-              placeholder="Local port used (don't forget to update your firewall)"
-              type="number"
-            />
-          </span>
-        </span>
-         
-        <span
-          class="instructions svelte-eji34d"
+            <div
+              class="s-PDe-DHR7C-aO"
+            >
+              2.0.0
+            </div>
+          </header>
+           
+          <img
+            alt="Mélodie"
+            class="s-PDe-DHR7C-aO"
+            src="icons/icon-512x512.png"
+          />
+           
+        </div>
+        <div
+          class="s-PDe-DHR7C-aO"
         >
-          (please restart to apply change)
+          <header
+            class="s-PDe-DHR7C-aO"
+          >
+            <div
+              class="s-PDe-DHR7C-aO"
+            >
+              Electron
+            </div>
+             
+            <div
+              class="s-PDe-DHR7C-aO"
+            >
+              11.0.0
+            </div>
+          </header>
+           
+          <img
+            alt="Electron"
+            class="s-PDe-DHR7C-aO"
+            src="images/electron-logo.png"
+          />
+           
+        </div>
+        <div
+          class="s-PDe-DHR7C-aO"
+        >
+          <header
+            class="s-PDe-DHR7C-aO"
+          >
+            <div
+              class="s-PDe-DHR7C-aO"
+            >
+              Svelte
+            </div>
+             
+            <div
+              class="s-PDe-DHR7C-aO"
+            >
+              4.2.8
+            </div>
+          </header>
+           
+          <img
+            alt="Svelte"
+            class="s-PDe-DHR7C-aO"
+            src="images/svelte-logo.svg"
+          />
+           
+        </div>
+        <div
+          class="s-PDe-DHR7C-aO"
+        >
+          <header
+            class="s-PDe-DHR7C-aO"
+          >
+            <div
+              class="s-PDe-DHR7C-aO"
+            >
+              UnoCSS
+            </div>
+             
+            <div
+              class="s-PDe-DHR7C-aO"
+            >
+              0.58.0
+            </div>
+          </header>
+           
+          <img
+            alt="UnoCSS"
+            class="s-PDe-DHR7C-aO"
+            src="images/unocss-logo.svg"
+          />
+           
+        </div>
+        <div
+          class="s-PDe-DHR7C-aO"
+        >
+          <header
+            class="s-PDe-DHR7C-aO"
+          >
+            <div
+              class="s-PDe-DHR7C-aO"
+            >
+              RxJS
+            </div>
+             
+            <div
+              class="s-PDe-DHR7C-aO"
+            >
+              6.0.0
+            </div>
+          </header>
+           
+          <img
+            alt="RxJS"
+            class="s-PDe-DHR7C-aO"
+            src="images/rxjs-logo.svg"
+          />
+           
+        </div>
+        <div
+          class="s-PDe-DHR7C-aO"
+        >
+          <header
+            class="s-PDe-DHR7C-aO"
+          >
+            <div
+              class="s-PDe-DHR7C-aO"
+            >
+              SQLite
+            </div>
+             
+            <div
+              class="s-PDe-DHR7C-aO"
+            >
+              3.26.0
+            </div>
+          </header>
+           
+          <img
+            alt="SQLite"
+            class="s-PDe-DHR7C-aO"
+            src="images/sqlite-logo.png"
+          />
+           
+        </div>
+      </p>
+       
+      <p
+        class="s-PDe-DHR7C-aO"
+      >
+        <span
+          class="s-PDe-DHR7C-aO"
+        >
+          Photos by:
+           
+          <a
+            class="__whitespace-nowrap_gr1swg_gr1swg underlined s-PDe-DHR7C-aO"
+            href="https://unsplash.com/photos/6AtQNsjMoJo"
+          >
+            Anthony Martino
+             
+            <i
+              class="icons i-mdi-launch s-PDe-DHR7C-aO"
+            />
+          </a>
+          , 
+          <a
+            class="__whitespace-nowrap_gr1swg_gr1swg underlined s-PDe-DHR7C-aO"
+            href="https://unsplash.com/photos/YNJGB-_Vlgw"
+          >
+            David Villasana
+             
+            <i
+              class="icons i-mdi-launch s-PDe-DHR7C-aO"
+            />
+          </a>
+          , 
+          <a
+            class="__whitespace-nowrap_gr1swg_gr1swg underlined s-PDe-DHR7C-aO"
+            href="https://unsplash.com/photos/JmVaNyemtN8"
+          >
+            Dark Rider
+             
+            <i
+              class="icons i-mdi-launch s-PDe-DHR7C-aO"
+            />
+          </a>
+          , 
+          <a
+            class="__whitespace-nowrap_gr1swg_gr1swg underlined s-PDe-DHR7C-aO"
+            href="https://unsplash.com/photos/Vfvf3H-5OHc"
+          >
+            Harry Swales
+             
+            <i
+              class="icons i-mdi-launch s-PDe-DHR7C-aO"
+            />
+          </a>
+          , 
+          <a
+            class="__whitespace-nowrap_gr1swg_gr1swg underlined s-PDe-DHR7C-aO"
+            href="https://unsplash.com/photos/ASKeuOZqhYU"
+          >
+            Jason Rosewell
+             
+            <i
+              class="icons i-mdi-launch s-PDe-DHR7C-aO"
+            />
+          </a>
+          , 
+          <a
+            class="__whitespace-nowrap_gr1swg_gr1swg underlined s-PDe-DHR7C-aO"
+            href="https://unsplash.com/photos/slbOcNlWNHA"
+          >
+            Larisa Birta
+             
+            <i
+              class="icons i-mdi-launch s-PDe-DHR7C-aO"
+            />
+          </a>
+          , 
+          <a
+            class="__whitespace-nowrap_gr1swg_gr1swg underlined s-PDe-DHR7C-aO"
+            href="https://unsplash.com/photos/gpKe3hmIawg"
+          >
+            Rima Kruciene
+             
+            <i
+              class="icons i-mdi-launch s-PDe-DHR7C-aO"
+            />
+          </a>
+          , 
+          <a
+            class="__whitespace-nowrap_gr1swg_gr1swg underlined s-PDe-DHR7C-aO"
+            href="https://unsplash.com/photos/MEcxLZ8ENV8"
+          >
+            Valentino Funghi
+             
+            <i
+              class="icons i-mdi-launch s-PDe-DHR7C-aO"
+            />
+          </a>
+           
+          on Unsplash.
         </span>
       </p>
        
       <p
-        class="svelte-eji34d"
+        class="s-PDe-DHR7C-aO"
       >
-        <label
-          class="svelte-eji34d"
-          for="totp"
-        >
-          OTP Key:
-        </label>
-         
         <span
-          class="controlContainer svelte-eji34d"
+          class="s-PDe-DHR7C-aO"
         >
-          <canvas />
-        </span>
-      </p>
-    </article>
-     
-    <article
-      class="svelte-eji34d"
-    >
-      <h4
-        class=" svelte-ko9ja9"
-      >
-        About
-      </h4>
-       
-      <div
-        class="instructions svelte-eji34d"
-      >
-        <p
-          class="svelte-eji34d"
-        >
-          Built with love by 
+          Using 
           <a
             class="underlined"
-            href="http://feugy.github.io"
+            href="https://icones.js.org/collection/mdi"
           >
-            Damien Simonin Feugas
+            Material Design Icons 
+            <i
+              class="inline-icons i-mdi-launch"
+            />
           </a>
-        </p>
-         
-        <p
-          class="version-container svelte-eji34d"
-        >
-          <div
-            class="svelte-eji34d"
-          >
-            <header
-              class="svelte-eji34d"
-            >
-              <div
-                class="svelte-eji34d"
-              >
-                Mélodie
-              </div>
-               
-              <div
-                class="svelte-eji34d"
-              >
-                2.0.0
-              </div>
-            </header>
-             
-            <img
-              alt="Mélodie"
-              class="svelte-eji34d"
-              src="icons/icon-512x512.png"
-            />
-             
-          </div>
-          <div
-            class="svelte-eji34d"
-          >
-            <header
-              class="svelte-eji34d"
-            >
-              <div
-                class="svelte-eji34d"
-              >
-                Electron
-              </div>
-               
-              <div
-                class="svelte-eji34d"
-              >
-                11.0.0
-              </div>
-            </header>
-             
-            <img
-              alt="Electron"
-              class="svelte-eji34d"
-              src="images/electron-logo.png"
-            />
-             
-          </div>
-          <div
-            class="svelte-eji34d"
-          >
-            <header
-              class="svelte-eji34d"
-            >
-              <div
-                class="svelte-eji34d"
-              >
-                Svelte
-              </div>
-               
-              <div
-                class="svelte-eji34d"
-              >
-                3.46.4
-              </div>
-            </header>
-             
-            <img
-              alt="Svelte"
-              class="svelte-eji34d"
-              src="images/svelte-logo.png"
-            />
-             
-          </div>
-          <div
-            class="svelte-eji34d"
-          >
-            <header
-              class="svelte-eji34d"
-            >
-              <div
-                class="svelte-eji34d"
-              >
-                WindiCSS
-              </div>
-               
-              <div
-                class="svelte-eji34d"
-              >
-                3.2.1
-              </div>
-            </header>
-             
-            <img
-              alt="WindiCSS"
-              class="svelte-eji34d"
-              src="images/windicss-logo.png"
-            />
-             
-          </div>
-          <div
-            class="svelte-eji34d"
-          >
-            <header
-              class="svelte-eji34d"
-            >
-              <div
-                class="svelte-eji34d"
-              >
-                RxJS
-              </div>
-               
-              <div
-                class="svelte-eji34d"
-              >
-                6.0.0
-              </div>
-            </header>
-             
-            <img
-              alt="RxJS"
-              class="svelte-eji34d"
-              src="images/rx-logo.png"
-            />
-             
-          </div>
-          <div
-            class="svelte-eji34d"
-          >
-            <header
-              class="svelte-eji34d"
-            >
-              <div
-                class="svelte-eji34d"
-              >
-                SQLite
-              </div>
-               
-              <div
-                class="svelte-eji34d"
-              >
-                3.26.0
-              </div>
-            </header>
-             
-            <img
-              alt="SQLite"
-              class="svelte-eji34d"
-              src="images/sqlite-logo.png"
-            />
-             
-          </div>
-        </p>
-         
-        <p
-          class="svelte-eji34d"
-        >
-          <span>
-            Photos by:
-             
-            <a
-              class="underlined whitespace-nowrap svelte-eji34d"
-              href="https://unsplash.com/photos/6AtQNsjMoJo"
-            >
-              Anthony Martino
-               
-              <i
-                class="material-icons"
-              >
-                launch
-              </i>
-            </a>
-            , 
-            <a
-              class="underlined whitespace-nowrap svelte-eji34d"
-              href="https://unsplash.com/photos/YNJGB-_Vlgw"
-            >
-              David Villasana
-               
-              <i
-                class="material-icons"
-              >
-                launch
-              </i>
-            </a>
-            , 
-            <a
-              class="underlined whitespace-nowrap svelte-eji34d"
-              href="https://unsplash.com/photos/JmVaNyemtN8"
-            >
-              Dark Rider
-               
-              <i
-                class="material-icons"
-              >
-                launch
-              </i>
-            </a>
-            , 
-            <a
-              class="underlined whitespace-nowrap svelte-eji34d"
-              href="https://unsplash.com/photos/Vfvf3H-5OHc"
-            >
-              Harry Swales
-               
-              <i
-                class="material-icons"
-              >
-                launch
-              </i>
-            </a>
-            , 
-            <a
-              class="underlined whitespace-nowrap svelte-eji34d"
-              href="https://unsplash.com/photos/ASKeuOZqhYU"
-            >
-              Jason Rosewell
-               
-              <i
-                class="material-icons"
-              >
-                launch
-              </i>
-            </a>
-            , 
-            <a
-              class="underlined whitespace-nowrap svelte-eji34d"
-              href="https://unsplash.com/photos/slbOcNlWNHA"
-            >
-              Larisa Birta
-               
-              <i
-                class="material-icons"
-              >
-                launch
-              </i>
-            </a>
-            , 
-            <a
-              class="underlined whitespace-nowrap svelte-eji34d"
-              href="https://unsplash.com/photos/gpKe3hmIawg"
-            >
-              Rima Kruciene
-               
-              <i
-                class="material-icons"
-              >
-                launch
-              </i>
-            </a>
-            , 
-            <a
-              class="underlined whitespace-nowrap svelte-eji34d"
-              href="https://unsplash.com/photos/MEcxLZ8ENV8"
-            >
-              Valentino Funghi
-               
-              <i
-                class="material-icons"
-              >
-                launch
-              </i>
-            </a>
-             
-            on Unsplash.
-          </span>
-        </p>
-         
-        <p
-          class="svelte-eji34d"
-        >
-          <span>
-            Using 
-            <a
-              class="underlined"
-              href="https://material.io/resources/icons"
-            >
-              Material Design Icons 
-              <i
-                class="material-icons"
-              >
-                launch
-              </i>
-            </a>
-            .
-          </span>
-        </p>
-      </div>
-    </article>
-  </section>
-</span>
+          .
+        </span>
+      </p>
+    </div>
+  </article>
+</section>
 `;

@@ -1,5 +1,3 @@
-'use strict'
-
 export const playlistData = {
   id: 1,
   name: 'My favourites',

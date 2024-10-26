@@ -1,12 +1,10 @@
-'use strict'
-
 /**
  * Returns the copy of an array without its duplicates (using strict equality).
  * @param {array} array - source to remove duplicates from
  * @returns {array} copy of source containing only unique values
  * @see https://github.com/you-dont-need/You-Dont-Need-Lodash-Underscore#_uniq
  */
-exports.uniq = array => [...new Set(array)]
+export const uniq = array => [...new Set(array)]
 
 /**
  * Represents a reference to another model:
@@ -20,7 +18,7 @@ exports.uniq = array => [...new Set(array)]
  * @param {array<Reference>} array - source of references to remove duplicates from
  * @returns {array<Reference>} copy of source containing only unique references
  */
-exports.uniqRef = array => {
+export const uniqRef = array => {
   const ids = new Set()
   const result = new Array(array.length)
   let j = 0
@@ -41,7 +39,7 @@ exports.uniqRef = array => {
  * @param {array} filtered  - array of items
  * @returns {array} items of source not present in filtered (if any)
  */
-exports.difference = (source, filtered) => {
+export const difference = (source, filtered) => {
   if (!source) {
     return []
   }
@@ -63,7 +61,7 @@ exports.difference = (source, filtered) => {
  * @param {array<Reference>} filtered  - array of references
  * @returns {array<Reference>} references of source not present in filtered (if any)
  */
-exports.differenceRef = (array, filtered) => {
+export const differenceRef = (array, filtered) => {
   if (!array) {
     return []
   }
@@ -80,7 +78,7 @@ exports.differenceRef = (array, filtered) => {
   return result
 }
 
-function parseRawRef(rawRef) {
+function parseRawRefInner(rawRef) {
   // This implementation is faster than
   // - split (which does not handle commas inside name)
   // - for loop
@@ -96,17 +94,17 @@ function parseRawRef(rawRef) {
  * @param {string} rawRef - string containing a valid model reference
  * @returns {Reference} parsed reference, or null
  */
-exports.parseRawRef = rawRef =>
-  rawRef !== 'null' ? parseRawRef(rawRef.slice(1, -1)) : null
+export const parseRawRef = rawRef =>
+  rawRef !== 'null' ? parseRawRefInner(rawRef.slice(1, -1)) : null
 
 /**
  * Parse a string representing an array of model references into an array of Reference arrays.
  * @param {string} rawRefArray - string containing an array of valid model references
  * @returns {array<Reference>} parsed array of references, or null
  */
-exports.parseRawRefArray = rawRefArray =>
+export const parseRawRefArray = rawRefArray =>
   rawRefArray !== 'null'
     ? rawRefArray.length > 2
-      ? rawRefArray.slice(2, -2).split('],[').map(parseRawRef)
+      ? rawRefArray.slice(2, -2).split('],[').map(parseRawRefInner)
       : []
     : null

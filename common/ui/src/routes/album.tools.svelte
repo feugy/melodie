@@ -1,9 +1,10 @@
 <script>
   import { Tool } from '@atelier-wb/svelte'
+
+  import HRefSink from '../atelier/HRefSink.svelte'
+  import { mockWebsocket } from '../atelier/utils'
   import Component from './album.svelte'
   import { albumsData } from './album.testdata'
-  import { mockWebsocket } from '../atelier/utils'
-  import HRefSink from '../atelier/HRefSink.svelte'
 </script>
 
 <Tool

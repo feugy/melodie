@@ -1,9 +1,10 @@
 <script>
-  import Portal from 'svelte-portal'
   import { onMount } from 'svelte'
-  import { fly, fade } from 'svelte/transition'
-  import Button from '../Button/Button.svelte'
+  import { fade, fly } from 'svelte/transition'
+  import Portal from 'svelte-portal'
+
   import { current } from '../../stores/snackbars'
+  import Button from '../Button/Button.svelte'
 
   let message = null
   let buttonText = null
@@ -25,27 +26,6 @@
   )
 </script>
 
-<style lang="postcss">
-  div {
-    @apply fixed flex flex-row items-center justify-center inset-x-0 w-full z-20;
-    bottom: 120px;
-
-    & > article {
-      @apply px-4 py-2 shadow-lg rounded;
-      background: var(--nav-bg-color);
-      color: var(--hover-color);
-
-      & > span {
-        @apply py-2 inline-block;
-
-        &:not(:last-child) {
-          @apply mr-4;
-        }
-      }
-    }
-  }
-</style>
-
 <Portal>
   <div>
     {#if message}
@@ -57,3 +37,25 @@
     {/if}
   </div>
 </Portal>
+
+<style>
+  div {
+    --at-apply: fixed flex flex-row items-center justify-center inset-x-0 w-full
+      z-20;
+    bottom: 120px;
+
+    & > article {
+      --at-apply: px-4 py-2 shadow-lg rounded;
+      background: var(--nav-bg-color);
+      color: var(--hover-color);
+
+      & > span {
+        --at-apply: py-2 inline-block;
+
+        &:not(:last-child) {
+          --at-apply: mr-4;
+        }
+      }
+    }
+  }
+</style>

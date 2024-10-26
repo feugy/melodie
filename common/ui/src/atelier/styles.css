@@ -1,0 +1,9 @@
+html,
+body {
+  --at-apply: overflow-auto;
+}
+
+body {
+  --at-apply: text-center;
+  background: var(--bg-color);
+}

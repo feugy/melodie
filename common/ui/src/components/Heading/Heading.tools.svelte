@@ -1,7 +1,8 @@
 <script>
   import { Tool } from '@atelier-wb/svelte'
-  import Heading from './Heading.svelte'
+
   import { texts } from '../../tests/lorem'
+  import Heading from './Heading.svelte'
 </script>
 
 <Tool

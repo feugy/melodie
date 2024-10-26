@@ -1,13 +1,13 @@
-'use strict'
-
 import { configureToolshot } from '@atelier-wb/toolshot'
 import { join } from 'path'
-import { invoke, initConnection } from '../utils/connection'
+import { beforeAll, vi } from 'vitest'
 
-jest.mock('qrcode', () => ({ default: { toCanvas: jest.fn() } }))
+import { initConnection, invoke } from '../utils/connection'
+
+vi.mock('qrcode', () => ({ default: { toCanvas: vi.fn() } }))
 
 beforeAll(() => {
-  // since utils/connections are mocked in jest-setup.js
+  // since utils/connections are mocked in vi-setup.js
   // we implement simplistic behavior to leverage fixtures data from atlier/utils's mockWebsocket()
   initConnection.mockResolvedValue({
     folders: [],

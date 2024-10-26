@@ -1,16 +1,16 @@
-'use strict'
+import { faker } from '@faker-js/faker'
+import fs from 'fs-extra'
+import os from 'os'
+import { join } from 'path'
+import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 
-const faker = require('faker')
-const fs = require('fs-extra')
-const os = require('os')
-const { join } = require('path')
-const { albumsModel } = require('./albums')
-const { tracksModel } = require('./tracks')
-const { makeRef } = require('../tests')
+import { makeRef } from '../tests'
+import { albumsModel } from './albums'
+import { tracksModel } from './tracks'
 
 describe('Albums model', () => {
-  const artist1 = faker.name.findName()
-  const artist2 = faker.name.findName()
+  const artist1 = faker.person.fullName()
+  const artist2 = faker.person.fullName()
 
   // use fixed ids for consistent ordering
   const tracks = [
@@ -48,8 +48,8 @@ describe('Albums model', () => {
 
   it('adds new album', async () => {
     const album = {
-      id: faker.datatype.number(),
-      media: faker.image.image(),
+      id: faker.number.int(),
+      media: faker.image.url(),
       processedEpoch: null,
       name: faker.commerce.productName(),
       trackIds: [tracks[0].id, tracks[3].id]
@@ -67,9 +67,9 @@ describe('Albums model', () => {
 
   it('updates existing album with refs', async () => {
     const album = {
-      id: faker.datatype.number(),
-      media: faker.image.image(),
-      mediaCount: faker.datatype.number({ max: 10 }),
+      id: faker.number.int(),
+      media: faker.image.url(),
+      mediaCount: faker.number.int({ max: 10 }),
       processedEpoch: null,
       name: faker.commerce.productName(),
       trackIds: [tracks[0].id, tracks[3].id]
@@ -102,8 +102,8 @@ describe('Albums model', () => {
     const name = faker.commerce.productName()
 
     const album1 = {
-      id: faker.datatype.number(),
-      media: faker.image.image(),
+      id: faker.number.int(),
+      media: faker.image.url(),
       mediaCount: 1,
       processedEpoch: null,
       name,
@@ -111,8 +111,8 @@ describe('Albums model', () => {
       refs: [makeRef(artist1), [1, null]]
     }
     const album2 = {
-      id: faker.datatype.number(),
-      media: faker.image.image(),
+      id: faker.number.int(),
+      media: faker.image.url(),
       mediaCount: 1,
       processedEpoch: null,
       name: faker.commerce.productName(),
@@ -120,8 +120,8 @@ describe('Albums model', () => {
       refs: [makeRef(artist1), makeRef(artist2)]
     }
     const album3 = {
-      id: faker.datatype.number(),
-      media: faker.image.image(),
+      id: faker.number.int(),
+      media: faker.image.url(),
       mediaCount: 1,
       processedEpoch: null,
       name,

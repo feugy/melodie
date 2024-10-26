@@ -1,6 +1,4 @@
-'use strict'
-
-const { h32 } = require('xxhashjs')
+import { h32 } from 'xxhashjs'
 
 const hashSeed = 0x123abc
 
@@ -9,7 +7,7 @@ const hashSeed = 0x123abc
  * @param {string} data - the data to hash
  * @returns {number} the hash value
  */
-exports.hash = function (data) {
+export const hash = function (data) {
   if (!data) {
     return 0
   }

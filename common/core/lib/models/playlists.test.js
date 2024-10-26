@@ -1,16 +1,16 @@
-'use strict'
+import { faker } from '@faker-js/faker'
+import fs from 'fs-extra'
+import os from 'os'
+import { join } from 'path'
+import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 
-const faker = require('faker')
-const fs = require('fs-extra')
-const os = require('os')
-const { join } = require('path')
-const { playlistsModel } = require('./playlists')
-const { tracksModel } = require('./tracks')
-const { makeRef } = require('../tests')
+import { makeRef } from '../tests'
+import { playlistsModel } from './playlists'
+import { tracksModel } from './tracks'
 
 describe('Playlists model', () => {
-  const artist1 = faker.name.findName()
-  const artist2 = faker.name.findName()
+  const artist1 = faker.person.fullName()
+  const artist2 = faker.person.fullName()
   const album1 = faker.commerce.productName()
   const album2 = faker.commerce.productName()
 
@@ -50,8 +50,8 @@ describe('Playlists model', () => {
 
   it('adds new playlist', async () => {
     const playlist = {
-      id: faker.datatype.number(),
-      media: faker.image.image(),
+      id: faker.number.int(),
+      media: faker.image.url(),
       processedEpoch: null,
       name: faker.lorem.words(),
       desc: faker.lorem.paragraph(),
@@ -70,9 +70,9 @@ describe('Playlists model', () => {
 
   it('updates existing playlist with refs and overrides trackIds', async () => {
     const playlist = {
-      id: faker.datatype.number(),
-      media: faker.image.image(),
-      mediaCount: faker.datatype.number({ max: 10 }),
+      id: faker.number.int(),
+      media: faker.image.url(),
+      mediaCount: faker.number.int({ max: 10 }),
       processedEpoch: null,
       name: faker.lorem.words(),
       desc: faker.lorem.paragraph(),

@@ -1,17 +1,18 @@
 <script>
   import { Tool, ToolBox } from '@atelier-wb/svelte'
   import { writable } from 'svelte/store'
+
+  import HRefSink from '../../atelier/HRefSink.svelte'
+  import { mockWebsocket } from '../../atelier/utils'
+  import { playlistsData } from '../AddToPlaylist/AddToPlaylist.testdata'
+  import { albumData } from '../Album/Album.testdata'
+  import { artistData } from '../Artist/Artist.testdata'
+  import { trackData } from '../Track/Track.testdata'
   import ExpandableList, {
-    ARTISTS,
     ALBUMS,
+    ARTISTS,
     TRACKS
   } from './ExpandableList.svelte'
-  import { artistData } from '../Artist/Artist.testdata'
-  import { albumData } from '../Album/Album.testdata'
-  import { trackData } from '../Track/Track.testdata'
-  import { playlistsData } from '../AddToPlaylist/AddToPlaylist.testdata'
-  import { mockWebsocket } from '../../atelier/utils'
-  import HRefSink from '../../atelier/HRefSink.svelte'
 </script>
 
 <ToolBox name="Components/Expandable list">

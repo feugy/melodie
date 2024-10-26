@@ -1,11 +1,19 @@
-'use strict'
-
-import faker from 'faker'
+import { faker } from '@faker-js/faker'
 import { tick } from 'svelte'
 import { get } from 'svelte/store'
-import { createListStore } from './list-store-factory'
-import { invoke, serverEmitter } from '../utils'
+import {
+  afterEach,
+  beforeAll,
+  beforeEach,
+  describe,
+  expect,
+  it,
+  vi
+} from 'vitest'
+
 import { sleep } from '../tests'
+import { invoke, serverEmitter } from '../utils'
+import { createListStore } from './list-store-factory'
 
 describe('abstract list factory', () => {
   let albums
@@ -25,7 +33,7 @@ describe('abstract list factory', () => {
 
   beforeEach(() => {
     reset()
-    jest.resetAllMocks()
+    vi.resetAllMocks()
   })
 
   describe('list', () => {
@@ -136,7 +144,7 @@ describe('abstract list factory', () => {
         ...data.slice(7)
       ])
 
-      expect(invoke).toHaveBeenCalledTimes(1)
+      expect(invoke).toHaveBeenCalledOnce()
     })
 
     it('applies sort on changes', async () => {
@@ -162,7 +170,7 @@ describe('abstract list factory', () => {
         ...data.slice(1, 3),
         ...data.slice(4)
       ])
-      expect(invoke).toHaveBeenCalledTimes(1)
+      expect(invoke).toHaveBeenCalledOnce()
     })
 
     it('receives removal updates', async () => {
@@ -192,7 +200,7 @@ describe('abstract list factory', () => {
         ...data.slice(7)
       ])
 
-      expect(invoke).toHaveBeenCalledTimes(1)
+      expect(invoke).toHaveBeenCalledOnce()
     })
 
     it('cancels pending operation when called', async () => {
@@ -230,10 +238,10 @@ describe('abstract list factory', () => {
   describe('load', () => {
     it('load items with all tracks', async () => {
       const album = {
-        id: faker.datatype.uuid(),
+        id: faker.string.uuid(),
         name: faker.commerce.productName(),
         tracks: Array.from(
-          { length: faker.datatype.number({ min: 10, max: 30 }) },
+          { length: faker.number.int({ min: 10, max: 30 }) },
           (v, i) => i
         )
       }
@@ -259,10 +267,10 @@ describe('abstract list factory', () => {
 
     it('adds new item to the list', async () => {
       const album = {
-        id: faker.datatype.uuid(),
+        id: faker.string.uuid(),
         name: faker.commerce.productName(),
         tracks: Array.from(
-          { length: faker.datatype.number({ min: 10, max: 30 }) },
+          { length: faker.number.int({ min: 10, max: 30 }) },
           (v, i) => i
         )
       }
@@ -281,7 +289,7 @@ describe('abstract list factory', () => {
   })
 
   it('handles unknown item', async () => {
-    const id = faker.datatype.uuid()
+    const id = faker.string.uuid()
     invoke.mockResolvedValueOnce(null)
 
     await load(id)
@@ -305,37 +313,37 @@ describe('abstract list factory', () => {
     })
 
     it('only listen to relevant changes', async () => {
-      const listener = jest.fn()
-      const album = { id: faker.datatype.number() }
+      const listener = vi.fn()
+      const album = { id: faker.number.int() }
       subscription = changes.subscribe(listener)
 
       serverEmitter.next({ event: 'whatever-changes' })
       serverEmitter.next({
         event: 'artist-changes',
-        args: [{ id: faker.datatype.number() }]
+        args: [{ id: faker.number.int() }]
       })
       serverEmitter.next({ event: 'album-changes', args: [album] })
       await sleep()
 
       expect(listener).toHaveBeenCalledWith([album])
-      expect(listener).toHaveBeenCalledTimes(1)
+      expect(listener).toHaveBeenCalledOnce()
     })
 
     it('only listen to relevant removals', async () => {
-      const listener = jest.fn()
-      const albumId = faker.datatype.number()
+      const listener = vi.fn()
+      const albumId = faker.number.int()
       subscription = removals.subscribe(listener)
 
       serverEmitter.next({ event: 'whatever-removals' })
       serverEmitter.next({
         event: 'artist-removals',
-        args: [faker.datatype.number()]
+        args: [faker.number.int()]
       })
       serverEmitter.next({ event: 'album-removals', args: [albumId] })
       await sleep()
 
       expect(listener).toHaveBeenCalledWith([albumId])
-      expect(listener).toHaveBeenCalledTimes(1)
+      expect(listener).toHaveBeenCalledOnce()
     })
   })
 })

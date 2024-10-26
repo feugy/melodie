@@ -1,24 +1,24 @@
-'use strict'
-
-const exported = {
-  ...require('./albums'),
-  ...require('./artists'),
-  ...require('./playlists'),
-  ...require('./settings'),
-  ...require('./tracks')
-}
+import { albumsModel } from './albums.js'
+import { artistsModel } from './artists.js'
+import { playlistsModel } from './playlists.js'
+import { settingsModel } from './settings.js'
+import { tracksModel } from './tracks.js'
 
 /**
  * Initialize all model classes.
  * @async
  * @param  {...any} args - passed the model's init functions
  */
-exported.init = async function (...args) {
-  await exported.settingsModel.init(...args)
-  await exported.albumsModel.init(...args)
-  await exported.artistsModel.init(...args)
-  await exported.tracksModel.init(...args)
-  await exported.playlistsModel.init(...args)
+export async function init(...args) {
+  await settingsModel.init(...args)
+  await albumsModel.init(...args)
+  await artistsModel.init(...args)
+  await tracksModel.init(...args)
+  await playlistsModel.init(...args)
 }
 
-module.exports = exported
+export { albumsModel } from './albums.js'
+export { artistsModel } from './artists.js'
+export { playlistsModel } from './playlists.js'
+export { settingsModel } from './settings.js'
+export { tracksModel } from './tracks.js'

@@ -1,41 +1,35 @@
-'use strict'
+import { faker } from '@faker-js/faker'
+import { utils } from '@melodie/core'
+import * as electron from 'electron'
+import { EventEmitter } from 'events'
+import fs from 'fs-extra'
+import os from 'os'
+import { join } from 'path'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
-const faker = require('faker')
-const os = require('os')
-const fs = require('fs-extra')
-const { join } = require('path')
-const { EventEmitter } = require('events')
-const {
-  utils: { getLogger }
-} = require('@melodie/core')
-const electron = require('electron')
-const { sleep } = require('../tests')
-const {
-  manageState,
-  unmanageState,
-  focusOnNotification
-} = require('./window-state')
+import { sleep } from '../tests'
+import { focusOnNotification, manageState, unmanageState } from './window-state'
 
-function makeWin(id = faker.datatype.number()) {
+function makeWin(id = faker.number.int()) {
   const win = new EventEmitter()
   Object.assign(win, {
     id,
-    getBounds: jest.fn().mockReturnValue({
-      x: faker.datatype.number(),
-      y: faker.datatype.number(),
-      width: faker.datatype.number(),
-      height: faker.datatype.number()
+    getBounds: vi.fn().mockReturnValue({
+      x: faker.number.int(),
+      y: faker.number.int(),
+      width: faker.number.int(),
+      height: faker.number.int()
     }),
-    setBounds: jest.fn(),
-    isDestroyed: jest.fn().mockReturnValue(false),
-    isMaximized: jest.fn().mockReturnValue(faker.datatype.boolean()),
-    isMinimized: jest.fn().mockReturnValue(faker.datatype.boolean()),
-    isFullScreen: jest.fn().mockReturnValue(faker.datatype.boolean()),
-    maximize: jest.fn(),
-    minimize: jest.fn(),
-    restore: jest.fn(),
-    focus: jest.fn(),
-    setFullScreen: jest.fn()
+    setBounds: vi.fn(),
+    isDestroyed: vi.fn().mockReturnValue(false),
+    isMaximized: vi.fn().mockReturnValue(faker.datatype.boolean()),
+    isMinimized: vi.fn().mockReturnValue(faker.datatype.boolean()),
+    isFullScreen: vi.fn().mockReturnValue(faker.datatype.boolean()),
+    maximize: vi.fn(),
+    minimize: vi.fn(),
+    restore: vi.fn(),
+    focus: vi.fn(),
+    setFullScreen: vi.fn()
   })
   return win
 }
@@ -47,9 +41,9 @@ describe('window state management utilities', () => {
   let warn
 
   beforeEach(() => {
-    jest.clearAllMocks()
+    vi.clearAllMocks()
     electron.app.getPath.mockReturnValue(tmpdir)
-    warn = jest.spyOn(getLogger('utils/window-state'), 'warn')
+    warn = vi.spyOn(utils.getLogger('utils/window-state'), 'warn')
   })
 
   afterEach(() => win && unmanageState(win))
@@ -79,7 +73,7 @@ describe('window state management utilities', () => {
     expect(win.setFullScreen).not.toHaveBeenCalled()
     expect(warn).toHaveBeenCalledWith(
       expect.any(Object),
-      `failed to parse previous state: Unexpected token u in JSON at position 0`
+      `failed to parse previous state: Unexpected token 'u', "unparseable" is not valid JSON`
     )
   })
 
@@ -205,10 +199,10 @@ describe('window state management utilities', () => {
   it('only care about last event', async () => {
     win = makeWin()
     const bounds = {
-      x: faker.datatype.number(),
-      y: faker.datatype.number(),
-      width: faker.datatype.number(),
-      height: faker.datatype.number()
+      x: faker.number.int(),
+      y: faker.number.int(),
+      width: faker.number.int(),
+      height: faker.number.int()
     }
     win.getBounds.mockReturnValueOnce(bounds)
     win.isMinimized.mockReturnValueOnce(true)
@@ -241,7 +235,7 @@ describe('window state management utilities', () => {
     win.isMinimized.mockReturnValueOnce(false)
 
     focusOnNotification(win)
-    expect(win.focus).toHaveBeenCalledTimes(1)
+    expect(win.focus).toHaveBeenCalledOnce()
     expect(win.restore).not.toHaveBeenCalled()
     expect(win.maximize).not.toHaveBeenCalled()
     expect(win.minimize).not.toHaveBeenCalled()
@@ -252,8 +246,8 @@ describe('window state management utilities', () => {
     win.isMinimized.mockReturnValueOnce(true)
 
     focusOnNotification(win)
-    expect(win.focus).toHaveBeenCalledTimes(1)
-    expect(win.restore).toHaveBeenCalledTimes(1)
+    expect(win.focus).toHaveBeenCalledOnce()
+    expect(win.restore).toHaveBeenCalledOnce()
     expect(win.focus).toHaveBeenCalledAfter(win.restore)
     expect(win.maximize).not.toHaveBeenCalled()
     expect(win.minimize).not.toHaveBeenCalled()

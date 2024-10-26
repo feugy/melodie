@@ -1,11 +1,10 @@
-'use strict'
-
-import { get } from 'svelte/store'
-import { ReplaySubject, Subject, merge, BehaviorSubject } from 'rxjs'
-import { scan, pluck, shareReplay, map } from 'rxjs/operators'
-import { knuthShuffle } from 'knuth-shuffle'
 import parse from 'fast-json-parse'
-import { fromServerEvent, createClickObservable } from '../utils'
+import { knuthShuffle } from 'knuth-shuffle'
+import { BehaviorSubject, merge, ReplaySubject, Subject } from 'rxjs'
+import { map, pluck, scan, shareReplay } from 'rxjs/operators'
+import { get } from 'svelte/store'
+
+import { createClickObservable, fromServerEvent } from '../utils'
 import { settings } from './settings'
 
 const actions$ = new Subject()

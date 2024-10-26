@@ -1,10 +1,11 @@
 <script>
   import { Tool, ToolBox } from '@atelier-wb/svelte'
-  import TracksQueue from './TracksQueue.svelte'
+
+  import HRefSink from '../../atelier/HRefSink.svelte'
+  import { mockWebsocket } from '../../atelier/utils'
   import * as queue from '../../stores/track-queue'
   import { trackListData } from '../Player/Player.testdata'
-  import { mockWebsocket } from '../../atelier/utils'
-  import HRefSink from '../../atelier/HRefSink.svelte'
+  import TracksQueue from './TracksQueue.svelte'
 </script>
 
 <ToolBox

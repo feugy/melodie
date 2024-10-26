@@ -1,7 +1,8 @@
 appId: org.feugy.melodie
 productName: Mélodie
-copyright: Copyright © 2021 ${author}
+copyright: Copyright © 2024 ${author}
 
+asar: true
 files:
   - LICENSE
   - CHANGELOG.md
@@ -9,6 +10,7 @@ files:
   - PRIVACY POLICY.md
   - main.js
   - lib/**/*
+  - out/**/*
   - package.json
   - public/**/*
   - '!**/tests/**/*'
@@ -59,7 +61,7 @@ publish:
     repo: melodie
 
 linux:
-  target: [snap, AppImage, tar.gz]
+  target: [AppImage, deb]
   category: Audio
   mimeTypes:
     - inode/directory

@@ -1,7 +1,8 @@
 <script>
   import { _ } from 'svelte-intl'
-  import Dialogue from '../Dialogue/Dialogue.svelte'
+
   import { formatTime } from '../../utils'
+  import Dialogue from '../Dialogue/Dialogue.svelte'
 
   export let src
   export let open
@@ -46,8 +47,8 @@
           value.no == null
             ? null
             : value.of == null
-            ? value.no
-            : `${value.no}/${value.of}`
+              ? value.no
+              : `${value.no}/${value.of}`
       } else if (key === 'duration') {
         value = formatTime(value)
       }
@@ -63,24 +64,6 @@
   }
 </script>
 
-<style lang="postcss">
-  table {
-    @apply w-full border-collapse text-left;
-  }
-
-  td {
-    @apply p-2;
-  }
-
-  tr > td:first-child {
-    @apply text-right font-semibold text-sm;
-  }
-
-  tr:nth-child(2n) {
-    background-color: var(--hover-bg-color);
-  }
-</style>
-
 <Dialogue title={$_('track details')} bind:open>
   <div slot="content">
     <table>
@@ -93,3 +76,21 @@
     </table>
   </div>
 </Dialogue>
+
+<style>
+  table {
+    --at-apply: w-full border-collapse text-left;
+  }
+
+  td {
+    --at-apply: p-2;
+  }
+
+  tr > td:first-child {
+    --at-apply: text-right font-semibold text-sm;
+  }
+
+  tr:nth-child(2n) {
+    background-color: var(--hover-bg-color);
+  }
+</style>

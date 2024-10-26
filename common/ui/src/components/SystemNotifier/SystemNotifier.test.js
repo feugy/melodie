@@ -1,14 +1,14 @@
-'use strict'
-
-import { EventEmitter } from 'events'
 import { render } from '@testing-library/svelte'
+import { EventEmitter } from 'events'
 import html from 'svelte-htm'
-import SystemNotifier from './SystemNotifier.svelte'
-import { invoke } from '../../utils'
-import { clear, add, playNext } from '../../stores/track-queue'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+
 import { isDesktop } from '../../stores/settings'
-import { trackListData } from '../Player/Player.testdata'
+import { add, clear, playNext } from '../../stores/track-queue'
 import { sleep, translate } from '../../tests'
+import { invoke } from '../../utils'
+import { trackListData } from '../Player/Player.testdata'
+import SystemNotifier from './SystemNotifier.svelte'
 
 function expectMetadata(track, artwork = [{}]) {
   expect(navigator.mediaSession.metadata).toEqual({
@@ -33,40 +33,40 @@ function expectNotification(track) {
 describe('SystemNotifier Component', () => {
   beforeEach(async () => {
     clear()
-    jest.resetAllMocks()
+    vi.resetAllMocks()
     isDesktop.next(true)
-    window.MediaMetadata = jest.fn().mockImplementation(arg => arg)
+    window.MediaMetadata = vi.fn().mockImplementation(arg => arg)
     navigator.mediaSession.metadata = null
   })
 
   it('handles Notification-less platform', async () => {
-    window.Notification = jest.fn().mockImplementation(() => {
+    window.Notification = vi.fn().mockImplementation(() => {
       throw new TypeError(
         `Failed to construct 'Notification': Illegal constructor. Use ServiceWorkerRegistration.showNotification() instead.`
       )
     })
     window.fetch.mockResolvedValue({
-      blob: jest.fn().mockResolvedValue({})
+      blob: vi.fn().mockResolvedValue({})
     })
-    URL.createObjectURL = jest.fn()
+    URL.createObjectURL = vi.fn()
 
     render(html`<${SystemNotifier} />`)
     add(trackListData)
     await sleep()
 
     add(trackListData)
-    expect(Notification).toHaveBeenCalledTimes(1)
+    expect(Notification).toHaveBeenCalledOnce()
   })
 
   describe('given a supporting platform', () => {
     beforeEach(async () => {
-      window.Notification = jest.fn().mockImplementation((title, opts) => opts)
+      window.Notification = vi.fn().mockImplementation((title, opts) => opts)
     })
 
     afterEach(() => isDesktop.next(true))
 
     it('handles unfetchable meda media', async () => {
-      console.error = jest.fn()
+      console.error = vi.fn()
 
       render(html`<${SystemNotifier} />`)
       add(trackListData)
@@ -80,7 +80,7 @@ describe('SystemNotifier Component', () => {
           `failed to load media ${track.media} for mediaSession`
         )
       )
-      expect(console.error).toHaveBeenCalledTimes(1)
+      expect(console.error).toHaveBeenCalledOnce()
     })
 
     describe('given valid media', () => {
@@ -89,9 +89,9 @@ describe('SystemNotifier Component', () => {
       beforeEach(() => {
         // make sure fetched data will properly translate to blob URL
         window.fetch.mockResolvedValue({
-          blob: jest.fn().mockResolvedValue({})
+          blob: vi.fn().mockResolvedValue({})
         })
-        URL.createObjectURL = jest.fn()
+        URL.createObjectURL = vi.fn()
 
         emitter.removeAllListeners()
         navigator.mediaSession.setActionHandler.mockImplementation(
@@ -110,7 +110,7 @@ describe('SystemNotifier Component', () => {
 
         expectMetadata(trackListData[0])
         expectNotification(trackListData[0])
-        expect(Notification).toHaveBeenCalledTimes(1)
+        expect(Notification).toHaveBeenCalledOnce()
         expect(invoke).not.toHaveBeenCalled()
       })
 
@@ -148,7 +148,7 @@ describe('SystemNotifier Component', () => {
             silent: true
           })
         )
-        expect(Notification).toHaveBeenCalledTimes(1)
+        expect(Notification).toHaveBeenCalledOnce()
         expect(invoke).not.toHaveBeenCalled()
       })
 
@@ -176,7 +176,7 @@ describe('SystemNotifier Component', () => {
 
         expectMetadata(trackListData[0])
         expectNotification(trackListData[0])
-        expect(Notification).toHaveBeenCalledTimes(1)
+        expect(Notification).toHaveBeenCalledOnce()
         Notification.mockReset()
 
         playNext()
@@ -225,7 +225,7 @@ describe('SystemNotifier Component', () => {
 
         expectMetadata(trackListData[2])
         expectNotification(trackListData[2])
-        expect(Notification).toHaveBeenCalledTimes(1)
+        expect(Notification).toHaveBeenCalledOnce()
         expect(invoke).not.toHaveBeenCalled()
       })
 
@@ -236,7 +236,7 @@ describe('SystemNotifier Component', () => {
 
         expectMetadata(trackListData[0])
         expectNotification(trackListData[0])
-        expect(Notification).toHaveBeenCalledTimes(1)
+        expect(Notification).toHaveBeenCalledOnce()
         Notification.mockReset()
 
         emitter.emit('nexttrack')
@@ -244,7 +244,7 @@ describe('SystemNotifier Component', () => {
 
         expectMetadata(trackListData[1])
         expectNotification(trackListData[1])
-        expect(Notification).toHaveBeenCalledTimes(1)
+        expect(Notification).toHaveBeenCalledOnce()
         expect(invoke).not.toHaveBeenCalled()
       })
 
@@ -255,7 +255,7 @@ describe('SystemNotifier Component', () => {
 
         expectMetadata(trackListData[0])
         expectNotification(trackListData[0])
-        expect(Notification).toHaveBeenCalledTimes(1)
+        expect(Notification).toHaveBeenCalledOnce()
         Notification.mockReset()
 
         emitter.emit('previoustrack')
@@ -263,21 +263,21 @@ describe('SystemNotifier Component', () => {
 
         expectMetadata(trackListData[trackListData.length - 1])
         expectNotification(trackListData[trackListData.length - 1])
-        expect(Notification).toHaveBeenCalledTimes(1)
+        expect(Notification).toHaveBeenCalledOnce()
         expect(invoke).not.toHaveBeenCalled()
       })
 
-      it('focuses the application on notification click, in ', async () => {
+      it('focuses the application on notification click, in', async () => {
         render(html`<${SystemNotifier} />`)
         add(trackListData)
         await sleep()
 
         expectNotification(trackListData[0])
-        expect(Notification).toHaveBeenCalledTimes(1)
+        expect(Notification).toHaveBeenCalledOnce()
 
         Notification.mock.calls[0][1].onclick()
         expect(invoke).toHaveBeenCalledWith('core.focusWindow')
-        expect(invoke).toHaveBeenCalledTimes(1)
+        expect(invoke).toHaveBeenCalledOnce()
 
         isDesktop.next(false)
         render(html`<${SystemNotifier} />`)
@@ -285,7 +285,7 @@ describe('SystemNotifier Component', () => {
         await sleep()
 
         expect(Notification).toHaveBeenCalledTimes(2)
-        expect(Notification.mock.calls[1][1].onclick).not.toBeDefined()
+        expect(Notification.mock.calls[1][1].onclick).toBeUndefined()
       })
     })
   })

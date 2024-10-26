@@ -1,19 +1,20 @@
 <script>
   import { onMount } from 'svelte'
   import { slide } from 'svelte/transition'
-  import Button from '../Button/Button.svelte'
-  import Track from '../Track/Track.svelte'
-  import Time from './Time.svelte'
-  import AddToPlaylist from './AddToPlaylist.svelte'
-  import Controls from './Controls.svelte'
-  import Volume from './Volume.svelte'
-  import Shuffle from './Shuffle.svelte'
-  import Repeat from './Repeat.svelte'
+
   import { isDesktop } from '../../stores/settings'
   import { current, tracks } from '../../stores/track-queue'
   import { playNext } from '../../stores/track-queue'
-  import { screenSize, MD } from '../../stores/window'
+  import { MD, screenSize } from '../../stores/window'
   import { enhanceUrl } from '../../utils'
+  import Button from '../Button/Button.svelte'
+  import Track from '../Track/Track.svelte'
+  import AddToPlaylist from './AddToPlaylist.svelte'
+  import Controls from './Controls.svelte'
+  import Repeat from './Repeat.svelte'
+  import Shuffle from './Shuffle.svelte'
+  import Time from './Time.svelte'
+  import Volume from './Volume.svelte'
 
   let isPlaying
   let isLoading
@@ -65,12 +66,12 @@
   function handlePlay() {
     configureGain()
     isPlaying = true
-    timeUpdateTimer = window.requestAnimationFrame(updateTime)
+    timeUpdateTimer = window?.requestAnimationFrame(updateTime)
   }
 
   function handlePause() {
     isPlaying = false
-    window.cancelAnimationFrame(timeUpdateTimer)
+    window?.cancelAnimationFrame(timeUpdateTimer)
   }
 
   function handleEnded() {
@@ -86,7 +87,8 @@
     }
   }
 
-  function handleError() {
+  function handleError({ currentTarget: { error } }) {
+    console.log('player error', error?.message, error?.code)
     isPlaying = false
     const save = src
     src = null
@@ -99,7 +101,7 @@
     if (player) {
       currentTime = player.currentTime
       setTimeout(() => {
-        timeUpdateTimer = window.requestAnimationFrame(updateTime)
+        timeUpdateTimer = window?.requestAnimationFrame(updateTime)
       }, 100)
     }
   }
@@ -128,45 +130,7 @@
   }
 </script>
 
-<style lang="postcss">
-  .root {
-    & > audio {
-      height: 0;
-    }
-  }
-
-  .content {
-    @apply flex items-center justify-center md:p-2;
-  }
-
-  .player {
-    @apply flex-col md:flex-grow;
-  }
-
-  .controls {
-    @apply flex items-center justify-center gap-2 px-1;
-  }
-
-  .current {
-    @apply flex-grow md:w-1/4 md:flex-grow-0;
-  }
-
-  .expansion {
-    @apply p-2;
-  }
-
-  .handle {
-    @apply inline-block w-full cursor-pointer text-center;
-    background: var(--outline-color);
-  }
-
-  .volume {
-    @apply md:w-1/4;
-  }
-</style>
-
 <div class="root">
-  <!-- svelte-ignore a11y-media-has-caption -->
   <audio
     data-testid="audio"
     autoplay
@@ -196,7 +160,7 @@
           <Controls {player} {isPlaying} disabled={isLoading} />
           <Repeat bind:repeatAll bind:repeatOne />
           {#if $current}
-            <Button icon="favorite_border" noBorder class="invisible" />
+            <Button icon="i-mdi-heart-outline" noBorder class="invisible" />
           {/if}
         </span>
         <Time {player} {currentTime} {duration} />
@@ -218,9 +182,12 @@
         </span>
       </div>
     </div>
-    <i class="material-icons handle" on:click={() => (expanded = !expanded)}
-      >{expanded ? 'expand_more' : 'expand_less'}</i
-    >{#if expanded}
+    <button
+      class="icons handle {expanded
+        ? 'i-mdi-chevron-down'
+        : 'i-mdi-chevron-up'}"
+      on:click={() => (expanded = !expanded)}
+    />{#if expanded}
       <ul class="expansion" transition:slide>
         <li>
           <Time {player} {currentTime} {duration} />
@@ -237,3 +204,44 @@
     {/if}
   {/if}
 </div>
+
+<style>
+  .root {
+    & > audio {
+      height: 0;
+    }
+  }
+
+  .content {
+    /* prettier-ignore */
+    --at-apply: flex items-center justify-center md:p-2;
+  }
+
+  .player {
+    /* prettier-ignore */
+    --at-apply: flex-col md:flex-grow;
+  }
+
+  .controls {
+    --at-apply: flex items-center justify-center gap-2 px-1;
+  }
+
+  .current {
+    /* prettier-ignore */
+    --at-apply: flex-grow md:w-1/4 md:flex-grow-0;
+  }
+
+  .expansion {
+    --at-apply: p-2;
+  }
+
+  .handle {
+    --at-apply: inline-block w-full cursor-pointer text-center;
+    background: var(--outline-color);
+  }
+
+  .volume {
+    /* prettier-ignore */
+    --at-apply: md:w-1/4;
+  }
+</style>

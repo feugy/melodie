@@ -1,10 +1,11 @@
 <script>
   import { onMount } from 'svelte'
   import { _ } from 'svelte-intl'
+
+  import { appendTracks, list, playlists } from '../../stores/playlists'
   import Dropdown from '../Dropdown/Dropdown.svelte'
   import CreatePlaylist from './CreatePlaylist.svelte'
   import SearchPlaylist from './SearchPlaylist.svelte'
-  import { playlists, appendTracks, list } from '../../stores/playlists'
 
   export let tracks
   export let open = false
@@ -74,7 +75,7 @@
 <Dropdown
   {...$$restProps}
   value={null}
-  icon="library_add"
+  icon="i-mdi-plus-box-multiple"
   withArrow={false}
   valueAsText={false}
   {options}
@@ -86,4 +87,5 @@
       appendTracks({ id, tracks })
     }
   }}
+  data-testid="add-to-playlist-button"
 />

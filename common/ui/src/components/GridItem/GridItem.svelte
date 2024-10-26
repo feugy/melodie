@@ -13,9 +13,10 @@
 <script>
   import { _ } from 'svelte-intl'
   import { push } from 'svelte-spa-router'
-  import Button from '../Button/Button.svelte'
+
   import { add } from '../../stores/track-queue'
   import { isTouchable } from '../../stores/window'
+  import Button from '../Button/Button.svelte'
 
   export let src
   export let kind
@@ -59,71 +60,14 @@
   }
 </script>
 
-<style lang="postcss">
-  /* do not apply relative! makes layout very slow when displaying many grid items */
-  span {
-    @apply inline-block w-32 md:w-48 lg:w-64 cursor-pointer;
-    -webkit-tap-highlight-color: transparent;
-
-    &.overlay {
-      & .artwork {
-        @apply hidden;
-      }
-      & > header {
-        @apply inline-flex w-full h-32 md:h-48 lg:h-64 rounded-sm border-2 border-solid p-4;
-        border-color: var(--outline-color);
-        background-color: var(--hover-bg-color);
-
-        & > h3 {
-          @apply text-2xl;
-        }
-      }
-    }
-  }
-
-  header {
-    @apply flex flex-col items-center justify-center w-full;
-
-    & > * {
-      @apply w-full truncate;
-    }
-
-    & h3 {
-      @apply text-lg mt-1;
-    }
-  }
-
-  .content {
-    @apply relative;
-
-    & .artwork {
-      @apply inline-block h-32 md:h-48 lg:h-64 text-3xl;
-    }
-
-    & .controls {
-      @apply absolute opacity-0 transition-opacity duration-500 ease-in-out inset-x-0 
-        text-center z-10 pointer-events-none flex justify-center flex-wrap gap-2
-        top-20px md:top-120px lg:top-190px;
-
-      &.open {
-        @apply opacity-100 pointer-events-auto;
-      }
-    }
-  }
-
-  @media (hover: hover) {
-    span:hover .controls {
-      @apply opacity-100 pointer-events-auto;
-    }
-  }
-</style>
-
 <svelte:body on:click|capture={handleFocusLost} />
 
 <span
-  role="article"
+  role="tab"
+  tabindex="0"
   class={$$restProps.class}
   class:overlay
+  on:keyup
   on:click={handleClick}
   on:mouseenter={handleMouseEnter}
   on:mouseleave={handleFocusLost}
@@ -137,7 +81,7 @@
         <Button
           data-testid="open"
           primary
-          icon="open_in_full"
+          icon="i-mdi-arrow-top-right-bottom-left"
           large
           on:click={handleOpen}
         />
@@ -145,14 +89,14 @@
       <Button
         data-testid="play"
         primary
-        icon="play_arrow"
+        icon="i-mdi-play"
         large
         on:click={handlePlay}
       />
       <Button
         data-testid="enqueue"
         primary
-        icon="playlist_add"
+        icon="i-mdi-playlist-plus"
         large
         on:click={handleEnqueue}
       />
@@ -163,3 +107,72 @@
     <slot name="details" />
   </header>
 </span>
+
+<style>
+  /* do not apply relative! makes layout very slow when displaying many grid items */
+  span,
+  span .artwork {
+    /* prettier-ignore */
+    --at-apply: w-32 md:w-48 lg:w-64;
+  }
+
+  span {
+    --at-apply: inline-block cursor-pointer;
+    -webkit-tap-highlight-color: transparent;
+
+    &.overlay {
+      & .artwork {
+        --at-apply: hidden;
+      }
+      & > header {
+        /* prettier-ignore */
+        --at-apply: inline-flex w-full h-32 md:h-48 lg:h-64 rounded-sm
+          border-2 border-solid p-4;
+        border-color: var(--outline-color);
+        background-color: var(--hover-bg-color);
+
+        & > h3 {
+          --at-apply: text-2xl;
+        }
+      }
+    }
+  }
+
+  header {
+    --at-apply: flex flex-col items-center justify-center w-full;
+
+    & > * {
+      --at-apply: w-full truncate;
+    }
+
+    & h3 {
+      --at-apply: text-lg mt-1;
+    }
+  }
+
+  .content {
+    --at-apply: relative;
+
+    & .artwork {
+      /* prettier-ignore */
+      --at-apply: inline-block h-32 md:h-48 lg:h-64 text-3xl;
+    }
+
+    & .controls {
+      /* prettier-ignore */
+      --at-apply: absolute opacity-0 transition-opacity duration-500 ease-in-out
+        inset-x-0 text-center z-10 pointer-events-none flex justify-center
+        flex-wrap gap-2 top-20px md:top-120px lg:top-190px;
+
+      &.open {
+        --at-apply: opacity-100 pointer-events-auto;
+      }
+    }
+  }
+
+  @media (hover: hover) {
+    span:hover .controls {
+      --at-apply: opacity-100 pointer-events-auto;
+    }
+  }
+</style>

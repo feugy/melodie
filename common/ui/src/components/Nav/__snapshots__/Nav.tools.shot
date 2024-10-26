@@ -1,3 +1,353 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Toolshot components/Nav/Nav.tools.svelte: Components/Nav 1`] = ``;
+exports[`Components/Nav 1`] = `
+HTMLCollection [
+  <span
+    class="sentinel s-mZcJfl7uQp-V"
+  />,
+  <nav
+    class=" s-mZcJfl7uQp-V"
+  >
+     
+    <ul
+      class="bar undefined s-nDQWeWCvHU0s"
+    >
+      <li
+        class="s-nDQWeWCvHU0s"
+      >
+        <button
+          class="__w-full_qldcxs_qldcxs s-zdMNlEQUhDx4"
+        >
+          <i
+            class="icons i-mdi-album s-zdMNlEQUhDx4"
+          />
+           
+          <span
+            class="s-zdMNlEQUhDx4"
+          >
+            Albums
+          </span>
+           
+           
+        </button>
+        <!--&lt;Button&gt;-->
+      </li>
+       
+      <li
+        class="s-nDQWeWCvHU0s"
+      >
+        <button
+          class="__w-full_qldcxs_qldcxs s-zdMNlEQUhDx4"
+        >
+          <i
+            class="icons i-mdi-account s-zdMNlEQUhDx4"
+          />
+           
+          <span
+            class="s-zdMNlEQUhDx4"
+          >
+            Artists
+          </span>
+           
+           
+        </button>
+        <!--&lt;Button&gt;-->
+      </li>
+       
+      <li
+        class="s-nDQWeWCvHU0s"
+        id="to-playlists"
+      >
+        <button
+          class="__w-full_qldcxs_qldcxs s-zdMNlEQUhDx4"
+        >
+          <i
+            class="icons i-mdi-music-box-multiple s-zdMNlEQUhDx4"
+          />
+           
+          <span
+            class="s-zdMNlEQUhDx4"
+          >
+            Playlists
+          </span>
+           
+           
+        </button>
+        <!--&lt;Button&gt;-->
+      </li>
+       
+      <li
+        class="s-nDQWeWCvHU0s"
+      >
+        <span
+          class="button s-vU5b0o8a8YU8"
+          role="menu"
+          tabindex="0"
+        >
+          <button
+            class="iconOnly noBorder s-zdMNlEQUhDx4"
+            data-testid="broadcast-button"
+          >
+            <i
+              class="icons i-mdi-wifi-off s-zdMNlEQUhDx4"
+            />
+             
+             
+             
+          </button>
+          <!--&lt;Button&gt;-->
+           
+        </span>
+        <!--&lt;BroadcastButton&gt;-->
+      </li>
+       
+      <li
+        class="s-nDQWeWCvHU0s"
+      >
+        <button
+          class="__w-full_qldcxs_qldcxs iconOnly noBorder s-zdMNlEQUhDx4"
+          data-testid="settings-link"
+        >
+          <i
+            class="icons i-mdi-cog s-zdMNlEQUhDx4"
+          />
+           
+           
+           
+        </button>
+        <!--&lt;Button&gt;-->
+      </li>
+       
+      <li
+        class="expand s-nDQWeWCvHU0s"
+      >
+        <span
+          class="__inline-block_qldcxs_qldcxs __w-48_qldcxs_qldcxs s-t-4K-QPPrmFY icon"
+        >
+          <button
+            class="icons i-mdi-magnify s-t-4K-QPPrmFY"
+          />
+           
+          <input
+            class="s-t-4K-QPPrmFY"
+            placeholder=""
+            type="search"
+          />
+        </span>
+        <!--&lt;TextInput&gt;-->
+      </li>
+       
+      <li
+        class="nav s-nDQWeWCvHU0s"
+      >
+        <button
+          class="iconOnly noBorder s-zdMNlEQUhDx4"
+          data-testid="backward-link"
+        >
+          <i
+            class="icons i-mdi-chevron-left s-zdMNlEQUhDx4"
+          />
+           
+           
+           
+        </button>
+        <!--&lt;Button&gt;-->
+         
+        <button
+          class="iconOnly noBorder s-zdMNlEQUhDx4"
+          data-testid="forward-link"
+        >
+          <i
+            class="icons i-mdi-chevron-right s-zdMNlEQUhDx4"
+          />
+           
+           
+           
+        </button>
+        <!--&lt;Button&gt;-->
+      </li>
+       
+      <li
+        class="track-list s-nDQWeWCvHU0s"
+      >
+        <button
+          class="primary iconOnly s-zdMNlEQUhDx4"
+        >
+          <i
+            class="icons i-mdi-playlist-music s-zdMNlEQUhDx4"
+          />
+           
+           
+           
+        </button>
+        <!--&lt;Button&gt;-->
+      </li>
+    </ul>
+    
+  </nav>,
+  <header
+    class=" s-xf4KciiwOEPn"
+    style="--image: url(./images/valentino-funghi-MEcxLZ8ENV8-unsplash.jpg); --shade-color: rgba(0, 0, 0, 0.7); --bgPosition: center;"
+  >
+    <h1
+      class="s-xf4KciiwOEPn"
+    >
+      70 albums
+    </h1>
+  </header>,
+  <main
+    class="__text-left_qijnfn_qijnfn __m-4_qijnfn_qijnfn __z-0_qijnfn_qijnfn __relative_qijnfn_qijnfn s-uSjzlXbdlg7e"
+  >
+    <p
+      class="__py-2_qijnfn_qijnfn s-uSjzlXbdlg7e"
+    >
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    </p>
+    <p
+      class="__py-2_qijnfn_qijnfn s-uSjzlXbdlg7e"
+    >
+      In eu mi bibendum neque egestas congue quisque egestas
+    </p>
+    <p
+      class="__py-2_qijnfn_qijnfn s-uSjzlXbdlg7e"
+    >
+      Arcu non odio euismod lacinia at quis risus sed
+    </p>
+    <p
+      class="__py-2_qijnfn_qijnfn s-uSjzlXbdlg7e"
+    >
+      Massa tempor nec feugiat nisl
+    </p>
+    <p
+      class="__py-2_qijnfn_qijnfn s-uSjzlXbdlg7e"
+    >
+      Sagittis aliquam malesuada bibendum arcu vitae elementum
+    </p>
+    <p
+      class="__py-2_qijnfn_qijnfn s-uSjzlXbdlg7e"
+    >
+      Elementum facilisis leo vel fringilla est ullamcorper eget nulla
+    </p>
+    <p
+      class="__py-2_qijnfn_qijnfn s-uSjzlXbdlg7e"
+    >
+      Bibendum arcu vitae elementum curabitur vitae nunc sed velit dignissim
+    </p>
+    <p
+      class="__py-2_qijnfn_qijnfn s-uSjzlXbdlg7e"
+    >
+      Elit sed vulputate mi sit amet mauris commodo
+    </p>
+    <p
+      class="__py-2_qijnfn_qijnfn s-uSjzlXbdlg7e"
+    >
+      Ut enim blandit volutpat maecenas volutpat blandit aliquam etiam erat
+    </p>
+    <p
+      class="__py-2_qijnfn_qijnfn s-uSjzlXbdlg7e"
+    >
+      Lorem mollis aliquam ut porttitor leo a diam sollicitudin
+    </p>
+    <p
+      class="__py-2_qijnfn_qijnfn s-uSjzlXbdlg7e"
+    >
+      Vitae proin sagittis nisl rhoncus mattis
+    </p>
+    <p
+      class="__py-2_qijnfn_qijnfn s-uSjzlXbdlg7e"
+    >
+      Ut morbi tincidunt augue interdum velit euismod in pellentesque
+    </p>
+    <p
+      class="__py-2_qijnfn_qijnfn s-uSjzlXbdlg7e"
+    >
+      Aliquam purus sit amet luctus venenatis lectus magna
+    </p>
+    <p
+      class="__py-2_qijnfn_qijnfn s-uSjzlXbdlg7e"
+    >
+      Amet venenatis urna cursus eget
+    </p>
+    <p
+      class="__py-2_qijnfn_qijnfn s-uSjzlXbdlg7e"
+    >
+      Et pharetra pharetra massa massa
+    </p>
+    <p
+      class="__py-2_qijnfn_qijnfn s-uSjzlXbdlg7e"
+    >
+      Ac ut consequat semper viverra nam libero justo laoreet
+    </p>
+    <p
+      class="__py-2_qijnfn_qijnfn s-uSjzlXbdlg7e"
+    >
+      Eget arcu dictum varius duis at consectetur lorem
+    </p>
+    <p
+      class="__py-2_qijnfn_qijnfn s-uSjzlXbdlg7e"
+    >
+      Tellus id interdum velit laoreet id donec
+    </p>
+    <p
+      class="__py-2_qijnfn_qijnfn s-uSjzlXbdlg7e"
+    >
+      Aliquam sem fringilla ut morbi
+    </p>
+    <p
+      class="__py-2_qijnfn_qijnfn s-uSjzlXbdlg7e"
+    >
+      Consequat nisl vel pretium lectus quam id leo in vitae
+    </p>
+    <p
+      class="__py-2_qijnfn_qijnfn s-uSjzlXbdlg7e"
+    >
+      Velit scelerisque in dictum non
+    </p>
+    <p
+      class="__py-2_qijnfn_qijnfn s-uSjzlXbdlg7e"
+    >
+      Pretium aenean pharetra magna ac
+    </p>
+    <p
+      class="__py-2_qijnfn_qijnfn s-uSjzlXbdlg7e"
+    >
+      Tincidunt arcu non sodales neque sodales ut etiam
+    </p>
+    <p
+      class="__py-2_qijnfn_qijnfn s-uSjzlXbdlg7e"
+    >
+      Cursus eget nunc scelerisque viverra mauris in aliquam
+    </p>
+    <p
+      class="__py-2_qijnfn_qijnfn s-uSjzlXbdlg7e"
+    >
+      Tortor at auctor urna nunc id cursus
+    </p>
+    <p
+      class="__py-2_qijnfn_qijnfn s-uSjzlXbdlg7e"
+    >
+      Consequat interdum varius sit amet mattis vulputate enim nulla
+    </p>
+    <p
+      class="__py-2_qijnfn_qijnfn s-uSjzlXbdlg7e"
+    >
+      Sagittis vitae et leo duis ut
+    </p>
+    <p
+      class="__py-2_qijnfn_qijnfn s-uSjzlXbdlg7e"
+    >
+      Pretium lectus quam id leo in
+    </p>
+    <p
+      class="__py-2_qijnfn_qijnfn s-uSjzlXbdlg7e"
+    >
+      Fusce ut placerat orci nulla pellentesque dignissim enim sit
+    </p>
+    <p
+      class="__py-2_qijnfn_qijnfn s-uSjzlXbdlg7e"
+    >
+      Sed cras ornare arcu dui vivamus arcu.
+    </p>
+  </main>,
+]
+`;

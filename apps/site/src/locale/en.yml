@@ -1,4 +1,4 @@
-footer: Copyright (c) 2020-2021 Damien Simonin Feugas
+footer: Copyright (c) 2020-2024 Damien Simonin Feugas
 intuitive: Intuitive
 intuitive portable and open source: It is intuitive, portable and open source!
 install _: Install v{version}
@@ -21,7 +21,7 @@ description:
     <p>Plays Mp3, Ogg Vorbis and Flac files. Controls speak for themselves. </p>
     <p>What you don't see yet? Gap-less playback, ReplayGain, system notifications and media keys support.</p>
   open source: >
-    <p>Mélodie's source code is <a class="underlined" target="_blank" href="https://github.com/feugy/melodie">open <i class="material-icons">launch</i></a>.</p>
+    <p>Mélodie's source code is <a class="underlined" target="_blank" href="https://github.com/feugy/melodie">open <i class="icons i-mdi-launch"></i></a>.</p>
     <p>This application is free to use, and free or any adds.</p>
   organized: >
     <p>Mélodie reads tracks music metadata, and automatically creates your album and artist library.</p>
@@ -29,9 +29,9 @@ description:
   portable: >
     <p>May your favorite operating system be macOS, Windows or Linux, you will get the same user experience.</p>
   technologies: >
-    <p>With a lot of love and Electron, Svelte, RxJS, WindiCSS, SQLite, Music-Metadata, Svelte SPA router...<p>
+    <p>With a lot of love and Electron, Svelte, RxJS, UnoCSS, SQLite, Music-Metadata, Svelte SPA router...<p>
   tuned: >
-    <p>Thanks to <a class="underlined" target="_blank" href="https://www.theaudiodb.com">AudioDB <i class="material-icons">launch</i></a> and <a class="underlined" target="_blank" href="https://www.discogs.com/en">Discogs <i class="material-icons">launch</i></a>, Mélodie will enrich your libraries with covers, avatars and biographies (requires access keys).</p>
+    <p>Thanks to <a class="underlined" target="_blank" href="https://www.theaudiodb.com">AudioDB <i class="icons i-mdi-launch"></i></a> and <a class="underlined" target="_blank" href="https://www.discogs.com/en">Discogs <i class="icons i-mdi-launch"></i></a>, Mélodie will enrich your libraries with covers, avatars and biographies (requires access keys).</p>
     <p>Add or remove files on your drive, change their metadata: your library will immediately update.</p>
     <p>A software update? It'll automatically apply next time you'll open it.</p>
 download:

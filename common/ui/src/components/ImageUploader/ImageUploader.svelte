@@ -1,5 +1,6 @@
 <script>
   import { createEventDispatcher } from 'svelte'
+
   import Image from '../Image/Image.svelte'
 
   export let value
@@ -37,23 +38,25 @@
   }
 </script>
 
-<style lang="postcss">
-  span {
-    @apply relative;
-  }
-
-  input[type='file'] {
-    @apply absolute inset-0 w-full border-none opacity-0;
-  }
-</style>
-
 <svelte:window on:paste={handlePaste} />
 
 <span
+  role="link"
+  tabindex="-1"
   class="{$$restProps.class} actionable"
   on:dragover|preventDefault|stopPropagation={handleDragOver}
   on:drop|preventDefault|stopPropagation={handleDrop}
 >
-  <Image src={value} class="w-full h-full" fallback={'add_box'} />
+  <Image src={value} class="w-full h-full" icon={'i-mdi-plus-box'} />
   <input type="file" on:change={handleSelectFile} />
 </span>
+
+<style>
+  span {
+    --at-apply: relative;
+  }
+
+  input[type='file'] {
+    --at-apply: absolute inset-0 w-full border-none opacity-0;
+  }
+</style>

@@ -1,5 +1,3 @@
-'use strict'
-
 export const texts = [
   'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
   'In eu mi bibendum neque egestas congue quisque egestas',

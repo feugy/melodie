@@ -1,14 +1,14 @@
-'use strict'
+import { faker } from '@faker-js/faker'
+import * as electron from 'electron'
+import { EventEmitter } from 'events'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 
-const { EventEmitter } = require('events')
-const electron = require('electron')
-const faker = require('faker')
-const { configureExternalLinks } = require('./links')
+import { configureExternalLinks } from './links'
 
-jest.mock('electron', () => ({ shell: { openExternal: jest.fn() } }))
+vi.mock('electron', () => ({ shell: { openExternal: vi.fn() } }))
 
 describe('links utilities', () => {
-  beforeEach(jest.resetAllMocks)
+  beforeEach(() => vi.resetAllMocks())
 
   describe('configureExternalLinks()', () => {
     it.each([
@@ -16,14 +16,14 @@ describe('links utilities', () => {
       ['https link', `https://${faker.internet.domainName}`]
     ])('intercepts %s', (title, url) => {
       const webContents = new EventEmitter()
-      const event = { preventDefault: jest.fn() }
+      const event = { preventDefault: vi.fn() }
 
       configureExternalLinks({ webContents })
       webContents.emit('will-navigate', event, url)
 
       expect(event.preventDefault).toHaveBeenCalled()
       expect(electron.shell.openExternal).toHaveBeenCalledWith(url)
-      expect(electron.shell.openExternal).toHaveBeenCalledTimes(1)
+      expect(electron.shell.openExternal).toHaveBeenCalledOnce()
     })
 
     it.each([
@@ -31,7 +31,7 @@ describe('links utilities', () => {
       ['absolute link', `//${faker.internet.domainName}`]
     ])('does not intercept %s', (title, url) => {
       const webContents = new EventEmitter()
-      const event = { preventDefault: jest.fn() }
+      const event = { preventDefault: vi.fn() }
 
       configureExternalLinks({ webContents })
       webContents.emit('will-navigate', event, url)

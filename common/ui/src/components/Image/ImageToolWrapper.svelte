@@ -1,16 +1,12 @@
 <script>
   import { _ } from 'svelte-intl'
+
   import Image from './Image.svelte'
 
   let dimension
 </script>
 
-<Image
-  class="w-64 h-64 inline-block"
-  on:click
-  {...$$restProps}
-  bind:dimension
-/>
+<Image class="w-64 h-64" on:click {...$$restProps} bind:dimension />
 <div>
   {dimension
     ? $_('provider (_ x _)', {

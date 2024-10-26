@@ -1,15 +1,15 @@
-'use strict'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
-const { stayAwake, releaseWakeLock } = require('./wake-lock')
+import { releaseWakeLock, stayAwake } from './wake-lock'
 
 describe('wake lock utilities', () => {
   let request
   let release
 
   beforeEach(() => {
-    jest.resetAllMocks()
-    release = jest.fn()
-    request = jest.fn().mockResolvedValue({ release })
+    vi.resetAllMocks()
+    release = vi.fn()
+    request = vi.fn().mockResolvedValue({ release })
     navigator.wakeLock = { request }
   })
 
@@ -20,7 +20,7 @@ describe('wake lock utilities', () => {
   })
 
   it('does not throw when releasing no lock', async () => {
-    expect(releaseWakeLock()).resolves.toBeUndefined()
+    await expect(releaseWakeLock()).resolves.toBeUndefined()
   })
 
   it('acquires lock only on first call', async () => {
@@ -28,7 +28,7 @@ describe('wake lock utilities', () => {
     expect(request).toHaveBeenCalledWith('screen')
     await stayAwake()
     await stayAwake()
-    expect(request).toHaveBeenCalledTimes(1)
+    expect(request).toHaveBeenCalledOnce()
     expect(release).not.toHaveBeenCalled()
   })
 
@@ -42,7 +42,7 @@ describe('wake lock utilities', () => {
     await releaseWakeLock()
     expect(release).not.toHaveBeenCalled()
     await releaseWakeLock()
-    expect(request).toHaveBeenCalledTimes(1)
-    expect(release).toHaveBeenCalledTimes(1)
+    expect(request).toHaveBeenCalledOnce()
+    expect(release).toHaveBeenCalledOnce()
   })
 })

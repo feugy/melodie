@@ -11,14 +11,36 @@
   $: iconOnly = !text
 </script>
 
-<style lang="postcss">
+<button
+  class:primary
+  class:iconOnly
+  class:large
+  class:noBorder
+  {...$$restProps}
+  on:click|stopPropagation
+>
+  {#if icon}<i class="icons {icon}" />{/if}
+  {#if text}<span>{text}</span>{/if}
+  <slot />
+  {#if badge !== null}
+    <div class="badge" use:classOnChange={{ value: badge, className: 'halo' }}>
+      {badge > 999 ? '999+' : badge}
+    </div>
+  {/if}
+</button>
+
+<style>
   button {
-    @apply inline-flex border-none cursor-pointer px-6 uppercase text-base
-  font-semibold bg-transparent flex-row items-center rounded whitespace-nowrap;
+    --at-apply: inline-flex border-none cursor-pointer px-6 uppercase text-base
+      font-semibold bg-transparent flex-row items-center rounded
+      whitespace-nowrap;
     letter-spacing: 0.05rem;
     line-height: 2.3rem;
-    transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out,
-      color 0.2s ease-in-out, transform 0.1s linear;
+    transition:
+      background-color 0.2s ease-in-out,
+      box-shadow 0.2s ease-in-out,
+      color 0.2s ease-in-out,
+      transform 0.1s linear;
     box-shadow: inset 0 0 0 1px var(--outline-color);
     /* hack to avoid setting relative on button (makes it harder to position in Dialogue) and still allow badge */
     transform: scale(1);
@@ -26,11 +48,11 @@
     &.noBorder,
     &.noBorder:hover,
     &.noBorder:active {
-      @apply shadow-none;
+      --at-apply: shadow-none;
     }
 
     &:disabled {
-      @apply cursor-default;
+      --at-apply: cursor-default;
       color: var(--disabled-color);
     }
 
@@ -39,21 +61,21 @@
     }
 
     &.large {
-      @apply text-lg;
+      --at-apply: text-lg;
       line-height: 3.5rem;
 
       &:not(.iconOnly) {
-        @apply px-8;
+        --at-apply: px-8;
       }
     }
 
     &:focus {
-      @apply outline-none;
+      --at-apply: outline-none;
     }
 
     &:hover:not(:disabled),
     &:focus:not(:disabled) {
-      @apply outline-none;
+      --at-apply: outline-none;
       background-color: var(--hover-bg-color);
       transform: scale(1.03);
     }
@@ -63,7 +85,7 @@
     }
 
     &.iconOnly {
-      @apply p-2 rounded-full;
+      --at-apply: p-2 rounded-full;
 
       &:hover:not(:disabled),
       &:focus:not(:disabled) {
@@ -88,7 +110,7 @@
     }
 
     &.primary {
-      @apply shadow-none;
+      --at-apply: shadow-none;
       background-color: var(--primary-color);
 
       /* TODO mobile? */
@@ -106,8 +128,8 @@
   }
 
   .badge {
-    @apply absolute rounded-full leading-4 text-xs p-1;
-    @apply flex justify-center items-center;
+    --at-apply: absolute rounded-full leading-4 text-xs p-1;
+    --at-apply: flex justify-center items-center;
     background-color: var(--hover-color);
     color: var(--bg-color);
     top: -0.5rem;
@@ -116,7 +138,8 @@
   }
 
   .halo::before {
-    @apply absolute inline-block opacity-0 rounded-full pointer-events-none z-10;
+    --at-apply: absolute inline-block opacity-0 rounded-full pointer-events-none
+      z-10;
     content: '';
     border: 1px solid var(--hover-color);
     animation: ripple 0.5s ease-in;
@@ -140,21 +163,3 @@
     }
   }
 </style>
-
-<button
-  class:primary
-  class:iconOnly
-  class:large
-  class:noBorder
-  {...$$restProps}
-  on:click|stopPropagation
->
-  {#if icon}<i class="material-icons">{icon}</i>{/if}
-  {#if text}<span>{text}</span>{/if}
-  <slot />
-  {#if badge !== null}
-    <div class="badge" use:classOnChange={{ value: badge, className: 'halo' }}>
-      {badge > 999 ? '999+' : badge}
-    </div>
-  {/if}
-</button>

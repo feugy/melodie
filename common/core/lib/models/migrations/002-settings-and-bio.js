@@ -1,6 +1,4 @@
-'use strict'
-
-exports.up = async function ({ schema }) {
+export async function up({ schema }) {
   await schema
     .table('settings', table => {
       table
@@ -12,7 +10,7 @@ exports.up = async function ({ schema }) {
     })
 }
 
-exports.down = async function ({ schema }) {
+export async function down({ schema }) {
   await schema
     .table('settings', table => {
       table.dropColumn('enqueueBehaviour')

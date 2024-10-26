@@ -1,22 +1,22 @@
-'use strict'
+import { faker } from '@faker-js/faker'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 
-const faker = require('faker')
-const { classOnChange } = require('./class-on-change')
-const { sleep } = require('../tests')
+import { sleep } from '../tests'
+import { classOnChange } from './class-on-change'
 
 describe('classOnChange action', () => {
   const duration = 0
   const node = {
     classList: {
-      add: jest.fn(),
-      remove: jest.fn()
+      add: vi.fn(),
+      remove: vi.fn()
     }
   }
 
-  beforeEach(jest.resetAllMocks)
+  beforeEach(() => vi.resetAllMocks())
 
   it('does not add class when value is null', async () => {
-    const className = faker.random.word()
+    const className = faker.string.alpha()
     const value = null
     classOnChange(node, { className, value, duration })
 
@@ -26,21 +26,21 @@ describe('classOnChange action', () => {
   })
 
   it('adds class on initialization', async () => {
-    const className = faker.random.word()
-    const value = faker.datatype.number()
+    const className = faker.string.alpha()
+    const value = faker.number.int()
     classOnChange(node, { className, value, duration })
     expect(node.classList.add).toHaveBeenCalledWith(className)
     expect(node.classList.remove).not.toHaveBeenCalled()
 
     await sleep(20)
     expect(node.classList.remove).toHaveBeenCalledWith(className)
-    expect(node.classList.add).toHaveBeenCalledTimes(1)
-    expect(node.classList.remove).toHaveBeenCalledTimes(1)
+    expect(node.classList.add).toHaveBeenCalledOnce()
+    expect(node.classList.remove).toHaveBeenCalledOnce()
   })
 
   it('adds class on value change', async () => {
-    const className = faker.random.word()
-    const value = faker.datatype.number()
+    const className = faker.string.alpha()
+    const value = faker.number.int()
     const { update } = classOnChange(node, { className, value: null, duration })
     expect(node.classList.add).not.toHaveBeenCalled()
 
@@ -49,13 +49,13 @@ describe('classOnChange action', () => {
 
     await sleep(20)
     expect(node.classList.remove).toHaveBeenCalledWith(className)
-    expect(node.classList.add).toHaveBeenCalledTimes(1)
-    expect(node.classList.remove).toHaveBeenCalledTimes(1)
+    expect(node.classList.add).toHaveBeenCalledOnce()
+    expect(node.classList.remove).toHaveBeenCalledOnce()
   })
 
   it('does not adds class on same value', async () => {
-    const className = faker.random.word()
-    const value = faker.datatype.number()
+    const className = faker.string.alpha()
+    const value = faker.number.int()
     const { update } = classOnChange(node, { className, value, duration })
     expect(node.classList.add).toHaveBeenCalledWith(className)
 
@@ -64,19 +64,19 @@ describe('classOnChange action', () => {
     update({ className, value, duration })
 
     await sleep(20)
-    expect(node.classList.add).toHaveBeenCalledTimes(1)
-    expect(node.classList.remove).toHaveBeenCalledTimes(1)
+    expect(node.classList.add).toHaveBeenCalledOnce()
+    expect(node.classList.remove).toHaveBeenCalledOnce()
   })
 
   it('clears timeout on destruction', async () => {
-    const className = faker.random.word()
-    const value = faker.datatype.number()
+    const className = faker.string.alpha()
+    const value = faker.number.int()
     const { destroy } = classOnChange(node, { className, value, duration })
     expect(node.classList.add).toHaveBeenCalledWith(className)
     destroy()
 
     await sleep(20)
     expect(node.classList.remove).not.toHaveBeenCalled()
-    expect(node.classList.add).toHaveBeenCalledTimes(1)
+    expect(node.classList.add).toHaveBeenCalledOnce()
   })
 })

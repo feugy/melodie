@@ -1,17 +1,25 @@
-'use strict'
+import { faker } from '@faker-js/faker'
+import merge from 'deepmerge'
+import fs from 'fs-extra'
+import knex from 'knex'
+import os from 'os'
+import { join } from 'path'
+import {
+  afterAll,
+  beforeAll,
+  beforeEach,
+  describe,
+  expect,
+  it,
+  vi
+} from 'vitest'
 
-const faker = require('faker')
-const knex = require('knex')
-const os = require('os')
-const fs = require('fs-extra')
-const { join } = require('path')
-const merge = require('deepmerge')
-const TrackList = require('./abstract-track-list')
-const { dayMs } = require('../utils')
+import { dayMs } from '../utils'
+import TrackList from './abstract-track-list'
 
 const modelName = 'test'
 
-const computeRefs = jest.fn()
+const computeRefs = vi.fn()
 
 class Test extends TrackList {
   constructor() {
@@ -31,42 +39,39 @@ describe('Abstract track list', () => {
   const lastProcessed = Date.now() - dayMs
   const models = [
     {
-      id: faker.datatype.number(),
-      name: faker.name.findName(),
+      id: faker.number.int(),
+      name: faker.person.fullName(),
       media: null,
       mediaCount: 1,
       trackIds: JSON.stringify([]),
-      refs: JSON.stringify([[faker.datatype.number(), faker.name.findName()]]),
+      refs: JSON.stringify([[faker.number.int(), faker.person.fullName()]]),
       processedEpoch: null
     },
     {
-      id: faker.datatype.number(),
-      name: faker.name.findName(),
-      media: faker.image.image(),
-      mediaCount: faker.datatype.number({ min: 2, max: 10 }),
-      trackIds: JSON.stringify([faker.datatype.number()]),
+      id: faker.number.int(),
+      name: faker.person.fullName(),
+      media: faker.image.url(),
+      mediaCount: faker.number.int({ min: 2, max: 10 }),
+      trackIds: JSON.stringify([faker.number.int()]),
       refs: JSON.stringify([
-        [faker.datatype.number(), faker.name.findName()],
-        [faker.datatype.number(), faker.name.findName()]
+        [faker.number.int(), faker.person.fullName()],
+        [faker.number.int(), faker.person.fullName()]
       ])
     },
     {
-      id: faker.datatype.number(),
-      name: faker.name.findName(),
-      media: faker.image.image(),
-      mediaCount: faker.datatype.number({ min: 2, max: 10 }),
-      trackIds: JSON.stringify([
-        faker.datatype.number(),
-        faker.datatype.number()
-      ]),
+      id: faker.number.int(),
+      name: faker.person.fullName(),
+      media: faker.image.url(),
+      mediaCount: faker.number.int({ min: 2, max: 10 }),
+      trackIds: JSON.stringify([faker.number.int(), faker.number.int()]),
       refs: JSON.stringify([
-        [faker.datatype.number(), faker.name.findName()],
-        [faker.datatype.number(), faker.name.findName()]
+        [faker.number.int(), faker.person.fullName()],
+        [faker.number.int(), faker.person.fullName()]
       ])
     },
     {
-      id: faker.datatype.number(),
-      name: faker.name.findName(),
+      id: faker.number.int(),
+      name: faker.person.fullName(),
       media: null,
       mediaCount: 1,
       trackIds: JSON.stringify([]),
@@ -95,7 +100,7 @@ describe('Abstract track list', () => {
   })
 
   beforeEach(async () => {
-    jest.resetAllMocks()
+    vi.resetAllMocks()
     await tested.reset()
     await db(modelName).insert(models)
   })
@@ -136,12 +141,12 @@ describe('Abstract track list', () => {
 
   describe('save', () => {
     it('adds new model', async () => {
-      const refs = [[faker.datatype.number(), faker.name.findName()]]
+      const refs = [[faker.number.int(), faker.person.fullName()]]
       computeRefs.mockResolvedValueOnce(refs)
       const model = {
-        id: faker.datatype.number(),
-        name: faker.name.findName(),
-        trackIds: [faker.datatype.number()]
+        id: faker.number.int(),
+        name: faker.person.fullName(),
+        trackIds: [faker.number.int()]
       }
 
       const { saved, removedIds } = await tested.save(model)
@@ -168,19 +173,19 @@ describe('Abstract track list', () => {
     })
 
     it('saves multipe models', async () => {
-      const refs1 = [[faker.datatype.number(), faker.name.findName()]]
-      const refs2 = [[faker.datatype.number(), faker.name.findName()]]
+      const refs1 = [[faker.number.int(), faker.person.fullName()]]
+      const refs2 = [[faker.number.int(), faker.person.fullName()]]
       computeRefs.mockResolvedValueOnce(refs1).mockResolvedValueOnce(refs2)
       const models = [
         {
-          id: faker.datatype.number(),
-          name: faker.name.findName(),
-          trackIds: [faker.datatype.number()]
+          id: faker.number.int(),
+          name: faker.person.fullName(),
+          trackIds: [faker.number.int()]
         },
         {
-          id: faker.datatype.number(),
-          name: faker.name.findName(),
-          trackIds: [faker.datatype.number()]
+          id: faker.number.int(),
+          name: faker.person.fullName(),
+          trackIds: [faker.number.int()]
         }
       ]
 
@@ -225,26 +230,26 @@ describe('Abstract track list', () => {
     })
 
     it('updates multipe models with sparse data', async () => {
-      const refs = [[faker.datatype.number(), faker.name.findName()]]
+      const refs = [[faker.number.int(), faker.person.fullName()]]
       computeRefs.mockResolvedValue(refs)
       const originals = [
         {
           id: models[0].id,
           name: models[0].name,
-          media: faker.image.image(),
-          mediaCount: faker.datatype.number({ min: 2, max: 10 }),
+          media: faker.image.url(),
+          mediaCount: faker.number.int({ min: 2, max: 10 }),
           processedEpoch: null,
-          trackIds: [faker.datatype.number()]
+          trackIds: [faker.number.int()]
         },
         {
           id: models[1].id,
           name: models[1].name,
-          removedTrackIds: [faker.datatype.number()]
+          removedTrackIds: [faker.number.int()]
         },
         {
-          id: faker.datatype.number(),
-          name: faker.name.findName(),
-          trackIds: [faker.datatype.number()]
+          id: faker.number.int(),
+          name: faker.person.fullName(),
+          trackIds: [faker.number.int()]
         }
       ]
 
@@ -304,11 +309,11 @@ describe('Abstract track list', () => {
 
     it('updates existing model and appends track ids and refs', async () => {
       const model = merge(models[1], {})
-      model.trackIds = [faker.datatype.number(), faker.datatype.number()]
+      model.trackIds = [faker.number.int(), faker.number.int()]
       delete model.refs
       const refs = [
-        [faker.datatype.number(), faker.name.findName()],
-        [faker.datatype.number(), faker.name.findName()]
+        [faker.number.int(), faker.person.fullName()],
+        [faker.number.int(), faker.person.fullName()]
       ]
       computeRefs.mockResolvedValueOnce(refs)
 
@@ -338,8 +343,8 @@ describe('Abstract track list', () => {
       const model = merge(models[2], {})
       delete model.refs
       model.removedTrackIds = JSON.parse(model.trackIds).slice(1, 2)
-      model.trackIds = [faker.datatype.number()]
-      const refs = [[faker.datatype.number(), faker.name.findName()]]
+      model.trackIds = [faker.number.int()]
+      const refs = [[faker.number.int(), faker.person.fullName()]]
       computeRefs.mockResolvedValueOnce(refs)
 
       const { saved, removedIds } = await tested.save(model)

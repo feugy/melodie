@@ -1,13 +1,13 @@
-'use strict'
+import { describe, expect, it } from 'vitest'
 
-const {
+import {
   difference,
-  uniq,
   differenceRef,
-  uniqRef,
   parseRawRef,
-  parseRawRefArray
-} = require('./collections')
+  parseRawRefArray,
+  uniq,
+  uniqRef
+} from './collections.js'
 
 describe('collection utilities', () => {
   describe('difference()', () => {

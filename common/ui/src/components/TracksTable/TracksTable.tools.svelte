@@ -1,11 +1,12 @@
 <script>
   import { Tool, ToolBox } from '@atelier-wb/svelte'
   import { BehaviorSubject } from 'rxjs'
+
+  import HRefSink from '../../atelier/HRefSink.svelte'
+  import { mockWebsocket } from '../../atelier/utils'
+  import { playlistsData } from '../AddToPlaylist/AddToPlaylist.testdata'
   import TracksTable from './TracksTable.svelte'
   import { tracksData } from './TracksTable.testdata'
-  import { playlistsData } from '../AddToPlaylist/AddToPlaylist.testdata'
-  import { mockWebsocket } from '../../atelier/utils'
-  import HRefSink from '../../atelier/HRefSink.svelte'
 
   const current = new BehaviorSubject(tracksData[3])
 </script>

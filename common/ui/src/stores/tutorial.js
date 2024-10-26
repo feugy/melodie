@@ -1,11 +1,10 @@
-'use strict'
-
-import { tick } from 'svelte'
 import { BehaviorSubject, Subject } from 'rxjs'
+import { tick } from 'svelte'
 import { location, replace } from 'svelte-spa-router'
+
+import { lastInvokation } from '../utils'
 import { albums } from './albums'
 import { tracks } from './track-queue'
-import { lastInvokation } from '../utils'
 
 const steps = [
   {

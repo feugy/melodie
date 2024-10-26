@@ -1,13 +1,14 @@
 <script>
   import { Tool, ToolBox } from '@atelier-wb/svelte'
-  import MediaSelector from './MediaSelector.svelte'
-  import { artistData } from '../Artist/Artist.testdata'
+
   import { mockWebsocket } from '../../atelier/utils'
-  import {
-    artistSuggestionsData,
-    albumSuggestionsData
-  } from './MediaSelector.testdata'
   import { isDesktop } from '../../stores/settings'
+  import { artistData } from '../Artist/Artist.testdata'
+  import MediaSelector from './MediaSelector.svelte'
+  import {
+    albumSuggestionsData,
+    artistSuggestionsData
+  } from './MediaSelector.testdata'
 </script>
 
 <ToolBox

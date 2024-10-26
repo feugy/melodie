@@ -1,7 +1,8 @@
 <script>
   import { Tool } from '@atelier-wb/svelte'
-  import BroadcastButton from './BroadcastButton.svelte'
+
   import { init } from '../../stores/totp'
+  import BroadcastButton from './BroadcastButton.svelte'
 </script>
 
 <Tool

@@ -1,6 +1,6 @@
 <script>
+  import { isShuffling, shuffle, unshuffle } from '../../stores/track-queue'
   import Button from '../Button/Button.svelte'
-  import { isShuffling, unshuffle, shuffle } from '../../stores/track-queue'
 
   function handleShuffle() {
     if ($isShuffling) {
@@ -11,12 +11,17 @@
   }
 </script>
 
-<style lang="postcss">
+<span class:isActive={$isShuffling}>
+  <Button
+    on:click={handleShuffle}
+    icon="i-mdi-shuffle"
+    noBorder
+    data-testid="shuffle-button"
+  />
+</span>
+
+<style>
   .isActive {
     color: var(--hover-color);
   }
 </style>
-
-<span class:isActive={$isShuffling}>
-  <Button on:click={handleShuffle} icon="shuffle" noBorder />
-</span>

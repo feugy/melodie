@@ -1,9 +1,9 @@
-'use strict'
-
-import { screen, render, fireEvent } from '@testing-library/svelte'
+import { fireEvent, render, screen } from '@testing-library/svelte'
 import html from 'svelte-htm'
-import Scrollable from './auto-scrollable.test.svelte'
+import { beforeAll, beforeEach, describe, expect, it, vi } from 'vitest'
+
 import { sleep, texts } from '../../tests'
+import Scrollable from './auto-scrollable.test.svelte'
 
 describe('autoScrollable action', () => {
   const itemHeight = 30
@@ -28,7 +28,7 @@ describe('autoScrollable action', () => {
   })
 
   beforeEach(() => {
-    jest.resetAllMocks()
+    vi.resetAllMocks()
     clientHeight = (texts.length / 3) * itemHeight
     scrollHeight = texts.length * itemHeight
     scrollTop = 0
@@ -38,7 +38,7 @@ describe('autoScrollable action', () => {
     render(html`<${Scrollable} />`)
     const items = screen.queryAllByRole('listitem')
     const list = items[0].closest('ol')
-    list.scrollBy = jest.fn()
+    list.scrollBy = vi.fn()
 
     clientY = clientHeight - 15
     fireEvent.drag(items[10])
@@ -53,7 +53,7 @@ describe('autoScrollable action', () => {
     render(html`<${Scrollable} />`)
     const items = screen.queryAllByRole('listitem')
     const list = items[0].closest('ol')
-    list.scrollBy = jest.fn()
+    list.scrollBy = vi.fn()
 
     clientY = clientHeight - 15
     fireEvent.drag(items[20])
@@ -68,7 +68,7 @@ describe('autoScrollable action', () => {
     render(html`<${Scrollable} />`)
     const items = screen.queryAllByRole('listitem')
     const list = items[0].closest('ol')
-    list.scrollBy = jest.fn()
+    list.scrollBy = vi.fn()
 
     clientY = 15
     fireEvent.drag(items[10])
@@ -82,7 +82,7 @@ describe('autoScrollable action', () => {
     render(html`<${Scrollable} />`)
     const items = screen.queryAllByRole('listitem')
     const list = items[0].closest('ol')
-    list.scrollBy = jest.fn()
+    list.scrollBy = vi.fn()
 
     clientY = 15
     fireEvent.drag(items[0])
@@ -97,7 +97,7 @@ describe('autoScrollable action', () => {
     render(html`<${Scrollable} />`)
     const items = screen.queryAllByRole('listitem')
     const list = items[0].closest('ol')
-    list.scrollBy = jest.fn()
+    list.scrollBy = vi.fn()
 
     clientY = 15
     fireEvent.drag(items[0])
@@ -113,7 +113,7 @@ describe('autoScrollable action', () => {
     render(html`<${Scrollable} />`)
     const items = screen.queryAllByRole('listitem')
     const list = items[0].closest('ol')
-    list.scrollBy = jest.fn()
+    list.scrollBy = vi.fn()
 
     clientY = itemHeight * 5
     fireEvent.drag(items[5])

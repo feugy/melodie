@@ -1,25 +1,25 @@
-'use strict'
-
-import { screen, render, fireEvent, waitFor } from '@testing-library/svelte'
+import { faker } from '@faker-js/faker'
+import { fireEvent, render, screen, waitFor } from '@testing-library/svelte'
 import userEvent from '@testing-library/user-event'
 import { writable } from 'svelte/store'
 import html from 'svelte-htm'
-import faker from 'faker'
-import MediaSelector from './MediaSelector.svelte'
-import { artistData } from '../Artist/Artist.testdata'
-import {
-  artistSuggestionsData,
-  albumSuggestionsData
-} from './MediaSelector.testdata'
-import { invoke } from '../../utils'
+import { afterAll, beforeEach, describe, expect, it, vi } from 'vitest'
+
 import { isDesktop } from '../../stores/settings'
 import { sleep, translate } from '../../tests'
+import { invoke } from '../../utils'
+import { artistData } from '../Artist/Artist.testdata'
+import MediaSelector from './MediaSelector.svelte'
+import {
+  albumSuggestionsData,
+  artistSuggestionsData
+} from './MediaSelector.testdata'
 
-jest.mock('../../stores/track-queue')
+vi.mock('../../stores/track-queue')
 
 describe('MediaSelector component', () => {
   beforeEach(() => {
-    jest.resetAllMocks()
+    vi.resetAllMocks()
     isDesktop.next(true)
   })
 
@@ -38,7 +38,7 @@ describe('MediaSelector component', () => {
 
     expect(screen.queryByText(title)).toBeVisible()
     expect(invoke).toHaveBeenCalledWith('media.findForArtist', artistData.name)
-    expect(invoke).toHaveBeenCalledTimes(1)
+    expect(invoke).toHaveBeenCalledOnce()
     const images = screen.getAllByRole('img')
     for (const { artwork, provider } of artistSuggestionsData) {
       expect(
@@ -71,7 +71,7 @@ describe('MediaSelector component', () => {
       artistData.id,
       artwork
     )
-    expect(invoke).toHaveBeenCalledTimes(1)
+    expect(invoke).toHaveBeenCalledOnce()
     await waitFor(() => expect(screen.queryByText(title)).not.toBeVisible())
   })
 
@@ -131,7 +131,7 @@ describe('MediaSelector component', () => {
       kind: 'file',
       getAsFile: () => ({ path })
     }
-    await fireEvent.drop(screen.queryByText('add_box'), {
+    fireEvent.drop(screen.getByTestId('i-mdi-plus-box'), {
       dataTransfer: { items: [item] }
     })
 

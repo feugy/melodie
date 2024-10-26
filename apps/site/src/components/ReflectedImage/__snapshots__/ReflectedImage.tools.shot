@@ -1,18 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Toolshot components/ReflectedImage/ReflectedImage.tools.svelte: Site components/Reflected image 1`] = `
+exports[`Site components/Reflected image 1`] = `
 <div
-  class="flex svelte-7tdhyv"
+  class="__flex_68igv1_68igv1 s-oULd0thq7khW"
 >
   <div
-    class="svelte-1qdbxso"
+    class="s-WYXjB5GLW6Vo"
     style="--height: 250px; --src: url('images/screenshot-ui-fr.png');"
   >
     <img
       alt=""
-      class="svelte-1qdbxso"
+      class="s-WYXjB5GLW6Vo"
       src="images/screenshot-ui-fr.png"
     />
   </div>
+  <!--&lt;ReflectedImage&gt;-->
 </div>
 `;
