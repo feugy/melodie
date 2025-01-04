@@ -1,9 +1,10 @@
 <script lang="ts">
   import { Button, SortableList, Track } from '$lib/components'
-  import type { Track as TrackModel } from '@melodie/common/models'
+  import type { Agent, Track as TrackModel } from '@melodie/common/models'
   import CloseIcon from 'lucide-svelte/icons/x'
 
   interface TrackQueueProps {
+    agentById: Map<number, Agent>
     current?: TrackModel
     tracks: TrackModel[]
     withClose?: boolean
@@ -12,7 +13,14 @@
     onremove: (index: number) => unknown
   }
 
-  let { current, onmove, onplay, onremove, tracks }: TrackQueueProps = $props()
+  let {
+    agentById,
+    current,
+    onmove,
+    onplay,
+    onremove,
+    tracks,
+  }: TrackQueueProps = $props()
 
   let currentIdx = $derived(current ? tracks.indexOf(current) : null)
   let list: HTMLDivElement | undefined
@@ -37,7 +45,7 @@
         class="content-visibility-auto flex w-full items-center gap-2 px-2"
         onclick={() => onplay(index)}
       >
-        <Track src={item} details class="flex-auto" />
+        <Track {agentById} src={item} details class="flex-auto" />
         <Button
           color="secondary"
           class="mx-2"

@@ -5,8 +5,9 @@ import type { LayoutLoad } from './$types'
 
 injectAnalytics({ mode: dev ? 'development' : 'production' })
 
-export const load: LayoutLoad = async () => {
+export const load: LayoutLoad = async ({ data }) => {
 	if (browser) {
 		await trackQueue.init()
 	}
+	return data
 }

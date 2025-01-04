@@ -18,6 +18,6 @@
 
 <div class="flex flex-wrap gap-x-4 p-4" data-sveltekit-preload-data="false">
   {#each albums as album (album.id)}
-    <Album {album} />
+    <Album agentById={data.agentById} {album} />
   {/each}
 </div>

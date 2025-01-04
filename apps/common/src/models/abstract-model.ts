@@ -23,7 +23,6 @@ let _db: Knex | null = null
  */
 async function connect(conf: DBConf, logger: Logger) {
 	if (!_db) {
-		console.log('>> init db')
 		logger.debug({ conf }, 'initializing database file...')
 		if (conf.kind === 'sqlite3') {
 			await mkdir(dirname(conf.filename), { recursive: true })
@@ -84,7 +83,6 @@ export abstract class AbstractModel<T extends { id: number }> {
 	/** Release database connection (useful during tests). */
 	static async release() {
 		if (_db) {
-			console.log('>> release db')
 			await _db.destroy()
 			_db = null
 		}

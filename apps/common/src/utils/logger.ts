@@ -100,7 +100,6 @@ export function getLogger(name = 'core', lvl: Level | undefined = undefined) {
 		if (!levelSpecs) {
 			levelSpecs = readLevels()
 		}
-		console.log('NODE_ENV', process.env.NODE_ENV)
 		const level = lvl || computeLevel(name, levelSpecs) || computeDefaultLevel()
 		if (!root) {
 			root = pino({

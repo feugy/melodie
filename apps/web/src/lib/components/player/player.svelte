@@ -1,5 +1,6 @@
 <script module lang="ts">
   export interface PlayerProps {
+    agentById: Map<number, Agent>
     track?: TrackModel
     onnext: (autoplay?: boolean) => unknown
     onprevious: () => unknown
@@ -11,19 +12,18 @@
   import Play from 'lucide-svelte/icons/play'
   import Previous from 'lucide-svelte/icons/skip-back'
   import Next from 'lucide-svelte/icons/skip-forward'
+  import { getData } from '$lib/client'
   import { Button, Track } from '$lib/components'
-  import type { Track as TrackModel } from '@melodie/common/models'
+  import type { Track as TrackModel, Agent } from '@melodie/common/models'
 
-  let { track, onnext, onprevious }: PlayerProps = $props()
+  let { agentById, track, onnext, onprevious }: PlayerProps = $props()
 
   let time = $state(0)
   let duration = $state(0)
   let paused = $state(true)
   let progress: HTMLDivElement | null
 
-  const src = $derived(
-    track ? `/api/${track.agentId}/tracks/${track.id}/data` : null
-  )
+  const src = $derived(getData(track, agentById))
 
   $effect(() => {
     // reset player when src is unset
@@ -92,7 +92,7 @@
     onended={handleEnded}
   ></audio>
 
-  <Track src={track} />
+  <Track {agentById} src={track} />
 
   <div class="flex flex-1 flex-col items-center gap-2">
     <div class="flex items-center gap-2">

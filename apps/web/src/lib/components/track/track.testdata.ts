@@ -24,5 +24,3 @@ export const trackData: Track = addId({
 	albumRef: makeRef(album),
 	artistRefs: artists.map(makeRef)
 })
-
-console.log(trackData)

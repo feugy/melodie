@@ -5,10 +5,11 @@
   import Trash from 'lucide-svelte/icons/trash'
   import type { Snippet } from 'svelte'
   import { t } from 'svelte-intl-precompile'
+  import type { LayoutData } from './$types'
 
   let length = $derived(trackQueue.content.length)
 
-  let { children }: { children: Snippet } = $props()
+  let { data, children }: { data: LayoutData; children: Snippet } = $props()
 </script>
 
 <div class="flex h-screen flex-col overflow-hidden">
@@ -27,6 +28,7 @@
         {/if}
       </Heading>
       <TrackQueue
+        agentById={data.agentById}
         tracks={trackQueue.content}
         current={trackQueue.current}
         onremove={trackQueue.removeAt.bind(trackQueue)}
@@ -37,6 +39,7 @@
   </div>
   <footer class="bg-surface-50 p-2">
     <Player
+      agentById={data.agentById}
       track={trackQueue.current}
       onnext={trackQueue.playNext.bind(trackQueue)}
       onprevious={trackQueue.playPrevious.bind(trackQueue)}

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { trackQueue } from '$lib/client'
+  import { getImage, trackQueue } from '$lib/client'
   import { DisksList, Heading, Image } from '$lib/components'
   import type { PageData } from './$types'
 
@@ -17,7 +17,7 @@
     brokenIcon="music"
     height={400}
     layout="fixed"
-    src="/api/{album.agentId}/albums/{album.id}/media/{album.mediaCount}"
+    src={getImage(album, data.agentById)}
     width={400}
   />
   <DisksList {tracks} hideAlbum onclick={(_, track) => trackQueue.add(track)} />

@@ -1,14 +1,17 @@
 <script lang="ts">
+  import { getImage } from '$lib/client'
   import { Image } from '$lib/components'
-  import type { Album } from '@melodie/common/models'
-  import type { PartialWithReq } from '@melodie/common/types'
+  import type { LightAlbum } from '$lib/types'
+  import type { Agent } from '@melodie/common/models'
   import { locale, t } from 'svelte-intl-precompile'
 
   let {
+    agentById,
     album,
     size = 250,
   }: {
-    album: PartialWithReq<Album, 'id' | 'name' | 'refs'>
+    agentById: Map<number, Agent>
+    album: LightAlbum
     size?: number
   } = $props()
 </script>
@@ -23,7 +26,7 @@
       brokenIcon="music"
       height={size}
       layout="fixed"
-      src="/api/{album.agentId}/albums/{album.id}/media/{album.mediaCount}"
+      src={getImage(album, agentById)}
       width={size}
     /></a
   >

@@ -1,10 +1,12 @@
 <script module lang="ts">
+  import { getImage } from '$lib/client'
   import { Image } from '$lib/components'
   import { formatTime, linkTo, wrapWithLink } from '$lib/utils'
-  import type { Track } from '@melodie/common/models'
+  import type { Agent, Track } from '@melodie/common/models'
   import type { Tags } from '@melodie/common/types'
 
   export interface TrackProps {
+    agentById: Map<number, Agent>
     src?: Track
     details?: boolean
     class?: string
@@ -14,6 +16,7 @@
 
 <script lang="ts">
   let {
+    agentById,
     src,
     details = false,
     class: className = '',
@@ -22,11 +25,7 @@
 
   let tags: Partial<Tags> = $derived(src?.tags ?? {})
 
-  let cover = $derived(
-    src
-      ? `/api/${src.agentId}/tracks/${src.id}/media/${src.mediaCount}`
-      : undefined
-  )
+  let cover = $derived(getImage(src, agentById))
 </script>
 
 <button
