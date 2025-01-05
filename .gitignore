@@ -9,6 +9,7 @@ build
 dev-dist
 optimized-images
 tmp/
+ssl/
 
 # OS
 .DS_Store

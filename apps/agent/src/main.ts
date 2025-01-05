@@ -4,16 +4,15 @@ import { getLogger } from '@melodie/common/utils'
 import { configurationService } from './services/configuration.ts'
 
 async function main() {
-	const { host, port, folders, database, imageFolder } =
-		await configurationService.read()
+	const conf = await configurationService.read()
+	const { folders, database } = conf
+
 	// creates logger after	configurations are loaded
 	const logger = getLogger('main')
 	logger.info(
 		{
 			conf: {
-				host,
-				port,
-				folders,
+				...conf,
 				database: {
 					...database,
 					password: 'password' in database ? '_redacted_' : undefined
@@ -28,7 +27,7 @@ async function main() {
 	const { assetsService } = await import('./services/assets.ts')
 
 	await init(database)
-	const base = await assetsService.start({ host, port, imageFolder })
+	const base = await assetsService.start(conf)
 
 	const stop = async (signalOrError?: string | Error) => {
 		const error = typeof signalOrError === 'string' ? undefined : signalOrError

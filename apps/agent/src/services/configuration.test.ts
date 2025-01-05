@@ -70,6 +70,18 @@ describe('configuration service', () => {
 		{
 			conf: { PORT: '-3' },
 			error: ' PORT env variable must be a positive integer'
+		},
+		{
+			conf: { SSL_KEY: './private-key.pem' },
+			error: ' SSL_CERT env variable is required'
+		},
+		{
+			conf: { SSL_CERT: './private-key.pem' },
+			error: ' SSL_KEY env variable is required'
+		},
+		{
+			conf: { SSL_KEY: './unknown.pem', SSL_CERT: './private-key.pem' },
+			error: ' SSL_KEY is not a readable file, SSL_CERT is not a readable file'
 		}
 	])('throws on invalid conf: $conf', async ({ conf, error }) => {
 		process.env = {
@@ -147,6 +159,27 @@ describe('configuration service', () => {
 			imageFolder: validConf.IMAGE_FOLDER,
 			folders: [validConf.FOLDERS],
 			database: { kind: 'sqlite3', filename }
+		})
+	})
+
+	it('returns complete valid configuration with ssl', async () => {
+		const filename = faker.system.filePath()
+		const host = faker.internet.domainName()
+		process.env = {
+			...validConf,
+			HOST: host,
+			DB: 'sqlite3',
+			DB_FILENAME: filename,
+			SSL_KEY: 'package.json',
+			SSL_CERT: 'tsconfig.json'
+		}
+		expect(await service.read()).toEqual({
+			host,
+			port: Number.parseInt(validConf.PORT),
+			imageFolder: validConf.IMAGE_FOLDER,
+			folders: [validConf.FOLDERS],
+			database: { kind: 'sqlite3', filename },
+			ssl: { cert: 'tsconfig.json', key: 'package.json' }
 		})
 	})
 })

@@ -1,4 +1,4 @@
-import { access, mkdir } from 'node:fs/promises'
+import { access, mkdir, readFile } from 'node:fs/promises'
 import type { AddressInfo } from 'node:net'
 import { basename, dirname, join, resolve } from 'node:path'
 import compressPlugin from '@fastify/compress'
@@ -11,10 +11,17 @@ import {
 	tracksModel
 } from '@melodie/common/models'
 import { type Logger, getLogger } from '@melodie/common/utils'
-import { type FastifyBaseLogger, type FastifyInstance, fastify } from 'fastify'
+import type {
+	FastifyBaseLogger,
+	FastifyInstance,
+	FastifyHttpOptions,
+	FastifyHttpsOptions
+} from 'fastify'
+import { fastify } from 'fastify'
 import ms from 'ms'
 import { publicIpv4 } from 'public-ip'
 import sharp from 'sharp'
+import type { Configuration } from './configuration.ts'
 
 interface DesiredImage {
 	width: number
@@ -37,25 +44,36 @@ export class AssetsService {
 	async start({
 		host = 'localhost',
 		port,
-		imageFolder
-	}: { host?: string; port: number; imageFolder: string }) {
+		imageFolder,
+		ssl
+	}: Pick<Configuration, 'host' | 'port' | 'imageFolder' | 'ssl'>) {
 		this.imageFolder = imageFolder
 		await mkdir(imageFolder, { recursive: true })
-		await this._configureServer()
+		await this._configureServer(ssl)
 		await this.server?.listen({ port, host })
 		const { address } = this.server?.server.address() as AddressInfo
-		return `http://${address === '0.0.0.0' ? `${await publicIpv4()}` : address}:${port}`
+		const url = `http${ssl ? 's' : ''}://${address === '0.0.0.0' ? `${await publicIpv4()}` : address}:${port}`
+		this.logger.info({ host, url }, 'server started')
+		return url
 	}
 
 	async stop() {
 		await this.server?.close()
 	}
 
-	async _configureServer() {
-		this.server = fastify({
+	async _configureServer(ssl: Configuration['ssl']) {
+		this.logger.debug({ ssl }, 'configure server')
+		const conf: Record<string, unknown> = {
 			loggerInstance: this.logger as FastifyBaseLogger,
 			disableRequestLogging: true
-		})
+		}
+		if (ssl) {
+			conf.https = {
+				key: await readFile(ssl.key),
+				cert: await readFile(ssl.cert)
+			}
+		}
+		this.server = fastify(conf)
 		this.server.register(corsPlugin, { origin: '*' })
 		this.server.register(compressPlugin)
 		this.server.register(staticPlugin, {

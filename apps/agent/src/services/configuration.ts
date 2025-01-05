@@ -5,12 +5,35 @@ import {
 	getLogger
 } from '@melodie/common/utils'
 import v, { errors } from '@vinejs/vine'
-import type { Infer } from '@vinejs/vine/types'
+import type { FieldContext, Infer } from '@vinejs/vine/types'
 import { config } from 'dotenv-flow'
+import { access } from 'node:fs/promises'
+
+const isFile = v.createRule(async function file(
+	value: unknown,
+	_: undefined,
+	field: FieldContext
+) {
+	if (typeof value !== 'string') return
+	if (
+		!(await access(value).then(
+			() => true,
+			() => false
+		))
+	) {
+		field.report('{{ field }} is not a readable file', 'file', field)
+	}
+})
 
 const configurationSchema = v.object({
 	port: v.number().positive().withoutDecimals(),
 	host: v.string().optional(),
+	ssl: v
+		.object({
+			key: v.string().use(isFile()),
+			cert: v.string().use(isFile())
+		})
+		.optional(),
 	folders: v.array(v.string().minLength(3)).minLength(1),
 	imageFolder: v.string(),
 	database: dbConfSchema
@@ -33,12 +56,15 @@ export class ConfigurationService {
 		const dbKind = process.env.DB
 
 		try {
+			const key = process.env.SSL_KEY
+			const cert = process.env.SSL_CERT
 			return await validator.validate(
 				{
 					folders: process.env.FOLDERS?.split(',') ?? [],
 					imageFolder: process.env.IMAGE_FOLDER,
 					port: process.env.PORT,
 					host: process.env.HOST ?? 'localhost',
+					ssl: key || cert ? { key, cert } : undefined,
 					database:
 						dbKind === 'sqlite3'
 							? {
@@ -65,7 +91,9 @@ export class ConfigurationService {
 						'database.port': 'DB_PORT',
 						'database.user': 'DB_USER',
 						'database.password': 'DB_PASSWORD',
-						'database.database': 'DB_DATABASE'
+						'database.database': 'DB_DATABASE',
+						'ssl.key': 'SSL_KEY',
+						'ssl.cert': 'SSL_CERT'
 					})
 				}
 			)
