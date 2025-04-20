@@ -89,6 +89,7 @@ describe('configuration service', () => {
 			DB_PASSWORD: undefined,
 			DB_USER: undefined,
 			DB_DATABASE: undefined,
+			DB_FILENAME: undefined,
 			HOST: undefined,
 			...conf
 		}

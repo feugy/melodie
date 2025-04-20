@@ -69,6 +69,9 @@ export class TagsService {
 				const [, num, artist, title] = match
 				tags.title = tags.title ?? title?.trim()
 				tags.artist = tags.artist ?? artist?.trim()
+				if (tags.artist && !tags.artists.includes(tags.artist)) {
+					tags.artists.push(tags.artist)
+				}
 				if (!(tags as unknown as ICommonTagsResult).track?.no && !!num) {
 					tags.track = {
 						no: Number.parseInt(num),
