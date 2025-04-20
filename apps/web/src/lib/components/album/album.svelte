@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { base } from '$app/paths'
   import { getImage } from '$lib/client'
   import { Image } from '$lib/components'
   import type { LightAlbum } from '$lib/types'
@@ -20,7 +21,7 @@
   class="content-visibility-auto inline-block text-[0]"
   style="width: {size}px;"
 >
-  <a class="text-secondary-500" href="/{$locale}/albums/{album.id}"
+  <a class="text-secondary-500" href="{base}/{$locale}/albums/{album.id}"
     ><Image
       alt="Album cover for {album.name}"
       brokenIcon="music"

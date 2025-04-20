@@ -1,3 +1,4 @@
+import { base } from '$app/paths'
 import type { Track } from '@melodie/common/models'
 import localforage from 'localforage'
 import type { POSTGetTracksResponse } from '../../routes/api/get-tracks/+server'
@@ -23,8 +24,11 @@ class TrackQueue {
 				index !== null && index >= 0 && index < this.content.length ? index : 0
 			]
 		if (checkServer) {
-			const response = await fetch('/api/get-tracks', {
+			const response = await fetch(`${base}/api/get-tracks`, {
 				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
 				body: JSON.stringify({ ids: this.content.map(({ id }) => id) })
 			})
 			const { data, total } = (await response.json()) as POSTGetTracksResponse

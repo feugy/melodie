@@ -5,7 +5,7 @@ import type { Track } from '@melodie/common/models'
 import { addRefs } from '@melodie/common/tests'
 import { render, screen } from '@testing-library/svelte'
 import userEvent from '@testing-library/user-event'
-import { beforeAll, beforeEach, describe, expect, it, vi } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 import SortableList from './sortable-list.test.svelte'
 
 describe('SortableList component', () => {

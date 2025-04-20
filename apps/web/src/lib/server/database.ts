@@ -9,7 +9,7 @@ export class Database {
 		if (this.initialized) return
 
 		const conf: DBConf = await configurationService.read()
-		await init(conf)
+		await init(conf, false)
 		this.initialized = true
 	}
 }

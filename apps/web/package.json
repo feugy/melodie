@@ -17,6 +17,9 @@
 		"preview": "vite preview",
 		"test": "pnpm dev:test --run"
 	},
+	"exports": {
+		".": "./build/handler.js"
+	},
 	"devDependencies": {
 		"@faker-js/faker": "^9.3.0",
 		"@melodie/common": "workspace:*",
@@ -33,7 +36,6 @@
 		"@storybook/sveltekit": "^8.4.7",
 		"@storybook/test": "^8.4.7",
 		"@sveltejs/adapter-node": "^5.2.11",
-		"@sveltejs/adapter-vercel": "^5.5.2",
 		"@sveltejs/enhanced-img": "^0.4.4",
 		"@sveltejs/kit": "^2.13.0",
 		"@sveltejs/vite-plugin-svelte": "^4.0.1",
@@ -45,7 +47,6 @@
 		"@types/xxhashjs": "^0.2.4",
 		"@unpic/core": "^0.1.0",
 		"@unpic/svelte": "^0.0.57",
-		"@vercel/analytics": "^1.4.1",
 		"@vinejs/vine": "^3.0.0",
 		"@vite-pwa/assets-generator": "^0.2.6",
 		"@vite-pwa/sveltekit": "^0.6.6",

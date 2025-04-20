@@ -1,3 +1,4 @@
+import { base } from '$app/paths'
 import { faker } from '@faker-js/faker'
 import type { Reference } from '@melodie/common/utils'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
@@ -17,7 +18,7 @@ describe('link utilities', () => {
 		for (const [i, [id, name]] of refs.entries()) {
 			expect(results[i]).toEqual(`<a
     onclick="event.stopPropagation()"
-    href="/${kind}s/${id}"
+    href="${base}/${kind}s/${id}"
     class="underlined">${name}</a>`)
 		}
 	})
@@ -29,7 +30,7 @@ describe('link utilities', () => {
 		for (const [i, [id]] of refs.entries()) {
 			expect(results[i]).toEqual(`<a
     onclick="event.stopPropagation()"
-    href="/${kind}s/${id}"
+    href="${base}/${kind}s/${id}"
     class="underlined">${translate('unknown')}</a>`)
 		}
 	})
@@ -43,7 +44,7 @@ describe('link utilities', () => {
 		for (const [i, [id, name]] of refs.entries()) {
 			expect(results[i]).toEqual(`<a
     onclick="event.stopPropagation()"
-    href="/${kind}s/${id}"
+    href="${base}/${kind}s/${id}"
     class="${className} underlined">${name}</a>`)
 		}
 	})

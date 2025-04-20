@@ -1,3 +1,4 @@
+import { base } from '$app/paths'
 import { faker } from '@faker-js/faker'
 import { describe, expect, it } from 'vitest'
 import type { PageLoadEvent } from './$types'
@@ -12,7 +13,20 @@ describe('universal load()', () => {
 		} as unknown as PageLoadEvent)
 
 		await expect(promise).rejects.toEqual({
-			location: `/${locale}/albums`,
+			location: `${base}/${locale}/albums`,
+			status: 308
+		})
+	})
+
+	it('redirects /base on to album list', async () => {
+		const locale = faker.helpers.arrayElement(['fr', 'en'])
+		const promise = load({
+			route: { id: base },
+			params: { locale }
+		} as unknown as PageLoadEvent)
+
+		await expect(promise).rejects.toEqual({
+			location: `${base}/${locale}/albums`,
 			status: 308
 		})
 	})
@@ -24,7 +38,7 @@ describe('universal load()', () => {
 		} as unknown as PageLoadEvent)
 
 		await expect(promise).rejects.toEqual({
-			location: '/fr/albums',
+			location: `${base}/fr/albums`,
 			status: 308
 		})
 	})

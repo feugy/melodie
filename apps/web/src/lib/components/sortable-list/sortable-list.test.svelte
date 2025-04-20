@@ -1,8 +1,9 @@
 <script lang="ts">
   import { SortableList, type SortableListProps, Track } from '$lib/components'
-  import type { Track as FullTrack } from '@melodie/common/models'
+  import type { Agent, Track as FullTrack } from '@melodie/common/models'
 
   type T = Pick<FullTrack, 'id' | 'tags'>
+  const agentById = new Map<number, Agent>()
 
   let props: Omit<SortableListProps<T>, 'item'> & {
     onclick?: (item: T, index: number) => unknown
@@ -17,6 +18,7 @@
     onclick={() => props.onclick?.(item, index)}
   >
     <span>#{index + 1}</span><Track
+      {agentById}
       src={item as FullTrack}
       details
       class="col-span-11"
@@ -24,4 +26,4 @@
   </button>
 {/snippet}
 
-<SortableList {...props} {item} />
+<SortableList {item} {...props} />

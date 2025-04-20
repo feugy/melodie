@@ -1,9 +1,10 @@
 import { browser } from '$app/environment'
+import { base } from '$app/paths'
 import type { GETAlbumsResponse } from '../../../api/albums/+server'
 import type { PageLoad } from './$types'
 
 async function loadAlbum(fetch: typeof global.fetch) {
-	const response = await fetch('/api/albums')
+	const response = await fetch(`${base}/api/albums`)
 	return response.json() as Promise<GETAlbumsResponse>
 }
 

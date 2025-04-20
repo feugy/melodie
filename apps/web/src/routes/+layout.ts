@@ -1,9 +1,6 @@
-import { injectAnalytics } from '@vercel/analytics/sveltekit'
-import { browser, dev } from '$app/environment'
+import { browser } from '$app/environment'
 import { trackQueue } from '$lib/client'
 import type { LayoutLoad } from './$types'
-
-injectAnalytics({ mode: dev ? 'development' : 'production' })
 
 export const load: LayoutLoad = async ({ data }) => {
 	if (browser) {

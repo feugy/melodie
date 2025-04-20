@@ -1,4 +1,5 @@
 import * as env from '$app/environment'
+import { base } from '$app/paths'
 import { faker } from '@faker-js/faker'
 import type { Agent, Album } from '@melodie/common/models'
 import { addId } from '@melodie/common/tests'
@@ -73,7 +74,7 @@ describe('universal load()', () => {
 			...data,
 			albums: expect.any(Promise)
 		})
-		expect(fetch).toHaveBeenCalledWith('/api/albums')
+		expect(fetch).toHaveBeenCalledWith(`${base}/api/albums`)
 		expect(fetch).toHaveBeenCalledOnce()
 
 		expect(await (response as Record<string, unknown>).albums).toEqual(albums)
