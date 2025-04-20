@@ -19,10 +19,10 @@ export type {
 }
 
 /** Initializes all model classes. */
-export async function init(conf: DBConf) {
-	await agentsModel.init(conf)
-	await albumsModel.init(conf)
-	await artistsModel.init(conf)
-	await tracksModel.init(conf)
-	await playlistsModel.init(conf)
+export async function init(conf: DBConf, migrate = true) {
+	await agentsModel.init(conf, migrate)
+	await albumsModel.init(conf, false)
+	await artistsModel.init(conf, false)
+	await tracksModel.init(conf, false)
+	await playlistsModel.init(conf, false)
 }

@@ -19,9 +19,10 @@ let _db: Knex | null = null
  * storing database conneciton as a global variable.
  * @param conf Knex database configuration
  * @param logger Logger used
+ * @param migrate If true, applies migrations to latest version
  * @see http://knexjs.org
  */
-async function connect(conf: DBConf, logger: Logger) {
+async function connect(conf: DBConf, logger: Logger, migrate: boolean) {
 	if (!_db) {
 		logger.debug({ conf }, 'initializing database file...')
 		if (conf.kind === 'sqlite3') {
@@ -46,8 +47,10 @@ async function connect(conf: DBConf, logger: Logger) {
 				debug: logger.debug.bind(logger)
 			}
 		})
-		// logger.debug({ conf }, 'migrating to latest...')
-		// await _db.migrate.latest()
+		if (migrate) {
+			logger.debug({ conf }, 'migrating to latest...')
+			await _db.migrate.latest()
+		}
 		const version = await _db.migrate.currentVersion()
 		logger.info(
 			{ conf, version },
@@ -106,14 +109,15 @@ export abstract class AbstractModel<T extends { id: number }> {
 	/**
 	 * Connects to SQLite database, getting a database connection and applying migrations if needed.
 	 * @param configuration Knex configuration to the database.
+	 * @param migrate If true, applies migrations to latest version
 	 */
-	async init(configuration?: DBConf) {
+	async init(configuration?: DBConf, migrate = true) {
 		if (!configuration) {
 			throw new Error(
 				`${this.name} model must be initialized with a database configuration`
 			)
 		}
-		this.db = await connect(configuration, this.logger)
+		this.db = await connect(configuration, this.logger, migrate)
 		this.logger.debug(
 			{ configuration, name: this.name },
 			`${this.name} model connected to database`

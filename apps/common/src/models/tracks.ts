@@ -39,7 +39,7 @@ export class TracksModel extends AbstractModel<Track> {
 	}
 
 	/** Extends inherited to support database-specific search column. */
-	async init(configuration?: DBConf) {
+	async init(configuration?: DBConf, migrate = true) {
 		await super.init(configuration)
 		this.searchCol =
 			(this.dbKind === 'pg' && this.db?.raw(`tags ->> 'title'`)) ||
