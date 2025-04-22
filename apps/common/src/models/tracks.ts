@@ -1,8 +1,8 @@
-import type { Knex } from 'knex'
 import type { DBConf, PartialWithReq, Tags } from '../types.ts'
 import { hash } from '../utils/hash.ts'
 import type { Reference } from '../utils/refs.ts'
-import { AbstractModel } from './abstract-model.ts'
+import { buildUpsert, whereIn } from '../utils/sqlite.ts'
+import { AbstractModel, searchPlaceholder } from './abstract-model.ts'
 
 export interface Track {
 	/** inode of the track file. */
@@ -12,13 +12,13 @@ export interface Track {
 	/** full path to the track file. */
 	path: string
 	/** full path to the media file for this track. */
-	media?: string
+	media: string | null
 	/** count incremented on every media change. */
 	mediaCount: number
 	/** media metadatas. */
 	tags: Tags
 	/** references to the track's artists. */
-	artistRefs: Reference[]
+	artistRefs: Reference[] | null
 	/** reference to the track's album. */
 	albumRef: Reference | null
 	/** agent monitoring this track */
@@ -38,21 +38,12 @@ export class TracksModel extends AbstractModel<Track> {
 		})
 	}
 
-	/** Extends inherited to support database-specific search column. */
-	async init(configuration?: DBConf, migrate = true) {
-		await super.init(configuration)
-		this.searchCol =
-			(this.dbKind === 'pg' && this.db?.raw(`tags ->> 'title'`)) ||
-			'title.value'
-	}
-
 	/** Lists model ids and modification time, for comparison purposes, without pagination. */
 	async listWithTime() {
 		const result = new Map<number, number>()
-		for (const { id, mtimeMs } of (await this.db?.(this.name).select(
-			'id',
-			'mtimeMs'
-		)) ?? []) {
+		for (const { id, mtimeMs } of this.db
+			?.query<Track, null>(`SELECT id, mtimeMs FROM ${this.name}`)
+			.all(null) ?? []) {
 			result.set(id, mtimeMs)
 		}
 		this.logger.debug({ hitCount: result.size }, 'list with time')
@@ -66,11 +57,13 @@ export class TracksModel extends AbstractModel<Track> {
 	 */
 	async getByPaths(paths: string[]) {
 		if (!this.db) return []
-		const query = this.db(this.name)
-		for (const path of paths) {
-			query.orWhere('path', 'like', `${path}%`)
-		}
-		const results = (await query.select()).map(this.makeDeserializer())
+
+		const query = `SELECT * FROM ${this.name} WHERE ${paths.map(() => 'path like ?').join(' OR ')}`
+		const params = paths.map(path => `${path}%`)
+		const results = this.db
+			.query<Track, string[]>(query)
+			.all(...params)
+			.map(this.makeDeserializer())
 		this.logger.debug({ paths, hitCount: results.length }, 'fetch by paths')
 		return results
 	}
@@ -86,8 +79,12 @@ export class TracksModel extends AbstractModel<Track> {
 		data:
 			| PartialWithReq<Track, 'id' | 'tags'>
 			| PartialWithReq<Track, 'id' | 'tags'>[]
-	) {
-		if (!this.db) throw new Error('model not initialized')
+	): Promise<
+		{
+			current: Track
+			previous: Pick<Track, 'id' | 'artistRefs' | 'albumRef' | 'tags'> | null
+		}[]
+	> {
 		const input = Array.isArray(data) ? data : [data]
 		this.logger.debug({ data: input }, 'saving')
 		const serialize = this.makeSerializer()
@@ -111,14 +108,17 @@ export class TracksModel extends AbstractModel<Track> {
 					: [[1, null]]
 			} as Track
 		})
-		return this.db.transaction(async trx => {
-			const old = await trx(this.name)
-				.select('id', 'artistRefs', 'albumRef', 'tags')
-				.whereIn(
-					'id',
-					saved.map(({ id }) => id)
+		return this.db?.transaction(() => {
+			if (!this.db) throw new Error('model not initialized')
+			const old = this.db
+				.query<Track, number[]>(
+					`SELECT id, artistRefs, albumRef, tags FROM ${this.name} WHERE ${whereIn('id', saved)}`
 				)
-			await trx(this.name).insert(saved.map(serialize)).onConflict('id').merge()
+				.all(...saved.map(({ id }) => id))
+			const upsert = this.db.prepare(buildUpsert(this.name, saved))
+			for (const model of saved) {
+				upsert.run(serialize(model) as unknown as null)
+			}
 			return saved.map(current => {
 				const previous = old.find(({ id }) => id === current.id)
 				return {
@@ -126,35 +126,25 @@ export class TracksModel extends AbstractModel<Track> {
 					previous: previous ? deserialize(previous) : null
 				}
 			})
-		})
+		})()
 	}
 
 	/**
 	 * Implementes search with tags' titles
-	 * @param {QueryBuilder} query - Knex query builder to customize
-	 * @param {string} searched - searched text
-	 * @returns {QueryBuilder} customized Knex query builder
+	 * @param  query - query to customize
+	 * @param searched - searched text
+	 * @returns customized query
 	 */
-	protected enrichForSearch(query: Knex.QueryBuilder, searched: string) {
-		if (this.dbKind === 'pg') {
-			return query.whereILike(this.searchCol as string, `%${searched}%`)
-		}
-		return query
-			.select(`${this.name}.*`)
-			.joinRaw(`, json_each(tags, '$.title') as title`)
-			.where(this.searchCol as string, 'like', `%${searched.toLowerCase()}%`)
-	}
-
-	/* Extends parent serializer to remove default nulls and apply default values.  */
-	protected makeDeserializer() {
-		const deserialize = super.makeDeserializer()
-		return (input: Track) => {
-			const result = deserialize(input)
-			// Knex does not apply default values
-			result.mediaCount = result.mediaCount ?? 1
-			result.media = result.media ?? undefined
-			return result
-		}
+	protected enrichForSearch(query: string, searched: string) {
+		return searched?.length
+			? query
+					.replace('SELECT *', `SELECT ${this.name}.*`)
+					.replace(
+						`FROM ${this.name}`,
+						`FROM ${this.name}, json_each(tags, '$.title') as title`
+					)
+					.replace(searchPlaceholder, `AND ${this.searchCol} LIKE :searched`)
+			: query
 	}
 }
 

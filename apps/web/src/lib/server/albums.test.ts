@@ -1,8 +1,8 @@
+import { afterAll, beforeAll, describe, expect, it } from 'bun:test'
 import { faker } from '@faker-js/faker'
 import { type Album, albumsModel, init } from '@melodie/common/models'
 import { addId, cleanTestTB, initTestDB } from '@melodie/common/tests'
 import type { DBConf } from '@melodie/common/types'
-import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 import { listAlbums } from './albums'
 
 describe('albums server utils', () => {
@@ -13,6 +13,7 @@ describe('albums server utils', () => {
 			name: faker.music.album(),
 			mtimeMs: faker.date.recent().getTime(),
 			agentId: faker.number.int(),
+			media: null,
 			mediaCount: 0,
 			trackIds: [faker.number.int()],
 			refs: []
@@ -21,6 +22,7 @@ describe('albums server utils', () => {
 			name: faker.music.album(),
 			mtimeMs: faker.date.recent().getTime(),
 			agentId: null,
+			media: null,
 			mediaCount: 0,
 			trackIds: [faker.number.int(), faker.number.int()],
 			refs: []
@@ -39,7 +41,7 @@ describe('albums server utils', () => {
 		.sort((a, b) => a.name.localeCompare(b.name))
 
 	beforeAll(async () => {
-		conf = await initTestDB()
+		;({ conf } = await initTestDB())
 		await init(conf)
 		await albumsModel.save(albums)
 	})

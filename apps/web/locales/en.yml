@@ -6,7 +6,9 @@ artist: Artist
 by _: by {artist}
 disk _: "Disk #{num}"
 duration: Duration
+enqueue: Enqueue all
 hours_minutes: "{hours, plural, =0 { } =1 {1 hour} other {# hours}} {minutes, plural, =0 { } =1 {1 minute} other {# minutes}}"
 none: None
+play all: Play all
 track: Track
 unknown: Unknown

@@ -1,0 +1,42 @@
+{
+	"name": "server",
+	"description": "Server which watches local folders and host the Web UI",
+	"version": "3.0.0",
+	"type": "module",
+	"private": true,
+	"scripts": {
+		"build": "bun build --compile ./src/main.ts ./src/worker.ts --outfile=../../build/melodie --define Bun.env.NODE_ENV=\"'production'\"",
+		"check": "tsc --noEmit",
+		"dev": "bun test --watch",
+		"start": "bun --hot --cwd src main.ts -- -c ../../../build/.melodie"
+	},
+	"dependencies": {
+		"@fastify/compress": "^8.0.1",
+		"@fastify/cors": "^10.0.1",
+		"@fastify/static": "^8.0.3",
+		"@repeaterjs/repeater": "^3.0.6",
+		"@vinejs/vine": "^3.0.0",
+		"acme-client": "^5.4.0",
+		"chokidar": "^4.0.3",
+		"fastify": "^5.2.0",
+		"ipx": "^3.0.1",
+		"klaw": "^4.1.0",
+		"mime-type": "^5.0.0",
+		"ms": "3.0.0-canary.1",
+		"music-metadata": "^10.6.5",
+		"open": "^10.1.2",
+		"ora": "^8.2.0",
+		"public-ip": "^7.0.1",
+		"sharp": "0.33.5",
+		"web": "workspace:*"
+	},
+	"devDependencies": {
+		"@faker-js/faker": "^9.3.0",
+		"@melodie/common": "workspace:^",
+		"@types/klaw": "^3.0.6",
+		"@types/ms": "^0.7.34"
+	},
+	"engines": {
+		"bun": ">=1.2"
+	}
+}

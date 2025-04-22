@@ -14,27 +14,20 @@
 	},
 	"scripts": {
 		"check": "tsc --noEmit",
-		"dev": "vitest",
-		"start": "NODE_NO_WARNINGS=1 node --experimental-strip-types src/main.ts",
-		"test": "vitest --run"
+		"dev": "bun test --watch"
 	},
 	"dependencies": {
 		"@vinejs/vine": "^3.0.0",
 		"js-xxhash": "^4.0.0",
-		"knex": "^3.1.0",
 		"ms": "3.0.0-canary.1",
-		"pg": "^8.13.1",
 		"pino": "^9.5.0",
-		"pino-pretty": "^13.0.0",
-		"sqlite3": "^5.1.7"
+		"pino-pretty": "^13.0.0"
 	},
 	"devDependencies": {
 		"@faker-js/faker": "^9.3.0",
-		"@types/ms": "^0.7.34",
-		"@types/pg": "^8.11.10",
-		"vitest": "^2.1.8"
+		"@types/ms": "^0.7.34"
 	},
 	"engines": {
-		"node": ">=22"
+		"bun": ">=1.2"
 	}
 }

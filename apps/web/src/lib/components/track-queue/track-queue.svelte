@@ -5,7 +5,7 @@
 
   interface TrackQueueProps {
     agentById: Map<number, Agent>
-    current?: TrackModel
+    currentIdx: number | null
     tracks: TrackModel[]
     withClose?: boolean
     onmove: (args: { from: number; to: number }) => unknown
@@ -15,14 +15,13 @@
 
   let {
     agentById,
-    current,
+    currentIdx,
     onmove,
     onplay,
     onremove,
     tracks,
   }: TrackQueueProps = $props()
 
-  let currentIdx = $derived(current ? tracks.indexOf(current) : null)
   let list: HTMLDivElement | undefined
 
   $effect(() => {
@@ -40,7 +39,7 @@
     {#snippet item({ item, index }: { item: TrackModel; index: number })}
       {@const isCurrent = index === currentIdx}
       <button
-        class:preset-filled-tertiary-500={isCurrent}
+        class:preset-filled-secondary-300-700={isCurrent}
         class:current={isCurrent}
         class="content-visibility-auto flex w-full items-center gap-2 px-2"
         onclick={() => onplay(index)}
@@ -49,7 +48,10 @@
         <Button
           color="secondary"
           class="mx-2"
-          onclick={() => onremove(index)}
+          onclick={(evt) => {
+            evt.stopPropagation()
+            onremove(index)
+          }}
           Icon={CloseIcon}
         />
       </button>

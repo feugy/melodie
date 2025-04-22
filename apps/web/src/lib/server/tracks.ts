@@ -1,7 +1,7 @@
 import { type Track, tracksModel } from '@melodie/common/models'
 import { database } from './database'
 
-export async function getTrackByIds(ids: number[]) {
+export async function getTracksByIds(ids: number[]) {
 	await database.init()
 	const tracks = await tracksModel.getByIds(ids)
 	const response: Track[] = []

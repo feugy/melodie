@@ -1,0 +1,6 @@
+[test]
+preload = [
+  "./src/lib/tests/bun-sveltekit.ts",
+  "./src/lib/tests/bun-svelte-module.ts",
+  "./src/lib/tests/setup.ts",
+]

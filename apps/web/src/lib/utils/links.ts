@@ -1,12 +1,12 @@
 import { base } from '$app/paths'
 import type { Reference } from '@melodie/common/utils'
-import { t } from 'svelte-intl-precompile'
+import { locale, t } from 'svelte-intl-precompile'
 import { get } from 'svelte/store'
 
 type LinkTo = 'album' | 'artist'
 
 export function linkTo(to: LinkTo, ref?: Reference | null) {
-	return ref ? `${base}/${to}s/${ref[0]}` : ''
+	return ref ? `${base}/${get(locale)}/${to}s/${ref[0]}` : ''
 }
 
 export function wrapWithLink(

@@ -62,7 +62,7 @@ async function parseOrThrow(
 
 export async function parseRequest<
 	Q extends z.AnyZodObject,
-	B extends z.AnyZodObject
+	B extends z.AnyZodObject | undefined
 >(
 	request: Request,
 	{ querySchema, bodySchema }: { querySchema?: Q; bodySchema?: B } = {}

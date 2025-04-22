@@ -13,7 +13,7 @@ export function getImage(
 	agentById: Map<number, Agent>
 ) {
 	const base = getBase(model, agentById)
-	return base && model
+	return base !== undefined && model
 		? `${base}/${'path' in model ? 'tracks' : 'albums'}/${model.id}/media/${model.mediaCount}`
 		: undefined
 }
@@ -23,5 +23,7 @@ export function getData(
 	agentById: Map<number, Agent>
 ) {
 	const base = getBase(model, agentById)
-	return base && model ? `${base}/tracks/${model.id}/data` : undefined
+	return base !== undefined && model
+		? `${base}/tracks/${model.id}/data`
+		: undefined
 }

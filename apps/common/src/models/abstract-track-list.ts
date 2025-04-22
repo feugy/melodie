@@ -1,6 +1,7 @@
 import type { PartialWithReq } from '../types.ts'
 import { difference, uniq } from '../utils/collections.ts'
 import type { Reference } from '../utils/refs.ts'
+import { buildUpsert, whereIn } from '../utils/sqlite.ts'
 import { AbstractModel } from './abstract-model.ts'
 
 export interface TrackListModel {
@@ -8,7 +9,7 @@ export interface TrackListModel {
 	trackIds: number[]
 	refs: Reference[]
 	removedTrackIds?: number[]
-	media?: string
+	media: string | null
 	mediaCount: number
 	mtimeMs: number
 }
@@ -63,18 +64,15 @@ export abstract class AbstractTrackList<
 	 * @param data Single or array of saved (partial) models.
 	 */
 	async save(data: PartialWithReq<T, 'id'> | PartialWithReq<T, 'id'>[]) {
-		if (!this.db) throw new Error('model not initialized')
 		const input = Array.isArray(data) ? data : [data]
-
-		return this.db.transaction(async trx => {
-			const previousModels = (
-				await trx(this.name)
-					.select()
-					.whereIn(
-						'id',
-						input.map(({ id }) => id)
-					)
-			).map(this.makeDeserializer())
+		return this.db?.transaction(() => {
+			if (!this.db) throw new Error('model not initialized')
+			const previousModels = this.db
+				.query<T, number[]>(
+					`SELECT * FROM ${this.name} WHERE ${whereIn('id', input)}`
+				)
+				.all(...input.map(({ id }) => id))
+				.map(this.makeDeserializer())
 
 			const { saved, removedIds } = input.reduce(
 				(result, { trackIds, removedTrackIds, ...trackList }) => {
@@ -105,21 +103,25 @@ export abstract class AbstractTrackList<
 			)
 
 			if (saved.length) {
+				// we need to add refs before preparing the upsert
 				for (const data of saved) {
-					data.refs = await this.computeRefs(trx, data.trackIds)
+					data.refs = this.computeRefs(data.trackIds)
 				}
+				const upsert = this.db.prepare(buildUpsert(this.name, saved))
+				const serializer = this.makeSerializer()
 				this.logger.debug({ data: saved }, 'saving')
-				await trx(this.name)
-					.insert(saved.map(this.makeSerializer()))
-					.onConflict('id')
-					.merge()
+				for (const data of saved) {
+					upsert.run(serializer(data) as unknown as null)
+				}
 			}
 			if (removedIds.length) {
 				this.logger.debug({ ids: removedIds }, 'removing')
-				await trx(this.name).whereIn('id', removedIds).delete()
+				this.db
+					.query(`DELETE FROM ${this.name} WHERE ${whereIn('id', removedIds)}`)
+					.run(...removedIds)
 			}
 			return { saved, removedIds }
-		})
+		})()
 	}
 
 	/**
@@ -129,14 +131,13 @@ export abstract class AbstractTrackList<
 	 */
 	async listMedialess(when: number) {
 		const results = (
-			(await this.db
-				?.select()
-				.from(this.name)
-				.whereNull('media')
-				.andWhere(function () {
-					this.where('mtimeMs', '<=', when).orWhereNull('mtimeMs')
-				})
-				.orderBy('name', 'asc')) ?? []
+			this.db
+				?.query<T, { when: number }>(`SELECT * FROM ${this.name} 
+				WHERE media IS NULL 
+				AND coalesce(mtimeMs, 0) <= :when
+				ORDER BY name ASC
+			`)
+				.all({ when }) ?? []
 		).map(this.makeDeserializer())
 		this.logger.debug(
 			{ hitCount: results.length, when },
@@ -148,12 +149,6 @@ export abstract class AbstractTrackList<
 	/* Extends parent serializer to remove default nulls and apply default values.  */
 	protected makeDeserializer() {
 		const deserialize = super.makeDeserializer()
-		return (input: T) => {
-			const result = deserialize(input)
-			// Knex does not apply default values
-			result.mediaCount = result.mediaCount ?? 1
-			result.media = result.media ?? undefined
-			return result
-		}
+		return (input: T) => deserialize(input)
 	}
 }

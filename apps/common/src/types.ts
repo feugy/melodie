@@ -21,6 +21,11 @@ export interface Tags {
 	disk?: { no?: number; of?: number }
 	/** Album's cover picture, when set. */
 	cover?: { format: string; data: Uint8Array }
+	// Replay Gain data
+	replaygain_track_gain?: { ratio: number; dB: number }
+	replaygain_track_peak?: { ratio: number; dB: number }
+	replaygain_album_gain?: { ratio: number; dB: number }
+	replaygain_album_peak?: { ratio: number; dB: number }
 	[x: string]: unknown
 }
 
@@ -38,26 +43,9 @@ export interface Page<T> {
 	results: T[]
 }
 
-export const dbConfSchema = v.union([
-	v.union.if(
-		value => v.helpers.isObject(value) && value.kind === 'sqlite3',
-		v.object({
-			kind: v.literal('sqlite3'),
-			filename: v.string()
-		})
-	),
-	v.union.if(
-		() => true,
-		v.object({
-			kind: v.literal('pg'),
-			host: v.string(),
-			port: v.number().positive().withoutDecimals(),
-			user: v.string().optional(),
-			password: v.string().optional(),
-			database: v.string().optional()
-		})
-	)
-])
+export const dbConfSchema = v.object({
+	filename: v.string()
+})
 
 /** Represents a configuration object to connect to database.
  */

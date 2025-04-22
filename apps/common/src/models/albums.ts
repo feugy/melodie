@@ -1,5 +1,5 @@
-import type { Knex } from 'knex'
 import { type Reference, parseRawRefArray, uniqRef } from '../utils/refs.ts'
+import { whereIn } from '../utils/sqlite.ts'
 import { AbstractTrackList } from './abstract-track-list.ts'
 import { tracksModel } from './tracks.ts'
 
@@ -11,7 +11,7 @@ export interface Album {
 	/** references to contained album's artists. */
 	refs: Reference[]
 	/** full path to the media file for this album. */
-	media?: string
+	media: string | null
 	/** count incremented on every media change. */
 	mediaCount: number
 	/** epoch of the last automatic media retrieval. */
@@ -34,37 +34,31 @@ export class AlbumsModel extends AbstractTrackList<Album> {
 	 * @param name The searched name
 	 */
 	async getByName(name: string) {
-		const query = this.db?.select().from(this.name)
-		if (this.dbKind === 'pg') {
-			query?.whereILike('name', name)
-		} else {
-			query?.whereRaw('name = ? collate nocase', name)
-		}
-		const results = ((await query) ?? []).map(this.makeDeserializer())
+		const results =
+			this.db
+				?.query<Album, { name: string }>(
+					`SELECT * FROM ${this.name} WHERE name = :name COLLATE NOCASE`
+				)
+				.all({ name })
+				.map(this.makeDeserializer()) ?? []
 		this.logger.debug({ name, hitCount: results.length }, 'fetch by name')
 		return results
 	}
 
 	/**
 	 * Computes references to artists from the contained tracks.
-	 * @param trx The Knex transation
 	 * @param trackIds The ids of the referenced tracks.
 	 */
-	protected async computeRefs<Record extends {}, Result>(
-		trx: Knex.Transaction<Record, Result>,
-		trackIds: number[]
-	) {
-		const refs: { artistRefs: string | Reference[] }[] = await trx(
-			tracksModel.name
-		)
-			.whereIn('id', trackIds)
-			.select('artistRefs')
+	protected computeRefs<Record extends {}, Result>(trackIds: number[]) {
+		const refs =
+			this.db
+				?.query<{ artistRefs: string }, number[]>(
+					`SELECT artistRefs FROM ${tracksModel.name} WHERE ${whereIn('id', trackIds)}`
+				)
+				.all(...trackIds) ?? []
 		return uniqRef(
 			refs.reduce((all, { artistRefs }) => {
-				const artists =
-					this.dbKind === 'sqlite3'
-						? parseRawRefArray(artistRefs as string)
-						: (artistRefs as Reference[])
+				const artists = parseRawRefArray(artistRefs)
 				if (artists) {
 					all.push(...artists)
 				}

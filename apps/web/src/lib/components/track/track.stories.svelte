@@ -1,12 +1,14 @@
 <script module lang="ts">
+  import type { Agent } from '@melodie/common/models'
   import { defineMeta } from '@storybook/addon-svelte-csf'
   import Track, { type TrackProps } from './track.svelte'
   import { trackData as src } from './track.testdata'
 
+  const agentById = new Map<number, Agent>()
+
   const { Story } = defineMeta({
     title: 'Components/Track',
     component: Track,
-    tags: ['autodocs'],
     args: { src, details: false },
     parameters: {
       sveltekit_experimental: {
@@ -23,12 +25,18 @@
   })
 </script>
 
-{#snippet children(args: TrackProps)}
-  <div class="flex-row">
-    <Track {...args} />
-  </div>
-{/snippet}
+<Story name="Default">
+  {#snippet template(args: Omit<TrackProps, 'agentById'>)}
+    <div class="flex-row">
+      <Track {...args} {agentById} />
+    </div>
+  {/snippet}
+</Story>
 
-<Story name="Default" {children} />
-
-<Story name="With details" args={{ details: true }} {children} />
+<Story name="With details" args={{ details: true }}>
+  {#snippet template(args: Omit<TrackProps, 'agentById'>)}
+    <div class="flex-row">
+      <Track {...args} {agentById} />
+    </div>
+  {/snippet}
+</Story>

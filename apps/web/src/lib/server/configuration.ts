@@ -1,12 +1,4 @@
-import {
-	DB,
-	DB_DATABASE,
-	DB_FILENAME,
-	DB_HOST,
-	DB_PASSWORD,
-	DB_PORT,
-	DB_USER
-} from '$env/static/private'
+import { env } from '$env/dynamic/private'
 import { dbConfSchema } from '@melodie/common/types'
 import {
 	ConfigurationMessageProvider,
@@ -14,7 +6,6 @@ import {
 	getLogger
 } from '@melodie/common/utils'
 import v, { errors } from '@vinejs/vine'
-import { config } from 'dotenv-flow'
 
 const validator = v.compile(dbConfSchema)
 
@@ -26,31 +17,12 @@ export class ConfigurationService {
 	}
 
 	async read() {
-		config({ silent: true })
-
-		const dbKind = DB
-
 		try {
 			return await validator.validate(
-				dbKind === 'sqlite3'
-					? { kind: dbKind, filename: DB_FILENAME }
-					: {
-							kind: dbKind,
-							host: DB_HOST,
-							port: DB_PORT,
-							user: DB_USER,
-							password: DB_PASSWORD,
-							database: DB_DATABASE
-						},
+				{ filename: env.DB_FILENAME },
 				{
 					messagesProvider: new ConfigurationMessageProvider({
-						filename: 'DB_FILENAME',
-						host: 'DB_HOST',
-						port: 'DB_PORT',
-						user: 'DB_USER',
-						password: 'DB_PASSWORD',
-						database: 'DB_DATABASE',
-						kind: 'DB'
+						filename: 'DB_FILENAME'
 					})
 				}
 			)

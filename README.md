@@ -1,38 +1,50 @@
-# create-svelte
+# Install
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+This project is using [bun](https://bun.sh/docs/installation#installing) runtime.
 
-## Creating a project
+First, install dependencies:
 
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npx sv create
-
-# create a new project in my-app
-npx sv create my-app
+```shell
+bun i
 ```
 
-## Developing
+Then release the application (by default arm64):
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+```shell
+bun release --cpu x64
 ```
 
-## Building
+You can start the app now:
 
-To create a production version of your app:
-
-```bash
-npm run build
+```shell
+cd build
+./melodie
 ```
 
-You can preview the production build with `npm run preview`.
+# Develop
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+Because bun hides some of the output lines, the simplest is to run command inside individual folders within `apps/`
+
+## apps/common
+
+Contains common code between the agent and the web UI.
+
+- one-shot tests: `bun test`
+- watch mode tests: `bun dev`
+
+## apps/server
+
+Server is indexing and watching local folders. It also embeds the Web UI.
+
+- one-shot tests: `bun test`
+- watch mode tests: `bun dev`
+- standalone start: `bun start`
+
+## apps/web
+
+Web UI.
+
+- one-shot tests: `bun test`
+- watch mode tests: `bun dev`
+- component dev with Storybook: `bun dev:storybook`
+- standalone start with hot reload: `bun start`

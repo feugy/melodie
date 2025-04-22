@@ -8,7 +8,7 @@
 </script>
 
 <header class="sticky top-0 z-10">
-  <h1 class="h3 text-secondary-700 p-2 {className}">
+  <h1 class="text-primary-contrast-800-200 h3 p-2 {className}">
     {@render children?.()}
   </h1>
 </header>

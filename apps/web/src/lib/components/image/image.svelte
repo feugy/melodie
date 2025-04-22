@@ -1,19 +1,26 @@
 <script module lang="ts">
+  import type { ImageProps as Props } from '@unpic/svelte'
   // This Image component is a wrapper arround @unpic/svelte,
   // bound to melodie agent and its image optimization interface.
-  import { Image, type ImageProps as Props } from '@unpic/svelte'
+  import { Image } from '@unpic/svelte/base'
   import ImageIcon from 'lucide-svelte/icons/image'
   import Music4 from 'lucide-svelte/icons/music-4'
   import UserRound from 'lucide-svelte/icons/user-round'
-  import type { UrlGenerator, UrlTransformer } from 'unpic'
+  import type { HTMLImgAttributes } from 'svelte/elements'
+  import type { URLTransformer } from 'unpic'
 
-  export type ImageProps = Omit<Props, 'src'> & {
+  export type ImageProps = HTMLImgAttributes & {
     src?: string
+    width?: number
+    height?: number
+    aspectRatio?: number
+    layout?: 'fixed' | 'constrained'
     brokenIcon?: 'music' | 'user'
   }
 
-  const generate: UrlGenerator<{ base: URL }> = ({ base, width, height }) => {
-    const url = typeof base === 'string' ? new URL(base) : base
+  const transformer: URLTransformer = (input, { width, height }) => {
+    const url =
+      typeof input === 'string' ? new URL(input, 'http://localhost') : input
     if (width) {
       url.searchParams.set('w', `${width}`)
     }
@@ -21,16 +28,7 @@
       url.searchParams.set('h', `${height}`)
     }
     url.searchParams.set('f', 'image/avif')
-    return url
-  }
-
-  const transformer: UrlTransformer = (options) => {
-    if (typeof options.url === 'string' && !options.url.startsWith('http')) {
-      return options.url
-    }
-    const url =
-      typeof options.url === 'string' ? new URL(options.url) : options.url
-    return generate({ ...options, base: url })
+    return url.toString()
   }
 
   const brokenSrc = new Set()
@@ -51,7 +49,12 @@
 </script>
 
 {#if src && !isBroken}
-  <Image {...props as Props} {src} {transformer} onerror={handleError} />
+  <Image
+    {...props as unknown as Props}
+    {src}
+    {transformer}
+    onerror={handleError}
+  />
 {:else}
   <div
     class="flex items-center justify-center"

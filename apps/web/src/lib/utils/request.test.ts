@@ -1,5 +1,5 @@
+import { beforeEach, describe, expect, it } from 'bun:test'
 import { faker } from '@faker-js/faker'
-import { beforeEach, describe, expect, it } from 'vitest'
 import { z } from 'zod'
 import { extractQueryParams, parseRequest } from './request'
 
@@ -40,7 +40,8 @@ describe('request utilities', () => {
 			const foo = faker.lorem.word()
 			url.searchParams.append('foo', foo)
 			expect(await parseRequest(new Request(url))).toEqual({
-				query: {}
+				query: {},
+				body: undefined
 			})
 		})
 
@@ -49,7 +50,7 @@ describe('request utilities', () => {
 			url.searchParams.append('foo', foo.toString())
 			const querySchema = z.object({ foo: z.number() })
 			const parsed = await parseRequest(new Request(url), { querySchema })
-			expect(parsed).toEqual({ query: { foo } })
+			expect(parsed).toEqual({ query: { foo }, body: undefined })
 		})
 
 		it('handles multiple query parameters', async () => {
@@ -58,7 +59,7 @@ describe('request utilities', () => {
 			url.searchParams.append('foo', foo[1])
 			const querySchema = z.object({ foo: z.array(z.string()) })
 			const parsed = await parseRequest(new Request(url), { querySchema })
-			expect(parsed).toEqual({ query: { foo } })
+			expect(parsed).toEqual({ query: { foo }, body: undefined })
 		})
 
 		it('coerces multiple query number parameters', async () => {
@@ -67,7 +68,7 @@ describe('request utilities', () => {
 			url.searchParams.append('foo', foo[1].toString())
 			const querySchema = z.object({ foo: z.array(z.number()) })
 			const parsed = await parseRequest(new Request(url), { querySchema })
-			expect(parsed).toEqual({ query: { foo } })
+			expect(parsed).toEqual({ query: { foo }, body: undefined })
 		})
 
 		it('rejects invalid query parameters', async () => {
@@ -89,7 +90,7 @@ describe('request utilities', () => {
 		it('allows optional query parameters', async () => {
 			const querySchema = z.object({ foo: z.number().optional() })
 			const parsed = await parseRequest(new Request(url), { querySchema })
-			expect(parsed).toEqual({ query: {} })
+			expect(parsed).toEqual({ query: {}, body: undefined })
 		})
 
 		it('rejects missing query parameters', async () => {

@@ -1,14 +1,13 @@
-import * as env from '$app/environment'
+import { type Mock, describe, expect, it, mock } from 'bun:test'
 import { base } from '$app/paths'
 import { faker } from '@faker-js/faker'
 import type { Agent, Album } from '@melodie/common/models'
 import { addId } from '@melodie/common/tests'
-import { type Mock, beforeEach, describe, expect, it, vi } from 'vitest'
 import type { PageLoadEvent } from './$types'
 import { load } from './+page'
 
 describe('universal load()', () => {
-	const fetch: Mock<typeof global.fetch> = vi.fn()
+	const fetch: Mock<typeof global.fetch> = mock()
 
 	const agent: Agent = {
 		id: faker.number.int(),
@@ -21,6 +20,7 @@ describe('universal load()', () => {
 			name: faker.music.album(),
 			mtimeMs: faker.date.recent().getTime(),
 			agentId: agent.id,
+			media: null,
 			mediaCount: 0,
 			trackIds: [faker.number.int()],
 			refs: []
@@ -29,6 +29,7 @@ describe('universal load()', () => {
 			name: faker.music.album(),
 			mtimeMs: faker.date.recent().getTime(),
 			agentId: null,
+			media: null,
 			mediaCount: 0,
 			trackIds: [faker.number.int(), faker.number.int()],
 			refs: []
@@ -44,12 +45,10 @@ describe('universal load()', () => {
 		}
 	].map(addId)
 
-	beforeEach(() => {
-		vi.clearAllMocks()
-	})
-
 	it('only returns parent data on server', async () => {
-		vi.spyOn(env, 'browser', 'get').mockReturnValue(false)
+		mock.module('$app/environment', () => ({
+			browser: false
+		}))
 		const parentData = {
 			foo: faker.lorem.word(),
 			agentById: new Map([[agent.id, agent]])
@@ -64,7 +63,9 @@ describe('universal load()', () => {
 	})
 
 	it('fetches all albums on client', async () => {
-		vi.spyOn(env, 'browser', 'get').mockReturnValue(true)
+		mock.module('$app/environment', () => ({
+			browser: true
+		}))
 		fetch.mockResolvedValueOnce(Response.json({ data: albums }))
 		const data = { foo: faker.lorem.word() }
 
@@ -75,7 +76,7 @@ describe('universal load()', () => {
 			albums: expect.any(Promise)
 		})
 		expect(fetch).toHaveBeenCalledWith(`${base}/api/albums`)
-		expect(fetch).toHaveBeenCalledOnce()
+		expect(fetch).toHaveBeenCalledTimes(1)
 
 		expect(await (response as Record<string, unknown>).albums).toEqual(albums)
 	})

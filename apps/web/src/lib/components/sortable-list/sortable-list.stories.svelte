@@ -7,7 +7,6 @@
   const { Story } = defineMeta({
     title: 'Components/SortableList',
     component: SortableList,
-    tags: ['autodocs'],
     args: {
       items: [...tracksData, ...tracksData],
       onmove: fn(),

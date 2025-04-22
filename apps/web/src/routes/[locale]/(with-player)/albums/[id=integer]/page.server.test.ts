@@ -1,3 +1,4 @@
+import { afterAll, beforeAll, describe, expect, it } from 'bun:test'
 import { faker } from '@faker-js/faker'
 import {
 	type Agent,
@@ -11,7 +12,6 @@ import {
 import { addId, cleanTestTB, initTestDB, makeRef } from '@melodie/common/tests'
 import type { DBConf } from '@melodie/common/types'
 import type { Reference } from '@melodie/common/utils'
-import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 import type { PageServerLoadEvent } from './$types'
 import { load } from './+page.server'
 
@@ -30,6 +30,7 @@ describe('server load()', () => {
 			mtimeMs: faker.date.recent().getTime(),
 			agentId: agent.id,
 			tags: { artists: [], genre: [], duration: 0 },
+			media: null,
 			mediaCount: 0,
 			albumRef: null,
 			artistRefs: [[1, null] as Reference]
@@ -39,6 +40,7 @@ describe('server load()', () => {
 			mtimeMs: faker.date.recent().getTime(),
 			agentId: agent.id,
 			tags: { artists: [], genre: [], duration: 0 },
+			media: null,
 			mediaCount: 0,
 			albumRef: null,
 			artistRefs: [[1, null] as Reference]
@@ -48,6 +50,7 @@ describe('server load()', () => {
 			mtimeMs: faker.date.recent().getTime(),
 			agentId: agent.id,
 			tags: { artists: [], genre: [], duration: 0 },
+			media: null,
 			mediaCount: 0,
 			albumRef: null,
 			artistRefs: [[1, null] as Reference]
@@ -57,6 +60,7 @@ describe('server load()', () => {
 			mtimeMs: faker.date.recent().getTime(),
 			agentId: agent.id,
 			tags: { artists: [], genre: [], duration: 0 },
+			media: null,
 			mediaCount: 0,
 			albumRef: null,
 			artistRefs: [[1, null] as Reference]
@@ -68,6 +72,7 @@ describe('server load()', () => {
 			name: faker.music.album(),
 			mtimeMs: faker.date.recent().getTime(),
 			agentId: agent.id,
+			media: null,
 			mediaCount: 0,
 			trackIds: [tracks[0].id],
 			refs: []
@@ -76,6 +81,7 @@ describe('server load()', () => {
 			name: faker.music.album(),
 			mtimeMs: faker.date.recent().getTime(),
 			agentId: null,
+			media: null,
 			mediaCount: 0,
 			trackIds: [tracks[1].id, tracks[2].id],
 			refs: []
@@ -101,7 +107,7 @@ describe('server load()', () => {
 	tracks[3].albumRef = makeRef(albums[2].name)
 
 	beforeAll(async () => {
-		conf = await initTestDB()
+		;({ conf } = await initTestDB())
 		await init(conf)
 		await agentsModel.save(agent)
 		await albumsModel.save(albums)

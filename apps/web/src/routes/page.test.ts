@@ -1,6 +1,6 @@
+import { describe, expect, it } from 'bun:test'
 import { base } from '$app/paths'
 import { faker } from '@faker-js/faker'
-import { describe, expect, it } from 'vitest'
 import type { PageLoadEvent } from './$types'
 import { load } from './+page'
 

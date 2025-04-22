@@ -97,7 +97,7 @@
     if (dragged) {
       const { from, node, to } = dragged
       for (const child of node.parentElement?.children ?? []) {
-        ;(child as HTMLElement).style.top = '0px'
+        ;(child as HTMLElement).style.top = ''
       }
       if (from !== to) {
         onmove?.({ from, to })
@@ -118,7 +118,8 @@
     <li
       class:isDragged
       class:cursor-move={dragged !== null}
-      class="relative transform-gpu transition-[top,transform] [&_*]:cursor-grab"
+      class:preset-filled={isDragged}
+      class="relative transform-gpu transition-[top] [&_*]:cursor-grab"
       onpointerdown={(evt) => handleDrag(evt, item.key, i)}
       onpointermove={(evt) => handleEnter(evt, item.key)}
       out:slideOnRemove={{ duration: 250 }}
@@ -130,7 +131,6 @@
 
 <style>
   li.isDragged {
-    transform: scale(1.02);
     pointer-events: none;
   }
 </style>

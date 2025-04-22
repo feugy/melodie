@@ -1,8 +1,8 @@
+import { afterAll, beforeAll, describe, expect, it } from 'bun:test'
 import { faker } from '@faker-js/faker'
 import { type Agent, agentsModel, init } from '@melodie/common/models'
 import { addId, cleanTestTB, initTestDB } from '@melodie/common/tests'
 import type { DBConf } from '@melodie/common/types'
-import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 import { loadAgentMap } from './agents'
 
 describe('agents server utils', () => {
@@ -24,7 +24,7 @@ describe('agents server utils', () => {
 	].map(addId)
 
 	beforeAll(async () => {
-		conf = await initTestDB()
+		;({ conf } = await initTestDB())
 		await init(conf)
 		await agentsModel.save(agents)
 	})

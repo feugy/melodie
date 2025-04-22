@@ -1,3 +1,4 @@
+import { afterAll, beforeAll, describe, expect, it } from 'bun:test'
 import { faker } from '@faker-js/faker'
 import {
 	type Agent,
@@ -8,7 +9,6 @@ import {
 } from '@melodie/common/models'
 import { addId, cleanTestTB, initTestDB } from '@melodie/common/tests'
 import type { DBConf } from '@melodie/common/types'
-import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 import { GET } from './+server'
 
 describe('GET /api/albums', () => {
@@ -25,6 +25,7 @@ describe('GET /api/albums', () => {
 			name: faker.music.album(),
 			mtimeMs: faker.date.recent().getTime(),
 			agentId: agent.id,
+			media: null,
 			mediaCount: 0,
 			trackIds: [faker.number.int()],
 			refs: []
@@ -33,6 +34,7 @@ describe('GET /api/albums', () => {
 			name: faker.music.album(),
 			mtimeMs: faker.date.recent().getTime(),
 			agentId: agent.id,
+			media: null,
 			mediaCount: 0,
 			trackIds: [faker.number.int(), faker.number.int()],
 			refs: []
@@ -51,7 +53,7 @@ describe('GET /api/albums', () => {
 		.sort((a, b) => a.name.localeCompare(b.name))
 
 	beforeAll(async () => {
-		conf = await initTestDB()
+		;({ conf } = await initTestDB())
 		await init(conf)
 		await agentsModel.save(agent)
 		await albumsModel.save(albums)
@@ -65,13 +67,14 @@ describe('GET /api/albums', () => {
 		const response = await GET()
 		const content = await response.json()
 		const data: Partial<Album>[] = albums.map(
-			({ id, name, media, mediaCount, refs, agentId }) => ({
+			({ id, name, media, mediaCount, refs, agentId, trackIds }) => ({
 				id,
 				name,
 				media,
 				mediaCount,
 				agentId,
-				refs
+				refs,
+				trackIds
 			})
 		)
 		expect(content).toEqual({ data, total: data.length })

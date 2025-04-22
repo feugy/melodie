@@ -25,7 +25,7 @@ let levelSpecs: LevelEntry[]
 
 /* Synchronously reads the level confguration file, to build the level specification.. */
 function readLevels() {
-	const levelFile = process.env.LOG_LEVEL_FILE ?? '.log-levels'
+	const levelFile = Bun.env.LOG_LEVEL_FILE ?? '.log-levels'
 	try {
 		return buildLevels(fs.readFileSync(levelFile, 'utf8'))
 	} catch (err) {
@@ -77,11 +77,10 @@ function computeLevel(name: string, levelSpecs: LevelEntry[]) {
 }
 
 function computeDefaultLevel(): Level {
-	const { NODE_ENV } = process.env
-	return NODE_ENV === 'test'
+	return Bun.env.NODE_ENV === 'test'
 		? 'silent'
-		: NODE_ENV === 'production'
-			? 'info'
+		: Bun.env.NODE_ENV === 'production'
+			? 'warn'
 			: 'debug'
 }
 
@@ -107,12 +106,12 @@ export function getLogger(name = 'core', lvl: Level | undefined = undefined) {
 				// don't set as parameter default value
 				level,
 				transport:
-					process.env.NODE_ENV === 'production'
+					Bun.env.NODE_ENV === 'production' || Bun.env.NODE_ENV === 'test'
 						? undefined
 						: {
 								target: 'pino-pretty',
 								options: {
-									destination: process.env.LOG_DESTINATION,
+									destination: Bun.env.LOG_DESTINATION,
 									translateTime: true,
 									colorize: true,
 									errorProps: '*'

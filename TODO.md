@@ -1,35 +1,69 @@
-# To fix/to
+# To fix/do
+
+- Consider Github for CI
 
 ## Common
 
-- db pool not used or misused
-- configure logger with env vars
-- migration in production?
 - unknown album & artists should be null and not strings
 
-## Agent
+## Server
 
-- check for certutils: `sudo apt-get install libnss3-tools` when receiving `Error: certutil not found at nssVerifyCertutil`
+- worker: tests. resume on failure
 - (idea) track's primary key could be composite of id + agentId (allows multiple agent on different file systems)
 
 ## Web
 
-- tracks-queue tests
-- storybook for Image
+- sortable list + time tests
+- play/enqueue test for albums
+- storybook tests
 - (research) make the list super snappy with [CSS containment](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment/Using_CSS_containment)
+
+# Architecture design
+
+Server is a CLI tool intended to perpetually run close to images and music files (media files).
+This allows keeping media files local, but is a challenge since agent needs public network connectivity.
+Web is a Sveltekit application providing a GUI for browsing and playing media files.
+
+We have several options for composing these two applications.
+
+## SPA + agent
+
+Server would be an agent serving media files, and providing endpoints for accessing the database.
+Web would use endpoints to operate.
+Pros: Web can be hosted on a public platform, which guarantees availability, URL and SSL.
+Cons: Web would require CORS to access Server, not SSL between Server and Web (could be fixed with LetsEncrypt).
+
+## Standalone server
+
+Server would serve media files and host Web application.
+Web would directly hit the database.
+Pros: self-contained, no dependencies, snappier thanks to direct DB accesses.
+Cons: complex LetsEncrypt setup to get SSL certificates.
 
 # Usefull
 
-- some dependencies like knex, pg and pino must not be devDependencies or vite will bundle them.
-- organize all imports: `pnpm exec biome check --formatter-enabled=false --linter-enabled=false --organize-imports-enabled=true --write ./apps`
-- run folders tests with meaningful output: `pnpm -F agent dev --reporter=basic`
-- in Postgres, we need a test user that can create other database (`createdb` permission)
+- organize all imports: `bunx biome check --formatter-enabled=false --linter-enabled=false --organize-imports-enabled=true --write ./apps`
+- run as a service on VM
 
-# Posgres for dummies:
+  - sudo systemctl edit melodie.service --full --force
+  - sudo systemctl enable melodie.service
+  - systemctl status melodie.service
+  - journalctl -u melodie.service
 
-- connect to 'databse': `psql postgresql://user:password@localhost:5432/database`
-- list tables: `\dt`
-- list databases: `\l`
-- create user: `create user melodie_test with nosuperuser createdb password 'xxx';`
-- create databse: `create database xyz;`
-- change database owner: `alter database xyz owner to yzx;`
+    ```
+    [Unit]
+    Description=Melodie music server
+    After=network-online.target
+
+    [Service]
+    Type=simple
+    User=freebox
+    Group=freebox
+    ExecStart=/home/freebox/melodie/melodie --server -p 8081 -f /mnt/Dock/Musique
+    WorkingDirectory=/home/freebox/melodie
+    Restart=on-failure
+    TimeoutStopSec=30
+
+    [Install]
+    WantedBy=multi-user.target
+    ```

@@ -2,6 +2,7 @@
   export interface PlayerProps {
     agentById: Map<number, Agent>
     track?: TrackModel
+    isLast: boolean
     onnext: (autoplay?: boolean) => unknown
     onprevious: () => unknown
   }
@@ -12,12 +13,15 @@
   import Play from 'lucide-svelte/icons/play'
   import Previous from 'lucide-svelte/icons/skip-back'
   import Next from 'lucide-svelte/icons/skip-forward'
+  import { onMount } from 'svelte'
   import { getData } from '$lib/client'
   import { Button, Track } from '$lib/components'
   import type { Track as TrackModel, Agent } from '@melodie/common/models'
 
-  let { agentById, track, onnext, onprevious }: PlayerProps = $props()
+  let { agentById, track, isLast, onnext, onprevious }: PlayerProps = $props()
 
+  let player: HTMLAudioElement | undefined
+  let gainNode: GainNode | undefined
   let time = $state(0)
   let duration = $state(0)
   let paused = $state(true)
@@ -25,12 +29,31 @@
 
   const src = $derived(getData(track, agentById))
 
+  let wakeLock: WakeLockSentinel | undefined
+
   $effect(() => {
     // reset player when src is unset
     if (!src) {
       paused = true
       duration = 0
+    } else {
+      player?.play()
+      paused = false
     }
+  })
+
+  onMount(() => {
+    // There's an unsolvable issue with Chrome Android:
+    // when bluetooth is active prior to loading the app,
+    // built AudioContext starts suspended, but can never be resumed
+    if (player && 'AudioContext' in window && !('chrome' in window)) {
+      const context = new AudioContext()
+      const sourceNode = context.createMediaElementSource(player)
+      gainNode = context.createGain()
+      sourceNode.connect(gainNode)
+      gainNode.connect(context.destination)
+    }
+    return () => wakeLock?.release().catch(() => void 0)
   })
 
   function format(time: number) {
@@ -38,11 +61,6 @@
     const seconds = Math.floor(time % 60)
 
     return `${minutes}:${seconds < 10 ? `0${seconds}` : seconds}`
-  }
-
-  function handleEnded() {
-    time = 0
-    onnext?.(true)
   }
 
   function togglePlay() {
@@ -59,6 +77,29 @@
     if (p > 1) p = 1
 
     time = p * duration
+  }
+
+  function handleEnded() {
+    time = 0
+    if (!isLast) {
+      onnext?.(true)
+    }
+  }
+
+  function handlePlay() {
+    if (gainNode && track) {
+      const {
+        replaygain_track_gain: trackGain,
+        replaygain_album_gain: albumGain,
+      } = track.tags
+      gainNode.gain.value = (trackGain || albumGain || { ratio: 1 }).ratio
+    }
+    navigator.wakeLock
+      ?.request()
+      .then((lock) => {
+        wakeLock = lock
+      })
+      .catch(() => void 0)
   }
 
   function handleProgressClick(e: PointerEvent) {
@@ -79,22 +120,21 @@
   }
 </script>
 
-<div
-  class="grid grid-cols-[minmax(auto,20%)_1fr] items-center gap-4"
-  class:paused
->
+<div class="grid grid-cols-[minmax(auto,20%)_1fr] items-center" class:paused>
   <audio
     {src}
-    autoplay
+    bind:this={player}
     bind:currentTime={time}
     bind:duration
     bind:paused
+    crossorigin="anonymous"
+    onplay={handlePlay}
     onended={handleEnded}
   ></audio>
 
   <Track {agentById} src={track} />
 
-  <div class="flex flex-1 flex-col items-center gap-2">
+  <div class="flex flex-1 flex-col items-center gap-2 p-2">
     <div class="flex items-center gap-2">
       <Button color="secondary" onclick={() => onprevious()} Icon={Previous} />
       <Button onclick={togglePlay} size="lg" Icon={paused ? Play : Pause} />
@@ -108,7 +148,7 @@
         onpointerdown={handleProgressClick}
       >
         <div
-          class="bg-primary-500 h-full w-[calc(100*var(--progress))]"
+          class="bg-primary-contrast-500 h-full w-[calc(100*var(--progress))] rounded-lg"
           style="--progress: {time / duration}%"
         ></div>
       </div>

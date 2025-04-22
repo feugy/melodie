@@ -36,7 +36,7 @@
 
 {#if tracks}
   <table
-    class="{className} mt-4 block w-full overflow-x-auto [&>tbody]:block [&>tbody]:min-w-[600px] [&>thead]:block [&>thead]:min-w-[600px] [&_td]:block [&_td]:p-2 [&_th]:block [&_th]:p-2 [&_tr]:grid [&_tr]:grid-cols-[60px_repeat(10,1fr)_60px] [&_tr]:items-center [&_tr]:gap-0"
+    class="{className} mt-4 block w-full overflow-x-auto [&_td]:block [&_td]:p-2 [&_th]:block [&_th]:p-2 [&_tr]:grid [&_tr]:grid-cols-[60px_repeat(10,1fr)_60px] [&_tr]:items-center [&_tr]:gap-0 [&>tbody]:block [&>tbody]:min-w-[600px] [&>thead]:block [&>thead]:min-w-[600px]"
   >
     <thead>
       <tr class="text-left text-sm font-semibold">
@@ -54,7 +54,7 @@
       {#each sortedTracks as track, idx (track.id)}
         <tr
           class:current={current?.id === track.id}
-          class="odd:preset-tonal-secondary hover:preset-tonal-primary grid items-center gap-0 hover:cursor-pointer"
+          class="odd:preset-filled-primary-800-200 hover:preset-filled-secondary-300-700 grid items-center gap-0 hover:cursor-pointer"
           onclick={() => onclick?.(idx, track)}
         >
           <td class="w-[60px] text-center"
@@ -65,7 +65,7 @@
           >
           <td class={hideAlbum ? 'col-span-4' : 'col-span-3'}>
             {@html track.artistRefs
-              .map((artist) => wrapWithLink('artist', artist))
+              ?.map((artist) => wrapWithLink('artist', artist))
               .join(', ')}
           </td>
           {#if !hideAlbum}

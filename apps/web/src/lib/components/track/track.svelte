@@ -39,7 +39,7 @@
     <span class="text-lg">{tags.title}</span>
     <span
       >{@html src?.artistRefs
-        .map((artist) => wrapWithLink('artist', artist, 'text-sm'))
+        ?.map((artist) => wrapWithLink('artist', artist, 'text-sm'))
         .join(', ')}</span
     >
   </div>

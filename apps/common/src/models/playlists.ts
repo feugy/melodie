@@ -1,10 +1,10 @@
-import type { Knex } from 'knex'
 import {
 	type Reference,
 	parseRawRef,
 	parseRawRefArray,
 	uniqRef
 } from '../utils/refs.ts'
+import { whereIn } from '../utils/sqlite.ts'
 import { AbstractTrackList } from './abstract-track-list.ts'
 import { tracksModel } from './tracks.ts'
 
@@ -20,7 +20,7 @@ export interface Playlist {
 	/** references to contained track's artists and albums. */
 	refs: Reference[]
 	/** full path to the media file for this playlist. */
-	media?: string
+	media: string | null
 	/** count incremented on every media change. */
 	mediaCount: number
 }
@@ -43,32 +43,22 @@ export class PlaylistModel extends AbstractTrackList<Playlist> {
 
 	/**
 	 * Computes references to albums and artists from the contained tracks.
-	 * @param trx The Knex transation.
 	 * @param trackIds The ids of the contained tracks.
 	 */
-	protected async computeRefs<Record extends {}, Result>(
-		trx: Knex.Transaction<Record, Result>,
-		trackIds: number[]
-	) {
-		const refs: {
-			albumRef: string | Reference
-			artistRefs: string | Reference[]
-		}[] = await trx(tracksModel.name)
-			.whereIn('id', trackIds)
-			.select('albumRef', 'artistRefs')
+	protected computeRefs<Record extends {}, Result>(trackIds: number[]) {
+		const refs =
+			this.db
+				?.query<{ artistRefs: string; albumRef: string }, number[]>(
+					`SELECT artistRefs, albumRef FROM ${tracksModel.name} WHERE ${whereIn('id', trackIds)}`
+				)
+				.all(...trackIds) ?? []
 		return uniqRef(
 			refs.reduce((all, { artistRefs, albumRef }) => {
-				const artists =
-					this.dbKind === 'sqlite3'
-						? parseRawRefArray(artistRefs as string)
-						: (artistRefs as Reference[])
+				const artists = parseRawRefArray(artistRefs)
 				if (artists) {
 					all.push(...artists)
 				}
-				const album =
-					this.dbKind === 'sqlite3'
-						? parseRawRef(albumRef as string)
-						: (albumRef as Reference)
+				const album = parseRawRef(albumRef)
 				if (album) {
 					all.push(album)
 				}
@@ -80,10 +70,9 @@ export class PlaylistModel extends AbstractTrackList<Playlist> {
 	/** Lists model ids and modification time, for comparison purposes, without pagination. */
 	async listWithTime() {
 		const result = new Map<number, number>()
-		for (const { id, mtimeMs } of (await this.db?.(this.name).select(
-			'id',
-			'mtimeMs'
-		)) ?? []) {
+		for (const { id, mtimeMs } of this.db
+			?.query<Playlist, null>(`SELECT id, mtimeMs FROM ${this.name}`)
+			.all(null) ?? []) {
 			result.set(id, mtimeMs)
 		}
 		this.logger.debug({ hitCount: result.size }, 'list with time')

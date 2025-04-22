@@ -10,13 +10,13 @@
   const { Story } = defineMeta({
     title: 'Components/Button',
     component: Component,
-    tags: ['autodocs'],
     args: { onclick },
   })
 </script>
 
-{#snippet children()}Click Me{/snippet}
-
-<Story name="Default" args={{ children }} />
+<Story name="Default">Click Me</Story>
 <Story name="Icon only" args={{ Icon: Play, size: 'lg' }} />
-<Story name="Icon and text" args={{ Icon: Bean, children, color: 'success' }} />
+<Story
+  name="Secondary with icon and text"
+  args={{ Icon: Bean, color: 'secondary' }}>Click Me</Story
+>

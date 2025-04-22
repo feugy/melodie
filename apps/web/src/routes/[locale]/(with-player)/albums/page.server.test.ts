@@ -1,3 +1,4 @@
+import { afterAll, beforeAll, describe, expect, it } from 'bun:test'
 import { faker } from '@faker-js/faker'
 import {
 	type Agent,
@@ -8,7 +9,6 @@ import {
 } from '@melodie/common/models'
 import { addId, cleanTestTB, initTestDB } from '@melodie/common/tests'
 import type { DBConf } from '@melodie/common/types'
-import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 import type { PageServerLoadEvent } from './$types'
 import { load } from './+page.server'
 
@@ -26,6 +26,7 @@ describe('server load()', () => {
 			name: faker.music.album(),
 			mtimeMs: faker.date.recent().getTime(),
 			agentId: agent.id,
+			media: null,
 			mediaCount: 0,
 			trackIds: [faker.number.int()],
 			refs: []
@@ -34,6 +35,7 @@ describe('server load()', () => {
 			name: faker.music.album(),
 			mtimeMs: faker.date.recent().getTime(),
 			agentId: null,
+			media: null,
 			mediaCount: 0,
 			trackIds: [faker.number.int(), faker.number.int()],
 			refs: []
@@ -50,7 +52,7 @@ describe('server load()', () => {
 	].map(addId)
 
 	beforeAll(async () => {
-		conf = await initTestDB()
+		;({ conf } = await initTestDB())
 		await init(conf)
 		await agentsModel.save(agent)
 		await albumsModel.save(albums)

@@ -1,10 +1,15 @@
 import { withThemeByDataAttribute } from '@storybook/addon-themes'
 import type { Preview, SvelteRenderer } from '@storybook/svelte'
+import { initialize, mswLoader } from 'msw-storybook-addon'
 import '../src/app.css'
 import { configureLocales } from '../src/lib/utils'
 
+const melodie = 'melodie'
 const crimson = 'crimson'
-const seafoam = 'seafoam'
+const dark = 'dark'
+const light = 'light'
+
+initialize()
 
 const preview: Preview = {
 	parameters: {
@@ -19,7 +24,6 @@ const preview: Preview = {
 	globalTypes: {
 		locale: {
 			toolbar: {
-				// The label to show for this toolbar item
 				title: 'Locale',
 				icon: 'globe',
 				items: [
@@ -34,18 +38,26 @@ const preview: Preview = {
 		locale: 'fr'
 	},
 	decorators: [
+		// light/dark mode decorator
 		withThemeByDataAttribute<SvelteRenderer>({
-			themes: { crimson, seafoam },
-			defaultTheme: crimson,
+			themes: { light, dark },
+			defaultTheme: dark,
 			parentSelector: 'body',
-			attributeName: 'data-theme'
+			attributeName: 'data-mode'
 		}),
+		// Skeleton theme decorator
+		story => {
+			document.body.dataset.theme = 'melodie'
+			return story()
+		},
+		// locale decorator
 		(story, { globals }) => {
 			const locale = globals.locale ?? 'fr'
 			configureLocales(locale)
 			return story()
 		}
-	]
+	],
+	loaders: [mswLoader]
 }
 
 export default preview

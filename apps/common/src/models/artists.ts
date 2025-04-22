@@ -1,5 +1,5 @@
-import type { Knex } from 'knex'
 import { type Reference, parseRawRef, uniqRef } from '../utils/refs.ts'
+import { whereIn } from '../utils/sqlite.ts'
 import { AbstractTrackList } from './abstract-track-list.ts'
 import { tracksModel } from './tracks.ts'
 
@@ -13,7 +13,7 @@ export interface Artist {
 	/** references to contained artist's albums. */
 	refs: Reference[]
 	/** full path to the picture file for this artist. */
-	media?: string
+	media: string | null
 	/** count incremented on every media change. */
 	mediaCount: number
 	/** epoch of the last automatic media retrieval. */
@@ -33,22 +33,18 @@ export class ArtistsModel extends AbstractTrackList<Artist> {
 
 	/**
 	 * Computes references to albums from the contained tracks.
-	 * @param trx The Knex transation
 	 * @param trackIds The ids of the referenced tracks.
 	 */
-	protected async computeRefs<Record extends {}, Result>(
-		trx: Knex.Transaction<Record, Result>,
-		trackIds: number[]
-	) {
-		const refs: { albumRef: string | Reference }[] = await trx(tracksModel.name)
-			.whereIn('id', trackIds)
-			.select('albumRef')
+	protected computeRefs<Record extends {}, Result>(trackIds: number[]) {
+		const refs =
+			this.db
+				?.query<{ albumRef: string }, number[]>(
+					`SELECT albumRef FROM ${tracksModel.name} WHERE ${whereIn('id', trackIds)}`
+				)
+				.all(...trackIds) ?? []
 		return uniqRef(
 			refs.reduce((all, { albumRef }) => {
-				const album =
-					this.dbKind === 'sqlite3'
-						? parseRawRef(albumRef as string)
-						: (albumRef as Reference)
+				const album = parseRawRef(albumRef)
 				if (album) {
 					all.push(album)
 				}

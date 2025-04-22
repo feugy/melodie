@@ -1,102 +1,112 @@
-import { base } from '$app/paths'
 import type { Track } from '@melodie/common/models'
 import localforage from 'localforage'
-import type { POSTGetTracksResponse } from '../../routes/api/get-tracks/+server'
+import { getTracksByIds } from './requests'
 
-const contentStorageKey = 'tracks-queue'
-const currentStorageKey = 'current-track'
+export const contentStorageKey = 'tracks-queue'
+export const currentStorageKey = 'current-track'
 
 class TrackQueue {
 	content = $state<Track[]>([])
-	current = $state<Track | undefined>()
-	index = $derived(this.current ? this.content.indexOf(this.current) : null)
+	index = $state<number | null>(null)
+	current = $derived.by(() => {
+		return this.index !== null ? this.content[this.index] : undefined
+	})
+	length = $derived(this.content.length)
+	isLast = $derived.by(
+		() => this.index === null || this.index === this.content.length - 1
+	)
 
-	async init() {
-		await this.load(true)
-	}
+	autoNextListerners: Array<() => unknown> = []
 
-	private async load(checkServer = false) {
+	async init(checkServer = true) {
 		localforage.config({ driver: localforage.INDEXEDDB, name: 'melodie' })
 		this.content = (await localforage.getItem<Track[]>(contentStorageKey)) ?? []
-		const index = await localforage.getItem<number>(currentStorageKey)
-		this.current =
-			this.content[
-				index !== null && index >= 0 && index < this.content.length ? index : 0
-			]
-		if (checkServer) {
-			const response = await fetch(`${base}/api/get-tracks`, {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json'
-				},
-				body: JSON.stringify({ ids: this.content.map(({ id }) => id) })
-			})
-			const { data, total } = (await response.json()) as POSTGetTracksResponse
-			this.content = data
-			if (total === this.content.length && index !== null) {
-				this.current = this.content[index]
-			} else {
-				// reset current track if server data is different (missing files)
-				this.current = undefined
+		this.index = await localforage.getItem<number>(currentStorageKey)
+		if (!Array.isArray(this.content)) {
+			this.content = []
+		}
+		const ids = this.content
+			.map(track => (typeof track === 'object' ? track?.id : false))
+			.filter(n => Number.isSafeInteger(n)) as number[]
+		if (checkServer && ids.length > 0) {
+			this.content = await getTracksByIds(ids)
+			await this.save({ withIndex: false })
+		}
+		if (!this.content.length) {
+			this.index = null
+			await this.save({ withContent: false })
+		} else {
+			if (
+				!Number.isSafeInteger(this.index) ||
+				// @ts-expect-error: TS doesn't know isSafeInteger will evict null
+				this.index >= this.content.length ||
+				// @ts-expect-error: TS doesn't know isSafeInteger will evict null
+				this.index < 0
+			) {
+				this.index = 0
+				await this.save({ withContent: false })
 			}
 		}
 	}
 
 	private async save({
-		current = true,
-		content = true
-	}: { current?: boolean; content?: boolean } = {}) {
-		if (content) {
+		withIndex = true,
+		withContent = true
+	}: { withIndex?: boolean; withContent?: boolean } = {}) {
+		if (withContent) {
 			await localforage.setItem(
 				contentStorageKey,
 				$state.snapshot(this.content)
 			)
 		}
-		if (current) {
+		if (withIndex) {
 			await localforage.setItem(currentStorageKey, $state.snapshot(this.index))
 		}
 	}
 
 	async clear() {
-		this.content = []
-		this.current = undefined
-		await this.save()
+		await this.add([], { play: false, replace: true })
 	}
 
-	async add(track: Track, play = true) {
-		this.content.push(track)
-		if (play) {
-			this.current = track
+	async add(tracks: Track[], { play = true, replace = false } = {}) {
+		if (replace) {
+			this.content = []
+			this.index = null
 		}
+		if (play || (this.index === null && tracks.length)) {
+			this.index = this.content.length
+		}
+		this.content.push(...tracks)
 		await this.save()
 	}
 
-	async playNext(autoplay = false) {
+	async playNext(auto = false) {
 		if (this.index === this.content.length - 1) {
-			if (autoplay) {
-				this.current = undefined
-			} else {
-				this.current = this.content[0]
-			}
+			this.index = 0
 		} else if (this.index !== null) {
-			this.current = this.content[this.index + 1]
+			this.index++
 		}
-		await this.save({ current: true })
+		if (auto) {
+			for (const listener of this.autoNextListerners) {
+				listener?.()
+			}
+		}
+		await this.save({ withContent: false })
 	}
 
 	async playPrevious() {
 		if (this.index === 0) {
-			this.current = this.content[this.content.length - 1]
+			this.index = this.content.length - 1
 		} else if (this.index !== null) {
-			this.current = this.content[this.index - 1]
+			this.index--
 		}
-		await this.save({ current: true })
+		await this.save({ withContent: false })
 	}
 
 	async jumpTo(index: number) {
 		if (index < 0 || index >= this.content.length) return
-		this.current = this.content[index]
-		await this.save({ current: true })
+		this.index = index
+		await this.save({ withContent: false })
 	}
 
 	async move({ from, to }: { from: number; to: number }) {
@@ -110,6 +120,15 @@ class TrackQueue {
 			return
 		}
 		this.content.splice(to, 0, this.content.splice(from, 1)[0])
+		if (this.index !== null) {
+			if (this.index === from) {
+				this.index = to
+			} else if (to < this.index && from > this.index) {
+				this.index++
+			} else if (to > this.index && from < this.index) {
+				this.index--
+			}
+		}
 		await this.save()
 	}
 
@@ -118,7 +137,19 @@ class TrackQueue {
 			return
 		}
 		this.content.splice(index, 1)
+		if (this.index !== null && index < this.index) {
+			this.index--
+		}
 		await this.save()
+	}
+
+	registerAutoNextListener(listener: () => unknown) {
+		this.autoNextListerners.push(listener)
+		return () => {
+			this.autoNextListerners = this.autoNextListerners.filter(
+				l => l !== listener
+			)
+		}
 	}
 }
 

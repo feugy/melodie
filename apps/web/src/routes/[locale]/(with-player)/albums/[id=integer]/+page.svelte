@@ -1,24 +1,44 @@
 <script lang="ts">
   import { getImage, trackQueue } from '$lib/client'
-  import { DisksList, Heading, Image } from '$lib/components'
+  import { Button, DisksList, Heading, Image } from '$lib/components'
+  import EnqueueIcon from 'lucide-svelte/icons/list-plus'
+  import PlayIcon from 'lucide-svelte/icons/play'
+  import { t } from 'svelte-intl-precompile'
   import type { PageData } from './$types'
 
   let { data }: { data: PageData } = $props()
   const { album, tracks } = data
 </script>
 
-<Heading class="preset-tonal-surface">
+<Heading>
   {album.name}
 </Heading>
 
 <div class="grid grid-rows-[auto_1fr_auto] p-4">
-  <Image
-    alt="Album cover for {album.name}"
-    brokenIcon="music"
-    height={400}
-    layout="fixed"
-    src={getImage(album, data.agentById)}
-    width={400}
+  <div class="flex gap-4">
+    <Image
+      alt="Album cover for {album.name}"
+      brokenIcon="music"
+      height={400}
+      layout="fixed"
+      src={getImage(album, data.agentById)}
+      width={400}
+    />
+    <div class="flex flex-col gap-2">
+      <Button Icon={PlayIcon} onclick={() => trackQueue.add(tracks)}>
+        {$t('play all')}
+      </Button>
+      <Button
+        Icon={EnqueueIcon}
+        onclick={() => trackQueue.add(tracks, { play: false })}
+      >
+        {$t('enqueue')}
+      </Button>
+    </div>
+  </div>
+  <DisksList
+    {tracks}
+    hideAlbum
+    onclick={(_, track) => trackQueue.add([track], { play: false })}
   />
-  <DisksList {tracks} hideAlbum onclick={(_, track) => trackQueue.add(track)} />
 </div>

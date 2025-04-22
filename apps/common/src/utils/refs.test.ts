@@ -1,5 +1,6 @@
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it } from 'bun:test'
 import {
+	type Reference,
 	differenceRef,
 	parseRawRef,
 	parseRawRefArray,
@@ -92,22 +93,22 @@ describe('uniqRef()', () => {
 
 describe('parseRawRef()', () => {
 	it('parses regular ref', () => {
-		const ref = [123, 'foo']
+		const ref: Reference = [123, 'foo']
 		expect(parseRawRef(JSON.stringify(ref))).toEqual(ref)
 	})
 
 	it('parses null ref', () => {
-		const ref = [123, null]
+		const ref: Reference = [123, null]
 		expect(parseRawRef(JSON.stringify(ref))).toEqual(ref)
 	})
 
 	it('parses empty string', () => {
-		const ref = [123, '']
+		const ref: Reference = [123, '']
 		expect(parseRawRef(JSON.stringify(ref))).toEqual(ref)
 	})
 
 	it('parses text including commas and espaced delimiters', () => {
-		const ref = [123, 'foo, "bar"']
+		const ref: Reference = [123, 'foo, "bar"']
 		expect(parseRawRef(JSON.stringify(ref))).toEqual(ref)
 	})
 
@@ -119,7 +120,7 @@ describe('parseRawRef()', () => {
 
 describe('parseRawRefArray()', () => {
 	it('parses regular refs array', () => {
-		const refs = [
+		const refs: Reference[] = [
 			[123, 'foo'],
 			[432, 'bar'],
 			[678, 'baz']
@@ -128,7 +129,7 @@ describe('parseRawRefArray()', () => {
 	})
 
 	it('parses regular refs with commas', () => {
-		const refs = [
+		const refs: Reference[] = [
 			[123, 'foo, bar'],
 			[432, 'baz'],
 			[678, 'wee']
@@ -137,12 +138,12 @@ describe('parseRawRefArray()', () => {
 	})
 
 	it('parses array with single ref', () => {
-		const refs = [[123, 'foo']]
+		const refs: Reference[] = [[123, 'foo']]
 		expect(parseRawRefArray(JSON.stringify(refs))).toEqual(refs)
 	})
 
 	it('parses array with null ref', () => {
-		const refs = [
+		const refs: Reference[] = [
 			[123, null],
 			[456, 'foo'],
 			[879, null]
@@ -151,7 +152,7 @@ describe('parseRawRefArray()', () => {
 	})
 
 	it('parses empty array', () => {
-		const refs: unknown[] = []
+		const refs: Reference[] = []
 		expect(parseRawRefArray(JSON.stringify(refs))).toEqual(refs)
 	})
 

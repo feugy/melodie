@@ -1,29 +1,52 @@
 <script module lang="ts">
+  import type { Agent, Track as TrackModel } from '@melodie/common/models'
   import { defineMeta } from '@storybook/addon-svelte-csf'
   import { fn } from '@storybook/test'
   import cover from 'fixtures/cover.jpg'
   import webm from 'fixtures/file.webm'
+  import { http, HttpResponse } from 'msw'
   import Component from './player.svelte'
 
+  const id = 1
+  const agentById = new Map<number, Agent>([[id, { id, name: '', base: '' }]])
   const { Story } = defineMeta({
     title: 'Components/Player',
     component: Component,
-    tags: ['autodocs'],
     args: { onnext: fn(), onprevious: fn() },
+    parameters: {
+      msw: {
+        handlers: [
+          http.get('http://localhost/tracks/:id/media/:count', () =>
+            fetch(cover)
+          ),
+          http.get('tracks/:id/data', () => fetch(webm)),
+        ],
+      },
+    },
   })
 </script>
 
-<Story name="No file" />
+<Story name="No file" args={{ agentById }} />
 
 <Story
   name="With track"
   args={{
     track: {
-      data: webm,
-      cover,
+      id: 123,
+      agentId: id,
+      path: '',
+      media: null,
+      mediaCount: 1,
       artistRefs: [[123, 'Speaker']],
       albumRef: [1, null],
-      tags: { artists: ['Speaker'], title: 'A webm presentation', genre: '' },
+      tags: {
+        artists: ['Speaker'],
+        title: 'A webm presentation',
+        genre: [''],
+        duration: 125,
+      },
+      mtimeMs: 0,
     },
+    agentById,
   }}
 />

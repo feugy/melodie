@@ -4,7 +4,9 @@ artist: Artiste
 by _: par {artist}
 disk _: Disque N°{num}
 duration: Durée
+enqueue: Ajouter tout
 hours_minutes: "{hours, plural, =0 {} =1 {1 heure} other {# heures}} {minutes, plural, =0 {} =1 {1 minute} other {# minutes}}"
 none: Aucun
+play all: Lire tout
 track: Morceau
 unknown: Inconnu

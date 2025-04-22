@@ -5,9 +5,9 @@
     lg: 'btn-lg',
   }
   const iconPaddings = {
-    sm: 'p-1.5',
-    md: 'p-2',
-    lg: 'p-2.5',
+    sm: 'p-1.5!',
+    md: 'p-2!',
+    lg: 'p-2.5!',
   }
   const gaps = {
     sm: 'gap-1',
@@ -15,7 +15,7 @@
     lg: 'gap-3',
   }
   const colors = {
-    primary: 'preset-filled-primary-500',
+    primary: 'preset-outlined-primary-500',
     secondary: 'preset-filled-secondary-500',
     tertiary: 'preset-filled-tertiary-500',
     success: 'preset-filled-success-500',
@@ -29,7 +29,8 @@
     class?: string
     size?: keyof typeof sizes
     color?: keyof typeof colors
-    onclick?: () => unknown
+    onclick?: MouseEventHandler<HTMLButtonElement>
+    onclickcapture?: MouseEventHandler<HTMLButtonElement>
     children?: Snippet
   }
 </script>
@@ -37,9 +38,11 @@
 <script lang="ts">
   import type { Icon as IconType } from 'lucide-svelte'
   import type { Component, Snippet } from 'svelte'
+  import type { MouseEventHandler } from 'svelte/elements'
 
   let {
     onclick,
+    onclickcapture,
     class: className = '',
     Icon,
     children,
@@ -50,10 +53,11 @@
 
 <button
   type="button"
-  class="{className} btn {colors[color]} {sizes[size]} {children
+  class="{className} btn font-semibold {colors[color]} {sizes[size]} {children
     ? gaps[size]
-    : `${iconPaddings[size]} h-auto`}"
+    : `${iconPaddings[size]} h-auto rounded-full`}"
   {onclick}
+  {onclickcapture}
   >{#if Icon}<Icon
       class="{children ? 'size-[1em]' : 'size-[1.25em]'} text-inherit"
     />{/if}{@render children?.()}</button

@@ -1,27 +1,25 @@
+import { describe, expect, it, mock } from 'bun:test'
 import { faker } from '@faker-js/faker'
-import { describe, expect, it, vi } from 'vitest'
 import type { DBConf } from '../types.ts'
-import {
-	agentsModel,
-	albumsModel,
-	artistsModel,
-	init,
-	playlistsModel,
-	tracksModel
-} from './index.ts'
-
-vi.mock('./agents.ts')
-vi.mock('./albums.ts')
-vi.mock('./artists.ts')
-vi.mock('./tracks.ts')
-vi.mock('./playlists.ts')
 
 describe('models', () => {
-	it('initializes all models', async () => {
-		const conf: DBConf = {
-			kind: 'sqlite3',
-			filename: faker.system.filePath()
-		}
+	// https://github.com/oven-sh/bun/pull/18171
+	// modules are not restored after tests
+	it.skip('initializes all models', async () => {
+		const agentsModel = { init: mock() }
+		const albumsModel = { init: mock() }
+		const artistsModel = { init: mock() }
+		const tracksModel = { init: mock() }
+		const playlistsModel = { init: mock() }
+		mock.module('./agents.ts', () => ({ agentsModel }))
+		mock.module('./albums.ts', () => ({ albumsModel }))
+		mock.module('./artists.ts', () => ({ artistsModel }))
+		mock.module('./tracks.ts', () => ({ tracksModel }))
+		mock.module('./playlists.ts', () => ({ playlistsModel }))
+
+		const { init } = await import('./index.ts')
+
+		const conf: DBConf = { filename: faker.system.filePath() }
 		await init(conf)
 		expect(agentsModel.init).toHaveBeenCalledWith(conf, true)
 		expect(albumsModel.init).toHaveBeenCalledWith(conf, false)

@@ -6,14 +6,16 @@ export class ConfigurationMessageProvider extends SimpleMessagesProvider {
 
 	constructor(fields: Record<string, string>) {
 		super({
-			required: '{{ field }} env variable is required',
-			number: '{{ field }} env variable must be a positive integer',
-			positive: '{{ field }} env variable must be a positive integer',
-			withoutDecimals: '{{ field }} env variable must be a positive integer',
+			required: '{{ field }} is required',
+			number: '{{ field }} must be a positive integer',
+			positive: '{{ field }} must be a positive integer',
+			url: '{{ field }} must be a valid URL',
+			withoutDecimals: '{{ field }} must be a positive integer',
+			array: '{{ field }} must be an array',
 			'folders.*.minLength':
-				'FOLDERS env variable value #{{ field }} must contain at least {{ min }} characters',
-			'array.minLength':
-				'{{ field }} env variable must contain at least {{ min }} element'
+				'folder #{{ field }} must contain at least {{ min }} characters',
+			'folders.*.string': 'folder #{{ field }} must be a string',
+			'array.minLength': '{{ field }} must contain at least {{ min }} element'
 		})
 		this.fields = fields
 	}

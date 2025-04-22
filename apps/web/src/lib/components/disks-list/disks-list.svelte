@@ -25,13 +25,9 @@
 
 {#each disks as { num, tracks } (num)}
   {#if num !== Infinity}
-    <h3>{$t('disk _', { values: { num } })}</h3>
+    <h3 class="mt-8 mb-4 text-left text-lg">
+      {$t('disk _', { values: { num } })}
+    </h3>
   {/if}
   <TracksTable {tracks} {...rest} />
 {/each}
-
-<style lang="postcss">
-  h3 {
-    @apply mb-4 mt-8 text-left text-lg;
-  }
-</style>

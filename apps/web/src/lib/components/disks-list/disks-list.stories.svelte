@@ -6,7 +6,6 @@
   const { Story } = defineMeta({
     title: 'Components/DiscksList',
     component: Component,
-    tags: ['autodocs'],
     args: { tracks: disksData },
   })
 </script>

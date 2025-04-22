@@ -1,13 +1,13 @@
+import { describe, expect, it } from 'bun:test'
 import { base } from '$app/paths'
 import { faker } from '@faker-js/faker'
 import type { Reference } from '@melodie/common/utils'
-import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { locale } from 'svelte-intl-precompile'
+import { get } from 'svelte/store'
 import { translate } from '../tests/translate'
 import { wrapWithLinks } from './links'
 
 describe('link utilities', () => {
-	beforeEach(() => vi.clearAllMocks())
-
 	it('wraps references with links of a given kind', async () => {
 		const refs: Reference[] = [
 			[faker.number.int(), faker.music.artist()],
@@ -18,7 +18,7 @@ describe('link utilities', () => {
 		for (const [i, [id, name]] of refs.entries()) {
 			expect(results[i]).toEqual(`<a
     onclick="event.stopPropagation()"
-    href="${base}/${kind}s/${id}"
+    href="${base}/${get(locale)}/${kind}s/${id}"
     class="underlined">${name}</a>`)
 		}
 	})
@@ -30,7 +30,7 @@ describe('link utilities', () => {
 		for (const [i, [id]] of refs.entries()) {
 			expect(results[i]).toEqual(`<a
     onclick="event.stopPropagation()"
-    href="${base}/${kind}s/${id}"
+    href="${base}/${get(locale)}/${kind}s/${id}"
     class="underlined">${translate('unknown')}</a>`)
 		}
 	})
@@ -44,7 +44,7 @@ describe('link utilities', () => {
 		for (const [i, [id, name]] of refs.entries()) {
 			expect(results[i]).toEqual(`<a
     onclick="event.stopPropagation()"
-    href="${base}/${kind}s/${id}"
+    href="${base}/${get(locale)}/${kind}s/${id}"
     class="${className} underlined">${name}</a>`)
 		}
 	})

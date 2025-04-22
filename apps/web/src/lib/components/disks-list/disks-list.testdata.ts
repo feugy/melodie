@@ -65,6 +65,7 @@ export const disksData: Track[] = [
 		agentId: null,
 		path: '',
 		mediaCount: 1,
+		media: null,
 		tags: {
 			title: 'Vitamin A',
 			artists,
@@ -82,6 +83,7 @@ export const disksData: Track[] = [
 		agentId: null,
 		path: '',
 		mediaCount: 1,
+		media: null,
 		tags: {
 			title: 'LIVE in Baghdad',
 			artists,
@@ -99,6 +101,7 @@ export const disksData: Track[] = [
 		agentId: null,
 		path: '',
 		mediaCount: 1,
+		media: null,
 		tags: {
 			title: 'Cats on Mars',
 			artists,
@@ -116,6 +119,7 @@ export const disksData: Track[] = [
 		agentId: null,
 		path: '',
 		mediaCount: 1,
+		media: null,
 		tags: {
 			title: 'Want it All Back',
 			artists,
@@ -133,6 +137,7 @@ export const disksData: Track[] = [
 		agentId: null,
 		path: '',
 		mediaCount: 1,
+		media: null,
 		tags: {
 			title: 'Bindy',
 			artists,
@@ -150,6 +155,7 @@ export const disksData: Track[] = [
 		agentId: null,
 		path: '',
 		mediaCount: 1,
+		media: null,
 		tags: {
 			title: 'You Make Me Coo',
 			artists,
@@ -167,6 +173,7 @@ export const disksData: Track[] = [
 		agentId: null,
 		path: '',
 		mediaCount: 1,
+		media: null,
 		tags: {
 			title: 'Vitamin B',
 			artists,
@@ -184,6 +191,7 @@ export const disksData: Track[] = [
 		agentId: null,
 		path: '',
 		mediaCount: 1,
+		media: null,
 		tags: {
 			title: 'Green Bird',
 			artists,
@@ -201,6 +209,7 @@ export const disksData: Track[] = [
 		agentId: null,
 		path: '',
 		mediaCount: 1,
+		media: null,
 		tags: {
 			title: 'ELM',
 			artists,
@@ -218,6 +227,7 @@ export const disksData: Track[] = [
 		agentId: null,
 		path: '',
 		mediaCount: 1,
+		media: null,
 		tags: {
 			title: 'Vitamin C',
 			artists,
@@ -235,6 +245,7 @@ export const disksData: Track[] = [
 		agentId: null,
 		path: '',
 		mediaCount: 1,
+		media: null,
 		tags: {
 			title: 'Gateway',
 			artists,
@@ -252,6 +263,7 @@ export const disksData: Track[] = [
 		agentId: null,
 		path: '',
 		mediaCount: 1,
+		media: null,
 		tags: {
 			title: 'The Singing Sea',
 			artists,
@@ -269,6 +281,7 @@ export const disksData: Track[] = [
 		agentId: null,
 		path: '',
 		mediaCount: 1,
+		media: null,
 		tags: {
 			title: 'The Egg and You!',
 			artists,
@@ -286,6 +299,7 @@ export const disksData: Track[] = [
 		agentId: null,
 		path: '',
 		mediaCount: 1,
+		media: null,
 		tags: {
 			title: 'Forever Broke',
 			artists,
@@ -303,6 +317,7 @@ export const disksData: Track[] = [
 		agentId: null,
 		path: '',
 		mediaCount: 1,
+		media: null,
 		tags: {
 			title: 'Power of Kungfu Remix',
 			artists,

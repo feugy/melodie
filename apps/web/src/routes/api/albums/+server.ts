@@ -9,10 +9,16 @@ export interface GETAlbumsResponse {
 
 export async function GET() {
 	const data: LightAlbum[] = []
-	for await (const { id, name, media, mediaCount, agentId, refs } of listAlbums(
-		100
-	)) {
-		data.push({ id, name, media, mediaCount, agentId, refs })
+	for await (const {
+		id,
+		name,
+		media,
+		mediaCount,
+		agentId,
+		refs,
+		trackIds
+	} of listAlbums(100)) {
+		data.push({ id, name, media, mediaCount, agentId, refs, trackIds })
 	}
 	return json({ data, total: data.length })
 }

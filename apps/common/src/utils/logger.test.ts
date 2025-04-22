@@ -1,50 +1,58 @@
+import {
+	type Mock,
+	afterEach,
+	beforeEach,
+	describe,
+	expect,
+	it,
+	mock
+} from 'bun:test'
 import { constants, chmod, unlink, writeFile } from 'node:fs/promises'
 import os from 'node:os'
 import { join } from 'node:path'
 import { faker } from '@faker-js/faker'
+import { env } from 'bun'
+import * as originalPino from 'pino'
 import type { Logger } from 'pino'
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import type { MockInstance, MockedObject } from 'vitest'
 import type * as T from './logger.ts'
 
 let getLogger: typeof T.getLogger
 let refreshLogLevels: typeof T.refreshLogLevels
-let pino: MockInstance<() => Logger>
-const loggers: Record<string, MockedObject<Logger>> = {}
-const setters: Record<string, MockInstance> = {}
+const pino = mock<() => Logger>()
+const loggers: Record<string, Logger & { child: Mock<() => unknown> }> = {}
+const setters: Record<string, Mock<() => unknown>> = {}
 
-vi.doMock('pino', async () => {
-	const { default: _unused, ...others } = await vi.importActual('pino')
+mock.module('pino', async () => {
+	const { default: _unused, ...others } = originalPino
 
 	function setupLogger(name: string, proto = {}) {
-		loggers[name] = proto as MockedObject<Logger>
-		setters[name] = vi.fn()
-		// @ts-expect-error -- we're overriding level with a setter.
+		loggers[name] = proto as Logger & { child: Mock<() => unknown> }
+		setters[name] = mock()
 		Object.defineProperty(loggers[name], 'level', { set: setters[name] })
 		return loggers[name]
 	}
 
 	setupLogger('core', {
-		child: vi.fn().mockImplementation(({ name }) => setupLogger(name))
+		child: mock().mockImplementation(({ name }) => setupLogger(name))
 	})
 
-	pino = vi.fn().mockReturnValue(loggers.core)
+	pino.mockReturnValue(loggers.core)
 	return { ...others, pino }
 })
 
 describe('getLogger()', () => {
-	const envSave = Object.assign({}, process.env)
+	const envSave = Object.assign({}, env)
 	const levelFile = join(os.tmpdir(), '.log-levels-test')
 
 	beforeEach(async () => {
-		vi.resetModules()
-		vi.clearAllMocks()
-		process.env = {}
-		Object.assign(process.env, envSave)
-		process.env.LOG_LEVEL_FILE = levelFile
-		process.env.LOG_DESTINATION = '1'
+		Object.assign(env, envSave)
+		env.LOG_LEVEL_FILE = levelFile
+		env.LOG_DESTINATION = '1'
 		await writeFile(levelFile, '')
-		;({ getLogger, refreshLogLevels } = await import('./logger.ts'))
+		delete require.cache[join(import.meta.dir, 'logger.ts')]
+		;({ getLogger, refreshLogLevels } = require('./logger.ts'))
+		loggers.core.child.mockClear()
+		pino.mockClear()
 	})
 
 	afterEach(async () => {
@@ -62,18 +70,10 @@ describe('getLogger()', () => {
 		expect(pino).toHaveBeenCalledWith({
 			name: 'core',
 			level: 'silent',
-			transport: {
-				target: 'pino-pretty',
-				options: expect.objectContaining({
-					destination: process.env.LOG_DESTINATION,
-					translateTime: true,
-					errorProps: '*'
-				})
-			},
 			serializers: expect.any(Object)
 		})
 		expect(pino).toHaveBeenCalledTimes(1)
-		vi.mocked(pino).mockClear()
+		pino.mockClear()
 
 		const logger2 = getLogger()
 		expect(logger2).toBe(logger)
@@ -92,9 +92,7 @@ describe('getLogger()', () => {
 
 		expect(logger).toBe(loggers[name])
 		expect(loggers.core.child).toHaveBeenCalledWith({ name }, { level })
-		expect(loggers.core.child).toHaveBeenCalledTimes(1)
-		expect(pino).toHaveBeenCalledTimes(1)
-		vi.mocked(pino).mockClear()
+		pino.mockClear()
 		loggers.core.child.mockClear()
 
 		const logger2 = getLogger(name, level)
@@ -104,7 +102,7 @@ describe('getLogger()', () => {
 	})
 
 	it('sets level when run with in dev', async () => {
-		process.env.NODE_ENV = 'dev'
+		env.NODE_ENV = 'dev'
 		const name = faker.word.noun()
 
 		getLogger()
@@ -120,21 +118,25 @@ describe('getLogger()', () => {
 			{ name },
 			{ level: 'debug' }
 		)
+		expect(loggers.core.child).toHaveBeenCalledTimes(1)
+		expect(pino).toHaveBeenCalledTimes(1)
 	})
 
-	it('sets level when run without jest', async () => {
-		process.env.NODE_ENV = 'production'
+	it('sets level when running in production', async () => {
+		env.NODE_ENV = 'production'
 		const name = faker.word.noun()
 		getLogger()
 		expect(pino).toHaveBeenCalledWith(
 			expect.objectContaining({
 				name: 'core',
-				level: 'info'
+				level: 'warn'
 			})
 		)
 
 		getLogger(name)
-		expect(loggers.core.child).toHaveBeenCalledWith({ name }, { level: 'info' })
+		expect(loggers.core.child).toHaveBeenCalledWith({ name }, { level: 'warn' })
+		expect(loggers.core.child).toHaveBeenCalledTimes(1)
+		expect(pino).toHaveBeenCalledTimes(1)
 	})
 
 	it('uses level spec when creating loggers', async () => {
@@ -153,6 +155,8 @@ describe('getLogger()', () => {
 
 		getLogger(name)
 		expect(loggers.core.child).toHaveBeenCalledWith({ name }, { level: level2 })
+		expect(loggers.core.child).toHaveBeenCalledTimes(1)
+		expect(pino).toHaveBeenCalledTimes(1)
 	})
 
 	it('changes specific logger level on SIGUSR2', async () => {

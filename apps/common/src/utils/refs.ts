@@ -26,8 +26,8 @@ export function uniqRef(array: Reference[]) {
  * @param filtered Array of references
  */
 export function differenceRef<T extends Reference | null | undefined>(
-	array?: T[],
-	filtered?: T[]
+	array?: T[] | null,
+	filtered?: T[] | null
 ) {
 	if (!array) {
 		return []

@@ -1,3 +1,4 @@
+import { afterAll, beforeAll, describe, expect, it } from 'bun:test'
 import { faker } from '@faker-js/faker'
 import {
 	type Agent,
@@ -9,8 +10,6 @@ import {
 import { addId, cleanTestTB, initTestDB } from '@melodie/common/tests'
 import type { DBConf } from '@melodie/common/types'
 import type { Reference } from '@melodie/common/utils'
-import type { RequestEvent } from '@sveltejs/kit'
-import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 import { POST } from './+server'
 
 describe('POST /api/get-tracks', () => {
@@ -29,6 +28,7 @@ describe('POST /api/get-tracks', () => {
 			agentId: 0,
 			path: faker.system.filePath(),
 			tags: { genre: [], artists: [], duration: 0 },
+			media: null,
 			mediaCount: 0,
 			mtimeMs: 0,
 			albumRef: nullRef,
@@ -38,6 +38,7 @@ describe('POST /api/get-tracks', () => {
 			agentId: 0,
 			path: faker.system.filePath(),
 			tags: { genre: [], artists: [], duration: 0 },
+			media: null,
 			mediaCount: 0,
 			mtimeMs: 0,
 			albumRef: nullRef,
@@ -47,6 +48,7 @@ describe('POST /api/get-tracks', () => {
 			agentId: 0,
 			path: faker.system.filePath(),
 			tags: { genre: [], artists: [], duration: 0 },
+			media: null,
 			mediaCount: 0,
 			mtimeMs: 0,
 			albumRef: nullRef,
@@ -55,7 +57,7 @@ describe('POST /api/get-tracks', () => {
 	].map(addId)
 
 	beforeAll(async () => {
-		conf = await initTestDB()
+		;({ conf } = await initTestDB())
 		await init(conf)
 		await agentsModel.save(agent)
 		await tracksModel.save(tracks)
