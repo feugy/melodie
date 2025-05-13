@@ -1,4 +1,4 @@
-[data-theme="melodietheme"] {
+[data-theme="melodie"] {
   --text-scaling: 1.067;
   --base-font-color: var(--color-surface-950);
   --base-font-color-dark: var(--color-surface-50);
@@ -26,7 +26,7 @@
   --anchor-text-decoration-hover: underline;
   --anchor-text-decoration-active: none;
   --anchor-text-decoration-focus: none;
-  --spacing: 0.22rem;
+  --spacing: 0.25rem;
   --radius-base: 0.25rem;
   --radius-container: 0rem;
   --default-border-width: 4px;

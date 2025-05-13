@@ -75,9 +75,7 @@
         size="lg"
       />{/if}
   </menu>
-  <footer
-    class="text-primary-contrast-500 overflow-hidden p-2 text-center text-base"
-  >
+  <footer class="overflow-hidden p-2 text-center text-base">
     <p class="truncate">{album.name}</p>
     {#if album.refs.length}
       <div class="truncate text-xs">

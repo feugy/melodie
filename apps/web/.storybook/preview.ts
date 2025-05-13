@@ -4,8 +4,6 @@ import { initialize, mswLoader } from 'msw-storybook-addon'
 import '../src/app.css'
 import { configureLocales } from '../src/lib/utils'
 
-const melodie = 'melodie'
-const crimson = 'crimson'
 const dark = 'dark'
 const light = 'light'
 

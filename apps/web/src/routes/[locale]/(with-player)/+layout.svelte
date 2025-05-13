@@ -32,7 +32,7 @@
 
 <div class="flex h-screen flex-col overflow-hidden">
   <div class="grid flex-1 grid-cols-[minmax(50%,1fr)_max(570px)] overflow-auto">
-    <main class="text-primary-contrast-500 overflow-auto">
+    <main class="overflow-auto">
       {@render children?.()}
     </main>
     <aside class="preset-filled-primary-800-200 overflow-auto">

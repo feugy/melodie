@@ -4,7 +4,8 @@
   import { fn } from '@storybook/test'
   import cover from 'fixtures/cover.jpg'
   import webm from 'fixtures/file.webm'
-  import { http, HttpResponse } from 'msw'
+  import { http } from 'msw'
+  import BackgroundDecorator from '../../tests/background-decorator.svelte'
   import Component from './player.svelte'
 
   const id = 1
@@ -23,6 +24,14 @@
         ],
       },
     },
+    decorators: [
+      (children) => ({
+        // @ts-expect-error: how do we tell TS that we're returning the decorator instead of the story?
+        Component: BackgroundDecorator,
+        // @ts-expect-error: how do we tell TS that we're passing the decorator props?
+        props: { color: 'preset-filled', children },
+      }),
+    ],
   })
 </script>
 

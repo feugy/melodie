@@ -148,7 +148,7 @@
         onpointerdown={handleProgressClick}
       >
         <div
-          class="bg-primary-contrast-500 h-full w-[calc(100*var(--progress))] rounded-lg"
+          class="bg-primary-500 h-full w-[calc(100*var(--progress))] rounded-lg"
           style="--progress: {time / duration}%"
         ></div>
       </div>
