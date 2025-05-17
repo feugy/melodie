@@ -1,6 +1,5 @@
 import { readFile, rm, stat, writeFile } from 'node:fs/promises'
 import { dirname, extname, resolve } from 'node:path'
-import { pid } from 'node:process'
 import { isNativeError } from 'node:util/types'
 import {
 	type Track,
@@ -20,10 +19,6 @@ import { TagsService, tagsService } from './tags.ts'
 import { tracksService } from './tracks.ts'
 
 const extensions = [...TagsService.formats, ...PlaylistsService.formats]
-
-function pidPath(folder: string) {
-	return resolve(folder, '.pid')
-}
 
 export class FoldersService {
 	logger: Logger
@@ -82,21 +77,16 @@ export class FoldersService {
 		return this._folders
 	}
 
-	/** Stops watching folders, if watching. Removes pid files. */
+	/** Stops watching folders, if watching. */
 	async stopWatching() {
 		this.logger.info({ folders: this.folders }, 'stops watching folders')
 		this.abortController.abort()
 		this.abortController = new AbortController()
-		for (const folder of this.folders) {
-			this.logger.debug({ folder }, 'removing pid file')
-			await rm(pidPath(folder), { force: true })
-		}
 	}
 
 	/**
 	 * Watches and compare a list of folder, that is walks provided folders and collect file paths and modification times from the drive.
 	 * Registers an agent in database, and all subsequent data will be bound to that agent.
-	 * Creates pid files, and will fail in case they already exist.
 	 * While watching, changes and removal on tracked playlist are ignored.
 	 * @param folders Folders to watch and compare.
 	 * @param base Base URL for the registered agent.
@@ -108,11 +98,6 @@ export class FoldersService {
 			throw new Error('no folder to watch')
 		}
 
-		// TODO: decide whether we want this or not.
-		// for (const folder of this.folders) {
-		// 	await this._checkAndWritePid(folder)
-		// }
-
 		this._agentId = (await stat(this.folders[0])).ino
 		await agentsModel.save({ id: this.agentId, name: 'local', base })
 		this.logger.info(
@@ -121,22 +106,6 @@ export class FoldersService {
 		)
 		this._startWatching(this.folders)
 		await this._compare(this.folders)
-	}
-
-	protected async _checkAndWritePid(folder: string) {
-		let content: string | undefined
-		try {
-			content = await readFile(pidPath(folder), 'utf8')
-			this.logger.debug({ folder, content }, 'found existing pid file')
-			throw new Error(`${folder} is locked by process ${content}`)
-		} catch (err) {
-			if (isNativeError(err) && 'code' in err && err.code === 'ENOENT') {
-				this.logger.debug({ folder }, 'writing new pid file')
-				await writeFile(pidPath(folder), pid.toString())
-				return
-			}
-			throw err
-		}
 	}
 
 	protected async _compare(folders: string[]) {

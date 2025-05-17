@@ -1,5 +1,7 @@
 import { readdir } from 'node:fs/promises'
 import { extname, join } from 'node:path'
+import * as babel from '@babel/core'
+import buildICUPlugin from 'babel-plugin-precompile-intl'
 import { type BunPlugin, type OnLoadResult, env, file, plugin } from 'bun'
 import { parse } from 'yaml'
 import config from '../../../svelte.config'
@@ -18,13 +20,19 @@ const sveltekitPlugin: BunPlugin = {
 		build.module('$env/static/private', envModule)
 		build.module('$env/static/public', envModule)
 
+		const plugin = buildICUPlugin('svelte-intl-precompile')
 		const localesFolder = 'locales'
 		for (const name of await readdir(localesFolder)) {
 			const lang = name.replace(extname(name), '')
-			const content = parse(await file(join(localesFolder, name)).text())
+			const filename = join(localesFolder, name)
+			const content = parse(await file(filename).text())
+			const parsed = babel.transform(
+				`export default ${JSON.stringify(content)}`,
+				{ filename, plugins: [plugin] }
+			)
 			build.module(`$locales/${lang}`, () => ({
-				exports: { default: content },
-				loader: 'object'
+				contents: parsed?.code as string,
+				loader: 'js'
 			}))
 		}
 

@@ -1,12 +1,5 @@
 import type { Stats } from 'node:fs'
-import {
-	mkdtemp,
-	readFile,
-	rename,
-	rm,
-	stat,
-	writeFile
-} from 'node:fs/promises'
+import { mkdtemp, rename, rm, stat, writeFile } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { basename, dirname, extname, join } from 'node:path'
 import { setTimeout } from 'node:timers/promises'
@@ -21,6 +14,8 @@ import {
 	mock,
 	spyOn
 } from 'bun:test'
+import chokidar from 'chokidar'
+import type { FSWatcher } from 'chokidar'
 import type { Playlist, Track } from '@melodie/common/models'
 import { makeFolder, makePlaylists } from '../tests/files.ts'
 import { foldersService as service } from './folders.ts'
@@ -45,7 +40,9 @@ const tracksModel = {
 }
 const playlistsModel = { listWithTime: mock(), getById: mock() }
 const agentsModel = { save: mock() }
+const watch = mock()
 
+mock.module('chokidar', () => ({ ...chokidar, watch }))
 mock.module('@melodie/common/models', () => ({
 	agentsModel,
 	tracksModel,
@@ -69,6 +66,7 @@ describe('Folders service', () => {
 	const statsByPath = new Map<string, Stats>()
 	let agentId = 1
 	const base = faker.internet.url()
+	let watcher: FSWatcher
 
 	beforeEach(async () => {
 		coversService.findInFolder.mockReset().mockResolvedValue(null)
@@ -141,6 +139,10 @@ describe('Folders service', () => {
 			)
 		playlistsModel.getById.mockReset().mockResolvedValue(null)
 		agentsModel.save.mockReset()
+		watch.mockImplementation((paths, options) => {
+			watcher = chokidar.watch(paths, options)
+			return watcher
+		})
 	})
 
 	afterEach(() => service.stopWatching())
@@ -309,33 +311,6 @@ describe('Folders service', () => {
 			expect(coversService.findInFolder).not.toHaveBeenCalled()
 			expect(tagsService.read).not.toHaveBeenCalled()
 			expect(playlistsService.read).not.toHaveBeenCalled()
-		})
-
-		it.skip('fails on pre-existing .pid file', async () => {
-			const pid = 'whatever'
-			await writeFile(join(tree.folder, '.pid'), pid)
-			// @ts-expect-error: "forget" pre-exesting folders so the service don't remove the pid file
-			service._folders = []
-
-			await expect(
-				service.watchAndCompare([tree.folder], base)
-			).rejects.toThrow(`${tree.folder} is locked by process ${pid}`)
-		})
-	})
-
-	describe('stopWatching()', () => {
-		beforeEach(async () => service.watchAndCompare([tree.folder], base))
-
-		it.skip('cleans .pid files', async () => {
-			const pid = await readFile(join(tree.folder, '.pid'), 'utf8')
-			expect(pid).toBe(process.pid.toString())
-			await service.stopWatching()
-			expect(
-				await stat(join(tree.folder, '.pid')).then(
-					() => true,
-					() => false
-				)
-			).toBe(false)
 		})
 	})
 
@@ -677,11 +652,11 @@ describe('Folders service', () => {
 			expect(playlistsService.checkIntegrity).toHaveBeenCalledTimes(1)
 		})
 
-		it.skip('handles watcher errors', async () => {
+		it('handles watcher errors', async () => {
 			const error = new Error('Intentionaly triggered!!')
 			const errorSpy = spyOn(service.logger, 'error')
 
-			// watcher?.emit('error', error)
+			watcher?.emit('error', error)
 			await setTimeout(100)
 
 			expect(errorSpy).toHaveBeenCalledTimes(1)

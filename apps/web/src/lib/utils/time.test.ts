@@ -23,7 +23,7 @@ describe('time utilities', () => {
 		})
 	})
 
-	describe.skip('formatTimeLong()', () => {
+	describe('formatTimeLong()', () => {
 		afterEach(() => locale.set('en'))
 
 		it('round seconds', () => {
