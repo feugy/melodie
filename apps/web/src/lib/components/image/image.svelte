@@ -61,9 +61,14 @@
     style="width: {brokenSize}px; height: {brokenSize}px;"
   >
     {#if brokenIcon === 'music'}<Music4
+        data-testid={brokenIcon}
         size={brokenSize / 3}
       />{:else if brokenIcon === 'user'}<UserRound
+        data-testid={brokenIcon}
         size={brokenSize / 3}
-      />{:else}<ImageIcon size={brokenSize / 3} />{/if}
+      />{:else}<ImageIcon
+        data-testid="broken-image"
+        size={brokenSize / 3}
+      />{/if}
   </div>
 {/if}

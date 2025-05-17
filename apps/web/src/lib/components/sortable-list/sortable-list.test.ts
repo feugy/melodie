@@ -12,7 +12,6 @@ import type { Track } from '@melodie/common/models'
 import { addRefs } from '@melodie/common/tests'
 import { render } from '@testing-library/svelte'
 import userEvent from '@testing-library/user-event'
-
 import { GlobalRegistrator } from '@happy-dom/global-registrator'
 import SortableList from './sortable-list.test.svelte'
 
