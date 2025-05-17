@@ -13,9 +13,7 @@
 
 ## Web
 
-- sortable list tests
 - play/enqueue test for albums
-- storybook tests
 - (research) make the list super snappy with [CSS containment](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment/Using_CSS_containment)
 
 # Architecture design

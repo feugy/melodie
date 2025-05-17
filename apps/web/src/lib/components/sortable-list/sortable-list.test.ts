@@ -10,14 +10,13 @@ import {
 import { faker } from '@faker-js/faker'
 import type { Track } from '@melodie/common/models'
 import { addRefs } from '@melodie/common/tests'
-import { render, screen } from '@testing-library/svelte'
+import { render } from '@testing-library/svelte'
 import userEvent from '@testing-library/user-event'
 
 import { GlobalRegistrator } from '@happy-dom/global-registrator'
-import { Mouse } from 'lucide-svelte'
 import SortableList from './sortable-list.test.svelte'
 
-describe.skip('SortableList component', () => {
+describe('SortableList component', () => {
 	beforeAll(() => {
 		GlobalRegistrator.register()
 	})
@@ -47,7 +46,7 @@ describe.skip('SortableList component', () => {
 		})
 		const items = [track1, track2, track1]
 
-		render(SortableList, { items })
+		const screen = render(SortableList, { items })
 
 		expect(screen.getAllByText(track1.tags.title as string)).toHaveLength(2)
 		expect(screen.getByText(track2.tags.title as string)).toBeInTheDocument()
@@ -107,104 +106,110 @@ describe.skip('SortableList component', () => {
 			}
 		].map(addRefs)
 
+		const pointerName = 'TouchA'
 		const onmove = mock()
-		const pageYGetter = mock()
+		let screen: ReturnType<typeof render>
 
 		beforeEach(async () => {
-			render(SortableList, { items, onmove })
+			screen = render(SortableList, { items, onmove })
 			onmove.mockReset()
-			// JSDom does not support setting pageY, we have do do it ourselve
-			Object.defineProperty(MouseEvent.prototype, 'pageY', {
-				enumerable: true,
-				get: pageYGetter
-			})
-			Mouse.prototype.pageY = 0
-			pageYGetter.mockReset().mockReturnValue(0)
 		})
 
 		it('drags track forward in the list', async () => {
-			const dragged = screen.getByText(items[1].tags.title as string)
-			const hovered = screen.getByText(items[2].tags.title as string)
-			const dropped = screen.getByText(items[3].tags.title as string)
+			const dragged = screen.getByText(items[1].tags.title) as Element
+			const hovered = screen.getByText(items[2].tags.title) as Element
+			const dropped = screen.getByText(items[3].tags.title) as Element
 
-			let pageY = 0
-			pageYGetter.mockImplementation(() => ++pageY)
-			const pointerName = 'TouchA'
-
-			await userEvent.pointer([
-				{ target: dragged, keys: `[${pointerName}>]` },
-				{ target: dragged, pointerName },
-				{ target: hovered, pointerName },
-				{ target: dropped, pointerName },
-				{ keys: `[/${pointerName}]` }
-			])
+			await userEvent.pointer(
+				[
+					{
+						target: dragged,
+						keys: `[${pointerName}>]`,
+						coords: { pageY: 100 }
+					},
+					{ target: dragged, pointerName, coords: { pageY: 200 } },
+					{ target: hovered, pointerName, coords: { pageY: 300 } },
+					{ target: dropped, pointerName, coords: { pageY: 400 } },
+					{ keys: `[/${pointerName}]` }
+				],
+				{ document }
+			)
 
 			expect(onmove).toHaveBeenCalledWith({ from: 1, to: 3 })
 			expect(onmove).toHaveBeenCalledTimes(1)
 		})
 
 		it('drags track backward in the list', async () => {
-			const dragged = screen.getByText(items[3].tags.title as string)
-			const hovered = screen.getByText(items[2].tags.title as string)
-			const dropped = screen.getByText(items[1].tags.title as string)
+			const dragged = screen.getByText(items[3].tags.title) as Element
+			const hovered = screen.getByText(items[2].tags.title) as Element
+			const dropped = screen.getByText(items[1].tags.title) as Element
 
-			let pageY = 100
-			pageYGetter.mockImplementation(() => --pageY)
-			const pointerName = 'TouchA'
-
-			await userEvent.pointer([
-				{ target: dragged, keys: `[${pointerName}>]` },
-				{ target: dragged, pointerName },
-				{ target: hovered, pointerName },
-				{ target: dropped, pointerName },
-				{ keys: `[/${pointerName}]` }
-			])
+			await userEvent.pointer(
+				[
+					{
+						target: dragged,
+						keys: `[${pointerName}>]`,
+						coords: { pageY: 300 }
+					},
+					{ target: hovered, pointerName, coords: { pageY: 200 } },
+					{ target: dropped, pointerName, coords: { pageY: 100 } },
+					{ keys: `[/${pointerName}]` }
+				],
+				{ document }
+			)
 
 			expect(onmove).toHaveBeenCalledWith({ from: 3, to: 1 })
 			expect(onmove).toHaveBeenCalledTimes(1)
 		})
 
 		it('drags track at the very end', async () => {
-			const dragged = screen.getByText(items[0].tags.title as string)
-			const hoveredFirst = screen.getByText(items[1].tags.title as string)
-			const hoveredLast = screen.getByText(items[4].tags.title as string)
+			const dragged = screen.getByText(items[0].tags.title) as Element
+			const hoveredFirst = screen.getByText(items[1].tags.title) as Element
+			const hoveredLast = screen.getByText(items[4].tags.title) as Element
 
-			let pageY = 0
-			pageYGetter.mockImplementation(() => ++pageY)
-			const pointerName = 'TouchA'
-
-			await userEvent.pointer([
-				{ target: dragged, keys: `[${pointerName}>]` },
-				{ target: hoveredFirst, pointerName },
-				{ target: hoveredLast, pointerName },
-				{ keys: `[/${pointerName}]` }
-			])
+			await userEvent.pointer(
+				[
+					{
+						target: dragged,
+						keys: `[${pointerName}>]`,
+						coords: { pageY: 100 }
+					},
+					{ target: hoveredFirst, pointerName, coords: { pageY: 200 } },
+					{ target: hoveredLast, pointerName, coords: { pageY: 300 } },
+					{ keys: `[/${pointerName}]` }
+				],
+				{ document }
+			)
 
 			expect(onmove).toHaveBeenCalledWith({ from: 0, to: 4 })
 			expect(onmove).toHaveBeenCalledTimes(1)
 		})
 
 		it('drags track at the very beginning', async () => {
-			const dragged = screen.getByText(items[3].tags.title as string)
-			const hoveredFirst = screen.getByText(items[2].tags.title as string)
-			const hoveredLast = screen.getByText(items[0].tags.title as string)
+			const dragged = screen.getByText(items[3].tags.title) as Element
+			const hoveredFirst = screen.getByText(items[2].tags.title) as Element
+			const hoveredLast = screen.getByText(items[0].tags.title) as Element
 
-			let pageY = 100
-			pageYGetter.mockImplementation(() => --pageY)
-			const pointerName = 'TouchA'
-			await userEvent.pointer([
-				{ target: dragged, keys: `[${pointerName}>]` },
-				{ target: hoveredFirst, pointerName },
-				{ target: hoveredLast, pointerName },
-				{ keys: `[/${pointerName}]` }
-			])
+			await userEvent.pointer(
+				[
+					{
+						target: dragged,
+						keys: `[${pointerName}>]`,
+						coords: { pageY: 300 }
+					},
+					{ target: hoveredFirst, pointerName, coords: { pageY: 200 } },
+					{ target: hoveredLast, pointerName, coords: { pageY: 0 } },
+					{ keys: `[/${pointerName}]` }
+				],
+				{ document }
+			)
 
 			expect(onmove).toHaveBeenCalledWith({ from: 3, to: 0 })
 			expect(onmove).toHaveBeenCalledTimes(1)
 		})
 
 		it('does not move track clicks', async () => {
-			const dragged = screen.getByText(items[2].tags.title as string)
+			const dragged = screen.getByText(items[2].tags.title) as Element
 
 			await userEvent.click(dragged)
 			expect(onmove).not.toHaveBeenCalled()

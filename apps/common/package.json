@@ -14,7 +14,8 @@
 	},
 	"scripts": {
 		"check": "tsc --noEmit",
-		"dev": "bun test --watch"
+		"dev": "bun test --watch",
+		"test": "bun test"
 	},
 	"dependencies": {
 		"@vinejs/vine": "^3.0.1",

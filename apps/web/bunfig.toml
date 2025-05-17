@@ -1,6 +1,7 @@
 [test]
 preload = [
-  "./src/lib/tests/bun-sveltekit.ts",
-  "./src/lib/tests/bun-svelte-module.ts",
+  "./test-plugins/svelte-intl-precompile.ts",
+  "./test-plugins/sveltekit.ts",
+  "./test-plugins/svelte.ts",
   "./src/lib/tests/setup.ts",
 ]

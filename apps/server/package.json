@@ -8,7 +8,8 @@
 		"build": "bun build --compile ./src/main.ts ./src/worker.ts --outfile=../../build/melodie --define Bun.env.NODE_ENV=\"'production'\"",
 		"check": "tsc --noEmit",
 		"dev": "bun test --watch",
-		"start": "bun --hot --cwd src main.ts -- -c ../../../build/.melodie"
+		"start": "bun --hot --cwd src main.ts -- -c ../../../build/.melodie",
+		"test": "bun test"
 	},
 	"dependencies": {
 		"@fastify/compress": "^8.0.1",

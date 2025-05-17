@@ -8,9 +8,10 @@
 		"build:storybook": "bun -b run storybook build",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-		"dev": "bun test --watch",
+		"dev": "bun run test --watch",
 		"dev:storybook": "bun -b run storybook dev -p 6006",
-		"start": "bun -b run vite dev --open"
+		"start": "bun -b run vite dev --open",
+		"test": "bun test --conditions=browser --conditions=svelte"
 	},
 	"exports": {
 		".": "./build/handler.js"
