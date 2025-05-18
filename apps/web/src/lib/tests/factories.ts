@@ -1,5 +1,5 @@
 import { faker } from '@faker-js/faker'
-import type { Track } from '@melodie/common/models'
+import type { Agent, Track } from '@melodie/common/models'
 import { hash } from '@melodie/common/utils'
 
 export function makeTrack(track: Partial<Track>): Track {
@@ -23,4 +23,9 @@ export function makeTrack(track: Partial<Track>): Track {
 		agentId: null,
 		...track
 	}
+}
+
+export function makeAgentById() {
+	const agent: Agent = { id: 1, name: 'default', base: '/' }
+	return new Map([[agent.id, agent]])
 }

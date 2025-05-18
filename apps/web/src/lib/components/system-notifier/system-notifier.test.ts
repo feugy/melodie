@@ -7,8 +7,8 @@ import {
 	it,
 	mock
 } from 'bun:test'
+import { makeAgentById } from '$lib/tests/factories'
 import { GlobalRegistrator } from '@happy-dom/global-registrator'
-import type { Agent } from '@melodie/common/models'
 import { render } from '@testing-library/svelte'
 import { type Component, tick } from 'svelte'
 import { disksData } from '../disks-list/disks-list.testdata'
@@ -16,10 +16,9 @@ import type { SystemNotifierProps } from './system-notifier.svelte'
 import type SystemNotifierType from './system-notifier.svelte'
 
 describe('SystemNotifier Component', () => {
-	const agent: Agent = { id: 1, name: 'default', base: '/' }
-	const agentById = new Map([[agent.id, agent]])
 	const onnext = mock()
 	const onprevious = mock()
+	const agentById = makeAgentById()
 	let SystemNotifier: Component<SystemNotifierProps, { notify: () => void }>
 	let component: SystemNotifierType
 	let rerender: ReturnType<typeof render>['rerender']
