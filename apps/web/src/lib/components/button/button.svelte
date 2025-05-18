@@ -1,4 +1,6 @@
 <script module lang="ts">
+  import type { HTMLButtonAttributes } from 'svelte/elements'
+
   const sizes = {
     sm: 'btn-sm',
     md: 'btn-md',
@@ -24,13 +26,11 @@
     surface: 'preset-filled-surface-500',
   }
 
-  export interface ButtonProps {
+  export interface ButtonProps extends HTMLButtonAttributes {
     Icon?: typeof IconType | Component
     class?: string
     size?: keyof typeof sizes
     color?: keyof typeof colors
-    onclick?: MouseEventHandler<HTMLButtonElement>
-    onclickcapture?: MouseEventHandler<HTMLButtonElement>
     children?: Snippet
   }
 </script>
@@ -38,16 +38,14 @@
 <script lang="ts">
   import type { Icon as IconType } from 'lucide-svelte'
   import type { Component, Snippet } from 'svelte'
-  import type { MouseEventHandler } from 'svelte/elements'
 
   let {
-    onclick,
-    onclickcapture,
     class: className = '',
     Icon,
     children,
     size = 'md',
     color = 'primary',
+    ...rest
   }: ButtonProps = $props()
 </script>
 
@@ -56,8 +54,7 @@
   class="{className} btn font-semibold {colors[color]} {sizes[size]} {children
     ? gaps[size]
     : `${iconPaddings[size]} h-auto rounded-full`}"
-  {onclick}
-  {onclickcapture}
+  {...rest}
   >{#if Icon}<Icon
       class="{children ? 'size-[1em]' : 'size-[1.25em]'} text-inherit"
     />{/if}{@render children?.()}</button

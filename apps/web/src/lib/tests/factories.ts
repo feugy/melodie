@@ -1,11 +1,11 @@
 import { faker } from '@faker-js/faker'
 import type { Agent, Track } from '@melodie/common/models'
-import { hash } from '@melodie/common/utils'
+import { addRefs } from '@melodie/common/tests'
 
-export function makeTrack(track: Partial<Track>): Track {
+export function makeTrack(track: Partial<Track>) {
 	const artist = faker.music.artist()
 	const album = faker.music.album()
-	return {
+	return addRefs({
 		id: faker.number.int(),
 		path: faker.system.filePath(),
 		media: null,
@@ -18,11 +18,9 @@ export function makeTrack(track: Partial<Track>): Track {
 			genre: [],
 			title: faker.music.songName()
 		},
-		artistRefs: [[hash(artist), artist]],
-		albumRef: [hash(album), album],
 		agentId: null,
 		...track
-	}
+	}) as Track
 }
 
 export function makeAgentById() {

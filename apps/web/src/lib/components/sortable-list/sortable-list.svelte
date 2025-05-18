@@ -36,7 +36,8 @@
 
   let dragged = $state<Dragged | null>(null)
   let candidate = $state<Dragged | null>(null)
-  let previousY = $state<number>(0)
+  let previousY = $state(0)
+  let preventClick = $state(false)
   let keyedItems = $derived.by(() => {
     // ensure items have unique keys: same item could appear multiple times in the list
     const unique = new Map()
@@ -100,6 +101,7 @@
         ;(child as HTMLElement).style.top = ''
       }
       if (from !== to) {
+        preventClick = true
         onmove?.({ from, to })
       }
     }
@@ -109,6 +111,13 @@
   function slideOnRemove(...args: Parameters<typeof slide>) {
     // do not slide when dragging element or when clearing the list
     return dragged || keyedItems.length === 0 ? {} : slide(...args)
+  }
+
+  function handleClick(evt: MouseEvent) {
+    if (preventClick) {
+      evt.stopPropagation()
+    }
+    preventClick = false
   }
 </script>
 
@@ -120,6 +129,7 @@
       class:cursor-move={dragged !== null}
       class:preset-filled={isDragged}
       class="relative transform-gpu transition-[top] [&_*]:cursor-grab"
+      onclickcapture={handleClick}
       onpointerdown={(evt) => handleDrag(evt, item.key, i)}
       onpointermove={(evt) => handleEnter(evt, item.key)}
       out:slideOnRemove={{ duration: 250 }}

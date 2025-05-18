@@ -7,7 +7,6 @@
     agentById: Map<number, Agent>
     currentIdx: number | null
     tracks: TrackModel[]
-    withClose?: boolean
     onmove: (args: { from: number; to: number }) => unknown
     onplay: (index: number) => unknown
     onremove: (index: number) => unknown
@@ -42,12 +41,16 @@
         class:preset-filled-secondary-300-700={isCurrent}
         class:current={isCurrent}
         class="content-visibility-auto flex w-full items-center gap-2 px-2"
-        onclick={() => onplay(index)}
+        onclick={(evt) => {
+          console.log('onplay', index, evt.type, evt.cancelable)
+          onplay(index)
+        }}
       >
         <Track {agentById} src={item} details class="flex-auto" />
         <Button
           color="secondary"
           class="mx-2"
+          data-testid="remove-track-{index}"
           onclick={(evt) => {
             evt.stopPropagation()
             onremove(index)

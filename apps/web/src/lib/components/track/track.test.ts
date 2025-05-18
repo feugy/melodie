@@ -1,4 +1,4 @@
-import { afterAll, beforeAll, beforeEach, describe, expect, it } from 'bun:test'
+import { afterAll, beforeAll, describe, expect, it } from 'bun:test'
 import { base } from '$app/paths'
 import { makeAgentById } from '$lib/tests/factories'
 import { GlobalRegistrator } from '@happy-dom/global-registrator'
@@ -16,10 +16,6 @@ describe('Track component', () => {
 	})
 
 	afterAll(() => GlobalRegistrator.unregister())
-
-	beforeEach(() => {
-		location.hash = '#/'
-	})
 
 	it('has link to artist', async () => {
 		const [id, artist] = trackData.artistRefs?.[0] ?? ['', '']

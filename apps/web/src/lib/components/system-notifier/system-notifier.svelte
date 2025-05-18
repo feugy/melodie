@@ -1,7 +1,4 @@
 <script module lang="ts">
-  export const mediaSession =
-    'mediaSession' in navigator ? navigator.mediaSession : null
-
   export interface SystemNotifierProps {
     agentById: Map<number, Agent>
     track?: TrackModel
@@ -18,6 +15,8 @@
 
   let { agentById, track, onnext, onprevious }: SystemNotifierProps = $props()
 
+  const mediaSession =
+    'mediaSession' in navigator ? navigator.mediaSession : null
   let supportsNotification = $state(false)
   let cover = $derived(getImage(track, agentById))
   const unknown = $t('unknown')
