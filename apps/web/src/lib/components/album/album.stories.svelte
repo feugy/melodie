@@ -66,6 +66,7 @@
             'http://localhost/albums/:id/media/:count',
             ({ params: { id } }) => {
               const album = albums.find((album) => album.id === Number(id))
+              console.log('> fetching', album)
               if (!album?.media) {
                 return new HttpResponse(null, { status: 404 })
               }
@@ -82,4 +83,3 @@
 <Story name="Truncated title" args={{ album: albums[1], agentById }} />
 <Story name="Multiple artists" args={{ album: albums[2], agentById }} />
 <Story name="No cover" args={{ album: albums[3], agentById }} />
-<Story name="Broken cover" args={{ album: albums[4], agentById }} />

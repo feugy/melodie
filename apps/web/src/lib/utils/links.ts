@@ -3,7 +3,7 @@ import type { Reference } from '@melodie/common/utils'
 import { locale, t } from 'svelte-intl-precompile'
 import { get } from 'svelte/store'
 
-type LinkTo = 'album' | 'artist'
+export type LinkTo = 'album' | 'artist'
 
 export function linkTo(to: LinkTo, ref?: Reference | null) {
 	return ref ? `${base}/${get(locale)}/${to}s/${ref[0]}` : ''

@@ -1,9 +1,7 @@
-import type { Album, Track } from '@melodie/common/models'
+import type { Album, Artist } from '@melodie/common/models'
 
-export type LightAlbum = Pick<
-	Album,
-	'id' | 'name' | 'media' | 'mediaCount' | 'agentId' | 'refs' | 'trackIds'
+export type LightAlbum = Omit<Album, 'mtimeMs' | 'removedTrackIds' | 'trackIds'>
+export type LightArtist = Omit<
+	Artist,
+	'mtimeMs' | 'removedTrackIds' | 'trackIds'
 >
-
-export type AssetData = 'media' | 'data'
-export type AssetKind = 'tracks' | 'albums'

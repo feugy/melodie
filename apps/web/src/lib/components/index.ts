@@ -1,6 +1,8 @@
 export { default as Album } from './album/album.svelte'
 export { default as Button } from './button/button.svelte'
 export { default as DisksList } from './disks-list/disks-list.svelte'
+export { default as GridItem } from './grid-item/grid-item.svelte'
+export type { GridItemProps } from './grid-item/grid-item.svelte'
 export { default as Heading } from './heading/heading.svelte'
 export { default as Image } from './image/image.svelte'
 export { default as Player } from './player/player.svelte'
