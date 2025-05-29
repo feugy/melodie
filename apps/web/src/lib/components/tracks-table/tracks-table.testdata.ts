@@ -1,6 +1,7 @@
+import type { Track } from '@melodie/common/models'
 import { disksData } from '../disks-list/disks-list.testdata'
 
-export const tracksData = disksData.map((track, i) => ({
+export const tracksData: Track[] = disksData.map((track, i) => ({
 	...track,
 	tags: {
 		...track.tags,

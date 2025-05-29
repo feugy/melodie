@@ -38,6 +38,15 @@
 <Story name="No file" args={{ agentById }} />
 
 <Story
+  name="Loading"
+  args={{ agentById }}
+  play={({ canvas }) => {
+    const audio = canvas.getByTestId('audio-player')
+    audio.dispatchEvent(new Event('loadstart', { bubbles: true }))
+  }}
+/>
+
+<Story
   name="With track"
   args={{
     track: {

@@ -26,3 +26,4 @@
   name="Secondary with icon and text"
   args={{ Icon: Bean, color: 'secondary' }}>Click Me</Story
 >
+<Story name="Loading" args={{ loading: true }}>Click Me</Story>

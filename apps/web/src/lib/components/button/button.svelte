@@ -32,11 +32,13 @@
     size?: keyof typeof sizes
     color?: keyof typeof colors
     children?: Snippet
+    loading?: boolean
   }
 </script>
 
 <script lang="ts">
   import type { Icon as IconType } from 'lucide-svelte'
+  import Loader from 'lucide-svelte/icons/loader-circle'
   import type { Component, Snippet } from 'svelte'
 
   let {
@@ -45,8 +47,12 @@
     children,
     size = 'md',
     color = 'primary',
+    loading = false,
+    disabled = false,
     ...rest
   }: ButtonProps = $props()
+
+  let DisplayedIcon = $derived(loading ? Loader : Icon)
 </script>
 
 <button
@@ -54,8 +60,11 @@
   class="{className} btn font-semibold {colors[color]} {sizes[size]} {children
     ? gaps[size]
     : `${iconPaddings[size]} h-auto rounded-full`}"
+  disabled={disabled || loading}
   {...rest}
-  >{#if Icon}<Icon
-      class="{children ? 'size-[1em]' : 'size-[1.25em]'} text-inherit"
+  >{#if DisplayedIcon}<DisplayedIcon
+      class="{children ? 'size-[1em]' : 'size-[1.25em]'} {loading
+        ? 'animate-spin'
+        : ''} text-inherit"
     />{/if}{@render children?.()}</button
 >

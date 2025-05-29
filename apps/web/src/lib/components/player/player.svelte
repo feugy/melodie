@@ -24,6 +24,7 @@
   let gainNode: GainNode | undefined
   let time = $state(0)
   let duration = $state(0)
+  let loading = $state(false)
   let paused = $state(true)
   let progress: HTMLDivElement | null
 
@@ -79,13 +80,6 @@
     time = p * duration
   }
 
-  function handleEnded() {
-    time = 0
-    if (!isLast) {
-      onnext?.(true)
-    }
-  }
-
   function handlePlay() {
     if (gainNode && track) {
       const {
@@ -102,20 +96,38 @@
       .catch(() => void 0)
   }
 
+  function handleEnded() {
+    time = 0
+    if (!isLast) {
+      onnext?.(true)
+    }
+  }
+
+  async function handleLoaded() {
+    loading = false
+  }
+
+  function handleLoading() {
+    loading = true
+  }
+
+  function handleError(err: unknown) {
+    const save = track
+    track = undefined
+    setTimeout(() => (track = save), 1000)
+  }
+
   function handleProgressClick(e: PointerEvent) {
     progress = e.currentTarget as HTMLDivElement
     seek(e)
 
     window.addEventListener('pointermove', seek)
-
     window.addEventListener(
       'pointerup',
       () => {
         window.removeEventListener('pointermove', seek)
       },
-      {
-        once: true,
-      }
+      { once: true }
     )
   }
 </script>
@@ -128,8 +140,12 @@
     bind:duration
     bind:paused
     crossorigin="anonymous"
+    data-testid="audio-player"
     onplay={handlePlay}
     onended={handleEnded}
+    onloadstart={handleLoading}
+    onloadeddata={handleLoaded}
+    onerror={handleError}
   ></audio>
 
   <Track {agentById} src={track} />
@@ -137,7 +153,12 @@
   <div class="flex flex-1 flex-col items-center gap-2 p-2">
     <div class="flex items-center gap-2">
       <Button color="secondary" onclick={() => onprevious()} Icon={Previous} />
-      <Button onclick={togglePlay} size="lg" Icon={paused ? Play : Pause} />
+      <Button
+        {loading}
+        onclick={togglePlay}
+        size="lg"
+        Icon={paused ? Play : Pause}
+      />
       <Button color="secondary" onclick={() => onnext()} Icon={Next} />
     </div>
     <div class="flex w-full items-center gap-2">
