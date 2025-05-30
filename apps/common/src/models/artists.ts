@@ -7,7 +7,7 @@ export interface Artist {
 	id: number
 	name: string
 	/** artist's bio (each key is a language code) */
-	bio?: { [x: string]: string }
+	bio: { [x: string]: string } | null
 	trackIds: number[]
 	removedTrackIds?: number[]
 	/** references to contained artist's albums. */

@@ -65,12 +65,12 @@
           >
           <td class={hideAlbum ? 'col-span-4' : 'col-span-3'}>
             {@html track.artistRefs
-              ?.map((artist) => wrapWithLink('artist', artist))
+              ?.map((artist) => wrapWithLink('artists', artist))
               .join(', ')}
           </td>
           {#if !hideAlbum}
             <td class="col-span-3">
-              {@html wrapWithLink('album', track.albumRef)}
+              {@html wrapWithLink('albums', track.albumRef)}
             </td>
           {/if}
           <td>{formatTime(track.tags.duration)}</td>

@@ -1,4 +1,5 @@
 export { default as Album } from './album/album.svelte'
+export { default as Artist } from './artist/artist.svelte'
 export { default as Button } from './button/button.svelte'
 export { default as DisksList } from './disks-list/disks-list.svelte'
 export { default as GridItem } from './grid-item/grid-item.svelte'

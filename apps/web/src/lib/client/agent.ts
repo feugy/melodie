@@ -1,4 +1,4 @@
-import type { LightAlbum, LightArtist } from '$lib/types'
+import type { Kind, LightAlbum, LightArtist } from '$lib/types'
 import type { Agent, Track } from '@melodie/common/models'
 
 export function getBase(
@@ -11,12 +11,12 @@ export function getBase(
 export function getImage(
 	model: LightAlbum | LightArtist | Track | undefined,
 	agentById: Map<number, Agent>,
-	kind?: 'album' | 'artist' | 'track'
+	kind?: Kind | 'tracks'
 ) {
-	const appliedKind = kind ?? (model && 'path' in model ? 'track' : 'album')
+	const appliedKind = kind ?? (model && 'path' in model ? 'tracks' : 'albums')
 	const base = getBase(model, agentById)
 	return base !== undefined && model
-		? `${base}/${appliedKind}s/${model.id}/media/${model.mediaCount}`
+		? `${base}/${appliedKind}/${model.id}/media/${model.mediaCount}`
 		: undefined
 }
 

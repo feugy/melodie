@@ -1,5 +1,5 @@
 export * from '../server/agents.ts'
-export * from '../server/albums.ts'
+export * from '../server/models.ts'
 export * from '../server/tracks.ts'
 export * from '../server/configuration.ts'
 export * from '../server/database.ts'

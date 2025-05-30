@@ -1,10 +1,10 @@
 import { afterAll, beforeAll, describe, expect, it } from 'bun:test'
-import { makeAlbums } from '$lib/tests/factories'
+import { makeArtists } from '$lib/tests/factories'
 import { faker } from '@faker-js/faker'
 import {
 	type Agent,
 	agentsModel,
-	albumsModel,
+	artistsModel,
 	init
 } from '@melodie/common/models'
 import { cleanTestTB, initTestDB } from '@melodie/common/tests'
@@ -21,29 +21,32 @@ describe('server load()', () => {
 		base: 'http://localhost:3000'
 	}
 
-	const albums = makeAlbums(3, { agentId: agent.id })
+	const artists = makeArtists(3, {
+		agentId: agent.id,
+		bio: { fr: faker.lorem.paragraph() }
+	})
 
 	beforeAll(async () => {
 		;({ conf } = await initTestDB())
 		await init(conf)
 		await agentsModel.save(agent)
-		await albumsModel.save(albums)
+		await artistsModel.save(artists)
 	})
 
 	afterAll(async () => {
 		await cleanTestTB(conf)
 	})
 
-	it('returns agents and first albums with covers', async () => {
+	it('returns agents and first artists with avatars', async () => {
 		const response = await load({
 			params: { locale: 'fr' }
 		} as PageServerLoadEvent)
 
 		expect(response).toEqual({
-			firstAlbums: expect.arrayContaining(albums)
+			firstArtists: expect.arrayContaining(artists)
 		})
-		expect((response as Record<string, unknown>).firstAlbums).toHaveLength(
-			albums.length
+		expect((response as Record<string, unknown>).firstArtists).toHaveLength(
+			artists.length
 		)
 	})
 })

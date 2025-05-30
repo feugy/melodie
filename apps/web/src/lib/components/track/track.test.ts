@@ -36,4 +36,13 @@ describe('Track component', () => {
 			`${base}/${get(locale)}/albums/${id}`
 		)
 	})
+
+	it('can have no links', async () => {
+		const screen = render(Track, {
+			agentById,
+			src: trackData,
+			withLinks: false
+		})
+		expect(screen.queryAllByRole('anchor')).toHaveLength(0)
+	})
 })

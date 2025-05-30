@@ -13,38 +13,35 @@ describe('link utilities', () => {
 			[faker.number.int(), faker.music.artist()],
 			[faker.number.int(), faker.music.artist()]
 		]
-		const kind = faker.helpers.arrayElement(['album', 'artist'])
+		const kind = faker.helpers.arrayElement(['albums', 'artists'])
 		const results = wrapWithLinks(kind, refs)
 		for (const [i, [id, name]] of refs.entries()) {
 			expect(results[i]).toEqual(`<a
-    onclick="event.stopPropagation()"
-    href="${base}/${get(locale)}/${kind}s/${id}"
+    href="${base}/${get(locale)}/${kind}/${id}"
     class="underlined">${name}</a>`)
 		}
 	})
 
 	it('handles unknown names', async () => {
 		const refs: Reference[] = [[faker.number.int(), null]]
-		const kind = faker.helpers.arrayElement(['album', 'artist'])
+		const kind = faker.helpers.arrayElement(['albums', 'artists'])
 		const results = wrapWithLinks(kind, refs)
 		for (const [i, [id]] of refs.entries()) {
 			expect(results[i]).toEqual(`<a
-    onclick="event.stopPropagation()"
-    href="${base}/${get(locale)}/${kind}s/${id}"
+    href="${base}/${get(locale)}/${kind}/${id}"
     class="underlined">${translate('unknown')}</a>`)
 		}
 	})
 
 	it('adds specific class', async () => {
 		const refs: Reference[] = [[faker.number.int(), faker.music.artist()]]
-		const kind = faker.helpers.arrayElement(['album', 'artist'])
+		const kind = faker.helpers.arrayElement(['albums', 'artists'])
 		const className = faker.lorem.word()
 
 		const results = wrapWithLinks(kind, refs, className)
 		for (const [i, [id, name]] of refs.entries()) {
 			expect(results[i]).toEqual(`<a
-    onclick="event.stopPropagation()"
-    href="${base}/${get(locale)}/${kind}s/${id}"
+    href="${base}/${get(locale)}/${kind}/${id}"
     class="${className} underlined">${name}</a>`)
 		}
 	})

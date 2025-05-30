@@ -41,12 +41,15 @@
         class:preset-filled-secondary-300-700={isCurrent}
         class:current={isCurrent}
         class="content-visibility-auto flex w-full items-center gap-2 px-2"
-        onclick={(evt) => {
-          console.log('onplay', index, evt.type, evt.cancelable)
-          onplay(index)
-        }}
+        onclick={() => onplay(index)}
       >
-        <Track {agentById} src={item} details class="flex-auto" />
+        <Track
+          {agentById}
+          src={item}
+          details
+          class="flex-auto"
+          withLinks={false}
+        />
         <Button
           color="secondary"
           class="mx-2"

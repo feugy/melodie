@@ -2,6 +2,7 @@
   import { GridItem } from '$lib/components'
   import type { GridItemProps } from '$lib/components'
   import type { LightArtist } from '$lib/types'
+  import { t } from 'svelte-intl-precompile'
 
   let {
     artist,
@@ -11,4 +12,12 @@
   } = $props()
 </script>
 
-<GridItem src={artist} kind="artist" {...props} />
+<GridItem src={artist} kind="artists" {...props}>
+  {#snippet details()}
+    <div class="text-xs">
+      {$t('_ albums', {
+        values: { total: artist.refs.length },
+      })}
+    </div>
+  {/snippet}
+</GridItem>

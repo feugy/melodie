@@ -15,7 +15,9 @@
       media: avatar,
       mediaCount: 1,
       agentId: id,
+      bio: null,
       refs: ['Foo Fighters'].map(makeRef),
+      trackIds: [],
     },
     {
       name: 'Ben Harper and The Innocent Criminals',
@@ -23,14 +25,18 @@
         'https://upload.wikimedia.org/wikipedia/commons/4/42/Ben_Harper_FIJM_2003.jpg',
       mediaCount: 1,
       agentId: id,
+      bio: null,
       refs: ['Ben Harper and The Innocent Criminals'].map(makeRef),
+      trackIds: [],
     },
     {
       name: 'Queen',
       media: null,
       mediaCount: 1,
       agentId: id,
+      bio: null,
       refs: ['Queen'].map(makeRef),
+      trackIds: [],
     },
   ].map(addId)
 

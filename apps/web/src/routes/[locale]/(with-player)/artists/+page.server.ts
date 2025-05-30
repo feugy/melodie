@@ -4,7 +4,7 @@ import type { PageServerLoad } from './$types'
 
 export const load: PageServerLoad = async () => {
 	return {
-		// synchronously returns a small set of albums for SSR.
-		firstAlbums: await take(list('albums'), 20)
+		// synchronously returns a small set of artists for SSR.
+		firstArtists: await take(list('artists'), 20)
 	}
 }

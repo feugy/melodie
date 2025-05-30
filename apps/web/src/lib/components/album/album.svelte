@@ -2,6 +2,7 @@
   import { GridItem } from '$lib/components'
   import type { GridItemProps } from '$lib/components'
   import type { LightAlbum } from '$lib/types'
+  import { wrapWithLinks } from '$lib/utils'
   import { t } from 'svelte-intl-precompile'
 
   let {
@@ -12,13 +13,13 @@
   } = $props()
 </script>
 
-<GridItem src={album} kind="album" {...props}>
-  {#snippet refs()}
+<GridItem src={album} kind="albums" {...props}>
+  {#snippet details()}
     {#if album.refs.length}
       <div class="truncate text-xs">
-        {$t('by _', {
+        {@html $t('by _', {
           values: {
-            artists: album.refs.map(([, artist]) => artist).join(', '),
+            artists: wrapWithLinks('artists', album.refs).join(', '),
           },
         })}
       </div>

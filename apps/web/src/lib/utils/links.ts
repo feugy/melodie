@@ -1,22 +1,16 @@
 import { base } from '$app/paths'
+import type { Kind } from '$lib/types'
 import type { Reference } from '@melodie/common/utils'
 import { locale, t } from 'svelte-intl-precompile'
 import { get } from 'svelte/store'
 
-export type LinkTo = 'album' | 'artist'
-
-export function linkTo(to: LinkTo, ref?: Reference | null) {
-	return ref ? `${base}/${get(locale)}/${to}s/${ref[0]}` : ''
+export function linkTo(to: Kind, ref?: Reference | null) {
+	return ref ? `${base}/${get(locale)}/${to}/${ref[0]}` : ''
 }
 
-export function wrapWithLink(
-	to: LinkTo,
-	ref?: Reference | null,
-	className = ''
-) {
+export function wrapWithLink(to: Kind, ref?: Reference | null, className = '') {
 	return ref
 		? `<a
-    onclick="event.stopPropagation()"
     href="${linkTo(to, ref)}"
     class="${className ? `${className} ` : ''}underlined">${
 			ref[1] || get(t)('unknown')
@@ -25,7 +19,7 @@ export function wrapWithLink(
 }
 
 export function wrapWithLinks(
-	to: LinkTo,
+	to: Kind,
 	refs: (Reference | null | undefined)[],
 	className = ''
 ) {

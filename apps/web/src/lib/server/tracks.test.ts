@@ -1,48 +1,14 @@
 import { afterAll, beforeAll, describe, expect, it } from 'bun:test'
-import { faker } from '@faker-js/faker'
-import { type Track, init, tracksModel } from '@melodie/common/models'
-import { addId, cleanTestTB, initTestDB } from '@melodie/common/tests'
+import { makeTrack } from '$lib/tests/factories'
+import { init, tracksModel } from '@melodie/common/models'
+import { cleanTestTB, initTestDB } from '@melodie/common/tests'
 import type { DBConf } from '@melodie/common/types'
-import type { Reference } from '@melodie/common/utils'
 import { getTracksByIds } from './tracks'
 
 describe('tracks server utils', () => {
 	let conf: DBConf
 
-	const nullRef: Reference = [1, null]
-
-	const tracks: Track[] = [
-		{
-			agentId: 0,
-			path: faker.system.filePath(),
-			tags: { genre: [], artists: [], duration: 0 },
-			media: null,
-			mediaCount: 0,
-			mtimeMs: 0,
-			albumRef: nullRef,
-			artistRefs: [nullRef]
-		},
-		{
-			agentId: 0,
-			path: faker.system.filePath(),
-			tags: { genre: [], artists: [], duration: 0 },
-			media: null,
-			mediaCount: 0,
-			mtimeMs: 0,
-			albumRef: nullRef,
-			artistRefs: [nullRef]
-		},
-		{
-			agentId: 0,
-			path: faker.system.filePath(),
-			tags: { genre: [], artists: [], duration: 0 },
-			media: null,
-			mediaCount: 0,
-			mtimeMs: 0,
-			albumRef: nullRef,
-			artistRefs: [nullRef]
-		}
-	].map(addId)
+	const tracks = Array.from({ length: 3 }, () => makeTrack())
 
 	beforeAll(async () => {
 		;({ conf } = await initTestDB())

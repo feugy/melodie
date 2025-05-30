@@ -1,17 +1,15 @@
 import { afterAll, beforeAll, describe, expect, it } from 'bun:test'
+import { bindAlbum, makeAlbums, makeTracks } from '$lib/tests/factories'
 import { faker } from '@faker-js/faker'
 import {
 	type Agent,
-	type Album,
-	type Track,
 	agentsModel,
 	albumsModel,
 	init,
 	tracksModel
 } from '@melodie/common/models'
-import { addId, cleanTestTB, initTestDB, makeRef } from '@melodie/common/tests'
+import { cleanTestTB, initTestDB } from '@melodie/common/tests'
 import type { DBConf } from '@melodie/common/types'
-import type { Reference } from '@melodie/common/utils'
 import type { PageServerLoadEvent } from './$types'
 import { load } from './+page.server'
 
@@ -24,87 +22,13 @@ describe('server load()', () => {
 		base: 'http://localhost:3000'
 	}
 
-	const tracks: Track[] = [
-		{
-			path: faker.system.filePath(),
-			mtimeMs: faker.date.recent().getTime(),
-			agentId: agent.id,
-			tags: { artists: [], genre: [], duration: 0 },
-			media: null,
-			mediaCount: 0,
-			albumRef: null,
-			artistRefs: [[1, null] as Reference]
-		},
-		{
-			path: faker.system.filePath(),
-			mtimeMs: faker.date.recent().getTime(),
-			agentId: agent.id,
-			tags: { artists: [], genre: [], duration: 0 },
-			media: null,
-			mediaCount: 0,
-			albumRef: null,
-			artistRefs: [[1, null] as Reference]
-		},
-		{
-			path: faker.system.filePath(),
-			mtimeMs: faker.date.recent().getTime(),
-			agentId: agent.id,
-			tags: { artists: [], genre: [], duration: 0 },
-			media: null,
-			mediaCount: 0,
-			albumRef: null,
-			artistRefs: [[1, null] as Reference]
-		},
-		{
-			path: faker.system.filePath(),
-			mtimeMs: faker.date.recent().getTime(),
-			agentId: agent.id,
-			tags: { artists: [], genre: [], duration: 0 },
-			media: null,
-			mediaCount: 0,
-			albumRef: null,
-			artistRefs: [[1, null] as Reference]
-		}
-	].map(addId)
+	const albums = makeAlbums(3, { agentId: agent.id, trackIds: [] })
+	const tracks = makeTracks(4, { agentId: agent.id })
 
-	const albums: Album[] = [
-		{
-			name: faker.music.album(),
-			mtimeMs: faker.date.recent().getTime(),
-			agentId: agent.id,
-			media: null,
-			mediaCount: 0,
-			trackIds: [tracks[0].id],
-			refs: []
-		},
-		{
-			name: faker.music.album(),
-			mtimeMs: faker.date.recent().getTime(),
-			agentId: null,
-			media: null,
-			mediaCount: 0,
-			trackIds: [tracks[1].id, tracks[2].id],
-			refs: []
-		},
-		{
-			name: faker.music.album(),
-			mtimeMs: faker.date.recent().getTime(),
-			agentId: agent.id,
-			media: faker.system.filePath(),
-			mediaCount: 1,
-			trackIds: [tracks[3].id],
-			refs: []
-		}
-	].map(addId)
-
-	tracks[0].tags.album = albums[0].name
-	tracks[0].albumRef = makeRef(albums[0].name)
-	tracks[1].tags.album = albums[1].name
-	tracks[1].albumRef = makeRef(albums[1].name)
-	tracks[2].tags.album = albums[1].name
-	tracks[2].albumRef = makeRef(albums[1].name)
-	tracks[3].tags.album = albums[2].name
-	tracks[3].albumRef = makeRef(albums[2].name)
+	bindAlbum(tracks[0], albums[0])
+	bindAlbum(tracks[1], albums[1])
+	bindAlbum(tracks[2], albums[1])
+	bindAlbum(tracks[3], albums[2])
 
 	beforeAll(async () => {
 		;({ conf } = await initTestDB())

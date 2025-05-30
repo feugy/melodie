@@ -14,9 +14,9 @@ import {
 	mock,
 	spyOn
 } from 'bun:test'
+import type { Playlist, Track } from '@melodie/common/models'
 import chokidar from 'chokidar'
 import type { FSWatcher } from 'chokidar'
-import type { Playlist, Track } from '@melodie/common/models'
 import { makeFolder, makePlaylists } from '../tests/files.ts'
 import { foldersService as service } from './folders.ts'
 

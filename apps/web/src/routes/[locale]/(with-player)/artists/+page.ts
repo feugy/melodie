@@ -1,12 +1,12 @@
 import { browser } from '$app/environment'
 import { base } from '$app/paths'
-import type { LightAlbum } from '$lib/types'
+import type { LightArtist } from '$lib/types'
 import type { GETModelResponse } from '../../../api/[kind]/+server'
 import type { PageLoad } from './$types'
 
-async function loadAlbum(fetch: typeof global.fetch) {
-	const response = await fetch(`${base}/api/albums`)
-	return response.json() as Promise<GETModelResponse<LightAlbum>>
+async function loadArtist(fetch: typeof global.fetch) {
+	const response = await fetch(`${base}/api/artists`)
+	return response.json() as Promise<GETModelResponse<LightArtist>>
 }
 
 export const load: PageLoad = async ({ data: parentData, fetch }) => {
@@ -16,7 +16,7 @@ export const load: PageLoad = async ({ data: parentData, fetch }) => {
 
 	return {
 		...parentData,
-		// lazy load all albums from the client.
-		albums: loadAlbum(fetch).then(({ data }) => data)
+		// lazy load all artists from the client.
+		artists: loadArtist(fetch).then(({ data }) => data)
 	}
 }

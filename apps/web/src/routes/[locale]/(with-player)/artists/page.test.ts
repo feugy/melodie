@@ -1,6 +1,6 @@
 import { type Mock, describe, expect, it, mock } from 'bun:test'
 import { base } from '$app/paths'
-import { makeAlbums } from '$lib/tests/factories'
+import { makeArtists } from '$lib/tests/factories'
 import { faker } from '@faker-js/faker'
 import type { Agent } from '@melodie/common/models'
 import type { PageLoadEvent } from './$types'
@@ -15,7 +15,10 @@ describe('universal load()', () => {
 		base: 'http://localhost:3000'
 	}
 
-	const albums = makeAlbums(3, { agentId: agent.id })
+	const artists = makeArtists(3, {
+		agentId: agent.id,
+		bio: { fr: faker.lorem.paragraph() }
+	})
 
 	it('only returns parent data on server', async () => {
 		mock.module('$app/environment', () => ({
@@ -34,22 +37,22 @@ describe('universal load()', () => {
 		expect(fetch).not.toHaveBeenCalled()
 	})
 
-	it('fetches all albums on client', async () => {
+	it('fetches all artists on client', async () => {
 		mock.module('$app/environment', () => ({
 			browser: true
 		}))
-		fetch.mockResolvedValueOnce(Response.json({ data: albums }))
+		fetch.mockResolvedValueOnce(Response.json({ data: artists }))
 		const data = { foo: faker.lorem.word() }
 
 		const response = await load({ data, fetch } as unknown as PageLoadEvent)
 
 		expect(response).toEqual({
 			...data,
-			albums: expect.any(Promise)
+			artists: expect.any(Promise)
 		})
-		expect(fetch).toHaveBeenCalledWith(`${base}/api/albums`)
+		expect(fetch).toHaveBeenCalledWith(`${base}/api/artists`)
 		expect(fetch).toHaveBeenCalledTimes(1)
 
-		expect(await (response as Record<string, unknown>).albums).toEqual(albums)
+		expect(await (response as Record<string, unknown>).artists).toEqual(artists)
 	})
 })

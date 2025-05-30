@@ -17,6 +17,7 @@
       agentId: id,
       cover,
       refs: ['Ben Harper'].map(makeRef),
+      trackIds: [],
     },
     {
       name: 'A View From the Top of the World',
@@ -25,6 +26,7 @@
       mediaCount: 1,
       agentId: id,
       refs: ['Dream Theater'].map(makeRef),
+      trackIds: [],
     },
     {
       name: 'Raiponse',
@@ -39,6 +41,7 @@
         'Michael Kosarin',
         'Michael Starobin',
       ].map(makeRef),
+      trackIds: [],
     },
     {
       name: 'A Change of Seasons',
@@ -46,6 +49,7 @@
       mediaCount: 1,
       agentId: id,
       refs: ['Dream Theater'].map(makeRef),
+      trackIds: [],
     },
     {
       name: 'A Night At The Opera',
@@ -53,6 +57,7 @@
       mediaCount: 1,
       agentId: id,
       refs: ['Queen'].map(makeRef),
+      trackIds: [],
     },
   ].map(addId)
 

@@ -1,13 +1,13 @@
 import { afterAll, beforeAll, describe, expect, it } from 'bun:test'
+import { makeTracks } from '$lib/tests/factories'
 import { faker } from '@faker-js/faker'
 import {
 	type Agent,
-	type Track,
 	agentsModel,
 	init,
 	tracksModel
 } from '@melodie/common/models'
-import { addId, cleanTestTB, initTestDB } from '@melodie/common/tests'
+import { cleanTestTB, initTestDB } from '@melodie/common/tests'
 import type { DBConf } from '@melodie/common/types'
 import type { Reference } from '@melodie/common/utils'
 import { POST } from './+server'
@@ -22,39 +22,7 @@ describe('POST /api/get-tracks', () => {
 	}
 
 	const nullRef: Reference = [1, null]
-
-	const tracks: Track[] = [
-		{
-			agentId: 0,
-			path: faker.system.filePath(),
-			tags: { genre: [], artists: [], duration: 0 },
-			media: null,
-			mediaCount: 0,
-			mtimeMs: 0,
-			albumRef: nullRef,
-			artistRefs: [nullRef]
-		},
-		{
-			agentId: 0,
-			path: faker.system.filePath(),
-			tags: { genre: [], artists: [], duration: 0 },
-			media: null,
-			mediaCount: 0,
-			mtimeMs: 0,
-			albumRef: nullRef,
-			artistRefs: [nullRef]
-		},
-		{
-			agentId: 0,
-			path: faker.system.filePath(),
-			tags: { genre: [], artists: [], duration: 0 },
-			media: null,
-			mediaCount: 0,
-			mtimeMs: 0,
-			albumRef: nullRef,
-			artistRefs: [nullRef]
-		}
-	].map(addId)
+	const tracks = makeTracks(3)
 
 	beforeAll(async () => {
 		;({ conf } = await initTestDB())

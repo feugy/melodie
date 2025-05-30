@@ -1,8 +1,8 @@
 <script module lang="ts">
   import { getImage } from '$lib/client'
   import { Button, Image } from '$lib/components'
-  import type { LightAlbum, LightArtist } from '$lib/types'
-  import { linkTo, type LinkTo } from '$lib/utils'
+  import type { Kind, LightAlbum, LightArtist } from '$lib/types'
+  import { linkTo } from '$lib/utils'
   import type { Agent } from '@melodie/common/models'
   import EnqueueIcon from 'lucide-svelte/icons/list-plus'
   import PlayIcon from 'lucide-svelte/icons/play'
@@ -17,8 +17,8 @@
 
   export interface GridItemInternals<T extends LightAlbum | LightArtist> {
     src: T
-    kind: LinkTo
-    refs?: Snippet
+    kind: Kind
+    details?: Snippet
   }
 </script>
 
@@ -27,7 +27,7 @@
     agentById,
     src,
     kind,
-    refs,
+    details,
     size = 250,
     onplay,
     onenqueue,
@@ -44,8 +44,6 @@
       open = false
     }
   }
-
-  console.log('> coucou', getImage(src, agentById, kind))
 </script>
 
 <article
@@ -54,10 +52,13 @@
   onmouseenter={handleMouseEnter}
   onmouseleave={handleFocusLost}
 >
-  <a href={linkTo(kind, [src.id, null])}
+  <a
+    class="{kind === 'artists'
+      ? 'rounded-full'
+      : ''} bg-primary-500/10 inline-block overflow-clip"
+    href={linkTo(kind, [src.id, null])}
     ><Image
-      brokenIcon={kind === 'artist' ? 'user' : 'music'}
-      class={kind === 'artist' ? 'rounded-full' : ''}
+      brokenIcon={kind === 'artists' ? 'user' : 'music'}
       height={size}
       layout="fixed"
       src={getImage(src, agentById, kind)}
@@ -90,6 +91,6 @@
   </menu>
   <footer class="overflow-hidden p-2 text-center text-base">
     <p class="truncate">{src.name}</p>
-    {@render refs?.()}
+    {@render details?.()}
   </footer>
 </article>

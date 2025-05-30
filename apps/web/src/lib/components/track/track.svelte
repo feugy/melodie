@@ -10,6 +10,7 @@
     src?: Track
     details?: boolean
     class?: string
+    withLinks?: boolean
     onclick?: () => void
   }
 </script>
@@ -21,6 +22,7 @@
     details = false,
     class: className = '',
     onclick,
+    withLinks = true,
   }: TrackProps = $props()
 
   let tags: Partial<Tags> = $derived(src?.tags ?? {})
@@ -32,14 +34,20 @@
   class={`${className} md:min-w-200px m-2 flex w-full flex-row items-center`}
   {onclick}
 >
-  <a class="w-16 flex-none" href={linkTo('album', src?.albumRef)}>
-    <Image class="actionable text-xs" height={64} src={cover} width={64} />
-  </a>
+  {#if withLinks}
+    <a class="w-16 flex-none" href={linkTo('albums', src?.albumRef)}>
+      <Image class="actionable text-xs" height={64} src={cover} width={64} />
+    </a>
+  {:else}
+    <Image class="text-xs" height={64} src={cover} width={64} />
+  {/if}
   <div class="flex flex-grow flex-col items-start justify-start px-2 text-left">
     <span class="text-lg">{tags.title}</span>
     <span
       >{@html src?.artistRefs
-        ?.map((artist) => wrapWithLink('artist', artist, 'text-sm'))
+        ?.map((artist) =>
+          withLinks ? wrapWithLink('artists', artist, 'text-sm') : artist[1]
+        )
         .join(', ')}</span
     >
   </div>
