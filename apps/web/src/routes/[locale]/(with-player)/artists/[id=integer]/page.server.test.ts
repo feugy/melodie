@@ -6,6 +6,7 @@ import {
 	makeArtists,
 	makeTracks
 } from '$lib/tests/factories'
+import { groupByAlbum } from '$lib/utils/tracks'
 import { faker } from '@faker-js/faker'
 import {
 	type Agent,
@@ -73,45 +74,19 @@ describe('server load()', () => {
 		const response = (await load({
 			params: { id: artists[0].id.toString(), locale: 'fr' }
 		} as PageServerLoadEvent)) as Record<string, unknown>
-		expect(response).toEqual(
-			expect.objectContaining({
-				artist: artists[0],
-				tracks: tracks.slice(0, 1)
-			})
-		)
-		expect(response.albums).toEqual([
-			expect.objectContaining({
-				...albums[1],
-				mtimeMs: tracks[0].mtimeMs,
-				// tracks[1] is not returned because it is not linked to the artist
-				trackIds: [tracks[0].id]
-			})
-		])
+		expect(response).toEqual({
+			artist: artists[0],
+			albumsWithTracks: groupByAlbum(tracks.slice(0, 1))
+		})
 	})
 
 	it('returns artist with no agent', async () => {
 		const response = (await load({
 			params: { id: artists[1].id.toString(), locale: 'fr' }
 		} as PageServerLoadEvent)) as Record<string, unknown>
-		expect(response).toEqual(
-			expect.objectContaining({
-				artist: artists[1],
-				tracks: tracks.slice(1, 3)
-			})
-		)
-		expect(response.albums).toEqual([
-			expect.objectContaining({
-				...albums[1],
-				mtimeMs: tracks[1].mtimeMs,
-				// tracks[0] is not returned because it is not linked to the artist
-				trackIds: [tracks[1].id]
-			}),
-			expect.objectContaining({
-				...albums[0],
-				mtimeMs: tracks[2].mtimeMs,
-				// tracks[3] is not returned because it is not linked to the artist
-				trackIds: [tracks[2].id]
-			})
-		])
+		expect(response).toEqual({
+			artist: artists[1],
+			albumsWithTracks: groupByAlbum(tracks.slice(1, 3))
+		})
 	})
 })

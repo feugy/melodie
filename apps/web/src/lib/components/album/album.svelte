@@ -3,13 +3,16 @@
   import type { GridItemProps } from '$lib/components'
   import type { LightAlbum } from '$lib/types'
   import { wrapWithLinks } from '$lib/utils'
+  import type { Snippet } from 'svelte'
   import { t } from 'svelte-intl-precompile'
 
   let {
     album,
+    details: albumDetails,
     ...props
   }: GridItemProps & {
     album: LightAlbum
+    details?: Snippet
   } = $props()
 </script>
 
@@ -24,5 +27,6 @@
         })}
       </div>
     {/if}
+    {@render albumDetails?.()}
   {/snippet}
 </GridItem>

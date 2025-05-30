@@ -2,7 +2,7 @@
   import { base } from '$app/paths'
   import { getImage, trackQueue } from '$lib/client'
   import { Album, Button, Heading, Image } from '$lib/components'
-  import type { LightAlbum } from '$lib/types'
+  import type { Track } from '@melodie/common/models'
   import Back from 'lucide-svelte/icons/arrow-big-left-dash'
   import EnqueueIcon from 'lucide-svelte/icons/list-plus'
   import PlayIcon from 'lucide-svelte/icons/play'
@@ -10,12 +10,14 @@
   import type { PageData } from './$types'
 
   let { data }: { data: PageData } = $props()
-  const { artist, tracks, albums, agentById } = data
+  const { artist, albumsWithTracks, agentById } = data
 
-  function getTracks({ trackIds }: LightAlbum) {
-    // biome-ignore lint/style/noNonNullAssertion: tracks does contain every id since albums were build from it.
-    return trackIds.map((id) => tracks.find((track) => track.id === id)!)
-  }
+  let allTracks = $derived(
+    albumsWithTracks.reduce<Track[]>(
+      (all, { tracks }) => all.concat(tracks),
+      []
+    )
+  )
 </script>
 
 <Heading>
@@ -42,12 +44,12 @@
     </span>
     <div class="flex flex-col gap-2">
       <div class="mb-4 flex flex-wrap items-start gap-4">
-        <Button Icon={PlayIcon} onclick={() => trackQueue.add(tracks)}>
+        <Button Icon={PlayIcon} onclick={() => trackQueue.add(allTracks)}>
           {$t('play all')}
         </Button>
         <Button
           Icon={EnqueueIcon}
-          onclick={() => trackQueue.add(tracks, { play: false })}
+          onclick={() => trackQueue.add(allTracks, { play: false })}
         >
           {$t('enqueue')}
         </Button>
@@ -55,13 +57,15 @@
     </div>
   </div>
   <div class="mt-8 flex flex-row flex-wrap items-start justify-around gap-8">
-    {#each albums as album (album.id)}
+    {#each albumsWithTracks as { album, year, tracks } (album.id)}
       <Album
         {agentById}
         {album}
-        onplay={() => trackQueue.add(getTracks(album))}
-        onenqueue={() => trackQueue.add(getTracks(album), { play: false })}
-      />
+        onplay={() => trackQueue.add(tracks)}
+        onenqueue={() => trackQueue.add(tracks, { play: false })}
+      >
+        {#snippet details()}{year === 0 ? '' : year}{/snippet}
+      </Album>
     {/each}
   </div>
 </div>
