@@ -1,11 +1,10 @@
 _ albums: "{total, plural, =0 {aucun album} =1 {1 album} other {# albums}}"
 _ artists: "{total, plural, =0 {aucun artiste} =1 {1 artiste} other {# artistes}}"
-_ tracks: "{total, plural, =0 {aucun morceau} =1 {1 morceau} other {# morceaux}}"
 "#": N°
 album list: Liste des albums
+artist list: Liste des artistes
 artist: Artiste
 artists: Artistes
-artist list: Liste des artistes
 by _: par {artist}
 disk _: Disque N°{num}
 duration: Durée
@@ -13,5 +12,7 @@ enqueue: Ajouter tout
 hours_minutes: "{hours, plural, =0 {} =1 {1 heure} other {# heures}} {minutes, plural, =0 {} =1 {1 minute} other {# minutes}}"
 none: Aucun
 play all: Lire tout
+track _/_: "{total, plural, =0 {aucun morceau} other {morceau {index}/#}}"
+track queue: Liste de lecture
 track: Morceau
 unknown: Inconnu

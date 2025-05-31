@@ -5,6 +5,7 @@
     Heading,
     Nav,
     Player,
+    Sticky,
     SystemNotifier,
     TrackQueue,
   } from '$lib/components'
@@ -38,12 +39,17 @@
       {@render children?.()}
     </main>
     <aside class="preset-filled-primary-800-200 overflow-auto">
-      <Heading class="mr-2 flex items-center gap-4">
+      <Sticky class="flex items-center gap-4 p-4 pb-0">
         {#await data.trackQueueLoading}
           chargement...
         {:then}
           <span class="flex-1"
-            >{$t('_ tracks', { values: { length: trackQueue.length } })}</span
+            >{$t('track _/_', {
+              values: {
+                index: (trackQueue.index ?? -1) + 1,
+                length: trackQueue.length,
+              },
+            })}</span
           >
           {#if trackQueue.length}
             <span class="text-base"
@@ -52,6 +58,9 @@
             <Button Icon={Trash} onclick={trackQueue.clear.bind(trackQueue)} />
           {/if}
         {/await}
+      </Sticky>
+      <Heading class="mt-10! mr-2 flex items-center gap-4">
+        {$t('track queue')}
       </Heading>
       <TrackQueue
         agentById={data.agentById}
