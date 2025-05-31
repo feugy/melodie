@@ -11,7 +11,6 @@
     details?: boolean
     class?: string
     withLinks?: boolean
-    onclick?: () => void
   }
 </script>
 
@@ -21,7 +20,6 @@
     src,
     details = false,
     class: className = '',
-    onclick,
     withLinks = true,
   }: TrackProps = $props()
 
@@ -30,9 +28,8 @@
   let cover = $derived(getImage(src, agentById))
 </script>
 
-<button
+<div
   class={`${className} md:min-w-200px m-2 flex w-full flex-row items-center`}
-  {onclick}
 >
   {#if withLinks}
     <a class="w-16 flex-none" href={linkTo('albums', src?.albumRef)}>
@@ -54,4 +51,4 @@
   {#if details}
     <div class="text-lg">{formatTime(tags.duration)}</div>
   {/if}
-</button>
+</div>

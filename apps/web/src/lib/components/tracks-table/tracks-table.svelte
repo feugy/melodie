@@ -32,6 +32,11 @@
           )
       : []
   )
+
+  function handleClick(e: Event, idx: number, track: Track) {
+    if ((e.target as HTMLElement).nodeName === 'A') return
+    onclick?.(idx, track)
+  }
 </script>
 
 {#if tracks}
@@ -55,7 +60,7 @@
         <tr
           class:current={current?.id === track.id}
           class="odd:preset-filled-primary-800-200 hover:preset-filled-secondary-300-700 grid items-center gap-0 hover:cursor-pointer"
-          onclick={() => onclick?.(idx, track)}
+          onclick={(e) => handleClick(e, idx, track)}
         >
           <td class="w-[60px] text-center"
             >{(track.tags.track && track.tags.track.no) || '--'}</td

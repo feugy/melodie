@@ -18,13 +18,13 @@
     const source = event.target as HTMLElement
     const sourceName = source.tagName
     const node = source.closest('li')
-    return sourceName === 'A' ||
-      sourceName === 'BUTTON' ||
-      sourceName === 'IMG' ||
-      source.closest('svg') ||
-      !node
-      ? null
-      : node
+    if (sourceName === 'IMG') {
+      // prevent dragging images
+      event.preventDefault()
+    }
+    // do note drag item when clicking on the removal button
+    const button = source.closest('button')
+    return button?.dataset.testid?.startsWith('remove-') || !node ? null : node
   }
 </script>
 
