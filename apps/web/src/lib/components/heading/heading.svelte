@@ -1,14 +1,21 @@
 <script lang="ts">
   import type { Snippet } from 'svelte'
 
-  let {
-    class: className = '',
-    children,
-  }: { class?: string; children?: Snippet } = $props()
+  interface HeadingProps {
+    class?: string
+    children?: Snippet
+  }
+
+  let { class: className, children }: HeadingProps = $props()
 </script>
 
-<header class="sticky top-0 z-10">
-  <h1 class="text-primary-contrast-800-200 h3 p-2 {className}">
+<header>
+  <h1
+    class={[
+      'text-primary-contrast-800-200 h3 border-primary-700 mx-4 mt-14 mb-2 border-0 border-b-1',
+      className,
+    ]}
+  >
     {@render children?.()}
   </h1>
 </header>

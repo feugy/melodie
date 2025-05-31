@@ -3,8 +3,10 @@ _ artists: "{total, plural, =0 {no artist} =1 {an artist} other {# artists}}"
 _ tracks: "{total, plural, =0 {no track} =1 {1 track} other {# tracks}}"
 "#": "#"
 album: Album
+albums: Albums
 album list: Album list
 artist: Artist
+artists: Artists
 artist list: Artist list
 by _: by {artist}
 disk _: "Disk #{num}"

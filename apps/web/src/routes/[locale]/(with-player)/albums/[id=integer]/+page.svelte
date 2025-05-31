@@ -1,12 +1,10 @@
 <script lang="ts">
-  import { base } from '$app/paths'
   import { getImage, trackQueue } from '$lib/client'
   import { Button, DisksList, Heading, Image } from '$lib/components'
   import { wrapWithLinks } from '$lib/utils'
-  import Back from 'lucide-svelte/icons/arrow-big-left-dash'
   import EnqueueIcon from 'lucide-svelte/icons/list-plus'
   import PlayIcon from 'lucide-svelte/icons/play'
-  import { locale, t } from 'svelte-intl-precompile'
+  import { t } from 'svelte-intl-precompile'
   import type { PageData } from './$types'
 
   let { data }: { data: PageData } = $props()
@@ -16,10 +14,6 @@
 <Heading>
   {album.name}
 </Heading>
-
-<a class="mx-4 flex items-center gap-2" href="{base}/{$locale}/albums"
-  ><Back />{$t('album list')}</a
->
 
 <div class="grid grid-rows-[auto_1fr_auto] p-4">
   <div class="flex gap-4">

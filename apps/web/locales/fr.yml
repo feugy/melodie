@@ -4,6 +4,7 @@ _ tracks: "{total, plural, =0 {aucun morceau} =1 {1 morceau} other {# morceaux}}
 "#": N°
 album list: Liste des albums
 artist: Artiste
+artists: Artistes
 artist list: Liste des artistes
 by _: par {artist}
 disk _: Disque N°{num}

@@ -53,9 +53,10 @@
   onmouseleave={handleFocusLost}
 >
   <a
-    class="{kind === 'artists'
-      ? 'rounded-full'
-      : ''} bg-primary-500/10 inline-block overflow-clip"
+    class={[
+      kind === 'artists' && 'rounded-full',
+      'bg-primary-500/10 inline-block overflow-clip',
+    ]}
     href={linkTo(kind, [src.id, null])}
     ><Image
       brokenIcon={kind === 'artists' ? 'user' : 'music'}
@@ -66,9 +67,10 @@
     /></a
   >
   <menu
-    class="pointer-events-auto absolute inset-x-0 top-[60%] z-10 flex-wrap justify-center gap-2 text-center opacity-0 transition-opacity duration-500 ease-in-out {open
-      ? 'pointer-events-auto opacity-100'
-      : ''}"
+    class={[
+      'pointer-events-auto absolute inset-x-0 top-[60%] z-10 flex-wrap justify-center gap-2 text-center opacity-0 transition-opacity duration-500 ease-in-out',
+      open && 'pointer-events-auto opacity-100',
+    ]}
   >
     {#if onplay}<Button
         color="secondary"

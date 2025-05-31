@@ -3,6 +3,7 @@
   import {
     Button,
     Heading,
+    Nav,
     Player,
     SystemNotifier,
     TrackQueue,
@@ -33,6 +34,7 @@
 <div class="flex h-screen flex-col overflow-hidden">
   <div class="grid flex-1 grid-cols-[minmax(50%,1fr)_max(570px)] overflow-auto">
     <main class="overflow-auto">
+      <Nav />
       {@render children?.()}
     </main>
     <aside class="preset-filled-primary-800-200 overflow-auto">
