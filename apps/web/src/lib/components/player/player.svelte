@@ -9,13 +9,15 @@
 </script>
 
 <script lang="ts">
-  import Pause from 'lucide-svelte/icons/pause'
-  import Play from 'lucide-svelte/icons/play'
-  import Previous from 'lucide-svelte/icons/skip-back'
-  import Next from 'lucide-svelte/icons/skip-forward'
+  import PauseIcon from 'lucide-svelte/icons/pause'
+  import PlayIcon from 'lucide-svelte/icons/play'
+  import PreviousIcon from 'lucide-svelte/icons/skip-back'
+  import NextIcon from 'lucide-svelte/icons/skip-forward'
+  import MuteIcon from 'lucide-svelte/icons/volume-off'
+  import UnmuteIcon from 'lucide-svelte/icons/volume-2'
   import { onMount } from 'svelte'
   import { getData, MD, screen } from '$lib/client'
-  import { Button, Track } from '$lib/components'
+  import { Button, Slider, Track } from '$lib/components'
   import type { Track as TrackModel, Agent } from '@melodie/common/models'
   import { wrapWithLinks } from '$lib/utils'
 
@@ -27,7 +29,9 @@
   let duration = $state(0)
   let loading = $state(false)
   let paused = $state(true)
-  let progress: HTMLDivElement | null
+  let progress = $derived(time / duration)
+  let volume = $state(1)
+  let muted = $state(false)
 
   const src = $derived(getData(track, agentById))
 
@@ -69,18 +73,6 @@
     paused = !paused
   }
 
-  function seek(e: PointerEvent) {
-    if (!progress) return
-
-    const { left, width } = progress.getBoundingClientRect()
-
-    let p = (e.clientX - left) / width
-    if (p < 0) p = 0
-    if (p > 1) p = 1
-
-    time = p * duration
-  }
-
   function handlePlay() {
     if (gainNode && track) {
       const {
@@ -112,24 +104,10 @@
     loading = true
   }
 
-  function handleError(err: unknown) {
+  function handleError() {
     const save = track
     track = undefined
     setTimeout(() => (track = save), 1000)
-  }
-
-  function handleProgressClick(e: PointerEvent) {
-    progress = e.currentTarget as HTMLDivElement
-    seek(e)
-
-    window.addEventListener('pointermove', seek)
-    window.addEventListener(
-      'pointerup',
-      () => {
-        window.removeEventListener('pointermove', seek)
-      },
-      { once: true }
-    )
   }
 </script>
 
@@ -143,6 +121,8 @@
     bind:currentTime={time}
     bind:duration
     bind:paused
+    bind:volume
+    bind:muted
     crossorigin="anonymous"
     data-testid="audio-player"
     onplay={handlePlay}
@@ -155,10 +135,10 @@
   {#if screen.size >= MD}
     <Track {agentById} src={track} />
   {:else}
-    <span></span>
+    &nbsp;
   {/if}
 
-  <div class="flex flex-1 flex-col items-center gap-2 p-2">
+  <div class="flex flex-1 flex-col items-center gap-2 px-4">
     {#if screen.size < MD && track}
       <span class="text-center"
         >{@html wrapWithLinks('artists', track.artistRefs, 'text-sm').join(
@@ -167,30 +147,45 @@
       >
     {/if}
     <div class="flex items-center gap-2">
-      <Button color="secondary" onclick={() => onprevious()} Icon={Previous} />
+      <Button
+        color="secondary"
+        onclick={() => onprevious()}
+        Icon={PreviousIcon}
+      />
       <Button
         {loading}
         onclick={togglePlay}
         size="lg"
-        Icon={paused ? Play : Pause}
+        Icon={paused ? PlayIcon : PauseIcon}
       />
-      <Button color="secondary" onclick={() => onnext()} Icon={Next} />
+      <Button color="secondary" onclick={() => onnext()} Icon={NextIcon} />
+      {#if screen.size < MD}
+        {@render muteButton()}
+      {/if}
     </div>
     <div class="flex w-full items-center gap-2">
       <span class="text-sm">{format(time)}</span>
-      <div
-        class="bg-secondary-500 h-2 flex-1 overflow-hidden rounded-lg"
-        bind:this={progress}
-        onpointerdown={handleProgressClick}
-      >
-        <div
-          class="bg-primary-500 h-full w-[calc(100*var(--progress))] rounded-lg"
-          style="--progress: {time / duration}%"
-        ></div>
-      </div>
+      <Slider
+        bind:value={() => progress, (value) => (time = value * duration)}
+      />
       <span class="text-sm">{duration ? format(duration) : '--:--'}</span>
     </div>
   </div>
 
-  <span></span>
+  {#if screen.size >= MD}
+    <div class="flex w-40 items-center gap-2">
+      <Slider bind:value={volume} />
+      {@render muteButton()}
+    </div>
+  {:else}
+    &nbsp;
+  {/if}
 </div>
+
+{#snippet muteButton()}
+  <Button
+    color="secondary"
+    onclick={() => (muted = !muted)}
+    Icon={muted ? MuteIcon : UnmuteIcon}
+  />
+{/snippet}
