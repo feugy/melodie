@@ -1,11 +1,12 @@
 <script lang="ts">
-  import { Button, Sticky } from '$lib/components'
-  import { locale, t } from 'svelte-intl-precompile'
   import { goto } from '$app/navigation'
   import { base } from '$app/paths'
   import { page } from '$app/state'
+  import { MD, screen } from '$lib/client'
+  import { Button, Sticky } from '$lib/components'
   import Album from 'lucide-svelte/icons/disc'
   import Artist from 'lucide-svelte/icons/user'
+  import { locale, t } from 'svelte-intl-precompile'
 
   interface NavProps {
     class?: string
@@ -13,7 +14,7 @@
 
   let { class: className }: NavProps = $props()
 
-  let isLarge = $state(true)
+  let isLarge = $derived(screen.size >= MD)
   let path = $derived(
     page.url.pathname.replace(`${base}/${$locale}`, '').split('/')[1]
   )

@@ -20,8 +20,8 @@ export function wrapWithLink(to: Kind, ref?: Reference | null, className = '') {
 
 export function wrapWithLinks(
 	to: Kind,
-	refs: (Reference | null | undefined)[],
+	refs: Reference[] | null | undefined,
 	className = ''
 ) {
-	return refs.map(ref => wrapWithLink(to, ref, className))
+	return (refs ?? []).map(ref => wrapWithLink(to, ref, className))
 }

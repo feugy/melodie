@@ -1,8 +1,8 @@
 <script module lang="ts">
   import { defineMeta } from '@storybook/addon-svelte-csf'
+  import { texts } from '../../tests/lorem'
   import Button from '../button/button.svelte'
   import Component from './sticky.svelte'
-  import { texts } from '../../tests/lorem'
 
   const { Story } = defineMeta({
     title: 'Components/Sticky',

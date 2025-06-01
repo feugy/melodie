@@ -1,5 +1,5 @@
 <script module lang="ts">
-  import { onMount, type Snippet } from 'svelte'
+  import { type Snippet, onMount } from 'svelte'
   export interface StickyProps {
     class?: string
     // children can receive the floating state as single parameter.

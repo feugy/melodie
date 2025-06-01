@@ -1,7 +1,7 @@
 <script module lang="ts">
   import { getImage } from '$lib/client'
   import { Image } from '$lib/components'
-  import { formatTime, linkTo, wrapWithLink } from '$lib/utils'
+  import { formatTime, linkTo, wrapWithLinks } from '$lib/utils'
   import type { Agent, Track } from '@melodie/common/models'
   import type { Tags } from '@melodie/common/types'
 
@@ -41,12 +41,12 @@
   <div class="flex flex-grow flex-col items-start justify-start px-2 text-left">
     <span class="text-lg">{tags.title}</span>
     <span
-      >{@html src?.artistRefs
-        ?.map((artist) =>
-          withLinks ? wrapWithLink('artists', artist, 'text-sm') : artist[1]
-        )
-        .join(', ')}</span
-    >
+      >{#if withLinks}
+        {@html wrapWithLinks('artists', src?.artistRefs, 'text-sm').join(', ')}
+      {:else}
+        {(src?.artistRefs ?? []).map(([, artist]) => artist).join(', ')}
+      {/if}
+    </span>
   </div>
   {#if details}
     <div class="text-lg">{formatTime(tags.duration)}</div>

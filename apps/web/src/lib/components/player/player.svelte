@@ -14,9 +14,10 @@
   import Previous from 'lucide-svelte/icons/skip-back'
   import Next from 'lucide-svelte/icons/skip-forward'
   import { onMount } from 'svelte'
-  import { getData } from '$lib/client'
+  import { getData, MD, screen } from '$lib/client'
   import { Button, Track } from '$lib/components'
   import type { Track as TrackModel, Agent } from '@melodie/common/models'
+  import { wrapWithLinks } from '$lib/utils'
 
   let { agentById, track, isLast, onnext, onprevious }: PlayerProps = $props()
 
@@ -132,7 +133,10 @@
   }
 </script>
 
-<div class="grid grid-cols-[minmax(auto,20%)_1fr] items-center" class:paused>
+<div
+  class="grid grid-cols-[fit-content(25%)_1fr_fit-content(25%)] items-center"
+  class:paused
+>
   <audio
     {src}
     bind:this={player}
@@ -148,9 +152,20 @@
     onerror={handleError}
   ></audio>
 
-  <Track {agentById} src={track} />
+  {#if screen.size >= MD}
+    <Track {agentById} src={track} />
+  {:else}
+    <span></span>
+  {/if}
 
   <div class="flex flex-1 flex-col items-center gap-2 p-2">
+    {#if screen.size < MD && track}
+      <span class="text-center"
+        >{@html wrapWithLinks('artists', track.artistRefs, 'text-sm').join(
+          ', '
+        )} - {track.tags.title}</span
+      >
+    {/if}
     <div class="flex items-center gap-2">
       <Button color="secondary" onclick={() => onprevious()} Icon={Previous} />
       <Button
@@ -176,4 +191,6 @@
       <span class="text-sm">{duration ? format(duration) : '--:--'}</span>
     </div>
   </div>
+
+  <span></span>
 </div>

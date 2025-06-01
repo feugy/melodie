@@ -3,6 +3,7 @@
   import type { Agent } from '@melodie/common/models'
   import { addId, makeRef } from '@melodie/common/tests/refs'
   import { defineMeta } from '@storybook/addon-svelte-csf'
+  import { fn } from '@storybook/test'
   import avatar from 'fixtures/avatar.jpg'
   import { http, HttpResponse } from 'msw'
   import Component from './artist.svelte'
@@ -43,6 +44,10 @@
   const { Story } = defineMeta({
     title: 'Components/Artist',
     component: Component,
+    args: {
+      onplay: fn(),
+      onenqueue: fn(),
+    },
     parameters: {
       msw: {
         handlers: [
