@@ -57,14 +57,21 @@
 
 <button
   type="button"
-  class="{className} btn font-semibold {colors[color]} {sizes[size]} {children
-    ? gaps[size]
-    : `${iconPaddings[size]} h-auto rounded-full`}"
+  class={[
+    className,
+    'btn h-auto font-semibold',
+    colors[color],
+    sizes[size],
+    children ? gaps[size] : iconPaddings[size],
+    !children && 'rounded-full',
+  ]}
   disabled={disabled || loading}
   {...rest}
   >{#if DisplayedIcon}<DisplayedIcon
-      class="{children ? 'size-[1em]' : 'size-[1.25em]'} {loading
-        ? 'animate-spin'
-        : ''} text-inherit"
+      class={[
+        children ? 'size-[1em]' : 'size-[1.25em]',
+        loading && 'animate-spin',
+        'text-inherit',
+      ] as unknown as string}
     />{/if}{@render children?.()}</button
 >

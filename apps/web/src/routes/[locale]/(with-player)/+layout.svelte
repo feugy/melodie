@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { trackQueue } from '$lib/client'
+  import { LG, MD, screen, trackQueue } from '$lib/client'
   import {
     Button,
     Heading,
@@ -10,7 +10,8 @@
     TrackQueue,
   } from '$lib/components'
   import { formatTime, sumDurations } from '$lib/utils'
-  import Trash from 'lucide-svelte/icons/trash'
+  import TrackListIcon from 'lucide-svelte/icons/undo-2'
+  import TrashIcon from 'lucide-svelte/icons/trash'
   import { type Snippet, onMount } from 'svelte'
   import { t } from 'svelte-intl-precompile'
   import type { LayoutData } from './$types'
@@ -24,6 +25,7 @@
   const onplay = trackQueue.jumpTo.bind(trackQueue)
 
   let notifier: SystemNotifier
+  let trackListOpen = $state(false)
 
   onMount(() => {
     return trackQueue.registerAutoNextListener(() =>
@@ -33,13 +35,33 @@
 </script>
 
 <div class="flex h-screen flex-col overflow-hidden">
-  <div class="grid flex-1 grid-cols-[minmax(50%,1fr)_max(570px)] overflow-auto">
+  <div
+    class={[
+      'grid flex-1 overflow-auto',
+      screen.size < LG
+        ? trackListOpen
+          ? 'grid-cols-[0_1fr]'
+          : 'grid-cols-[1fr_fit-content(400px)]'
+        : 'grid-cols-[1fr_fit-content(40%)]',
+    ]}
+  >
     <main class="overflow-auto">
-      <Nav />
+      <Nav bind:trackListOpen />
       {@render children?.()}
     </main>
-    <aside class="preset-filled-primary-800-200 overflow-auto">
-      <Sticky class="flex items-center gap-4 p-4 pb-0">
+    <aside
+      class={[
+        'preset-filled-primary-800-200 overflow-auto',
+        screen.size < MD && !trackListOpen && 'w-0',
+      ]}
+    >
+      <Sticky class="flex items-center gap-2 p-2">
+        {#if trackListOpen}
+          <Button
+            Icon={TrackListIcon}
+            onclick={() => (trackListOpen = false)}
+          />
+        {/if}
         {#await data.trackQueueLoading}
           chargement...
         {:then}
@@ -52,10 +74,15 @@
             })}</span
           >
           {#if trackQueue.length}
-            <span class="text-base"
-              >{formatTime(sumDurations(trackQueue.content))}</span
-            >
-            <Button Icon={Trash} onclick={trackQueue.clear.bind(trackQueue)} />
+            <div class="pr-2">
+              <span class="pr-4 text-base"
+                >{formatTime(sumDurations(trackQueue.content))}</span
+              >
+              <Button
+                Icon={TrashIcon}
+                onclick={trackQueue.clear.bind(trackQueue)}
+              />
+            </div>
           {/if}
         {/await}
       </Sticky>

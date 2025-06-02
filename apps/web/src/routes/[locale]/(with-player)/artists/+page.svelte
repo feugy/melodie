@@ -22,7 +22,10 @@
   {$t('_ artists', { values: { total: artists.length } })}
 </Heading>
 
-<div class="flex flex-wrap gap-x-4 p-4" data-sveltekit-preload-data="false">
+<div
+  class="flex flex-wrap justify-around gap-x-4 p-4"
+  data-sveltekit-preload-data="false"
+>
   {#each artists as artist (artist.id)}
     <Artist
       agentById={data.agentById}

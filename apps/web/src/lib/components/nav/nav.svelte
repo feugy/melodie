@@ -4,15 +4,18 @@
   import { page } from '$app/state'
   import { MD, screen } from '$lib/client'
   import { Button, Sticky } from '$lib/components'
-  import Album from 'lucide-svelte/icons/disc'
-  import Artist from 'lucide-svelte/icons/user'
+  import AlbumIcon from 'lucide-svelte/icons/disc'
+  import ArtistIcon from 'lucide-svelte/icons/user'
+  import TrackListIcon from 'lucide-svelte/icons/music-2'
   import { locale, t } from 'svelte-intl-precompile'
+  import type { Snippet } from 'svelte'
 
   interface NavProps {
+    trackListOpen?: boolean
     class?: string
   }
 
-  let { class: className }: NavProps = $props()
+  let { trackListOpen = $bindable(), class: className }: NavProps = $props()
 
   let isLarge = $derived(screen.size >= MD)
   let path = $derived(
@@ -20,27 +23,35 @@
   )
 </script>
 
+{#snippet albumContent()}{$t('albums')}{/snippet}
+{#snippet artistContent()}{$t('artists')}{/snippet}
+
 <Sticky>
-  {#snippet children(floating)}
-    <ul class={['flex w-full flex-row items-center gap-2 p-2', className]}>
+  <ul class={['flex w-full flex-row items-center gap-2 p-2', className]}>
+    <li>
+      <Button
+        color={path === 'albums' ? 'primary' : 'secondary'}
+        Icon={AlbumIcon}
+        onclick={() => goto(`${base}/${$locale}/albums`, { noScroll: true })}
+        children={isLarge ? (albumContent as unknown as Snippet) : undefined}
+      />
+    </li>
+    <li>
+      <Button
+        color={path === 'artists' ? 'primary' : 'secondary'}
+        Icon={ArtistIcon}
+        onclick={() => goto(`${base}/${$locale}/artists`, { noScroll: true })}
+        children={isLarge ? (artistContent as unknown as Snippet) : undefined}
+      />
+    </li>
+    {#if screen.size < MD}
       <li>
         <Button
-          class="w-full"
-          color={path === 'albums' ? 'primary' : 'secondary'}
-          Icon={Album}
-          onclick={() => goto(`${base}/${$locale}/albums`, { noScroll: true })}
-          >{isLarge ? $t('albums') : ''}</Button
-        >
+          color={trackListOpen ? 'primary' : 'secondary'}
+          Icon={TrackListIcon}
+          onclick={() => (trackListOpen = !trackListOpen)}
+        />
       </li>
-      <li>
-        <Button
-          class="w-full"
-          color={path === 'artists' ? 'primary' : 'secondary'}
-          Icon={Artist}
-          onclick={() => goto(`${base}/${$locale}/artists`, { noScroll: true })}
-          >{isLarge ? $t('artists') : ''}</Button
-        >
-      </li>
-    </ul>
-  {/snippet}
+    {/if}
+  </ul>
 </Sticky>
