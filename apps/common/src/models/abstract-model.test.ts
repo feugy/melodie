@@ -319,6 +319,12 @@ describe('Abstract model', () => {
 			})
 		})
 
+		describe('count()', () => {
+			it('counts models', async () => {
+				expect(await tested.count()).toBe(models.length)
+			})
+		})
+
 		describe('getByIds()', () => {
 			it('get model by id', async () => {
 				const model = models[1]

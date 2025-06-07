@@ -12,7 +12,7 @@
   } = $props()
 </script>
 
-<GridItem src={artist} kind="artists" {...props}>
+<GridItem src={artist} kind="artists" detailsHeight={62} {...props}>
   {#snippet details()}
     <div class="text-xs">
       {$t('_ albums', {

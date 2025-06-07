@@ -34,7 +34,7 @@
 <span bind:this={sentinel} class="relative top-0 block h-0 w-full"></span>
 <nav
   class={[
-    'sticky top-0 z-1 w-full transition-colors duration-200 ease-in-out',
+    'sticky top-0 z-100 w-full transition-colors duration-200 ease-in-out',
     className,
     floating && 'bg-primary-950/90',
   ]}

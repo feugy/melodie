@@ -5,10 +5,10 @@
   import { MD, screen } from '$lib/client'
   import { Button, Sticky } from '$lib/components'
   import AlbumIcon from 'lucide-svelte/icons/disc'
-  import ArtistIcon from 'lucide-svelte/icons/user'
   import TrackListIcon from 'lucide-svelte/icons/music-2'
-  import { locale, t } from 'svelte-intl-precompile'
+  import ArtistIcon from 'lucide-svelte/icons/user'
   import type { Snippet } from 'svelte'
+  import { locale, t } from 'svelte-intl-precompile'
 
   interface NavProps {
     trackListOpen?: boolean

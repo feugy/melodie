@@ -23,6 +23,11 @@ export async function* list(
 	}
 }
 
+export async function count(kind: Kind) {
+	await database.init()
+	return (kind === 'artists' ? artistsModel : albumsModel).count()
+}
+
 export async function loadTracks(model: Artist | Album) {
 	await database.init()
 	return tracksModel.getByIds(model.trackIds)

@@ -7,8 +7,13 @@ import * as matchers from '@testing-library/jest-dom/matchers'
 import { cleanup } from '@testing-library/svelte'
 import { env } from 'bun'
 import 'fake-indexeddb/auto'
+import type { Window as HappyWindow } from 'happy-dom'
 
 expect.extend(matchers)
+
+declare global {
+	interface Window extends HappyWindow {}
+}
 
 beforeAll(async () => {
 	env.DB_FILENAME = join(

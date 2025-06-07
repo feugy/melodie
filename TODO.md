@@ -13,7 +13,6 @@
 
 ## Web
 
-- fix scrolling issues (and album/artist list data reload)
 - play/enqueue test for albums
 - (research) make the list super snappy with [CSS containment](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment/Using_CSS_containment)
 

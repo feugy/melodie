@@ -16,7 +16,7 @@
   } = $props()
 </script>
 
-<GridItem src={album} kind="albums" {...props}>
+<GridItem src={album} kind="albums" detailsHeight={62} {...props}>
   {#snippet details()}
     {#if album.refs.length}
       <div class="truncate text-xs">

@@ -1,15 +1,18 @@
 <script lang="ts">
   import { getTracksByIds, trackQueue } from '$lib/client'
   import { Artist, Heading } from '$lib/components'
-  import type { LightArtist } from '$lib/types'
+  import type { ArtistsContext, LightArtist } from '$lib/types'
+  import { getContext } from 'svelte'
   import { t } from 'svelte-intl-precompile'
   import type { PageData } from './$types'
 
   let { data }: { data: PageData } = $props()
 
-  let artists = $state<LightArtist[]>(data.firstArtists)
+  const context = getContext<ArtistsContext>('artists')
+  let artists = $state(context.get())
   data.artists?.then((value) => {
     artists = value
+    context.set(value)
   })
 
   async function handlePlay(artist: LightArtist, play = true) {
@@ -19,13 +22,10 @@
 </script>
 
 <Heading>
-  {$t('_ artists', { values: { total: artists.length } })}
+  {$t('_ artists', { values: { total: data.total } })}
 </Heading>
 
-<div
-  class="flex flex-wrap justify-around gap-x-4 p-4"
-  data-sveltekit-preload-data="false"
->
+<div class="flex flex-wrap justify-around gap-4 p-4">
   {#each artists as artist (artist.id)}
     <Artist
       agentById={data.agentById}

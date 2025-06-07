@@ -4,7 +4,7 @@ import type { LightAlbum } from '$lib/types'
 import type { GETModelResponse } from '../../../api/[kind]/+server'
 import type { PageLoad } from './$types'
 
-async function loadAlbum(fetch: typeof global.fetch) {
+async function loadAlbums(fetch: typeof global.fetch) {
 	const response = await fetch(`${base}/api/albums`)
 	return response.json() as Promise<GETModelResponse<LightAlbum>>
 }
@@ -17,6 +17,6 @@ export const load: PageLoad = async ({ data: parentData, fetch }) => {
 	return {
 		...parentData,
 		// lazy load all albums from the client.
-		albums: loadAlbum(fetch).then(({ data }) => data)
+		albums: loadAlbums(fetch).then(({ data }) => data)
 	}
 }

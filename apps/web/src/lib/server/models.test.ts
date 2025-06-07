@@ -10,7 +10,7 @@ import {
 } from '@melodie/common/models'
 import { cleanTestTB, initTestDB } from '@melodie/common/tests'
 import type { DBConf } from '@melodie/common/types'
-import { list, loadTracks } from './models'
+import { count, list, loadTracks } from './models'
 
 describe('models server utils', () => {
 	let conf: DBConf
@@ -45,12 +45,20 @@ describe('models server utils', () => {
 		expect(await consume(list('artists'))).toEqual(artists)
 	})
 
+	it('counts artists', async () => {
+		expect(await count('artists')).toEqual(artists.length)
+	})
+
 	it('returns artists from multiple pages', async () => {
 		expect(await consume(list('artists', 1))).toEqual(artists)
 	})
 
 	it('returns albums', async () => {
 		expect(await consume(list('albums'))).toEqual(albums)
+	})
+
+	it('counts albums', async () => {
+		expect(await count('albums')).toEqual(albums.length)
 	})
 
 	it('returns albums from multiple pages', async () => {

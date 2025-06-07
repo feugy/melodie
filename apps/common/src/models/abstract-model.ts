@@ -166,6 +166,20 @@ export abstract class AbstractModel<T extends { id: number }> {
 	}
 
 	/**
+	 * @returns the total number of models.
+	 */
+	async count() {
+		if (!this.db) throw new Error('model not initialized')
+		return (
+			this.db
+				.query<{ count: number }, []>(
+					`SELECT COUNT(*) AS count FROM ${this.name}`
+				)
+				.get()?.count ?? 0
+		)
+	}
+
+	/**
 	 * Get a single model by its id.
 	 * @param id Desired id
 	 * @returns matching model, or null

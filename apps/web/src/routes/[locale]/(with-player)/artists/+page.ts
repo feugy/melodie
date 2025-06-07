@@ -4,7 +4,7 @@ import type { LightArtist } from '$lib/types'
 import type { GETModelResponse } from '../../../api/[kind]/+server'
 import type { PageLoad } from './$types'
 
-async function loadArtist(fetch: typeof global.fetch) {
+async function loadArtists(fetch: typeof global.fetch) {
 	const response = await fetch(`${base}/api/artists`)
 	return response.json() as Promise<GETModelResponse<LightArtist>>
 }
@@ -17,6 +17,6 @@ export const load: PageLoad = async ({ data: parentData, fetch }) => {
 	return {
 		...parentData,
 		// lazy load all artists from the client.
-		artists: loadArtist(fetch).then(({ data }) => data)
+		artists: loadArtists(fetch).then(({ data }) => data)
 	}
 }

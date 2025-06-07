@@ -11,16 +11,18 @@ const thresholds = [
 	[1280, XL]
 ]
 
-class Screen {
+export class Screen {
 	size = $state(XL)
 	supportHover = $state(false)
 
 	constructor() {
 		if (typeof window !== 'undefined') {
-			for (let i = 1; i < thresholds.length; i++) {
-				const [low, size] = thresholds[i - 1]
-				const [high] = thresholds[i]
-				const query = window.matchMedia(`(${low}px <= width < ${high}px)`)
+			for (let i = 0; i < thresholds.length; i++) {
+				const [low, size] = thresholds[i]
+				const [high] = i < thresholds.length - 1 ? thresholds[i + 1] : []
+				const query = window.matchMedia(
+					`(${low}px <= width${high ? ` < ${high}px` : ''})`
+				)
 				const handleChange = ({ matches }: MediaQueryListEvent) => {
 					if (matches) {
 						this.size = size
@@ -32,9 +34,7 @@ class Screen {
 				}
 			}
 
-			if (window.matchMedia('(any-hover: hover)').matches) {
-				this.supportHover = true
-			}
+			this.supportHover = window.matchMedia('(any-hover: hover)').matches
 		}
 	}
 }

@@ -1,6 +1,5 @@
 import { type OnLoadResult, env, plugin } from 'bun'
 import config from '../svelte.config'
-
 plugin({
 	name: 'sveltekit',
 
@@ -21,6 +20,23 @@ plugin({
 				building: false,
 				dev: false,
 				version: 'bun:test'
+			},
+			loader: 'object'
+		}))
+
+		build.module('$app/navigation', () => ({
+			exports: {
+				goto: () => void 0,
+				afterNavigate: () => void 0
+			},
+			loader: 'object'
+		}))
+
+		build.module('$app/state', () => ({
+			exports: {
+				page: {
+					url: new URL('http://localhost')
+				}
 			},
 			loader: 'object'
 		}))

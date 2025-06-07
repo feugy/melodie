@@ -39,11 +39,6 @@ describe('server load()', () => {
 			params: { locale: 'fr' }
 		} as PageServerLoadEvent)
 
-		expect(response).toEqual({
-			firstAlbums: expect.arrayContaining(albums)
-		})
-		expect((response as Record<string, unknown>).firstAlbums).toHaveLength(
-			albums.length
-		)
+		expect(response).toEqual({ total: albums.length })
 	})
 })

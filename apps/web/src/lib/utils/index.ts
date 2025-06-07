@@ -1,3 +1,5 @@
+export * from './context.svelte'
+export * from './functions'
 export * from './iterables'
 export * from './links'
 export * from './locales'

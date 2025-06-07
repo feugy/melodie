@@ -42,11 +42,6 @@ describe('server load()', () => {
 			params: { locale: 'fr' }
 		} as PageServerLoadEvent)
 
-		expect(response).toEqual({
-			firstArtists: expect.arrayContaining(artists)
-		})
-		expect((response as Record<string, unknown>).firstArtists).toHaveLength(
-			artists.length
-		)
+		expect(response).toEqual({ total: artists.length })
 	})
 })

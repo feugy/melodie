@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { afterNavigate } from '$app/navigation'
+  import { page } from '$app/state'
   import { LG, MD, screen, trackQueue } from '$lib/client'
   import {
     Button,
@@ -9,10 +11,11 @@
     SystemNotifier,
     TrackQueue,
   } from '$lib/components'
-  import { formatTime, sumDurations } from '$lib/utils'
-  import TrackListIcon from 'lucide-svelte/icons/undo-2'
+  import type { ScrollContext } from '$lib/types'
+  import { debounce, formatTime, initContext, sumDurations } from '$lib/utils'
   import TrashIcon from 'lucide-svelte/icons/trash'
-  import { type Snippet, onMount } from 'svelte'
+  import TrackListIcon from 'lucide-svelte/icons/undo-2'
+  import { type Snippet, getContext, onMount } from 'svelte'
   import { t } from 'svelte-intl-precompile'
   import type { LayoutData } from './$types'
 
@@ -26,13 +29,45 @@
 
   let notifier: SystemNotifier
   let trackListOpen = $state(false)
+  let main: HTMLElement | null = null
+
+  initContext()
+  const scrollContext = getContext<ScrollContext>('scroll')()
 
   onMount(() => {
     return trackQueue.registerAutoNextListener(() =>
       notifier.notify(trackQueue.current)
     )
   })
+
+  afterNavigate(() => {
+    const position = scrollContext.get(page.url.pathname)
+    if (main) {
+      main.scrollTop = position ?? 0
+    }
+  })
+
+  const recordScrollPosition = debounce((position: number) => {
+    scrollContext.set(page.url.pathname, position)
+  }, 100)
+
+  function handleScroll(event: Event) {
+    recordScrollPosition((event.target as HTMLElement).scrollTop)
+  }
+
+  function handleWindowClick() {
+    if (screen.size < LG) {
+      // Temporary hack to hide the navigation bar on mobile devices
+      // https://web.dev/articles/fullscreen#request_the_browser_go_fullscreen_in_response_to_a_user_gesture
+      document.body
+        .requestFullscreen({ navigationUI: 'hide' })
+        .catch(() => void 0)
+    }
+    window.removeEventListener('click', handleWindowClick)
+  }
 </script>
+
+<svelte:window onclick={handleWindowClick} />
 
 <div class="flex h-screen flex-col overflow-hidden">
   <div
@@ -42,10 +77,10 @@
         ? trackListOpen
           ? 'grid-cols-[0_1fr]'
           : 'grid-cols-[1fr_fit-content(400px)]'
-        : 'grid-cols-[1fr_fit-content(40%)]',
+        : 'grid-cols-[1fr_fit-content(40vw)]',
     ]}
   >
-    <main class="overflow-auto">
+    <main bind:this={main} class="overflow-auto" onscroll={handleScroll}>
       <Nav bind:trackListOpen />
       {@render children?.()}
     </main>
@@ -53,6 +88,7 @@
       class={[
         'preset-filled-primary-800-200 overflow-auto',
         screen.size < MD && !trackListOpen && 'w-0',
+        screen.size >= MD && 'w-[40vw]',
       ]}
     >
       <Sticky class="flex items-center gap-2 p-2">

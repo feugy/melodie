@@ -35,7 +35,7 @@
 </script>
 
 <script lang="ts">
-  let { src, brokenIcon, ...props }: ImageProps = $props()
+  let { src, brokenIcon, class: className, ...props }: ImageProps = $props()
   let isBroken = $state(brokenSrc.has(src))
 
   const brokenSize = props.width ?? 100
@@ -51,13 +51,14 @@
 {#if src && !isBroken}
   <Image
     {...props as unknown as Props}
+    class={['pointer-events-none', className]}
     {src}
     {transformer}
     onerror={handleError}
   />
 {:else}
   <div
-    class="flex items-center justify-center"
+    class={['flex items-center justify-center', className]}
     style="width: {brokenSize}px; height: {brokenSize}px;"
   >
     {#if brokenIcon === 'music'}<Music4
