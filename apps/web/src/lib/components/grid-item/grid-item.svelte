@@ -1,6 +1,6 @@
 <script module lang="ts">
   import { goto } from '$app/navigation'
-  import { getImage, screen } from '$lib/client'
+  import { MD, getImage, screen } from '$lib/client'
   import { Button, Image } from '$lib/components'
   import type { Kind, LightAlbum, LightArtist } from '$lib/types'
   import { linkTo } from '$lib/utils'
@@ -32,7 +32,7 @@
     kind,
     details,
     detailsHeight = 0,
-    size = 250,
+    size = screen.size <= MD ? 150 : 250,
     onplay,
     onenqueue,
   }: GridItemInternals<T> & GridItemProps = $props()

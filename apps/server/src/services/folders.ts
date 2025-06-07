@@ -104,8 +104,9 @@ export class FoldersService {
 			{ folders: this.folders, agentId: this.agentId },
 			'assiging agent Id'
 		)
-		this._startWatching(this.folders)
 		await this._compare(this.folders)
+		// disable watcher for now, because it crashes the freebox mounted disk.
+		// this._startWatching(this.folders)
 	}
 
 	protected async _compare(folders: string[]) {

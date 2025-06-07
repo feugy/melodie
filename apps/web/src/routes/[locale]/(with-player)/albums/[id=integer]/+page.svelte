@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { getImage, trackQueue } from '$lib/client'
+  import { MD, getImage, screen, trackQueue } from '$lib/client'
   import { Button, DisksList, Heading, Image } from '$lib/components'
   import { wrapWithLinks } from '$lib/utils'
   import EnqueueIcon from 'lucide-svelte/icons/list-plus'
@@ -15,16 +15,15 @@
   {album.name}
 </Heading>
 
-<div class="grid grid-rows-[auto_1fr_auto] p-4">
-  <div class="flex gap-4">
+<div class="p-4">
+  <div class="flex flex-col gap-4 md:flex-row">
     <span class="bg-primary-500/10 inline-block aspect-square overflow-clip">
       <Image
         alt="Album cover for {album.name}"
         brokenIcon="music"
-        height={400}
-        layout="fixed"
+        layout={screen.size > MD ? 'fixed' : 'constrained'}
         src={getImage(album, data.agentById, 'albums')}
-        width={400}
+        width={screen.size <= MD ? undefined : 400}
       />
     </span>
     <div class="flex flex-col gap-4">

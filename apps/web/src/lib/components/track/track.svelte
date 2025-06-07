@@ -33,22 +33,22 @@
 >
   {#if withLinks}
     <a class="w-16 flex-none" href={linkTo('albums', src?.albumRef)}>
-      <Image class="actionable text-xs" height={64} src={cover} width={64} />
+      <Image height={64} src={cover} width={64} />
     </a>
   {:else}
-    <Image class="text-xs" height={64} src={cover} width={64} />
+    <Image height={64} src={cover} width={64} />
   {/if}
   <div class="flex flex-grow flex-col items-start justify-start px-2 text-left">
-    <span class="text-lg">{tags.title}</span>
-    <span
+    <span class="text-base">{tags.title}</span>
+    <span class="text-xs"
       >{#if withLinks}
-        {@html wrapWithLinks('artists', src?.artistRefs, 'text-sm').join(', ')}
+        {@html wrapWithLinks('artists', src?.artistRefs).join(', ')}
       {:else}
         {(src?.artistRefs ?? []).map(([, artist]) => artist).join(', ')}
       {/if}
     </span>
   </div>
   {#if details}
-    <div class="text-lg">{formatTime(tags.duration)}</div>
+    <div class="text-base">{formatTime(tags.duration)}</div>
   {/if}
 </div>

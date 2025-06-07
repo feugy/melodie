@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { getImage, trackQueue } from '$lib/client'
+  import { MD, getImage, screen, trackQueue } from '$lib/client'
   import { Album, Button, Heading, Image } from '$lib/components'
   import type { Track } from '@melodie/common/models'
   import EnqueueIcon from 'lucide-svelte/icons/list-plus'
@@ -22,21 +22,20 @@
   {artist.name}
 </Heading>
 
-<div class="grid grid-rows-[auto_1fr_auto] p-4">
-  <div class="flex gap-4">
+<div class="p-4">
+  <div class="flex flex-col gap-4 md:flex-row">
     <span
       class="bg-primary-500/10 inline-block aspect-square overflow-clip rounded-full"
     >
       <Image
         alt="{artist.name}'s avatar"
         brokenIcon="user"
-        height={400}
-        layout="fixed"
+        layout={screen.size > MD ? 'fixed' : 'constrained'}
         src={getImage(artist, agentById, 'artists')}
-        width={400}
+        width={screen.size <= MD ? undefined : 400}
       />
     </span>
-    <div class="flex flex-col gap-2">
+    <div class="flex flex-col gap-4">
       <div class="mb-4 flex flex-wrap items-start gap-4">
         <Button Icon={PlayIcon} onclick={() => trackQueue.add(allTracks)}>
           {$t('play all')}

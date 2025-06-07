@@ -13,7 +13,6 @@
     src?: string
     width?: number
     height?: number
-    aspectRatio?: number
     layout?: 'fixed' | 'constrained'
     brokenIcon?: 'music' | 'user'
   }

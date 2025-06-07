@@ -140,11 +140,12 @@
 
   <div class="flex flex-1 flex-col items-center gap-2 px-4">
     {#if screen.size < MD && track}
-      <span class="text-center"
-        >{@html wrapWithLinks('artists', track.artistRefs, 'text-sm').join(
-          ', '
-        )} - {track.tags.title}</span
-      >
+      <div class="flex flex-col items-center gap-2">
+        <span>{track.tags.title}</span>
+        <span class="text-xs"
+          >{@html wrapWithLinks('artists', track.artistRefs).join(', ')}</span
+        >
+      </div>
     {/if}
     <div class="flex items-center gap-2">
       <Button
