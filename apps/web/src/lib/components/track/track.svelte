@@ -29,7 +29,10 @@
 </script>
 
 <div
-  class={`${className} md:min-w-200px m-2 flex w-full flex-row items-center`}
+  class={[
+    className,
+    'md:min-w-200px m-2 flex h-16 w-full flex-row items-center',
+  ]}
 >
   {#if withLinks}
     <a class="w-16 flex-none" href={linkTo('albums', src?.albumRef)}>

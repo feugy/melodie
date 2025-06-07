@@ -36,6 +36,7 @@
   const scrollContext = getContext<ScrollContext>('scroll')()
 
   onMount(() => {
+    window.addEventListener('click', handleWindowClick, { once: true })
     return trackQueue.registerAutoNextListener(() =>
       notifier.notify(trackQueue.current)
     )
@@ -64,11 +65,8 @@
         .requestFullscreen({ navigationUI: 'hide' })
         .catch(() => void 0)
     }
-    window.removeEventListener('click', handleWindowClick)
   }
 </script>
-
-<svelte:window onclick={handleWindowClick} />
 
 <div class="flex h-screen flex-col overflow-hidden">
   <div

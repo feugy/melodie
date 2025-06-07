@@ -89,7 +89,7 @@
 
 <article
   bind:this={article}
-  class="relative inline-block text-[0px]"
+  class="content-visibility-auto relative inline-block text-[0px]"
   style="width: {size}px; height: {size + detailsHeight}px"
 >
   {#if rendered}

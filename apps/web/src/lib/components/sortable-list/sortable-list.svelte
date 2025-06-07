@@ -29,8 +29,10 @@
 </script>
 
 <script lang="ts" generics="Item extends { id: number}">
+  import { screen } from '$lib/client'
   import { type Snippet } from 'svelte'
   import { slide } from 'svelte/transition'
+  import GripIcon from 'lucide-svelte/icons/grip-vertical'
 
   let { items, item: itemSnippet, onmove }: SortableListProps<Item> = $props()
 
@@ -68,21 +70,51 @@
     document.body.addEventListener('pointerleave', handleDrop, { once: true })
   }
 
-  async function handleEnter(evt: PointerEvent, key: string) {
-    if (dragged && dragged.key !== key) {
-      const sibling = (evt.target as HTMLElement).closest('li') as HTMLElement
-      const to = Array.from(sibling.parentElement?.children ?? []).indexOf(
-        sibling
-      )
-      if (previousY < evt.pageY) {
-        sibling.style.top = dragged.from < to ? `-${dragged.height}px` : '0px'
-        dragged.to = dragged.from < to ? to : to + 1
-      } else {
-        sibling.style.top = dragged.from < to ? '0px' : `${dragged.height}px`
-        dragged.to = dragged.from < to ? to - 1 : to
+  function updateDragged(
+    evt: PointerEvent,
+    to: number,
+    sibling: HTMLElement | undefined
+  ) {
+    if (!dragged || !sibling || sibling === dragged.node) {
+      return
+    }
+    if (previousY < evt.pageY) {
+      sibling.style.top = dragged.from < to ? `-${dragged.height}px` : '0px'
+      dragged.to = dragged.from < to ? to : to + 1
+    } else {
+      sibling.style.top = dragged.from < to ? '0px' : `${dragged.height}px`
+      dragged.to = dragged.from < to ? to - 1 : to
+    }
+    dragged.node.style.top = `${dragged.height * (dragged.to - dragged.from)}px`
+    previousY = evt.pageY
+  }
+
+  function handleEnter(evt: PointerEvent, key: string) {
+    if (screen.supportHover) {
+      if (dragged && dragged.key !== key) {
+        const sibling = (evt.target as HTMLElement).closest('li') as HTMLElement
+        const to = Array.from(sibling.parentElement?.children ?? []).indexOf(
+          sibling
+        )
+        updateDragged(evt, to, sibling)
       }
-      dragged.node.style.top = `${dragged.height * (dragged.to - dragged.from)}px`
-      previousY = evt.pageY
+    } else if (dragged?.key === key) {
+      const list = Array.from(
+        (dragged.node.parentElement?.children as HTMLElement[] | undefined) ??
+          []
+      )
+      let sibling: HTMLElement | undefined
+      let to = dragged.from
+      const direction = previousY < evt.pageY ? 1 : -1
+      for (let i = dragged.to; i < list.length && i >= 0; i += direction) {
+        const { top } = list[i].getBoundingClientRect()
+        if (top <= evt.pageY && evt.pageY < top + dragged.height) {
+          sibling = list[i]
+          to = i
+          break
+        }
+      }
+      updateDragged(evt, to, sibling)
     }
   }
 
@@ -121,26 +153,29 @@
   }
 </script>
 
-<ol class="cursor-grabbing">
+<ol class:touch-none={Boolean(dragged)} onclickcapture={handleClick}>
   {#each keyedItems as item, i (item.key)}
     {@const isDragged = dragged?.key === item.key}
     <li
-      class:isDragged
-      class:cursor-move={dragged !== null}
+      class:pointer-events-none={isDragged}
       class:preset-filled={isDragged}
-      class="relative transform-gpu transition-[top] [&_*]:cursor-grab"
-      onclickcapture={handleClick}
-      onpointerdown={(evt) => handleDrag(evt, item.key, i)}
+      class="relative flex transform-gpu transition-[top] [&_*]:cursor-grab"
+      onpointerdown={(evt) =>
+        screen.supportHover ? handleDrag(evt, item.key, i) : void 0}
       onpointermove={(evt) => handleEnter(evt, item.key)}
       out:slideOnRemove={{ duration: 250 }}
     >
-      {@render itemSnippet({ item, index: i })}
+      {#if !screen.supportHover}
+        <div
+          class="text-surface-700 flex cursor-grabbing touch-none items-center self-stretch"
+          onpointerdown={(evt) => handleDrag(evt, item.key, i)}
+        >
+          <GripIcon />
+        </div>
+      {/if}
+      <div class="flex-1 touch-auto">
+        {@render itemSnippet({ item, index: i })}
+      </div>
     </li>
   {/each}
 </ol>
-
-<style>
-  li.isDragged {
-    pointer-events: none;
-  }
-</style>

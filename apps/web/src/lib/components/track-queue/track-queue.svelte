@@ -40,7 +40,7 @@
       <button
         class:preset-filled-secondary-300-700={isCurrent}
         class:current={isCurrent}
-        class="content-visibility-auto flex w-full items-center gap-2 px-2"
+        class="content-visibility-auto flex w-full items-center gap-2 pr-2"
         onclick={() => onplay(index)}
       >
         <Track

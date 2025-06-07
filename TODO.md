@@ -13,7 +13,7 @@
 
 ## Web
 
-- fix: sortable list and vertical scroll on mobile
+- close track list when clearing on mobile
 - play/enqueue test for albums
 
 # Architecture design
