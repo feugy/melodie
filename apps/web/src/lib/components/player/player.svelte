@@ -1,4 +1,6 @@
 <script module lang="ts">
+  import type { Agent, Track as TrackModel } from '@melodie/common/models'
+
   export interface PlayerProps {
     agentById: Map<number, Agent>
     track?: TrackModel
@@ -18,13 +20,14 @@
   import { onMount } from 'svelte'
   import { getData, MD, screen } from '$lib/client'
   import { Button, Slider, Track } from '$lib/components'
-  import type { Track as TrackModel, Agent } from '@melodie/common/models'
   import { wrapWithLinks } from '$lib/utils'
 
   let { agentById, track, isLast, onnext, onprevious }: PlayerProps = $props()
 
   let player: HTMLAudioElement | undefined
   let gainNode: GainNode | undefined
+  let wakeLock: WakeLockSentinel | undefined
+  let retry: ReturnType<typeof setTimeout>
   let time = $state(0)
   let duration = $state(0)
   let loading = $state(false)
@@ -33,9 +36,10 @@
   let volume = $state(1)
   let muted = $state(false)
 
-  const src = $derived(getData(track, agentById))
-
-  let wakeLock: WakeLockSentinel | undefined
+  const src = $derived.by(() => {
+    clearTimeout(retry)
+    return getData(track, agentById)
+  })
 
   $effect(() => {
     // reset player when src is unset
@@ -105,9 +109,10 @@
   }
 
   function handleError() {
-    const save = track
-    track = undefined
-    setTimeout(() => (track = save), 1000)
+    retry = setTimeout(() => {
+      player?.load()
+      player?.play()
+    }, 1000)
   }
 </script>
 

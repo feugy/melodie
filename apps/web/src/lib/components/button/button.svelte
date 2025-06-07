@@ -64,13 +64,13 @@
     sizes[size],
     children ? gaps[size] : iconPaddings[size],
     !children && 'rounded-full',
+    loading && '[&>svg]:animate-spin',
   ]}
   disabled={disabled || loading}
   {...rest}
   >{#if DisplayedIcon}<DisplayedIcon
       class={[
         children ? 'size-[1em]' : 'size-[1.25em]',
-        loading && 'animate-spin',
         'text-inherit',
       ] as unknown as string}
     />{/if}{@render children?.()}</button

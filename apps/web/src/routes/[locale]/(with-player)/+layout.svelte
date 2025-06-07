@@ -9,6 +9,7 @@
     Player,
     Sticky,
     SystemNotifier,
+    TrackLoader,
     TrackQueue,
   } from '$lib/components'
   import type { ScrollContext } from '$lib/types'
@@ -149,6 +150,11 @@
       isLast={trackQueue.isLast}
       {onnext}
       {onprevious}
+    />
+    <TrackLoader
+      agentById={data.agentById}
+      tracks={trackQueue.content}
+      currentIdx={trackQueue.index}
     />
   </footer>
 </div>
