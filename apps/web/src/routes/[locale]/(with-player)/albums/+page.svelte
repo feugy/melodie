@@ -17,7 +17,7 @@
 
   async function handlePlay(album: LightAlbum, play = true) {
     const tracks = await getTracksByIds(album.trackIds)
-    await trackQueue.add(tracks, { play })
+    await trackQueue.add(tracks, { play, replace: !play })
   }
 </script>
 

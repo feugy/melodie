@@ -28,7 +28,10 @@
     </span>
     <div class="flex flex-col gap-4">
       <div class="mb-4 flex flex-wrap items-start gap-4">
-        <Button Icon={PlayIcon} onclick={() => trackQueue.add(tracks)}>
+        <Button
+          Icon={PlayIcon}
+          onclick={() => trackQueue.add(tracks, { replace: true })}
+        >
           {$t('play all')}
         </Button>
         <Button

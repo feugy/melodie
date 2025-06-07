@@ -113,9 +113,10 @@
     </footer>
     <menu
       class={[
-        'pointer-events-auto absolute inset-x-0 top-[60%] z-10 flex flex-wrap justify-center gap-2 text-center opacity-0 transition-opacity duration-500 ease-in-out',
+        `pointer-events-auto absolute inset-x-0 z-10 flex flex-wrap justify-center gap-2 text-center opacity-0 transition-opacity duration-500 ease-in-out`,
         open && 'pointer-events-auto opacity-100',
       ]}
+      style="bottom: {detailsHeight + 10}px"
     >
       {#if !screen.supportHover}<Button
           color="secondary"

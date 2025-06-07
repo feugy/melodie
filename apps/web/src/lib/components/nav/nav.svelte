@@ -27,7 +27,7 @@
 {#snippet artistContent()}{$t('artists')}{/snippet}
 
 <Sticky>
-  <ul class={['flex w-full flex-row items-center gap-2 p-2', className]}>
+  <ul class={['flex w-full flex-row items-center gap-2 px-4 py-2', className]}>
     <li>
       <Button
         color={path === 'albums' ? 'primary' : 'secondary'}
@@ -45,7 +45,7 @@
       />
     </li>
     {#if screen.size < MD}
-      <li>
+      <li class="flex-1 text-right">
         <Button
           color={trackListOpen ? 'primary' : 'secondary'}
           Icon={TrackListIcon}

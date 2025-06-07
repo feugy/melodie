@@ -36,7 +36,6 @@
   const scrollContext = getContext<ScrollContext>('scroll')()
 
   onMount(() => {
-    window.addEventListener('click', handleWindowClick, { once: true })
     return trackQueue.registerAutoNextListener(() =>
       notifier.notify(trackQueue.current)
     )
@@ -57,14 +56,9 @@
     recordScrollPosition((event.target as HTMLElement).scrollTop)
   }
 
-  function handleWindowClick() {
-    if (screen.size < LG) {
-      // Temporary hack to hide the navigation bar on mobile devices
-      // https://web.dev/articles/fullscreen#request_the_browser_go_fullscreen_in_response_to_a_user_gesture
-      document.body
-        .requestFullscreen({ navigationUI: 'hide' })
-        .catch(() => void 0)
-    }
+  function handleClearQueue() {
+    trackQueue.clear()
+    trackListOpen = false
   }
 </script>
 
@@ -113,15 +107,12 @@
               <span class="pr-4 text-base"
                 >{formatTime(sumDurations(trackQueue.content))}</span
               >
-              <Button
-                Icon={TrashIcon}
-                onclick={trackQueue.clear.bind(trackQueue)}
-              />
+              <Button Icon={TrashIcon} onclick={handleClearQueue} />
             </div>
           {/if}
         {/await}
       </Sticky>
-      <Heading class="mt-10! mr-2 flex items-center gap-4">
+      <Heading class="mt-12! mr-2 flex items-center gap-4">
         {$t('track queue')}
       </Heading>
       <TrackQueue

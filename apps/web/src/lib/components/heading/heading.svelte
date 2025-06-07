@@ -12,7 +12,7 @@
 <header>
   <h1
     class={[
-      'text-primary-contrast-800-200 h3 border-primary-700 mx-4 mt-14 mb-2 border-0 border-b-1',
+      'text-primary-contrast-800-200 h3 border-primary-700 mx-4 mt-16 mb-2 border-0 border-b-1',
       className,
     ]}
   >
