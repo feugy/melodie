@@ -89,6 +89,19 @@ export class AssetsService {
 		this.server = fastify(conf)
 		this.server.register(corsPlugin, { origin: '*' })
 		this.server.register(compressPlugin)
+		this.server.addHook(
+			'onRequest',
+			async ({ hostname, protocol, url }, reply) => {
+				if (
+					tls &&
+					protocol === 'http' &&
+					hostname !== 'localhost' &&
+					hostname !== '127.0.0.1'
+				) {
+					reply.redirect(`https://${hostname}${url}`, 308)
+				}
+			}
+		)
 		this.server.register(staticPlugin, {
 			root: resolve('.'),
 			wildcard: false,

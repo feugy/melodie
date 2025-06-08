@@ -56,6 +56,7 @@ describe('assets service', () => {
 		name: faker.music.artist(),
 		trackIds: [],
 		refs: [],
+		bio: null,
 		mtimeMs: 0,
 		media: avatar,
 		mediaCount: faker.number.int({ min: 1, max: 10 }),
