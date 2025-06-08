@@ -13,7 +13,6 @@
 
 ## Web
 
-- close track list when clearing on mobile
 - play/enqueue test for albums
 
 # Architecture design

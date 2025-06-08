@@ -17,7 +17,7 @@
 
   async function handlePlay(artist: LightArtist, play = true) {
     const tracks = await getTracksByIds(artist.trackIds)
-    await trackQueue.add(tracks, { play, replace: !play })
+    await trackQueue.add(tracks, { play, replace: play })
   }
 </script>
 
