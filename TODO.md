@@ -1,5 +1,6 @@
 # To fix/do
 
+- authentication
 - Consider Github for CI
 
 ## Common
@@ -13,6 +14,7 @@
 
 ## Web
 
+- feedback when adding to the queue (large & narrow screens)
 - play/enqueue test for albums
 
 # Architecture design

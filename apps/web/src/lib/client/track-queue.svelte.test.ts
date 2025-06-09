@@ -216,6 +216,14 @@ describe('track queue', () => {
 		expect(trackQueue.index).toBeNull()
 	})
 
+	it('can not shuffle an empty queue', async () => {
+		await trackQueue.shuffle()
+		expect(trackQueue.content).toEqual([])
+		expect(trackQueue.current).toBeUndefined()
+		expect(trackQueue.index).toBeNull()
+		expect(trackQueue.shuffled).toBe(false)
+	})
+
 	describe('add()', () => {
 		it('adds tracks', async () => {
 			const [t1, t2, t3] = tracks
@@ -547,7 +555,7 @@ describe('track queue', () => {
 		})
 	})
 
-	describe('move', () => {
+	describe('move()', () => {
 		beforeEach(async () => {
 			await trackQueue.add(tracks.slice(0, 5))
 			await trackQueue.jumpTo(2)
@@ -695,7 +703,7 @@ describe('track queue', () => {
 			{ from: 2, to: -1 },
 			{ from: 2, to: 20 },
 			{ from: 2, to: 2 }
-		])('ignores inalid move from $from to $to', async ({ from, to }) => {
+		])('ignores inalid move %o', async ({ from, to }) => {
 			await trackQueue.move({ from, to })
 			expect(trackQueue.content).toEqual(tracks.slice(0, 5))
 			expect(trackQueue.current).toEqual(tracks[2])
@@ -703,6 +711,183 @@ describe('track queue', () => {
 			await expectStoredList()
 		})
 	})
+
+	describe('shuffle()', () => {
+		beforeEach(async () => {
+			await trackQueue.add(tracks)
+			await trackQueue.jumpTo(2)
+		})
+
+		const order = [...tracks.map(({ id }) => id)]
+
+		const added = Array.from({ length: 4 }, (_, i) =>
+			makeTrack({ id: i + tracks.length })
+		)
+
+		it('randomizes the order of all tracks when turned on', async () => {
+			const currentId = trackQueue.current?.id
+			expect(currentId).toBeDefined()
+			expect(trackQueue.shuffled).toBe(false)
+			expect(trackQueue.content.map(({ id }) => id)).toEqual(order)
+
+			await trackQueue.shuffle()
+
+			// @ts-expect-error -- currentId is defined, so TS doesn't like to compare with current?.id
+			expect(trackQueue.current?.id).toEqual(currentId)
+			expect(trackQueue.content.map(({ id }) => id)).not.toEqual(order)
+			expect(trackQueue.index).toEqual(0)
+			expect(trackQueue.shuffled).toBe(true)
+			await expectStoredList()
+		})
+
+		it('reverts to original order, keeping current track', async () => {
+			await trackQueue.shuffle()
+			await trackQueue.playNext()
+			await trackQueue.playNext()
+			const currentId = trackQueue.current?.id
+			expect(currentId).toBeDefined()
+			expect(trackQueue.index).toEqual(2)
+
+			await trackQueue.shuffle()
+
+			expect(trackQueue.content.map(({ id }) => id)).toEqual(order)
+			// @ts-expect-error -- currentId is defined, so TS doesn't like to compare with current?.id
+			expect(trackQueue.current?.id).toEqual(currentId)
+			expect(trackQueue.shuffled).toBe(false)
+			await expectStoredList()
+		})
+
+		it('does not retain removed tracks upon unshuffling', async () => {
+			await trackQueue.shuffle()
+			await trackQueue.jumpTo(2)
+			await trackQueue.removeAt(6)
+			expect(trackQueue.index).toEqual(2)
+			await trackQueue.removeAt(1)
+			expect(trackQueue.index).toEqual(1)
+			const currentId = trackQueue.current?.id
+			const removed = difference(
+				order,
+				trackQueue.content.map(({ id }) => id)
+			)
+			expect(removed).toHaveLength(2)
+
+			await trackQueue.shuffle()
+			expect(trackQueue.content).toHaveLength(tracks.length - removed.length)
+			expect(trackQueue.content.map(({ id }) => id)).toEqual(
+				order.filter(id => !removed.includes(id))
+			)
+			// @ts-expect-error -- currentId is defined, so TS doesn't like to compare with current?.id
+			expect(trackQueue.current?.id).toEqual(currentId)
+			expect(trackQueue.shuffled).toBe(false)
+			await expectStoredList()
+		})
+
+		it('stays cleared after unshuffling', async () => {
+			await trackQueue.shuffle()
+
+			await trackQueue.clear()
+
+			expect(trackQueue.content).toEqual([])
+			expect(trackQueue.current).toBeUndefined()
+			expect(trackQueue.index).toBeNull()
+			expect(trackQueue.shuffled).toBe(true)
+
+			await trackQueue.shuffle()
+
+			expect(trackQueue.content).toEqual([])
+			expect(trackQueue.current).toBeUndefined()
+			expect(trackQueue.index).toBeNull()
+			expect(trackQueue.shuffled).toBe(false)
+		})
+
+		it('restores moved track to their original position upon unshuffling', async () => {
+			await trackQueue.shuffle()
+			await trackQueue.jumpTo(3)
+			const content = [...trackQueue.content]
+			await trackQueue.move({ from: 1, to: 6 })
+			expect(trackQueue.index).toEqual(2)
+			const currentId = trackQueue.current?.id
+			expect(trackQueue.content).toEqual([
+				content[0],
+				...content.slice(2, 7),
+				content[1],
+				...content.slice(7)
+			])
+
+			await trackQueue.shuffle()
+
+			expect(trackQueue.content.map(({ id }) => id)).toEqual(order)
+			// @ts-expect-error -- currentId is defined, so TS doesn't like to compare with current?.id
+			expect(trackQueue.current?.id).toEqual(currentId)
+			expect(trackQueue.shuffled).toBe(false)
+			await expectStoredList()
+		})
+
+		it('adds new tracks at random position', async () => {
+			await trackQueue.shuffle()
+			await trackQueue.jumpTo(3)
+			expect(trackQueue.index).toEqual(3)
+			const currentId = trackQueue.current?.id
+
+			await trackQueue.add(added, { play: false })
+
+			expect(trackQueue.index).toEqual(3)
+			// @ts-expect-error -- currentId is defined, so TS doesn't like to compare with current?.id
+			expect(trackQueue.current?.id).toEqual(currentId)
+			expect(trackQueue.content).toHaveLength(tracks.length + added.length)
+			const content = trackQueue.content.map(({ id }) => id)
+			expect(content.slice(tracks.length)).not.toEqual(
+				added.map(({ id }) => id)
+			)
+			for (const { id } of added) {
+				expect(content.indexOf(id)).toBeGreaterThan(3)
+			}
+			expect(trackQueue.shuffled).toBe(true)
+			await expectStoredList()
+		})
+
+		it('keeps added tracks at the end upon unshuffling', async () => {
+			await trackQueue.shuffle()
+			await trackQueue.jumpTo(3)
+			expect(trackQueue.index).toEqual(3)
+			const currentId = trackQueue.current?.id
+			await trackQueue.add(added)
+			expect(trackQueue.index).toEqual(3)
+
+			await trackQueue.shuffle()
+
+			expect(trackQueue.content).toHaveLength(tracks.length + added.length)
+			expect(trackQueue.content.map(({ id }) => id)).toEqual([
+				...order,
+				...added.map(({ id }) => id)
+			])
+			// @ts-expect-error -- currentId is defined, so TS doesn't like to compare with current?.id
+			expect(trackQueue.current?.id).toEqual(currentId)
+			expect(trackQueue.shuffled).toBe(false)
+			await expectStoredList()
+		})
+
+		it('adds randomized tracks to empty shuffled list', async () => {
+			await trackQueue.shuffle()
+			await trackQueue.clear()
+			expect(trackQueue.index).toBeNull()
+
+			await trackQueue.add(added)
+
+			expect(trackQueue.index).toEqual(0)
+			expect(trackQueue.content).toHaveLength(added.length)
+			const content = trackQueue.content.map(({ id }) => id)
+			expect(content.slice(tracks.length)).not.toEqual(
+				added.map(({ id }) => id)
+			)
+			expect(trackQueue.shuffled).toBe(true)
+			await expectStoredList()
+		})
+	})
+
+	function difference<T>(...arrays: T[][]): T[] {
+		return arrays.reduce((a, b) => a.filter(c => !b.includes(c)))
+	}
 
 	async function expectStoredList() {
 		expect(await localforage.getItem<Track[]>(contentStorageKey)).toEqual(

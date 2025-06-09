@@ -27,6 +27,7 @@
   const onremove = trackQueue.removeAt.bind(trackQueue)
   const onmove = trackQueue.move.bind(trackQueue)
   const onplay = trackQueue.jumpTo.bind(trackQueue)
+  const onshuffle = trackQueue.shuffle.bind(trackQueue)
 
   let notifier: SystemNotifier
   let trackListOpen = $state(false)
@@ -135,10 +136,12 @@
     />
     <Player
       agentById={data.agentById}
-      track={trackQueue.current}
       isLast={trackQueue.isLast}
+      track={trackQueue.current}
+      isShuffled={trackQueue.shuffled}
       {onnext}
       {onprevious}
+      {onshuffle}
     />
     <TrackLoader
       agentById={data.agentById}

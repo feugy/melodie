@@ -13,7 +13,7 @@
   const { Story } = defineMeta({
     title: 'Components/Player',
     component: Component,
-    args: { onnext: fn(), onprevious: fn() },
+    args: { onnext: fn(), onprevious: fn(), onshuffle: fn() },
     parameters: {
       msw: {
         handlers: [

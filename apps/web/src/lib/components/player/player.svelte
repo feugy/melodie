@@ -5,8 +5,10 @@
     agentById: Map<number, Agent>
     track?: TrackModel
     isLast: boolean
+    isShuffled: boolean
     onnext: (autoplay?: boolean) => unknown
     onprevious: () => unknown
+    onshuffle: () => unknown
   }
 </script>
 
@@ -15,6 +17,7 @@
   import PlayIcon from 'lucide-svelte/icons/play'
   import PreviousIcon from 'lucide-svelte/icons/skip-back'
   import NextIcon from 'lucide-svelte/icons/skip-forward'
+  import ShuffleIcon from 'lucide-svelte/icons/shuffle'
   import MuteIcon from 'lucide-svelte/icons/volume-off'
   import UnmuteIcon from 'lucide-svelte/icons/volume-2'
   import { onMount } from 'svelte'
@@ -22,7 +25,15 @@
   import { Button, Slider, Track } from '$lib/components'
   import { wrapWithLinks } from '$lib/utils'
 
-  let { agentById, track, isLast, onnext, onprevious }: PlayerProps = $props()
+  let {
+    agentById,
+    track,
+    isLast,
+    isShuffled,
+    onnext,
+    onprevious,
+    onshuffle,
+  }: PlayerProps = $props()
 
   let player: HTMLAudioElement | undefined
   let gainNode: GainNode | undefined
@@ -74,7 +85,9 @@
   }
 
   function togglePlay() {
-    paused = !paused
+    if (src) {
+      paused = !paused
+    }
   }
 
   function handlePlay() {
@@ -153,6 +166,11 @@
       </div>
     {/if}
     <div class="flex items-center gap-2">
+      <Button
+        color={isShuffled ? 'primary' : 'secondary'}
+        onclick={() => onshuffle()}
+        Icon={ShuffleIcon}
+      />
       <Button
         color="secondary"
         onclick={() => onprevious()}

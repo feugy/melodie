@@ -1,12 +1,15 @@
 import type { Track } from '@melodie/common/models'
+import { knuthShuffle } from 'knuth-shuffle'
 import localforage from 'localforage'
 import { getTracksByIds } from './requests'
 
 export const contentStorageKey = 'tracks-queue'
+export const backupStorageKey = 'tracks-queue-backup'
 export const currentStorageKey = 'current-track'
 
 class TrackQueue {
 	content = $state<Track[]>([])
+	backup = $state<Track['id'][] | null>(null)
 	index = $state<number | null>(null)
 	current = $derived.by(() => {
 		return this.index !== null ? this.content[this.index] : undefined
@@ -15,13 +18,15 @@ class TrackQueue {
 	isLast = $derived.by(
 		() => this.index === null || this.index === this.content.length - 1
 	)
+	shuffled = $derived(this.backup !== null)
 
 	autoNextListerners: Array<() => unknown> = []
 
 	async init(checkServer = true) {
 		localforage.config({ driver: localforage.INDEXEDDB, name: 'melodie' })
-		this.content = (await localforage.getItem<Track[]>(contentStorageKey)) ?? []
-		this.index = await localforage.getItem<number>(currentStorageKey)
+		this.content = (await localforage.getItem(contentStorageKey)) ?? []
+		this.index = await localforage.getItem(currentStorageKey)
+		this.backup = await localforage.getItem(backupStorageKey)
 		if (!Array.isArray(this.content)) {
 			this.content = []
 		}
@@ -52,12 +57,23 @@ class TrackQueue {
 	private async save({
 		withIndex = true,
 		withContent = true
-	}: { withIndex?: boolean; withContent?: boolean } = {}) {
+	}: {
+		withIndex?: boolean
+		withContent?: boolean
+	} = {}) {
 		if (withContent) {
 			await localforage.setItem(
 				contentStorageKey,
 				$state.snapshot(this.content)
 			)
+			if (this.backup === null) {
+				await localforage.removeItem(backupStorageKey)
+			} else if (this.backup) {
+				await localforage.setItem(
+					backupStorageKey,
+					$state.snapshot(this.backup)
+				)
+			}
 		}
 		if (withIndex) {
 			await localforage.setItem(currentStorageKey, $state.snapshot(this.index))
@@ -73,10 +89,21 @@ class TrackQueue {
 			this.content = []
 			this.index = null
 		}
-		if (play || (this.index === null && tracks.length)) {
-			this.index = this.content.length
+		if (this.shuffled) {
+			if (tracks.length) {
+				this.index = this.index ?? 0
+				this.content = [
+					...this.content.slice(0, this.index + 1),
+					...knuthShuffle([...tracks, ...this.content.slice(this.index + 1)])
+				]
+				this.backup?.push(...tracks.map(track => track.id))
+			}
+		} else {
+			if (play || (this.index === null && tracks.length)) {
+				this.index = this.content.length
+			}
+			this.content.push(...tracks)
 		}
-		this.content.push(...tracks)
 		await this.save()
 	}
 
@@ -139,6 +166,30 @@ class TrackQueue {
 		this.content.splice(index, 1)
 		if (this.index !== null && index < this.index) {
 			this.index--
+		}
+		await this.save()
+	}
+
+	async shuffle() {
+		if (!this.shuffled) {
+			if (this.content.length) {
+				this.backup = this.content.map(({ id }) => id)
+				const [current] = this.content.splice(this.index ?? 0, 1)
+				this.content = knuthShuffle(this.content)
+				this.content.unshift(current)
+				this.index = 0
+			}
+		} else if (this.backup !== null) {
+			const currentId = this.current?.id
+			this.content = this.backup
+				.map(id => this.content.find(track => track.id === id))
+				.filter(track => track !== undefined)
+			if (currentId !== undefined) {
+				this.index = this.content.findIndex(({ id }) => id === currentId)
+			} else if (this.content.length) {
+				this.index = 0
+			}
+			this.backup = null
 		}
 		await this.save()
 	}
