@@ -123,8 +123,15 @@ export abstract class AbstractModel<T extends { id: number }> {
 		from = 0,
 		size = 10,
 		sort = 'id',
-		searched
-	}: { from?: number; size?: number; sort?: string; searched?: string } = {}) {
+		searched,
+		exactSearch = false
+	}: {
+		from?: number
+		size?: number
+		sort?: string
+		searched?: string
+		exactSearch?: boolean
+	} = {}) {
 		if (!this.db) throw new Error('model not initialized')
 		const [, rawDir, rawSort] = searched
 			? [null, null, this.searchCol]
@@ -140,16 +147,18 @@ export abstract class AbstractModel<T extends { id: number }> {
 			from
 		}
 		if (searched) {
-			params.searched = `%${searched.toLowerCase()}%`
+			params.searched = exactSearch ? searched : `%${searched}%`
 		}
 		const results = this.db
-			.query<T, typeof params>(this.enrichForSearch(dataQuery, searched))
+			.query<T, typeof params>(
+				this.enrichForSearch(dataQuery, searched, exactSearch)
+			)
 			.all(params)
 			.map(this.makeDeserializer())
 		const total =
 			this.db
 				.query<{ count: number }, typeof params>(
-					this.enrichForSearch(countQuery, searched)
+					this.enrichForSearch(countQuery, searched, exactSearch)
 				)
 				.get(params)?.count ?? 0
 		this.logger.debug(
@@ -273,7 +282,11 @@ export abstract class AbstractModel<T extends { id: number }> {
 	 * @param searched searched text
 	 * @returns customized query
 	 */
-	protected enrichForSearch(query: string, searched?: string) {
+	protected enrichForSearch(
+		query: string,
+		searched?: string,
+		exactSearch?: boolean
+	) {
 		return searched?.length
 			? query.replace(searchPlaceholder, `AND ${this.searchCol} LIKE :searched`)
 			: query

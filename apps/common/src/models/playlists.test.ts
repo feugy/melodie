@@ -78,7 +78,8 @@ describe('Playlists model', () => {
 					...(playlist as Playlist),
 					mediaCount: 0,
 					refs: [makeRef(artist1), makeRef(album1), [1, null]],
-					trackPaths: null as unknown as undefined
+					trackPaths: null as unknown as undefined,
+					userIds: []
 				}
 			])
 		})
@@ -113,7 +114,8 @@ describe('Playlists model', () => {
 						makeRef(artist2),
 						makeRef(album2),
 						makeRef(album1)
-					]
+					],
+					userIds: []
 				}
 			])
 

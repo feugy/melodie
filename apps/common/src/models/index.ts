@@ -9,6 +9,7 @@ import { type Artist, artistsModel } from './artists.ts'
 import { type Playlist, playlistsModel } from './playlists.ts'
 import { type Settings, settingsModel } from './settings.ts'
 import { type Track, tracksModel } from './tracks.ts'
+import { type User, usersModel } from './users.ts'
 
 export {
 	AbstractModel,
@@ -17,14 +18,25 @@ export {
 	artistsModel,
 	playlistsModel,
 	settingsModel,
-	tracksModel
+	tracksModel,
+	usersModel
 }
-export type { Agent, Album, Artist, Playlist, Settings, Track, TrackListModel }
+export type {
+	Agent,
+	Album,
+	Artist,
+	Playlist,
+	Settings,
+	Track,
+	TrackListModel,
+	User
+}
 
 /** Initializes all model classes. */
 export async function init(conf: DBConf, migrate = true) {
 	await mkdir(dirname(conf.filename), { recursive: true })
-	await settingsModel.init(conf, migrate)
+	await usersModel.init(conf, migrate)
+	await settingsModel.init(conf, false)
 	await agentsModel.init(conf, false)
 	await albumsModel.init(conf, false)
 	await artistsModel.init(conf, false)

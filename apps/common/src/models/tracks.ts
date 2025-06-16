@@ -131,9 +131,6 @@ export class TracksModel extends AbstractModel<Track> {
 
 	/**
 	 * Implementes search with tags' titles
-	 * @param  query - query to customize
-	 * @param searched - searched text
-	 * @returns customized query
 	 */
 	protected enrichForSearch(query: string, searched: string) {
 		return searched?.length

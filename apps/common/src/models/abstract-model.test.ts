@@ -57,7 +57,8 @@ describe('Abstract model', () => {
 				db.query(`SELECT id, name FROM ${migrationsTable};`).all()
 			).toEqual([
 				{ id: 1, name: '001-init' },
-				{ id: 2, name: '002-settings' }
+				{ id: 2, name: '002-settings' },
+				{ id: 3, name: '003-users' }
 			])
 		})
 	})

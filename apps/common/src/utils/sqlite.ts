@@ -11,8 +11,13 @@ export function whereIn(column: string, { length }: unknown[]) {
  * Returns the INSERT statement to insert or update given table (which primary key is column "id") given a list of models.
  * @param table upserted table.
  * @param models in which column names are searched.
+ * @param returning whether to return the inserted/updated rows.
  */
-export function buildUpsert(table: string, models: object[]) {
+export function buildUpsert(
+	table: string,
+	models: object[],
+	returning = false
+) {
 	if (models.length === 0) {
 		throw new Error(`Can not upsert in ${table} without models`)
 	}
@@ -28,5 +33,6 @@ export function buildUpsert(table: string, models: object[]) {
 	return `INSERT INTO ${table} (id, ${columns.join(', ')}) 
 VALUES (:id, ${columns.map(col => `:${col}`).join(', ')})
 ON CONFLICT(id) DO UPDATE SET
-${columns.map(col => `${col}=coalesce(excluded.${col}, NULL)`).join(',\n')}`
+${columns.map(col => `${col}=coalesce(excluded.${col}, NULL)`).join(',\n')}
+${returning ? 'RETURNING *' : ''}`.trim()
 }

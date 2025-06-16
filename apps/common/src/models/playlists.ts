@@ -23,6 +23,7 @@ export interface Playlist {
 	media: string | null
 	/** count incremented on every media change. */
 	mediaCount: number
+	userIds: number[]
 }
 
 /**
@@ -34,7 +35,7 @@ export class PlaylistModel extends AbstractTrackList<Playlist> {
 	constructor() {
 		super({
 			name: 'playlists',
-			jsonColumns: ['trackPaths'],
+			jsonColumns: ['trackPaths', 'userIds'],
 			// TODO search on name as well
 			searchCol: 'refs',
 			mergeTrackIds: false
