@@ -41,24 +41,24 @@ async function copyWebFiles(from: string, to: string) {
 	await cp(from, to, { recursive: true, force: true })
 }
 
-async function downloadSharp({ cpu, os }: { cpu: string; os: string }) {
-	const name = `sharp-libvips-${os}-${cpu}`
+async function downloadPackage(fullname: string) {
+	const name = fullname.split('/').pop()
 	const { version } = await (
-		await fetch(`https://registry.npmjs.org/@img/${name}/latest`)
+		await fetch(`https://registry.npmjs.org/${fullname}/latest`)
 	).json()
 	const folder = 'build'
-	const finalFolder = join(folder, `node_modules/@img/${name}`)
+	const finalFolder = join(folder, `node_modules/${fullname}`)
 	const archiveName = join(folder, `${name}.tgz`)
 	await run([
 		'wget',
 		'--quiet',
 		`--output-document=${archiveName}`,
-		`https://registry.npmjs.org/@img/${name}/-/${name}-${version}.tgz`
+		`https://registry.npmjs.org/${fullname}/-/${name}-${version}.tgz`
 	])
 	await run(['tar', '-xf', archiveName, '-C', folder])
 	await Bun.file(archiveName).delete()
-	await rm(dirname(finalFolder), { force: true, recursive: true })
-	await mkdir(dirname(finalFolder), { recursive: true })
+	await rm(finalFolder, { force: true, recursive: true })
+	await mkdir(finalFolder, { recursive: true })
 	// by convention, npm packages are in a 'package' folder
 	await rename(join(folder, 'package'), finalFolder)
 }
@@ -86,7 +86,8 @@ async function main() {
 	await runBun('web', 'build')
 	await fixWebHandler('apps/web/build/handler.js')
 	await copyWebFiles('apps/web/build/client', 'build/client')
-	await downloadSharp({ cpu, os })
+	await downloadPackage(`@img/sharp-libvips-${os}-${cpu}`)
+	await downloadPackage(`@img/sharp-${os}-${cpu}`)
 	await runBun('server', 'build', `--target=bun-${os}-${cpu}`)
 }
 

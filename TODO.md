@@ -43,27 +43,39 @@ Cons: complex LetsEncrypt setup to get SSL certificates.
 # Usefull
 
 - organize all imports: `bunx biome check --formatter-enabled=false --linter-enabled=false --organize-imports-enabled=true --write ./apps`
+- move to VM
+
+  1. `bun run release`
+  1. `tar -cvf melodie.tar --exclude=.* build --transform s/build//`
+  1. `scp melodie.tar freebox@192.168.1.10:~/melodie`
+
+- refresh certificates
+
+  1. `sudo systemctl stop melodie.service`
+  1. `./melodie refresh-certs -e pioupiou@gmail.com -c .melodie -p 8081`
+  1. `sudo systemctl start melodie.service`
+
 - run as a service on VM
 
-  - sudo systemctl edit melodie.service --full --force
-  - sudo systemctl enable melodie.service
-  - systemctl status melodie.service
-  - journalctl -u melodie.service
+  1. `sudo systemctl edit melodie.service --full --force`
+  1. `sudo systemctl enable melodie.service`
+  1. `systemctl status melodie.service`
+  1. `journalctl -u melodie.service`
 
-    ```
-    [Unit]
-    Description=Melodie music server
-    After=network-online.target
+  ```
+  [Unit]
+  Description=Melodie music server
+  After=network-online.target
 
-    [Service]
-    Type=simple
-    User=freebox
-    Group=freebox
-    ExecStart=/home/freebox/melodie/melodie
-    WorkingDirectory=/home/freebox/melodie
-    Restart=on-failure
-    TimeoutStopSec=30
+  [Service]
+  Type=simple
+  User=freebox
+  Group=freebox
+  ExecStart=/home/freebox/melodie/melodie
+  WorkingDirectory=/home/freebox/melodie
+  Restart=on-failure
+  TimeoutStopSec=30
 
-    [Install]
-    WantedBy=multi-user.target
-    ```
+  [Install]
+  WantedBy=multi-user.target
+  ```

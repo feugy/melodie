@@ -12,7 +12,7 @@ const scripts: Record<
 > = {
 	'add-user': {
 		options: {
-			config: { type: 'string', short: 'c' },
+			config: { type: 'string', short: 'c', default: '.melodie' },
 			name: { type: 'string', short: 'n' },
 			password: { type: 'string', short: 'p' }
 		},
@@ -20,7 +20,7 @@ const scripts: Record<
 	},
 	'refresh-certs': {
 		options: {
-			config: { type: 'string', short: 'c' },
+			config: { type: 'string', short: 'c', default: '.melodie' },
 			port: { type: 'string', short: 'p', default: '80' },
 			email: { type: 'string', short: 'e' }
 		},
