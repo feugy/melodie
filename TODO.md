@@ -5,6 +5,7 @@
 
 ## Common
 
+- TOFIX: await usersModel.list() always returns a result with undefined name
 - unknown album & artists should be null and not strings
 
 ## Server
@@ -58,7 +59,7 @@ Cons: complex LetsEncrypt setup to get SSL certificates.
     Type=simple
     User=freebox
     Group=freebox
-    ExecStart=/home/freebox/melodie/melodie --server -p 8081 -f /mnt/Dock/Musique
+    ExecStart=/home/freebox/melodie/melodie
     WorkingDirectory=/home/freebox/melodie
     Restart=on-failure
     TimeoutStopSec=30

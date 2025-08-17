@@ -1,6 +1,6 @@
 import { access, mkdir, rm } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
-import { dirname, join } from 'node:path'
+import { dirname, join, resolve } from 'node:path'
 import { parseArgs } from 'node:util'
 import { init, settingsModel } from '@melodie/common/models'
 import { dbConfSchema } from '@melodie/common/types'
@@ -29,7 +29,7 @@ export class ConfigurationService {
 
 	async read(args: string[]) {
 		this.logger.info({ args }, 'reading configuration...')
-		const {
+		let {
 			values: { config: configPath, open: openUI }
 		} = parseArgs({
 			args,
@@ -40,6 +40,8 @@ export class ConfigurationService {
 				open: { type: 'boolean', short: 'o', default: false }
 			}
 		})
+		// turn to an absolute path to make it easier to read in logs
+		configPath = resolve(configPath)
 		if (!(await exists(configPath))) {
 			await this.prepareConfig(configPath)
 		}
@@ -133,7 +135,7 @@ What domain name do you want to use? (e.g. example.com)`,
 		}
 	}
 
-	private async generateCertificates(
+	public async generateCertificates(
 		configPath: string,
 		{ port, domain, email }: { port: number; domain?: string; email?: string }
 	) {

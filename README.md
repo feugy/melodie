@@ -42,6 +42,18 @@ Server is indexing and watching local folders. It also embeds the Web UI.
 - watch mode tests: `bun dev`
 - standalone start: `bun start`
 
+To add new users to DB:
+
+```shell
+bun start add-user -n username -p password
+```
+
+To refresh TLS certificates:
+
+```shell
+bun start refresh-certs -e email -p port
+```
+
 ## apps/web
 
 Web UI.

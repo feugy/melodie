@@ -2,14 +2,12 @@
 
 @import "@skeletonlabs/skeleton";
 @import "@skeletonlabs/skeleton/optional/presets";
-@import "@skeletonlabs/skeleton/themes/crimson";
+@import "./melodie-theme";
 
-@source '../node_modules/@skeletonlabs/skeleton-svelte/dist';
+@source "../node_modules/@skeletonlabs/skeleton-svelte/dist";
 
 @custom-variant dark (&:where([data-mode=dark], [data-mode=dark] *));
 
 @utility content-visibility-auto {
   content-visibility: auto;
 }
-
-@import "./melodie-theme";

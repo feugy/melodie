@@ -49,7 +49,7 @@ async function connect(conf: DBConf, logger: Logger, migrate: boolean) {
 /**
  * Base class for all database models, provides CRUD operations on a single SQLite table.
  */
-export abstract class AbstractModel<T extends { id: number }> {
+export abstract class AbstractModel<T extends { id: string | number }> {
 	/** Model name, used at table name. */
 	name: string
 
@@ -86,8 +86,8 @@ export abstract class AbstractModel<T extends { id: number }> {
 			throw new Error('every model needs a name')
 		}
 		this.name = name
-		this.searchCol = searchCol
-		this.jsonColumns = jsonColumns
+		this.searchCol = searchCol ?? 'id'
+		this.jsonColumns = jsonColumns ?? []
 		this.logger = getLogger(`models/${this.name}`)
 	}
 
@@ -149,10 +149,9 @@ export abstract class AbstractModel<T extends { id: number }> {
 		if (searched) {
 			params.searched = exactSearch ? searched : `%${searched}%`
 		}
+		const query = this.enrichForSearch(dataQuery, searched, exactSearch)
 		const results = this.db
-			.query<T, typeof params>(
-				this.enrichForSearch(dataQuery, searched, exactSearch)
-			)
+			.query<T, typeof params>(query)
 			.all(params)
 			.map(this.makeDeserializer())
 		const total =
@@ -193,9 +192,9 @@ export abstract class AbstractModel<T extends { id: number }> {
 	 * @param id Desired id
 	 * @returns matching model, or null
 	 */
-	async getById(id: number) {
+	async getById(id: T['id']) {
 		const result = this.db
-			?.query<T, { id: number }>(`SELECT * FROM ${this.name} WHERE id = :id`)
+			?.query<T, { id: T['id'] }>(`SELECT * FROM ${this.name} WHERE id = :id`)
 			.get({ id })
 		this.logger.debug({ id, found: Boolean(result) }, 'fetch by id')
 		if (!result) {
@@ -211,10 +210,10 @@ export abstract class AbstractModel<T extends { id: number }> {
 	 * @param ids Desired ids
 	 * @returns array of matching model (may be empty)
 	 */
-	async getByIds(ids: number[]) {
+	async getByIds(ids: T['id'][]) {
 		const results =
 			this.db
-				?.query<T, number[]>(
+				?.query<T, T['id'][]>(
 					`SELECT * FROM ${this.name} WHERE ${whereIn('id', ids)}`
 				)
 				.all(...ids)
@@ -250,13 +249,13 @@ export abstract class AbstractModel<T extends { id: number }> {
 	 * @param ids Ids of removed models
 	 * @returns list (may be empty) of removed models
 	 */
-	async removeByIds(ids: number[]): Promise<T[]> {
+	async removeByIds(ids: T['id'][]): Promise<T[]> {
 		if (!this.db) throw new Error('model not initialized')
 		return this.db
 			.transaction(() => {
 				this.logger.debug({ ids }, 'removing')
 				const previous = this.db
-					?.query<T, number[]>(
+					?.query<T, T['id'][]>(
 						`SELECT * FROM ${this.name} WHERE ${whereIn('id', ids)}`
 					)
 					.all(...ids)
@@ -337,7 +336,7 @@ export abstract class AbstractModel<T extends { id: number }> {
 	 * @param ids List of references
 	 * @returns a list (possibly empty) of artist references
 	 */
-	protected computeRefs(ids: number[]): Reference[] {
+	protected computeRefs(ids: T['id'][]): Reference[] {
 		return []
 	}
 }

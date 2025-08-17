@@ -13,8 +13,10 @@ duration: Duration
 enqueue: Enqueue all
 hours_minutes: "{hours, plural, =0 { } =1 {1 hour} other {# hours}} {minutes, plural, =0 { } =1 {1 minute} other {# minutes}}"
 none: None
+password: Password
 play all: Play all
 track _/_: "{total, plural, =0 {no track} other {track {index}/#}}"
 track queue: Track queue
 track: Track
 unknown: Unknown
+username: Username

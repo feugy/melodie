@@ -11,8 +11,10 @@ duration: Durée
 enqueue: Ajouter tout
 hours_minutes: "{hours, plural, =0 {} =1 {1 heure} other {# heures}} {minutes, plural, =0 {} =1 {1 minute} other {# minutes}}"
 none: Aucun
+password: Mot de passe
 play all: Lire tout
 track _/_: "{total, plural, =0 {aucun morceau} other {morceau {index}/#}}"
 track queue: Liste de lecture
 track: Morceau
 unknown: Inconnu
+username: Nom d'utilisateur

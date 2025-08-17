@@ -2,9 +2,15 @@ import { pid } from 'node:process'
 import { getLogger } from '@melodie/common/utils'
 import { fileURLToPath } from 'bun'
 import { configurationService } from './services/configuration.ts'
+import { runScript } from './run-script.ts'
 
 async function main() {
 	const argv = process.argv.slice(2)
+	if (await runScript(argv)) {
+		console.log('\n\nBye!\n')
+		process.exit(0)
+	}
+
 	const conf = await configurationService.read(argv)
 	let worker: Worker | null = null
 

@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'bun:test'
 import { base } from '$app/paths'
 import { faker } from '@faker-js/faker'
-import type { PageLoadEvent } from './$types'
-import { load } from './+page'
+import type { PageLoadEvent } from '../$types'
+import { load } from './page'
 
 describe('universal load()', () => {
 	it('redirects / on to album list', async () => {

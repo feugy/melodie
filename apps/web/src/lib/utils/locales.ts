@@ -9,3 +9,6 @@ export function configureLocales(initialLocale = 'fr') {
 	addMessages('en', en)
 	init({ initialLocale, fallbackLocale: 'en' })
 }
+
+// First is the default locale
+export const supportedLanguages = ['fr', 'en'] as const
