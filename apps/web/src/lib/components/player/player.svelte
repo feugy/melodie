@@ -130,7 +130,7 @@
 </script>
 
 <div
-  class="grid grid-cols-[fit-content(25%)_1fr_fit-content(25%)] items-center"
+  class="text-primary-500 grid grid-cols-[fit-content(25%)_1fr_fit-content(25%)] items-center"
   class:paused
 >
   <audio

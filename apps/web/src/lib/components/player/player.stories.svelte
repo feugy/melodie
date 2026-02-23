@@ -29,7 +29,7 @@
         // @ts-expect-error: how do we tell TS that we're returning the decorator instead of the story?
         Component: BackgroundDecorator,
         // @ts-expect-error: how do we tell TS that we're passing the decorator props?
-        props: { color: 'preset-filled', children },
+        props: { className: 'bg-primary-950 p-2 rounded-sm', children },
       }),
     ],
   })

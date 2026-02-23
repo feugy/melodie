@@ -1,5 +1,9 @@
 import type { Album, Track } from '@melodie/common/models'
 
+export function sortByDiskAndNum(tracks?: Track[]) {
+	return groupByDisk(tracks).flatMap(d => d.tracks)
+}
+
 export function groupByDisk(tracks?: Track[]) {
 	if (!tracks) return []
 	const disks: Array<Track[]> = []

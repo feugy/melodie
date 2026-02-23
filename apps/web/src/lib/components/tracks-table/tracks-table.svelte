@@ -13,6 +13,7 @@
 <script lang="ts">
   import { t } from 'svelte-intl-precompile'
   import { formatTime, wrapWithLink } from '$lib/utils'
+  import { sortByNum } from '$lib/utils/tracks'
   let {
     tracks,
     current,
@@ -21,17 +22,7 @@
     onclick,
   }: TracksTableProps = $props()
 
-  let sortedTracks = $derived(
-    tracks
-      ? tracks
-          .concat()
-          .sort(
-            (a, b) =>
-              (a.tags.track?.no ?? Number.POSITIVE_INFINITY) -
-              (b.tags.track?.no ?? Number.POSITIVE_INFINITY)
-          )
-      : []
-  )
+  let sortedTracks = $derived(sortByNum(tracks))
 
   function handleClick(e: Event, idx: number, track: Track) {
     if ((e.target as HTMLElement).nodeName === 'A') return
@@ -59,10 +50,10 @@
       {#each sortedTracks as track, idx (track.id)}
         <tr
           class:current={current?.id === track.id}
-          class="odd:preset-filled-primary-800-200 hover:preset-filled-secondary-300-700 grid items-center gap-0 hover:cursor-pointer"
+          class="odd:preset-filled-primary-950-50 hover:border-l-primary-500 grid items-center gap-0 border-l-4 border-l-transparent hover:cursor-pointer"
           onclick={(e) => handleClick(e, idx, track)}
         >
-          <td class="w-[60px] text-center"
+          <td class="w-[50px] text-center"
             >{(track.tags.track && track.tags.track.no) || '--'}</td
           >
           <td class={hideAlbum ? 'col-span-5' : 'col-span-3'}

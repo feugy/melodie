@@ -106,7 +106,8 @@ ${track4}`,
 					mediaCount: 0,
 					mtimeMs: mtimeMs,
 					trackIds: [0],
-					trackPaths: [track1, track2, track3, track4]
+					trackPaths: [track1, track2, track3, track4],
+					userIds: []
 				})
 			})
 
@@ -135,7 +136,8 @@ ${join('nested', 'music.flac')}`,
 						join(folder, '..', 'fixtures', 'track.mp3'),
 						join(folder, 'file.ogg'),
 						join(folder, 'nested', 'music.flac')
-					]
+					],
+					userIds: []
 				})
 			})
 
@@ -161,7 +163,8 @@ file://${encodeURI(track4)}`,
 					mediaCount: 0,
 					mtimeMs,
 					trackIds: [0],
-					trackPaths: [track1, track2, track3, track4]
+					trackPaths: [track1, track2, track3, track4],
+					userIds: []
 				})
 			})
 
@@ -186,7 +189,8 @@ ${track3}`,
 					mediaCount: 0,
 					mtimeMs,
 					trackIds: [0],
-					trackPaths: [track1, track3]
+					trackPaths: [track1, track3],
+					userIds: []
 				})
 			})
 
@@ -211,7 +215,8 @@ ${track2}`,
 					mediaCount: 0,
 					mtimeMs,
 					trackIds: [0],
-					trackPaths: [track1, track2]
+					trackPaths: [track1, track2],
+					userIds: []
 				})
 			})
 
@@ -238,7 +243,8 @@ ${track2}
 					mediaCount: 0,
 					mtimeMs,
 					trackIds: [0],
-					trackPaths: [track2]
+					trackPaths: [track2],
+					userIds: []
 				})
 			})
 
@@ -265,7 +271,8 @@ https://example.com/track.ogg
 					mediaCount: 0,
 					mtimeMs,
 					trackIds: [0],
-					trackPaths: [track1, track2]
+					trackPaths: [track1, track2],
+					userIds: []
 				})
 			})
 

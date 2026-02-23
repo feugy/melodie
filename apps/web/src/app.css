@@ -11,3 +11,12 @@
 @utility content-visibility-auto {
   content-visibility: auto;
 }
+
+input:focus-visible {
+  outline: none;
+}
+
+*:focus-visible {
+  outline: 1px solid var(--color-primary-900);
+  outline-offset: 2px;
+}

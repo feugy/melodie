@@ -1,6 +1,6 @@
 # To fix/do
 
-- authentication
+- finish authentication (tests)
 - Consider Github for CI
 
 ## Common

@@ -23,7 +23,8 @@ describe('Settings model', () => {
 		expect(await settingsModel.get()).toEqual({
 			id: settingsModel.ID,
 			folders: [],
-			port: 80
+			port: 80,
+			jwtKey: expect.any(String)
 		})
 	})
 

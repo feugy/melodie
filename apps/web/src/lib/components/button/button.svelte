@@ -17,7 +17,7 @@
     lg: 'gap-3',
   }
   const colors = {
-    primary: 'preset-outlined-primary-500',
+    primary: 'preset-outlined-primary-500 text-primary-500',
     secondary: 'preset-filled-secondary-500',
     tertiary: 'preset-filled-tertiary-500',
     success: 'preset-filled-success-500',

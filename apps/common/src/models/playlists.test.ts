@@ -85,14 +85,15 @@ describe('Playlists model', () => {
 		})
 
 		it('updates existing playlist with refs and overrides trackIds', async () => {
-			const playlist = {
+			const playlist: Playlist = {
 				id: faker.number.int(),
 				media: faker.image.url(),
 				mediaCount: faker.number.int({ max: 10 }),
 				mtimeMs: faker.date.recent().getTime(),
 				name: faker.lorem.words(),
 				trackIds: [tracks[0].id, tracks[3].id],
-				refs: []
+				refs: [],
+				userIds: []
 			}
 
 			expect((await playlistsModel.save(playlist)).saved).toEqual([

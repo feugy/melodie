@@ -7,6 +7,8 @@ export interface Settings {
 	folders: string[]
 	/** network port to listen to. */
 	port: number
+	/** Key used to signed JWT tokens */
+	jwtKey: string
 }
 
 export class SettingsModel extends AbstractModel<Settings> {

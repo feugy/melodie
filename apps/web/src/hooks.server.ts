@@ -14,19 +14,28 @@ export const handle: Handle = async ({ event, resolve }) => {
 	} = event
 
 	if (url.pathname === `${base}/logout`) {
+		// log out page
 		return logOutAndRedirect()
 	}
+	if (url.pathname === `${base}/${locale}`) {
+		// login page, always accessible, session may be set by route
+		return setCookie(await resolve(event), locals.session?.token)
+	}
 	if (!locale && !url.pathname.startsWith(`${base}/api/`)) {
-		return redirectBasedOnLanguage(url, request.headers.get('accept-language'))
+		// serve local page (unless for API routes)
+		return redirectBasedOnLanguage(
+			url.href.replace(`${url.origin}${base}`, ''),
+			request.headers.get('accept-language')
+		)
+	}
+	locals.session = await recoverSession(extractToken(request))
+	if (!locals.session) {
+		// redirect to login without token
+		return redirectBasedOnLanguage('', request.headers.get('accept-language'))
 	}
 
-	const token = extractToken(request)
-	if (token) {
-		locals.session = await recoverSession(token)
-	}
-
-	// session may be (un)set by endpoints
-	return setCookie(await resolve(event), locals.session?.token)
+	console.log('> serving', url.href)
+	return await resolve(event)
 }
 
 function logOutAndRedirect() {
@@ -35,15 +44,20 @@ function logOutAndRedirect() {
 	)
 }
 
-function redirectBasedOnLanguage(url: URL, languageHeader: string | null) {
+function redirectBasedOnLanguage(
+	destination: string,
+	languageHeader: string | null
+) {
 	const locale =
 		pick(supportedLanguages, languageHeader ?? '', {
 			loose: true
 		}) || supportedLanguages[0]
+
+	console.log('> redirecting', `${base}/${locale}${destination}`)
 	return new Response(null, {
 		status: 303,
 		headers: {
-			location: `${base}/${locale}${url.href.replace(`${url.origin}${base}`, '')}`
+			location: `${base}/${locale}${destination}`
 		}
 	})
 }
@@ -57,7 +71,7 @@ function setCookie(response: Response, token?: string) {
 		path: '/',
 		secure: true,
 		httpOnly: true,
-		sameSite: 'none'
+		sameSite: 'lax'
 	}
 	if (!token) {
 		options.expires = new Date(1)

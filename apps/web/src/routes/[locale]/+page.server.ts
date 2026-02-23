@@ -28,7 +28,9 @@ export const actions: Actions = {
 				})
 			}
 			const { name, password } = parsed.data
+			console.log('> log in', name, password)
 			locals.session = await logIn(name, password)
+			console.log('> session', locals.session)
 		} catch (error) {
 			return fail(401, {
 				message: 'Unauthorized',

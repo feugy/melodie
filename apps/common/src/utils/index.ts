@@ -1,6 +1,7 @@
 export * from './collections.ts'
 export * from './configuration-message-provider.ts'
 export * from './hash.ts'
+export * from './jwt.ts'
 export * from './logger.ts'
 export * from './password.ts'
 export * from './refs.ts'

@@ -85,33 +85,40 @@
         screen.size >= MD && 'w-[40vw]',
       ]}
     >
-      <Sticky class="flex items-center gap-2 p-2">
-        {#if trackListOpen}
-          <Button
-            Icon={TrackListIcon}
-            onclick={() => (trackListOpen = false)}
-          />
-        {/if}
-        {#await data.trackQueueLoading}
-          chargement...
-        {:then}
-          <span class="flex-1"
-            >{$t('track _/_', {
-              values: {
-                index: (trackQueue.index ?? -1) + 1,
-                length: trackQueue.length,
-              },
-            })}</span
+      <Sticky>
+        {#snippet children(floating)}
+          <span
+            class="{floating
+              ? 'text-primary-500'
+              : 'text-primary-contrast-500'} flex items-center gap-2 p-2 pr-4"
           >
-          {#if trackQueue.length}
-            <div class="pr-2">
-              <span class="pr-4 text-base"
-                >{formatTime(sumDurations(trackQueue.content))}</span
+            {#await data.trackQueueLoading}
+              chargement...
+            {:then}
+              <span class="flex-1"
+                >{$t('track _/_', {
+                  values: {
+                    index: (trackQueue.index ?? -1) + 1,
+                    length: trackQueue.length,
+                  },
+                })}</span
               >
-              <Button Icon={TrashIcon} onclick={handleClearQueue} />
-            </div>
-          {/if}
-        {/await}
+              {#if trackQueue.length}
+                <span class="pr-4 text-base"
+                  >{formatTime(sumDurations(trackQueue.content))}</span
+                >
+                <Button Icon={TrashIcon} onclick={handleClearQueue} size="sm" />
+              {/if}
+              {#if trackListOpen}
+                <Button
+                  Icon={TrackListIcon}
+                  onclick={() => (trackListOpen = false)}
+                  size="sm"
+                />
+              {/if}
+            {/await}
+          </span>
+        {/snippet}
       </Sticky>
       <Heading class="mt-12! mr-2 flex items-center gap-4">
         {$t('track queue')}
@@ -126,7 +133,7 @@
       />
     </aside>
   </div>
-  <footer class="preset-filled border-primary-contrast border-t-2 p-2">
+  <footer class="bg-primary-950 p-2">
     <SystemNotifier
       agentById={data.agentById}
       track={trackQueue.current}

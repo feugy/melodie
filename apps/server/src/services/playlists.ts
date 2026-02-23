@@ -61,7 +61,8 @@ export class PlaylistsService {
 				trackPaths: [],
 				refs: [],
 				media: null,
-				mediaCount: 0
+				mediaCount: 0,
+				userIds: []
 			}
 			const root = dirname(path)
 			for (const line of lines.split('\n')) {

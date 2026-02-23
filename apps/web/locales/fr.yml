@@ -13,7 +13,7 @@ hours_minutes: "{hours, plural, =0 {} =1 {1 heure} other {# heures}} {minutes, p
 none: Aucun
 password: Mot de passe
 play all: Lire tout
-track _/_: "{total, plural, =0 {aucun morceau} other {morceau {index}/#}}"
+track _/_: "{total, plural, =0 {Aucun morceau} other {Morceau {index}/#}}"
 track queue: Liste de lecture
 track: Morceau
 unknown: Inconnu

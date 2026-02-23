@@ -76,7 +76,8 @@ describe('configuration service', () => {
 			expect(await settingsModel.get()).toEqual({
 				id: settingsModel.ID,
 				port,
-				folders: [musicFolder]
+				folders: [musicFolder],
+				jwtKey: expect.any(String)
 			})
 			expect(acmeClient).not.toHaveBeenCalled()
 		})
@@ -112,7 +113,8 @@ describe('configuration service', () => {
 			expect(await settingsModel.get()).toEqual({
 				id: settingsModel.ID,
 				port: 80,
-				folders: [musicFolder]
+				folders: [musicFolder],
+				jwtKey: expect.any(String)
 			})
 			expect(acmeClient).not.toHaveBeenCalled()
 		})
@@ -163,7 +165,8 @@ describe('configuration service', () => {
 			expect(await settingsModel.get()).toEqual({
 				id: settingsModel.ID,
 				port,
-				folders: [musicFolder]
+				folders: [musicFolder],
+				jwtKey: expect.any(String)
 			})
 			expect(acmeClient).toHaveBeenCalled()
 		})
