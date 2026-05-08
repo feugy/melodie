@@ -1,3 +1,7 @@
+import { access, mkdir, rm } from 'node:fs/promises'
+import { tmpdir } from 'node:os'
+import { dirname, join, resolve } from 'node:path'
+import { parseArgs } from 'node:util'
 import { init, settingsModel } from '@melodie/common/models'
 import { dbConfSchema } from '@melodie/common/types'
 import {
@@ -10,10 +14,6 @@ import v, { errors } from '@vinejs/vine'
 import type { FieldContext, Infer } from '@vinejs/vine/types'
 import * as acme from 'acme-client'
 import { type BunRequest, file, serve } from 'bun'
-import { access, mkdir, rm } from 'node:fs/promises'
-import { tmpdir } from 'node:os'
-import { dirname, join, resolve } from 'node:path'
-import { parseArgs } from 'node:util'
 import ora from 'ora'
 import { dialog } from '../utils/cli.js'
 

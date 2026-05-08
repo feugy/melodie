@@ -10,7 +10,7 @@
 		"./tests": "./src/tests/index.ts",
 		"./tests/refs": "./src/tests/refs.ts",
 		"./types": "./src/types.ts",
-		"./utils": "./src/utils/index.ts"
+	"./utils": "./src/utils/index.ts"
 	},
 	"scripts": {
 		"check": "tsc --noEmit",

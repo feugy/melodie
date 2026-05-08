@@ -1,8 +1,8 @@
 import { pid } from 'node:process'
 import { getLogger } from '@melodie/common/utils'
 import { fileURLToPath } from 'bun'
-import { configurationService } from './services/configuration.ts'
 import { runScript } from './run-script.ts'
+import { configurationService } from './services/configuration.ts'
 
 async function main() {
 	const argv = process.argv.slice(2)

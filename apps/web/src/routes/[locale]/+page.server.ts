@@ -1,8 +1,8 @@
 import { base } from '$app/paths'
 import { logIn } from '$lib/server'
 import { fail, redirect } from '@sveltejs/kit'
-import type { Actions, PageServerLoad } from './$types'
 import * as z from 'zod/v4-mini'
+import type { Actions, PageServerLoad } from './$types'
 
 export const load: PageServerLoad = ({ locals, params: { locale } }) => {
 	const { session = null } = locals
@@ -28,9 +28,7 @@ export const actions: Actions = {
 				})
 			}
 			const { name, password } = parsed.data
-			console.log('> log in', name, password)
 			locals.session = await logIn(name, password)
-			console.log('> session', locals.session)
 		} catch (error) {
 			return fail(401, {
 				message: 'Unauthorized',

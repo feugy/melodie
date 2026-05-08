@@ -28,7 +28,7 @@ async function worker() {
 					{ folders, base },
 					'comparing folders content with database'
 				)
-				await foldersService.watchAndCompare(folders, base)
+				await foldersService.compare(folders, base)
 			} finally {
 				logger.debug({ folders }, 'comparison done')
 				postMessage({ type: 'compared' })
@@ -39,7 +39,6 @@ async function worker() {
 			try {
 				postMessage({ type: 'stopping' })
 				logger.debug({ folders }, 'stopping worker...')
-				await foldersService.stopWatching()
 			} finally {
 				logger.debug({ folders }, 'worker stopped')
 				postMessage({ type: 'stopped' })

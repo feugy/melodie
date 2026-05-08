@@ -2,14 +2,14 @@ import { afterAll, beforeAll, describe, expect, it } from 'bun:test'
 import { faker } from '@faker-js/faker'
 import {
 	type User,
+	init,
 	sessionsModel,
-	usersModel,
-	init
+	usersModel
 } from '@melodie/common/models'
 import { cleanTestTB, initTestDB } from '@melodie/common/tests'
 import type { DBConf } from '@melodie/common/types'
-import { logIn } from './session'
 import { encode, hash } from '@melodie/common/utils'
+import { logIn } from './session'
 
 describe('session server utils', () => {
 	let conf: DBConf

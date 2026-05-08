@@ -34,7 +34,6 @@ export const handle: Handle = async ({ event, resolve }) => {
 		return redirectBasedOnLanguage('', request.headers.get('accept-language'))
 	}
 
-	console.log('> serving', url.href)
 	return await resolve(event)
 }
 
@@ -53,7 +52,6 @@ function redirectBasedOnLanguage(
 			loose: true
 		}) || supportedLanguages[0]
 
-	console.log('> redirecting', `${base}/${locale}${destination}`)
 	return new Response(null, {
 		status: 303,
 		headers: {

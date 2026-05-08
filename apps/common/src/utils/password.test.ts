@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'bun:test'
-import { encode, compare } from './password.ts'
+import { compare, encode } from './password.ts'
 
 describe('encode() + compare()', () => {
 	it.each(['yoloOneMoreBro!', 'super-secure-pa$$word', '1234'])(

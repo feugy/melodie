@@ -76,7 +76,6 @@
             'http://localhost/albums/:id/media/:count',
             ({ params: { id } }) => {
               const album = albums.find((album) => album.id === Number(id))
-              console.log('> fetching', album)
               if (!album?.media) {
                 return new HttpResponse(null, { status: 404 })
               }

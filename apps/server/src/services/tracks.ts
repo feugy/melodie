@@ -7,8 +7,8 @@ import {
 	tracksModel
 } from '@melodie/common/models'
 import type { PartialWithReq } from '@melodie/common/types'
-import { type Reference, differenceRef } from '@melodie/common/utils'
 import { type Logger, getLogger } from '@melodie/common/utils'
+import { type Reference, differenceRef } from '@melodie/common/utils'
 
 export class TracksService {
 	logger: Logger

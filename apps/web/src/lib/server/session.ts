@@ -24,7 +24,6 @@ export async function logIn(name: string, password: string) {
 
 export async function recoverSession(token?: string) {
 	if (!token) {
-		console.log('>>> no token')
 		return
 	}
 	try {

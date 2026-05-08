@@ -1,10 +1,6 @@
 import { env } from '$env/dynamic/private'
 import { dbConfSchema } from '@melodie/common/types'
-import {
-	ConfigurationMessageProvider,
-	type Logger,
-	getLogger
-} from '@melodie/common/utils'
+import { ConfigurationMessageProvider } from '@melodie/common/utils'
 import v, { errors } from '@vinejs/vine'
 
 const validator = v.compile(dbConfSchema)

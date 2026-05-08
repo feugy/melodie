@@ -41,7 +41,7 @@ export class AssetsService {
 	}
 
 	async start({
-		host,
+		host = '127.0.0.1',
 		port,
 		tls,
 		...conf
