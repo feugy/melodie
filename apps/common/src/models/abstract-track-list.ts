@@ -109,13 +109,13 @@ export abstract class AbstractTrackList<
 				}
 				const upsert = this.db.prepare(buildUpsert(this.name, saved))
 				const serializer = this.makeSerializer()
-				this.logger.debug({ data: saved }, 'saving')
+				this.logger.debug('saving', { data: saved })
 				for (const data of saved) {
 					upsert.run(serializer(data) as unknown as null)
 				}
 			}
 			if (removedIds.length) {
-				this.logger.debug({ ids: removedIds }, 'removing')
+				this.logger.debug('removing', { ids: removedIds })
 				this.db
 					.query(`DELETE FROM ${this.name} WHERE ${whereIn('id', removedIds)}`)
 					.run(...removedIds)
@@ -140,8 +140,8 @@ export abstract class AbstractTrackList<
 				.all({ when }) ?? []
 		).map(this.makeDeserializer())
 		this.logger.debug(
-			{ hitCount: results.length, when },
-			`list medialess since ${new Date(when).toISOString()}`
+			`list medialess since ${new Date(when).toISOString()}`,
+			{ hitCount: results.length, when }
 		)
 		return results
 	}

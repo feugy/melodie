@@ -23,7 +23,7 @@ export class TracksService {
 	 * @param tracks - list of added tracks
 	 */
 	async add(tracks: Track[]) {
-		this.logger.debug({ tracks }, 'add tracks')
+		this.logger.debug('add tracks', { tracks })
 		const albumChanges: Change[] = []
 		const artistChanges: Change[] = []
 		for (const { current, previous } of await tracksModel.save(tracks)) {
@@ -52,12 +52,12 @@ export class TracksService {
 		}
 		const albums = groupChangeByModel(albumChanges)
 		if (albums.length) {
-			this.logger.debug({ albums }, 'updating albums')
+			this.logger.debug('updating albums', { albums })
 			await albumsModel.save(albums)
 		}
 		const artists = groupChangeByModel(artistChanges)
 		if (artists.length) {
-			this.logger.debug({ artists }, 'updating artists')
+			this.logger.debug('updating artists', { artists })
 			await artistsModel.save(artists)
 		}
 	}
@@ -67,7 +67,7 @@ export class TracksService {
 	 * @param trackIds List of removed track ids
 	 */
 	async remove(trackIds: number[]) {
-		this.logger.debug({ trackIds }, 'removing tracks')
+		this.logger.debug('removing tracks', { trackIds })
 		const albumChanges: Change[] = []
 		const artistChanges: Change[] = []
 		for (const {
@@ -92,13 +92,13 @@ export class TracksService {
 		}
 		const albums = groupChangeByModel(albumChanges)
 		if (albums.length) {
-			this.logger.debug({ albums }, 'updating albums')
+			this.logger.debug('updating albums', { albums })
 			await albumsModel.save(albums)
 		}
 		const artists = groupChangeByModel(artistChanges)
 		if (artists.length) {
-			this.logger.debug({ artists }, 'updating artists')
-			await artistsModel.save(artists)
+			this.logger.debug('updating artists', { artists })
+			await albumsModel.save(artists)
 		}
 	}
 }

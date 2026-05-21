@@ -4,6 +4,7 @@ import { basename, dirname, join, resolve } from 'node:path'
 import compressPlugin from '@fastify/compress'
 import corsPlugin from '@fastify/cors'
 import staticPlugin from '@fastify/static'
+import { getLogTapeFastifyLogger } from '@logtape/fastify'
 import {
 	type AbstractModel,
 	albumsModel,
@@ -14,7 +15,7 @@ import {
 import { type Logger, getLogger, hash } from '@melodie/common/utils'
 import { crypto } from 'acme-client'
 import { file } from 'bun'
-import type { FastifyBaseLogger, FastifyInstance } from 'fastify'
+import type { FastifyInstance } from 'fastify'
 import { fastify } from 'fastify'
 import ms from 'ms'
 import open from 'open'
@@ -63,7 +64,7 @@ export class AssetsService {
 		const url = csr.altNames.length
 			? `https://${csr.altNames[0]}`
 			: `http://${address === '0.0.0.0' ? `${await publicIpv4()}` : address}:${port}`
-		this.logger.info({ host, url }, 'server started')
+		this.logger.info('server started', { host, url })
 		if (conf.openUI) {
 			await open(`${url}/web`)
 		}
@@ -75,10 +76,12 @@ export class AssetsService {
 	}
 
 	async _configureServer(tls: Configuration['tls']) {
-		this.logger.debug({ tls }, 'configure server')
+		this.logger.debug('configure server', { tls })
 		const conf: Record<string, unknown> = {
-			loggerInstance: this.logger as FastifyBaseLogger,
-			disableRequestLogging: true
+			disableRequestLogging: true,
+			loggerInstance: getLogTapeFastifyLogger({
+				category: ['@melodie', 'services', 'assets']
+			})
 		}
 		if (tls) {
 			conf.https = {
@@ -176,7 +179,7 @@ export class AssetsService {
 				() => false
 			))
 		) {
-			this.logger.debug({ width, height, format }, `generating ${fileName}`)
+			this.logger.debug(`generating ${fileName}`, { width, height, format })
 			await sharp(model.media).resize(width, height).toFile(fileName)
 		}
 		return fileName

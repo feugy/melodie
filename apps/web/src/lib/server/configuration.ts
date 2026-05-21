@@ -1,6 +1,10 @@
 import { env } from '$env/dynamic/private'
 import { dbConfSchema } from '@melodie/common/types'
-import { ConfigurationMessageProvider } from '@melodie/common/utils'
+import {
+	ConfigurationMessageProvider,
+	type Logger,
+	getLogger
+} from '@melodie/common/utils'
 import v, { errors } from '@vinejs/vine'
 
 const validator = v.compile(dbConfSchema)
@@ -23,7 +27,7 @@ export class ConfigurationService {
 				}
 			)
 		} catch (error) {
-			this.logger.error({ error }, 'failed to read configuration')
+			this.logger.error('failed to read configuration', { error })
 			if (error instanceof errors.E_VALIDATION_ERROR) {
 				throw new Error(
 					`Invalid configuration: ${(error.messages as { message: string }[]).map(({ message }) => message).join(', ')}`

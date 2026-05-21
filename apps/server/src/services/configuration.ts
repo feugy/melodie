@@ -29,7 +29,7 @@ export class ConfigurationService {
 	}
 
 	async read(args: string[]) {
-		this.logger.info({ args }, 'reading configuration...')
+		this.logger.info('reading configuration...', { args })
 		let {
 			values: { config: configPath, open: openUI }
 		} = parseArgs({
@@ -153,7 +153,7 @@ What domain name do you want to use? (e.g. example.com)`,
 			altNames: [domain ?? '']
 		})
 
-		this.logger.debug({ port, domain }, 'starting ACME client')
+		this.logger.debug('starting ACME client', { port, domain })
 		const server = serve({
 			port,
 			routes: {
@@ -161,7 +161,7 @@ What domain name do you want to use? (e.g. example.com)`,
 					params: { fileName },
 					url
 				}: BunRequest<'/:fileName'>) => {
-					this.logger.debug({ url }, `serving file: ${url}`)
+					this.logger.debug(`serving file: ${url}`, { url })
 					return new Response(file(join(challengeFolder, fileName)))
 				}
 			}
@@ -178,10 +178,11 @@ What domain name do you want to use? (e.g. example.com)`,
 			) => {
 				if (type === 'http-01') {
 					const challenge = file(join(challengeFolder, token))
-					this.logger.debug(
-						{ identifier, type, token },
-						`creating challenge at path: ${challenge.name}`
-					)
+					this.logger.debug(`creating challenge at path: ${challenge.name}`, {
+						identifier,
+						type,
+						token
+					})
 					await challenge.write(keyAuthorization)
 				} else {
 					throw new Error(`Unsupported challenge type: ${type}`)
@@ -190,10 +191,11 @@ What domain name do you want to use? (e.g. example.com)`,
 			challengeRemoveFn: async ({ identifier }, { type, token }) => {
 				if (type === 'http-01') {
 					const challenge = file(join(challengeFolder, token))
-					this.logger.debug(
-						{ identifier, type, token },
-						`removing challenge at path: ${challenge.name}`
-					)
+					this.logger.debug(`removing challenge at path: ${challenge.name}`, {
+						identifier,
+						type,
+						token
+					})
 					await challenge.delete()
 				} else {
 					throw new Error(`Unsupported challenge type: ${type}`)
@@ -209,7 +211,7 @@ What domain name do you want to use? (e.g. example.com)`,
 		await file(join(destination, 'key.pem')).write(key)
 		await file(join(destination, 'csr.pem')).write(csr)
 		await file(join(destination, 'cert.pem')).write(cert)
-		this.logger.info({ destination }, 'certificates saved!')
+		this.logger.info('certificates saved!', { destination })
 	}
 }
 
@@ -276,7 +278,7 @@ async function validate(input: unknown, logger: Logger) {
 			messagesProvider: new ConfigurationMessageProvider({})
 		})
 	} catch (error) {
-		logger.error({ error }, 'failed to read configuration')
+		logger.error('failed to read configuration', { error })
 		if (error instanceof errors.E_VALIDATION_ERROR) {
 			throw new Error(
 				`Invalid configuration: ${(error.messages as { message: string }[]).map(({ message }) => message).join(', ')}`

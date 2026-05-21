@@ -1,5 +1,6 @@
 # To fix/do
 
+- should users provide their public URL instead of guessing it? it's so annoying for local dev 
 - finish authentication (tests)
 - Consider Github for CI
 

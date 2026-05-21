@@ -92,7 +92,7 @@ export class PlaylistsService {
 			}
 			return playlist.trackPaths.length ? playlist : null
 		} catch (error) {
-			this.logger.warn({ error, path }, 'failed to read playlist')
+			this.logger.warn('failed to read playlist', { error, path })
 			return null
 		}
 	}
@@ -108,7 +108,7 @@ export class PlaylistsService {
 		playlist: PartialWithReq<Playlist, 'id'>,
 		markForChecking = false
 	) {
-		this.logger.debug({ playlist, markForChecking }, 'save playlist')
+		this.logger.debug('save playlist', { playlist, markForChecking })
 		const { saved } = await playlistsModel.save(playlist)
 		if (markForChecking) {
 			this.toCheck.push(...saved)
@@ -122,10 +122,9 @@ export class PlaylistsService {
 	 */
 	async checkIntegrity() {
 		for (const playlist of this.toCheck) {
-			this.logger.debug(
-				{ playlist: { ...playlist } },
-				'checking playlist integrity'
-			)
+			this.logger.debug('checking playlist integrity', {
+				playlist: { ...playlist }
+			})
 			// get ids of existing tracks
 			const ids = (await tracksModel.getByIds(playlist.trackIds)).map(
 				({ id }) => id
@@ -143,14 +142,15 @@ export class PlaylistsService {
 				const tracks = await tracksModel.getByPaths(playlist.trackPaths)
 				resolveIds = tracks.map(({ id }) => id)
 			}
-			this.logger.debug(
-				{ playlist, trackIds, resolveIds },
-				'resolved and valid ids'
-			)
+			this.logger.debug('resolved and valid ids', {
+				playlist,
+				trackIds,
+				resolveIds
+			})
 			// if we found differences, save the filtered ids
 			if (resolveIds.length || difference(playlist.trackIds, trackIds).length) {
 				const newTrackIds = [...trackIds, ...resolveIds]
-				this.logger.info({ playlist, trackIds: newTrackIds }, 'fixing playlist')
+				this.logger.info('fixing playlist', { playlist, trackIds: newTrackIds })
 				await this.save({
 					...playlist,
 					trackIds: newTrackIds,

@@ -29,7 +29,7 @@ async function listCompleted(db: Database, logger: Logger) {
 			`SELECT id, name, time FROM ${migrationsTable} ORDER BY id`
 		)
 		.all()
-	logger.debug({ migrations }, 'completed migrations')
+	logger.debug('completed migrations', { migrations })
 	return migrations.map(({ name }) => name)
 }
 
@@ -38,25 +38,25 @@ async function applyMigration(
 	db: Database,
 	logger: Logger
 ) {
-	logger.debug({ name }, `applying migration ${name}`)
+	logger.debug(`applying migration ${name}`, { name })
 	try {
 		await up(db)
-		logger.debug({ name }, 'inserting into migration table')
+		logger.debug('inserting into migration table', { name })
 		db.prepare(
 			`INSERT INTO ${migrationsTable} (name, time) VALUES (:name, :time)`
 		).run({ name, time: Date.now() })
-		logger.info({ name }, `migration ${name} applied`)
+		logger.info(`migration ${name} applied`, { name })
 	} catch (error) {
 		logger.error(
-			{ name, error },
-			`Failed to apply migration ${name}: ${isNativeError(error) ? error.message : error}`
+			`Failed to apply migration ${name}: ${isNativeError(error) ? error.message : error}`,
+			{ name, error }
 		)
 		throw error
 	}
 }
 
 export async function migrateToLatest(db: Database, migrations: Migration[]) {
-	const logger = getLogger('utils/migrations')
+	const logger = getLogger('migrations')
 	await ensureTable(db)
 	const completed = await listCompleted(db, logger)
 	const all = migrations.toSorted(

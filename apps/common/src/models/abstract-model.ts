@@ -23,11 +23,11 @@ export const searchPlaceholder = '/*SRCH*/'
  */
 async function connect(conf: DBConf, logger: Logger, migrate: boolean) {
 	if (!_db) {
-		logger.debug({ conf }, 'connecting...')
+		logger.debug('connecting...', { conf })
 		_db = new Database(conf.filename, { strict: true, create: true })
 		_db.exec('PRAGMA journal_mode = WAL')
 		if (migrate) {
-			logger.debug({ conf }, 'migrating to latest...')
+			logger.debug('migrating to latest...', { conf })
 			await migrateToLatest(
 				_db,
 				Object.keys(migrations).map(
@@ -38,10 +38,10 @@ async function connect(conf: DBConf, logger: Logger, migrate: boolean) {
 			)
 		}
 		const version = await getCurrentVersion(_db)
-		logger.info(
-			{ conf, version },
-			`database connection ready on version ${version}`
-		)
+		logger.info(`database connection ready on version ${version}`, {
+			conf,
+			version
+		})
 	}
 	return _db
 }
@@ -103,10 +103,10 @@ export abstract class AbstractModel<T extends { id: string | number }> {
 			)
 		}
 		this.db = await connect(configuration, this.logger, migrate)
-		this.logger.debug(
-			{ configuration, name: this.name },
-			`${this.name} model connected to database`
-		)
+		this.logger.debug(`${this.name} model connected to database`, {
+			configuration,
+			name: this.name
+		})
 	}
 
 	/**
@@ -160,10 +160,14 @@ export abstract class AbstractModel<T extends { id: string | number }> {
 					this.enrichForSearch(countQuery, searched, exactSearch)
 				)
 				.get(params)?.count ?? 0
-		this.logger.debug(
-			{ total, from, size, rawSort, direction, hitCount: results.length },
-			'returned list page'
-		)
+		this.logger.debug('returned list page', {
+			total,
+			from,
+			size,
+			rawSort,
+			direction,
+			hitCount: results.length
+		})
 		return {
 			total,
 			from,
@@ -196,7 +200,7 @@ export abstract class AbstractModel<T extends { id: string | number }> {
 		const result = this.db
 			?.query<T, { id: T['id'] }>(`SELECT * FROM ${this.name} WHERE id = :id`)
 			.get({ id })
-		this.logger.debug({ id, found: Boolean(result) }, 'fetch by id')
+		this.logger.debug('fetch by id', { id, found: Boolean(result) })
 		if (!result) {
 			return null
 		}
@@ -218,7 +222,7 @@ export abstract class AbstractModel<T extends { id: string | number }> {
 				)
 				.all(...ids)
 				?.map(this.makeDeserializer()) ?? []
-		this.logger.debug({ ids, hitCount: results.length }, 'fetch by ids')
+		this.logger.debug('fetch by ids', { ids, hitCount: results.length })
 		return results
 	}
 
@@ -233,7 +237,7 @@ export abstract class AbstractModel<T extends { id: string | number }> {
 	): Promise<unknown> {
 		if (!this.db) throw new Error('model not initialized')
 		const input = Array.isArray(data) ? data : [data]
-		this.logger.debug({ data: input }, 'saving')
+		this.logger.debug('saving', { data: input })
 		const saved = input.map(this.makeSerializer())
 		const upsert = this.db.prepare(buildUpsert(this.name, saved))
 		return this.db.transaction(models => {
@@ -253,7 +257,7 @@ export abstract class AbstractModel<T extends { id: string | number }> {
 		if (!this.db) throw new Error('model not initialized')
 		return this.db
 			.transaction(() => {
-				this.logger.debug({ ids }, 'removing')
+				this.logger.debug('removing', { ids })
 				const previous = this.db
 					?.query<T, T['id'][]>(
 						`SELECT * FROM ${this.name} WHERE ${whereIn('id', ids)}`

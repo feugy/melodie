@@ -11,7 +11,7 @@ async function worker() {
 
 		// creates logger after	configurations are loaded
 		const logger = getLogger('worker')
-		logger.info({ conf }, 'starting worker...')
+		logger.info('starting worker...', { conf })
 
 		// lazy load to allow configuring singleton's loggers.
 		const [{ init }, { foldersService }] = await Promise.all([
@@ -24,13 +24,13 @@ async function worker() {
 		async function start(base: string) {
 			try {
 				postMessage({ type: 'comparing' })
-				logger.debug(
-					{ folders, base },
-					'comparing folders content with database'
-				)
+				logger.debug('comparing folders content with database', {
+					folders,
+					base
+				})
 				await foldersService.compare(folders, base)
 			} finally {
-				logger.debug({ folders }, 'comparison done')
+				logger.debug('comparison done', { folders })
 				postMessage({ type: 'compared' })
 			}
 		}
@@ -38,17 +38,17 @@ async function worker() {
 		async function stop() {
 			try {
 				postMessage({ type: 'stopping' })
-				logger.debug({ folders }, 'stopping worker...')
+				logger.debug('stopping worker...', { folders })
 			} finally {
-				logger.debug({ folders }, 'worker stopped')
+				logger.debug('worker stopped', { folders })
 				postMessage({ type: 'stopped' })
 			}
 		}
 
 		self.onmessage = (event: MessageEvent) => {
-			logger.info({ event: { data: event.data } }, 'message received from main')
+			logger.info('message received from main', { event: { data: event.data } })
 			if (typeof event.data !== 'object') {
-				logger.warn({ event }, 'unexpected message: skipping')
+				logger.warn('unexpected message: skipping', { event })
 				return
 			}
 			switch (event.data.type) {

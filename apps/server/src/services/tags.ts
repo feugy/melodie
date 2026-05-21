@@ -61,7 +61,7 @@ export class TagsService {
 			// don't returns embedded pictures
 			Object.assign(tags, common, { picture: undefined })
 		} catch (error) {
-			this.logger.warn({ error, path }, 'failed to read tags')
+			this.logger.warn('failed to read tags', { error, path })
 		}
 		if (!tags.title || !tags.artist) {
 			const match = titleRegex.exec(basename(path))
@@ -90,10 +90,10 @@ export class TagsService {
 				}
 			}
 		}
-		this.logger.debug(
-			{ path, tags: { ...tags, cover: tags.cover ? 'with data' : undefined } },
-			'tags found'
-		)
+		this.logger.debug('tags found', {
+			path,
+			tags: { ...tags, cover: tags.cover ? 'with data' : undefined }
+		})
 		return tags
 	}
 }

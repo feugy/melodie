@@ -16,7 +16,7 @@ async function main() {
 
 	// creates logger after	configurations are loaded
 	const logger = getLogger('main')
-	logger.info({ conf }, `starting server (pid ${pid})...`)
+	logger.info(`starting server (pid ${pid})...`, { conf })
 	// lazy load to allow configuring singleton's loggers.
 	const { assetsService } = await import('./services/assets.ts')
 
@@ -36,7 +36,7 @@ async function main() {
 	worker = new Worker('./worker.ts', { argv })
 
 	worker.addEventListener('message', (event: MessageEvent) => {
-		logger.info({ event: { data: event.data } }, 'message received from worker')
+		logger.info('message received from worker', { event: { data: event.data } })
 		if (event.data?.type === 'ready') {
 			worker.postMessage({ type: 'start', base })
 		} else if (event.data?.type === 'stopped') {

@@ -55,13 +55,13 @@ class CoversService {
 			const file = join(folder, fileName)
 			try {
 				await access(file, constants.R_OK)
-				this.logger.debug({ file, path }, 'found cover')
+				this.logger.debug('found cover', { file, path })
 				return file
 			} catch {
 				// ignore missing file
 			}
 		}
-		this.logger.debug({ path }, 'no cover found')
+		this.logger.debug('no cover found', { path })
 		return null
 	}
 
@@ -88,7 +88,7 @@ class CoversService {
 				}
 			}
 		}
-		this.logger.debug({ covers, album }, 'found album covers')
+		this.logger.debug('found album covers', { covers, album })
 		return covers
 	}
 }

@@ -28,7 +28,7 @@ export class UsersModel extends AbstractModel<User> {
 		if (!this.db) throw new Error('model not initialized')
 		const isMultiple = Array.isArray(data)
 		const input = isMultiple ? data : [data]
-		this.logger.debug({ data: input }, 'saving')
+		this.logger.debug('saving', { data: input })
 		const upsert = this.db.prepare(buildUpsert(this.name, input, true))
 		const results = this.db.transaction(models => {
 			const ids = []

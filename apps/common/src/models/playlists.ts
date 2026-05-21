@@ -76,7 +76,7 @@ export class PlaylistModel extends AbstractTrackList<Playlist> {
 			.all(null) ?? []) {
 			result.set(id, mtimeMs)
 		}
-		this.logger.debug({ hitCount: result.size }, 'list with time')
+		this.logger.debug('list with time', { hitCount: result.size })
 		return result
 	}
 }

@@ -46,7 +46,7 @@ export class TracksModel extends AbstractModel<Track> {
 			.all(null) ?? []) {
 			result.set(id, mtimeMs)
 		}
-		this.logger.debug({ hitCount: result.size }, 'list with time')
+		this.logger.debug('list with time', { hitCount: result.size })
 		return result
 	}
 
@@ -64,7 +64,7 @@ export class TracksModel extends AbstractModel<Track> {
 			.query<Track, string[]>(query)
 			.all(...params)
 			.map(this.makeDeserializer())
-		this.logger.debug({ paths, hitCount: results.length }, 'fetch by paths')
+		this.logger.debug('fetch by paths', { paths, hitCount: results.length })
 		return results
 	}
 
@@ -86,7 +86,7 @@ export class TracksModel extends AbstractModel<Track> {
 		}[]
 	> {
 		const input = Array.isArray(data) ? data : [data]
-		this.logger.debug({ data: input }, 'saving')
+		this.logger.debug('saving', { data: input })
 		const serialize = this.makeSerializer()
 		const deserialize = this.makeDeserializer()
 		const saved = input.map(track => {

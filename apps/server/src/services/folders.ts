@@ -65,10 +65,10 @@ export class FoldersService {
 
 		const agentId = (await stat(folders[0])).ino
 		await agentsModel.save({ id: agentId, name: 'local', base })
-		this.logger.info({ folders: folders, agentId }, 'assiging agent Id')
+		this.logger.info('assiging agent Id', { folders: folders, agentId })
 
 		const startMs = Date.now()
-		this.logger.info({ folders }, 'comparing folders...')
+		this.logger.info('comparing folders...', { folders })
 		let error: Error | undefined
 		try {
 			const tracksIds = await tracksModel.listWithTime()
@@ -99,10 +99,9 @@ export class FoldersService {
 				}
 			}
 			if (removedIds.length) {
-				this.logger.debug(
-					{ removedIds },
-					`removing ${removedIds.length} tracks`
-				)
+				this.logger.debug(`removing ${removedIds.length} tracks`, {
+					removedIds
+				})
 				await tracksService.remove(removedIds)
 			}
 			await playlistsService.checkIntegrity()
@@ -112,8 +111,8 @@ export class FoldersService {
 		} finally {
 			const duration = Date.now() - startMs
 			this.logger[error ? 'error' : 'info'](
-				{ folders, duration, error },
-				`folder compared in ${ms(duration)}`
+				`folder compared in ${ms(duration)}`,
+				{ folders, duration, error }
 			)
 		}
 		return folders
@@ -157,17 +156,16 @@ export class FoldersService {
 			const saved = this._savedBuffer.slice(0, this._savedIdx)
 			this._savedBuffer = Array(this.bufferSize)
 			this._savedIdx = 0
-			this.logger.debug(
-				{ savedId: saved.map(({ id }) => id) },
-				`saving ${saved.length} tracks`
-			)
+			this.logger.debug(`saving ${saved.length} tracks`, {
+				savedId: saved.map(({ id }) => id)
+			})
 			await tracksService.add(saved)
 		}
 		if (this._removedIdx) {
 			const removedIds = this._removedBuffer.slice(0, this._removedIdx)
 			this._removedBuffer = Array(this.bufferSize)
 			this._removedIdx = 0
-			this.logger.debug({ removedIds }, `removing ${removedIds.length} tracks`)
+			this.logger.debug(`removing ${removedIds.length} tracks`, { removedIds })
 			await tracksService.remove(removedIds)
 			await playlistsService.checkIntegrity()
 		}
@@ -180,7 +178,7 @@ export class FoldersService {
 		if (playlistsService.isPlaylistFile(path)) {
 			const playlist = await playlistsService.read(path)
 			if (playlist) {
-				this.logger.debug({ playlist }, 'saving 1 playlist')
+				this.logger.debug('saving 1 playlist', { playlist })
 				await playlistsService.save(playlist, true)
 				return true
 			}
@@ -197,7 +195,7 @@ export class FoldersService {
 				albumRef: null
 			}
 			this._savedBuffer[this._savedIdx++] = await this._extractCover(saved)
-			this.logger.debug({ id: saved.id, path }, 'enqueue 1 track change')
+			this.logger.debug('enqueue 1 track change', { id: saved.id, path })
 			if (this._savedIdx === this.bufferSize) {
 				await this._flush()
 			}
@@ -220,8 +218,8 @@ export class FoldersService {
 				await writeFile(media, data)
 			} catch (err) {
 				this.logger.error(
-					{ track, err },
-					`failed to save cover from track's tags as album cover: ${(err as Error).message}`
+					`failed to save cover from track's tags as album cover: ${(err as Error).message}`,
+					{ track, err }
 				)
 			}
 		}

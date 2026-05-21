@@ -41,7 +41,7 @@ export class AlbumsModel extends AbstractTrackList<Album> {
 				)
 				.all({ name })
 				.map(this.makeDeserializer()) ?? []
-		this.logger.debug({ name, hitCount: results.length }, 'fetch by name')
+		this.logger.debug('fetch by name', { name, hitCount: results.length })
 		return results
 	}
 
