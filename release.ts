@@ -71,11 +71,11 @@ async function main() {
 		options: {
 			cpu: {
 				type: 'string',
-				default: 'arm64'
+				default: 'arm64' // or x64
 			},
 			os: {
 				type: 'string',
-				default: 'linux'
+				default: 'darwin' // or linux
 			}
 		},
 		strict: true,

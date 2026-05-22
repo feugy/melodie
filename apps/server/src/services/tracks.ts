@@ -98,7 +98,7 @@ export class TracksService {
 		const artists = groupChangeByModel(artistChanges)
 		if (artists.length) {
 			this.logger.debug('updating artists', { artists })
-			await albumsModel.save(artists)
+			await artistsModel.save(artists)
 		}
 	}
 }

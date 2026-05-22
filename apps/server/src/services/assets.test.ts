@@ -30,6 +30,21 @@ mock.module('@melodie/common/models', () => ({
 	init
 }))
 mock.module('open', () => ({ default: open }))
+mock.module('web', () => ({
+	handler: mock((
+		_req: unknown,
+		res: {
+			writeHead: (code: number, headers: Record<string, string>) => void
+			end: () => void
+		}
+	) => {
+		res.writeHead(200, {
+			'content-type': 'text/html',
+			'x-sveltekit-page': 'true'
+		})
+		res.end()
+	})
+}))
 
 describe('assets service', () => {
 	const mp3 = resolve(import.meta.dir, '../../../../fixtures/file.mp3')

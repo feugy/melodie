@@ -7,8 +7,8 @@ import { configurationService } from './services/configuration.ts'
 async function main() {
 	const argv = process.argv.slice(2)
 	if (await runScript(argv)) {
-		console.log('\n\nBye!\n')
 		process.exit(0)
+		return
 	}
 
 	const conf = await configurationService.read(argv)

@@ -32,12 +32,19 @@ describe('configuration service', () => {
 	const imageFolderPath = join(folder, '.images')
 	const dbFilePath = join(folder, '.db.sqlite3')
 
+	let isTTY: boolean | undefined
+
 	beforeEach(async () => {
 		await rm(folder, { recursive: true, force: true })
+		isTTY = process.stdin.isTTY
+		// test environment may not support raw mode for ora spinner
+		process.stdin.isTTY = false
 	})
 
 	afterEach(async () => {
 		await AbstractModel.release()
+		// @ts-expect-error -- restore original TTY state
+		process.stdin.isTTY = isTTY
 	})
 
 	describe('given no configuration folder', () => {

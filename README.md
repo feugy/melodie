@@ -8,10 +8,10 @@ First, install dependencies:
 bun i
 ```
 
-Then release the application (by default arm64):
+Then release the application (by default x64 CPU and darwin OS):
 
 ```shell
-bun release --cpu x64
+bun release --cpu x64 --os linux
 ```
 
 You can start the app now:
