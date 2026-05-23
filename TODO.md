@@ -16,6 +16,7 @@
 
 ## Web
 
+- redo the player: doawnload files in advance (maybe stream the first one). Maintain a FIFO of 5 files max, only removing them once played.
 - feedback when adding to the queue (large & narrow screens)
 - play/enqueue test for albums
 

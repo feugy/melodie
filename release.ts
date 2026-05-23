@@ -41,11 +41,8 @@ async function copyWebFiles(from: string, to: string) {
 	await cp(from, to, { recursive: true, force: true })
 }
 
-async function downloadPackage(fullname: string) {
+async function downloadPackage(fullname: string, version: string) {
 	const name = fullname.split('/').pop()
-	const { version } = await (
-		await fetch(`https://registry.npmjs.org/${fullname}/latest`)
-	).json()
 	const folder = 'build'
 	const finalFolder = join(folder, `node_modules/${fullname}`)
 	const archiveName = join(folder, `${name}.tgz`)
@@ -61,6 +58,19 @@ async function downloadPackage(fullname: string) {
 	await mkdir(finalFolder, { recursive: true })
 	// by convention, npm packages are in a 'package' folder
 	await rename(join(folder, 'package'), finalFolder)
+}
+
+async function getSharpNativeVersions(os: string, cpu: string) {
+	const sharpPkg = await Bun.file(
+		join(import.meta.dir, 'node_modules', 'sharp', 'package.json')
+	).json()
+	const libvipsVersion =
+		sharpPkg.optionalDependencies[`@img/sharp-libvips-${os}-${cpu}`]
+	const nativeVersion = sharpPkg.optionalDependencies[`@img/sharp-${os}-${cpu}`]
+	if (!libvipsVersion || !nativeVersion) {
+		throw new Error(`Unsupported platform: ${os}-${cpu}`)
+	}
+	return { libvipsVersion, nativeVersion }
 }
 
 async function main() {
@@ -86,8 +96,21 @@ async function main() {
 	await runBun('web', 'build')
 	await fixWebHandler('apps/web/build/handler.js')
 	await copyWebFiles('apps/web/build/client', 'build/client')
-	await downloadPackage(`@img/sharp-libvips-${os}-${cpu}`)
-	await downloadPackage(`@img/sharp-${os}-${cpu}`)
+	const { libvipsVersion, nativeVersion } = await getSharpNativeVersions(
+		os,
+		cpu
+	)
+	await downloadPackage(`@img/sharp-libvips-${os}-${cpu}`, libvipsVersion)
+	await downloadPackage(`@img/sharp-${os}-${cpu}`, nativeVersion)
+	// create symlink so bun's --compile mode can resolve sharp.node
+	// (compiled binaries don't resolve exports maps for .node files)
+	const addonDir = join('build', `node_modules/@img/sharp-${os}-${cpu}`)
+	await run([
+		'ln',
+		'-sf',
+		`lib/sharp-${os}-${cpu}.node`,
+		join(addonDir, 'sharp.node')
+	])
 	await runBun('server', 'build', `--target=bun-${os}-${cpu}`)
 }
 
