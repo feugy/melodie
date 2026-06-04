@@ -1,5 +1,6 @@
 import {
 	afterAll,
+	afterEach,
 	beforeAll,
 	beforeEach,
 	describe,
@@ -31,19 +32,21 @@ mock.module('@melodie/common/models', () => ({
 }))
 mock.module('open', () => ({ default: open }))
 mock.module('web', () => ({
-	handler: mock((
-		_req: unknown,
-		res: {
-			writeHead: (code: number, headers: Record<string, string>) => void
-			end: () => void
+	handler: mock(
+		(
+			_req: unknown,
+			res: {
+				writeHead: (code: number, headers: Record<string, string>) => void
+				end: () => void
+			}
+		) => {
+			res.writeHead(200, {
+				'content-type': 'text/html',
+				'x-sveltekit-page': 'true'
+			})
+			res.end()
 		}
-	) => {
-		res.writeHead(200, {
-			'content-type': 'text/html',
-			'x-sveltekit-page': 'true'
-		})
-		res.end()
-	})
+	)
 }))
 
 describe('assets service', () => {
@@ -106,16 +109,48 @@ describe('assets service', () => {
 		expect(open).toHaveBeenCalledTimes(1)
 	})
 
-	it('can computes base url', async () => {
-		const port = await findPort()
-		expect(
-			await service.start({ port, imageFolder, openUI: false, database })
-		).toBe(`http://127.0.0.1:${port}`)
+	describe('base url computation', () => {
+		let previousEnv: string | undefined
+
+		beforeEach(() => {
+			previousEnv = Bun.env.NODE_ENV
+		})
+
+		afterEach(() => {
+			Bun.env.NODE_ENV = previousEnv
+		})
+
+		it('uses localhost in dev mode', async () => {
+			Bun.env.NODE_ENV = 'development'
+			const port = await findPort()
+			expect(
+				await service.start({ port, imageFolder, openUI: false, database })
+			).toBe(`http://localhost:${port}`)
+		})
+
+		it('uses resolved address in production mode', async () => {
+			Bun.env.NODE_ENV = 'production'
+			const port = await findPort()
+			expect(
+				await service.start({ port, imageFolder, openUI: false, database })
+			).toBe(`http://127.0.0.1:${port}`)
+		})
 	})
 
 	describe('given a started server', () => {
+		let auth: { headers: Record<string, string> }
+		let validToken: string
+
 		beforeAll(async () => {
 			process.env.DB_FILENAME = db
+			const { usersModel, settingsModel } = await import(
+				'@melodie/common/models'
+			)
+			await usersModel.init({ filename: db })
+			await settingsModel.init({ filename: db })
+			const { createJWT } = await import('@melodie/common/utils')
+			validToken = await createJWT({ userId: 1 })
+			auth = { headers: { Authorization: `Bearer ${validToken}` } }
 			address = await service.start({
 				port: await findPort(),
 				imageFolder,
@@ -175,7 +210,8 @@ describe('assets service', () => {
 			it(`serves ${title}`, async () => {
 				model.getById.mockResolvedValueOnce(data as unknown as null)
 				const response = await fetch(
-					`${address}/${path}/${data.id}/media/${data.mediaCount}`
+					`${address}/${path}/${data.id}/media/${data.mediaCount}`,
+					auth
 				)
 				expect(response.status).toEqual(200)
 				expect(
@@ -197,7 +233,8 @@ describe('assets service', () => {
 				await rm(fileName, { force: true })
 				model.getById.mockResolvedValueOnce(data as unknown as null)
 				const response = await fetch(
-					`${address}/${path}/${data.id}/media/${data.mediaCount}?w=${width}&h=${height}`
+					`${address}/${path}/${data.id}/media/${data.mediaCount}?w=${width}&h=${height}`,
+					auth
 				)
 				expect(response.status).toEqual(200)
 				expect(getHeaders(response)).toEqual(
@@ -227,7 +264,7 @@ describe('assets service', () => {
 				url.searchParams.set('w', `${width}`)
 				url.searchParams.set('h', `${height}`)
 				url.searchParams.set('f', format)
-				const response = await fetch(url)
+				const response = await fetch(url, auth)
 				expect(response.status).toEqual(200)
 				expect(getHeaders(response)).toEqual(
 					expect.objectContaining({
@@ -244,7 +281,8 @@ describe('assets service', () => {
 				model.getById.mockResolvedValueOnce(data as unknown as null)
 				expect(
 					await fetch(
-						`${address}/${path}/${data.id}/media/${data.mediaCount + 1}`
+						`${address}/${path}/${data.id}/media/${data.mediaCount + 1}`,
+						auth
 					)
 				).toHaveProperty('status', 404)
 				expect(model.getById).toHaveBeenCalledWith(data.id)
@@ -256,10 +294,27 @@ describe('assets service', () => {
 				const mediaCount = faker.number.int({ min: 1, max: 10 })
 				model.getById.mockResolvedValueOnce(null)
 				expect(
-					await fetch(`${address}/${path}/${id}/media/${mediaCount}`)
+					await fetch(`${address}/${path}/${id}/media/${mediaCount}`, auth)
 				).toHaveProperty('status', 404)
 				expect(model.getById).toHaveBeenCalledWith(id)
 				expect(model.getById).toHaveBeenCalledTimes(1)
+			})
+
+			it('rejects without token', async () => {
+				expect(
+					await fetch(`${address}/${path}/${data.id}/media/${data.mediaCount}`)
+				).toHaveProperty('status', 401)
+			})
+
+			it('rejects with invalid token', async () => {
+				expect(
+					await fetch(
+						`${address}/${path}/${data.id}/media/${data.mediaCount}`,
+						{
+							headers: { Authorization: 'Bearer invalid.token.here' }
+						}
+					)
+				).toHaveProperty('status', 401)
 			})
 		})
 
@@ -268,7 +323,7 @@ describe('assets service', () => {
 			albumsModel.getById.mockClear()
 			artistsModel.getById.mockClear()
 			tracksModel.getById.mockResolvedValueOnce(track)
-			const response = await fetch(`${address}/tracks/${track.id}/data`)
+			const response = await fetch(`${address}/tracks/${track.id}/data`, auth)
 			expect(response.status).toEqual(200)
 			expect(getHeaders(response)).toEqual(
 				expect.objectContaining({
@@ -288,7 +343,7 @@ describe('assets service', () => {
 			albumsModel.getById.mockClear()
 			artistsModel.getById.mockClear()
 			const id = faker.number.int({ min: 1000 })
-			expect(await fetch(`${address}/tracks/${id}/data`)).toHaveProperty(
+			expect(await fetch(`${address}/tracks/${id}/data`, auth)).toHaveProperty(
 				'status',
 				404
 			)

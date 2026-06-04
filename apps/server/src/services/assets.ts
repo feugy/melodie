@@ -12,7 +12,7 @@ import {
 	init,
 	tracksModel
 } from '@melodie/common/models'
-import { type Logger, getLogger, hash } from '@melodie/common/utils'
+import { type Logger, getLogger, hash, verifyJWT } from '@melodie/common/utils'
 import { crypto } from 'acme-client'
 import { file } from 'bun'
 import type { FastifyInstance } from 'fastify'
@@ -63,7 +63,7 @@ export class AssetsService {
 			: { altNames: [] }
 		const url = csr.altNames.length
 			? `https://${csr.altNames[0]}`
-			: `http://${address === '0.0.0.0' ? `${await publicIpv4()}` : address}:${port}`
+			: `http://${Bun.env.NODE_ENV === 'production' ? (address === '0.0.0.0' ? await publicIpv4() : address) : 'localhost'}:${port}`
 		this.logger.info('server started', { host, url })
 		if (conf.openUI) {
 			await open(`${url}/web`)
@@ -105,6 +105,30 @@ export class AssetsService {
 				}
 			}
 		)
+		if (!Bun.env.SKIP_ASSETS_AUTH) {
+			this.server.addHook('onRequest', async (request, reply) => {
+				const { url } = request
+				if (url === '/' || url.startsWith('/web')) return
+
+				const authHeader = request.headers.authorization
+				const cookie = request.headers.cookie
+				const token = authHeader?.startsWith('Bearer ')
+					? authHeader.slice(7)
+					: cookie
+						?.split(';')
+						.map(c => c.trim())
+						.find(c => c.startsWith('token='))
+						?.slice(6)
+
+				if (!token) return reply.code(401).send('Unauthorized')
+
+				try {
+					await verifyJWT(token)
+				} catch {
+					return reply.code(401).send('Unauthorized')
+				}
+			})
+		}
 		this.server.register(staticPlugin, {
 			root: resolve('.'),
 			wildcard: false,

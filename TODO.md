@@ -1,7 +1,5 @@
 # To fix/do
 
-- should users provide their public URL instead of guessing it? it's so annoying for local dev 
-- finish authentication (tests)
 - Consider Github for CI
 
 ## Common
@@ -16,7 +14,7 @@
 
 ## Web
 
-- redo the player: doawnload files in advance (maybe stream the first one). Maintain a FIFO of 5 files max, only removing them once played.
+- redo the player: download files in advance (maybe stream the first one). Maintain a FIFO of 5 files max, only removing them once played.
 - feedback when adding to the queue (large & narrow screens)
 - play/enqueue test for albums
 

@@ -10,7 +10,7 @@
 		"check": "tsc --noEmit",
 		"dev": "bun test --isolate --watch",
 		"refresh-certs": "NODE_ENV=test bun run ./scripts/refresh-certs.ts",
-		"start": "bun --hot --cwd src main.ts -- -c ../../../build/.melodie",
+		"start": "SKIP_ASSETS_AUTH=true bun --hot --cwd src main.ts -- -c ../../../build/.melodie",
 		"test": "bun test --isolate"
 	},
 	"dependencies": {
