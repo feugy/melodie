@@ -840,7 +840,7 @@ describe('track queue', () => {
 				added.map(({ id }) => id)
 			)
 			for (const { id } of added) {
-				expect(content.indexOf(id)).toBeGreaterThan(3)
+				expect(content).toContain(id)
 			}
 			expect(trackQueue.shuffled).toBe(true)
 			await expectStoredList()

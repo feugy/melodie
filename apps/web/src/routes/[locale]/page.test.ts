@@ -1,55 +1,45 @@
 import { describe, expect, it } from 'bun:test'
 import { base } from '$app/paths'
 import { faker } from '@faker-js/faker'
-import type { PageLoadEvent } from '../$types'
-import { load } from './page'
+import type { PageServerLoadEvent } from './$types'
+import { load } from './+page.server'
 
-describe('universal load()', () => {
-	it('redirects / on to album list', async () => {
+describe('server load()', () => {
+	it('redirects to album list when already logged in', async () => {
 		const locale = faker.helpers.arrayElement(['fr', 'en'])
-		const promise = load({
-			route: { id: '/' },
-			params: { locale }
-		} as unknown as PageLoadEvent)
-
-		await expect(promise).rejects.toEqual({
-			location: `${base}/${locale}/albums`,
-			status: 308
-		})
+		try {
+			await load({
+				locals: { session: { token: 'test-token', userId: 1 } },
+				params: { locale }
+			} as PageServerLoadEvent)
+			expect.unreachable('load() should throw redirect')
+		} catch (error) {
+			expect(error).toMatchObject({
+				location: `${base}/${locale}/albums`,
+				status: 303
+			})
+		}
 	})
 
-	it('redirects /base on to album list', async () => {
+	it('does nothing when no session exists', async () => {
 		const locale = faker.helpers.arrayElement(['fr', 'en'])
-		const promise = load({
-			route: { id: base },
-			params: { locale }
-		} as unknown as PageLoadEvent)
 
-		await expect(promise).rejects.toEqual({
-			location: `${base}/${locale}/albums`,
-			status: 308
-		})
-	})
-
-	it('redirects with default locale', async () => {
-		const promise = load({
-			route: { id: '/' },
-			params: {}
-		} as unknown as PageLoadEvent)
-
-		await expect(promise).rejects.toEqual({
-			location: `${base}/fr/albums`,
-			status: 308
-		})
-	})
-
-	it('allow other urls', async () => {
-		const locale = faker.helpers.arrayElement(['fr', 'en'])
 		expect(
 			await load({
-				route: { id: '/whatever' },
+				locals: {},
 				params: { locale }
-			} as unknown as PageLoadEvent)
+			} as PageServerLoadEvent)
+		).toBeUndefined()
+	})
+
+	it('does nothing when session is null', async () => {
+		const locale = faker.helpers.arrayElement(['fr', 'en'])
+
+		expect(
+			await load({
+				locals: { session: null },
+				params: { locale }
+			} as PageServerLoadEvent)
 		).toBeUndefined()
 	})
 })

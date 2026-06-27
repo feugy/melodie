@@ -1,4 +1,5 @@
 export * from './agent.ts'
 export * from './requests.ts'
 export * from './screen.svelte.ts'
+export * from './track-cache.svelte.ts'
 export * from './track-queue.svelte.ts'

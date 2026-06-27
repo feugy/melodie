@@ -14,9 +14,13 @@
 
 ## Web
 
-- redo the player: download files in advance (maybe stream the first one). Maintain a FIFO of 5 files max, only removing them once played.
+- redo the player: download files in advance (maybe stream the first one). 
+    - greedy download all enqueue files?
+    - when do we evict tracks from cache?
+    - tests
 - feedback when adding to the queue (large & narrow screens)
-- play/enqueue test for albums
+- play/enqueue test for albums: order is often wrong
+- store volume in local storage
 
 # Architecture design
 

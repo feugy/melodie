@@ -1,7 +1,7 @@
 <script lang="ts">
   import { afterNavigate } from '$app/navigation'
   import { page } from '$app/state'
-  import { LG, MD, screen, trackQueue } from '$lib/client'
+  import { LG, MD, screen, trackCache, trackQueue } from '$lib/client'
   import {
     Button,
     Heading,
@@ -9,7 +9,6 @@
     Player,
     Sticky,
     SystemNotifier,
-    TrackLoader,
     TrackQueue,
   } from '$lib/components'
   import type { ScrollContext } from '$lib/types'
@@ -37,6 +36,7 @@
   const scrollContext = getContext<ScrollContext>('scroll')()
 
   onMount(() => {
+    trackCache.agentById = data.agentById
     return trackQueue.registerAutoNextListener(() =>
       notifier.notify(trackQueue.current)
     )
@@ -149,11 +149,6 @@
       {onnext}
       {onprevious}
       {onshuffle}
-    />
-    <TrackLoader
-      agentById={data.agentById}
-      tracks={trackQueue.content}
-      currentIdx={trackQueue.index}
     />
   </footer>
 </div>

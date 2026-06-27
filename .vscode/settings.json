@@ -1,4 +1,7 @@
 {
   "editor.formatOnSave": true,
-  "editor.tabSize": 2
+  "editor.tabSize": 2,
+  "chat.tools.terminal.autoApprove": {
+    "bun": true
+  }
 }

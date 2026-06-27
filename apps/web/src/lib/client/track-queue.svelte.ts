@@ -1,7 +1,8 @@
-import type { Track } from '@melodie/common/models'
+import type { Agent, Track } from '@melodie/common/models'
 import { knuthShuffle } from 'knuth-shuffle'
 import localforage from 'localforage'
 import { getTracksByIds } from './requests'
+import { trackCache } from './track-cache.svelte'
 
 export const contentStorageKey = 'tracks-queue'
 export const backupStorageKey = 'tracks-queue-backup'
@@ -77,6 +78,13 @@ class TrackQueue {
 		}
 		if (withIndex) {
 			await localforage.setItem(currentStorageKey, $state.snapshot(this.index))
+		}
+		// warm track cache
+		if (this.content.length === 0) return
+		const startIdx = this.index ?? 0
+		const end = Math.min(startIdx + 3, this.content.length)
+		for (let i = startIdx; i < end; i++) {
+			trackCache.loadData(this.content[i])
 		}
 	}
 

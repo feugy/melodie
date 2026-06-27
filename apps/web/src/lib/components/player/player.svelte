@@ -21,7 +21,7 @@
   import MuteIcon from 'lucide-svelte/icons/volume-off'
   import UnmuteIcon from 'lucide-svelte/icons/volume-2'
   import { onMount } from 'svelte'
-  import { getData, MD, screen } from '$lib/client'
+  import { MD, screen, trackCache } from '$lib/client'
   import { Button, Slider, Track } from '$lib/components'
   import { wrapWithLinks } from '$lib/utils'
 
@@ -37,7 +37,7 @@
 
   let player: HTMLAudioElement | undefined
   let gainNode: GainNode | undefined
-  let wakeLock: WakeLockSentinel | undefined
+  let src = $state<string | null | undefined>()
   let retry: ReturnType<typeof setTimeout>
   let time = $state(0)
   let duration = $state(0)
@@ -47,9 +47,11 @@
   let volume = $state(1)
   let muted = $state(false)
 
-  const src = $derived.by(() => {
+  $effect(() => {
     clearTimeout(retry)
-    return getData(track, agentById)
+    trackCache.getData(track).then(data => {
+      src = data
+    })
   })
 
   $effect(() => {
@@ -74,7 +76,6 @@
       sourceNode.connect(gainNode)
       gainNode.connect(context.destination)
     }
-    return () => wakeLock?.release().catch(() => void 0)
   })
 
   function format(time: number) {
@@ -98,12 +99,6 @@
       } = track.tags
       gainNode.gain.value = (trackGain || albumGain || { ratio: 1 }).ratio
     }
-    navigator.wakeLock
-      ?.request()
-      .then((lock) => {
-        wakeLock = lock
-      })
-      .catch(() => void 0)
   }
 
   function handleEnded() {

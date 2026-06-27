@@ -1,14 +1,9 @@
 import { afterAll, beforeAll, describe, expect, it } from 'bun:test'
 import { faker } from '@faker-js/faker'
-import {
-	type User,
-	init,
-	sessionsModel,
-	usersModel
-} from '@melodie/common/models'
+import { type User, init, usersModel } from '@melodie/common/models'
 import { cleanTestTB, initTestDB } from '@melodie/common/tests'
 import type { DBConf } from '@melodie/common/types'
-import { encode, hash } from '@melodie/common/utils'
+import { encode, verifyJWT } from '@melodie/common/utils'
 import { logIn } from './session'
 
 describe('session server utils', () => {
@@ -37,19 +32,27 @@ describe('session server utils', () => {
 	})
 
 	describe('logIn()', () => {
-		it('creates a session', async () => {
-			const token = await logIn(john.name, password)
-			expect(token).toBeDefined()
-			const [sessionId, secretHash] = token.split('.')
-			const session = await sessionsModel.getById(sessionId)
-			expect(session).not.toBeNull()
-			expect(session?.hash).toBe(`${hash(secretHash)}`)
+		it('creates a JWT session payload', async () => {
+			const session = await logIn(john.name, password)
+			expect(session).toEqual({
+				token: expect.any(String),
+				userId: john.id
+			})
+
+			const payload = await verifyJWT<{ userId: number }>(session.token)
+			expect(payload.userId).toBe(john.id)
 		})
 
-		it.todo('deletes existing session')
+		it('does not create session for unknown user', async () => {
+			await expect(logIn('unknown-user', password)).rejects.toThrow(
+				'Invalid username or password'
+			)
+		})
 
-		it.todo('does not create session for unknown user')
-
-		it.todo('does not create session for an invalide password')
+		it('does not create session for an invalid password', async () => {
+			await expect(logIn(john.name, 'wrong-password')).rejects.toThrow(
+				'Invalid username or password'
+			)
+		})
 	})
 })
