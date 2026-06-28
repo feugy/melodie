@@ -13,6 +13,7 @@ tmp/
 ssl/
 hosting/
 deploy.sh
+melodie.tar
 
 # OS
 .DS_Store

@@ -37,6 +37,7 @@
 
   let player: HTMLAudioElement | undefined
   let gainNode: GainNode | undefined
+  let wakeLock: WakeLockSentinel | undefined
   let src = $state<string | null | undefined>()
   let retry: ReturnType<typeof setTimeout>
   let time = $state(0)
@@ -76,6 +77,10 @@
       sourceNode.connect(gainNode)
       gainNode.connect(context.destination)
     }
+
+    return () => {
+      wakeLock?.release().catch(() => void 0)
+    }
   })
 
   function format(time: number) {
@@ -99,11 +104,22 @@
       } = track.tags
       gainNode.gain.value = (trackGain || albumGain || { ratio: 1 }).ratio
     }
+
+    if (!screen.supportHover) {
+      navigator.wakeLock
+        ?.request()
+        .then((lock) => {
+          wakeLock = lock
+        })
+        .catch(() => void 0)
+    }
   }
 
   function handleEnded() {
     time = 0
-    if (!isLast) {
+    if (isLast) {
+      wakeLock?.release().catch(() => void 0)
+    } else {
       onnext?.(true)
     }
   }

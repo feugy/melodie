@@ -115,10 +115,10 @@ export class AssetsService {
 				const token = authHeader?.startsWith('Bearer ')
 					? authHeader.slice(7)
 					: cookie
-						?.split(';')
-						.map(c => c.trim())
-						.find(c => c.startsWith('token='))
-						?.slice(6)
+							?.split(';')
+							.map(c => c.trim())
+							.find(c => c.startsWith('token='))
+							?.slice(6)
 
 				if (!token) return reply.code(401).send('Unauthorized')
 
@@ -211,12 +211,18 @@ export class AssetsService {
 }
 
 async function webPlugin(server: FastifyInstance) {
+	// adapter-node defaults to https when PROTOCOL_HEADER is unset.
+	// Behind Fastify, set and populate x-forwarded-proto so SSR origin matches browser origin.
+	process.env.PROTOCOL_HEADER ||= 'x-forwarded-proto'
 	// @ts-expect-error -- no types for bundled UI
 	const { handler: sveltekit } = await import('web')
 	// https://stackoverflow.com/a/72317072
 	server.removeAllContentTypeParsers()
 	server.addContentTypeParser('*', (_1, _2, done) => done(null, null))
-	server.all('*', ({ raw: req }, { raw: res }) => sveltekit(req, res, () => {}))
+	server.all('*', ({ protocol, raw: req }, { raw: res }) => {
+		req.headers['x-forwarded-proto'] = protocol
+		sveltekit(req, res, () => {})
+	})
 }
 
 export const assetsService = new AssetsService()
