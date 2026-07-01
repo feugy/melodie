@@ -5,6 +5,7 @@
     tracks: Track[]
     current?: Track
     hideAlbum?: boolean
+    displayIndex?: boolean
     class?: string
     onclick?: (idx: number, track: Track) => void
   }
@@ -18,11 +19,12 @@
     tracks,
     current,
     hideAlbum = false,
+    displayIndex = false,
     class: className,
     onclick,
   }: TracksTableProps = $props()
 
-  let sortedTracks = $derived(sortByNum(tracks))
+  let sortedTracks = $derived(displayIndex ? sortByNum(tracks) : tracks)
 
   function handleClick(e: Event, idx: number, track: Track) {
     if ((e.target as HTMLElement).nodeName === 'A') return
@@ -47,14 +49,14 @@
       </tr>
     </thead>
     <tbody class="">
-      {#each sortedTracks as track, idx (track.id)}
+      {#each sortedTracks as track, idx (`${track.id}:${idx}`)}
         <tr
           class:current={current?.id === track.id}
           class="odd:preset-filled-primary-950-50 hover:border-l-primary-500 grid items-center gap-0 border-l-4 border-l-transparent hover:cursor-pointer"
           onclick={(e) => handleClick(e, idx, track)}
         >
           <td class="w-[50px] text-center"
-            >{(track.tags.track && track.tags.track.no) || '--'}</td
+            >{displayIndex ? idx + 1 : (track.tags.track && track.tags.track.no) || '--'}</td
           >
           <td class={hideAlbum ? 'col-span-5' : 'col-span-3'}
             >{track.tags.title}</td

@@ -2,7 +2,7 @@
   import { goto } from '$app/navigation'
   import { MD, getImage, screen } from '$lib/client'
   import { Button, Image } from '$lib/components'
-  import type { Kind, LightAlbum, LightArtist } from '$lib/types'
+  import type { Kind, LightAlbum, LightArtist, LightPlaylist } from '$lib/types'
   import { linkTo } from '$lib/utils'
   import type { Agent } from '@melodie/common/models'
   import EnqueueIcon from 'lucide-svelte/icons/list-plus'
@@ -17,7 +17,9 @@
     onenqueue?: () => unknown
   }
 
-  export interface GridItemInternals<T extends LightAlbum | LightArtist> {
+  export interface GridItemInternals<
+    T extends LightAlbum | LightArtist | LightPlaylist
+  > {
     src: T
     kind: Kind
     details?: Snippet
@@ -25,7 +27,10 @@
   }
 </script>
 
-<script lang="ts" generics="T extends LightAlbum | LightArtist">
+<script
+  lang="ts"
+  generics="T extends LightAlbum | LightArtist | LightPlaylist"
+>
   let {
     agentById,
     src,
@@ -90,33 +95,47 @@
 <article
   bind:this={article}
   class="content-visibility-auto relative inline-block text-[0px]"
-  style="width: {size}px; height: {size + detailsHeight}px"
+  style="width: {size}px; height: {kind === 'playlists' ? size : size + detailsHeight}px"
 >
   {#if rendered}
-    <button
-      class={[
-        kind === 'artists' && 'rounded-full',
-        'bg-primary-500/10 inline-block overflow-clip',
-      ]}
-      onclick={handleClick}
-      ><Image
-        brokenIcon={kind === 'artists' ? 'user' : 'music'}
-        height={size}
-        layout="fixed"
-        src={getImage(src, agentById, kind)}
-        width={size}
-      />
-    </button>
-    <footer class="overflow-hidden p-2 text-center text-base">
-      <p class="truncate">{src.name}</p>
-      {@render details?.()}
-    </footer>
+    {#if kind === 'playlists'}
+      <button
+        class="bg-primary-500/10 border-primary-500/20 hover:bg-primary-500/20 inline-flex h-full w-full flex-col items-center justify-center gap-2 overflow-hidden rounded-xl border px-4 text-center"
+        onclick={handleClick}
+      >
+        <p
+          class="w-full overflow-hidden text-lg font-semibold leading-tight"
+          style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical"
+        >{src.name}</p>
+        {@render details?.()}
+      </button>
+    {:else}
+      <button
+        class={[
+          kind === 'artists' && 'rounded-full',
+          'bg-primary-500/10 inline-block overflow-clip',
+        ]}
+        onclick={handleClick}
+        ><Image
+          brokenIcon={kind === 'artists' ? 'user' : 'music'}
+          height={size}
+          layout="fixed"
+          src={getImage(src, agentById, kind)}
+          width={size}
+        />
+      </button>
+      <footer class="overflow-hidden p-2 text-center text-base">
+        <p class="truncate">{src.name}</p>
+        {@render details?.()}
+      </footer>
+    {/if}
     <menu
       class={[
         `pointer-events-auto absolute inset-x-0 z-10 flex flex-wrap justify-center gap-2 text-center opacity-0 transition-opacity duration-500 ease-in-out`,
+        kind === 'playlists' && 'bottom-2',
         open && 'pointer-events-auto opacity-100',
       ]}
-      style="bottom: {detailsHeight + 10}px"
+      style={kind === 'playlists' ? undefined : `bottom: ${detailsHeight + 10}px`}
     >
       {#if !screen.supportHover}<Button
           color="secondary"

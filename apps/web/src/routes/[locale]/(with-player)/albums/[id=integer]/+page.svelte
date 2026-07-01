@@ -1,6 +1,6 @@
 <script lang="ts">
   import { MD, getImage, screen, trackQueue } from '$lib/client'
-  import { Button, DisksList, Heading, Image } from '$lib/components'
+  import { Button, DisksList, Heading, Image, TrackCount } from '$lib/components'
   import { wrapWithLinks } from '$lib/utils'
   import EnqueueIcon from 'lucide-svelte/icons/list-plus'
   import PlayIcon from 'lucide-svelte/icons/play'
@@ -41,6 +41,7 @@
           {$t('enqueue')}
         </Button>
       </div>
+      <TrackCount {tracks} />
       <h3 class="mb-2 text-2xl">
         {@html $t('by _', {
           values: { artist: wrapWithLinks('artists', album.refs).join(', ') },

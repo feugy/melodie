@@ -5,6 +5,7 @@
   import { MD, screen } from '$lib/client'
   import { Button, Sticky } from '$lib/components'
   import AlbumIcon from 'lucide-svelte/icons/disc'
+  import PlaylistIcon from 'lucide-svelte/icons/list-music'
   import TrackListIcon from 'lucide-svelte/icons/music-2'
   import ArtistIcon from 'lucide-svelte/icons/user'
   import type { Snippet } from 'svelte'
@@ -25,6 +26,7 @@
 
 {#snippet albumContent()}{$t('albums')}{/snippet}
 {#snippet artistContent()}{$t('artists')}{/snippet}
+{#snippet playlistContent()}{$t('playlists')}{/snippet}
 
 <Sticky>
   <ul class={['flex w-full flex-row items-center gap-2 px-4 py-2', className]}>
@@ -42,6 +44,14 @@
         Icon={ArtistIcon}
         onclick={() => goto(`${base}/${$locale}/artists`, { noScroll: true })}
         children={isLarge ? (artistContent as unknown as Snippet) : undefined}
+      />
+    </li>
+    <li>
+      <Button
+        color={path === 'playlists' ? 'primary' : 'secondary'}
+        Icon={PlaylistIcon}
+        onclick={() => goto(`${base}/${$locale}/playlists`, { noScroll: true })}
+        children={isLarge ? (playlistContent as unknown as Snippet) : undefined}
       />
     </li>
     {#if screen.size < MD}

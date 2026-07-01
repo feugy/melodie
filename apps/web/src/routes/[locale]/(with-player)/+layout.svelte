@@ -11,6 +11,7 @@
     trackQueue,
   } from '$lib/client'
   import {
+    AddToPlaylist,
     Button,
     Heading,
     Nav,
@@ -35,6 +36,7 @@
   const onmove = trackQueue.move.bind(trackQueue)
   const onplay = trackQueue.jumpTo.bind(trackQueue)
   const onshuffle = trackQueue.shuffle.bind(trackQueue)
+  const queueTrackIds = $derived(trackQueue.content.map((track) => track.id))
 
   let notifier: SystemNotifier
   let trackListOpen = $state(false)
@@ -108,14 +110,19 @@
             {#await data.trackQueueLoading}
               chargement...
             {:then}
-              <span class="flex-1"
-                >{$t('track _/_', {
-                  values: {
-                    index: (trackQueue.index ?? -1) + 1,
-                    length: trackQueue.length,
-                  },
-                })}</span
-              >
+              <span class="flex flex-1 items-center gap-2"
+                ><span
+                  >{$t('track _/_', {
+                    values: {
+                      index: (trackQueue.index ?? -1) + 1,
+                      length: trackQueue.length,
+                    },
+                  })}</span
+                >
+                {#if trackQueue.length}
+                  <AddToPlaylist trackIds={queueTrackIds} />
+                {/if}
+              </span>
               {#if trackQueue.length}
                 <span class="pr-4 text-base"
                   >{formatTime(sumDurations(trackQueue.content))}</span

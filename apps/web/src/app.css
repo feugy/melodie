@@ -1,7 +1,6 @@
 @import "tailwindcss";
 
 @import "@skeletonlabs/skeleton";
-@import "@skeletonlabs/skeleton/optional/presets";
 @import "./melodie-theme";
 
 @source "../node_modules/@skeletonlabs/skeleton-svelte/dist";

@@ -1,15 +1,17 @@
-import type { Kind, LightAlbum, LightArtist } from '$lib/types'
+import type { Kind, LightAlbum, LightArtist, LightPlaylist } from '$lib/types'
 import type { Agent, Track } from '@melodie/common/models'
 
 function getBase(
-	model: LightAlbum | LightArtist | Track | undefined,
+	model: LightAlbum | LightArtist | LightPlaylist | Track | undefined,
 	agentById: Map<number, Agent>
 ) {
-	return agentById.get(model?.agentId ?? -1)?.base
+	return model && 'agentId' in model && model.agentId
+		? agentById.get(model.agentId)?.base
+		: undefined
 }
 
 export function getImage(
-	model: LightAlbum | LightArtist | Track | undefined,
+	model: LightAlbum | LightArtist | LightPlaylist | Track | undefined,
 	agentById: Map<number, Agent>,
 	kind?: Kind | 'tracks'
 ) {

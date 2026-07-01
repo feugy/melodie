@@ -14,12 +14,9 @@
 
 ## Web
 
-- redo the player: download files in advance (maybe stream the first one). 
-    - greedy download all enqueue files?
-    - when do we evict tracks from cache?
-    - tests
+- on mobile, autoplay stops while loading next track
 - feedback when adding to the queue (large & narrow screens)
-- play/enqueue test for albums: order is often wrong
+- play/enqueue test for albums: order is often wrong when adding from the list (ok from details)
 - store volume in local storage
 
 # Architecture design

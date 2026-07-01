@@ -1,15 +1,24 @@
 import { afterAll, beforeAll, describe, expect, it } from 'bun:test'
-import { makeAlbums, makeArtists } from '$lib/tests/factories'
+import {
+	makeAlbums,
+	makeArtists,
+	makePlaylist,
+	makePlaylists,
+	makeTracks
+} from '$lib/tests/factories'
 import type { Kind } from '$lib/types'
 import { faker } from '@faker-js/faker'
 import {
 	type Agent,
 	type Album,
 	type Artist,
+	type Playlist,
 	agentsModel,
 	albumsModel,
 	artistsModel,
-	init
+	init,
+	playlistsModel,
+	tracksModel
 } from '@melodie/common/models'
 import { cleanTestTB, initTestDB } from '@melodie/common/tests'
 import type { DBConf } from '@melodie/common/types'
@@ -29,6 +38,21 @@ describe('GET /api/[kind]', () => {
 		bio: { fr: faker.lorem.paragraph() }
 	})
 	const albums = makeAlbums(3, { agentId: agent.id })
+	const tracks = makeTracks(3, { agentId: agent.id })
+	const publicPlaylists = makePlaylists(3, {
+		trackIds: [tracks[0].id, faker.number.int(), tracks[2].id],
+		userIds: []
+	})
+	const visibleOwnedPlaylist = makePlaylist({
+		name: 'visible-owned',
+		trackIds: [tracks[1].id],
+		userIds: [agent.id]
+	})
+	const hiddenOwnedPlaylist = makePlaylist({
+		name: 'hidden-owned',
+		trackIds: [tracks[1].id],
+		userIds: [faker.number.int({ min: 1000 })]
+	})
 
 	beforeAll(async () => {
 		;({ conf } = await initTestDB())
@@ -36,6 +60,12 @@ describe('GET /api/[kind]', () => {
 		await agentsModel.save(agent)
 		await artistsModel.save(artists)
 		await albumsModel.save(albums)
+		await tracksModel.save(tracks)
+		await playlistsModel.save([
+			...publicPlaylists,
+			visibleOwnedPlaylist,
+			hiddenOwnedPlaylist
+		])
 	})
 
 	afterAll(async () => {
@@ -79,5 +109,45 @@ describe('GET /api/[kind]', () => {
 			})
 		)
 		expect(content).toEqual({ data, total: data.length })
+	})
+
+	it('returns public playlists and playlists owned by current user', async () => {
+		const response = await GET({
+			params: { kind: 'playlists' },
+			locals: { session: { token: 'test', userId: agent.id } }
+		} as RequestEvent<{ kind: Kind }>)
+		const content = (await response.json()) as {
+			data: Array<Partial<Playlist>>
+			total: number
+		}
+
+		expect(content.total).toEqual(publicPlaylists.length + 1)
+		expect(
+			content.data.find(({ id }) => id === hiddenOwnedPlaylist.id)
+		).toBeUndefined()
+		expect(
+			content.data.find(({ id }) => id === visibleOwnedPlaylist.id)
+		).toBeTruthy()
+		expect(
+			content.data.find(({ id }) => id === publicPlaylists[0].id)?.trackIds
+		).toEqual([tracks[0].id, tracks[2].id])
+	})
+
+	it('returns only public playlists when no session is provided', async () => {
+		const response = await GET({
+			params: { kind: 'playlists' },
+			locals: {}
+		} as RequestEvent<{ kind: Kind }>)
+		const content = (await response.json()) as {
+			data: Array<Partial<Playlist>>
+			total: number
+		}
+		expect(content.total).toEqual(publicPlaylists.length)
+		expect(
+			content.data.find(({ id }) => id === visibleOwnedPlaylist.id)
+		).toBeUndefined()
+		expect(
+			content.data.find(({ id }) => id === hiddenOwnedPlaylist.id)
+		).toBeUndefined()
 	})
 })

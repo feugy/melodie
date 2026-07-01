@@ -3,6 +3,8 @@ import type {
 	ArtistsContext,
 	LightAlbum,
 	LightArtist,
+	LightPlaylist,
+	PlaylistsContext,
 	ScrollContext
 } from '$lib/types'
 import { setContext } from 'svelte'
@@ -21,6 +23,14 @@ export function initContext() {
 		get: () => artists,
 		set: v => {
 			artists = v
+		}
+	})
+
+	let playlists = $state<LightPlaylist[]>([])
+	setContext<PlaylistsContext>('playlists', {
+		get: () => playlists,
+		set: v => {
+			playlists = v
 		}
 	})
 

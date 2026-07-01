@@ -347,14 +347,25 @@ describe('Abstract model', () => {
 					faker.number.int()
 				])
 				expect(results).toEqual(
-					expect.arrayContaining(
-						[models[0], models[3]].map(model => ({
-							...model,
-							tags: JSON.parse(model.tags)
-						}))
-					)
+					[models[0], models[3]].map(model => ({
+						...model,
+						tags: JSON.parse(model.tags)
+					}))
 				)
-				expect(results).toHaveLength(2)
+			})
+
+			it('preserves duplicate ids ordering', async () => {
+				const results = await tested.getByIds([
+					models[2].id,
+					models[0].id,
+					models[2].id
+				])
+
+				expect(results).toEqual([
+					{ ...models[2], tags: JSON.parse(models[2].tags) },
+					{ ...models[0], tags: JSON.parse(models[0].tags) },
+					{ ...models[2], tags: JSON.parse(models[2].tags) }
+				])
 			})
 
 			it('throws meaningful error on deserialization error', async () => {

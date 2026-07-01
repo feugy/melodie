@@ -210,18 +210,26 @@ export abstract class AbstractModel<T extends { id: string | number }> {
 	/**
 	 * Get several models by their id.
 	 * Ids that do not match any model are simply ignored.
-	 * _Note_: does not guarantee that result ordering will match input ordering.
+	 * Returned models follow input id ordering, including duplicate ids.
 	 * @param ids Desired ids
 	 * @returns array of matching model (may be empty)
 	 */
 	async getByIds(ids: T['id'][]) {
-		const results =
+		const fetched =
 			this.db
 				?.query<T, T['id'][]>(
 					`SELECT * FROM ${this.name} WHERE ${whereIn('id', ids)}`
 				)
 				.all(...ids)
 				?.map(this.makeDeserializer()) ?? []
+		const byId = new Map(fetched.map(model => [model.id, model]))
+		const results = ids.reduce<T[]>((result, id) => {
+			const model = byId.get(id)
+			if (model) {
+				result.push(model)
+			}
+			return result
+		}, [])
 		this.logger.debug('fetch by ids', { ids, hitCount: results.length })
 		return results
 	}

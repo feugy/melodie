@@ -1,5 +1,11 @@
 import { faker } from '@faker-js/faker'
-import type { Agent, Album, Artist, Track } from '@melodie/common/models'
+import type {
+	Agent,
+	Album,
+	Artist,
+	Playlist,
+	Track
+} from '@melodie/common/models'
 import { addId, addRefs, makeRef } from '@melodie/common/tests'
 
 export function makeTrack(track: Partial<Track> = {}) {
@@ -78,6 +84,28 @@ export function makeArtist(artist: Partial<Artist> = {}): Artist {
 
 export function makeArtists(length: number, artist: Partial<Artist> = {}) {
 	return Array.from({ length }, () => makeArtist(artist)).sort((a, b) =>
+		a.name.localeCompare(b.name)
+	)
+}
+
+export function makePlaylist(playlist: Partial<Playlist> = {}): Playlist {
+	return addId({
+		name: faker.music.songName().toLowerCase(),
+		mtimeMs: faker.date.recent().getTime(),
+		media: null,
+		mediaCount: 0,
+		...playlist,
+		trackIds: playlist.trackIds ? [...playlist.trackIds] : [faker.number.int()],
+		refs: playlist.refs ? [...playlist.refs] : [],
+		userIds: playlist.userIds ? [...playlist.userIds] : []
+	})
+}
+
+export function makePlaylists(
+	length: number,
+	playlist: Partial<Playlist> = {}
+) {
+	return Array.from({ length }, () => makePlaylist(playlist)).sort((a, b) =>
 		a.name.localeCompare(b.name)
 	)
 }

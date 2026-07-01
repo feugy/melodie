@@ -22,7 +22,7 @@
   import UnmuteIcon from 'lucide-svelte/icons/volume-2'
   import { onMount } from 'svelte'
   import { MD, screen, trackCache } from '$lib/client'
-  import { Button, Slider, Track } from '$lib/components'
+  import { AddToPlaylist, Button, Slider, Track } from '$lib/components'
   import { wrapWithLinks } from '$lib/utils'
 
   let {
@@ -48,6 +48,7 @@
   let volume = $state(1)
   let muted = $state(false)
   let srcRequestId = 0
+  let currentTrackIds = $derived(track ? [track.id] : [])
 
   $effect(() => {
     clearTimeout(retry)
@@ -202,6 +203,7 @@
       </div>
     {/if}
     <div class="flex items-center gap-2">
+      <AddToPlaylist trackIds={currentTrackIds} />
       <Button
         color={isShuffled ? 'primary' : 'secondary'}
         onclick={() => onshuffle()}

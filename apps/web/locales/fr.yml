@@ -1,15 +1,28 @@
 _ albums: "{total, plural, =0 {aucun album} =1 {1 album} other {# albums}}"
 _ artists: "{total, plural, =0 {aucun artiste} =1 {1 artiste} other {# artistes}}"
+_ playlists: "{total, plural, =0 {aucune playlist} =1 {1 playlist} other {# playlists}}"
+_ tracks: "{total, plural, =0 {aucun morceau} =1 {1 morceau} other {# morceaux}}"
 "#": N°
+add to playlist: Ajouter a une playlist
+create playlist: Creer une playlist
+search playlists: Rechercher des playlists
 album list: Liste des albums
 artist list: Liste des artistes
 artist: Artiste
 artists: Artistes
+playlist list: Liste des playlists
+rename playlist: Renommer la playlist
+rename playlist prompt: "Renommer la playlist \"{name}\" en :"
+delete playlist: Supprimer la playlist
+delete playlist confirm: "Supprimer la playlist \"{name}\" ?"
 by _: par {artist}
 disk _: Disque N°{num}
 duration: Durée
 enqueue: Ajouter tout
 hours_minutes: "{hours, plural, =0 {} =1 {1 heure} other {# heures}} {minutes, plural, =0 {} =1 {1 minute} other {# minutes}}"
+loading: Chargement...
+no playlist: Aucune playlist
+no results: Aucun resultat
 none: Aucun
 password: Mot de passe
 play all: Lire tout

@@ -11,7 +11,7 @@ describe('kind/matcher', () => {
 		expect(match(value)).toBe(false)
 	})
 
-	it.each([{ value: 'artists' }, { value: 'albums' }])(
+	it.each([{ value: 'artists' }, { value: 'albums' }, { value: 'playlists' }])(
 		'allows $value',
 		({ value }) => {
 			expect(match(value)).toBe(true)

@@ -1,9 +1,15 @@
 import { afterAll, beforeAll, describe, expect, it } from 'bun:test'
-import { makeAlbums, makeArtists, makeTracks } from '$lib/tests/factories'
+import {
+	makeAlbums,
+	makeArtists,
+	makePlaylists,
+	makeTracks
+} from '$lib/tests/factories'
 import {
 	albumsModel,
 	artistsModel,
 	init,
+	playlistsModel,
 	tracksModel
 } from '@melodie/common/models'
 import { cleanTestTB, initTestDB } from '@melodie/common/tests'
@@ -15,15 +21,18 @@ describe('models server utils', () => {
 
 	const artists = makeArtists(3)
 	const albums = makeAlbums(3)
+	const playlists = makePlaylists(3)
 	const tracks = makeTracks(10)
 	albums[0].trackIds = tracks.slice(0, 3).map(({ id }) => id)
 	artists[0].trackIds = tracks.slice(2, 5).map(({ id }) => id)
+	playlists[0].trackIds = tracks.slice(4, 7).map(({ id }) => id)
 
 	beforeAll(async () => {
 		;({ conf } = await initTestDB())
 		await init(conf)
 		await artistsModel.save(artists)
 		await albumsModel.save(albums)
+		await playlistsModel.save(playlists)
 		await tracksModel.save(tracks)
 	})
 
@@ -63,11 +72,35 @@ describe('models server utils', () => {
 		expect(await consume(list('albums', 1))).toEqual(albums)
 	})
 
+	it('returns playlists', async () => {
+		expect(
+			(await consume(list('playlists'))).map(
+				({ trackPaths: _, ...playlist }) => playlist
+			)
+		).toEqual(playlists)
+	})
+
+	it('counts playlists', async () => {
+		expect(await count('playlists')).toEqual(playlists.length)
+	})
+
+	it('returns playlists from multiple pages', async () => {
+		expect(
+			(await consume(list('playlists', 1))).map(
+				({ trackPaths: _, ...playlist }) => playlist
+			)
+		).toEqual(playlists)
+	})
+
 	it('loads album tracks', async () => {
 		expect(await loadTracks(albums[0])).toEqual(tracks.slice(0, 3))
 	})
 
 	it('loads artist tracks', async () => {
 		expect(await loadTracks(artists[0])).toEqual(tracks.slice(2, 5))
+	})
+
+	it('loads playlist tracks', async () => {
+		expect(await loadTracks(playlists[0])).toEqual(tracks.slice(4, 7))
 	})
 })

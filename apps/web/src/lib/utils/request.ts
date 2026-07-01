@@ -44,7 +44,7 @@ function coerce(schema: z.ZodAny) {
 
 async function parseOrThrow(
 	getInput: () => Promise<Record<string, unknown>>,
-	schema: z.AnyZodObject,
+	schema: z.ZodTypeAny,
 	prefix: string
 ) {
 	try {
@@ -62,7 +62,7 @@ async function parseOrThrow(
 
 export async function parseRequest<
 	Q extends z.AnyZodObject,
-	B extends z.AnyZodObject | undefined
+	B extends z.ZodTypeAny | undefined
 >(
 	request: Request,
 	{ querySchema, bodySchema }: { querySchema?: Q; bodySchema?: B } = {}
@@ -78,6 +78,6 @@ export async function parseRequest<
 		: undefined
 	return {
 		query,
-		body: body as B extends z.AnyZodObject ? z.infer<B> : undefined
+		body: body as B extends z.ZodTypeAny ? z.infer<B> : undefined
 	}
 }
