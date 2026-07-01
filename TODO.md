@@ -47,11 +47,12 @@ Cons: complex LetsEncrypt setup to get SSL certificates.
 # Usefull
 
 - organize all imports: `bunx biome check --formatter-enabled=false --linter-enabled=false --organize-imports-enabled=true --write ./apps`
-- move to VM
+- move to VM (osx commands)
 
   1. `bun run release --cpu arm64 --os linux`
   1. `COPYFILE_DISABLE=1 tar -cvf melodie.tar --exclude='.?*' --exclude='./.?*' --exclude='*/.?*' -C build .`
   1. `scp melodie.tar freebox@192.168.1.10:~/melodie`
+  1. (on the VM) `cd melodie && tar -xf melodie.tar && sudo systemctl restart melodie.service`
 
 - refresh certificates
 
@@ -83,3 +84,4 @@ Cons: complex LetsEncrypt setup to get SSL certificates.
   [Install]
   WantedBy=multi-user.target
   ```
+- clean old syslog entries: `journalctl --vacuum-time=2d`

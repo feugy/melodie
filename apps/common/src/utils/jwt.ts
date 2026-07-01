@@ -1,7 +1,7 @@
 import { randomBytes } from 'node:crypto'
 import { createSigner, createVerifier } from 'fast-jwt'
 
-export const JWT_SECRET_KEY = 'REPLACE_WITH_A_SECURE_KEY'
+export const JWT_EXPIRES_IN = '15m' as const
 
 export async function generateJWTKey() {
 	// https://lucia-auth.com/sessions/basic
@@ -23,7 +23,7 @@ export async function createJWT(payload: Record<string, unknown> = {}) {
 		const { jwtKey } = await settingsModel.get()
 		signer = createSigner({
 			key: jwtKey,
-			expiresIn: '1h',
+			expiresIn: JWT_EXPIRES_IN,
 			algorithm: 'HS512'
 		})
 	}

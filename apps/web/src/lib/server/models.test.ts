@@ -1,7 +1,5 @@
 import { afterAll, beforeAll, describe, expect, it } from 'bun:test'
 import { makeAlbums, makeArtists, makeTracks } from '$lib/tests/factories'
-import { faker } from '@faker-js/faker'
-import type { Album, Artist } from '@melodie/common/models'
 import {
 	albumsModel,
 	artistsModel,

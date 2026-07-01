@@ -1,7 +1,15 @@
 <script lang="ts">
   import { afterNavigate } from '$app/navigation'
   import { page } from '$app/state'
-  import { LG, MD, screen, trackCache, trackQueue } from '$lib/client'
+  import {
+    LG,
+    MD,
+    screen,
+    startAuthRefresh,
+    stopAuthRefresh,
+    trackCache,
+    trackQueue,
+  } from '$lib/client'
   import {
     Button,
     Heading,
@@ -36,10 +44,15 @@
   const scrollContext = getContext<ScrollContext>('scroll')()
 
   onMount(() => {
-    trackCache.agentById = data.agentById
-    return trackQueue.registerAutoNextListener(() =>
+    trackCache.setAgentById(data.agentById)
+    const unregisterAutoNext = trackQueue.registerAutoNextListener(() =>
       notifier.notify(trackQueue.current)
     )
+    startAuthRefresh()
+    return () => {
+      unregisterAutoNext()
+      stopAuthRefresh()
+    }
   })
 
   afterNavigate(() => {

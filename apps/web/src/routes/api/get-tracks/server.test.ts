@@ -21,7 +21,6 @@ describe('POST /api/get-tracks', () => {
 		base: 'http://localhost:3000'
 	}
 
-	const nullRef: Reference = [1, null]
 	const tracks = makeTracks(3)
 
 	beforeAll(async () => {

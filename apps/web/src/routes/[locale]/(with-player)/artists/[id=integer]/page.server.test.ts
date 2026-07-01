@@ -16,7 +16,7 @@ import {
 	init,
 	tracksModel
 } from '@melodie/common/models'
-import { cleanTestTB, initTestDB, makeRef } from '@melodie/common/tests'
+import { cleanTestTB, initTestDB } from '@melodie/common/tests'
 import type { DBConf } from '@melodie/common/types'
 import type { PageServerLoadEvent } from './$types'
 import { load } from './+page.server'

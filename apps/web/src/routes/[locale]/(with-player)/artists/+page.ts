@@ -1,12 +1,16 @@
 import { browser } from '$app/environment'
 import { base } from '$app/paths'
+import { requestJSON } from '$lib/client'
 import type { LightArtist } from '$lib/types'
 import type { GETModelResponse } from '../../../api/[kind]/+server'
 import type { PageLoad } from './$types'
 
 async function loadArtists(fetch: typeof global.fetch) {
-	const response = await fetch(`${base}/api/artists`)
-	return response.json() as Promise<GETModelResponse<LightArtist>>
+	return requestJSON<GETModelResponse<LightArtist>>(
+		`${base}/api/artists`,
+		undefined,
+		fetch
+	)
 }
 
 export const load: PageLoad = async ({ data: parentData, fetch }) => {

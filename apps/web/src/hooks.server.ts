@@ -1,9 +1,8 @@
 import { base } from '$app/paths'
-import { recoverSession } from '$lib/server'
+import { recoverSession, setTokenCookie, getTokenFromCookie } from '$lib/server'
 import { supportedLanguages } from '$lib/utils'
 import type { Handle } from '@sveltejs/kit'
 import { pick } from 'accept-language-parser'
-import cookie, { type SerializeOptions } from 'cookie'
 
 export const handle: Handle = async ({ event, resolve }) => {
 	const {
@@ -12,14 +11,18 @@ export const handle: Handle = async ({ event, resolve }) => {
 		locals,
 		params: { locale }
 	} = event
+	const secure = url.protocol === 'https:'
 
 	if (url.pathname === `${base}/logout`) {
 		// log out page
-		return logOutAndRedirect()
+		return logOutAndRedirect(secure)
 	}
+
+	locals.session = await recoverSession(getTokenFromCookie(request))
+
 	if (url.pathname === `${base}/${locale}`) {
 		// login page, always accessible, session may be set by route
-		return setCookie(await resolve(event), locals.session?.token)
+		return setTokenCookie(await resolve(event), locals.session?.token, secure)
 	}
 	if (!locale && !url.pathname.startsWith(`${base}/api/`)) {
 		// serve local page (unless for API routes)
@@ -28,18 +31,26 @@ export const handle: Handle = async ({ event, resolve }) => {
 			request.headers.get('accept-language')
 		)
 	}
-	locals.session = await recoverSession(extractToken(request))
 	if (!locals.session) {
-		// redirect to login without token
-		return redirectBasedOnLanguage('', request.headers.get('accept-language'))
+		// redirect to login or fail API calls without token
+		if (url.pathname.startsWith(`${base}/api/`)) {
+			return unauthorizedAPIResponse(secure)
+		}
+		return redirectToLogin(
+			locale,
+			request.headers.get('accept-language'),
+			secure
+		)
 	}
 
-	return await resolve(event)
+	return resolve(event)
 }
 
-function logOutAndRedirect() {
-	return setCookie(
-		new Response(null, { status: 307, headers: { location: base } })
+function logOutAndRedirect(secure: boolean) {
+	return setTokenCookie(
+		new Response(null, { status: 307, headers: { location: base } }),
+		undefined,
+		secure
 	)
 }
 
@@ -60,23 +71,30 @@ function redirectBasedOnLanguage(
 	})
 }
 
-function extractToken(request: Request) {
-	return cookie.parse(request.headers.get('cookie') || '').token
+function redirectToLogin(
+	locale: string | undefined,
+	languageHeader: string | null,
+	secure: boolean
+) {
+	const response = locale
+		? new Response(null, {
+				status: 303,
+				headers: {
+					location: `${base}/${locale}`
+				}
+			})
+		: redirectBasedOnLanguage('', languageHeader)
+
+	setTokenCookie(response, undefined, secure)
+	return response
 }
 
-function setCookie(response: Response, token?: string) {
-	const options: SerializeOptions = {
-		path: '/',
-		secure: true,
-		httpOnly: true,
-		sameSite: 'lax'
-	}
-	if (!token) {
-		options.expires = new Date(1)
-	}
-	response.headers.set(
-		'set-cookie',
-		cookie.serialize('token', token ?? '', options)
-	)
-	return response
+function unauthorizedAPIResponse(secure: boolean) {
+	const response = new Response(JSON.stringify({ message: 'Unauthorized' }), {
+		status: 401,
+		headers: {
+			'content-type': 'application/json'
+		}
+	})
+	return setTokenCookie(response, undefined, secure)
 }

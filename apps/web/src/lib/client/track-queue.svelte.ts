@@ -1,4 +1,4 @@
-import type { Agent, Track } from '@melodie/common/models'
+import type { Track } from '@melodie/common/models'
 import { knuthShuffle } from 'knuth-shuffle'
 import localforage from 'localforage'
 import { getTracksByIds } from './requests'
@@ -84,7 +84,7 @@ class TrackQueue {
 		const startIdx = this.index ?? 0
 		const end = Math.min(startIdx + 3, this.content.length)
 		for (let i = startIdx; i < end; i++) {
-			trackCache.loadData(this.content[i])
+			trackCache.addToCache(this.content[i])
 		}
 	}
 

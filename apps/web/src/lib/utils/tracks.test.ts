@@ -1,10 +1,5 @@
 import { describe, expect, it } from 'bun:test'
-import {
-	bindAlbum,
-	makeAlbum,
-	makeAlbums,
-	makeTracks
-} from '$lib/tests/factories'
+import { bindAlbum, makeAlbums, makeTracks } from '$lib/tests/factories'
 import { faker } from '@faker-js/faker'
 import { getYear, groupByAlbum, groupByDisk, sortByNum } from './tracks'
 

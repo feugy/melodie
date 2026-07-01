@@ -14,7 +14,7 @@ import ms from 'ms'
 import { SettingsModel, settingsModel } from '../models/settings.ts'
 import { cleanTestTB, initTestDB } from '../tests/database.ts'
 import type { DBConf } from '../types.ts'
-import { createJWT, generateJWTKey, verifyJWT } from './jwt.ts'
+import { JWT_EXPIRES_IN, createJWT, generateJWTKey, verifyJWT } from './jwt.ts'
 
 describe('JWT utilities', () => {
 	let conf: DBConf
@@ -49,7 +49,9 @@ describe('JWT utilities', () => {
 				iat: expect.any(Number),
 				exp: expect.any(Number)
 			})
-			expect(decoded.exp).toBe(Math.floor(Date.now() / 1000) + 3600)
+			expect(decoded.exp).toBe(
+				Math.floor(Date.now() / 1000) + ms(JWT_EXPIRES_IN) / 1000
+			)
 		})
 	})
 
@@ -70,7 +72,9 @@ describe('JWT utilities', () => {
 				iat: expect.any(Number),
 				exp: expect.any(Number)
 			})
-			expect(decoded.exp).toBe(Math.floor((Date.now() + ms('1h')) / 1000))
+			expect(decoded.exp).toBe(
+				Math.floor((Date.now() + ms(JWT_EXPIRES_IN)) / 1000)
+			)
 		})
 
 		it('throws on malfomed JWT', async () => {
@@ -80,8 +84,10 @@ describe('JWT utilities', () => {
 		})
 
 		it('throws on expired JWT', async () => {
-			const exp = new Date(Math.floor((Date.now() + ms('1h')) / 1000) * 1000)
-			setSystemTime(Date.now() + ms('3h'))
+			const exp = new Date(
+				Math.floor((Date.now() + ms(JWT_EXPIRES_IN)) / 1000) * 1000
+			)
+			setSystemTime(Date.now() + ms(JWT_EXPIRES_IN) + 1000)
 			await expect(verifyJWT(token)).rejects.toThrow(
 				`The token has expired at ${exp.toISOString()}.`
 			)

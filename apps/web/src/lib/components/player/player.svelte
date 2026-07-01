@@ -47,12 +47,37 @@
   let progress = $derived(time / duration)
   let volume = $state(1)
   let muted = $state(false)
+  let srcRequestId = 0
 
   $effect(() => {
     clearTimeout(retry)
-    trackCache.getData(track).then(data => {
-      src = data
-    })
+    const requestId = ++srcRequestId
+
+    if (!track) {
+      src = undefined
+      loading = false
+      return
+    }
+
+    src = undefined
+    loading = true
+    // 1) Try cached data first.
+    // 2) If missing or failing, fall back to remote URL and warm cache in background.
+    // 3) Ignore stale async resolutions using requestId.
+    trackCache
+      .readCachedTrack(track)
+      .catch(() => undefined)
+      .then((data) => {
+        if (requestId !== srcRequestId) {
+          return
+        }
+        if (data) {
+          src = data
+          return
+        }
+        src = trackCache.getTrackURLAndCache(track)
+        loading = false
+      })
   })
 
   $effect(() => {

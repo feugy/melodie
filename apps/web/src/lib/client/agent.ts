@@ -1,7 +1,7 @@
 import type { Kind, LightAlbum, LightArtist } from '$lib/types'
 import type { Agent, Track } from '@melodie/common/models'
 
-export function getBase(
+function getBase(
 	model: LightAlbum | LightArtist | Track | undefined,
 	agentById: Map<number, Agent>
 ) {
@@ -20,7 +20,7 @@ export function getImage(
 		: undefined
 }
 
-export function getData(
+export function getAudioURL(
 	model: Track | undefined,
 	agentById: Map<number, Agent>
 ) {

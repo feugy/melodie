@@ -38,89 +38,79 @@ describe('track cache', () => {
 		createObjectURL.mockRestore()
 	})
 
-	describe('getData()', () => {
-		it('returns undefined without track', async () => {
-			expect(await cache.getData(undefined)).toBeUndefined()
-			expect(fetch).not.toHaveBeenCalled()
-		})
-
-		it('falls back to remote url when no agent base exists', async () => {
-			const track = makeTrack({ id: 1, agentId: 11 })
-			expect(await cache.getData(track)).toBeUndefined()
-			expect(fetch).not.toHaveBeenCalled()
-		})
-
-		it('downloads once and returns object urls', async () => {
-			const agent: Agent = { id: 7, name: 'a', base: 'https://agent.test' }
-			const track = makeTrack({ id: 14, agentId: agent.id })
-			cache.agentById.set(agent.id, agent)
-
-			fetch.mockResolvedValue(makeSizedResponse(32))
-
-			const first = await cache.getData(track)
-			const second = await cache.getData(track)
-
-			expect(first).toBe('blob:cached-track')
-			expect(second).toBe('blob:cached-track')
-			expect(fetch).toHaveBeenCalledTimes(1)
-			expect(fetch).toHaveBeenCalledWith('https://agent.test/tracks/14/data')
-			expect(createObjectURL).toHaveBeenCalledTimes(2)
-		})
-
-		it('falls back to remote url when download fails', async () => {
-			const agent: Agent = { id: 8, name: 'a', base: 'https://agent.test' }
-			const track = makeTrack({ id: 22, agentId: agent.id })
-			cache.agentById.set(agent.id, agent)
-			fetch.mockResolvedValue(new Response(null, { status: 500 }))
-
-			expect(await cache.getData(track)).toBe(
-				'https://agent.test/tracks/22/data'
-			)
-			expect(fetch).toHaveBeenCalledTimes(1)
-			expect(createObjectURL).not.toHaveBeenCalled()
-		})
-
-		it('evicts oldest track when cache is full', async () => {
-			const agent: Agent = { id: 10, name: 'a', base: 'https://agent.test' }
-			const firstTrack = makeTrack({ id: 100, agentId: agent.id })
-			const secondTrack = makeTrack({ id: 101, agentId: agent.id })
-			cache.agentById.set(agent.id, agent)
-
-			fetch
-				.mockResolvedValueOnce(makeSizedResponse(300))
-				.mockResolvedValueOnce(makeSizedResponse(300))
-				.mockResolvedValueOnce(makeSizedResponse(300))
-
-			await cache.getData(firstTrack)
-			await cache.getData(secondTrack)
-
-			fetch.mockClear()
-
-			await cache.getData(secondTrack)
-			expect(fetch).not.toHaveBeenCalled()
-
-			await cache.getData(firstTrack)
-			expect(fetch).toHaveBeenCalledTimes(1)
-			expect(fetch).toHaveBeenCalledWith('https://agent.test/tracks/100/data')
-		})
-	})
-
-	describe('loadData()', () => {
+	describe('addToCache()', () => {
 		it('preloads data', async () => {
 			const agent: Agent = { id: 9, name: 'a', base: 'https://agent.test' }
 			const track = makeTrack({ id: 33, agentId: agent.id })
-			cache.agentById.set(agent.id, agent)
+			cache.setAgentById(new Map([[agent.id, agent]]))
 			fetch.mockResolvedValue(makeSizedResponse(16))
 
-			const promise = cache.loadData(track)
+			const promise = cache.addToCache(track)
 			expect(promise).toBeInstanceOf(Promise)
 			await promise
 			expect(fetch).toHaveBeenCalledTimes(1)
 			expect(fetch).toHaveBeenCalledWith('https://agent.test/tracks/33/data')
 		})
 
+		it('deduplicates concurrent preloads for the same track', async () => {
+			const agent: Agent = { id: 19, name: 'a', base: 'https://agent.test' }
+			const track = makeTrack({ id: 66, agentId: agent.id })
+			cache.setAgentById(new Map([[agent.id, agent]]))
+			fetch.mockResolvedValue(makeSizedResponse(18))
+
+			await Promise.all([cache.addToCache(track), cache.addToCache(track)])
+
+			expect(fetch).toHaveBeenCalledTimes(1)
+			expect(fetch).toHaveBeenCalledWith('https://agent.test/tracks/66/data')
+		})
+
 		it('resolves to undefined when preload is skipped', async () => {
-			await expect(cache.loadData(undefined)).resolves.toBeUndefined()
+			await expect(cache.addToCache(undefined)).resolves.toBeUndefined()
+			expect(fetch).not.toHaveBeenCalled()
+		})
+	})
+
+	describe('getTrackURLAndCache()', () => {
+		it('returns remote url immediately and starts background caching', async () => {
+			const agent: Agent = { id: 20, name: 'a', base: 'https://agent.test' }
+			const track = makeTrack({ id: 67, agentId: agent.id })
+			cache.setAgentById(new Map([[agent.id, agent]]))
+			fetch.mockResolvedValue(makeSizedResponse(12))
+
+			expect(cache.getTrackURLAndCache(track)).toBe(
+				'https://agent.test/tracks/67/data'
+			)
+
+			await cache.addToCache(track)
+			expect(fetch).toHaveBeenCalledTimes(1)
+		})
+
+		it('returns undefined without track', () => {
+			expect(cache.getTrackURLAndCache(undefined)).toBeUndefined()
+			expect(fetch).not.toHaveBeenCalled()
+		})
+	})
+
+	describe('readCachedTrack()', () => {
+		it('returns undefined when track is not cached', async () => {
+			const agent: Agent = { id: 23, name: 'a', base: 'https://agent.test' }
+			const track = makeTrack({ id: 70, agentId: agent.id })
+			cache.setAgentById(new Map([[agent.id, agent]]))
+
+			expect(await cache.readCachedTrack(track)).toBeUndefined()
+			expect(fetch).not.toHaveBeenCalled()
+		})
+
+		it('returns object url from cache without fetching again', async () => {
+			const agent: Agent = { id: 24, name: 'a', base: 'https://agent.test' }
+			const track = makeTrack({ id: 71, agentId: agent.id })
+			cache.setAgentById(new Map([[agent.id, agent]]))
+			fetch.mockResolvedValue(makeSizedResponse(26))
+
+			await cache.addToCache(track)
+			fetch.mockClear()
+
+			expect(await cache.readCachedTrack(track)).toBe('blob:cached-track')
 			expect(fetch).not.toHaveBeenCalled()
 		})
 	})
