@@ -1,37 +1,28 @@
 <script lang="ts">
+  import { enhance } from '$app/forms'
   import { trackQueue } from '$lib/client'
-  import { Button, Heading, TracksTable, TrackCount } from '$lib/components'
+  import { Button, ConfirmButton, Dialog, Heading, TracksTable, TrackCount } from '$lib/components'
+  import type { ButtonProps } from '$lib/components/button/button.svelte'
   import PencilIcon from 'lucide-svelte/icons/pencil'
   import TrashIcon from 'lucide-svelte/icons/trash'
   import EnqueueIcon from 'lucide-svelte/icons/list-plus'
   import PlayIcon from 'lucide-svelte/icons/play'
   import { t } from 'svelte-intl-precompile'
-  import { get } from 'svelte/store'
   import type { PageData } from './$types'
 
   let { data }: { data: PageData } = $props()
-  const { playlist, tracks } = data
+  // to keep the rest of the code cleaner, while keeping reactivity.
+  let playlist = $derived(data.playlist)
+  let tracks = $derived(data.tracks)
 
-  let renameForm: HTMLFormElement | null = null
-  let renameInput: HTMLInputElement | null = null
+  let renaming = $state(false)
+  let name = $state('')
 
-  function handleRename() {
-    const name =
-      window
-        .prompt(get(t)('rename playlist prompt', { values: { name: playlist.name } }), playlist.name)
-        ?.trim() ?? ''
-    if (!name || name === playlist.name || !renameInput || !renameForm) {
-      return
+  $effect(() => {
+    if (!renaming) {
+      name = data.playlist.name
     }
-    renameInput.value = name
-    renameForm.requestSubmit()
-  }
-
-  function handleDelete(event: Event) {
-    if (!window.confirm(get(t)('delete playlist confirm', { values: { name: playlist.name } }))) {
-      event.preventDefault()
-    }
-  }
+  })
 </script>
 
 <Heading>
@@ -53,12 +44,47 @@
       >
         {$t('enqueue')}
       </Button>
-      <form bind:this={renameForm} method="POST" action="?/rename">
-        <input bind:this={renameInput} name="name" type="hidden" />
-        <Button Icon={PencilIcon} onclick={handleRename}>renommer</Button>
-      </form>
-      <form method="POST" action="?/delete" onsubmit={handleDelete}>
-        <Button Icon={TrashIcon} type="submit">supprimer</Button>
+      <Dialog bind:open={renaming} title={$t('rename playlist')}>
+        {#snippet trigger(attrs)}
+          <Button Icon={PencilIcon} {...attrs as unknown as ButtonProps}>renommer</Button>
+        {/snippet}
+        {#snippet content()}
+          <form
+            id="rename-playlist-form"
+            method="POST"
+            action="?/rename"
+            use:enhance={() => {
+              return async ({ result, update }) => {
+                if (result.type === 'success') {
+                  await update({ invalidateAll: true })
+                  renaming = false
+                  return
+                }
+
+                await update()
+              }
+            }}
+          >
+            <input class="input w-full" type="text" name="name" bind:value={name} />
+          </form>
+        {/snippet}
+        {#snippet buttons()}
+          <Button color="surface" onclick={() => (renaming = false)}>annuler</Button>
+          <Button
+            type="submit"
+            form="rename-playlist-form"
+            disabled={!name.trim() || name.trim() === playlist.name}
+          >
+            renommer
+          </Button>
+        {/snippet}
+      </Dialog>
+      <form
+        method="POST"
+        action="?/delete"
+        use:enhance
+      >
+        <ConfirmButton Icon={TrashIcon} type="submit">supprimer</ConfirmButton>
       </form>
     </div>
     <TrackCount {tracks} />

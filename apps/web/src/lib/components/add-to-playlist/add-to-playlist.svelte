@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { invalidate } from '$app/navigation'
   import { base } from '$app/paths'
   import { requestJSON } from '$lib/client'
   import { Button } from '$lib/components'
@@ -70,6 +71,9 @@
         },
         body: JSON.stringify({ id: playlistId, trackIds }),
       })
+      playlistsLoaded = false
+      playlists = []
+      await invalidate(`${base}/api/playlists`)
       open = false
     } finally {
       addingToPlaylistId = null
@@ -90,6 +94,9 @@
         },
         body: JSON.stringify({ name, trackIds }),
       })
+      playlistsLoaded = false
+      playlists = []
+      await invalidate(`${base}/api/playlists`)
       open = false
     } finally {
       addingToPlaylistId = null

@@ -15,6 +15,15 @@ class TrackQueue {
 	current = $derived.by(() => {
 		return this.index !== null ? this.content[this.index] : undefined
 	})
+	nextTrack = $derived.by(() => {
+		if (!this.content.length) {
+			return undefined
+		}
+		const currentIndex = this.index ?? 0
+		const nextIndex =
+			currentIndex >= this.content.length - 1 ? 0 : currentIndex + 1
+		return this.content[nextIndex]
+	})
 	length = $derived(this.content.length)
 	isLast = $derived.by(
 		() => this.index === null || this.index === this.content.length - 1

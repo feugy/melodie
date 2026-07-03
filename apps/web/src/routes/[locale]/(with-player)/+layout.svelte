@@ -165,6 +165,7 @@
       agentById={data.agentById}
       isLast={trackQueue.isLast}
       track={trackQueue.current}
+      nextTrack={trackQueue.nextTrack}
       isShuffled={trackQueue.shuffled}
       {onnext}
       {onprevious}

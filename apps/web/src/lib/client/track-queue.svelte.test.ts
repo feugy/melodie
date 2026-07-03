@@ -168,6 +168,7 @@ describe('track queue', () => {
 	it('is empty', async () => {
 		expect(trackQueue.content).toEqual([])
 		expect(trackQueue.current).toBeUndefined()
+		expect(trackQueue.nextTrack).toBeUndefined()
 		expect(trackQueue.index).toBeNull()
 		expect(trackQueue.length).toBe(0)
 		expect(trackQueue.isLast).toBe(true)
@@ -178,6 +179,7 @@ describe('track queue', () => {
 		await trackQueue.playNext()
 		expect(trackQueue.content).toEqual([])
 		expect(trackQueue.current).toBeUndefined()
+		expect(trackQueue.nextTrack).toBeUndefined()
 		expect(trackQueue.index).toBeNull()
 	})
 
@@ -185,6 +187,7 @@ describe('track queue', () => {
 		await trackQueue.playPrevious()
 		expect(trackQueue.content).toEqual([])
 		expect(trackQueue.current).toBeUndefined()
+		expect(trackQueue.nextTrack).toBeUndefined()
 		expect(trackQueue.index).toBeNull()
 	})
 
@@ -192,6 +195,7 @@ describe('track queue', () => {
 		await trackQueue.removeAt(2)
 		expect(trackQueue.content).toEqual([])
 		expect(trackQueue.current).toBeUndefined()
+		expect(trackQueue.nextTrack).toBeUndefined()
 		expect(trackQueue.index).toBeNull()
 	})
 
@@ -199,6 +203,7 @@ describe('track queue', () => {
 		await trackQueue.jumpTo(2)
 		expect(trackQueue.content).toEqual([])
 		expect(trackQueue.current).toBeUndefined()
+		expect(trackQueue.nextTrack).toBeUndefined()
 		expect(trackQueue.index).toBeNull()
 	})
 
@@ -206,6 +211,7 @@ describe('track queue', () => {
 		await trackQueue.move({ from: 1, to: 2 })
 		expect(trackQueue.content).toEqual([])
 		expect(trackQueue.current).toBeUndefined()
+		expect(trackQueue.nextTrack).toBeUndefined()
 		expect(trackQueue.index).toBeNull()
 	})
 
@@ -213,6 +219,7 @@ describe('track queue', () => {
 		await trackQueue.clear()
 		expect(trackQueue.content).toEqual([])
 		expect(trackQueue.current).toBeUndefined()
+		expect(trackQueue.nextTrack).toBeUndefined()
 		expect(trackQueue.index).toBeNull()
 	})
 
@@ -220,6 +227,7 @@ describe('track queue', () => {
 		await trackQueue.shuffle()
 		expect(trackQueue.content).toEqual([])
 		expect(trackQueue.current).toBeUndefined()
+		expect(trackQueue.nextTrack).toBeUndefined()
 		expect(trackQueue.index).toBeNull()
 		expect(trackQueue.shuffled).toBe(false)
 	})
@@ -279,6 +287,7 @@ describe('track queue', () => {
 			await trackQueue.add([t1], { play: false })
 			expect(trackQueue.content).toEqual([t1])
 			expect(trackQueue.current).toEqual(t1)
+			expect(trackQueue.nextTrack).toEqual(t1)
 			expect(trackQueue.index).toBe(0)
 			expect(trackQueue.length).toBe(1)
 			expect(trackQueue.isLast).toBe(true)
@@ -896,5 +905,15 @@ describe('track queue', () => {
 		expect(
 			await localforage.getItem<number | undefined>(currentStorageKey)
 		).toEqual(trackQueue.index)
+
+		const expectedNextTrack =
+			trackQueue.content.length === 0
+				? undefined
+				: trackQueue.content[
+						(trackQueue.index ?? 0) >= trackQueue.content.length - 1
+							? 0
+							: (trackQueue.index ?? 0) + 1
+					]
+		expect(trackQueue.nextTrack).toEqual(expectedNextTrack)
 	}
 })

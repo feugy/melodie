@@ -18,6 +18,7 @@
 - feedback when adding to the queue (large & narrow screens)
 - play/enqueue test for albums: order is often wrong when adding from the list (ok from details)
 - store volume in local storage
+- styles are awful
 
 # Architecture design
 

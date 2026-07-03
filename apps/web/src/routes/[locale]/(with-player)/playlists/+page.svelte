@@ -9,10 +9,17 @@
   let { data }: { data: PageData } = $props()
 
   const context = getContext<PlaylistsContext>('playlists')
-  let playlists = $state(context.get())
-  data.playlists?.then((value) => {
-    playlists = value
-    context.set(value)
+  // Ignore stale async load resolutions after a newer invalidate-triggered load starts.
+  let playlistsLoadVersion = 0
+
+  $effect(() => {
+    const loadVersion = ++playlistsLoadVersion
+    void data.playlists?.then((value) => {
+      // A newer load already won; do not overwrite with an older response.
+      if (loadVersion === playlistsLoadVersion) {
+        context.set(value)
+      }
+    })
   })
 
   async function handlePlay(playlist: LightPlaylist, play = true) {
@@ -26,7 +33,7 @@
 </Heading>
 
 <div class="flex flex-wrap justify-around gap-4 p-4">
-  {#each playlists as playlist (playlist.id)}
+  {#each context.get() as playlist (playlist.id)}
     <Playlist
       agentById={data.agentById}
       {playlist}

@@ -4,6 +4,7 @@
   export interface PlayerProps {
     agentById: Map<number, Agent>
     track?: TrackModel
+    nextTrack?: TrackModel
     isLast: boolean
     isShuffled: boolean
     onnext: (autoplay?: boolean) => unknown
@@ -28,6 +29,7 @@
   let {
     agentById,
     track,
+    nextTrack,
     isLast,
     isShuffled,
     onnext,
@@ -49,6 +51,13 @@
   let muted = $state(false)
   let srcRequestId = 0
   let currentTrackIds = $derived(track ? [track.id] : [])
+
+  $effect(() => {
+    // aggressive preload of the next track
+    if (nextTrack) {
+      void trackCache.addToCache(nextTrack)
+    }
+  })
 
   $effect(() => {
     clearTimeout(retry)
