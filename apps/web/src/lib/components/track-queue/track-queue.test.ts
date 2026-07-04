@@ -7,6 +7,7 @@ import {
 	it,
 	mock
 } from 'bun:test'
+import { screen as screenState } from '$lib/client'
 import { makeAgentById, makeTrack } from '$lib/tests/factories'
 import { GlobalRegistrator } from '@happy-dom/global-registrator'
 import type { Track } from '@melodie/common/models'
@@ -45,6 +46,7 @@ describe('TrackQueue component', () => {
 	}
 
 	beforeEach(async () => {
+		screenState.supportHover = true
 		screen = render(TracksQueue, {
 			agentById,
 			tracks,

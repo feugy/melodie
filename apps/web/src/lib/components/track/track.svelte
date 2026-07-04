@@ -1,9 +1,9 @@
 <script module lang="ts">
   import { getImage } from '$lib/client'
-  import { Image } from '$lib/components'
   import { formatTime, linkTo, wrapWithLinks } from '$lib/utils'
   import type { Agent, Track } from '@melodie/common/models'
   import type { Tags } from '@melodie/common/types'
+  import Image from '../image/image.svelte'
 
   export interface TrackProps {
     agentById: Map<number, Agent>

@@ -1,8 +1,8 @@
-import { parseRequest } from '$lib/utils'
 import {
 	bindPlaylistToUser,
 	isPlaylistVisibleToUser
 } from '$lib/server/playlists'
+import { parseRequest } from '$lib/utils'
 import { playlistsModel } from '@melodie/common/models'
 import { hash } from '@melodie/common/utils'
 import { error, json } from '@sveltejs/kit'

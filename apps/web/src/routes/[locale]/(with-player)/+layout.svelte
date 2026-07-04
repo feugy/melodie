@@ -23,7 +23,6 @@
   import type { ScrollContext } from '$lib/types'
   import { debounce, formatTime, initContext, sumDurations } from '$lib/utils'
   import TrashIcon from 'lucide-svelte/icons/trash'
-  import TrackListIcon from 'lucide-svelte/icons/undo-2'
   import { type Snippet, getContext, onMount } from 'svelte'
   import { t } from 'svelte-intl-precompile'
   import type { LayoutData } from './$types'
@@ -39,7 +38,7 @@
   const queueTrackIds = $derived(trackQueue.content.map((track) => track.id))
 
   let notifier: SystemNotifier
-  let trackListOpen = $state(false)
+  let trackListOpen = $state(screen.size >= LG)
   let main: HTMLElement | null = null
 
   initContext()
@@ -76,6 +75,10 @@
     trackQueue.clear()
     trackListOpen = false
   }
+
+  function onplaylistopen(value: boolean) {
+    trackListOpen = value
+  }
 </script>
 
 <div class="flex h-screen flex-col overflow-hidden">
@@ -90,14 +93,13 @@
     ]}
   >
     <main bind:this={main} class="overflow-auto" onscroll={handleScroll}>
-      <Nav bind:trackListOpen />
+      <Nav />
       {@render children?.()}
     </main>
     <aside
       class={[
         'preset-filled-primary-800-200 overflow-auto',
-        screen.size < MD && !trackListOpen && 'w-0',
-        screen.size >= MD && 'w-[40vw]',
+        screen.size < MD ? (trackListOpen ? 'w-full' : 'w-0'): (trackListOpen ? 'w-[40vw]' : 'w-0'),
       ]}
     >
       <Sticky>
@@ -128,13 +130,6 @@
                   >{formatTime(sumDurations(trackQueue.content))}</span
                 >
                 <Button Icon={TrashIcon} onclick={handleClearQueue} size="sm" />
-              {/if}
-              {#if trackListOpen}
-                <Button
-                  Icon={TrackListIcon}
-                  onclick={() => (trackListOpen = false)}
-                  size="sm"
-                />
               {/if}
             {/await}
           </span>
@@ -167,9 +162,11 @@
       track={trackQueue.current}
       nextTrack={trackQueue.nextTrack}
       isShuffled={trackQueue.shuffled}
+      isTrackListOpen={trackListOpen}
       {onnext}
       {onprevious}
       {onshuffle}
+      {onplaylistopen}
     />
   </footer>
 </div>

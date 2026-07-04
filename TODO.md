@@ -9,15 +9,19 @@
 
 ## Server
 
+- TOFIX: deleted playlist do not delete the origilan playlist files (when relevant) and are re-imported on servre restart.
 - worker: tests. resume on failure
 - (idea) track's primary key could be composite of id + agentId (allows multiple agent on different file systems)
 
 ## Web
 
-- on mobile, autoplay stops while loading next track
-- feedback when adding to the queue (large & narrow screens)
-- play/enqueue test for albums: order is often wrong when adding from the list (ok from details)
+- TOFIX play/enqueue test for albums: order is often wrong when adding from the list (ok from details)
+- TOFIX adding a track to a playlist adds at random position
 - store volume in local storage
+- implement track list actions: add to playlist, remove from playlist
+- support reordering tracks in playlist details page
+- support overriding an entire playlist from the track queue (with a modal to ask whether to override or append)
+- feedback when adding to the queue (large & narrow screens)
 - styles are awful
 
 # Architecture design

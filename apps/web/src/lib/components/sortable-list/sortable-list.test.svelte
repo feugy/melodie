@@ -1,6 +1,7 @@
 <script lang="ts">
-  import { SortableList, type SortableListProps, Track } from '$lib/components'
   import type { Agent, Track as FullTrack } from '@melodie/common/models'
+  import Track from '../track/track.svelte'
+  import SortableList, { type SortableListProps } from './sortable-list.svelte'
 
   type T = Pick<FullTrack, 'id' | 'tags'>
   const agentById = new Map<number, Agent>()

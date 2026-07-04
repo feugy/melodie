@@ -7,7 +7,8 @@ import type { PageLoadEvent } from './$types'
 import { load } from './+page'
 
 const goto = mock(async () => void 0)
-mock.module('$app/navigation', () => ({ goto }))
+const invalidate = mock(async () => void 0)
+mock.module('$app/navigation', () => ({ goto, invalidate }))
 
 describe('universal load()', () => {
 	const fetch: Mock<typeof global.fetch> = mock()

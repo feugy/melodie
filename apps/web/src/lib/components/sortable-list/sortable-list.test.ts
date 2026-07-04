@@ -7,6 +7,7 @@ import {
 	it,
 	mock
 } from 'bun:test'
+import { screen as screenState } from '$lib/client'
 import { faker } from '@faker-js/faker'
 import { GlobalRegistrator } from '@happy-dom/global-registrator'
 import type { Track } from '@melodie/common/models'
@@ -110,6 +111,7 @@ describe('SortableList component', () => {
 		let screen: ReturnType<typeof render>
 
 		beforeEach(async () => {
+			screenState.supportHover = true
 			screen = render(SortableList, { items, onmove })
 			onmove.mockReset()
 		})

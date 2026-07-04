@@ -1,7 +1,6 @@
 <script module lang="ts">
   import { goto } from '$app/navigation'
   import { MD, getImage, screen } from '$lib/client'
-  import { Button, Image } from '$lib/components'
   import type { Kind, LightAlbum, LightArtist, LightPlaylist } from '$lib/types'
   import { linkTo } from '$lib/utils'
   import type { Agent } from '@melodie/common/models'
@@ -9,6 +8,8 @@
   import OpenIcon from 'lucide-svelte/icons/maximize-2'
   import PlayIcon from 'lucide-svelte/icons/play'
   import { type Snippet, onMount } from 'svelte'
+  import Button  from '../button/button.svelte'
+  import Image from '../image/image.svelte'
 
   export interface GridItemProps {
     agentById: Map<number, Agent>

@@ -167,8 +167,9 @@
     >
       {#if !screen.supportHover}
         <div
-          class="text-surface-700 flex cursor-grabbing touch-none items-center self-stretch"
+          class="text-surface-700 flex cursor-grabbing touch-none justify-center items-center self-stretch w-10"
           onpointerdown={(evt) => handleDrag(evt, item.key, i)}
+          role="separator"
         >
           <GripIcon />
         </div>

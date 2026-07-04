@@ -1,7 +1,7 @@
 <script module lang="ts">
   import { defineMeta } from '@storybook/addon-svelte-csf'
-  import Component from './track-count.svelte'
   import { tracksData } from '../tracks-table/tracks-table.testdata'
+  import Component from './track-count.svelte'
 
   const { Story } = defineMeta({
     title: 'Components/TrackCount',

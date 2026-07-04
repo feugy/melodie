@@ -914,6 +914,10 @@ describe('track queue', () => {
 							? 0
 							: (trackQueue.index ?? 0) + 1
 					]
-		expect(trackQueue.nextTrack).toEqual(expectedNextTrack)
+		if (expectedNextTrack === undefined) {
+			expect(trackQueue.nextTrack).toBeUndefined()
+		} else {
+			expect(trackQueue.nextTrack).toEqual(expectedNextTrack)
+		}
 	}
 })

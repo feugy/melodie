@@ -2,13 +2,13 @@
   import { invalidate } from '$app/navigation'
   import { base } from '$app/paths'
   import { requestJSON } from '$lib/client'
-  import { Button } from '$lib/components'
   import type { LightPlaylist } from '$lib/types'
   import { Popover, Portal } from '@skeletonlabs/skeleton-svelte'
-  import PlusIcon from 'lucide-svelte/icons/plus'
   import CopyPlusIcon from 'lucide-svelte/icons/copy-plus'
+  import PlusIcon from 'lucide-svelte/icons/plus'
   import { t } from 'svelte-intl-precompile'
   import type { GETModelResponse } from '../../../routes/api/[kind]/+server'
+  import Button from '../button/button.svelte'
 
   interface AddToPlaylistProps {
     trackIds: number[]

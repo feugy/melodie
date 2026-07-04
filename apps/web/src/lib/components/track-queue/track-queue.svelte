@@ -1,7 +1,9 @@
 <script lang="ts">
-  import { Button, SortableList, Track } from '$lib/components'
   import type { Agent, Track as TrackModel } from '@melodie/common/models'
   import CloseIcon from 'lucide-svelte/icons/x'
+  import Button from '../button/button.svelte'
+  import SortableList from '../sortable-list/sortable-list.svelte'
+  import Track from '../track/track.svelte'
 
   interface TrackQueueProps {
     agentById: Map<number, Agent>

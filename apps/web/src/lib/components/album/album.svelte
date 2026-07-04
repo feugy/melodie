@@ -1,10 +1,10 @@
 <script lang="ts">
-  import { GridItem } from '$lib/components'
-  import type { GridItemProps } from '$lib/components'
   import type { LightAlbum } from '$lib/types'
   import { wrapWithLinks } from '$lib/utils'
   import type { Snippet } from 'svelte'
   import { t } from 'svelte-intl-precompile'
+  import GridItem  from '../grid-item/grid-item.svelte'
+  import type { GridItemProps } from '../grid-item/grid-item.svelte'
 
   let {
     album,

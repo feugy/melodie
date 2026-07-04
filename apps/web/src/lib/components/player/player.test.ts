@@ -13,6 +13,7 @@ import { makeAgentById, makeTrack } from '$lib/tests/factories'
 import { GlobalRegistrator } from '@happy-dom/global-registrator'
 import { render } from '@testing-library/svelte'
 import { type Component, tick } from 'svelte'
+import Button from '../button/button.svelte'
 import type { PlayerProps } from './player.svelte'
 import type PlayerType from './player.svelte'
 
@@ -21,11 +22,20 @@ type Deferred<T> = {
 	resolve: (value: T) => void
 }
 
+const goto = mock(async () => void 0)
+const invalidate = mock(async () => void 0)
+mock.module('$app/navigation', () => ({ goto, invalidate }))
+mock.module('$app/environment', () => ({ browser: true }))
+mock.module('$lib/components/add-to-playlist/add-to-playlist.svelte', () => ({
+	default: Button
+}))
+
 describe('Player component', () => {
 	const agentById = makeAgentById()
 	const onnext = mock()
 	const onprevious = mock()
 	const onshuffle = mock()
+	const onplaylistopen = mock()
 	let Player: Component<PlayerProps>
 	let playSpy: ReturnType<typeof spyOn>
 
@@ -48,6 +58,7 @@ describe('Player component', () => {
 		onnext.mockClear()
 		onprevious.mockClear()
 		onshuffle.mockClear()
+		onplaylistopen.mockClear()
 		playSpy.mockClear()
 		screen.size = MD
 		screen.supportHover = true
@@ -72,9 +83,11 @@ describe('Player component', () => {
 			track: firstTrack,
 			isLast: false,
 			isShuffled: false,
+			isTrackListOpen: false,
 			onnext,
 			onprevious,
-			onshuffle
+			onshuffle,
+			onplaylistopen
 		})
 		const audio = getByTestId('audio-player') as HTMLAudioElement
 		await flushEffects()
@@ -86,9 +99,11 @@ describe('Player component', () => {
 			track: secondTrack,
 			isLast: false,
 			isShuffled: false,
+			isTrackListOpen: false,
 			onnext,
 			onprevious,
-			onshuffle
+			onshuffle,
+			onplaylistopen
 		})
 		await flushEffects()
 
@@ -120,9 +135,11 @@ describe('Player component', () => {
 			track: firstTrack,
 			isLast: false,
 			isShuffled: false,
+			isTrackListOpen: false,
 			onnext,
 			onprevious,
-			onshuffle
+			onshuffle,
+			onplaylistopen
 		})
 		const audio = getByTestId('audio-player') as HTMLAudioElement
 		await flushEffects()
@@ -132,9 +149,11 @@ describe('Player component', () => {
 			track: secondTrack,
 			isLast: false,
 			isShuffled: false,
+			isTrackListOpen: false,
 			onnext,
 			onprevious,
-			onshuffle
+			onshuffle,
+			onplaylistopen
 		})
 		await flushEffects()
 		expect(audio.src).toBe('')

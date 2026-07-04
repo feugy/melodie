@@ -1,5 +1,5 @@
 import { refreshSession, setTokenCookie } from '$lib/server'
-import { json, type RequestHandler } from '@sveltejs/kit'
+import { type RequestHandler, json } from '@sveltejs/kit'
 
 export const POST: RequestHandler = async ({ locals, url }) => {
 	if (!locals.session) {

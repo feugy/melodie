@@ -1,4 +1,3 @@
-import { base } from '$app/paths'
 import {
 	afterAll,
 	beforeAll,
@@ -7,6 +6,7 @@ import {
 	it,
 	setSystemTime
 } from 'bun:test'
+import { base } from '$app/paths'
 import { faker } from '@faker-js/faker'
 import { type User, init, usersModel } from '@melodie/common/models'
 import { cleanTestTB, initTestDB } from '@melodie/common/tests'

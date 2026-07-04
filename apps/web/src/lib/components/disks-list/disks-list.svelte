@@ -1,7 +1,8 @@
 <script lang="ts">
-  import { TracksTable, type TracksTableProps } from '$lib/components'
   import { groupByDisk } from '$lib/utils/tracks'
   import { t } from 'svelte-intl-precompile'
+  import TracksTable  from '../tracks-table/tracks-table.svelte'
+  import type { TracksTableProps } from '../tracks-table/tracks-table.svelte'
 
   let { tracks, ...rest }: TracksTableProps = $props()
 

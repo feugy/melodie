@@ -8,6 +8,8 @@ export const contentStorageKey = 'tracks-queue'
 export const backupStorageKey = 'tracks-queue-backup'
 export const currentStorageKey = 'current-track'
 
+const cachedItemsOnChange = 5
+
 class TrackQueue {
 	content = $state<Track[]>([])
 	backup = $state<Track['id'][] | null>(null)
@@ -91,7 +93,7 @@ class TrackQueue {
 		// warm track cache
 		if (this.content.length === 0) return
 		const startIdx = this.index ?? 0
-		const end = Math.min(startIdx + 3, this.content.length)
+		const end = Math.min(startIdx + cachedItemsOnChange, this.content.length)
 		for (let i = startIdx; i < end; i++) {
 			trackCache.addToCache(this.content[i])
 		}

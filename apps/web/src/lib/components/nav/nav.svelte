@@ -3,20 +3,19 @@
   import { base } from '$app/paths'
   import { page } from '$app/state'
   import { MD, screen } from '$lib/client'
-  import { Button, Sticky } from '$lib/components'
   import AlbumIcon from 'lucide-svelte/icons/disc'
   import PlaylistIcon from 'lucide-svelte/icons/list-music'
-  import TrackListIcon from 'lucide-svelte/icons/music-2'
   import ArtistIcon from 'lucide-svelte/icons/user'
   import type { Snippet } from 'svelte'
   import { locale, t } from 'svelte-intl-precompile'
+  import Button  from '../button/button.svelte'
+  import Sticky from '../sticky/sticky.svelte'
 
   interface NavProps {
-    trackListOpen?: boolean
     class?: string
   }
 
-  let { trackListOpen = $bindable(), class: className }: NavProps = $props()
+  let { class: className }: NavProps = $props()
 
   let isLarge = $derived(screen.size >= MD)
   let path = $derived(
@@ -54,14 +53,5 @@
         children={isLarge ? (playlistContent as unknown as Snippet) : undefined}
       />
     </li>
-    {#if screen.size < MD}
-      <li class="flex-1 text-right">
-        <Button
-          color={trackListOpen ? 'primary' : 'secondary'}
-          Icon={TrackListIcon}
-          onclick={() => (trackListOpen = !trackListOpen)}
-        />
-      </li>
-    {/if}
   </ul>
 </Sticky>

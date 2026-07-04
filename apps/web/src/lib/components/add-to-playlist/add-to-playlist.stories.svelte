@@ -2,7 +2,7 @@
   import type { LightPlaylist } from '$lib/types'
   import { defineMeta } from '@storybook/addon-svelte-csf'
   import { expect, userEvent, within } from '@storybook/test'
-  import { delay, http, HttpResponse } from 'msw'
+  import { http, HttpResponse, delay } from 'msw'
   import Component from './add-to-playlist.svelte'
 
   const playlists: LightPlaylist[] = [

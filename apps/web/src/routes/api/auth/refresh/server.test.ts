@@ -1,9 +1,9 @@
 import { afterAll, beforeAll, describe, expect, it } from 'bun:test'
+import { logIn } from '$lib/server'
 import { faker } from '@faker-js/faker'
 import { type User, init, usersModel } from '@melodie/common/models'
 import { cleanTestTB, initTestDB } from '@melodie/common/tests'
 import type { DBConf } from '@melodie/common/types'
-import { logIn } from '$lib/server'
 import { encode } from '@melodie/common/utils'
 import { POST } from './+server'
 

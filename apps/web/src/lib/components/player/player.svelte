@@ -7,9 +7,11 @@
     nextTrack?: TrackModel
     isLast: boolean
     isShuffled: boolean
+    isTrackListOpen: boolean
     onnext: (autoplay?: boolean) => unknown
     onprevious: () => unknown
     onshuffle: () => unknown
+    onplaylistopen: (isTrackListOpen: boolean) => unknown
   }
 </script>
 
@@ -21,10 +23,15 @@
   import ShuffleIcon from 'lucide-svelte/icons/shuffle'
   import MuteIcon from 'lucide-svelte/icons/volume-off'
   import UnmuteIcon from 'lucide-svelte/icons/volume-2'
+  import PlaylistIcon from 'lucide-svelte/icons/logs'
+  import PlaylistCloseIcon from 'lucide-svelte/icons/x'
   import { onMount } from 'svelte'
   import { MD, screen, trackCache } from '$lib/client'
-  import { AddToPlaylist, Button, Slider, Track } from '$lib/components'
   import { wrapWithLinks } from '$lib/utils'
+  import AddToPlaylist  from '../add-to-playlist/add-to-playlist.svelte'
+  import Button  from '../button/button.svelte'
+  import Slider from '../slider/slider.svelte'
+  import Track from '../track/track.svelte'
 
   let {
     agentById,
@@ -32,9 +39,11 @@
     nextTrack,
     isLast,
     isShuffled,
+    isTrackListOpen,
     onnext,
     onprevious,
     onshuffle,
+    onplaylistopen
   }: PlayerProps = $props()
 
   let player: HTMLAudioElement | undefined
@@ -50,7 +59,6 @@
   let volume = $state(1)
   let muted = $state(false)
   let srcRequestId = 0
-  let currentTrackIds = $derived(track ? [track.id] : [])
 
   $effect(() => {
     // aggressive preload of the next track
@@ -71,22 +79,21 @@
 
     src = undefined
     loading = true
-    // 1) Try cached data first.
-    // 2) If missing or failing, fall back to remote URL and warm cache in background.
-    // 3) Ignore stale async resolutions using requestId.
     trackCache
+      // Try cached data first.
       .readCachedTrack(track)
       .catch(() => undefined)
       .then((data) => {
         if (requestId !== srcRequestId) {
+          // Ignore stale async resolutions using requestId.
           return
         }
         if (data) {
           src = data
-          return
+        } else {
+          // If missing or failing, fall back to remote URL and warm cache in background.
+          src = trackCache.getTrackURLAndCache(track)
         }
-        src = trackCache.getTrackURLAndCache(track)
-        loading = false
       })
   })
 
@@ -141,12 +148,12 @@
     }
 
     if (!screen.supportHover) {
-      navigator.wakeLock
-        ?.request()
-        .then((lock) => {
-          wakeLock = lock
-        })
-        .catch(() => void 0)
+      // navigator.wakeLock
+      //   ?.request()
+      //   .then((lock) => {
+      //     wakeLock = lock
+      //   })
+      //   .catch(() => void 0)
     }
   }
 
@@ -202,7 +209,7 @@
     &nbsp;
   {/if}
 
-  <div class="flex flex-1 flex-col items-center gap-2 px-4">
+  <div class="flex flex-1 flex-col items-center gap-2 md:px-4">
     {#if screen.size < MD && track}
       <div class="flex flex-col items-center gap-2">
         <span>{track.tags.title}</span>
@@ -211,8 +218,8 @@
         >
       </div>
     {/if}
-    <div class="flex items-center gap-2">
-      <AddToPlaylist trackIds={currentTrackIds} />
+    <div class="flex items-center gap-1 md:gap-2">
+      <AddToPlaylist trackIds={track ? [track.id] : []} />
       <Button
         color={isShuffled ? 'primary' : 'secondary'}
         onclick={() => onshuffle()}
@@ -233,6 +240,11 @@
       {#if screen.size < MD}
         {@render muteButton()}
       {/if}
+      <Button
+        Icon={isTrackListOpen ? PlaylistCloseIcon : PlaylistIcon}
+        onclick={() => onplaylistopen(!isTrackListOpen)}
+        size="sm"
+      />
     </div>
     <div class="flex w-full items-center gap-2">
       <span class="text-sm">{format(time)}</span>

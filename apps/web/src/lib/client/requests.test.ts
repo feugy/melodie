@@ -1,5 +1,5 @@
-import { base } from '$app/paths'
 import { beforeEach, describe, expect, it, mock, spyOn } from 'bun:test'
+import { base } from '$app/paths'
 import {
 	UnauthorizedError,
 	getLocaleFromPathname,
@@ -10,7 +10,8 @@ import {
 } from './requests'
 
 const goto = mock(async () => void 0)
-mock.module('$app/navigation', () => ({ goto }))
+const invalidate = mock(async () => void 0)
+mock.module('$app/navigation', () => ({ goto, invalidate }))
 mock.module('$app/environment', () => ({ browser: true }))
 
 const fetch = spyOn(globalThis, 'fetch')

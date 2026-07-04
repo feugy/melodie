@@ -1,12 +1,12 @@
 <script lang="ts">
   import { enhance } from '$app/forms'
   import { trackQueue } from '$lib/client'
-  import { Button, ConfirmButton, Dialog, Heading, TracksTable, TrackCount } from '$lib/components'
+  import { Button, ConfirmButton, Dialog, Heading, TrackCount, TracksTable } from '$lib/components'
   import type { ButtonProps } from '$lib/components/button/button.svelte'
-  import PencilIcon from 'lucide-svelte/icons/pencil'
-  import TrashIcon from 'lucide-svelte/icons/trash'
   import EnqueueIcon from 'lucide-svelte/icons/list-plus'
+  import PencilIcon from 'lucide-svelte/icons/pencil'
   import PlayIcon from 'lucide-svelte/icons/play'
+  import TrashIcon from 'lucide-svelte/icons/trash'
   import { t } from 'svelte-intl-precompile'
   import type { PageData } from './$types'
 

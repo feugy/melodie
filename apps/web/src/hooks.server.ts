@@ -1,5 +1,5 @@
 import { base } from '$app/paths'
-import { recoverSession, setTokenCookie, getTokenFromCookie } from '$lib/server'
+import { getTokenFromCookie, recoverSession, setTokenCookie } from '$lib/server'
 import { supportedLanguages } from '$lib/utils'
 import type { Handle } from '@sveltejs/kit'
 import { pick } from 'accept-language-parser'
