@@ -76,7 +76,8 @@ describe('Folders service', () => {
 				trackPaths: [],
 				refs: [],
 				media: null,
-				mediaCount: 0
+				mediaCount: 0,
+				filePath: path
 			}
 		})
 		statsByPath.clear()
@@ -216,6 +217,7 @@ describe('Folders service', () => {
 					mtimeMs: expect.any(Number),
 					media: null,
 					mediaCount: 0,
+					filePath: expect.stringContaining('.m3u'),
 					name: 'new',
 					refs: [],
 					trackIds: [],

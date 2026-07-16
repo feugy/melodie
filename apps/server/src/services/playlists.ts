@@ -53,17 +53,18 @@ export class PlaylistsService {
 				extname(path) === '.m3u' ? 'latin1' : 'utf8'
 			)
 			const { ino, mtimeMs } = await stat(path)
-			const playlist: Playlist & { trackPaths: string[] } = {
-				id: ino,
-				mtimeMs,
-				name: basename(path).replace(/\.m3u.?$/, ''),
-				trackIds: [0], // trackIds must not be empty or the playlist will not be saved.
-				trackPaths: [],
-				refs: [],
-				media: null,
-				mediaCount: 0,
-				userIds: []
-			}
+		const playlist: Playlist & { trackPaths: string[] } = {
+			id: ino,
+			mtimeMs,
+			name: basename(path).replace(/\.m3u.?$/, ''),
+			trackIds: [0], // trackIds must not be empty or the playlist will not be saved.
+			trackPaths: [],
+			refs: [],
+			media: null,
+			mediaCount: 0,
+			filePath: path,
+			userIds: []
+		}
 			const root = dirname(path)
 			for (const line of lines.split('\n')) {
 				if (
@@ -150,12 +151,24 @@ export class PlaylistsService {
 			// if we found differences, save the filtered ids
 			if (resolveIds.length || difference(playlist.trackIds, trackIds).length) {
 				const newTrackIds = [...trackIds, ...resolveIds]
-				this.logger.info('fixing playlist', { playlist, trackIds: newTrackIds })
-				await this.save({
-					...playlist,
-					trackIds: newTrackIds,
-					trackPaths: undefined
-				})
+				if (
+					newTrackIds.length === 0 &&
+					playlist.id !== undefined &&
+					playlist.filePath
+				) {
+					this.logger.info('removing empty playlist', { playlist })
+					await playlistsModel.removeByIds([playlist.id])
+				} else {
+					this.logger.info('fixing playlist', {
+						playlist,
+						trackIds: newTrackIds
+					})
+					await this.save({
+						...playlist,
+						trackIds: newTrackIds,
+						trackPaths: undefined
+					})
+				}
 			}
 		}
 		this.toCheck = []

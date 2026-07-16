@@ -7,6 +7,9 @@ import {
 	expect,
 	it
 } from 'bun:test'
+import { mkdtemp, readFile, writeFile } from 'node:fs/promises'
+import { tmpdir } from 'node:os'
+import { join } from 'node:path'
 import { faker } from '@faker-js/faker'
 import { cleanTestTB, initTestDB } from '../tests/database.ts'
 import { makeRef } from '../tests/refs.ts'
@@ -79,6 +82,7 @@ describe('Playlists model', () => {
 					mediaCount: 0,
 					refs: [makeRef(artist1), makeRef(album1), [1, null]],
 					trackPaths: null as unknown as undefined,
+					filePath: null,
 					userIds: []
 				}
 			])
@@ -93,6 +97,7 @@ describe('Playlists model', () => {
 				name: faker.lorem.words(),
 				trackIds: [tracks[0].id, tracks[3].id],
 				refs: [],
+				filePath: null,
 				userIds: []
 			}
 
@@ -148,6 +153,95 @@ describe('Playlists model', () => {
 			for (const { id, mtimeMs } of playlists) {
 				expect(timesByIno.get(id)).toEqual(mtimeMs)
 			}
+		})
+	})
+
+	describe('removeByIds()', () => {
+		let folder: string
+
+		beforeAll(async () => {
+			folder = await mkdtemp(join(tmpdir(), 'melodie-playlists-'))
+		})
+
+		it('removes playlist from database', async () => {
+			const playlist: Playlist = {
+				id: faker.number.int(),
+				media: null,
+				mediaCount: 0,
+				mtimeMs: Date.now(),
+				name: faker.music.songName(),
+				trackIds: [tracks[0].id],
+				refs: [],
+				filePath: null,
+				userIds: []
+			}
+			await playlistsModel.save(playlist)
+			expect(await playlistsModel.getById(playlist.id)).not.toBeNull()
+
+			const removed = await playlistsModel.removeByIds([playlist.id])
+			expect(removed).toHaveLength(1)
+			expect(removed[0].id).toEqual(playlist.id)
+			expect(await playlistsModel.getById(playlist.id)).toBeNull()
+		})
+
+		it('deletes file on disk when filePath is set', async () => {
+			const filePath = join(folder, `${faker.string.uuid()}.m3u`)
+			await writeFile(filePath, '#EXTM3U\n')
+			const playlist: Playlist = {
+				id: faker.number.int(),
+				media: null,
+				mediaCount: 0,
+				mtimeMs: Date.now(),
+				name: faker.music.songName(),
+				trackIds: [tracks[0].id],
+				refs: [],
+				filePath,
+				userIds: []
+			}
+			await playlistsModel.save(playlist)
+
+			await playlistsModel.removeByIds([playlist.id])
+
+			await expect(readFile(filePath)).rejects.toThrow()
+		})
+
+		it('ignores missing file when filePath is set', async () => {
+			const filePath = join(folder, `${faker.string.uuid()}.m3u`)
+			const playlist: Playlist = {
+				id: faker.number.int(),
+				media: null,
+				mediaCount: 0,
+				mtimeMs: Date.now(),
+				name: faker.music.songName(),
+				trackIds: [tracks[0].id],
+				refs: [],
+				filePath,
+				userIds: []
+			}
+			await playlistsModel.save(playlist)
+
+			const removed = await playlistsModel.removeByIds([playlist.id])
+			expect(removed).toHaveLength(1)
+			expect(await playlistsModel.getById(playlist.id)).toBeNull()
+		})
+
+		it('does not throw when filePath is null', async () => {
+			const playlist: Playlist = {
+				id: faker.number.int(),
+				media: null,
+				mediaCount: 0,
+				mtimeMs: Date.now(),
+				name: faker.music.songName(),
+				trackIds: [tracks[0].id],
+				refs: [],
+				filePath: null,
+				userIds: []
+			}
+			await playlistsModel.save(playlist)
+
+			const removed = await playlistsModel.removeByIds([playlist.id])
+			expect(removed).toHaveLength(1)
+			expect(await playlistsModel.getById(playlist.id)).toBeNull()
 		})
 	})
 })

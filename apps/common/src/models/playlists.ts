@@ -1,3 +1,4 @@
+import { unlink } from 'node:fs/promises'
 import {
 	type Reference,
 	parseRawRef,
@@ -23,6 +24,9 @@ export interface Playlist {
 	media: string | null
 	/** count incremented on every media change. */
 	mediaCount: number
+	/** full path to the playlist file on disk, if imported from a file. */
+	filePath: string | null
+	/** ids of users owning this playlist. An empty array means public access. */
 	userIds: number[]
 }
 
@@ -78,6 +82,30 @@ export class PlaylistModel extends AbstractTrackList<Playlist> {
 		}
 		this.logger.debug('list with time', { hitCount: result.size })
 		return result
+	}
+
+	/**
+	 * Removes playlists by their ids and deletes associated files on disk.
+	 * @param ids Ids of removed playlists
+	 * @returns list (may be empty) of removed playlists
+	 */
+	async removeByIds(ids: Playlist['id'][]): Promise<Playlist[]> {
+		const removed = await super.removeByIds(ids)
+		for (const { filePath } of removed) {
+			if (filePath) {
+				try {
+					await unlink(filePath)
+				} catch (err) {
+					if ((err as NodeJS.ErrnoException).code !== 'ENOENT') {
+						this.logger.warn('failed to delete playlist file', {
+							error: err,
+							filePath
+						})
+					}
+				}
+			}
+		}
+		return removed
 	}
 }
 

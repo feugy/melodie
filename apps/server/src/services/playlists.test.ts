@@ -8,7 +8,7 @@ import { addId } from '@melodie/common/tests'
 import type { PartialWithReq } from '@melodie/common/types'
 import { playlistsService as service } from './playlists.ts'
 
-const playlistsModel = { save: mock() }
+const playlistsModel = { save: mock(), removeByIds: mock() }
 const tracksModel = {
 	getByIds: mock<(ids: number[]) => Promise<Track[]>>(),
 	getByPaths: mock<(paths: string[]) => Promise<Track[]>>()
@@ -30,6 +30,7 @@ describe('Playlists service', () => {
 			}
 			return { saved, removedIds }
 		})
+		playlistsModel.removeByIds.mockReset().mockResolvedValue([])
 
 		tracksModel.getByIds.mockReset().mockImplementation(async ids =>
 			ids.filter(Boolean).map(id => ({
@@ -104,6 +105,7 @@ ${track4}`,
 					refs: [],
 					media: null,
 					mediaCount: 0,
+					filePath: playlist,
 					mtimeMs: mtimeMs,
 					trackIds: [0],
 					trackPaths: [track1, track2, track3, track4],
@@ -130,6 +132,7 @@ ${join('nested', 'music.flac')}`,
 					refs: [],
 					media: null,
 					mediaCount: 0,
+					filePath: playlist,
 					mtimeMs,
 					trackIds: [0],
 					trackPaths: [
@@ -161,6 +164,7 @@ file://${encodeURI(track4)}`,
 					refs: [],
 					media: null,
 					mediaCount: 0,
+					filePath: playlist,
 					mtimeMs,
 					trackIds: [0],
 					trackPaths: [track1, track2, track3, track4],
@@ -187,6 +191,7 @@ ${track3}`,
 					refs: [],
 					media: null,
 					mediaCount: 0,
+					filePath: playlist,
 					mtimeMs,
 					trackIds: [0],
 					trackPaths: [track1, track3],
@@ -213,6 +218,7 @@ ${track2}`,
 					refs: [],
 					media: null,
 					mediaCount: 0,
+					filePath: playlist,
 					mtimeMs,
 					trackIds: [0],
 					trackPaths: [track1, track2],
@@ -241,6 +247,7 @@ ${track2}
 					refs: [],
 					media: null,
 					mediaCount: 0,
+					filePath: playlist,
 					mtimeMs,
 					trackIds: [0],
 					trackPaths: [track2],
@@ -269,6 +276,7 @@ https://example.com/track.ogg
 					refs: [],
 					media: null,
 					mediaCount: 0,
+					filePath: playlist,
 					mtimeMs,
 					trackIds: [0],
 					trackPaths: [track1, track2],
@@ -483,6 +491,23 @@ https://example.com/track.ogg
 				trackPaths: undefined
 			})
 			expect(playlistsModel.save).toHaveBeenCalledTimes(2)
+		})
+
+		it('removes file-backed playlist with empty tracks via', async () => {
+			const playlist = addId({
+				name: faker.music.songName(),
+				trackIds: [faker.number.int(), faker.number.int()],
+				filePath: faker.system.filePath()
+			})
+
+			await service.save(playlist, true)
+			playlistsModel.save.mockClear()
+
+			tracksModel.getByIds.mockResolvedValueOnce([])
+
+			await service.checkIntegrity()
+			expect(playlistsModel.removeByIds).toHaveBeenCalledWith([playlist.id])
+			expect(playlistsModel.save).not.toHaveBeenCalled()
 		})
 
 		it('clears the list of playlists marked for checking', async () => {

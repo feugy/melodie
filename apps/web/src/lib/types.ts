@@ -4,7 +4,7 @@ export type LightAlbum = Omit<Album, 'mtimeMs' | 'removedTrackIds'>
 export type LightArtist = Omit<Artist, 'mtimeMs' | 'removedTrackIds'>
 export type LightPlaylist = Omit<
 	Playlist,
-	'mtimeMs' | 'removedTrackIds' | 'trackPaths' | 'userIds'
+	'mtimeMs' | 'removedTrackIds' | 'trackPaths' | 'userIds' | 'filePath'
 >
 
 export type Kind = 'albums' | 'artists' | 'playlists'

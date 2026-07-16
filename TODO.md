@@ -9,7 +9,6 @@
 
 ## Server
 
-- TOFIX: deleted playlist do not delete the origilan playlist files (when relevant) and are re-imported on servre restart.
 - worker: tests. resume on failure
 - (idea) track's primary key could be composite of id + agentId (allows multiple agent on different file systems)
 

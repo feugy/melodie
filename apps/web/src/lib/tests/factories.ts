@@ -94,6 +94,7 @@ export function makePlaylist(playlist: Partial<Playlist> = {}): Playlist {
 		mtimeMs: faker.date.recent().getTime(),
 		media: null,
 		mediaCount: 0,
+		filePath: null,
 		...playlist,
 		trackIds: playlist.trackIds ? [...playlist.trackIds] : [faker.number.int()],
 		refs: playlist.refs ? [...playlist.refs] : [],
