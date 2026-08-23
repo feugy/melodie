@@ -16,8 +16,8 @@
 </script>
 
 <script lang="ts">
-  import CheckIcon from 'lucide-svelte/icons/check'
-  import XIcon from 'lucide-svelte/icons/x'
+  import CheckIcon from '@lucide/svelte/icons/check'
+  import XIcon from '@lucide/svelte/icons/x'
   import Button from '../button/button.svelte'
 
   let {

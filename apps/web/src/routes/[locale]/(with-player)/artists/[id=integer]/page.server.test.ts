@@ -7,6 +7,7 @@ import {
 	makeTracks
 } from '$lib/tests/factories'
 import { groupByAlbum } from '$lib/utils/tracks'
+import { toClientTrack } from '$lib/server/models'
 import { faker } from '@faker-js/faker'
 import {
 	type Agent,
@@ -76,7 +77,7 @@ describe('server load()', () => {
 		} as PageServerLoadEvent)) as Record<string, unknown>
 		expect(response).toEqual({
 			artist: artists[0],
-			albumsWithTracks: groupByAlbum(tracks.slice(0, 1))
+			albumsWithTracks: groupByAlbum(tracks.slice(0, 1).map(toClientTrack))
 		})
 	})
 
@@ -86,7 +87,7 @@ describe('server load()', () => {
 		} as PageServerLoadEvent)) as Record<string, unknown>
 		expect(response).toEqual({
 			artist: artists[1],
-			albumsWithTracks: groupByAlbum(tracks.slice(1, 3))
+			albumsWithTracks: groupByAlbum(tracks.slice(1, 3).map(toClientTrack))
 		})
 	})
 })

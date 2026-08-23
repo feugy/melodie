@@ -14,7 +14,7 @@ import {
 } from '@melodie/common/models'
 import { cleanTestTB, initTestDB } from '@melodie/common/tests'
 import type { DBConf } from '@melodie/common/types'
-import { count, list, loadTracks } from './models'
+import { count, list, loadTracks, toClientTrack } from './models'
 
 describe('models server utils', () => {
 	let conf: DBConf
@@ -93,14 +93,20 @@ describe('models server utils', () => {
 	})
 
 	it('loads album tracks', async () => {
-		expect(await loadTracks(albums[0])).toEqual(tracks.slice(0, 3))
+		expect(await loadTracks(albums[0])).toEqual(
+			tracks.slice(0, 3).map(toClientTrack)
+		)
 	})
 
 	it('loads artist tracks', async () => {
-		expect(await loadTracks(artists[0])).toEqual(tracks.slice(2, 5))
+		expect(await loadTracks(artists[0])).toEqual(
+			tracks.slice(2, 5).map(toClientTrack)
+		)
 	})
 
 	it('loads playlist tracks', async () => {
-		expect(await loadTracks(playlists[0])).toEqual(tracks.slice(4, 7))
+		expect(await loadTracks(playlists[0])).toEqual(
+			tracks.slice(4, 7).map(toClientTrack)
+		)
 	})
 })

@@ -4,8 +4,8 @@
   import { requestJSON } from '$lib/client'
   import type { LightPlaylist } from '$lib/types'
   import { Popover, Portal } from '@skeletonlabs/skeleton-svelte'
-  import CopyPlusIcon from 'lucide-svelte/icons/copy-plus'
-  import PlusIcon from 'lucide-svelte/icons/plus'
+  import CopyPlusIcon from '@lucide/svelte/icons/copy-plus'
+  import PlusIcon from '@lucide/svelte/icons/plus'
   import { t } from 'svelte-intl-precompile'
   import type { GETModelResponse } from '../../../routes/api/[kind]/+server'
   import Button from '../button/button.svelte'
@@ -115,14 +115,15 @@
     open = nextOpen
   }}
 >
+  <!-- Copy all classes of a secondary, md button.svelte with child (gap and icon stlyes) -->
   <Popover.Trigger
     aria-label={$t('add to playlist')}
-    class="btn font-semibold preset-filled-secondary-500 h-auto p-2! rounded-full"
+    class="btn btn-md h-auto font-semibold preset-filled-secondary-500 border-1 border-transparent p-2! rounded-full gap-2"
     disabled={!trackIds.length}
     title={$t('add to playlist')}
     type="button"
   >
-    <CopyPlusIcon/>
+    <CopyPlusIcon class="size-[1.25em] text-inherit"/>
   </Popover.Trigger>
 
 	<Portal>

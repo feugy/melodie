@@ -11,6 +11,8 @@ export interface Track {
 	mtimeMs: number
 	/** full path to the track file. */
 	path: string
+	/** path to the track file, relative to the music root folder. */
+	relativePath?: string | null
 	/** full path to the media file for this track. */
 	media: string | null
 	/** count incremented on every media change. */

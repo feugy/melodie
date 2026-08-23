@@ -13,6 +13,7 @@
 
 <script lang="ts">
   import { t } from 'svelte-intl-precompile'
+  import LocalPin from '../local-pin/local-pin.svelte'
   import { formatTime, wrapWithLink } from '$lib/utils'
   import { sortByNum } from '$lib/utils/tracks'
   let {
@@ -72,7 +73,7 @@
             </td>
           {/if}
           <td>{formatTime(track.tags.duration)}</td>
-          <td class="w-[60px]"></td>
+          <td class="w-[60px] text-center"><LocalPin {track} /></td>
         </tr>
       {/each}
     </tbody>

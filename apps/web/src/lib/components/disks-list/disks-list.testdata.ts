@@ -332,5 +332,5 @@ export const disksData: Track[] = [
 	}
 ].map(track => {
 	track.path = `./${album}/${track.tags.disk?.no ?? '1'}/${track.tags.track.no} ${track.tags.title}.mp3`
-	return addId(track)
+	return addId({ ...track, relativePath: track.path.slice(2) })
 })

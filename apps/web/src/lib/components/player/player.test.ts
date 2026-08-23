@@ -8,7 +8,7 @@ import {
 	mock,
 	spyOn
 } from 'bun:test'
-import { MD, screen, trackCache } from '$lib/client'
+import { MD, localLibrary, screen } from '$lib/client'
 import { makeAgentById, makeTrack } from '$lib/tests/factories'
 import { GlobalRegistrator } from '@happy-dom/global-registrator'
 import { render } from '@testing-library/svelte'
@@ -64,17 +64,8 @@ describe('Player component', () => {
 		screen.supportHover = true
 	})
 
-	it('switches src immediately without waiting for cache reads', async () => {
-		const getTrackURLAndCacheSpy = spyOn(
-			trackCache,
-			'getTrackURLAndCache'
-		).mockImplementation(track =>
-			track ? `https://agent.test/tracks/${track.id}/data` : undefined
-		)
-		const readCachedTrackSpy = spyOn(
-			trackCache,
-			'readCachedTrack'
-		).mockResolvedValue(undefined)
+	it('uses local file when available, falls back to remote URL', async () => {
+		const getURLSpy = spyOn(localLibrary, 'getURL').mockResolvedValue(null)
 		const firstTrack = makeTrack({ id: 1, agentId: 1 })
 		const secondTrack = makeTrack({ id: 2, agentId: 1 })
 
@@ -108,23 +99,15 @@ describe('Player component', () => {
 		await flushEffects()
 
 		expect(audio.src).toContain('/tracks/2/data')
-		expect(getTrackURLAndCacheSpy).toHaveBeenCalledTimes(2)
-		expect(readCachedTrackSpy).toHaveBeenCalledTimes(2)
+		expect(getURLSpy).toHaveBeenCalledTimes(2)
 		expect(playSpy).toHaveBeenCalled()
-		getTrackURLAndCacheSpy.mockRestore()
-		readCachedTrackSpy.mockRestore()
+		getURLSpy.mockRestore()
 	})
 
-	it('ignores stale cache resolution after rapid track switches', async () => {
-		const deferredByTrackId = new Map<number, Deferred<string | undefined>>()
-		const getTrackURLAndCacheSpy = spyOn(trackCache, 'getTrackURLAndCache')
-		const readCachedTrackSpy = spyOn(
-			trackCache,
-			'readCachedTrack'
-		).mockImplementation(track => {
-			if (!track) {
-				return Promise.resolve(undefined)
-			}
+	it('ignores stale local-file resolution after rapid track switches', async () => {
+		const deferredByTrackId = new Map<number, Deferred<string | null>>()
+		const getURLSpy = spyOn(localLibrary, 'getURL').mockImplementation(track => {
+			if (!track) return Promise.resolve(null)
 			return getOrCreateDeferred(deferredByTrackId, track.id).promise
 		})
 		const firstTrack = makeTrack({ id: 11, agentId: 1 })
@@ -158,9 +141,7 @@ describe('Player component', () => {
 		await flushEffects()
 		expect(audio.src).toBe('')
 
-		getOrCreateDeferred(deferredByTrackId, firstTrack.id).resolve(
-			'blob:stale-track'
-		)
+		getOrCreateDeferred(deferredByTrackId, firstTrack.id).resolve(null)
 		await flushEffects()
 		expect(audio.src).toBe('')
 
@@ -170,9 +151,7 @@ describe('Player component', () => {
 		await flushEffects()
 		expect(audio.src).toContain('blob:current-track')
 
-		expect(getTrackURLAndCacheSpy).not.toHaveBeenCalled()
-		getTrackURLAndCacheSpy.mockRestore()
-		readCachedTrackSpy.mockRestore()
+		getURLSpy.mockRestore()
 	})
 })
 

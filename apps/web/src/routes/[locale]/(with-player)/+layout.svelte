@@ -5,9 +5,8 @@
     LG,
     MD,
     screen,
-    startAuthRefresh,
-    stopAuthRefresh,
-    trackCache,
+    localLibrary,
+    autoRefreshSession,
     trackQueue,
   } from '$lib/client'
   import {
@@ -22,7 +21,7 @@
   } from '$lib/components'
   import type { ScrollContext } from '$lib/types'
   import { debounce, formatTime, initContext, sumDurations } from '$lib/utils'
-  import TrashIcon from 'lucide-svelte/icons/trash'
+  import TrashIcon from '@lucide/svelte/icons/trash'
   import { type Snippet, getContext, onMount } from 'svelte'
   import { t } from 'svelte-intl-precompile'
   import type { LayoutData } from './$types'
@@ -45,14 +44,15 @@
   const scrollContext = getContext<ScrollContext>('scroll')()
 
   onMount(() => {
-    trackCache.setAgentById(data.agentById)
+    localLibrary.setAgentById(data.agentById)
+    void localLibrary.init()
     const unregisterAutoNext = trackQueue.registerAutoNextListener(() =>
-      notifier.notify(trackQueue.current)
+      notifier?.notify(trackQueue.current)
     )
-    startAuthRefresh()
+    const stopRefresh = autoRefreshSession()
     return () => {
       unregisterAutoNext()
-      stopAuthRefresh()
+      stopRefresh()
     }
   })
 
@@ -129,7 +129,7 @@
                 <span class="pr-4 text-base"
                   >{formatTime(sumDurations(trackQueue.content))}</span
                 >
-                <Button Icon={TrashIcon} onclick={handleClearQueue} size="sm" />
+                <Button Icon={TrashIcon} onclick={handleClearQueue} color="secondary" />
               {/if}
             {/await}
           </span>
@@ -160,7 +160,6 @@
       agentById={data.agentById}
       isLast={trackQueue.isLast}
       track={trackQueue.current}
-      nextTrack={trackQueue.nextTrack}
       isShuffled={trackQueue.shuffled}
       isTrackListOpen={trackListOpen}
       {onnext}

@@ -4,21 +4,19 @@ _ playlists: "{total, plural, =0 {aucune playlist} =1 {1 playlist} other {# play
 _ tracks: "{total, plural, =0 {aucun morceau} =1 {1 morceau} other {# morceaux}}"
 "#": N°
 add to playlist: Ajouter a une playlist
-create playlist: Creer une playlist
-search playlists: Rechercher des playlists
 album list: Liste des albums
 artist list: Liste des artistes
 artist: Artiste
 artists: Artistes
-playlist list: Liste des playlists
-rename playlist: Renommer la playlist
-rename playlist prompt: "Renommer la playlist \"{name}\" en :"
-delete playlist: Supprimer la playlist
-delete playlist confirm: "Supprimer la playlist \"{name}\" ?"
 by _: par {artist}
+create playlist: Creer une playlist
+delete playlist confirm: "Supprimer la playlist \"{name}\" ?"
+delete playlist: Supprimer la playlist
 disk _: Disque N°{num}
+downloading _ of _: "Téléchargement {done} sur {total}"
 duration: Durée
 enqueue: Ajouter tout
+connect: Connecter
 hours_minutes: "{hours, plural, =0 {} =1 {1 heure} other {# heures}} {minutes, plural, =0 {} =1 {1 minute} other {# minutes}}"
 loading: Chargement...
 no playlist: Aucune playlist
@@ -26,6 +24,12 @@ no results: Aucun resultat
 none: Aucun
 password: Mot de passe
 play all: Lire tout
+playlist list: Liste des playlists
+rename playlist prompt: "Renommer la playlist \"{name}\" en :"
+rename playlist: Renommer la playlist
+save to device: Enregistrer sur l'appareil
+saved: Enregistré
+search playlists: Rechercher des playlists
 track _/_: "{total, plural, =0 {Aucun morceau} other {Morceau {index}/#}}"
 track queue: Liste de lecture
 track: Morceau

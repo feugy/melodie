@@ -1,6 +1,6 @@
 import type { Stats } from 'node:fs'
 import { rm, stat, writeFile } from 'node:fs/promises'
-import { basename, dirname, extname, join } from 'node:path'
+import { basename, dirname, extname, join, relative } from 'node:path'
 import { faker } from '@faker-js/faker'
 
 import { beforeEach, describe, expect, it, mock } from 'bun:test'
@@ -176,6 +176,7 @@ describe('Folders service', () => {
 			const tracks = newFiles.map(({ path, stats: { mtimeMs, ino } }) => ({
 				id: ino,
 				path,
+				relativePath: relative(tree.folder, path),
 				tags: { artists: [], genre: [], duration: 0 },
 				mtimeMs,
 				media: null,
@@ -241,6 +242,7 @@ describe('Folders service', () => {
 			const tracks = modified.map(({ path, stats: { mtimeMs, ino } }) => ({
 				id: ino,
 				path,
+				relativePath: relative(tree.folder, path),
 				tags: { artists: [], genre: [], duration: 0 },
 				mtimeMs,
 				media: null,

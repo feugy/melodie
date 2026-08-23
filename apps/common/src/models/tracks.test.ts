@@ -16,9 +16,16 @@ describe('Tracks model', () => {
 	const folder1 = resolve('home', 'user', 'my-music')
 	const folder2 = resolve('home', 'user', 'desktop')
 
+	const file1 = faker.system.fileName()
+	const file2 = faker.system.fileName()
+	const file3 = faker.system.fileName()
+	const file4 = faker.system.fileName()
+	const folderName = faker.word.noun()
+
 	const models = [
 		{
-			path: join(folder1, faker.system.fileName()),
+			path: join(folder1, file1),
+			relativePath: file1,
 			tags: JSON.stringify({}),
 			media: faker.image.url(),
 			mediaCount: faker.number.int({ min: 2, max: 10 }),
@@ -27,7 +34,8 @@ describe('Tracks model', () => {
 			agentId: null
 		},
 		{
-			path: join(folder1, faker.word.noun(), faker.system.fileName()),
+			path: join(folder1, folderName, file2),
+			relativePath: join(folderName, file2),
 			media: faker.image.url(),
 			mediaCount: faker.number.int({ min: 2, max: 10 }),
 			tags: JSON.stringify({
@@ -40,7 +48,8 @@ describe('Tracks model', () => {
 			agentId: null
 		},
 		{
-			path: join(folder2, faker.system.fileName()),
+			path: join(folder2, file3),
+			relativePath: file3,
 			media: null,
 			mediaCount: 1,
 			tags: JSON.stringify({
@@ -52,7 +61,8 @@ describe('Tracks model', () => {
 			agentId: null
 		},
 		{
-			path: join('home', 'user', 'library', faker.system.fileName()),
+			path: join('home', 'user', 'library', file4),
+			relativePath: file4,
 			media: null,
 			mediaCount: 1,
 			tags: JSON.stringify({
@@ -101,6 +111,7 @@ describe('Tracks model', () => {
 			const artists = [faker.music.artist(), faker.music.artist()]
 			const track = {
 				path,
+				relativePath: path,
 				media: faker.image.url(),
 				mediaCount: faker.number.int({ min: 2, max: 10 }),
 				mtimeMs: Date.now(),
@@ -115,9 +126,7 @@ describe('Tracks model', () => {
 				albumRef: makeRef(album),
 				artistRefs: artists.map(artist => makeRef(artist))
 			})
-			expect(await tracksModel.getById(track.id)).toEqual({
-				...current
-			})
+			expect(await tracksModel.getById(track.id)).toEqual(current)
 			expect(previous).toBeNull()
 		})
 
@@ -125,6 +134,7 @@ describe('Tracks model', () => {
 			const path = faker.system.fileName()
 			const track = {
 				path,
+				relativePath: path,
 				media: faker.image.url(),
 				mediaCount: faker.number.int({ max: 10 }),
 				mtimeMs: Date.now(),

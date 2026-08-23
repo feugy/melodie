@@ -59,7 +59,8 @@ describe('Abstract model', () => {
 				{ id: 1, name: '001-init' },
 				{ id: 2, name: '002-settings' },
 				{ id: 3, name: '003-users' },
-				{ id: 4, name: '004-playlist-filepath' }
+				{ id: 4, name: '004-playlist-filepath' },
+				{ id: 5, name: '005-track-relative-path' }
 			])
 		})
 	})

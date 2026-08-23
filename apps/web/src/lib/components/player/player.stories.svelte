@@ -53,6 +53,7 @@
       id: 123,
       agentId: id,
       path: '',
+      relativePath: '',
       media: null,
       mediaCount: 1,
       artistRefs: [[123, 'Speaker']],

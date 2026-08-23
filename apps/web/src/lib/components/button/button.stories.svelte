@@ -1,8 +1,8 @@
 <script module lang="ts">
   import { defineMeta } from '@storybook/addon-svelte-csf'
   import { expect, fn, userEvent, within } from '@storybook/test'
-  import Bean from 'lucide-svelte/icons/bean'
-  import Play from 'lucide-svelte/icons/play'
+  import Bean from '@lucide/svelte/icons/bean'
+  import Play from '@lucide/svelte/icons/play'
   import Component from './button.svelte'
 
   const { Story } = defineMeta({

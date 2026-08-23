@@ -32,7 +32,7 @@
   import { screen } from '$lib/client'
   import { type Snippet } from 'svelte'
   import { slide } from 'svelte/transition'
-  import GripIcon from 'lucide-svelte/icons/grip-vertical'
+  import GripIcon from '@lucide/svelte/icons/grip-vertical'
 
   let { items, item: itemSnippet, onmove }: SortableListProps<Item> = $props()
 

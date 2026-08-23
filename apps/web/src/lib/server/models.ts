@@ -1,11 +1,12 @@
 import type { Kind } from '$lib/types'
+import { basename } from 'node:path'
 import {
 	albumsModel,
 	artistsModel,
 	playlistsModel,
 	tracksModel
 } from '@melodie/common/models'
-import type { Album, Artist, Playlist } from '@melodie/common/models'
+import type { Album, Artist, Playlist, Track } from '@melodie/common/models'
 import { database } from './database'
 
 export function list(kind: 'artists', size?: number): AsyncGenerator<Artist>
@@ -47,5 +48,11 @@ export async function count(kind: Kind) {
 
 export async function loadTracks(model: Artist | Album | Playlist) {
 	await database.init()
-	return tracksModel.getByIds(model.trackIds)
+	const tracks = await tracksModel.getByIds(model.trackIds)
+	return tracks.map(toClientTrack)
+}
+
+/** Replaces the server-side absolute path with the relative path for client consumption. */
+export function toClientTrack(track: Track): Track {
+	return { ...track, path: track.relativePath ?? basename(track.path) }
 }

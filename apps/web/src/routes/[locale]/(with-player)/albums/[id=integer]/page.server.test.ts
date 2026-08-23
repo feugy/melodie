@@ -10,6 +10,7 @@ import {
 } from '@melodie/common/models'
 import { cleanTestTB, initTestDB } from '@melodie/common/tests'
 import type { DBConf } from '@melodie/common/types'
+import { toClientTrack } from '$lib/server/models'
 import type { PageServerLoadEvent } from './$types'
 import { load } from './+page.server'
 
@@ -58,7 +59,7 @@ describe('server load()', () => {
 		} as PageServerLoadEvent)) as Record<string, unknown>
 		expect(response).toEqual({
 			album: { ...albums[0] },
-			tracks: expect.arrayContaining(tracks.slice(0, 1))
+			tracks: expect.arrayContaining(tracks.slice(0, 1).map(toClientTrack))
 		})
 		expect(response.tracks).toHaveLength(1)
 	})
@@ -69,7 +70,7 @@ describe('server load()', () => {
 		} as PageServerLoadEvent)) as Record<string, unknown>
 		expect(response).toEqual({
 			album: { ...albums[1] },
-			tracks: expect.arrayContaining(tracks.slice(1, 3))
+			tracks: expect.arrayContaining(tracks.slice(1, 3).map(toClientTrack))
 		})
 		expect(response.tracks).toHaveLength(2)
 	})

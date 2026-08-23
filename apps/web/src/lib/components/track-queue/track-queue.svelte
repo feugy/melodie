@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { Agent, Track as TrackModel } from '@melodie/common/models'
-  import CloseIcon from 'lucide-svelte/icons/x'
+  import CloseIcon from '@lucide/svelte/icons/x'
   import Button from '../button/button.svelte'
   import SortableList from '../sortable-list/sortable-list.svelte'
   import Track from '../track/track.svelte'

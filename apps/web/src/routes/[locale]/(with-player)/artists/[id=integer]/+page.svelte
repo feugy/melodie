@@ -2,8 +2,8 @@
   import { MD, getImage, screen, trackQueue } from '$lib/client'
   import { Album, Button, Heading, Image } from '$lib/components'
   import type { Track } from '@melodie/common/models'
-  import EnqueueIcon from 'lucide-svelte/icons/list-plus'
-  import PlayIcon from 'lucide-svelte/icons/play'
+  import EnqueueIcon from '@lucide/svelte/icons/list-plus'
+  import PlayIcon from '@lucide/svelte/icons/play'
   import { t } from 'svelte-intl-precompile'
   import type { PageData } from './$types'
 

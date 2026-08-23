@@ -1,6 +1,6 @@
 <script lang="ts">
   import { Button, Heading } from '$lib/components'
-  import LogInIcon from 'lucide-svelte/icons/log-in'
+  import LogInIcon from '@lucide/svelte/icons/log-in'
   import { t } from 'svelte-intl-precompile'
 
   let { form } = $props()

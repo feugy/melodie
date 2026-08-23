@@ -30,9 +30,11 @@ export async function refreshAuthSession(fetcher: typeof global.fetch = fetch) {
 	}
 }
 
-export function startAuthRefresh(fetcher: typeof global.fetch = fetch): void {
+export function autoRefreshSession(
+	fetcher: typeof global.fetch = fetch
+): () => void {
 	if (!browser || authRefreshTimeout !== undefined) {
-		return
+		return () => {}
 	}
 
 	function doRefresh() {
@@ -49,12 +51,12 @@ export function startAuthRefresh(fetcher: typeof global.fetch = fetch): void {
 	}
 
 	authRefreshTimeout = setTimeout(doRefresh, 0)
-}
 
-export function stopAuthRefresh() {
-	if (authRefreshTimeout === undefined) {
-		return
+	return () => {
+		if (authRefreshTimeout === undefined) {
+			return
+		}
+		clearTimeout(authRefreshTimeout)
+		authRefreshTimeout = undefined
 	}
-	clearTimeout(authRefreshTimeout)
-	authRefreshTimeout = undefined
 }

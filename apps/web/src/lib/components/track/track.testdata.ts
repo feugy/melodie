@@ -11,6 +11,7 @@ export const trackData: Track = addId({
 	mtimeMs: 0,
 	mediaCount: 1,
 	path: '/file.webm',
+	relativePath: 'file.webm',
 	data,
 	media: 'cover.jpg',
 	cover,

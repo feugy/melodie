@@ -1,14 +1,36 @@
 <script lang="ts">
-  import { MD, getImage, screen, trackQueue } from '$lib/client'
+  import { MD, getImage, localLibrary, screen, trackQueue } from '$lib/client'
   import { Button, DisksList, Heading, Image, TrackCount } from '$lib/components'
   import { wrapWithLinks } from '$lib/utils'
-  import EnqueueIcon from 'lucide-svelte/icons/list-plus'
-  import PlayIcon from 'lucide-svelte/icons/play'
+  import DownloadIcon from '@lucide/svelte/icons/download'
+  import EnqueueIcon from '@lucide/svelte/icons/list-plus'
+  import PlayIcon from '@lucide/svelte/icons/play'
   import { t } from 'svelte-intl-precompile'
   import type { PageData } from './$types'
 
   let { data }: { data: PageData } = $props()
   const { album, tracks } = data
+
+  type DownloadState = 'idle' | 'downloading' | 'saved'
+  let downloadState = $state<DownloadState>('idle')
+  let downloadDone = $state(0)
+
+  async function saveToDevice() {
+    if (downloadState !== 'idle') return
+    downloadState = 'downloading'
+    downloadDone = 0
+    try {
+      for await (const { done } of localLibrary.saveToDevice(tracks)) {
+        downloadDone = done
+      }
+      downloadState = 'saved'
+      setTimeout(() => {
+        downloadState = 'idle'
+      }, 3000)
+    } catch {
+      downloadState = 'idle'
+    }
+  }
 </script>
 
 <Heading>
@@ -40,6 +62,25 @@
         >
           {$t('enqueue')}
         </Button>
+        {#if localLibrary.supported}
+          <Button
+            Icon={downloadState === 'idle' || downloadState === 'saved'
+              ? DownloadIcon
+              : undefined}
+            loading={downloadState === 'downloading'}
+            onclick={saveToDevice}
+          >
+            {#if downloadState === 'downloading'}
+              {$t('downloading _ of _', {
+                values: { done: downloadDone, total: tracks.length },
+              })}
+            {:else if downloadState === 'saved'}
+              {$t('saved')}
+            {:else}
+              {$t('save to device')}
+            {/if}
+          </Button>
+        {/if}
       </div>
       <TrackCount {tracks} />
       <h3 class="mb-2 text-2xl">

@@ -24,7 +24,7 @@ async function worker() {
 		async function start(base: string) {
 			try {
 				postMessage({ type: 'comparing' })
-				logger.debug('comparing folders content with database', {
+				logger.debug('comparing folders content with database {*}', {
 					folders,
 					base
 				})

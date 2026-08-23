@@ -11,6 +11,7 @@ import {
 } from '@melodie/common/models'
 import { cleanTestTB, initTestDB } from '@melodie/common/tests'
 import type { DBConf } from '@melodie/common/types'
+import { toClientTrack } from '$lib/server/models'
 import type { PageServerLoadEvent } from './$types'
 import { actions, load } from './+page.server'
 
@@ -61,7 +62,7 @@ describe('server load()', () => {
 
 		expect(response).toEqual({
 			playlist: { ...playlists[0], trackPaths: null },
-			tracks: [tracks[0], tracks[2], tracks[0]]
+			tracks: [tracks[0], tracks[2], tracks[0]].map(toClientTrack)
 		})
 	})
 

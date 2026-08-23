@@ -16,7 +16,7 @@
 <script lang="ts">
   import { createEventDispatcher } from 'svelte'
   import { Dialog as SkeletonDialog, Portal } from '@skeletonlabs/skeleton-svelte'
-  import XIcon from 'lucide-svelte/icons/x'
+  import XIcon from '@lucide/svelte/icons/x'
   import Button from '../button/button.svelte'
 
   let {

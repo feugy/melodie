@@ -4,7 +4,6 @@
   export interface PlayerProps {
     agentById: Map<number, Agent>
     track?: TrackModel
-    nextTrack?: TrackModel
     isLast: boolean
     isShuffled: boolean
     isTrackListOpen: boolean
@@ -16,17 +15,17 @@
 </script>
 
 <script lang="ts">
-  import PauseIcon from 'lucide-svelte/icons/pause'
-  import PlayIcon from 'lucide-svelte/icons/play'
-  import PreviousIcon from 'lucide-svelte/icons/skip-back'
-  import NextIcon from 'lucide-svelte/icons/skip-forward'
-  import ShuffleIcon from 'lucide-svelte/icons/shuffle'
-  import MuteIcon from 'lucide-svelte/icons/volume-off'
-  import UnmuteIcon from 'lucide-svelte/icons/volume-2'
-  import PlaylistIcon from 'lucide-svelte/icons/logs'
-  import PlaylistCloseIcon from 'lucide-svelte/icons/x'
+  import PauseIcon from '@lucide/svelte/icons/pause'
+  import PlayIcon from '@lucide/svelte/icons/play'
+  import PreviousIcon from '@lucide/svelte/icons/skip-back'
+  import NextIcon from '@lucide/svelte/icons/skip-forward'
+  import ShuffleIcon from '@lucide/svelte/icons/shuffle'
+  import MuteIcon from '@lucide/svelte/icons/volume-off'
+  import UnmuteIcon from '@lucide/svelte/icons/volume-2'
+  import PlaylistIcon from '@lucide/svelte/icons/logs'
+  import PlaylistCloseIcon from '@lucide/svelte/icons/x'
   import { onMount } from 'svelte'
-  import { MD, screen, trackCache } from '$lib/client'
+  import { MD, getAudioURL, localLibrary, screen } from '$lib/client'
   import { wrapWithLinks } from '$lib/utils'
   import AddToPlaylist  from '../add-to-playlist/add-to-playlist.svelte'
   import Button  from '../button/button.svelte'
@@ -36,7 +35,6 @@
   let {
     agentById,
     track,
-    nextTrack,
     isLast,
     isShuffled,
     isTrackListOpen,
@@ -48,7 +46,6 @@
 
   let player: HTMLAudioElement | undefined
   let gainNode: GainNode | undefined
-  let wakeLock: WakeLockSentinel | undefined
   let src = $state<string | null | undefined>()
   let retry: ReturnType<typeof setTimeout>
   let time = $state(0)
@@ -59,17 +56,17 @@
   let volume = $state(1)
   let muted = $state(false)
   let srcRequestId = 0
-
-  $effect(() => {
-    // aggressive preload of the next track
-    if (nextTrack) {
-      void trackCache.addToCache(nextTrack)
-    }
-  })
+  let localBlobUrl: string | null = null
 
   $effect(() => {
     clearTimeout(retry)
     const requestId = ++srcRequestId
+
+    // Revoke previous local blob URL to free memory.
+    if (localBlobUrl) {
+      URL.revokeObjectURL(localBlobUrl)
+      localBlobUrl = null
+    }
 
     if (!track) {
       src = undefined
@@ -79,20 +76,20 @@
 
     src = undefined
     loading = true
-    trackCache
-      // Try cached data first.
-      .readCachedTrack(track)
-      .catch(() => undefined)
-      .then((data) => {
+    localLibrary
+      .getURL(track)
+      .catch(() => null)
+      .then((localUrl) => {
         if (requestId !== srcRequestId) {
           // Ignore stale async resolutions using requestId.
+          if (localUrl) URL.revokeObjectURL(localUrl)
           return
         }
-        if (data) {
-          src = data
+        if (localUrl) {
+          localBlobUrl = localUrl
+          src = localUrl
         } else {
-          // If missing or failing, fall back to remote URL and warm cache in background.
-          src = trackCache.getTrackURLAndCache(track)
+          src = getAudioURL(track, agentById)
         }
       })
   })
@@ -121,14 +118,15 @@
     }
 
     return () => {
-      wakeLock?.release().catch(() => void 0)
+      if (localBlobUrl) {
+        URL.revokeObjectURL(localBlobUrl)
+      }
     }
   })
 
   function format(time: number) {
     const minutes = Math.floor(time / 60)
     const seconds = Math.floor(time % 60)
-
     return `${minutes}:${seconds < 10 ? `0${seconds}` : seconds}`
   }
 
@@ -146,22 +144,11 @@
       } = track.tags
       gainNode.gain.value = (trackGain || albumGain || { ratio: 1 }).ratio
     }
-
-    if (!screen.supportHover) {
-      // navigator.wakeLock
-      //   ?.request()
-      //   .then((lock) => {
-      //     wakeLock = lock
-      //   })
-      //   .catch(() => void 0)
-    }
   }
 
   function handleEnded() {
     time = 0
-    if (isLast) {
-      wakeLock?.release().catch(() => void 0)
-    } else {
+    if (!isLast) {
       onnext?.(true)
     }
   }
@@ -241,9 +228,9 @@
         {@render muteButton()}
       {/if}
       <Button
+        color="secondary"
         Icon={isTrackListOpen ? PlaylistCloseIcon : PlaylistIcon}
         onclick={() => onplaylistopen(!isTrackListOpen)}
-        size="sm"
       />
     </div>
     <div class="flex w-full items-center gap-2">

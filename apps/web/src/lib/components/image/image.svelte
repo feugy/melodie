@@ -3,9 +3,9 @@
   // This Image component is a wrapper arround @unpic/svelte,
   // bound to melodie agent and its image optimization interface.
   import { Image } from '@unpic/svelte/base'
-  import ImageIcon from 'lucide-svelte/icons/image'
-  import Music4 from 'lucide-svelte/icons/music-4'
-  import UserRound from 'lucide-svelte/icons/user-round'
+  import ImageIcon from '@lucide/svelte/icons/image'
+  import Music4 from '@lucide/svelte/icons/music-4'
+  import UserRound from '@lucide/svelte/icons/user-round'
   import type { HTMLImgAttributes } from 'svelte/elements'
   import type { URLTransformer } from 'unpic'
 

@@ -18,12 +18,12 @@
   }
   const colors = {
     primary: 'preset-outlined-primary-500 text-primary-500',
-    secondary: 'preset-filled-secondary-500',
-    tertiary: 'preset-filled-tertiary-500',
-    success: 'preset-filled-success-500',
-    warning: 'preset-filled-warning-500',
-    error: 'preset-filled-error-500',
-    surface: 'preset-filled-surface-500',
+    secondary: 'preset-filled-secondary-500 border-1 border-transparent',
+    tertiary: 'preset-filled-tertiary-500 border-1 border-transparent',
+    success: 'preset-filled-success-500 border-1 border-transparent',
+    warning: 'preset-filled-warning-500 border-1 border-transparent',
+    error: 'preset-filled-error-500 border-1 border-transparent',
+    surface: 'preset-filled-surface-500 border-1 border-transparent',
   }
 
   export interface ButtonProps extends HTMLButtonAttributes {
@@ -37,8 +37,8 @@
 </script>
 
 <script lang="ts">
-  import type { Icon as IconType } from 'lucide-svelte'
-  import Loader from 'lucide-svelte/icons/loader-circle'
+  import type { Icon as IconType } from '@lucide/svelte'
+  import Loader from '@lucide/svelte/icons/loader-circle'
   import type { Component, Snippet } from 'svelte'
 
   let {

@@ -4,6 +4,7 @@
   import type { Agent, Track } from '@melodie/common/models'
   import type { Tags } from '@melodie/common/types'
   import Image from '../image/image.svelte'
+  import LocalPin from '../local-pin/local-pin.svelte'
 
   export interface TrackProps {
     agentById: Map<number, Agent>
@@ -24,7 +25,6 @@
   }: TrackProps = $props()
 
   let tags: Partial<Tags> = $derived(src?.tags ?? {})
-
   let cover = $derived(getImage(src, agentById))
 </script>
 
@@ -51,7 +51,8 @@
       {/if}
     </span>
   </div>
+  <LocalPin track={src} />
   {#if details}
-    <div class="text-base">{formatTime(tags.duration)}</div>
+    <div class="ml-2 text-base">{formatTime(tags.duration)}</div>
   {/if}
 </div>

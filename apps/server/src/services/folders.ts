@@ -1,5 +1,5 @@
 import { stat, writeFile } from 'node:fs/promises'
-import { dirname, extname, resolve } from 'node:path'
+import { dirname, extname, resolve, sep } from 'node:path'
 import {
 	type Track,
 	agentsModel,
@@ -135,6 +135,7 @@ export class FoldersService {
 				(!playlistsService.isPlaylistFile(path) && knownTime < mtimeMs)
 			)
 		}
+		const rootPrefix = folder.endsWith(sep) ? folder : `${folder}${sep}`
 		try {
 			for await (const entry of walk(folder)) {
 				const ext = extname(entry.path).toLowerCase()
@@ -143,7 +144,7 @@ export class FoldersService {
 					extensions.includes(ext) &&
 					isNewFile(entry)
 				) {
-					await this._processEntry(entry, agentId)
+					await this._processEntry(entry, agentId, rootPrefix)
 				}
 			}
 		} finally {
@@ -173,7 +174,8 @@ export class FoldersService {
 
 	protected async _processEntry(
 		{ path, stats: { mtimeMs, ino } }: Item,
-		agentId: number
+		agentId: number,
+		rootPrefix: string
 	) {
 		if (playlistsService.isPlaylistFile(path)) {
 			const playlist = await playlistsService.read(path)
@@ -188,6 +190,9 @@ export class FoldersService {
 				id: ino,
 				mtimeMs,
 				path,
+				relativePath: path.startsWith(rootPrefix)
+					? path.slice(rootPrefix.length)
+					: null,
 				tags: await tagsService.read(path),
 				media: await coversService.findInFolder(path),
 				mediaCount: 0,

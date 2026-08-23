@@ -1,5 +1,6 @@
 import { beforeEach, describe, expect, it, mock, spyOn } from 'bun:test'
 import { base } from '$app/paths'
+import type { Track } from '@melodie/common/models'
 import {
 	UnauthorizedError,
 	getLocaleFromPathname,
@@ -137,7 +138,7 @@ describe('getTracksByIds()', () => {
 	})
 
 	it('requests tracks endpoint and returns payload data', async () => {
-		const tracks = [{ id: 1 }]
+		const tracks = [{ id: 1 }] as unknown as Track[]
 		fetch.mockResolvedValueOnce(Response.json({ data: tracks }))
 
 		expect(await getTracksByIds([1])).toEqual(tracks)

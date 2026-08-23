@@ -9,7 +9,7 @@ import {
 } from '@melodie/common/models'
 import { cleanTestTB, initTestDB } from '@melodie/common/tests'
 import type { DBConf } from '@melodie/common/types'
-import type { Reference } from '@melodie/common/utils'
+import { toClientTrack } from '$lib/server/models'
 import { POST } from './+server'
 
 describe('POST /api/get-tracks', () => {
@@ -41,7 +41,7 @@ describe('POST /api/get-tracks', () => {
 		})
 		const response = await POST({ request } as Parameters<typeof POST>[0])
 		expect(await response.json()).toEqual({
-			data: tracks.slice(1, 2),
+			data: tracks.slice(1, 2).map(toClientTrack),
 			total: 1
 		})
 	})
@@ -53,7 +53,7 @@ describe('POST /api/get-tracks', () => {
 		})
 		const response = await POST({ request } as Parameters<typeof POST>[0])
 		expect(await response.json()).toEqual({
-			data: tracks.slice(0, 2).reverse(),
+			data: tracks.slice(0, 2).reverse().map(toClientTrack),
 			total: 2
 		})
 	})

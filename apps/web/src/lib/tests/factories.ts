@@ -11,14 +11,16 @@ import { addId, addRefs, makeRef } from '@melodie/common/tests'
 export function makeTrack(track: Partial<Track> = {}) {
 	const artist = faker.music.artist()
 	const album = faker.music.album()
+	const { path = faker.system.filePath(), relativePath, ...rest } = track
 	return addRefs({
 		id: faker.number.int(),
-		path: faker.system.filePath(),
+		path,
+		relativePath: relativePath ?? path.replace(/^\//, ''),
 		media: null,
 		mediaCount: 0,
 		mtimeMs: faker.date.recent().getTime(),
 		agentId: null,
-		...track,
+		...rest,
 		tags: track.tags
 			? JSON.parse(JSON.stringify(track.tags))
 			: {
