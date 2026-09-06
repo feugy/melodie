@@ -90,6 +90,27 @@ describe('runScript', () => {
 		)
 	})
 
+	it('calls refreshCerts with a domain option', async () => {
+		const result = await runScript([
+			'refresh-certs',
+			'-e',
+			'admin@test.com',
+			'-d',
+			'melodie.hd.free.fr'
+		])
+
+		expect(result).toBe(true)
+		expect(refreshCertsMock).toHaveBeenCalledWith(
+			{
+				config: '.melodie',
+				port: '80',
+				email: 'admin@test.com',
+				domain: 'melodie.hd.free.fr'
+			},
+			['refresh-certs']
+		)
+	})
+
 	it('shows general help with --help flag', async () => {
 		const result = await runScript(['--help'])
 

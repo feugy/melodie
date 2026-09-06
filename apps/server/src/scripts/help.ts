@@ -29,7 +29,7 @@ The configuration folder (default: ./.melodie) is expected to contain:
 
 Commands:
   add-user          Create a new user
-  refresh-certs     Refresh TLS certificates
+  refresh-certs     Create or refresh TLS certificates (use -d/--domain to certify a new domain)
   help              Show this help
 
 Run 'melodie <command> --help' for command-specific help.`)

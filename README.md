@@ -90,6 +90,12 @@ To refresh TLS certificates:
 bun start refresh-certs -e email -p port
 ```
 
+To create or replace certificates for a new domain (reusing the existing config folder):
+
+```shell
+bun start refresh-certs -e email -p port -d example.com
+```
+
 ## apps/web
 
 Web UI.

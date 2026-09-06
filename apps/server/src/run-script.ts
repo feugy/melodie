@@ -3,9 +3,12 @@ import { addUser } from './scripts/add-user.ts'
 import { help } from './scripts/help.ts'
 import { refreshCerts } from './scripts/refresh-certs.ts'
 
-type Options = NonNullable<
+type OptionsType = NonNullable<
 	NonNullable<Parameters<typeof parseArgs>[0]>['options']
 >
+type Options = {
+	[K in keyof OptionsType]: OptionsType[K] & { optional?: boolean }
+}
 const scripts: Record<
 	string,
 	// biome-ignore lint/suspicious/noExplicitAny: we can't easily type the args from options
@@ -25,6 +28,7 @@ const scripts: Record<
 			config: { type: 'string', short: 'c', default: '.melodie' },
 			port: { type: 'string', short: 'p', default: '80' },
 			email: { type: 'string', short: 'e' },
+			domain: { type: 'string', short: 'd', optional: true },
 			help: { type: 'boolean', short: 'h' }
 		},
 		script: refreshCerts
@@ -55,7 +59,7 @@ export async function runScript(args: string[]) {
 			return true
 		}
 		for (const [name, spec] of Object.entries(options)) {
-			if (spec.type === 'boolean') continue
+			if (spec.type === 'boolean' || spec.optional) continue
 			if (!(name in values)) {
 				console.log(`${command} requires option --${name}/-${spec.short}`)
 				return true
